@@ -1,0 +1,37 @@
+{
+  "exp_id": "phi3v_attention_untrained_10tasks",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:53:51.511Z",
+    "updated_at": "2026-05-19T22:58:43.241Z",
+    "hypothesis": "Untrained (base Phi-3-mini) VLA will show uniform attention across layers with no instruction-dominant specialization at L1, contrasting with trained TracVLA-Phi3V which shows strong L1 instruction dominance.",
+    "parent": "phi3v_attention_untrained",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T22:54:39.022Z"
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_attention_untrained_10tasks.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks",
+      "model_name": "Phi-3-mini-4k-instruct (untrained VLA)",
+      "seed": "default",
+      "pid": 89850,
+      "log_path": "/tmp/phi3v_untrained_10tasks.log",
+      "checkpoint_path": "N/A (inference only)",
+      "output_path": "/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json",
+      "checkpoint_source": "microsoft/Phi-3-mini-4k-instruct (base, untrained)",
+      "eval_data": "LIBERO-Goal 10 tasks (frame 0 per task)"
+    }
+  },
+  "timestamp": "2026-05-19T22:58:43.483145+00:00",
+  "trigger": "update_registry"
+}

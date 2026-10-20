@@ -1,0 +1,32 @@
+{
+  "exp_id": "cross_layer_L8_ablation",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:35:43.212Z",
+    "updated_at": "2026-05-18T16:33:31.960Z",
+    "hypothesis": "L8 full-layer ablation (all 32 heads) produces significantly smaller action divergence (d << 0.65) than L1 instruction-head ablation (24 heads, d=0.65), demonstrating that L1's causal impact on action output is layer-position-specific, not merely a function of head count. Based on R² gradient prediction: L8 Δ=+0.018 vs L1 Δ=+0.059.",
+    "parent": "action_trajectory_control",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/vla-ssd && MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=0 python -u scripts/action_trajectory_L8_ablation.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.log\"",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal",
+      "data_count": 2500,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b",
+      "eval_data": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal",
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.log"
+    },
+    "conclusion": "failed",
+    "notes": "M006/D064: L8 full-layer ablation d=0.652 ≈ L1 d=0.65. Cross-layer gradient not confirmed at action trajectory level. Methodological issue: L1 partial (24/32) vs L8/L13 full (32/32) knockout not comparable; d values saturate. Not for paper.",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-18T16:26:02.700Z"
+  },
+  "timestamp": "2026-05-18T16:33:32.130794+00:00",
+  "trigger": "update_registry"
+}

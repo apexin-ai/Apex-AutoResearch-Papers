@@ -1,0 +1,2 @@
+Remote path: /root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json
+Server: westd-19183

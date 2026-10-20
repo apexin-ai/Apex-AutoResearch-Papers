@@ -1,0 +1,32 @@
+{
+  "exp_id": "nora_goal_pipeline_v2",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:26:21.703Z",
+    "updated_at": "2026-05-21T03:27:02.646Z",
+    "hypothesis": "The convergent entry-exit routing architecture (instruction-dominant attention heads, counterfactual sensitivity, cross-instruction classification) observed in OpenVLA (Llama-2) and TraceVLA (Phi-3) generalizes to a third architecture family — NORA (Qwen2.5-VL-3B, 36 layers, GQA). This three-model convergence elevates the claim from 'two-model pattern' to 'architecture-independent phenomenon' of VLA fine-tuning.",
+    "parent": "nora_goal_full_pipeline",
+    "spec": {
+      "command": "bash -c 'source /root/autodl-tmp/vla-ssd/envs/nora/bin/activate && python /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py --conditions trained untrained'",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "526939",
+      "log_path": "~/runs/vla-ssd/nora_goal_pipeline_v2.log",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": 5000,
+      "model_name": "nora-libero-goal (Qwen2.5-VL-3B, 36 layers, hidden=2048, GQA 16h/2kv)",
+      "seed": 42,
+      "fix": "argparse --conditions changed from single string to nargs='+' choices=['trained','untrained']",
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/",
+      "eval_data": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+    }
+  },
+  "timestamp": "2026-05-21T03:27:02.886200+00:00",
+  "trigger": "update_registry"
+}

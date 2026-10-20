@@ -1,0 +1,17 @@
+{
+  "exp_id": "behavioral_pilot",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:25:24.217Z",
+    "updated_at": "2026-05-21T23:25:44.194Z",
+    "hypothesis": "Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.",
+    "parent": "ablation_50demos_main",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T23:25:44.602913+00:00",
+  "trigger": "update_registry"
+}

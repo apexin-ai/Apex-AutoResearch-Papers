@@ -1,0 +1,2274 @@
+# code ablation 50demos main
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 79
+- **Recorded user turns:** 0
+- **Tool calls:** 39
+- **Original source:** `logs/chats/worker_code_ablation_50demos_main_20260517T182747.jsonl`
+- **Structured JSON:** [`0ace69b064ed4bace381.json`](../../sessions/0a/0ace69b064ed4bace381.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+79 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T18:36:52.560451+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T18:36:52.560795+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T18:36:52.561006+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T18:36:52.561313+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"L1 Head Ablation + Action Probe R²: measure how ablating L1 instruction-attending\\nheads affects action-relevant information at different readout layers.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\\n\\nINSTRUCTION_HEADS_24 = [0,1,2,4,7,8,10,11,12,14,15,16,17,18,19,20,22,23,25,26,27,29,30,31]\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nHIDDEN_DIM = 256\\nINPUT_DIM = 4096\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--demos_per_task\\\", type=int, default=5)\\n    p.add_argument(\\\"--readout_layers\\\", type=int, nargs=\\\"+\\\", default=[1, 8, 13])\\n    p.add_argument(\\\"--condition\\\", type=str, default=None)\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\")\\n    return p.parse_args()\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    return stem.replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef install_ablation_hook(model, heads_to_ablate):\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    from transformers.models.llama.modeling_llama import repeat_kv\\n\\n    layer1_attn = model.language_model.m
+…[truncated 7054 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T18:36:52.561538+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -l /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "wc -l /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-17T18:36:52.561679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -200 /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -200 /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T18:36:52.561810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"466 /root/vla-ssd/scripts/l1_ablation_action_probe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T18:36:52.562048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"L1 Head Ablation + Action Probe R²: measure how ablating L1 instruction-attending\\nheads affects action-relevant information at different readout layers.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\\n\\nINSTRUCTION_HEADS_24 = [0,1,2,4,7,8,10,11,12,14,15,16,17,18,19,20,22,23,25,26,27,29,30,31]\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nHIDDEN_DIM = 256\\nINPUT_DIM = 4096\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--demos_per_task\\\", type=int, default=5)\\n    p.add_argument(\\\"--readout_layers\\\", type=int, nargs=\\\"+\\\", default=[1, 8, 13])\\n    p.add_argument(\\\"--condition\\\", type=str, default=None)\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\")\\n    return p.parse_args()\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    return stem.replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef install_ablation_hook(model, heads_to_ablate):\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    from transformers.models.llama.modeling_llama import repeat_kv\\n\\n    layer1_attn = model.language_model.m
+…[truncated 5669 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T18:36:52.562213+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +200 /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -n +200 /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T18:36:52.562481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                if i < n_train:\\n                    X_tr_list.append(x)\\n                    y_tr_list.append(y)\\n                else:\\n                    X_val_list.append(x)\\n                    y_val_list.append(y)\\n                    val_tasks.extend([task] * (T - 1))\\n\\n        result[l] = (\\n            torch.cat(X_tr_list), torch.cat(y_tr_list),\\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks\\n        )\\n    return result\\n\\n\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device):\\n    torch.manual_seed(SEED)\\n    np.random.seed(SEED)\\n\\n    y_mean = y_tr_raw.mean(dim=0)\\n    y_std = y_tr_raw.std(dim=0).clamp(min=1e-6)\\n    y_tr = (y_tr_raw - y_mean) / y_std\\n    y_val = (y_val_raw - y_mean) / y_std\\n\\n    X_tr_d = X_tr.to(device)\\n    y_tr_d = y_tr.to(device)\\n    X_val_d = X_val.to(device)\\n    y_val_d = y_val.to(device)\\n\\n    model = ActionMLPProbe().to(device)\\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\\n    criterion = nn.MSELoss()\\n\\n    n = len(X_tr_d)\\n    best_val_loss = float(\\\"inf\\\")\\n    best_state = None\\n    wait = 0\\n    epochs_trained = 0\\n\\n    for epoch in range(EPOCHS):\\n        model.train()\\n        perm = torch.randperm(n, device=device)\\n        for start in range(0, n, BATCH_SIZE):\\n            idx = perm[start:start + BATCH_SIZE]\\n            pred = model(X_tr_d[idx])\\n            loss = criterion(pred, y_tr_d[idx])\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            val_pred = model(X_val_d)\\n            val_loss = criterion(val_pred, y_val_d).item()\\n\\n        epochs_trained = epoch + 1\\n        if val_loss < best_val_loss - 1e-6:\\n            best_val_loss = val_loss\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items
+…[truncated 7062 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T18:36:52.562675+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"conditions\" /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"conditions\" /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T18:36:52.562815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"326:    conditions = {\\n333:        if args.condition not in conditions:\\n334:            raise ValueError(f\\\"Unknown condition: {args.condition}. Available: {list(conditions.keys())}\\\")\\n335:        conditions = {args.condition: conditions[args.condition]}\\n344:    for cond_name, heads in conditions.items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T18:36:52.562956+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -350 /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -350 /root/vla-ssd/scripts/l1_ablation_action_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T18:36:52.563213+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"L1 Head Ablation + Action Probe R²: measure how ablating L1 instruction-attending\\nheads affects action-relevant information at different readout layers.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\\n\\nINSTRUCTION_HEADS_24 = [0,1,2,4,7,8,10,11,12,14,15,16,17,18,19,20,22,23,25,26,27,29,30,31]\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nHIDDEN_DIM = 256\\nINPUT_DIM = 4096\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--demos_per_task\\\", type=int, default=5)\\n    p.add_argument(\\\"--readout_layers\\\", type=int, nargs=\\\"+\\\", default=[1, 8, 13])\\n    p.add_argument(\\\"--condition\\\", type=str, default=None)\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\")\\n    return p.parse_args()\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    return stem.replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef install_ablation_hook(model, heads_to_ablate):\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    from transformers.models.llama.modeling_llama import repeat_kv\\n\\n    layer1_attn = model.language_model.m
+…[truncated 6967 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T18:36:52.563418+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/openvla-7b/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/openvla-7b/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T18:36:52.563559+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/openvla-7b/config.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T18:36:52.563747+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T18:36:52.563891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T18:36:52.564067+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero_goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T18:36:52.564197+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T18:36:52.564321+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/vla-ssd/data/libero_goal/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T18:36:52.564454+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T18:36:52.564607+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5','r'); print(len(list(f['data'].keys()))); f.close()\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5','r'); print(len(list(f['data'].keys()))); f.close()\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T18:36:52.564732+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T18:36:52.564848+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5','r'); print(len(list(f['data'].keys()))); f.close()\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5','r'); print(len(list(f['data'].keys()))); f.close()\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T18:36:52.564994+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import h5py; f=h5py.File(\\\\'/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5\\\\',\\\\'r\\\\'); print(len(list(f[\\\\'data\\\\'].keys()))); f.close()\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T18:36:52.565118+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python3.12 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5','r'); print(len(list(f['data'].keys()))); f.close()\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "/root/miniconda3/bin/python3.12 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5','r'); print(len(list(f['data'].keys()))); f.close()\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T18:36:52.565239+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T18:36:52.565379+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T18:36:52.565526+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T18:36:52.565644+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write modified script with bootstrap CI', 'status': 'in_progress', 'activeForm': 'Writing modified script with bootstrap CI'}, {'content': 'Upload script to server', 'status': 'pending', 'activeForm': 'Uploading script to server'}, {'content': 'Submit training job on cuda:0', 'status': 'pending', 'activeForm': 'Submitting training job on cuda:0'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write modified script with bootstrap CI', 'status': 'in_progress', 'activeForm': 'Writing modified script with bootstrap CI'}, {'content': 'Upload script to server', 'status': 'pending', 'activeForm': 'Uploading script to server'}, {'content': 'Submit training job on cuda:0', 'status': 'pending', 'activeForm': 'Submitting training job on cuda:0'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T18:36:52.565831+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T18:36:52.566088+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/l1_ablation_action_probe_50demos.py",
+  "content": "\"\"\"L1 Head Ablation + Action Probe R² (50 demos version): measure how ablating L1\ninstruction-attending heads affects action-relevant information at different readout layers.\nIncludes 10,000-resample paired bootstrap CI and p-values.\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport os\nimport time\n\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom PIL import Image\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\n\nINSTRUCTION_HEADS_24 = [0,1,2,4,7,8,10,11,12,14,15,16,17,18,19,20,22,23,25,26,27,29,30,31]\n\nSEED = 42\nBATCH_SIZE = 256\nLR = 1e-3\nEPOCHS = 50\nPATIENCE = 5\nHIDDEN_DIM = 256\nINPUT_DIM = 4096\nN_BOOTSTRAP = 10000\n\n\ndef parse_args():\n    p = argparse.ArgumentParser()\n    p.add_argument(\"--model_path\", default=\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\")\n    p.add_argument(\"--data_dir\", default=\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\")\n    p.add_argument(\"--output\", default=\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\")\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--demos_per_task\", type=int, default=50)\n    p.add_argument(\"--readout_layers\", type=int, nargs=\"+\", default=[1, 8, 13])\n    p.add_argument(\"--condition\", type=str, default=None)\n    p.add_argument(\"--dry_run\", action=\"store_true\")\n    return p.parse_args()\n\n\ndef task_desc_from_filename(fname):\n    stem = Path(fname).stem.replace(\"_demo\", \"\")\n    return stem.replace(\"_\", \" \")\n\n\ndef install_ablation_hook(model, heads_to_ablate):\n    import transformers.models.llama.modeling_llama as llama_mod\n    from transformers.models.llama.modeling_llama import repeat_kv\n\n    layer1_attn = model.language_model.model.layers[1].self_attn\n    layer1_attn._ablate_heads = heads_to_ablate\n\n    original_fn = llama_mod.eager_attention_forward\n\n    def ablated_eager_attention_forward(module, query, key, value, attention_mask,\n                                        scaling, dropout=0.0, **kwargs):\n        key_states = repeat_kv(key, module.num_key_value_groups)\n        value_states = repeat_kv(value, module.num_key_value_groups)\n\n        attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling\n        if attention_mask is not None:\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\n            attn_weights = attn_weights + causal_mask\n\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)\n        attn_weights = nn.functional.dropout(attn_weights, p=dropout, training=module.training)\n\n        if hasattr(module, '_ablate_heads') and module._ablate_heads is not None:\n            seq_len = attn_weights.shape[-1]\n            if INST_START < seq_len:\n                attn_weights[:, module._ablate_heads, :, INST_START:] = 0.0\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\n                attn_weights = attn_weights / row_sums\n\n        attn_output = torch.matmul(attn_weights, value_states)\n        attn_output = attn_output.transpose(1, 2).contiguous()\n        return attn_output, attn_weights\n\n    llama_mod.eager_attention_forward = ablated_eager_attention_forward\n    return original_fn\n\n\ndef remove_ablation_hook(model, original_fn):\n    import transformers.models.llama.modeling_llama as llama_mod\n    llama_mod.eager_attention_forward = original_fn\n    layer1_attn = model.language_model.model.layers[1].self_attn\n    layer1_attn._ablate_heads = None\n\n\ndef load_model(model_path, device):\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    processor = AutoProcessor.from_pretrained(\n        model_path, trust_remote_code=True, local_files_only=True\n    )\n    model = AutoModelForVision2Seq.from_pretrained(\n        model_path,\n        torch_dtype=torch.float16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        attn_implementation=\"eager\",\n        local_files_only=True,\n    )\n    model = model.to(device).eval()\n    print(f\"Model loaded on {device}\")\n    return model, processor\n\n\nclass ActionMLPProbe(nn.Module):\n    def __init__(self, in_dim=INPUT_DIM, out_dim=7, hidden_dim=HIDDEN_DIM):\n        super().__init__()\n        self.net = nn.Sequential(\n            nn.Linear(in_dim, hidden_dim),\n            nn.ReLU(),\n            nn.Linear(hidden_dim, out_dim),\n        )\n\n    def forward(self, x):\n        return self.net(x)\n\n\n@torch.no_grad()\ndef extract_features_for_task(model, processor, images, instruction, readout_layers, device):\n    hooks = []\n    hook_outputs = {}\n\n    def make_hook(layer_idx):\n        def hook_fn(module, input, output):\n            if isinstance(output, tuple):\n                hidden = output[0]\n            else:\n                hidden = output\n            hook_outputs[layer_idx] = hidden[:, -1, :].detach().cpu().float()\n        return hook_fn\n\n    for l in readout_layers:\n        h = model.language_model.model.layers[l].register_forward_hook(make_hook(l))\n        hooks.append(h)\n\n    features = {l: [] for l in readout_layers}\n    prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n\n    try:\n        for img_idx, image in enumerate(images):\n            inputs = processor(text=[prompt], images=[image], return_tensors=\"pt\")\n            inputs = {k: v.to(device) for k, v in inputs.items()}\n\n            with torch.amp.autocast(\"cuda\", dtype=torch.float16):\n                model(**inputs)\n\n            for l in readout_layers:\n                features[l].append(hook_outputs[l].squeeze(0).numpy())\n\n            del inputs\n            hook_outputs.clear()\n\n            if (img_idx + 1) % 50 == 0:\n                print(f\"    {img_idx + 1}/{len(images)} frames\")\n    finally:\n        for h in hooks:\n            h.remove()\n\n    for l in readout_layers:\n        features[l] = np.array(features[l])\n\n    return features\n\n\ndef build_train_val(task_features, task_actions, task_names, readout_layers):\n    \"\"\"80/20 per-task split, build (x_t, a_{t+1}) pairs for each layer.\"\"\"\n    result = {}\n    for l in readout_layers:\n        X_tr_list, y_tr_list = [], []\n        X_val_list, y_val_list, val_tasks = [], [], []\n\n        for task_idx, task in enumerate(task_names):\n            feats = task_features[task][l]\n            acts = task_actions[task]\n            n_demos = len(feats)\n            n_train = int(n_demos * 0.8)\n\n            for i in range(n_demos):\n                feat = feats[i]\n                act = acts[i]\n                T = min(feat.shape[0], act.shape[0])\n                if T < 2:\n                    continue\n                x = torch.from_numpy(feat[:T-1])\n                y = torch.from_numpy(act[1:T])\n\n                if i < n_train:\n                    X_tr_list.append(x)\n                    y_tr_list.append(y)\n                else:\n                    X_val_list.append(x)\n                    y_val_list.append(y)\n                    val_tasks.extend([task] * (T - 1))\n\n        result[l] = (\n            torch.cat(X_tr_list), torch.cat(y_tr_list),\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks\n        )\n    return result\n\n\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device):\n    torch.manual_seed(SEED)\n    np.random.seed(SEED)\n\n    y_mean = y_tr_raw.mean(dim=0)\n    y_std = y_tr_raw.std(dim=0).clamp(min=1e-6)\n    y_tr = (y_tr_raw - y_mean) / y_std\n    y_val = (y_val_raw - y_mean) / y_std\n\n    X_tr_d = X_tr.to(device)\n    y_tr_d = y_tr.to(device)\n    X_val_d = X_val.to(device)\n    y_val_d = y_val.to(device)\n\n    model = ActionMLPProbe().to(device)\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\n    criterion = nn.MSELoss()\n\n    n = len(X_tr_d)\n    best_val_loss = float(\"inf\")\n    best_state = None\n    wait = 0\n    epochs_trained = 0\n\n    for epoch in range(EPOCHS):\n        model.train()\n        perm = torch.randperm(n, device=device)\n        for start in range(0, n, BATCH_SIZE):\n            idx = perm[start:start + BATCH_SIZE]\n            pred = model(X_tr_d[idx])\n            loss = criterion(pred, y_tr_d[idx])\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n\n        model.eval()\n        with torch.no_grad():\n            val_pred = model(X_val_d)\n            val_loss = criterion(val_pred, y_val_d).item()\n\n        epochs_trained = epoch + 1\n        if val_loss < best_val_loss - 1e-6:\n            best_val_loss = val_loss\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\n            wait = 0\n        else:\n            wait += 1\n            if wait >= PATIENCE:\n                break\n\n    model.load_state_dict(best_state)\n    model.eval()\n\n    with torch.no_grad():\n        pred_norm = model(X_val_d).cpu()\n    pred = pred_norm * y_std + y_mean\n    y_true = y_val_raw.numpy()\n    pred_np = pred.numpy()\n\n    per_dim_r2 = []\n    for d in range(7):\n        ss_res = np.sum((y_true[:, d] - pred_np[:, d]) ** 2)\n        ss_tot = np.sum((y_true[:, d] - y_true[:, d].mean()) ** 2)\n        per_dim_r2.append(float(1 - ss_res / ss_tot) if ss_tot > 0 else 0.0)\n\n    ss_res = np.sum((y_true - pred_np) ** 2)\n    ss_tot = np.sum((y_true - y_true.mean(axis=0)) ** 2)\n    overall_r2 = float(1 - ss_res / ss_tot)\n\n    tasks_arr = np.array(val_tasks)\n    unique_tasks = sorted(set(val_tasks))\n    per_task_r2 = {}\n    for t in unique_tasks:\n        mask = tasks_arr == t\n        yt = y_true[mask]\n        yp = pred_np[mask]\n        ss_r = np.sum((yt - yp) ** 2)\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\n\n    mean_r2 = float(np.mean(list(per_task_r2.values())))\n\n    return {\n        \"mean_R2\": round(mean_r2, 4),\n        \"overall_R2\": round(overall_r2, 4),\n        \"per_dim_R2\": [round(x, 4) for x in per_dim_r2],\n        \"per_task_R2\": {k: round(v, 4) for k, v in per_task_r2.items()},\n        \"epochs_trained\": epochs_trained,\n        \"n_train\": len(X_tr),\n        \"n_val\": len(X_val),\n    }\n\n\ndef bootstrap_paired_ci(all_results, n_bootstrap=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Paired bootstrap CI (resampling tasks) for R2 differences.\n\n    For each layer, compares baseline vs ablate_all24 and baseline vs ablate_all32.\n    Returns 95% CI and two-sided p-value for the mean R2 difference.\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    bootstrap_results = {}\n\n    if \"baseline\" not in all_results:\n        return bootstrap_results\n\n    baseline_tasks = all_results[\"baseline\"]\n\n    for ablation_name in [\"ablate_all24\", \"ablate_all32\"]:\n        if ablation_name not in all_results:\n            continue\n\n        ablation_tasks = all_results[ablation_name]\n        comparison_key = f\"baseline_vs_{ablation_name}\"\n        bootstrap_results[comparison_key] = {}\n\n        for layer_key in baseline_tasks:\n            bl_per_task = baseline_tasks[layer_key][\"per_task_R2\"]\n            ab_per_task = ablation_tasks[layer_key][\"per_task_R2\"]\n\n            tasks = sorted(bl_per_task.keys())\n            bl_vals = np.array([bl_per_task[t] for t in tasks])\n            ab_vals = np.array([ab_per_task[t] for t in tasks])\n            diffs = ab_vals - bl_vals  # positive = ablation higher\n\n            n_tasks = len(tasks)\n            observed_mean_diff = float(np.mean(diffs))\n\n            boot_diffs = np.zeros(n_bootstrap)\n            for b in range(n_bootstrap):\n                idx = rng.randint(0, n_tasks, size=n_tasks)\n                boot_diffs[b] = np.mean(diffs[idx])\n\n            ci_lo = float(np.percentile(boot_diffs, 2.5))\n            ci_hi = float(np.percentile(boot_diffs, 97.5))\n\n            # two-sided p-value: proportion of bootstrap samples on the other side of zero\n            if observed_mean_diff >= 0:\n                p_val = float(np.mean(boot_diffs <= 0)) * 2\n            else:\n                p_val = float(np.mean(boot_diffs >= 0)) * 2\n            p_val = min(p_val, 1.0)\n\n            boot_bl_means = np.zeros(n_bootstrap)\n            boot_ab_means = np.zeros(n_bootstrap)\n            for b in range(n_bootstrap):\n                idx = rng.randint(0, n_tasks, size=n_tasks)\n                boot_bl_means[b] = np.mean(bl_vals[idx])\n                boot_ab_means[b] = np.mean(ab_vals[idx])\n\n            bootstrap_results[comparison_key][layer_key] = {\n                \"observed_diff\": round(observed_mean_diff, 4),\n                \"CI_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n                \"p_value\": round(p_val, 4),\n                \"baseline_mean_R2\": round(float(np.mean(bl_vals)), 4),\n                \"baseline_CI_95\": [round(float(np.percentile(boot_bl_means, 2.5)), 4),\n                                   round(float(np.percentile(boot_bl_means, 97.5)), 4)],\n                \"ablation_mean_R2\": round(float(np.mean(ab_vals)), 4),\n                \"ablation_CI_95\": [round(float(np.percentile(boot_ab_means, 2.5)), 4),\n                                   round(float(np.percentile(boot_ab_means, 97.5)), 4)],\n                \"n_tasks\": n_tasks,\n                \"per_task_diffs\": {t: round(float(diffs[i]), 4) for i, t in enumerate(tasks)},\n            }\n\n    return bootstrap_results\n\n\ndef main():\n    args = parse_args()\n    device = torch.device(f\"cuda:{args.gpu}\")\n    readout_layers = args.readout_layers\n\n    print(\"=== L1 Head Ablation: Action Probe R² (50 demos) ===\")\n    print(f\"Model: {args.model_path}\")\n    print(f\"Data: {args.data_dir}\")\n    print(f\"Readout layers: {readout_layers}\")\n    print(f\"Demos per task: {args.demos_per_task}\")\n    print(f\"Output: {args.output}\")\n\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \"*.hdf5\")))\n    n_tasks = len(hdf5_files)\n    task_names = [task_desc_from_filename(f) for f in hdf5_files]\n    print(f\"Tasks: {n_tasks}\")\n    for i, name in enumerate(task_names):\n        print(f\"  [{i}] {name}\")\n\n    conditions = {\n        \"baseline\": None,\n        \"ablate_all24\": INSTRUCTION_HEADS_24,\n        \"ablate_all32\": list(range(32)),\n    }\n\n    if args.condition:\n        if args.condition not in conditions:\n            raise ValueError(f\"Unknown condition: {args.condition}. Available: {list(conditions.keys())}\")\n        conditions = {args.condition: conditions[args.condition]}\n\n    model, processor = load_model(args.model_path, device)\n\n    import transformers.models.llama.modeling_llama as llama_mod\n    original_eager_fn = llama_mod.eager_attention_forward\n\n    all_results = {}\n\n    for cond_name, heads in conditions.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"Condition: {cond_name} (heads={heads})\")\n        print(f\"{'='*60}\")\n        t0 = time.time()\n\n        if heads is not None:\n            install_ablation_hook(model, heads)\n        else:\n            remove_ablation_hook(model, original_eager_fn)\n\n        task_features = {}\n        task_actions = {}\n\n        for task_idx, (hdf5_path, task_name) in enumerate(zip(hdf5_files, task_names)):\n            print(f\"\\n  Task {task_idx}: {task_name}\")\n            f = h5py.File(hdf5_path, \"r\")\n            data = f[\"data\"]\n            demo_keys = sorted(data.keys(), key=lambda x: int(x.split(\"_\")[1]))\n            demo_keys = demo_keys[:args.demos_per_task]\n\n            all_images = []\n            demo_boundaries = []\n            demo_actions = []\n\n            for dk in demo_keys:\n                imgs_np = data[dk][\"obs\"][\"agentview_rgb\"][:]\n                acts_np = np.asarray(data[dk][\"actions\"], dtype=np.float32)\n\n                if args.dry_run:\n                    imgs_np = imgs_np[:5]\n                    acts_np = acts_np[:5]\n\n                pil_images = [Image.fromarray(img) for img in imgs_np]\n                all_images.extend(pil_images)\n                demo_boundaries.append(len(pil_images))\n                demo_actions.append(acts_np)\n\n            f.close()\n\n            total_frames = len(all_images)\n            print(f\"    {len(demo_keys)} demos, {total_frames} frames\")\n\n            feats = extract_features_for_task(\n                model, processor, all_images, task_name, readout_layers, device\n            )\n\n            per_demo_feats = {l: [] for l in readout_layers}\n            offset = 0\n            for boundary in demo_boundaries:\n                for l in readout_layers:\n                    per_demo_feats[l].append(feats[l][offset:offset + boundary])\n                offset += boundary\n\n            task_features[task_name] = per_demo_feats\n            task_actions[task_name] = demo_actions\n\n            del all_images, feats\n            gc.collect()\n            torch.cuda.empty_cache()\n\n        print(f\"\\n  Training probes...\")\n        layer_data = build_train_val(task_features, task_actions, task_names, readout_layers)\n\n        cond_results = {}\n        for l in readout_layers:\n            X_tr, y_tr, X_val, y_val, val_tasks = layer_data[l]\n            print(f\"    L{l}: train={len(X_tr)}, val={len(X_val)}\")\n            metrics = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, device)\n            cond_results[f\"L{l}\"] = metrics\n            print(f\"    L{l}: mean_R2={metrics['mean_R2']}, overall_R2={metrics['overall_R2']}, \"\n                  f\"epochs={metrics['epochs_trained']}\")\n\n        elapsed = time.time() - t0\n        print(f\"  Condition {cond_name} done in {elapsed/60:.1f} min\")\n        all_results[cond_name] = cond_results\n\n        remove_ablation_hook(model, original_eager_fn)\n        del task_features, task_actions, layer_data\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    # Bootstrap CI\n    print(f\"\\n{'='*60}\")\n    print(\"Running paired bootstrap CI (10,000 resamples)...\")\n    print(f\"{'='*60}\")\n    bootstrap = bootstrap_paired_ci(all_results)\n\n    for comp_key, layers in bootstrap.items():\n        print(f\"\\n  {comp_key}:\")\n        for lk, stats in layers.items():\n            print(f\"    {lk}: diff={stats['observed_diff']}, \"\n                  f\"CI=[{stats['CI_95'][0]}, {stats['CI_95'][1]}], \"\n                  f\"p={stats['p_value']}\")\n\n    r2_summary = {}\n    for cond in all_results:\n        r2_summary[cond] = {}\n        for lk in all_results[cond]:\n            r2_summary[cond][lk] = all_results[cond][lk][\"mean_R2\"]\n\n    output = {\n        \"action_probe_R2\": r2_summary,\n        \"bootstrap_paired_CI\": bootstrap,\n        \"detailed_results\": all_results,\n        \"metadata\": {\n            \"probe\": \"MLP(4096,256,7)\",\n            \"optimizer\": f\"Adam lr={LR}\",\n            \"epochs\": EPOCHS,\n            \"patience\": PATIENCE,\n            \"batch_size\": BATCH_SIZE,\n            \"seed\": SEED,\n            \"target\": \"next_action a_{t+1} from feature at time t\",\n            \"normalization\": \"z-score (train mean/std)\",\n            \"split\": \"80/20 per-task by demo index\",\n            \"readout_layers\": readout_layers,\n            \"demos_per_task\": args.demos_per_task,\n            \"n_tasks\": n_tasks,\n            \"n_bootstrap\": N_BOOTSTRAP,\n            \"checkpoint\": args.model_path,\n            \"instruction_heads_24\": INSTRUCTION_HEADS_24,\n        }\n    }\n\n    os.makedirs(os.path.dirname(args.output), exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n\n    print(f\"\\n{'='*60}\")\n    print(\"SUMMARY: Action Probe R² by condition and layer\")\n    print(f\"{'='*60}\")\n    print(json.dumps(r2_summary, indent=2))\n    print(f\"\\nResults saved to {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/l1_ablation_action_probe_50demos.py",
+    "content": "\"\"\"L1 Head Ablation + Action Probe R² (50 demos version): measure how ablating L1\ninstruction-attending heads affects action-relevant information at different readout layers.\nIncludes 10,000-resample paired bootstrap CI and p-values.\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport os\nimport time\n\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom PIL import Image\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\n\nINSTRUCTION_HEADS_24 = [0,1,2,4,7,8,10,11,12,14,15,16,17,18,19,20,22,23,25,26,27,29,30,31]\n\nSEED = 42\nBATCH_SIZE = 256\nLR = 1e-3\nEPOCHS = 50\nPATIENCE = 5\nHIDDEN_DIM = 256\nINPUT_DIM = 4096\nN_BOOTSTRAP = 10000\n\n\ndef parse_args():\n    p = argparse.ArgumentParser()\n    p.add_argument(\"--model_path\", default=\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\")\n    p.add_argument(\"--data_dir\", default=\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\")\n    p.add_argument(\"--output\", default=\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\")\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--demos_per_task\", type=int, default=50)\n    p.add_argument(\"--readout_layers\", type=int, nargs=\"+\", default=[1, 8, 13])\n    p.add_argument(\"--condition\", type=str, default=None)\n    p.add_argument(\"--dry_run\", action=\"store_true\")\n    return p.parse_args()\n\n\ndef task_desc_from_filename(fname):\n    stem = Path(fname).stem.replace(\"_demo\", \"\")\n    return stem.replace(\"_\", \" \")\n\n\ndef install_ablation_hook(model, heads_to_ablate):\n    import transformers.models.llama.modeling_llama as llama_mod\n    from transformers.models.llama.modeling_llama import repeat_kv\n\n    layer1_attn = model.language_model.model.layers[1].self_attn\n    layer1_attn._ablate_heads = heads_to_ablate\n\n    original_fn = llama_mod.eager_attention_forward\n\n    def ablated_eager_attention_forward(module, query, key, value, attention_mask,\n                                        scaling, dropout=0.0, **kwargs):\n        key_states = repeat_kv(key, module.num_key_value_groups)\n        value_states = repeat_kv(value, module.num_key_value_groups)\n\n        attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling\n        if attention_mask is not None:\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\n            attn_weights = attn_weights + causal_mask\n\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)\n        attn_weights = nn.functional.dropout(attn_weights, p=dropout, training=module.training)\n\n        if hasattr(module, '_ablate_heads') and module._ablate_heads is not None:\n            seq_len = attn_weights.shape[-1]\n            if INST_START < seq_len:\n                attn_weights[:, module._ablate_heads, :, INST_START:] = 0.0\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\n                attn_weights = attn_weights / row_sums\n\n        attn_output = torch.matmul(attn_weights, value_states)\n        attn_output = attn_output.transpose(1, 2).contiguous()\n        return attn_output, attn_weights\n\n    llama_mod.eager_attention_forward = ablated_eager_attention_forward\n    return original_fn\n\n\ndef remove_ablation_hook(model, original_fn):\n    import transformers.models.llama.modeling_llama as llama_mod\n    llama_mod.eager_attention_forward = original_fn\n    layer1_attn = model.language_model.model.layers[1].self_attn\n    layer1_attn._ablate_heads = None\n\n\ndef load_model(model_path, device):\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    processor = AutoProcessor.from_pretrained(\n        model_path, trust_remote_code=True, local_files_only=True\n    )\n    model = AutoModelForVision2Seq.from_pretrained(\n        model_path,\n        torch_dtype=torch.float16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        attn_implementation=\"eager\",\n        local_files_only=True,\n    )\n    model = model.to(device).eval()\n    print(f\"Model loaded on {device}\")\n    return model, processor\n\n\nclass ActionMLPProbe(nn.Module):\n    def __init__(self, in_dim=INPUT_DIM, out_dim=7, hidden_dim=HIDDEN_DIM):\n        super().__init__()\n        self.net = nn.Sequential(\n            nn.Linear(in_dim, hidden_dim),\n            nn.ReLU(),\n            nn.Linear(hidden_dim, out_dim),\n        )\n\n    def forward(self, x):\n        return self.net(x)\n\n\n@torch.no_grad()\ndef extract_features_for_task(model, processor, images, instruction, readout_layers, device):\n    hooks = []\n    hook_outputs = {}\n\n    def make_hook(layer_idx):\n        def hook_fn(module, input, output):\n            if isinstance(output, tuple):\n                hidden = output[0]\n            else:\n                hidden = output\n            hook_outputs[layer_idx] = hidden[:, -1, :].detach().cpu().float()\n        return hook_fn\n\n    for l in readout_layers:\n        h = model.language_model.model.layers[l].register_forward_hook(make_hook(l))\n        hooks.append(h)\n\n    features = {l: [] for l in readout_layers}\n    prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n\n    try:\n        for img_idx, image in enumerate(images):\n            inputs = processor(text=[prompt], images=[image], return_tensors=\"pt\")\n            inputs = {k: v.to(device) for k, v in inputs.items()}\n\n            with torch.amp.autocast(\"cuda\", dtype=torch.float16):\n                model(**inputs)\n\n            for l in readout_layers:\n                features[l].append(hook_outputs[l].squeeze(0).numpy())\n\n            del inputs\n            hook_outputs.clear()\n\n            if (img_idx + 1) % 50 == 0:\n                print(f\"    {img_idx + 1}/{len(images)} frames\")\n    finally:\n        for h in hooks:\n            h.remove()\n\n    for l in readout_layers:\n        features[l] = np.array(features[l])\n\n    return features\n\n\ndef build_train_val(task_features, task_actions, task_names, readout_layers):\n    \"\"\"80/20 per-task split, build (x_t, a_{t+1}) pairs for each layer.\"\"\"\n    result = {}\n    for l in readout_layers:\n        X_tr_list, y_tr_list = [], []\n        X_val_list, y_val_list, val_tasks = [], [], []\n\n        for task_idx, task in enumerate(task_names):\n            feats = task_features[task][l]\n            acts = task_actions[task]\n            n_demos = len(feats)\n            n_train = int(n_demos * 0.8)\n\n            for i in range(n_demos):\n                feat = feats[i]\n                act = acts[i]\n                T = min(feat.shape[0], act.shape[0])\n                if T < 2:\n                    continue\n                x = torch.from_numpy(feat[:T-1])\n                y = torch.from_numpy(act[1:T])\n\n                if i < n_train:\n                    X_tr_list.append(x)\n                    y_tr_list.append(y)\n                else:\n                    X_val_list.append(x)\n                    y_val_list.append(y)\n                    val_tasks.extend([task] * (T - 1))\n\n        result[l] = (\n            torch.cat(X_tr_list), torch.cat(y_tr_list),\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks\n        )\n    return result\n\n\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device):\n    torch.manual_seed(SEED)\n    np.random.seed(SEED)\n\n    y_mean = y_tr_raw.mean(dim=0)\n    y_std = y_tr_raw.std(dim=0).clamp(min=1e-6)\n    y_tr = (y_tr_raw - y_mean) / y_std\n    y_val = (y_val_raw - y_mean) / y_std\n\n    X_tr_d = X_tr.to(device)\n    y_tr_d = y_tr.to(device)\n    X_val_d = X_val.to(device)\n    y_val_d = y_val.to(device)\n\n    model = ActionMLPProbe().to(device)\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\n    criterion = nn.MSELoss()\n\n    n = len(X_tr_d)\n    best_val_loss = float(\"inf\")\n    best_state = None\n    wait = 0\n    epochs_trained = 0\n\n    for epoch in range(EPOCHS):\n        model.train()\n        perm = torch.randperm(n, device=device)\n        for start in range(0, n, BATCH_SIZE):\n            idx = perm[start:start + BATCH_SIZE]\n            pred = model(X_tr_d[idx])\n            loss = criterion(pred, y_tr_d[idx])\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n\n        model.eval()\n        with torch.no_grad():\n            val_pred = model(X_val_d)\n            val_loss = criterion(val_pred, y_val_d).item()\n\n        epochs_trained = epoch + 1\n        if val_loss < best_val_loss - 1e-6:\n            best_val_loss = val_loss\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\n            wait = 0\n        else:\n            wait += 1\n            if wait >= PATIENCE:\n                break\n\n    model.load_state_dict(best_state)\n    model.eval()\n\n    with torch.no_grad():\n        pred_norm = model(X_val_d).cpu()\n    pred = pred_norm * y_std + y_mean\n    y_true = y_val_raw.numpy()\n    pred_np = pred.numpy()\n\n    per_dim_r2 = []\n    for d in range(7):\n        ss_res = np.sum((y_true[:, d] - pred_np[:, d]) ** 2)\n        ss_tot = np.sum((y_true[:, d] - y_true[:, d].mean()) ** 2)\n        per_dim_r2.append(float(1 - ss_res / ss_tot) if ss_tot > 0 else 0.0)\n\n    ss_res = np.sum((y_true - pred_np) ** 2)\n    ss_tot = np.sum((y_true - y_true.mean(axis=0)) ** 2)\n    overall_r2 = float(1 - ss_res / ss_tot)\n\n    tasks_arr = np.array(val_tasks)\n    unique_tasks = sorted(set(val_tasks))\n    per_task_r2 = {}\n    for t in unique_tasks:\n        mask = tasks_arr == t\n        yt = y_true[mask]\n        yp = pred_np[mask]\n        ss_r = np.sum((yt - yp) ** 2)\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\n\n    mean_r2 = float(np.mean(list(per_task_r2.values())))\n\n    return {\n        \"mean_R2\": round(mean_r2, 4),\n        \"overall_R2\": round(overall_r2, 4),\n        \"per_dim_R2\": [round(x, 4) for x in per_dim_r2],\n        \"per_task_R2\": {k: round(v, 4) for k, v in per_task_r2.items()},\n        \"epochs_trained\": epochs_trained,\n        \"n_train\": len(X_tr),\n        \"n_val\": len(X_val),\n    }\n\n\ndef bootstrap_paired_ci(all_results, n_bootstrap=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Paired bootstrap CI (resampling tasks) for R2 differences.\n\n    For each layer, compares baseline vs ablate_all24 and baseline vs ablate_all32.\n    Returns 95% CI and two-sided p-value for the mean R2 difference.\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    bootstrap_results = {}\n\n    if \"baseline\" not in all_results:\n        return bootstrap_results\n\n    baseline_tasks = all_results[\"baseline\"]\n\n    for ablation_name in [\"ablate_all24\", \"ablate_all32\"]:\n        if ablation_name not in all_results:\n            continue\n\n        ablation_tasks = all_results[ablation_name]\n        comparison_key = f\"baseline_vs_{ablation_name}\"\n        bootstrap_results[comparison_key] = {}\n\n        for layer_key in baseline_tasks:\n            bl_per_task = baseline_tasks[layer_key][\"per_task_R2\"]\n            ab_per_task = ablation_tasks[layer_key][\"per_task_R2\"]\n\n            tasks = sorted(bl_per_task.keys())\n            bl_vals = np.array([bl_per_task[t] for t in tasks])\n            ab_vals = np.array([ab_per_task[t] for t in tasks])\n            diffs = ab_vals - bl_vals  # positive = ablation higher\n\n            n_tasks = len(tasks)\n            observed_mean_diff = float(np.mean(diffs))\n\n            boot_diffs = np.zeros(n_bootstrap)\n            for b in range(n_bootstrap):\n                idx = rng.randint(0, n_tasks, size=n_tasks)\n                boot_diffs[b] = np.mean(diffs[idx])\n\n            ci_lo = float(np.percentile(boot_diffs, 2.5))\n            ci_hi = float(np.percentile(boot_diffs, 97.5))\n\n            # two-sided p-value: proportion of bootstrap samples on the other side of zero\n            if observed_mean_diff >= 0:\n                p_val = float(np.mean(boot_diffs <= 0)) * 2\n            else:\n                p_val = float(np.mean(boot_diffs >= 0)) * 2\n            p_val = min(p_val, 1.0)\n\n            boot_bl_means = np.zeros(n_bootstrap)\n            boot_ab_means = np.zeros(n_bootstrap)\n            for b in range(n_bootstrap):\n                idx = rng.randint(0, n_tasks, size=n_tasks)\n                boot_bl_means[b] = np.mean(bl_vals[idx])\n                boot_ab_means[b] = np.mean(ab_vals[idx])\n\n            bootstrap_results[comparison_key][layer_key] = {\n                \"observed_diff\": round(observed_mean_diff, 4),\n                \"CI_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n                \"p_value\": round(p_val, 4),\n                \"baseline_mean_R2\": round(float(np.mean(bl_vals)), 4),\n                \"baseline_CI_95\": [round(float(np.percentile(boot_bl_means, 2.5)), 4),\n                                   round(float(np.percentile(boot_bl_means, 97.5)), 4)],\n                \"ablation_mean_R2\": round(float(np.mean(ab_vals)), 4),\n                \"ablation_CI_95\": [round(float(np.percentile(boot_ab_means, 2.5)), 4),\n                                   round(float(np.percentile(boot_ab_means, 97.5)), 4)],\n                \"n_tasks\": n_tasks,\n                \"per_task_diffs\": {t: round(float(diffs[i]), 4) for i, t in enumerate(tasks)},\n            }\n\n    return bootstrap_results\n\n\ndef main():\n    args = parse_args()\n    device = torch.device(f\"cuda:{args.gpu}\")\n    readout_layers = args.readout_layers\n\n    print(\"=== L1 Head Ablation: Action Probe R² (50 demos) ===\")\n    print(f\"Model: {args.model_path}\")\n    print(f\"Data: {args.data_dir}\")\n    print(f\"Readout layers: {readout_layers}\")\n    print(f\"Demos per task: {args.demos_per_task}\")\n    print(f\"Output: {args.output}\")\n\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \"*.hdf5\")))\n    n_tasks = len(hdf5_files)\n    task_names = [task_desc_from_filename(f) for f in hdf5_files]\n    print(f\"Tasks: {n_tasks}\")\n    for i, name in enumerate(task_names):\n        print(f\"  [{i}] {name}\")\n\n    conditions = {\n        \"baseline\": None,\n        \"ablate_all24\": INSTRUCTION_HEADS_24,\n        \"ablate_all32\": list(range(32)),\n    }\n\n    if args.condition:\n        if args.condition not in conditions:\n            raise ValueError(f\"Unknown condition: {args.condition}. Available: {list(conditions.keys())}\")\n        conditions = {args.condition: conditions[args.condition]}\n\n    model, processor = load_model(args.model_path, device)\n\n    import transformers.models.llama.modeling_llama as llama_mod\n    original_eager_fn = llama_mod.eager_attention_forward\n\n    all_results = {}\n\n    for cond_name, heads in conditions.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"Condition: {cond_name} (heads={heads})\")\n        print(f\"{'='*60}\")\n        t0 = time.time()\n\n        if heads is not None:\n            install_ablation_hook(model, heads)\n        else:\n            remove_ablation_hook(model, original_eager_fn)\n\n        task_features = {}\n        task_actions = {}\n\n        for task_idx, (hdf5_path, task_name) in enumerate(zip(hdf5_files, task_names)):\n            print(f\"\\n  Task {task_idx}: {task_name}\")\n            f = h5py.File(hdf5_path, \"r\")\n            data = f[\"data\"]\n            demo_keys = sorted(data.keys(), key=lambda x: int(x.split(\"_\")[1]))\n            demo_keys = demo_keys[:args.demos_per_task]\n\n            all_images = []\n            demo_boundaries = []\n            demo_actions = []\n\n            for dk in demo_keys:\n                imgs_np = data[dk][\"obs\"][\"agentview_rgb\"][:]\n                acts_np = np.asarray(data[dk][\"actions\"], dtype=np.float32)\n\n                if args.dry_run:\n                    imgs_np = imgs_np[:5]\n                    acts_np = acts_np[:5]\n\n                pil_images = [Image.fromarray(img) for img in imgs_np]\n                all_images.extend(pil_images)\n                demo_boundaries.append(len(pil_images))\n                demo_actions.append(acts_np)\n\n            f.close()\n\n            total_frames = len(all_images)\n            print(f\"    {len(demo_keys)} demos, {total_frames} frames\")\n\n            feats = extract_features_for_task(\n                model, processor, all_images, task_name, readout_layers, device\n            )\n\n            per_demo_feats = {l: [] for l in readout_layers}\n            offset = 0\n            for boundary in demo_boundaries:\n                for l in readout_layers:\n                    per_demo_feats[l].append(feats[l][offset:offset + boundary])\n                offset += boundary\n\n            task_features[task_name] = per_demo_feats\n            task_actions[task_name] = demo_actions\n\n            del all_images, feats\n            gc.collect()\n            torch.cuda.empty_cache()\n\n        print(f\"\\n  Training probes...\")\n        layer_data = build_train_val(task_features, task_actions, task_names, readout_layers)\n\n        cond_results = {}\n        for l in readout_layers:\n            X_tr, y_tr, X_val, y_val, val_tasks = layer_data[l]\n            print(f\"    L{l}: train={len(X_tr)}, val={len(X_val)}\")\n            metrics = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, device)\n            cond_results[f\"L{l}\"] = metrics\n            print(f\"    L{l}: mean_R2={metrics['mean_R2']}, overall_R2={metrics['overall_R2']}, \"\n                  f\"epochs={metrics['epochs_trained']}\")\n\n        elapsed = time.time() - t0\n        print(f\"  Condition {cond_name} done in {elapsed/60:.1f} min\")\n        all_results[cond_name] = cond_results\n\n        remove_ablation_hook(model, original_eager_fn)\n        del task_features, task_actions, layer_data\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    # Bootstrap CI\n    print(f\"\\n{'='*60}\")\n    print(\"Running paired bootstrap CI (10,000 resamples)...\")\n    print(f\"{'='*60}\")\n    bootstrap = bootstrap_paired_ci(all_results)\n\n    for comp_key, layers in bootstrap.items():\n        print(f\"\\n  {comp_key}:\")\n        for lk, stats in layers.items():\n            print(f\"    {lk}: diff={stats['observed_diff']}, \"\n                  f\"CI=[{stats['CI_95'][0]}, {stats['CI_95'][1]}], \"\n                  f\"p={stats['p_value']}\")\n\n    r2_summary = {}\n    for cond in all_results:\n        r2_summary[cond] = {}\n        for lk in all_results[cond]:\n            r2_summary[cond][lk] = all_results[cond][lk][\"mean_R2\"]\n\n    output = {\n        \"action_probe_R2\": r2_summary,\n        \"bootstrap_paired_CI\": bootstrap,\n        \"detailed_results\": all_results,\n        \"metadata\": {\n            \"probe\": \"MLP(4096,256,7)\",\n            \"optimizer\": f\"Adam lr={LR}\",\n            \"epochs\": EPOCHS,\n            \"patience\": PATIENCE,\n            \"batch_size\": BATCH_SIZE,\n            \"seed\": SEED,\n            \"target\": \"next_action a_{t+1} from feature at time t\",\n            \"normalization\": \"z-score (train mean/std)\",\n            \"split\": \"80/20 per-task by demo index\",\n            \"readout_layers\": readout_layers,\n            \"demos_per_task\": args.demos_per_task,\n            \"n_tasks\": n_tasks,\n            \"n_bootstrap\": N_BOOTSTRAP,\n            \"checkpoint\": args.model_path,\n            \"instruction_heads_24\": INSTRUCTION_HEADS_24,\n        }\n    }\n\n    os.makedirs(os.path.dirname(args.output), exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n\n    print(f\"\\n{'='*60}\")\n    print(\"SUMMARY: Action Probe R² by condition and layer\")\n    print(f\"{'='*60}\")\n    print(json.dumps(r2_summary, indent=2))\n    print(f\"\\nResults saved to {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T18:36:52.566497+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/l1_ablation_action_probe_50demos.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T18:36:52.566643+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write modified script with bootstrap CI', 'status': 'completed', 'activeForm': 'Writing modified script with bootstrap CI'}, {'content': 'Upload script to server', 'status': 'in_progress', 'activeForm': 'Uploading script to server'}, {'content': 'Submit training job on cuda:0', 'status': 'pending', 'activeForm': 'Submitting training job on cuda:0'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write modified script with bootstrap CI', 'status': 'completed', 'activeForm': 'Writing modified script with bootstrap CI'}, {'content': 'Upload script to server', 'status': 'in_progress', 'activeForm': 'Uploading script to server'}, {'content': 'Submit training job on cuda:0', 'status': 'pending', 'activeForm': 'Submitting training job on cuda:0'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T18:36:52.566787+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T18:36:52.566952+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/l1_ablation_action_probe_50demos.py connect.westd.seetacloud.com:/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py",
+  "description": "Upload modified script to remote server",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/l1_ablation_action_probe_50demos.py connect.westd.seetacloud.com:/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py",
+    "description": "Upload modified script to remote server",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T18:36:52.567120+00:00_
+
+Exit code 255
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+ubuntu@connect.westd.seetacloud.com: Permission denied ().
+scp: Connection closed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T18:36:52.567274+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/l1_ablation_action_probe_50demos.py | wc -c",
+  "description": "Check base64 encoded size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/l1_ablation_action_probe_50demos.py | wc -c",
+    "description": "Check base64 encoded size"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T18:36:52.567403+00:00_
+
+26172
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T18:36:52.567521+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/l1_ablation_action_probe_50demos.py",
+  "description": "Base64 encode the script for transfer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/l1_ablation_action_probe_50demos.py",
+    "description": "Base64 encode the script for transfer"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T18:36:52.567738+00:00_
+
+IiIiTDEgSGVhZCBBYmxhdGlvbiArIEFjdGlvbiBQcm9iZSBSwrIgKDUwIGRlbW9zIHZlcnNpb24p
+OiBtZWFzdXJlIGhvdyBhYmxhdGluZyBMMQppbnN0cnVjdGlvbi1hdHRlbmRpbmcgaGVhZHMgYWZm
+ZWN0cyBhY3Rpb24tcmVsZXZhbnQgaW5mb3JtYXRpb24gYXQgZGlmZmVyZW50IHJlYWRvdXQgbGF5
+ZXJzLgpJbmNsdWRlcyAxMCwwMDAtcmVzYW1wbGUgcGFpcmVkIGJvb3RzdHJhcCBDSSBhbmQgcC12
+YWx1ZXMuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBnYwppbXBvcnQgZ2xvYgppbXBvcnQg
+anNvbgppbXBvcnQgb3MKaW1wb3J0IHRpbWUKCm9zLmVudmlyb25bIkhERjVfVVNFX0ZJTEVfTE9D
+S0lORyJdID0gIkZBTFNFIgoKaW1wb3J0IGg1cHkKaW1wb3J0IG51bXB5IGFzIG5wCmltcG9ydCB0
+b3JjaAppbXBvcnQgdG9yY2gubm4gYXMgbm4KZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmZyb20g
+UElMIGltcG9ydCBJbWFnZQoKTlVNX0lNQUdFX1RPS0VOUyA9IDI1NgpJTlNUX1NUQVJUID0gMSAr
+IE5VTV9JTUFHRV9UT0tFTlMgICMgQk9TKDEpICsgaW1hZ2UoMjU2KSA9IDI1NwoKSU5TVFJVQ1RJ
+T05fSEVBRFNfMjQgPSBbMCwxLDIsNCw3LDgsMTAsMTEsMTIsMTQsMTUsMTYsMTcsMTgsMTksMjAs
+MjIsMjMsMjUsMjYsMjcsMjksMzAsMzFdCgpTRUVEID0gNDIKQkFUQ0hfU0laRSA9IDI1NgpMUiA9
+IDFlLTMKRVBPQ0hTID0gNTAKUEFUSUVOQ0UgPSA1CkhJRERFTl9ESU0gPSAyNTYKSU5QVVRfRElN
+ID0gNDA5NgpOX0JPT1RTVFJBUCA9IDEwMDAwCgoKZGVmIHBhcnNlX2FyZ3MoKToKICAgIHAgPSBh
+cmdwYXJzZS5Bcmd1bWVudFBhcnNlcigpCiAgICBwLmFkZF9hcmd1bWVudCgiLS1tb2RlbF9wYXRo
+IiwgZGVmYXVsdD0iL3Jvb3QvYXV0b2RsLXRtcC92bGEtc3NkL2NoZWNrcG9pbnRzL29wZW52bGEt
+N2IiKQogICAgcC5hZGRfYXJndW1lbnQoIi0tZGF0YV9kaXIiLCBkZWZhdWx0PSIvcm9vdC9hdXRv
+ZGwtdG1wL3ZsYS1zc2QvZGF0YS9saWJlcm8vbGliZXJvX2dvYWwvIikKICAgIHAuYWRkX2FyZ3Vt
+ZW50KCItLW91dHB1dCIsIGRlZmF1bHQ9Ii9yb290L2F1dG9kbC10bXAvdmxhLXNzZC9yZXN1bHRz
+L2wxX2hlYWRfYWJsYXRpb24vYWN0aW9uX3Byb2JlXzUwZGVtb3MuanNvbiIpCiAgICBwLmFkZF9h
+cmd1bWVudCgiLS1ncHUiLCB0eXBlPWludCwgZGVmYXVsdD0wKQogICAgcC5hZGRfYXJndW1lbnQo
+Ii0tZGVtb3NfcGVyX3Rhc2siLCB0eXBlPWludCwgZGVmYXVsdD01MCkKICAgIHAuYWRkX2FyZ3Vt
+ZW50KCItLXJlYWRvdXRfbGF5ZXJzIiwgdHlwZT1pbnQsIG5hcmdzPSIrIiwgZGVmYXVsdD1bMSwg
+OCwgMTNdKQogICAgcC5hZGRfYXJndW1lbnQoIi0tY29uZGl0aW9uIiwgdHlwZT1zdHIsIGRlZmF1
+bHQ9Tm9uZSkKICAgIHAuYWRkX2FyZ3VtZW50KCItLWRyeV9ydW4iLCBhY3Rpb249InN0b3JlX3Ry
+dWUiKQogICAgcmV0dXJuIHAucGFyc2VfYXJncygpCgoKZGVmIHRhc2tfZGVzY19mcm9tX2ZpbGV
+…[truncated 24171 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T18:36:52.567897+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "echo \"IiIiTDEgSGVhZCBBYmxhdGlvbiArIEFjdGlvbiBQcm9iZSBSwrIgKDUwIGRlbW9zIHZlcnNpb24pOiBtZWFzdXJlIGhvdyBhYmxhdGluZyBMMQppbnN0cnVjdGlvbi1hdHRlbmRpbmcgaGVhZHMgYWZmZWN0cyBhY3Rpb24tcmVsZXZhbnQgaW5mb3JtYXRpb24gYXQgZGlmZmVyZW50IHJlYWRvdXQgbGF5ZXJzLgpJbmNsdWRlcyAxMCwwMDAtcmVzYW1wbGUgcGFpcmVkIGJvb3RzdHJhcCBDSSBhbmQgcC12YWx1ZXMuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBnYwppbXBvcnQgZ2xvYgppbXBvcnQganNvbgppbXBvcnQgb3MKaW1wb3J0IHRpbWUKCm9zLmVudmlyb25bIkhERjVfVVNFX0ZJTEVfTE9DS0lORyJdID0gIkZBTFNFIgoKaW1wb3J0IGg1cHkKaW1wb3J0IG51bXB5IGFzIG5wCmltcG9ydCB0b3JjaAppbXBvcnQgdG9yY2gubm4gYXMgbm4KZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmZyb20gUElMIGltcG9ydCBJbWFnZQoKTlVNX0lNQUdFX1RPS0VOUyA9IDI1NgpJTlNUX1NUQVJUID0gMSArIE5VTV9JTUFHRV9UT0tFTlMgICMgQk9TKDEpICsgaW1hZ2UoMjU2KSA9IDI1NwoKSU5TVFJVQ1RJT05fSEVBRFNfMjQgPSBbMCwxLDIsNCw3LDgsMTAsMTEsMTIsMTQsMTUsMTYsMTcsMTgsMTksMjAsMjIsMjMsMjUsMjYsMjcsMjksMzAsMzFdCgpTRUVEID0gNDIKQkFUQ0hfU0laRSA9IDI1NgpMUiA9IDFlLTMKRVBPQ0hTID0gNTAKUEFUSUVOQ0UgPSA1CkhJRERFTl9ESU0gPSAyNTYKSU5QVVRfRElNID0gNDA5NgpOX0JPT1RTVFJBUCA9IDEwMDAwCgoKZGVmIHBhcnNlX2FyZ3MoKToKICAgIHAgPSBhcmdwYXJzZS5Bcmd1bWVudFBhcnNlcigpCiAgICBwLmFkZF9hcmd1bWVudCgiLS1tb2RlbF9wYXRoIiwgZGVmYXVsdD0iL3Jvb3QvYXV0b2RsLXRtcC92bGEtc3NkL2NoZWNrcG9pbnRzL29wZW52bGEtN2IiKQogICAgcC5hZGRfYXJndW1lbnQoIi0tZGF0YV9kaXIiLCBkZWZhdWx0PSIvcm9vdC9hdXRvZGwtdG1wL3ZsYS1zc2QvZGF0YS9saWJlcm8vbGliZXJvX2dvYWwvIikKICAgIHAuYWRkX2FyZ3VtZW50KCItLW91dHB1dCIsIGRlZmF1bHQ9Ii9yb290L2F1dG9kbC10bXAvdmxhLXNzZC9yZXN1bHRzL2wxX2hlYWRfYWJsYXRpb24vYWN0aW9uX3Byb2JlXzUwZGVtb3MuanNvbiIpCiAgICBwLmFkZF9hcmd1bWVudCgiLS1ncHUiLCB0eXBlPWludCwgZGVmYXVsdD0wKQogICAgcC5hZGRfYXJndW1lbnQoIi0tZGVtb3NfcGVyX3Rhc2siLCB0eXBlPWludCwgZGVmYXVsdD01MCkKICAgIHAuYWRkX2FyZ3VtZW50KCItLXJlYWRvdXRfbGF5ZXJzIiwgdHlwZT1pbnQsIG5hcmdzPSIrIiwgZGVmYXVsdD1bMSwgOCwgMTNdKQogICAgcC5hZGRfYXJndW1lbnQoIi0tY29uZGl0aW9uIiwgdHlwZT1zdHIsIGRlZmF1bHQ9Tm9uZSkKICAgIHAuYWRkX2FyZ3VtZW50KCItLWRyeV9ydW4iLCBhY3Rpb249InN0b3JlX3RydWUiKQogICAgcmV0dXJuIHAucGFyc2VfYXJncygpCgoKZGVmIHRhc2tfZGVzY19mcm9tX2ZpbGVuYW1lKGZuYW1lKToKICAgIHN0ZW0gPSBQYXRoKGZuYW1lKS5zdGVtLnJlcGxhY2UoIl9kZW1vIiwgIiIpCiAgICByZXR1cm4gc3RlbS5yZXBsYWNlKCJfIiwgIiAiKQoKCmRlZiBpbnN0YWxsX2FibGF0aW9uX2hvb2sobW9kZWwsIGhlYWRzX3RvX2FibGF0ZSk6CiAgICBpbXBvcnQgdHJhbnNmb3JtZXJzLm1vZGVscy5sbGFtYS5tb2RlbGluZ19sbGFtYSBhcyBsbGFtYV9tb2QKICAgIGZyb20gdHJhbnNmb3JtZXJzLm1vZGVscy5sbGFtYS5tb2RlbGluZ19sbGFtYSBpbXBvcnQgcmVwZWF0X2t2CgogICAgbGF5ZXIxX2F0dG4gPSBtb2RlbC5sYW5ndWFnZV9tb2RlbC5tb2RlbC5sYXllcnNbMV0uc2VsZl9hdHRuCiAgICBsYXllcjFfYXR0bi5fYWJsYXRlX2hlYWRzID0gaGVhZHNfdG9fYWJsYXRlCgogICAgb3JpZ2luYWxfZm4gPSBsbGFtYV9tb2QuZWFnZXJfYXR0ZW50aW9uX2ZvcndhcmQKCiAgICBkZWYgYWJsYXRlZF9lYWdlcl9hdHRlbnRpb25fZm9yd2FyZChtb2R1bGUsIHF1ZXJ5LCBrZXksIHZhbHVlLCBhdHRlbnRpb25fbWFzaywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxpbmcsIGRyb3BvdXQ9MC4wLCAqKmt3YXJncyk6CiAgICAgICAga2V5X3N0YXRlcyA9IHJlcGVhdF9rdihrZXksIG1vZHVsZS5udW1fa2V5X3ZhbHVlX2dyb3VwcykKICAgICAgICB2YWx1ZV9zdGF0ZXMgPSByZXBlYXRfa3YodmFsdWUsIG1vZHVsZS5udW1fa2V5X3ZhbHVlX2dyb3VwcykKCiAgICAgICAgYXR0bl93ZWlnaHRzID0gdG9yY2gubWF0bXVsKHF1ZXJ5LCBrZXlfc3RhdGVzLnRyYW5zcG9zZSgyLCAzKSkgKiBzY2FsaW5nCiAgICAgICAgaWYgYXR0ZW50aW9uX21hc2sgaXMgbm90IE5vbmU6CiAgICAgICAgICAgIGNhdXNhbF9tYXNrID0gYXR0ZW50aW9uX21hc2tbOiwgOiwgOiwgOmtleV9zdGF0ZXMuc2hhcGVbLTJdXQogICAgICAgICAgICBhdHRuX3dlaWdodHMgPSBhdHRuX3dlaWdodHMgKyBjYXVzYWxfbWFzawoKICAgICAgICBhdHRuX3dlaWdodHMgPSBubi5mdW5jdGlvbmFsLnNvZnRtYXgoYXR0bl93ZWlnaHRzLCBkaW09LTEsIGR0eXBlPXRvcmNoLmZsb2F0MzIpLnRvKHF1ZXJ5LmR0eXBlKQogICAgICAgIGF0dG5fd2VpZ2h0cyA9IG5uLmZ1bmN0aW9uYWwuZHJvcG91dChhdHRuX3dlaWdodHMsIHA9ZHJvcG91dCwgdHJhaW5pbmc9bW9kdWxlLnRyYWluaW5nKQoKICAgICAgICBpZiBoYXNhdHRyKG1vZHVsZSwgJ19hYmxhdGVfaGVhZHMnKSBhbmQgbW9kdWxlLl9hYmxhdGVfaGVhZHMgaXMgbm90IE5vbmU6CiAgICAgICAgICAgIHNlcV9sZW4gPSBhdHRuX3dlaWdodHMuc2hhcGVbLTFdCiAgICAgICAgICAgIGlmIElOU1RfU1RBUlQgPCBzZXFfbGVuOgogICAgICAgICAgICAgICAgYXR0bl93ZWlnaHRzWzosIG1vZHVsZS5fYWJsYXRlX2hlYWRzLCA6LCBJTlNUX1NUQVJUOl0gPSAwLjAKICAgICAgICAgICAgICAgIHJvd19zdW1zID0gYXR0bl93ZWlnaHRzLnN1bShkaW09LTEsIGtlZXBkaW09VHJ1ZSkuY2xhbXAobWluPTFlLTkpCiAgICAgICAgICAgICAgICBhdHRuX3dlaWdodHMgPSBhdHRuX3dlaWdodHMgLyByb3dfc3VtcwoKICAgICAgICBhdHRuX291dHB1dCA9IHRvcmNoLm1hdG11bChhdHRuX3dlaWdodHMsIHZhbHVlX3N0YXRlcykKICAgICAgICBhdHRuX291dHB1dCA9IGF0dG5fb3V0cHV0LnRyYW5zcG9zZSgxLCAyKS5jb250aWd1b3VzKCkKICAgICAgICByZXR1cm4gYXR0bl9vdXRwdXQsIGF0dG5fd2VpZ2h0cwoKICAgIGxsYW1hX21vZC5lYWdlcl9hdHRlbnRpb25fZm9yd2FyZCA9IGFibGF0ZWRfZWFnZXJfYXR0ZW50aW9uX2ZvcndhcmQKICAgIHJldHVybiBvcmlnaW5hbF9mbgoKCmRlZiByZW1vdmVfYWJsYXRpb25faG9vayhtb2RlbCwgb3JpZ2luYWxfZm4pOgogICAgaW1wb3J0IHRyYW5zZm9ybWVycy5tb2RlbHMubGxhbWEubW9kZWxpbmdfbGxhbWEgYXMgbGxhbWFfbW9kCiAgICBsbGFtYV9tb2QuZWFnZXJfYXR0ZW50aW9uX2ZvcndhcmQgPSBvcmlnaW5hbF9mbgogICAgbGF5ZXIxX2F0dG4gPSBtb2RlbC5sYW5ndWFnZV9tb2RlbC5tb2RlbC5sYXllcnNbMV0uc2VsZl9hdHRuCiAgICBsYXllcjFfYXR0bi5fYWJsYXRlX2hlYWRzID0gTm9uZQoKCmRlZiBsb2FkX21vZGVsKG1vZGVsX3BhdGgsIGRldmljZSk6CiAgICBmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yVmlzaW9uMlNlcSwgQXV0b1Byb2Nlc3NvcgoKICAgIHByb2Nlc3NvciA9IEF1dG9Qcm9jZXNzb3IuZnJvbV9wcmV0cmFpbmVkKAogICAgICAgIG1vZGVsX3BhdGgsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUsIGxvY2FsX2ZpbGVzX29ubHk9VHJ1ZQogICAgKQogICAgbW9kZWwgPSBBdXRvTW9kZWxGb3JWaXNpb24yU2VxLmZyb21fcHJldHJhaW5lZCgKICAgICAgICBtb2RlbF9wYXRoLAogICAgICAgIHRvcmNoX2R0eXBlPXRvcmNoLmZsb2F0MTYsCiAgICAgICAgdHJ1c3RfcmVtb3RlX2NvZGU9VHJ1ZSwKICAgICAgICBsb3dfY3B1X21lbV91c2FnZT1UcnVlLAogICAgICAgIGF0dG5faW1wbGVtZW50YXRpb249ImVhZ2VyIiwKICAgICAgICBsb2NhbF9maWxlc19vbmx5PVRydWUsCiAgICApCiAgICBtb2RlbCA9IG1vZGVsLnRvKGRldmljZSkuZXZhbCgpCiAgICBwcmludChmIk1vZGVsIGxvYWRlZCBvbiB7ZGV2aWNlfSIpCiAgICByZXR1cm4gbW9kZWwsIHByb2Nlc3NvcgoKCmNsYXNzIEFjdGlvbk1MUFByb2JlKG5uLk1vZHVsZSk6CiAgICBkZWYgX19pbml0X18oc2VsZiwgaW5fZGltPUlOUFVUX0RJTSwgb3V0X2RpbT03LCBoaWRkZW5fZGltPUhJRERFTl9ESU0pOgogICAgICAgIHN1cGVyKCkuX19pbml0X18oKQogICAgICAgIHNlbGYubmV0ID0gbm4uU2VxdWVudGlhbCgKICAgICAgICAgICAgbm4uTGluZWFyKGluX2RpbSwgaGlkZGVuX2RpbSksCiAgICAgICAgICAgIG5uLlJlTFUoKSwKICAgICAgICAgICAgbm4uTGluZWFyKGhpZGRlbl9kaW0sIG91dF9kaW0pLAogICAgICAgICkKCiAgICBkZWYgZm9yd2FyZChzZWxmLCB4KToKICAgICAgICByZXR1cm4gc2VsZi5uZXQoeCkKCgpAdG9yY2gubm9fZ3JhZCgpCmRlZiBleHRyYWN0X2ZlYXR1cmVzX2Zvcl90YXNrKG1vZGVsLCBwcm9jZXNzb3IsIGltYWdlcywgaW5zdHJ1Y3Rpb24sIHJlYWRvdXRfbGF5ZXJzLCBkZXZpY2UpOgogICAgaG9va3MgPSBbXQogICAgaG9va19vdXRwdXRzID0ge30KCiAgICBkZWYgbWFrZV9ob29rKGxheWVyX2lkeCk6CiAgICAgICAgZGVmIGhvb2tfZm4obW9kdWxlLCBpbnB1dCwgb3V0cHV0KToKICAgICAgICAgICAgaWYgaXNpbnN0YW5jZShvdXRwdXQsIHR1cGxlKToKICAgICAgICAgICAgICAgIGhpZGRlbiA9IG91dHB1dFswXQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgaGlkZGVuID0gb3V0cHV0CiAgICAgICAgICAgIGhvb2tfb3V0cHV0c1tsYXllcl9pZHhdID0gaGlkZGVuWzosIC0xLCA6XS5kZXRhY2goKS5jcHUoKS5mbG9hdCgpCiAgICAgICAgcmV0dXJuIGhvb2tfZm4KCiAgICBmb3IgbCBpbiByZWFkb3V0X2xheWVyczoKICAgICAgICBoID0gbW9kZWwubGFuZ3VhZ2VfbW9kZWwubW9kZWwubGF5ZXJzW2xdLnJlZ2lzdGVyX2ZvcndhcmRfaG9vayhtYWtlX2hvb2sobCkpCiAgICAgICAgaG9va3MuYXBwZW5kKGgpCgogICAgZmVhdHVyZXMgPSB7bDogW10gZm9yIGwgaW4gcmVhZG91dF9sYXllcnN9CiAgICBwcm9tcHQgPSBmIkluOiBXaGF0IGFjdGlvbiBzaG91bGQgdGhlIHJvYm90IHRha2UgdG8ge2luc3RydWN0aW9ufT9cbk91dDoiCgogICAgdHJ5OgogICAgICAgIGZvciBpbWdfaWR4LCBpbWFnZSBpbiBlbnVtZXJhdGUoaW1hZ2VzKToKICAgICAgICAgICAgaW5wdXRzID0gcHJvY2Vzc29yKHRleHQ9W3Byb21wdF0sIGltYWdlcz1baW1hZ2VdLCByZXR1cm5fdGVuc29ycz0icHQiKQogICAgICAgICAgICBpbnB1dHMgPSB7azogdi50byhkZXZpY2UpIGZvciBrLCB2IGluIGlucHV0cy5pdGVtcygpfQoKICAgICAgICAgICAgd2l0aCB0b3JjaC5hbXAuYXV0b2Nhc3QoImN1ZGEiLCBkdHlwZT10b3JjaC5mbG9hdDE2KToKICAgICAgICAgICAgICAgIG1vZGVsKCoqaW5wdXRzKQoKICAgICAgICAgICAgZm9yIGwgaW4gcmVhZG91dF9sYXllcnM6CiAgICAgICAgICAgICAgICBmZWF0dXJlc1tsXS5hcHBlbmQoaG9va19vdXRwdXRzW2xdLnNxdWVlemUoMCkubnVtcHkoKSkKCiAgICAgICAgICAgIGRlbCBpbnB1dHMKICAgICAgICAgICAgaG9va19vdXRwdXRzLmNsZWFyKCkKCiAgICAgICAgICAgIGlmIChpbWdfaWR4ICsgMSkgJSA1MCA9PSAwOgogICAgICAgICAgICAgICAgcHJpbnQoZiIgICAge2ltZ19pZHggKyAxfS97bGVuKGltYWdlcyl9IGZyYW1lcyIpCiAgICBmaW5hbGx5OgogICAgICAgIGZvciBoIGluIGhvb2tzOgogICAgICAgICAgICBoLnJlbW92ZSgpCgogICAgZm9yIGwgaW4gcmVhZG91dF9sYXllcnM6CiAgICAgICAgZmVhdHVyZXNbbF0gPSBucC5hcnJheShmZWF0dXJlc1tsXSkKCiAgICByZXR1cm4gZmVhdHVyZXMKCgpkZWYgYnVpbGRfdHJhaW5fdmFsKHRhc2tfZmVhdHVyZXMsIHRhc2tfYWN0aW9ucywgdGFza19uYW1lcywgcmVhZG91dF9sYXllcnMpOgogICAgIiIiODAvMjAgcGVyLXRhc2sgc3BsaXQsIGJ1aWxkICh4X3QsIGFfe3QrMX0pIHBhaXJzIGZvciBlYWNoIGxheWVyLiIiIgogICAgcmVzdWx0ID0ge30KICAgIGZvciBsIGluIHJlYWRvdXRfbGF5ZXJzOgogICAgICAgIFhfdHJfbGlzdCwgeV90cl9saXN0ID0gW10sIFtdCiAgICAgICAgWF92YWxfbGlzdCwgeV92YWxfbGlzdCwgdmFsX3Rhc2tzID0gW10sIFtdLCBbXQoKICAgICAgICBmb3IgdGFza19pZHgsIHRhc2sgaW4gZW51bWVyYXRlKHRhc2tfbmFtZXMpOgogICAgICAgICAgICBmZWF0cyA9IHRhc2tfZmVhdHVyZXNbdGFza11bbF0KICAgICAgICAgICAgYWN0cyA9IHRhc2tfYWN0aW9uc1t0YXNrXQogICAgICAgICAgICBuX2RlbW9zID0gbGVuKGZlYXRzKQogICAgICAgICAgICBuX3RyYWluID0gaW50KG5fZGVtb3MgKiAwLjgpCgogICAgICAgICAgICBmb3IgaSBpbiByYW5nZShuX2RlbW9zKToKICAgICAgICAgICAgICAgIGZlYXQgPSBmZWF0c1tpXQogICAgICAgICAgICAgICAgYWN0ID0gYWN0c1tpXQogICAgICAgICAgICAgICAgVCA9IG1pbihmZWF0LnNoYXBlWzBdLCBhY3Quc2hhcGVbMF0pCiAgICAgICAgICAgICAgICBpZiBUIDwgMjoKICAgICAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICAgICAgeCA9IHRvcmNoLmZyb21fbnVtcHkoZmVhdFs6VC0xXSkKICAgICAgICAgICAgICAgIHkgPSB0b3JjaC5mcm9tX251bXB5KGFjdFsxOlRdKQoKICAgICAgICAgICAgICAgIGlmIGkgPCBuX3RyYWluOgogICAgICAgICAgICAgICAgICAgIFhfdHJfbGlzdC5hcHBlbmQoeCkKICAgICAgICAgICAgICAgICAgICB5X3RyX2xpc3QuYXBwZW5kKHkpCiAgICAgICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgICAgIFhfdmFsX2xpc3QuYXBwZW5kKHgpCiAgICAgICAgICAgICAgICAgICAgeV92YWxfbGlzdC5hcHBlbmQoeSkKICAgICAgICAgICAgICAgICAgICB2YWxfdGFza3MuZXh0ZW5kKFt0YXNrXSAqIChUIC0gMSkpCgogICAgICAgIHJlc3VsdFtsXSA9ICgKICAgICAgICAgICAgdG9yY2guY2F0KFhfdHJfbGlzdCksIHRvcmNoLmNhdCh5X3RyX2xpc3QpLAogICAgICAgICAgICB0b3JjaC5jYXQoWF92YWxfbGlzdCksIHRvcmNoLmNhdCh5X3ZhbF9saXN0KSwgdmFsX3Rhc2tzCiAgICAgICAgKQogICAgcmV0dXJuIHJlc3VsdAoKCmRlZiB0cmFpbl9hbmRfZXZhbChYX3RyLCB5X3RyX3JhdywgWF92YWwsIHlfdmFsX3JhdywgdmFsX3Rhc2tzLCBkZXZpY2UpOgogICAgdG9yY2gubWFudWFsX3NlZWQoU0VFRCkKICAgIG5wLnJhbmRvbS5zZWVkKFNFRUQpCgogICAgeV9tZWFuID0geV90cl9yYXcubWVhbihkaW09MCkKICAgIHlfc3RkID0geV90cl9yYXcuc3RkKGRpbT0wKS5jbGFtcChtaW49MWUtNikKICAgIHlfdHIgPSAoeV90cl9yYXcgLSB5X21lYW4pIC8geV9zdGQKICAgIHlfdmFsID0gKHlfdmFsX3JhdyAtIHlfbWVhbikgLyB5X3N0ZAoKICAgIFhfdHJfZCA9IFhfdHIudG8oZGV2aWNlKQogICAgeV90cl9kID0geV90ci50byhkZXZpY2UpCiAgICBYX3ZhbF9kID0gWF92YWwudG8oZGV2aWNlKQogICAgeV92YWxfZCA9IHlfdmFsLnRvKGRldmljZSkKCiAgICBtb2RlbCA9IEFjdGlvbk1MUFByb2JlKCkudG8oZGV2aWNlKQogICAgb3B0aW1pemVyID0gdG9yY2gub3B0aW0uQWRhbShtb2RlbC5wYXJhbWV0ZXJzKCksIGxyPUxSKQogICAgY3JpdGVyaW9uID0gbm4uTVNFTG9zcygpCgogICAgbiA9IGxlbihYX3RyX2QpCiAgICBiZXN0X3ZhbF9sb3NzID0gZmxvYXQoImluZiIpCiAgICBiZXN0X3N0YXRlID0gTm9uZQogICAgd2FpdCA9IDAKICAgIGVwb2Noc190cmFpbmVkID0gMAoKICAgIGZvciBlcG9jaCBpbiByYW5nZShFUE9DSFMpOgogICAgICAgIG1vZGVsLnRyYWluKCkKICAgICAgICBwZXJtID0gdG9yY2gucmFuZHBlcm0obiwgZGV2aWNlPWRldmljZSkKICAgICAgICBmb3Igc3RhcnQgaW4gcmFuZ2UoMCwgbiwgQkFUQ0hfU0laRSk6CiAgICAgICAgICAgIGlkeCA9IHBlcm1bc3RhcnQ6c3RhcnQgKyBCQVRDSF9TSVpFXQogICAgICAgICAgICBwcmVkID0gbW9kZWwoWF90cl9kW2lkeF0pCiAgICAgICAgICAgIGxvc3MgPSBjcml0ZXJpb24ocHJlZCwgeV90cl9kW2lkeF0pCiAgICAgICAgICAgIG9wdGltaXplci56ZXJvX2dyYWQoKQogICAgICAgICAgICBsb3NzLmJhY2t3YXJkKCkKICAgICAgICAgICAgb3B0aW1pemVyLnN0ZXAoKQoKICAgICAgICBtb2RlbC5ldmFsKCkKICAgICAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToKICAgICAgICAgICAgdmFsX3ByZWQgPSBtb2RlbChYX3ZhbF9kKQogICAgICAgICAgICB2YWxfbG9zcyA9IGNyaXRlcmlvbih2YWxfcHJlZCwgeV92YWxfZCkuaXRlbSgpCgogICAgICAgIGVwb2Noc190cmFpbmVkID0gZXBvY2ggKyAxCiAgICAgICAgaWYgdmFsX2xvc3MgPCBiZXN0X3ZhbF9sb3NzIC0gMWUtNjoKICAgICAgICAgICAgYmVzdF92YWxfbG9zcyA9IHZhbF9sb3NzCiAgICAgICAgICAgIGJlc3Rfc3RhdGUgPSB7azogdi5jcHUoKS5jbG9uZSgpIGZvciBrLCB2IGluIG1vZGVsLnN0YXRlX2RpY3QoKS5pdGVtcygpfQogICAgICAgICAgICB3YWl0ID0gMAogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHdhaXQgKz0gMQogICAgICAgICAgICBpZiB3YWl0ID49IFBBVElFTkNFOgogICAgICAgICAgICAgICAgYnJlYWsKCiAgICBtb2RlbC5sb2FkX3N0YXRlX2RpY3QoY"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "echo \"IiIiTDEgSGVhZCBBYmxhdGlvbiArIEFjdGlvbiBQcm9iZSBSwrIgKDUwIGRlbW9zIHZlcnNpb24pOiBtZWFzdXJlIGhvdyBhYmxhdGluZyBMMQppbnN0cnVjdGlvbi1hdHRlbmRpbmcgaGVhZHMgYWZmZWN0cyBhY3Rpb24tcmVsZXZhbnQgaW5mb3JtYXRpb24gYXQgZGlmZmVyZW50IHJlYWRvdXQgbGF5ZXJzLgpJbmNsdWRlcyAxMCwwMDAtcmVzYW1wbGUgcGFpcmVkIGJvb3RzdHJhcCBDSSBhbmQgcC12YWx1ZXMuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBnYwppbXBvcnQgZ2xvYgppbXBvcnQganNvbgppbXBvcnQgb3MKaW1wb3J0IHRpbWUKCm9zLmVudmlyb25bIkhERjVfVVNFX0ZJTEVfTE9DS0lORyJdID0gIkZBTFNFIgoKaW1wb3J0IGg1cHkKaW1wb3J0IG51bXB5IGFzIG5wCmltcG9ydCB0b3JjaAppbXBvcnQgdG9yY2gubm4gYXMgbm4KZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmZyb20gUElMIGltcG9ydCBJbWFnZQoKTlVNX0lNQUdFX1RPS0VOUyA9IDI1NgpJTlNUX1NUQVJUID0gMSArIE5VTV9JTUFHRV9UT0tFTlMgICMgQk9TKDEpICsgaW1hZ2UoMjU2KSA9IDI1NwoKSU5TVFJVQ1RJT05fSEVBRFNfMjQgPSBbMCwxLDIsNCw3LDgsMTAsMTEsMTIsMTQsMTUsMTYsMTcsMTgsMTksMjAsMjIsMjMsMjUsMjYsMjcsMjksMzAsMzFdCgpTRUVEID0gNDIKQkFUQ0hfU0laRSA9IDI1NgpMUiA9IDFlLTMKRVBPQ0hTID0gNTAKUEFUSUVOQ0UgPSA1CkhJRERFTl9ESU0gPSAyNTYKSU5QVVRfRElNID0gNDA5NgpOX0JPT1RTVFJBUCA9IDEwMDAwCgoKZGVmIHBhcnNlX2FyZ3MoKToKICAgIHAgPSBhcmdwYXJzZS5Bcmd1bWVudFBhcnNlcigpCiAgICBwLmFkZF9hcmd1bWVudCgiLS1tb2RlbF9wYXRoIiwgZGVmYXVsdD0iL3Jvb3QvYXV0b2RsLXRtcC92bGEtc3NkL2NoZWNrcG9pbnRzL29wZW52bGEtN2IiKQogICAgcC5hZGRfYXJndW1lbnQoIi0tZGF0YV9kaXIiLCBkZWZhdWx0PSIvcm9vdC9hdXRvZGwtdG1wL3ZsYS1zc2QvZGF0YS9saWJlcm8vbGliZXJvX2dvYWwvIikKICAgIHAuYWRkX2FyZ3VtZW50KCItLW91dHB1dCIsIGRlZmF1bHQ9Ii9yb290L2F1dG9kbC10bXAvdmxhLXNzZC9yZXN1bHRzL2wxX2hlYWRfYWJsYXRpb24vYWN0aW9uX3Byb2JlXzUwZGVtb3MuanNvbiIpCiAgICBwLmFkZF9hcmd1bWVudCgiLS1ncHUiLCB0eXBlPWludCwgZGVmYXVsdD0wKQogICAgcC5hZGRfYXJndW1lbnQoIi0tZGVtb3NfcGVyX3Rhc2siLCB0eXBlPWludCwgZGVmYXVsdD01MCkKICAgIHAuYWRkX2FyZ3VtZW50KCItLXJlYWRvdXRfbGF5ZXJzIiwgdHlwZT1pbnQsIG5hcmdzPSIrIiwgZGVmYXVsdD1bMSwgOCwgMTNdKQogICAgcC5hZGRfYXJndW1lbnQoIi0tY29uZGl0aW9uIiwgdHlwZT1zdHIsIGRlZmF1bHQ9Tm9uZSkKICAgIHAuYWRkX2FyZ3VtZW50KCItLWRyeV9ydW4iLCBhY3Rpb249InN0b3JlX3RydWUiKQogICAgcmV0dXJuIHAucGFyc2VfYXJncygpCgoKZGVmIHRhc2tfZGVzY19mcm9tX2ZpbGVuYW1lKGZuYW1lKToKICAgIHN0ZW0gPSBQYXRoKGZuYW1lKS5zdGVtLnJlcGxhY2UoIl9kZW1vIiwgIiIpCiAgICByZXR1cm4gc3RlbS5yZXBsYWNlKCJfIiwgIiAiKQoKCmRlZiBpbnN0YWxsX2FibGF0aW9uX2hvb2sobW9kZWwsIGhlYWRzX3RvX2FibGF0ZSk6CiAgICBpbXBvcnQgdHJhbnNmb3JtZXJzLm1vZGVscy5sbGFtYS5tb2RlbGluZ19sbGFtYSBhcyBsbGFtYV9tb2QKICAgIGZyb20gdHJhbnNmb3JtZXJzLm1vZGVscy5sbGFtYS5tb2RlbGluZ19sbGFtYSBpbXBvcnQgcmVwZWF0X2t2CgogICAgbGF5ZXIxX2F0dG4gPSBtb2RlbC5sYW5ndWFnZV9tb2RlbC5tb2RlbC5sYXllcnNbMV0uc2VsZl9hdHRuCiAgICBsYXllcjFfYXR0bi5fYWJsYXRlX2hlYWRzID0gaGVhZHNfdG9fYWJsYXRlCgogICAgb3JpZ2luYWxfZm4gPSBsbGFtYV9tb2QuZWFnZXJfYXR0ZW50aW9uX2ZvcndhcmQKCiAgICBkZWYgYWJsYXRlZF9lYWdlcl9hdHRlbnRpb25fZm9yd2FyZChtb2R1bGUsIHF1ZXJ5LCBrZXksIHZhbHVlLCBhdHRlbnRpb25fbWFzaywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNjYWxpbmcsIGRyb3BvdXQ9MC4wLCAqKmt3YXJncyk6CiAgICAgICAga2V5X3N0YXRlcyA9IHJlcGVhdF9rdihrZXksIG1vZHVsZS5udW1fa2V5X3ZhbHVlX2dyb3VwcykKICAgICAgICB2YWx1ZV9zdGF0ZXMgPSByZXBlYXRfa3YodmFsdWUsIG1vZHVsZS5udW1fa2V5X3ZhbHVlX2dyb3VwcykKCiAgICAgICAgYXR0bl93ZWlnaHRzID0gdG9yY2gubWF0bXVsKHF1ZXJ5LCBrZXlfc3RhdGVzLnRyYW5zcG9zZSgyLCAzKSkgKiBzY2FsaW5nCiAgICAgICAgaWYgYXR0ZW50aW9uX21hc2sgaXMgbm90IE5vbmU6CiAgICAgICAgICAgIGNhdXNhbF9tYXNrID0gYXR0ZW50aW9uX21hc2tbOiwgOiwgOiwgOmtleV9zdGF0ZXMuc2hhcGVbLTJdXQogICAgICAgICAgICBhdHRuX3dlaWdodHMgPSBhdHRuX3dlaWdodHMgKyBjYXVzYWxfbWFzawoKICAgICAgICBhdHRuX3dlaWdodHMgPSBubi5mdW5jdGlvbmFsLnNvZnRtYXgoYXR0bl93ZWlnaHRzLCBkaW09LTEsIGR0eXBlPXRvcmNoLmZsb2F0MzIpLnRvKHF1ZXJ5LmR0eXBlKQogICAgICAgIGF0dG5fd2VpZ2h0cyA9IG5uLmZ1bmN0aW9uYWwuZHJvcG91dChhdHRuX3dlaWdodHMsIHA9ZHJvcG91dCwgdHJhaW5pbmc9bW9kdWxlLnRyYWluaW5nKQoKICAgICAgICBpZiBoYXNhdHRyKG1vZHVsZSwgJ19hYmxhdGVfaGVhZHMnKSBhbmQgbW9kdWxlLl9hYmxhdGVfaGVhZHMgaXMgbm90IE5vbmU6CiAgICAgICAgICAgIHNlcV9sZW4gPSBhdHRuX3dlaWdodHMuc2hhcGVbLTFdCiAgICAgICAgICAgIGlmIElOU1RfU1RBUlQgPCBzZXFfbGVuOgogICAgICAgICAgICAgICAgYXR0bl93ZWlnaHRzWzosIG1vZHVsZS5fYWJsYXRlX2hlYWRzLCA6LCBJTlNUX1NUQVJUOl0gPSAwLjAKICAgICAgICAgICAgICAgIHJvd19zdW1zID0gYXR0bl93ZWlnaHRzLnN1bShkaW09LTEsIGtlZXBkaW09VHJ1ZSkuY2xhbXAobWluPTFlLTkpCiAgICAgICAgICAgICAgICBhdHRuX3dlaWdodHMgPSBhdHRuX3dlaWdodHMgLyByb3dfc3VtcwoKICAgICAgICBhdHRuX291dHB1dCA9IHRvcmNoLm1hdG11bChhdHRuX3dlaWdodHMsIHZhbHVlX3N0YXRlcykKICAgICAgICBhdHRuX291dHB1dCA9IGF0dG5fb3V0cHV0LnRyYW5zcG9zZSgxLCAyKS5jb250aWd1b3VzKCkKICAgICAgICByZXR1cm4gYXR0bl9vdXRwdXQsIGF0dG5fd2VpZ2h0cwoKICAgIGxsYW1hX21vZC5lYWdlcl9hdHRlbnRpb25fZm9yd2FyZCA9IGFibGF0ZWRfZWFnZXJfYXR0ZW50aW9uX2ZvcndhcmQKICAgIHJldHVybiBvcmlnaW5hbF9mbgoKCmRlZiByZW1vdmVfYWJsYXRpb25faG9vayhtb2RlbCwgb3JpZ2luYWxfZm4pOgogICAgaW1wb3J0IHRyYW5zZm9ybWVycy5tb2RlbHMubGxhbWEubW9kZWxpbmdfbGxhbWEgYXMgbGxhbWFfbW9kCiAgICBsbGFtYV9tb2QuZWFnZXJfYXR0ZW50aW9uX2ZvcndhcmQgPSBvcmlnaW5hbF9mbgogICAgbGF5ZXIxX2F0dG4gPSBtb2RlbC5sYW5ndWFnZV9tb2RlbC5tb2RlbC5sYXllcnNbMV0uc2VsZl9hdHRuCiAgICBsYXllcjFfYXR0bi5fYWJsYXRlX2hlYWRzID0gTm9uZQoKCmRlZiBsb2FkX21vZGVsKG1vZGVsX3BhdGgsIGRldmljZSk6CiAgICBmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yVmlzaW9uMlNlcSwgQXV0b1Byb2Nlc3NvcgoKICAgIHByb2Nlc3NvciA9IEF1dG9Qcm9jZXNzb3IuZnJvbV9wcmV0cmFpbmVkKAogICAgICAgIG1vZGVsX3BhdGgsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUsIGxvY2FsX2ZpbGVzX29ubHk9VHJ1ZQogICAgKQogICAgbW9kZWwgPSBBdXRvTW9kZWxGb3JWaXNpb24yU2VxLmZyb21fcHJldHJhaW5lZCgKICAgICAgICBtb2RlbF9wYXRoLAogICAgICAgIHRvcmNoX2R0eXBlPXRvcmNoLmZsb2F0MTYsCiAgICAgICAgdHJ1c3RfcmVtb3RlX2NvZGU9VHJ1ZSwKICAgICAgICBsb3dfY3B1X21lbV91c2FnZT1UcnVlLAogICAgICAgIGF0dG5faW1wbGVtZW50YXRpb249ImVhZ2VyIiwKICAgICAgICBsb2NhbF9maWxlc19vbmx5PVRydWUsCiAgICApCiAgICBtb2RlbCA9IG1vZGVsLnRvKGRldmljZSkuZXZhbCgpCiAgICBwcmludChmIk1vZGVsIGxvYWRlZCBvbiB7ZGV2aWNlfSIpCiAgICByZXR1cm4gbW9kZWwsIHByb2Nlc3NvcgoKCmNsYXNzIEFjdGlvbk1MUFByb2JlKG5uLk1vZHVsZSk6CiAgICBkZWYgX19pbml0X18oc2VsZiwgaW5fZGltPUlOUFVUX0RJTSwgb3V0X2RpbT03LCBoaWRkZW5fZGltPUhJRERFTl9ESU0pOgogICAgICAgIHN1cGVyKCkuX19pbml0X18oKQogICAgICAgIHNlbGYubmV0ID0gbm4uU2VxdWVudGlhbCgKICAgICAgICAgICAgbm4uTGluZWFyKGluX2RpbSwgaGlkZGVuX2RpbSksCiAgICAgICAgICAgIG5uLlJlTFUoKSwKICAgICAgICAgICAgbm4uTGluZWFyKGhpZGRlbl9kaW0sIG91dF9kaW0pLAogICAgICAgICkKCiAgICBkZWYgZm9yd2FyZChzZWxmLCB4KToKICAgICAgICByZXR1cm4gc2VsZi5uZXQoeCkKCgpAdG9yY2gubm9fZ3JhZCgpCmRlZiBleHRyYWN0X2ZlYXR1cmVzX2Zvcl90YXNrKG1vZGVsLCBwcm9jZXNzb3IsIGltYWdlcywgaW5zdHJ1Y3Rpb24sIHJlYWRvdXRfbGF5ZXJzLCBkZXZpY2UpOgogICAgaG9va3MgPSBbXQogICAgaG9va19vdXRwdXRzID0ge30KCiAgICBkZWYgbWFrZV9ob29rKGxheWVyX2lkeCk6CiAgICAgICAgZGVmIGhvb2tfZm4obW9kdWxlLCBpbnB1dCwgb3V0cHV0KToKICAgICAgICAgICAgaWYgaXNpbnN0YW5jZShvdXRwdXQsIHR1cGxlKToKICAgICAgICAgICAgICAgIGhpZGRlbiA9IG91dHB1dFswXQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgaGlkZGVuID0gb3V0cHV0CiAgICAgICAgICAgIGhvb2tfb3V0cHV0c1tsYXllcl9pZHhdID0gaGlkZGVuWzosIC0xLCA6XS5kZXRhY2goKS5jcHUoKS5mbG9hdCgpCiAgICAgICAgcmV0dXJuIGhvb2tfZm4KCiAgICBmb3IgbCBpbiByZWFkb3V0X2xheWVyczoKICAgICAgICBoID0gbW9kZWwubGFuZ3VhZ2VfbW9kZWwubW9kZWwubGF5ZXJzW2xdLnJlZ2lzdGVyX2ZvcndhcmRfaG9vayhtYWtlX2hvb2sobCkpCiAgICAgICAgaG9va3MuYXBwZW5kKGgpCgogICAgZmVhdHVyZXMgPSB7bDogW10gZm9yIGwgaW4gcmVhZG91dF9sYXllcnN9CiAgICBwcm9tcHQgPSBmIkluOiBXaGF0IGFjdGlvbiBzaG91bGQgdGhlIHJvYm90IHRha2UgdG8ge2luc3RydWN0aW9ufT9cbk91dDoiCgogICAgdHJ5OgogICAgICAgIGZvciBpbWdfaWR4LCBpbWFnZSBpbiBlbnVtZXJhdGUoaW1hZ2VzKToKICAgICAgICAgICAgaW5wdXRzID0gcHJvY2Vzc29yKHRleHQ9W3Byb21wdF0sIGltYWdlcz1baW1hZ2VdLCByZXR1cm5fdGVuc29ycz0icHQiKQogICAgICAgICAgICBpbnB1dHMgPSB7azogdi50byhkZXZpY2UpIGZvciBrLCB2IGluIGlucHV0cy5pdGVtcygpfQoKICAgICAgICAgICAgd2l0aCB0b3JjaC5hbXAuYXV0b2Nhc3QoImN1ZGEiLCBkdHlwZT10b3JjaC5mbG9hdDE2KToKICAgICAgICAgICAgICAgIG1vZGVsKCoqaW5wdXRzKQoKICAgICAgICAgICAgZm9yIGwgaW4gcmVhZG91dF9sYXllcnM6CiAgICAgICAgICAgICAgICBmZWF0dXJlc1tsXS5hcHBlbmQoaG9va19vdXRwdXRzW2xdLnNxdWVlemUoMCkubnVtcHkoKSkKCiAgICAgICAgICAgIGRlbCBpbnB1dHMKICAgICAgICAgICAgaG9va19vdXRwdXRzLmNsZWFyKCkKCiAgICAgICAgICAgIGlmIChpbWdfaWR4ICsgMSkgJSA1MCA9PSAwOgogICAgICAgICAgICAgICAgcHJpbnQoZiIgICAge2ltZ19pZHggKyAxfS97bGVuKGltYWdlcyl9IGZyYW1lcyIpCiAgICBmaW5hbGx5OgogICAgICAgIGZvciBoIGluIGhvb2tzOgogICAgICAgICAgICBoLnJlbW92ZSgpCgogICAgZm9yIGwgaW4gcmVhZG91dF9sYXllcnM6CiAgICAgICAgZmVhdHVyZXNbbF0gPSBucC5hcnJheShmZWF0dXJlc1tsXSkKCiAgICByZXR1cm4gZmVhdHVyZXMKCgpkZWYgYnVpbGRfdHJhaW5fdmFsKHRhc2tfZmVhdHVyZXMsIHRhc2tfYWN0aW9ucywgdGFza19uYW1lcywgcmVhZG91dF9sYXllcnMpOgogICAgIiIiODAvMjAgcGVyLXRhc2sgc3BsaXQsIGJ1aWxkICh4X3QsIGFfe3QrMX0pIHBhaXJzIGZvciBlYWNoIGxheWVyLiIiIgogICAgcmVzdWx0ID0ge30KICAgIGZvciBsIGluIHJlYWRvdXRfbGF5ZXJzOgogICAgICAgIFhfdHJfbGlzdCwgeV90cl9saXN0ID0gW10sIFtdCiAgICAgICAgWF92YWxfbGlzdCwgeV92YWxfbGlzdCwgdmFsX3Rhc2tzID0gW10sIFtdLCBbXQoKICAgICAgICBmb3IgdGFza19pZHgsIHRhc2sgaW4gZW51bWVyYXRlKHRhc2tfbmFtZXMpOgogICAgICAgICAgICBmZWF0cyA9IHRhc2tfZmVhdHVyZXNbdGFza11bbF0KICAgICAgICAgICAgYWN0cyA9IHRhc2tfYWN0aW9uc1t0YXNrXQogICAgICAgICAgICBuX2RlbW9zID0gbGVuKGZlYXRzKQogICAgICAgICAgICBuX3RyYWluID0gaW50KG5fZGVtb3MgKiAwLjgpCgogICAgICAgICAgICBmb3IgaSBpbiByYW5nZShuX2RlbW9zKToKICAgICAgICAgICAgICAgIGZlYXQgPSBmZWF0c1tpXQogICAgICAgICAgICAgICAgYWN0ID0gYWN0c1tpXQogICAgICAgICAgICAgICAgVCA9IG1pbihmZWF0LnNoYXBlWzBdLCBhY3Quc2hhcGVbMF0pCiAgICAgICAgICAgICAgICBpZiBUIDwgMjoKICAgICAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICAgICAgeCA9IHRvcmNoLmZyb21fbnVtcHkoZmVhdFs6VC0xXSkKICAgICAgICAgICAgICAgIHkgPSB0b3JjaC5mcm9tX251bXB5KGFjdFsxOlRdKQoKICAgICAgICAgICAgICAgIGlmIGkgPCBuX3RyYWluOgogICAgICAgICAgICAgICAgICAgIFhfdHJfbGlzdC5hcHBlbmQoeCkKICAgICAgICAgICAgICAgICAgICB5X3RyX2xpc3QuYXBwZW5kKHkpCiAgICAgICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgICAgIFhfdmFsX2xpc3QuYXBwZW5kKHgpCiAgICAgICAgICAgICAgICAgICAgeV92YWxfbGlzdC5hcHBlbmQoeSkKICAgICAgICAgICAgICAgICAgICB2YWxfdGFza3MuZXh0ZW5kKFt0YXNrXSAqIChUIC0gMSkpCgogICAgICAgIHJlc3VsdFtsXSA9ICgKICAgICAgICAgICAgdG9yY2guY2F0KFhfdHJfbGlzdCksIHRvcmNoLmNhdCh5X3RyX2xpc3QpLAogICAgICAgICAgICB0b3JjaC5jYXQoWF92YWxfbGlzdCksIHRvcmNoLmNhdCh5X3ZhbF9saXN0KSwgdmFsX3Rhc2tzCiAgICAgICAgKQogICAgcmV0dXJuIHJlc3VsdAoKCmRlZiB0cmFpbl9hbmRfZXZhbChYX3RyLCB5X3RyX3JhdywgWF92YWwsIHlfdmFsX3JhdywgdmFsX3Rhc2tzLCBkZXZpY2UpOgogICAgdG9yY2gubWFudWFsX3NlZWQoU0VFRCkKICAgIG5wLnJhbmRvbS5zZWVkKFNFRUQpCgogICAgeV9tZWFuID0geV90cl9yYXcubWVhbihkaW09MCkKICAgIHlfc3RkID0geV90cl9yYXcuc3RkKGRpbT0wKS5jbGFtcChtaW49MWUtNikKICAgIHlfdHIgPSAoeV90cl9yYXcgLSB5X21lYW4pIC8geV9zdGQKICAgIHlfdmFsID0gKHlfdmFsX3JhdyAtIHlfbWVhbikgLyB5X3N0ZAoKICAgIFhfdHJfZCA9IFhfdHIudG8oZGV2aWNlKQogICAgeV90cl9kID0geV90ci50byhkZXZpY2UpCiAgICBYX3ZhbF9kID0gWF92YWwudG8oZGV2aWNlKQogICAgeV92YWxfZCA9IHlfdmFsLnRvKGRldmljZSkKCiAgICBtb2RlbCA9IEFjdGlvbk1MUFByb2JlKCkudG8oZGV2aWNlKQogICAgb3B0aW1pemVyID0gdG9yY2gub3B0aW0uQWRhbShtb2RlbC5wYXJhbWV0ZXJzKCksIGxyPUxSKQogICAgY3JpdGVyaW9uID0gbm4uTVNFTG9zcygpCgogICAgbiA9IGxlbihYX3RyX2QpCiAgICBiZXN0X3ZhbF9sb3NzID0gZmxvYXQoImluZiIpCiAgICBiZXN0X3N0YXRlID0gTm9uZQogICAgd2FpdCA9IDAKICAgIGVwb2Noc190cmFpbmVkID0gMAoKICAgIGZvciBlcG9jaCBpbiByYW5nZShFUE9DSFMpOgogICAgICAgIG1vZGVsLnRyYWluKCkKICAgICAgICBwZXJtID0gdG9yY2gucmFuZHBlcm0obiwgZGV2aWNlPWRldmljZSkKICAgICAgICBmb3Igc3RhcnQgaW4gcmFuZ2UoMCwgbiwgQkFUQ0hfU0laRSk6CiAgICAgICAgICAgIGlkeCA9IHBlcm1bc3RhcnQ6c3RhcnQgKyBCQVRDSF9TSVpFXQogICAgICAgICAgICBwcmVkID0gbW9kZWwoWF90cl9kW2lkeF0pCiAgICAgICAgICAgIGxvc3MgPSBjcml0ZXJpb24ocHJlZCwgeV90cl9kW2lkeF0pCiAgICAgICAgICAgIG9wdGltaXplci56ZXJvX2dyYWQoKQogICAgICAgICAgICBsb3NzLmJhY2t3YXJkKCkKICAgICAgICAgICAgb3B0aW1pemVyLnN0ZXAoKQoKICAgICAgICBtb2RlbC5ldmFsKCkKICAgICAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToKICAgICAgICAgICAgdmFsX3ByZWQgPSBtb2RlbChYX3ZhbF9kKQogICAgICAgICAgICB2YWxfbG9zcyA9IGNyaXRlcmlvbih2YWxfcHJlZCwgeV92YWxfZCkuaXRlbSgpCgogICAgICAgIGVwb2Noc190cmFpbmVkID0gZXBvY2ggKyAxCiAgICAgICAgaWYgdmFsX2xvc3MgPCBiZXN0X3ZhbF9sb3NzIC0gMWUtNjoKICAgICAgICAgICAgYmVzdF92YWxfbG9zcyA9IHZhbF9sb3NzCiAgICAgICAgICAgIGJlc3Rfc3RhdGUgPSB7azogdi5jcHUoKS5jbG9uZSgpIGZvciBrLCB2IGluIG1vZGVsLnN0YXRlX2RpY3QoKS5pdGVtcygpfQogICAgICAgICAgICB3YWl0ID0gMAogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHdhaXQgKz0gMQogICAgICAgICAgICBpZiB3YWl0ID49IFBBVElFTkNFOgogICAgICAgICAgICAgICAgYnJlYWsKCiAgICBtb2RlbC5sb2FkX3N0YXRlX2RpY3QoY"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T18:36:52.568195+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'echo \\\"IiIiTDEgSGVhZCBBYmxhdGlvbiArIEFjdGlvbiBQcm9iZSBSwrIgKDUwIGRlbW9zIHZlcnNpb24pOiBtZWFzdXJlIGhvdyBhYmxhdGluZyBMMQppbnN0cnVjdGlvbi1hdHRlbmRpbmcgaGVhZHMgYWZmZWN0cyBhY3Rpb24tcmVsZXZhbnQgaW5mb3JtYXRpb24gYXQgZGlmZmVyZW50IHJlYWRvdXQgbGF5ZXJzLgpJbmNsdWRlcyAxMCwwMDAtcmVzYW1wbGUgcGFpcmVkIGJvb3RzdHJhcCBDSSBhbmQgcC12YWx1ZXMuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBnYwppbXBvcnQgZ2xvYgppbXBvcnQganNvbgppbXBvcnQgb3MKaW1wb3J0IHRpbWUKCm9zLmVudmlyb25bIkhERjVfVVNFX0ZJTEVfTE9DS0lORyJdID0gIkZBTFNFIgoKaW1wb3J0IGg1cHkKaW1wb3J0IG51bXB5IGFzIG5wCmltcG9ydCB0b3JjaAppbXBvcnQgdG9yY2gubm4gYXMgbm4KZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmZyb20gUElMIGltcG9ydCBJbWFnZQoKTlVNX0lNQUdFX1RPS0VOUyA9IDI1NgpJTlNUX1NUQVJUID0gMSArIE5VTV9JTUFHRV9UT0tFTlMgICMgQk9TKDEpICsgaW1hZ2UoMjU2KSA9IDI1NwoKSU5TVFJVQ1RJT05fSEVBRFNfMjQgPSBbMCwxLDIsNCw3LDgsMTAsMTEsMTIsMTQsMTUsMTYsMTcsMTgsMTksMjAsMjIsMjMsMjUsMjYsMjcsMjksMzAsMzFdCgpTRUVEID0gNDIKQkFUQ0hfU0laRSA9IDI1NgpMUiA9IDFlLTMKRVBPQ0hTID0gNTAKUEFUSUVOQ0UgPSA1CkhJRERFTl9ESU0gPSAyNTYKSU5QVVRfRElNID0gNDA5NgpOX0JPT1RTVFJBUCA9IDEwMDAwCgoKZGVmIHBhcnNlX2FyZ3MoKToKICAgIHAgPSBhcmdwYXJzZS5Bcmd1bWVudFBhcnNlcigpCiAgICBwLmFkZF9hcmd1bWVudCgiLS1tb2RlbF9wYXRoIiwgZGVmYXVsdD0iL3Jvb3QvYXV0b2RsLXRtcC92bGEtc3NkL2NoZWNrcG9pbnRzL29wZW52bGEtN2IiKQogICAgcC5hZGRfYXJndW1lbnQoIi0tZGF0YV9kaXIiLCBkZWZhdWx0PSIvcm9vdC9hdXRvZGwtdG1wL3ZsYS1zc2QvZGF0YS9saWJlcm8vbGliZXJvX2dvYWwvIikKICAgIHAuYWRkX2FyZ3VtZW50KCItLW91dHB1dCIsIGRlZmF1bHQ9Ii9yb290L2F1dG9kbC10bXAvdmxhLXNzZC9yZXN1bHRzL2wxX2hlYWRfYWJsYXRpb24vYWN0aW9uX3Byb2JlXzUwZGVtb3MuanNvbiIpCiAgICBwLmFkZF9hcmd1bWVudCgiLS1ncHUiLCB0eXBlPWludCwgZGVmYXVsdD0wKQogICAgcC5hZGRfYXJndW1lbnQoIi0tZGVtb3NfcGVyX3Rhc2siLCB0eXBlPWludCwgZGVmYXVsdD01MCkKICAgIHAuYWRkX2FyZ3VtZW50KCItLXJlYWRvdXRfbGF5ZXJzIiwgdHlwZT1pbnQsIG5hcmdzPSIrIiwgZGVmYXVsdD1bMSwgOCwgMTNdKQogICAgcC5hZGRfYXJndW1lbnQoIi0tY29uZGl0aW9uIiwgdHlwZT1zdHIsIGRlZmF1bHQ9Tm9uZSkKICAgIHAuYWRkX2FyZ3VtZW50KCItLWRyeV9ydW4iLCBh
+…[truncated 9983 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T18:36:52.568381+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cp /root/vla-ssd/scripts/l1_ablation_action_probe.py /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cp /root/vla-ssd/scripts/l1_ablation_action_probe.py /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T18:36:52.568513+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T18:36:52.568648+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -i 's/default=5)/default=50)/' /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sed -i 's/default=5)/default=50)/' /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T18:36:52.568769+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T18:36:52.568883+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -i \"s|default=.*/action_probe_results.json.|default=\\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\"|\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sed -i \"s|default=.*/action_probe_results.json.|default=\\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\"|\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T18:36:52.569025+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T18:36:52.569159+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"demos_per_task\\|action_probe\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"demos_per_task\\|action_probe\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T18:36:52.569280+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T18:36:52.569395+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"demos_per_task\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"demos_per_task\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-17T18:36:52.569583+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"action_probe\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"action_probe\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T18:36:52.569720+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"40:    p.add_argument(\\\"--demos_per_task\\\", type=int, default=50)\\n364:            demo_keys = demo_keys[:args.demos_per_task]\\n447:            \\\"demos_per_task\\\": args.demos_per_task,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T18:36:52.569845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"38:    p.add_argument(\\\"--output\\\", default=\\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\")\\n434:        \\\"action_probe_R2\\\": r2_summary,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T18:36:52.569998+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -i 's/^INPUT_DIM = 4096$/INPUT_DIM = 4096\\nN_BOOTSTRAP = 10000/' /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sed -i 's/^INPUT_DIM = 4096$/INPUT_DIM = 4096\\nN_BOOTSTRAP = 10000/' /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T18:36:52.570124+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-17T18:36:52.570271+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python3.12 << 'PYEOF'\nimport re\n\nfilepath = \"/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# 1. Add bootstrap_paired_ci function before def main():\nbootstrap_func = '''\ndef bootstrap_paired_ci(all_results, n_bootstrap=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Paired bootstrap CI (resampling tasks) for R2 differences.\"\"\"\n    rng = np.random.RandomState(seed)\n    bootstrap_results = {}\n\n    if \"baseline\" not in all_results:\n        return bootstrap_results\n\n    baseline_tasks = all_results[\"baseline\"]\n\n    for ablation_name in [\"ablate_all24\", \"ablate_all32\"]:\n        if ablation_name not in all_results:\n            continue\n\n        ablation_tasks = all_results[ablation_name]\n        comparison_key = f\"baseline_vs_{ablation_name}\"\n        bootstrap_results[comparison_key] = {}\n\n        for layer_key in baseline_tasks:\n            bl_per_task = baseline_tasks[layer_key][\"per_task_R2\"]\n            ab_per_task = ablation_tasks[layer_key][\"per_task_R2\"]\n\n            tasks = sorted(bl_per_task.keys())\n            bl_vals = np.array([bl_per_task[t] for t in tasks])\n            ab_vals = np.array([ab_per_task[t] for t in tasks])\n            diffs = ab_vals - bl_vals\n\n            n_tasks = len(tasks)\n            observed_mean_diff = float(np.mean(diffs))\n\n            boot_diffs = np.zeros(n_bootstrap)\n            for b in range(n_bootstrap):\n                idx = rng.randint(0, n_tasks, size=n_tasks)\n                boot_diffs[b] = np.mean(diffs[idx])\n\n            ci_lo = float(np.percentile(boot_diffs, 2.5))\n            ci_hi = float(np.percentile(boot_diffs, 97.5))\n\n            if observed_mean_diff >= 0:\n                p_val = float(np.mean(boot_diffs <= 0)) * 2\n            else:\n                p_val = float(np.mean(boot_diffs >= 0)) * 2\n            p_val = min(p_val, 1.0)\n\n            boot_bl_means = np.zeros(n_bootstrap)\n            boot_ab_means = np.zeros(n_bootstrap)\n            for b in range(n_bootstrap):\n                idx = rng.randint(0, n_tasks, size=n_tasks)\n                boot_bl_means[b] = np.mean(bl_vals[idx])\n                boot_ab_means[b] = np.mean(ab_vals[idx])\n\n            bootstrap_results[comparison_key][layer_key] = {\n                \"observed_diff\": round(observed_mean_diff, 4),\n                \"CI_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n                \"p_value\": round(p_val, 4),\n                \"baseline_mean_R2\": round(float(np.mean(bl_vals)), 4),\n                \"baseline_CI_95\": [round(float(np.percentile(boot_bl_means, 2.5)), 4),\n                                   round(float(np.percentile(boot_bl_means, 97.5)), 4)],\n                \"ablation_mean_R2\": round(float(np.mean(ab_vals)), 4),\n                \"ablation_CI_95\": [round(float(np.percentile(boot_ab_means, 2.5)), 4),\n                                   round(float(np.percentile(boot_ab_means, 97.5)), 4)],\n                \"n_tasks\": n_tasks,\n                \"per_task_diffs\": {t: round(float(diffs[i]), 4) for i, t in enumerate(tasks)},\n            }\n\n    return bootstrap_results\n\n'''\n\ncontent = content.replace('\\ndef main():', bootstrap_func + '\\ndef main():')\n\n# 2. Add bootstrap call + print after the conditions loop, before r2_summary\n# Find the pattern after the last gc.collect() in the loop and before r2_summary\nold_r2_summary = '''    r2_summary = {}\n    for cond in all_results:\n        r2_summary[cond] = {}\n        for lk in all_results[cond]:\n            r2_summary[cond][lk] = all_results[cond][lk][\"mean_R2\"]'''\n\nnew_r2_summary = '''    # Bootstrap CI\n    print(f\"\\\\n{\\\\'=\\\\'*60}\")\n    print(\"Running paired bootstrap CI (10,000 resamples)...\")\n    print(f\"{\\\\'=\\\\'*60}\")\n    bootstrap = bootstrap_paired_ci(all_results)\n\n    for comp_key, layers in bootstrap.items():\n        print(f\"\\\\n  {comp_key}:\")\n        for lk, stats in layers.items():\n            print(f\"    {lk}: diff={stats[\\\\'observed_diff\\\\']}, \"\n                  f\"CI=[{stats[\\\\'CI_95\\\\'][0]}, {stats[\\\\'CI_95\\\\'][1]}], \"\n                  f\"p={stats[\\\\'p_value\\\\']}\")\n\n    r2_summary = {}\n    for cond in all_results:\n        r2_summary[cond] = {}\n        for lk in all_results[cond]:\n            r2_summary[cond][lk] = all_results[cond][lk][\"mean_R2\"]'''\n\ncontent = content.replace(old_r2_summary, new_r2_summary)\n\n# 3. Add bootstrap to output dict\nold_output = '''    output = {\n        \"action_probe_R2\": r2_summary,\n        \"detailed_results\": all_results,'''\n\nnew_output = '''    output = {\n        \"action_probe_R2\": r2_summary,\n        \"bootstrap_paired_CI\": bootstrap,\n        \"detailed_results\": all_results,'''\n\ncontent = content.replace(old_output, new_output)\n\n# 4. Add n_bootstrap to metadata\nold_meta = '''            \"checkpoint\": args.model_path,'''\nnew_meta = '''            \"n_bootstrap\": N_BOOTSTRAP,\n            \"checkpoint\": args.model_path,'''\ncontent = content.replace(old_meta, new_meta)\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"OK\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "/root/miniconda3/bin/python3.12 << 'PYEOF'\nimport re\n\nfilepath = \"/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# 1. Add bootstrap_paired_ci function before def main():\nbootstrap_func = '''\ndef bootstrap_paired_ci(all_results, n_bootstrap=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Paired bootstrap CI (resampling tasks) for R2 differences.\"\"\"\n    rng = np.random.RandomState(seed)\n    bootstrap_results = {}\n\n    if \"baseline\" not in all_results:\n        return bootstrap_results\n\n    baseline_tasks = all_results[\"baseline\"]\n\n    for ablation_name in [\"ablate_all24\", \"ablate_all32\"]:\n        if ablation_name not in all_results:\n            continue\n\n        ablation_tasks = all_results[ablation_name]\n        comparison_key = f\"baseline_vs_{ablation_name}\"\n        bootstrap_results[comparison_key] = {}\n\n        for layer_key in baseline_tasks:\n            bl_per_task = baseline_tasks[layer_key][\"per_task_R2\"]\n            ab_per_task = ablation_tasks[layer_key][\"per_task_R2\"]\n\n            tasks = sorted(bl_per_task.keys())\n            bl_vals = np.array([bl_per_task[t] for t in tasks])\n            ab_vals = np.array([ab_per_task[t] for t in tasks])\n            diffs = ab_vals - bl_vals\n\n            n_tasks = len(tasks)\n            observed_mean_diff = float(np.mean(diffs))\n\n            boot_diffs = np.zeros(n_bootstrap)\n            for b in range(n_bootstrap):\n                idx = rng.randint(0, n_tasks, size=n_tasks)\n                boot_diffs[b] = np.mean(diffs[idx])\n\n            ci_lo = float(np.percentile(boot_diffs, 2.5))\n            ci_hi = float(np.percentile(boot_diffs, 97.5))\n\n            if observed_mean_diff >= 0:\n                p_val = float(np.mean(boot_diffs <= 0)) * 2\n            else:\n                p_val = float(np.mean(boot_diffs >= 0)) * 2\n            p_val = min(p_val, 1.0)\n\n            boot_bl_means = np.zeros(n_bootstrap)\n            boot_ab_means = np.zeros(n_bootstrap)\n            for b in range(n_bootstrap):\n                idx = rng.randint(0, n_tasks, size=n_tasks)\n                boot_bl_means[b] = np.mean(bl_vals[idx])\n                boot_ab_means[b] = np.mean(ab_vals[idx])\n\n            bootstrap_results[comparison_key][layer_key] = {\n                \"observed_diff\": round(observed_mean_diff, 4),\n                \"CI_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n                \"p_value\": round(p_val, 4),\n                \"baseline_mean_R2\": round(float(np.mean(bl_vals)), 4),\n                \"baseline_CI_95\": [round(float(np.percentile(boot_bl_means, 2.5)), 4),\n                                   round(float(np.percentile(boot_bl_means, 97.5)), 4)],\n                \"ablation_mean_R2\": round(float(np.mean(ab_vals)), 4),\n                \"ablation_CI_95\": [round(float(np.percentile(boot_ab_means, 2.5)), 4),\n                                   round(float(np.percentile(boot_ab_means, 97.5)), 4)],\n                \"n_tasks\": n_tasks,\n                \"per_task_diffs\": {t: round(float(diffs[i]), 4) for i, t in enumerate(tasks)},\n            }\n\n    return bootstrap_results\n\n'''\n\ncontent = content.replace('\\ndef main():', bootstrap_func + '\\ndef main():')\n\n# 2. Add bootstrap call + print after the conditions loop, before r2_summary\n# Find the pattern after the last gc.collect() in the loop and before r2_summary\nold_r2_summary = '''    r2_summary = {}\n    for cond in all_results:\n        r2_summary[cond] = {}\n        for lk in all_results[cond]:\n            r2_summary[cond][lk] = all_results[cond][lk][\"mean_R2\"]'''\n\nnew_r2_summary = '''    # Bootstrap CI\n    print(f\"\\\\n{\\\\'=\\\\'*60}\")\n    print(\"Running paired bootstrap CI (10,000 resamples)...\")\n    print(f\"{\\\\'=\\\\'*60}\")\n    bootstrap = bootstrap_paired_ci(all_results)\n\n    for comp_key, layers in bootstrap.items():\n        print(f\"\\\\n  {comp_key}:\")\n        for lk, stats in layers.items():\n            print(f\"    {lk}: diff={stats[\\\\'observed_diff\\\\']}, \"\n                  f\"CI=[{stats[\\\\'CI_95\\\\'][0]}, {stats[\\\\'CI_95\\\\'][1]}], \"\n                  f\"p={stats[\\\\'p_value\\\\']}\")\n\n    r2_summary = {}\n    for cond in all_results:\n        r2_summary[cond] = {}\n        for lk in all_results[cond]:\n            r2_summary[cond][lk] = all_results[cond][lk][\"mean_R2\"]'''\n\ncontent = content.replace(old_r2_summary, new_r2_summary)\n\n# 3. Add bootstrap to output dict\nold_output = '''    output = {\n        \"action_probe_R2\": r2_summary,\n        \"detailed_results\": all_results,'''\n\nnew_output = '''    output = {\n        \"action_probe_R2\": r2_summary,\n        \"bootstrap_paired_CI\": bootstrap,\n        \"detailed_results\": all_results,'''\n\ncontent = content.replace(old_output, new_output)\n\n# 4. Add n_bootstrap to metadata\nold_meta = '''            \"checkpoint\": args.model_path,'''\nnew_meta = '''            \"n_bootstrap\": N_BOOTSTRAP,\n            \"checkpoint\": args.model_path,'''\ncontent = content.replace(old_meta, new_meta)\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"OK\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T18:36:52.570439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-17T18:36:52.570579+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python3.12 -c \"import py_compile; py_compile.compile('/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py', doraise=True); print('Syntax OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "/root/miniconda3/bin/python3.12 -c \"import py_compile; py_compile.compile('/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py', doraise=True); print('Syntax OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T18:36:52.570716+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: '/root/miniconda3/bin/python3.12 -c \\\"import py_compile; py_compile.compile(\\\\'/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\\\\', doraise=True); print(\\\\'Syntax OK\\\\')\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 1, in &lt;module>\\n  File \\\"/root/miniconda3/lib/python3.12/py_compile.py\\\", line 150, in compile\\n    raise py_exc\\npy_compile.PyCompileError:   File \\\"/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\\\", line 497\\n    print(f\\\"\\\\n{\\\\'=\\\\'*60}\\\")\\n                ^\\nSyntaxError: unexpected character after line continuation character\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-17T18:36:52.570877+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python3.12 << 'PYEOF'\nfilepath = \"/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\"\nwith open(filepath, \"r\") as f:\n    lines = f.readlines()\n\n# Find the problematic bootstrap call section and fix it\nnew_lines = []\nskip = False\nfor i, line in enumerate(lines):\n    # Fix the broken f-strings with escaped quotes\n    if \"print(f\\\"\\\\n{\\\\'=\\\\'*60}\\\")\" in line:\n        new_lines.append('    print(f\"\\\\n{\\'=\\'*60}\")\\n')\n        continue\n    if \"print(f\\\"{\\\\'=\\\\'*60}\\\")\" in line:\n        new_lines.append('    print(f\"{\\'=\\'*60}\")\\n')\n        continue\n    if \"stats[\\\\'observed_diff\\\\']\" in line:\n        new_lines.append('            print(f\"    {lk}: diff={stats[\\'observed_diff\\']}, \"\\n')\n        continue\n    if \"stats[\\\\'CI_95\\\\']\" in line:\n        new_lines.append('                  f\"CI=[{stats[\\'CI_95\\'][0]}, {stats[\\'CI_95\\'][1]}], \"\\n')\n        continue\n    if \"stats[\\\\'p_value\\\\']\" in line:\n        new_lines.append('                  f\"p={stats[\\'p_value\\']}\")\\n')\n        continue\n    new_lines.append(line)\n\nwith open(filepath, \"w\") as f:\n    f.writelines(new_lines)\n\nprint(\"Fixed\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "/root/miniconda3/bin/python3.12 << 'PYEOF'\nfilepath = \"/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\"\nwith open(filepath, \"r\") as f:\n    lines = f.readlines()\n\n# Find the problematic bootstrap call section and fix it\nnew_lines = []\nskip = False\nfor i, line in enumerate(lines):\n    # Fix the broken f-strings with escaped quotes\n    if \"print(f\\\"\\\\n{\\\\'=\\\\'*60}\\\")\" in line:\n        new_lines.append('    print(f\"\\\\n{\\'=\\'*60}\")\\n')\n        continue\n    if \"print(f\\\"{\\\\'=\\\\'*60}\\\")\" in line:\n        new_lines.append('    print(f\"{\\'=\\'*60}\")\\n')\n        continue\n    if \"stats[\\\\'observed_diff\\\\']\" in line:\n        new_lines.append('            print(f\"    {lk}: diff={stats[\\'observed_diff\\']}, \"\\n')\n        continue\n    if \"stats[\\\\'CI_95\\\\']\" in line:\n        new_lines.append('                  f\"CI=[{stats[\\'CI_95\\'][0]}, {stats[\\'CI_95\\'][1]}], \"\\n')\n        continue\n    if \"stats[\\\\'p_value\\\\']\" in line:\n        new_lines.append('                  f\"p={stats[\\'p_value\\']}\")\\n')\n        continue\n    new_lines.append(line)\n\nwith open(filepath, \"w\") as f:\n    f.writelines(new_lines)\n\nprint(\"Fixed\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T18:36:52.571077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-17T18:36:52.571209+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python3.12 -c \"import py_compile; py_compile.compile('/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py', doraise=True); print('Syntax OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "/root/miniconda3/bin/python3.12 -c \"import py_compile; py_compile.compile('/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py', doraise=True); print('Syntax OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T18:36:52.571340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-17T18:36:52.571475+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"bootstrap\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"bootstrap\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T18:36:52.571607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"309:def bootstrap_paired_ci(all_results, n_bootstrap=N_BOOTSTRAP, seed=SEED):\\n310:    \\\"\\\"\\\"Paired bootstrap CI (resampling tasks) for R2 differences.\\\"\\\"\\\"\\n312:    bootstrap_results = {}\\n315:        return bootstrap_results\\n325:        bootstrap_results[comparison_key] = {}\\n339:            boot_diffs = np.zeros(n_bootstrap)\\n340:            for b in range(n_bootstrap):\\n353:            boot_bl_means = np.zeros(n_bootstrap)\\n354:            boot_ab_means = np.zeros(n_bootstrap)\\n355:            for b in range(n_bootstrap):\\n360:            bootstrap_results[comparison_key][layer_key] = {\\n374:    return bootstrap_results\\n498:    print(\\\"Running paired bootstrap CI (10,000 resamples)...\\\")\\n500:    bootstrap = bootstrap_paired_ci(all_results)\\n502:    for comp_key, layers in bootstrap.items():\\n517:        \\\"bootstrap_paired_CI\\\": bootstrap,\\n532:            \\\"n_bootstrap\\\": N_BOOTSTRAP,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-17T18:36:52.571731+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"N_BOOTSTRAP\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"N_BOOTSTRAP\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-17T18:36:52.571850+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"32:N_BOOTSTRAP = 10000\\n309:def bootstrap_paired_ci(all_results, n_bootstrap=N_BOOTSTRAP, seed=SEED):\\n532:            \\\"n_bootstrap\\\": N_BOOTSTRAP,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.26}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-17T18:36:52.572004+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write modified script with bootstrap CI', 'status': 'completed', 'activeForm': 'Writing modified script with bootstrap CI'}, {'content': 'Upload script to server', 'status': 'completed', 'activeForm': 'Uploading script to server'}, {'content': 'Submit training job on cuda:0', 'status': 'in_progress', 'activeForm': 'Submitting training job on cuda:0'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write modified script with bootstrap CI', 'status': 'completed', 'activeForm': 'Writing modified script with bootstrap CI'}, {'content': 'Upload script to server', 'status': 'completed', 'activeForm': 'Uploading script to server'}, {'content': 'Submit training job on cuda:0', 'status': 'in_progress', 'activeForm': 'Submitting training job on cuda:0'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-17T18:36:52.572140+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-17T18:36:52.572262+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "gpu_ids": "['cuda:0']",
+  "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py",
+  "exp_id": "l1_head_ablation_50demos",
+  "project": "vla-ssd",
+  "timeout_hours": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "westd-19183",
+    "gpu_ids": "['cuda:0']",
+    "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py",
+    "exp_id": "l1_head_ablation_50demos",
+    "project": "vla-ssd",
+    "timeout_hours": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-17T18:36:52.572392+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"905824\", \"log_file\": \"~/runs/vla-ssd/l1_head_ablation_50demos.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-19183\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"l1_head_ablation_50demos\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-17T18:36:52.572511+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write modified script with bootstrap CI', 'status': 'completed', 'activeForm': 'Writing modified script with bootstrap CI'}, {'content': 'Upload script to server', 'status': 'completed', 'activeForm': 'Uploading script to server'}, {'content': 'Submit training job on cuda:0', 'status': 'completed', 'activeForm': 'Submitting training job on cuda:0'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write modified script with bootstrap CI', 'status': 'completed', 'activeForm': 'Writing modified script with bootstrap CI'}, {'content': 'Upload script to server', 'status': 'completed', 'activeForm': 'Uploading script to server'}, {'content': 'Submit training job on cuda:0', 'status': 'completed', 'activeForm': 'Submitting training job on cuda:0'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-17T18:36:52.572635+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-17T18:36:52.572764+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 ~/runs/vla-ssd/l1_head_ablation_50demos.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 ~/runs/vla-ssd/l1_head_ablation_50demos.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-17T18:36:52.572906+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  warnings.warn(\\n`torch_dtype` is deprecated! Use `dtype` instead!\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n=== L1 Head Ablation: Action Probe R² ===\\nModel: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\nData: /root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\nReadout layers: [1, 8, 13]\\nOutput: /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\nTasks: 10\\n  [0] open the middle drawer of the cabinet\\n  [1] open the top drawer and put the bowl inside\\n  [2] push the plate to the front of the stove\\n  [3] put the bowl on the plate\\n  [4] put the bowl on the stove\\n  [5] put the bowl on top of the cabinet\\n  [6] put the cream cheese in the bowl\\n  [7] put the wine bottle on the rack\\n  [8] put the wine bottle on top of the cabinet\\n  [9] turn on the stove\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.21it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.25it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ablation_50demos_main_20260517T182747",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-17T18:36:52.573108+00:00_
+
+任务已成功启动，模型正在加载。
+
+**总结：**
+- 脚本 `/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py` 已修改：
+  - `demos_per_task` 默认值 5→50
+  - 输出路径改为 `action_probe_50demos.json`
+  - 添加 `bootstrap_paired_ci` 函数（10,000 resamples，paired by task，95% CI + two-sided p-value）
+  - conditions 保持原来的 3 个（baseline/ablate_all24/ablate_all32），layers 保持 [1,8,13]
+- 已在 cuda:0 上提交运行，tmux session: `l1_head_ablation_50demos`
+- 日志：`~/runs/vla-ssd/l1_head_ablation_50demos.log`
+- 预计运行 2-3 小时
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_ablation_50demos_main_20260517T182747"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,225 @@
+{
+  "exp_id": "openvla_long_untrained_v1",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T20:18:37.469Z",
+    "updated_at": "2026-05-21T23:00:00.692Z",
+    "hypothesis": "OpenVLA (openvla-7b, OXE pretrained but not LIBERO fine-tuned) untrained baseline on LIBERO-Long — full 5-phase pipeline. Tests whether the convergent routing pattern (R² exit collapse, L1 mixed heads, counterfactual sensitivity) is absent in the OXE-pretrained base. Note: openvla-7b is not a raw LLM — it has seen 970K+ action trajectories from OXE pretraining.",
+    "parent": "openvla_long_pipeline_v1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/libero_long_full_pipeline.py --conditions untrained\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "580167",
+      "log_path": "~/runs/vla-ssd/openvla_long_untrained_v1.log",
+      "submitted_at": "2026-05-21T21:11:45.936Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Long",
+      "data_count": "10 tasks",
+      "model_name": "openvla-7b (OXE pretrained)",
+      "seed": "default",
+      "checkpoint_source": "openvla/openvla-7b (HF, OXE pretrained base)",
+      "eval_data": "LIBERO-Long (10 tasks, probing + CF pipeline)",
+      "checkpoint_path": "N/A (probing experiment)",
+      "results_dir": "/root/autodl-tmp/vla-ssd/results/libero_long_untrained/",
+      "wall_clock_seconds": 6494.8,
+      "gpu_hours": 1.8
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T22:51:33.480Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T22:51:36.496641+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "r2_probing": {
+        "image_mean": {
+          "L0": 0.8239,
+          "L1": 0.8269,
+          "L2": 0.8285,
+          "L3": 0.8317,
+          "L4": 0.8328,
+          "L5": 0.8373,
+          "L6": 0.8361,
+          "L7": 0.834,
+          "L8": 0.8325,
+          "L9": 0.8392,
+          "L10": 0.8455,
+          "L11": 0.8463,
+          "L12": 0.8481,
+          "L13": 0.8477,
+          "L14": 0.8481,
+          "L15": 0.8439,
+          "L16": 0.8452,
+          "L17": 0.8466,
+          "L18": 0.8424,
+          "L19": 0.8396,
+          "L20": 0.8335,
+          "L21": 0.8326,
+          "L22": 0.8291,
+          "L23": 0.8238,
+          "L24": 0.8355,
+          "L25": 0.8385,
+          "L26": 0.843,
+          "L27": 0.8421,
+          "L28": 0.8438,
+          "L29": 0.8448,
+          "L30": 0.8418,
+          "L31": 0.8386,
+          "PEAK": "L12=0.8481 (also L14=0.8481)"
+        },
+        "last_preaction": {
+          "L0": 0.6081,
+          "L1": 0.7159,
+          "L2": 0.7339,
+          "L3": 0.7559,
+          "L4": 0.7838,
+          "L5": 0.7874,
+          "L6": 0.7814,
+          "L7": 0.7855,
+          "L8": 0.7968,
+          "L9": 0.7984,
+          "L10": 0.8146,
+          "L11": 0.8009,
+          "L12": 0.8086,
+          "L13": 0.8145,
+          "L14": 0.8126,
+          "L15": 0.8169,
+          "L16": 0.8101,
+          "L17": 0.8167,
+          "L18": 0.8187,
+          "L19": 0.8214,
+          "L20": 0.8245,
+          "L21": 0.8253,
+          "L22": 0.8233,
+          "L23": 0.8262,
+          "L24": 0.8242,
+          "L25": 0.8216,
+          "L26": 0.8159,
+          "L27": 0.8151,
+          "L28": 0.8119,
+          "L29": 0.8143,
+          "L30": 0.812,
+          "L31": 0.8099,
+          "PEAK": "L23=0.8262"
+        },
+        "profile_shape": "image_mean nearly flat (0.824-0.848), last_preaction monotonic rise then plateau, NO exit collapse"
+      },
+      "l1_attention": {
+        "instruction_dominant": 25,
+        "image_dominant": 0,
+        "mixed": 7,
+        "total_heads": 32,
+        "instruction_dominant_heads": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          7,
+          8,
+          10,
+          11,
+          12,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          22,
+          23,
+          25,
+          26,
+          27,
+          29,
+          30,
+          31
+        ],
+        "mixed_heads": [
+          3,
+          6,
+          9,
+          13,
+          21,
+          24,
+          28
+        ]
+      },
+      "cross_instruction": {
+        "accuracy_all_layers": 1,
+        "note": "100% classification accuracy at all 32 layers for both image_mean and last_preaction"
+      },
+      "rsa": {
+        "best": {
+          "key": "L12_last_preaction",
+          "mean_rsa": 0.521,
+          "ci_95": [
+            0.45,
+            0.588
+          ]
+        },
+        "L0_image_mean": 0.51,
+        "L0_last_preaction": 0.346,
+        "L4_image_mean": 0.493,
+        "L4_last_preaction": 0.432,
+        "L8_image_mean": 0.475,
+        "L8_last_preaction": 0.382,
+        "L12_image_mean": 0.486,
+        "L12_last_preaction": 0.521,
+        "L16_image_mean": 0.438,
+        "L16_last_preaction": 0.45,
+        "L20_image_mean": 0.414,
+        "L20_last_preaction": 0.41,
+        "L24_image_mean": 0.467,
+        "L24_last_preaction": 0.456,
+        "L28_image_mean": 0.408,
+        "L28_last_preaction": 0.448,
+        "L31_image_mean": 0.397,
+        "L31_last_preaction": 0.512
+      },
+      "counterfactual": {
+        "empty_d": 1.0475,
+        "wrong_d": 0.8311,
+        "shuffled_d": 0.6258,
+        "paraphrased_d": 0.6065,
+        "metric_type": "cohens_d",
+        "ordering": "empty > wrong > shuffled > paraphrased",
+        "cross_task_means": {
+          "empty": 1.0912,
+          "wrong": 0.8657,
+          "shuffled": 0.6296,
+          "paraphrased": 0.6055
+        },
+        "token_divergence": {
+          "wrong": 1,
+          "empty": 1,
+          "shuffled": 1,
+          "paraphrased": 0.992
+        },
+        "unnorm_key": "bridge_orig"
+      },
+      "runtime_min": 97.7,
+      "n_samples": 5000
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T23:00:00.692Z"
+  },
+  "timestamp": "2026-05-21T23:00:01.114141+00:00",
+  "trigger": "update_registry"
+}

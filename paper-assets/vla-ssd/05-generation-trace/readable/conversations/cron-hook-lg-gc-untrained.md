@@ -1,0 +1,1376 @@
+# cron hook lg gc untrained
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 1
+- **Tool calls:** 22
+- **Original source:** `logs/chats/cron_hook_lg_gc_untrained.jsonl`
+- **Structured JSON:** [`c8809f73886b6cd0fdfc.json`](../../sessions/c8/c8809f73886b6cd0fdfc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+46 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T03:34:46.249162+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #6。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：**cuda:0, cuda:1** on westd-19183，不得使用其他 GPU
+- westd 是 **SeetaCloud**（非 AutoDL），不适用 network_turbo/ModelScope
+- **服务器无外网**：所有 HF 操作必须 `local_files_only=True`
+- 统一 action probe 超参已锁定：**50ep/patience5/lr1e-3/hidden256/seed42, MLP input→256→7, predict a_{t+1}**——不得改动，否则与已完成的 31 个 success 实验不可比
+- DinoSigLIP fused backbone = DINOv2 ViT-L + SigLIP-SO400M → torch.cat → Projector MLP。"SigLIP+Projector" RSA=0.615 包含 DINOv2 信息，论文必须注明这一点
+- DINO RSA 旧值 0.388 **已废弃**（方法论错误），正确值 0.631（统一 inter-demo pairwise 方法）。任何引用旧值的地方必须更正
+- 存储：根分区 ~30GB，大文件在 `/root/autodl-tmp/vla-ssd/`
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-19183，2× GPU（当前全部空闲）
+- **工作目录**: `/root/vla-ssd`
+- **Python**: 通过 conda — `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（aml-train 镜像，不用 venv）
+- **模型/数据**: `/root/autodl-tmp/vla-ssd/`（checkpoint、features、HF cache 均在此）
+- **活跃进程**: 无。所有 46 个实验已 DONE，0 个 cron 活跃
+- **活跃 Worker**: `worker_code_definitive_rsa_recalc_20260516T030716`（status=running，做统一方法 RSA 重算脚本），尚未回调
+- **W&B**: 项目已有 wandb 集成（具体 project name 需 Worker 确认）
+
+### 3. 📊 当前状态
+**刚做完**: D037-D041 系列决策——发现并修正 DINO RSA 方法论错误（phase-split vs inter-demo pairwise），确认 Geometric-Functional Dissociation 失效，Claim 1 从 "VL pretraining dominance" pivot 到 "Self-supervised > VL-pretrained"。同时完成了统一方法 B 全层 VLA RSA 扫描（D041），发现 LLM 变换非单调（L12 增强 peak）。
+
+**Registry**: 46 实验全部 DONE（31 success / 7 negative / 7 killed / 1 其他）。无 RUNNING/PREPARING/PENDING/QUEUED。
+
+**等待中**:
+- Worker `worker_code_definitive_rsa_recalc` 回调（统一 RSA 方法重算脚本，已跑 ~30min）
+- **无 Director 待决策项**——D038 后 paper_framing.md 已清理，但 P0 branch-split 实验和 paper reframe 尚未启动
+
+**GPU 状态**: 2× GPU 全部空闲。剩余预算 ~7 GPU·h。**这是失职状态——GPU 空着没跑。**
+
+### 4. 📋 待办（条件触发式）
+- `worker_code_definitive_rsa_recalc` 回调 → 检查统一方法 RSA 数值是否与 D037/D041 一致 → 更新 registry + paper_framing.md 中的数值表
+- RSA method audit 确认完成（D039 已确认 VLA per-layer 用方法 A）→ 派 Worker 执行 **branch-split 实验**：分离 DINOv2 branch (1088d) vs SigLIP branch (1088d) vs fused+projector (4096d) 的 RSA，回答 C2 reviewer concern
+- Branch-split 结果出来 → 更新 Claim 1 数值 → 启动 **Paper Agent comprehensive reframe**（D037/D038 后全面重写 Claim 1 相关章节）
+- 如果 branch-split 显示 SigLIP branch RSA << DINO branch → 强化 "VL pretraining 拉低 DINOv2 geometry" 的 narrative
+- 如果 branch-split 显示 SigLIP ≈ DINO → 需要调整 Claim 1 为 "所有 pretrained encoders 相当"
+- Paper reframe 完成 → plan_010 LIBERO-Spatial 跨 benchmark 验证（P2，时间允许再做）
+- **5/26 CoRL abstract DDL** → abstract 必须在 branch-split + reframe 后定稿
+- **5/29 CoRL paper DDL** → full paper
+
+### 5. 🎯 战略上下文
+**核心 story（D038 后）**: VLA 中 action-relevant 表征来自 frozen vision encoder，self-supervised DINOv2 在 geometric alignment (RSA 0.631) 和 predictive capacity (R² 0.634) 两维度均最强或并列。VL pretraining 不增加 action-relevant structure。LLM 降解分布式表征但通过训练依赖的 attention 将信号 concentrate 到 readout token。Training 教会 routing 而非 creating。
+
+**决策链关键节点**: D031(redistribution) → D032(Option A: LLM routes) → D033-D034(DINO R²≈Proj) → D036(统一超参修正) → **D037(DINO RSA 方法错误, 0.388→0.631)** → D038(dissociation 失效) → D039(VLA RSA 也用方法 A 确认) → D040(training effect token-dependent) → D041(方法 B 全层扫描)
+
+**最容易判断错的事**:
+1. **不要用旧 DINO RSA=0.388**——这是方法论错误值，正确值 0.631。memory.md 里"Geometric-Functional Dissociation"段落的表格还保留旧值作历史记录，但结论已标注失效
+2. **DinoSigLIP Projector RSA=0.615 不等于 "SigLIP 的贡献"**——它是 DINOv2+SigLIP fused backbone 的输出，必须做 branch-split 才能分离两者
+3. **RSA 方法不一致问题（D039）**: standalone encoder 用方法 B（inter-demo pairwise），VLA per-layer 用方法 A（phase-split within-demo）。统一方法后数值会变，branch-split 必须用方法 B
+4. **GPU 预算仅 ~7 GPU·h**——branch-split 是纯 CPU RSA 计算（features 已提取），不消耗 GPU 时间。GPU 时间留给 plan_010 LIBERO-Spatial（如果做）
+5. **CoRL DDL 紧迫**：abstract 5/26（10 天），paper 5/29（13 天）。Branch-split + reframe 是 critical path，不能拖
+
+## 项目硬约束 (memory.md 节选)
+
+## 技术约束
+
+- Untrained model: from_config() 重新初始化 LLM（6.74B random），保留 SigLIP（0.80B）
+- D017: 统一用 LIBERO-10 fine-tuned checkpoint（LIBERO-Goal 是 OOD 测试）
+- Token 聚合：Primary = last pre-action token + image_mean
+- 存储：根分区 ~30GB，大文件在 /root/autodl-tmp/vla-ssd/
+- **服务器无外网**：AutoProcessor/HF 操作必须 `local_files_only=True`
+- **westd 是 SeetaCloud（非 AutoDL）**，不适用 network_turbo/ModelScope 等 AutoDL 专用方案
+- **统一 action probe 超参**：50ep/patience5/lr1e-3/hidden256/seed42, MLP input→256→7
+
+## 可查的历史
+前 38 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:lg_gc_untrained",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T03:34:59.094973+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T03:34:59.195792+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T03:35:02.515061+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T03:35:02.968109+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1761}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T03:35:02.968549+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "filters": "{'status': 'PREPARING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "filters": "{'status': 'PREPARING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T03:35:03.422070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1802}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T03:35:03.924192+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "filters": "{'status': 'PENDING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "filters": "{'status': 'PENDING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T03:35:04.376367+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1445}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T03:35:04.376787+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "filters": "{'status': 'QUEUED'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "filters": "{'status': 'QUEUED'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T03:35:04.878672+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1404}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 501
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T03:35:04.879115+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "filters": "{'status': 'ALLOCATED'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "filters": "{'status': 'ALLOCATED'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T03:35:04.879385+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T03:35:05.280850+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.144}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T03:35:05.281323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T03:35:05.281657+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T03:35:05.582937+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **unified_action_probe** (success): Unified hyperparameter action probe (50ep/patience5/seed42) across all vision encoders on LIBERO-Goal. Resolves cross-experiment R² incomparability caused by differing probe configs. Tests geometric-functional dissociation: does VL pretraining RSA advantage translate to R² advantage?\\n- **plan_012_clip_vit_control** (success): —\\n  [rsa_clip_results](/api/workspace-files/projects/vla-ssd/artifacts/plan_012_clip_vit_control/data/rsa_clip_results.txt) | [action_probe_clip_results](/api/workspace-files/projects/vla-ssd/artifacts/plan_012_clip_vit_control/data/action_probe_clip_summary.txt) | [unified_action_probe_results](/api/workspace-files/projects/vla-ssd/artifacts/plan_012_clip_vit_control/data/unified_action_probe.py)\\n- **lg_instruction_ablation** (killed): D021 Exp-1: Instruction Ablation. Extract LIBERO-Goal features with empty instruction (trained + untrained VLA), then run RSA. If instruction pathway is the source of action-relevant structure, RSA should collapse from ρ≈0.49 to <0.15. PASS: ρ<0.15; PARTIAL: 0.15<ρ<0.30; FAIL: ρ≥0.30.\\n\\n## 趋势\\n成功 31 / 负向 7 / 失败 0 / 共 46\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-19183: 无 GPU 信息\\n\\n## 告警\\n- mvp2_action_probe: 已被终止 — unknown\\n- lg_extract_trained_r2: 已被终止 — unknown\\n- lg_extract_untrained_r2: 已被终止 — unknown\\n- lg_extract_trained_r1: 已被终止 — unknown\\n- lg_extract_untrained_r1: 已被终止 — unknown\\n- lg_shuffled_token_control: 已被终止 — unknown\\n- lg_instruction_ablation: 已被终止 — unknown\\n- lg_output_head_analysis: 已被终止 — unknown\\n\", \"total_chars\": 1621, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T03:35:05.633648+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T03:35:05.684401+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-16 02:48 UTC | 更新原因: D037-D038: DINO RSA correction, dissociation invalidated, Claim 1 pivot, branch-split planned\\n\\n## 核心方向\\nVLA 中 action-relevant 表征的来源与 LLM 的 redistribution 机制。核心发现：(1) 所有 pretrained vision encoders 含 action info，self-supervised DINOv2 在 geometric alignment 和 predictive capacity 两维度均最强；(2) VL pretraining (CLIP/SigLIP) 不增加 action-relevant structure；(3) LLM 降解分布式 image token 几何结构（RSA）但保留全局结构（CKA），通过训练依赖的 attention 将信号 concentrate 到 readout token；(4) Training 教会 routing（readout concentration），而非 creating new knowledge。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Research phase, post-D038**。D037 修正 DINO RSA 方法论错误后，\\\"Geometric-Functional Dissociation\\\" 失效（RSA 和 R² 排序一致）。Claim 1 pivot 到 \\\"Self-Supervised > VL-Pretrained\\\"。Claim 2/3 不受影响。Paper Agent 需要全面 reframe。\\n\\n**关键变更**（D037-D038）:\\n- DINO RSA: 0.388 → 0.631（方法统一后）\\n- Claim 1: \\\"VL pretraining dominance\\\" → \\\"Self-supervised DINOv2 provides best action geometry\\\"\\n- Geometric-functional dissociation: **失效**（两维度排序一致）\\n- DinoSigLIP fused backbone: \\\"SigLIP+Projector\\\" 实际含 DINOv2 信息\\n- CKA-RSA dissociation: 仍有效（指标层面，非编码器层面）\\n\\n## 已完成核心实验\\n- ✅ plan_001-008: RSA 组件分解 + 2×2 matrix + per-layer curve + instruction ablation + random instruction control\\n- ✅ plan_009: CKA verification — CKA-RSA dissociation（指标层面）\\n- ✅ plan_011: Functional action probe (unified 50ep/patience5) — 5-model 对比\\n- ✅ plan_012: CLIP-ViT control — RSA=0.557, R²=0.587\\n- ✅ D033-D034: DINO R²≈Proj, redistribution training-dependent\\n- ✅ D037: DINO RSA 方法修正 0.388→0.631\\n- ✅ D038: Dissociation 失效确认, paper_framing.md 清理\\n\\n## 近期任务\\n- [ ] **P0: RSA method audit 结果确认** — VLA per-layer RSA 是否也用 inter-demo pairwise 方法？（Agent 已执行，等报告）\\n- [ ] **P0: Branch-split 实验** — 分离 DINOv2 branch (1088d) vs SigLIP branch (1
+…[truncated 2147 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T03:35:20.200237+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T03:35:20.251214+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T03:35:23.613659+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "vla-ssd",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T03:35:24.015438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_code_definitive_rsa_recalc_20260516T030716\", \"task_type\": \"code:definitive_rsa_recalc\", \"project\": \"vla-ssd\", \"status\": \"running\", \"started_at\": \"2026-05-16T03:07:16.415441+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T03:35:24.167292+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T03:35:24.167917+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_3425744c.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T03:35:27.851845+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T03:35:28.104070+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "Glob",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T03:35:28.104461+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_code_definitive_rsa_recalc_20260516T030716",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_code_definitive_rsa_recalc_20260516T030716",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T03:35:28.154961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_definitive_rsa_recalc_20260516T030716\", \"status\": \"running\", \"task_type\": \"code:definitive_rsa_recalc\", \"project\": \"vla-ssd\", \"started_at\": \"2026-05-16T03:07:16.415441+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ToolSearch\", \"Bash\"], \"last_text\": \"Now uploading the script to the server and starting execution.\", \"turn_count\": 4}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T03:36:04.207392+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__load_project_config",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__load_project_config",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T03:36:04.258126+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T03:36:09.076585+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T03:36:09.428864+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/paper_framing.md\", \"content\": \"# Paper Framing — vla-ssd\\n\\n## Target Venue\\n- Primary: CoRL 2026\\n- Deadline: Abstract May 26, Paper May 29\\n- Format: 8 pages + references\\n\\n## Core Claims (3 条)\\n\\n1. **Vision Encoder Dominance — Self-Supervised > VL-Pretrained in Geometry**: VLA 中 action-relevant 表征结构由 frozen vision encoder 决定。⚠️ **D037 修正**：统一 RSA 方法后排序为 **DINO (0.631) > DinoSigLIP+Proj (0.615) > CLIP (0.557)** >> VLA (0.501)。Self-supervised DINOv2 的 geometric alignment **优于** VL-pretrained encoders（counter-intuitive）。Functional capacity (R²) 排序: DINO (0.634) ≈ Projector (0.630) > CLIP (0.587)——DINO 在两个维度均最强或并列。VL pretraining 既不提供更好的 geometric alignment，也不增加 functional capacity。**所有 pretrained vision encoders 都含 action info，但 self-supervised 学习提供了最强的 action-aligned geometry。** 注：DinoSigLIP fused backbone（非纯 SigLIP）使 projector 输出继承了 DINOv2 信息。\\n2. **LLM Redistributes Action-Relevant Structure (Training-Dependent)**: LLM 降解 distributed image token 的 **geometric alignment**（RSA: DinoSigLIP+Proj 0.615→VLA 0.501）和 functional capacity（R²: 0.630→0.599, p<0.001），但 global structure 保留（CKA 单调上升）。**训练后** LLM 学会将 action 信号 concentrate 到 readout token（trained R²=0.671 > projector 0.630, p=0.002），但 **untrained LLM 做不到**（untrained readout best=0.686 < projector）。Readout concentration 是 learned behavior，不是架构固有属性。注：projector 输入来自 DinoSigLIP fused backbone（含 DINOv2 信息），非纯 SigLIP。\\n3. **Training: Routing Without Creating**: VLA fine-tuning 不改变 distributed representation structure（image_mean RSA: trained 0.501 ≈ untrained 0.485, bootstrap CI includes 0, p=0.20），但提升 readout concentration（trained last_preaction 0.731 >> untrained 0.686，Δ=0.045, bootstrap CI=[0.032, 0.058], p<0.0001）。Instruction input 对两者均无影响。综合解读：**Training 的贡献是学习信息路由（routing），而非注入新的 action knowledge（creating）**。\\n\\n## Paper 主数值基准（image_mean 聚合，公平对比）\\n\\n| Model / Condition | RSA (
+…[truncated 11188 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T03:36:09.479465+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T03:36:09.530142+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/memory.md\", \"content\": \"# VLA-SSD Project Memory\\n\\n## ⚠️ D041: unified_rsa_results.json 是权威 RSA 数据（2026-05-16）\\n\\n**unified_rsa_results.json = Method B, 50 demos/task, 33层 × 6条件。与所有 standalone baselines（SigLIP/DINO/CLIP）n_demos 一致，直接可比。**\\n\\nD040 (L9-only 10-demo \\\"readout RSA training degradation\\\") 已被 D041 supersede——L9 不是 peak，trained peak 在 L12。\\n\\n关键发现：\\n- LLM 对 RSA 的影响非单调——前半段增强（L0=0.612→L12=0.628, > projector 0.615），后半段退化（L12→L32=0.422）\\n- Training 将 peak 从 L0/L1 迁移到 L12（same-layer L12 比较高度显著 p<0.0001），但 best-vs-best 差异不显著\\n- \\\"training redistributes across layers\\\" 比 \\\"training invariance\\\" 或 \\\"training degrades\\\" 都更准确\\n\\n**no_inst 条件注意**：trained_no_inst 有 4 个 task 仅 10 demos，untrained_no_inst 有 1 个 task 仅 10 demos。不影响主表但 instruction control no_inst=0.6225 基于混合 demo 数。\\n\\n## ⚠️ D037-D038: DINO RSA 方法修正 + Dissociation 失效（2026-05-16）\\n\\n原始 DINO RSA=0.388 来自 phase-split temporal RSA（方法A），与 SigLIP/CLIP 的 inter-demo pairwise RSA（方法B）不可比。统一方法B后 DINO cls=0.692, patch_mean=0.631。\\n\\n**Geometric-Functional Dissociation 失效**：RSA 和 R² 排序一致（DINO ≥ Proj > CLIP），跨编码器 dissociation 是伪影。\\n\\n新 story：self-supervised DINOv2 在 geometric alignment 和 predictive capacity 两维度均最强，VL pretraining 不增加 action-relevant structure。\\n\\n## 统一超参 Action Probe（2026-05-16）\\n\\n统一超参 (50ep/patience5/lr1e-3/hidden256/seed42, MLP input→256→7, predict a_{t+1})：\\n\\n| Model | mean_R² | vs Projector |\\n|-------|---------|-------------|\\n| VLA last_preaction L19 | **0.671** | +0.041, p=0.002 |\\n| DINO cls | 0.634 | ≈ (p=0.557) |\\n| SigLIP projector | 0.630 | — |\\n| VLA image_mean L19 | 0.599 | -0.031, p<0.001 |\\n| CLIP cls | 0.587 | -0.043, p<0.001 |\\n\\n## Instruction Content Invariance（2026-05-16）\\n\\nMethod B 下 4 条件完全收敛：normal=0.6282, empty=0.6225, random=0.6283, shuffled=0.6282. Max |Δ|=0.006.\\n\\n## CKA 指标依赖性（2026-05-16）\\n\\nD
+…[truncated 1686 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T03:36:32.207906+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "vla-ssd",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "vla-ssd",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T03:36:32.258607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"vla-ssd\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/vla-ssd\", \"servers\": [\"westd-19183\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T03:37:14.034335+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "code:branch_split_rsa",
+  "project": "vla-ssd",
+  "task_prompt": "## 任务：Branch-Split RSA 实验\n\n### 目标\n分离 DinoSigLIP fused backbone 中 DINOv2 branch 和 SigLIP branch 的独立 RSA 贡献，回答\"Projector RSA=0.615 中 DINOv2 vs SigLIP 各贡献多少？\"\n\n### 背景\nOpenVLA 使用 DinoSigLIP fused backbone 架构：\n- DINOv2 ViT-L 输出 → 1088 维 patch tokens\n- SigLIP-SO400M 输出 → 1088 维 patch tokens  \n- 两者 torch.cat 拼接 → 2176 维\n- 经 Projector MLP → 4096 维（这是进入 LLM 的输入）\n\n已知 RSA 数值（Method B: inter-demo pairwise）：\n- Standalone DINO patch_mean: **0.631**\n- DinoSigLIP+Projector (4096d): **0.615**\n- Standalone CLIP cls: **0.557**\n- VLA trained image_mean: **0.501**\n\n### 需要计算的 RSA\n1. **DINOv2 branch (前 1088d)**：projector 之前，只取 DINOv2 的维度\n2. **SigLIP branch (后 1088d)**：projector 之前，只取 SigLIP 的维度\n3. **Fused pre-projector (2176d)**：projector 之前，拼接后的完整表征\n4. 对比：projector 之后 (4096d) = 已知 0.615\n\n### RSA 方法：Method B（inter-demo pairwise）\n**必须用 Method B**，与已有 baseline 一致。Method B 定义：\n- 对每个 task，取 N 个 demo（50 demos/task if available）\n- 构建 pairwise distance matrix（demo-level，不是 phase-split）\n- 用 image_mean 聚合 token 到单个向量\n- 计算 representation distance matrix vs action distance matrix 的 Spearman correlation\n- 最终 RSA = 跨 task 平均\n\n参考脚本：服务器上 `/root/vla-ssd/` 下应有之前的 RSA 计算脚本（如 `compute_rsa_method_b.py`, `unified_rsa_scan.py`, `rsa_standalone_*.py` 等）。先用 ssh_read_only 找到并阅读现有脚本，复用其 Method B 实现。\n\n### 关键：如何获取 pre-projector 特征\n\n**方案 A（优先）**：检查是否已有 pre-projector 特征文件保存在 `/root/autodl-tmp/vla-ssd/` 下。如果 feature extraction 时保存了中间层特征，可能已有。\n\n**方案 B**：如果没有 pre-projector 特征，需要写提取脚本。关键代码路径：\n```python\n# OpenVLA 的 vision backbone 是 PrismaticVLM\n# model.vision_backbone 包含两个子网络\n# 提取时 hook 到 projector 之前的位置\n# DINOv2 输出在前 1088 维，SigLIP 输出在后 1088 维\n```\n提取时必须用 `local_files_only=True`（服务器无外网）。\n\n**方案 C**：如果 projector 是线性层，pre-projector 特征可以从 projector 权重反推（但通常 projector 是 MLP，不可逆）。这种情况需要重新跑模型提取。\n\n### 环境\n- 服务器：westd-19183\n- 工作目录：/root/vla-ssd\n- 数据目录：/root/autodl-tmp/vla-ssd/（checkpoint、features、HF cache）\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 无外网：所有 HF 操作 `local_files_only=True`\n- GPU：cuda:0, cuda:1 可用（但 RSA 计算主要是 CPU。如果需要 GPU 做 feature extraction，用 cuda:0）\n\n### 执行步骤\n1. SSH 到 westd-19183，探测现有特征文件和 RSA 脚本\n2. 确认是否有 pre-projector (2176d) 特征文件\n3. 如果没有，写 feature extraction 脚本提取 pre-projector 特征\n4. 写 branch-split RSA 计算脚本（Method B）\n5. 执行并收集结果\n6. 输出：DINOv2-branch RSA, SigLIP-branch RSA, fused-pre-proj RSA, projector RSA\n\n### 验证\n- fused-pre-proj RSA 和 projector RSA 应该接近但不同（projector 是非线性变换）\n- DINOv2-branch + SigLIP-branch 的 RSA 关系应该能解释为什么 fused > CLIP but < standalone DINO\n\n### 产出\n将结果写入 `/root/vla-ssd/branch_split_rsa_results.json`，格式：\n```json\n{\n  \"method\": \"B_inter_demo_pairwise\",\n  \"n_demos_per_task\": 50,\n  \"aggregation\": \"image_mean\",\n  \"results\": {\n    \"dinov2_branch_1088d\": {\"rsa\": ..., \"ci_low\": ..., \"ci_high\": ...},\n    \"siglip_branch_1088d\": {\"rsa\": ..., \"ci_low\": ..., \"ci_high\": ...},\n    \"fused_pre_projector_2176d\": {\"rsa\": ..., \"ci_low\": ..., \"ci_high\": ...},\n    \"projector_4096d\": {\"rsa\": ..., \"ci_low\": ..., \"ci_high\": ...}\n  },\n  \"per_task\": {...}\n}\n```\n\n如果 feature extraction 需要 GPU 时间超过 30 分钟，用 submit_training_job 提交而非 nohup。",
+  "tool_groups": "['ssh', 'registry', 'knowledge']",
+  "context": "## 硬约束\n- GPU 白名单：cuda:0, cuda:1 on westd-19183\n- 服务器无外网：所有 HF 操作必须 local_files_only=True\n- westd 是 SeetaCloud（非 AutoDL），不适用 network_turbo/ModelScope\n- Python env: conda base — source /root/miniconda3/etc/profile.d/conda.sh && conda activate base（不用 venv）\n\n## 已知数值（Method B, image_mean 聚合）\n- Standalone DINO patch_mean RSA: 0.631\n- DinoSigLIP+Projector RSA: 0.615\n- Standalone CLIP cls RSA: 0.557\n- VLA trained image_mean RSA: 0.501\n\n## DinoSigLIP 架构\nDINOv2 ViT-L (1088d) + SigLIP-SO400M (1088d) → torch.cat(dim=-1) → 2176d → Projector MLP → 4096d\n前 1088 维 = DINOv2, 后 1088 维 = SigLIP（需要在代码中确认这个顺序）"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:branch_split_rsa",
+    "project": "vla-ssd",
+    "task_prompt": "## 任务：Branch-Split RSA 实验\n\n### 目标\n分离 DinoSigLIP fused backbone 中 DINOv2 branch 和 SigLIP branch 的独立 RSA 贡献，回答\"Projector RSA=0.615 中 DINOv2 vs SigLIP 各贡献多少？\"\n\n### 背景\nOpenVLA 使用 DinoSigLIP fused backbone 架构：\n- DINOv2 ViT-L 输出 → 1088 维 patch tokens\n- SigLIP-SO400M 输出 → 1088 维 patch tokens  \n- 两者 torch.cat 拼接 → 2176 维\n- 经 Projector MLP → 4096 维（这是进入 LLM 的输入）\n\n已知 RSA 数值（Method B: inter-demo pairwise）：\n- Standalone DINO patch_mean: **0.631**\n- DinoSigLIP+Projector (4096d): **0.615**\n- Standalone CLIP cls: **0.557**\n- VLA trained image_mean: **0.501**\n\n### 需要计算的 RSA\n1. **DINOv2 branch (前 1088d)**：projector 之前，只取 DINOv2 的维度\n2. **SigLIP branch (后 1088d)**：projector 之前，只取 SigLIP 的维度\n3. **Fused pre-projector (2176d)**：projector 之前，拼接后的完整表征\n4. 对比：projector 之后 (4096d) = 已知 0.615\n\n### RSA 方法：Method B（inter-demo pairwise）\n**必须用 Method B**，与已有 baseline 一致。Method B 定义：\n- 对每个 task，取 N 个 demo（50 demos/task if available）\n- 构建 pairwise distance matrix（demo-level，不是 phase-split）\n- 用 image_mean 聚合 token 到单个向量\n- 计算 representation distance matrix vs action distance matrix 的 Spearman correlation\n- 最终 RSA = 跨 task 平均\n\n参考脚本：服务器上 `/root/vla-ssd/` 下应有之前的 RSA 计算脚本（如 `compute_rsa_method_b.py`, `unified_rsa_scan.py`, `rsa_standalone_*.py` 等）。先用 ssh_read_only 找到并阅读现有脚本，复用其 Method B 实现。\n\n### 关键：如何获取 pre-projector 特征\n\n**方案 A（优先）**：检查是否已有 pre-projector 特征文件保存在 `/root/autodl-tmp/vla-ssd/` 下。如果 feature extraction 时保存了中间层特征，可能已有。\n\n**方案 B**：如果没有 pre-projector 特征，需要写提取脚本。关键代码路径：\n```python\n# OpenVLA 的 vision backbone 是 PrismaticVLM\n# model.vision_backbone 包含两个子网络\n# 提取时 hook 到 projector 之前的位置\n# DINOv2 输出在前 1088 维，SigLIP 输出在后 1088 维\n```\n提取时必须用 `local_files_only=True`（服务器无外网）。\n\n**方案 C**：如果 projector 是线性层，pre-projector 特征可以从 projector 权重反推（但通常 projector 是 MLP，不可逆）。这种情况需要重新跑模型提取。\n\n### 环境\n- 服务器：westd-19183\n- 工作目录：/root/vla-ssd\n- 数据目录：/root/autodl-tmp/vla-ssd/（checkpoint、features、HF cache）\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 无外网：所有 HF 操作 `local_files_only=True`\n- GPU：cuda:0, cuda:1 可用（但 RSA 计算主要是 CPU。如果需要 GPU 做 feature extraction，用 cuda:0）\n\n### 执行步骤\n1. SSH 到 westd-19183，探测现有特征文件和 RSA 脚本\n2. 确认是否有 pre-projector (2176d) 特征文件\n3. 如果没有，写 feature extraction 脚本提取 pre-projector 特征\n4. 写 branch-split RSA 计算脚本（Method B）\n5. 执行并收集结果\n6. 输出：DINOv2-branch RSA, SigLIP-branch RSA, fused-pre-proj RSA, projector RSA\n\n### 验证\n- fused-pre-proj RSA 和 projector RSA 应该接近但不同（projector 是非线性变换）\n- DINOv2-branch + SigLIP-branch 的 RSA 关系应该能解释为什么 fused > CLIP but < standalone DINO\n\n### 产出\n将结果写入 `/root/vla-ssd/branch_split_rsa_results.json`，格式：\n```json\n{\n  \"method\": \"B_inter_demo_pairwise\",\n  \"n_demos_per_task\": 50,\n  \"aggregation\": \"image_mean\",\n  \"results\": {\n    \"dinov2_branch_1088d\": {\"rsa\": ..., \"ci_low\": ..., \"ci_high\": ...},\n    \"siglip_branch_1088d\": {\"rsa\": ..., \"ci_low\": ..., \"ci_high\": ...},\n    \"fused_pre_projector_2176d\": {\"rsa\": ..., \"ci_low\": ..., \"ci_high\": ...},\n    \"projector_4096d\": {\"rsa\": ..., \"ci_low\": ..., \"ci_high\": ...}\n  },\n  \"per_task\": {...}\n}\n```\n\n如果 feature extraction 需要 GPU 时间超过 30 分钟，用 submit_training_job 提交而非 nohup。",
+    "tool_groups": "['ssh', 'registry', 'knowledge']",
+    "context": "## 硬约束\n- GPU 白名单：cuda:0, cuda:1 on westd-19183\n- 服务器无外网：所有 HF 操作必须 local_files_only=True\n- westd 是 SeetaCloud（非 AutoDL），不适用 network_turbo/ModelScope\n- Python env: conda base — source /root/miniconda3/etc/profile.d/conda.sh && conda activate base（不用 venv）\n\n## 已知数值（Method B, image_mean 聚合）\n- Standalone DINO patch_mean RSA: 0.631\n- DinoSigLIP+Projector RSA: 0.615\n- Standalone CLIP cls RSA: 0.557\n- VLA trained image_mean RSA: 0.501\n\n## DinoSigLIP 架构\nDINOv2 ViT-L (1088d) + SigLIP-SO400M (1088d) → torch.cat(dim=-1) → 2176d → Projector MLP → 4096d\n前 1088 维 = DINOv2, 后 1088 维 = SigLIP（需要在代码中确认这个顺序）"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T03:37:16.851162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_branch_split_rsa_20260516T033714\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_branch_split_rsa_20260516T033714.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_branch_split_rsa_20260516T033714 started. Use get_worker_status('worker_code_branch_split_rsa_20260516T033714') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2816
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T03:37:27.855498+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T03:37:27.856076+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T03:37:31.120123+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T03:37:31.170912+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T03:37:52.809758+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 0（branch-split 是 CPU 计算）| Worker 池 2 (CPU 2 / GPU 0)\n\n**Session #6 启动汇报**\n\n**Registry**: 46 实验全部 DONE（31 success / 7 negative / 7 killed）。0 RUNNING/PENDING/QUEUED。\n\n**活跃 Worker**:\n1. `worker_code_definitive_rsa_recalc` — 统一方法 RSA 重算脚本（turn 4，正在上传执行）\n2. `worker_code_branch_split_rsa` — **刚派发**，P0 branch-split 实验：分离 DINOv2 branch (1088d) vs SigLIP branch (1088d) 的独立 RSA，回答 C2 reviewer concern\n\n**Critical Path**:\nbranch-split 完成 → paper reframe → abstract 定稿 (5/26, 10天) → full paper (5/29, 13天)\n\n**GPU 状态**: 2× GPU 空闲。当前 critical path 上无 GPU 需求（branch-split 是 CPU RSA 计算，features 已提取）。唯一待做的 GPU 实验是 **plan_010 LIBERO-Spatial 跨 benchmark 验证（P2）**，预计消耗 2-3 GPU·h（feature extraction）。剩余预算 ~7 GPU·h。\n\n**请 Director 决策**: 是否现在启动 plan_010 LIBERO-Spatial？利用 branch-split 等待期并行跑 feature extraction，GPU 不浪费。如果 CoRL 只需 LIBERO-Goal 单 benchmark，可跳过。",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 0（branch-split 是 CPU 计算）| Worker 池 2 (CPU 2 / GPU 0)\n\n**Session #6 启动汇报**\n\n**Registry**: 46 实验全部 DONE（31 success / 7 negative / 7 killed）。0 RUNNING/PENDING/QUEUED。\n\n**活跃 Worker**:\n1. `worker_code_definitive_rsa_recalc` — 统一方法 RSA 重算脚本（turn 4，正在上传执行）\n2. `worker_code_branch_split_rsa` — **刚派发**，P0 branch-split 实验：分离 DINOv2 branch (1088d) vs SigLIP branch (1088d) 的独立 RSA，回答 C2 reviewer concern\n\n**Critical Path**:\nbranch-split 完成 → paper reframe → abstract 定稿 (5/26, 10天) → full paper (5/29, 13天)\n\n**GPU 状态**: 2× GPU 空闲。当前 critical path 上无 GPU 需求（branch-split 是 CPU RSA 计算，features 已提取）。唯一待做的 GPU 实验是 **plan_010 LIBERO-Spatial 跨 benchmark 验证（P2）**，预计消耗 2-3 GPU·h（feature extraction）。剩余预算 ~7 GPU·h。\n\n**请 Director 决策**: 是否现在启动 plan_010 LIBERO-Spatial？利用 branch-split 等待期并行跑 feature extraction，GPU 不浪费。如果 CoRL 只需 LIBERO-Goal 单 benchmark，可跳过。",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T03:37:56.523088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:lg_gc_untrained",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3713
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-16T03:38:01.664832+00:00_
+
+Session #6 初始化完成：
+
+- **Registry**: 46 实验全 DONE，0 活跃
+- **Worker 池**: 2 running
+  - RSA recalc（统一方法重算，进行中）
+  - Branch-split RSA（刚派发，P0 critical path）
+- **GPU**: 2× 空闲，无 P0 GPU 需求。已向 Director 请示是否启动 plan_010 LIBERO-Spatial
+- **DDL**: CoRL abstract 5/26（10天），paper 5/29（13天）
+
+等待 Worker 回调和 Director 决策。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:lg_gc_untrained"
+}
+```
+
+</details>
+
+---

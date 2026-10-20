@@ -1,0 +1,6 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We present the first representational decomposition of a VLA, quantifying how the vision encoder, projector, and LLM layers contribute to action-relevant structure using both geometric (RSA) and functional (probe $R^2$) metrics.
+Three findings emerge: (1)~the frozen vision encoder provides the dominant action-relevant geometry, with self-supervised DINOv2 achieving the highest alignment ($\rho = 0.692$) exceeding all VL-pretrained encoders and the VLA's own peak ($0.628$); (2)~the LLM applies a non-monotonic transformation---early layers enhance alignment ($\rho$: $0.612 \to 0.628$), late layers degrade it ($0.628 \to 0.422$)---and concentrates a functionally superior readout representation ($R^2 = 0.678$); (3)~training produces at most a modest geometric gain ($\Delta = 0.017$--$0.023$, $3$--$4\%$ of baseline) while substantially improving functional capacity ($R^2$ $\Delta = +0.015$ to $+0.069$, $p \leq 0.006$)---redistribution dominates over creation.
+These results suggest that vision encoder pretraining quality is the primary design lever, and that middle-layer representations---not the LLM output---are the most action-relevant, inviting architectural designs that exploit this peak (e.g., early exit or dedicated readout at L12).

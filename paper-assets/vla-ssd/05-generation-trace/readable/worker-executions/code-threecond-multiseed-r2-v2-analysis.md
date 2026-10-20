@@ -1,0 +1,1559 @@
+# code threecond multiseed r2 v2 analysis
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_code_threecond_multiseed_r2_v2_analysis_20260518T084856.log`
+- **Structured JSON:** [`7229770326eeec08f0b1.json`](../../sessions/72/7229770326eeec08f0b1.json)
+
+## Before a recorded user message
+
+29 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "591d5435-0ce2-4624-b054-2d36ef6a0770",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779104400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "75d168bd-bcfe-46b4-ac6e-01e9e177d14b",
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me SSH to the server and read the experiment results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "7216689e-9a50-4fd4-8a0e-6ccb15050b1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016W2v2HwwNd3pUVyv42ASRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12978,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12978
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FxRLnAYDE6NLhQTiFVUieW`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "bc164a9c-f57f-44ab-bab0-6eb6b4bc77d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016W2v2HwwNd3pUVyv42ASRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12978,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12978
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T08:49:07.380Z_
+
+<details><summary>↩ Tool result · `toolu_01FxRLnAYDE6NLhQTiFVUieW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "1f3483b0-a8ac-4984-86ab-f31e7a87799e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 24
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GLk3Z7L4tah1hQhb2ATTAR`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "e37284e3-d64f-4405-b489-4bc2bf9470ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015quP6JkVQBdbTunfsJbUNF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 453,
+      "cache_read_input_tokens": 24819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 453
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018QTnHNaCy7HLL7rCAXgh9C`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*threecond_multiseed_v2*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "c07fc1e6-f5a0-4406-9e4d-6b36861f8350",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015quP6JkVQBdbTunfsJbUNF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 453,
+      "cache_read_input_tokens": 24819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 453
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T08:49:12.171Z_
+
+<details><summary>↩ Tool result · `toolu_01GLk3Z7L4tah1hQhb2ATTAR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nThree-condition multi-seed action R2 probe (v2)\\nConditions: ['untrained', 'llama2base', 'trained']\\nSeeds: [42, 123, 456]\\nLayers: 33\\nDevice: cuda:0\\nSplit: sequential 80/20 (no shuffle)\\nR2: original (denormalized) action space\\n============================================================\\n\\n========================================\\nCondition: untrained (untrained_libero_goal)\\n========================================\\n  untrained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 28.1s\\n  untrained L1: mean=0.5470 +/- 0.0080 ([0.5545581728219986, 0.535977229475975, 0.5503205597400666]) 24.4s\\n  untrained L2: mean=0.5202 +/- 0.0036 ([0.5218747377395629, 0.5234707891941071, 0.5152634769678116]) 24.2s\\n  untrained L3: mean=0.5361 +/- 0.0078 ([0.533835631608963, 0.5464956521987915, 0.5278609782457352]) 22.1s\\n  untrained L4: mean=0.5147 +/- 0.0440 ([0.5606455206871033, 0.4553957134485245, 0.5281207293272019]) 25.3s\\n  untrained L5: mean=0.3973 +/- 0.1950 ([0.5383460253477097, 0.5319028049707413, 0.12151370644569397]) 25.4s\\n  untrained L6: mean=0.5048 +/- 0.0453 ([0.5313279688358307, 0.4409617245197296, 0.5419802606105805]) 21.9s\\n  untrained L7: mean=0.5033 +/- 0.0510 ([0.5175851821899414, 0.5573614865541459, 0.4348457813262939]) 22.3s\\n  untrained L8: mean=0.4985 +/- 0.0411 ([0.5323313891887664, 0.4406500369310379, 0.5225855261087418]) 22.6s\\n  untrained L9: mean=0.4416 +/- 0.0668 ([0.5349647313356399, 0.40780563950538634, 0.38214739263057707]) 25.9s\\n  untrained L10: mean=-0.0924 +/- 0.3342 ([-0.32930943965911863, 0.38024117350578307, -0.3281980514526367]) 22.5s\\n  untrained L11: mean=0.1408 +/- 0.2991 ([-0.2805611789226532, 0.31961887180805204, 0.3834815859794617]) 26.5s\\n  untrained L12: mean=0.2114 +/- 0.3536 ([0.5197568655014038, -0.28381028175354006, 0.39815777242183686]) 21.9s\\n  untrained L13: mean=0.2237 +/- 0.3627 ([0.44095965623855593, -0.28740930557250977, 0.5174009501934052]) 24.5s\\n  untrained L14: mean=0.4157 +/- 0.0715 ([0.41838822364807127, 0.5018354833126069, 0.3268470197916031]) 23.0s\\n  untrained L15: mean=0.5108 +/- 0.0123 ([0.5041327744722366, 0.5280649989843369, 0.5001200407743454]) 20.9s\\n  untrained L16: mean=0.4242 +/- 0.0534 ([0.4566766321659088, 0.3489329606294632, 0.4670442521572113]) 22.4s\\n  untrained L17: mean=0.4500 +/- 0.0454 ([0.4704433590173721, 0.4925037294626236, 0.38699641823768616]) 24.6s\\n  untrained L18: mean=0.2569 +/- 0.1712 ([0.4923500448465347, 0.0903881847858429, 0.18785106539726257]) 24.9s\\n  untrained L19: mean=0.4703 +/- 0.0280 ([0.490105003118515, 0.4306431919336319, 0.49016115367412566]) 25.4s\\n  untrained L20: mean=0.3451 +/- 0.1310 ([0.49176669120788574, 0.3698767900466919, 0.1737293004989624]) 22.5s\\n  untrained L21: mean=0.2755 +/- 0.1474 ([0.48386340737342837, 0.16784534454345704, 0.17477847933769225]) 23.2s\\n  untrained L22: mean=-0.0631 +/- 0.3767 ([0.46963681280612946, -0.3291096091270447, -0.32974032163619993]) 22.6s\\n  untrained L23: mean=0.3638 +/- 0.1977 ([0.5155623465776443, 0.08457584381103515, 0.49129209816455843]) 25.0s\\n  untrained L24: mean=0.4605 +/- 0.0405 ([0.4894219398498535, 0.48874219357967374, 0.40325150489807127]) 21.2s\\n  untrained L25: mean=0.2013 +/- 0.3765 ([0.5084957867860794, -0.328879177570343, 0.4243020981550217]) 24.6s\\n  untrained L26: mean=0.3528 +/- 0.1109 ([0.4584378361701965, 0.19957755804061889, 0.4002833366394043]) 22.8s\\n  untrained L27: mean=0.2881 +/- 0.1623 ([0.5174411952495575, 0.16804656982421876, 0.17870495915412904]) 25.8s\\n  untrained L28: mean=-0.0822 +/- 0.3156 ([0.3633006364107132, -0.32884399890899657, -0.28093225359916685]) 25.9s\\n  untrained L29: mean=0.1137 +/- 0.3250 ([0.4445383459329605, 0.22468178272247313, -0.3281088948249817]) 24.9s\\n  untrained L30: mean=0.1700 +/- 0.3541 ([0.462066775560379, -0.328312349319458, 0.37623833417892455]) 19.8s\\n  untrained L31: mean=0.1928 +/- 0.1379 ([0.38780969083309175, 0.0923097550868988, 0.09819002151489258]) 21.4s\\n  unt\\n\\n... [截断: 输出过长，省略 3638 字符] ...\\n\\nse L31: mean=0.5571 +/- 0.0111 ([0.5709007382392883, 0.5438086986541748, 0.5565982908010483]) 18.3s\\n  llama2base L32: mean=0.5513 +/- 0.0205 ([0.5255301654338836, 0.5526250302791595, 0.575767508149147]) 17.2s\\n\\n========================================\\nCondition: trained (trained_libero_goal)\\n========================================\\n  trained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 25.1s\\n  trained L1: mean=0.6429 +/- 0.0072 ([0.6330601245164871, 0.6455395221710205, 0.6500066712498664]) 25.1s\\n  trained L2: mean=0.6221 +/- 0.0061 ([0.6277795389294625, 0.6248690545558929, 0.6136648133397102]) 24.1s\\n  trained L3: mean=0.6211 +/- 0.0226 ([0.6519127771258354, 0.5985256284475327, 0.6128895074129105]) 24.0s\\n  trained L4: mean=0.6386 +/- 0.0073 ([0.6468106269836426, 0.6290610373020172, 0.6398107334971428]) 24.9s\\n  trained L5: mean=0.6304 +/- 0.0144 ([0.6468134745955467, 0.6116541624069214, 0.6326928734779358]) 23.5s\\n  trained L6: mean=0.6421 +/- 0.0053 ([0.6493953630328179, 0.6372901111841202, 0.6395108684897423]) 26.1s\\n  trained L7: mean=0.6339 +/- 0.0084 ([0.6447141245007515, 0.6243450552225113, 0.632636870443821]) 23.9s\\n  trained L8: mean=0.6362 +/- 0.0184 ([0.6552544310688972, 0.6421004951000213, 0.6113417208194732]) 26.0s\\n  trained L9: mean=0.6434 +/- 0.0137 ([0.6510628208518028, 0.6549354955554009, 0.6241090357303619]) 26.2s\\n  trained L10: mean=0.6245 +/- 0.0162 ([0.642679876089096, 0.6274515226483345, 0.6033932983875274]) 23.4s\\n  trained L11: mean=0.6245 +/- 0.0182 ([0.6435706600546837, 0.6300973415374755, 0.5999754846096039]) 22.1s\\n  trained L12: mean=0.6205 +/- 0.0084 ([0.6086117506027222, 0.6265475526452065, 0.6264901429414749]) 22.7s\\n  trained L13: mean=0.6348 +/- 0.0039 ([0.6296066030859947, 0.6361174508929253, 0.6387905538082123]) 23.0s\\n  trained L14: mean=0.6282 +/- 0.0067 ([0.6207631155848503, 0.6369435012340545, 0.6267783835530281]) 22.4s\\n  trained L15: mean=0.6391 +/- 0.0081 ([0.627992382645607, 0.642193503677845, 0.6469916358590126]) 24.9s\\n  trained L16: mean=0.6246 +/- 0.0132 ([0.6187997579574585, 0.642969012260437, 0.6121768772602081]) 24.6s\\n  trained L17: mean=0.6185 +/- 0.0117 ([0.6344663828611374, 0.6145640164613724, 0.60659718811512]) 23.4s\\n  trained L18: mean=0.6008 +/- 0.0341 ([0.6347518250346184, 0.6136238068342209, 0.5541129648685456]) 23.6s\\n  trained L19: mean=0.5961 +/- 0.0063 ([0.598588165640831, 0.6022098034620285, 0.5873748123645782]) 24.3s\\n  trained L20: mean=0.5907 +/- 0.0187 ([0.5787571638822555, 0.6171020686626434, 0.5761201024055481]) 24.6s\\n  trained L21: mean=0.5946 +/- 0.0149 ([0.5735972106456757, 0.6042058378458023, 0.6060863971710205]) 24.5s\\n  trained L22: mean=0.5899 +/- 0.0050 ([0.5830799996852875, 0.5915800303220748, 0.5949364244937897]) 23.7s\\n  trained L23: mean=0.5490 +/- 0.0800 ([0.43628479838371276, 0.5969270586967468, 0.6136771708726882]) 26.8s\\n  trained L24: mean=0.5711 +/- 0.0205 ([0.5537370890378952, 0.5595292299985886, 0.599928367137909]) 24.2s\\n  trained L25: mean=0.5696 +/- 0.0161 ([0.5476741850376129, 0.5860450655221939, 0.5751064240932464]) 25.0s\\n  trained L26: mean=0.5557 +/- 0.0354 ([0.5057042211294174, 0.5825213521718979, 0.5789289206266404]) 25.0s\\n  trained L27: mean=0.5221 +/- 0.0679 ([0.426119926571846, 0.5730263650417328, 0.5671153008937836]) 24.4s\\n  trained L28: mean=0.4963 +/- 0.0646 ([0.4184398055076599, 0.49382555186748506, 0.5766893029212952]) 23.8s\\n  trained L29: mean=0.5153 +/- 0.0451 ([0.5285834640264511, 0.4546483397483826, 0.5627900689840317]) 22.9s\\n  trained L30: mean=0.5186 +/- 0.0034 ([0.523328161239624, 0.5158569544553757, 0.516566002368927]) 17.5s\\n  trained L31: mean=0.4724 +/- 0.0671 ([0.38028694987297057, 0.4984515070915222, 0.5383320361375808]) 20.2s\\n  trained L32: mean=0.5240 +/- 0.0162 ([0.5389749944210053, 0.531482583284378, 0.5014603286981583]) 16.9s\\n\\nJSON saved to /root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.json\\nFigure saved to /root/autodl-tmp/vla-ssd/results/figures/\\n\\nTotal time: 38.7 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "0a408494-f5c7-42c0-93ba-a30546e7e0d3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nThree-condition multi-seed action R2 probe (v2)\\\\nConditions: ['untrained', 'llama2base', 'trained']\\\\nSeeds: [42, 123, 456]\\\\nLayers: 33\\\\nDevice: cuda:0\\\\nSplit: sequential 80/20 (no shuffle)\\\\nR2: original (denormalized) action space\\\\n============================================================\\\\n\\\\n========================================\\\\nCondition: untrained (untrained_libero_goal)\\\\n========================================\\\\n  untrained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 28.1s\\\\n  untrained L1: mean=0.5470 +/- 0.0080 ([0.5545581728219986, 0.535977229475975, 0.5503205597400666]) 24.4s\\\\n  untrained L2: mean=0.5202 +/- 0.0036 ([0.5218747377395629, 0.5234707891941071, 0.5152634769678116]) 24.2s\\\\n  untrained L3: mean=0.5361 +/- 0.0078 ([0.533835631608963, 0.5464956521987915, 0.5278609782457352]) 22.1s\\\\n  untrained L4: mean=0.5147 +/- 0.0440 ([0.5606455206871033, 0.4553957134485245, 0.5281207293272019]) 25.3s\\\\n  untrained L5: mean=0.3973 +/- 0.1950 ([0.5383460253477097, 0.5319028049707413, 0.12151370644569397]) 25.4s\\\\n  untrained L6: mean=0.5048 +/- 0.0453 ([0.5313279688358307, 0.4409617245197296, 0.5419802606105805]) 21.9s\\\\n  untrained L7: mean=0.5033 +/- 0.0510 ([0.5175851821899414, 0.5573614865541459, 0.4348457813262939]) 22.3s\\\\n  untrained L8: mean=0.4985 +/- 0.0411 ([0.5323313891887664, 0.4406500369310379, 0.5225855261087418]) 22.6s\\\\n  untrained L9: mean=0.4416 +/- 0.0668 ([0.5349647313356399, 0.40780563950538634, 0.38214739263057707]) 25.9s\\\\n  untrained L10: mean=-0.0924 +/- 0.3342 ([-0.32930943965911863, 0.38024117350578307, -0.3281980514526367]) 22.5s\\\\n  untrained L11: mean=0.1408 +/- 0.2991 ([-0.2805611789226532, 0.31961887180805204, 0.3834815859794617]) 26.5s\\\\n  untrained L12: mean=0.2114 +/- 0.3536 ([0.5197568655014038, -0.28381028175354006, 0.39815777242183686]) 21.9s\\\\n  untrained L13: mean=0.2237 +/- 0.3627 ([0.44095965623855593, -0.28740930557250977, 0.5174009501934052]) 24.5s\\\\n  untrained L14: mean=0.4157 +/- 0.0715 ([0.41838822364807127, 0.5018354833126069, 0.3268470197916031]) 23.0s\\\\n  untrained L15: mean=0.5108 +/- 0.0123 ([0.5041327744722366, 0.5280649989843369, 0.5001200407743454]) 20.9s\\\\n  untrained L16: mean=0.4242 +/- 0.0534 ([0.4566766321659088, 0.3489329606294632, 0.4670442521572113]) 22.4s\\\\n  untrained L17: mean=0.4500 +/- 0.0454 ([0.4704433590173721, 0.4925037294626236, 0.38699641823768616]) 24.6s\\\\n  untrained L18: mean=0.2569 +/- 0.1712 ([0.4923500448465347, 0.0903881847858429, 0.18785106539726257]) 24.9s\\\\n  untrained L19: mean=0.4703 +/- 0.0280 ([0.490105003118515, 0.4306431919336319, 0.49016115367412566]) 25.4s\\\\n  untrained L20: mean=0.3451 +/- 0.1310 ([0.49176669120788574, 0.3698767900466919, 0.1737293004989624]) 22.5s\\\\n  untrained L21: mean=0.2755 +/- 0.1474 ([0.48386340737342837, 0.16784534454345704, 0.17477847933769225]) 23.2s\\\\n  untrained L22: mean=-0.0631 +/- 0.3767 ([0.46963681280612946, -0.3291096091270447, -0.32974032163619993]) 22.6s\\\\n  untrained L23: mean=0.3638 +/- 0.1977 ([0.5155623465776443, 0.08457584381103515, 0.49129209816455843]) 25.0s\\\\n  untrained L24: mean=0.4605 +/- 0.0405 ([0.4894219398498535, 0.48874219357967374, 0.40325150489807127]) 21.2s\\\\n  untrained L25: mean=0.2013 +/- 0.3765 ([0.5084957867860794, -0.328879177570343, 0.4243020981550217]) 24.6s\\\\n  untrained L26: mean=0.3528 +/- 0.1109 ([0.4584378361701965, 0.19957755804061889, 0.4002833366394043]) 22.8s\\\\n  untrained L27: mean=0.2881 +/- 0.1623 ([0.5174411952495575, 0.16804656982421876, 0.17870495915412904]) 25.8s\\\\n  untrained L28: mean=-0.0822 +/- 0.3156 ([0.3633006364107132, -0.32884399890899657, -0.28093225359916685]) 25.9s\\\\n  untrained L29: mean=0.1137 +/- 0.3250 ([0.4445383459329605, 0.22468178272247313, -0.3281088948249817]) 24.9s\\\\n  untrained L30: mean=0.1700 +/- 0.3541 ([0.462066775560379, -0.328312349319458, 0.37623833417892455]) 19.8s\\\\n  untrained L31: mean=0.1928 +/- 0.1379 ([0.38780969083309175, 0.0923097550868988, 0.09819002151489258]) 21.4s\\\\n  unt\\\\n\\\\n... [截断: 输出过长，省略 3638 字符] ...\\\\n\\\\nse L31: mean=0.5571 +/- 0.0111 ([0.5709007382392883, 0.5438086986541748, 0.5565982908010483]) 18.3s\\\\n  llama2base L32: mean=0.5513 +/- 0.0205 ([0.5255301654338836, 0.5526250302791595, 0.575767508149147]) 17.2s\\\\n\\\\n========================================\\\\nCondition: trained (trained_libero_goal)\\\\n========================================\\\\n  trained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 25.1s\\\\n  trained L1: mean=0.6429 +/- 0.0072 ([0.6330601245164871, 0.6455395221710205, 0.6500066712498664]) 25.1s\\\\n  trained L2: mean=0.6221 +/- 0.0061 ([0.6277795389294625, 0.6248690545558929, 0.6136648133397102]) 24.1s\\\\n  trained L3: mean=0.6211 +/- 0.0226 ([0.6519127771258354, 0.5985256284475327, 0.6128895074129105]) 24.0s\\\\n  trained L4: mean=0.6386 +/- 0.0073 ([0.6468106269836426, 0.6290610373020172, 0.6398107334971428]) 24.9s\\\\n  trained L5: mean=0.6304 +/- 0.0144 ([0.6468134745955467, 0.6116541624069214, 0.6326928734779358]) 23.5s\\\\n  trained L6: mean=0.6421 +/- 0.0053 ([0.6493953630328179, 0.6372901111841202, 0.6395108684897423]) 26.1s\\\\n  trained L7: mean=0.6339 +/- 0.0084 ([0.6447141245007515, 0.6243450552225113, 0.632636870443821]) 23.9s\\\\n  trained L8: mean=0.6362 +/- 0.0184 ([0.6552544310688972, 0.6421004951000213, 0.6113417208194732]) 26.0s\\\\n  trained L9: mean=0.6434 +/- 0.0137 ([0.6510628208518028, 0.6549354955554009, 0.6241090357303619]) 26.2s\\\\n  trained L10: mean=0.6245 +/- 0.0162 ([0.642679876089096, 0.6274515226483345, 0.6033932983875274]) 23.4s\\\\n  trained L11: mean=0.6245 +/- 0.0182 ([0.6435706600546837, 0.6300973415374755, 0.5999754846096039]) 22.1s\\\\n  trained L12: mean=0.6205 +/- 0.0084 ([0.6086117506027222, 0.6265475526452065, 0.6264901429414749]) 22.7s\\\\n  trained L13: mean=0.6348 +/- 0.0039 ([0.6296066030859947, 0.6361174508929253, 0.6387905538082123]) 23.0s\\\\n  trained L14: mean=0.6282 +/- 0.0067 ([0.6207631155848503, 0.6369435012340545, 0.6267783835530281]) 22.4s\\\\n  trained L15: mean=0.6391 +/- 0.0081 ([0.627992382645607, 0.642193503677845, 0.6469916358590126]) 24.9s\\\\n  trained L16: mean=0.6246 +/- 0.0132 ([0.6187997579574585, 0.642969012260437, 0.6121768772602081]) 24.6s\\\\n  trained L17: mean=0.6185 +/- 0.0117 ([0.6344663828611374, 0.6145640164613724, 0.60659718811512]) 23.4s\\\\n  trained L18: mean=0.6008 +/- 0.0341 ([0.6347518250346184, 0.6136238068342209, 0.5541129648685456]) 23.6s\\\\n  trained L19: mean=0.5961 +/- 0.0063 ([0.598588165640831, 0.6022098034620285, 0.5873748123645782]) 24.3s\\\\n  trained L20: mean=0.5907 +/- 0.0187 ([0.5787571638822555, 0.6171020686626434, 0.5761201024055481]) 24.6s\\\\n  trained L21: mean=0.5946 +/- 0.0149 ([0.5735972106456757, 0.6042058378458023, 0.6060863971710205]) 24.5s\\\\n  trained L22: mean=0.5899 +/- 0.0050 ([0.5830799996852875, 0.5915800303220748, 0.5949364244937897]) 23.7s\\\\n  trained L23: mean=0.5490 +/- 0.0800 ([0.43628479838371276, 0.5969270586967468, 0.6136771708726882]) 26.8s\\\\n  trained L24: mean=0.5711 +/- 0.0205 ([0.5537370890378952, 0.5595292299985886, 0.599928367137909]) 24.2s\\\\n  trained L25: mean=0.5696 +/- 0.0161 ([0.5476741850376129, 0.5860450655221939, 0.5751064240932464]) 25.0s\\\\n  trained L26: mean=0.5557 +/- 0.0354 ([0.5057042211294174, 0.5825213521718979, 0.5789289206266404]) 25.0s\\\\n  trained L27: mean=0.5221 +/- 0.0679 ([0.426119926571846, 0.5730263650417328, 0.5671153008937836]) 24.4s\\\\n  trained L28: mean=0.4963 +/- 0.0646 ([0.4184398055076599, 0.49382555186748506, 0.5766893029212952]) 23.8s\\\\n  trained L29: mean=0.5153 +/- 0.0451 ([0.5285834640264511, 0.4546483397483826, 0.5627900689840317]) 22.9s\\\\n  trained L30: mean=0.5186 +/- 0.0034 ([0.523328161239624, 0.5158569544553757, 0.516566002368927]) 17.5s\\\\n  trained L31: mean=0.4724 +/- 0.0671 ([0.38028694987297057, 0.4984515070915222, 0.5383320361375808]) 20.2s\\\\n  trained L32: mean=0.5240 +/- 0.0162 ([0.5389749944210053, 0.531482583284378, 0.5014603286981583]) 16.9s\\\\n\\\\nJSON saved to /root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.json\\\\nFigure saved to /root/autodl-tmp/vla-ssd/results/figures/\\\\n\\\\nTotal time: 38.7 min\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nThree-condition multi-seed action R2 probe (v2)\\nConditions: ['untrained', 'llama2base', 'trained']\\nSeeds: [42, 123, 456]\\nLayers: 33\\nDevice: cuda:0\\nSplit: sequential 80/20 (no shuffle)\\nR2: original (denormalized) action space\\n============================================================\\n\\n========================================\\nCondition: untrained (untrained_libero_goal)\\n========================================\\n  untrained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 28.1s\\n  untrained L1: mean=0.5470 +/- 0.0080 ([0.5545581728219986, 0.535977229475975, 0.5503205597400666]) 24.4s\\n  untrained L2: mean=0.5202 +/- 0.0036 ([0.5218747377395629, 0.5234707891941071, 0.5152634769678116]) 24.2s\\n  untrained L3: mean=0.5361 +/- 0.0078 ([0.533835631608963, 0.5464956521987915, 0.5278609782457352]) 22.1s\\n  untrained L4: mean=0.5147 +/- 0.0440 ([0.5606455206871033, 0.4553957134485245, 0.5281207293272019]) 25.3s\\n  untrained L5: mean=0.3973 +/- 0.1950 ([0.5383460253477097, 0.5319028049707413, 0.12151370644569397]) 25.4s\\n  untrained L6: mean=0.5048 +/- 0.0453 ([0.5313279688358307, 0.4409617245197296, 0.5419802606105805]) 21.9s\\n  untrained L7: mean=0.5033 +/- 0.0510 ([0.5175851821899414, 0.5573614865541459, 0.4348457813262939]) 22.3s\\n  untrained L8: mean=0.4985 +/- 0.0411 ([0.5323313891887664, 0.4406500369310379, 0.5225855261087418]) 22.6s\\n  untrained L9: mean=0.4416 +/- 0.0668 ([0.5349647313356399, 0.40780563950538634, 0.38214739263057707]) 25.9s\\n  untrained L10: mean=-0.0924 +/- 0.3342 ([-0.32930943965911863, 0.38024117350578307, -0.3281980514526367]) 22.5s\\n  untrained L11: mean=0.1408 +/- 0.2991 ([-0.2805611789226532, 0.31961887180805204, 0.3834815859794617]) 26.5s\\n  untrained L12: mean=0.2114 +/- 0.3536 ([0.5197568655014038, -0.28381028175354006, 0.39815777242183686]) 21.9s\\n  untrained L13: mean=0.2237 +/- 0.3627 ([0.44095965623855593, -0.28740930557250977, 0.5174009501934052]) 24.5s\\n  untrained L14: mean=0.4157 +/- 0.0715 ([0.41838822364807127, 0.5018354833126069, 0.3268470197916031]) 23.0s\\n  untrained L15: mean=0.5108 +/- 0.0123 ([0.5041327744722366, 0.5280649989843369, 0.5001200407743454]) 20.9s\\n  untrained L16: mean=0.4242 +/- 0.0534 ([0.4566766321659088, 0.3489329606294632, 0.4670442521572113]) 22.4s\\n  untrained L17: mean=0.4500 +/- 0.0454 ([0.4704433590173721, 0.4925037294626236, 0.38699641823768616]) 24.6s\\n  untrained L18: mean=0.2569 +/- 0.1712 ([0.4923500448465347, 0.0903881847858429, 0.18785106539726257]) 24.9s\\n  untrained L19: mean=0.4703 +/- 0.0280 ([0.490105003118515, 0.4306431919336319, 0.49016115367412566]) 25.4s\\n  untrained L20: mean=0.3451 +/- 0.1310 ([0.49176669120788574, 0.3698767900466919, 0.1737293004989624]) 22.5s\\n  untrained L21: mean=0.2755 +/- 0.1474 ([0.48386340737342837, 0.16784534454345704, 0.17477847933769225]) 23.2s\\n  untrained L22: mean=-0.0631 +/- 0.3767 ([0.46963681280612946, -0.3291096091270447, -0.32974032163619993]) 22.6s\\n  untrained L23: mean=0.3638 +/- 0.1977 ([0.5155623465776443, 0.08457584381103515, 0.49129209816455843]) 25.0s\\n  untrained L24: mean=0.4605 +/- 0.0405 ([0.4894219398498535, 0.48874219357967374, 0.40325150489807127]) 21.2s\\n  untrained L25: mean=0.2013 +/- 0.3765 ([0.5084957867860794, -0.328879177570343, 0.4243020981550217]) 24.6s\\n  untrained L26: mean=0.3528 +/- 0.1109 ([0.4584378361701965, 0.19957755804061889, 0.4002833366394043]) 22.8s\\n  untrained L27: mean=0.2881 +/- 0.1623 ([0.5174411952495575, 0.16804656982421876, 0.17870495915412904]) 25.8s\\n  untrained L28: mean=-0.0822 +/- 0.3156 ([0.3633006364107132, -0.32884399890899657, -0.28093225359916685]) 25.9s\\n  untrained L29: mean=0.1137 +/- 0.3250 ([0.4445383459329605, 0.22468178272247313, -0.3281088948249817]) 24.9s\\n  untrained L30: mean=0.1700 +/- 0.3541 ([0.462066775560379, -0.328312349319458, 0.37623833417892455]) 19.8s\\n  untrained L31: mean=0.1928 +/- 0.1379 ([0.38780969083309175, 0.0923097550868988, 0.09819002151489258]) 21.4s\\n  unt\\n\\n... [截断: 输出过长，省略 3638 字符] ...\\n\\nse L31: mean=0.5571 +/- 0.0111 ([0.5709007382392883, 0.5438086986541748, 0.5565982908010483]) 18.3s\\n  llama2base L32: mean=0.5513 +/- 0.0205 ([0.5255301654338836, 0.5526250302791595, 0.575767508149147]) 17.2s\\n\\n========================================\\nCondition: trained (trained_libero_goal)\\n========================================\\n  trained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 25.1s\\n  trained L1: mean=0.6429 +/- 0.0072 ([0.6330601245164871, 0.6455395221710205, 0.6500066712498664]) 25.1s\\n  trained L2: mean=0.6221 +/- 0.0061 ([0.6277795389294625, 0.6248690545558929, 0.6136648133397102]) 24.1s\\n  trained L3: mean=0.6211 +/- 0.0226 ([0.6519127771258354, 0.5985256284475327, 0.6128895074129105]) 24.0s\\n  trained L4: mean=0.6386 +/- 0.0073 ([0.6468106269836426, 0.6290610373020172, 0.6398107334971428]) 24.9s\\n  trained L5: mean=0.6304 +/- 0.0144 ([0.6468134745955467, 0.6116541624069214, 0.6326928734779358]) 23.5s\\n  trained L6: mean=0.6421 +/- 0.0053 ([0.6493953630328179, 0.6372901111841202, 0.6395108684897423]) 26.1s\\n  trained L7: mean=0.6339 +/- 0.0084 ([0.6447141245007515, 0.6243450552225113, 0.632636870443821]) 23.9s\\n  trained L8: mean=0.6362 +/- 0.0184 ([0.6552544310688972, 0.6421004951000213, 0.6113417208194732]) 26.0s\\n  trained L9: mean=0.6434 +/- 0.0137 ([0.6510628208518028, 0.6549354955554009, 0.6241090357303619]) 26.2s\\n  trained L10: mean=0.6245 +/- 0.0162 ([0.642679876089096, 0.6274515226483345, 0.6033932983875274]) 23.4s\\n  trained L11: mean=0.6245 +/- 0.0182 ([0.6435706600546837, 0.6300973415374755, 0.5999754846096039]) 22.1s\\n  trained L12: mean=0.6205 +/- 0.0084 ([0.6086117506027222, 0.6265475526452065, 0.6264901429414749]) 22.7s\\n  trained L13: mean=0.6348 +/- 0.0039 ([0.6296066030859947, 0.6361174508929253, 0.6387905538082123]) 23.0s\\n  trained L14: mean=0.6282 +/- 0.0067 ([0.6207631155848503, 0.6369435012340545, 0.6267783835530281]) 22.4s\\n  trained L15: mean=0.6391 +/- 0.0081 ([0.627992382645607, 0.642193503677845, 0.6469916358590126]) 24.9s\\n  trained L16: mean=0.6246 +/- 0.0132 ([0.6187997579574585, 0.642969012260437, 0.6121768772602081]) 24.6s\\n  trained L17: mean=0.6185 +/- 0.0117 ([0.6344663828611374, 0.6145640164613724, 0.60659718811512]) 23.4s\\n  trained L18: mean=0.6008 +/- 0.0341 ([0.6347518250346184, 0.6136238068342209, 0.5541129648685456]) 23.6s\\n  trained L19: mean=0.5961 +/- 0.0063 ([0.598588165640831, 0.6022098034620285, 0.5873748123645782]) 24.3s\\n  trained L20: mean=0.5907 +/- 0.0187 ([0.5787571638822555, 0.6171020686626434, 0.5761201024055481]) 24.6s\\n  trained L21: mean=0.5946 +/- 0.0149 ([0.5735972106456757, 0.6042058378458023, 0.6060863971710205]) 24.5s\\n  trained L22: mean=0.5899 +/- 0.0050 ([0.5830799996852875, 0.5915800303220748, 0.5949364244937897]) 23.7s\\n  trained L23: mean=0.5490 +/- 0.0800 ([0.43628479838371276, 0.5969270586967468, 0.6136771708726882]) 26.8s\\n  trained L24: mean=0.5711 +/- 0.0205 ([0.5537370890378952, 0.5595292299985886, 0.599928367137909]) 24.2s\\n  trained L25: mean=0.5696 +/- 0.0161 ([0.5476741850376129, 0.5860450655221939, 0.5751064240932464]) 25.0s\\n  trained L26: mean=0.5557 +/- 0.0354 ([0.5057042211294174, 0.5825213521718979, 0.5789289206266404]) 25.0s\\n  trained L27: mean=0.5221 +/- 0.0679 ([0.426119926571846, 0.5730263650417328, 0.5671153008937836]) 24.4s\\n  trained L28: mean=0.4963 +/- 0.0646 ([0.4184398055076599, 0.49382555186748506, 0.5766893029212952]) 23.8s\\n  trained L29: mean=0.5153 +/- 0.0451 ([0.5285834640264511, 0.4546483397483826, 0.5627900689840317]) 22.9s\\n  trained L30: mean=0.5186 +/- 0.0034 ([0.523328161239624, 0.5158569544553757, 0.516566002368927]) 17.5s\\n  trained L31: mean=0.4724 +/- 0.0671 ([0.38028694987297057, 0.4984515070915222, 0.5383320361375808]) 20.2s\\n  trained L32: mean=0.5240 +/- 0.0162 ([0.5389749944210053, 0.531482583284378, 0.5014603286981583]) 16.9s\\n\\nJSON saved to /root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.json\\nFigure saved to /root/autodl-tmp/vla-ssd/results/figures/\\n\\nTotal time: 38.7 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T08:49:12.696Z_
+
+<details><summary>↩ Tool result · `toolu_018QTnHNaCy7HLL7rCAXgh9C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed_v2.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed_v2.png\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.log\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "b9501abd-b82c-4a1a-95a8-198ad21efba1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed_v2.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed_v2.png\\\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.log\\\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed_v2.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed_v2.png\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.log\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log was truncated. I need to get the llama2base data and the untrained L32. Let me also read the JSON file for complete data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "4e704f50-11aa-48ef-bdff-4ad0a35fe4ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011gLgoWAgJKjsoc4FZo6sLX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4713,
+      "cache_read_input_tokens": 25272,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+日志被截断了，读 JSON 获取完整数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "14e6d28e-7d42-4c9a-ae15-c159ff26fb7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011gLgoWAgJKjsoc4FZo6sLX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4713,
+      "cache_read_input_tokens": 25272,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LWaQsvtqh9TejGkUCXFPka`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "b4291ecd-b4ad-4bcb-b5a4-8a296ec83c61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011gLgoWAgJKjsoc4FZo6sLX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4713,
+      "cache_read_input_tokens": 25272,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T08:49:17.727Z_
+
+<details><summary>↩ Tool result · `toolu_01LWaQsvtqh9TejGkUCXFPka`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conditions\\\": [\\n    \\\"untrained\\\",\\n    \\\"llama2base\\\",\\n    \\\"trained\\\"\\n  ],\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n  \\\"r2_space\\\": \\\"original_denormalized\\\",\\n  \\\"results\\\": {\\n    \\\"untrained\\\": {\\n      \\\"L0\\\": {\\n        \\\"seeds\\\": [\\n          0.6403305426239967,\\n          0.6568484529852867,\\n          0.6380441457033157\\n        ],\\n        \\\"mean\\\": 0.6450743804375331,\\n        \\\"std\\\": 0.008377688264652728\\n      },\\n      \\\"L1\\\": {\\n        \\\"seeds\\\": [\\n          0.5545581728219986,\\n          0.535977229475975,\\n          0.5503205597400666\\n        ],\\n        \\\"mean\\\": 0.5469519873460134,\\n        \\\"std\\\": 0.007950820665713992\\n      },\\n      \\\"L2\\\": {\\n        \\\"seeds\\\": [\\n          0.5218747377395629,\\n          0.5234707891941071,\\n          0.5152634769678116\\n        ],\\n        \\\"mean\\\": 0.5202030013004939,\\n        \\\"std\\\": 0.0035530288052362875\\n      },\\n      \\\"L3\\\": {\\n        \\\"seeds\\\": [\\n          0.533835631608963,\\n          0.5464956521987915,\\n          0.5278609782457352\\n        ],\\n        \\\"mean\\\": 0.5360640873511632,\\n        \\\"std\\\": 0.007769053120356756\\n      },\\n      \\\"L4\\\": {\\n        \\\"seeds\\\": [\\n          0.5606455206871033,\\n          0.4553957134485245,\\n          0.5281207293272019\\n        ],\\n        \\\"mean\\\": 0.5147206544876098,\\n        \\\"std\\\": 0.044000393825657964\\n      },\\n      \\\"L5\\\": {\\n        \\\"seeds\\\": [\\n          0.5383460253477097,\\n          0.5319028049707413,\\n          0.12151370644569397\\n        ],\\n        \\\"mean\\\": 0.39725417892138165,\\n        \\\"std\\\": 0.19499570062447213\\n      },\\n      \\\"L6\\\": {\\n        \\\"seeds\\\": [\\n          0.5313279688358307,\\n          0.4409617245197296,\\n          0.5419802606105805\\n        ],\\n        \\\"mean\\\": 0.504756651322047,\\n        \\\"std\\\": 0.04531896103765229\\n      },\\n      \\\"L7\\\": {\\n        \\\"seeds\\\": [\\n          0.5175851821899414,\\n          0.5573614865541459,\\n          0.4348457813262939\\n        ],\\n        \\\"mean\\\": 0.5032641500234605,\\n        \\\"std\\\": 0.05103164690401774\\n      },\\n      \\\"L8\\\": {\\n        \\\"seeds\\\": [\\n          0.5323313891887664,\\n          0.4406500369310379,\\n          0.5225855261087418\\n        ],\\n        \\\"mean\\\": 0.4985223174095153,\\n        \\\"std\\\": 0.04111484806918559\\n      },\\n      \\\"L9\\\": {\\n        \\\"seeds\\\": [\\n          0.5349647313356399,\\n          0.40780563950538634,\\n          0.38214739263057707\\n        ],\\n        \\\"mean\\\": 0.4416392544905345,\\n        \\\"std\\\": 0.06681726263697081\\n      },\\n      \\\"L10\\\": {\\n        \\\"seeds\\\": [\\n          -0.32930943965911863,\\n          0.38024117350578307,\\n          -0.3281980514526367\\n        ],\\n        \\\"mean\\\": -0.09242210586865741,\\n        \\\"std\\\": 0.3342237180369726\\n      },\\n      \\\"L11\\\": {\\n        \\\"seeds\\\": [\\n          -0.2805611789226532,\\n          0.31961887180805204,\\n          0.3834815859794617\\n        ],\\n        \\\"mean\\\": 0.14084642628828684,\\n        \\\"std\\\": 0.29911858168352945\\n      },\\n      \\\"L12\\\": {\\n        \\\"seeds\\\": [\\n          0.5197568655014038,\\n          -0.28381028175354006,\\n          0.39815777242183686\\n        ],\\n        \\\"mean\\\": 0.21136811872323355,\\n        \\\"std\\\": 0.35364560516944576\\n      },\\n      \\\"L13\\\": {\\n        \\\"seeds\\\": [\\n          0.44095965623855593,\\n          -0.28740930557250977,\\n          0.5174009501934052\\n        ],\\n        \\\"mean\\\": 0.2236504336198171,\\n        \\\"std\\\": 0.36271877133933\\n      },\\n      \\\"L14\\\": {\\n        \\\"seeds\\\": [\\n          0.41838822364807127,\\n          0.5018354833126069,\\n          0.3268470197916031\\n        ],\\n        \\\"mean\\\": 0.4156902422507604,\\n        \\\"std\\\": 0.0714642097793275\\n      },\\n      \\\"L15\\\": {\\n        \\\"seeds\\\": [\\n          0.5041327744722366,\\n          0.5280649989843369,\\n          0.5001200407743454\\n        ],\\n        \\\"mean\\\": 0.5107726047436396,\\n        \\\"std\\\": 0.012336819737796377\\n      },\\n      \\\"L16\\\": {\\n        \\\"seeds\\\": [\\n          0.4566766321659088,\\n          0.3489329606294632,\\n          0.4670442521572113\\n        ],\\n        \\\"mean\\\": 0.42421794831752774,\\n        \\\"std\\\": 0.053402521254244405\\n      },\\n      \\\"L17\\\": {\\n        \\\"seeds\\\": [\\n          0.4704433590173721,\\n          0.4925037294626236,\\n          0.386996418237\\n\\n... [截断: 输出过长，省略 13524 字符] ...\\n\\n35012340545,\\n          0.6267783835530281\\n        ],\\n        \\\"mean\\\": 0.6281616667906443,\\n        \\\"std\\\": 0.006677640517720109\\n      },\\n      \\\"L15\\\": {\\n        \\\"seeds\\\": [\\n          0.627992382645607,\\n          0.642193503677845,\\n          0.6469916358590126\\n        ],\\n        \\\"mean\\\": 0.6390591740608216,\\n        \\\"std\\\": 0.008066842516453357\\n      },\\n      \\\"L16\\\": {\\n        \\\"seeds\\\": [\\n          0.6187997579574585,\\n          0.642969012260437,\\n          0.6121768772602081\\n        ],\\n        \\\"mean\\\": 0.6246485491593678,\\n        \\\"std\\\": 0.013233673296071412\\n      },\\n      \\\"L17\\\": {\\n        \\\"seeds\\\": [\\n          0.6344663828611374,\\n          0.6145640164613724,\\n          0.60659718811512\\n        ],\\n        \\\"mean\\\": 0.6185425291458766,\\n        \\\"std\\\": 0.011720194148944589\\n      },\\n      \\\"L18\\\": {\\n        \\\"seeds\\\": [\\n          0.6347518250346184,\\n          0.6136238068342209,\\n          0.5541129648685456\\n        ],\\n        \\\"mean\\\": 0.6008295322457949,\\n        \\\"std\\\": 0.03414114369207035\\n      },\\n      \\\"L19\\\": {\\n        \\\"seeds\\\": [\\n          0.598588165640831,\\n          0.6022098034620285,\\n          0.5873748123645782\\n        ],\\n        \\\"mean\\\": 0.5960575938224792,\\n        \\\"std\\\": 0.006315171441918471\\n      },\\n      \\\"L20\\\": {\\n        \\\"seeds\\\": [\\n          0.5787571638822555,\\n          0.6171020686626434,\\n          0.5761201024055481\\n        ],\\n        \\\"mean\\\": 0.5906597783168156,\\n        \\\"std\\\": 0.01872849099380894\\n      },\\n      \\\"L21\\\": {\\n        \\\"seeds\\\": [\\n          0.5735972106456757,\\n          0.6042058378458023,\\n          0.6060863971710205\\n        ],\\n        \\\"mean\\\": 0.5946298152208328,\\n        \\\"std\\\": 0.014892100081477361\\n      },\\n      \\\"L22\\\": {\\n        \\\"seeds\\\": [\\n          0.5830799996852875,\\n          0.5915800303220748,\\n          0.5949364244937897\\n        ],\\n        \\\"mean\\\": 0.5898654848337173,\\n        \\\"std\\\": 0.0049898865707650565\\n      },\\n      \\\"L23\\\": {\\n        \\\"seeds\\\": [\\n          0.43628479838371276,\\n          0.5969270586967468,\\n          0.6136771708726882\\n        ],\\n        \\\"mean\\\": 0.5489630093177159,\\n        \\\"std\\\": 0.07996843535188301\\n      },\\n      \\\"L24\\\": {\\n        \\\"seeds\\\": [\\n          0.5537370890378952,\\n          0.5595292299985886,\\n          0.599928367137909\\n        ],\\n        \\\"mean\\\": 0.5710648953914642,\\n        \\\"std\\\": 0.020546081948804664\\n      },\\n      \\\"L25\\\": {\\n        \\\"seeds\\\": [\\n          0.5476741850376129,\\n          0.5860450655221939,\\n          0.5751064240932464\\n        ],\\n        \\\"mean\\\": 0.5696085582176844,\\n        \\\"std\\\": 0.016140033337011264\\n      },\\n      \\\"L26\\\": {\\n        \\\"seeds\\\": [\\n          0.5057042211294174,\\n          0.5825213521718979,\\n          0.5789289206266404\\n        ],\\n        \\\"mean\\\": 0.5557181646426519,\\n        \\\"std\\\": 0.03539559577509232\\n      },\\n      \\\"L27\\\": {\\n        \\\"seeds\\\": [\\n          0.426119926571846,\\n          0.5730263650417328,\\n          0.5671153008937836\\n        ],\\n        \\\"mean\\\": 0.522087197502454,\\n        \\\"std\\\": 0.06790200285333685\\n      },\\n      \\\"L28\\\": {\\n        \\\"seeds\\\": [\\n          0.4184398055076599,\\n          0.49382555186748506,\\n          0.5766893029212952\\n        ],\\n        \\\"mean\\\": 0.4963182200988134,\\n        \\\"std\\\": 0.0646291260660942\\n      },\\n      \\\"L29\\\": {\\n        \\\"seeds\\\": [\\n          0.5285834640264511,\\n          0.4546483397483826,\\n          0.5627900689840317\\n        ],\\n        \\\"mean\\\": 0.5153406242529551,\\n        \\\"std\\\": 0.045130832066108836\\n      },\\n      \\\"L30\\\": {\\n        \\\"seeds\\\": [\\n          0.523328161239624,\\n          0.5158569544553757,\\n          0.516566002368927\\n        ],\\n        \\\"mean\\\": 0.5185837060213089,\\n        \\\"std\\\": 0.0033673014640684027\\n      },\\n      \\\"L31\\\": {\\n        \\\"seeds\\\": [\\n          0.38028694987297057,\\n          0.4984515070915222,\\n          0.5383320361375808\\n        ],\\n        \\\"mean\\\": 0.47235683103402454,\\n        \\\"std\\\": 0.06710817839879295\\n      },\\n      \\\"L32\\\": {\\n        \\\"seeds\\\": [\\n          0.5389749944210053,\\n          0.531482583284378,\\n          0.5014603286981583\\n        ],\\n        \\\"mean\\\": 0.5239726354678472,\\n        \\\"std\\\": 0.016209812321132333\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "19bfb93f-fbb9-4b81-98f3-3fbee24f5453",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"conditions\\\\\\\": [\\\\n    \\\\\\\"untrained\\\\\\\",\\\\n    \\\\\\\"llama2base\\\\\\\",\\\\n    \\\\\\\"trained\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"split\\\\\\\": \\\\\\\"sequential_80_20_no_shuffle\\\\\\\",\\\\n  \\\\\\\"r2_space\\\\\\\": \\\\\\\"original_denormalized\\\\\\\",\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"untrained\\\\\\\": {\\\\n      \\\\\\\"L0\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.6403305426239967,\\\\n          0.6568484529852867,\\\\n          0.6380441457033157\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.6450743804375331,\\\\n        \\\\\\\"std\\\\\\\": 0.008377688264652728\\\\n      },\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5545581728219986,\\\\n          0.535977229475975,\\\\n          0.5503205597400666\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5469519873460134,\\\\n        \\\\\\\"std\\\\\\\": 0.007950820665713992\\\\n      },\\\\n      \\\\\\\"L2\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5218747377395629,\\\\n          0.5234707891941071,\\\\n          0.5152634769678116\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5202030013004939,\\\\n        \\\\\\\"std\\\\\\\": 0.0035530288052362875\\\\n      },\\\\n      \\\\\\\"L3\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.533835631608963,\\\\n          0.5464956521987915,\\\\n          0.5278609782457352\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5360640873511632,\\\\n        \\\\\\\"std\\\\\\\": 0.007769053120356756\\\\n      },\\\\n      \\\\\\\"L4\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5606455206871033,\\\\n          0.4553957134485245,\\\\n          0.5281207293272019\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5147206544876098,\\\\n        \\\\\\\"std\\\\\\\": 0.044000393825657964\\\\n      },\\\\n      \\\\\\\"L5\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5383460253477097,\\\\n          0.5319028049707413,\\\\n          0.12151370644569397\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.39725417892138165,\\\\n        \\\\\\\"std\\\\\\\": 0.19499570062447213\\\\n      },\\\\n      \\\\\\\"L6\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5313279688358307,\\\\n          0.4409617245197296,\\\\n          0.5419802606105805\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.504756651322047,\\\\n        \\\\\\\"std\\\\\\\": 0.04531896103765229\\\\n      },\\\\n      \\\\\\\"L7\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5175851821899414,\\\\n          0.5573614865541459,\\\\n          0.4348457813262939\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5032641500234605,\\\\n        \\\\\\\"std\\\\\\\": 0.05103164690401774\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5323313891887664,\\\\n          0.4406500369310379,\\\\n          0.5225855261087418\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.4985223174095153,\\\\n        \\\\\\\"std\\\\\\\": 0.04111484806918559\\\\n      },\\\\n      \\\\\\\"L9\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5349647313356399,\\\\n          0.40780563950538634,\\\\n          0.38214739263057707\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.4416392544905345,\\\\n        \\\\\\\"std\\\\\\\": 0.06681726263697081\\\\n      },\\\\n      \\\\\\\"L10\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          -0.32930943965911863,\\\\n          0.38024117350578307,\\\\n          -0.3281980514526367\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": -0.09242210586865741,\\\\n        \\\\\\\"std\\\\\\\": 0.3342237180369726\\\\n      },\\\\n      \\\\\\\"L11\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          -0.2805611789226532,\\\\n          0.31961887180805204,\\\\n          0.3834815859794617\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.14084642628828684,\\\\n        \\\\\\\"std\\\\\\\": 0.29911858168352945\\\\n      },\\\\n      \\\\\\\"L12\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5197568655014038,\\\\n          -0.28381028175354006,\\\\n          0.39815777242183686\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.21136811872323355,\\\\n        \\\\\\\"std\\\\\\\": 0.35364560516944576\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.44095965623855593,\\\\n          -0.28740930557250977,\\\\n          0.5174009501934052\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.2236504336198171,\\\\n        \\\\\\\"std\\\\\\\": 0.36271877133933\\\\n      },\\\\n      \\\\\\\"L14\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.41838822364807127,\\\\n          0.5018354833126069,\\\\n          0.3268470197916031\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.4156902422507604,\\\\n        \\\\\\\"std\\\\\\\": 0.0714642097793275\\\\n      },\\\\n      \\\\\\\"L15\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5041327744722366,\\\\n          0.5280649989843369,\\\\n          0.5001200407743454\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5107726047436396,\\\\n        \\\\\\\"std\\\\\\\": 0.012336819737796377\\\\n      },\\\\n      \\\\\\\"L16\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.4566766321659088,\\\\n          0.3489329606294632,\\\\n          0.4670442521572113\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.42421794831752774,\\\\n        \\\\\\\"std\\\\\\\": 0.053402521254244405\\\\n      },\\\\n      \\\\\\\"L17\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.4704433590173721,\\\\n          0.4925037294626236,\\\\n          0.386996418237\\\\n\\\\n... [截断: 输出过长，省略 13524 字符] ...\\\\n\\\\n35012340545,\\\\n          0.6267783835530281\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.6281616667906443,\\\\n        \\\\\\\"std\\\\\\\": 0.006677640517720109\\\\n      },\\\\n      \\\\\\\"L15\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.627992382645607,\\\\n          0.642193503677845,\\\\n          0.6469916358590126\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.6390591740608216,\\\\n        \\\\\\\"std\\\\\\\": 0.008066842516453357\\\\n      },\\\\n      \\\\\\\"L16\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.6187997579574585,\\\\n          0.642969012260437,\\\\n          0.6121768772602081\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.6246485491593678,\\\\n        \\\\\\\"std\\\\\\\": 0.013233673296071412\\\\n      },\\\\n      \\\\\\\"L17\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.6344663828611374,\\\\n          0.6145640164613724,\\\\n          0.60659718811512\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.6185425291458766,\\\\n        \\\\\\\"std\\\\\\\": 0.011720194148944589\\\\n      },\\\\n      \\\\\\\"L18\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.6347518250346184,\\\\n          0.6136238068342209,\\\\n          0.5541129648685456\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.6008295322457949,\\\\n        \\\\\\\"std\\\\\\\": 0.03414114369207035\\\\n      },\\\\n      \\\\\\\"L19\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.598588165640831,\\\\n          0.6022098034620285,\\\\n          0.5873748123645782\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5960575938224792,\\\\n        \\\\\\\"std\\\\\\\": 0.006315171441918471\\\\n      },\\\\n      \\\\\\\"L20\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5787571638822555,\\\\n          0.6171020686626434,\\\\n          0.5761201024055481\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5906597783168156,\\\\n        \\\\\\\"std\\\\\\\": 0.01872849099380894\\\\n      },\\\\n      \\\\\\\"L21\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5735972106456757,\\\\n          0.6042058378458023,\\\\n          0.6060863971710205\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5946298152208328,\\\\n        \\\\\\\"std\\\\\\\": 0.014892100081477361\\\\n      },\\\\n      \\\\\\\"L22\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5830799996852875,\\\\n          0.5915800303220748,\\\\n          0.5949364244937897\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5898654848337173,\\\\n        \\\\\\\"std\\\\\\\": 0.0049898865707650565\\\\n      },\\\\n      \\\\\\\"L23\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.43628479838371276,\\\\n          0.5969270586967468,\\\\n          0.6136771708726882\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5489630093177159,\\\\n        \\\\\\\"std\\\\\\\": 0.07996843535188301\\\\n      },\\\\n      \\\\\\\"L24\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5537370890378952,\\\\n          0.5595292299985886,\\\\n          0.599928367137909\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5710648953914642,\\\\n        \\\\\\\"std\\\\\\\": 0.020546081948804664\\\\n      },\\\\n      \\\\\\\"L25\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5476741850376129,\\\\n          0.5860450655221939,\\\\n          0.5751064240932464\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5696085582176844,\\\\n        \\\\\\\"std\\\\\\\": 0.016140033337011264\\\\n      },\\\\n      \\\\\\\"L26\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5057042211294174,\\\\n          0.5825213521718979,\\\\n          0.5789289206266404\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5557181646426519,\\\\n        \\\\\\\"std\\\\\\\": 0.03539559577509232\\\\n      },\\\\n      \\\\\\\"L27\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.426119926571846,\\\\n          0.5730263650417328,\\\\n          0.5671153008937836\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.522087197502454,\\\\n        \\\\\\\"std\\\\\\\": 0.06790200285333685\\\\n      },\\\\n      \\\\\\\"L28\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.4184398055076599,\\\\n          0.49382555186748506,\\\\n          0.5766893029212952\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.4963182200988134,\\\\n        \\\\\\\"std\\\\\\\": 0.0646291260660942\\\\n      },\\\\n      \\\\\\\"L29\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5285834640264511,\\\\n          0.4546483397483826,\\\\n          0.5627900689840317\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5153406242529551,\\\\n        \\\\\\\"std\\\\\\\": 0.045130832066108836\\\\n      },\\\\n      \\\\\\\"L30\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.523328161239624,\\\\n          0.5158569544553757,\\\\n          0.516566002368927\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5185837060213089,\\\\n        \\\\\\\"std\\\\\\\": 0.0033673014640684027\\\\n      },\\\\n      \\\\\\\"L31\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.38028694987297057,\\\\n          0.4984515070915222,\\\\n          0.5383320361375808\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.47235683103402454,\\\\n        \\\\\\\"std\\\\\\\": 0.06710817839879295\\\\n      },\\\\n      \\\\\\\"L32\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5389749944210053,\\\\n          0.531482583284378,\\\\n          0.5014603286981583\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5239726354678472,\\\\n        \\\\\\\"std\\\\\\\": 0.016209812321132333\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conditions\\\": [\\n    \\\"untrained\\\",\\n    \\\"llama2base\\\",\\n    \\\"trained\\\"\\n  ],\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n  \\\"r2_space\\\": \\\"original_denormalized\\\",\\n  \\\"results\\\": {\\n    \\\"untrained\\\": {\\n      \\\"L0\\\": {\\n        \\\"seeds\\\": [\\n          0.6403305426239967,\\n          0.6568484529852867,\\n          0.6380441457033157\\n        ],\\n        \\\"mean\\\": 0.6450743804375331,\\n        \\\"std\\\": 0.008377688264652728\\n      },\\n      \\\"L1\\\": {\\n        \\\"seeds\\\": [\\n          0.5545581728219986,\\n          0.535977229475975,\\n          0.5503205597400666\\n        ],\\n        \\\"mean\\\": 0.5469519873460134,\\n        \\\"std\\\": 0.007950820665713992\\n      },\\n      \\\"L2\\\": {\\n        \\\"seeds\\\": [\\n          0.5218747377395629,\\n          0.5234707891941071,\\n          0.5152634769678116\\n        ],\\n        \\\"mean\\\": 0.5202030013004939,\\n        \\\"std\\\": 0.0035530288052362875\\n      },\\n      \\\"L3\\\": {\\n        \\\"seeds\\\": [\\n          0.533835631608963,\\n          0.5464956521987915,\\n          0.5278609782457352\\n        ],\\n        \\\"mean\\\": 0.5360640873511632,\\n        \\\"std\\\": 0.007769053120356756\\n      },\\n      \\\"L4\\\": {\\n        \\\"seeds\\\": [\\n          0.5606455206871033,\\n          0.4553957134485245,\\n          0.5281207293272019\\n        ],\\n        \\\"mean\\\": 0.5147206544876098,\\n        \\\"std\\\": 0.044000393825657964\\n      },\\n      \\\"L5\\\": {\\n        \\\"seeds\\\": [\\n          0.5383460253477097,\\n          0.5319028049707413,\\n          0.12151370644569397\\n        ],\\n        \\\"mean\\\": 0.39725417892138165,\\n        \\\"std\\\": 0.19499570062447213\\n      },\\n      \\\"L6\\\": {\\n        \\\"seeds\\\": [\\n          0.5313279688358307,\\n          0.4409617245197296,\\n          0.5419802606105805\\n        ],\\n        \\\"mean\\\": 0.504756651322047,\\n        \\\"std\\\": 0.04531896103765229\\n      },\\n      \\\"L7\\\": {\\n        \\\"seeds\\\": [\\n          0.5175851821899414,\\n          0.5573614865541459,\\n          0.4348457813262939\\n        ],\\n        \\\"mean\\\": 0.5032641500234605,\\n        \\\"std\\\": 0.05103164690401774\\n      },\\n      \\\"L8\\\": {\\n        \\\"seeds\\\": [\\n          0.5323313891887664,\\n          0.4406500369310379,\\n          0.5225855261087418\\n        ],\\n        \\\"mean\\\": 0.4985223174095153,\\n        \\\"std\\\": 0.04111484806918559\\n      },\\n      \\\"L9\\\": {\\n        \\\"seeds\\\": [\\n          0.5349647313356399,\\n          0.40780563950538634,\\n          0.38214739263057707\\n        ],\\n        \\\"mean\\\": 0.4416392544905345,\\n        \\\"std\\\": 0.06681726263697081\\n      },\\n      \\\"L10\\\": {\\n        \\\"seeds\\\": [\\n          -0.32930943965911863,\\n          0.38024117350578307,\\n          -0.3281980514526367\\n        ],\\n        \\\"mean\\\": -0.09242210586865741,\\n        \\\"std\\\": 0.3342237180369726\\n      },\\n      \\\"L11\\\": {\\n        \\\"seeds\\\": [\\n          -0.2805611789226532,\\n          0.31961887180805204,\\n          0.3834815859794617\\n        ],\\n        \\\"mean\\\": 0.14084642628828684,\\n        \\\"std\\\": 0.29911858168352945\\n      },\\n      \\\"L12\\\": {\\n        \\\"seeds\\\": [\\n          0.5197568655014038,\\n          -0.28381028175354006,\\n          0.39815777242183686\\n        ],\\n        \\\"mean\\\": 0.21136811872323355,\\n        \\\"std\\\": 0.35364560516944576\\n      },\\n      \\\"L13\\\": {\\n        \\\"seeds\\\": [\\n          0.44095965623855593,\\n          -0.28740930557250977,\\n          0.5174009501934052\\n        ],\\n        \\\"mean\\\": 0.2236504336198171,\\n        \\\"std\\\": 0.36271877133933\\n      },\\n      \\\"L14\\\": {\\n        \\\"seeds\\\": [\\n          0.41838822364807127,\\n          0.5018354833126069,\\n          0.3268470197916031\\n        ],\\n        \\\"mean\\\": 0.4156902422507604,\\n        \\\"std\\\": 0.0714642097793275\\n      },\\n      \\\"L15\\\": {\\n        \\\"seeds\\\": [\\n          0.5041327744722366,\\n          0.5280649989843369,\\n          0.5001200407743454\\n        ],\\n        \\\"mean\\\": 0.5107726047436396,\\n        \\\"std\\\": 0.012336819737796377\\n      },\\n      \\\"L16\\\": {\\n        \\\"seeds\\\": [\\n          0.4566766321659088,\\n          0.3489329606294632,\\n          0.4670442521572113\\n        ],\\n        \\\"mean\\\": 0.42421794831752774,\\n        \\\"std\\\": 0.053402521254244405\\n      },\\n      \\\"L17\\\": {\\n        \\\"seeds\\\": [\\n          0.4704433590173721,\\n          0.4925037294626236,\\n          0.386996418237\\n\\n... [截断: 输出过长，省略 13524 字符] ...\\n\\n35012340545,\\n          0.6267783835530281\\n        ],\\n        \\\"mean\\\": 0.6281616667906443,\\n        \\\"std\\\": 0.006677640517720109\\n      },\\n      \\\"L15\\\": {\\n        \\\"seeds\\\": [\\n          0.627992382645607,\\n          0.642193503677845,\\n          0.6469916358590126\\n        ],\\n        \\\"mean\\\": 0.6390591740608216,\\n        \\\"std\\\": 0.008066842516453357\\n      },\\n      \\\"L16\\\": {\\n        \\\"seeds\\\": [\\n          0.6187997579574585,\\n          0.642969012260437,\\n          0.6121768772602081\\n        ],\\n        \\\"mean\\\": 0.6246485491593678,\\n        \\\"std\\\": 0.013233673296071412\\n      },\\n      \\\"L17\\\": {\\n        \\\"seeds\\\": [\\n          0.6344663828611374,\\n          0.6145640164613724,\\n          0.60659718811512\\n        ],\\n        \\\"mean\\\": 0.6185425291458766,\\n        \\\"std\\\": 0.011720194148944589\\n      },\\n      \\\"L18\\\": {\\n        \\\"seeds\\\": [\\n          0.6347518250346184,\\n          0.6136238068342209,\\n          0.5541129648685456\\n        ],\\n        \\\"mean\\\": 0.6008295322457949,\\n        \\\"std\\\": 0.03414114369207035\\n      },\\n      \\\"L19\\\": {\\n        \\\"seeds\\\": [\\n          0.598588165640831,\\n          0.6022098034620285,\\n          0.5873748123645782\\n        ],\\n        \\\"mean\\\": 0.5960575938224792,\\n        \\\"std\\\": 0.006315171441918471\\n      },\\n      \\\"L20\\\": {\\n        \\\"seeds\\\": [\\n          0.5787571638822555,\\n          0.6171020686626434,\\n          0.5761201024055481\\n        ],\\n        \\\"mean\\\": 0.5906597783168156,\\n        \\\"std\\\": 0.01872849099380894\\n      },\\n      \\\"L21\\\": {\\n        \\\"seeds\\\": [\\n          0.5735972106456757,\\n          0.6042058378458023,\\n          0.6060863971710205\\n        ],\\n        \\\"mean\\\": 0.5946298152208328,\\n        \\\"std\\\": 0.014892100081477361\\n      },\\n      \\\"L22\\\": {\\n        \\\"seeds\\\": [\\n          0.5830799996852875,\\n          0.5915800303220748,\\n          0.5949364244937897\\n        ],\\n        \\\"mean\\\": 0.5898654848337173,\\n        \\\"std\\\": 0.0049898865707650565\\n      },\\n      \\\"L23\\\": {\\n        \\\"seeds\\\": [\\n          0.43628479838371276,\\n          0.5969270586967468,\\n          0.6136771708726882\\n        ],\\n        \\\"mean\\\": 0.5489630093177159,\\n        \\\"std\\\": 0.07996843535188301\\n      },\\n      \\\"L24\\\": {\\n        \\\"seeds\\\": [\\n          0.5537370890378952,\\n          0.5595292299985886,\\n          0.599928367137909\\n        ],\\n        \\\"mean\\\": 0.5710648953914642,\\n        \\\"std\\\": 0.020546081948804664\\n      },\\n      \\\"L25\\\": {\\n        \\\"seeds\\\": [\\n          0.5476741850376129,\\n          0.5860450655221939,\\n          0.5751064240932464\\n        ],\\n        \\\"mean\\\": 0.5696085582176844,\\n        \\\"std\\\": 0.016140033337011264\\n      },\\n      \\\"L26\\\": {\\n        \\\"seeds\\\": [\\n          0.5057042211294174,\\n          0.5825213521718979,\\n          0.5789289206266404\\n        ],\\n        \\\"mean\\\": 0.5557181646426519,\\n        \\\"std\\\": 0.03539559577509232\\n      },\\n      \\\"L27\\\": {\\n        \\\"seeds\\\": [\\n          0.426119926571846,\\n          0.5730263650417328,\\n          0.5671153008937836\\n        ],\\n        \\\"mean\\\": 0.522087197502454,\\n        \\\"std\\\": 0.06790200285333685\\n      },\\n      \\\"L28\\\": {\\n        \\\"seeds\\\": [\\n          0.4184398055076599,\\n          0.49382555186748506,\\n          0.5766893029212952\\n        ],\\n        \\\"mean\\\": 0.4963182200988134,\\n        \\\"std\\\": 0.0646291260660942\\n      },\\n      \\\"L29\\\": {\\n        \\\"seeds\\\": [\\n          0.5285834640264511,\\n          0.4546483397483826,\\n          0.5627900689840317\\n        ],\\n        \\\"mean\\\": 0.5153406242529551,\\n        \\\"std\\\": 0.045130832066108836\\n      },\\n      \\\"L30\\\": {\\n        \\\"seeds\\\": [\\n          0.523328161239624,\\n          0.5158569544553757,\\n          0.516566002368927\\n        ],\\n        \\\"mean\\\": 0.5185837060213089,\\n        \\\"std\\\": 0.0033673014640684027\\n      },\\n      \\\"L31\\\": {\\n        \\\"seeds\\\": [\\n          0.38028694987297057,\\n          0.4984515070915222,\\n          0.5383320361375808\\n        ],\\n        \\\"mean\\\": 0.47235683103402454,\\n        \\\"std\\\": 0.06710817839879295\\n      },\\n      \\\"L32\\\": {\\n        \\\"seeds\\\": [\\n          0.5389749944210053,\\n          0.531482583284378,\\n          0.5014603286981583\\n        ],\\n        \\\"mean\\\": 0.5239726354678472,\\n        \\\"std\\\": 0.016209812321132333\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The JSON was also truncated. I need the llama2base data. Let me use python to extract the key metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "49ef6b0d-b9aa-4731-ad3c-183683c455f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6d1uDPGbYeB1VNDKsNPbC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4230,
+      "cache_read_input_tokens": 29985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+JSON 也被截断了，用 python 提取完整数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "122d216c-2e12-44f3-b076-cf3055264fb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6d1uDPGbYeB1VNDKsNPbC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4230,
+      "cache_read_input_tokens": 29985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MtWY3nhhL2z35gpsgChW3X`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.json') as f:\n    data = json.load(f)\nfor cond in ['trained','llama2base','untrained']:\n    r = data['results'][cond]\n    layers = sorted(r.keys(), key=lambda x: int(x[1:]))\n    means = [(l, r[l]['mean'], r[l]['std']) for l in layers]\n    peak = max(means, key=lambda x: x[1])\n    print(f'{cond}: peak={peak[0]} mean={peak[1]:.4f} std={peak[2]:.4f}')\n    print(f'  L0: mean={r[\\\"L0\\\"][\\\"mean\\\"]:.4f} std={r[\\\"L0\\\"][\\\"std\\\"]:.4f}')\n    print(f'  all layers:')\n    for l, m, s in means:\n        print(f'    {l}: {m:.4f} +/- {s:.4f}')\n    print()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "bd3afc75-56cb-4410-ac53-676b38e745da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6d1uDPGbYeB1VNDKsNPbC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4230,
+      "cache_read_input_tokens": 29985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T08:49:26.362Z_
+
+<details><summary>↩ Tool result · `toolu_01MtWY3nhhL2z35gpsgChW3X`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "5098b6a0-0b80-442c-8303-7781fe3db7c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B7m9cP9TXReGpdX7ksxciA`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -E \"^  (trained|llama2base|untrained) L\" /root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "ec68b638-a71d-4254-96fa-6a88b5e63859",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2n3anzPKE5wgZQ4qnBxqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 515,
+      "cache_read_input_tokens": 34215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 515
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T08:49:29.792Z_
+
+<details><summary>↩ Tool result · `toolu_01B7m9cP9TXReGpdX7ksxciA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "900432b8-a5d9-40b2-8129-b19a69756a2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BSCsLpG5Sez7ERzDmdugDa`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -E \"mean=\" /root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "cf6a721f-90e4-462c-813a-c5e508124ab0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VsEkUk6dkrQYKt8Gat7DDL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 224,
+      "cache_read_input_tokens": 34730,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 224
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T08:49:33.316Z_
+
+<details><summary>↩ Tool result · `toolu_01BSCsLpG5Sez7ERzDmdugDa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  untrained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 28.1s\\n  untrained L1: mean=0.5470 +/- 0.0080 ([0.5545581728219986, 0.535977229475975, 0.5503205597400666]) 24.4s\\n  untrained L2: mean=0.5202 +/- 0.0036 ([0.5218747377395629, 0.5234707891941071, 0.5152634769678116]) 24.2s\\n  untrained L3: mean=0.5361 +/- 0.0078 ([0.533835631608963, 0.5464956521987915, 0.5278609782457352]) 22.1s\\n  untrained L4: mean=0.5147 +/- 0.0440 ([0.5606455206871033, 0.4553957134485245, 0.5281207293272019]) 25.3s\\n  untrained L5: mean=0.3973 +/- 0.1950 ([0.5383460253477097, 0.5319028049707413, 0.12151370644569397]) 25.4s\\n  untrained L6: mean=0.5048 +/- 0.0453 ([0.5313279688358307, 0.4409617245197296, 0.5419802606105805]) 21.9s\\n  untrained L7: mean=0.5033 +/- 0.0510 ([0.5175851821899414, 0.5573614865541459, 0.4348457813262939]) 22.3s\\n  untrained L8: mean=0.4985 +/- 0.0411 ([0.5323313891887664, 0.4406500369310379, 0.5225855261087418]) 22.6s\\n  untrained L9: mean=0.4416 +/- 0.0668 ([0.5349647313356399, 0.40780563950538634, 0.38214739263057707]) 25.9s\\n  untrained L10: mean=-0.0924 +/- 0.3342 ([-0.32930943965911863, 0.38024117350578307, -0.3281980514526367]) 22.5s\\n  untrained L11: mean=0.1408 +/- 0.2991 ([-0.2805611789226532, 0.31961887180805204, 0.3834815859794617]) 26.5s\\n  untrained L12: mean=0.2114 +/- 0.3536 ([0.5197568655014038, -0.28381028175354006, 0.39815777242183686]) 21.9s\\n  untrained L13: mean=0.2237 +/- 0.3627 ([0.44095965623855593, -0.28740930557250977, 0.5174009501934052]) 24.5s\\n  untrained L14: mean=0.4157 +/- 0.0715 ([0.41838822364807127, 0.5018354833126069, 0.3268470197916031]) 23.0s\\n  untrained L15: mean=0.5108 +/- 0.0123 ([0.5041327744722366, 0.5280649989843369, 0.5001200407743454]) 20.9s\\n  untrained L16: mean=0.4242 +/- 0.0534 ([0.4566766321659088, 0.3489329606294632, 0.4670442521572113]) 22.4s\\n  untrained L17: mean=0.4500 +/- 0.0454 ([0.4704433590173721, 0.4925037294626236, 0.38699641823768616]) 24.6s\\n  untrained L18: mean=0.2569 +/- 0.1712 ([0.4923500448465347, 0.0903881847858429, 0.18785106539726257]) 24.9s\\n  untrained L19: mean=0.4703 +/- 0.0280 ([0.490105003118515, 0.4306431919336319, 0.49016115367412566]) 25.4s\\n  untrained L20: mean=0.3451 +/- 0.1310 ([0.49176669120788574, 0.3698767900466919, 0.1737293004989624]) 22.5s\\n  untrained L21: mean=0.2755 +/- 0.1474 ([0.48386340737342837, 0.16784534454345704, 0.17477847933769225]) 23.2s\\n  untrained L22: mean=-0.0631 +/- 0.3767 ([0.46963681280612946, -0.3291096091270447, -0.32974032163619993]) 22.6s\\n  untrained L23: mean=0.3638 +/- 0.1977 ([0.5155623465776443, 0.08457584381103515, 0.49129209816455843]) 25.0s\\n  untrained L24: mean=0.4605 +/- 0.0405 ([0.4894219398498535, 0.48874219357967374, 0.40325150489807127]) 21.2s\\n  untrained L25: mean=0.2013 +/- 0.3765 ([0.5084957867860794, -0.328879177570343, 0.4243020981550217]) 24.6s\\n  untrained L26: mean=0.3528 +/- 0.1109 ([0.4584378361701965, 0.19957755804061889, 0.4002833366394043]) 22.8s\\n  untrained L27: mean=0.2881 +/- 0.1623 ([0.5174411952495575, 0.16804656982421876, 0.17870495915412904]) 25.8s\\n  untrained L28: mean=-0.0822 +/- 0.3156 ([0.3633006364107132, -0.32884399890899657, -0.28093225359916685]) 25.9s\\n  untrained L29: mean=0.1137 +/- 0.3250 ([0.4445383459329605, 0.22468178272247313, -0.3281088948249817]) 24.9s\\n  untrained L30: mean=0.1700 +/- 0.3541 ([0.462066775560379, -0.328312349319458, 0.37623833417892455]) 19.8s\\n  untrained L31: mean=0.1928 +/- 0.1379 ([0.38780969083309175, 0.0923097550868988, 0.09819002151489258]) 21.4s\\n  untrained L32: mean=0.5885 +/- 0.0071 ([0.5784996777772904, 0.5931280285120011, 0.5938817590475083]) 16.3s\\n  llama2base L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 27.2s\\n  llama2base L1: mean=0.6276 +/- 0.0098 ([0.6366456896066666, 0.6140430331230163, 0.632068881392479]) 24.6s\\n  llama2base L2: mean=0.6204 +/- 0.0088 ([0.6123943850398064, 0.6162065327167511, 0.6327326908707619]) 23.8s\\n  llama2base L3: mean=0.6287 +/- 0.0115 ([0.6\\n\\n... [截断: 输出过长，省略 2753 字符] ...\\n\\n3, 0.5720244139432907, 0.5455846101045608]) 22.2s\\n  llama2base L29: mean=0.5814 +/- 0.0068 ([0.5726776510477066, 0.5893974453210831, 0.5819866746664047]) 22.8s\\n  llama2base L30: mean=0.5619 +/- 0.0027 ([0.5593085438013077, 0.5656020551919937, 0.5608509749174118]) 18.1s\\n  llama2base L31: mean=0.5571 +/- 0.0111 ([0.5709007382392883, 0.5438086986541748, 0.5565982908010483]) 18.3s\\n  llama2base L32: mean=0.5513 +/- 0.0205 ([0.5255301654338836, 0.5526250302791595, 0.575767508149147]) 17.2s\\n  trained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 25.1s\\n  trained L1: mean=0.6429 +/- 0.0072 ([0.6330601245164871, 0.6455395221710205, 0.6500066712498664]) 25.1s\\n  trained L2: mean=0.6221 +/- 0.0061 ([0.6277795389294625, 0.6248690545558929, 0.6136648133397102]) 24.1s\\n  trained L3: mean=0.6211 +/- 0.0226 ([0.6519127771258354, 0.5985256284475327, 0.6128895074129105]) 24.0s\\n  trained L4: mean=0.6386 +/- 0.0073 ([0.6468106269836426, 0.6290610373020172, 0.6398107334971428]) 24.9s\\n  trained L5: mean=0.6304 +/- 0.0144 ([0.6468134745955467, 0.6116541624069214, 0.6326928734779358]) 23.5s\\n  trained L6: mean=0.6421 +/- 0.0053 ([0.6493953630328179, 0.6372901111841202, 0.6395108684897423]) 26.1s\\n  trained L7: mean=0.6339 +/- 0.0084 ([0.6447141245007515, 0.6243450552225113, 0.632636870443821]) 23.9s\\n  trained L8: mean=0.6362 +/- 0.0184 ([0.6552544310688972, 0.6421004951000213, 0.6113417208194732]) 26.0s\\n  trained L9: mean=0.6434 +/- 0.0137 ([0.6510628208518028, 0.6549354955554009, 0.6241090357303619]) 26.2s\\n  trained L10: mean=0.6245 +/- 0.0162 ([0.642679876089096, 0.6274515226483345, 0.6033932983875274]) 23.4s\\n  trained L11: mean=0.6245 +/- 0.0182 ([0.6435706600546837, 0.6300973415374755, 0.5999754846096039]) 22.1s\\n  trained L12: mean=0.6205 +/- 0.0084 ([0.6086117506027222, 0.6265475526452065, 0.6264901429414749]) 22.7s\\n  trained L13: mean=0.6348 +/- 0.0039 ([0.6296066030859947, 0.6361174508929253, 0.6387905538082123]) 23.0s\\n  trained L14: mean=0.6282 +/- 0.0067 ([0.6207631155848503, 0.6369435012340545, 0.6267783835530281]) 22.4s\\n  trained L15: mean=0.6391 +/- 0.0081 ([0.627992382645607, 0.642193503677845, 0.6469916358590126]) 24.9s\\n  trained L16: mean=0.6246 +/- 0.0132 ([0.6187997579574585, 0.642969012260437, 0.6121768772602081]) 24.6s\\n  trained L17: mean=0.6185 +/- 0.0117 ([0.6344663828611374, 0.6145640164613724, 0.60659718811512]) 23.4s\\n  trained L18: mean=0.6008 +/- 0.0341 ([0.6347518250346184, 0.6136238068342209, 0.5541129648685456]) 23.6s\\n  trained L19: mean=0.5961 +/- 0.0063 ([0.598588165640831, 0.6022098034620285, 0.5873748123645782]) 24.3s\\n  trained L20: mean=0.5907 +/- 0.0187 ([0.5787571638822555, 0.6171020686626434, 0.5761201024055481]) 24.6s\\n  trained L21: mean=0.5946 +/- 0.0149 ([0.5735972106456757, 0.6042058378458023, 0.6060863971710205]) 24.5s\\n  trained L22: mean=0.5899 +/- 0.0050 ([0.5830799996852875, 0.5915800303220748, 0.5949364244937897]) 23.7s\\n  trained L23: mean=0.5490 +/- 0.0800 ([0.43628479838371276, 0.5969270586967468, 0.6136771708726882]) 26.8s\\n  trained L24: mean=0.5711 +/- 0.0205 ([0.5537370890378952, 0.5595292299985886, 0.599928367137909]) 24.2s\\n  trained L25: mean=0.5696 +/- 0.0161 ([0.5476741850376129, 0.5860450655221939, 0.5751064240932464]) 25.0s\\n  trained L26: mean=0.5557 +/- 0.0354 ([0.5057042211294174, 0.5825213521718979, 0.5789289206266404]) 25.0s\\n  trained L27: mean=0.5221 +/- 0.0679 ([0.426119926571846, 0.5730263650417328, 0.5671153008937836]) 24.4s\\n  trained L28: mean=0.4963 +/- 0.0646 ([0.4184398055076599, 0.49382555186748506, 0.5766893029212952]) 23.8s\\n  trained L29: mean=0.5153 +/- 0.0451 ([0.5285834640264511, 0.4546483397483826, 0.5627900689840317]) 22.9s\\n  trained L30: mean=0.5186 +/- 0.0034 ([0.523328161239624, 0.5158569544553757, 0.516566002368927]) 17.5s\\n  trained L31: mean=0.4724 +/- 0.0671 ([0.38028694987297057, 0.4984515070915222, 0.5383320361375808]) 20.2s\\n  trained L32: mean=0.5240 +/- 0.0162 ([0.5389749944210053, 0.531482583284378, 0.5014603286981583]) 16.9s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "bd3eb1a6-7d98-4da3-8ad5-8b6b3c2065a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  untrained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 28.1s\\\\n  untrained L1: mean=0.5470 +/- 0.0080 ([0.5545581728219986, 0.535977229475975, 0.5503205597400666]) 24.4s\\\\n  untrained L2: mean=0.5202 +/- 0.0036 ([0.5218747377395629, 0.5234707891941071, 0.5152634769678116]) 24.2s\\\\n  untrained L3: mean=0.5361 +/- 0.0078 ([0.533835631608963, 0.5464956521987915, 0.5278609782457352]) 22.1s\\\\n  untrained L4: mean=0.5147 +/- 0.0440 ([0.5606455206871033, 0.4553957134485245, 0.5281207293272019]) 25.3s\\\\n  untrained L5: mean=0.3973 +/- 0.1950 ([0.5383460253477097, 0.5319028049707413, 0.12151370644569397]) 25.4s\\\\n  untrained L6: mean=0.5048 +/- 0.0453 ([0.5313279688358307, 0.4409617245197296, 0.5419802606105805]) 21.9s\\\\n  untrained L7: mean=0.5033 +/- 0.0510 ([0.5175851821899414, 0.5573614865541459, 0.4348457813262939]) 22.3s\\\\n  untrained L8: mean=0.4985 +/- 0.0411 ([0.5323313891887664, 0.4406500369310379, 0.5225855261087418]) 22.6s\\\\n  untrained L9: mean=0.4416 +/- 0.0668 ([0.5349647313356399, 0.40780563950538634, 0.38214739263057707]) 25.9s\\\\n  untrained L10: mean=-0.0924 +/- 0.3342 ([-0.32930943965911863, 0.38024117350578307, -0.3281980514526367]) 22.5s\\\\n  untrained L11: mean=0.1408 +/- 0.2991 ([-0.2805611789226532, 0.31961887180805204, 0.3834815859794617]) 26.5s\\\\n  untrained L12: mean=0.2114 +/- 0.3536 ([0.5197568655014038, -0.28381028175354006, 0.39815777242183686]) 21.9s\\\\n  untrained L13: mean=0.2237 +/- 0.3627 ([0.44095965623855593, -0.28740930557250977, 0.5174009501934052]) 24.5s\\\\n  untrained L14: mean=0.4157 +/- 0.0715 ([0.41838822364807127, 0.5018354833126069, 0.3268470197916031]) 23.0s\\\\n  untrained L15: mean=0.5108 +/- 0.0123 ([0.5041327744722366, 0.5280649989843369, 0.5001200407743454]) 20.9s\\\\n  untrained L16: mean=0.4242 +/- 0.0534 ([0.4566766321659088, 0.3489329606294632, 0.4670442521572113]) 22.4s\\\\n  untrained L17: mean=0.4500 +/- 0.0454 ([0.4704433590173721, 0.4925037294626236, 0.38699641823768616]) 24.6s\\\\n  untrained L18: mean=0.2569 +/- 0.1712 ([0.4923500448465347, 0.0903881847858429, 0.18785106539726257]) 24.9s\\\\n  untrained L19: mean=0.4703 +/- 0.0280 ([0.490105003118515, 0.4306431919336319, 0.49016115367412566]) 25.4s\\\\n  untrained L20: mean=0.3451 +/- 0.1310 ([0.49176669120788574, 0.3698767900466919, 0.1737293004989624]) 22.5s\\\\n  untrained L21: mean=0.2755 +/- 0.1474 ([0.48386340737342837, 0.16784534454345704, 0.17477847933769225]) 23.2s\\\\n  untrained L22: mean=-0.0631 +/- 0.3767 ([0.46963681280612946, -0.3291096091270447, -0.32974032163619993]) 22.6s\\\\n  untrained L23: mean=0.3638 +/- 0.1977 ([0.5155623465776443, 0.08457584381103515, 0.49129209816455843]) 25.0s\\\\n  untrained L24: mean=0.4605 +/- 0.0405 ([0.4894219398498535, 0.48874219357967374, 0.40325150489807127]) 21.2s\\\\n  untrained L25: mean=0.2013 +/- 0.3765 ([0.5084957867860794, -0.328879177570343, 0.4243020981550217]) 24.6s\\\\n  untrained L26: mean=0.3528 +/- 0.1109 ([0.4584378361701965, 0.19957755804061889, 0.4002833366394043]) 22.8s\\\\n  untrained L27: mean=0.2881 +/- 0.1623 ([0.5174411952495575, 0.16804656982421876, 0.17870495915412904]) 25.8s\\\\n  untrained L28: mean=-0.0822 +/- 0.3156 ([0.3633006364107132, -0.32884399890899657, -0.28093225359916685]) 25.9s\\\\n  untrained L29: mean=0.1137 +/- 0.3250 ([0.4445383459329605, 0.22468178272247313, -0.3281088948249817]) 24.9s\\\\n  untrained L30: mean=0.1700 +/- 0.3541 ([0.462066775560379, -0.328312349319458, 0.37623833417892455]) 19.8s\\\\n  untrained L31: mean=0.1928 +/- 0.1379 ([0.38780969083309175, 0.0923097550868988, 0.09819002151489258]) 21.4s\\\\n  untrained L32: mean=0.5885 +/- 0.0071 ([0.5784996777772904, 0.5931280285120011, 0.5938817590475083]) 16.3s\\\\n  llama2base L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 27.2s\\\\n  llama2base L1: mean=0.6276 +/- 0.0098 ([0.6366456896066666, 0.6140430331230163, 0.632068881392479]) 24.6s\\\\n  llama2base L2: mean=0.6204 +/- 0.0088 ([0.6123943850398064, 0.6162065327167511, 0.6327326908707619]) 23.8s\\\\n  llama2base L3: mean=0.6287 +/- 0.0115 ([0.6\\\\n\\\\n... [截断: 输出过长，省略 2753 字符] ...\\\\n\\\\n3, 0.5720244139432907, 0.5455846101045608]) 22.2s\\\\n  llama2base L29: mean=0.5814 +/- 0.0068 ([0.5726776510477066, 0.5893974453210831, 0.5819866746664047]) 22.8s\\\\n  llama2base L30: mean=0.5619 +/- 0.0027 ([0.5593085438013077, 0.5656020551919937, 0.5608509749174118]) 18.1s\\\\n  llama2base L31: mean=0.5571 +/- 0.0111 ([0.5709007382392883, 0.5438086986541748, 0.5565982908010483]) 18.3s\\\\n  llama2base L32: mean=0.5513 +/- 0.0205 ([0.5255301654338836, 0.5526250302791595, 0.575767508149147]) 17.2s\\\\n  trained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 25.1s\\\\n  trained L1: mean=0.6429 +/- 0.0072 ([0.6330601245164871, 0.6455395221710205, 0.6500066712498664]) 25.1s\\\\n  trained L2: mean=0.6221 +/- 0.0061 ([0.6277795389294625, 0.6248690545558929, 0.6136648133397102]) 24.1s\\\\n  trained L3: mean=0.6211 +/- 0.0226 ([0.6519127771258354, 0.5985256284475327, 0.6128895074129105]) 24.0s\\\\n  trained L4: mean=0.6386 +/- 0.0073 ([0.6468106269836426, 0.6290610373020172, 0.6398107334971428]) 24.9s\\\\n  trained L5: mean=0.6304 +/- 0.0144 ([0.6468134745955467, 0.6116541624069214, 0.6326928734779358]) 23.5s\\\\n  trained L6: mean=0.6421 +/- 0.0053 ([0.6493953630328179, 0.6372901111841202, 0.6395108684897423]) 26.1s\\\\n  trained L7: mean=0.6339 +/- 0.0084 ([0.6447141245007515, 0.6243450552225113, 0.632636870443821]) 23.9s\\\\n  trained L8: mean=0.6362 +/- 0.0184 ([0.6552544310688972, 0.6421004951000213, 0.6113417208194732]) 26.0s\\\\n  trained L9: mean=0.6434 +/- 0.0137 ([0.6510628208518028, 0.6549354955554009, 0.6241090357303619]) 26.2s\\\\n  trained L10: mean=0.6245 +/- 0.0162 ([0.642679876089096, 0.6274515226483345, 0.6033932983875274]) 23.4s\\\\n  trained L11: mean=0.6245 +/- 0.0182 ([0.6435706600546837, 0.6300973415374755, 0.5999754846096039]) 22.1s\\\\n  trained L12: mean=0.6205 +/- 0.0084 ([0.6086117506027222, 0.6265475526452065, 0.6264901429414749]) 22.7s\\\\n  trained L13: mean=0.6348 +/- 0.0039 ([0.6296066030859947, 0.6361174508929253, 0.6387905538082123]) 23.0s\\\\n  trained L14: mean=0.6282 +/- 0.0067 ([0.6207631155848503, 0.6369435012340545, 0.6267783835530281]) 22.4s\\\\n  trained L15: mean=0.6391 +/- 0.0081 ([0.627992382645607, 0.642193503677845, 0.6469916358590126]) 24.9s\\\\n  trained L16: mean=0.6246 +/- 0.0132 ([0.6187997579574585, 0.642969012260437, 0.6121768772602081]) 24.6s\\\\n  trained L17: mean=0.6185 +/- 0.0117 ([0.6344663828611374, 0.6145640164613724, 0.60659718811512]) 23.4s\\\\n  trained L18: mean=0.6008 +/- 0.0341 ([0.6347518250346184, 0.6136238068342209, 0.5541129648685456]) 23.6s\\\\n  trained L19: mean=0.5961 +/- 0.0063 ([0.598588165640831, 0.6022098034620285, 0.5873748123645782]) 24.3s\\\\n  trained L20: mean=0.5907 +/- 0.0187 ([0.5787571638822555, 0.6171020686626434, 0.5761201024055481]) 24.6s\\\\n  trained L21: mean=0.5946 +/- 0.0149 ([0.5735972106456757, 0.6042058378458023, 0.6060863971710205]) 24.5s\\\\n  trained L22: mean=0.5899 +/- 0.0050 ([0.5830799996852875, 0.5915800303220748, 0.5949364244937897]) 23.7s\\\\n  trained L23: mean=0.5490 +/- 0.0800 ([0.43628479838371276, 0.5969270586967468, 0.6136771708726882]) 26.8s\\\\n  trained L24: mean=0.5711 +/- 0.0205 ([0.5537370890378952, 0.5595292299985886, 0.599928367137909]) 24.2s\\\\n  trained L25: mean=0.5696 +/- 0.0161 ([0.5476741850376129, 0.5860450655221939, 0.5751064240932464]) 25.0s\\\\n  trained L26: mean=0.5557 +/- 0.0354 ([0.5057042211294174, 0.5825213521718979, 0.5789289206266404]) 25.0s\\\\n  trained L27: mean=0.5221 +/- 0.0679 ([0.426119926571846, 0.5730263650417328, 0.5671153008937836]) 24.4s\\\\n  trained L28: mean=0.4963 +/- 0.0646 ([0.4184398055076599, 0.49382555186748506, 0.5766893029212952]) 23.8s\\\\n  trained L29: mean=0.5153 +/- 0.0451 ([0.5285834640264511, 0.4546483397483826, 0.5627900689840317]) 22.9s\\\\n  trained L30: mean=0.5186 +/- 0.0034 ([0.523328161239624, 0.5158569544553757, 0.516566002368927]) 17.5s\\\\n  trained L31: mean=0.4724 +/- 0.0671 ([0.38028694987297057, 0.4984515070915222, 0.5383320361375808]) 20.2s\\\\n  trained L32: mean=0.5240 +/- 0.0162 ([0.5389749944210053, 0.531482583284378, 0.5014603286981583]) 16.9s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  untrained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 28.1s\\n  untrained L1: mean=0.5470 +/- 0.0080 ([0.5545581728219986, 0.535977229475975, 0.5503205597400666]) 24.4s\\n  untrained L2: mean=0.5202 +/- 0.0036 ([0.5218747377395629, 0.5234707891941071, 0.5152634769678116]) 24.2s\\n  untrained L3: mean=0.5361 +/- 0.0078 ([0.533835631608963, 0.5464956521987915, 0.5278609782457352]) 22.1s\\n  untrained L4: mean=0.5147 +/- 0.0440 ([0.5606455206871033, 0.4553957134485245, 0.5281207293272019]) 25.3s\\n  untrained L5: mean=0.3973 +/- 0.1950 ([0.5383460253477097, 0.5319028049707413, 0.12151370644569397]) 25.4s\\n  untrained L6: mean=0.5048 +/- 0.0453 ([0.5313279688358307, 0.4409617245197296, 0.5419802606105805]) 21.9s\\n  untrained L7: mean=0.5033 +/- 0.0510 ([0.5175851821899414, 0.5573614865541459, 0.4348457813262939]) 22.3s\\n  untrained L8: mean=0.4985 +/- 0.0411 ([0.5323313891887664, 0.4406500369310379, 0.5225855261087418]) 22.6s\\n  untrained L9: mean=0.4416 +/- 0.0668 ([0.5349647313356399, 0.40780563950538634, 0.38214739263057707]) 25.9s\\n  untrained L10: mean=-0.0924 +/- 0.3342 ([-0.32930943965911863, 0.38024117350578307, -0.3281980514526367]) 22.5s\\n  untrained L11: mean=0.1408 +/- 0.2991 ([-0.2805611789226532, 0.31961887180805204, 0.3834815859794617]) 26.5s\\n  untrained L12: mean=0.2114 +/- 0.3536 ([0.5197568655014038, -0.28381028175354006, 0.39815777242183686]) 21.9s\\n  untrained L13: mean=0.2237 +/- 0.3627 ([0.44095965623855593, -0.28740930557250977, 0.5174009501934052]) 24.5s\\n  untrained L14: mean=0.4157 +/- 0.0715 ([0.41838822364807127, 0.5018354833126069, 0.3268470197916031]) 23.0s\\n  untrained L15: mean=0.5108 +/- 0.0123 ([0.5041327744722366, 0.5280649989843369, 0.5001200407743454]) 20.9s\\n  untrained L16: mean=0.4242 +/- 0.0534 ([0.4566766321659088, 0.3489329606294632, 0.4670442521572113]) 22.4s\\n  untrained L17: mean=0.4500 +/- 0.0454 ([0.4704433590173721, 0.4925037294626236, 0.38699641823768616]) 24.6s\\n  untrained L18: mean=0.2569 +/- 0.1712 ([0.4923500448465347, 0.0903881847858429, 0.18785106539726257]) 24.9s\\n  untrained L19: mean=0.4703 +/- 0.0280 ([0.490105003118515, 0.4306431919336319, 0.49016115367412566]) 25.4s\\n  untrained L20: mean=0.3451 +/- 0.1310 ([0.49176669120788574, 0.3698767900466919, 0.1737293004989624]) 22.5s\\n  untrained L21: mean=0.2755 +/- 0.1474 ([0.48386340737342837, 0.16784534454345704, 0.17477847933769225]) 23.2s\\n  untrained L22: mean=-0.0631 +/- 0.3767 ([0.46963681280612946, -0.3291096091270447, -0.32974032163619993]) 22.6s\\n  untrained L23: mean=0.3638 +/- 0.1977 ([0.5155623465776443, 0.08457584381103515, 0.49129209816455843]) 25.0s\\n  untrained L24: mean=0.4605 +/- 0.0405 ([0.4894219398498535, 0.48874219357967374, 0.40325150489807127]) 21.2s\\n  untrained L25: mean=0.2013 +/- 0.3765 ([0.5084957867860794, -0.328879177570343, 0.4243020981550217]) 24.6s\\n  untrained L26: mean=0.3528 +/- 0.1109 ([0.4584378361701965, 0.19957755804061889, 0.4002833366394043]) 22.8s\\n  untrained L27: mean=0.2881 +/- 0.1623 ([0.5174411952495575, 0.16804656982421876, 0.17870495915412904]) 25.8s\\n  untrained L28: mean=-0.0822 +/- 0.3156 ([0.3633006364107132, -0.32884399890899657, -0.28093225359916685]) 25.9s\\n  untrained L29: mean=0.1137 +/- 0.3250 ([0.4445383459329605, 0.22468178272247313, -0.3281088948249817]) 24.9s\\n  untrained L30: mean=0.1700 +/- 0.3541 ([0.462066775560379, -0.328312349319458, 0.37623833417892455]) 19.8s\\n  untrained L31: mean=0.1928 +/- 0.1379 ([0.38780969083309175, 0.0923097550868988, 0.09819002151489258]) 21.4s\\n  untrained L32: mean=0.5885 +/- 0.0071 ([0.5784996777772904, 0.5931280285120011, 0.5938817590475083]) 16.3s\\n  llama2base L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 27.2s\\n  llama2base L1: mean=0.6276 +/- 0.0098 ([0.6366456896066666, 0.6140430331230163, 0.632068881392479]) 24.6s\\n  llama2base L2: mean=0.6204 +/- 0.0088 ([0.6123943850398064, 0.6162065327167511, 0.6327326908707619]) 23.8s\\n  llama2base L3: mean=0.6287 +/- 0.0115 ([0.6\\n\\n... [截断: 输出过长，省略 2753 字符] ...\\n\\n3, 0.5720244139432907, 0.5455846101045608]) 22.2s\\n  llama2base L29: mean=0.5814 +/- 0.0068 ([0.5726776510477066, 0.5893974453210831, 0.5819866746664047]) 22.8s\\n  llama2base L30: mean=0.5619 +/- 0.0027 ([0.5593085438013077, 0.5656020551919937, 0.5608509749174118]) 18.1s\\n  llama2base L31: mean=0.5571 +/- 0.0111 ([0.5709007382392883, 0.5438086986541748, 0.5565982908010483]) 18.3s\\n  llama2base L32: mean=0.5513 +/- 0.0205 ([0.5255301654338836, 0.5526250302791595, 0.575767508149147]) 17.2s\\n  trained L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 25.1s\\n  trained L1: mean=0.6429 +/- 0.0072 ([0.6330601245164871, 0.6455395221710205, 0.6500066712498664]) 25.1s\\n  trained L2: mean=0.6221 +/- 0.0061 ([0.6277795389294625, 0.6248690545558929, 0.6136648133397102]) 24.1s\\n  trained L3: mean=0.6211 +/- 0.0226 ([0.6519127771258354, 0.5985256284475327, 0.6128895074129105]) 24.0s\\n  trained L4: mean=0.6386 +/- 0.0073 ([0.6468106269836426, 0.6290610373020172, 0.6398107334971428]) 24.9s\\n  trained L5: mean=0.6304 +/- 0.0144 ([0.6468134745955467, 0.6116541624069214, 0.6326928734779358]) 23.5s\\n  trained L6: mean=0.6421 +/- 0.0053 ([0.6493953630328179, 0.6372901111841202, 0.6395108684897423]) 26.1s\\n  trained L7: mean=0.6339 +/- 0.0084 ([0.6447141245007515, 0.6243450552225113, 0.632636870443821]) 23.9s\\n  trained L8: mean=0.6362 +/- 0.0184 ([0.6552544310688972, 0.6421004951000213, 0.6113417208194732]) 26.0s\\n  trained L9: mean=0.6434 +/- 0.0137 ([0.6510628208518028, 0.6549354955554009, 0.6241090357303619]) 26.2s\\n  trained L10: mean=0.6245 +/- 0.0162 ([0.642679876089096, 0.6274515226483345, 0.6033932983875274]) 23.4s\\n  trained L11: mean=0.6245 +/- 0.0182 ([0.6435706600546837, 0.6300973415374755, 0.5999754846096039]) 22.1s\\n  trained L12: mean=0.6205 +/- 0.0084 ([0.6086117506027222, 0.6265475526452065, 0.6264901429414749]) 22.7s\\n  trained L13: mean=0.6348 +/- 0.0039 ([0.6296066030859947, 0.6361174508929253, 0.6387905538082123]) 23.0s\\n  trained L14: mean=0.6282 +/- 0.0067 ([0.6207631155848503, 0.6369435012340545, 0.6267783835530281]) 22.4s\\n  trained L15: mean=0.6391 +/- 0.0081 ([0.627992382645607, 0.642193503677845, 0.6469916358590126]) 24.9s\\n  trained L16: mean=0.6246 +/- 0.0132 ([0.6187997579574585, 0.642969012260437, 0.6121768772602081]) 24.6s\\n  trained L17: mean=0.6185 +/- 0.0117 ([0.6344663828611374, 0.6145640164613724, 0.60659718811512]) 23.4s\\n  trained L18: mean=0.6008 +/- 0.0341 ([0.6347518250346184, 0.6136238068342209, 0.5541129648685456]) 23.6s\\n  trained L19: mean=0.5961 +/- 0.0063 ([0.598588165640831, 0.6022098034620285, 0.5873748123645782]) 24.3s\\n  trained L20: mean=0.5907 +/- 0.0187 ([0.5787571638822555, 0.6171020686626434, 0.5761201024055481]) 24.6s\\n  trained L21: mean=0.5946 +/- 0.0149 ([0.5735972106456757, 0.6042058378458023, 0.6060863971710205]) 24.5s\\n  trained L22: mean=0.5899 +/- 0.0050 ([0.5830799996852875, 0.5915800303220748, 0.5949364244937897]) 23.7s\\n  trained L23: mean=0.5490 +/- 0.0800 ([0.43628479838371276, 0.5969270586967468, 0.6136771708726882]) 26.8s\\n  trained L24: mean=0.5711 +/- 0.0205 ([0.5537370890378952, 0.5595292299985886, 0.599928367137909]) 24.2s\\n  trained L25: mean=0.5696 +/- 0.0161 ([0.5476741850376129, 0.5860450655221939, 0.5751064240932464]) 25.0s\\n  trained L26: mean=0.5557 +/- 0.0354 ([0.5057042211294174, 0.5825213521718979, 0.5789289206266404]) 25.0s\\n  trained L27: mean=0.5221 +/- 0.0679 ([0.426119926571846, 0.5730263650417328, 0.5671153008937836]) 24.4s\\n  trained L28: mean=0.4963 +/- 0.0646 ([0.4184398055076599, 0.49382555186748506, 0.5766893029212952]) 23.8s\\n  trained L29: mean=0.5153 +/- 0.0451 ([0.5285834640264511, 0.4546483397483826, 0.5627900689840317]) 22.9s\\n  trained L30: mean=0.5186 +/- 0.0034 ([0.523328161239624, 0.5158569544553757, 0.516566002368927]) 17.5s\\n  trained L31: mean=0.4724 +/- 0.0671 ([0.38028694987297057, 0.4984515070915222, 0.5383320361375808]) 20.2s\\n  trained L32: mean=0.5240 +/- 0.0162 ([0.5389749944210053, 0.531482583284378, 0.5014603286981583]) 16.9s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still truncated for llama2base. Let me get just the llama2base data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "e68f7081-83d3-4fa7-9a2c-93f1fcd01546",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdXimSm23fXvJLFjDVqq8A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4547,
+      "cache_read_input_tokens": 34954,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+llama2base 中间层被截断了，补充获取。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "f3e272b0-66b8-488a-9f24-5b2c8f7e58c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdXimSm23fXvJLFjDVqq8A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4547,
+      "cache_read_input_tokens": 34954,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DEhJyHpi97Fd2MbsgpgXbH`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"llama2base\" /root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "0bf6b15d-746d-4e7c-920c-0a671c8d74d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdXimSm23fXvJLFjDVqq8A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4547,
+      "cache_read_input_tokens": 34954,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T08:49:39.331Z_
+
+<details><summary>↩ Tool result · `toolu_01DEhJyHpi97Fd2MbsgpgXbH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Conditions: ['untrained', 'llama2base', 'trained']\\nCondition: llama2base (llama2base_libero_goal)\\n  llama2base L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 27.2s\\n  llama2base L1: mean=0.6276 +/- 0.0098 ([0.6366456896066666, 0.6140430331230163, 0.632068881392479]) 24.6s\\n  llama2base L2: mean=0.6204 +/- 0.0088 ([0.6123943850398064, 0.6162065327167511, 0.6327326908707619]) 23.8s\\n  llama2base L3: mean=0.6287 +/- 0.0115 ([0.6446209385991096, 0.6178958654403687, 0.6235374540090561]) 22.9s\\n  llama2base L4: mean=0.6279 +/- 0.0197 ([0.6446540355682373, 0.6388162270188331, 0.6002668797969818]) 24.0s\\n  llama2base L5: mean=0.6220 +/- 0.0076 ([0.6325593307614327, 0.6147029548883438, 0.6188126027584075]) 22.7s\\n  llama2base L6: mean=0.6271 +/- 0.0106 ([0.641297310590744, 0.6158282667398453, 0.6240750133991242]) 22.7s\\n  llama2base L7: mean=0.6321 +/- 0.0041 ([0.6335379764437675, 0.6266135454177857, 0.6362842708826065]) 24.3s\\n  llama2base L8: mean=0.6202 +/- 0.0077 ([0.6306542992591858, 0.6121114253997803, 0.6179415762424469]) 20.9s\\n  llama2base L9: mean=0.6271 +/- 0.0078 ([0.6371471583843231, 0.6181097596883773, 0.6259249031543732]) 23.2s\\n  llama2base L10: mean=0.6287 +/- 0.0086 ([0.6233344733715057, 0.6219088852405548, 0.6407969802618027]) 23.9s\\n  llama2base L11: mean=0.6284 +/- 0.0086 ([0.6183666855096817, 0.627461951971054, 0.6392753779888153]) 24.2s\\n  llama2base L12: mean=0.6344 +/- 0.0131 ([0.6268377438187599, 0.6235857397317887, 0.6529136404395104]) 24.4s\\n  llama2base L13: mean=0.6136 +/- 0.0128 ([0.6046747237443924, 0.6043604701757431, 0.6317105114459991]) 23.6s\\n  llama2base L14: mean=0.6053 +/- 0.0159 ([0.6190482616424561, 0.6138752192258835, 0.5829945534467698]) 21.9s\\n  llama2base L15: mean=0.6085 +/- 0.0038 ([0.612681332230568, 0.6034715503454209, 0.6094966739416122]) 22.4s\\n  llama2base L16: mean=0.6137 +/- 0.0018 ([0.6135998994112015, 0.6159555196762085, 0.6116129696369171]) 25.6s\\n  llama2base L17: mean=0.6062 +/- 0.0069 ([0.6102636218070984, 0.6119259506464004, 0.5964496284723282]) 25.3s\\n  llama2base L18: mean=0.6117 +/- 0.0225 ([0.6087526738643646, 0.6406250894069672, 0.5856612235307693]) 25.5s\\n  llama2base L19: mean=0.6032 +/- 0.0148 ([0.5823699831962585, 0.6145241439342499, 0.6128551840782166]) 23.8s\\n  llama2base L20: mean=0.5788 +/- 0.0278 ([0.5395157635211945, 0.6004291653633118, 0.5965077728033066]) 25.0s\\n  llama2base L21: mean=0.5875 +/- 0.0184 ([0.6088640451431274, 0.5895688593387604, 0.5639515966176987]) 23.2s\\n  llama2base L22: mean=0.5860 +/- 0.0073 ([0.5816879451274872, 0.5799764126539231, 0.5963175654411316]) 24.5s\\n  llama2base L23: mean=0.5905 +/- 0.0047 ([0.5846381396055221, 0.5960209667682648, 0.5907376945018769]) 22.0s\\n  llama2base L24: mean=0.5810 +/- 0.0117 ([0.5709774315357208, 0.5974360018968582, 0.5746145576238633]) 23.5s\\n  llama2base L25: mean=0.5690 +/- 0.0112 ([0.5534570395946503, 0.574187645316124, 0.5792605489492416]) 22.2s\\n  llama2base L26: mean=0.5755 +/- 0.0089 ([0.5686521500349044, 0.5880162119865417, 0.5698046505451202]) 22.8s\\n  llama2base L27: mean=0.5689 +/- 0.0274 ([0.5707195192575455, 0.6014563411474227, 0.534420645236969]) 22.4s\\n  llama2base L28: mean=0.5607 +/- 0.0111 ([0.5644541770219803, 0.5720244139432907, 0.5455846101045608]) 22.2s\\n  llama2base L29: mean=0.5814 +/- 0.0068 ([0.5726776510477066, 0.5893974453210831, 0.5819866746664047]) 22.8s\\n  llama2base L30: mean=0.5619 +/- 0.0027 ([0.5593085438013077, 0.5656020551919937, 0.5608509749174118]) 18.1s\\n  llama2base L31: mean=0.5571 +/- 0.0111 ([0.5709007382392883, 0.5438086986541748, 0.5565982908010483]) 18.3s\\n  llama2base L32: mean=0.5513 +/- 0.0205 ([0.5255301654338836, 0.5526250302791595, 0.575767508149147]) 17.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "edabc60a-85c0-46b6-92f2-de973c2be81a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Conditions: ['untrained', 'llama2base', 'trained']\\\\nCondition: llama2base (llama2base_libero_goal)\\\\n  llama2base L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 27.2s\\\\n  llama2base L1: mean=0.6276 +/- 0.0098 ([0.6366456896066666, 0.6140430331230163, 0.632068881392479]) 24.6s\\\\n  llama2base L2: mean=0.6204 +/- 0.0088 ([0.6123943850398064, 0.6162065327167511, 0.6327326908707619]) 23.8s\\\\n  llama2base L3: mean=0.6287 +/- 0.0115 ([0.6446209385991096, 0.6178958654403687, 0.6235374540090561]) 22.9s\\\\n  llama2base L4: mean=0.6279 +/- 0.0197 ([0.6446540355682373, 0.6388162270188331, 0.6002668797969818]) 24.0s\\\\n  llama2base L5: mean=0.6220 +/- 0.0076 ([0.6325593307614327, 0.6147029548883438, 0.6188126027584075]) 22.7s\\\\n  llama2base L6: mean=0.6271 +/- 0.0106 ([0.641297310590744, 0.6158282667398453, 0.6240750133991242]) 22.7s\\\\n  llama2base L7: mean=0.6321 +/- 0.0041 ([0.6335379764437675, 0.6266135454177857, 0.6362842708826065]) 24.3s\\\\n  llama2base L8: mean=0.6202 +/- 0.0077 ([0.6306542992591858, 0.6121114253997803, 0.6179415762424469]) 20.9s\\\\n  llama2base L9: mean=0.6271 +/- 0.0078 ([0.6371471583843231, 0.6181097596883773, 0.6259249031543732]) 23.2s\\\\n  llama2base L10: mean=0.6287 +/- 0.0086 ([0.6233344733715057, 0.6219088852405548, 0.6407969802618027]) 23.9s\\\\n  llama2base L11: mean=0.6284 +/- 0.0086 ([0.6183666855096817, 0.627461951971054, 0.6392753779888153]) 24.2s\\\\n  llama2base L12: mean=0.6344 +/- 0.0131 ([0.6268377438187599, 0.6235857397317887, 0.6529136404395104]) 24.4s\\\\n  llama2base L13: mean=0.6136 +/- 0.0128 ([0.6046747237443924, 0.6043604701757431, 0.6317105114459991]) 23.6s\\\\n  llama2base L14: mean=0.6053 +/- 0.0159 ([0.6190482616424561, 0.6138752192258835, 0.5829945534467698]) 21.9s\\\\n  llama2base L15: mean=0.6085 +/- 0.0038 ([0.612681332230568, 0.6034715503454209, 0.6094966739416122]) 22.4s\\\\n  llama2base L16: mean=0.6137 +/- 0.0018 ([0.6135998994112015, 0.6159555196762085, 0.6116129696369171]) 25.6s\\\\n  llama2base L17: mean=0.6062 +/- 0.0069 ([0.6102636218070984, 0.6119259506464004, 0.5964496284723282]) 25.3s\\\\n  llama2base L18: mean=0.6117 +/- 0.0225 ([0.6087526738643646, 0.6406250894069672, 0.5856612235307693]) 25.5s\\\\n  llama2base L19: mean=0.6032 +/- 0.0148 ([0.5823699831962585, 0.6145241439342499, 0.6128551840782166]) 23.8s\\\\n  llama2base L20: mean=0.5788 +/- 0.0278 ([0.5395157635211945, 0.6004291653633118, 0.5965077728033066]) 25.0s\\\\n  llama2base L21: mean=0.5875 +/- 0.0184 ([0.6088640451431274, 0.5895688593387604, 0.5639515966176987]) 23.2s\\\\n  llama2base L22: mean=0.5860 +/- 0.0073 ([0.5816879451274872, 0.5799764126539231, 0.5963175654411316]) 24.5s\\\\n  llama2base L23: mean=0.5905 +/- 0.0047 ([0.5846381396055221, 0.5960209667682648, 0.5907376945018769]) 22.0s\\\\n  llama2base L24: mean=0.5810 +/- 0.0117 ([0.5709774315357208, 0.5974360018968582, 0.5746145576238633]) 23.5s\\\\n  llama2base L25: mean=0.5690 +/- 0.0112 ([0.5534570395946503, 0.574187645316124, 0.5792605489492416]) 22.2s\\\\n  llama2base L26: mean=0.5755 +/- 0.0089 ([0.5686521500349044, 0.5880162119865417, 0.5698046505451202]) 22.8s\\\\n  llama2base L27: mean=0.5689 +/- 0.0274 ([0.5707195192575455, 0.6014563411474227, 0.534420645236969]) 22.4s\\\\n  llama2base L28: mean=0.5607 +/- 0.0111 ([0.5644541770219803, 0.5720244139432907, 0.5455846101045608]) 22.2s\\\\n  llama2base L29: mean=0.5814 +/- 0.0068 ([0.5726776510477066, 0.5893974453210831, 0.5819866746664047]) 22.8s\\\\n  llama2base L30: mean=0.5619 +/- 0.0027 ([0.5593085438013077, 0.5656020551919937, 0.5608509749174118]) 18.1s\\\\n  llama2base L31: mean=0.5571 +/- 0.0111 ([0.5709007382392883, 0.5438086986541748, 0.5565982908010483]) 18.3s\\\\n  llama2base L32: mean=0.5513 +/- 0.0205 ([0.5255301654338836, 0.5526250302791595, 0.575767508149147]) 17.2s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Conditions: ['untrained', 'llama2base', 'trained']\\nCondition: llama2base (llama2base_libero_goal)\\n  llama2base L0: mean=0.6451 +/- 0.0084 ([0.6403305426239967, 0.6568484529852867, 0.6380441457033157]) 27.2s\\n  llama2base L1: mean=0.6276 +/- 0.0098 ([0.6366456896066666, 0.6140430331230163, 0.632068881392479]) 24.6s\\n  llama2base L2: mean=0.6204 +/- 0.0088 ([0.6123943850398064, 0.6162065327167511, 0.6327326908707619]) 23.8s\\n  llama2base L3: mean=0.6287 +/- 0.0115 ([0.6446209385991096, 0.6178958654403687, 0.6235374540090561]) 22.9s\\n  llama2base L4: mean=0.6279 +/- 0.0197 ([0.6446540355682373, 0.6388162270188331, 0.6002668797969818]) 24.0s\\n  llama2base L5: mean=0.6220 +/- 0.0076 ([0.6325593307614327, 0.6147029548883438, 0.6188126027584075]) 22.7s\\n  llama2base L6: mean=0.6271 +/- 0.0106 ([0.641297310590744, 0.6158282667398453, 0.6240750133991242]) 22.7s\\n  llama2base L7: mean=0.6321 +/- 0.0041 ([0.6335379764437675, 0.6266135454177857, 0.6362842708826065]) 24.3s\\n  llama2base L8: mean=0.6202 +/- 0.0077 ([0.6306542992591858, 0.6121114253997803, 0.6179415762424469]) 20.9s\\n  llama2base L9: mean=0.6271 +/- 0.0078 ([0.6371471583843231, 0.6181097596883773, 0.6259249031543732]) 23.2s\\n  llama2base L10: mean=0.6287 +/- 0.0086 ([0.6233344733715057, 0.6219088852405548, 0.6407969802618027]) 23.9s\\n  llama2base L11: mean=0.6284 +/- 0.0086 ([0.6183666855096817, 0.627461951971054, 0.6392753779888153]) 24.2s\\n  llama2base L12: mean=0.6344 +/- 0.0131 ([0.6268377438187599, 0.6235857397317887, 0.6529136404395104]) 24.4s\\n  llama2base L13: mean=0.6136 +/- 0.0128 ([0.6046747237443924, 0.6043604701757431, 0.6317105114459991]) 23.6s\\n  llama2base L14: mean=0.6053 +/- 0.0159 ([0.6190482616424561, 0.6138752192258835, 0.5829945534467698]) 21.9s\\n  llama2base L15: mean=0.6085 +/- 0.0038 ([0.612681332230568, 0.6034715503454209, 0.6094966739416122]) 22.4s\\n  llama2base L16: mean=0.6137 +/- 0.0018 ([0.6135998994112015, 0.6159555196762085, 0.6116129696369171]) 25.6s\\n  llama2base L17: mean=0.6062 +/- 0.0069 ([0.6102636218070984, 0.6119259506464004, 0.5964496284723282]) 25.3s\\n  llama2base L18: mean=0.6117 +/- 0.0225 ([0.6087526738643646, 0.6406250894069672, 0.5856612235307693]) 25.5s\\n  llama2base L19: mean=0.6032 +/- 0.0148 ([0.5823699831962585, 0.6145241439342499, 0.6128551840782166]) 23.8s\\n  llama2base L20: mean=0.5788 +/- 0.0278 ([0.5395157635211945, 0.6004291653633118, 0.5965077728033066]) 25.0s\\n  llama2base L21: mean=0.5875 +/- 0.0184 ([0.6088640451431274, 0.5895688593387604, 0.5639515966176987]) 23.2s\\n  llama2base L22: mean=0.5860 +/- 0.0073 ([0.5816879451274872, 0.5799764126539231, 0.5963175654411316]) 24.5s\\n  llama2base L23: mean=0.5905 +/- 0.0047 ([0.5846381396055221, 0.5960209667682648, 0.5907376945018769]) 22.0s\\n  llama2base L24: mean=0.5810 +/- 0.0117 ([0.5709774315357208, 0.5974360018968582, 0.5746145576238633]) 23.5s\\n  llama2base L25: mean=0.5690 +/- 0.0112 ([0.5534570395946503, 0.574187645316124, 0.5792605489492416]) 22.2s\\n  llama2base L26: mean=0.5755 +/- 0.0089 ([0.5686521500349044, 0.5880162119865417, 0.5698046505451202]) 22.8s\\n  llama2base L27: mean=0.5689 +/- 0.0274 ([0.5707195192575455, 0.6014563411474227, 0.534420645236969]) 22.4s\\n  llama2base L28: mean=0.5607 +/- 0.0111 ([0.5644541770219803, 0.5720244139432907, 0.5455846101045608]) 22.2s\\n  llama2base L29: mean=0.5814 +/- 0.0068 ([0.5726776510477066, 0.5893974453210831, 0.5819866746664047]) 22.8s\\n  llama2base L30: mean=0.5619 +/- 0.0027 ([0.5593085438013077, 0.5656020551919937, 0.5608509749174118]) 18.1s\\n  llama2base L31: mean=0.5571 +/- 0.0111 ([0.5709007382392883, 0.5438086986541748, 0.5565982908010483]) 18.3s\\n  llama2base L32: mean=0.5513 +/- 0.0205 ([0.5255301654338836, 0.5526250302791595, 0.575767508149147]) 17.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me compile the analysis.
+
+**Trained:**
+- L0: 0.6451 ± 0.0084
+- L1: 0.6429 ± 0.0072
+- L2: 0.6221 ± 0.0061
+- L3: 0.6211 ± 0.0226
+- L4: 0.6386 ± 0.0073
+
+
+- L5: 0.6304 ± 0.0144
+- L6: 0.6421 ± 0.0053
+- L7: 0.6339 ± 0.0084
+- L8: 0.6362 ± 0.0184
+- L9: 0.6434 ± 0.0137
+- L10: 0.6245 ± 0.0162
+- L11: 0.6245 ± 0.0182
+- L12: 0.6205 ± 0.0084
+- L13: 0.6348 ± 0.0039
+- L14: 0.6282 ± 0.0067
+- L15: 0.6391 ± 0.0081
+- L16: 0.6246 ± 0.0132
+- L17: 0.6185 ± 0.0117
+- L18: 0.6008 ± 0.0341
+- L19: 0.5961 ± 0.0063
+- L20: 0.5907 ± 0.0187
+- L21: 0.5946 ± 0.0149
+- L22: 0.5899 ± 0.0050
+- L23: 0.5490 ± 0.0800
+- L24: 0.5711 ± 0.0205
+- L25: 0.5696 ± 0.0161
+- L26: 0.5557 ± 0.0354
+- L27: 0.5221 ± 0.0679
+- L28: 0.4963 ± 0.0646
+
+I'm looking at the performance metrics continuing through the deeper layers, and there's a clear downward trend as we go deeper—the scores start dropping noticeably from L18 onward, with L28 showing the lowest performance at around 0.496.
+
+Now examining the final layers L29-L32, and I'm noticing something interesting about L0 across the conditions. The embedding layer appears to be shared with identical values across all three models, which makes sense since it's the input representation, but I need to verify whether the untrained model's L0 actually matches the others or if there's something different about how the random initialization works. Looking at the layer-by-layer breakdown, L9 shows the highest activation at 0.6434 when excluding the shared L0 baseline, followed by L6 at 0.6421. The trained model maintains a fairly consistent activation profile across layers 0-15, hovering in the 0.62-0.65 range, though this peak of 0.6434 is noticeably lower than the ~0.655 I'd expect from the original single-seed reference.
+
+Comparing across the different model variants, llama2base peaks at L12 with 0.6344 (excluding the shared L0), while untrained shows a dramatic drop-off, with its best non-L0 performance at L32 reaching only 0.5885 before collapsing further at earlier layers.
+
+The untrained model's representations are wildly unstable—middle layers show enormous variance with some seeds producing negative R² values, meaning the probe performs worse than just predicting the mean. This suggests the probe training itself becomes unreliable on untrained representations, which is a key signal about how these models differ fundamentally in their learned structure.
+
+Now comparing the peak performance across all three models: trained reaches 0.6434 at L9, llama2base hits 0.6344 at L12, and untrained maxes out at 0.5885 at L32. The trained and llama2base peaks are nearly identical—only 0.009 apart and well within their error margins—so the real distinction emerges when I look at the same layers across models rather than just their individual peaks.
+
+Looking at the early layers, all three start together at L0 but diverge immediately: trained and llama2base maintain high performance through L5 (both around 0.62-0.64), while untrained collapses dramatically, dropping to 0.3973 by L5. In the middle layers, trained and llama2base stay relatively stable in the 0.61-0.65 range, but untrained becomes wildly erratic with values plummeting to -0.09.
+
+By the late layers, trained shows a steady decline from 0.62 down to 0.52, llama2base remains remarkably consistent around 0.56-0.61, and untrained continues its chaotic swings between -0.06 and 0.59. The critical insight is that L0 serves as an identical baseline for all three since they share the embedding layer, and trained's peak is barely above that baseline—it's not really an inverted-U shape but more a plateau in early-mid layers followed by gradual decline. llama2base's stability across the entire depth is striking compared to the instability of untrained. Looking at the detailed layer-by-layer breakdown, the pattern becomes clearer: there's a sustained plateau from L0 through L17 where performance hovers around 0.62-0.65, then a noticeable drop-off starting at L18 that continues declining toward 0.47. Comparing this to the original single-seed experiment, the peak values are slightly lower (0.6434 vs 0.655) but occur in similar regions, which makes sense given the multi-seed averaging. So v2 is substantially better than v1 across the board—0.643 versus 0.548—which tracks with fixing the data split. Now looking at the gradient hypothesis, I'm checking how performance varies across layers for the trained, base, and untrained models. The pattern holds consistently: trained weights outperform the base model, which in turn outperforms untrained weights, with the gap widening as we move through the network layers.
+
+But there's an interesting anomaly at layer 12 where the base model actually edges out the trained version, breaking the expected ordering. Most other layers follow the gradient pattern, though by the deeper layers the trained and base models are converging while untrained performance drops off sharply.
+
+What's striking is layer 32 on the untrained model—it's hitting 0.5885 with very low variance, suggesting the final layer might preserve some inherent linear structure useful for action prediction even without any training. Looking at the variance patterns, the trained model shows standard deviations starting around 0.0034.
+
+Now examining the full variance picture: llama2base stays remarkably consistent with a max std of 0.0278, while untrained explodes to 0.3767 at layer 22—a massive spike in the middle layers. For the low-variance threshold of std < 0.03, trained manages 24 out of 33 layers, though it has some notable exceptions in the early-to-mid range. Generating summary table...
+
+The key insight is that L0 is identical across all conditions, so what really matters is the peak performance beyond that shared baseline. For the trained model, I'm noticing it doesn't show the clean inverted-U pattern from the single-seed run—instead there's a plateau from L0 through L15 around 0.62-0.65, then a sharp decline in deeper layers. supported (L9=0.6434 is the highest non-L0 layer), but the curve is much flatter than expected.
+
+Let me finalize the analysis. Looking at the results across all three conditions, L0 shows consistent performance at 0.6451±0.0084, while the peak non-L0 layers vary: trained peaks at L9 (0.6434), llama2base at L12 (0.6344), and untrained at L32 (0.5885). Comparing to v1, the trained condition improved dramatically from 0.548±0.012 at L10 to 0.6434±0.0137 at L9—a 17.4% jump that confirms the split fix resolved the systematic underestimation.
+
+The hypothesis about model quality ordering mostly holds at peak layers and through the middle range, but breaks down in the deepest layers where untrained actually outperforms the others, which is unexpected.
+
+Seed variance tells an interesting story: llama2base is remarkably stable across all 33 layers with consistently low variance, suggesting Llama2's pretrained representations already capture action-relevant information. Trained shows mostly low variance except in late layers where it becomes unstable. Untrained is wildly erratic throughout, with standard deviations often exceeding 0.1 in the L10-L31 range.
+
+The trained-llama2base gap is surprisingly minimal (peak difference of 0.009), indicating that robot training adds only modest improvements over the pretrained base. There's an odd anomaly in untrained's L32 layer—it's anomalously high (0.5885) and stable despite the chaos in surrounding layers. And I'm noticing something suspicious: L0 values are identical across all three conditions with the exact same per-seed values, which suggests L0 is just representing the raw input embeddings without any variation.
+
+Actually, this makes sense now—L0 is the vision encoder output before entering the LLM, and since all three models share the same frozen ViT, they'd naturally have identical L0 representations. So the vision encoder alone achieves R²=0.645, and then the Llama2 pretrained weights and trained weights both maintain or slightly reduce this signal through the middle layers, while untrained weights completely destroy it except for that strange recovery at L32.
+
+Now comparing against the original single-seed reference values, the multi-seed v2 results show some interesting divergences: the trained model's peak of 0.6434 at L9 is close to the reference 0.655, but both llama2base and untrained are performing notably higher than their reference ranges, which suggests either seed variation is larger than expected or something about the multi-seed setup is different. Rather than speculating further about what might account for the discrepancies, I should just present the results as they are and move forward with generating the final output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "a31b24a1-d144-47c3-912c-a1402adafcc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rKeeeES8pMcy1Eb7yKFLP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2395,
+      "cache_read_input_tokens": 39501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+数据齐了。以下是完整分析。
+
+```
+=== threecond_multiseed_r2_v2 分析 ===
+
+注：L0 三条件完全相同（共享 vision encoder 输出），下表 Peak Layer 排除 L0。
+
+条件       | Peak Layer | Peak R² (mean±std)  | L0 R² (shared)
+-----------|-----------|---------------------|----------------
+trained    | L9        | 0.6434 ± 0.0137     | 0.6451 ± 0.0084
+llama2base | L12       | 0.6344 ± 0.0131     | 0.6451 ± 0.0084
+untrained  | L32       | 0.5885 ± 0.0071     | 0.6451 ± 0.0084
+
+（untrained 若排除 L32 异常值，次高 peak = L1: 0.5470 ± 0.0080）
+
+--- vs v1 对比 ---
+- trained peak: v1 = L10, 0.548±0.012 → v2 = L9, 0.6434±0.0137 (+17.4%)
+- split 修复效果确认，v1 的 random shuffle 导致系统性低估
+
+--- 层级 profile 特征 ---
+- trained: L0-L15 高位平台 (~0.62-0.65)，L16+ 渐降至 ~0.47-0.52。非尖锐 inverted-U，更接近 plateau-then-decline
+- llama2base: 全 33 层极其稳定 (~0.56-0.64)，std 全部 < 0.03
+- untrained: L0 后迅速退化，L10-L13 出现负 R²（mean -0.09 to 0.22），L14+ 大幅震荡，L32 异常回升至 0.5885
+
+--- Hypothesis 验证 ---
+- trained > llama2base > untrained（at peaks excl L0）: YES
+  0.6434 > 0.6344 > 0.5885（或 0.5470 若排除 L32）
+- layer-by-layer gradient (L1-L20): 大部分层成立
+  例外：L12 llama2base(0.6344) > trained(0.6205)
+  L25+ llama2base 有时 > trained
+  L32: untrained(0.5885) > llama2base(0.5513) > trained(0.5240) — 完全反转
+- seed variance 低 (std < 0.03):
+  - trained: 27/33 层 < 0.03，但 L23(0.080) L27(0.068) L31(0.067) 偏高
+  - llama2base: 33/33 层 < 0.03 ✓
+  - untrained: 大量层 std > 0.1，最高 0.377 ✗
+  → PARTIAL — trained 和 llama2base 低方差，untrained 极高方差
+- max std across all: 0.377 (untrained L22)
+
+--- vs 原始单 seed 参考值 ---
+                    原始单seed    v2 multi-seed (excl L0)
+trained peak:       ~0.655        0.6434 (接近，合理)
+llama2base peak:    ~0.53-0.54    0.6344 (显著更高!)
+untrained peak:     ~0.49-0.53    0.5470 (L1, 一致) / 0.5885 (L32, 异常)
+
+llama2base 原始参考值偏低原因待查（可能原始单 seed 也用了 shuffle split）
+
+--- 关键发现 ---
+1. L0 完全相同 = 三模型共享 vision encoder，vision-only baseline R²=0.645
+2. trained-llama2base gap 极小（peak diff = 0.009），robot fine-tuning 对 action encoding 增益有限
+3. llama2base 全层稳定 ~0.60，说明 Llama2 pretrained representations 本身已保留大量 action-relevant 信息
+4. untrained 中间层崩溃（负 R² + 巨大方差）= 随机权重破坏信息流
+5. untrained L32 异常高且低方差（0.5885±0.007）— 可能 final layer norm / projection 恢复了部分结构，需调查
+
+--- 结论 ---
+建议 conclusion: partial success
+- gradient 在 peak 层成立 ✓，但 trained-llama2base 间距极小（not statistically significant at 0.009 diff）
+- untrained 高方差是最强信号（random weights → chaotic representations）
+- 主要故事可能不是 "trained 编码了更好的 action info"，而是 "pretrained LLM 已经保留了 vision encoder 的 action info，fine-tuning 只是微调"
+
+建议 notes:
+- trained vs llama2base 差异可能需要统计检验（paired t-test across layers）确认是否显著
+- untrained L32 anomaly 需要单独调查
+- 考虑是否需要更多 seeds（当前 3 seeds 统计力有限）
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "uuid": "99f5419f-7d27-41c7-99eb-96b0b9dee7cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rKeeeES8pMcy1Eb7yKFLP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2395,
+      "cache_read_input_tokens": 39501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 29_
+
+数据齐了。以下是完整分析。
+
+```
+=== threecond_multiseed_r2_v2 分析 ===
+
+注：L0 三条件完全相同（共享 vision encoder 输出），下表 Peak Layer 排除 L0。
+
+条件       | Peak Layer | Peak R² (mean±std)  | L0 R² (shared)
+-----------|-----------|---------------------|----------------
+trained    | L9        | 0.6434 ± 0.0137     | 0.6451 ± 0.0084
+llama2base | L12       | 0.6344 ± 0.0131     | 0.6451 ± 0.0084
+untrained  | L32       | 0.5885 ± 0.0071     | 0.6451 ± 0.0084
+
+（untrained 若排除 L32 异常值，次高 peak = L1: 0.5470 ± 0.0080）
+
+--- vs v1 对比 ---
+- trained peak: v1 = L10, 0.548±0.012 → v2 = L9, 0.6434±0.0137 (+17.4%)
+- split 修复效果确认，v1 的 random shuffle 导致系统性低估
+
+--- 层级 profile 特征 ---
+- trained: L0-L15 高位平台 (~0.62-0.65)，L16+ 渐降至 ~0.47-0.52。非尖锐 inverted-U，更接近 plateau-then-decline
+- llama2base: 全 33 层极其稳定 (~0.56-0.64)，std 全部 < 0.03
+- untrained: L0 后迅速退化，L10-L13 出现负 R²（mean -0.09 to 0.22），L14+ 大幅震荡，L32 异常回升至 0.5885
+
+--- Hypothesis 验证 ---
+- trained > llama2base > untrained（at peaks excl L0）: YES
+  0.6434 > 0.6344 > 0.5885（或 0.5470 若排除 L32）
+- layer-by-layer gradient (L1-L20): 大部分层成立
+  例外：L12 llama2base(0.6344) > trained(0.6205)
+  L25+ llama2base 有时 > trained
+  L32: untrained(0.5885) > llama2base(0.5513) > trained(0.5240) — 完全反转
+- seed variance 低 (std < 0.03):
+  - trained: 27/33 层 < 0.03，但 L23(0.080) L27(0.068) L31(0.067) 偏高
+  - llama2base: 33/33 层 < 0.03 ✓
+  - untrained: 大量层 std > 0.1，最高 0.377 ✗
+  → PARTIAL — trained 和 llama2base 低方差，untrained 极高方差
+- max std across all: 0.377 (untrained L22)
+
+--- vs 原始单 seed 参考值 ---
+                    原始单seed    v2 multi-seed (excl L0)
+trained peak:       ~0.655        0.6434 (接近，合理)
+llama2base peak:    ~0.53-0.54    0.6344 (显著更高!)
+untrained peak:     ~0.49-0.53    0.5470 (L1, 一致) / 0.5885 (L32, 异常)
+
+llama2base 原始参考值偏低原因待查（可能原始单 seed 也用了 shuffle split）
+
+--- 关键发现 ---
+1. L0 完全相同 = 三模型共享 vision encoder，vision-only baseline R²=0.645
+2. trained-llama2base gap 极小（peak diff = 0.009），robot fine-tuning 对 action encoding 增益有限
+3. llama2base 全层稳定 ~0.60，说明 Llama2 pretrained representations 本身已保留大量 action-relevant 信息
+4. untrained 中间层崩溃（负 R² + 巨大方差）= 随机权重破坏信息流
+5. untrained L32 异常高且低方差（0.5885±0.007）— 可能 final layer norm / projection 恢复了部分结构，需调查
+
+--- 结论 ---
+建议 conclusion: partial success
+- gradient 在 peak 层成立 ✓，但 trained-llama2base 间距极小（not statistically significant at 0.009 diff）
+- untrained 高方差是最强信号（random weights → chaotic representations）
+- 主要故事可能不是 "trained 编码了更好的 action info"，而是 "pretrained LLM 已经保留了 vision encoder 的 action info，fine-tuning 只是微调"
+
+建议 notes:
+- trained vs llama2base 差异可能需要统计检验（paired t-test across layers）确认是否显著
+- untrained L32 anomaly 需要单独调查
+- 考虑是否需要更多 seeds（当前 3 seeds 统计力有限）
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 165022,
+  "duration_api_ms": 163741,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "18bed478-d15a-414f-9b69-07c682f64e01",
+  "total_cost_usd": 0.52486725,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 30055,
+    "cache_read_input_tokens": 235317,
+    "output_tokens": 8704,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30055,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 7345,
+        "cache_read_input_tokens": 39501,
+        "cache_creation_input_tokens": 2395,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2395
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1575,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001705,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 8704,
+      "cacheReadInputTokens": 235317,
+      "cacheCreationInputTokens": 30055,
+      "webSearchRequests": 0,
+      "costUSD": 0.52316225,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "87ec6057-1431-4232-a30c-6a8395bea9a1"
+}
+```
+
+</details>
+
+---

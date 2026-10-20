@@ -1,0 +1,10 @@
+Remote path: /root/autodl-tmp/vla-ssd/results/figure_data/
+
+Files:
+- fig_2x2_matrix.csv: 4 VLA conditions + DINO peak RSA and peak layers
+- fig_siglip_vs_vla_vs_dino.csv: global peak RSA + bootstrap CI (separate columns)
+- fig_perlayer_rsa.csv: 33 layers x 4 conditions + DINO/SigLIP reference lines
+- fig_probing_summary.csv: 6 probing methods trained/untrained/DINO best + delta
+- fig_output_head.json: 37 components rel_change and cos_sim
+
+Notes: DINO global peak RSA (0.388) vs bootstrap CI (per-task mean=0.6122) use different aggregation — do not mix in same plot. with_inst conditions lack bootstrap CI data.

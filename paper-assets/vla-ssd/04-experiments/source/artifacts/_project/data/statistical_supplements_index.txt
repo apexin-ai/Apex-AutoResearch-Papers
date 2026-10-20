@@ -1,0 +1,4 @@
+Remote files on westd-19183:
+- /root/autodl-tmp/vla-ssd/results/statistical_supplements/tost_equivalence.json
+- /root/autodl-tmp/vla-ssd/results/statistical_supplements/power_analysis.json
+- /root/autodl-tmp/vla-ssd/results/statistical_supplements/paired_cohens_d.json

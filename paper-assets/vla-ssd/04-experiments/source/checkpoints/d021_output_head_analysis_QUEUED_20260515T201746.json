@@ -1,0 +1,15 @@
+{
+  "exp_id": "d021_output_head_analysis",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:11:17.179Z",
+    "updated_at": "2026-05-15T20:17:45.960Z",
+    "hypothesis": "D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences per layer (Frobenius norm ratio). PASS: output head norm ratio >> LLM deep layer mean (>3x), confirming shallow adaptation. FAIL: differences uniformly distributed."
+  },
+  "timestamp": "2026-05-15T20:17:46.031838+00:00",
+  "trigger": "update_registry"
+}

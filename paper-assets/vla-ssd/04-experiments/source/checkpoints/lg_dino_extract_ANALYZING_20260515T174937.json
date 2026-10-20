@@ -1,0 +1,37 @@
+{
+  "exp_id": "lg_dino_extract",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:42:52.995Z",
+    "updated_at": "2026-05-15T17:49:37.701Z",
+    "hypothesis": "DINO-V2 LIBERO-Goal feature extraction — vision-only baseline for Goal Classification gate (Sanity-GC: DINO acc ≤ 25%)",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T17:43:09.957Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/extract_dinov2.py --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ --output_dir /root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/ --model_path /root/autodl-tmp/vla-ssd/checkpoints/dinov2-large --gpu 0\"",
+      "finished_at": "2026-05-15T17:49:37.592Z",
+      "training_hours": 0.11
+    },
+    "spec": {
+      "command": "python scripts/extract_dinov2.py --data_dir .../libero_goal/ --output_dir .../dinov2_libero_goal/ --model_path .../dinov2-large --gpu 0",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks x 50 demos",
+      "model_name": "DINO-V2 ViT-L/14 (facebook/dinov2-large)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/",
+      "log_path": "~/runs/vla-ssd/lg_dino_extract.log"
+    },
+    "pid": "634279",
+    "log_path": "~/runs/vla-ssd/lg_dino_extract.log"
+  },
+  "timestamp": "2026-05-15T17:49:37.751558+00:00",
+  "trigger": "update_registry"
+}

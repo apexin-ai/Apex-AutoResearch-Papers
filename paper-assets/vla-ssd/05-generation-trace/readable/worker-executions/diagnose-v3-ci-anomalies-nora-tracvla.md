@@ -1,0 +1,3343 @@
+# diagnose v3 ci anomalies nora tracvla
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 67
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/workers/worker_diagnose_v3_ci_anomalies_nora_tracvla_20260523T111551.log`
+- **Structured JSON:** [`928a76d5f5453bb88d9d.json`](../../sessions/92/928a76d5f5453bb88d9d.json)
+
+## Before a recorded user message
+
+67 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ed2e7f7f-9551-439b-a119-7651f72ed78d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779552000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7eadca39-c664-46d3-99cf-1166e072c909",
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to diagnose two CI anomalies in bootstrap v3 results on a remote server. Let me fetch the tool schemas for SSH tools and then execute the analysis commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "24944578-93ae-4675-be8a-aa33df4fd0c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjogNXBR6zmXi2NPo97d9b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13396,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13396
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GLzP29JdCtDQ6jLfyQhDiA`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "69462d5f-5ff9-4c35-8a8f-17ec525aac1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjogNXBR6zmXi2NPo97d9b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13396,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13396
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T11:16:13.885Z_
+
+<details><summary>↩ Tool result · `toolu_01GLzP29JdCtDQ6jLfyQhDiA`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "7b1ff22f-bf94-4c03-af13-3e1d86049cd7",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me run the diagnostic commands on the server. I'll start by reading both JSON files and checking v3 progress in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "483a14ed-4bbb-4fb1-b670-6e3ca3accaa5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RH3uMs183vEoBH1NVkvmLS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 25237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+开始诊断两个异常条件。先并行读取数据和检查进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "b986dd2a-a706-4d55-a50e-36b1602dd03e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RH3uMs183vEoBH1NVkvmLS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 25237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FemN7fGfgm2xev1nxtL3KK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/trained.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "f38ce205-089d-4b40-8283-70090e71bdc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RH3uMs183vEoBH1NVkvmLS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 25237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014PKTAQPWPn74AKFAvzNbP2`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "e0d93299-dbdb-4338-9b21-7f852d4d7dd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RH3uMs183vEoBH1NVkvmLS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 25237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T11:16:19.508Z_
+
+<details><summary>↩ Tool result · `toolu_01FemN7fGfgm2xev1nxtL3KK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.3683,\\n    \\\"L1\\\": 0.3361,\\n    \\\"L2\\\": 0.3191,\\n    \\\"L3\\\": 0.3626,\\n    \\\"L4\\\": 0.355,\\n    \\\"L5\\\": 0.3564,\\n    \\\"L6\\\": 0.3921,\\n    \\\"L7\\\": 0.3838,\\n    \\\"L8\\\": 0.4489,\\n    \\\"L9\\\": 0.4457,\\n    \\\"L10\\\": 0.429,\\n    \\\"L11\\\": 0.4378,\\n    \\\"L12\\\": 0.4315,\\n    \\\"L13\\\": 0.4372,\\n    \\\"L14\\\": 0.4456,\\n    \\\"L15\\\": 0.4294,\\n    \\\"L16\\\": 0.4071,\\n    \\\"L17\\\": 0.4058,\\n    \\\"L18\\\": 0.3767,\\n    \\\"L19\\\": 0.3639,\\n    \\\"L20\\\": 0.3527,\\n    \\\"L21\\\": 0.3491,\\n    \\\"L22\\\": 0.3185,\\n    \\\"L23\\\": 0.3133,\\n    \\\"L24\\\": 0.3723,\\n    \\\"L25\\\": 0.3724,\\n    \\\"L26\\\": 0.3649,\\n    \\\"L27\\\": 0.3649,\\n    \\\"L28\\\": 0.365,\\n    \\\"L29\\\": 0.3382,\\n    \\\"L30\\\": 0.2892,\\n    \\\"L31\\\": 0.2892,\\n    \\\"L32\\\": 0.2769,\\n    \\\"L33\\\": 0.2769,\\n    \\\"L34\\\": 0.2773,\\n    \\\"L35\\\": -0.0062\\n  },\\n  \\\"peak_r2\\\": 0.4489,\\n  \\\"peak_layer\\\": \\\"L8\\\",\\n  \\\"exit_r2\\\": -0.0062,\\n  \\\"exit_layer\\\": \\\"L35\\\",\\n  \\\"delta\\\": 0.4551,\\n  \\\"delta_ci_95\\\": [\\n    0.9099,\\n    1.6077\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": 1.2155,\\n    \\\"std\\\": 0.1786,\\n    \\\"median\\\": 1.1986\\n  },\\n  \\\"arch\\\": \\\"nora\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"trained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "010e7fc8-126a-4ca7-82c7-0c196cd04225",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_layer_r2\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.3683,\\\\n    \\\\\\\"L1\\\\\\\": 0.3361,\\\\n    \\\\\\\"L2\\\\\\\": 0.3191,\\\\n    \\\\\\\"L3\\\\\\\": 0.3626,\\\\n    \\\\\\\"L4\\\\\\\": 0.355,\\\\n    \\\\\\\"L5\\\\\\\": 0.3564,\\\\n    \\\\\\\"L6\\\\\\\": 0.3921,\\\\n    \\\\\\\"L7\\\\\\\": 0.3838,\\\\n    \\\\\\\"L8\\\\\\\": 0.4489,\\\\n    \\\\\\\"L9\\\\\\\": 0.4457,\\\\n    \\\\\\\"L10\\\\\\\": 0.429,\\\\n    \\\\\\\"L11\\\\\\\": 0.4378,\\\\n    \\\\\\\"L12\\\\\\\": 0.4315,\\\\n    \\\\\\\"L13\\\\\\\": 0.4372,\\\\n    \\\\\\\"L14\\\\\\\": 0.4456,\\\\n    \\\\\\\"L15\\\\\\\": 0.4294,\\\\n    \\\\\\\"L16\\\\\\\": 0.4071,\\\\n    \\\\\\\"L17\\\\\\\": 0.4058,\\\\n    \\\\\\\"L18\\\\\\\": 0.3767,\\\\n    \\\\\\\"L19\\\\\\\": 0.3639,\\\\n    \\\\\\\"L20\\\\\\\": 0.3527,\\\\n    \\\\\\\"L21\\\\\\\": 0.3491,\\\\n    \\\\\\\"L22\\\\\\\": 0.3185,\\\\n    \\\\\\\"L23\\\\\\\": 0.3133,\\\\n    \\\\\\\"L24\\\\\\\": 0.3723,\\\\n    \\\\\\\"L25\\\\\\\": 0.3724,\\\\n    \\\\\\\"L26\\\\\\\": 0.3649,\\\\n    \\\\\\\"L27\\\\\\\": 0.3649,\\\\n    \\\\\\\"L28\\\\\\\": 0.365,\\\\n    \\\\\\\"L29\\\\\\\": 0.3382,\\\\n    \\\\\\\"L30\\\\\\\": 0.2892,\\\\n    \\\\\\\"L31\\\\\\\": 0.2892,\\\\n    \\\\\\\"L32\\\\\\\": 0.2769,\\\\n    \\\\\\\"L33\\\\\\\": 0.2769,\\\\n    \\\\\\\"L34\\\\\\\": 0.2773,\\\\n    \\\\\\\"L35\\\\\\\": -0.0062\\\\n  },\\\\n  \\\\\\\"peak_r2\\\\\\\": 0.4489,\\\\n  \\\\\\\"peak_layer\\\\\\\": \\\\\\\"L8\\\\\\\",\\\\n  \\\\\\\"exit_r2\\\\\\\": -0.0062,\\\\n  \\\\\\\"exit_layer\\\\\\\": \\\\\\\"L35\\\\\\\",\\\\n  \\\\\\\"delta\\\\\\\": 0.4551,\\\\n  \\\\\\\"delta_ci_95\\\\\\\": [\\\\n    0.9099,\\\\n    1.6077\\\\n  ],\\\\n  \\\\\\\"bootstrap_deltas_summary\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 1.2155,\\\\n    \\\\\\\"std\\\\\\\": 0.1786,\\\\n    \\\\\\\"median\\\\\\\": 1.1986\\\\n  },\\\\n  \\\\\\\"arch\\\\\\\": \\\\\\\"nora\\\\\\\",\\\\n  \\\\\\\"suite\\\\\\\": \\\\\\\"goal\\\\\\\",\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"trained\\\\\\\",\\\\n  \\\\\\\"n_demos\\\\\\\": 100,\\\\n  \\\\\\\"n_total_samples\\\\\\\": 5000,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n  \\\\\\\"dry_run\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.3683,\\n    \\\"L1\\\": 0.3361,\\n    \\\"L2\\\": 0.3191,\\n    \\\"L3\\\": 0.3626,\\n    \\\"L4\\\": 0.355,\\n    \\\"L5\\\": 0.3564,\\n    \\\"L6\\\": 0.3921,\\n    \\\"L7\\\": 0.3838,\\n    \\\"L8\\\": 0.4489,\\n    \\\"L9\\\": 0.4457,\\n    \\\"L10\\\": 0.429,\\n    \\\"L11\\\": 0.4378,\\n    \\\"L12\\\": 0.4315,\\n    \\\"L13\\\": 0.4372,\\n    \\\"L14\\\": 0.4456,\\n    \\\"L15\\\": 0.4294,\\n    \\\"L16\\\": 0.4071,\\n    \\\"L17\\\": 0.4058,\\n    \\\"L18\\\": 0.3767,\\n    \\\"L19\\\": 0.3639,\\n    \\\"L20\\\": 0.3527,\\n    \\\"L21\\\": 0.3491,\\n    \\\"L22\\\": 0.3185,\\n    \\\"L23\\\": 0.3133,\\n    \\\"L24\\\": 0.3723,\\n    \\\"L25\\\": 0.3724,\\n    \\\"L26\\\": 0.3649,\\n    \\\"L27\\\": 0.3649,\\n    \\\"L28\\\": 0.365,\\n    \\\"L29\\\": 0.3382,\\n    \\\"L30\\\": 0.2892,\\n    \\\"L31\\\": 0.2892,\\n    \\\"L32\\\": 0.2769,\\n    \\\"L33\\\": 0.2769,\\n    \\\"L34\\\": 0.2773,\\n    \\\"L35\\\": -0.0062\\n  },\\n  \\\"peak_r2\\\": 0.4489,\\n  \\\"peak_layer\\\": \\\"L8\\\",\\n  \\\"exit_r2\\\": -0.0062,\\n  \\\"exit_layer\\\": \\\"L35\\\",\\n  \\\"delta\\\": 0.4551,\\n  \\\"delta_ci_95\\\": [\\n    0.9099,\\n    1.6077\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": 1.2155,\\n    \\\"std\\\": 0.1786,\\n    \\\"median\\\": 1.1986\\n  },\\n  \\\"arch\\\": \\\"nora\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"trained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014VTvQCEaAEYY3xziYQ99cY`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/bootstrap_v3/ -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "ab21096d-fafe-47d9-8f39-4e3102949401",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RH3uMs183vEoBH1NVkvmLS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 25237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T11:16:20.113Z_
+
+<details><summary>↩ Tool result · `toolu_014PKTAQPWPn74AKFAvzNbP2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.4305,\\n    \\\"L1\\\": 0.4554,\\n    \\\"L2\\\": 0.4816,\\n    \\\"L3\\\": 0.4982,\\n    \\\"L4\\\": 0.4775,\\n    \\\"L5\\\": 0.4805,\\n    \\\"L6\\\": 0.4699,\\n    \\\"L7\\\": 0.4394,\\n    \\\"L8\\\": 0.4493,\\n    \\\"L9\\\": 0.4916,\\n    \\\"L10\\\": 0.487,\\n    \\\"L11\\\": 0.5048,\\n    \\\"L12\\\": 0.4626,\\n    \\\"L13\\\": 0.4641,\\n    \\\"L14\\\": 0.4141,\\n    \\\"L15\\\": 0.4814,\\n    \\\"L16\\\": 0.4519,\\n    \\\"L17\\\": 0.4284,\\n    \\\"L18\\\": 0.411,\\n    \\\"L19\\\": 0.4034,\\n    \\\"L20\\\": 0.3982,\\n    \\\"L21\\\": 0.495,\\n    \\\"L22\\\": 0.4841,\\n    \\\"L23\\\": 0.4803,\\n    \\\"L24\\\": 0.4708,\\n    \\\"L25\\\": 0.4671,\\n    \\\"L26\\\": 0.4537,\\n    \\\"L27\\\": 0.4209,\\n    \\\"L28\\\": 0.3699,\\n    \\\"L29\\\": 0.3528,\\n    \\\"L30\\\": 0.47,\\n    \\\"L31\\\": 0.4403\\n  },\\n  \\\"peak_r2\\\": 0.5048,\\n  \\\"peak_layer\\\": \\\"L11\\\",\\n  \\\"exit_r2\\\": 0.4403,\\n  \\\"exit_layer\\\": \\\"L31\\\",\\n  \\\"delta\\\": 0.0645,\\n  \\\"delta_ci_95\\\": [\\n    -0.1084,\\n    0.051\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": -0.0232,\\n    \\\"std\\\": 0.0407,\\n    \\\"median\\\": -0.0223\\n  },\\n  \\\"arch\\\": \\\"tracvla\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"untrained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "9b115a59-e873-479d-807f-0500fe536eab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_layer_r2\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.4305,\\\\n    \\\\\\\"L1\\\\\\\": 0.4554,\\\\n    \\\\\\\"L2\\\\\\\": 0.4816,\\\\n    \\\\\\\"L3\\\\\\\": 0.4982,\\\\n    \\\\\\\"L4\\\\\\\": 0.4775,\\\\n    \\\\\\\"L5\\\\\\\": 0.4805,\\\\n    \\\\\\\"L6\\\\\\\": 0.4699,\\\\n    \\\\\\\"L7\\\\\\\": 0.4394,\\\\n    \\\\\\\"L8\\\\\\\": 0.4493,\\\\n    \\\\\\\"L9\\\\\\\": 0.4916,\\\\n    \\\\\\\"L10\\\\\\\": 0.487,\\\\n    \\\\\\\"L11\\\\\\\": 0.5048,\\\\n    \\\\\\\"L12\\\\\\\": 0.4626,\\\\n    \\\\\\\"L13\\\\\\\": 0.4641,\\\\n    \\\\\\\"L14\\\\\\\": 0.4141,\\\\n    \\\\\\\"L15\\\\\\\": 0.4814,\\\\n    \\\\\\\"L16\\\\\\\": 0.4519,\\\\n    \\\\\\\"L17\\\\\\\": 0.4284,\\\\n    \\\\\\\"L18\\\\\\\": 0.411,\\\\n    \\\\\\\"L19\\\\\\\": 0.4034,\\\\n    \\\\\\\"L20\\\\\\\": 0.3982,\\\\n    \\\\\\\"L21\\\\\\\": 0.495,\\\\n    \\\\\\\"L22\\\\\\\": 0.4841,\\\\n    \\\\\\\"L23\\\\\\\": 0.4803,\\\\n    \\\\\\\"L24\\\\\\\": 0.4708,\\\\n    \\\\\\\"L25\\\\\\\": 0.4671,\\\\n    \\\\\\\"L26\\\\\\\": 0.4537,\\\\n    \\\\\\\"L27\\\\\\\": 0.4209,\\\\n    \\\\\\\"L28\\\\\\\": 0.3699,\\\\n    \\\\\\\"L29\\\\\\\": 0.3528,\\\\n    \\\\\\\"L30\\\\\\\": 0.47,\\\\n    \\\\\\\"L31\\\\\\\": 0.4403\\\\n  },\\\\n  \\\\\\\"peak_r2\\\\\\\": 0.5048,\\\\n  \\\\\\\"peak_layer\\\\\\\": \\\\\\\"L11\\\\\\\",\\\\n  \\\\\\\"exit_r2\\\\\\\": 0.4403,\\\\n  \\\\\\\"exit_layer\\\\\\\": \\\\\\\"L31\\\\\\\",\\\\n  \\\\\\\"delta\\\\\\\": 0.0645,\\\\n  \\\\\\\"delta_ci_95\\\\\\\": [\\\\n    -0.1084,\\\\n    0.051\\\\n  ],\\\\n  \\\\\\\"bootstrap_deltas_summary\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -0.0232,\\\\n    \\\\\\\"std\\\\\\\": 0.0407,\\\\n    \\\\\\\"median\\\\\\\": -0.0223\\\\n  },\\\\n  \\\\\\\"arch\\\\\\\": \\\\\\\"tracvla\\\\\\\",\\\\n  \\\\\\\"suite\\\\\\\": \\\\\\\"goal\\\\\\\",\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"untrained\\\\\\\",\\\\n  \\\\\\\"n_demos\\\\\\\": 100,\\\\n  \\\\\\\"n_total_samples\\\\\\\": 5000,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n  \\\\\\\"dry_run\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.4305,\\n    \\\"L1\\\": 0.4554,\\n    \\\"L2\\\": 0.4816,\\n    \\\"L3\\\": 0.4982,\\n    \\\"L4\\\": 0.4775,\\n    \\\"L5\\\": 0.4805,\\n    \\\"L6\\\": 0.4699,\\n    \\\"L7\\\": 0.4394,\\n    \\\"L8\\\": 0.4493,\\n    \\\"L9\\\": 0.4916,\\n    \\\"L10\\\": 0.487,\\n    \\\"L11\\\": 0.5048,\\n    \\\"L12\\\": 0.4626,\\n    \\\"L13\\\": 0.4641,\\n    \\\"L14\\\": 0.4141,\\n    \\\"L15\\\": 0.4814,\\n    \\\"L16\\\": 0.4519,\\n    \\\"L17\\\": 0.4284,\\n    \\\"L18\\\": 0.411,\\n    \\\"L19\\\": 0.4034,\\n    \\\"L20\\\": 0.3982,\\n    \\\"L21\\\": 0.495,\\n    \\\"L22\\\": 0.4841,\\n    \\\"L23\\\": 0.4803,\\n    \\\"L24\\\": 0.4708,\\n    \\\"L25\\\": 0.4671,\\n    \\\"L26\\\": 0.4537,\\n    \\\"L27\\\": 0.4209,\\n    \\\"L28\\\": 0.3699,\\n    \\\"L29\\\": 0.3528,\\n    \\\"L30\\\": 0.47,\\n    \\\"L31\\\": 0.4403\\n  },\\n  \\\"peak_r2\\\": 0.5048,\\n  \\\"peak_layer\\\": \\\"L11\\\",\\n  \\\"exit_r2\\\": 0.4403,\\n  \\\"exit_layer\\\": \\\"L31\\\",\\n  \\\"delta\\\": 0.0645,\\n  \\\"delta_ci_95\\\": [\\n    -0.1084,\\n    0.051\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": -0.0232,\\n    \\\"std\\\": 0.0407,\\n    \\\"median\\\": -0.0223\\n  },\\n  \\\"arch\\\": \\\"tracvla\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"untrained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T11:16:20.709Z_
+
+<details><summary>↩ Tool result · `toolu_014VTvQCEaAEYY3xziYQ99cY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_long/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/untrained.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "8e872ad9-55d2-4373-89a1-a30339b80db3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_goal/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_goal/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_spatial/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_spatial/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_object/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_object/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_long/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_long/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/untrained.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_long/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/untrained.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the data. Let me analyze both anomalies.
+
+**Anomaly 1: NORA goal trained**
+- Per-layer R²: L0-L34 range from ~0.27 to ~0.45, with peak at L8 (0.4489)
+- Exit layer L35: R² = -0.0062 (essentially zero/slightly negative)
+- Canonical delta = 0.4551 (peak - exit = 0.4489 - (-0.0062))
+- Bootstrap: mean delta = 1.2155, CI = [0.91, 1.61]
+
+
+- The bootstrap mean is roughly 2.67 times larger than the canonical delta, which is a major red flag
+
+The issue is that L35's near-zero R² becomes highly unstable during resampling—when the test set happens to be harder for the probe, R² can plummet to very negative values with no lower bound, artificially inflating the delta in bootstrap samples.
+
+Now looking at TracVLA goal untrained, the per-layer R² profile is relatively flat across layers 0.35-0.50, with L11 peaking at 0.5048 and the exit layer at 0.4403, giving a canonical delta of 0.0645. But the bootstrap mean delta is actually negative at -0.0232 with a confidence interval spanning from -0.11 to 0.05, which suggests the delta isn't stable or meaningful here.
+
+The flatness of the profile is the culprit — so many layers cluster around similar R² values that the peak layer selection becomes unreliable across resamples. When the peak and exit layers are recomputed on different bootstrap samples, different layers can emerge as the peak, and since the exit R² (0.44) sits so close to the canonical peak R² (0.50), it's easy for resamples to flip the sign of delta. Though I should verify whether the bootstrap code actually fixes the peak and exit layers to their canonical positions or if it's reselecting them each time. me think again...
+
+If the bootstrap fixes peak_layer=L11 and exit_layer=L31:
+- In canonical: L11=0.505, L31=0.440, delta=0.065
+- In bootstrap resamples: the mean delta is -0.023
+
+This means that on average, in resamples, L31's R² exceeds L11's R². This could happen because L11 is an "overfit" peak — it happened to be the best in the full dataset but isn't robustly better. In different train/test splits, L31 may perform comparably or better.
+
+Actually, looking at the profile more carefully:
+- L11 = 0.5048 is the peak
+- But L21 = 0.4950, L22 = 0.4841, L30 = 0.4700 are all close
+- L31 (exit) = 0.4403
+
+The difference between L11 and L31 is only 0.065, which is well within noise margins given 100 demos and 80/20 splits. The bootstrap summary statistics confirm that L11's peak status isn't stable across resamples. I don't have access to the full per-layer bootstrap arrays in the JSON files—only summary statistics—so I can't perform the detailed layer-by-layer analysis, but the canonical profiles and bootstrap summaries already tell me the story. Let me look at the bootstrap script to understand exactly how the deltas are being computed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "b0a57d34-c210-434f-b691-48be7fde916f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MFxBwaTraro82o1cT34Mtw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3046,
+      "cache_read_input_tokens": 25962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3046
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+数据已获取。需要查看 bootstrap 脚本的 delta 计算逻辑，以及检查是否有保存完整 bootstrap 数组的文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "31482313-72d3-4a35-9e28-c53ff82fc0b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MFxBwaTraro82o1cT34Mtw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3046,
+      "cache_read_input_tokens": 25962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3046
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012tauSbBoTRzazFp2bpvUmn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd -name \"*bootstrap*v3*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "53d7718b-c580-4ac6-820d-441e441713bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MFxBwaTraro82o1cT34Mtw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3046,
+      "cache_read_input_tokens": 25962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3046
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T11:16:56.710Z_
+
+<details><summary>↩ Tool result · `toolu_012tauSbBoTRzazFp2bpvUmn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "a0680427-3311-49fe-9dd2-9b45936c5bbe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0157hxo7YjMtLKZNWSPowT2d`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/bootstrap_v3/ -name \"*.npy\" -o -name \"*.pkl\" -o -name \"*deltas*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "1d691efe-2119-4403-98d1-d14eb1453dbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MFxBwaTraro82o1cT34Mtw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3046,
+      "cache_read_input_tokens": 25962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3046
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HipUCpntBR1pWSJy34dsee`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "b1773601-348d-49e3-97c5-edf2ab70c898",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MFxBwaTraro82o1cT34Mtw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3046,
+      "cache_read_input_tokens": 25962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3046
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T11:16:57.408Z_
+
+<details><summary>↩ Tool result · `toolu_0157hxo7YjMtLKZNWSPowT2d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "67971765-df05-4a06-bb5a-616592b3065e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T11:16:58.008Z_
+
+<details><summary>↩ Tool result · `toolu_01HipUCpntBR1pWSJy34dsee`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  2 root root   60 May 23 18:14 .\\ndrwxr-xr-x 11 root root 4096 May 23 18:37 ..\\n-rw-r--r--  1 root root 1100 May 23 17:57 trained.json\\n-rw-r--r--  1 root root 1103 May 23 18:14 untrained.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "4c3913db-2162-4a5c-8b44-1e6eb9d675e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12\\\\ndrwxr-xr-x  2 root root   60 May 23 18:14 .\\\\ndrwxr-xr-x 11 root root 4096 May 23 18:37 ..\\\\n-rw-r--r--  1 root root 1100 May 23 17:57 trained.json\\\\n-rw-r--r--  1 root root 1103 May 23 18:14 untrained.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  2 root root   60 May 23 18:14 .\\ndrwxr-xr-x 11 root root 4096 May 23 18:37 ..\\n-rw-r--r--  1 root root 1100 May 23 17:57 trained.json\\n-rw-r--r--  1 root root 1103 May 23 18:14 untrained.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No .npy or .pkl files, and no bootstrap script named with "v3" in the project directory. Let me find the actual bootstrap script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "0efa85c2-9eec-4002-af43-cb7de1e28005",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QAXVuYsVi95UtpReay5rLc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1942,
+      "cache_read_input_tokens": 29008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012FWhhFS7jyWoUuCR7EEKVn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd -name \"*bootstrap*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "0a0f99eb-3316-47ed-ac25-0b29ff92d851",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QAXVuYsVi95UtpReay5rLc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1942,
+      "cache_read_input_tokens": 29008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019P8zgh5LUe81yw93YP3Lez`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd -name \"*bootstrap*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "8f678876-5e68-4658-ad8e-3ae754993ac6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QAXVuYsVi95UtpReay5rLc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1942,
+      "cache_read_input_tokens": 29008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T11:17:03.808Z_
+
+<details><summary>↩ Tool result · `toolu_012FWhhFS7jyWoUuCR7EEKVn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/bootstrap_action_probe.py\\n/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\n/root/vla-ssd/bootstrap_training_effect.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "70b48488-e81f-4e8a-9305-444ba1f20f3d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/vla-ssd/scripts/bootstrap_action_probe.py\\\\n/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\\\n/root/vla-ssd/bootstrap_training_effect.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/bootstrap_action_probe.py\\n/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\n/root/vla-ssd/bootstrap_training_effect.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T11:17:04.428Z_
+
+<details><summary>↩ Tool result · `toolu_019P8zgh5LUe81yw93YP3Lez`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.png\\n/root/autodl-tmp/vla-ssd/results/rsa/bootstrap_training_effect.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/bootstrap_ci_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_ci_values.json\\n/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\\n/root/autodl-tmp/vla-ssd/logs/bootstrap_v3_cuda0.log\\n/root/autodl-tmp/vla-ssd/logs/bootstrap_v3_cuda1.log\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda0.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda1.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_long_cuda0.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_long_cuda1.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda1_retry.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_all_cuda0.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_all_cuda1.sh\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_v3_cuda0.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_v3_cuda1.sh\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_mpi.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_pmi.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_pmi2.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_pmix.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_shmem.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_uid.so.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "e2082f15-b322-4298-a32e-45dd7888ff29",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.png\\\\n/root/autodl-tmp/vla-ssd/results/rsa/bootstrap_training_effect.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/bootstrap_ci_results.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_ci_values.json\\\\n/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\\\\n/root/autodl-tmp/vla-ssd/logs/bootstrap_v3_cuda0.log\\\\n/root/autodl-tmp/vla-ssd/logs/bootstrap_v3_cuda1.log\\\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py\\\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda0.sh\\\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda1.sh\\\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_long_cuda0.sh\\\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_long_cuda1.sh\\\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda1_retry.sh\\\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_all_cuda0.sh\\\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_all_cuda1.sh\\\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py\\\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_v3_cuda0.sh\\\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_v3_cuda1.sh\\\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_mpi.so.3\\\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_pmi.so.3\\\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_pmi2.so.3\\\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_pmix.so.3\\\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_shmem.so.3\\\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_uid.so.3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.png\\n/root/autodl-tmp/vla-ssd/results/rsa/bootstrap_training_effect.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/bootstrap_ci_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_ci_values.json\\n/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\\n/root/autodl-tmp/vla-ssd/logs/bootstrap_v3_cuda0.log\\n/root/autodl-tmp/vla-ssd/logs/bootstrap_v3_cuda1.log\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda0.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda1.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_long_cuda0.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_long_cuda1.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda1_retry.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_all_cuda0.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_all_cuda1.sh\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_v3_cuda0.sh\\n/root/autodl-tmp/vla-ssd/scripts/run_bootstrap_v3_cuda1.sh\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_mpi.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_pmi.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_pmi2.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_pmix.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_shmem.so.3\\n/root/autodl-tmp/vla-ssd/envs/nora/lib/python3.10/site-packages/nvidia/nvshmem/lib/nvshmem_bootstrap_uid.so.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found it. The v3 script is at `/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py`. Let me read it to understand the delta computation logic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "8348bf6f-fe4c-4299-a693-34e87f292717",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SxuuQGaYtrN6QorPhq1PqK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1545,
+      "cache_read_input_tokens": 30950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QebhiEPppXcFwJKfvCu12o`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "5ea7b0fd-aea3-428d-9d55-8c83c5594477",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SxuuQGaYtrN6QorPhq1PqK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1545,
+      "cache_read_input_tokens": 30950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T11:17:12.180Z_
+
+<details><summary>↩ Tool result · `toolu_01QebhiEPppXcFwJKfvCu12o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Clustered Bootstrap R2 Probing v3 — Monte Carlo Cross-Validation (no-replacement split).\\n\\nv3 fix: v2 used with-replacement bootstrap then positional 80/20 split, allowing the\\nsame demo to appear in both train and test sets. v3 replaces this with without-replacement\\nrandom permutation (Monte Carlo CV), guaranteeing train/test demo disjointness.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, sys, time, types\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\nos.environ[\\\"OPENBLAS_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"MKL_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"OMP_NUM_THREADS\\\"] = \\\"1\\\"\\n\\nimport numpy as np\\nimport h5py\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import RidgeCV\\nimport importlib.util\\nfrom multiprocessing import Pool, cpu_count\\nfrom scipy.linalg import cho_factor, cho_solve\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\nCKPT = {\\n    \\\"openvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n    },\\n    \\\"tracvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n    },\\n    \\\"nora\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n    },\\n}\\n\\nARCH_INFO = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"hidden\\\": 2048},\\n}\\n\\nDATA_ROOT = \\\"/root/autodl-tmp/vla-ssd/data/libero\\\"\\n\\n\\ndef _load_openvla_modules(ckpt_path):\\n    pkg_name = \\\"_openvla_pkg\\\"\\n    pkg = types.ModuleType(pkg_name)\\n    pkg.__path__ = [ckpt_path]\\n    pkg.__package__ = pkg_name\\n    sys.modules[pkg_name] = pkg\\n\\n    for name in [\\\"configuration_prismatic\\\", \\\"modeling_prismatic\\\", \\\"processing_prismatic\\\"]:\\n        full = f\\\"{pkg_name}.{name}\\\"\\n        fpath = os.path.join(ckpt_path, f\\\"{name}.py\\\")\\n        with open(fpath) as f:\\n            src = f.read()\\n        # Fix transformers 5.x import changes\\n        src = src.replace(\\n            \\\"from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\",\\n            \\\"from transformers.utils import PaddingStrategy\\\\n\\\"\\n            \\\"from transformers.tokenization_utils_base import PreTokenizedInput, TextInput, TruncationStrategy\\\"\\n        )\\n        mod = types.ModuleType(full)\\n        mod.__file__ = fpath\\n        mod.__package__ = pkg_name\\n        sys.modules[full] = mod\\n        sys.modules[name] = mod\\n        setattr(pkg, nam\\n\\n... [截断: 输出过长，省略 10766 字符] ...\\n\\n boot_r2[:, canon_peak_l]\\n    exit_r2_boot = boot_r2[:, exit_l]\\n    deltas = peak_r2_boot - exit_r2_boot\\n    ci_lo, ci_hi = np.percentile(deltas, [2.5, 97.5])\\n\\n    return {\\n        \\\"per_layer_r2\\\": {f\\\"L{l}\\\": round(canon_r2[l], 4) for l in range(n_layers)},\\n        \\\"peak_r2\\\": round(canon_r2[canon_peak_l], 4),\\n        \\\"peak_layer\\\": f\\\"L{canon_peak_l}\\\",\\n        \\\"exit_r2\\\": round(canon_r2[exit_l], 4),\\n        \\\"exit_layer\\\": f\\\"L{exit_l}\\\",\\n        \\\"delta\\\": round(canon_r2[canon_peak_l] - canon_r2[exit_l], 4),\\n        \\\"delta_ci_95\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\n        \\\"bootstrap_deltas_summary\\\": {\\n            \\\"mean\\\": round(float(np.mean(deltas)), 4),\\n            \\\"std\\\": round(float(np.std(deltas)), 4),\\n            \\\"median\\\": round(float(np.median(deltas)), 4),\\n        },\\n    }\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--arch\\\", required=True, choices=[\\\"openvla\\\", \\\"tracvla\\\", \\\"nora\\\"])\\n    p.add_argument(\\\"--suite\\\", required=True, choices=[\\\"goal\\\", \\\"spatial\\\", \\\"object\\\", \\\"long\\\"])\\n    p.add_argument(\\\"--condition\\\", required=True, choices=[\\\"trained\\\", \\\"untrained\\\"])\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--n_bootstrap\\\", type=int, default=10000)\\n    p.add_argument(\\\"--n_demos\\\", type=int, default=10)\\n    p.add_argument(\\\"--n_timesteps\\\", type=int, default=50)\\n    p.add_argument(\\\"--output_dir\\\",\\n                   default=\\\"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\")\\n    args = p.parse_args()\\n\\n    if args.dry_run:\\n        args.n_demos = 2\\n        args.n_timesteps = 5\\n        args.n_bootstrap = min(args.n_bootstrap, 100)\\n\\n    if args.suite not in CKPT.get(args.arch, {}):\\n        log(f\\\"ERROR: no checkpoint for {args.arch}/{args.suite}\\\")\\n        sys.exit(1)\\n    if args.condition not in CKPT[args.arch][args.suite]:\\n        log(f\\\"ERROR: no {args.condition} checkpoint for {args.arch}/{args.suite}\\\")\\n        sys.exit(1)\\n\\n    device = f\\\"cuda:{args.gpu}\\\"\\n    ckpt_path = CKPT[args.arch][args.suite][args.condition]\\n    suite_data_name = \\\"libero_10\\\" if args.suite == \\\"long\\\" else f\\\"libero_{args.suite}\\\"\\n    data_dir = os.path.join(DATA_ROOT, suite_data_name)\\n\\n    log(f\\\"=== {args.arch} / {args.suite} / {args.condition} ===\\\")\\n    log(f\\\"Checkpoint: {ckpt_path}\\\")\\n    log(f\\\"Data: {data_dir}\\\")\\n    log(f\\\"demos={args.n_demos} timesteps={args.n_timesteps} bootstrap={args.n_bootstrap}\\\")\\n    if args.dry_run:\\n        log(\\\"DRY RUN\\\")\\n\\n    tasks, instructions = discover_tasks(data_dir)\\n    if args.dry_run:\\n        tasks = tasks[:2]\\n        instructions = instructions[:2]\\n    log(f\\\"Tasks: {len(tasks)}\\\")\\n\\n    model, processor = load_model(args.arch, ckpt_path, device)\\n\\n    t0 = time.time()\\n    features, actions, demo_ids = extract_features(\\n        args.arch, model, processor, tasks, instructions, data_dir,\\n        device, args.n_demos, args.n_timesteps)\\n    log(f\\\"Extraction: {time.time()-t0:.1f}s\\\")\\n\\n    del model, processor\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    n_layers = ARCH_INFO[args.arch][\\\"n_layers\\\"]\\n    result = clustered_bootstrap_r2(\\n        features, actions, demo_ids, n_layers, args.n_bootstrap)\\n    log(f\\\"Bootstrap: {time.time()-t1:.1f}s\\\")\\n\\n    result[\\\"arch\\\"] = args.arch\\n    result[\\\"suite\\\"] = args.suite\\n    result[\\\"condition\\\"] = args.condition\\n    result[\\\"n_demos\\\"] = int(len(np.unique(demo_ids)))\\n    result[\\\"n_total_samples\\\"] = int(len(actions))\\n    result[\\\"n_bootstrap\\\"] = args.n_bootstrap\\n    result[\\\"dry_run\\\"] = args.dry_run\\n\\n    out_dir = os.path.join(args.output_dir, f\\\"{args.arch}_{args.suite}\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, f\\\"{args.condition}.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    log(f\\\"Saved: {out_path}\\\")\\n\\n    log(f\\\"Peak R2={result['peak_r2']} @ {result['peak_layer']}\\\")\\n    log(f\\\"Exit R2={result['exit_r2']} @ {result['exit_layer']}\\\")\\n    log(f\\\"Delta={result['delta']}  CI95={result['delta_ci_95']}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "adf63fc9-8759-4217-87d4-7ae5457ead0e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Clustered Bootstrap R2 Probing v3 — Monte Carlo Cross-Validation (no-replacement split).\\\\n\\\\nv3 fix: v2 used with-replacement bootstrap then positional 80/20 split, allowing the\\\\nsame demo to appear in both train and test sets. v3 replaces this with without-replacement\\\\nrandom permutation (Monte Carlo CV), guaranteeing train/test demo disjointness.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, sys, time, types\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\nos.environ[\\\\\\\"OPENBLAS_NUM_THREADS\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"MKL_NUM_THREADS\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"OMP_NUM_THREADS\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport h5py\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import RidgeCV\\\\nimport importlib.util\\\\nfrom multiprocessing import Pool, cpu_count\\\\nfrom scipy.linalg import cho_factor, cho_solve\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\nCKPT = {\\\\n    \\\\\\\"openvla\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"object\\\\\\\":  {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"long\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n    },\\\\n    \\\\\\\"tracvla\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"object\\\\\\\":  {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"long\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n    },\\\\n    \\\\\\\"nora\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\\\\\"},\\\\n    },\\\\n}\\\\n\\\\nARCH_INFO = {\\\\n    \\\\\\\"openvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 4096},\\\\n    \\\\\\\"tracvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 3072},\\\\n    \\\\\\\"nora\\\\\\\":    {\\\\\\\"n_layers\\\\\\\": 36, \\\\\\\"hidden\\\\\\\": 2048},\\\\n}\\\\n\\\\nDATA_ROOT = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero\\\\\\\"\\\\n\\\\n\\\\ndef _load_openvla_modules(ckpt_path):\\\\n    pkg_name = \\\\\\\"_openvla_pkg\\\\\\\"\\\\n    pkg = types.ModuleType(pkg_name)\\\\n    pkg.__path__ = [ckpt_path]\\\\n    pkg.__package__ = pkg_name\\\\n    sys.modules[pkg_name] = pkg\\\\n\\\\n    for name in [\\\\\\\"configuration_prismatic\\\\\\\", \\\\\\\"modeling_prismatic\\\\\\\", \\\\\\\"processing_prismatic\\\\\\\"]:\\\\n        full = f\\\\\\\"{pkg_name}.{name}\\\\\\\"\\\\n        fpath = os.path.join(ckpt_path, f\\\\\\\"{name}.py\\\\\\\")\\\\n        with open(fpath) as f:\\\\n            src = f.read()\\\\n        # Fix transformers 5.x import changes\\\\n        src = src.replace(\\\\n            \\\\\\\"from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\\\\\",\\\\n            \\\\\\\"from transformers.utils import PaddingStrategy\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"from transformers.tokenization_utils_base import PreTokenizedInput, TextInput, TruncationStrategy\\\\\\\"\\\\n        )\\\\n        mod = types.ModuleType(full)\\\\n        mod.__file__ = fpath\\\\n        mod.__package__ = pkg_name\\\\n        sys.modules[full] = mod\\\\n        sys.modules[name] = mod\\\\n        setattr(pkg, nam\\\\n\\\\n... [截断: 输出过长，省略 10766 字符] ...\\\\n\\\\n boot_r2[:, canon_peak_l]\\\\n    exit_r2_boot = boot_r2[:, exit_l]\\\\n    deltas = peak_r2_boot - exit_r2_boot\\\\n    ci_lo, ci_hi = np.percentile(deltas, [2.5, 97.5])\\\\n\\\\n    return {\\\\n        \\\\\\\"per_layer_r2\\\\\\\": {f\\\\\\\"L{l}\\\\\\\": round(canon_r2[l], 4) for l in range(n_layers)},\\\\n        \\\\\\\"peak_r2\\\\\\\": round(canon_r2[canon_peak_l], 4),\\\\n        \\\\\\\"peak_layer\\\\\\\": f\\\\\\\"L{canon_peak_l}\\\\\\\",\\\\n        \\\\\\\"exit_r2\\\\\\\": round(canon_r2[exit_l], 4),\\\\n        \\\\\\\"exit_layer\\\\\\\": f\\\\\\\"L{exit_l}\\\\\\\",\\\\n        \\\\\\\"delta\\\\\\\": round(canon_r2[canon_peak_l] - canon_r2[exit_l], 4),\\\\n        \\\\\\\"delta_ci_95\\\\\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\\\n        \\\\\\\"bootstrap_deltas_summary\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": round(float(np.mean(deltas)), 4),\\\\n            \\\\\\\"std\\\\\\\": round(float(np.std(deltas)), 4),\\\\n            \\\\\\\"median\\\\\\\": round(float(np.median(deltas)), 4),\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--arch\\\\\\\", required=True, choices=[\\\\\\\"openvla\\\\\\\", \\\\\\\"tracvla\\\\\\\", \\\\\\\"nora\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", required=True, choices=[\\\\\\\"goal\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"long\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--condition\\\\\\\", required=True, choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--n_bootstrap\\\\\\\", type=int, default=10000)\\\\n    p.add_argument(\\\\\\\"--n_demos\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--n_timesteps\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\",\\\\n                   default=\\\\\\\"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    if args.dry_run:\\\\n        args.n_demos = 2\\\\n        args.n_timesteps = 5\\\\n        args.n_bootstrap = min(args.n_bootstrap, 100)\\\\n\\\\n    if args.suite not in CKPT.get(args.arch, {}):\\\\n        log(f\\\\\\\"ERROR: no checkpoint for {args.arch}/{args.suite}\\\\\\\")\\\\n        sys.exit(1)\\\\n    if args.condition not in CKPT[args.arch][args.suite]:\\\\n        log(f\\\\\\\"ERROR: no {args.condition} checkpoint for {args.arch}/{args.suite}\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    device = f\\\\\\\"cuda:{args.gpu}\\\\\\\"\\\\n    ckpt_path = CKPT[args.arch][args.suite][args.condition]\\\\n    suite_data_name = \\\\\\\"libero_10\\\\\\\" if args.suite == \\\\\\\"long\\\\\\\" else f\\\\\\\"libero_{args.suite}\\\\\\\"\\\\n    data_dir = os.path.join(DATA_ROOT, suite_data_name)\\\\n\\\\n    log(f\\\\\\\"=== {args.arch} / {args.suite} / {args.condition} ===\\\\\\\")\\\\n    log(f\\\\\\\"Checkpoint: {ckpt_path}\\\\\\\")\\\\n    log(f\\\\\\\"Data: {data_dir}\\\\\\\")\\\\n    log(f\\\\\\\"demos={args.n_demos} timesteps={args.n_timesteps} bootstrap={args.n_bootstrap}\\\\\\\")\\\\n    if args.dry_run:\\\\n        log(\\\\\\\"DRY RUN\\\\\\\")\\\\n\\\\n    tasks, instructions = discover_tasks(data_dir)\\\\n    if args.dry_run:\\\\n        tasks = tasks[:2]\\\\n        instructions = instructions[:2]\\\\n    log(f\\\\\\\"Tasks: {len(tasks)}\\\\\\\")\\\\n\\\\n    model, processor = load_model(args.arch, ckpt_path, device)\\\\n\\\\n    t0 = time.time()\\\\n    features, actions, demo_ids = extract_features(\\\\n        args.arch, model, processor, tasks, instructions, data_dir,\\\\n        device, args.n_demos, args.n_timesteps)\\\\n    log(f\\\\\\\"Extraction: {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n    del model, processor\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    t1 = time.time()\\\\n    n_layers = ARCH_INFO[args.arch][\\\\\\\"n_layers\\\\\\\"]\\\\n    result = clustered_bootstrap_r2(\\\\n        features, actions, demo_ids, n_layers, args.n_bootstrap)\\\\n    log(f\\\\\\\"Bootstrap: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n    result[\\\\\\\"arch\\\\\\\"] = args.arch\\\\n    result[\\\\\\\"suite\\\\\\\"] = args.suite\\\\n    result[\\\\\\\"condition\\\\\\\"] = args.condition\\\\n    result[\\\\\\\"n_demos\\\\\\\"] = int(len(np.unique(demo_ids)))\\\\n    result[\\\\\\\"n_total_samples\\\\\\\"] = int(len(actions))\\\\n    result[\\\\\\\"n_bootstrap\\\\\\\"] = args.n_bootstrap\\\\n    result[\\\\\\\"dry_run\\\\\\\"] = args.dry_run\\\\n\\\\n    out_dir = os.path.join(args.output_dir, f\\\\\\\"{args.arch}_{args.suite}\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n    out_path = os.path.join(out_dir, f\\\\\\\"{args.condition}.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(result, f, indent=2)\\\\n    log(f\\\\\\\"Saved: {out_path}\\\\\\\")\\\\n\\\\n    log(f\\\\\\\"Peak R2={result['peak_r2']} @ {result['peak_layer']}\\\\\\\")\\\\n    log(f\\\\\\\"Exit R2={result['exit_r2']} @ {result['exit_layer']}\\\\\\\")\\\\n    log(f\\\\\\\"Delta={result['delta']}  CI95={result['delta_ci_95']}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Clustered Bootstrap R2 Probing v3 — Monte Carlo Cross-Validation (no-replacement split).\\n\\nv3 fix: v2 used with-replacement bootstrap then positional 80/20 split, allowing the\\nsame demo to appear in both train and test sets. v3 replaces this with without-replacement\\nrandom permutation (Monte Carlo CV), guaranteeing train/test demo disjointness.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, sys, time, types\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\nos.environ[\\\"OPENBLAS_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"MKL_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"OMP_NUM_THREADS\\\"] = \\\"1\\\"\\n\\nimport numpy as np\\nimport h5py\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import RidgeCV\\nimport importlib.util\\nfrom multiprocessing import Pool, cpu_count\\nfrom scipy.linalg import cho_factor, cho_solve\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\nCKPT = {\\n    \\\"openvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n    },\\n    \\\"tracvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n    },\\n    \\\"nora\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n    },\\n}\\n\\nARCH_INFO = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"hidden\\\": 2048},\\n}\\n\\nDATA_ROOT = \\\"/root/autodl-tmp/vla-ssd/data/libero\\\"\\n\\n\\ndef _load_openvla_modules(ckpt_path):\\n    pkg_name = \\\"_openvla_pkg\\\"\\n    pkg = types.ModuleType(pkg_name)\\n    pkg.__path__ = [ckpt_path]\\n    pkg.__package__ = pkg_name\\n    sys.modules[pkg_name] = pkg\\n\\n    for name in [\\\"configuration_prismatic\\\", \\\"modeling_prismatic\\\", \\\"processing_prismatic\\\"]:\\n        full = f\\\"{pkg_name}.{name}\\\"\\n        fpath = os.path.join(ckpt_path, f\\\"{name}.py\\\")\\n        with open(fpath) as f:\\n            src = f.read()\\n        # Fix transformers 5.x import changes\\n        src = src.replace(\\n            \\\"from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\",\\n            \\\"from transformers.utils import PaddingStrategy\\\\n\\\"\\n            \\\"from transformers.tokenization_utils_base import PreTokenizedInput, TextInput, TruncationStrategy\\\"\\n        )\\n        mod = types.ModuleType(full)\\n        mod.__file__ = fpath\\n        mod.__package__ = pkg_name\\n        sys.modules[full] = mod\\n        sys.modules[name] = mod\\n        setattr(pkg, nam\\n\\n... [截断: 输出过长，省略 10766 字符] ...\\n\\n boot_r2[:, canon_peak_l]\\n    exit_r2_boot = boot_r2[:, exit_l]\\n    deltas = peak_r2_boot - exit_r2_boot\\n    ci_lo, ci_hi = np.percentile(deltas, [2.5, 97.5])\\n\\n    return {\\n        \\\"per_layer_r2\\\": {f\\\"L{l}\\\": round(canon_r2[l], 4) for l in range(n_layers)},\\n        \\\"peak_r2\\\": round(canon_r2[canon_peak_l], 4),\\n        \\\"peak_layer\\\": f\\\"L{canon_peak_l}\\\",\\n        \\\"exit_r2\\\": round(canon_r2[exit_l], 4),\\n        \\\"exit_layer\\\": f\\\"L{exit_l}\\\",\\n        \\\"delta\\\": round(canon_r2[canon_peak_l] - canon_r2[exit_l], 4),\\n        \\\"delta_ci_95\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\n        \\\"bootstrap_deltas_summary\\\": {\\n            \\\"mean\\\": round(float(np.mean(deltas)), 4),\\n            \\\"std\\\": round(float(np.std(deltas)), 4),\\n            \\\"median\\\": round(float(np.median(deltas)), 4),\\n        },\\n    }\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--arch\\\", required=True, choices=[\\\"openvla\\\", \\\"tracvla\\\", \\\"nora\\\"])\\n    p.add_argument(\\\"--suite\\\", required=True, choices=[\\\"goal\\\", \\\"spatial\\\", \\\"object\\\", \\\"long\\\"])\\n    p.add_argument(\\\"--condition\\\", required=True, choices=[\\\"trained\\\", \\\"untrained\\\"])\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--n_bootstrap\\\", type=int, default=10000)\\n    p.add_argument(\\\"--n_demos\\\", type=int, default=10)\\n    p.add_argument(\\\"--n_timesteps\\\", type=int, default=50)\\n    p.add_argument(\\\"--output_dir\\\",\\n                   default=\\\"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\")\\n    args = p.parse_args()\\n\\n    if args.dry_run:\\n        args.n_demos = 2\\n        args.n_timesteps = 5\\n        args.n_bootstrap = min(args.n_bootstrap, 100)\\n\\n    if args.suite not in CKPT.get(args.arch, {}):\\n        log(f\\\"ERROR: no checkpoint for {args.arch}/{args.suite}\\\")\\n        sys.exit(1)\\n    if args.condition not in CKPT[args.arch][args.suite]:\\n        log(f\\\"ERROR: no {args.condition} checkpoint for {args.arch}/{args.suite}\\\")\\n        sys.exit(1)\\n\\n    device = f\\\"cuda:{args.gpu}\\\"\\n    ckpt_path = CKPT[args.arch][args.suite][args.condition]\\n    suite_data_name = \\\"libero_10\\\" if args.suite == \\\"long\\\" else f\\\"libero_{args.suite}\\\"\\n    data_dir = os.path.join(DATA_ROOT, suite_data_name)\\n\\n    log(f\\\"=== {args.arch} / {args.suite} / {args.condition} ===\\\")\\n    log(f\\\"Checkpoint: {ckpt_path}\\\")\\n    log(f\\\"Data: {data_dir}\\\")\\n    log(f\\\"demos={args.n_demos} timesteps={args.n_timesteps} bootstrap={args.n_bootstrap}\\\")\\n    if args.dry_run:\\n        log(\\\"DRY RUN\\\")\\n\\n    tasks, instructions = discover_tasks(data_dir)\\n    if args.dry_run:\\n        tasks = tasks[:2]\\n        instructions = instructions[:2]\\n    log(f\\\"Tasks: {len(tasks)}\\\")\\n\\n    model, processor = load_model(args.arch, ckpt_path, device)\\n\\n    t0 = time.time()\\n    features, actions, demo_ids = extract_features(\\n        args.arch, model, processor, tasks, instructions, data_dir,\\n        device, args.n_demos, args.n_timesteps)\\n    log(f\\\"Extraction: {time.time()-t0:.1f}s\\\")\\n\\n    del model, processor\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    n_layers = ARCH_INFO[args.arch][\\\"n_layers\\\"]\\n    result = clustered_bootstrap_r2(\\n        features, actions, demo_ids, n_layers, args.n_bootstrap)\\n    log(f\\\"Bootstrap: {time.time()-t1:.1f}s\\\")\\n\\n    result[\\\"arch\\\"] = args.arch\\n    result[\\\"suite\\\"] = args.suite\\n    result[\\\"condition\\\"] = args.condition\\n    result[\\\"n_demos\\\"] = int(len(np.unique(demo_ids)))\\n    result[\\\"n_total_samples\\\"] = int(len(actions))\\n    result[\\\"n_bootstrap\\\"] = args.n_bootstrap\\n    result[\\\"dry_run\\\"] = args.dry_run\\n\\n    out_dir = os.path.join(args.output_dir, f\\\"{args.arch}_{args.suite}\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, f\\\"{args.condition}.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    log(f\\\"Saved: {out_path}\\\")\\n\\n    log(f\\\"Peak R2={result['peak_r2']} @ {result['peak_layer']}\\\")\\n    log(f\\\"Exit R2={result['exit_r2']} @ {result['exit_layer']}\\\")\\n    log(f\\\"Delta={result['delta']}  CI95={result['delta_ci_95']}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011uhbanJg3mNwSpeH3wNzq6`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -50 /root/autodl-tmp/vla-ssd/logs/bootstrap_v3_cuda0.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "1da981d4-ef2c-4df4-8a7f-4e3156920ca8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SxuuQGaYtrN6QorPhq1PqK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1545,
+      "cache_read_input_tokens": 30950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T11:17:12.908Z_
+
+<details><summary>↩ Tool result · `toolu_011uhbanJg3mNwSpeH3wNzq6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[18:40:11]     3450/5000 samples\\n[18:40:13]     3500/5000 samples\\n[18:40:13]   Task 7/10: pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\n[18:40:15]     3550/5000 samples\\n[18:40:17]     3600/5000 samples\\n[18:40:19]     3650/5000 samples\\n[18:40:20]     3700/5000 samples\\n[18:40:22]     3750/5000 samples\\n[18:40:24]     3800/5000 samples\\n[18:40:26]     3850/5000 samples\\n[18:40:28]     3900/5000 samples\\n[18:40:30]     3950/5000 samples\\n[18:40:32]     4000/5000 samples\\n[18:40:32]   Task 8/10: pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\n[18:40:33]     4050/5000 samples\\n[18:40:35]     4100/5000 samples\\n[18:40:37]     4150/5000 samples\\n[18:40:39]     4200/5000 samples\\n[18:40:41]     4250/5000 samples\\n[18:40:43]     4300/5000 samples\\n[18:40:45]     4350/5000 samples\\n[18:40:46]     4400/5000 samples\\n[18:40:48]     4450/5000 samples\\n[18:40:50]     4500/5000 samples\\n[18:40:50]   Task 9/10: pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\n[18:40:52]     4550/5000 samples\\n[18:40:54]     4600/5000 samples\\n[18:40:56]     4650/5000 samples\\n[18:40:58]     4700/5000 samples\\n[18:40:59]     4750/5000 samples\\n[18:41:01]     4800/5000 samples\\n[18:41:03]     4850/5000 samples\\n[18:41:05]     4900/5000 samples\\n[18:41:07]     4950/5000 samples\\n[18:41:09]     5000/5000 samples\\n[18:41:09]   Extraction done: 5000 samples, 100 demos\\n[18:41:09] Extraction: 187.0s\\n[18:41:09]   100 demos, split 80/20\\n[18:41:09]   Canonical split -- fitting RidgeCV per layer...\\n[18:43:59]   Precomputing kernel matrices...\\n[18:44:11]   Bootstrap (1000 iterations, parallel)...\\n[18:44:11]   Using 100 workers\\n[18:54:07]   Bootstrap done\\n[18:54:07] Bootstrap: 778.0s\\n[18:54:07] Saved: /root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/untrained.json\\n[18:54:07] Peak R2=0.5125 @ L4\\n[18:54:07] Exit R2=0.424 @ L35\\n[18:54:07] Delta=0.0885  CI95=[-0.0128, 0.0931]\\n--- nora spatial untrained DONE: Sat May 23 18:54:08 CST 2026 ---\\n=== cuda:0 v3 batch COMPLETE: Sat May 23 18:54:08 CST 2026 ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "d600caa7-ccf0-45db-b8fc-12ee63b35866",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[18:40:11]     3450/5000 samples\\\\n[18:40:13]     3500/5000 samples\\\\n[18:40:13]   Task 7/10: pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\n[18:40:15]     3550/5000 samples\\\\n[18:40:17]     3600/5000 samples\\\\n[18:40:19]     3650/5000 samples\\\\n[18:40:20]     3700/5000 samples\\\\n[18:40:22]     3750/5000 samples\\\\n[18:40:24]     3800/5000 samples\\\\n[18:40:26]     3850/5000 samples\\\\n[18:40:28]     3900/5000 samples\\\\n[18:40:30]     3950/5000 samples\\\\n[18:40:32]     4000/5000 samples\\\\n[18:40:32]   Task 8/10: pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\n[18:40:33]     4050/5000 samples\\\\n[18:40:35]     4100/5000 samples\\\\n[18:40:37]     4150/5000 samples\\\\n[18:40:39]     4200/5000 samples\\\\n[18:40:41]     4250/5000 samples\\\\n[18:40:43]     4300/5000 samples\\\\n[18:40:45]     4350/5000 samples\\\\n[18:40:46]     4400/5000 samples\\\\n[18:40:48]     4450/5000 samples\\\\n[18:40:50]     4500/5000 samples\\\\n[18:40:50]   Task 9/10: pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\n[18:40:52]     4550/5000 samples\\\\n[18:40:54]     4600/5000 samples\\\\n[18:40:56]     4650/5000 samples\\\\n[18:40:58]     4700/5000 samples\\\\n[18:40:59]     4750/5000 samples\\\\n[18:41:01]     4800/5000 samples\\\\n[18:41:03]     4850/5000 samples\\\\n[18:41:05]     4900/5000 samples\\\\n[18:41:07]     4950/5000 samples\\\\n[18:41:09]     5000/5000 samples\\\\n[18:41:09]   Extraction done: 5000 samples, 100 demos\\\\n[18:41:09] Extraction: 187.0s\\\\n[18:41:09]   100 demos, split 80/20\\\\n[18:41:09]   Canonical split -- fitting RidgeCV per layer...\\\\n[18:43:59]   Precomputing kernel matrices...\\\\n[18:44:11]   Bootstrap (1000 iterations, parallel)...\\\\n[18:44:11]   Using 100 workers\\\\n[18:54:07]   Bootstrap done\\\\n[18:54:07] Bootstrap: 778.0s\\\\n[18:54:07] Saved: /root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/untrained.json\\\\n[18:54:07] Peak R2=0.5125 @ L4\\\\n[18:54:07] Exit R2=0.424 @ L35\\\\n[18:54:07] Delta=0.0885  CI95=[-0.0128, 0.0931]\\\\n--- nora spatial untrained DONE: Sat May 23 18:54:08 CST 2026 ---\\\\n=== cuda:0 v3 batch COMPLETE: Sat May 23 18:54:08 CST 2026 ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[18:40:11]     3450/5000 samples\\n[18:40:13]     3500/5000 samples\\n[18:40:13]   Task 7/10: pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\n[18:40:15]     3550/5000 samples\\n[18:40:17]     3600/5000 samples\\n[18:40:19]     3650/5000 samples\\n[18:40:20]     3700/5000 samples\\n[18:40:22]     3750/5000 samples\\n[18:40:24]     3800/5000 samples\\n[18:40:26]     3850/5000 samples\\n[18:40:28]     3900/5000 samples\\n[18:40:30]     3950/5000 samples\\n[18:40:32]     4000/5000 samples\\n[18:40:32]   Task 8/10: pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\n[18:40:33]     4050/5000 samples\\n[18:40:35]     4100/5000 samples\\n[18:40:37]     4150/5000 samples\\n[18:40:39]     4200/5000 samples\\n[18:40:41]     4250/5000 samples\\n[18:40:43]     4300/5000 samples\\n[18:40:45]     4350/5000 samples\\n[18:40:46]     4400/5000 samples\\n[18:40:48]     4450/5000 samples\\n[18:40:50]     4500/5000 samples\\n[18:40:50]   Task 9/10: pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\n[18:40:52]     4550/5000 samples\\n[18:40:54]     4600/5000 samples\\n[18:40:56]     4650/5000 samples\\n[18:40:58]     4700/5000 samples\\n[18:40:59]     4750/5000 samples\\n[18:41:01]     4800/5000 samples\\n[18:41:03]     4850/5000 samples\\n[18:41:05]     4900/5000 samples\\n[18:41:07]     4950/5000 samples\\n[18:41:09]     5000/5000 samples\\n[18:41:09]   Extraction done: 5000 samples, 100 demos\\n[18:41:09] Extraction: 187.0s\\n[18:41:09]   100 demos, split 80/20\\n[18:41:09]   Canonical split -- fitting RidgeCV per layer...\\n[18:43:59]   Precomputing kernel matrices...\\n[18:44:11]   Bootstrap (1000 iterations, parallel)...\\n[18:44:11]   Using 100 workers\\n[18:54:07]   Bootstrap done\\n[18:54:07] Bootstrap: 778.0s\\n[18:54:07] Saved: /root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/untrained.json\\n[18:54:07] Peak R2=0.5125 @ L4\\n[18:54:07] Exit R2=0.424 @ L35\\n[18:54:07] Delta=0.0885  CI95=[-0.0128, 0.0931]\\n--- nora spatial untrained DONE: Sat May 23 18:54:08 CST 2026 ---\\n=== cuda:0 v3 batch COMPLETE: Sat May 23 18:54:08 CST 2026 ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to see the `clustered_bootstrap_r2` function in the v3 script - the output was truncated. Let me read the key section that was cut off.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "4b007310-e838-43f1-b2c5-47a1e04ecc90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ucmGfipWQkUp4wM67TWvD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5233,
+      "cache_read_input_tokens": 32495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5233
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+脚本输出被截断了，需要看 `clustered_bootstrap_r2` 函数的完整逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "32051b88-193e-4fca-881c-c6c8cdc6ad5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ucmGfipWQkUp4wM67TWvD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5233,
+      "cache_read_input_tokens": 32495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5233
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NpeJftzw6WKjcz7aTs63hS`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def clustered_bootstrap_r2\" /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "f603eb30-df66-4c6d-8003-e7ba24091807",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ucmGfipWQkUp4wM67TWvD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5233,
+      "cache_read_input_tokens": 32495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5233
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T11:17:18.710Z_
+
+<details><summary>↩ Tool result · `toolu_01NpeJftzw6WKjcz7aTs63hS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"309:def clustered_bootstrap_r2(features, actions, demo_ids, n_layers, n_bootstrap, seed=42):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "40a14551-eb98-4a72-9db7-833d00132313",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"309:def clustered_bootstrap_r2(features, actions, demo_ids, n_layers, n_bootstrap, seed=42):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"309:def clustered_bootstrap_r2(features, actions, demo_ids, n_layers, n_bootstrap, seed=42):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013pDJ44vK3kSHCzGfxMeiK9`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -430 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "e0d38ee9-248f-43a5-b070-c435d79e6fb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VHjutqRRRCtk76egwuVPW2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 37728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T11:17:21.271Z_
+
+<details><summary>↩ Tool result · `toolu_013pDJ44vK3kSHCzGfxMeiK9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Clustered Bootstrap R2 Probing v3 — Monte Carlo Cross-Validation (no-replacement split).\\n\\nv3 fix: v2 used with-replacement bootstrap then positional 80/20 split, allowing the\\nsame demo to appear in both train and test sets. v3 replaces this with without-replacement\\nrandom permutation (Monte Carlo CV), guaranteeing train/test demo disjointness.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, sys, time, types\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\nos.environ[\\\"OPENBLAS_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"MKL_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"OMP_NUM_THREADS\\\"] = \\\"1\\\"\\n\\nimport numpy as np\\nimport h5py\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import RidgeCV\\nimport importlib.util\\nfrom multiprocessing import Pool, cpu_count\\nfrom scipy.linalg import cho_factor, cho_solve\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\nCKPT = {\\n    \\\"openvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n    },\\n    \\\"tracvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n    },\\n    \\\"nora\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n    },\\n}\\n\\nARCH_INFO = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"hidden\\\": 2048},\\n}\\n\\nDATA_ROOT = \\\"/root/autodl-tmp/vla-ssd/data/libero\\\"\\n\\n\\ndef _load_openvla_modules(ckpt_path):\\n    pkg_name = \\\"_openvla_pkg\\\"\\n    pkg = types.ModuleType(pkg_name)\\n    pkg.__path__ = [ckpt_path]\\n    pkg.__package__ = pkg_name\\n    sys.modules[pkg_name] = pkg\\n\\n    for name in [\\\"configuration_prismatic\\\", \\\"modeling_prismatic\\\", \\\"processing_prismatic\\\"]:\\n        full = f\\\"{pkg_name}.{name}\\\"\\n        fpath = os.path.join(ckpt_path, f\\\"{name}.py\\\")\\n        with open(fpath) as f:\\n            src = f.read()\\n        # Fix transformers 5.x import changes\\n        src = src.replace(\\n            \\\"from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\",\\n            \\\"from transformers.utils import PaddingStrategy\\\\n\\\"\\n            \\\"from transformers.tokenization_utils_base import PreTokenizedInput, TextInput, TruncationStrategy\\\"\\n        )\\n        mod = types.ModuleType(full)\\n        mod.__file__ = fpath\\n        mod.__package__ = pkg_name\\n        sys.modules[full] = mod\\n        sys.modules[name] = mod\\n        setattr(pkg, nam\\n\\n... [截断: 输出过长，省略 9213 字符] ...\\n\\nplit -- fitting RidgeCV per layer...\\\")\\n    for l in range(n_layers):\\n        probe = RidgeCV(alphas=alphas_list)\\n        probe.fit(features[l][train_mask], y_tr_canon)\\n        best_alpha[l] = float(probe.alpha_)\\n        pred = probe.predict(features[l][test_mask])\\n        ss_res = np.sum((y_te_canon - pred) ** 2)\\n        ss_tot = np.sum((y_te_canon - y_te_canon.mean(0)) ** 2)\\n        canon_r2[l] = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\n\\n    # Precompute kernel matrices per layer for efficient bootstrap\\n    log(\\\"  Precomputing kernel matrices...\\\")\\n    N = len(actions)\\n    kernels = {}\\n    for l in range(n_layers):\\n        kernels[l] = features[l] @ features[l].T  # (N, N)\\n\\n    log(f\\\"  Bootstrap ({n_bootstrap} iterations, parallel)...\\\")\\n\\n    global _MP_KERNELS, _MP_ACTIONS, _MP_DEMO_IDX_MAP, _MP_BEST_ALPHA\\n    global _MP_N_LAYERS, _MP_SEEDS, _MP_N_TRAIN\\n    _MP_KERNELS = kernels\\n    _MP_ACTIONS = actions\\n    _MP_DEMO_IDX_MAP = demo_idx_map\\n    _MP_BEST_ALPHA = best_alpha\\n    _MP_N_LAYERS = n_layers\\n    _MP_N_TRAIN = n_train\\n\\n    rng2 = np.random.default_rng(seed + 1)\\n    _MP_SEEDS = rng2.integers(0, 2**63, size=n_bootstrap)\\n\\n    n_workers = min(cpu_count(), 100)\\n    log(f\\\"  Using {n_workers} workers\\\")\\n    with Pool(n_workers) as pool:\\n        results_list = pool.map(_bootstrap_single, range(n_bootstrap), chunksize=max(1, n_bootstrap // (n_workers * 4)))\\n\\n    boot_r2 = np.array(results_list)\\n    log(f\\\"  Bootstrap done\\\")\\n\\n    exit_l = n_layers - 1\\n    canon_peak_l = max(canon_r2, key=canon_r2.get)\\n\\n    peak_r2_boot = boot_r2[:, canon_peak_l]\\n    exit_r2_boot = boot_r2[:, exit_l]\\n    deltas = peak_r2_boot - exit_r2_boot\\n    ci_lo, ci_hi = np.percentile(deltas, [2.5, 97.5])\\n\\n    return {\\n        \\\"per_layer_r2\\\": {f\\\"L{l}\\\": round(canon_r2[l], 4) for l in range(n_layers)},\\n        \\\"peak_r2\\\": round(canon_r2[canon_peak_l], 4),\\n        \\\"peak_layer\\\": f\\\"L{canon_peak_l}\\\",\\n        \\\"exit_r2\\\": round(canon_r2[exit_l], 4),\\n        \\\"exit_layer\\\": f\\\"L{exit_l}\\\",\\n        \\\"delta\\\": round(canon_r2[canon_peak_l] - canon_r2[exit_l], 4),\\n        \\\"delta_ci_95\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\n        \\\"bootstrap_deltas_summary\\\": {\\n            \\\"mean\\\": round(float(np.mean(deltas)), 4),\\n            \\\"std\\\": round(float(np.std(deltas)), 4),\\n            \\\"median\\\": round(float(np.median(deltas)), 4),\\n        },\\n    }\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--arch\\\", required=True, choices=[\\\"openvla\\\", \\\"tracvla\\\", \\\"nora\\\"])\\n    p.add_argument(\\\"--suite\\\", required=True, choices=[\\\"goal\\\", \\\"spatial\\\", \\\"object\\\", \\\"long\\\"])\\n    p.add_argument(\\\"--condition\\\", required=True, choices=[\\\"trained\\\", \\\"untrained\\\"])\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--n_bootstrap\\\", type=int, default=10000)\\n    p.add_argument(\\\"--n_demos\\\", type=int, default=10)\\n    p.add_argument(\\\"--n_timesteps\\\", type=int, default=50)\\n    p.add_argument(\\\"--output_dir\\\",\\n                   default=\\\"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\")\\n    args = p.parse_args()\\n\\n    if args.dry_run:\\n        args.n_demos = 2\\n        args.n_timesteps = 5\\n        args.n_bootstrap = min(args.n_bootstrap, 100)\\n\\n    if args.suite not in CKPT.get(args.arch, {}):\\n        log(f\\\"ERROR: no checkpoint for {args.arch}/{args.suite}\\\")\\n        sys.exit(1)\\n    if args.condition not in CKPT[args.arch][args.suite]:\\n        log(f\\\"ERROR: no {args.condition} checkpoint for {args.arch}/{args.suite}\\\")\\n        sys.exit(1)\\n\\n    device = f\\\"cuda:{args.gpu}\\\"\\n    ckpt_path = CKPT[args.arch][args.suite][args.condition]\\n    suite_data_name = \\\"libero_10\\\" if args.suite == \\\"long\\\" else f\\\"libero_{args.suite}\\\"\\n    data_dir = os.path.join(DATA_ROOT, suite_data_name)\\n\\n    log(f\\\"=== {args.arch} / {args.suite} / {args.condition} ===\\\")\\n    log(f\\\"Checkpoint: {ckpt_path}\\\")\\n    log(f\\\"Data: {data_dir}\\\")\\n    log(f\\\"demos={args.n_demos} timesteps={args.n_timesteps} bootstrap={args.n_bootstrap}\\\")\\n    if args.dry_run:\\n        log(\\\"DRY RUN\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "294d4614-ae43-4082-9886-082ed7d9c36d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Clustered Bootstrap R2 Probing v3 — Monte Carlo Cross-Validation (no-replacement split).\\\\n\\\\nv3 fix: v2 used with-replacement bootstrap then positional 80/20 split, allowing the\\\\nsame demo to appear in both train and test sets. v3 replaces this with without-replacement\\\\nrandom permutation (Monte Carlo CV), guaranteeing train/test demo disjointness.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, sys, time, types\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\nos.environ[\\\\\\\"OPENBLAS_NUM_THREADS\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"MKL_NUM_THREADS\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"OMP_NUM_THREADS\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport h5py\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import RidgeCV\\\\nimport importlib.util\\\\nfrom multiprocessing import Pool, cpu_count\\\\nfrom scipy.linalg import cho_factor, cho_solve\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\nCKPT = {\\\\n    \\\\\\\"openvla\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"object\\\\\\\":  {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"long\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n    },\\\\n    \\\\\\\"tracvla\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"object\\\\\\\":  {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"long\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n    },\\\\n    \\\\\\\"nora\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\\\\\"},\\\\n    },\\\\n}\\\\n\\\\nARCH_INFO = {\\\\n    \\\\\\\"openvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 4096},\\\\n    \\\\\\\"tracvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 3072},\\\\n    \\\\\\\"nora\\\\\\\":    {\\\\\\\"n_layers\\\\\\\": 36, \\\\\\\"hidden\\\\\\\": 2048},\\\\n}\\\\n\\\\nDATA_ROOT = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero\\\\\\\"\\\\n\\\\n\\\\ndef _load_openvla_modules(ckpt_path):\\\\n    pkg_name = \\\\\\\"_openvla_pkg\\\\\\\"\\\\n    pkg = types.ModuleType(pkg_name)\\\\n    pkg.__path__ = [ckpt_path]\\\\n    pkg.__package__ = pkg_name\\\\n    sys.modules[pkg_name] = pkg\\\\n\\\\n    for name in [\\\\\\\"configuration_prismatic\\\\\\\", \\\\\\\"modeling_prismatic\\\\\\\", \\\\\\\"processing_prismatic\\\\\\\"]:\\\\n        full = f\\\\\\\"{pkg_name}.{name}\\\\\\\"\\\\n        fpath = os.path.join(ckpt_path, f\\\\\\\"{name}.py\\\\\\\")\\\\n        with open(fpath) as f:\\\\n            src = f.read()\\\\n        # Fix transformers 5.x import changes\\\\n        src = src.replace(\\\\n            \\\\\\\"from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\\\\\",\\\\n            \\\\\\\"from transformers.utils import PaddingStrategy\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"from transformers.tokenization_utils_base import PreTokenizedInput, TextInput, TruncationStrategy\\\\\\\"\\\\n        )\\\\n        mod = types.ModuleType(full)\\\\n        mod.__file__ = fpath\\\\n        mod.__package__ = pkg_name\\\\n        sys.modules[full] = mod\\\\n        sys.modules[name] = mod\\\\n        setattr(pkg, nam\\\\n\\\\n... [截断: 输出过长，省略 9213 字符] ...\\\\n\\\\nplit -- fitting RidgeCV per layer...\\\\\\\")\\\\n    for l in range(n_layers):\\\\n        probe = RidgeCV(alphas=alphas_list)\\\\n        probe.fit(features[l][train_mask], y_tr_canon)\\\\n        best_alpha[l] = float(probe.alpha_)\\\\n        pred = probe.predict(features[l][test_mask])\\\\n        ss_res = np.sum((y_te_canon - pred) ** 2)\\\\n        ss_tot = np.sum((y_te_canon - y_te_canon.mean(0)) ** 2)\\\\n        canon_r2[l] = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\\\n\\\\n    # Precompute kernel matrices per layer for efficient bootstrap\\\\n    log(\\\\\\\"  Precomputing kernel matrices...\\\\\\\")\\\\n    N = len(actions)\\\\n    kernels = {}\\\\n    for l in range(n_layers):\\\\n        kernels[l] = features[l] @ features[l].T  # (N, N)\\\\n\\\\n    log(f\\\\\\\"  Bootstrap ({n_bootstrap} iterations, parallel)...\\\\\\\")\\\\n\\\\n    global _MP_KERNELS, _MP_ACTIONS, _MP_DEMO_IDX_MAP, _MP_BEST_ALPHA\\\\n    global _MP_N_LAYERS, _MP_SEEDS, _MP_N_TRAIN\\\\n    _MP_KERNELS = kernels\\\\n    _MP_ACTIONS = actions\\\\n    _MP_DEMO_IDX_MAP = demo_idx_map\\\\n    _MP_BEST_ALPHA = best_alpha\\\\n    _MP_N_LAYERS = n_layers\\\\n    _MP_N_TRAIN = n_train\\\\n\\\\n    rng2 = np.random.default_rng(seed + 1)\\\\n    _MP_SEEDS = rng2.integers(0, 2**63, size=n_bootstrap)\\\\n\\\\n    n_workers = min(cpu_count(), 100)\\\\n    log(f\\\\\\\"  Using {n_workers} workers\\\\\\\")\\\\n    with Pool(n_workers) as pool:\\\\n        results_list = pool.map(_bootstrap_single, range(n_bootstrap), chunksize=max(1, n_bootstrap // (n_workers * 4)))\\\\n\\\\n    boot_r2 = np.array(results_list)\\\\n    log(f\\\\\\\"  Bootstrap done\\\\\\\")\\\\n\\\\n    exit_l = n_layers - 1\\\\n    canon_peak_l = max(canon_r2, key=canon_r2.get)\\\\n\\\\n    peak_r2_boot = boot_r2[:, canon_peak_l]\\\\n    exit_r2_boot = boot_r2[:, exit_l]\\\\n    deltas = peak_r2_boot - exit_r2_boot\\\\n    ci_lo, ci_hi = np.percentile(deltas, [2.5, 97.5])\\\\n\\\\n    return {\\\\n        \\\\\\\"per_layer_r2\\\\\\\": {f\\\\\\\"L{l}\\\\\\\": round(canon_r2[l], 4) for l in range(n_layers)},\\\\n        \\\\\\\"peak_r2\\\\\\\": round(canon_r2[canon_peak_l], 4),\\\\n        \\\\\\\"peak_layer\\\\\\\": f\\\\\\\"L{canon_peak_l}\\\\\\\",\\\\n        \\\\\\\"exit_r2\\\\\\\": round(canon_r2[exit_l], 4),\\\\n        \\\\\\\"exit_layer\\\\\\\": f\\\\\\\"L{exit_l}\\\\\\\",\\\\n        \\\\\\\"delta\\\\\\\": round(canon_r2[canon_peak_l] - canon_r2[exit_l], 4),\\\\n        \\\\\\\"delta_ci_95\\\\\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\\\n        \\\\\\\"bootstrap_deltas_summary\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": round(float(np.mean(deltas)), 4),\\\\n            \\\\\\\"std\\\\\\\": round(float(np.std(deltas)), 4),\\\\n            \\\\\\\"median\\\\\\\": round(float(np.median(deltas)), 4),\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--arch\\\\\\\", required=True, choices=[\\\\\\\"openvla\\\\\\\", \\\\\\\"tracvla\\\\\\\", \\\\\\\"nora\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", required=True, choices=[\\\\\\\"goal\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"long\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--condition\\\\\\\", required=True, choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--n_bootstrap\\\\\\\", type=int, default=10000)\\\\n    p.add_argument(\\\\\\\"--n_demos\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--n_timesteps\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\",\\\\n                   default=\\\\\\\"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    if args.dry_run:\\\\n        args.n_demos = 2\\\\n        args.n_timesteps = 5\\\\n        args.n_bootstrap = min(args.n_bootstrap, 100)\\\\n\\\\n    if args.suite not in CKPT.get(args.arch, {}):\\\\n        log(f\\\\\\\"ERROR: no checkpoint for {args.arch}/{args.suite}\\\\\\\")\\\\n        sys.exit(1)\\\\n    if args.condition not in CKPT[args.arch][args.suite]:\\\\n        log(f\\\\\\\"ERROR: no {args.condition} checkpoint for {args.arch}/{args.suite}\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    device = f\\\\\\\"cuda:{args.gpu}\\\\\\\"\\\\n    ckpt_path = CKPT[args.arch][args.suite][args.condition]\\\\n    suite_data_name = \\\\\\\"libero_10\\\\\\\" if args.suite == \\\\\\\"long\\\\\\\" else f\\\\\\\"libero_{args.suite}\\\\\\\"\\\\n    data_dir = os.path.join(DATA_ROOT, suite_data_name)\\\\n\\\\n    log(f\\\\\\\"=== {args.arch} / {args.suite} / {args.condition} ===\\\\\\\")\\\\n    log(f\\\\\\\"Checkpoint: {ckpt_path}\\\\\\\")\\\\n    log(f\\\\\\\"Data: {data_dir}\\\\\\\")\\\\n    log(f\\\\\\\"demos={args.n_demos} timesteps={args.n_timesteps} bootstrap={args.n_bootstrap}\\\\\\\")\\\\n    if args.dry_run:\\\\n        log(\\\\\\\"DRY RUN\\\\\\\")\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Clustered Bootstrap R2 Probing v3 — Monte Carlo Cross-Validation (no-replacement split).\\n\\nv3 fix: v2 used with-replacement bootstrap then positional 80/20 split, allowing the\\nsame demo to appear in both train and test sets. v3 replaces this with without-replacement\\nrandom permutation (Monte Carlo CV), guaranteeing train/test demo disjointness.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, sys, time, types\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\nos.environ[\\\"OPENBLAS_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"MKL_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"OMP_NUM_THREADS\\\"] = \\\"1\\\"\\n\\nimport numpy as np\\nimport h5py\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import RidgeCV\\nimport importlib.util\\nfrom multiprocessing import Pool, cpu_count\\nfrom scipy.linalg import cho_factor, cho_solve\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\nCKPT = {\\n    \\\"openvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n    },\\n    \\\"tracvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n    },\\n    \\\"nora\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n    },\\n}\\n\\nARCH_INFO = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"hidden\\\": 2048},\\n}\\n\\nDATA_ROOT = \\\"/root/autodl-tmp/vla-ssd/data/libero\\\"\\n\\n\\ndef _load_openvla_modules(ckpt_path):\\n    pkg_name = \\\"_openvla_pkg\\\"\\n    pkg = types.ModuleType(pkg_name)\\n    pkg.__path__ = [ckpt_path]\\n    pkg.__package__ = pkg_name\\n    sys.modules[pkg_name] = pkg\\n\\n    for name in [\\\"configuration_prismatic\\\", \\\"modeling_prismatic\\\", \\\"processing_prismatic\\\"]:\\n        full = f\\\"{pkg_name}.{name}\\\"\\n        fpath = os.path.join(ckpt_path, f\\\"{name}.py\\\")\\n        with open(fpath) as f:\\n            src = f.read()\\n        # Fix transformers 5.x import changes\\n        src = src.replace(\\n            \\\"from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\",\\n            \\\"from transformers.utils import PaddingStrategy\\\\n\\\"\\n            \\\"from transformers.tokenization_utils_base import PreTokenizedInput, TextInput, TruncationStrategy\\\"\\n        )\\n        mod = types.ModuleType(full)\\n        mod.__file__ = fpath\\n        mod.__package__ = pkg_name\\n        sys.modules[full] = mod\\n        sys.modules[name] = mod\\n        setattr(pkg, nam\\n\\n... [截断: 输出过长，省略 9213 字符] ...\\n\\nplit -- fitting RidgeCV per layer...\\\")\\n    for l in range(n_layers):\\n        probe = RidgeCV(alphas=alphas_list)\\n        probe.fit(features[l][train_mask], y_tr_canon)\\n        best_alpha[l] = float(probe.alpha_)\\n        pred = probe.predict(features[l][test_mask])\\n        ss_res = np.sum((y_te_canon - pred) ** 2)\\n        ss_tot = np.sum((y_te_canon - y_te_canon.mean(0)) ** 2)\\n        canon_r2[l] = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\n\\n    # Precompute kernel matrices per layer for efficient bootstrap\\n    log(\\\"  Precomputing kernel matrices...\\\")\\n    N = len(actions)\\n    kernels = {}\\n    for l in range(n_layers):\\n        kernels[l] = features[l] @ features[l].T  # (N, N)\\n\\n    log(f\\\"  Bootstrap ({n_bootstrap} iterations, parallel)...\\\")\\n\\n    global _MP_KERNELS, _MP_ACTIONS, _MP_DEMO_IDX_MAP, _MP_BEST_ALPHA\\n    global _MP_N_LAYERS, _MP_SEEDS, _MP_N_TRAIN\\n    _MP_KERNELS = kernels\\n    _MP_ACTIONS = actions\\n    _MP_DEMO_IDX_MAP = demo_idx_map\\n    _MP_BEST_ALPHA = best_alpha\\n    _MP_N_LAYERS = n_layers\\n    _MP_N_TRAIN = n_train\\n\\n    rng2 = np.random.default_rng(seed + 1)\\n    _MP_SEEDS = rng2.integers(0, 2**63, size=n_bootstrap)\\n\\n    n_workers = min(cpu_count(), 100)\\n    log(f\\\"  Using {n_workers} workers\\\")\\n    with Pool(n_workers) as pool:\\n        results_list = pool.map(_bootstrap_single, range(n_bootstrap), chunksize=max(1, n_bootstrap // (n_workers * 4)))\\n\\n    boot_r2 = np.array(results_list)\\n    log(f\\\"  Bootstrap done\\\")\\n\\n    exit_l = n_layers - 1\\n    canon_peak_l = max(canon_r2, key=canon_r2.get)\\n\\n    peak_r2_boot = boot_r2[:, canon_peak_l]\\n    exit_r2_boot = boot_r2[:, exit_l]\\n    deltas = peak_r2_boot - exit_r2_boot\\n    ci_lo, ci_hi = np.percentile(deltas, [2.5, 97.5])\\n\\n    return {\\n        \\\"per_layer_r2\\\": {f\\\"L{l}\\\": round(canon_r2[l], 4) for l in range(n_layers)},\\n        \\\"peak_r2\\\": round(canon_r2[canon_peak_l], 4),\\n        \\\"peak_layer\\\": f\\\"L{canon_peak_l}\\\",\\n        \\\"exit_r2\\\": round(canon_r2[exit_l], 4),\\n        \\\"exit_layer\\\": f\\\"L{exit_l}\\\",\\n        \\\"delta\\\": round(canon_r2[canon_peak_l] - canon_r2[exit_l], 4),\\n        \\\"delta_ci_95\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\n        \\\"bootstrap_deltas_summary\\\": {\\n            \\\"mean\\\": round(float(np.mean(deltas)), 4),\\n            \\\"std\\\": round(float(np.std(deltas)), 4),\\n            \\\"median\\\": round(float(np.median(deltas)), 4),\\n        },\\n    }\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--arch\\\", required=True, choices=[\\\"openvla\\\", \\\"tracvla\\\", \\\"nora\\\"])\\n    p.add_argument(\\\"--suite\\\", required=True, choices=[\\\"goal\\\", \\\"spatial\\\", \\\"object\\\", \\\"long\\\"])\\n    p.add_argument(\\\"--condition\\\", required=True, choices=[\\\"trained\\\", \\\"untrained\\\"])\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--n_bootstrap\\\", type=int, default=10000)\\n    p.add_argument(\\\"--n_demos\\\", type=int, default=10)\\n    p.add_argument(\\\"--n_timesteps\\\", type=int, default=50)\\n    p.add_argument(\\\"--output_dir\\\",\\n                   default=\\\"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\")\\n    args = p.parse_args()\\n\\n    if args.dry_run:\\n        args.n_demos = 2\\n        args.n_timesteps = 5\\n        args.n_bootstrap = min(args.n_bootstrap, 100)\\n\\n    if args.suite not in CKPT.get(args.arch, {}):\\n        log(f\\\"ERROR: no checkpoint for {args.arch}/{args.suite}\\\")\\n        sys.exit(1)\\n    if args.condition not in CKPT[args.arch][args.suite]:\\n        log(f\\\"ERROR: no {args.condition} checkpoint for {args.arch}/{args.suite}\\\")\\n        sys.exit(1)\\n\\n    device = f\\\"cuda:{args.gpu}\\\"\\n    ckpt_path = CKPT[args.arch][args.suite][args.condition]\\n    suite_data_name = \\\"libero_10\\\" if args.suite == \\\"long\\\" else f\\\"libero_{args.suite}\\\"\\n    data_dir = os.path.join(DATA_ROOT, suite_data_name)\\n\\n    log(f\\\"=== {args.arch} / {args.suite} / {args.condition} ===\\\")\\n    log(f\\\"Checkpoint: {ckpt_path}\\\")\\n    log(f\\\"Data: {data_dir}\\\")\\n    log(f\\\"demos={args.n_demos} timesteps={args.n_timesteps} bootstrap={args.n_bootstrap}\\\")\\n    if args.dry_run:\\n        log(\\\"DRY RUN\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to see the `_bootstrap_single` function to understand how each bootstrap iteration computes R². Let me get that.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "f8a75da5-00da-4f2a-9b21-62df084c02cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBRVqPw46zoqY5SPz1xpAw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3925,
+      "cache_read_input_tokens": 38047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3925
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+需要看 `_bootstrap_single` 函数的逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "d394b498-5f51-413e-bc16-762a48b5748f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBRVqPw46zoqY5SPz1xpAw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3925,
+      "cache_read_input_tokens": 38047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3925
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016RdmfMnw7JB9DrSegM8ty9`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"_bootstrap_single\\|def _boot\\|_MP_\" /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "301937aa-dfad-46f3-ae47-02fd8bba0d99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBRVqPw46zoqY5SPz1xpAw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3925,
+      "cache_read_input_tokens": 38047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3925
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T11:17:26.776Z_
+
+<details><summary>↩ Tool result · `toolu_016RdmfMnw7JB9DrSegM8ty9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "3ace36f6-a385-4f29-8a20-4033d114d2f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Sxxxgx98aP2N552FnUsLdz`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"_bootstrap_single\" /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "35f7a10a-8073-4bbb-9520-821c61139b21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4m69G2RW1Wb4QDJ6PcWAi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 285,
+      "cache_read_input_tokens": 41972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 285
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T11:17:29.633Z_
+
+<details><summary>↩ Tool result · `toolu_01Sxxxgx98aP2N552FnUsLdz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"272:def _bootstrap_single(b):\\n364:        results_list = pool.map(_bootstrap_single, range(n_bootstrap), chunksize=max(1, n_bootstrap // (n_workers * 4)))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "eb858fb2-783e-43b3-9ead-4bed02bef7e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"272:def _bootstrap_single(b):\\\\n364:        results_list = pool.map(_bootstrap_single, range(n_bootstrap), chunksize=max(1, n_bootstrap // (n_workers * 4)))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"272:def _bootstrap_single(b):\\n364:        results_list = pool.map(_bootstrap_single, range(n_bootstrap), chunksize=max(1, n_bootstrap // (n_workers * 4)))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012mMQCmCn4qY9Z41BVmMKZz`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -310 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "942cbf59-ed38-4ebe-a335-d80679ef4686",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DaDEXnAZd5KFQCbc5BdWJ8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 247,
+      "cache_read_input_tokens": 42257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 247
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T11:17:32.371Z_
+
+<details><summary>↩ Tool result · `toolu_012mMQCmCn4qY9Z41BVmMKZz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Clustered Bootstrap R2 Probing v3 — Monte Carlo Cross-Validation (no-replacement split).\\n\\nv3 fix: v2 used with-replacement bootstrap then positional 80/20 split, allowing the\\nsame demo to appear in both train and test sets. v3 replaces this with without-replacement\\nrandom permutation (Monte Carlo CV), guaranteeing train/test demo disjointness.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, sys, time, types\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\nos.environ[\\\"OPENBLAS_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"MKL_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"OMP_NUM_THREADS\\\"] = \\\"1\\\"\\n\\nimport numpy as np\\nimport h5py\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import RidgeCV\\nimport importlib.util\\nfrom multiprocessing import Pool, cpu_count\\nfrom scipy.linalg import cho_factor, cho_solve\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\nCKPT = {\\n    \\\"openvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n    },\\n    \\\"tracvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n    },\\n    \\\"nora\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n    },\\n}\\n\\nARCH_INFO = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"hidden\\\": 2048},\\n}\\n\\nDATA_ROOT = \\\"/root/autodl-tmp/vla-ssd/data/libero\\\"\\n\\n\\ndef _load_openvla_modules(ckpt_path):\\n    pkg_name = \\\"_openvla_pkg\\\"\\n    pkg = types.ModuleType(pkg_name)\\n    pkg.__path__ = [ckpt_path]\\n    pkg.__package__ = pkg_name\\n    sys.modules[pkg_name] = pkg\\n\\n    for name in [\\\"configuration_prismatic\\\", \\\"modeling_prismatic\\\", \\\"processing_prismatic\\\"]:\\n        full = f\\\"{pkg_name}.{name}\\\"\\n        fpath = os.path.join(ckpt_path, f\\\"{name}.py\\\")\\n        with open(fpath) as f:\\n            src = f.read()\\n        # Fix transformers 5.x import changes\\n        src = src.replace(\\n            \\\"from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\",\\n            \\\"from transformers.utils import PaddingStrategy\\\\n\\\"\\n            \\\"from transformers.tokenization_utils_base import PreTokenizedInput, TextInput, TruncationStrategy\\\"\\n        )\\n        mod = types.ModuleType(full)\\n        mod.__file__ = fpath\\n        mod.__package__ = pkg_name\\n        sys.modules[full] = mod\\n        sys.modules[name] = mod\\n        setattr(pkg, nam\\n\\n... [截断: 输出过长，省略 4587 字符] ...\\n\\next], images=[image], return_tensors=\\\"pt\\\", padding=True)\\n        return {k: v.to(device) if isinstance(v, torch.Tensor) else v\\n                for k, v in inputs.items()}\\n\\n\\ndef discover_tasks(data_dir):\\n    tasks = []\\n    for f in sorted(os.listdir(data_dir)):\\n        if f.endswith(\\\"_demo.hdf5\\\"):\\n            tasks.append(f.replace(\\\"_demo.hdf5\\\", \\\"\\\"))\\n    instructions = [t.replace(\\\"_\\\", \\\" \\\") for t in tasks]\\n    return tasks, instructions\\n\\n\\ndef extract_features(arch, model, processor, tasks, instructions, data_dir,\\n                     device, n_demos, n_timesteps):\\n    info = ARCH_INFO[arch]\\n    n_layers = info[\\\"n_layers\\\"]\\n    hidden = info[\\\"hidden\\\"]\\n    total = len(tasks) * n_demos * n_timesteps\\n\\n    features = {l: np.zeros((total, hidden), dtype=np.float32) for l in range(n_layers)}\\n    actions = np.zeros((total, 7), dtype=np.float32)\\n    demo_ids = np.zeros(total, dtype=np.int64)\\n\\n    idx = 0\\n    gd = 0\\n\\n    for ti, (task, instr) in enumerate(zip(tasks, instructions)):\\n        hdf5_path = os.path.join(data_dir, f\\\"{task}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{len(tasks)}: {task}\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo_key = f\\\"data/demo_{di}\\\"\\n                if demo_key not in hf:\\n                    gd += 1\\n                    continue\\n                n_avail = hf[demo_key][\\\"actions\\\"].shape[0]\\n\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo_key}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo_key}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(arch, processor, instr, img, device)\\n                    with torch.no_grad():\\n                        out = model(**inputs, output_hidden_states=True)\\n\\n                    for l in range(n_layers):\\n                        hs = out.hidden_states[l + 1][0]\\n                        features[l][idx] = hs[-1].float().cpu().numpy()\\n\\n                    actions[idx] = act\\n                    demo_ids[idx] = gd\\n                    idx += 1\\n\\n                    del out, inputs\\n                    if idx % 50 == 0:\\n                        torch.cuda.empty_cache()\\n                        log(f\\\"    {idx}/{total} samples\\\")\\n\\n                gd += 1\\n\\n    log(f\\\"  Extraction done: {idx} samples, {gd} demos\\\")\\n    features = {l: features[l][:idx] for l in range(n_layers)}\\n    return features, actions[:idx], demo_ids[:idx]\\n\\n\\n\\n_MP_KERNELS = None\\n_MP_ACTIONS = None\\n_MP_DEMO_IDX_MAP = None\\n_MP_BEST_ALPHA = None\\n_MP_N_LAYERS = None\\n_MP_SEEDS = None\\n_MP_N_TRAIN = None\\n\\n\\ndef _bootstrap_single(b):\\n    rng_b = np.random.default_rng(_MP_SEEDS[b])\\n    demo_ids = list(_MP_DEMO_IDX_MAP.keys())\\n    perm = rng_b.permutation(len(demo_ids))\\n    tr_demos = [demo_ids[i] for i in perm[:_MP_N_TRAIN]]\\n    te_demos = [demo_ids[i] for i in perm[_MP_N_TRAIN:]]\\n    assert len(set(tr_demos) & set(te_demos)) == 0\\n\\n    tr_idx = np.concatenate([_MP_DEMO_IDX_MAP[d] for d in tr_demos])\\n    te_idx = np.concatenate([_MP_DEMO_IDX_MAP[d] for d in te_demos])\\n\\n    if len(te_idx) == 0:\\n        return np.zeros(_MP_N_LAYERS)\\n\\n    y_tr = _MP_ACTIONS[tr_idx]\\n    y_te = _MP_ACTIONS[te_idx]\\n    ss_tot = np.sum((y_te - y_te.mean(0)) ** 2)\\n    if ss_tot < 1e-10:\\n        return np.zeros(_MP_N_LAYERS)\\n\\n    n_tr = len(tr_idx)\\n    r2 = np.zeros(_MP_N_LAYERS)\\n    for l in range(_MP_N_LAYERS):\\n        K_tr = _MP_KERNELS[l][np.ix_(tr_idx, tr_idx)].copy()\\n        K_tr[np.diag_indices(n_tr)] += _MP_BEST_ALPHA[l]\\n        K_te_tr = _MP_KERNELS[l][np.ix_(te_idx, tr_idx)]\\n        try:\\n            c, low = cho_factor(K_tr)\\n            w = cho_solve((c, low), y_tr)\\n            pred = K_te_tr @ w\\n            ss_res = np.sum((y_te - pred) ** 2)\\n            r2[l] = 1.0 - ss_res / ss_tot\\n        except np.linalg.LinAlgError:\\n            r2[l] = 0.0\\n    return r2\\n\\n\\ndef clustered_bootstrap_r2(features, actions, demo_ids, n_layers, n_bootstrap, seed=42):\\n    unique_demos = np.unique(demo_ids)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "6927ab03-edc2-4c4b-922c-a6394cab1a9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Clustered Bootstrap R2 Probing v3 — Monte Carlo Cross-Validation (no-replacement split).\\\\n\\\\nv3 fix: v2 used with-replacement bootstrap then positional 80/20 split, allowing the\\\\nsame demo to appear in both train and test sets. v3 replaces this with without-replacement\\\\nrandom permutation (Monte Carlo CV), guaranteeing train/test demo disjointness.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, sys, time, types\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\nos.environ[\\\\\\\"OPENBLAS_NUM_THREADS\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"MKL_NUM_THREADS\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"OMP_NUM_THREADS\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport h5py\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import RidgeCV\\\\nimport importlib.util\\\\nfrom multiprocessing import Pool, cpu_count\\\\nfrom scipy.linalg import cho_factor, cho_solve\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\nCKPT = {\\\\n    \\\\\\\"openvla\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"object\\\\\\\":  {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"long\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n    },\\\\n    \\\\\\\"tracvla\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"object\\\\\\\":  {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"long\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n    },\\\\n    \\\\\\\"nora\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\\\\\"},\\\\n    },\\\\n}\\\\n\\\\nARCH_INFO = {\\\\n    \\\\\\\"openvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 4096},\\\\n    \\\\\\\"tracvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 3072},\\\\n    \\\\\\\"nora\\\\\\\":    {\\\\\\\"n_layers\\\\\\\": 36, \\\\\\\"hidden\\\\\\\": 2048},\\\\n}\\\\n\\\\nDATA_ROOT = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero\\\\\\\"\\\\n\\\\n\\\\ndef _load_openvla_modules(ckpt_path):\\\\n    pkg_name = \\\\\\\"_openvla_pkg\\\\\\\"\\\\n    pkg = types.ModuleType(pkg_name)\\\\n    pkg.__path__ = [ckpt_path]\\\\n    pkg.__package__ = pkg_name\\\\n    sys.modules[pkg_name] = pkg\\\\n\\\\n    for name in [\\\\\\\"configuration_prismatic\\\\\\\", \\\\\\\"modeling_prismatic\\\\\\\", \\\\\\\"processing_prismatic\\\\\\\"]:\\\\n        full = f\\\\\\\"{pkg_name}.{name}\\\\\\\"\\\\n        fpath = os.path.join(ckpt_path, f\\\\\\\"{name}.py\\\\\\\")\\\\n        with open(fpath) as f:\\\\n            src = f.read()\\\\n        # Fix transformers 5.x import changes\\\\n        src = src.replace(\\\\n            \\\\\\\"from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\\\\\",\\\\n            \\\\\\\"from transformers.utils import PaddingStrategy\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"from transformers.tokenization_utils_base import PreTokenizedInput, TextInput, TruncationStrategy\\\\\\\"\\\\n        )\\\\n        mod = types.ModuleType(full)\\\\n        mod.__file__ = fpath\\\\n        mod.__package__ = pkg_name\\\\n        sys.modules[full] = mod\\\\n        sys.modules[name] = mod\\\\n        setattr(pkg, nam\\\\n\\\\n... [截断: 输出过长，省略 4587 字符] ...\\\\n\\\\next], images=[image], return_tensors=\\\\\\\"pt\\\\\\\", padding=True)\\\\n        return {k: v.to(device) if isinstance(v, torch.Tensor) else v\\\\n                for k, v in inputs.items()}\\\\n\\\\n\\\\ndef discover_tasks(data_dir):\\\\n    tasks = []\\\\n    for f in sorted(os.listdir(data_dir)):\\\\n        if f.endswith(\\\\\\\"_demo.hdf5\\\\\\\"):\\\\n            tasks.append(f.replace(\\\\\\\"_demo.hdf5\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n    instructions = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in tasks]\\\\n    return tasks, instructions\\\\n\\\\n\\\\ndef extract_features(arch, model, processor, tasks, instructions, data_dir,\\\\n                     device, n_demos, n_timesteps):\\\\n    info = ARCH_INFO[arch]\\\\n    n_layers = info[\\\\\\\"n_layers\\\\\\\"]\\\\n    hidden = info[\\\\\\\"hidden\\\\\\\"]\\\\n    total = len(tasks) * n_demos * n_timesteps\\\\n\\\\n    features = {l: np.zeros((total, hidden), dtype=np.float32) for l in range(n_layers)}\\\\n    actions = np.zeros((total, 7), dtype=np.float32)\\\\n    demo_ids = np.zeros(total, dtype=np.int64)\\\\n\\\\n    idx = 0\\\\n    gd = 0\\\\n\\\\n    for ti, (task, instr) in enumerate(zip(tasks, instructions)):\\\\n        hdf5_path = os.path.join(data_dir, f\\\\\\\"{task}_demo.hdf5\\\\\\\")\\\\n        log(f\\\\\\\"  Task {ti}/{len(tasks)}: {task}\\\\\\\")\\\\n\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            for di in range(n_demos):\\\\n                demo_key = f\\\\\\\"data/demo_{di}\\\\\\\"\\\\n                if demo_key not in hf:\\\\n                    gd += 1\\\\n                    continue\\\\n                n_avail = hf[demo_key][\\\\\\\"actions\\\\\\\"].shape[0]\\\\n\\\\n                for t in range(min(n_timesteps, n_avail)):\\\\n                    img = Image.fromarray(hf[f\\\\\\\"{demo_key}/obs/agentview_rgb\\\\\\\"][t])\\\\n                    act = np.array(hf[f\\\\\\\"{demo_key}/actions\\\\\\\"][t], dtype=np.float32)\\\\n\\\\n                    inputs = prepare_inputs(arch, processor, instr, img, device)\\\\n                    with torch.no_grad():\\\\n                        out = model(**inputs, output_hidden_states=True)\\\\n\\\\n                    for l in range(n_layers):\\\\n                        hs = out.hidden_states[l + 1][0]\\\\n                        features[l][idx] = hs[-1].float().cpu().numpy()\\\\n\\\\n                    actions[idx] = act\\\\n                    demo_ids[idx] = gd\\\\n                    idx += 1\\\\n\\\\n                    del out, inputs\\\\n                    if idx % 50 == 0:\\\\n                        torch.cuda.empty_cache()\\\\n                        log(f\\\\\\\"    {idx}/{total} samples\\\\\\\")\\\\n\\\\n                gd += 1\\\\n\\\\n    log(f\\\\\\\"  Extraction done: {idx} samples, {gd} demos\\\\\\\")\\\\n    features = {l: features[l][:idx] for l in range(n_layers)}\\\\n    return features, actions[:idx], demo_ids[:idx]\\\\n\\\\n\\\\n\\\\n_MP_KERNELS = None\\\\n_MP_ACTIONS = None\\\\n_MP_DEMO_IDX_MAP = None\\\\n_MP_BEST_ALPHA = None\\\\n_MP_N_LAYERS = None\\\\n_MP_SEEDS = None\\\\n_MP_N_TRAIN = None\\\\n\\\\n\\\\ndef _bootstrap_single(b):\\\\n    rng_b = np.random.default_rng(_MP_SEEDS[b])\\\\n    demo_ids = list(_MP_DEMO_IDX_MAP.keys())\\\\n    perm = rng_b.permutation(len(demo_ids))\\\\n    tr_demos = [demo_ids[i] for i in perm[:_MP_N_TRAIN]]\\\\n    te_demos = [demo_ids[i] for i in perm[_MP_N_TRAIN:]]\\\\n    assert len(set(tr_demos) & set(te_demos)) == 0\\\\n\\\\n    tr_idx = np.concatenate([_MP_DEMO_IDX_MAP[d] for d in tr_demos])\\\\n    te_idx = np.concatenate([_MP_DEMO_IDX_MAP[d] for d in te_demos])\\\\n\\\\n    if len(te_idx) == 0:\\\\n        return np.zeros(_MP_N_LAYERS)\\\\n\\\\n    y_tr = _MP_ACTIONS[tr_idx]\\\\n    y_te = _MP_ACTIONS[te_idx]\\\\n    ss_tot = np.sum((y_te - y_te.mean(0)) ** 2)\\\\n    if ss_tot < 1e-10:\\\\n        return np.zeros(_MP_N_LAYERS)\\\\n\\\\n    n_tr = len(tr_idx)\\\\n    r2 = np.zeros(_MP_N_LAYERS)\\\\n    for l in range(_MP_N_LAYERS):\\\\n        K_tr = _MP_KERNELS[l][np.ix_(tr_idx, tr_idx)].copy()\\\\n        K_tr[np.diag_indices(n_tr)] += _MP_BEST_ALPHA[l]\\\\n        K_te_tr = _MP_KERNELS[l][np.ix_(te_idx, tr_idx)]\\\\n        try:\\\\n            c, low = cho_factor(K_tr)\\\\n            w = cho_solve((c, low), y_tr)\\\\n            pred = K_te_tr @ w\\\\n            ss_res = np.sum((y_te - pred) ** 2)\\\\n            r2[l] = 1.0 - ss_res / ss_tot\\\\n        except np.linalg.LinAlgError:\\\\n            r2[l] = 0.0\\\\n    return r2\\\\n\\\\n\\\\ndef clustered_bootstrap_r2(features, actions, demo_ids, n_layers, n_bootstrap, seed=42):\\\\n    unique_demos = np.unique(demo_ids)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Clustered Bootstrap R2 Probing v3 — Monte Carlo Cross-Validation (no-replacement split).\\n\\nv3 fix: v2 used with-replacement bootstrap then positional 80/20 split, allowing the\\nsame demo to appear in both train and test sets. v3 replaces this with without-replacement\\nrandom permutation (Monte Carlo CV), guaranteeing train/test demo disjointness.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, sys, time, types\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\nos.environ[\\\"OPENBLAS_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"MKL_NUM_THREADS\\\"] = \\\"1\\\"\\nos.environ[\\\"OMP_NUM_THREADS\\\"] = \\\"1\\\"\\n\\nimport numpy as np\\nimport h5py\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import RidgeCV\\nimport importlib.util\\nfrom multiprocessing import Pool, cpu_count\\nfrom scipy.linalg import cho_factor, cho_solve\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\nCKPT = {\\n    \\\"openvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"},\\n    },\\n    \\\"tracvla\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"object\\\":  {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n        \\\"long\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\"},\\n    },\\n    \\\"nora\\\": {\\n        \\\"goal\\\":    {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n        \\\"spatial\\\": {\\\"trained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\",\\n                    \\\"untrained\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\"},\\n    },\\n}\\n\\nARCH_INFO = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"hidden\\\": 2048},\\n}\\n\\nDATA_ROOT = \\\"/root/autodl-tmp/vla-ssd/data/libero\\\"\\n\\n\\ndef _load_openvla_modules(ckpt_path):\\n    pkg_name = \\\"_openvla_pkg\\\"\\n    pkg = types.ModuleType(pkg_name)\\n    pkg.__path__ = [ckpt_path]\\n    pkg.__package__ = pkg_name\\n    sys.modules[pkg_name] = pkg\\n\\n    for name in [\\\"configuration_prismatic\\\", \\\"modeling_prismatic\\\", \\\"processing_prismatic\\\"]:\\n        full = f\\\"{pkg_name}.{name}\\\"\\n        fpath = os.path.join(ckpt_path, f\\\"{name}.py\\\")\\n        with open(fpath) as f:\\n            src = f.read()\\n        # Fix transformers 5.x import changes\\n        src = src.replace(\\n            \\\"from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\",\\n            \\\"from transformers.utils import PaddingStrategy\\\\n\\\"\\n            \\\"from transformers.tokenization_utils_base import PreTokenizedInput, TextInput, TruncationStrategy\\\"\\n        )\\n        mod = types.ModuleType(full)\\n        mod.__file__ = fpath\\n        mod.__package__ = pkg_name\\n        sys.modules[full] = mod\\n        sys.modules[name] = mod\\n        setattr(pkg, nam\\n\\n... [截断: 输出过长，省略 4587 字符] ...\\n\\next], images=[image], return_tensors=\\\"pt\\\", padding=True)\\n        return {k: v.to(device) if isinstance(v, torch.Tensor) else v\\n                for k, v in inputs.items()}\\n\\n\\ndef discover_tasks(data_dir):\\n    tasks = []\\n    for f in sorted(os.listdir(data_dir)):\\n        if f.endswith(\\\"_demo.hdf5\\\"):\\n            tasks.append(f.replace(\\\"_demo.hdf5\\\", \\\"\\\"))\\n    instructions = [t.replace(\\\"_\\\", \\\" \\\") for t in tasks]\\n    return tasks, instructions\\n\\n\\ndef extract_features(arch, model, processor, tasks, instructions, data_dir,\\n                     device, n_demos, n_timesteps):\\n    info = ARCH_INFO[arch]\\n    n_layers = info[\\\"n_layers\\\"]\\n    hidden = info[\\\"hidden\\\"]\\n    total = len(tasks) * n_demos * n_timesteps\\n\\n    features = {l: np.zeros((total, hidden), dtype=np.float32) for l in range(n_layers)}\\n    actions = np.zeros((total, 7), dtype=np.float32)\\n    demo_ids = np.zeros(total, dtype=np.int64)\\n\\n    idx = 0\\n    gd = 0\\n\\n    for ti, (task, instr) in enumerate(zip(tasks, instructions)):\\n        hdf5_path = os.path.join(data_dir, f\\\"{task}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{len(tasks)}: {task}\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo_key = f\\\"data/demo_{di}\\\"\\n                if demo_key not in hf:\\n                    gd += 1\\n                    continue\\n                n_avail = hf[demo_key][\\\"actions\\\"].shape[0]\\n\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo_key}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo_key}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(arch, processor, instr, img, device)\\n                    with torch.no_grad():\\n                        out = model(**inputs, output_hidden_states=True)\\n\\n                    for l in range(n_layers):\\n                        hs = out.hidden_states[l + 1][0]\\n                        features[l][idx] = hs[-1].float().cpu().numpy()\\n\\n                    actions[idx] = act\\n                    demo_ids[idx] = gd\\n                    idx += 1\\n\\n                    del out, inputs\\n                    if idx % 50 == 0:\\n                        torch.cuda.empty_cache()\\n                        log(f\\\"    {idx}/{total} samples\\\")\\n\\n                gd += 1\\n\\n    log(f\\\"  Extraction done: {idx} samples, {gd} demos\\\")\\n    features = {l: features[l][:idx] for l in range(n_layers)}\\n    return features, actions[:idx], demo_ids[:idx]\\n\\n\\n\\n_MP_KERNELS = None\\n_MP_ACTIONS = None\\n_MP_DEMO_IDX_MAP = None\\n_MP_BEST_ALPHA = None\\n_MP_N_LAYERS = None\\n_MP_SEEDS = None\\n_MP_N_TRAIN = None\\n\\n\\ndef _bootstrap_single(b):\\n    rng_b = np.random.default_rng(_MP_SEEDS[b])\\n    demo_ids = list(_MP_DEMO_IDX_MAP.keys())\\n    perm = rng_b.permutation(len(demo_ids))\\n    tr_demos = [demo_ids[i] for i in perm[:_MP_N_TRAIN]]\\n    te_demos = [demo_ids[i] for i in perm[_MP_N_TRAIN:]]\\n    assert len(set(tr_demos) & set(te_demos)) == 0\\n\\n    tr_idx = np.concatenate([_MP_DEMO_IDX_MAP[d] for d in tr_demos])\\n    te_idx = np.concatenate([_MP_DEMO_IDX_MAP[d] for d in te_demos])\\n\\n    if len(te_idx) == 0:\\n        return np.zeros(_MP_N_LAYERS)\\n\\n    y_tr = _MP_ACTIONS[tr_idx]\\n    y_te = _MP_ACTIONS[te_idx]\\n    ss_tot = np.sum((y_te - y_te.mean(0)) ** 2)\\n    if ss_tot < 1e-10:\\n        return np.zeros(_MP_N_LAYERS)\\n\\n    n_tr = len(tr_idx)\\n    r2 = np.zeros(_MP_N_LAYERS)\\n    for l in range(_MP_N_LAYERS):\\n        K_tr = _MP_KERNELS[l][np.ix_(tr_idx, tr_idx)].copy()\\n        K_tr[np.diag_indices(n_tr)] += _MP_BEST_ALPHA[l]\\n        K_te_tr = _MP_KERNELS[l][np.ix_(te_idx, tr_idx)]\\n        try:\\n            c, low = cho_factor(K_tr)\\n            w = cho_solve((c, low), y_tr)\\n            pred = K_te_tr @ w\\n            ss_res = np.sum((y_te - pred) ** 2)\\n            r2[l] = 1.0 - ss_res / ss_tot\\n        except np.linalg.LinAlgError:\\n            r2[l] = 0.0\\n    return r2\\n\\n\\ndef clustered_bootstrap_r2(features, actions, demo_ids, n_layers, n_bootstrap, seed=42):\\n    unique_demos = np.unique(demo_ids)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me analyze both anomalies.
+
+**Key observation about the bootstrap method:**
+
+The bootstrap uses kernel ridge regression (not sklearn RidgeCV), where:
+- `K_tr = features[l] @ features[l].T` (precomputed kernel)
+- Ridge parameter `alpha` is fixed from the canonical fit
+- R² is computed as `1 - ss_res / ss_tot`
+- `ss_tot` is computed per-resample: `np.sum((y_te - y_te.mean(0)) ** 2)`
+
+
+- `ss_res` is the sum of squared residuals between test predictions and actual values
+
+The delta for each bootstrap iteration is the difference between peak and exit R² values, always using the canonical peak layer. Since `ss_tot` stays constant within each bootstrap iteration across all layers, the relative R² ordering depends entirely on how `ss_res` varies.
+
+**Critical finding**: `ss_tot` is computed ONCE per bootstrap iteration and shared across all layers. So the R² at each layer within a single bootstrap iteration shares the same denominator. This means the relative ordering of R² across layers within an iteration is determined purely by `ss_res`.
+
+**Anomaly 1: NORA goal trained**
+- Canonical: peak L8 (R²=0.449), exit L35 (R²=-0.006), delta=0.455
+- Bootstrap: mean delta=1.216, CI=[0.91, 1.61]
+- Boot mean delta (1.216) is 2.67× the canonical delta (0.455)
+
+The issue is that L35's near-zero canonical R² means the probe barely fits at all — predictions are essentially as bad as just guessing the mean. In bootstrap resamples, L35's R² can plummet far below zero since R² has no lower bound, especially when the test set distribution differs from training. This massive negative swing in L35's R² across resamples makes the delta much larger than the canonical value. The amplification happens because when canonical R² ≈ 0, the probe sits right at the noise floor, so small variations in the test set can cause huge swings in performance.
+
+The bootstrap mean delta of 1.216 versus canonical 0.455 suggests L35's R² drops dramatically on average in resamples — possibly to around -0.8 or lower — while L8 (with its stronger canonical R²=0.449) remains more stable. Even the bootstrap CI lower bound exceeds the canonical delta, indicating the 80/20 split was unusually favorable.
+
+Now I'm realizing the core issue: the canonical run uses RidgeCV to select the optimal alpha per layer through cross-validation, but the bootstrap resamples use that same fixed alpha from the canonical run. For L35 where the canonical R² is near zero, RidgeCV found an alpha that works for that specific split, but applying it rigidly to different bootstrap splits might be suboptimal — especially if L35's performance is sensitive to the regularization strength.
+
+More fundamentally though, R² itself is the problem here. It's unbounded below, so when a probe has essentially zero predictive power, different train/test splits can produce wildly negative R² values like -0.5 or -2.0. The test set variance stays relatively stable, but the residual sum of squares can explode when the model is just fitting noise. For L35 with canonical R² ≈ -0.006, there's no real signal — the probe is capturing noise in the training data, and when the test set changes, those noise-fit predictions diverge badly.
+
+For TracVLA's untrained goal model, the canonical split shows a peak at L11 (R²=0.505) and exit at L31 (R²=0.440) with a delta of 0.065, but bootstrap resampling gives a mean delta of -0.023 with a confidence interval spanning negative values. The issue is that the R² profile is extremely flat across layers — L11 barely edges out L3, L9, and L21, while L31 isn't even particularly low compared to L28 and L29. This happens because goal information is spread uniformly across the untrained model without any layer specialization, making the "peak" and "exit" designations essentially arbitrary.
+
+The canonical delta overstates the true difference due to selection bias — L11 was picked as the best layer in that specific 80/20 split, but in other random splits it loses its advantage to L31. The bootstrap results confirm this: when the peak and exit layers are fixed and resampled, L11's superiority disappears on average, suggesting the canonical peak was a statistical artifact rather than a robust finding.
+
+With 100 demos split 80/20, I'm working with 80 training and 20 test demos (4000 and 1000 samples respectively), which seems reasonable, but the demo-level clustering means the effective sample size is much smaller. Now I'm checking the file progress across the three models — nora has 4 files, openvla has 8, and tracvla has 6, totaling 17 JSON files so far.
+
+Against the checkpoint dictionary, I need 20 files total: 8 for openvla, 8 for tracvla, and 4 for nora. I'm missing tracvla_object/untrained.json, tracvla_long/trained.json, and tracvla_long/untrained.json.
+
+The process log shows everything completed with no active jobs running. I should verify the root cause more carefully, but since the JSON only contains summary statistics rather than raw bootstrap arrays, I'm limited in what I can analyze directly. Let me work through the anomalies with what I have — the mean, standard deviation, and median of the bootstrap deltas.
+
+For the NORA goal trained anomaly, the canonical delta is 0.455 while the bootstrap mean is 1.216 with a standard deviation of 0.179, giving a confidence interval of [0.91, 1.61]. The entire interval sits well above the canonical value, which is a strong signal that something went wrong.
+
+For TracVLA goal untrained, the canonical delta of 0.065 actually falls above the bootstrap confidence interval's upper bound of 0.051, making it an outlier relative to its own bootstrap distribution. Now let me check the NORA goal untrained case to see if there's a pattern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "3e70137f-8e7c-49ad-bb82-7a51b9ee3a3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYTxoQtQoGXS2NeQWt1cr7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 42504,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3738
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+确认了关键逻辑。还需要对比 NORA goal untrained 和正常条件的数据来交叉验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "51820588-dc34-458f-98ad-795e51188b5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYTxoQtQoGXS2NeQWt1cr7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 42504,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3738
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0132fV3HJuK7HpYyfKJauxRS`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/untrained.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "77898bd8-387c-4ab3-9c0f-092ac5bf2f26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYTxoQtQoGXS2NeQWt1cr7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 42504,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3738
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T11:18:35.700Z_
+
+<details><summary>↩ Tool result · `toolu_0132fV3HJuK7HpYyfKJauxRS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.3856,\\n    \\\"L1\\\": 0.3904,\\n    \\\"L2\\\": 0.3824,\\n    \\\"L3\\\": 0.3929,\\n    \\\"L4\\\": 0.3513,\\n    \\\"L5\\\": 0.4203,\\n    \\\"L6\\\": 0.389,\\n    \\\"L7\\\": 0.3817,\\n    \\\"L8\\\": 0.2603,\\n    \\\"L9\\\": 0.2475,\\n    \\\"L10\\\": 0.2566,\\n    \\\"L11\\\": 0.2681,\\n    \\\"L12\\\": 0.3183,\\n    \\\"L13\\\": 0.3262,\\n    \\\"L14\\\": 0.3468,\\n    \\\"L15\\\": 0.3561,\\n    \\\"L16\\\": 0.3846,\\n    \\\"L17\\\": 0.3678,\\n    \\\"L18\\\": 0.4024,\\n    \\\"L19\\\": 0.3946,\\n    \\\"L20\\\": 0.3976,\\n    \\\"L21\\\": 0.4016,\\n    \\\"L22\\\": 0.4085,\\n    \\\"L23\\\": 0.3745,\\n    \\\"L24\\\": 0.3534,\\n    \\\"L25\\\": 0.3478,\\n    \\\"L26\\\": 0.3084,\\n    \\\"L27\\\": 0.3002,\\n    \\\"L28\\\": 0.3774,\\n    \\\"L29\\\": 0.3783,\\n    \\\"L30\\\": 0.3709,\\n    \\\"L31\\\": 0.3646,\\n    \\\"L32\\\": 0.3462,\\n    \\\"L33\\\": 0.3072,\\n    \\\"L34\\\": 0.2794,\\n    \\\"L35\\\": 0.3397\\n  },\\n  \\\"peak_r2\\\": 0.4203,\\n  \\\"peak_layer\\\": \\\"L5\\\",\\n  \\\"exit_r2\\\": 0.3397,\\n  \\\"exit_layer\\\": \\\"L35\\\",\\n  \\\"delta\\\": 0.0806,\\n  \\\"delta_ci_95\\\": [\\n    -0.0147,\\n    0.1102\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": 0.0454,\\n    \\\"std\\\": 0.0313,\\n    \\\"median\\\": 0.0448\\n  },\\n  \\\"arch\\\": \\\"nora\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"untrained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "97480d4e-46da-4814-9bab-58a2efacd684",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_layer_r2\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.3856,\\\\n    \\\\\\\"L1\\\\\\\": 0.3904,\\\\n    \\\\\\\"L2\\\\\\\": 0.3824,\\\\n    \\\\\\\"L3\\\\\\\": 0.3929,\\\\n    \\\\\\\"L4\\\\\\\": 0.3513,\\\\n    \\\\\\\"L5\\\\\\\": 0.4203,\\\\n    \\\\\\\"L6\\\\\\\": 0.389,\\\\n    \\\\\\\"L7\\\\\\\": 0.3817,\\\\n    \\\\\\\"L8\\\\\\\": 0.2603,\\\\n    \\\\\\\"L9\\\\\\\": 0.2475,\\\\n    \\\\\\\"L10\\\\\\\": 0.2566,\\\\n    \\\\\\\"L11\\\\\\\": 0.2681,\\\\n    \\\\\\\"L12\\\\\\\": 0.3183,\\\\n    \\\\\\\"L13\\\\\\\": 0.3262,\\\\n    \\\\\\\"L14\\\\\\\": 0.3468,\\\\n    \\\\\\\"L15\\\\\\\": 0.3561,\\\\n    \\\\\\\"L16\\\\\\\": 0.3846,\\\\n    \\\\\\\"L17\\\\\\\": 0.3678,\\\\n    \\\\\\\"L18\\\\\\\": 0.4024,\\\\n    \\\\\\\"L19\\\\\\\": 0.3946,\\\\n    \\\\\\\"L20\\\\\\\": 0.3976,\\\\n    \\\\\\\"L21\\\\\\\": 0.4016,\\\\n    \\\\\\\"L22\\\\\\\": 0.4085,\\\\n    \\\\\\\"L23\\\\\\\": 0.3745,\\\\n    \\\\\\\"L24\\\\\\\": 0.3534,\\\\n    \\\\\\\"L25\\\\\\\": 0.3478,\\\\n    \\\\\\\"L26\\\\\\\": 0.3084,\\\\n    \\\\\\\"L27\\\\\\\": 0.3002,\\\\n    \\\\\\\"L28\\\\\\\": 0.3774,\\\\n    \\\\\\\"L29\\\\\\\": 0.3783,\\\\n    \\\\\\\"L30\\\\\\\": 0.3709,\\\\n    \\\\\\\"L31\\\\\\\": 0.3646,\\\\n    \\\\\\\"L32\\\\\\\": 0.3462,\\\\n    \\\\\\\"L33\\\\\\\": 0.3072,\\\\n    \\\\\\\"L34\\\\\\\": 0.2794,\\\\n    \\\\\\\"L35\\\\\\\": 0.3397\\\\n  },\\\\n  \\\\\\\"peak_r2\\\\\\\": 0.4203,\\\\n  \\\\\\\"peak_layer\\\\\\\": \\\\\\\"L5\\\\\\\",\\\\n  \\\\\\\"exit_r2\\\\\\\": 0.3397,\\\\n  \\\\\\\"exit_layer\\\\\\\": \\\\\\\"L35\\\\\\\",\\\\n  \\\\\\\"delta\\\\\\\": 0.0806,\\\\n  \\\\\\\"delta_ci_95\\\\\\\": [\\\\n    -0.0147,\\\\n    0.1102\\\\n  ],\\\\n  \\\\\\\"bootstrap_deltas_summary\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.0454,\\\\n    \\\\\\\"std\\\\\\\": 0.0313,\\\\n    \\\\\\\"median\\\\\\\": 0.0448\\\\n  },\\\\n  \\\\\\\"arch\\\\\\\": \\\\\\\"nora\\\\\\\",\\\\n  \\\\\\\"suite\\\\\\\": \\\\\\\"goal\\\\\\\",\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"untrained\\\\\\\",\\\\n  \\\\\\\"n_demos\\\\\\\": 100,\\\\n  \\\\\\\"n_total_samples\\\\\\\": 5000,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n  \\\\\\\"dry_run\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.3856,\\n    \\\"L1\\\": 0.3904,\\n    \\\"L2\\\": 0.3824,\\n    \\\"L3\\\": 0.3929,\\n    \\\"L4\\\": 0.3513,\\n    \\\"L5\\\": 0.4203,\\n    \\\"L6\\\": 0.389,\\n    \\\"L7\\\": 0.3817,\\n    \\\"L8\\\": 0.2603,\\n    \\\"L9\\\": 0.2475,\\n    \\\"L10\\\": 0.2566,\\n    \\\"L11\\\": 0.2681,\\n    \\\"L12\\\": 0.3183,\\n    \\\"L13\\\": 0.3262,\\n    \\\"L14\\\": 0.3468,\\n    \\\"L15\\\": 0.3561,\\n    \\\"L16\\\": 0.3846,\\n    \\\"L17\\\": 0.3678,\\n    \\\"L18\\\": 0.4024,\\n    \\\"L19\\\": 0.3946,\\n    \\\"L20\\\": 0.3976,\\n    \\\"L21\\\": 0.4016,\\n    \\\"L22\\\": 0.4085,\\n    \\\"L23\\\": 0.3745,\\n    \\\"L24\\\": 0.3534,\\n    \\\"L25\\\": 0.3478,\\n    \\\"L26\\\": 0.3084,\\n    \\\"L27\\\": 0.3002,\\n    \\\"L28\\\": 0.3774,\\n    \\\"L29\\\": 0.3783,\\n    \\\"L30\\\": 0.3709,\\n    \\\"L31\\\": 0.3646,\\n    \\\"L32\\\": 0.3462,\\n    \\\"L33\\\": 0.3072,\\n    \\\"L34\\\": 0.2794,\\n    \\\"L35\\\": 0.3397\\n  },\\n  \\\"peak_r2\\\": 0.4203,\\n  \\\"peak_layer\\\": \\\"L5\\\",\\n  \\\"exit_r2\\\": 0.3397,\\n  \\\"exit_layer\\\": \\\"L35\\\",\\n  \\\"delta\\\": 0.0806,\\n  \\\"delta_ci_95\\\": [\\n    -0.0147,\\n    0.1102\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": 0.0454,\\n    \\\"std\\\": 0.0313,\\n    \\\"median\\\": 0.0448\\n  },\\n  \\\"arch\\\": \\\"nora\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"untrained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018XNsnCirdskrJgejerNsuG`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_goal/trained.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "ef324067-4234-4ec3-a8a5-f52b403e3a8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYTxoQtQoGXS2NeQWt1cr7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 42504,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3738
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AoRnBod3ttePuTLAtwwPKD`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "c1e7b118-82e6-4378-a5b5-efac57252e4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYTxoQtQoGXS2NeQWt1cr7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 42504,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3738
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-23T11:18:36.808Z_
+
+<details><summary>↩ Tool result · `toolu_018XNsnCirdskrJgejerNsuG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.3329,\\n    \\\"L1\\\": 0.4177,\\n    \\\"L2\\\": 0.3571,\\n    \\\"L3\\\": 0.2243,\\n    \\\"L4\\\": 0.3962,\\n    \\\"L5\\\": 0.3624,\\n    \\\"L6\\\": 0.339,\\n    \\\"L7\\\": 0.3076,\\n    \\\"L8\\\": 0.2634,\\n    \\\"L9\\\": 0.2185,\\n    \\\"L10\\\": 0.4051,\\n    \\\"L11\\\": 0.3818,\\n    \\\"L12\\\": 0.3879,\\n    \\\"L13\\\": 0.3797,\\n    \\\"L14\\\": 0.3693,\\n    \\\"L15\\\": 0.3475,\\n    \\\"L16\\\": 0.341,\\n    \\\"L17\\\": 0.3418,\\n    \\\"L18\\\": 0.3293,\\n    \\\"L19\\\": 0.3235,\\n    \\\"L20\\\": 0.319,\\n    \\\"L21\\\": 0.2901,\\n    \\\"L22\\\": 0.2764,\\n    \\\"L23\\\": 0.2825,\\n    \\\"L24\\\": 0.2729,\\n    \\\"L25\\\": 0.2701,\\n    \\\"L26\\\": 0.2672,\\n    \\\"L27\\\": 0.2672,\\n    \\\"L28\\\": 0.4067,\\n    \\\"L29\\\": 0.3964,\\n    \\\"L30\\\": 0.3888,\\n    \\\"L31\\\": 0.3313\\n  },\\n  \\\"peak_r2\\\": 0.4177,\\n  \\\"peak_layer\\\": \\\"L1\\\",\\n  \\\"exit_r2\\\": 0.3313,\\n  \\\"exit_layer\\\": \\\"L31\\\",\\n  \\\"delta\\\": 0.0864,\\n  \\\"delta_ci_95\\\": [\\n    -0.056,\\n    0.1064\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": 0.0173,\\n    \\\"std\\\": 0.0414,\\n    \\\"median\\\": 0.0147\\n  },\\n  \\\"arch\\\": \\\"openvla\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"trained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "ad3f1a3f-e1a2-4005-a03c-b3a772b654e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_layer_r2\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.3329,\\\\n    \\\\\\\"L1\\\\\\\": 0.4177,\\\\n    \\\\\\\"L2\\\\\\\": 0.3571,\\\\n    \\\\\\\"L3\\\\\\\": 0.2243,\\\\n    \\\\\\\"L4\\\\\\\": 0.3962,\\\\n    \\\\\\\"L5\\\\\\\": 0.3624,\\\\n    \\\\\\\"L6\\\\\\\": 0.339,\\\\n    \\\\\\\"L7\\\\\\\": 0.3076,\\\\n    \\\\\\\"L8\\\\\\\": 0.2634,\\\\n    \\\\\\\"L9\\\\\\\": 0.2185,\\\\n    \\\\\\\"L10\\\\\\\": 0.4051,\\\\n    \\\\\\\"L11\\\\\\\": 0.3818,\\\\n    \\\\\\\"L12\\\\\\\": 0.3879,\\\\n    \\\\\\\"L13\\\\\\\": 0.3797,\\\\n    \\\\\\\"L14\\\\\\\": 0.3693,\\\\n    \\\\\\\"L15\\\\\\\": 0.3475,\\\\n    \\\\\\\"L16\\\\\\\": 0.341,\\\\n    \\\\\\\"L17\\\\\\\": 0.3418,\\\\n    \\\\\\\"L18\\\\\\\": 0.3293,\\\\n    \\\\\\\"L19\\\\\\\": 0.3235,\\\\n    \\\\\\\"L20\\\\\\\": 0.319,\\\\n    \\\\\\\"L21\\\\\\\": 0.2901,\\\\n    \\\\\\\"L22\\\\\\\": 0.2764,\\\\n    \\\\\\\"L23\\\\\\\": 0.2825,\\\\n    \\\\\\\"L24\\\\\\\": 0.2729,\\\\n    \\\\\\\"L25\\\\\\\": 0.2701,\\\\n    \\\\\\\"L26\\\\\\\": 0.2672,\\\\n    \\\\\\\"L27\\\\\\\": 0.2672,\\\\n    \\\\\\\"L28\\\\\\\": 0.4067,\\\\n    \\\\\\\"L29\\\\\\\": 0.3964,\\\\n    \\\\\\\"L30\\\\\\\": 0.3888,\\\\n    \\\\\\\"L31\\\\\\\": 0.3313\\\\n  },\\\\n  \\\\\\\"peak_r2\\\\\\\": 0.4177,\\\\n  \\\\\\\"peak_layer\\\\\\\": \\\\\\\"L1\\\\\\\",\\\\n  \\\\\\\"exit_r2\\\\\\\": 0.3313,\\\\n  \\\\\\\"exit_layer\\\\\\\": \\\\\\\"L31\\\\\\\",\\\\n  \\\\\\\"delta\\\\\\\": 0.0864,\\\\n  \\\\\\\"delta_ci_95\\\\\\\": [\\\\n    -0.056,\\\\n    0.1064\\\\n  ],\\\\n  \\\\\\\"bootstrap_deltas_summary\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.0173,\\\\n    \\\\\\\"std\\\\\\\": 0.0414,\\\\n    \\\\\\\"median\\\\\\\": 0.0147\\\\n  },\\\\n  \\\\\\\"arch\\\\\\\": \\\\\\\"openvla\\\\\\\",\\\\n  \\\\\\\"suite\\\\\\\": \\\\\\\"goal\\\\\\\",\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"trained\\\\\\\",\\\\n  \\\\\\\"n_demos\\\\\\\": 100,\\\\n  \\\\\\\"n_total_samples\\\\\\\": 5000,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n  \\\\\\\"dry_run\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.3329,\\n    \\\"L1\\\": 0.4177,\\n    \\\"L2\\\": 0.3571,\\n    \\\"L3\\\": 0.2243,\\n    \\\"L4\\\": 0.3962,\\n    \\\"L5\\\": 0.3624,\\n    \\\"L6\\\": 0.339,\\n    \\\"L7\\\": 0.3076,\\n    \\\"L8\\\": 0.2634,\\n    \\\"L9\\\": 0.2185,\\n    \\\"L10\\\": 0.4051,\\n    \\\"L11\\\": 0.3818,\\n    \\\"L12\\\": 0.3879,\\n    \\\"L13\\\": 0.3797,\\n    \\\"L14\\\": 0.3693,\\n    \\\"L15\\\": 0.3475,\\n    \\\"L16\\\": 0.341,\\n    \\\"L17\\\": 0.3418,\\n    \\\"L18\\\": 0.3293,\\n    \\\"L19\\\": 0.3235,\\n    \\\"L20\\\": 0.319,\\n    \\\"L21\\\": 0.2901,\\n    \\\"L22\\\": 0.2764,\\n    \\\"L23\\\": 0.2825,\\n    \\\"L24\\\": 0.2729,\\n    \\\"L25\\\": 0.2701,\\n    \\\"L26\\\": 0.2672,\\n    \\\"L27\\\": 0.2672,\\n    \\\"L28\\\": 0.4067,\\n    \\\"L29\\\": 0.3964,\\n    \\\"L30\\\": 0.3888,\\n    \\\"L31\\\": 0.3313\\n  },\\n  \\\"peak_r2\\\": 0.4177,\\n  \\\"peak_layer\\\": \\\"L1\\\",\\n  \\\"exit_r2\\\": 0.3313,\\n  \\\"exit_layer\\\": \\\"L31\\\",\\n  \\\"delta\\\": 0.0864,\\n  \\\"delta_ci_95\\\": [\\n    -0.056,\\n    0.1064\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": 0.0173,\\n    \\\"std\\\": 0.0414,\\n    \\\"median\\\": 0.0147\\n  },\\n  \\\"arch\\\": \\\"openvla\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"trained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T11:18:37.407Z_
+
+<details><summary>↩ Tool result · `toolu_01AoRnBod3ttePuTLAtwwPKD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.455,\\n    \\\"L1\\\": 0.5002,\\n    \\\"L2\\\": 0.5105,\\n    \\\"L3\\\": 0.5059,\\n    \\\"L4\\\": 0.4393,\\n    \\\"L5\\\": 0.4509,\\n    \\\"L6\\\": 0.4767,\\n    \\\"L7\\\": 0.4736,\\n    \\\"L8\\\": 0.439,\\n    \\\"L9\\\": 0.5085,\\n    \\\"L10\\\": 0.5063,\\n    \\\"L11\\\": 0.4576,\\n    \\\"L12\\\": 0.4935,\\n    \\\"L13\\\": 0.5399,\\n    \\\"L14\\\": 0.5241,\\n    \\\"L15\\\": 0.4993,\\n    \\\"L16\\\": 0.4998,\\n    \\\"L17\\\": 0.4547,\\n    \\\"L18\\\": 0.4685,\\n    \\\"L19\\\": 0.4149,\\n    \\\"L20\\\": 0.4452,\\n    \\\"L21\\\": 0.4244,\\n    \\\"L22\\\": 0.3947,\\n    \\\"L23\\\": 0.3503,\\n    \\\"L24\\\": 0.2975,\\n    \\\"L25\\\": 0.2535,\\n    \\\"L26\\\": 0.2392,\\n    \\\"L27\\\": 0.1033,\\n    \\\"L28\\\": -0.0845,\\n    \\\"L29\\\": -0.1402,\\n    \\\"L30\\\": -0.4649,\\n    \\\"L31\\\": 0.2065\\n  },\\n  \\\"peak_r2\\\": 0.5399,\\n  \\\"peak_layer\\\": \\\"L13\\\",\\n  \\\"exit_r2\\\": 0.2065,\\n  \\\"exit_layer\\\": \\\"L31\\\",\\n  \\\"delta\\\": 0.3334,\\n  \\\"delta_ci_95\\\": [\\n    0.2069,\\n    0.4508\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": 0.3155,\\n    \\\"std\\\": 0.0642,\\n    \\\"median\\\": 0.3105\\n  },\\n  \\\"arch\\\": \\\"tracvla\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"trained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "c65fea97-75a0-4ba8-8501-757a97bd7fb5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_layer_r2\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.455,\\\\n    \\\\\\\"L1\\\\\\\": 0.5002,\\\\n    \\\\\\\"L2\\\\\\\": 0.5105,\\\\n    \\\\\\\"L3\\\\\\\": 0.5059,\\\\n    \\\\\\\"L4\\\\\\\": 0.4393,\\\\n    \\\\\\\"L5\\\\\\\": 0.4509,\\\\n    \\\\\\\"L6\\\\\\\": 0.4767,\\\\n    \\\\\\\"L7\\\\\\\": 0.4736,\\\\n    \\\\\\\"L8\\\\\\\": 0.439,\\\\n    \\\\\\\"L9\\\\\\\": 0.5085,\\\\n    \\\\\\\"L10\\\\\\\": 0.5063,\\\\n    \\\\\\\"L11\\\\\\\": 0.4576,\\\\n    \\\\\\\"L12\\\\\\\": 0.4935,\\\\n    \\\\\\\"L13\\\\\\\": 0.5399,\\\\n    \\\\\\\"L14\\\\\\\": 0.5241,\\\\n    \\\\\\\"L15\\\\\\\": 0.4993,\\\\n    \\\\\\\"L16\\\\\\\": 0.4998,\\\\n    \\\\\\\"L17\\\\\\\": 0.4547,\\\\n    \\\\\\\"L18\\\\\\\": 0.4685,\\\\n    \\\\\\\"L19\\\\\\\": 0.4149,\\\\n    \\\\\\\"L20\\\\\\\": 0.4452,\\\\n    \\\\\\\"L21\\\\\\\": 0.4244,\\\\n    \\\\\\\"L22\\\\\\\": 0.3947,\\\\n    \\\\\\\"L23\\\\\\\": 0.3503,\\\\n    \\\\\\\"L24\\\\\\\": 0.2975,\\\\n    \\\\\\\"L25\\\\\\\": 0.2535,\\\\n    \\\\\\\"L26\\\\\\\": 0.2392,\\\\n    \\\\\\\"L27\\\\\\\": 0.1033,\\\\n    \\\\\\\"L28\\\\\\\": -0.0845,\\\\n    \\\\\\\"L29\\\\\\\": -0.1402,\\\\n    \\\\\\\"L30\\\\\\\": -0.4649,\\\\n    \\\\\\\"L31\\\\\\\": 0.2065\\\\n  },\\\\n  \\\\\\\"peak_r2\\\\\\\": 0.5399,\\\\n  \\\\\\\"peak_layer\\\\\\\": \\\\\\\"L13\\\\\\\",\\\\n  \\\\\\\"exit_r2\\\\\\\": 0.2065,\\\\n  \\\\\\\"exit_layer\\\\\\\": \\\\\\\"L31\\\\\\\",\\\\n  \\\\\\\"delta\\\\\\\": 0.3334,\\\\n  \\\\\\\"delta_ci_95\\\\\\\": [\\\\n    0.2069,\\\\n    0.4508\\\\n  ],\\\\n  \\\\\\\"bootstrap_deltas_summary\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.3155,\\\\n    \\\\\\\"std\\\\\\\": 0.0642,\\\\n    \\\\\\\"median\\\\\\\": 0.3105\\\\n  },\\\\n  \\\\\\\"arch\\\\\\\": \\\\\\\"tracvla\\\\\\\",\\\\n  \\\\\\\"suite\\\\\\\": \\\\\\\"goal\\\\\\\",\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"trained\\\\\\\",\\\\n  \\\\\\\"n_demos\\\\\\\": 100,\\\\n  \\\\\\\"n_total_samples\\\\\\\": 5000,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n  \\\\\\\"dry_run\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.455,\\n    \\\"L1\\\": 0.5002,\\n    \\\"L2\\\": 0.5105,\\n    \\\"L3\\\": 0.5059,\\n    \\\"L4\\\": 0.4393,\\n    \\\"L5\\\": 0.4509,\\n    \\\"L6\\\": 0.4767,\\n    \\\"L7\\\": 0.4736,\\n    \\\"L8\\\": 0.439,\\n    \\\"L9\\\": 0.5085,\\n    \\\"L10\\\": 0.5063,\\n    \\\"L11\\\": 0.4576,\\n    \\\"L12\\\": 0.4935,\\n    \\\"L13\\\": 0.5399,\\n    \\\"L14\\\": 0.5241,\\n    \\\"L15\\\": 0.4993,\\n    \\\"L16\\\": 0.4998,\\n    \\\"L17\\\": 0.4547,\\n    \\\"L18\\\": 0.4685,\\n    \\\"L19\\\": 0.4149,\\n    \\\"L20\\\": 0.4452,\\n    \\\"L21\\\": 0.4244,\\n    \\\"L22\\\": 0.3947,\\n    \\\"L23\\\": 0.3503,\\n    \\\"L24\\\": 0.2975,\\n    \\\"L25\\\": 0.2535,\\n    \\\"L26\\\": 0.2392,\\n    \\\"L27\\\": 0.1033,\\n    \\\"L28\\\": -0.0845,\\n    \\\"L29\\\": -0.1402,\\n    \\\"L30\\\": -0.4649,\\n    \\\"L31\\\": 0.2065\\n  },\\n  \\\"peak_r2\\\": 0.5399,\\n  \\\"peak_layer\\\": \\\"L13\\\",\\n  \\\"exit_r2\\\": 0.2065,\\n  \\\"exit_layer\\\": \\\"L31\\\",\\n  \\\"delta\\\": 0.3334,\\n  \\\"delta_ci_95\\\": [\\n    0.2069,\\n    0.4508\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": 0.3155,\\n    \\\"std\\\": 0.0642,\\n    \\\"median\\\": 0.3105\\n  },\\n  \\\"arch\\\": \\\"tracvla\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"trained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a much clearer picture. Let me also check if there are running processes.
+
+Let me also look at the `_bootstrap_single` function more carefully. The key issue in the implementation:
+
+The canonical run uses `RidgeCV` (scikit-learn's standard Ridge with built-in cross-validation), but the bootstrap uses **kernel ridge regression** with Cholesky decomposition. These are mathematically equivalent for linear kernels, BUT: the kernel approach uses `K = X @ X.T`, which is an (N×N) matrix, not the (N×d) feature matrix. The solutions should be equivalent, but numerical stability may differ.
+ 
+The real problem is that the alpha gets locked in from the canonical RidgeCV, which selected it via leave-one-out CV for that specific split. When the bootstrap applies this same alpha to completely different train/test splits, it's using a value that was optimized for a different data configuration. For NORA where the canonical R² is near zero, that alpha is likely far from optimal for the bootstrap splits.
+
+Looking at the NORA goal trained results, the canonical delta is 0.455 but the bootstrap mean jumps to 1.216—a massive 0.76 upward shift. If the bootstrap were working correctly, its mean should track much closer to the canonical value, so something fundamental is breaking down in how the resampled data interacts with the fixed alpha.
+
+The issue crystallizes when I look at the R² profile: L8 peaks at 0.449 while L35 sits at -0.006. In the bootstrap resampling, the same `ss_tot` denominator is used across all layers based on each resample's test variance, but when L35 has near-zero canonical R², the predictions from different train/test splits can degrade dramatically. The residual sum of squares can balloon far beyond the total sum of squares, producing deeply negative R² values like -1 or -2, which then skews the entire delta calculation.
+
+The bootstrap mean delta becomes so large because L8 maintains stable positive R² around 0.449 (it has real signal), while L35 collapses to roughly -0.77 on average across resamples (it's fitting noise). This creates a delta of about 1.216, far exceeding the canonical delta of 0.455. When a layer's canonical R² hovers near zero, the probe is essentially capturing noise, and that noise behaves wildly differently across resamples.
+
+Now I'm realizing the kernel ridge regression in bootstrap should theoretically match the RidgeCV used canonically, but something's off—I need to trace through whether the kernel formulation is actually producing equivalent predictions. I see the issue now — the canonical approach uses scikit-learn's RidgeCV to fit on the feature matrix directly, while the bootstrap version manually constructs the kernel matrix, adds the regularization term to the diagonal, and then solves the system. The difference must be in how the regularization is being applied or how the kernel is being indexed. I see the issue now—when d ≠ n, the primal and kernel formulations give different solutions even with the same alpha value. The Representer theorem guarantees equivalence, but I need to carefully apply the push-through identity to reconcile the two approaches and verify my kernel ridge regression implementation is actually computing the right predictions.
+
+The real problem isn't the kernel trick itself—it's that RidgeCV selects alpha on the canonical training set, but then I'm applying that same alpha to the bootstrap samples, which may have different optimal regularization strengths.
+
+More fundamentally, R² at L35 is unstable because the probe has almost no signal: the canonical split happened to produce R² ≈ 0 (predictions near the test mean), but across different 80/20 splits, R² becomes highly variable and often much more negative since most random splits yield predictions worse than the baseline. This is the classic issue with R² for poorly-fit models—it's unbounded below and unreliable when the model has no real predictive power.
+
+There's also a potential numerical stability issue: the Cholesky decomposition of K_tr might be unstable if the kernel matrix is poorly conditioned, especially at L35 where the feature representations seem to contain no action-relevant information. RidgeCV might select an alpha that's either too small (if it thinks there's signal to preserve) or too large (if it thinks there's no signal), and either way, the resulting kernel matrix could be nearly singular even after regularization, making the Cholesky decomposition numerically unreliable.
+
+I need to track down what alphas RidgeCV is actually using in this script and then compare the canonical and bootstrap means more carefully across the different conditions—I'm noticing some unexpected discrepancies even in cases that should be normal. The canonical approach picks the best layer on one split, which creates selection bias — that layer's delta gets inflated. But NORA trained flips this: the bootstrap mean is actually much higher than canonical, driven entirely by L35's wild R² swings between splits (averaging -0.77 in bootstrap versus -0.006 canonically).
+
+Now I'm wondering why L35 would behave so differently across splits. The canonical 80/20 split might just be unusually representative, or the fixed regularization parameter from that fit could be mismatched for other data splits. There's also the possibility of numerical instability in the kernel ridge regression at that layer. But here's the puzzle: L35 is the final hidden layer before the output head, so it should be specialized for action prediction in this fine-tuned model — yet the canonical probe shows essentially zero R², meaning the layer isn't encoding actions at all.
+
+Looking at the full R² profile across layers, there's a clear pattern: early layers start around 0.32-0.39, peak at L8 with 0.449, stay relatively strong through the middle layers around 0.43-0.45, then gradually decline through the later layers, and finally drop off a cliff at L35 to -0.006. This suggests the action information is actually distributed across the middle layers rather than concentrated at the output layer, which is counterintuitive for a fine-tuned model. drop!)
+
+There's a dramatic cliff from L34 (0.277) to L35 (-0.006). This is a 0.28 drop in a single layer! This is extremely unusual and suggests something specific about L35. Possible explanations:
+
+1. **L35 features are degenerate/collapsed**: The features at L35 might have very low rank or be near-constant, making the kernel matrix ill-conditioned
+2. **L35 is specialized for a different output format**: Perhaps the action head includes a projection that makes L35 features incompatible with linear probing of raw actions
+3. **The L35 representation is highly nonlinear**: The action information is there but not linearly decodable
+
+The fact that NORA untrained also has a drop at L35 (from ~0.28-0.38 to 0.34) but not as dramatic suggests that the fine-tuning process exacerbates whatever structural issue L35 has.
+
+Looking more closely, NORA untrained achieves 0.3397 at L35, which is actually reasonable, but fine-tuning tanks it to -0.006. So the training process fundamentally reshapes the last layer, specializing it in ways that break linear decodability—likely because the action head applies some nonlinear transformation that the raw features can't capture.
+
+The root cause is that L35's canonical R² is essentially zero, meaning the ridge probe has no predictive power. This isn't a computational bug but rather a property of how the model's final representation has been structured by fine-tuning. When I resample the data, a probe with near-zero fit becomes unstable.
+
+For the second anomaly, the TracVLA untrained model shows a nearly flat R² profile across layers, with L11 barely outperforming L3, L9, and L21. This flatness means the peak selection is fragile—L11 wins by a tiny margin, making the bootstrap delta highly sensitive to sampling noise.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "5a2853cc-c2a3-4372-9772-d4f6338091c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YZ68hfsbNinrKnSZfPQGfM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5802,
+      "cache_read_input_tokens": 46242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5802
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PqG35ZGEL67dnHAQtzwHty`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"alphas\" /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "59a42654-65fc-489d-8318-b32065803a4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YZ68hfsbNinrKnSZfPQGfM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5802,
+      "cache_read_input_tokens": 46242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5802
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-23T11:20:27.332Z_
+
+<details><summary>↩ Tool result · `toolu_01PqG35ZGEL67dnHAQtzwHty`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"326:    alphas_list = [0.01, 0.1, 1.0, 10.0, 100.0]\\n332:        probe = RidgeCV(alphas=alphas_list)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "8594fe03-5301-44be-9633-28c1c3d68282",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"326:    alphas_list = [0.01, 0.1, 1.0, 10.0, 100.0]\\\\n332:        probe = RidgeCV(alphas=alphas_list)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"326:    alphas_list = [0.01, 0.1, 1.0, 10.0, 100.0]\\n332:        probe = RidgeCV(alphas=alphas_list)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TkgK3WXHmwwd6nLcn3T5kW`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux --no-header -w -w"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "b679cfc1-8295-48f0-a0b8-99644a93d9ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YZ68hfsbNinrKnSZfPQGfM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5802,
+      "cache_read_input_tokens": 46242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5802
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-23T11:20:28.229Z_
+
+<details><summary>↩ Tool result · `toolu_01TkgK3WXHmwwd6nLcn3T5kW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  3184 ?        Ss   May15   0:02 bash /init/boot/boot.sh\\nroot        801  2.4  0.0 724384 23404 ?        Sl   May15 293:48 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        817  0.0  0.0 3238936 20736 ?       Sl   May15   4:03 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        819  0.0  0.0 3533864 19712 ?       Sl   May15   7:38 proxy -c /init/proxy/proxy.ini\\nroot        820  0.0  0.0 3328480 69256 ?       Sl   May15   6:38 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        823  0.2  0.0 7338252 111556 ?      Sl   May15  26:44 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        824  0.0  0.0  15444  9028 ?        S    May15   0:36 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        825  0.0  0.0 191520 98560 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        908  0.0  0.0 28341068 10564 ?      Sl   May15  10:58 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ul7je562/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ul7je562/startup_error\\nroot     163845  0.0  0.0   4364  2044 ?        S    May20   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\" import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*a, directory='/root/autodl-tmp/vla-ssd/results/figures', **k)  srv = http.server.HTTPServer(('0.0.0.0', port), H) print(f'PORT={port}') import sys; sys.stdout.flush() srv.handle_request() srv.handle_request() srv.shutdown() \\\" & sleep 1 echo \\\"SERVER_STARTED\\\"\\nroot     163851  0.0  0.0  25496 17528 ?        S    May20   0:00 python3 -c  import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*a, directory='/root/autodl-tmp/vla-ssd/results/figures', **k)  srv = http.server.HTTPServer(('0.0.0.0', port), H) print(f'PORT={port}') import sys; sys.stdout.flush() srv.handle_request() srv.handle_request() srv.shutdown() \\nroot     714377  0.0  0.0  16692 10780 ?        Ss   11:40   0:02 sshd: root@notty\\nroot     724268  0.0  0.0   5988  3796 ?        Ss   14:44   0:00 tmux new-session -d -s bootstrap_v3_cuda0 rm -f /tmp/agent-ml-exit/bootstrap_v3_cuda0.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/vla-ssd/bootstrap_v3_cuda0.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/bootstrap_v3_cuda0.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/vla-ssd && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"cd /root/autodl-tmp/vla-ssd && bash scripts/run_bootstrap_v3_cuda0.sh 2>&1 | tee logs/bootstrap_v3_cuda0.log\\\"'; } > ~/runs/vla-ssd/bootstrap_v3_cuda0.log 2>&1\\nroot     724291  0.0  0.0   4496  3648 pts/1    Ss+  14:44   0:00 bash -c rm -f /tmp/agent-ml-exit/bootstrap_v3_cuda1.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/vla-ssd/bootstrap_v3_cuda1.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/bootstrap_v3_cuda1.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/vla-ssd && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\"cd /root/autodl-tmp/vla-ssd && bash scripts/run_bootstrap_v3_cuda1.sh 2>&1 | tee logs/bootstrap_v3_cuda1.log\\\"'; } > ~/runs/vla-\\n\\n... [截断: 输出过长，省略 24278 字符] ...\\n\\nd/results/bootstrap_v3\\nroot     736915 42.1  0.6 29714752 6849436 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736916 42.7  0.6 29714752 6849436 pts/1 R   19:15   2:03 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736917 42.3  0.6 29714752 6877684 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736918 42.1  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736919 42.4  0.6 29652248 6849216 pts/1 R   19:15   2:03 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736920 42.0  0.6 29714752 6894840 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736921 42.3  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736922 42.3  0.6 29777256 6951600 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736923 42.5  0.6 29714752 6856824 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736924 42.6  0.6 29714752 6852300 pts/1 R   19:15   2:03 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736925 42.0  0.6 29777256 6929160 pts/1 R   19:15   2:01 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736926 42.5  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736927 42.3  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736958  0.0  0.0  16692 11036 ?        Ss   19:16   0:00 sshd: root@notty\\nroot     737149  0.0  0.0   7064  1568 ?        Rs   19:20   0:00 ps aux --no-header -w -w\\nroot     759475  0.0  0.0   4364  1812 ?        S    May17   0:00 bash -c cd /root/autodl-tmp/vla-ssd/results/attention && /root/miniconda3/bin/python3 -m http.server 8765 > /dev/null 2>&1 &\\nroot     759476  0.0  0.0  26624 16584 ?        S    May17   1:02 /root/miniconda3/bin/python3 -m http.server 8765\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "fcd9ec6d-5712-42cb-aecb-2c3320e25000",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  3184 ?        Ss   May15   0:02 bash /init/boot/boot.sh\\\\nroot        801  2.4  0.0 724384 23404 ?        Sl   May15 293:48 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        817  0.0  0.0 3238936 20736 ?       Sl   May15   4:03 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        819  0.0  0.0 3533864 19712 ?       Sl   May15   7:38 proxy -c /init/proxy/proxy.ini\\\\nroot        820  0.0  0.0 3328480 69256 ?       Sl   May15   6:38 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        823  0.2  0.0 7338252 111556 ?      Sl   May15  26:44 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        824  0.0  0.0  15444  9028 ?        S    May15   0:36 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        825  0.0  0.0 191520 98560 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        908  0.0  0.0 28341068 10564 ?      Sl   May15  10:58 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ul7je562/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ul7je562/startup_error\\\\nroot     163845  0.0  0.0   4364  2044 ?        S    May20   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\" import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*a, directory='/root/autodl-tmp/vla-ssd/results/figures', **k)  srv = http.server.HTTPServer(('0.0.0.0', port), H) print(f'PORT={port}') import sys; sys.stdout.flush() srv.handle_request() srv.handle_request() srv.shutdown() \\\\\\\" & sleep 1 echo \\\\\\\"SERVER_STARTED\\\\\\\"\\\\nroot     163851  0.0  0.0  25496 17528 ?        S    May20   0:00 python3 -c  import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*a, directory='/root/autodl-tmp/vla-ssd/results/figures', **k)  srv = http.server.HTTPServer(('0.0.0.0', port), H) print(f'PORT={port}') import sys; sys.stdout.flush() srv.handle_request() srv.handle_request() srv.shutdown() \\\\nroot     714377  0.0  0.0  16692 10780 ?        Ss   11:40   0:02 sshd: root@notty\\\\nroot     724268  0.0  0.0   5988  3796 ?        Ss   14:44   0:00 tmux new-session -d -s bootstrap_v3_cuda0 rm -f /tmp/agent-ml-exit/bootstrap_v3_cuda0.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/vla-ssd/bootstrap_v3_cuda0.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/bootstrap_v3_cuda0.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/vla-ssd && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"cd /root/autodl-tmp/vla-ssd && bash scripts/run_bootstrap_v3_cuda0.sh 2>&1 | tee logs/bootstrap_v3_cuda0.log\\\\\\\"'; } > ~/runs/vla-ssd/bootstrap_v3_cuda0.log 2>&1\\\\nroot     724291  0.0  0.0   4496  3648 pts/1    Ss+  14:44   0:00 bash -c rm -f /tmp/agent-ml-exit/bootstrap_v3_cuda1.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/vla-ssd/bootstrap_v3_cuda1.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/bootstrap_v3_cuda1.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/vla-ssd && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\\\\\"cd /root/autodl-tmp/vla-ssd && bash scripts/run_bootstrap_v3_cuda1.sh 2>&1 | tee logs/bootstrap_v3_cuda1.log\\\\\\\"'; } > ~/runs/vla-\\\\n\\\\n... [截断: 输出过长，省略 24278 字符] ...\\\\n\\\\nd/results/bootstrap_v3\\\\nroot     736915 42.1  0.6 29714752 6849436 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736916 42.7  0.6 29714752 6849436 pts/1 R   19:15   2:03 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736917 42.3  0.6 29714752 6877684 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736918 42.1  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736919 42.4  0.6 29652248 6849216 pts/1 R   19:15   2:03 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736920 42.0  0.6 29714752 6894840 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736921 42.3  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736922 42.3  0.6 29777256 6951600 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736923 42.5  0.6 29714752 6856824 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736924 42.6  0.6 29714752 6852300 pts/1 R   19:15   2:03 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736925 42.0  0.6 29777256 6929160 pts/1 R   19:15   2:01 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736926 42.5  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736927 42.3  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\nroot     736958  0.0  0.0  16692 11036 ?        Ss   19:16   0:00 sshd: root@notty\\\\nroot     737149  0.0  0.0   7064  1568 ?        Rs   19:20   0:00 ps aux --no-header -w -w\\\\nroot     759475  0.0  0.0   4364  1812 ?        S    May17   0:00 bash -c cd /root/autodl-tmp/vla-ssd/results/attention && /root/miniconda3/bin/python3 -m http.server 8765 > /dev/null 2>&1 &\\\\nroot     759476  0.0  0.0  26624 16584 ?        S    May17   1:02 /root/miniconda3/bin/python3 -m http.server 8765\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  3184 ?        Ss   May15   0:02 bash /init/boot/boot.sh\\nroot        801  2.4  0.0 724384 23404 ?        Sl   May15 293:48 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        817  0.0  0.0 3238936 20736 ?       Sl   May15   4:03 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        819  0.0  0.0 3533864 19712 ?       Sl   May15   7:38 proxy -c /init/proxy/proxy.ini\\nroot        820  0.0  0.0 3328480 69256 ?       Sl   May15   6:38 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        823  0.2  0.0 7338252 111556 ?      Sl   May15  26:44 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        824  0.0  0.0  15444  9028 ?        S    May15   0:36 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        825  0.0  0.0 191520 98560 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        908  0.0  0.0 28341068 10564 ?      Sl   May15  10:58 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ul7je562/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ul7je562/startup_error\\nroot     163845  0.0  0.0   4364  2044 ?        S    May20   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\" import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*a, directory='/root/autodl-tmp/vla-ssd/results/figures', **k)  srv = http.server.HTTPServer(('0.0.0.0', port), H) print(f'PORT={port}') import sys; sys.stdout.flush() srv.handle_request() srv.handle_request() srv.shutdown() \\\" & sleep 1 echo \\\"SERVER_STARTED\\\"\\nroot     163851  0.0  0.0  25496 17528 ?        S    May20   0:00 python3 -c  import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*a, directory='/root/autodl-tmp/vla-ssd/results/figures', **k)  srv = http.server.HTTPServer(('0.0.0.0', port), H) print(f'PORT={port}') import sys; sys.stdout.flush() srv.handle_request() srv.handle_request() srv.shutdown() \\nroot     714377  0.0  0.0  16692 10780 ?        Ss   11:40   0:02 sshd: root@notty\\nroot     724268  0.0  0.0   5988  3796 ?        Ss   14:44   0:00 tmux new-session -d -s bootstrap_v3_cuda0 rm -f /tmp/agent-ml-exit/bootstrap_v3_cuda0.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/vla-ssd/bootstrap_v3_cuda0.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/bootstrap_v3_cuda0.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/vla-ssd && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"cd /root/autodl-tmp/vla-ssd && bash scripts/run_bootstrap_v3_cuda0.sh 2>&1 | tee logs/bootstrap_v3_cuda0.log\\\"'; } > ~/runs/vla-ssd/bootstrap_v3_cuda0.log 2>&1\\nroot     724291  0.0  0.0   4496  3648 pts/1    Ss+  14:44   0:00 bash -c rm -f /tmp/agent-ml-exit/bootstrap_v3_cuda1.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/vla-ssd/bootstrap_v3_cuda1.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/bootstrap_v3_cuda1.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/vla-ssd && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\"cd /root/autodl-tmp/vla-ssd && bash scripts/run_bootstrap_v3_cuda1.sh 2>&1 | tee logs/bootstrap_v3_cuda1.log\\\"'; } > ~/runs/vla-\\n\\n... [截断: 输出过长，省略 24278 字符] ...\\n\\nd/results/bootstrap_v3\\nroot     736915 42.1  0.6 29714752 6849436 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736916 42.7  0.6 29714752 6849436 pts/1 R   19:15   2:03 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736917 42.3  0.6 29714752 6877684 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736918 42.1  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736919 42.4  0.6 29652248 6849216 pts/1 R   19:15   2:03 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736920 42.0  0.6 29714752 6894840 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736921 42.3  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736922 42.3  0.6 29777256 6951600 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736923 42.5  0.6 29714752 6856824 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736924 42.6  0.6 29714752 6852300 pts/1 R   19:15   2:03 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736925 42.0  0.6 29777256 6929160 pts/1 R   19:15   2:01 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736926 42.5  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736927 42.3  0.6 29714752 6911736 pts/1 R   19:15   2:02 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py --arch tracvla --suite object --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_v3\\nroot     736958  0.0  0.0  16692 11036 ?        Ss   19:16   0:00 sshd: root@notty\\nroot     737149  0.0  0.0   7064  1568 ?        Rs   19:20   0:00 ps aux --no-header -w -w\\nroot     759475  0.0  0.0   4364  1812 ?        S    May17   0:00 bash -c cd /root/autodl-tmp/vla-ssd/results/attention && /root/miniconda3/bin/python3 -m http.server 8765 > /dev/null 2>&1 &\\nroot     759476  0.0  0.0  26624 16584 ?        S    May17   1:02 /root/miniconda3/bin/python3 -m http.server 8765\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I have the complete picture. Let me also look at what's remaining to run.
+
+From the process list, I can see:
+- `tracvla object untrained` is currently running on cuda1 (bootstrap phase, many worker processes)
+- cuda0 has completed (the log showed `=== cuda:0 v3 batch COMPLETE ===`)
+
+From the file list (17 files):
+- openvla: goal(t/u), spatial(t/u), object(t/u), long(t/u) = 8 ✓
+
+
+- tracvla: goal(t/u), spatial(t/u), object(trained only) = 5 (object untrained running now)
+- nora: goal(t/u), spatial(t/u) = 4 ✓
+
+So I have 17 files done plus 1 currently running, which means I'm missing tracvla_long in both trained and untrained variants. The checkpoint dictionary shows tracvla_long should exist, and I can see tracvla_object/trained.json is there, but tracvla_object/untrained.json is still being generated.
+
+Looking at the total count: 8 files for openvla, 8 for tracvla, and 4 for nora adds up to 20 needed. I've got 17 done with tracvla_object untrained currently running, leaving just the two tracvla_long variants after that completes. Let me verify this against the run script to make sure I have the full picture before writing up the diagnosis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "15eec06c-85fa-4898-9b9b-7105cc2f304f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FGKPuRDk2jLfJ61YXxd11G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8119,
+      "cache_read_input_tokens": 52044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8119
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WkkgUEynZ633fSR4ae7sBN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/scripts/run_bootstrap_v3_cuda1.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "c4c27de5-9d21-45d0-acd0-787b02825bbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FGKPuRDk2jLfJ61YXxd11G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8119,
+      "cache_read_input_tokens": 52044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8119
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0188xmLUzFSvhtgH4mHs8o1b`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -5 /root/autodl-tmp/vla-ssd/logs/bootstrap_v3_cuda1.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "623fba1d-107d-428b-a7a6-0c6e6cdb5a47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FGKPuRDk2jLfJ61YXxd11G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8119,
+      "cache_read_input_tokens": 52044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8119
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-23T11:20:49.910Z_
+
+<details><summary>↩ Tool result · `toolu_01WkkgUEynZ633fSR4ae7sBN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport CUDA_VISIBLE_DEVICES=1\\nSCRIPT=/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py\\nN_BOOT=1000\\nOUT=/root/autodl-tmp/vla-ssd/results/bootstrap_v3\\n\\necho \\\"=== cuda:1 v3 batch start: $(date) ===\\\"\\n\\nfor ARCH in tracvla; do\\n  for SUITE in goal spatial object long; do\\n    for COND in trained untrained; do\\n      OUTF=\\\"${OUT}/${ARCH}_${SUITE}/${COND}.json\\\"\\n      if [ -f \\\"$OUTF\\\" ]; then\\n        echo \\\"SKIP (exists): ${ARCH} ${SUITE} ${COND}\\\"\\n        continue\\n      fi\\n      echo \\\"--- ${ARCH} ${SUITE} ${COND}: $(date) ---\\\"\\n      python3 $SCRIPT --arch $ARCH --suite $SUITE --condition $COND --n_bootstrap $N_BOOT --output_dir $OUT\\n      echo \\\"--- ${ARCH} ${SUITE} ${COND} DONE: $(date) ---\\\"\\n    done\\n  done\\ndone\\n\\necho \\\"=== cuda:1 v3 batch COMPLETE: $(date) ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "609f3e59-26c9-4c80-bada-df7f24ae0503",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport CUDA_VISIBLE_DEVICES=1\\\\nSCRIPT=/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py\\\\nN_BOOT=1000\\\\nOUT=/root/autodl-tmp/vla-ssd/results/bootstrap_v3\\\\n\\\\necho \\\\\\\"=== cuda:1 v3 batch start: $(date) ===\\\\\\\"\\\\n\\\\nfor ARCH in tracvla; do\\\\n  for SUITE in goal spatial object long; do\\\\n    for COND in trained untrained; do\\\\n      OUTF=\\\\\\\"${OUT}/${ARCH}_${SUITE}/${COND}.json\\\\\\\"\\\\n      if [ -f \\\\\\\"$OUTF\\\\\\\" ]; then\\\\n        echo \\\\\\\"SKIP (exists): ${ARCH} ${SUITE} ${COND}\\\\\\\"\\\\n        continue\\\\n      fi\\\\n      echo \\\\\\\"--- ${ARCH} ${SUITE} ${COND}: $(date) ---\\\\\\\"\\\\n      python3 $SCRIPT --arch $ARCH --suite $SUITE --condition $COND --n_bootstrap $N_BOOT --output_dir $OUT\\\\n      echo \\\\\\\"--- ${ARCH} ${SUITE} ${COND} DONE: $(date) ---\\\\\\\"\\\\n    done\\\\n  done\\\\ndone\\\\n\\\\necho \\\\\\\"=== cuda:1 v3 batch COMPLETE: $(date) ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport CUDA_VISIBLE_DEVICES=1\\nSCRIPT=/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py\\nN_BOOT=1000\\nOUT=/root/autodl-tmp/vla-ssd/results/bootstrap_v3\\n\\necho \\\"=== cuda:1 v3 batch start: $(date) ===\\\"\\n\\nfor ARCH in tracvla; do\\n  for SUITE in goal spatial object long; do\\n    for COND in trained untrained; do\\n      OUTF=\\\"${OUT}/${ARCH}_${SUITE}/${COND}.json\\\"\\n      if [ -f \\\"$OUTF\\\" ]; then\\n        echo \\\"SKIP (exists): ${ARCH} ${SUITE} ${COND}\\\"\\n        continue\\n      fi\\n      echo \\\"--- ${ARCH} ${SUITE} ${COND}: $(date) ---\\\"\\n      python3 $SCRIPT --arch $ARCH --suite $SUITE --condition $COND --n_bootstrap $N_BOOT --output_dir $OUT\\n      echo \\\"--- ${ARCH} ${SUITE} ${COND} DONE: $(date) ---\\\"\\n    done\\n  done\\ndone\\n\\necho \\\"=== cuda:1 v3 batch COMPLETE: $(date) ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-23T11:20:50.508Z_
+
+<details><summary>↩ Tool result · `toolu_0188xmLUzFSvhtgH4mHs8o1b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[19:08:17]   100 demos, split 80/20\\n[19:08:17]   Canonical split -- fitting RidgeCV per layer...\\n[19:15:16]   Precomputing kernel matrices...\\n[19:15:32]   Bootstrap (1000 iterations, parallel)...\\n[19:15:32]   Using 100 workers\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "94616f55-05c8-4a7a-948b-c8d3bc1c4485",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[19:08:17]   100 demos, split 80/20\\\\n[19:08:17]   Canonical split -- fitting RidgeCV per layer...\\\\n[19:15:16]   Precomputing kernel matrices...\\\\n[19:15:32]   Bootstrap (1000 iterations, parallel)...\\\\n[19:15:32]   Using 100 workers\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[19:08:17]   100 demos, split 80/20\\n[19:08:17]   Canonical split -- fitting RidgeCV per layer...\\n[19:15:16]   Precomputing kernel matrices...\\n[19:15:32]   Bootstrap (1000 iterations, parallel)...\\n[19:15:32]   Using 100 workers\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so cuda1 is running tracvla_object untrained bootstrap (1000 iterations), currently in the parallel bootstrap phase. After that, it'll try tracvla_long trained and untrained, but the CKPT dict shows tracvla has entries for long, so those should run.
+
+Wait, actually, looking at the CKPT dict again, tracvla_long uses the same checkpoint as tracvla_goal (tracevla-phi3v / phi3v-base). So it should work.
+
+After tracvla_object_untrained finishes, there will be:
+
+
+- tracvla_long trained
+- tracvla_long untrained
+
+So 3 more to go including the currently running one. Now let me write out the full diagnosis and organize it clearly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "d3a38817-4fc2-4b66-8a59-38f430370f14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYxpaAXok2CeZUSwhejUnQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1322,
+      "cache_read_input_tokens": 60163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1322
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+数据收集完毕。以下是诊断结果。
+
+---
+
+## 异常 1: NORA goal trained — CI [0.91, 1.61], canonical Δ=0.455, boot_mean=1.216
+
+### Root Cause: Exit layer (L35) 的 R² ≈ 0 导致 bootstrap 中 R² 无界下行
+
+**关键数据：**
+- L35 canonical R² = **-0.006**（probe 几乎无预测力）
+- L8 (peak) canonical R² = 0.449（有真实信号）
+- R² profile 在 L34→L35 有断崖：0.277 → -0.006
+
+**机制：** 当 canonical R² ≈ 0 时，probe 拟合的是训练集噪声。在不同的 80/20 demo 切分中：
+- L8 的 R² 相对稳定（有真实信号，boot 均值应接近 0.45）
+- L35 的 R² 则系统性地深负：预测值 = 噪声拟合，在新 test set 上 ss_res >> ss_tot，R² 无下界
+- 反推：boot_exit_R² ≈ 0.45 − 1.216 = **−0.77**（相比 canonical 的 -0.006，恶化了 0.76）
+
+canonical 的 -0.006 是一个**异常有利的切分**——恰好噪声对消。boot 的 -0.77 才是 L35 在随机切分下的典型表现。
+
+**佐证：** NORA untrained 的 L35 R² = 0.340（正常水平），bootstrap 行为正常（delta=0.081, boot_mean=0.045）。说明是**训练后 L35 信号崩塌**导致的问题——fine-tuning 使最后一层特化为 action head 需要的非线性表示，线性 probe 无法解码。
+
+### 定性：数据性质问题，不是方法论 bug
+
+Bootstrap 逻辑正确。R² 在无信号层不稳定是 R² 度量本身的数学性质（无下界），不是代码错误。
+
+### 论文建议
+
+1. **报告方式**：CI 反映的是 exit layer R² 的极端不稳定性，不应直接解读为 "delta 在 0.91–1.61 之间"。应在表格中标注 L35 canonical R² ≈ 0，CI 受 exit layer instability 驱动
+2. **替代方案**：可改用 L34（R² = 0.277）作为 "exit layer"，或使用最后 k 层均值作为 exit R²，避免单层噪声主导 CI
+3. **叙述**：NORA trained 的 SSD 效应真实存在（peak-to-exit 单调下降趋势清晰），但 L35 的断崖使得精确 CI 不可靠。可用叙述性描述 + R² profile 图替代点估计 CI
+
+---
+
+## 异常 2: TracVLA goal untrained — canonical Δ=0.065, CI [-0.11, 0.05], boot_mean=-0.023
+
+### Root Cause: 平坦 R² profile → peak 选择的 winner's curse
+
+**关键数据：**
+- R² profile 极平：L3=0.498, L9=0.492, L11=0.505(peak), L15=0.481, L21=0.495
+- "peak" L11 仅比第二高层高 0.007（0.505 vs 0.498）
+- exit L31 = 0.440，与 peak 差距仅 0.065
+
+**机制：** peak layer 是在 canonical split 上通过 `max(canon_r2)` 选出的。在 untrained 基座模型中，goal 信息均匀分布于各层，没有真正的"峰"。L11 的 0.505 是统计涨落，不是稳健的层级优势。
+
+Bootstrap 固定 peak=L11 / exit=L31，但在不同切分中：
+- L11 不再是最佳层（其他层在不同切分中可能更高）
+- L31 经常追平甚至超过 L11
+- 导致 delta 经常为负，boot_mean = -0.023
+
+Canonical delta (0.065) 甚至高于 CI 上界 (0.051)，说明 canonical 本身就是 selection bias 的产物。
+
+**佐证对比：** TracVLA goal **trained** 有清晰的峰谷结构（L13=0.540, exit L31=0.207, delta=0.333），bootstrap 行为正常（boot_mean=0.316, CI=[0.21, 0.45]）。fine-tuning 创造了真正的层级分化，untrained 没有。
+
+### 定性：数据性质问题 — 正确反映了 untrained 模型无 SSD 效应
+
+这不是 bug。CI 穿越零正确说明 untrained TracVLA 的 goal 信息没有显著的 peak-to-exit 衰减。
+
+### 论文建议
+
+1. **这是正面结果**：untrained CI 包含 0 → 无显著 SSD 效应 → 与 "训练创造 SSD" 的叙事一致
+2. **对比呈现**：TracVLA goal trained CI=[0.21, 0.45] vs untrained CI=[-0.11, 0.05]，清晰展示训练效应
+3. **无需修正**：CI 行为符合预期，直接报告即可
+
+---
+
+## v3 进度
+
+- **已完成**: 17/20 JSON 文件
+- **正在运行**: `tracvla_object untrained`（cuda1，bootstrap 阶段）
+- **剩余**: tracvla_long trained + untrained（2 个）
+- cuda0 已完成全部任务
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "uuid": "f34bd33c-dbfb-41fd-8b26-13f9a5c09d29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYxpaAXok2CeZUSwhejUnQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1322,
+      "cache_read_input_tokens": 60163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1322
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 67_
+
+数据收集完毕。以下是诊断结果。
+
+---
+
+## 异常 1: NORA goal trained — CI [0.91, 1.61], canonical Δ=0.455, boot_mean=1.216
+
+### Root Cause: Exit layer (L35) 的 R² ≈ 0 导致 bootstrap 中 R² 无界下行
+
+**关键数据：**
+- L35 canonical R² = **-0.006**（probe 几乎无预测力）
+- L8 (peak) canonical R² = 0.449（有真实信号）
+- R² profile 在 L34→L35 有断崖：0.277 → -0.006
+
+**机制：** 当 canonical R² ≈ 0 时，probe 拟合的是训练集噪声。在不同的 80/20 demo 切分中：
+- L8 的 R² 相对稳定（有真实信号，boot 均值应接近 0.45）
+- L35 的 R² 则系统性地深负：预测值 = 噪声拟合，在新 test set 上 ss_res >> ss_tot，R² 无下界
+- 反推：boot_exit_R² ≈ 0.45 − 1.216 = **−0.77**（相比 canonical 的 -0.006，恶化了 0.76）
+
+canonical 的 -0.006 是一个**异常有利的切分**——恰好噪声对消。boot 的 -0.77 才是 L35 在随机切分下的典型表现。
+
+**佐证：** NORA untrained 的 L35 R² = 0.340（正常水平），bootstrap 行为正常（delta=0.081, boot_mean=0.045）。说明是**训练后 L35 信号崩塌**导致的问题——fine-tuning 使最后一层特化为 action head 需要的非线性表示，线性 probe 无法解码。
+
+### 定性：数据性质问题，不是方法论 bug
+
+Bootstrap 逻辑正确。R² 在无信号层不稳定是 R² 度量本身的数学性质（无下界），不是代码错误。
+
+### 论文建议
+
+1. **报告方式**：CI 反映的是 exit layer R² 的极端不稳定性，不应直接解读为 "delta 在 0.91–1.61 之间"。应在表格中标注 L35 canonical R² ≈ 0，CI 受 exit layer instability 驱动
+2. **替代方案**：可改用 L34（R² = 0.277）作为 "exit layer"，或使用最后 k 层均值作为 exit R²，避免单层噪声主导 CI
+3. **叙述**：NORA trained 的 SSD 效应真实存在（peak-to-exit 单调下降趋势清晰），但 L35 的断崖使得精确 CI 不可靠。可用叙述性描述 + R² profile 图替代点估计 CI
+
+---
+
+## 异常 2: TracVLA goal untrained — canonical Δ=0.065, CI [-0.11, 0.05], boot_mean=-0.023
+
+### Root Cause: 平坦 R² profile → peak 选择的 winner's curse
+
+**关键数据：**
+- R² profile 极平：L3=0.498, L9=0.492, L11=0.505(peak), L15=0.481, L21=0.495
+- "peak" L11 仅比第二高层高 0.007（0.505 vs 0.498）
+- exit L31 = 0.440，与 peak 差距仅 0.065
+
+**机制：** peak layer 是在 canonical split 上通过 `max(canon_r2)` 选出的。在 untrained 基座模型中，goal 信息均匀分布于各层，没有真正的"峰"。L11 的 0.505 是统计涨落，不是稳健的层级优势。
+
+Bootstrap 固定 peak=L11 / exit=L31，但在不同切分中：
+- L11 不再是最佳层（其他层在不同切分中可能更高）
+- L31 经常追平甚至超过 L11
+- 导致 delta 经常为负，boot_mean = -0.023
+
+Canonical delta (0.065) 甚至高于 CI 上界 (0.051)，说明 canonical 本身就是 selection bias 的产物。
+
+**佐证对比：** TracVLA goal **trained** 有清晰的峰谷结构（L13=0.540, exit L31=0.207, delta=0.333），bootstrap 行为正常（boot_mean=0.316, CI=[0.21, 0.45]）。fine-tuning 创造了真正的层级分化，untrained 没有。
+
+### 定性：数据性质问题 — 正确反映了 untrained 模型无 SSD 效应
+
+这不是 bug。CI 穿越零正确说明 untrained TracVLA 的 goal 信息没有显著的 peak-to-exit 衰减。
+
+### 论文建议
+
+1. **这是正面结果**：untrained CI 包含 0 → 无显著 SSD 效应 → 与 "训练创造 SSD" 的叙事一致
+2. **对比呈现**：TracVLA goal trained CI=[0.21, 0.45] vs untrained CI=[-0.11, 0.05]，清晰展示训练效应
+3. **无需修正**：CI 行为符合预期，直接报告即可
+
+---
+
+## v3 进度
+
+- **已完成**: 17/20 JSON 文件
+- **正在运行**: `tracvla_object untrained`（cuda1，bootstrap 阶段）
+- **剩余**: tracvla_long trained + untrained（2 个）
+- cuda0 已完成全部任务
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 339036,
+  "duration_api_ms": 333242,
+  "num_turns": 24,
+  "stop_reason": "end_turn",
+  "session_id": "e2c939d3-fc71-4789-a45f-64d7b7c0660e",
+  "total_cost_usd": 0.895243,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 49644,
+    "cache_read_input_tokens": 516450,
+    "output_tokens": 12936,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 49644,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1862,
+        "cache_read_input_tokens": 60163,
+        "cache_creation_input_tokens": 1322,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1322
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3158,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0032530000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 12936,
+      "cacheReadInputTokens": 516450,
+      "cacheCreationInputTokens": 49644,
+      "webSearchRequests": 0,
+      "costUSD": 0.8919900000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "39a20d66-99c5-42e6-9e97-3e1c86f99714"
+}
+```
+
+</details>
+
+---

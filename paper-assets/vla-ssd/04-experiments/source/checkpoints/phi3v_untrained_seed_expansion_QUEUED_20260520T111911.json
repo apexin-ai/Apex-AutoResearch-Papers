@@ -1,0 +1,16 @@
+{
+  "exp_id": "phi3v_untrained_seed_expansion",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:42:59.261Z",
+    "updated_at": "2026-05-20T11:19:11.186Z",
+    "hypothesis": "Expanding Phi3V untrained R² probe from 5 to 15 seeds will tighten confidence intervals on the untrained profile (early peak at L4, monotonic decline), aligning statistical power with the other 3 conditions in the 2×2 matrix (all 15 seeds) and eliminating asymmetric seed count as a reviewer concern.",
+    "parent": "phi3v_r2_untrained_probe"
+  },
+  "timestamp": "2026-05-20T11:19:11.440408+00:00",
+  "trigger": "update_registry"
+}

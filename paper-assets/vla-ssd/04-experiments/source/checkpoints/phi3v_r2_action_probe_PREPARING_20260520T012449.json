@@ -1,0 +1,14 @@
+{
+  "exp_id": "phi3v_r2_action_probe",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T01:24:49.759Z",
+    "updated_at": "2026-05-20T01:24:49.759Z"
+  },
+  "timestamp": "2026-05-20T01:24:49.971349+00:00",
+  "trigger": "update_registry"
+}

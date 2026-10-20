@@ -1,0 +1,29 @@
+{
+  "exp_id": "fulllayer_action_probe",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:50:36.813Z",
+    "updated_at": "2026-05-16T04:49:28.492Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/vla-ssd/scripts/fulllayer_action_probe.py\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "700649",
+      "log_path": "~/runs/vla-ssd/fulllayer_action_probe.log",
+      "submitted_at": "2026-05-16T03:50:36.686Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T04:49:28.601993+00:00",
+  "trigger": "update_registry"
+}

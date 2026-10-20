@@ -1,0 +1,45 @@
+# diagnose nlp control completion
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnose_nlp_control_completion_20260522T125122_result.json`
+- **Structured JSON:** [`8d7ed7d6d600d7d7b8a1.json`](../../sessions/8d/8d7ed7d6d600d7d7b8a1.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 实验状态：成功完成 ✓
+
+进程正常退出，run.log 显示 "Experiment complete."，结果文件已生成。
+
+## R² Profile — Llama-2-7b-chat (NLP control, no action head)
+
+| 指标 | 值 |
+|------|-----|
+| Peak R² | 0.1555 (L15) |
+| Exit R² (L31) | 0.1555 |
+| Exit collapse (Δ) | **0.0000** |
+| Mean R² | 0.1553 |
+| Range (min–max) | 0.1547 – 0.1555 |
+
+**Per-layer R² 全部在 [0.1547, 0.1555] 内，std=0.0，本质上是常数。**
+
+## 关键解读
+
+1. **无 exit collapse** — R² 从头到尾几乎不变，完全平坦。
+2. **R² ≈ 0.155 是纯噪声基线** — 这个模型从未见过动作数据，hidden states 对同一 text prompt 在所有 timestep 上完全相同（5000 samples / 10 unique hidden states），Ridge 只能拟合到 task-mean action 的方差占比（≈ between-task variance / total variance）。
+3. **对比 VLA（如果 VLA 有 exit collapse）**：NLP baseline 证明 exit collapse 是 action fine-tuning 引入的现象，而非 LLM 架构的固有属性。纯 NLP 模型的表征在各层对动作预测没有差异化处理。
+
+---

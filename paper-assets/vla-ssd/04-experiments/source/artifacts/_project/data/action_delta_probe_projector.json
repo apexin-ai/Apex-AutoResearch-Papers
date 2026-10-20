@@ -1,0 +1,8 @@
+See full results at server: /root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json
+
+Summary:
+- Projector: mean_R2=0.1181, overall_R2=0.1053
+- Trained image_mean L14: mean_R2=0.1215, overall_R2=0.1091
+- Untrained best (L0): mean_R2=0.1174, overall_R2=0.1070
+- Bootstrap CI (proj-llm): delta=-0.0034, CI95=[-0.0066, 0.0005], p=0.0399
+- Gate: BELOW (projector 0.1181 < LLM best 0.1215, marginally significant)

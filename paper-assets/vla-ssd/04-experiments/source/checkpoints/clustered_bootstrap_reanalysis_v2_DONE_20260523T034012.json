@@ -1,0 +1,31 @@
+{
+  "exp_id": "clustered_bootstrap_reanalysis_v2",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:54:20.684Z",
+    "updated_at": "2026-05-23T03:40:12.302Z",
+    "hypothesis": "Demo-level clustered bootstrap with fixed canonical peak layer (no winner's curse) confirms R² exit collapse is significant for VLM→VLA models (TracVLA, NORA) but not VLA→VLA (OpenVLA). Fixes statistical artifact from v1 where per-iteration np.max inflated bootstrap deltas.",
+    "parent": "clustered_bootstrap_reanalysis_v1",
+    "spec": {
+      "command": "bash run_bootstrap_all_cuda0.sh + run_bootstrap_all_cuda1.sh",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/results/bootstrap_r2/",
+      "data_count": "5000 samples/condition x 20 conditions",
+      "model_name": "OpenVLA/TracVLA/NORA trained+untrained",
+      "seed": "bootstrap resampling x 1000",
+      "n_bootstrap": 1000,
+      "checkpoint_source": "clustered_bootstrap_reanalysis_v1",
+      "eval_data": "LIBERO goal/spatial/object/long demo HDF5s"
+    },
+    "notes": "2026-05-23 01:30 UTC 进度: 2/20 conditions 完成 (openvla_goal/trained, tracvla_goal/trained)。2/20 正在运行 (openvla_goal/untrained @bootstrap phase, tracvla_goal/untrained @extraction 1250/5000)。双卡进程活跃。预计 cuda:0 ~05:00 UTC 完成 (12 conditions), cuda:1 ~05:30 UTC 完成 (8 conditions)。早期结果: tracvla_goal_trained delta CI95=[0.0546,0.3416] 显著; openvla_goal_trained delta CI95=[-0.2528,-0.0117] 方向反转(bootstrap下exit>peak)。",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T03:40:12.302Z"
+  },
+  "timestamp": "2026-05-23T03:40:12.591009+00:00",
+  "trigger": "update_registry"
+}

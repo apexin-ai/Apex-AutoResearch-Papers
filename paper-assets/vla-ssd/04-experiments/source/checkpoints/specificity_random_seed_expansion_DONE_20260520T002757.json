@@ -1,0 +1,42 @@
+{
+  "exp_id": "specificity_random_seed_expansion",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:23:42.838Z",
+    "updated_at": "2026-05-20T00:27:57.565Z",
+    "hypothesis": "Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.",
+    "parent": "random_subset_ablation",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py --generate-cache && CUDA_VISIBLE_DEVICES='' python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/libero/libero_goal/",
+      "data_count": "30 seeds",
+      "model_name": "OpenVLA (cache generation)",
+      "seed": "0-29",
+      "pid": 169052,
+      "log_path": "/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log",
+      "output_cache": "/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt",
+      "output_results": "/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json",
+      "checkpoint_source": "openvla/openvla-7b (HuggingFace)",
+      "eval_data": "LIBERO-Goal 10 tasks, L1 attention patterns",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "z_score": -3.11,
+      "percentile": 0,
+      "instruction_increase": 0.0301,
+      "random_mean_increase": 0.0712,
+      "random_std_increase": 0.0132,
+      "baseline_r2": 0.5243,
+      "n_seeds": 30
+    },
+    "completed_at": "2026-05-20T00:27:57.565Z"
+  },
+  "timestamp": "2026-05-20T00:27:57.771555+00:00",
+  "trigger": "update_registry"
+}

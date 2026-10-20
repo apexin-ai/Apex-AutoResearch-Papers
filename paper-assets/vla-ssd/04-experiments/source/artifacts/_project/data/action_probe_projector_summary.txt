@@ -1,0 +1,11 @@
+Full results at server: /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json
+
+SUMMARY (LIBERO-Goal, 10 tasks, 500 demos):
+  projector:                  mean_R2=0.7063  overall_R2=0.7169  grip_acc=0.9221
+  image_mean_trained_L19:     mean_R2=0.6832  overall_R2=0.6961  grip_acc=0.9182
+  image_mean_trained_L23:     mean_R2=0.5736  overall_R2=0.5900  grip_acc=0.8924
+  llm_trained_L19:            mean_R2=0.7309  overall_R2=0.7397  grip_acc=0.9184
+  image_mean_untrained_L0:    mean_R2=0.7136  overall_R2=0.7234  grip_acc=0.9218
+
+Bootstrap CI (projector vs LLM L19): delta=-0.0246, 95% CI=[-0.0398, -0.0087], p=0.0014
+Gate judgment: PASS (projector mean_R2=0.7063 >= 0.683 threshold)

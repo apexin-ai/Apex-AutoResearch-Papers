@@ -1,0 +1,28 @@
+{
+  "ratio_point": 2.4867,
+  "ci_lower": 1.0341,
+  "ci_upper": 11.1175,
+  "ci_level": 0.95,
+  "n_bootstrap": 10000,
+  "n_complex": 6,
+  "n_simple": 4,
+  "complex_mean": 0.1405,
+  "simple_mean": 0.0565,
+  "median_ratio": 2.5669,
+  "method": "percentile bootstrap",
+  "seed": 42,
+  "complex_tasks": {
+    "wine on rack": 0.2346,
+    "bowl on cabinet": 0.2006,
+    "bowl on stove": 0.1598,
+    "bowl on plate": 0.0986,
+    "open top drawer + bowl": 0.0754,
+    "wine on cabinet": 0.074
+  },
+  "simple_tasks": {
+    "cream cheese in bowl": 0.1594,
+    "turn on stove": 0.0359,
+    "open middle drawer": 0.024,
+    "push plate to stove": 0.0067
+  }
+}

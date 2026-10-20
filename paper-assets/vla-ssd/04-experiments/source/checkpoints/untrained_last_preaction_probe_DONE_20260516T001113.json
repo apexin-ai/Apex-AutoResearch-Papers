@@ -1,0 +1,38 @@
+{
+  "exp_id": "untrained_last_preaction_probe",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:08:56.469Z",
+    "updated_at": "2026-05-16T00:11:13.235Z",
+    "spec": {
+      "command": "python scripts/action_probe.py --features untrained --feature_key last_preaction",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/untrained_libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-untrained",
+      "seed": 42,
+      "checkpoint_path": "N/A (probe analysis)",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/functional_validation/"
+    },
+    "metrics": {
+      "untrained_last_preaction_L19_mean_R2": 0.325,
+      "trained_last_preaction_L19_mean_R2": 0.731,
+      "projector_mean_R2": 0.706,
+      "delta_trained_vs_untrained_L19": 0.406,
+      "untrained_best_layer": "L1",
+      "untrained_best_R2": 0.689,
+      "delta_best_vs_best": 0.042,
+      "conclusion_summary": "Untrained last_preaction L19 R²=0.325 << trained 0.731. High readout R² is training-dependent, not architectural. Untrained best layer L1 (0.689) reflects SigLIP input strength, not LLM processing."
+    },
+    "hypothesis": "C001 control: Untrained VLA last_preaction action probe. If untrained last_preaction R² < projector (0.706) → redistribution is training-dependent. If ≈ projector → architectural.",
+    "conclusion": "success",
+    "checkpoint_path": "N/A (analysis experiment)",
+    "completed_at": "2026-05-16T00:11:13.235Z"
+  },
+  "timestamp": "2026-05-16T00:11:13.341218+00:00",
+  "trigger": "update_registry"
+}

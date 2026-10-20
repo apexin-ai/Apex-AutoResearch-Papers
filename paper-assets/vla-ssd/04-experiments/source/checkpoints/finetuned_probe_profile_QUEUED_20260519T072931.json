@@ -1,0 +1,15 @@
+{
+  "exp_id": "finetuned_probe_profile",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:29:17.138Z",
+    "updated_at": "2026-05-19T07:29:31.688Z",
+    "hypothesis": "LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network."
+  },
+  "timestamp": "2026-05-19T07:29:31.919604+00:00",
+  "trigger": "update_registry"
+}

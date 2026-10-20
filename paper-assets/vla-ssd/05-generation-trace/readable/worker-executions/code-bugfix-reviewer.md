@@ -1,0 +1,2612 @@
+# code bugfix reviewer
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_code_bugfix-reviewer_20260515T071633.log`
+- **Structured JSON:** [`ac54f78d9913ae6d806d.json`](../../sessions/ac/ac54f78d9913ae6d806d.json)
+
+## Before a recorded user message
+
+55 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "17c9d014-3255-4f83-a406-9f75d8f7c4d0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778837400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "db64a155-db8d-475a-ab26-e27864a91659",
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current files on the server to understand the code structure before making any changes. I'll need to:
+
+1. Read `init_untrained.py`
+2. Read `analyze_results.py` (specifically `compute_judgment`)
+3. Read `train_probes.py` (specifically pair building logic)
+
+Let me first load the MCP tools I'll need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "7e9c96b8-2dbd-48ba-9a28-b1362f336e01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUibMwHsUqNoMhEtV5UhTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11829,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11829
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取三个文件的当前内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "57ce2dff-25b1-4d78-a88d-e499d647d6c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUibMwHsUqNoMhEtV5UhTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11829,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11829
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011zfDTnATVeoNjdhyhgy1HB`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "a9b00ded-9e0c-406e-9e9a-86d382e3f32d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUibMwHsUqNoMhEtV5UhTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11829,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11829
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T07:16:46.787Z_
+
+<details><summary>↩ Tool result · `toolu_011zfDTnATVeoNjdhyhgy1HB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "18f6cc53-683e-4c1b-b360-887ca6346721",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XiFrMdbGQRDQzpwJ7z5BuD`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/init_untrained.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "6110f7e3-0fab-4583-a918-a4dda7a554d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LMyxs1uxZt94KFWnCT5sou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 23670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 987
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UAAqUbgaV9sqCdsJi5JrLf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "5f9d46aa-fa26-4285-bf26-7107c01cac39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LMyxs1uxZt94KFWnCT5sou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 23670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 987
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019Smr2YDEWSuZSbpwBXEchy`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "24b76890-2463-4091-b32e-846906b14b83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LMyxs1uxZt94KFWnCT5sou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 23670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 987
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T07:16:50.865Z_
+
+<details><summary>↩ Tool result · `toolu_01XiFrMdbGQRDQzpwJ7z5BuD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"init_untrained.py — Reinitialize OpenVLA LLM backbone with random weights.\\n\\nKeeps vision encoder (DINOv2 + SigLIP) and projector intact.\\n2D+ params -> xavier_normal_, 1D params -> zeros_.\\n\\nInput:  Pretrained OpenVLA checkpoint\\nOutput: New checkpoint with randomized LLM backbone\\n\\nUsage:\\n  python init_untrained.py --model_path checkpoints/openvla-7b \\\\\\n                           --output_path checkpoints/openvla-7b-untrained/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport os\\n\\nimport torch\\nimport torch.nn as nn\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Reinitialize OpenVLA LLM backbone\\\")\\n    p.add_argument(\\\"--model_path\\\", required=True,\\n                   help=\\\"Path to pretrained OpenVLA checkpoint\\\")\\n    p.add_argument(\\\"--output_path\\\", required=True,\\n                   help=\\\"Path to save reinitialized model\\\")\\n    return p.parse_args()\\n\\n\\ndef reinit_llm_backbone(model):\\n    \\\"\\\"\\\"Reinitialize language_model.* parameters. Returns counts and names.\\\"\\\"\\\"\\n    n_reinit = 0\\n    n_kept = 0\\n    reinit_names = []\\n\\n    for name, param in model.named_parameters():\\n        if not name.startswith(\\\"language_model.\\\"):\\n            n_kept += 1\\n            continue\\n\\n        with torch.no_grad():\\n            if param.dim() >= 2:\\n                nn.init.xavier_normal_(param)\\n            else:\\n                nn.init.zeros_(param)\\n        n_reinit += 1\\n        reinit_names.append(name)\\n\\n    return n_reinit, n_kept, reinit_names\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    print(f\\\"Loading model from {args.model_path} ...\\\")\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        args.model_path,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n    )\\n    processor = AutoProcessor.from_pretrained(args.model_path, trust_remote_code=True)\\n\\n    total = sum(p.numel() for p in model.parameters())\\n    llm = sum(p.numel() for n, p in model.named_parameters()\\n              if n.startswith(\\\"language_model.\\\"))\\n    vision = total - llm\\n    print(f\\\"Total: {total/1e9:.2f}B | LLM: {llm/1e9:.2f}B | Vision+Proj: {vision/1e9:.2f}B\\\")\\n\\n    print(\\\"Reinitializing LLM backbone ...\\\")\\n    n_reinit, n_kept, reinit_names = reinit_llm_backbone(model)\\n    print(f\\\"Reinitialized: {n_reinit} params | Kept: {n_kept} params\\\")\\n\\n    module_counts = {}\\n    for name in reinit_names:\\n        mod = \\\".\\\".join(name.split(\\\".\\\")[:3])\\n        module_counts[mod] = module_counts.get(mod, 0) + 1\\n    print(\\\"Reinitialized modules:\\\")\\n    for mod, cnt in sorted(module_counts.items()):\\n        print(f\\\"  {mod}: {cnt} params\\\")\\n\\n    print(f\\\"\\\\nSaving to {args.output_path} ...\\\")\\n    os.makedirs(args.output_path, exist_ok=True)\\n    model.save_pretrained(args.output_path)\\n    processor.save_pretrained(args.output_path)\\n\\n    saved_size = sum(\\n        os.path.getsize(os.path.join(dp, fn))\\n        for dp, _, fns in os.walk(args.output_path) for fn in fns\\n    ) / 1024**3\\n    print(f\\\"Saved ({saved_size:.1f} GB)\\\")\\n\\n    # Quick sanity check\\n    for name, param in model.named_parameters():\\n        if name.startswith(\\\"language_model.\\\") and param.dim() >= 2:\\n            print(f\\\"  LLM sample std: {param.float().std().item():.6f} ({name})\\\")\\n            break\\n    for name, param in model.named_parameters():\\n        if not name.startswith(\\\"language_model.\\\") and param.dim() >= 2:\\n            print(f\\\"  Vision sample std: {param.float().std().item():.6f} ({name})\\\")\\n            break\\n\\n    del model\\n    gc.collect()\\n    print(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "c1da93ba-a64a-47e6-a93f-a3be48e5034c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"init_untrained.py — Reinitialize OpenVLA LLM backbone with random weights.\\\\n\\\\nKeeps vision encoder (DINOv2 + SigLIP) and projector intact.\\\\n2D+ params -> xavier_normal_, 1D params -> zeros_.\\\\n\\\\nInput:  Pretrained OpenVLA checkpoint\\\\nOutput: New checkpoint with randomized LLM backbone\\\\n\\\\nUsage:\\\\n  python init_untrained.py --model_path checkpoints/openvla-7b \\\\\\\\\\\\n                           --output_path checkpoints/openvla-7b-untrained/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport os\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Reinitialize OpenVLA LLM backbone\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Path to pretrained OpenVLA checkpoint\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_path\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Path to save reinitialized model\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef reinit_llm_backbone(model):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Reinitialize language_model.* parameters. Returns counts and names.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_reinit = 0\\\\n    n_kept = 0\\\\n    reinit_names = []\\\\n\\\\n    for name, param in model.named_parameters():\\\\n        if not name.startswith(\\\\\\\"language_model.\\\\\\\"):\\\\n            n_kept += 1\\\\n            continue\\\\n\\\\n        with torch.no_grad():\\\\n            if param.dim() >= 2:\\\\n                nn.init.xavier_normal_(param)\\\\n            else:\\\\n                nn.init.zeros_(param)\\\\n        n_reinit += 1\\\\n        reinit_names.append(name)\\\\n\\\\n    return n_reinit, n_kept, reinit_names\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n\\\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\n    print(f\\\\\\\"Loading model from {args.model_path} ...\\\\\\\")\\\\n    model = AutoModelForVision2Seq.from_pretrained(\\\\n        args.model_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        low_cpu_mem_usage=True,\\\\n    )\\\\n    processor = AutoProcessor.from_pretrained(args.model_path, trust_remote_code=True)\\\\n\\\\n    total = sum(p.numel() for p in model.parameters())\\\\n    llm = sum(p.numel() for n, p in model.named_parameters()\\\\n              if n.startswith(\\\\\\\"language_model.\\\\\\\"))\\\\n    vision = total - llm\\\\n    print(f\\\\\\\"Total: {total/1e9:.2f}B | LLM: {llm/1e9:.2f}B | Vision+Proj: {vision/1e9:.2f}B\\\\\\\")\\\\n\\\\n    print(\\\\\\\"Reinitializing LLM backbone ...\\\\\\\")\\\\n    n_reinit, n_kept, reinit_names = reinit_llm_backbone(model)\\\\n    print(f\\\\\\\"Reinitialized: {n_reinit} params | Kept: {n_kept} params\\\\\\\")\\\\n\\\\n    module_counts = {}\\\\n    for name in reinit_names:\\\\n        mod = \\\\\\\".\\\\\\\".join(name.split(\\\\\\\".\\\\\\\")[:3])\\\\n        module_counts[mod] = module_counts.get(mod, 0) + 1\\\\n    print(\\\\\\\"Reinitialized modules:\\\\\\\")\\\\n    for mod, cnt in sorted(module_counts.items()):\\\\n        print(f\\\\\\\"  {mod}: {cnt} params\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaving to {args.output_path} ...\\\\\\\")\\\\n    os.makedirs(args.output_path, exist_ok=True)\\\\n    model.save_pretrained(args.output_path)\\\\n    processor.save_pretrained(args.output_path)\\\\n\\\\n    saved_size = sum(\\\\n        os.path.getsize(os.path.join(dp, fn))\\\\n        for dp, _, fns in os.walk(args.output_path) for fn in fns\\\\n    ) / 1024**3\\\\n    print(f\\\\\\\"Saved ({saved_size:.1f} GB)\\\\\\\")\\\\n\\\\n    # Quick sanity check\\\\n    for name, param in model.named_parameters():\\\\n        if name.startswith(\\\\\\\"language_model.\\\\\\\") and param.dim() >= 2:\\\\n            print(f\\\\\\\"  LLM sample std: {param.float().std().item():.6f} ({name})\\\\\\\")\\\\n            break\\\\n    for name, param in model.named_parameters():\\\\n        if not name.startswith(\\\\\\\"language_model.\\\\\\\") and param.dim() >= 2:\\\\n            print(f\\\\\\\"  Vision sample std: {param.float().std().item():.6f} ({name})\\\\\\\")\\\\n            break\\\\n\\\\n    del model\\\\n    gc.collect()\\\\n    print(\\\\\\\"Done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"init_untrained.py — Reinitialize OpenVLA LLM backbone with random weights.\\n\\nKeeps vision encoder (DINOv2 + SigLIP) and projector intact.\\n2D+ params -> xavier_normal_, 1D params -> zeros_.\\n\\nInput:  Pretrained OpenVLA checkpoint\\nOutput: New checkpoint with randomized LLM backbone\\n\\nUsage:\\n  python init_untrained.py --model_path checkpoints/openvla-7b \\\\\\n                           --output_path checkpoints/openvla-7b-untrained/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport os\\n\\nimport torch\\nimport torch.nn as nn\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Reinitialize OpenVLA LLM backbone\\\")\\n    p.add_argument(\\\"--model_path\\\", required=True,\\n                   help=\\\"Path to pretrained OpenVLA checkpoint\\\")\\n    p.add_argument(\\\"--output_path\\\", required=True,\\n                   help=\\\"Path to save reinitialized model\\\")\\n    return p.parse_args()\\n\\n\\ndef reinit_llm_backbone(model):\\n    \\\"\\\"\\\"Reinitialize language_model.* parameters. Returns counts and names.\\\"\\\"\\\"\\n    n_reinit = 0\\n    n_kept = 0\\n    reinit_names = []\\n\\n    for name, param in model.named_parameters():\\n        if not name.startswith(\\\"language_model.\\\"):\\n            n_kept += 1\\n            continue\\n\\n        with torch.no_grad():\\n            if param.dim() >= 2:\\n                nn.init.xavier_normal_(param)\\n            else:\\n                nn.init.zeros_(param)\\n        n_reinit += 1\\n        reinit_names.append(name)\\n\\n    return n_reinit, n_kept, reinit_names\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    print(f\\\"Loading model from {args.model_path} ...\\\")\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        args.model_path,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n    )\\n    processor = AutoProcessor.from_pretrained(args.model_path, trust_remote_code=True)\\n\\n    total = sum(p.numel() for p in model.parameters())\\n    llm = sum(p.numel() for n, p in model.named_parameters()\\n              if n.startswith(\\\"language_model.\\\"))\\n    vision = total - llm\\n    print(f\\\"Total: {total/1e9:.2f}B | LLM: {llm/1e9:.2f}B | Vision+Proj: {vision/1e9:.2f}B\\\")\\n\\n    print(\\\"Reinitializing LLM backbone ...\\\")\\n    n_reinit, n_kept, reinit_names = reinit_llm_backbone(model)\\n    print(f\\\"Reinitialized: {n_reinit} params | Kept: {n_kept} params\\\")\\n\\n    module_counts = {}\\n    for name in reinit_names:\\n        mod = \\\".\\\".join(name.split(\\\".\\\")[:3])\\n        module_counts[mod] = module_counts.get(mod, 0) + 1\\n    print(\\\"Reinitialized modules:\\\")\\n    for mod, cnt in sorted(module_counts.items()):\\n        print(f\\\"  {mod}: {cnt} params\\\")\\n\\n    print(f\\\"\\\\nSaving to {args.output_path} ...\\\")\\n    os.makedirs(args.output_path, exist_ok=True)\\n    model.save_pretrained(args.output_path)\\n    processor.save_pretrained(args.output_path)\\n\\n    saved_size = sum(\\n        os.path.getsize(os.path.join(dp, fn))\\n        for dp, _, fns in os.walk(args.output_path) for fn in fns\\n    ) / 1024**3\\n    print(f\\\"Saved ({saved_size:.1f} GB)\\\")\\n\\n    # Quick sanity check\\n    for name, param in model.named_parameters():\\n        if name.startswith(\\\"language_model.\\\") and param.dim() >= 2:\\n            print(f\\\"  LLM sample std: {param.float().std().item():.6f} ({name})\\\")\\n            break\\n    for name, param in model.named_parameters():\\n        if not name.startswith(\\\"language_model.\\\") and param.dim() >= 2:\\n            print(f\\\"  Vision sample std: {param.float().std().item():.6f} ({name})\\\")\\n            break\\n\\n    del model\\n    gc.collect()\\n    print(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T07:16:51.457Z_
+
+<details><summary>↩ Tool result · `toolu_01UAAqUbgaV9sqCdsJi5JrLf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                marker=MARKERS.get(name, \\\"o\\\"),\\n                color=COLORS.get(name, \\\"#999\\\"),\\n                label=name, linewidth=2, markersize=5)\\n\\n    if oracle_rho is not None:\\n        ax.axhline(y=oracle_rho, color=COLORS[\\\"oracle\\\"],\\n                   linestyle=\\\"--\\\", label=f\\\"oracle (rho={oracle_rho:.3f})\\\", alpha=0.7)\\n\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Spearman rho\\\")\\n    ax.set_title(\\\"Temporal Distance Probe: Layer-wise Spearman rho\\\")\\n    ax.legend()\\n    ax.grid(True, alpha=0.3)\\n\\n    path = os.path.join(output_dir, \\\"layer_rho.png\\\")\\n    fig.savefig(path, dpi=150\\n\\n... [截断: 输出过长，省略 4801 字符] ...\\n\\n        if isinstance(v.get(\\\"macro_auc\\\"), (int, float)) and v[\\\"macro_auc\\\"] > 0.7:\\n                subtask_pass = True\\n                break\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    passed = criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]\\n    judgment = \\\"PASS\\\" if passed else \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best rho = {best_rho:.4f} <= 0.3\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        reasons.append(f\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "885f870c-d7b1-4145-b8bb-ce987f4cefbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"analyze_results.py — Compare probe results across models and visualize.\\\\n\\\\nInput:  Multiple result directories (from train_probes.py)\\\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\\\n\\\\nUsage:\\\\n  python analyze_results.py \\\\\\\\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\\\\\\\n    --output_dir results/analysis/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Analyze and compare probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--results_dirs\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", default=\\\\\\\"temporal_distance\\\\\\\",\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\"])\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_results_dirs(s):\\\\n    d = {}\\\\n    for entry in s.split(\\\\\\\",\\\\\\\"):\\\\n        name, path = entry.strip().split(\\\\\\\":\\\\\\\")\\\\n        d[name.strip()] = path.strip()\\\\n    return d\\\\n\\\\n\\\\ndef load_results(results_dir, probe_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load probe results from a directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probe_dir = os.path.join(results_dir, probe_type)\\\\n    summary_path = os.path.join(probe_dir, \\\\\\\"summary.json\\\\\\\")\\\\n    if os.path.exists(summary_path):\\\\n        with open(summary_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    results = {}\\\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\\\\\"layer_*.json\\\\\\\"))):\\\\n        with open(p) as f:\\\\n            m = json.load(f)\\\\n        key = m.get(\\\\\\\"layer\\\\\\\", Path(p).stem.replace(\\\\\\\"layer_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        results[str(key)] = m\\\\n    return {\\\\\\\"results\\\\\\\": results}\\\\n\\\\n\\\\ndef load_oracle(results_dirs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect oracle results from any provided directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for path in results_dirs.values():\\\\n        oracle_dir = os.path.join(path, \\\\\\\"oracle\\\\\\\")\\\\n        summary = os.path.join(oracle_dir, \\\\\\\"summary.json\\\\\\\")\\\\n        if os.path.exists(summary):\\\\n            with open(summary) as f:\\\\n                data = json.load(f)\\\\n            r = data.get(\\\\\\\"results\\\\\\\", {})\\\\n            if \\\\\\\"oracle\\\\\\\" in r:\\\\n                return r[\\\\\\\"oracle\\\\\\\"].get(\\\\\\\"spearman_rho\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef _sort_key(x):\\\\n    try:\\\\n        return (0, int(x))\\\\n    except ValueError:\\\\n        return (1, x)\\\\n\\\\n\\\\ndef extract_layer_metrics(data, metric=\\\\\\\"spearman_rho\\\\\\\"):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers, values = [], []\\\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\\\n        if k == \\\\\\\"oracle\\\\\\\":\\\\n            continue\\\\n        val = v.get(metric)\\\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\\\n            layers.append(int(k))\\\\n            values.append(float(val))\\\\n    return np.array(layers), np.array(values)\\\\n\\\\n\\\\n# ============================================================\\\\n# Plots\\\\n# ============================================================\\\\n\\\\nCOLORS = {\\\\n    \\\\\\\"trained\\\\\\\": \\\\\\\"#2196F3\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"#F44336\\\\\\\",\\\\n    \\\\\\\"dinov2\\\\\\\": \\\\\\\"#4CAF50\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"#FF9800\\\\\\\",\\\\n}\\\\nMARKERS = {\\\\\\\"trained\\\\\\\": \\\\\\\"o\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"s\\\\\\\", \\\\\\\"dinov2\\\\\\\": \\\\\\\"^\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"D\\\\\\\"}\\\\n\\\\n\\\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\\\n    fig, ax = plt.subplots(figsize=(10, 5))\\\\n\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(layers) == 0:\\\\n            continue\\\\n        ax.plot(layers, rhos,\\\\n                marker=MARKERS.get(name, \\\\\\\"o\\\\\\\"),\\\\n                color=COLORS.get(name, \\\\\\\"#999\\\\\\\"),\\\\n                label=name, linewidth=2, markersize=5)\\\\n\\\\n    if oracle_rho is not None:\\\\n        ax.axhline(y=oracle_rho, color=COLORS[\\\\\\\"oracle\\\\\\\"],\\\\n                   linestyle=\\\\\\\"--\\\\\\\", label=f\\\\\\\"oracle (rho={oracle_rho:.3f})\\\\\\\", alpha=0.7)\\\\n\\\\n    ax.set_xlabel(\\\\\\\"Layer\\\\\\\")\\\\n    ax.set_ylabel(\\\\\\\"Spearman rho\\\\\\\")\\\\n    ax.set_title(\\\\\\\"Temporal Distance Probe: Layer-wise Spearman rho\\\\\\\")\\\\n    ax.legend()\\\\n    ax.grid(True, alpha=0.3)\\\\n\\\\n    path = os.path.join(output_dir, \\\\\\\"layer_rho.png\\\\\\\")\\\\n    fig.savefig(path, dpi=150\\\\n\\\\n... [截断: 输出过长，省略 4801 字符] ...\\\\n\\\\n        if isinstance(v.get(\\\\\\\"macro_auc\\\\\\\"), (int, float)) and v[\\\\\\\"macro_auc\\\\\\\"] > 0.7:\\\\n                subtask_pass = True\\\\n                break\\\\n\\\\n    criteria[\\\\\\\"vla_ge_dinov2\\\\\\\"] = vla_ge_dino\\\\n    criteria[\\\\\\\"subtask_auc_pass\\\\\\\"] = subtask_pass\\\\n    criteria[\\\\\\\"third_criterion\\\\\\\"] = vla_ge_dino or subtask_pass\\\\n\\\\n    passed = criteria[\\\\\\\"rho_pass\\\\\\\"] and criteria[\\\\\\\"delta_pass\\\\\\\"] and criteria[\\\\\\\"third_criterion\\\\\\\"]\\\\n    judgment = \\\\\\\"PASS\\\\\\\" if passed else \\\\\\\"FAIL\\\\\\\"\\\\n\\\\n    reasons = []\\\\n    if not criteria[\\\\\\\"rho_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"best rho = {best_rho:.4f} <= 0.3\\\\\\\")\\\\n    if not criteria[\\\\\\\"delta_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\\\\\")\\\\n    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        reasons.append(\\\\\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\\\\\")\\\\n\\\\n    return dict(judgment=judgment, criteria=criteria,\\\\n                reasons=reasons if reasons else [\\\\\\\"All criteria met\\\\\\\"])\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    dirs = parse_results_dirs(args.results_dirs)\\\\n    print(f\\\\\\\"Loading results: {list(dirs.keys())}\\\\\\\")\\\\n\\\\n    all_data = {}\\\\n    for name, path in dirs.items():\\\\n        try:\\\\n            data = load_results(path, args.probe_type)\\\\n            all_data[name] = data\\\\n            n = len(data.get(\\\\\\\"results\\\\\\\", {}))\\\\n            print(f\\\\\\\"  {name}: {n} entries\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  {name}: FAILED ({e})\\\\\\\")\\\\n\\\\n    if not all_data:\\\\n        print(\\\\\\\"No data loaded.\\\\\\\")\\\\n        return\\\\n\\\\n    oracle_rho = load_oracle(dirs)\\\\n    if oracle_rho is not None:\\\\n        print(f\\\\\\\"Oracle rho: {oracle_rho:.4f}\\\\\\\")\\\\n\\\\n    # --- Comparison table ---\\\\n    print(\\\\\\\"\\\\\\\\n=== Layer-wise Spearman rho ===\\\\\\\")\\\\n    names = list(all_data.keys())\\\\n    header = [\\\\\\\"Layer\\\\\\\"] + names\\\\n    print(\\\\\\\" | \\\\\\\".join(f\\\\\\\"{h:>12}\\\\\\\" for h in header))\\\\n    print(\\\\\\\"-\\\\\\\" * (14 * len(header)))\\\\n\\\\n    all_layers = set()\\\\n    for data in all_data.values():\\\\n        layers, _ = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        all_layers.update(layers.tolist())\\\\n\\\\n    for layer in sorted(all_layers):\\\\n        row = [f\\\\\\\"{layer:>12}\\\\\\\"]\\\\n        for name in names:\\\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\\\\\"spearman_rho\\\\\\\")\\\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\\\n            val = lmap.get(layer, float(\\\\\\\"nan\\\\\\\"))\\\\n            row.append(f\\\\\\\"{val:>12.4f}\\\\\\\")\\\\n        print(\\\\\\\" | \\\\\\\".join(row))\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Best Layer ===\\\\\\\")\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            print(f\\\\\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\\\\\")\\\\n\\\\n    # --- Plots ---\\\\n    if args.probe_type == \\\\\\\"temporal_distance\\\\\\\":\\\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\\\n        plot_delta_rho(all_data, args.output_dir)\\\\n\\\\n    if args.probe_type == \\\\\\\"subtask_predicate\\\\\\\":\\\\n        for name, data in all_data.items():\\\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\\\n\\\\n    # --- Judgment ---\\\\n    judgment = compute_judgment(all_data)\\\\n    print(f\\\\\\\"\\\\\\\\n=== Judgment: {judgment['judgment']} ===\\\\\\\")\\\\n    for k, v in judgment[\\\\\\\"criteria\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n    for r in judgment[\\\\\\\"reasons\\\\\\\"]:\\\\n        print(f\\\\\\\"  >> {r}\\\\\\\")\\\\n\\\\n    # --- Save ---\\\\n    summary = dict(\\\\n        models=names,\\\\n        probe_type=args.probe_type,\\\\n        judgment=judgment,\\\\n    )\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\\\n    if oracle_rho is not None:\\\\n        summary[\\\\\\\"oracle_rho\\\\\\\"] = oracle_rho\\\\n\\\\n    with open(os.path.join(args.output_dir, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved {args.output_dir}/summary.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                marker=MARKERS.get(name, \\\"o\\\"),\\n                color=COLORS.get(name, \\\"#999\\\"),\\n                label=name, linewidth=2, markersize=5)\\n\\n    if oracle_rho is not None:\\n        ax.axhline(y=oracle_rho, color=COLORS[\\\"oracle\\\"],\\n                   linestyle=\\\"--\\\", label=f\\\"oracle (rho={oracle_rho:.3f})\\\", alpha=0.7)\\n\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Spearman rho\\\")\\n    ax.set_title(\\\"Temporal Distance Probe: Layer-wise Spearman rho\\\")\\n    ax.legend()\\n    ax.grid(True, alpha=0.3)\\n\\n    path = os.path.join(output_dir, \\\"layer_rho.png\\\")\\n    fig.savefig(path, dpi=150\\n\\n... [截断: 输出过长，省略 4801 字符] ...\\n\\n        if isinstance(v.get(\\\"macro_auc\\\"), (int, float)) and v[\\\"macro_auc\\\"] > 0.7:\\n                subtask_pass = True\\n                break\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    passed = criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]\\n    judgment = \\\"PASS\\\" if passed else \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best rho = {best_rho:.4f} <= 0.3\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        reasons.append(f\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T07:16:51.995Z_
+
+<details><summary>↩ Tool result · `toolu_019Smr2YDEWSuZSbpwBXEchy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\n\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\nAGG_MAP = {\\n    \\\"last_preaction\\\": (\\\"last_preaction\\\", \\\"cls_token\\\"),\\n    \\\"image_mean\\\": (\\\"image_mean\\\", \\\"patch_mean\\\"),\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train linear probes on VLA/DINO-V2 features\\\")\\n    p.add_argument(\\\"--features_dir\\\", required=True,\\n                   help=\\\"Directory with per-task HDF5 feature files\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True,\\n                   help=\\\"Directory to save probe results\\\")\\n    p.add_argument(\\\"--probe_type\\\", required=True,\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\", \\\"oracle\\\"])\\n    p.add_argument(\\\"--layers\\\", default=None,\\n                   help=\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\")\\n    p.add_argument(\\\"--aggregation\\\", default=\\\"last_preaction\\\",\\n                   choices=[\\\"last_preaction\\\", \\\"image_mean\\\"])\\n    p.add_argument(\\\"--label_file\\\", default=None,\\n                   help=\\\"Predicate labels JSON (required for subtask_predicate)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=256)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--patience\\\", type=int, default=5)\\n    p.add_argument(\\\"--pairs_per_bin\\\", type=int, default=50)\\n    p.add_argument(\\\"--n_bins\\\", type=int, default=10)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    return p.parse_args()\\n\\n\\n# ============================================================\\n# Feature scanning & loading\\n# ============================================================\\n\\ndef scan_features(features_dir, aggregation):\\n    \\\"\\\"\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\"\\\"\\\"\\n    primary, fallback = AGG_MAP[aggregation]\\n    traj_metas = []\\n    n_layers = hidden_dim = None\\n\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        with h5py.File(h5_path, \\\"r\\\") as f:\\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\\\"_\\\")[-1]))\\n            for hk in keys:\\n                if primary in f[hk]:\\n                    fk = primary\\n                elif fallback in f[hk]:\\n                    fk = fallback\\n                else:\\n                    raise KeyError(f\\\"No feature key in {h5_path}/{hk}\\\")\\n\\n                shape = f[hk][fk].shape\\n                is_3d = len(shape) == 3\\n                T = shape[0]\\n                if n_layers is None:\\n                    n_layers = shape[1] if is_3d else 1\\n                    hidden_dim = shape[-1]\\n\\n                traj_metas.append(dict(\\n                    task=task, h5_path=h5_path, h5_key=hk,\\n                    feat_key=fk, T=T, is_3d=is_3d,\\n                ))\\n\\n    if not traj_metas:\\n        raise FileNotFoundError(f\\\"No .h5 files found in {features_dir}\\\")\\n    return traj_metas, n_layers, hidden_dim\\n\\n\\ndef split_by_task(traj_metas):\\n    \\\"\\\"\\\"80/20 split per task (first 80 % train, rest val).\\\"\\\"\\\"\\n    by_task = defaultdic\\n\\n... [截断: 输出过长，省略 9726 字符] ...\\n\\nr subtask_predicate\\\")\\n\\n    with open(args.label_file) as f:\\n        label_data = json.load(f)\\n    pred_names = label_data[\\\"predicate_names\\\"]\\n    labels = label_data[\\\"labels\\\"]\\n    n_pred = len(pred_names)\\n    print(f\\\"Predicates ({n_pred}): {pred_names}\\\")\\n\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\n    layers = parse_layers(args.layers, n_layers - 1)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    results = {}\\n    for li, layer in enumerate(layers):\\n        print(f\\\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\n        t0 = time.time()\\n\\n        def gather(ids):\\n            Xs, Ys = [], []\\n            feats = load_layer_features(traj_metas, ids, layer)\\n            for pos, idx in enumerate(ids):\\n                m = traj_metas[idx]\\n                tk = m[\\\"h5_key\\\"]\\n                if m[\\\"task\\\"] not in labels or tk not in labels[m[\\\"task\\\"]]:\\n                    continue\\n                lab = np.array(labels[m[\\\"task\\\"]][tk], dtype=np.float32)\\n                T = min(feats[pos].shape[0], lab.shape[0])\\n                Xs.append(torch.from_numpy(feats[pos][:T]))\\n                Ys.append(torch.from_numpy(lab[:T]))\\n            if not Xs:\\n                return None, None\\n            return torch.cat(Xs, dim=0), torch.cat(Ys, dim=0)\\n\\n        X_tr, y_tr = gather(train_ids)\\n        X_val, y_val = gather(val_ids)\\n\\n        if X_tr is None or X_val is None:\\n            print(\\\"  No valid data, skipping\\\")\\n            continue\\n\\n        print(f\\\"  Samples: {len(X_tr)} train / {len(X_val)} val\\\")\\n        met = train_classification_probe(\\n            X_tr, y_tr, X_val, y_val, hidden_dim, n_pred, args, device\\n        )\\n        met[\\\"layer\\\"] = layer\\n        met[\\\"predicate_names\\\"] = pred_names\\n        results[layer] = met\\n\\n        print(f\\\"  macro_AUC={met['macro_auc']:.4f}  ep={met['epochs_trained']}  \\\"\\n              f\\\"{time.time()-t0:.1f}s\\\")\\n\\n    return results\\n\\n\\n# ============================================================\\n# Results I/O\\n# ============================================================\\n\\ndef save_results(results, output_dir, probe_type):\\n    out = os.path.join(output_dir, probe_type)\\n    os.makedirs(out, exist_ok=True)\\n\\n    for key, m in results.items():\\n        with open(os.path.join(out, f\\\"layer_{key}.json\\\"), \\\"w\\\") as f:\\n            json.dump(m, f, indent=2)\\n\\n    csv_path = os.path.join(out, \\\"summary.csv\\\")\\n    if probe_type in (\\\"temporal_distance\\\", \\\"oracle\\\"):\\n        fields = [\\\"layer\\\", \\\"spearman_rho\\\", \\\"spearman_p\\\", \\\"r2\\\", \\\"mae\\\",\\n                   \\\"val_loss\\\", \\\"epochs_trained\\\"]\\n    else:\\n        fields = [\\\"layer\\\", \\\"macro_auc\\\", \\\"val_loss\\\", \\\"epochs_trained\\\"]\\n\\n    with open(csv_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        w = csv.DictWriter(f, fieldnames=fields)\\n        w.writeheader()\\n        for key in sorted(results.keys(), key=lambda x: (isinstance(x, str), x)):\\n            row = {k: results[key].get(k, \\\"\\\") for k in fields}\\n            w.writerow(row)\\n\\n    summary = dict(probe_type=probe_type, n_entries=len(results),\\n                   results={str(k): v for k, v in results.items()})\\n\\n    if probe_type == \\\"temporal_distance\\\" and results:\\n        best = max(results, key=lambda k: results[k][\\\"spearman_rho\\\"])\\n        summary[\\\"best_layer\\\"] = best\\n        summary[\\\"best_rho\\\"] = results[best][\\\"spearman_rho\\\"]\\n\\n    with open(os.path.join(out, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    print(f\\\"\\\\nSaved to {out}/\\\")\\n\\n\\ndef main():\\n    args = parse_args()\\n    torch.manual_seed(args.seed)\\n    np.random.seed(args.seed)\\n\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n    print(f\\\"=== Probe Training: {args.probe_type} | device={device} ===\\\")\\n\\n    runners = dict(\\n        temporal_distance=run_temporal_distance,\\n        oracle=run_oracle,\\n        subtask_predicate=run_subtask_predicate,\\n    )\\n    results = runners[args.probe_type](args, device)\\n    save_results(results, args.output_dir, args.probe_type)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "afde7cba-726d-4d62-8855-3f009d17d4fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--aggregation\\\\\\\", default=\\\\\\\"last_preaction\\\\\\\",\\\\n                   choices=[\\\\\\\"last_preaction\\\\\\\", \\\\\\\"image_mean\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--label_file\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Predicate labels JSON (required for subtask_predicate)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=1e-3)\\\\n    p.add_argument(\\\\\\\"--epochs\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--patience\\\\\\\", type=int, default=5)\\\\n    p.add_argument(\\\\\\\"--pairs_per_bin\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--n_bins\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    return p.parse_args()\\\\n\\\\n\\\\n# ============================================================\\\\n# Feature scanning & loading\\\\n# ============================================================\\\\n\\\\ndef scan_features(features_dir, aggregation):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    primary, fallback = AGG_MAP[aggregation]\\\\n    traj_metas = []\\\\n    n_layers = hidden_dim = None\\\\n\\\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\\\\\"*.h5\\\\\\\"))):\\\\n        task = Path(h5_path).stem\\\\n        with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as f:\\\\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[-1]))\\\\n            for hk in keys:\\\\n                if primary in f[hk]:\\\\n                    fk = primary\\\\n                elif fallback in f[hk]:\\\\n                    fk = fallback\\\\n                else:\\\\n                    raise KeyError(f\\\\\\\"No feature key in {h5_path}/{hk}\\\\\\\")\\\\n\\\\n                shape = f[hk][fk].shape\\\\n                is_3d = len(shape) == 3\\\\n                T = shape[0]\\\\n                if n_layers is None:\\\\n                    n_layers = shape[1] if is_3d else 1\\\\n                    hidden_dim = shape[-1]\\\\n\\\\n                traj_metas.append(dict(\\\\n                    task=task, h5_path=h5_path, h5_key=hk,\\\\n                    feat_key=fk, T=T, is_3d=is_3d,\\\\n                ))\\\\n\\\\n    if not traj_metas:\\\\n        raise FileNotFoundError(f\\\\\\\"No .h5 files found in {features_dir}\\\\\\\")\\\\n    return traj_metas, n_layers, hidden_dim\\\\n\\\\n\\\\ndef split_by_task(traj_metas):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"80/20 split per task (first 80 % train, rest val).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    by_task = defaultdic\\\\n\\\\n... [截断: 输出过长，省略 9726 字符] ...\\\\n\\\\nr subtask_predicate\\\\\\\")\\\\n\\\\n    with open(args.label_file) as f:\\\\n        label_data = json.load(f)\\\\n    pred_names = label_data[\\\\\\\"predicate_names\\\\\\\"]\\\\n    labels = label_data[\\\\\\\"labels\\\\\\\"]\\\\n    n_pred = len(pred_names)\\\\n    print(f\\\\\\\"Predicates ({n_pred}): {pred_names}\\\\\\\")\\\\n\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\n\\\\n    results = {}\\\\n    for li, layer in enumerate(layers):\\\\n        print(f\\\\\\\"\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\\\\\", flush=True)\\\\n        t0 = time.time()\\\\n\\\\n        def gather(ids):\\\\n            Xs, Ys = [], []\\\\n            feats = load_layer_features(traj_metas, ids, layer)\\\\n            for pos, idx in enumerate(ids):\\\\n                m = traj_metas[idx]\\\\n                tk = m[\\\\\\\"h5_key\\\\\\\"]\\\\n                if m[\\\\\\\"task\\\\\\\"] not in labels or tk not in labels[m[\\\\\\\"task\\\\\\\"]]:\\\\n                    continue\\\\n                lab = np.array(labels[m[\\\\\\\"task\\\\\\\"]][tk], dtype=np.float32)\\\\n                T = min(feats[pos].shape[0], lab.shape[0])\\\\n                Xs.append(torch.from_numpy(feats[pos][:T]))\\\\n                Ys.append(torch.from_numpy(lab[:T]))\\\\n            if not Xs:\\\\n                return None, None\\\\n            return torch.cat(Xs, dim=0), torch.cat(Ys, dim=0)\\\\n\\\\n        X_tr, y_tr = gather(train_ids)\\\\n        X_val, y_val = gather(val_ids)\\\\n\\\\n        if X_tr is None or X_val is None:\\\\n            print(\\\\\\\"  No valid data, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        print(f\\\\\\\"  Samples: {len(X_tr)} train / {len(X_val)} val\\\\\\\")\\\\n        met = train_classification_probe(\\\\n            X_tr, y_tr, X_val, y_val, hidden_dim, n_pred, args, device\\\\n        )\\\\n        met[\\\\\\\"layer\\\\\\\"] = layer\\\\n        met[\\\\\\\"predicate_names\\\\\\\"] = pred_names\\\\n        results[layer] = met\\\\n\\\\n        print(f\\\\\\\"  macro_AUC={met['macro_auc']:.4f}  ep={met['epochs_trained']}  \\\\\\\"\\\\n              f\\\\\\\"{time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\n# ============================================================\\\\n# Results I/O\\\\n# ============================================================\\\\n\\\\ndef save_results(results, output_dir, probe_type):\\\\n    out = os.path.join(output_dir, probe_type)\\\\n    os.makedirs(out, exist_ok=True)\\\\n\\\\n    for key, m in results.items():\\\\n        with open(os.path.join(out, f\\\\\\\"layer_{key}.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(m, f, indent=2)\\\\n\\\\n    csv_path = os.path.join(out, \\\\\\\"summary.csv\\\\\\\")\\\\n    if probe_type in (\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"oracle\\\\\\\"):\\\\n        fields = [\\\\\\\"layer\\\\\\\", \\\\\\\"spearman_rho\\\\\\\", \\\\\\\"spearman_p\\\\\\\", \\\\\\\"r2\\\\\\\", \\\\\\\"mae\\\\\\\",\\\\n                   \\\\\\\"val_loss\\\\\\\", \\\\\\\"epochs_trained\\\\\\\"]\\\\n    else:\\\\n        fields = [\\\\\\\"layer\\\\\\\", \\\\\\\"macro_auc\\\\\\\", \\\\\\\"val_loss\\\\\\\", \\\\\\\"epochs_trained\\\\\\\"]\\\\n\\\\n    with open(csv_path, \\\\\\\"w\\\\\\\", newline=\\\\\\\"\\\\\\\") as f:\\\\n        w = csv.DictWriter(f, fieldnames=fields)\\\\n        w.writeheader()\\\\n        for key in sorted(results.keys(), key=lambda x: (isinstance(x, str), x)):\\\\n            row = {k: results[key].get(k, \\\\\\\"\\\\\\\") for k in fields}\\\\n            w.writerow(row)\\\\n\\\\n    summary = dict(probe_type=probe_type, n_entries=len(results),\\\\n                   results={str(k): v for k, v in results.items()})\\\\n\\\\n    if probe_type == \\\\\\\"temporal_distance\\\\\\\" and results:\\\\n        best = max(results, key=lambda k: results[k][\\\\\\\"spearman_rho\\\\\\\"])\\\\n        summary[\\\\\\\"best_layer\\\\\\\"] = best\\\\n        summary[\\\\\\\"best_rho\\\\\\\"] = results[best][\\\\\\\"spearman_rho\\\\\\\"]\\\\n\\\\n    with open(os.path.join(out, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {out}/\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    torch.manual_seed(args.seed)\\\\n    np.random.seed(args.seed)\\\\n\\\\n    device = torch.device(f\\\\\\\"cuda:{args.gpu}\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\")\\\\n    print(f\\\\\\\"=== Probe Training: {args.probe_type} | device={device} ===\\\\\\\")\\\\n\\\\n    runners = dict(\\\\n        temporal_distance=run_temporal_distance,\\\\n        oracle=run_oracle,\\\\n        subtask_predicate=run_subtask_predicate,\\\\n    )\\\\n    results = runners[args.probe_type](args, device)\\\\n    save_results(results, args.output_dir, args.probe_type)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\n\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\nAGG_MAP = {\\n    \\\"last_preaction\\\": (\\\"last_preaction\\\", \\\"cls_token\\\"),\\n    \\\"image_mean\\\": (\\\"image_mean\\\", \\\"patch_mean\\\"),\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train linear probes on VLA/DINO-V2 features\\\")\\n    p.add_argument(\\\"--features_dir\\\", required=True,\\n                   help=\\\"Directory with per-task HDF5 feature files\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True,\\n                   help=\\\"Directory to save probe results\\\")\\n    p.add_argument(\\\"--probe_type\\\", required=True,\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\", \\\"oracle\\\"])\\n    p.add_argument(\\\"--layers\\\", default=None,\\n                   help=\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\")\\n    p.add_argument(\\\"--aggregation\\\", default=\\\"last_preaction\\\",\\n                   choices=[\\\"last_preaction\\\", \\\"image_mean\\\"])\\n    p.add_argument(\\\"--label_file\\\", default=None,\\n                   help=\\\"Predicate labels JSON (required for subtask_predicate)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=256)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--patience\\\", type=int, default=5)\\n    p.add_argument(\\\"--pairs_per_bin\\\", type=int, default=50)\\n    p.add_argument(\\\"--n_bins\\\", type=int, default=10)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    return p.parse_args()\\n\\n\\n# ============================================================\\n# Feature scanning & loading\\n# ============================================================\\n\\ndef scan_features(features_dir, aggregation):\\n    \\\"\\\"\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\"\\\"\\\"\\n    primary, fallback = AGG_MAP[aggregation]\\n    traj_metas = []\\n    n_layers = hidden_dim = None\\n\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        with h5py.File(h5_path, \\\"r\\\") as f:\\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\\\"_\\\")[-1]))\\n            for hk in keys:\\n                if primary in f[hk]:\\n                    fk = primary\\n                elif fallback in f[hk]:\\n                    fk = fallback\\n                else:\\n                    raise KeyError(f\\\"No feature key in {h5_path}/{hk}\\\")\\n\\n                shape = f[hk][fk].shape\\n                is_3d = len(shape) == 3\\n                T = shape[0]\\n                if n_layers is None:\\n                    n_layers = shape[1] if is_3d else 1\\n                    hidden_dim = shape[-1]\\n\\n                traj_metas.append(dict(\\n                    task=task, h5_path=h5_path, h5_key=hk,\\n                    feat_key=fk, T=T, is_3d=is_3d,\\n                ))\\n\\n    if not traj_metas:\\n        raise FileNotFoundError(f\\\"No .h5 files found in {features_dir}\\\")\\n    return traj_metas, n_layers, hidden_dim\\n\\n\\ndef split_by_task(traj_metas):\\n    \\\"\\\"\\\"80/20 split per task (first 80 % train, rest val).\\\"\\\"\\\"\\n    by_task = defaultdic\\n\\n... [截断: 输出过长，省略 9726 字符] ...\\n\\nr subtask_predicate\\\")\\n\\n    with open(args.label_file) as f:\\n        label_data = json.load(f)\\n    pred_names = label_data[\\\"predicate_names\\\"]\\n    labels = label_data[\\\"labels\\\"]\\n    n_pred = len(pred_names)\\n    print(f\\\"Predicates ({n_pred}): {pred_names}\\\")\\n\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\n    layers = parse_layers(args.layers, n_layers - 1)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    results = {}\\n    for li, layer in enumerate(layers):\\n        print(f\\\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\n        t0 = time.time()\\n\\n        def gather(ids):\\n            Xs, Ys = [], []\\n            feats = load_layer_features(traj_metas, ids, layer)\\n            for pos, idx in enumerate(ids):\\n                m = traj_metas[idx]\\n                tk = m[\\\"h5_key\\\"]\\n                if m[\\\"task\\\"] not in labels or tk not in labels[m[\\\"task\\\"]]:\\n                    continue\\n                lab = np.array(labels[m[\\\"task\\\"]][tk], dtype=np.float32)\\n                T = min(feats[pos].shape[0], lab.shape[0])\\n                Xs.append(torch.from_numpy(feats[pos][:T]))\\n                Ys.append(torch.from_numpy(lab[:T]))\\n            if not Xs:\\n                return None, None\\n            return torch.cat(Xs, dim=0), torch.cat(Ys, dim=0)\\n\\n        X_tr, y_tr = gather(train_ids)\\n        X_val, y_val = gather(val_ids)\\n\\n        if X_tr is None or X_val is None:\\n            print(\\\"  No valid data, skipping\\\")\\n            continue\\n\\n        print(f\\\"  Samples: {len(X_tr)} train / {len(X_val)} val\\\")\\n        met = train_classification_probe(\\n            X_tr, y_tr, X_val, y_val, hidden_dim, n_pred, args, device\\n        )\\n        met[\\\"layer\\\"] = layer\\n        met[\\\"predicate_names\\\"] = pred_names\\n        results[layer] = met\\n\\n        print(f\\\"  macro_AUC={met['macro_auc']:.4f}  ep={met['epochs_trained']}  \\\"\\n              f\\\"{time.time()-t0:.1f}s\\\")\\n\\n    return results\\n\\n\\n# ============================================================\\n# Results I/O\\n# ============================================================\\n\\ndef save_results(results, output_dir, probe_type):\\n    out = os.path.join(output_dir, probe_type)\\n    os.makedirs(out, exist_ok=True)\\n\\n    for key, m in results.items():\\n        with open(os.path.join(out, f\\\"layer_{key}.json\\\"), \\\"w\\\") as f:\\n            json.dump(m, f, indent=2)\\n\\n    csv_path = os.path.join(out, \\\"summary.csv\\\")\\n    if probe_type in (\\\"temporal_distance\\\", \\\"oracle\\\"):\\n        fields = [\\\"layer\\\", \\\"spearman_rho\\\", \\\"spearman_p\\\", \\\"r2\\\", \\\"mae\\\",\\n                   \\\"val_loss\\\", \\\"epochs_trained\\\"]\\n    else:\\n        fields = [\\\"layer\\\", \\\"macro_auc\\\", \\\"val_loss\\\", \\\"epochs_trained\\\"]\\n\\n    with open(csv_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        w = csv.DictWriter(f, fieldnames=fields)\\n        w.writeheader()\\n        for key in sorted(results.keys(), key=lambda x: (isinstance(x, str), x)):\\n            row = {k: results[key].get(k, \\\"\\\") for k in fields}\\n            w.writerow(row)\\n\\n    summary = dict(probe_type=probe_type, n_entries=len(results),\\n                   results={str(k): v for k, v in results.items()})\\n\\n    if probe_type == \\\"temporal_distance\\\" and results:\\n        best = max(results, key=lambda k: results[k][\\\"spearman_rho\\\"])\\n        summary[\\\"best_layer\\\"] = best\\n        summary[\\\"best_rho\\\"] = results[best][\\\"spearman_rho\\\"]\\n\\n    with open(os.path.join(out, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    print(f\\\"\\\\nSaved to {out}/\\\")\\n\\n\\ndef main():\\n    args = parse_args()\\n    torch.manual_seed(args.seed)\\n    np.random.seed(args.seed)\\n\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n    print(f\\\"=== Probe Training: {args.probe_type} | device={device} ===\\\")\\n\\n    runners = dict(\\n        temporal_distance=run_temporal_distance,\\n        oracle=run_oracle,\\n        subtask_predicate=run_subtask_predicate,\\n    )\\n    results = runners[args.probe_type](args, device)\\n    save_results(results, args.output_dir, args.probe_type)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me parse through each file carefully.
+
+## init_untrained.py
+
+The current `reinit_llm_backbone` uses `xavier_normal_` for 2D+ params and `zeros_` for 1D params. I need to change it to use `AutoModelForCausalLM.from_config(llm_config)` instead.
+
+The approach:
+1. Load the model
+2. Extract the LLM config from the model
+3. Create a new LLM backbone with `from_config()`
+4. Copy the new LLM weights into the model (replacing the old ones)
+
+
+5. Keep vision encoder weights intact
+
+## analyze_results.py
+
+Looking at the `compute_judgment` function, I can see it already has `third_criterion` logic. I need to update the judgment logic to add a CONDITIONAL state: PASS when all three criteria pass, CONDITIONAL when delta passes but third_criterion fails, and FAIL otherwise.
+
+## train_probes.py
+
+I need to examine how the pairs are being constructed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "cbe47adc-69fa-42db-9ab6-04b2d5afd88e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121GrpQyCU2D7JwSDJqWqKA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8527,
+      "cache_read_input_tokens": 24657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+输出被截断了，需要重新读取截断部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "842e4f95-538e-420e-b8cb-2571cb939bad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121GrpQyCU2D7JwSDJqWqKA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8527,
+      "cache_read_input_tokens": 24657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HXTTZvNdBsCgq3SVcM38fa`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def \" /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "c3f7eaf6-e1f4-436b-9f3d-a523d795ab3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121GrpQyCU2D7JwSDJqWqKA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8527,
+      "cache_read_input_tokens": 24657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YBdQEosFxeE4pJS5ZY5TDq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def \" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "0bcc8041-ff78-4070-8ecd-ddf2cfa40e8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121GrpQyCU2D7JwSDJqWqKA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8527,
+      "cache_read_input_tokens": 24657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T07:17:04.617Z_
+
+<details><summary>↩ Tool result · `toolu_01HXTTZvNdBsCgq3SVcM38fa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"36:def parse_args():\\n65:def scan_features(features_dir, aggregation):\\n100:def split_by_task(traj_metas):\\n115:def load_layer_features(traj_metas, indices, layer):\\n138:def parse_layers(layers_str, max_layer):\\n151:def sample_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\n183:def build_pair_tensors(feats, pairs):\\n195:def build_oracle_tensors(pairs):\\n207:    def __init__(self, in_dim):\\n211:    def forward(self, x):\\n216:    def __init__(self, in_dim, n_labels):\\n220:    def forward(self, x):\\n224:def train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\\n276:def train_classification_probe(X_tr, y_tr, X_val, y_val, in_dim, n_labels, args, device):\\n339:def run_temporal_distance(args, device):\\n375:def run_oracle(args, device):\\n392:def run_subtask_predicate(args, device):\\n412:        def gather(ids):\\n453:def save_results(results, output_dir, probe_type):\\n489:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "e26550e0-ffae-41b8-b8f7-3342b9ce450e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36:def parse_args():\\\\n65:def scan_features(features_dir, aggregation):\\\\n100:def split_by_task(traj_metas):\\\\n115:def load_layer_features(traj_metas, indices, layer):\\\\n138:def parse_layers(layers_str, max_layer):\\\\n151:def sample_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\\\n183:def build_pair_tensors(feats, pairs):\\\\n195:def build_oracle_tensors(pairs):\\\\n207:    def __init__(self, in_dim):\\\\n211:    def forward(self, x):\\\\n216:    def __init__(self, in_dim, n_labels):\\\\n220:    def forward(self, x):\\\\n224:def train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\\\\n276:def train_classification_probe(X_tr, y_tr, X_val, y_val, in_dim, n_labels, args, device):\\\\n339:def run_temporal_distance(args, device):\\\\n375:def run_oracle(args, device):\\\\n392:def run_subtask_predicate(args, device):\\\\n412:        def gather(ids):\\\\n453:def save_results(results, output_dir, probe_type):\\\\n489:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"36:def parse_args():\\n65:def scan_features(features_dir, aggregation):\\n100:def split_by_task(traj_metas):\\n115:def load_layer_features(traj_metas, indices, layer):\\n138:def parse_layers(layers_str, max_layer):\\n151:def sample_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\n183:def build_pair_tensors(feats, pairs):\\n195:def build_oracle_tensors(pairs):\\n207:    def __init__(self, in_dim):\\n211:    def forward(self, x):\\n216:    def __init__(self, in_dim, n_labels):\\n220:    def forward(self, x):\\n224:def train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\\n276:def train_classification_probe(X_tr, y_tr, X_val, y_val, in_dim, n_labels, args, device):\\n339:def run_temporal_distance(args, device):\\n375:def run_oracle(args, device):\\n392:def run_subtask_predicate(args, device):\\n412:        def gather(ids):\\n453:def save_results(results, output_dir, probe_type):\\n489:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T07:17:05.146Z_
+
+<details><summary>↩ Tool result · `toolu_01YBdQEosFxeE4pJS5ZY5TDq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"25:def parse_args():\\n35:def parse_results_dirs(s):\\n43:def load_results(results_dir, probe_type):\\n60:def load_oracle(results_dirs):\\n74:def _sort_key(x):\\n81:def extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n105:def plot_layer_rho(all_data, oracle_rho, output_dir):\\n134:def plot_delta_rho(all_data, output_dir):\\n169:def plot_subtask_auc_heatmap(data, output_dir, name=\\\"trained\\\"):\\n214:def compute_judgment(all_data):\\n283:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "b3a0b242-e486-44b4-a2a3-80ba523b8adb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"25:def parse_args():\\\\n35:def parse_results_dirs(s):\\\\n43:def load_results(results_dir, probe_type):\\\\n60:def load_oracle(results_dirs):\\\\n74:def _sort_key(x):\\\\n81:def extract_layer_metrics(data, metric=\\\\\\\"spearman_rho\\\\\\\"):\\\\n105:def plot_layer_rho(all_data, oracle_rho, output_dir):\\\\n134:def plot_delta_rho(all_data, output_dir):\\\\n169:def plot_subtask_auc_heatmap(data, output_dir, name=\\\\\\\"trained\\\\\\\"):\\\\n214:def compute_judgment(all_data):\\\\n283:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"25:def parse_args():\\n35:def parse_results_dirs(s):\\n43:def load_results(results_dir, probe_type):\\n60:def load_oracle(results_dirs):\\n74:def _sort_key(x):\\n81:def extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n105:def plot_layer_rho(all_data, oracle_rho, output_dir):\\n134:def plot_delta_rho(all_data, output_dir):\\n169:def plot_subtask_auc_heatmap(data, output_dir, name=\\\"trained\\\"):\\n214:def compute_judgment(all_data):\\n283:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xw7dq5FuYd5miZaFitTZtQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -200 /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "88d93d08-eae4-497b-9114-ac464d1c5849",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019H4bkWTYxMPp9FuzaamBAk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 33184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T07:17:08.607Z_
+
+<details><summary>↩ Tool result · `toolu_01Xw7dq5FuYd5miZaFitTZtQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\n\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\nAGG_MAP = {\\n    \\\"last_preaction\\\": (\\\"last_preaction\\\", \\\"cls_token\\\"),\\n    \\\"image_mean\\\": (\\\"image_mean\\\", \\\"patch_mean\\\"),\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train linear probes on VLA/DINO-V2 features\\\")\\n    p.add_argument(\\\"--features_dir\\\", required=True,\\n                   help=\\\"Directory with per-task HDF5 feature files\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True,\\n                   help=\\\"Directory to save probe results\\\")\\n    p.add_argument(\\\"--probe_type\\\", required=True,\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\", \\\"oracle\\\"])\\n    p.add_argument(\\\"--layers\\\", default=None,\\n                   help=\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\")\\n    p.add_argument(\\\"--aggregation\\\", default=\\\"last_preaction\\\",\\n                   choices=[\\\"last_preaction\\\", \\\"image_mean\\\"])\\n    p.add_argument(\\\"--label_file\\\", default=None,\\n                   help=\\\"Predicate labels JSON (required for subtask_predicate)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=256)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--patience\\\", type=int, default=5)\\n    p.add_argument(\\\"--pairs_per_bin\\\", type=int, default=50)\\n    p.add_argument(\\\"--n_bins\\\", type=int, default=10)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    return p.parse_args()\\n\\n\\n# ============================================================\\n# Feature scanning & loading\\n# ============================================================\\n\\ndef scan_features(features_dir, aggregation):\\n    \\\"\\\"\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\"\\\"\\\"\\n    primary, fallback = AGG_MAP[aggregation]\\n    traj_metas = []\\n    n_layers = hidden_dim = None\\n\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        with h5py.File(h5_path, \\\"r\\\") as f:\\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\\\"_\\\")[-1]))\\n            for hk in keys:\\n                if primary in f[hk]:\\n                    fk = primary\\n                elif fallback in f[hk]:\\n                    fk = fallback\\n                else:\\n                    raise KeyError(f\\\"No feature key in {h5_path}/{hk}\\\")\\n\\n                shape = f[hk][fk].shape\\n                is_3d = len(shape) == 3\\n                T = shape[0]\\n                if n_layers is None:\\n                    n_layers = shape[1] if is_3d else 1\\n                    hidden_dim = shape[-1]\\n\\n                traj_metas.append(dict(\\n                    task=task, h5_path=h5_path, h5_key=hk,\\n                    feat_key=fk, T=T, is_3d=is_3d,\\n                ))\\n\\n    if not traj_metas:\\n        raise FileNotFoundError(f\\\"No .h5 files found in {features_dir}\\\")\\n    return traj_metas, n_layers, hidden_dim\\n\\n\\ndef split_by_task(traj_metas):\\n    \\\"\\\"\\\"80/20 split per task (first 80 % train, rest val).\\\"\\\"\\\"\\n    by_task = defaultdict(list)\\n    for i, m in enumerate(traj_metas):\\n        by_task[m[\\\"task\\\"]].append(i)\\n\\n    train_ids, val_ids = [], []\\n    for task in sorted(by_task):\\n        ids = by_task[task]\\n        n_train = int(len(ids) * 0.8)\\n        train_ids.extend(ids[:n_train])\\n        val_ids.extend(ids[n_train:])\\n    return train_ids, val_ids\\n\\n\\ndef load_layer_features(traj_metas, indices, layer):\\n    \\\"\\\"\\\"Load one layer's features for selected trajectories.\\n\\n    Returns list of (T, D) float32 arrays, aligned with `indices`.\\n    \\\"\\\"\\\"\\n    by_file = defaultdict(list)\\n    for pos, idx in enumerate(indices):\\n        m = traj_metas[idx]\\n        by_file[m[\\\"h5_path\\\"]].append((pos, m))\\n\\n    feats = [None] * len(indices)\\n    for h5_path, entries in by_file.items():\\n        with h5py.File(h5_path, \\\"r\\\") as f:\\n            for pos, m in entries:\\n                ds = f[m[\\\"h5_key\\\"]][m[\\\"feat_key\\\"]]\\n                if m[\\\"is_3d\\\"]:\\n                    data = ds[:, layer, :]\\n                else:\\n                    data = ds[:]\\n                feats[pos] = np.asarray(data, dtype=np.float32)\\n    return feats\\n\\n\\ndef parse_layers(layers_str, max_layer):\\n    if layers_str is None:\\n        return list(range(max_layer + 1))\\n    if \\\"-\\\" in layers_str and \\\",\\\" not in layers_str:\\n        lo, hi = layers_str.split(\\\"-\\\")\\n        return list(range(int(lo), int(hi) + 1))\\n    return [int(x) for x in layers_str.split(\\\",\\\")]\\n\\n\\n# ============================================================\\n# Distance-stratified pair sampling\\n# ============================================================\\n\\ndef sample_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\n    \\\"\\\"\\\"Within-trajectory distance-stratified pair sampling.\\n\\n    Returns list of (local_pos, t_i, t_j, norm_dist).\\n    local_pos indexes into `indices`.\\n    \\\"\\\"\\\"\\n    rng = np.random.RandomState(seed)\\n    all_pairs = []\\n\\n    for pos, idx in enumerate(indices):\\n        T = traj_metas[idx][\\\"T\\\"]\\n        if T < 2:\\n            continue\\n        ii, jj = np.triu_indices(T, k=1)\\n        dists = (jj - ii).astype(np.float32) / T\\n\\n        edges = np.linspace(0.0, 1.0, n_bins + 1)\\n        edges[-1] += 1e-6\\n\\n        for b in range(n_bins):\\n            mask = (dists >= edges[b]) & (dists < edges[b + 1])\\n            valid = np.where(mask)[0]\\n            if len(valid) == 0:\\n                continue\\n            n = min(pairs_per_bin, len(valid))\\n            chosen = rng.choice(valid, size=n, replace=False)\\n            for c in chosen:\\n                all_pairs.append((pos, int(ii[c]), int(jj[c]), float(dists[c])))\\n\\n    return all_pairs\\n\\n\\ndef build_pair_tensors(feats, pairs):\\n    \\\"\\\"\\\"Build |h(t_j) - h(t_i)| inputs and distance targets.\\\"\\\"\\\"\\n    N = len(pairs)\\n    D = feats[0].shape[-1]\\n    X = np.empty((N, D), dtype=np.float32)\\n    y = np.empty(N, dtype=np.float32)\\n    for n, (pos, ti, tj, dist) in enumerate(pairs):\\n        X[n] = np.abs(feats[pos][tj] - feats[pos][ti])\\n        y[n] = dist\\n    return torch.from_numpy(X), torch.from_numpy(y)\\n\\n\\ndef build_oracle_tensors(pairs):\\n    \\\"\\\"\\\"Oracle: input = scalar distance (same as target).\\\"\\\"\\\"\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\n    return X, y\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "3fb219b8-8806-45ae-9223-fce128c04fbb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--aggregation\\\\\\\", default=\\\\\\\"last_preaction\\\\\\\",\\\\n                   choices=[\\\\\\\"last_preaction\\\\\\\", \\\\\\\"image_mean\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--label_file\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Predicate labels JSON (required for subtask_predicate)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=1e-3)\\\\n    p.add_argument(\\\\\\\"--epochs\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--patience\\\\\\\", type=int, default=5)\\\\n    p.add_argument(\\\\\\\"--pairs_per_bin\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--n_bins\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    return p.parse_args()\\\\n\\\\n\\\\n# ============================================================\\\\n# Feature scanning & loading\\\\n# ============================================================\\\\n\\\\ndef scan_features(features_dir, aggregation):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    primary, fallback = AGG_MAP[aggregation]\\\\n    traj_metas = []\\\\n    n_layers = hidden_dim = None\\\\n\\\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\\\\\"*.h5\\\\\\\"))):\\\\n        task = Path(h5_path).stem\\\\n        with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as f:\\\\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[-1]))\\\\n            for hk in keys:\\\\n                if primary in f[hk]:\\\\n                    fk = primary\\\\n                elif fallback in f[hk]:\\\\n                    fk = fallback\\\\n                else:\\\\n                    raise KeyError(f\\\\\\\"No feature key in {h5_path}/{hk}\\\\\\\")\\\\n\\\\n                shape = f[hk][fk].shape\\\\n                is_3d = len(shape) == 3\\\\n                T = shape[0]\\\\n                if n_layers is None:\\\\n                    n_layers = shape[1] if is_3d else 1\\\\n                    hidden_dim = shape[-1]\\\\n\\\\n                traj_metas.append(dict(\\\\n                    task=task, h5_path=h5_path, h5_key=hk,\\\\n                    feat_key=fk, T=T, is_3d=is_3d,\\\\n                ))\\\\n\\\\n    if not traj_metas:\\\\n        raise FileNotFoundError(f\\\\\\\"No .h5 files found in {features_dir}\\\\\\\")\\\\n    return traj_metas, n_layers, hidden_dim\\\\n\\\\n\\\\ndef split_by_task(traj_metas):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"80/20 split per task (first 80 % train, rest val).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    by_task = defaultdict(list)\\\\n    for i, m in enumerate(traj_metas):\\\\n        by_task[m[\\\\\\\"task\\\\\\\"]].append(i)\\\\n\\\\n    train_ids, val_ids = [], []\\\\n    for task in sorted(by_task):\\\\n        ids = by_task[task]\\\\n        n_train = int(len(ids) * 0.8)\\\\n        train_ids.extend(ids[:n_train])\\\\n        val_ids.extend(ids[n_train:])\\\\n    return train_ids, val_ids\\\\n\\\\n\\\\ndef load_layer_features(traj_metas, indices, layer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load one layer's features for selected trajectories.\\\\n\\\\n    Returns list of (T, D) float32 arrays, aligned with `indices`.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    by_file = defaultdict(list)\\\\n    for pos, idx in enumerate(indices):\\\\n        m = traj_metas[idx]\\\\n        by_file[m[\\\\\\\"h5_path\\\\\\\"]].append((pos, m))\\\\n\\\\n    feats = [None] * len(indices)\\\\n    for h5_path, entries in by_file.items():\\\\n        with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as f:\\\\n            for pos, m in entries:\\\\n                ds = f[m[\\\\\\\"h5_key\\\\\\\"]][m[\\\\\\\"feat_key\\\\\\\"]]\\\\n                if m[\\\\\\\"is_3d\\\\\\\"]:\\\\n                    data = ds[:, layer, :]\\\\n                else:\\\\n                    data = ds[:]\\\\n                feats[pos] = np.asarray(data, dtype=np.float32)\\\\n    return feats\\\\n\\\\n\\\\ndef parse_layers(layers_str, max_layer):\\\\n    if layers_str is None:\\\\n        return list(range(max_layer + 1))\\\\n    if \\\\\\\"-\\\\\\\" in layers_str and \\\\\\\",\\\\\\\" not in layers_str:\\\\n        lo, hi = layers_str.split(\\\\\\\"-\\\\\\\")\\\\n        return list(range(int(lo), int(hi) + 1))\\\\n    return [int(x) for x in layers_str.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n\\\\n# ============================================================\\\\n# Distance-stratified pair sampling\\\\n# ============================================================\\\\n\\\\ndef sample_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Within-trajectory distance-stratified pair sampling.\\\\n\\\\n    Returns list of (local_pos, t_i, t_j, norm_dist).\\\\n    local_pos indexes into `indices`.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.RandomState(seed)\\\\n    all_pairs = []\\\\n\\\\n    for pos, idx in enumerate(indices):\\\\n        T = traj_metas[idx][\\\\\\\"T\\\\\\\"]\\\\n        if T < 2:\\\\n            continue\\\\n        ii, jj = np.triu_indices(T, k=1)\\\\n        dists = (jj - ii).astype(np.float32) / T\\\\n\\\\n        edges = np.linspace(0.0, 1.0, n_bins + 1)\\\\n        edges[-1] += 1e-6\\\\n\\\\n        for b in range(n_bins):\\\\n            mask = (dists >= edges[b]) & (dists < edges[b + 1])\\\\n            valid = np.where(mask)[0]\\\\n            if len(valid) == 0:\\\\n                continue\\\\n            n = min(pairs_per_bin, len(valid))\\\\n            chosen = rng.choice(valid, size=n, replace=False)\\\\n            for c in chosen:\\\\n                all_pairs.append((pos, int(ii[c]), int(jj[c]), float(dists[c])))\\\\n\\\\n    return all_pairs\\\\n\\\\n\\\\ndef build_pair_tensors(feats, pairs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build |h(t_j) - h(t_i)| inputs and distance targets.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    N = len(pairs)\\\\n    D = feats[0].shape[-1]\\\\n    X = np.empty((N, D), dtype=np.float32)\\\\n    y = np.empty(N, dtype=np.float32)\\\\n    for n, (pos, ti, tj, dist) in enumerate(pairs):\\\\n        X[n] = np.abs(feats[pos][tj] - feats[pos][ti])\\\\n        y[n] = dist\\\\n    return torch.from_numpy(X), torch.from_numpy(y)\\\\n\\\\n\\\\ndef build_oracle_tensors(pairs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Oracle: input = scalar distance (same as target).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\\\n    return X, y\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\n\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\nAGG_MAP = {\\n    \\\"last_preaction\\\": (\\\"last_preaction\\\", \\\"cls_token\\\"),\\n    \\\"image_mean\\\": (\\\"image_mean\\\", \\\"patch_mean\\\"),\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train linear probes on VLA/DINO-V2 features\\\")\\n    p.add_argument(\\\"--features_dir\\\", required=True,\\n                   help=\\\"Directory with per-task HDF5 feature files\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True,\\n                   help=\\\"Directory to save probe results\\\")\\n    p.add_argument(\\\"--probe_type\\\", required=True,\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\", \\\"oracle\\\"])\\n    p.add_argument(\\\"--layers\\\", default=None,\\n                   help=\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\")\\n    p.add_argument(\\\"--aggregation\\\", default=\\\"last_preaction\\\",\\n                   choices=[\\\"last_preaction\\\", \\\"image_mean\\\"])\\n    p.add_argument(\\\"--label_file\\\", default=None,\\n                   help=\\\"Predicate labels JSON (required for subtask_predicate)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=256)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--patience\\\", type=int, default=5)\\n    p.add_argument(\\\"--pairs_per_bin\\\", type=int, default=50)\\n    p.add_argument(\\\"--n_bins\\\", type=int, default=10)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    return p.parse_args()\\n\\n\\n# ============================================================\\n# Feature scanning & loading\\n# ============================================================\\n\\ndef scan_features(features_dir, aggregation):\\n    \\\"\\\"\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\"\\\"\\\"\\n    primary, fallback = AGG_MAP[aggregation]\\n    traj_metas = []\\n    n_layers = hidden_dim = None\\n\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        with h5py.File(h5_path, \\\"r\\\") as f:\\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\\\"_\\\")[-1]))\\n            for hk in keys:\\n                if primary in f[hk]:\\n                    fk = primary\\n                elif fallback in f[hk]:\\n                    fk = fallback\\n                else:\\n                    raise KeyError(f\\\"No feature key in {h5_path}/{hk}\\\")\\n\\n                shape = f[hk][fk].shape\\n                is_3d = len(shape) == 3\\n                T = shape[0]\\n                if n_layers is None:\\n                    n_layers = shape[1] if is_3d else 1\\n                    hidden_dim = shape[-1]\\n\\n                traj_metas.append(dict(\\n                    task=task, h5_path=h5_path, h5_key=hk,\\n                    feat_key=fk, T=T, is_3d=is_3d,\\n                ))\\n\\n    if not traj_metas:\\n        raise FileNotFoundError(f\\\"No .h5 files found in {features_dir}\\\")\\n    return traj_metas, n_layers, hidden_dim\\n\\n\\ndef split_by_task(traj_metas):\\n    \\\"\\\"\\\"80/20 split per task (first 80 % train, rest val).\\\"\\\"\\\"\\n    by_task = defaultdict(list)\\n    for i, m in enumerate(traj_metas):\\n        by_task[m[\\\"task\\\"]].append(i)\\n\\n    train_ids, val_ids = [], []\\n    for task in sorted(by_task):\\n        ids = by_task[task]\\n        n_train = int(len(ids) * 0.8)\\n        train_ids.extend(ids[:n_train])\\n        val_ids.extend(ids[n_train:])\\n    return train_ids, val_ids\\n\\n\\ndef load_layer_features(traj_metas, indices, layer):\\n    \\\"\\\"\\\"Load one layer's features for selected trajectories.\\n\\n    Returns list of (T, D) float32 arrays, aligned with `indices`.\\n    \\\"\\\"\\\"\\n    by_file = defaultdict(list)\\n    for pos, idx in enumerate(indices):\\n        m = traj_metas[idx]\\n        by_file[m[\\\"h5_path\\\"]].append((pos, m))\\n\\n    feats = [None] * len(indices)\\n    for h5_path, entries in by_file.items():\\n        with h5py.File(h5_path, \\\"r\\\") as f:\\n            for pos, m in entries:\\n                ds = f[m[\\\"h5_key\\\"]][m[\\\"feat_key\\\"]]\\n                if m[\\\"is_3d\\\"]:\\n                    data = ds[:, layer, :]\\n                else:\\n                    data = ds[:]\\n                feats[pos] = np.asarray(data, dtype=np.float32)\\n    return feats\\n\\n\\ndef parse_layers(layers_str, max_layer):\\n    if layers_str is None:\\n        return list(range(max_layer + 1))\\n    if \\\"-\\\" in layers_str and \\\",\\\" not in layers_str:\\n        lo, hi = layers_str.split(\\\"-\\\")\\n        return list(range(int(lo), int(hi) + 1))\\n    return [int(x) for x in layers_str.split(\\\",\\\")]\\n\\n\\n# ============================================================\\n# Distance-stratified pair sampling\\n# ============================================================\\n\\ndef sample_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\n    \\\"\\\"\\\"Within-trajectory distance-stratified pair sampling.\\n\\n    Returns list of (local_pos, t_i, t_j, norm_dist).\\n    local_pos indexes into `indices`.\\n    \\\"\\\"\\\"\\n    rng = np.random.RandomState(seed)\\n    all_pairs = []\\n\\n    for pos, idx in enumerate(indices):\\n        T = traj_metas[idx][\\\"T\\\"]\\n        if T < 2:\\n            continue\\n        ii, jj = np.triu_indices(T, k=1)\\n        dists = (jj - ii).astype(np.float32) / T\\n\\n        edges = np.linspace(0.0, 1.0, n_bins + 1)\\n        edges[-1] += 1e-6\\n\\n        for b in range(n_bins):\\n            mask = (dists >= edges[b]) & (dists < edges[b + 1])\\n            valid = np.where(mask)[0]\\n            if len(valid) == 0:\\n                continue\\n            n = min(pairs_per_bin, len(valid))\\n            chosen = rng.choice(valid, size=n, replace=False)\\n            for c in chosen:\\n                all_pairs.append((pos, int(ii[c]), int(jj[c]), float(dists[c])))\\n\\n    return all_pairs\\n\\n\\ndef build_pair_tensors(feats, pairs):\\n    \\\"\\\"\\\"Build |h(t_j) - h(t_i)| inputs and distance targets.\\\"\\\"\\\"\\n    N = len(pairs)\\n    D = feats[0].shape[-1]\\n    X = np.empty((N, D), dtype=np.float32)\\n    y = np.empty(N, dtype=np.float32)\\n    for n, (pos, ti, tj, dist) in enumerate(pairs):\\n        X[n] = np.abs(feats[pos][tj] - feats[pos][ti])\\n        y[n] = dist\\n    return torch.from_numpy(X), torch.from_numpy(y)\\n\\n\\ndef build_oracle_tensors(pairs):\\n    \\\"\\\"\\\"Oracle: input = scalar distance (same as target).\\\"\\\"\\\"\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\n    return X, y\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MFFLwua4RwdQDmCf3EKfct`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +200 /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "95775dea-f37e-421c-bbc9-bcf3dbb5bca6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019H4bkWTYxMPp9FuzaamBAk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 33184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HjCb7jWwFNBoSX27gJoMGx`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +214 /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "3eb9216d-ac57-4977-a072-b2c34261ad4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019H4bkWTYxMPp9FuzaamBAk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 33184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T07:17:09.559Z_
+
+<details><summary>↩ Tool result · `toolu_01MFFLwua4RwdQDmCf3EKfct`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\n# ============================================================\\n# Probes\\n# ============================================================\\n\\nclass LinearProbe(nn.Module):\\n    def __init__(self, in_dim):\\n        super().__init__()\\n        self.fc = nn.Linear(in_dim, 1)\\n\\n    def forward(self, x):\\n        return self.fc(x).squeeze(-1)\\n\\n\\nclass MultiLabelProbe(nn.Module):\\n    def __init__(self, in_dim, n_labels):\\n        super().__init__()\\n        self.fc = nn.Linear(in_dim, n_labels)\\n\\n    def forward(self, x):\\n        return self.fc(x)\\n\\n\\ndef train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\\n    model = LinearProbe(in_dim).to(device)\\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\\n    crit = nn.MSELoss()\\n\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\n\\n    best_loss, best_state, wait, final_ep = float(\\\"inf\\\"), None, 0, 0\\n\\n    for ep in range(args.epochs):\\n        model.train()\\n        perm = torch.randperm(len(X_tr), device=device)\\n        for s in range(0, len(X_tr), args.batch_size):\\n            idx = perm[s : s + args.batch_size]\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\n            opt.zero_grad()\\n            loss.backward()\\n            opt.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            vl = crit(model(X_val), y_val).item()\\n\\n        if vl < best_loss:\\n            best_loss = vl\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= args.patience:\\n                final_ep = ep + 1\\n                break\\n        final_ep = ep + 1\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n    with torch.no_grad():\\n        pred = model(X_val).cpu().numpy()\\n    y_np = y_val.cpu().numpy()\\n\\n    rho, pval = spearmanr(pred, y_np)\\n    return dict(\\n        spearman_rho=float(rho) if not np.isnan(rho) else 0.0,\\n        spearman_p=float(pval) if not np.isnan(pval) else 1.0,\\n        r2=float(r2_score(y_np, pred)),\\n        mae=float(mean_absolute_error(y_np, pred)),\\n        val_loss=best_loss,\\n        epochs_trained=final_ep,\\n    )\\n\\n\\ndef train_classification_probe(X_tr, y_tr, X_val, y_val, in_dim, n_labels, args, device):\\n    model = MultiLabelProbe(in_dim, n_labels).to(device)\\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\\n    crit = nn.BCEWithLogitsLoss()\\n\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\n\\n    bs = 512\\n    best_loss, best_state, wait, final_ep = float(\\\"inf\\\"), None, 0, 0\\n\\n    for ep in range(args.epochs):\\n        model.train()\\n        perm = torch.randperm(len(X_tr), device=device)\\n        for s in range(0, len(X_tr), bs):\\n            idx = perm[s : s + bs]\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\n            opt.zero_grad()\\n            loss.backward()\\n            opt.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            vl = crit(model(X_val), y_val).item()\\n\\n        if vl < best_loss:\\n            best_loss = vl\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= args.patience:\\n                final_ep = ep + 1\\n                break\\n        final_ep = ep + 1\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n    with torch.no_grad():\\n        scores = torch.sigmoid(model(X_val)).cpu().numpy()\\n    y_np = y_val.cpu().numpy()\\n\\n    auc_per = {}\\n    for k in range(n_labels):\\n        col = y_np[:, k]\\n        if col.sum() > 0 and col.sum() < len(col):\\n            auc_per[k] = float(roc_auc_score(col, scores[:, k]))\\n        else:\\n            auc_per[k] = float(\\\"nan\\\")\\n\\n    valid = [v for v in auc_per.values() if not np.isnan(v)]\\n    return dict(\\n        auc_per_predicate={str(k): v for k, v in auc_per.items()},\\n        macro_auc=float(np.mean(valid)) if valid else float(\\\"nan\\\"),\\n        val_loss=best_los\\n\\n... [截断: 输出过长，省略 2526 字符] ...\\n\\nr subtask_predicate\\\")\\n\\n    with open(args.label_file) as f:\\n        label_data = json.load(f)\\n    pred_names = label_data[\\\"predicate_names\\\"]\\n    labels = label_data[\\\"labels\\\"]\\n    n_pred = len(pred_names)\\n    print(f\\\"Predicates ({n_pred}): {pred_names}\\\")\\n\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\n    layers = parse_layers(args.layers, n_layers - 1)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    results = {}\\n    for li, layer in enumerate(layers):\\n        print(f\\\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\n        t0 = time.time()\\n\\n        def gather(ids):\\n            Xs, Ys = [], []\\n            feats = load_layer_features(traj_metas, ids, layer)\\n            for pos, idx in enumerate(ids):\\n                m = traj_metas[idx]\\n                tk = m[\\\"h5_key\\\"]\\n                if m[\\\"task\\\"] not in labels or tk not in labels[m[\\\"task\\\"]]:\\n                    continue\\n                lab = np.array(labels[m[\\\"task\\\"]][tk], dtype=np.float32)\\n                T = min(feats[pos].shape[0], lab.shape[0])\\n                Xs.append(torch.from_numpy(feats[pos][:T]))\\n                Ys.append(torch.from_numpy(lab[:T]))\\n            if not Xs:\\n                return None, None\\n            return torch.cat(Xs, dim=0), torch.cat(Ys, dim=0)\\n\\n        X_tr, y_tr = gather(train_ids)\\n        X_val, y_val = gather(val_ids)\\n\\n        if X_tr is None or X_val is None:\\n            print(\\\"  No valid data, skipping\\\")\\n            continue\\n\\n        print(f\\\"  Samples: {len(X_tr)} train / {len(X_val)} val\\\")\\n        met = train_classification_probe(\\n            X_tr, y_tr, X_val, y_val, hidden_dim, n_pred, args, device\\n        )\\n        met[\\\"layer\\\"] = layer\\n        met[\\\"predicate_names\\\"] = pred_names\\n        results[layer] = met\\n\\n        print(f\\\"  macro_AUC={met['macro_auc']:.4f}  ep={met['epochs_trained']}  \\\"\\n              f\\\"{time.time()-t0:.1f}s\\\")\\n\\n    return results\\n\\n\\n# ============================================================\\n# Results I/O\\n# ============================================================\\n\\ndef save_results(results, output_dir, probe_type):\\n    out = os.path.join(output_dir, probe_type)\\n    os.makedirs(out, exist_ok=True)\\n\\n    for key, m in results.items():\\n        with open(os.path.join(out, f\\\"layer_{key}.json\\\"), \\\"w\\\") as f:\\n            json.dump(m, f, indent=2)\\n\\n    csv_path = os.path.join(out, \\\"summary.csv\\\")\\n    if probe_type in (\\\"temporal_distance\\\", \\\"oracle\\\"):\\n        fields = [\\\"layer\\\", \\\"spearman_rho\\\", \\\"spearman_p\\\", \\\"r2\\\", \\\"mae\\\",\\n                   \\\"val_loss\\\", \\\"epochs_trained\\\"]\\n    else:\\n        fields = [\\\"layer\\\", \\\"macro_auc\\\", \\\"val_loss\\\", \\\"epochs_trained\\\"]\\n\\n    with open(csv_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        w = csv.DictWriter(f, fieldnames=fields)\\n        w.writeheader()\\n        for key in sorted(results.keys(), key=lambda x: (isinstance(x, str), x)):\\n            row = {k: results[key].get(k, \\\"\\\") for k in fields}\\n            w.writerow(row)\\n\\n    summary = dict(probe_type=probe_type, n_entries=len(results),\\n                   results={str(k): v for k, v in results.items()})\\n\\n    if probe_type == \\\"temporal_distance\\\" and results:\\n        best = max(results, key=lambda k: results[k][\\\"spearman_rho\\\"])\\n        summary[\\\"best_layer\\\"] = best\\n        summary[\\\"best_rho\\\"] = results[best][\\\"spearman_rho\\\"]\\n\\n    with open(os.path.join(out, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    print(f\\\"\\\\nSaved to {out}/\\\")\\n\\n\\ndef main():\\n    args = parse_args()\\n    torch.manual_seed(args.seed)\\n    np.random.seed(args.seed)\\n\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n    print(f\\\"=== Probe Training: {args.probe_type} | device={device} ===\\\")\\n\\n    runners = dict(\\n        temporal_distance=run_temporal_distance,\\n        oracle=run_oracle,\\n        subtask_predicate=run_subtask_predicate,\\n    )\\n    results = runners[args.probe_type](args, device)\\n    save_results(results, args.output_dir, args.probe_type)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "25a26fd2-cfb5-47cb-a48c-9135f72a42e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\n# ============================================================\\\\n# Probes\\\\n# ============================================================\\\\n\\\\nclass LinearProbe(nn.Module):\\\\n    def __init__(self, in_dim):\\\\n        super().__init__()\\\\n        self.fc = nn.Linear(in_dim, 1)\\\\n\\\\n    def forward(self, x):\\\\n        return self.fc(x).squeeze(-1)\\\\n\\\\n\\\\nclass MultiLabelProbe(nn.Module):\\\\n    def __init__(self, in_dim, n_labels):\\\\n        super().__init__()\\\\n        self.fc = nn.Linear(in_dim, n_labels)\\\\n\\\\n    def forward(self, x):\\\\n        return self.fc(x)\\\\n\\\\n\\\\ndef train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\\\\n    model = LinearProbe(in_dim).to(device)\\\\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\\\\n    crit = nn.MSELoss()\\\\n\\\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\\\n\\\\n    best_loss, best_state, wait, final_ep = float(\\\\\\\"inf\\\\\\\"), None, 0, 0\\\\n\\\\n    for ep in range(args.epochs):\\\\n        model.train()\\\\n        perm = torch.randperm(len(X_tr), device=device)\\\\n        for s in range(0, len(X_tr), args.batch_size):\\\\n            idx = perm[s : s + args.batch_size]\\\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\\\n            opt.zero_grad()\\\\n            loss.backward()\\\\n            opt.step()\\\\n\\\\n        model.eval()\\\\n        with torch.no_grad():\\\\n            vl = crit(model(X_val), y_val).item()\\\\n\\\\n        if vl < best_loss:\\\\n            best_loss = vl\\\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\\\n            wait = 0\\\\n        else:\\\\n            wait += 1\\\\n            if wait >= args.patience:\\\\n                final_ep = ep + 1\\\\n                break\\\\n        final_ep = ep + 1\\\\n\\\\n    model.load_state_dict(best_state)\\\\n    model.eval()\\\\n    with torch.no_grad():\\\\n        pred = model(X_val).cpu().numpy()\\\\n    y_np = y_val.cpu().numpy()\\\\n\\\\n    rho, pval = spearmanr(pred, y_np)\\\\n    return dict(\\\\n        spearman_rho=float(rho) if not np.isnan(rho) else 0.0,\\\\n        spearman_p=float(pval) if not np.isnan(pval) else 1.0,\\\\n        r2=float(r2_score(y_np, pred)),\\\\n        mae=float(mean_absolute_error(y_np, pred)),\\\\n        val_loss=best_loss,\\\\n        epochs_trained=final_ep,\\\\n    )\\\\n\\\\n\\\\ndef train_classification_probe(X_tr, y_tr, X_val, y_val, in_dim, n_labels, args, device):\\\\n    model = MultiLabelProbe(in_dim, n_labels).to(device)\\\\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\\\\n    crit = nn.BCEWithLogitsLoss()\\\\n\\\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\\\n\\\\n    bs = 512\\\\n    best_loss, best_state, wait, final_ep = float(\\\\\\\"inf\\\\\\\"), None, 0, 0\\\\n\\\\n    for ep in range(args.epochs):\\\\n        model.train()\\\\n        perm = torch.randperm(len(X_tr), device=device)\\\\n        for s in range(0, len(X_tr), bs):\\\\n            idx = perm[s : s + bs]\\\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\\\n            opt.zero_grad()\\\\n            loss.backward()\\\\n            opt.step()\\\\n\\\\n        model.eval()\\\\n        with torch.no_grad():\\\\n            vl = crit(model(X_val), y_val).item()\\\\n\\\\n        if vl < best_loss:\\\\n            best_loss = vl\\\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\\\n            wait = 0\\\\n        else:\\\\n            wait += 1\\\\n            if wait >= args.patience:\\\\n                final_ep = ep + 1\\\\n                break\\\\n        final_ep = ep + 1\\\\n\\\\n    model.load_state_dict(best_state)\\\\n    model.eval()\\\\n    with torch.no_grad():\\\\n        scores = torch.sigmoid(model(X_val)).cpu().numpy()\\\\n    y_np = y_val.cpu().numpy()\\\\n\\\\n    auc_per = {}\\\\n    for k in range(n_labels):\\\\n        col = y_np[:, k]\\\\n        if col.sum() > 0 and col.sum() < len(col):\\\\n            auc_per[k] = float(roc_auc_score(col, scores[:, k]))\\\\n        else:\\\\n            auc_per[k] = float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    valid = [v for v in auc_per.values() if not np.isnan(v)]\\\\n    return dict(\\\\n        auc_per_predicate={str(k): v for k, v in auc_per.items()},\\\\n        macro_auc=float(np.mean(valid)) if valid else float(\\\\\\\"nan\\\\\\\"),\\\\n        val_loss=best_los\\\\n\\\\n... [截断: 输出过长，省略 2526 字符] ...\\\\n\\\\nr subtask_predicate\\\\\\\")\\\\n\\\\n    with open(args.label_file) as f:\\\\n        label_data = json.load(f)\\\\n    pred_names = label_data[\\\\\\\"predicate_names\\\\\\\"]\\\\n    labels = label_data[\\\\\\\"labels\\\\\\\"]\\\\n    n_pred = len(pred_names)\\\\n    print(f\\\\\\\"Predicates ({n_pred}): {pred_names}\\\\\\\")\\\\n\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\n\\\\n    results = {}\\\\n    for li, layer in enumerate(layers):\\\\n        print(f\\\\\\\"\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\\\\\", flush=True)\\\\n        t0 = time.time()\\\\n\\\\n        def gather(ids):\\\\n            Xs, Ys = [], []\\\\n            feats = load_layer_features(traj_metas, ids, layer)\\\\n            for pos, idx in enumerate(ids):\\\\n                m = traj_metas[idx]\\\\n                tk = m[\\\\\\\"h5_key\\\\\\\"]\\\\n                if m[\\\\\\\"task\\\\\\\"] not in labels or tk not in labels[m[\\\\\\\"task\\\\\\\"]]:\\\\n                    continue\\\\n                lab = np.array(labels[m[\\\\\\\"task\\\\\\\"]][tk], dtype=np.float32)\\\\n                T = min(feats[pos].shape[0], lab.shape[0])\\\\n                Xs.append(torch.from_numpy(feats[pos][:T]))\\\\n                Ys.append(torch.from_numpy(lab[:T]))\\\\n            if not Xs:\\\\n                return None, None\\\\n            return torch.cat(Xs, dim=0), torch.cat(Ys, dim=0)\\\\n\\\\n        X_tr, y_tr = gather(train_ids)\\\\n        X_val, y_val = gather(val_ids)\\\\n\\\\n        if X_tr is None or X_val is None:\\\\n            print(\\\\\\\"  No valid data, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        print(f\\\\\\\"  Samples: {len(X_tr)} train / {len(X_val)} val\\\\\\\")\\\\n        met = train_classification_probe(\\\\n            X_tr, y_tr, X_val, y_val, hidden_dim, n_pred, args, device\\\\n        )\\\\n        met[\\\\\\\"layer\\\\\\\"] = layer\\\\n        met[\\\\\\\"predicate_names\\\\\\\"] = pred_names\\\\n        results[layer] = met\\\\n\\\\n        print(f\\\\\\\"  macro_AUC={met['macro_auc']:.4f}  ep={met['epochs_trained']}  \\\\\\\"\\\\n              f\\\\\\\"{time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\n# ============================================================\\\\n# Results I/O\\\\n# ============================================================\\\\n\\\\ndef save_results(results, output_dir, probe_type):\\\\n    out = os.path.join(output_dir, probe_type)\\\\n    os.makedirs(out, exist_ok=True)\\\\n\\\\n    for key, m in results.items():\\\\n        with open(os.path.join(out, f\\\\\\\"layer_{key}.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(m, f, indent=2)\\\\n\\\\n    csv_path = os.path.join(out, \\\\\\\"summary.csv\\\\\\\")\\\\n    if probe_type in (\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"oracle\\\\\\\"):\\\\n        fields = [\\\\\\\"layer\\\\\\\", \\\\\\\"spearman_rho\\\\\\\", \\\\\\\"spearman_p\\\\\\\", \\\\\\\"r2\\\\\\\", \\\\\\\"mae\\\\\\\",\\\\n                   \\\\\\\"val_loss\\\\\\\", \\\\\\\"epochs_trained\\\\\\\"]\\\\n    else:\\\\n        fields = [\\\\\\\"layer\\\\\\\", \\\\\\\"macro_auc\\\\\\\", \\\\\\\"val_loss\\\\\\\", \\\\\\\"epochs_trained\\\\\\\"]\\\\n\\\\n    with open(csv_path, \\\\\\\"w\\\\\\\", newline=\\\\\\\"\\\\\\\") as f:\\\\n        w = csv.DictWriter(f, fieldnames=fields)\\\\n        w.writeheader()\\\\n        for key in sorted(results.keys(), key=lambda x: (isinstance(x, str), x)):\\\\n            row = {k: results[key].get(k, \\\\\\\"\\\\\\\") for k in fields}\\\\n            w.writerow(row)\\\\n\\\\n    summary = dict(probe_type=probe_type, n_entries=len(results),\\\\n                   results={str(k): v for k, v in results.items()})\\\\n\\\\n    if probe_type == \\\\\\\"temporal_distance\\\\\\\" and results:\\\\n        best = max(results, key=lambda k: results[k][\\\\\\\"spearman_rho\\\\\\\"])\\\\n        summary[\\\\\\\"best_layer\\\\\\\"] = best\\\\n        summary[\\\\\\\"best_rho\\\\\\\"] = results[best][\\\\\\\"spearman_rho\\\\\\\"]\\\\n\\\\n    with open(os.path.join(out, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {out}/\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    torch.manual_seed(args.seed)\\\\n    np.random.seed(args.seed)\\\\n\\\\n    device = torch.device(f\\\\\\\"cuda:{args.gpu}\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\")\\\\n    print(f\\\\\\\"=== Probe Training: {args.probe_type} | device={device} ===\\\\\\\")\\\\n\\\\n    runners = dict(\\\\n        temporal_distance=run_temporal_distance,\\\\n        oracle=run_oracle,\\\\n        subtask_predicate=run_subtask_predicate,\\\\n    )\\\\n    results = runners[args.probe_type](args, device)\\\\n    save_results(results, args.output_dir, args.probe_type)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n\\n# ============================================================\\n# Probes\\n# ============================================================\\n\\nclass LinearProbe(nn.Module):\\n    def __init__(self, in_dim):\\n        super().__init__()\\n        self.fc = nn.Linear(in_dim, 1)\\n\\n    def forward(self, x):\\n        return self.fc(x).squeeze(-1)\\n\\n\\nclass MultiLabelProbe(nn.Module):\\n    def __init__(self, in_dim, n_labels):\\n        super().__init__()\\n        self.fc = nn.Linear(in_dim, n_labels)\\n\\n    def forward(self, x):\\n        return self.fc(x)\\n\\n\\ndef train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\\n    model = LinearProbe(in_dim).to(device)\\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\\n    crit = nn.MSELoss()\\n\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\n\\n    best_loss, best_state, wait, final_ep = float(\\\"inf\\\"), None, 0, 0\\n\\n    for ep in range(args.epochs):\\n        model.train()\\n        perm = torch.randperm(len(X_tr), device=device)\\n        for s in range(0, len(X_tr), args.batch_size):\\n            idx = perm[s : s + args.batch_size]\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\n            opt.zero_grad()\\n            loss.backward()\\n            opt.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            vl = crit(model(X_val), y_val).item()\\n\\n        if vl < best_loss:\\n            best_loss = vl\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= args.patience:\\n                final_ep = ep + 1\\n                break\\n        final_ep = ep + 1\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n    with torch.no_grad():\\n        pred = model(X_val).cpu().numpy()\\n    y_np = y_val.cpu().numpy()\\n\\n    rho, pval = spearmanr(pred, y_np)\\n    return dict(\\n        spearman_rho=float(rho) if not np.isnan(rho) else 0.0,\\n        spearman_p=float(pval) if not np.isnan(pval) else 1.0,\\n        r2=float(r2_score(y_np, pred)),\\n        mae=float(mean_absolute_error(y_np, pred)),\\n        val_loss=best_loss,\\n        epochs_trained=final_ep,\\n    )\\n\\n\\ndef train_classification_probe(X_tr, y_tr, X_val, y_val, in_dim, n_labels, args, device):\\n    model = MultiLabelProbe(in_dim, n_labels).to(device)\\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\\n    crit = nn.BCEWithLogitsLoss()\\n\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\n\\n    bs = 512\\n    best_loss, best_state, wait, final_ep = float(\\\"inf\\\"), None, 0, 0\\n\\n    for ep in range(args.epochs):\\n        model.train()\\n        perm = torch.randperm(len(X_tr), device=device)\\n        for s in range(0, len(X_tr), bs):\\n            idx = perm[s : s + bs]\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\n            opt.zero_grad()\\n            loss.backward()\\n            opt.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            vl = crit(model(X_val), y_val).item()\\n\\n        if vl < best_loss:\\n            best_loss = vl\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= args.patience:\\n                final_ep = ep + 1\\n                break\\n        final_ep = ep + 1\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n    with torch.no_grad():\\n        scores = torch.sigmoid(model(X_val)).cpu().numpy()\\n    y_np = y_val.cpu().numpy()\\n\\n    auc_per = {}\\n    for k in range(n_labels):\\n        col = y_np[:, k]\\n        if col.sum() > 0 and col.sum() < len(col):\\n            auc_per[k] = float(roc_auc_score(col, scores[:, k]))\\n        else:\\n            auc_per[k] = float(\\\"nan\\\")\\n\\n    valid = [v for v in auc_per.values() if not np.isnan(v)]\\n    return dict(\\n        auc_per_predicate={str(k): v for k, v in auc_per.items()},\\n        macro_auc=float(np.mean(valid)) if valid else float(\\\"nan\\\"),\\n        val_loss=best_los\\n\\n... [截断: 输出过长，省略 2526 字符] ...\\n\\nr subtask_predicate\\\")\\n\\n    with open(args.label_file) as f:\\n        label_data = json.load(f)\\n    pred_names = label_data[\\\"predicate_names\\\"]\\n    labels = label_data[\\\"labels\\\"]\\n    n_pred = len(pred_names)\\n    print(f\\\"Predicates ({n_pred}): {pred_names}\\\")\\n\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\n    layers = parse_layers(args.layers, n_layers - 1)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    results = {}\\n    for li, layer in enumerate(layers):\\n        print(f\\\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\n        t0 = time.time()\\n\\n        def gather(ids):\\n            Xs, Ys = [], []\\n            feats = load_layer_features(traj_metas, ids, layer)\\n            for pos, idx in enumerate(ids):\\n                m = traj_metas[idx]\\n                tk = m[\\\"h5_key\\\"]\\n                if m[\\\"task\\\"] not in labels or tk not in labels[m[\\\"task\\\"]]:\\n                    continue\\n                lab = np.array(labels[m[\\\"task\\\"]][tk], dtype=np.float32)\\n                T = min(feats[pos].shape[0], lab.shape[0])\\n                Xs.append(torch.from_numpy(feats[pos][:T]))\\n                Ys.append(torch.from_numpy(lab[:T]))\\n            if not Xs:\\n                return None, None\\n            return torch.cat(Xs, dim=0), torch.cat(Ys, dim=0)\\n\\n        X_tr, y_tr = gather(train_ids)\\n        X_val, y_val = gather(val_ids)\\n\\n        if X_tr is None or X_val is None:\\n            print(\\\"  No valid data, skipping\\\")\\n            continue\\n\\n        print(f\\\"  Samples: {len(X_tr)} train / {len(X_val)} val\\\")\\n        met = train_classification_probe(\\n            X_tr, y_tr, X_val, y_val, hidden_dim, n_pred, args, device\\n        )\\n        met[\\\"layer\\\"] = layer\\n        met[\\\"predicate_names\\\"] = pred_names\\n        results[layer] = met\\n\\n        print(f\\\"  macro_AUC={met['macro_auc']:.4f}  ep={met['epochs_trained']}  \\\"\\n              f\\\"{time.time()-t0:.1f}s\\\")\\n\\n    return results\\n\\n\\n# ============================================================\\n# Results I/O\\n# ============================================================\\n\\ndef save_results(results, output_dir, probe_type):\\n    out = os.path.join(output_dir, probe_type)\\n    os.makedirs(out, exist_ok=True)\\n\\n    for key, m in results.items():\\n        with open(os.path.join(out, f\\\"layer_{key}.json\\\"), \\\"w\\\") as f:\\n            json.dump(m, f, indent=2)\\n\\n    csv_path = os.path.join(out, \\\"summary.csv\\\")\\n    if probe_type in (\\\"temporal_distance\\\", \\\"oracle\\\"):\\n        fields = [\\\"layer\\\", \\\"spearman_rho\\\", \\\"spearman_p\\\", \\\"r2\\\", \\\"mae\\\",\\n                   \\\"val_loss\\\", \\\"epochs_trained\\\"]\\n    else:\\n        fields = [\\\"layer\\\", \\\"macro_auc\\\", \\\"val_loss\\\", \\\"epochs_trained\\\"]\\n\\n    with open(csv_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        w = csv.DictWriter(f, fieldnames=fields)\\n        w.writeheader()\\n        for key in sorted(results.keys(), key=lambda x: (isinstance(x, str), x)):\\n            row = {k: results[key].get(k, \\\"\\\") for k in fields}\\n            w.writerow(row)\\n\\n    summary = dict(probe_type=probe_type, n_entries=len(results),\\n                   results={str(k): v for k, v in results.items()})\\n\\n    if probe_type == \\\"temporal_distance\\\" and results:\\n        best = max(results, key=lambda k: results[k][\\\"spearman_rho\\\"])\\n        summary[\\\"best_layer\\\"] = best\\n        summary[\\\"best_rho\\\"] = results[best][\\\"spearman_rho\\\"]\\n\\n    with open(os.path.join(out, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    print(f\\\"\\\\nSaved to {out}/\\\")\\n\\n\\ndef main():\\n    args = parse_args()\\n    torch.manual_seed(args.seed)\\n    np.random.seed(args.seed)\\n\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n    print(f\\\"=== Probe Training: {args.probe_type} | device={device} ===\\\")\\n\\n    runners = dict(\\n        temporal_distance=run_temporal_distance,\\n        oracle=run_oracle,\\n        subtask_predicate=run_subtask_predicate,\\n    )\\n    results = runners[args.probe_type](args, device)\\n    save_results(results, args.output_dir, args.probe_type)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T07:17:10.091Z_
+
+<details><summary>↩ Tool result · `toolu_01HjCb7jWwFNBoSX27gJoMGx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def compute_judgment(all_data):\\n    \\\"\\\"\\\"PASS/FAIL based on three criteria.\\\"\\\"\\\"\\n    criteria = {}\\n\\n    # 1) best rho > 0.3\\n    if \\\"trained\\\" in all_data:\\n        _, rhos = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\\n        layers, _ = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\\n    else:\\n        best_rho, best_layer = 0.0, -1\\n\\n    criteria[\\\"best_rho\\\"] = best_rho\\n    criteria[\\\"best_layer\\\"] = best_layer\\n    criteria[\\\"rho_pass\\\"] = best_rho > 0.3\\n\\n    # 2) delta-rho > 0.1\\n    max_delta = 0.0\\n    if \\\"trained\\\" in all_data and \\\"untrained\\\" in all_data:\\n        l_tr, rho_tr = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        l_un, rho_un = extract_layer_metrics(all_data[\\\"untrained\\\"], \\\"spearman_rho\\\")\\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\n        common = set(l_tr.tolist()) & set(l_un.tolist())\\n        if common:\\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\\n\\n    criteria[\\\"max_delta_rho\\\"] = max_delta\\n    criteria[\\\"delta_pass\\\"] = max_delta > 0.1\\n\\n    # 3) VLA >= DINO-V2 OR sub-task AUC > 0.7\\n    vla_ge_dino = False\\n    if \\\"trained\\\" in all_data and \\\"dinov2\\\" in all_data:\\n        _, rho_vla = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        _, rho_dino = extract_layer_metrics(all_data[\\\"dinov2\\\"], \\\"spearman_rho\\\")\\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\\n\\n    subtask_pass = False\\n    for data in all_data.values():\\n        for v in data.get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_auc\\\"), (int, float)) and v[\\\"macro_auc\\\"] > 0.7:\\n                subtask_pass = True\\n                break\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    passed = criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]\\n    judgment = \\\"PASS\\\" if passed else \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best rho = {best_rho:.4f} <= 0.3\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        reasons.append(f\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "3866d192-456f-42eb-b98a-fbadbeb317ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def compute_judgment(all_data):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"PASS/FAIL based on three criteria.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    criteria = {}\\\\n\\\\n    # 1) best rho > 0.3\\\\n    if \\\\\\\"trained\\\\\\\" in all_data:\\\\n        _, rhos = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\\\\n        layers, _ = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\\\\n    else:\\\\n        best_rho, best_layer = 0.0, -1\\\\n\\\\n    criteria[\\\\\\\"best_rho\\\\\\\"] = best_rho\\\\n    criteria[\\\\\\\"best_layer\\\\\\\"] = best_layer\\\\n    criteria[\\\\\\\"rho_pass\\\\\\\"] = best_rho > 0.3\\\\n\\\\n    # 2) delta-rho > 0.1\\\\n    max_delta = 0.0\\\\n    if \\\\\\\"trained\\\\\\\" in all_data and \\\\\\\"untrained\\\\\\\" in all_data:\\\\n        l_tr, rho_tr = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        l_un, rho_un = extract_layer_metrics(all_data[\\\\\\\"untrained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\\\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\\\n        common = set(l_tr.tolist()) & set(l_un.tolist())\\\\n        if common:\\\\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\\\\n\\\\n    criteria[\\\\\\\"max_delta_rho\\\\\\\"] = max_delta\\\\n    criteria[\\\\\\\"delta_pass\\\\\\\"] = max_delta > 0.1\\\\n\\\\n    # 3) VLA >= DINO-V2 OR sub-task AUC > 0.7\\\\n    vla_ge_dino = False\\\\n    if \\\\\\\"trained\\\\\\\" in all_data and \\\\\\\"dinov2\\\\\\\" in all_data:\\\\n        _, rho_vla = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        _, rho_dino = extract_layer_metrics(all_data[\\\\\\\"dinov2\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\\\\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\\\\n\\\\n    subtask_pass = False\\\\n    for data in all_data.values():\\\\n        for v in data.get(\\\\\\\"results\\\\\\\", {}).values():\\\\n            if isinstance(v.get(\\\\\\\"macro_auc\\\\\\\"), (int, float)) and v[\\\\\\\"macro_auc\\\\\\\"] > 0.7:\\\\n                subtask_pass = True\\\\n                break\\\\n\\\\n    criteria[\\\\\\\"vla_ge_dinov2\\\\\\\"] = vla_ge_dino\\\\n    criteria[\\\\\\\"subtask_auc_pass\\\\\\\"] = subtask_pass\\\\n    criteria[\\\\\\\"third_criterion\\\\\\\"] = vla_ge_dino or subtask_pass\\\\n\\\\n    passed = criteria[\\\\\\\"rho_pass\\\\\\\"] and criteria[\\\\\\\"delta_pass\\\\\\\"] and criteria[\\\\\\\"third_criterion\\\\\\\"]\\\\n    judgment = \\\\\\\"PASS\\\\\\\" if passed else \\\\\\\"FAIL\\\\\\\"\\\\n\\\\n    reasons = []\\\\n    if not criteria[\\\\\\\"rho_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"best rho = {best_rho:.4f} <= 0.3\\\\\\\")\\\\n    if not criteria[\\\\\\\"delta_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\\\\\")\\\\n    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        reasons.append(\\\\\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\\\\\")\\\\n\\\\n    return dict(judgment=judgment, criteria=criteria,\\\\n                reasons=reasons if reasons else [\\\\\\\"All criteria met\\\\\\\"])\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    dirs = parse_results_dirs(args.results_dirs)\\\\n    print(f\\\\\\\"Loading results: {list(dirs.keys())}\\\\\\\")\\\\n\\\\n    all_data = {}\\\\n    for name, path in dirs.items():\\\\n        try:\\\\n            data = load_results(path, args.probe_type)\\\\n            all_data[name] = data\\\\n            n = len(data.get(\\\\\\\"results\\\\\\\", {}))\\\\n            print(f\\\\\\\"  {name}: {n} entries\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  {name}: FAILED ({e})\\\\\\\")\\\\n\\\\n    if not all_data:\\\\n        print(\\\\\\\"No data loaded.\\\\\\\")\\\\n        return\\\\n\\\\n    oracle_rho = load_oracle(dirs)\\\\n    if oracle_rho is not None:\\\\n        print(f\\\\\\\"Oracle rho: {oracle_rho:.4f}\\\\\\\")\\\\n\\\\n    # --- Comparison table ---\\\\n    print(\\\\\\\"\\\\\\\\n=== Layer-wise Spearman rho ===\\\\\\\")\\\\n    names = list(all_data.keys())\\\\n    header = [\\\\\\\"Layer\\\\\\\"] + names\\\\n    print(\\\\\\\" | \\\\\\\".join(f\\\\\\\"{h:>12}\\\\\\\" for h in header))\\\\n    print(\\\\\\\"-\\\\\\\" * (14 * len(header)))\\\\n\\\\n    all_layers = set()\\\\n    for data in all_data.values():\\\\n        layers, _ = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        all_layers.update(layers.tolist())\\\\n\\\\n    for layer in sorted(all_layers):\\\\n        row = [f\\\\\\\"{layer:>12}\\\\\\\"]\\\\n        for name in names:\\\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\\\\\"spearman_rho\\\\\\\")\\\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\\\n            val = lmap.get(layer, float(\\\\\\\"nan\\\\\\\"))\\\\n            row.append(f\\\\\\\"{val:>12.4f}\\\\\\\")\\\\n        print(\\\\\\\" | \\\\\\\".join(row))\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Best Layer ===\\\\\\\")\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            print(f\\\\\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\\\\\")\\\\n\\\\n    # --- Plots ---\\\\n    if args.probe_type == \\\\\\\"temporal_distance\\\\\\\":\\\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\\\n        plot_delta_rho(all_data, args.output_dir)\\\\n\\\\n    if args.probe_type == \\\\\\\"subtask_predicate\\\\\\\":\\\\n        for name, data in all_data.items():\\\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\\\n\\\\n    # --- Judgment ---\\\\n    judgment = compute_judgment(all_data)\\\\n    print(f\\\\\\\"\\\\\\\\n=== Judgment: {judgment['judgment']} ===\\\\\\\")\\\\n    for k, v in judgment[\\\\\\\"criteria\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n    for r in judgment[\\\\\\\"reasons\\\\\\\"]:\\\\n        print(f\\\\\\\"  >> {r}\\\\\\\")\\\\n\\\\n    # --- Save ---\\\\n    summary = dict(\\\\n        models=names,\\\\n        probe_type=args.probe_type,\\\\n        judgment=judgment,\\\\n    )\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\\\n    if oracle_rho is not None:\\\\n        summary[\\\\\\\"oracle_rho\\\\\\\"] = oracle_rho\\\\n\\\\n    with open(os.path.join(args.output_dir, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved {args.output_dir}/summary.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def compute_judgment(all_data):\\n    \\\"\\\"\\\"PASS/FAIL based on three criteria.\\\"\\\"\\\"\\n    criteria = {}\\n\\n    # 1) best rho > 0.3\\n    if \\\"trained\\\" in all_data:\\n        _, rhos = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\\n        layers, _ = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\\n    else:\\n        best_rho, best_layer = 0.0, -1\\n\\n    criteria[\\\"best_rho\\\"] = best_rho\\n    criteria[\\\"best_layer\\\"] = best_layer\\n    criteria[\\\"rho_pass\\\"] = best_rho > 0.3\\n\\n    # 2) delta-rho > 0.1\\n    max_delta = 0.0\\n    if \\\"trained\\\" in all_data and \\\"untrained\\\" in all_data:\\n        l_tr, rho_tr = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        l_un, rho_un = extract_layer_metrics(all_data[\\\"untrained\\\"], \\\"spearman_rho\\\")\\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\n        common = set(l_tr.tolist()) & set(l_un.tolist())\\n        if common:\\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\\n\\n    criteria[\\\"max_delta_rho\\\"] = max_delta\\n    criteria[\\\"delta_pass\\\"] = max_delta > 0.1\\n\\n    # 3) VLA >= DINO-V2 OR sub-task AUC > 0.7\\n    vla_ge_dino = False\\n    if \\\"trained\\\" in all_data and \\\"dinov2\\\" in all_data:\\n        _, rho_vla = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        _, rho_dino = extract_layer_metrics(all_data[\\\"dinov2\\\"], \\\"spearman_rho\\\")\\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\\n\\n    subtask_pass = False\\n    for data in all_data.values():\\n        for v in data.get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_auc\\\"), (int, float)) and v[\\\"macro_auc\\\"] > 0.7:\\n                subtask_pass = True\\n                break\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    passed = criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]\\n    judgment = \\\"PASS\\\" if passed else \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best rho = {best_rho:.4f} <= 0.3\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        reasons.append(f\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to also see the `run_temporal_distance` function to understand how pairs are built. Let me look at lines 339-390.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "07a907ae-cb96-4a5f-817a-52c313492869",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GDRxvy3yqjJKGKMrAL8qSD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9249,
+      "cache_read_input_tokens": 34517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+还需要看 `run_temporal_distance` 函数完整代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "bbbb20ca-a1ae-4c1f-9520-705d09f01126",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GDRxvy3yqjJKGKMrAL8qSD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9249,
+      "cache_read_input_tokens": 34517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F5rwh56RXzKN6psnhfzCkC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -390 /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "9c76a6b7-54d6-4b79-acb8-08083d28a2b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GDRxvy3yqjJKGKMrAL8qSD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9249,
+      "cache_read_input_tokens": 34517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T07:17:15.092Z_
+
+<details><summary>↩ Tool result · `toolu_01F5rwh56RXzKN6psnhfzCkC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\n\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\nAGG_MAP = {\\n    \\\"last_preaction\\\": (\\\"last_preaction\\\", \\\"cls_token\\\"),\\n    \\\"image_mean\\\": (\\\"image_mean\\\", \\\"patch_mean\\\"),\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train linear probes on VLA/DINO-V2 features\\\")\\n    p.add_argument(\\\"--features_dir\\\", required=True,\\n                   help=\\\"Directory with per-task HDF5 feature files\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True,\\n                   help=\\\"Directory to save probe results\\\")\\n    p.add_argument(\\\"--probe_type\\\", required=True,\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\", \\\"oracle\\\"])\\n    p.add_argument(\\\"--layers\\\", default=None,\\n                   help=\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\")\\n    p.add_argument(\\\"--aggregation\\\", default=\\\"last_preaction\\\",\\n                   choices=[\\\"last_preaction\\\", \\\"image_mean\\\"])\\n    p.add_argument(\\\"--label_file\\\", default=None,\\n                   help=\\\"Predicate labels JSON (required for subtask_predicate)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=256)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--patience\\\", type=int, default=5)\\n    p.add_argument(\\\"--pairs_per_bin\\\", type=int, default=50)\\n    p.add_argument(\\\"--n_bins\\\", type=int, default=10)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    return p.parse_args()\\n\\n\\n# ============================================================\\n# Feature scanning & loading\\n# ============================================================\\n\\ndef scan_features(features_dir, aggregation):\\n    \\\"\\\"\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\"\\\"\\\"\\n    primary, fallback = AGG_MAP[aggregation]\\n    traj_metas = []\\n    n_layers = hidden_dim = None\\n\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        with h5py.File(h5_path, \\\"r\\\") as f:\\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\\\"_\\\")[-1]))\\n            for hk in keys:\\n                if primary in f[hk]:\\n                    fk = primary\\n                elif fallback in f[hk]:\\n                    fk = fallback\\n                else:\\n                    raise KeyError(f\\\"No feature key in {h5_path}/{hk}\\\")\\n\\n                shape = f[hk][fk].shape\\n                is_3d = len(shape) == 3\\n                T = shape[0]\\n                if n_layers is None:\\n                    n_layers = shape[1] if is_3d else 1\\n                    hidden_dim = shape[-1]\\n\\n                traj_metas.append(dict(\\n                    task=task, h5_path=h5_path, h5_key=hk,\\n                    feat_key=fk, T=T, is_3d=is_3d,\\n                ))\\n\\n    if not traj_metas:\\n        raise FileNotFoundError(f\\\"No .h5 files found in {features_dir}\\\")\\n    return traj_metas, n_layers, hidden_dim\\n\\n\\ndef split_by_task(traj_metas):\\n    \\\"\\\"\\\"80/20 split per task (first 80 % train, rest val).\\\"\\\"\\\"\\n    by_task = defaultdic\\n\\n... [截断: 输出过长，省略 5606 字符] ...\\n\\nLogitsLoss()\\n\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\n\\n    bs = 512\\n    best_loss, best_state, wait, final_ep = float(\\\"inf\\\"), None, 0, 0\\n\\n    for ep in range(args.epochs):\\n        model.train()\\n        perm = torch.randperm(len(X_tr), device=device)\\n        for s in range(0, len(X_tr), bs):\\n            idx = perm[s : s + bs]\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\n            opt.zero_grad()\\n            loss.backward()\\n            opt.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            vl = crit(model(X_val), y_val).item()\\n\\n        if vl < best_loss:\\n            best_loss = vl\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= args.patience:\\n                final_ep = ep + 1\\n                break\\n        final_ep = ep + 1\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n    with torch.no_grad():\\n        scores = torch.sigmoid(model(X_val)).cpu().numpy()\\n    y_np = y_val.cpu().numpy()\\n\\n    auc_per = {}\\n    for k in range(n_labels):\\n        col = y_np[:, k]\\n        if col.sum() > 0 and col.sum() < len(col):\\n            auc_per[k] = float(roc_auc_score(col, scores[:, k]))\\n        else:\\n            auc_per[k] = float(\\\"nan\\\")\\n\\n    valid = [v for v in auc_per.values() if not np.isnan(v)]\\n    return dict(\\n        auc_per_predicate={str(k): v for k, v in auc_per.items()},\\n        macro_auc=float(np.mean(valid)) if valid else float(\\\"nan\\\"),\\n        val_loss=best_loss,\\n        epochs_trained=final_ep,\\n    )\\n\\n\\n# ============================================================\\n# Runners\\n# ============================================================\\n\\ndef run_temporal_distance(args, device):\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\n    layers = parse_layers(args.layers, n_layers - 1)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    print(f\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\")\\n    print(f\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\")\\n\\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\n    print(f\\\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\\\")\\n\\n    results = {}\\n    for li, layer in enumerate(layers):\\n        print(f\\\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\n        t0 = time.time()\\n\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\\n        del train_feats\\n\\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\\n        del val_feats\\n\\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\\n        m[\\\"layer\\\"] = layer\\n        results[layer] = m\\n        del X_tr, y_tr, X_val, y_val\\n\\n        print(f\\\"  rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  \\\"\\n              f\\\"MAE={m['mae']:.4f}  ep={m['epochs_trained']}  {time.time()-t0:.1f}s\\\")\\n\\n    return results\\n\\n\\ndef run_oracle(args, device):\\n    traj_metas, _, _ = scan_features(args.features_dir, args.aggregation)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\n    print(f\\\"Oracle: {len(train_pairs)} train / {len(val_pairs)} val pairs\\\")\\n\\n    X_tr, y_tr = build_oracle_tensors(train_pairs)\\n    X_val, y_val = build_oracle_tensors(val_pairs)\\n\\n    m = train_regression_probe(X_tr, y_tr, X_val, y_val, 1, args, device)\\n    m[\\\"layer\\\"] = \\\"oracle\\\"\\n    print(f\\\"Oracle: rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  MAE={m['mae']:.4f}\\\")\\n    return {\\\"oracle\\\": m}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "bbc7b94d-9cef-416b-a48d-44f0a105300b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--aggregation\\\\\\\", default=\\\\\\\"last_preaction\\\\\\\",\\\\n                   choices=[\\\\\\\"last_preaction\\\\\\\", \\\\\\\"image_mean\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--label_file\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Predicate labels JSON (required for subtask_predicate)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=1e-3)\\\\n    p.add_argument(\\\\\\\"--epochs\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--patience\\\\\\\", type=int, default=5)\\\\n    p.add_argument(\\\\\\\"--pairs_per_bin\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--n_bins\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    return p.parse_args()\\\\n\\\\n\\\\n# ============================================================\\\\n# Feature scanning & loading\\\\n# ============================================================\\\\n\\\\ndef scan_features(features_dir, aggregation):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    primary, fallback = AGG_MAP[aggregation]\\\\n    traj_metas = []\\\\n    n_layers = hidden_dim = None\\\\n\\\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\\\\\"*.h5\\\\\\\"))):\\\\n        task = Path(h5_path).stem\\\\n        with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as f:\\\\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[-1]))\\\\n            for hk in keys:\\\\n                if primary in f[hk]:\\\\n                    fk = primary\\\\n                elif fallback in f[hk]:\\\\n                    fk = fallback\\\\n                else:\\\\n                    raise KeyError(f\\\\\\\"No feature key in {h5_path}/{hk}\\\\\\\")\\\\n\\\\n                shape = f[hk][fk].shape\\\\n                is_3d = len(shape) == 3\\\\n                T = shape[0]\\\\n                if n_layers is None:\\\\n                    n_layers = shape[1] if is_3d else 1\\\\n                    hidden_dim = shape[-1]\\\\n\\\\n                traj_metas.append(dict(\\\\n                    task=task, h5_path=h5_path, h5_key=hk,\\\\n                    feat_key=fk, T=T, is_3d=is_3d,\\\\n                ))\\\\n\\\\n    if not traj_metas:\\\\n        raise FileNotFoundError(f\\\\\\\"No .h5 files found in {features_dir}\\\\\\\")\\\\n    return traj_metas, n_layers, hidden_dim\\\\n\\\\n\\\\ndef split_by_task(traj_metas):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"80/20 split per task (first 80 % train, rest val).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    by_task = defaultdic\\\\n\\\\n... [截断: 输出过长，省略 5606 字符] ...\\\\n\\\\nLogitsLoss()\\\\n\\\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\\\n\\\\n    bs = 512\\\\n    best_loss, best_state, wait, final_ep = float(\\\\\\\"inf\\\\\\\"), None, 0, 0\\\\n\\\\n    for ep in range(args.epochs):\\\\n        model.train()\\\\n        perm = torch.randperm(len(X_tr), device=device)\\\\n        for s in range(0, len(X_tr), bs):\\\\n            idx = perm[s : s + bs]\\\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\\\n            opt.zero_grad()\\\\n            loss.backward()\\\\n            opt.step()\\\\n\\\\n        model.eval()\\\\n        with torch.no_grad():\\\\n            vl = crit(model(X_val), y_val).item()\\\\n\\\\n        if vl < best_loss:\\\\n            best_loss = vl\\\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\\\n            wait = 0\\\\n        else:\\\\n            wait += 1\\\\n            if wait >= args.patience:\\\\n                final_ep = ep + 1\\\\n                break\\\\n        final_ep = ep + 1\\\\n\\\\n    model.load_state_dict(best_state)\\\\n    model.eval()\\\\n    with torch.no_grad():\\\\n        scores = torch.sigmoid(model(X_val)).cpu().numpy()\\\\n    y_np = y_val.cpu().numpy()\\\\n\\\\n    auc_per = {}\\\\n    for k in range(n_labels):\\\\n        col = y_np[:, k]\\\\n        if col.sum() > 0 and col.sum() < len(col):\\\\n            auc_per[k] = float(roc_auc_score(col, scores[:, k]))\\\\n        else:\\\\n            auc_per[k] = float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    valid = [v for v in auc_per.values() if not np.isnan(v)]\\\\n    return dict(\\\\n        auc_per_predicate={str(k): v for k, v in auc_per.items()},\\\\n        macro_auc=float(np.mean(valid)) if valid else float(\\\\\\\"nan\\\\\\\"),\\\\n        val_loss=best_loss,\\\\n        epochs_trained=final_ep,\\\\n    )\\\\n\\\\n\\\\n# ============================================================\\\\n# Runners\\\\n# ============================================================\\\\n\\\\ndef run_temporal_distance(args, device):\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\n\\\\n    print(f\\\\\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\\\\\")\\\\n    print(f\\\\\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\\\\\")\\\\n\\\\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\n    print(f\\\\\\\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\\\\\\\")\\\\n\\\\n    results = {}\\\\n    for li, layer in enumerate(layers):\\\\n        print(f\\\\\\\"\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\\\\\", flush=True)\\\\n        t0 = time.time()\\\\n\\\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\\\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\\\\n        del train_feats\\\\n\\\\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\\\\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\\\\n        del val_feats\\\\n\\\\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\\\\n        m[\\\\\\\"layer\\\\\\\"] = layer\\\\n        results[layer] = m\\\\n        del X_tr, y_tr, X_val, y_val\\\\n\\\\n        print(f\\\\\\\"  rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  \\\\\\\"\\\\n              f\\\\\\\"MAE={m['mae']:.4f}  ep={m['epochs_trained']}  {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef run_oracle(args, device):\\\\n    traj_metas, _, _ = scan_features(args.features_dir, args.aggregation)\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\n\\\\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\n    print(f\\\\\\\"Oracle: {len(train_pairs)} train / {len(val_pairs)} val pairs\\\\\\\")\\\\n\\\\n    X_tr, y_tr = build_oracle_tensors(train_pairs)\\\\n    X_val, y_val = build_oracle_tensors(val_pairs)\\\\n\\\\n    m = train_regression_probe(X_tr, y_tr, X_val, y_val, 1, args, device)\\\\n    m[\\\\\\\"layer\\\\\\\"] = \\\\\\\"oracle\\\\\\\"\\\\n    print(f\\\\\\\"Oracle: rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  MAE={m['mae']:.4f}\\\\\\\")\\\\n    return {\\\\\\\"oracle\\\\\\\": m}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\n\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\nAGG_MAP = {\\n    \\\"last_preaction\\\": (\\\"last_preaction\\\", \\\"cls_token\\\"),\\n    \\\"image_mean\\\": (\\\"image_mean\\\", \\\"patch_mean\\\"),\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train linear probes on VLA/DINO-V2 features\\\")\\n    p.add_argument(\\\"--features_dir\\\", required=True,\\n                   help=\\\"Directory with per-task HDF5 feature files\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True,\\n                   help=\\\"Directory to save probe results\\\")\\n    p.add_argument(\\\"--probe_type\\\", required=True,\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\", \\\"oracle\\\"])\\n    p.add_argument(\\\"--layers\\\", default=None,\\n                   help=\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\")\\n    p.add_argument(\\\"--aggregation\\\", default=\\\"last_preaction\\\",\\n                   choices=[\\\"last_preaction\\\", \\\"image_mean\\\"])\\n    p.add_argument(\\\"--label_file\\\", default=None,\\n                   help=\\\"Predicate labels JSON (required for subtask_predicate)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=256)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--patience\\\", type=int, default=5)\\n    p.add_argument(\\\"--pairs_per_bin\\\", type=int, default=50)\\n    p.add_argument(\\\"--n_bins\\\", type=int, default=10)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    return p.parse_args()\\n\\n\\n# ============================================================\\n# Feature scanning & loading\\n# ============================================================\\n\\ndef scan_features(features_dir, aggregation):\\n    \\\"\\\"\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\"\\\"\\\"\\n    primary, fallback = AGG_MAP[aggregation]\\n    traj_metas = []\\n    n_layers = hidden_dim = None\\n\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        with h5py.File(h5_path, \\\"r\\\") as f:\\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\\\"_\\\")[-1]))\\n            for hk in keys:\\n                if primary in f[hk]:\\n                    fk = primary\\n                elif fallback in f[hk]:\\n                    fk = fallback\\n                else:\\n                    raise KeyError(f\\\"No feature key in {h5_path}/{hk}\\\")\\n\\n                shape = f[hk][fk].shape\\n                is_3d = len(shape) == 3\\n                T = shape[0]\\n                if n_layers is None:\\n                    n_layers = shape[1] if is_3d else 1\\n                    hidden_dim = shape[-1]\\n\\n                traj_metas.append(dict(\\n                    task=task, h5_path=h5_path, h5_key=hk,\\n                    feat_key=fk, T=T, is_3d=is_3d,\\n                ))\\n\\n    if not traj_metas:\\n        raise FileNotFoundError(f\\\"No .h5 files found in {features_dir}\\\")\\n    return traj_metas, n_layers, hidden_dim\\n\\n\\ndef split_by_task(traj_metas):\\n    \\\"\\\"\\\"80/20 split per task (first 80 % train, rest val).\\\"\\\"\\\"\\n    by_task = defaultdic\\n\\n... [截断: 输出过长，省略 5606 字符] ...\\n\\nLogitsLoss()\\n\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\n\\n    bs = 512\\n    best_loss, best_state, wait, final_ep = float(\\\"inf\\\"), None, 0, 0\\n\\n    for ep in range(args.epochs):\\n        model.train()\\n        perm = torch.randperm(len(X_tr), device=device)\\n        for s in range(0, len(X_tr), bs):\\n            idx = perm[s : s + bs]\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\n            opt.zero_grad()\\n            loss.backward()\\n            opt.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            vl = crit(model(X_val), y_val).item()\\n\\n        if vl < best_loss:\\n            best_loss = vl\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= args.patience:\\n                final_ep = ep + 1\\n                break\\n        final_ep = ep + 1\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n    with torch.no_grad():\\n        scores = torch.sigmoid(model(X_val)).cpu().numpy()\\n    y_np = y_val.cpu().numpy()\\n\\n    auc_per = {}\\n    for k in range(n_labels):\\n        col = y_np[:, k]\\n        if col.sum() > 0 and col.sum() < len(col):\\n            auc_per[k] = float(roc_auc_score(col, scores[:, k]))\\n        else:\\n            auc_per[k] = float(\\\"nan\\\")\\n\\n    valid = [v for v in auc_per.values() if not np.isnan(v)]\\n    return dict(\\n        auc_per_predicate={str(k): v for k, v in auc_per.items()},\\n        macro_auc=float(np.mean(valid)) if valid else float(\\\"nan\\\"),\\n        val_loss=best_loss,\\n        epochs_trained=final_ep,\\n    )\\n\\n\\n# ============================================================\\n# Runners\\n# ============================================================\\n\\ndef run_temporal_distance(args, device):\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\n    layers = parse_layers(args.layers, n_layers - 1)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    print(f\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\")\\n    print(f\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\")\\n\\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\n    print(f\\\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\\\")\\n\\n    results = {}\\n    for li, layer in enumerate(layers):\\n        print(f\\\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\n        t0 = time.time()\\n\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\\n        del train_feats\\n\\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\\n        del val_feats\\n\\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\\n        m[\\\"layer\\\"] = layer\\n        results[layer] = m\\n        del X_tr, y_tr, X_val, y_val\\n\\n        print(f\\\"  rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  \\\"\\n              f\\\"MAE={m['mae']:.4f}  ep={m['epochs_trained']}  {time.time()-t0:.1f}s\\\")\\n\\n    return results\\n\\n\\ndef run_oracle(args, device):\\n    traj_metas, _, _ = scan_features(args.features_dir, args.aggregation)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\n    print(f\\\"Oracle: {len(train_pairs)} train / {len(val_pairs)} val pairs\\\")\\n\\n    X_tr, y_tr = build_oracle_tensors(train_pairs)\\n    X_val, y_val = build_oracle_tensors(val_pairs)\\n\\n    m = train_regression_probe(X_tr, y_tr, X_val, y_val, 1, args, device)\\n    m[\\\"layer\\\"] = \\\"oracle\\\"\\n    print(f\\\"Oracle: rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  MAE={m['mae']:.4f}\\\")\\n    return {\\\"oracle\\\": m}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of all three files. Let me now implement the three changes.
+
+### Bug 1: init_untrained.py
+Current: `reinit_llm_backbone` uses `xavier_normal_` for 2D+ params and `zeros_` for 1D params.
+Fix: Use `AutoModelForCausalLM.from_config(llm_config)` to create a fresh LLM, then copy those weights into the model's language_model.
+
+### Bug 2: analyze_results.py
+Current: `compute_judgment` has binary PASS/FAIL.
+
+
+Fix: Add CONDITIONAL branch - when delta_pass but not third_criterion.
+
+### Control B: train_probes.py
+Need to add `--shuffle_cross_trajectory` flag and a `sample_cross_trajectory_pairs` function.
+
+For **Bug 1 (init_untrained.py)**, I need to import `AutoModelForCausalLM` and rewrite `reinit_llm_backbone` to instantiate a fresh model from config and copy its weights into the existing model's language_model component. For **Bug 2 (analyze_results.py)**, I'll add the CONDITIONAL judgment case that triggers when delta_pass is true but the third criterion fails. For **Control B (train_probes.py)**, I need to add the command-line flag and implement the cross-trajectory sampling function.
+
+Now I'm working through the reinit_llm_backbone implementation - I need to extract the LLM config from the model (likely at `model.language_model.config`), create a fresh instance using `AutoModelForCausalLM.from_config()`, and then copy the initialized weights back to the original model's language_model parameters.
+
+Writing the reinit function... Handling state dict key mapping...
+
+Actually, I need to account for the full structure of `LlamaForCausalLM` — it has `model.embed_tokens`, `model.layers.*`, `model.norm`, and `lm_head` at the top level. Since the VLA wraps this as `language_model`, stripping that prefix should align the keys correctly. I should also add a warning for any keys that don't match rather than silently skipping them.
+
+For the second bug in analyze_results.py, I need to fix the criteria check...
+
+Updating the judgment logic...
+
+For the third control in train_probes.py, I'm adding a new flag to enable cross-trajectory sampling, implementing a function that picks pairs from different trajectories at different time steps, and modifying the temporal distance runner to use these pairs when the flag is enabled.
+
+The key insight here is that for cross-trajectory pairs, the label represents a distance metric even though it's not meaningful in the traditional sense—the point is to test whether the probe learns spurious correlations rather than genuine temporal structure, so we'd expect the correlation coefficient ρ to be near zero if the probe is working correctly.
+
+Implementing the sampling function... Writing sampling logic...
+
+Now I'm realizing the existing `build_pair_tensors` function expects both time indices from the same trajectory, but for cross-trajectory pairs I need to handle two different trajectories with their own feature arrays. I'll need a separate function that can extract features from different trajectories and compute the distance differences between them.
+
+Instead of using rejection sampling which could be inefficient, I'm going to simplify by just randomly sampling pairs across trajectories and then binning them by their normalized position distance, similar to how the original approach works.
+
+Defining the cross-trajectory pair sampling function... Still writing candidate selection... Writing the sampling loop... Vectorizing the sampling logic... Building the sampling logic... I'm verifying the edge case where `rng.random()` could theoretically return 1.0, but since NumPy's random returns values in [0, 1), we're safe from index out of bounds. Now I need to prepare the actual file modifications using shell commands, and the cleanest approach is to write out each modified file using heredocs. For the first fix in `init_untrained.py`, I'm rewriting the `reinit_llm_backbone` function to properly reinitialize the language model using `from_config()`.
+
+Continuing with the parameter copying logic...
+
+I'm finishing up the function by copying over the fresh language model weights to reinitialize those parameters, then cleaning up the temporary objects and returning the counts of reinitialized versus kept parameters. I should remove the unused `nn` import since we're no longer calling `nn.init.xavier_normal_` or `nn.init.zeros_`.
+
+Writing the full modified script... Writing the model loading logic... Counting up which modules got reinitialized and then saving the model and processor to the output directory, along with calculating the total file size of what was saved.
+
+Then I'm running a quick sanity check by sampling the standard deviation of a couple parameters from both the language model and vision components to make sure they're initialized properly, before cleaning up memory and finishing.
+
+For analyze_results.py, I need to refine the judgment logic in compute_judgment to handle a new CONDITIONAL case when delta passes but the third criterion fails. I'll also need to update the reasons section to account for this new judgment type.
+
+Updating the reasons logic...
+
+Now I need to modify train_probes.py to add support for cross-trajectory sampling. I'll need to add a command-line argument for the shuffle flag, create functions to sample cross-trajectory pairs and build their tensors, then integrate this into the temporal distance calculation. I'm deciding between two sampling strategies based on the shuffle mode—either cross-trajectory pairs or standard pairs—then printing the counts for both training and validation sets.
+
+Now I'm iterating through each layer, loading the corresponding features for both training and validation data, and building pair tensors using the appropriate method depending on whether cross-trajectory sampling is enabled.
+
+After training the regression probe on these tensors and storing the results with layer metadata, I'm printing out the performance metrics like Spearman correlation, R² score, and mean absolute error along with training time, then returning all the accumulated results.
+
+Now I'm thinking through how to execute these three file modifications on the server. Rather than risk errors with large heredoc rewrites, I should use targeted Python scripts to patch each file. For init_untrained.py the changes are straightforward—removing an import and replacing a function. For analyze_results.py I can do a surgical replacement. For train_probes.py since it's longer, I'll write a patch script that inserts and modifies specific sections rather than rewriting the whole thing. I'm planning to use Python scripts with file read/replace/write operations to make targeted changes to each file—this approach is more maintainable than using heredocs. For init_untrained.py, I'll write out the complete file using a bash heredoc. For analyze_results.py and train_probes.py, I'll use Python scripts to handle the string replacements for the judgment logic and the argument/function additions respectively. Still writing the sampling function... Building tensor arrays...
+
+Now I need to modify the `run_temporal_distance` function to support the cross-trajectory pairing flag, which means updating how it samples pairs during training and validation based on whether we're comparing trajectories within the same task or across different ones. Finishing the validation tensor construction, then training a regression probe on each layer and collecting the performance metrics like Spearman correlation and R² scores. I'm realizing this is getting complex, so I should write a comprehensive Python script to handle all the modifications to train_probes.py at once rather than doing them piecemeal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "868b83d4-39a9-4400-a623-ecbe2ca84f64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ehj4fvb4mX5rQwpcLgtg15",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3485,
+      "cache_read_input_tokens": 43766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+已读完三个文件。现在执行三个修改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "4b2ae006-d69f-4f0e-a6f8-b220ce7a6285",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ehj4fvb4mX5rQwpcLgtg15",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3485,
+      "cache_read_input_tokens": 43766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PY43uYrm319nbZgFmsGi57`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/init_untrained.py << 'ENDOFFILE'\n\"\"\"init_untrained.py — Reinitialize OpenVLA LLM backbone with random weights.\n\nKeeps vision encoder (DINOv2 + SigLIP) and projector intact.\nUses AutoModelForCausalLM.from_config() to match LLaMA's default initialization.\n\nInput:  Pretrained OpenVLA checkpoint\nOutput: New checkpoint with randomized LLM backbone\n\nUsage:\n  python init_untrained.py --model_path checkpoints/openvla-7b \\\n                           --output_path checkpoints/openvla-7b-untrained/\n\"\"\"\n\nimport argparse\nimport gc\nimport os\n\nimport torch\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Reinitialize OpenVLA LLM backbone\")\n    p.add_argument(\"--model_path\", required=True,\n                   help=\"Path to pretrained OpenVLA checkpoint\")\n    p.add_argument(\"--output_path\", required=True,\n                   help=\"Path to save reinitialized model\")\n    return p.parse_args()\n\n\ndef reinit_llm_backbone(model):\n    \"\"\"Reinitialize language_model.* using from_config() (matches LLaMA default init).\"\"\"\n    from transformers import AutoModelForCausalLM\n\n    llm_config = model.language_model.config\n    fresh_llm = AutoModelForCausalLM.from_config(\n        llm_config, torch_dtype=torch.bfloat16\n    )\n    fresh_sd = fresh_llm.state_dict()\n\n    n_reinit = 0\n    n_kept = 0\n    reinit_names = []\n\n    for name, param in model.named_parameters():\n        if not name.startswith(\"language_model.\"):\n            n_kept += 1\n            continue\n\n        llm_key = name[len(\"language_model.\"):]\n        if llm_key in fresh_sd:\n            with torch.no_grad():\n                param.copy_(fresh_sd[llm_key])\n            n_reinit += 1\n            reinit_names.append(name)\n        else:\n            n_kept += 1\n\n    del fresh_llm, fresh_sd\n    gc.collect()\n    return n_reinit, n_kept, reinit_names\n\n\ndef main():\n    args = parse_args()\n\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    print(f\"Loading model from {args.model_path} ...\")\n    model = AutoModelForVision2Seq.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n    )\n    processor = AutoProcessor.from_pretrained(args.model_path, trust_remote_code=True)\n\n    total = sum(p.numel() for p in model.parameters())\n    llm = sum(p.numel() for n, p in model.named_parameters()\n              if n.startswith(\"language_model.\"))\n    vision = total - llm\n    print(f\"Total: {total/1e9:.2f}B | LLM: {llm/1e9:.2f}B | Vision+Proj: {vision/1e9:.2f}B\")\n\n    print(\"Reinitializing LLM backbone ...\")\n    n_reinit, n_kept, reinit_names = reinit_llm_backbone(model)\n    print(f\"Reinitialized: {n_reinit} params | Kept: {n_kept} params\")\n\n    module_counts = {}\n    for name in reinit_names:\n        mod = \".\".join(name.split(\".\")[:3])\n        module_counts[mod] = module_counts.get(mod, 0) + 1\n    print(\"Reinitialized modules:\")\n    for mod, cnt in sorted(module_counts.items()):\n        print(f\"  {mod}: {cnt} params\")\n\n    print(f\"\\nSaving to {args.output_path} ...\")\n    os.makedirs(args.output_path, exist_ok=True)\n    model.save_pretrained(args.output_path)\n    processor.save_pretrained(args.output_path)\n\n    saved_size = sum(\n        os.path.getsize(os.path.join(dp, fn))\n        for dp, _, fns in os.walk(args.output_path) for fn in fns\n    ) / 1024**3\n    print(f\"Saved ({saved_size:.1f} GB)\")\n\n    for name, param in model.named_parameters():\n        if name.startswith(\"language_model.\") and param.dim() >= 2:\n            print(f\"  LLM sample std: {param.float().std().item():.6f} ({name})\")\n            break\n    for name, param in model.named_parameters():\n        if not name.startswith(\"language_model.\") and param.dim() >= 2:\n            print(f\"  Vision sample std: {param.float().std().item():.6f} ({name})\")\n            break\n\n    del model\n    gc.collect()\n    print(\"Done.\")\n\n\nif __name__ == \"__main__\":\n    main()\nENDOFFILE\necho \"init_untrained.py written\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "74bb0295-f93d-48c4-95d9-13bbce7972f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ehj4fvb4mX5rQwpcLgtg15",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3485,
+      "cache_read_input_tokens": 43766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T07:19:47.314Z_
+
+<details><summary>↩ Tool result · `toolu_01PY43uYrm319nbZgFmsGi57`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"init_untrained.py written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "a698d63b-42ba-4761-ae11-33fb092dde75",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"init_untrained.py written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"init_untrained.py written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Ufz84bRQBXLNqnZqznZWQA`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\ncontent = open('/root/vla-ssd/scripts/analyze_results.py').read()\n\nold = '''    passed = criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]\n    judgment = \\\"PASS\\\" if passed else \\\"FAIL\\\"'''\n\nnew = '''    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\n        judgment = \\\"PASS\\\"\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\n        judgment = \\\"CONDITIONAL\\\"\n    else:\n        judgment = \\\"FAIL\\\"'''\n\nassert old in content, 'Target block not found in analyze_results.py'\ncontent = content.replace(old, new)\nopen('/root/vla-ssd/scripts/analyze_results.py', 'w').write(content)\nprint('analyze_results.py patched')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "95213899-0729-4ba6-99bd-cb9a1d637f65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ehj4fvb4mX5rQwpcLgtg15",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3485,
+      "cache_read_input_tokens": 43766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T07:19:49.283Z_
+
+<details><summary>↩ Tool result · `toolu_01Ufz84bRQBXLNqnZqznZWQA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\ncontent = open(\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\').read()\\\\n\\\\nold = \\\\'\\\\'\\\\'    passed = criteria[\\\\\\\\\\\"rho_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]\\\\n    judgment = \\\\\\\\\\\"PASS\\\\\\\\\\\" if passed else \\\\\\\\\\\"FAIL\\\\\\\\\\\"\\\\'\\\\'\\\\'\\\\n\\\\nnew = \\\\'\\\\'\\\\'    if criteria[\\\\\\\\\\\"rho_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]:\\\\n        judgment = \\\\\\\\\\\"PASS\\\\\\\\\\\"\\\\n    elif criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and not criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]:\\\\n        judgment = \\\\\\\\\\\"CONDITIONAL\\\\\\\\\\\"\\\\n    else:\\\\n        judgment = \\\\\\\\\\\"FAIL\\\\\\\\\\\"\\\\'\\\\'\\\\'\\\\n\\\\nassert old in content, \\\\'Target block not found in analyze_results.py\\\\'\\\\ncontent = content.replace(old, new)\\\\nopen(\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\', \\\\'w\\\\').write(content)\\\\nprint(\\\\'analyze_results.py patched\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "732d00c7-aadb-4a2f-8d2e-a562eb688ff0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\ncontent = open(\\\\\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\\\\\').read()\\\\\\\\n\\\\\\\\nold = \\\\\\\\'\\\\\\\\'\\\\\\\\'    passed = criteria[\\\\\\\\\\\\\\\\\\\\\\\"rho_pass\\\\\\\\\\\\\\\\\\\\\\\"] and criteria[\\\\\\\\\\\\\\\\\\\\\\\"delta_pass\\\\\\\\\\\\\\\\\\\\\\\"] and criteria[\\\\\\\\\\\\\\\\\\\\\\\"third_criterion\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\n    judgment = \\\\\\\\\\\\\\\\\\\\\\\"PASS\\\\\\\\\\\\\\\\\\\\\\\" if passed else \\\\\\\\\\\\\\\\\\\\\\\"FAIL\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew = \\\\\\\\'\\\\\\\\'\\\\\\\\'    if criteria[\\\\\\\\\\\\\\\\\\\\\\\"rho_pass\\\\\\\\\\\\\\\\\\\\\\\"] and criteria[\\\\\\\\\\\\\\\\\\\\\\\"delta_pass\\\\\\\\\\\\\\\\\\\\\\\"] and criteria[\\\\\\\\\\\\\\\\\\\\\\\"third_criterion\\\\\\\\\\\\\\\\\\\\\\\"]:\\\\\\\\n        judgment = \\\\\\\\\\\\\\\\\\\\\\\"PASS\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\n    elif criteria[\\\\\\\\\\\\\\\\\\\\\\\"delta_pass\\\\\\\\\\\\\\\\\\\\\\\"] and not criteria[\\\\\\\\\\\\\\\\\\\\\\\"third_criterion\\\\\\\\\\\\\\\\\\\\\\\"]:\\\\\\\\n        judgment = \\\\\\\\\\\\\\\\\\\\\\\"CONDITIONAL\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\n    else:\\\\\\\\n        judgment = \\\\\\\\\\\\\\\\\\\\\\\"FAIL\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nassert old in content, \\\\\\\\'Target block not found in analyze_results.py\\\\\\\\'\\\\\\\\ncontent = content.replace(old, new)\\\\\\\\nopen(\\\\\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\\\\\', \\\\\\\\'w\\\\\\\\').write(content)\\\\\\\\nprint(\\\\\\\\'analyze_results.py patched\\\\\\\\')\\\\\\\\n\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\ncontent = open(\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\').read()\\\\n\\\\nold = \\\\'\\\\'\\\\'    passed = criteria[\\\\\\\\\\\"rho_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]\\\\n    judgment = \\\\\\\\\\\"PASS\\\\\\\\\\\" if passed else \\\\\\\\\\\"FAIL\\\\\\\\\\\"\\\\'\\\\'\\\\'\\\\n\\\\nnew = \\\\'\\\\'\\\\'    if criteria[\\\\\\\\\\\"rho_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]:\\\\n        judgment = \\\\\\\\\\\"PASS\\\\\\\\\\\"\\\\n    elif criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and not criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]:\\\\n        judgment = \\\\\\\\\\\"CONDITIONAL\\\\\\\\\\\"\\\\n    else:\\\\n        judgment = \\\\\\\\\\\"FAIL\\\\\\\\\\\"\\\\'\\\\'\\\\'\\\\n\\\\nassert old in content, \\\\'Target block not found in analyze_results.py\\\\'\\\\ncontent = content.replace(old, new)\\\\nopen(\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\', \\\\'w\\\\').write(content)\\\\nprint(\\\\'analyze_results.py patched\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BpJy1ua7zE4Ga66NAFt7Fq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 << 'PYEOF'\ncontent = open('/root/vla-ssd/scripts/train_probes.py').read()\n\n# 1) Add --shuffle_cross_trajectory argument\nold_arg = '    p.add_argument(\"--gpu\", type=int, default=0)\\n    return p.parse_args()'\nnew_arg = '''    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--shuffle_cross_trajectory\", action=\"store_true\",\n                   help=\"Control B: pair frames from different trajectories\")\n    return p.parse_args()'''\nassert old_arg in content, \"arg insertion point not found\"\ncontent = content.replace(old_arg, new_arg)\n\n# 2) Add new functions after build_oracle_tensors\ninsert_after = '''def build_oracle_tensors(pairs):\n    \"\"\"Oracle: input = scalar distance (same as target).\"\"\"\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\n    return X, y'''\n\nnew_funcs = '''def build_oracle_tensors(pairs):\n    \"\"\"Oracle: input = scalar distance (same as target).\"\"\"\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\n    return X, y\n\n\ndef sample_cross_trajectory_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\n    \"\"\"Cross-trajectory pair sampling (Control B negative control).\"\"\"\n    rng = np.random.RandomState(seed)\n    valid = [(pos, idx) for pos, idx in enumerate(indices)\n             if traj_metas[idx][\"T\"] >= 2]\n    if len(valid) < 2:\n        return []\n\n    n_v = len(valid)\n    target_total = n_v * n_bins * pairs_per_bin\n    n_cand = target_total * 5\n\n    Ts = np.array([traj_metas[valid[i][1]][\"T\"] for i in range(n_v)])\n    poss = np.array([valid[i][0] for i in range(n_v)])\n\n    a_idx = rng.randint(n_v, size=n_cand)\n    offsets = rng.randint(1, n_v, size=n_cand)\n    b_idx = (a_idx + offsets) % n_v\n\n    t_a = (rng.random(n_cand) * Ts[a_idx]).astype(int)\n    t_b = (rng.random(n_cand) * Ts[b_idx]).astype(int)\n    norm_dist = np.abs(t_b / Ts[b_idx] - t_a / Ts[a_idx])\n\n    edges = np.linspace(0.0, 1.0, n_bins + 1)\n    edges[-1] += 1e-6\n\n    all_pairs = []\n    per_bin = target_total // n_bins\n    for bi in range(n_bins):\n        mask = np.where((norm_dist >= edges[bi]) & (norm_dist < edges[bi + 1]))[0]\n        if len(mask) == 0:\n            continue\n        n = min(per_bin, len(mask))\n        chosen = rng.choice(mask, size=n, replace=False)\n        for c in chosen:\n            all_pairs.append((\n                int(poss[a_idx[c]]), int(t_a[c]),\n                int(poss[b_idx[c]]), int(t_b[c]),\n                float(norm_dist[c]),\n            ))\n\n    return all_pairs\n\n\ndef build_cross_pair_tensors(feats, pairs):\n    \"\"\"Build |h_j(t_j) - h_i(t_i)| for cross-trajectory pairs.\"\"\"\n    N = len(pairs)\n    D = feats[0].shape[-1]\n    X = np.empty((N, D), dtype=np.float32)\n    y = np.empty(N, dtype=np.float32)\n    for n, (pos_i, ti, pos_j, tj, dist) in enumerate(pairs):\n        X[n] = np.abs(feats[pos_j][tj] - feats[pos_i][ti])\n        y[n] = dist\n    return torch.from_numpy(X), torch.from_numpy(y)'''\n\nassert insert_after in content, \"insert point for new functions not found\"\ncontent = content.replace(insert_after, new_funcs)\n\n# 3) Replace run_temporal_distance\nold_runner = '''def run_temporal_distance(args, device):\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\n    layers = parse_layers(args.layers, n_layers - 1)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    print(f\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\")\n    print(f\"Split: {len(train_ids)} train / {len(val_ids)} val\")\n\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    print(f\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\")\n\n    results = {}\n    for li, layer in enumerate(layers):\n        print(f\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\", flush=True)\n        t0 = time.time()\n\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\n        del train_feats\n\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\n        del val_feats\n\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\n        m[\"layer\"] = layer\n        results[layer] = m\n        del X_tr, y_tr, X_val, y_val\n\n        print(f\"  rho={m[\\'spearman_rho\\']:.4f}  R2={m[\\'r2\\']:.4f}  \"\n              f\"MAE={m[\\'mae\\']:.4f}  ep={m[\\'epochs_trained\\']}  {time.time()-t0:.1f}s\")\n\n    return results'''\n\nnew_runner = '''def run_temporal_distance(args, device):\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\n    layers = parse_layers(args.layers, n_layers - 1)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    print(f\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\")\n    print(f\"Split: {len(train_ids)} train / {len(val_ids)} val\")\n\n    cross = getattr(args, \"shuffle_cross_trajectory\", False)\n    if cross:\n        print(\"MODE: cross-trajectory shuffle (Control B)\")\n        train_pairs = sample_cross_trajectory_pairs(\n            traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n        val_pairs = sample_cross_trajectory_pairs(\n            traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    else:\n        train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n        val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    print(f\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\")\n\n    pair_builder = build_cross_pair_tensors if cross else build_pair_tensors\n    results = {}\n    for li, layer in enumerate(layers):\n        print(f\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\", flush=True)\n        t0 = time.time()\n\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\n        X_tr, y_tr = pair_builder(train_feats, train_pairs)\n        del train_feats\n\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\n        X_val, y_val = pair_builder(val_feats, val_pairs)\n        del val_feats\n\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\n        m[\"layer\"] = layer\n        if cross:\n            m[\"cross_trajectory\"] = True\n        results[layer] = m\n        del X_tr, y_tr, X_val, y_val\n\n        print(f\"  rho={m[\\'spearman_rho\\']:.4f}  R2={m[\\'r2\\']:.4f}  \"\n              f\"MAE={m[\\'mae\\']:.4f}  ep={m[\\'epochs_trained\\']}  {time.time()-t0:.1f}s\")\n\n    return results'''\n\nassert old_runner in content, \"run_temporal_distance not found for replacement\"\ncontent = content.replace(old_runner, new_runner)\n\nopen('/root/vla-ssd/scripts/train_probes.py', 'w').write(content)\nprint(\"train_probes.py patched\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "fb26adfb-29c3-4ea5-9e27-2b0116aa7a21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ehj4fvb4mX5rQwpcLgtg15",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3485,
+      "cache_read_input_tokens": 43766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T07:20:12.560Z_
+
+<details><summary>↩ Tool result · `toolu_01BpJy1ua7zE4Ga66NAFt7Fq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 << \\\\'PYEOF\\\\'\\\\ncontent = open(\\\\'/root/vla-ssd/scripts/train_probes.py\\\\').read()\\\\n\\\\n# 1) Add --shuffle_cross_trajectory argument\\\\nold_arg = \\\\'    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\\\\\\\n    return p.parse_args()\\\\'\\\\nnew_arg = \\\\'\\\\'\\\\'    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\\\n    p.add_argument(\\\"--shuffle_cross_trajectory\\\", action=\\\"store_true\\\",\\\\n                   help=\\\"Control B: pair frames from different trajectories\\\")\\\\n    return p.parse_args()\\\\'\\\\'\\\\'\\\\nassert old_arg in content, \\\"arg insertion point not found\\\"\\\\ncontent = content.replace(old_arg, new_arg)\\\\n\\\\n# 2) Add new functions after build_oracle_tensors\\\\ninsert_after = \\\\'\\\\'\\\\'def build_oracle_tensors(pairs):\\\\n    \\\"\\\"\\\"Oracle: input = scalar distance (same as target).\\\"\\\"\\\"\\\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\\\n    return X, y\\\\'\\\\'\\\\'\\\\n\\\\nnew_funcs = \\\\'\\\\'\\\\'def build_oracle_tensors(pairs):\\\\n    \\\"\\\"\\\"Oracle: input = scalar distance (same as target).\\\"\\\"\\\"\\\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\\\n    return X, y\\\\n\\\\n\\\\ndef sample_cross_trajectory_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\\\n    \\\"\\\"\\\"Cross-trajectory pair sampling (Control B negative control).\\\"\\\"\\\"\\\\n    rng = np.random.RandomState(seed)\\\\n    valid = [(pos, idx) for pos, idx in enumerate(indices)\\\\n             if traj_metas[idx][\\\"T\\\"] >= 2]\\\\n    if len(valid) < 2:\\\\n        return []\\\\n\\\\n    n_v = len(valid)\\\\n    target_total = n_v * n_bins * pairs_per_bin\\\\n    n_cand = target_total * 5\\\\n\\\\n    Ts = np.array([traj_metas[valid[i][1]][\\\"T\\\"] for i in range(n_v)])\\\\n    poss = np.array([valid[i][0] for i in range(n_v)])\\\\n\\\\n    a_idx = rng.randint(n_v, size=n_cand)\\\\n    offsets = rng.randint(1, n_v, size=n_cand)\\\\n    b_idx = (a_idx + offsets) % n_v\\\\n\\\\n    t_a = (rng.random(n_cand) * Ts[a_idx]).astype(int)\\\\n    t_b = (rng.random(n_cand) * Ts[b_idx]).astype(int)\\\\n    norm_dist = np.abs(t_b / Ts[b_idx] - t_a / Ts[a_idx])\\\\n\\\\n    edges = np.linspace(0.0, 1.0, n_bins + 1)\\\\n    edges[-1] += 1e-6\\\\n\\\\n    all_pairs = []\\\\n    per_bin = target_total // n_bins\\\\n    for bi in range(n_bins):\\\\n        mask = np.where((norm_dist >= edges[bi]) & (norm_dist < edges[bi + 1]))[0]\\\\n        if len(mask) == 0:\\\\n            continue\\\\n        n = min(per_bin, len(mask))\\\\n        chosen = rng.choice(mask, size=n, replace=False)\\\\n        for c in chosen:\\\\n            all_pairs.append((\\\\n                int(poss[a_idx[c]]), int(t_a[c]),\\\\n                int(poss[b_idx[c]]), int(t_b[c]),\\\\n                float(norm_dist[c]),\\\\n            ))\\\\n\\\\n    return all_pairs\\\\n\\\\n\\\\ndef build_cross_pair_tensors(feats, pairs):\\\\n    \\\"\\\"\\\"Build |h_j(t_j) - h_i(t_i)| for cross-trajectory pairs.\\\"\\\"\\\"\\\\n    N = len(pairs)\\\\n    D = feats[0].shape[-1]\\\\n    X = np.empty((N, D), dtype=np.float32)\\\\n    y = np.empty(N, dtype=np.float32)\\\\n    for n, (pos_i, ti, pos_j, tj, dist) in enumerate(pairs):\\\\n        X[n] = np.abs(feats[pos_j][tj] - feats[pos_i][ti])\\\\n        y[n] = dist\\\\n    return torch.from_numpy(X), torch.from_numpy(y)\\\\'\\\\'\\\\'\\\\n\\\\nassert insert_after in content, \\\"insert point for new functions not found\\\"\\\\ncontent = content.replace(insert_after, new_funcs)\\\\n\\\\n# 3) Replace run_temporal_distance\\\\nold_runner = \\\\'\\\\'\\\\'def run_temporal_distance(args, device):\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\n\\\\n    print(f\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\")\\\\n    print(f\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\")\\\\n\\\\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\n    print(f\\\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\\\")\\\\n\\\\n    results = {}\\\\n    for li, layer in enumerate(layers):\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\\\n        t0 = time.time()\\\\n\\\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\\\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\\\\n        del train_feats\\\\n\\\\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\\\\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\\\\n        del val_feats\\\\n\\\\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\\\\n        m[\\\"layer\\\"] = layer\\\\n        results[layer] = m\\\\n        del X_tr, y_tr, X_val, y_val\\\\n\\\\n        print(f\\\"  rho={m[\\\\\\\\\\\\'spearman_rho\\\\\\\\\\\\']:.4f}  R2={m[\\\\\\\\\\\\'r2\\\\\\\\\\\\']:.4f}  \\\"\\\\n              f\\\"MAE={m[\\\\\\\\\\\\'mae\\\\\\\\\\\\']:.4f}  ep={m[\\\\\\\\\\\\'epochs_trained\\\\\\\\\\\\']}  {time.time()-t0:.1f}s\\\")\\\\n\\\\n    return results\\\\'\\\\'\\\\'\\\\n\\\\nnew_runner = \\\\'\\\\'\\\\'def run_temporal_distance(args, device):\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\n\\\\n    print(f\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\")\\\\n    print(f\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\")\\\\n\\\\n    cross = getattr(args, \\\"shuffle_cross_trajectory\\\", False)\\\\n    if cross:\\\\n        print(\\\"MODE: cross-trajectory shuffle (Control B)\\\")\\\\n        train_pairs = sample_cross_trajectory_pairs(\\\\n            traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\n        val_pairs = sample_cross_trajectory_pairs(\\\\n            traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\n    else:\\\\n        train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\n        val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\n    print(f\\\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\\\")\\\\n\\\\n    pair_builder = build_cross_pair_tensors if cross else build_pair_tensors\\\\n    results = {}\\\\n    for li, layer in enumerate(layers):\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\\\n        t0 = time.time()\\\\n\\\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\\\n        X_tr, y_tr = pair_builder(train_feats, train_pairs)\\\\n        del train_feats\\\\n\\\\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\\\\n        X_val, y_val = pair_builder(val_feats, val_pairs)\\\\n        del val_feats\\\\n\\\\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\\\\n        m[\\\"layer\\\"] = layer\\\\n        if cross:\\\\n            m[\\\"cross_trajectory\\\"] = True\\\\n        results[layer] = m\\\\n        del X_tr, y_tr, X_val, y_val\\\\n\\\\n        print(f\\\"  rho={m[\\\\\\\\\\\\'spearman_rho\\\\\\\\\\\\']:.4f}  R2={m[\\\\\\\\\\\\'r2\\\\\\\\\\\\']:.4f}  \\\"\\\\n              f\\\"MAE={m[\\\\\\\\\\\\'mae\\\\\\\\\\\\']:.4f}  ep={m[\\\\\\\\\\\\'epochs_trained\\\\\\\\\\\\']}  {time.time()-t0:.1f}s\\\")\\\\n\\\\n    return results\\\\'\\\\'\\\\'\\\\n\\\\nassert old_runner in content, \\\"run_temporal_distance not found for replacement\\\"\\\\ncontent = content.replace(old_runner, new_runner)\\\\n\\\\nopen(\\\\'/root/vla-ssd/scripts/train_probes.py\\\\', \\\\'w\\\\').write(content)\\\\nprint(\\\"train_probes.py patched\\\")\\\\nPYEOF'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "4147a253-9a80-48c2-a22e-6f9fc2b49898",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\ncontent = open(\\\\\\\\'/root/vla-ssd/scripts/train_probes.py\\\\\\\\').read()\\\\\\\\n\\\\\\\\n# 1) Add --shuffle_cross_trajectory argument\\\\\\\\nold_arg = \\\\\\\\'    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\\\\\\\\\\\\\n    return p.parse_args()\\\\\\\\'\\\\\\\\nnew_arg = \\\\\\\\'\\\\\\\\'\\\\\\\\'    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\\\\\n    p.add_argument(\\\\\\\"--shuffle_cross_trajectory\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\\\\\n                   help=\\\\\\\"Control B: pair frames from different trajectories\\\\\\\")\\\\\\\\n    return p.parse_args()\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nassert old_arg in content, \\\\\\\"arg insertion point not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_arg, new_arg)\\\\\\\\n\\\\\\\\n# 2) Add new functions after build_oracle_tensors\\\\\\\\ninsert_after = \\\\\\\\'\\\\\\\\'\\\\\\\\'def build_oracle_tensors(pairs):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Oracle: input = scalar distance (same as target).\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\\\\\\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\\\\\\\n    return X, y\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_funcs = \\\\\\\\'\\\\\\\\'\\\\\\\\'def build_oracle_tensors(pairs):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Oracle: input = scalar distance (same as target).\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\\\\\\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\\\\\\\n    return X, y\\\\\\\\n\\\\\\\\n\\\\\\\\ndef sample_cross_trajectory_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Cross-trajectory pair sampling (Control B negative control).\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    rng = np.random.RandomState(seed)\\\\\\\\n    valid = [(pos, idx) for pos, idx in enumerate(indices)\\\\\\\\n             if traj_metas[idx][\\\\\\\"T\\\\\\\"] >= 2]\\\\\\\\n    if len(valid) < 2:\\\\\\\\n        return []\\\\\\\\n\\\\\\\\n    n_v = len(valid)\\\\\\\\n    target_total = n_v * n_bins * pairs_per_bin\\\\\\\\n    n_cand = target_total * 5\\\\\\\\n\\\\\\\\n    Ts = np.array([traj_metas[valid[i][1]][\\\\\\\"T\\\\\\\"] for i in range(n_v)])\\\\\\\\n    poss = np.array([valid[i][0] for i in range(n_v)])\\\\\\\\n\\\\\\\\n    a_idx = rng.randint(n_v, size=n_cand)\\\\\\\\n    offsets = rng.randint(1, n_v, size=n_cand)\\\\\\\\n    b_idx = (a_idx + offsets) % n_v\\\\\\\\n\\\\\\\\n    t_a = (rng.random(n_cand) * Ts[a_idx]).astype(int)\\\\\\\\n    t_b = (rng.random(n_cand) * Ts[b_idx]).astype(int)\\\\\\\\n    norm_dist = np.abs(t_b / Ts[b_idx] - t_a / Ts[a_idx])\\\\\\\\n\\\\\\\\n    edges = np.linspace(0.0, 1.0, n_bins + 1)\\\\\\\\n    edges[-1] += 1e-6\\\\\\\\n\\\\\\\\n    all_pairs = []\\\\\\\\n    per_bin = target_total // n_bins\\\\\\\\n    for bi in range(n_bins):\\\\\\\\n        mask = np.where((norm_dist >= edges[bi]) & (norm_dist < edges[bi + 1]))[0]\\\\\\\\n        if len(mask) == 0:\\\\\\\\n            continue\\\\\\\\n        n = min(per_bin, len(mask))\\\\\\\\n        chosen = rng.choice(mask, size=n, replace=False)\\\\\\\\n        for c in chosen:\\\\\\\\n            all_pairs.append((\\\\\\\\n                int(poss[a_idx[c]]), int(t_a[c]),\\\\\\\\n                int(poss[b_idx[c]]), int(t_b[c]),\\\\\\\\n                float(norm_dist[c]),\\\\\\\\n            ))\\\\\\\\n\\\\\\\\n    return all_pairs\\\\\\\\n\\\\\\\\n\\\\\\\\ndef build_cross_pair_tensors(feats, pairs):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build |h_j(t_j) - h_i(t_i)| for cross-trajectory pairs.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    N = len(pairs)\\\\\\\\n    D = feats[0].shape[-1]\\\\\\\\n    X = np.empty((N, D), dtype=np.float32)\\\\\\\\n    y = np.empty(N, dtype=np.float32)\\\\\\\\n    for n, (pos_i, ti, pos_j, tj, dist) in enumerate(pairs):\\\\\\\\n        X[n] = np.abs(feats[pos_j][tj] - feats[pos_i][ti])\\\\\\\\n        y[n] = dist\\\\\\\\n    return torch.from_numpy(X), torch.from_numpy(y)\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nassert insert_after in content, \\\\\\\"insert point for new functions not found\\\\\\\"\\\\\\\\ncontent = content.replace(insert_after, new_funcs)\\\\\\\\n\\\\\\\\n# 3) Replace run_temporal_distance\\\\\\\\nold_runner = \\\\\\\\'\\\\\\\\'\\\\\\\\'def run_temporal_distance(args, device):\\\\\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\\\\\n\\\\\\\\n    print(f\\\\\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\\\\\")\\\\\\\\n\\\\\\\\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\\\\\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\\\\\n    print(f\\\\\\\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\\\\\\\")\\\\\\\\n\\\\\\\\n    results = {}\\\\\\\\n    for li, layer in enumerate(layers):\\\\\\\\n        print(f\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\\\\\", flush=True)\\\\\\\\n        t0 = time.time()\\\\\\\\n\\\\\\\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\\\\\\\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\\\\\\\\n        del train_feats\\\\\\\\n\\\\\\\\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\\\\\\\\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\\\\\\\\n        del val_feats\\\\\\\\n\\\\\\\\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\\\\\\\\n        m[\\\\\\\"layer\\\\\\\"] = layer\\\\\\\\n        results[layer] = m\\\\\\\\n        del X_tr, y_tr, X_val, y_val\\\\\\\\n\\\\\\\\n        print(f\\\\\\\"  rho={m[\\\\\\\\\\\\\\\\\\\\\\\\'spearman_rho\\\\\\\\\\\\\\\\\\\\\\\\']:.4f}  R2={m[\\\\\\\\\\\\\\\\\\\\\\\\'r2\\\\\\\\\\\\\\\\\\\\\\\\']:.4f}  \\\\\\\"\\\\\\\\n              f\\\\\\\"MAE={m[\\\\\\\\\\\\\\\\\\\\\\\\'mae\\\\\\\\\\\\\\\\\\\\\\\\']:.4f}  ep={m[\\\\\\\\\\\\\\\\\\\\\\\\'epochs_trained\\\\\\\\\\\\\\\\\\\\\\\\']}  {time.time()-t0:.1f}s\\\\\\\")\\\\\\\\n\\\\\\\\n    return results\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_runner = \\\\\\\\'\\\\\\\\'\\\\\\\\'def run_temporal_distance(args, device):\\\\\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\\\\\n\\\\\\\\n    print(f\\\\\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\\\\\")\\\\\\\\n\\\\\\\\n    cross = getattr(args, \\\\\\\"shuffle_cross_trajectory\\\\\\\", False)\\\\\\\\n    if cross:\\\\\\\\n        print(\\\\\\\"MODE: cross-trajectory shuffle (Control B)\\\\\\\")\\\\\\\\n        train_pairs = sample_cross_trajectory_pairs(\\\\\\\\n            traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\\\\\n        val_pairs = sample_cross_trajectory_pairs(\\\\\\\\n            traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\\\\\n    else:\\\\\\\\n        train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\\\\\n        val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\\\\\n    print(f\\\\\\\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\\\\\\\")\\\\\\\\n\\\\\\\\n    pair_builder = build_cross_pair_tensors if cross else build_pair_tensors\\\\\\\\n    results = {}\\\\\\\\n    for li, layer in enumerate(layers):\\\\\\\\n        print(f\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\\\\\", flush=True)\\\\\\\\n        t0 = time.time()\\\\\\\\n\\\\\\\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\\\\\\\n        X_tr, y_tr = pair_builder(train_feats, train_pairs)\\\\\\\\n        del train_feats\\\\\\\\n\\\\\\\\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\\\\\\\\n        X_val, y_val = pair_builder(val_feats, val_pairs)\\\\\\\\n        del val_feats\\\\\\\\n\\\\\\\\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\\\\\\\\n        m[\\\\\\\"layer\\\\\\\"] = layer\\\\\\\\n        if cross:\\\\\\\\n            m[\\\\\\\"cross_trajectory\\\\\\\"] = True\\\\\\\\n        results[layer] = m\\\\\\\\n        del X_tr, y_tr, X_val, y_val\\\\\\\\n\\\\\\\\n        print(f\\\\\\\"  rho={m[\\\\\\\\\\\\\\\\\\\\\\\\'spearman_rho\\\\\\\\\\\\\\\\\\\\\\\\']:.4f}  R2={m[\\\\\\\\\\\\\\\\\\\\\\\\'r2\\\\\\\\\\\\\\\\\\\\\\\\']:.4f}  \\\\\\\"\\\\\\\\n              f\\\\\\\"MAE={m[\\\\\\\\\\\\\\\\\\\\\\\\'mae\\\\\\\\\\\\\\\\\\\\\\\\']:.4f}  ep={m[\\\\\\\\\\\\\\\\\\\\\\\\'epochs_trained\\\\\\\\\\\\\\\\\\\\\\\\']}  {time.time()-t0:.1f}s\\\\\\\")\\\\\\\\n\\\\\\\\n    return results\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nassert old_runner in content, \\\\\\\"run_temporal_distance not found for replacement\\\\\\\"\\\\\\\\ncontent = content.replace(old_runner, new_runner)\\\\\\\\n\\\\\\\\nopen(\\\\\\\\'/root/vla-ssd/scripts/train_probes.py\\\\\\\\', \\\\\\\\'w\\\\\\\\').write(content)\\\\\\\\nprint(\\\\\\\"train_probes.py patched\\\\\\\")\\\\\\\\nPYEOF'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 << \\\\'PYEOF\\\\'\\\\ncontent = open(\\\\'/root/vla-ssd/scripts/train_probes.py\\\\').read()\\\\n\\\\n# 1) Add --shuffle_cross_trajectory argument\\\\nold_arg = \\\\'    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\\\\\\\n    return p.parse_args()\\\\'\\\\nnew_arg = \\\\'\\\\'\\\\'    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\\\n    p.add_argument(\\\"--shuffle_cross_trajectory\\\", action=\\\"store_true\\\",\\\\n                   help=\\\"Control B: pair frames from different trajectories\\\")\\\\n    return p.parse_args()\\\\'\\\\'\\\\'\\\\nassert old_arg in content, \\\"arg insertion point not found\\\"\\\\ncontent = content.replace(old_arg, new_arg)\\\\n\\\\n# 2) Add new functions after build_oracle_tensors\\\\ninsert_after = \\\\'\\\\'\\\\'def build_oracle_tensors(pairs):\\\\n    \\\"\\\"\\\"Oracle: input = scalar distance (same as target).\\\"\\\"\\\"\\\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\\\n    return X, y\\\\'\\\\'\\\\'\\\\n\\\\nnew_funcs = \\\\'\\\\'\\\\'def build_oracle_tensors(pairs):\\\\n    \\\"\\\"\\\"Oracle: input = scalar distance (same as target).\\\"\\\"\\\"\\\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\\\n    return X, y\\\\n\\\\n\\\\ndef sample_cross_trajectory_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\\\n    \\\"\\\"\\\"Cross-trajectory pair sampling (Control B negative control).\\\"\\\"\\\"\\\\n    rng = np.random.RandomState(seed)\\\\n    valid = [(pos, idx) for pos, idx in enumerate(indices)\\\\n             if traj_metas[idx][\\\"T\\\"] >= 2]\\\\n    if len(valid) < 2:\\\\n        return []\\\\n\\\\n    n_v = len(valid)\\\\n    target_total = n_v * n_bins * pairs_per_bin\\\\n    n_cand = target_total * 5\\\\n\\\\n    Ts = np.array([traj_metas[valid[i][1]][\\\"T\\\"] for i in range(n_v)])\\\\n    poss = np.array([valid[i][0] for i in range(n_v)])\\\\n\\\\n    a_idx = rng.randint(n_v, size=n_cand)\\\\n    offsets = rng.randint(1, n_v, size=n_cand)\\\\n    b_idx = (a_idx + offsets) % n_v\\\\n\\\\n    t_a = (rng.random(n_cand) * Ts[a_idx]).astype(int)\\\\n    t_b = (rng.random(n_cand) * Ts[b_idx]).astype(int)\\\\n    norm_dist = np.abs(t_b / Ts[b_idx] - t_a / Ts[a_idx])\\\\n\\\\n    edges = np.linspace(0.0, 1.0, n_bins + 1)\\\\n    edges[-1] += 1e-6\\\\n\\\\n    all_pairs = []\\\\n    per_bin = target_total // n_bins\\\\n    for bi in range(n_bins):\\\\n        mask = np.where((norm_dist >= edges[bi]) & (norm_dist < edges[bi + 1]))[0]\\\\n        if len(mask) == 0:\\\\n            continue\\\\n        n = min(per_bin, len(mask))\\\\n        chosen = rng.choice(mask, size=n, replace=False)\\\\n        for c in chosen:\\\\n            all_pairs.append((\\\\n                int(poss[a_idx[c]]), int(t_a[c]),\\\\n                int(poss[b_idx[c]]), int(t_b[c]),\\\\n                float(norm_dist[c]),\\\\n            ))\\\\n\\\\n    return all_pairs\\\\n\\\\n\\\\ndef build_cross_pair_tensors(feats, pairs):\\\\n    \\\"\\\"\\\"Build |h_j(t_j) - h_i(t_i)| for cross-trajectory pairs.\\\"\\\"\\\"\\\\n    N = len(pairs)\\\\n    D = feats[0].shape[-1]\\\\n    X = np.empty((N, D), dtype=np.float32)\\\\n    y = np.empty(N, dtype=np.float32)\\\\n    for n, (pos_i, ti, pos_j, tj, dist) in enumerate(pairs):\\\\n        X[n] = np.abs(feats[pos_j][tj] - feats[pos_i][ti])\\\\n        y[n] = dist\\\\n    return torch.from_numpy(X), torch.from_numpy(y)\\\\'\\\\'\\\\'\\\\n\\\\nassert insert_after in content, \\\"insert point for new functions not found\\\"\\\\ncontent = content.replace(insert_after, new_funcs)\\\\n\\\\n# 3) Replace run_temporal_distance\\\\nold_runner = \\\\'\\\\'\\\\'def run_temporal_distance(args, device):\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\n\\\\n    print(f\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\")\\\\n    print(f\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\")\\\\n\\\\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\n    print(f\\\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\\\")\\\\n\\\\n    results = {}\\\\n    for li, layer in enumerate(layers):\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\\\n        t0 = time.time()\\\\n\\\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\\\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\\\\n        del train_feats\\\\n\\\\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\\\\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\\\\n        del val_feats\\\\n\\\\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\\\\n        m[\\\"layer\\\"] = layer\\\\n        results[layer] = m\\\\n        del X_tr, y_tr, X_val, y_val\\\\n\\\\n        print(f\\\"  rho={m[\\\\\\\\\\\\'spearman_rho\\\\\\\\\\\\']:.4f}  R2={m[\\\\\\\\\\\\'r2\\\\\\\\\\\\']:.4f}  \\\"\\\\n              f\\\"MAE={m[\\\\\\\\\\\\'mae\\\\\\\\\\\\']:.4f}  ep={m[\\\\\\\\\\\\'epochs_trained\\\\\\\\\\\\']}  {time.time()-t0:.1f}s\\\")\\\\n\\\\n    return results\\\\'\\\\'\\\\'\\\\n\\\\nnew_runner = \\\\'\\\\'\\\\'def run_temporal_distance(args, device):\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\n\\\\n    print(f\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\")\\\\n    print(f\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\")\\\\n\\\\n    cross = getattr(args, \\\"shuffle_cross_trajectory\\\", False)\\\\n    if cross:\\\\n        print(\\\"MODE: cross-trajectory shuffle (Control B)\\\")\\\\n        train_pairs = sample_cross_trajectory_pairs(\\\\n            traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\n        val_pairs = sample_cross_trajectory_pairs(\\\\n            traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\n    else:\\\\n        train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\\\\n        val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\\\\n    print(f\\\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\\\")\\\\n\\\\n    pair_builder = build_cross_pair_tensors if cross else build_pair_tensors\\\\n    results = {}\\\\n    for li, layer in enumerate(layers):\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\\\n        t0 = time.time()\\\\n\\\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\\\n        X_tr, y_tr = pair_builder(train_feats, train_pairs)\\\\n        del train_feats\\\\n\\\\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\\\\n        X_val, y_val = pair_builder(val_feats, val_pairs)\\\\n        del val_feats\\\\n\\\\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\\\\n        m[\\\"layer\\\"] = layer\\\\n        if cross:\\\\n            m[\\\"cross_trajectory\\\"] = True\\\\n        results[layer] = m\\\\n        del X_tr, y_tr, X_val, y_val\\\\n\\\\n        print(f\\\"  rho={m[\\\\\\\\\\\\'spearman_rho\\\\\\\\\\\\']:.4f}  R2={m[\\\\\\\\\\\\'r2\\\\\\\\\\\\']:.4f}  \\\"\\\\n              f\\\"MAE={m[\\\\\\\\\\\\'mae\\\\\\\\\\\\']:.4f}  ep={m[\\\\\\\\\\\\'epochs_trained\\\\\\\\\\\\']}  {time.time()-t0:.1f}s\\\")\\\\n\\\\n    return results\\\\'\\\\'\\\\'\\\\n\\\\nassert old_runner in content, \\\"run_temporal_distance not found for replacement\\\"\\\\ncontent = content.replace(old_runner, new_runner)\\\\n\\\\nopen(\\\\'/root/vla-ssd/scripts/train_probes.py\\\\', \\\\'w\\\\').write(content)\\\\nprint(\\\"train_probes.py patched\\\")\\\\nPYEOF'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The issue is `python3` is not in PATH because this is a conda environment. I need to use the conda Python. Let me activate conda first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "0187178e-17ab-4d0b-8f00-7177789a4641",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DkzaKGsiHynNfUY9JWGByq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18999,
+      "cache_read_input_tokens": 47251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18999
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+conda 环境需要先激活。重新执行 analyze_results.py 和 train_probes.py 的修改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "514765c8-53c1-48dd-8c07-76b2c75f015a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DkzaKGsiHynNfUY9JWGByq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18999,
+      "cache_read_input_tokens": 47251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18999
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012yyj2SnBGhHFmLsWiQV6Am`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\ncontent = open('/root/vla-ssd/scripts/analyze_results.py').read()\n\nold = '    passed = criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]\\n    judgment = \\\"PASS\\\" if passed else \\\"FAIL\\\"'\n\nnew = '    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"PASS\\\"\\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"CONDITIONAL\\\"\\n    else:\\n        judgment = \\\"FAIL\\\"'\n\nassert old in content, 'Target block not found'\ncontent = content.replace(old, new)\nopen('/root/vla-ssd/scripts/analyze_results.py', 'w').write(content)\nprint('analyze_results.py patched')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "a9d36c6a-6dc7-4e5b-a4a9-a79c266835ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DkzaKGsiHynNfUY9JWGByq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18999,
+      "cache_read_input_tokens": 47251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18999
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T07:20:22.384Z_
+
+<details><summary>↩ Tool result · `toolu_012yyj2SnBGhHFmLsWiQV6Am`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analyze_results.py patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "89d2c72d-9177-42b4-8e39-a3e7f513930e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analyze_results.py patched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analyze_results.py patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PdoEcobt8LQpRorqAZ4rtc`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python << 'PYEOF'\ncontent = open('/root/vla-ssd/scripts/train_probes.py').read()\n\n# 1) Add --shuffle_cross_trajectory argument\nold_arg = '    p.add_argument(\"--gpu\", type=int, default=0)\\n    return p.parse_args()'\nnew_arg = '    p.add_argument(\"--gpu\", type=int, default=0)\\n    p.add_argument(\"--shuffle_cross_trajectory\", action=\"store_true\",\\n                   help=\"Control B: pair frames from different trajectories\")\\n    return p.parse_args()'\nassert old_arg in content, \"arg insertion point not found\"\ncontent = content.replace(old_arg, new_arg)\n\n# 2) Add new functions after build_oracle_tensors\ninsert_after = 'def build_oracle_tensors(pairs):\\n    \"\"\"Oracle: input = scalar distance (same as target).\"\"\"\\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\\n    return X, y'\n\nnew_funcs = insert_after + '''\n\n\ndef sample_cross_trajectory_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\n    \"\"\"Cross-trajectory pair sampling (Control B negative control).\"\"\"\n    rng = np.random.RandomState(seed)\n    valid = [(pos, idx) for pos, idx in enumerate(indices)\n             if traj_metas[idx][\"T\"] >= 2]\n    if len(valid) < 2:\n        return []\n\n    n_v = len(valid)\n    target_total = n_v * n_bins * pairs_per_bin\n    n_cand = target_total * 5\n\n    Ts = np.array([traj_metas[valid[i][1]][\"T\"] for i in range(n_v)])\n    poss = np.array([valid[i][0] for i in range(n_v)])\n\n    a_idx = rng.randint(n_v, size=n_cand)\n    offsets = rng.randint(1, n_v, size=n_cand)\n    b_idx = (a_idx + offsets) % n_v\n\n    t_a = (rng.random(n_cand) * Ts[a_idx]).astype(int)\n    t_b = (rng.random(n_cand) * Ts[b_idx]).astype(int)\n    norm_dist = np.abs(t_b / Ts[b_idx] - t_a / Ts[a_idx])\n\n    edges = np.linspace(0.0, 1.0, n_bins + 1)\n    edges[-1] += 1e-6\n\n    all_pairs = []\n    per_bin = target_total // n_bins\n    for bi in range(n_bins):\n        mask = np.where((norm_dist >= edges[bi]) & (norm_dist < edges[bi + 1]))[0]\n        if len(mask) == 0:\n            continue\n        n = min(per_bin, len(mask))\n        chosen = rng.choice(mask, size=n, replace=False)\n        for c in chosen:\n            all_pairs.append((\n                int(poss[a_idx[c]]), int(t_a[c]),\n                int(poss[b_idx[c]]), int(t_b[c]),\n                float(norm_dist[c]),\n            ))\n\n    return all_pairs\n\n\ndef build_cross_pair_tensors(feats, pairs):\n    \"\"\"Build |h_j(t_j) - h_i(t_i)| for cross-trajectory pairs.\"\"\"\n    N = len(pairs)\n    D = feats[0].shape[-1]\n    X = np.empty((N, D), dtype=np.float32)\n    y = np.empty(N, dtype=np.float32)\n    for n, (pos_i, ti, pos_j, tj, dist) in enumerate(pairs):\n        X[n] = np.abs(feats[pos_j][tj] - feats[pos_i][ti])\n        y[n] = dist\n    return torch.from_numpy(X), torch.from_numpy(y)'''\n\nassert insert_after in content, \"insert point for new functions not found\"\ncontent = content.replace(insert_after, new_funcs)\n\n# 3) Replace run_temporal_distance\nold_runner = '''def run_temporal_distance(args, device):\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\n    layers = parse_layers(args.layers, n_layers - 1)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    print(f\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\")\n    print(f\"Split: {len(train_ids)} train / {len(val_ids)} val\")\n\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    print(f\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\")\n\n    results = {}\n    for li, layer in enumerate(layers):\n        print(f\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\", flush=True)\n        t0 = time.time()\n\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\n        del train_feats\n\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\n        del val_feats\n\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\n        m[\"layer\"] = layer\n        results[layer] = m\n        del X_tr, y_tr, X_val, y_val\n\n        print(f\"  rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  \"\n              f\"MAE={m['mae']:.4f}  ep={m['epochs_trained']}  {time.time()-t0:.1f}s\")\n\n    return results'''\n\nnew_runner = '''def run_temporal_distance(args, device):\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\n    layers = parse_layers(args.layers, n_layers - 1)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    print(f\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\")\n    print(f\"Split: {len(train_ids)} train / {len(val_ids)} val\")\n\n    cross = getattr(args, \"shuffle_cross_trajectory\", False)\n    if cross:\n        print(\"MODE: cross-trajectory shuffle (Control B)\")\n        train_pairs = sample_cross_trajectory_pairs(\n            traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n        val_pairs = sample_cross_trajectory_pairs(\n            traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    else:\n        train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n        val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    print(f\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\")\n\n    pair_builder = build_cross_pair_tensors if cross else build_pair_tensors\n    results = {}\n    for li, layer in enumerate(layers):\n        print(f\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\", flush=True)\n        t0 = time.time()\n\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\n        X_tr, y_tr = pair_builder(train_feats, train_pairs)\n        del train_feats\n\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\n        X_val, y_val = pair_builder(val_feats, val_pairs)\n        del val_feats\n\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\n        m[\"layer\"] = layer\n        if cross:\n            m[\"cross_trajectory\"] = True\n        results[layer] = m\n        del X_tr, y_tr, X_val, y_val\n\n        print(f\"  rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  \"\n              f\"MAE={m['mae']:.4f}  ep={m['epochs_trained']}  {time.time()-t0:.1f}s\")\n\n    return results'''\n\nassert old_runner in content, \"run_temporal_distance not found for replacement\"\ncontent = content.replace(old_runner, new_runner)\n\nopen('/root/vla-ssd/scripts/train_probes.py', 'w').write(content)\nprint(\"train_probes.py patched\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "24ce7282-97ab-4958-8a78-8735c546d57c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DkzaKGsiHynNfUY9JWGByq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18999,
+      "cache_read_input_tokens": 47251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18999
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T07:20:41.652Z_
+
+<details><summary>↩ Tool result · `toolu_01PdoEcobt8LQpRorqAZ4rtc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"train_probes.py patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "a10275f3-8162-424b-a1dc-3190b7334647",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"train_probes.py patched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"train_probes.py patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+三个文件全部修改成功。运行验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "9f8cb9f3-8638-4164-a918-85ffc9be3943",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWi6XmgbF81wuYdjSbvX4z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3231,
+      "cache_read_input_tokens": 66250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3231
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015uchSiJvKMHQQtAKfQ5KYN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/init_untrained.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "07a9d9aa-8c74-4e77-855c-6978035a19dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWi6XmgbF81wuYdjSbvX4z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3231,
+      "cache_read_input_tokens": 66250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3231
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NvnKmViw6UyFhmo4pJ5Ebt`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/analyze_results.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "e71f521d-24c1-4e40-96bd-dbcd8eef962e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWi6XmgbF81wuYdjSbvX4z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3231,
+      "cache_read_input_tokens": 66250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3231
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Skez9tEegDRWeoC8qhLBve`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/train_probes.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "5481c228-123f-4126-9069-72309b6de298",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWi6XmgbF81wuYdjSbvX4z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3231,
+      "cache_read_input_tokens": 66250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3231
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T07:20:47.566Z_
+
+<details><summary>↩ Tool result · `toolu_015uchSiJvKMHQQtAKfQ5KYN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: init_untrained.py [-h] --model_path MODEL_PATH --output_path\\n                         OUTPUT_PATH\\n\\nReinitialize OpenVLA LLM backbone\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model_path MODEL_PATH\\n                        Path to pretrained OpenVLA checkpoint\\n  --output_path OUTPUT_PATH\\n                        Path to save reinitialized model\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "97f86eb7-5098-46b0-9455-9c6f5e70d3ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: init_untrained.py [-h] --model_path MODEL_PATH --output_path\\\\n                         OUTPUT_PATH\\\\n\\\\nReinitialize OpenVLA LLM backbone\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --model_path MODEL_PATH\\\\n                        Path to pretrained OpenVLA checkpoint\\\\n  --output_path OUTPUT_PATH\\\\n                        Path to save reinitialized model\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: init_untrained.py [-h] --model_path MODEL_PATH --output_path\\n                         OUTPUT_PATH\\n\\nReinitialize OpenVLA LLM backbone\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model_path MODEL_PATH\\n                        Path to pretrained OpenVLA checkpoint\\n  --output_path OUTPUT_PATH\\n                        Path to save reinitialized model\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T07:20:48.575Z_
+
+<details><summary>↩ Tool result · `toolu_01NvnKmViw6UyFhmo4pJ5Ebt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: analyze_results.py [-h] --results_dirs RESULTS_DIRS --output_dir\\n                          OUTPUT_DIR\\n                          [--probe_type {temporal_distance,subtask_predicate}]\\n\\nAnalyze and compare probe results\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --results_dirs RESULTS_DIRS\\n                        Comma-separated name:path pairs, e.g.\\n                        trained:results/trained/\\n  --output_dir OUTPUT_DIR\\n  --probe_type {temporal_distance,subtask_predicate}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "73cdb21c-a738-4161-ac0c-4ca66bcfdde7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: analyze_results.py [-h] --results_dirs RESULTS_DIRS --output_dir\\\\n                          OUTPUT_DIR\\\\n                          [--probe_type {temporal_distance,subtask_predicate}]\\\\n\\\\nAnalyze and compare probe results\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --results_dirs RESULTS_DIRS\\\\n                        Comma-separated name:path pairs, e.g.\\\\n                        trained:results/trained/\\\\n  --output_dir OUTPUT_DIR\\\\n  --probe_type {temporal_distance,subtask_predicate}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: analyze_results.py [-h] --results_dirs RESULTS_DIRS --output_dir\\n                          OUTPUT_DIR\\n                          [--probe_type {temporal_distance,subtask_predicate}]\\n\\nAnalyze and compare probe results\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --results_dirs RESULTS_DIRS\\n                        Comma-separated name:path pairs, e.g.\\n                        trained:results/trained/\\n  --output_dir OUTPUT_DIR\\n  --probe_type {temporal_distance,subtask_predicate}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T07:20:51.614Z_
+
+<details><summary>↩ Tool result · `toolu_01Skez9tEegDRWeoC8qhLBve`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: train_probes.py [-h] --features_dir FEATURES_DIR --output_dir\\n                       OUTPUT_DIR --probe_type\\n                       {temporal_distance,subtask_predicate,oracle}\\n                       [--layers LAYERS]\\n                       [--aggregation {last_preaction,image_mean}]\\n                       [--label_file LABEL_FILE] [--seed SEED]\\n                       [--batch_size BATCH_SIZE] [--lr LR] [--epochs EPOCHS]\\n                       [--patience PATIENCE] [--pairs_per_bin PAIRS_PER_BIN]\\n                       [--n_bins N_BINS] [--gpu GPU]\\n                       [--shuffle_cross_trajectory]\\n\\nTrain linear probes on VLA/DINO-V2 features\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --features_dir FEATURES_DIR\\n                        Directory with per-task HDF5 feature files\\n  --output_dir OUTPUT_DIR\\n                        Directory to save probe results\\n  --probe_type {temporal_distance,subtask_predicate,oracle}\\n  --layers LAYERS       Layer range '0-32' or list '0,5,10'. Default: all\\n  --aggregation {last_preaction,image_mean}\\n  --label_file LABEL_FILE\\n                        Predicate labels JSON (required for subtask_predicate)\\n  --seed SEED\\n  --batch_size BATCH_SIZE\\n  --lr LR\\n  --epochs EPOCHS\\n  --patience PATIENCE\\n  --pairs_per_bin PAIRS_PER_BIN\\n  --n_bins N_BINS\\n  --gpu GPU\\n  --shuffle_cross_trajectory\\n                        Control B: pair frames from different trajectories\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "6d4e96cc-5a58-4ae9-a692-04598dfcc76e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: train_probes.py [-h] --features_dir FEATURES_DIR --output_dir\\\\n                       OUTPUT_DIR --probe_type\\\\n                       {temporal_distance,subtask_predicate,oracle}\\\\n                       [--layers LAYERS]\\\\n                       [--aggregation {last_preaction,image_mean}]\\\\n                       [--label_file LABEL_FILE] [--seed SEED]\\\\n                       [--batch_size BATCH_SIZE] [--lr LR] [--epochs EPOCHS]\\\\n                       [--patience PATIENCE] [--pairs_per_bin PAIRS_PER_BIN]\\\\n                       [--n_bins N_BINS] [--gpu GPU]\\\\n                       [--shuffle_cross_trajectory]\\\\n\\\\nTrain linear probes on VLA/DINO-V2 features\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --features_dir FEATURES_DIR\\\\n                        Directory with per-task HDF5 feature files\\\\n  --output_dir OUTPUT_DIR\\\\n                        Directory to save probe results\\\\n  --probe_type {temporal_distance,subtask_predicate,oracle}\\\\n  --layers LAYERS       Layer range '0-32' or list '0,5,10'. Default: all\\\\n  --aggregation {last_preaction,image_mean}\\\\n  --label_file LABEL_FILE\\\\n                        Predicate labels JSON (required for subtask_predicate)\\\\n  --seed SEED\\\\n  --batch_size BATCH_SIZE\\\\n  --lr LR\\\\n  --epochs EPOCHS\\\\n  --patience PATIENCE\\\\n  --pairs_per_bin PAIRS_PER_BIN\\\\n  --n_bins N_BINS\\\\n  --gpu GPU\\\\n  --shuffle_cross_trajectory\\\\n                        Control B: pair frames from different trajectories\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: train_probes.py [-h] --features_dir FEATURES_DIR --output_dir\\n                       OUTPUT_DIR --probe_type\\n                       {temporal_distance,subtask_predicate,oracle}\\n                       [--layers LAYERS]\\n                       [--aggregation {last_preaction,image_mean}]\\n                       [--label_file LABEL_FILE] [--seed SEED]\\n                       [--batch_size BATCH_SIZE] [--lr LR] [--epochs EPOCHS]\\n                       [--patience PATIENCE] [--pairs_per_bin PAIRS_PER_BIN]\\n                       [--n_bins N_BINS] [--gpu GPU]\\n                       [--shuffle_cross_trajectory]\\n\\nTrain linear probes on VLA/DINO-V2 features\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --features_dir FEATURES_DIR\\n                        Directory with per-task HDF5 feature files\\n  --output_dir OUTPUT_DIR\\n                        Directory to save probe results\\n  --probe_type {temporal_distance,subtask_predicate,oracle}\\n  --layers LAYERS       Layer range '0-32' or list '0,5,10'. Default: all\\n  --aggregation {last_preaction,image_mean}\\n  --label_file LABEL_FILE\\n                        Predicate labels JSON (required for subtask_predicate)\\n  --seed SEED\\n  --batch_size BATCH_SIZE\\n  --lr LR\\n  --epochs EPOCHS\\n  --patience PATIENCE\\n  --pairs_per_bin PAIRS_PER_BIN\\n  --n_bins N_BINS\\n  --gpu GPU\\n  --shuffle_cross_trajectory\\n                        Control B: pair frames from different trajectories\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+三个 `--help` 全部通过，`--shuffle_cross_trajectory` 参数已出现。运行 `compute_judgment` 的 unit test。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "8dc83d4d-1e38-41bc-91c2-7f0409949a71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0188EQN1T71o2Bd4iyom6c8J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1480,
+      "cache_read_input_tokens": 69481,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1480
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01X6noCzvEnmx3ECkYndDQUB`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python -c \"\nimport sys; sys.path.insert(0, '.')\nfrom scripts.analyze_results import compute_judgment\n\n# Case 1: PASS — all three criteria met\ndata_pass = {\n    'trained': {'results': {str(i): {'spearman_rho': 0.5 - i*0.01} for i in range(10)}},\n    'untrained': {'results': {str(i): {'spearman_rho': 0.2 - i*0.01} for i in range(10)}},\n    'dinov2': {'results': {str(i): {'spearman_rho': 0.3 - i*0.01} for i in range(10)}},\n}\nr = compute_judgment(data_pass)\nassert r['judgment'] == 'PASS', f'Expected PASS, got {r[\\\"judgment\\\"]}'\nprint(f'Case 1 PASS: {r[\\\"judgment\\\"]} ✓')\n\n# Case 2: CONDITIONAL — delta_pass=True, third_criterion=False\ndata_cond = {\n    'trained': {'results': {str(i): {'spearman_rho': 0.25 - i*0.01} for i in range(10)}},\n    'untrained': {'results': {str(i): {'spearman_rho': 0.1 - i*0.005} for i in range(10)}},\n    'dinov2': {'results': {str(i): {'spearman_rho': 0.4 - i*0.01} for i in range(10)}},\n}\nr = compute_judgment(data_cond)\nassert r['judgment'] == 'CONDITIONAL', f'Expected CONDITIONAL, got {r[\\\"judgment\\\"]}'\nprint(f'Case 2 CONDITIONAL: {r[\\\"judgment\\\"]} ✓')\n\n# Case 3: FAIL — delta_pass=False\ndata_fail = {\n    'trained': {'results': {str(i): {'spearman_rho': 0.15 - i*0.01} for i in range(10)}},\n    'untrained': {'results': {str(i): {'spearman_rho': 0.14 - i*0.01} for i in range(10)}},\n    'dinov2': {'results': {str(i): {'spearman_rho': 0.1 - i*0.01} for i in range(10)}},\n}\nr = compute_judgment(data_fail)\nassert r['judgment'] == 'FAIL', f'Expected FAIL, got {r[\\\"judgment\\\"]}'\nprint(f'Case 3 FAIL: {r[\\\"judgment\\\"]} ✓')\n\nprint('All tests passed')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "03601de6-73e9-4b51-a174-1d20374491de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0188EQN1T71o2Bd4iyom6c8J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1480,
+      "cache_read_input_tokens": 69481,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1480
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T07:21:03.529Z_
+
+<details><summary>↩ Tool result · `toolu_01X6noCzvEnmx3ECkYndDQUB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Case 1 PASS: PASS ✓\\nCase 2 CONDITIONAL: CONDITIONAL ✓\\nCase 3 FAIL: FAIL ✓\\nAll tests passed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "11b0002a-b5a9-445b-b591-738ad2b1d676",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Case 1 PASS: PASS ✓\\\\nCase 2 CONDITIONAL: CONDITIONAL ✓\\\\nCase 3 FAIL: FAIL ✓\\\\nAll tests passed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Case 1 PASS: PASS ✓\\nCase 2 CONDITIONAL: CONDITIONAL ✓\\nCase 3 FAIL: FAIL ✓\\nAll tests passed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+全部完成。
+
+**Bug 1 (init_untrained.py)**: `reinit_llm_backbone` 改用 `AutoModelForCausalLM.from_config(llm_config)` 创建新 LLM 权重并 copy 到模型中，删除了 `xavier_normal_` 逻辑。现在与 `extract_features.py --mode untrained` 使用相同的 LLaMA 默认初始化。
+
+**Bug 2 (analyze_results.py)**: `compute_judgment` 新增 CONDITIONAL 分支——当 `delta_pass=True` 但 `third_criterion=False` 时返回 CONDITIONAL。三个判例的 unit test 通过。
+
+**Control B (train_probes.py)**: 添加 `--shuffle_cross_trajectory` 参数，新增 `sample_cross_trajectory_pairs`（向量化跨 trajectory 配对采样）和 `build_cross_pair_tensors` 函数，`run_temporal_distance` 根据 flag 自动选择采样/配对策略。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "uuid": "e97fb896-1b37-454f-8398-0e5b3ee60750",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XLVBBT6wMuqAgJmgSp79Pp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 950,
+      "cache_read_input_tokens": 70961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 950
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 55_
+
+全部完成。
+
+**Bug 1 (init_untrained.py)**: `reinit_llm_backbone` 改用 `AutoModelForCausalLM.from_config(llm_config)` 创建新 LLM 权重并 copy 到模型中，删除了 `xavier_normal_` 逻辑。现在与 `extract_features.py --mode untrained` 使用相同的 LLaMA 默认初始化。
+
+**Bug 2 (analyze_results.py)**: `compute_judgment` 新增 CONDITIONAL 分支——当 `delta_pass=True` 但 `third_criterion=False` 时返回 CONDITIONAL。三个判例的 unit test 通过。
+
+**Control B (train_probes.py)**: 添加 `--shuffle_cross_trajectory` 参数，新增 `sample_cross_trajectory_pairs`（向量化跨 trajectory 配对采样）和 `build_cross_pair_tensors` 函数，`run_temporal_distance` 根据 flag 自动选择采样/配对策略。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 269603,
+  "duration_api_ms": 260635,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "e2813310-cf00-4467-bd0f-2c5600eba2b9",
+  "total_cost_usd": 1.1129335,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 60070,
+    "cache_read_input_tokens": 425578,
+    "output_tokens": 20915,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 60070,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 289,
+        "cache_read_input_tokens": 70961,
+        "cache_creation_input_tokens": 950,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 950
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1692,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001767,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 20915,
+      "cacheReadInputTokens": 425578,
+      "cacheCreationInputTokens": 60070,
+      "webSearchRequests": 0,
+      "costUSD": 1.1111665,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "729d9fe6-856a-421c-831c-4d676017bab2"
+}
+```
+
+</details>
+
+---

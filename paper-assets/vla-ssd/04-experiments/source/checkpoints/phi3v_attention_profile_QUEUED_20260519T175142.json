@@ -1,0 +1,15 @@
+{
+  "exp_id": "phi3v_attention_profile",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:51:12.780Z",
+    "updated_at": "2026-05-19T17:51:42.332Z",
+    "hypothesis": "TracVLA-Phi3V exhibits a distinct attention profile compared to OpenVLA, with text vs image attention distribution across 32 layers reflecting architectural differences in how instruction information is processed."
+  },
+  "timestamp": "2026-05-19T17:51:42.544392+00:00",
+  "trigger": "update_registry"
+}

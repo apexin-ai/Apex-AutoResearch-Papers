@@ -1,0 +1,31 @@
+{
+  "exp_id": "attention_normalization_entropy",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:59:32.417Z",
+    "updated_at": "2026-05-19T02:46:05.800Z",
+    "parent": "attention_decomposition",
+    "hypothesis": "Per-token normalized attention still shows instruction-dominant heads allocate disproportionately more attention per text token than control heads, even after controlling for token count asymmetry (256 image vs ~22 text tokens).",
+    "metrics": {
+      "token_asymmetry": 11.5,
+      "trained_instr_dom_per_token_ratio": 38.2,
+      "trained_control_per_token_ratio": 19.1,
+      "untrained_instr_dom_per_token_ratio": 1.5,
+      "untrained_control_per_token_ratio": 1.6,
+      "training_amplification": 25.5,
+      "entropy_instr_dom_2cat": 0.465,
+      "entropy_control_2cat": 0.569,
+      "entropy_instr_dom_3cat_normalized": 0.803,
+      "entropy_control_3cat_normalized": 0.956
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json",
+    "log_path": "/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py"
+  },
+  "timestamp": "2026-05-19T02:46:06.050809+00:00",
+  "trigger": "update_registry"
+}

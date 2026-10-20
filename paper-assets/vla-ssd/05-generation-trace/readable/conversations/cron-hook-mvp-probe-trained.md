@@ -1,0 +1,1590 @@
+# cron hook mvp probe trained
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/cron_hook_mvp_probe_trained.jsonl`
+- **Structured JSON:** [`fc6e76de0447c03164ea.json`](../../sessions/fc/fc6e76de0447c03164ea.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+50 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T02:23:41.643775+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #6。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：**仅 cuda:0, cuda:1**（westd-19183）。不可用其他 GPU 编号
+- westd-19183 是 **SeetaCloud**（非 AutoDL），不适用 `network_turbo` / ModelScope 等 AutoDL 方案
+- **服务器无外网**：所有 HF 操作必须 `local_files_only=True`，不可尝试下载模型/tokenizer
+- 统一 action probe 超参已锁定：**50ep/patience5/lr1e-3/hidden256/seed42, MLP input→256→7, predict a_{t+1}**。任何新 probe 必须用此配置，否则 R² 不可比
+- 论文主表 5-model 对比用 `unified_action_probe` 数字；untrained/trained 对比用 `p0_probe_v2` 数字。两组绝对值不同是超参差异，**不可混用**
+- paper_framing.md headline result 引用的 R² 数值（0.706/0.683/0.731）来自 p0_probe_v2，与 unified_action_probe 数值（0.630/0.599/0.671）是**不同超参组**——修改论文数值时注意对齐来源
+
+### 2. 🖥️ 基础设施快照
+- **服务器**：westd-19183，工作目录 `/root/vla-ssd`
+- **Python**：`/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- **模型**：OpenVLA trained checkpoint + untrained (from_config 重初始化 LLM 6.74B, 保留 SigLIP 0.80B)
+- **数据**：LIBERO-Goal features 已提取完毕，存储在 `/root/vla-ssd/` 或 `/root/autodl-tmp/vla-ssd/`
+- **额外 vision encoders 已下载**：DINO-V2、CLIP ViT-L/14（plan_012 已用）、SigLIP（OpenVLA 自带）
+- **W&B**：项目中无 W&B 集成（所有实验是 feature extraction + probe，结果直接打印到 stdout/文件）
+- **活跃进程**：无训练进程在跑（所有 45 实验均 DONE）
+- **活跃 Worker**：`worker_paper_writing_experiments_20260516T021635`（paper_writing:experiments）正在运行中，尚未回调
+- **活跃 Cron**：0（reconcile 确认无活跃 cron）
+
+### 3. 📊 当前状态
+**所有 45 个实验均已完成**（31 success / 7 negative / 0 failed / 7 killed）。三条 Core Claim 证据链完整闭合。
+
+刚完成的关键工作：
+- D036 统一超参 probe 修正了 CLIP R² 排序，发现 geometric-functional dissociation 比预期更极端（CLIP RSA 高但 R² 最低）
+- plan_008 random instruction control PASS：四种 instruction 条件 RSA 完全收敛（Δ<0.017），Claim 3 三重不变性完备
+- plan_012 CLIP-ViT control PASS：CLIP RSA=0.557 >> DINO 0.388，确认 VL pretraining 通用性
+- bootstrap CI 全部完成：training effect on image_mean CI includes 0; last_preaction Δ=0.045, CI=[0.032, 0.058]
+
+**正在进行**：Paper writing worker（experiments section）正在运行，等待 `[WORKER DONE]` 回调。
+
+**report.md 中 8 个 killed 告警**（mvp2_action_probe, lg_extract 系列, lg_shuffled_token_control, lg_instruction_ablation, lg_output_head_analysis）——这些是历史遗留（被后续实验替代），非异常。
+
+### 4. 📋 待办（条件触发式）
+- `[WORKER DONE] paper_writing:experiments` 回调 → 审阅产出质量，如达标则继续推进其余章节（Introduction / Method / Related Work / Discussion / Conclusion）并行写作
+- Paper Agent Full Draft 完成 → re-dream 验证新 framing 是否通过 acceptance threshold（D035 记录上次 dream 卡在 writing 3h+）
+- 如 Director 要求 plan_010 LIBERO-Spatial 跨 benchmark 验证（P2 优先级）→ 派 Worker 提取 LIBERO-Spatial features + RSA + probe
+- 如 Director 要求补 delta last_preaction probe（paper_framing.md 标注"待补"）→ 在 westd-19183 上跑统一超参 delta probe
+- CoRL abstract deadline **5/26**（10 天后）→ abstract 需在 5/25 前完稿
+- CoRL paper deadline **5/29**（13 天后）→ full paper 需在 5/28 前完稿
+
+### 5. 🎯 战略上下文
+**项目核心结论**：VLA 中 action-relevant 表征由 frozen vision encoder 决定（Claim 1）；LLM 降解 distributed geometric structure 但通过训练依赖的 attention 将信号 concentrate 到 readout token（Claim 2）；training 教会 routing 而非 creating new knowledge（Claim 3）。三条 claim 环环相扣，形成"source → transform → mechanism"叙事。
+
+**决策链**：D027 Option A2（Instruction ablation FAIL，放弃 Option B）→ D028 SigLIP smoking gun → D031 redistribution pivot → D032 Option A 锁定 → D033 geometric-functional dissociation → D034 training-dependent redistribution → D035 Paper Agent 启动 → D036 统一超参修正。
+
+**最容易判断错的事**：
+1. **两组 probe 数据不可混用**——unified_action_probe（论文主表 5-model）vs p0_probe_v2（trained/untrained 对比）。paper_framing.md 的 headline result 和 story spine 引用的是 p0_probe_v2 数值（0.706/0.683/0.731），但 Functional Probe 数值基准表用的是 unified（0.630/0.599/0.671）。写论文时必须严格标注数据来源
+2. **RSA 用 image_mean 聚合**作为主文公平对比，last_preaction 放 supplementary。但 functional probe 的 last_preaction 是 Claim 2 核心证据——不要因为"RSA 放 supp"就把 probe 的 last_preaction 也降级
+3. **CKA 反转排序**是 feature 不是 bug——论文必须正面讨论 RSA vs CKA 的 metric dependency（plan_009），Claim 2 限定为"geometric (RSA) degradation"
+4. **CLIP R² < DINO**是修正后的新发现——geometric-functional dissociation 比原来更极端，Claim 1 不能说"VL pretraining is better"，而是"reorganizes geometrically without improving functional capacity"
+
+## 项目硬约束 (memory.md 节选)
+
+## 技术约束
+
+- Untrained model: from_config() 重新初始化 LLM（6.74B random），保留 SigLIP（0.80B）
+- D017: 统一用 LIBERO-10 fine-tuned checkpoint（LIBERO-Goal 是 OOD 测试）
+- Token 聚合：Primary = last pre-action token
+- 存储：根分区 ~30GB，大文件在 /root/autodl-tmp/vla-ssd/
+- **服务器无外网**：AutoProcessor/HF 操作必须 `local_files_only=True`
+- **westd 是 SeetaCloud（非 AutoDL）**，不适用 network_turbo/ModelScope 等 AutoDL 专用方案
+- **统一 action probe 超参**：50ep/patience5/lr1e-3/hidden256/seed42, MLP input→256→7
+
+## 可查的历史
+前 32 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_probe_trained",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T02:23:52.985070+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T02:23:53.035878+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T02:23:55.947288+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T02:23:55.947703+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T02:23:56.451034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1329}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T02:23:56.451474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T02:23:56.501944+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "vla-ssd",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T02:23:56.704098+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T02:23:56.754655+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T02:23:56.805367+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **unified_action_probe** (success): Unified hyperparameter action probe (50ep/patience5/seed42) across all vision encoders on LIBERO-Goal. Resolves cross-experiment R² incomparability caused by differing probe configs. Tests geometric-functional dissociation: does VL pretraining RSA advantage translate to R² advantage?\\n- **plan_012_clip_vit_control** (success): —\\n  [rsa_clip_results](/api/workspace-files/projects/vla-ssd/artifacts/plan_012_clip_vit_control/data/rsa_clip_results.txt) | [action_probe_clip_results](/api/workspace-files/projects/vla-ssd/artifacts/plan_012_clip_vit_control/data/action_probe_clip_summary.txt) | [unified_action_probe_results](/api/workspace-files/projects/vla-ssd/artifacts/plan_012_clip_vit_control/data/unified_action_probe.py)\\n- **lg_instruction_ablation** (killed): D021 Exp-1: Instruction Ablation. Extract LIBERO-Goal features with empty instruction (trained + untrained VLA), then run RSA. If instruction pathway is the source of action-relevant structure, RSA should collapse from ρ≈0.49 to <0.15. PASS: ρ<0.15; PARTIAL: 0.15<ρ<0.30; FAIL: ρ≥0.30.\\n\\n## 趋势\\n成功 31 / 负向 7 / 失败 0 / 共 46\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-19183: 无 GPU 信息\\n\\n## 告警\\n- mvp2_action_probe: 已被终止 — unknown\\n- lg_extract_trained_r2: 已被终止 — unknown\\n- lg_extract_untrained_r2: 已被终止 — unknown\\n- lg_extract_trained_r1: 已被终止 — unknown\\n- lg_extract_untrained_r1: 已被终止 — unknown\\n- lg_shuffled_token_control: 已被终止 — unknown\\n- lg_instruction_ablation: 已被终止 — unknown\\n- lg_output_head_analysis: 已被终止 — unknown\\n\", \"total_chars\": 1621, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T02:24:10.829482+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "limit": "0",
+  "fields": "['status', 'conclusion', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "limit": "0",
+    "fields": "['status', 'conclusion', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T02:24:10.880096+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T02:24:10.980986+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "status": "done",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "vla-ssd",
+    "status": "done",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T02:24:11.083420+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"unified_action_probe\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T02:20:45.129Z\", \"conclusion\": \"success\"}, \"plan_012_clip_vit_control\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T02:12:00.571Z\", \"conclusion\": \"success\"}, \"lg_instruction_ablation\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T01:38:26.242Z\", \"conclusion\": \"killed\"}, \"lg_output_head_analysis\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T01:38:25.425Z\", \"conclusion\": \"killed\"}, \"plan_008_random_inst_control\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T01:16:03.037Z\", \"conclusion\": \"success\"}, \"untrained_last_preaction_probe\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T00:14:01.670Z\", \"conclusion\": \"success\"}, \"plan_009_cka_verification\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T00:03:29.018Z\", \"conclusion\": \"success\"}, \"p0_functional_probe_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T23:52:37.355Z\", \"conclusion\": \"success\"}, \"p0_functional_action_probe\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T23:47:31.338Z\", \"conclusion\": \"success\"}, \"p0_functional_action_delta_probe\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T23:47:29.211Z\", \"conclusion\": \"success\"}, \"p0_bootstrap_ci_training_effect\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T22:49:25.162Z\", \"conclusion\": \"success\"}, \"p0_image_mean_rsa_verify\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T22:43:41.904Z\", \"conclusion\": \"success\"}, \"plan_003_perlayer_degradation\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T22:35:08.118Z\", \"conclusion\": \"success\"}, \"d027_siglip_only_rsa\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T22:25:27.345Z\", \"conclusion\": \"success\"}, \"d027_trained_no_inst_rsa\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T22:16:04.389Z\", \"conclusion\":
+…[truncated 3978 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 253
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T02:24:11.084033+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-16 00:14 UTC | 更新原因: Sync with D033/D034, CKA results, plan_008 running, updated Claims\\n\\n## 核心方向\\nVLA 中 action-relevant 表征的来源与 LLM 的 redistribution 机制。三层发现：(1) Vision encoder 是 action info 的通用源头，VL pretraining 赋予 geometric alignment 而非额外 predictive content；(2) LLM 降解分布式 image token 几何结构（RSA）但保留全局结构（CKA），通过训练依赖的 attention 将信号 concentrate 到 readout token；(3) Training 教会 routing（readout concentration），而非 creating new knowledge（distributed structure invariant）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Research phase, post-D034**。三条 Claim 完整成型，所有 P0 实验完成。等待：(1) untrained vs trained last_preaction bootstrap CI（已派 Agent）；(2) plan_008 random instruction control（RUNNING）。两者完成后 re-dream 验证新 framing，达标则启动 Paper Agent。\\n\\n## 已完成核心实验\\n- ✅ plan_001-007: RSA 组件分解 + 2×2 matrix + per-layer curve + instruction ablation\\n- ✅ plan_011: Functional action probe — Proj R²=0.706 > LLM img_mean 0.683 (p=0.001); readout 0.731 > Proj (p=0.001)\\n- ✅ plan_009: CKA verification — ordering reversal vs RSA (partial). RSA-CKA dissociation 成为新 finding\\n- ✅ D033: DINO R²=0.712 ≈ Projector 0.706 (p=0.22) — geometric-functional dissociation\\n- ✅ D034: Untrained readout R²=0.686 < projector 0.706 — redistribution is training-dependent\\n- ✅ Aggregation robustness: image_mean RSA 0.501 vs SigLIP 0.615, gap=0.114\\n- ✅ Bootstrap CI: training effect on image_mean CI includes 0, distributed structure invariant\\n\\n## 近期任务\\n- [ ] Untrained vs trained last_preaction bootstrap CI（Agent 已派，分钟级）\\n- [ ] plan_008 random instruction control 结果分析（RUNNING，等完成）\\n- [ ] Re-dream with updated framing（上述两项完成后立即触发）\\n- [ ] Paper Agent Full Draft（re-dream 达标后启动）\\n- [ ] plan_012 CLIP-ViT control（P1，Paper Agent 启动后并行）\\n\\n## GPU 预算\\nwestd-19183: 2× GPU（plan_008 占用中）\\n剩余预算: ~7 GPU·h\\n\\n## 关键里程碑\\n| 日期 | 事件 |\\n|
+…[truncated 1853 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 203
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T02:24:11.134701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ssh_plan012-clip-action-probe_20260516T014922\", \"task_type\": \"ssh:plan012-clip-action-probe\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-16T01:49:22.168498+00:00\", \"ended_at\": \"2026-05-16T02:02:32.635665+00:00\"}, {\"worker_id\": \"worker_ssh_plan010-libero-spatial_20260516T020355\", \"task_type\": \"ssh:plan010-libero-spatial\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-16T02:03:55.791556+00:00\", \"ended_at\": \"2026-05-16T02:05:17.751851+00:00\"}, {\"worker_id\": \"worker_ssh_unified-action-probe_20260516T020715\", \"task_type\": \"ssh:unified-action-probe\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-16T02:07:15.319637+00:00\", \"ended_at\": \"2026-05-16T02:12:33.089843+00:00\"}, {\"worker_id\": \"worker_ssh_check-probe-target_20260516T021626\", \"task_type\": \"ssh:check-probe-target\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-16T02:16:26.163365+00:00\", \"ended_at\": \"2026-05-16T02:20:03.379193+00:00\"}, {\"worker_id\": \"worker_paper_writing_experiments_20260516T021635\", \"task_type\": \"paper_writing:experiments\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-16T02:16:35.914061+00:00\", \"ended_at\": \"2026-05-16T02:23:23.728486+00:00\"}], \"count\": 5}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 153
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T02:24:24.695115+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_artifacts,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_artifacts,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T02:24:24.745789+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T02:24:27.405317+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_paper_writing_experiments_20260516T021635",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_paper_writing_experiments_20260516T021635",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T02:24:27.857482+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_writing_experiments_20260516T021635\", \"status\": \"done\", \"task_type\": \"paper_writing:experiments\", \"project\": \"vla-ssd\", \"started_at\": \"2026-05-16T02:16:35.914061+00:00\", \"ended_at\": \"2026-05-16T02:23:23.728486+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"已完成。两个文件已写入 `docs/paper/`:\\n\\n**`experiments.tex`** — Section 3 完整 LaTeX，包含:\\n- **3.1 Experimental Setup**: LIBERO-Goal, OpenVLA-7B, 5 种表征源, 2×2 实验设计, RSA + functional probe 方法\\n- **3.2 Vision Encoder Dominance**: Table 1 (RSA 排序), Figure 2, geometric-functional dissociation (DINO R²≈Proj 但 RSA<<), CKA 排序反转负向结果 (Figure 6)\\n- **3.3 LLM Redistributes Action Structure**: Table 2 (probe R²), Figure 3 (per-layer curves), Figure 4 (probe bars), distributed degradation + readout concentration\\n- **3.4 Training Routes, Not Creates**: Table 3 (训练效应), Figure 5 (2×2 matrix + instruction control), geometric null + functional concentration dissociation\\n\\n**`references.bib`** — 12 条 BibTeX，其中 `grant2026` 和 `haon2025` 标记了 `[VERIFY]`，需要补全真实书目信息。其余 10 条基于已知信息填写。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T02:24:27.908051+00:00_
+
+called mcp__agent-ml-research__list_artifacts
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_artifacts</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "tags": "['paper']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_artifacts",
+  "tool_args": {
+    "project": "vla-ssd",
+    "tags": "['paper']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T02:24:27.958897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifacts\": [{\"id\": \"art_20260516_0cebe2\", \"name\": \"references_bib\", \"type\": \"paper\", \"description\": \"BibTeX references for the experiments section — 12 entries, 2 marked [VERIFY] (grant2026, haon2025)\", \"path\": \"projects/vla-ssd/artifacts/_project/paper/references.bib\", \"url\": null, \"project\": \"vla-ssd\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T02:23:11.465262+00:00\", \"tags\": [\"paper\", \"references\", \"bibtex\", \"corl2026\"]}, {\"id\": \"art_20260516_801a2e\", \"name\": \"experiments_section_tex\", \"type\": \"paper\", \"description\": \"CoRL 2026 paper Section 3 (Experiments) LaTeX source — covers experimental setup, vision encoder dominance, LLM redistribution, and training-as-routing claims with 3 tables and 5 figures\", \"path\": \"projects/vla-ssd/artifacts/_project/paper/experiments.tex\", \"url\": null, \"project\": \"vla-ssd\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T02:23:09.408063+00:00\", \"tags\": [\"paper\", \"experiments\", \"latex\", \"corl2026\"]}, {\"id\": \"art_20260516_ac1ea6\", \"name\": \"fig6\", \"type\": \"chart\", \"description\": \"Figure 6: RSA vs CKA metric comparison (3 panels). Key finding: Linear CKA ordering (U>T>Proj>DINO) reverses RSA ordering (Proj>T>U>DINO). Supplementary candidate for Section 3.5.\", \"path\": \"projects/vla-ssd/artifacts/_project/chart/fig6.pdf\", \"url\": null, \"project\": \"vla-ssd\", \"exp_id\": null, \"skill\": \"paper-visualization\", \"created_at\": \"2026-05-16T02:13:54.716823+00:00\", \"tags\": [\"paper\", \"figure6\", \"rsa-cka\", \"metric-sensitivity\", \"supplementary\"]}, {\"id\": \"art_20260516_8d728d\", \"name\": \"fig5\", \"type\": \"chart\", \"description\": \"Figure 5: (a) 2×2 Training×Instruction RSA matrix — all conditions within 0.48-0.50 band, both effects n.s. (b) plan_008 instruction content control — normal/random/shuffled/empty all ±0.017, confirming content invar
+…[truncated 3397 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_artifacts",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T02:24:40.861075+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T02:24:40.912069+00:00_
+
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	\label{sec:setup}
+6	
+7	\paragraph{Benchmark and model.}
+8	We evaluate on the LIBERO-Goal suite~\cite{liu2023_libero}, comprising 10 tabletop manipulation tasks with 50 human demonstrations each.
+9	We use OpenVLA-7B~\cite{kim2024_openvla,karamcheti2024}, a vision-language-action model consisting of a SigLIP-SO400M vision encoder~\cite{zhai2023_siglip}, an MLP projector, and a Llama-2 7B language backbone, fine-tuned on the LIBERO-10 split.
+10	
+11	\paragraph{Representation sources.}
+12	We extract representations from five sources:
+13	(a)~\textbf{SigLIP+Projector}---the vision encoder output after MLP projection into LLM input space;
+14	(b)~\textbf{LLM image\_mean}---the mean of image token activations at each LLM layer, capturing distributed visual information;
+15	(c)~\textbf{LLM last\_preaction}---the final token position before action decoding (readout token) at each LLM layer;
+16	(d)~\textbf{DINOv2 ViT-L/14}~\cite{oquab2024_dinov2} \texttt{cls\_token}; and
+17	(e)~\textbf{CLIP ViT-L/14}~\cite{radford2021_clip} \texttt{patch\_mean}.
+18	Sources (d) and (e) serve as external baselines with no VLA training signal.
+19	
+20	\paragraph{Experimental conditions.}
+21	We use a $2 \times 2$ factorial design crossing \emph{training status} (trained vs.\ untrained) with \emph{instruction presence} (with vs.\ without language instruction).
+22	The untrained control applies \texttt{from\_config()} to reinitialize the LLM parameters (6.74B random weights) while preserving the frozen SigLIP encoder (0.80B pretrained weights), isolating the LLM's learned contribution from the vision encoder's pretrained geometry.
+23	
+24	\paragraph{Representational Similarity Analysis (RSA).}
+25	Following~\cite{kriegeskorte2008}, we compute pairwise representational dissimilarity matrices (RDMs) for each representation source and for the 7-dimensional action space.
+26	We report Spearman rank correlation $\rho$ betwee
+…[truncated 13148 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T02:24:40.912514+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T02:24:41.013300+00:00_
+
+1	% === VLA / Architecture ===
+2	
+3	@article{kim2024_openvla,
+4	  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},
+5	  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},
+6	  journal   = {arXiv preprint arXiv:2406.09246},
+7	  year      = {2024},
+8	}
+9	
+10	% [VERIFY] Confirm venue and exact title. Likely "Prismatic VLMs" or OpenVLA architecture companion.
+11	@article{karamcheti2024,
+12	  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},
+13	  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},
+14	  journal   = {arXiv preprint arXiv:2402.07865},
+15	  year      = {2024},
+16	}
+17	
+18	@article{brohan2023_rt2,
+19	  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},
+20	  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},
+21	  journal   = {arXiv preprint arXiv:2307.15818},
+22	  year      = {2023},
+23	}
+24	
+25	% === Benchmark ===
+26	
+27	@inproceedings{liu2023_libero,
+28	  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},
+29	  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},
+30	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+31	  year      = {2023},
+32	}
+33	
+34	% === Representation Analysis Methods ===
+35	
+36	@article{kriegeskorte2008,
+37	  title     = {Representational Similarity Analysis -- Connecting 
+…[truncated 2717 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T02:25:33.611517+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "paper_framing.md",
+  "max_chars": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "paper_framing.md",
+    "max_chars": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T02:25:33.863222+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/paper_framing.md\", \"content\": \"# Paper Framing — vla-ssd\\n\\n## Target Venue\\n- Primary: CoRL 2026\\n- Deadline: Abstract May 26, Paper May 29\\n- Format: 8 pages + references\\n\\n## Core Claims (3 条)\\n\\n1. **Vision Encoder Dominance + Geometric-Functional Dissociation**: VLA 中 action-relevant 表征结构由 frozen vision encoder 决定。RSA geometric alignment: SigLIP (0.615) > CLIP (0.557) >> DINO (0.388)——VL pretrained encoders 显著优于 vision-only。但 functional capacity (R²) 方向相反: DINO (0.634) ≈ Projector (0.630) > CLIP (0.587)。**Geometric alignment 和 predictive capacity 是可分离的独立维度**。VL pretraining 提供 geometric alignment（表征结构匹配 action 空间），不增加甚至略降低 functional capacity。\\n2. **LLM Redistributes Action-Relevant Structure (Training-Dependent)**: LLM 降解 distributed image token 的 **geometric alignment**（RSA: 0.615→0.501）和 functional capacity（R²: 0.630→0.599, p<0.001），但 global structure 保留（CKA 单调上升）。**训练后** LLM 学会将 action 信号 concentrate 到 readout token（trained R²=0.671 > projector 0.630, p=0.002），但 **untrained LLM 做不到**（untrained readout best=0.686 < projector）。Readout concentration 是 learned behavior，不是架构固有属性。\\n3. **Training: Routing Without Creating**: VLA fine-tuning 不改变 distributed representation structure（image_mean RSA: trained 0.501 ≈ untrained 0.485, bootstrap CI includes 0, p=0.20），但提升 readout concentration（trained last_preaction 0.731 >> untrained 0.686，Δ=0.045, bootstrap CI=[0.032, 0.058], p<0.0001）。Instruction input 对两者均无影响。综合解读：**Training 的贡献是学习信息路由（routing），而非注入新的 action knowledge（creating）**。\\n\\n## Paper 主数值基准（image_mean 聚合，公平对比）\\n\\n| Model / Condition | RSA (image_mean) | Notes |\\n|---|---|---|\\n| **SigLIP+Projector** | **0.615** | Smoking gun, LLM input |\\n| VLA trained with-inst | 0.501 | Peak L23 |\\n| VLA untrained with-inst | 0.485 | Peak L23 |\\n| VLA trained no-inst | 0.501 | Peak L23, identical to with-inst |\\n| VLA untrained no-
+…[truncated 10500 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T02:25:34.315017+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "writing_plan.yaml",
+  "max_chars": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "writing_plan.yaml",
+    "max_chars": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T02:25:34.366019+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/writing_plan.yaml\", \"content\": \"venue: CoRL 2026\\nabstract_ddl: 2026-05-26\\npaper_ddl: 2026-05-29\\nformat: \\\"8 pages + references\\\"\\n\\ntitle_candidates:\\n  - \\\"Where Do Action Representations Come From? Dissecting Vision-Language-Action Models\\\"\\n  - \\\"The Frozen Encoder Provides, the LLM Routes: Representational Analysis of Vision-Language-Action Models\\\"\\n  - \\\"Vision Encodes, Language Routes: A Representational Decomposition of VLA Action Knowledge\\\"\\n\\n# ============================================================\\n# SECTIONS\\n# ============================================================\\nsections:\\n\\n  - name: Abstract\\n    core_evidence:\\n      - d027_siglip_only_rsa          # RSA=0.615 smoking gun\\n      - p0_functional_action_probe    # R² projector 0.706, readout 0.731\\n      - p0_bootstrap_ci_training_effect  # training invariance CI includes 0\\n      - untrained_last_preaction_probe   # readout trained-dependent Δ=0.045\\n    key_numbers:\\n      - \\\"VL encoders: SigLIP+proj RSA ρ=0.615, CLIP ρ=0.557 >> DINO ρ=0.388; VL pretraining is the source\\\"\\n      - \\\"Projector action R²=0.706; LLM image_mean R²=0.683 (degradation); readout R²=0.731 (concentration)\\\"\\n      - \\\"Training effect on distributed RSA: Δ=0.021, CI=[−0.031, +0.064], n.s.\\\"\\n      - \\\"Training effect on readout R²: Δ=0.045, CI=[0.032, 0.058], p<0.0001\\\"\\n      - \\\"Untrained readout R²=0.686 < projector 0.706 — redistribution is learned\\\"\\n\\n  - name: Introduction\\n    structure:\\n      - para_1_problem: >\\n          VLAs achieve impressive manipulation performance by fine-tuning LLMs on robot data.\\n          Implicit assumption: fine-tuning injects action-relevant representational knowledge.\\n          But where do action representations actually come from?\\n      - para_2_gap: >\\n          Grant 
+…[truncated 14192 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T02:25:35.770182+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T02:25:35.770822+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_3dde598c.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T02:26:17.839686+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__send_progress",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__send_progress",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T02:26:17.840326+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T02:26:21.756101+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "writing_plan.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "writing_plan.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T02:26:22.259822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/writing_plan.yaml\", \"content\": \"venue: CoRL 2026\\nabstract_ddl: 2026-05-26\\npaper_ddl: 2026-05-29\\nformat: \\\"8 pages + references\\\"\\n\\ntitle_candidates:\\n  - \\\"Where Do Action Representations Come From? Dissecting Vision-Language-Action Models\\\"\\n  - \\\"The Frozen Encoder Provides, the LLM Routes: Representational Analysis of Vision-Language-Action Models\\\"\\n  - \\\"Vision Encodes, Language Routes: A Representational Decomposition of VLA Action Knowledge\\\"\\n\\n# ============================================================\\n# SECTIONS\\n# ============================================================\\nsections:\\n\\n  - name: Abstract\\n    core_evidence:\\n      - d027_siglip_only_rsa          # RSA=0.615 smoking gun\\n      - p0_functional_action_probe    # R² projector 0.706, readout 0.731\\n      - p0_bootstrap_ci_training_effect  # training invariance CI includes 0\\n      - untrained_last_preaction_probe   # readout trained-dependent Δ=0.045\\n    key_numbers:\\n      - \\\"VL encoders: SigLIP+proj RSA ρ=0.615, CLIP ρ=0.557 >> DINO ρ=0.388; VL pretraining is the source\\\"\\n      - \\\"Projector action R²=0.706; LLM image_mean R²=0.683 (degradation); readout R²=0.731 (concentration)\\\"\\n      - \\\"Training effect on distributed RSA: Δ=0.021, CI=[−0.031, +0.064], n.s.\\\"\\n      - \\\"Training effect on readout R²: Δ=0.045, CI=[0.032, 0.058], p<0.0001\\\"\\n      - \\\"Untrained readout R²=0.686 < projector 0.706 — redistribution is learned\\\"\\n\\n  - name: Introduction\\n    structure:\\n      - para_1_problem: >\\n          VLAs achieve impressive manipulation performance by fine-tuning LLMs on robot data.\\n          Implicit assumption: fine-tuning injects action-relevant representational knowledge.\\n          But where do action representations actually come from?\\n      - para_2_gap: >\\n          Grant 
+…[truncated 27080 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T02:26:22.360641+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "literature_map.yaml",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "literature_map.yaml",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T02:26:22.361517+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/literature_map.yaml\", \"content\": \"papers:\\n  # ============================================================\\n  # DIRECT COMPETITORS — VLA Representation Analysis / Interpretability\\n  # ============================================================\\n  - id: grant2026\\n    title: \\\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\\\"\\n    authors: \\\"Bryce Grant, Xijia Zhao, Peng Wang\\\"\\n    year: 2026\\n    venue: \\\"arXiv preprint (under review)\\\"\\n    arxiv_id: \\\"2603.19233\\\"\\n    category: direct-competitor\\n    role: competitor\\n    key_findings: >\\n      Visual pathway dominates action generation across all 6 tested VLA architectures (80M–7B params, 394K+ rollout episodes, 4 benchmarks).\\n      Language sensitivity depends on task structure: when visual context uniquely specifies the task, language is IGNORED;\\n      when multiple goals share a scene, language becomes essential (\\\"encoded but not used\\\").\\n      Cross-task activation injection steers robots toward source-task positions (99.8% trajectory alignment with source in X-VLA).\\n      Multi-pathway architectures (pi0.5, SmolVLA, GR00T) separate motor programs (expert pathway) from goal semantics (VLM pathway).\\n    relevance_to_us: >\\n      Most direct competitor. Behavioral intervention (activation injection, SAE, probing) reveals vision dominance + language encoded but not used.\\n      Uses OpenVLA-OFT checkpoint; we use standard fine-tuning — must qualify this difference in Related Work.\\n    novelty_gap: >\\n      No trained vs untrained representation analysis. They compare different model architectures,\\n      we compare trained vs untrained representation structure within the same architecture.\\n      Their \\\"encoded but not used\\\" is a behavioral-level conclusion; we demonstrate at the represent
+…[truncated 11044 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T02:27:11.396102+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib",
+  "old_string": "% [VERIFY] Cannot confirm full bibliographic details. Cited for behavioral visual dominance in VLA policies.\n@article{grant2026,\n  title     = {[VERIFY] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2026},\n}",
+  "new_string": "@article{grant2026,\n  title     = {Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models},\n  author    = {Grant, Bryce and Zhao, Xijia and Wang, Peng},\n  journal   = {arXiv preprint arXiv:2603.19233},\n  year      = {2026},\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib",
+    "old_string": "% [VERIFY] Cannot confirm full bibliographic details. Cited for behavioral visual dominance in VLA policies.\n@article{grant2026,\n  title     = {[VERIFY] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2026},\n}",
+    "new_string": "@article{grant2026,\n  title     = {Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models},\n  author    = {Grant, Bryce and Zhao, Xijia and Wang, Peng},\n  journal   = {arXiv preprint arXiv:2603.19233},\n  year      = {2026},\n}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T02:27:11.748453+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Edit",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T02:27:13.508593+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib",
+  "old_string": "% [VERIFY] Cannot confirm full bibliographic details. Cited for VLA interpretability.\n@article{haon2025,\n  title     = {[VERIFY] Interpretability of Vision-Language-Action Models},\n  author    = {Haon, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2025},\n}",
+  "new_string": "@inproceedings{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {Haon, Bear and Stocking, Kaylene and Chuang, Ian and Tomlin, Claire},\n  booktitle = {Conference on Robot Learning (CoRL)},\n  year      = {2025},\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib",
+    "old_string": "% [VERIFY] Cannot confirm full bibliographic details. Cited for VLA interpretability.\n@article{haon2025,\n  title     = {[VERIFY] Interpretability of Vision-Language-Action Models},\n  author    = {Haon, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2025},\n}",
+    "new_string": "@inproceedings{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {Haon, Bear and Stocking, Kaylene and Chuang, Ian and Tomlin, Claire},\n  booktitle = {Conference on Robot Learning (CoRL)},\n  year      = {2025},\n}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T02:27:13.559356+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T02:28:01.181098+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "paper_writing:method",
+  "project": "vla-ssd",
+  "tool_groups": "['knowledge']",
+  "task_prompt": "你是 ML 论文写作 Worker。任务：撰写 CoRL 2026 论文的 **Section 2: Method** 完整 LaTeX。\n\n## 目标\n写出 `method.tex`，保存到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/method.tex`。\n\n## Section 结构（严格按此）\n\n### 2.1 Model and Data\n- OpenVLA-7B 架构: SigLIP-SO400M vision encoder → MLP projector → Llama-2 7B language backbone → action head\n- Fine-tuned on LIBERO-10 split (10 tabletop manipulation tasks, 50 human demonstrations each)\n- Evaluation on LIBERO-Goal (OOD benchmark: shared initial states, different goals)\n- **Untrained control**: `from_config()` reinitializes LLM parameters (6.74B random weights), preserves frozen SigLIP encoder (0.80B pretrained weights). This isolates LLM's learned contribution from vision encoder's pretrained geometry\n- 引用: kim2024_openvla, karamcheti2024, liu2023_libero\n\n### 2.2 Representation Extraction\n- 五个表征源:\n  (a) SigLIP+Projector — vision encoder output after MLP projection, before LLM input\n  (b) LLM image_mean — mean of image token activations at each of 32 LLM layers, capturing distributed visual information\n  (c) LLM last_preaction — final token position before action decoding (readout token) at each layer\n  (d) DINOv2 ViT-L/14 cls_token — vision-only baseline (self-supervised, no language)\n  (e) CLIP ViT-L/14 patch_mean — VL pretraining generalization control\n- 2×2 factorial design: trained/untrained × with-instruction/no-instruction\n- 引用: oquab2024_dinov2, radford2021_clip, zhai2023_siglip\n\n### 2.3 Representational Similarity Analysis (RSA)\n- Construct pairwise RDMs for representations and 7-D action space (Euclidean distance)\n- Spearman rank correlation ρ between upper-triangular RDM vectors\n- Task-level analysis: per-task RSA + cross-task aggregation\n- 95% CI from 10,000 bootstrap resamples for pairwise comparisons\n- 引用: kriegeskorte2008\n\n### 2.4 Functional Action Probes\n- MLP probe architecture: Linear→ReLU→Linear, input_dim → 256 → 7\n- Training: Adam optimizer, lr=1e-3, batch size 256, 50 epochs, early stopping patience 5\n- Predict 7-D continuous action vectors from frozen representations\n- Report mean R² across 7 action dimensions\n- Per-task train/validation splits (80/20)\n- Bootstrap paired comparison for statistical significance (10,000 resamples)\n- Also: action-delta probes (predict Δa = a_{t+1} - a_t)\n- 引用: alain2017\n\n### 2.5 Centered Kernel Alignment (CKA)\n- Linear CKA and RDM-based CKA as complementary metrics to RSA\n- RSA captures local geometric alignment (do representation distances match action distances?)\n- CKA captures global structure preservation (is overall structure retained after transformation?)\n- Note dimension mismatch caveat: linear CKA compares 4096-D representations with 7-D actions\n- 引用: kornblith2019\n\n## 写作规范\n- CoRL 格式，学术英文，简洁精确\n- 数学符号统一：ρ for RSA, R² for probe\n- 不要包含实验结果数字——这是 Method section，只描述方法论\n- 每个 subsection 用 \\subsection 或 \\paragraph\n- 引用格式: \\cite{key}\n- 不要自己编造引用——只用上面列出的 citation key\n- 文件顶部加 \\section{Method}\\label{sec:method}\n\n## 参考\n已完成的 experiments.tex 在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/experiments.tex`。可以 Read 它确保术语一致。\n\n## 产出\n将完整 method.tex 写到指定路径。完成后用 `register_artifact` 注册（type=\"paper\", tags=[\"paper\", \"method\", \"latex\", \"corl2026\"]）。",
+  "context": "CoRL 2026 论文: VLA 中 action-relevant 表征的来源分析。三条 Core Claim: (1) Vision encoder dominance + geometric-functional dissociation; (2) LLM redistributes action structure (training-dependent); (3) Training routes, not creates."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper_writing:method",
+    "project": "vla-ssd",
+    "tool_groups": "['knowledge']",
+    "task_prompt": "你是 ML 论文写作 Worker。任务：撰写 CoRL 2026 论文的 **Section 2: Method** 完整 LaTeX。\n\n## 目标\n写出 `method.tex`，保存到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/method.tex`。\n\n## Section 结构（严格按此）\n\n### 2.1 Model and Data\n- OpenVLA-7B 架构: SigLIP-SO400M vision encoder → MLP projector → Llama-2 7B language backbone → action head\n- Fine-tuned on LIBERO-10 split (10 tabletop manipulation tasks, 50 human demonstrations each)\n- Evaluation on LIBERO-Goal (OOD benchmark: shared initial states, different goals)\n- **Untrained control**: `from_config()` reinitializes LLM parameters (6.74B random weights), preserves frozen SigLIP encoder (0.80B pretrained weights). This isolates LLM's learned contribution from vision encoder's pretrained geometry\n- 引用: kim2024_openvla, karamcheti2024, liu2023_libero\n\n### 2.2 Representation Extraction\n- 五个表征源:\n  (a) SigLIP+Projector — vision encoder output after MLP projection, before LLM input\n  (b) LLM image_mean — mean of image token activations at each of 32 LLM layers, capturing distributed visual information\n  (c) LLM last_preaction — final token position before action decoding (readout token) at each layer\n  (d) DINOv2 ViT-L/14 cls_token — vision-only baseline (self-supervised, no language)\n  (e) CLIP ViT-L/14 patch_mean — VL pretraining generalization control\n- 2×2 factorial design: trained/untrained × with-instruction/no-instruction\n- 引用: oquab2024_dinov2, radford2021_clip, zhai2023_siglip\n\n### 2.3 Representational Similarity Analysis (RSA)\n- Construct pairwise RDMs for representations and 7-D action space (Euclidean distance)\n- Spearman rank correlation ρ between upper-triangular RDM vectors\n- Task-level analysis: per-task RSA + cross-task aggregation\n- 95% CI from 10,000 bootstrap resamples for pairwise comparisons\n- 引用: kriegeskorte2008\n\n### 2.4 Functional Action Probes\n- MLP probe architecture: Linear→ReLU→Linear, input_dim → 256 → 7\n- Training: Adam optimizer, lr=1e-3, batch size 256, 50 epochs, early stopping patience 5\n- Predict 7-D continuous action vectors from frozen representations\n- Report mean R² across 7 action dimensions\n- Per-task train/validation splits (80/20)\n- Bootstrap paired comparison for statistical significance (10,000 resamples)\n- Also: action-delta probes (predict Δa = a_{t+1} - a_t)\n- 引用: alain2017\n\n### 2.5 Centered Kernel Alignment (CKA)\n- Linear CKA and RDM-based CKA as complementary metrics to RSA\n- RSA captures local geometric alignment (do representation distances match action distances?)\n- CKA captures global structure preservation (is overall structure retained after transformation?)\n- Note dimension mismatch caveat: linear CKA compares 4096-D representations with 7-D actions\n- 引用: kornblith2019\n\n## 写作规范\n- CoRL 格式，学术英文，简洁精确\n- 数学符号统一：ρ for RSA, R² for probe\n- 不要包含实验结果数字——这是 Method section，只描述方法论\n- 每个 subsection 用 \\subsection 或 \\paragraph\n- 引用格式: \\cite{key}\n- 不要自己编造引用——只用上面列出的 citation key\n- 文件顶部加 \\section{Method}\\label{sec:method}\n\n## 参考\n已完成的 experiments.tex 在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/experiments.tex`。可以 Read 它确保术语一致。\n\n## 产出\n将完整 method.tex 写到指定路径。完成后用 `register_artifact` 注册（type=\"paper\", tags=[\"paper\", \"method\", \"latex\", \"corl2026\"]）。",
+    "context": "CoRL 2026 论文: VLA 中 action-relevant 表征的来源分析。三条 Core Claim: (1) Vision encoder dominance + geometric-functional dissociation; (2) LLM redistributes action structure (training-dependent); (3) Training routes, not creates."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T02:28:38.143135+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_writing_method_20260516T022801\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_paper_writing_method_20260516T022801.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_writing_method_20260516T022801 started. Use get_worker_status('worker_paper_writing_method_20260516T022801') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 36962
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-16T02:28:39.098157+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "paper_writing:introduction",
+  "project": "vla-ssd",
+  "tool_groups": "['knowledge']",
+  "task_prompt": "你是 ML 论文写作 Worker。任务：撰写 CoRL 2026 论文的 **Section 1: Introduction** 完整 LaTeX。\n\n## 目标\n写出 `introduction.tex`，保存到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/introduction.tex`。\n\n## 论文核心 Story\n\n**Problem**: VLAs 通过 fine-tuning LLM on robot data 实现 impressive performance，但 action-relevant 表征从何而来？业界隐性假设 fine-tuning 注入 new representational knowledge，但无系统性验证。\n\n**Gap**: Grant et al. 2026 从 behavioral level 发现 visual pathway dominates，但未做 representational decomposition。Hou 2026 / Fei 2025 发现 VLAs largely ignore language instructions。但无人测量过 VLA 各组件（vision encoder / projector / LLM）对 action-relevant 表征结构的独立贡献。\n\n**Approach**: 首次对 VLA (OpenVLA-7B) 进行系统性 representational + functional analysis——组件级分解 + per-layer probing + action prediction probes。2×2 factorial design (trained/untrained × with/without instruction)。\n\n**Three Findings**:\n1. Frozen VL encoders provide dominant action-relevant structure: SigLIP+proj RSA ρ=0.615, CLIP ρ=0.557, both >> DINO ρ=0.388. VL pretraining is the universal source. Geometric-functional dissociation: DINO ≈ Projector in R² but << in RSA.\n2. LLM degrades distributed geometric alignment (RSA 0.615→0.501) but concentrates signal into readout token (R² 0.731 > projector 0.706). This concentration is training-dependent (untrained readout R²=0.686 < projector).\n3. Training teaches routing, not creating: distributed RSA is training-invariant (Δ=0.021, CI includes 0), but readout concentration requires training (Δ=0.045, p<0.0001). Language instructions affect neither.\n\n**Implications**: (1) Vision encoder pretraining quality is the primary lever; (2) LLM's role is information routing, not knowledge injection; (3) VL pretraining provides geometric alignment beyond raw information content.\n\n## 段落结构（5 段，严格按此）\n\n### Para 1: Problem\nVLAs (RT-2, OpenVLA) achieve impressive manipulation performance. Implicit assumption: LLM fine-tuning on robot data injects action-relevant representational knowledge. But where do action representations actually come from? Do they originate in the vision encoder's pretrained features, emerge through LLM processing, or arise from task-specific fine-tuning?\n\n### Para 2: Gap\nRecent work reveals cracks in the assumption. Grant et al. 2026 showed visual pathway dominates action generation across multiple VLA architectures. Hou 2026 and Fei 2025 demonstrated VLAs largely ignore language instructions. But these are behavioral-level findings. No work has performed representational decomposition — measuring each component's independent contribution to action-relevant structure. Without this, we cannot determine whether fine-tuning truly injects action knowledge or merely learns to route pre-existing structure.\n\n### Para 3: Approach\nWe systematically decompose OpenVLA-7B into its constituent components: frozen SigLIP vision encoder + projector, Llama-2 7B backbone at every layer, and readout token. We compare trained vs untrained LLM × with/without instruction using RSA (geometric alignment with action space) and functional probes (action prediction R²). External controls: DINOv2 (vision-only) and CLIP ViT-L/14 (VL pretrained, no VLA training).\n\n### Para 4: Findings\nThree main findings. [State each concisely with key numbers]\n\n### Para 5: Implications + contributions\nDesign implications for VLA systems. Contributions: (1) first systematic representational decomposition of a VLA, (2) discovery of geometric-functional dissociation, (3) evidence that training teaches routing not creating.\n\n## 引用 Key（只用这些）\n- brohan2023_rt2 (RT-2, VLA paradigm)\n- kim2024_openvla (OpenVLA)\n- karamcheti2024 (Prismatic/OpenVLA architecture)\n- grant2026 (behavioral visual dominance)\n- hou2026 (LangGap, VLAs ignore language) — 需要在 references.bib 中添加\n- fei2025 (LIBERO-Plus) — 需要在 references.bib 中添加\n- zhai2023_siglip (SigLIP)\n- oquab2024_dinov2 (DINOv2)\n- radford2021_clip (CLIP)\n- kriegeskorte2008 (RSA)\n- haon2025 (mechanistic interpretability, VLA)\n- liu2023_libero (LIBERO benchmark)\n\n对于 hou2026, fei2025 等尚未在 references.bib 中的引用，仍使用 \\cite{key} 引用，后续统一补充 bib 条目。\n\n## 写作规范\n- CoRL 格式，学术英文，简洁有力\n- Introduction 控制在 1-1.5 页（约 600-800 词）\n- 不要过度技术细节（留给 Method/Experiments）\n- Headline numbers 用 paper_framing.md 中的 p0_probe_v2 数值: projector R²=0.706, image_mean R²=0.683, readout R²=0.731, untrained readout R²=0.686\n- RSA 数字: SigLIP+proj 0.615, CLIP 0.557, VLA ~0.50, DINO 0.388\n- \\section{Introduction}\\label{sec:introduction} 开头\n- 最后一段可以用 enumerate 列 contributions\n\n## 参考\n可以 Read 已完成的 experiments.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/experiments.tex`\n\n## 产出\n将完整 introduction.tex 写到指定路径。完成后用 `register_artifact` 注册（type=\"paper\", tags=[\"paper\", \"introduction\", \"latex\", \"corl2026\"]）。",
+  "context": "CoRL 2026 论文: \"Where Do Action Representations Come From? Dissecting Vision-Language-Action Models\"。三条 Core Claim: (1) Vision encoder dominance + geometric-functional dissociation; (2) LLM redistributes action structure (training-dependent); (3) Training routes, not creates."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper_writing:introduction",
+    "project": "vla-ssd",
+    "tool_groups": "['knowledge']",
+    "task_prompt": "你是 ML 论文写作 Worker。任务：撰写 CoRL 2026 论文的 **Section 1: Introduction** 完整 LaTeX。\n\n## 目标\n写出 `introduction.tex`，保存到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/introduction.tex`。\n\n## 论文核心 Story\n\n**Problem**: VLAs 通过 fine-tuning LLM on robot data 实现 impressive performance，但 action-relevant 表征从何而来？业界隐性假设 fine-tuning 注入 new representational knowledge，但无系统性验证。\n\n**Gap**: Grant et al. 2026 从 behavioral level 发现 visual pathway dominates，但未做 representational decomposition。Hou 2026 / Fei 2025 发现 VLAs largely ignore language instructions。但无人测量过 VLA 各组件（vision encoder / projector / LLM）对 action-relevant 表征结构的独立贡献。\n\n**Approach**: 首次对 VLA (OpenVLA-7B) 进行系统性 representational + functional analysis——组件级分解 + per-layer probing + action prediction probes。2×2 factorial design (trained/untrained × with/without instruction)。\n\n**Three Findings**:\n1. Frozen VL encoders provide dominant action-relevant structure: SigLIP+proj RSA ρ=0.615, CLIP ρ=0.557, both >> DINO ρ=0.388. VL pretraining is the universal source. Geometric-functional dissociation: DINO ≈ Projector in R² but << in RSA.\n2. LLM degrades distributed geometric alignment (RSA 0.615→0.501) but concentrates signal into readout token (R² 0.731 > projector 0.706). This concentration is training-dependent (untrained readout R²=0.686 < projector).\n3. Training teaches routing, not creating: distributed RSA is training-invariant (Δ=0.021, CI includes 0), but readout concentration requires training (Δ=0.045, p<0.0001). Language instructions affect neither.\n\n**Implications**: (1) Vision encoder pretraining quality is the primary lever; (2) LLM's role is information routing, not knowledge injection; (3) VL pretraining provides geometric alignment beyond raw information content.\n\n## 段落结构（5 段，严格按此）\n\n### Para 1: Problem\nVLAs (RT-2, OpenVLA) achieve impressive manipulation performance. Implicit assumption: LLM fine-tuning on robot data injects action-relevant representational knowledge. But where do action representations actually come from? Do they originate in the vision encoder's pretrained features, emerge through LLM processing, or arise from task-specific fine-tuning?\n\n### Para 2: Gap\nRecent work reveals cracks in the assumption. Grant et al. 2026 showed visual pathway dominates action generation across multiple VLA architectures. Hou 2026 and Fei 2025 demonstrated VLAs largely ignore language instructions. But these are behavioral-level findings. No work has performed representational decomposition — measuring each component's independent contribution to action-relevant structure. Without this, we cannot determine whether fine-tuning truly injects action knowledge or merely learns to route pre-existing structure.\n\n### Para 3: Approach\nWe systematically decompose OpenVLA-7B into its constituent components: frozen SigLIP vision encoder + projector, Llama-2 7B backbone at every layer, and readout token. We compare trained vs untrained LLM × with/without instruction using RSA (geometric alignment with action space) and functional probes (action prediction R²). External controls: DINOv2 (vision-only) and CLIP ViT-L/14 (VL pretrained, no VLA training).\n\n### Para 4: Findings\nThree main findings. [State each concisely with key numbers]\n\n### Para 5: Implications + contributions\nDesign implications for VLA systems. Contributions: (1) first systematic representational decomposition of a VLA, (2) discovery of geometric-functional dissociation, (3) evidence that training teaches routing not creating.\n\n## 引用 Key（只用这些）\n- brohan2023_rt2 (RT-2, VLA paradigm)\n- kim2024_openvla (OpenVLA)\n- karamcheti2024 (Prismatic/OpenVLA architecture)\n- grant2026 (behavioral visual dominance)\n- hou2026 (LangGap, VLAs ignore language) — 需要在 references.bib 中添加\n- fei2025 (LIBERO-Plus) — 需要在 references.bib 中添加\n- zhai2023_siglip (SigLIP)\n- oquab2024_dinov2 (DINOv2)\n- radford2021_clip (CLIP)\n- kriegeskorte2008 (RSA)\n- haon2025 (mechanistic interpretability, VLA)\n- liu2023_libero (LIBERO benchmark)\n\n对于 hou2026, fei2025 等尚未在 references.bib 中的引用，仍使用 \\cite{key} 引用，后续统一补充 bib 条目。\n\n## 写作规范\n- CoRL 格式，学术英文，简洁有力\n- Introduction 控制在 1-1.5 页（约 600-800 词）\n- 不要过度技术细节（留给 Method/Experiments）\n- Headline numbers 用 paper_framing.md 中的 p0_probe_v2 数值: projector R²=0.706, image_mean R²=0.683, readout R²=0.731, untrained readout R²=0.686\n- RSA 数字: SigLIP+proj 0.615, CLIP 0.557, VLA ~0.50, DINO 0.388\n- \\section{Introduction}\\label{sec:introduction} 开头\n- 最后一段可以用 enumerate 列 contributions\n\n## 参考\n可以 Read 已完成的 experiments.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/experiments.tex`\n\n## 产出\n将完整 introduction.tex 写到指定路径。完成后用 `register_artifact` 注册（type=\"paper\", tags=[\"paper\", \"introduction\", \"latex\", \"corl2026\"]）。",
+    "context": "CoRL 2026 论文: \"Where Do Action Representations Come From? Dissecting Vision-Language-Action Models\"。三条 Core Claim: (1) Vision encoder dominance + geometric-functional dissociation; (2) LLM redistributes action structure (training-dependent); (3) Training routes, not creates."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T02:29:12.849028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_writing_introduction_20260516T022839\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_paper_writing_introduction_20260516T022839.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_writing_introduction_20260516T022839 started. Use get_worker_status('worker_paper_writing_introduction_20260516T022839') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 33750
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-16T02:29:14.854589+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "paper_writing:related_work",
+  "project": "vla-ssd",
+  "tool_groups": "['knowledge']",
+  "task_prompt": "你是 ML 论文写作 Worker。任务：撰写 CoRL 2026 论文的 **Related Work** 完整 LaTeX。\n\n## 目标\n写出 `related_work.tex`，保存到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/related_work.tex`。\n\n## 论文定位\n我们的工作是首次对 VLA 进行系统性 representational decomposition，分析各组件对 action-relevant 表征的贡献。三条 claim: (1) Vision encoder dominance; (2) LLM redistributes not enhances; (3) Training routes not creates.\n\n## 文献分类与定位\n\n### Category 1: Vision-Language-Action Models\n关键论文:\n- Brohan et al. 2023 (RT-2): VLA 范式起源，将 VLM 架构用于机器人控制\n- Kim et al. 2024 (OpenVLA): 我们分析的模型，开源 VLA\n- Karamcheti et al. 2024 (Prismatic): OpenVLA 的架构基础\n\n定位：我们在已建立的 VLA 范式上做 representational analysis，不是提出新 VLA。\n\n### Category 2: Behavioral Analysis of VLAs\n关键论文:\n- Grant et al. 2026 (\"Not All Features Are Created Equal\"): 跨 6 个 VLA 架构发现 visual pathway dominates action generation。Behavioral-level (activation injection, cross-task steering)。**最直接竞争者**——我们将其 behavioral finding 提升到 representation level 并做定量组件分解。他们用 OpenVLA-OFT checkpoint，我们用 standard fine-tuning（更强的测试）。\n- Hou 2026 (LangGap): VLAs achieve >95% but largely ignore language. 我们从 representation level 解释 why。\n- Fei 2025 (LIBERO-Plus): Language-conditioned evaluation。\n- Fang et al. 2026 (LIBERO-CF): Counterfactual failures, vision shortcuts。\n\n定位：这些工作在 behavioral level 发现 vision dominance + language ignored。我们提供 representational-level 解释。\n\n### Category 3: Mechanistic Interpretability of VLAs\n关键论文:\n- Haon et al. 2025 (CoRL 2025): First VLA mechanistic interpretability. Sparse semantic directions (speed, direction) in feedforward activations. Activation steering on OpenVLA + Pi0. **同 venue 同 model，必须重点区分**: 他们做 sparse semantic directions vs 我们做 geometric/functional analysis. Complementary.\n- Swann et al. 2026: SAE features on OpenVLA — majority are memorized sequences, some are interpretable motion primitives.\n- Rizzardo et al. 2026: Feature observability/controllability. Optimal-control-based steering on pi0.5/OpenVLA.\n- Molinari et al. 2025: Emergent world representations in OpenVLA. Linear/nonlinear probes.\n- Lu et al. 2025: Linear probing on OpenVLA hidden layers, >90% accuracy on symbolic states. **方法最接近**——我们通过 component-level（不仅 layer-level）分析 + causal controls (trained/untrained × instruction ablation) 区分。\n- Fang et al. 2025 (\"From Intention to Execution\"): VLM backbone has good intentions but poor execution. Fine-tuning erodes reasoning.\n\n定位：这些工作做 VLA 内部分析，但:\n- 无人做 trained vs untrained 对比\n- 无人做完整 component-level (vision encoder / projector / LLM) 分解\n- 无人分析 instruction conditioning 的来源 (input pathway vs training)\n- 我们的 geometric (RSA) + functional (probe) 双维分析是独特的\n\n### Category 4: Representational Similarity Methods\n- Kriegeskorte et al. 2008 (RSA): 方法论基础\n- Kornblith et al. 2019 (CKA): 互补 metric\n- Alain & Bengio 2017: Linear probe 框架\n\n### Category 5: Vision Encoder Representations\n- Oquab et al. 2024 (DINOv2)\n- Zhai et al. 2023 (SigLIP)\n- Radford et al. 2021 (CLIP)\n\n## 写作指南\n- 控制在 0.75-1 页（CoRL 8 页限制，Related Work 不宜太长）\n- 按主题组织（不要逐篇罗列）\n- 每个 category 用一个 \\paragraph\n- 重点突出与我们的区别（trained/untrained control + component decomposition + geometric-functional dual analysis）\n- 最后一段明确总结我们的 novelty position\n- 引用格式: \\cite{key}\n\n## 引用 Key\n已有 bib: brohan2023_rt2, kim2024_openvla, karamcheti2024, grant2026, haon2025, liu2023_libero, kriegeskorte2008, kornblith2019, alain2017, zhai2023_siglip, oquab2024_dinov2, radford2021_clip\n需补充（用 \\cite{key} 占位）: hou2026, fei2025, fang_cf2026, swann2026, rizzardo2026, molinari2025, lu2025, fang_intention2025\n\n## 产出\n将完整 related_work.tex 写到指定路径。完成后用 `register_artifact` 注册（type=\"paper\", tags=[\"paper\", \"related-work\", \"latex\", \"corl2026\"]）。",
+  "context": "CoRL 2026 论文: VLA representational decomposition。最直接竞争者: Grant et al. 2026 (behavioral level), Lu et al. 2025 (layer probing), Haon et al. 2025 (same venue, activation steering)。我们的独特贡献: trained/untrained control + component-level decomposition + geometric-functional dual analysis。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper_writing:related_work",
+    "project": "vla-ssd",
+    "tool_groups": "['knowledge']",
+    "task_prompt": "你是 ML 论文写作 Worker。任务：撰写 CoRL 2026 论文的 **Related Work** 完整 LaTeX。\n\n## 目标\n写出 `related_work.tex`，保存到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/related_work.tex`。\n\n## 论文定位\n我们的工作是首次对 VLA 进行系统性 representational decomposition，分析各组件对 action-relevant 表征的贡献。三条 claim: (1) Vision encoder dominance; (2) LLM redistributes not enhances; (3) Training routes not creates.\n\n## 文献分类与定位\n\n### Category 1: Vision-Language-Action Models\n关键论文:\n- Brohan et al. 2023 (RT-2): VLA 范式起源，将 VLM 架构用于机器人控制\n- Kim et al. 2024 (OpenVLA): 我们分析的模型，开源 VLA\n- Karamcheti et al. 2024 (Prismatic): OpenVLA 的架构基础\n\n定位：我们在已建立的 VLA 范式上做 representational analysis，不是提出新 VLA。\n\n### Category 2: Behavioral Analysis of VLAs\n关键论文:\n- Grant et al. 2026 (\"Not All Features Are Created Equal\"): 跨 6 个 VLA 架构发现 visual pathway dominates action generation。Behavioral-level (activation injection, cross-task steering)。**最直接竞争者**——我们将其 behavioral finding 提升到 representation level 并做定量组件分解。他们用 OpenVLA-OFT checkpoint，我们用 standard fine-tuning（更强的测试）。\n- Hou 2026 (LangGap): VLAs achieve >95% but largely ignore language. 我们从 representation level 解释 why。\n- Fei 2025 (LIBERO-Plus): Language-conditioned evaluation。\n- Fang et al. 2026 (LIBERO-CF): Counterfactual failures, vision shortcuts。\n\n定位：这些工作在 behavioral level 发现 vision dominance + language ignored。我们提供 representational-level 解释。\n\n### Category 3: Mechanistic Interpretability of VLAs\n关键论文:\n- Haon et al. 2025 (CoRL 2025): First VLA mechanistic interpretability. Sparse semantic directions (speed, direction) in feedforward activations. Activation steering on OpenVLA + Pi0. **同 venue 同 model，必须重点区分**: 他们做 sparse semantic directions vs 我们做 geometric/functional analysis. Complementary.\n- Swann et al. 2026: SAE features on OpenVLA — majority are memorized sequences, some are interpretable motion primitives.\n- Rizzardo et al. 2026: Feature observability/controllability. Optimal-control-based steering on pi0.5/OpenVLA.\n- Molinari et al. 2025: Emergent world representations in OpenVLA. Linear/nonlinear probes.\n- Lu et al. 2025: Linear probing on OpenVLA hidden layers, >90% accuracy on symbolic states. **方法最接近**——我们通过 component-level（不仅 layer-level）分析 + causal controls (trained/untrained × instruction ablation) 区分。\n- Fang et al. 2025 (\"From Intention to Execution\"): VLM backbone has good intentions but poor execution. Fine-tuning erodes reasoning.\n\n定位：这些工作做 VLA 内部分析，但:\n- 无人做 trained vs untrained 对比\n- 无人做完整 component-level (vision encoder / projector / LLM) 分解\n- 无人分析 instruction conditioning 的来源 (input pathway vs training)\n- 我们的 geometric (RSA) + functional (probe) 双维分析是独特的\n\n### Category 4: Representational Similarity Methods\n- Kriegeskorte et al. 2008 (RSA): 方法论基础\n- Kornblith et al. 2019 (CKA): 互补 metric\n- Alain & Bengio 2017: Linear probe 框架\n\n### Category 5: Vision Encoder Representations\n- Oquab et al. 2024 (DINOv2)\n- Zhai et al. 2023 (SigLIP)\n- Radford et al. 2021 (CLIP)\n\n## 写作指南\n- 控制在 0.75-1 页（CoRL 8 页限制，Related Work 不宜太长）\n- 按主题组织（不要逐篇罗列）\n- 每个 category 用一个 \\paragraph\n- 重点突出与我们的区别（trained/untrained control + component decomposition + geometric-functional dual analysis）\n- 最后一段明确总结我们的 novelty position\n- 引用格式: \\cite{key}\n\n## 引用 Key\n已有 bib: brohan2023_rt2, kim2024_openvla, karamcheti2024, grant2026, haon2025, liu2023_libero, kriegeskorte2008, kornblith2019, alain2017, zhai2023_siglip, oquab2024_dinov2, radford2021_clip\n需补充（用 \\cite{key} 占位）: hou2026, fei2025, fang_cf2026, swann2026, rizzardo2026, molinari2025, lu2025, fang_intention2025\n\n## 产出\n将完整 related_work.tex 写到指定路径。完成后用 `register_artifact` 注册（type=\"paper\", tags=[\"paper\", \"related-work\", \"latex\", \"corl2026\"]）。",
+    "context": "CoRL 2026 论文: VLA representational decomposition。最直接竞争者: Grant et al. 2026 (behavioral level), Lu et al. 2025 (layer probing), Haon et al. 2025 (same venue, activation steering)。我们的独特贡献: trained/untrained control + component-level decomposition + geometric-functional dual analysis。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T02:29:57.505381+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "paper_writing:discussion_conclusion",
+  "project": "vla-ssd",
+  "tool_groups": "['knowledge']",
+  "task_prompt": "你是 ML 论文写作 Worker。任务：撰写 CoRL 2026 论文的 **Discussion + Conclusion** 完整 LaTeX。\n\n## 目标\n写出两个文件:\n1. `discussion.tex` → `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/discussion.tex`\n2. `conclusion.tex` → `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/conclusion.tex`\n\n## 论文三条 Core Claims + Key Numbers\n\n**Claim 1: Vision Encoder Dominance + Geometric-Functional Dissociation**\n- RSA: SigLIP+proj 0.615 > CLIP 0.557 >> DINO 0.388. VL pretraining is the source\n- Probe R² (unified, 5-model comparison): DINO 0.634 ≈ Projector 0.630 > CLIP 0.587\n- RSA 和 R² 方向相反: VL pretraining provides geometric alignment, not extra information content\n- Projector gain: SigLIP+proj 0.615 vs CLIP 0.557, Δ=0.058 — projector adds incremental alignment\n\n**Claim 2: LLM Redistributes, Not Enhances**\n- RSA degradation: 0.615 → 0.501 (image_mean)\n- R² degradation: 0.706 → 0.683 (image_mean, p=0.001)\n- Readout concentration: R²=0.731 > projector 0.706 (p=0.001)\n- Training-dependent: untrained readout R²=0.686 < projector 0.706; trained 0.731 >> untrained 0.686 (Δ=0.045, p<0.0001)\n- CKA: monotonic increase through layers (global structure preserved), ordering reversal vs RSA\n- CKA last_preaction = 0.127 (highest) — consistent with redistribution\n\n**Claim 3: Training Routes, Not Creates**\n- Training effect on image_mean RSA: Δ=0.021, CI=[−0.031, +0.064], p=0.20 (n.s.)\n- Training effect on readout R²: Δ=0.045, CI=[0.032, 0.058], p<0.0001\n- Instruction effect: Δ=0.004 (n.s.). Random/shuffled/empty instructions all within ±0.017\n- Vision backbone identical between trained/untrained (cos_sim=1.0)\n\n## Discussion 段落结构（~1.5 页）\n\n### Para 1: Synthesis\n三个发现形成 coherent picture: vision encoder is the source, LLM is the router, training teaches the routing policy. Projector provides 96.6% of LLM's functional capacity (0.706/0.731). Information flows from frozen encoder through LLM to readout position — the LLM's learned contribution is routing, not creation.\n\n### Para 2: VL Pretraining Universality (CLIP generalization)\nCLIP ViT-L/14 (RSA=0.557) confirms VL pretraining as the universal source. Both VL encoders (SigLIP 0.615, CLIP 0.557) >> vision-only DINO (0.388). SigLIP+projector gain over raw CLIP (Δ=0.058) suggests projector adds incremental alignment, but the bulk of structure (CLIP 0.557 >> DINO 0.388) comes from VL pretraining itself.\n\n### Para 3: Geometric-Functional Dissociation\nDINO ≈ Projector in R² (0.634 vs 0.630) but << in RSA (0.388 vs 0.615). Action information (decodability) is separate from geometric alignment (structural match to action space). VL pretraining provides alignment, not extra information. Implications for encoder selection: geometric alignment matters for VLA's attention-based routing, even if raw information content is similar.\n\n### Para 4: RSA-CKA Dissociation\nRSA and CKA capture different aspects. RSA: local geometric alignment → LLM degrades. Linear CKA: global structure → LLM preserves/improves. Claim 2 explicitly scoped to \"geometric (RSA) degradation.\" CKA last_preaction highest (0.127) — still consistent with redistribution narrative. Metric choice affects narrative — multi-metric evaluation is essential.\n\n### Para 5: Practical Implications\n(1) Vision encoder pretraining quality is primary lever for action representations\n(2) For tasks depending on distributed representations, use projector output directly (R²=0.706)\n(3) LLM's value is readout concentration — relevant for action head design\n(4) Language instructions do not modulate representation structure — rethink instruction role in VLA design\n\n### Para 6: Connection to Behavioral Work\nOur representational findings explain Grant et al. 2026's behavioral results: vision dominates because frozen encoder provides action-relevant structure. \"Encoded but not used\" (their instruction finding) aligns with our instruction invariance. Our analysis reveals the mechanism: LLM learns to route, not to integrate, instruction content.\n\n### Para 7: Limitations\n- Single architecture (OpenVLA). Scope explicitly limited to \"OpenVLA-class architecture\"\n- Single benchmark suite (LIBERO). LIBERO-Spatial planned as P2 future work\n- RSA captures structural alignment, not causal contribution to policy behavior\n- Readout concentration ≠ readout is the sole action source (other pathways may contribute)\n- Linear CKA dimension mismatch (4096-D vs 7-D) affects interpretability\n\n## Conclusion 段落结构（~0.5 页，2 段）\n\n### Para 1: Summary\nFirst representational decomposition of a VLA. Three findings: (1) frozen VL-pretrained vision encoder dominates action-relevant geometric structure, (2) LLM redistributes via training-dependent readout concentration while degrading distributed geometry, (3) training teaches routing, not creating new action knowledge.\n\n### Para 2: Takeaway\nAction representations in VLAs are inherited, not learned. Design implications: invest in vision encoder pretraining, not in larger LLMs or more fine-tuning data for action knowledge. The LLM's value lies in information routing, suggesting that efficient VLA designs should optimize the routing mechanism rather than the backbone size.\n\n## 写作规范\n- CoRL 格式，学术英文\n- Discussion 有深度但不冗长\n- 所有数字必须标注来源（Claim 编号或实验 ID）\n- 不要 cherry-pick — 如果有 limitation 必须坦诚\n- 引用格式: \\cite{key}\n- Discussion: \\section{Discussion}\\label{sec:discussion}\n- Conclusion: \\section{Conclusion}\\label{sec:conclusion}\n\n## 引用 Key\ngrant2026, kim2024_openvla, karamcheti2024, brohan2023_rt2, haon2025, kriegeskorte2008, kornblith2019, zhai2023_siglip, oquab2024_dinov2, radford2021_clip, hou2026, lu2025\n\n## 参考\nRead experiments.tex at `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/experiments.tex` 确保术语和数字一致。\n\n## 产出\n将两个文件写到指定路径。完成后分别 `register_artifact` 注册。",
+  "context": "CoRL 2026 论文: VLA representational decomposition。三条 Claim 完全闭合，所有 46 实验 DONE。Discussion 需要覆盖: synthesis, CLIP generalization, geometric-functional dissociation, RSA-CKA dissociation, practical implications, connection to behavioral work, limitations。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper_writing:discussion_conclusion",
+    "project": "vla-ssd",
+    "tool_groups": "['knowledge']",
+    "task_prompt": "你是 ML 论文写作 Worker。任务：撰写 CoRL 2026 论文的 **Discussion + Conclusion** 完整 LaTeX。\n\n## 目标\n写出两个文件:\n1. `discussion.tex` → `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/discussion.tex`\n2. `conclusion.tex` → `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/conclusion.tex`\n\n## 论文三条 Core Claims + Key Numbers\n\n**Claim 1: Vision Encoder Dominance + Geometric-Functional Dissociation**\n- RSA: SigLIP+proj 0.615 > CLIP 0.557 >> DINO 0.388. VL pretraining is the source\n- Probe R² (unified, 5-model comparison): DINO 0.634 ≈ Projector 0.630 > CLIP 0.587\n- RSA 和 R² 方向相反: VL pretraining provides geometric alignment, not extra information content\n- Projector gain: SigLIP+proj 0.615 vs CLIP 0.557, Δ=0.058 — projector adds incremental alignment\n\n**Claim 2: LLM Redistributes, Not Enhances**\n- RSA degradation: 0.615 → 0.501 (image_mean)\n- R² degradation: 0.706 → 0.683 (image_mean, p=0.001)\n- Readout concentration: R²=0.731 > projector 0.706 (p=0.001)\n- Training-dependent: untrained readout R²=0.686 < projector 0.706; trained 0.731 >> untrained 0.686 (Δ=0.045, p<0.0001)\n- CKA: monotonic increase through layers (global structure preserved), ordering reversal vs RSA\n- CKA last_preaction = 0.127 (highest) — consistent with redistribution\n\n**Claim 3: Training Routes, Not Creates**\n- Training effect on image_mean RSA: Δ=0.021, CI=[−0.031, +0.064], p=0.20 (n.s.)\n- Training effect on readout R²: Δ=0.045, CI=[0.032, 0.058], p<0.0001\n- Instruction effect: Δ=0.004 (n.s.). Random/shuffled/empty instructions all within ±0.017\n- Vision backbone identical between trained/untrained (cos_sim=1.0)\n\n## Discussion 段落结构（~1.5 页）\n\n### Para 1: Synthesis\n三个发现形成 coherent picture: vision encoder is the source, LLM is the router, training teaches the routing policy. Projector provides 96.6% of LLM's functional capacity (0.706/0.731). Information flows from frozen encoder through LLM to readout position — the LLM's learned contribution is routing, not creation.\n\n### Para 2: VL Pretraining Universality (CLIP generalization)\nCLIP ViT-L/14 (RSA=0.557) confirms VL pretraining as the universal source. Both VL encoders (SigLIP 0.615, CLIP 0.557) >> vision-only DINO (0.388). SigLIP+projector gain over raw CLIP (Δ=0.058) suggests projector adds incremental alignment, but the bulk of structure (CLIP 0.557 >> DINO 0.388) comes from VL pretraining itself.\n\n### Para 3: Geometric-Functional Dissociation\nDINO ≈ Projector in R² (0.634 vs 0.630) but << in RSA (0.388 vs 0.615). Action information (decodability) is separate from geometric alignment (structural match to action space). VL pretraining provides alignment, not extra information. Implications for encoder selection: geometric alignment matters for VLA's attention-based routing, even if raw information content is similar.\n\n### Para 4: RSA-CKA Dissociation\nRSA and CKA capture different aspects. RSA: local geometric alignment → LLM degrades. Linear CKA: global structure → LLM preserves/improves. Claim 2 explicitly scoped to \"geometric (RSA) degradation.\" CKA last_preaction highest (0.127) — still consistent with redistribution narrative. Metric choice affects narrative — multi-metric evaluation is essential.\n\n### Para 5: Practical Implications\n(1) Vision encoder pretraining quality is primary lever for action representations\n(2) For tasks depending on distributed representations, use projector output directly (R²=0.706)\n(3) LLM's value is readout concentration — relevant for action head design\n(4) Language instructions do not modulate representation structure — rethink instruction role in VLA design\n\n### Para 6: Connection to Behavioral Work\nOur representational findings explain Grant et al. 2026's behavioral results: vision dominates because frozen encoder provides action-relevant structure. \"Encoded but not used\" (their instruction finding) aligns with our instruction invariance. Our analysis reveals the mechanism: LLM learns to route, not to integrate, instruction content.\n\n### Para 7: Limitations\n- Single architecture (OpenVLA). Scope explicitly limited to \"OpenVLA-class architecture\"\n- Single benchmark suite (LIBERO). LIBERO-Spatial planned as P2 future work\n- RSA captures structural alignment, not causal contribution to policy behavior\n- Readout concentration ≠ readout is the sole action source (other pathways may contribute)\n- Linear CKA dimension mismatch (4096-D vs 7-D) affects interpretability\n\n## Conclusion 段落结构（~0.5 页，2 段）\n\n### Para 1: Summary\nFirst representational decomposition of a VLA. Three findings: (1) frozen VL-pretrained vision encoder dominates action-relevant geometric structure, (2) LLM redistributes via training-dependent readout concentration while degrading distributed geometry, (3) training teaches routing, not creating new action knowledge.\n\n### Para 2: Takeaway\nAction representations in VLAs are inherited, not learned. Design implications: invest in vision encoder pretraining, not in larger LLMs or more fine-tuning data for action knowledge. The LLM's value lies in information routing, suggesting that efficient VLA designs should optimize the routing mechanism rather than the backbone size.\n\n## 写作规范\n- CoRL 格式，学术英文\n- Discussion 有深度但不冗长\n- 所有数字必须标注来源（Claim 编号或实验 ID）\n- 不要 cherry-pick — 如果有 limitation 必须坦诚\n- 引用格式: \\cite{key}\n- Discussion: \\section{Discussion}\\label{sec:discussion}\n- Conclusion: \\section{Conclusion}\\label{sec:conclusion}\n\n## 引用 Key\ngrant2026, kim2024_openvla, karamcheti2024, brohan2023_rt2, haon2025, kriegeskorte2008, kornblith2019, zhai2023_siglip, oquab2024_dinov2, radford2021_clip, hou2026, lu2025\n\n## 参考\nRead experiments.tex at `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/experiments.tex` 确保术语和数字一致。\n\n## 产出\n将两个文件写到指定路径。完成后分别 `register_artifact` 注册。",
+    "context": "CoRL 2026 论文: VLA representational decomposition。三条 Claim 完全闭合，所有 46 实验 DONE。Discussion 需要覆盖: synthesis, CLIP generalization, geometric-functional dissociation, RSA-CKA dissociation, practical implications, connection to behavioral work, limitations。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-16T02:43:41.866255+00:00_
+
+引用已修复。现在并行 spawn 4 个 Worker 写剩余论文章节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_probe_trained"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,16 @@
+{
+  "exp_id": "clustered_bootstrap_reanalysis_v2",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:54:20.684Z",
+    "updated_at": "2026-05-23T00:54:24.988Z",
+    "hypothesis": "Demo-level clustered bootstrap with fixed canonical peak layer (no winner's curse) confirms R² exit collapse is significant for VLM→VLA models (TracVLA, NORA) but not VLA→VLA (OpenVLA). Fixes statistical artifact from v1 where per-iteration np.max inflated bootstrap deltas.",
+    "parent": "clustered_bootstrap_reanalysis_v1"
+  },
+  "timestamp": "2026-05-23T00:54:25.296390+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "exp_id": "plan010_rsa_spatial",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:25:55.349Z",
+    "updated_at": "2026-05-17T08:10:02.978Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/rsa_libero_spatial.py > /root/autodl-tmp/vla-ssd/logs/rsa_spatial.log 2>&1\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "708431",
+      "log_path": "~/runs/vla-ssd/plan010_rsa_spatial.log",
+      "submitted_at": "2026-05-16T06:25:55.106Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "LIBERO-Spatial RSA cross-benchmark validation: trained VLA should show inverted-U RSA profile (peak mid-layers) consistent with LIBERO-Long, confirming representation-action alignment pattern generalizes to spatial reasoning tasks.",
+    "metrics": {
+      "trained_image_mean": {
+        "best_layer": "L14",
+        "RSA": 0.6911
+      },
+      "trained_last_preaction": {
+        "best_layer": "L15",
+        "RSA": 0.6945
+      },
+      "untrained_image_mean": {
+        "best_layer": "L0",
+        "RSA": 0.6523
+      },
+      "untrained_last_preaction": {
+        "best_layer": "L1",
+        "RSA": 0.6659
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/rsa/rsa_libero_spatial.json",
+    "log_path": "/root/autodl-tmp/vla-ssd/logs/rsa_spatial.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T08:10:03.143973+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,43 @@
+\section{Method}
+\label{sec:method}
+
+We investigate how action-relevant structure is distributed across a VLA by combining geometric analysis (RSA) with functional probes.
+
+%------------------------------------------------------------------
+\subsection{Model and Data}
+\label{sec:model_data}
+
+We study OpenVLA-7B~\cite{kim2024_openvla,karamcheti2024}, a generalist robot policy chaining three components: a frozen DinoSigLIP fused vision backbone~\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector (2{,}176-D $\to$ 4{,}096-D), and a Llama-2 7B language backbone (6.74B parameters) that autoregressively decodes 7-dimensional actions.
+We use the base checkpoint pretrained on Open X-Embodiment (no task-specific fine-tuning) and evaluate on LIBERO-Goal~\cite{liu2023_libero} (10 tabletop tasks, 50 demonstrations each).
+To isolate the LLM's contribution, we construct an untrained control by reinitializing all LLM parameters via \texttt{from\_config()} (6.74B random weights), preserving the frozen vision encoder and projector architecture.
+
+%------------------------------------------------------------------
+\subsection{Representation Extraction}
+\label{sec:repr_extraction}
+
+We extract representations from six sources spanning the VLA pipeline:
+(a)~\textbf{DinoSigLIP+Projector}---projector output (4{,}096-D), immediately before LLM processing;
+(b)~\textbf{LLM image\_mean}---mean image-token activation at each of 32 layers;
+(c)~\textbf{LLM readout}---activation at the final pre-action token position at each layer;
+(d)~\textbf{DINOv2 ViT-L/14}~\cite{oquab2024_dinov2} (\texttt{cls\_token}/\texttt{patch\_mean}), a self-supervised baseline;
+(e)~\textbf{CLIP ViT-L/14}~\cite{radford2021_clip} (\texttt{patch\_mean}), a VL-pretrained baseline;
+(f)~\textbf{Branch-split}---DINOv2 (1{,}024-D) and SigLIP (1{,}152-D) branches before fusion.
+We cross two factors: \emph{training status} (trained vs.\ untrained) and \emph{instruction presence} (with vs.\ without task description) in a $2\times 2$ factorial design.
+
+%------------------------------------------------------------------
+\subsection{Representational Similarity Analysis}
+\label{sec:rsa}
+
+We adopt RSA~\cite{kriegeskorte2008} to quantify geometric alignment between representations and the action space.
+For each task, we compute pairwise $N \times N$ representational dissimilarity matrices (RDMs) using cosine distances for representations and Euclidean distances for 7-D action vectors, using within-task observation pairs from 50 demonstrations.
+Alignment is measured via Spearman $\rho$ between the upper-triangular entries of the representation and action RDMs; higher $\rho$ indicates that representationally similar observations require similar actions.
+We report mean $\rho$ across 10 tasks with 95\% confidence intervals from 10{,}000 bootstrap resamples.
+
+%------------------------------------------------------------------
+\subsection{Functional Action Probes}
+\label{sec:probes}
+
+RSA measures geometric alignment but not decodability.
+We complement it with MLP probes~\cite{alain2017}: two-layer networks ($d_\text{in} \to 256 \to 7$) trained to predict 7-D action vectors from frozen representations (Adam, lr${}=10^{-3}$, batch 256, 50 epochs, early stopping patience 5).
+We report mean $R^2$ across action dimensions, with bootstrap paired comparisons (10{,}000 resamples) for statistical inference.
+CKA~\cite{kornblith2019} results are reported in Appendix~\ref{sec:cka_appendix}.

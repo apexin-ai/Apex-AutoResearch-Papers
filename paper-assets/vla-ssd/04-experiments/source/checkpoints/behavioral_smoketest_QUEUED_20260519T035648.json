@@ -1,0 +1,16 @@
+{
+  "exp_id": "behavioral_smoketest",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:26:07.290Z",
+    "updated_at": "2026-05-19T03:56:47.985Z",
+    "parent": "behavioral_pilot_w4",
+    "hypothesis": "Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing."
+  },
+  "timestamp": "2026-05-19T03:56:48.210511+00:00",
+  "trigger": "update_registry"
+}

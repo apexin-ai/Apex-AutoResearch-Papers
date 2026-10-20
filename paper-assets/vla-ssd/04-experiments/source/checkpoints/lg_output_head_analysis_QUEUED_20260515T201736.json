@@ -1,0 +1,16 @@
+{
+  "exp_id": "lg_output_head_analysis",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:08:58.398Z",
+    "updated_at": "2026-05-15T20:17:36.384Z",
+    "hypothesis": "D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences across layers. If training does \"shallow adaptation\", output head weight diff >> middle layer weight diff. Explains \"representations unchanged but behavior improved\".",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T20:17:36.458384+00:00",
+  "trigger": "update_registry"
+}

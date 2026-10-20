@@ -1,0 +1,16 @@
+{
+  "exp_id": "phi3v_attention_untrained",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:46:41.488Z",
+    "updated_at": "2026-05-19T17:46:55.526Z",
+    "hypothesis": "Base Phi-3-mini (before VLA training) does NOT show instruction-dominant routing at L1, confirming the pattern is learned during VLA training rather than inherited from the pretrained LLM — paralleling the llama2_base_control result for OpenVLA.",
+    "parent": "llama2_base_control"
+  },
+  "timestamp": "2026-05-19T17:46:55.734710+00:00",
+  "trigger": "update_registry"
+}

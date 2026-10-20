@@ -1,0 +1,51 @@
+{
+  "exp_id": "openvla_spatial_standardized_v1",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 2,
+    "created_at": "2026-05-22T01:02:09.424Z",
+    "updated_at": "2026-05-22T09:23:24.475Z",
+    "hypothesis": "OpenVLA (Llama-2-7B backbone) on LIBERO-Spatial standardized 5-phase pipeline (R² probing, L1 attention, cross-instruction classification, RSA, counterfactual). Both trained and untrained conditions. Filling missing R² exit, L1 attention, and untrained CF data for Spatial cell. Expect similar patterns to Goal/Object: R² exit collapse in trained, instruction-dominant L1 heads.",
+    "reproduce": {
+      "finished_at": "2026-05-22T09:17:56.531Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-22T07:21:53.751Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T07:21:57.386888+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T09:18:02.880515+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "第2次失败。Phase 6 counterfactual (wrong condition) 跑到 3000/5000 中断，无明确 Traceback。诊断 Worker: worker_diagnose_openvla_spatial_standardized_v1_20260522T092002"
+      }
+    },
+    "notes": "第2次失败。Phase 6 counterfactual (wrong condition) 跑到 3000/5000 中断，无明确 Traceback。诊断 Worker: worker_diagnose_openvla_spatial_standardized_v1_20260522T092002",
+    "spec": {
+      "command": "cuda:0 trained CF (PID 645141) + cuda:1 untrained 6-phase (PID 646058)",
+      "server": "westd-19183",
+      "gpu": "cuda:0,cuda:1",
+      "pid": "645141,646058",
+      "log_path": "/tmp/spatial_resume.log,/tmp/spatial_untrained_cuda1.log",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_spatial",
+      "data_count": "10 tasks x 10 demos x 50 timesteps",
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "notes": "Cron false alarm - PID 645135 (resume wrapper) was killed but subprocess 645141 and new 646058 are running fine"
+    }
+  },
+  "timestamp": "2026-05-22T09:23:24.752956+00:00",
+  "trigger": "update_registry"
+}

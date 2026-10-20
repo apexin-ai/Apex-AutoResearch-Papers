@@ -1,0 +1,34 @@
+{
+  "exp_id": "threecond_multiseed_r2",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:09:57.814Z",
+    "updated_at": "2026-05-18T07:39:58.189Z",
+    "hypothesis": "Multi-seed action probes will confirm that trained models yield higher per-layer R² than untrained/llama2base with low variance across seeds, validating that the single-seed result is robust.",
+    "parent": "llama2base_action_probe",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T06:44:28.859Z"
+    },
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/threecond_multiseed_probe.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/{trained,untrained,llama2base}_libero_goal/",
+      "data_count": "10 tasks x 50 demos x 3 conditions",
+      "model_name": "ActionMLPProbe(4096->256->7)",
+      "seed": "42,123,456",
+      "checkpoint_source": "pre-extracted features from openvla-7b / openvla-7b-untrained / openvla-7b-llama2base",
+      "eval_data": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/ (10 tasks, 50 demos each, 80/20 split)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T07:39:58.343843+00:00",
+  "trigger": "update_registry"
+}

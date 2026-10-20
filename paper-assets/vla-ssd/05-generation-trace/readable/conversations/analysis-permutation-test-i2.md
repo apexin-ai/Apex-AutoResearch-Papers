@@ -1,0 +1,994 @@
+# analysis permutation test I2
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/chats/worker_analysis_permutation_test_I2_20260518T150757.jsonl`
+- **Structured JSON:** [`f4d3cb59b5fc03496053.json`](../../sessions/f4/f4d3cb59b5fc03496053.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+33 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T15:13:37.635985+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T15:13:37.636324+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T15:13:37.636493+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T15:13:37.636634+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_control.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_control.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T15:13:37.636889+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 5,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 5000,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"ablation\\\": \\\"L1_dominant_24_heads_zeroed\\\",\\n    \\\"ablated_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\"\\n  },\\n  \\\"main_metrics\\\": {\\n    \\\"paired_action_mse\\\": {\\n      \\\"mean\\\": 0.04164548042967141,\\n      \\\"std\\\": 0.06394581517413622,\\n      \\\"t_stat\\\": 32.55658746950337,\\n      \\\"p_value\\\": 3.9875267301509806e-194,\\n      \\\"cohens_d\\\": 0.6511317493798869\\n    },\\n    \\\"per_dim_action_shift\\\": {\\n      \\\"means\\\": [\\n        0.0018907630960015738,\\n        0.0053060349467249435,\\n        0.007621298928714849,\\n        0.02059210950341174,\\n        0.030713564767946917,\\n        0.033881929667518705,\\n        0.2907168627450989\\n      ],\\n      \\\"stds\\\": [\\n        0.003945774709271799,\\n        0.007996728850961761,\\n        0.00855598404937074,\\n        0.02115830546884926,\\n        0.02858547485740179,\\n        0.037737860644735575,\\n        0.44894904084862064\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.7230285714285715\\n  },\\n  \\\"secondary_metrics\\\": {\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 5.07937479019165,\\n      \\\"std\\\": 4.961368560791016,\\n      \\\"per_token_position\\\": [\\n  
+…[truncated 6448 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-18T15:13:37.637085+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T15:13:37.637381+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 5,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 5000,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"ablation\\\": \\\"L1_non_instruction_8_heads_zeroed\\\",\\n    \\\"ablated_heads\\\": [\\n      3,\\n      5,\\n      6,\\n      9,\\n      13,\\n      21,\\n      24,\\n      28\\n    ],\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\"\\n  },\\n  \\\"main_metrics\\\": {\\n    \\\"paired_action_mse\\\": {\\n      \\\"mean\\\": 0.020093372221880637,\\n      \\\"std\\\": 0.04889599971931895,\\n      \\\"t_stat\\\": 20.54294140707697,\\n      \\\"p_value\\\": 8.851982198642056e-87,\\n      \\\"cohens_d\\\": 0.41085882813313845\\n    },\\n    \\\"per_dim_action_shift\\\": {\\n      \\\"means\\\": [\\n        0.00037120977075240174,\\n        0.001246604812974087,\\n        0.002426664148676048,\\n        0.007850111136374748,\\n        0.013872630138848839,\\n        0.01783035501084426,\\n        0.1407215686274514\\n      ],\\n      \\\"stds\\\": [\\n        0.0018871390276948216,\\n        0.004219931004787625,\\n        0.00600886986156851,\\n        0.01622055322496688,\\n        0.02414395054091184,\\n        0.030538640156342656,\\n        0.3441443717682476\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.2925142857142857\\n  },\\n  \\\"secondary_metrics\\\": {\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 1.691450834274292,\\n      \\\"std\\\": 3.701838731765747,\\n      \\\"per_token_position\\\": [\\n        0.011307689361274242,\\n        0.5246278047561646,\\n        1.4290825128555298,\\n        2.279294490814209,\\n        3.3201327323913574,\\n        3.7208805084228516,\\n    
+…[truncated 6335 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T15:13:37.637709+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"temporal_coherence_proxy\\\": {\\n    \\\"method\\\": \\\"proxy (per-dim CV + cross-task I^2)\\\",\\n    \\\"note\\\": \\\"Exact within-demo autocorrelation requires per-timestep trajectory data not saved in JSON. These are indirect proxies.\\\",\\n    \\\"per_dim_cv\\\": [\\n      {\\n        \\\"dim\\\": \\\"dx\\\",\\n        \\\"inst_mean_shift\\\": 0.0018907630960015738,\\n        \\\"inst_std_shift\\\": 0.003945774709271799,\\n        \\\"inst_cv\\\": 2.0868689036802075,\\n        \\\"ctrl_mean_shift\\\": 0.00037120977075240174,\\n        \\\"ctrl_std_shift\\\": 0.0018871390276948216,\\n        \\\"ctrl_cv\\\": 5.083753651930542\\n      },\\n      {\\n        \\\"dim\\\": \\\"dy\\\",\\n        \\\"inst_mean_shift\\\": 0.0053060349467249435,\\n        \\\"inst_std_shift\\\": 0.007996728850961761,\\n        \\\"inst_cv\\\": 1.5071006752222016,\\n        \\\"ctrl_mean_shift\\\": 0.001246604812974087,\\n        \\\"ctrl_std_shift\\\": 0.004219931004787625,\\n        \\\"ctrl_cv\\\": 3.385139348788431\\n      },\\n      {\\n        \\\"dim\\\": \\\"dz\\\",\\n        \\\"inst_mean_shift\\\": 0.007621298928714849,\\n        \\\"inst_std_shift\\\": 0.00855598404937074,\\n        \\\"inst_cv\\\": 1.1226411835303123,\\n        \\\"ctrl_mean_shift\\\": 0.002426664148676048,\\n        \\\"ctrl_std_shift\\\": 0.00600886986156851,\\n        \\\"ctrl_cv\\\": 2.476185204634461\\n      },\\n      {\\n        \\\"dim\\\": \\\"rx\\\",\\n        \\\"inst_mean_shift\\\": 0.02059210950341174,\\n        \\\"inst_std_shift\\\": 0.02115830546884926,\\n        \\\"inst_cv\\\": 1.027495772851427,\\n        \\\"ctrl_mean_shift\\\": 0.007850111136374748,\\n        \\\"ctrl_std_shift\\\": 0.01622055322496688,\\n        \\\"ctrl_cv\\\": 2.066283259329457\\n      },\\n      {\\n        \\\"dim\\\": \\\"ry\\\",\\n        \\\"inst_mean_shift\\\": 0.030713564767946917,\\n        \\\"inst_std_shift\\\": 0.02858547485740179,\\n     
+…[truncated 6244 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T15:13:37.638095+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/permutation_test_I2.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Permutation test for CV and I^2 differences between instruction and control ablation.\n\nTests whether the observed CV and I^2 differences could arise from random\ngroup assignment, using exact paired permutation (swap labels within each\ndimension/task pair).\n\"\"\"\n\nimport json\nimport numpy as np\nfrom itertools import product\n\n\ndef compute_I2(d_values, n_per_task=500):\n    \"\"\"Cochran's Q and I^2 using w_i = n weights (matches original analysis).\"\"\"\n    d = np.array(d_values, dtype=np.float64)\n    k = len(d)\n    d_mean = d.mean()\n    Q = n_per_task * np.sum((d - d_mean) ** 2)\n    I2 = max(0.0, (Q - (k - 1)) / Q) if Q > 0 else 0.0\n    return Q, I2\n\n\nwith open(\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\") as f:\n    ext = json.load(f)\n\n# ---------- extract data ----------\nper_dim_cv = ext[\"temporal_coherence_proxy\"][\"per_dim_cv\"]\ninst_cvs_7d = [d[\"inst_cv\"] for d in per_dim_cv]\nctrl_cvs_7d = [d[\"ctrl_cv\"] for d in per_dim_cv]\ninst_cvs_6d = inst_cvs_7d[:6]\nctrl_cvs_6d = ctrl_cvs_7d[:6]\n\ncross_task = ext[\"temporal_coherence_proxy\"][\"cross_task_heterogeneity\"]\ninst_ds = cross_task[\"instruction_ablation\"][\"per_task_d\"]\nctrl_ds = cross_task[\"control_ablation\"][\"per_task_d\"]\n\n# ---------- observed values ----------\nobs_cv_inst = np.mean(inst_cvs_6d)\nobs_cv_ctrl = np.mean(ctrl_cvs_6d)\n_, obs_I2_inst = compute_I2(inst_ds)\n_, obs_I2_ctrl = compute_I2(ctrl_ds)\n\nobs_cv_diff = obs_cv_ctrl - obs_cv_inst   # ctrl > inst\nobs_I2_diff = obs_I2_inst - obs_I2_ctrl    # inst > ctrl\n\nprint(\"=== Observed ===\")\nprint(f\"CV  inst={obs_cv_inst:.4f}  ctrl={obs_cv_ctrl:.4f}  diff={obs_cv_diff:.4f}\")\nprint(f\"I2  inst={obs_I2_inst:.4f}  ctrl={obs_I2_ctrl:.4f}  diff={obs_I2_diff:.4f}\")\n\n# ==========================================================\n# 1. Exact paired permutation — CV (6 continuous dims, 2^6=64)\n# ==========================================================\nn_dims = len(inst_cvs_6d)\ncv_null = []\nfor perm in product([False, True], repeat=n_dims):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_6d[i]); pc.append(inst_cvs_6d[i])\n        else:\n            pi.append(inst_cvs_6d[i]); pc.append(ctrl_cvs_6d[i])\n    cv_null.append(np.mean(pc) - np.mean(pi))\ncv_null = np.array(cv_null)\np_cv_exact = np.mean(cv_null >= obs_cv_diff)\n\nprint(f\"\\n--- CV exact paired permutation (2^{n_dims}={2**n_dims}) ---\")\nprint(f\"Null: mean={cv_null.mean():.4f} std={cv_null.std():.4f}\")\nprint(f\"Observed={obs_cv_diff:.4f}  p={p_cv_exact:.6f}  sig={p_cv_exact<0.05}\")\n\n# sensitivity: 7 dims\ncv_null_7d = []\nfor perm in product([False, True], repeat=7):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_7d[i]); pc.append(inst_cvs_7d[i])\n        else:\n            pi.append(inst_cvs_7d[i]); pc.append(ctrl_cvs_7d[i])\n    cv_null_7d.append(np.mean(pc) - np.mean(pi))\ncv_null_7d = np.array(cv_null_7d)\nobs_cv_diff_7d = np.mean(ctrl_cvs_7d) - np.mean(inst_cvs_7d)\np_cv_7d = np.mean(cv_null_7d >= obs_cv_diff_7d)\nprint(f\"[7d sensitivity] diff={obs_cv_diff_7d:.4f}  p={p_cv_7d:.6f}\")\n\n# ==========================================================\n# 2. Exact paired permutation — I^2 (5 tasks, 2^5=32)\n# ==========================================================\nn_tasks = len(inst_ds)\nI2_null = []\nfor perm in product([False, True], repeat=n_tasks):\n    pi_d, pc_d = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi_d.append(ctrl_ds[i]); pc_d.append(inst_ds[i])\n        else:\n            pi_d.append(inst_ds[i]); pc_d.append(ctrl_ds[i])\n    _, i2_pi = compute_I2(pi_d)\n    _, i2_pc = compute_I2(pc_d)\n    I2_null.append(i2_pi - i2_pc)\nI2_null = np.array(I2_null)\np_I2_exact = np.mean(I2_null >= obs_I2_diff)\n\nprint(f\"\\n--- I^2 exact paired permutation (2^{n_tasks}={2**n_tasks}) ---\")\nprint(f\"Null: mean={I2_null.mean():.4f} std={I2_null.std():.4f}\")\nprint(f\"Observed={obs_I2_diff:.4f}  p={p_I2_exact:.6f}  sig={p_I2_exact<0.05}\")\n\n# ==========================================================\n# 3. Monte-Carlo unpaired permutation (10k) for higher resolution\n# ==========================================================\nrng = np.random.default_rng(42)\nN_MC = 10_000\n\n# CV: pool 12 values, split 6+6\nall_cvs = inst_cvs_6d + ctrl_cvs_6d\nmc_cv = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(12)\n    mc_cv[k] = np.mean([all_cvs[i] for i in idx[6:]]) - np.mean([all_cvs[i] for i in idx[:6]])\np_cv_mc = float(np.mean(mc_cv >= obs_cv_diff))\n\n# I^2: pool 10 d-values, split 5+5\nall_ds = inst_ds + ctrl_ds\nmc_I2 = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(10)\n    g1 = [all_ds[i] for i in idx[:5]]\n    g2 = [all_ds[i] for i in idx[5:]]\n    _, i2_1 = compute_I2(g1)\n    _, i2_2 = compute_I2(g2)\n    mc_I2[k] = i2_1 - i2_2\np_I2_mc = float(np.mean(np.abs(mc_I2) >= abs(obs_I2_diff)))\n\nprint(f\"\\n--- Monte-Carlo unpaired ({N_MC} iterations) ---\")\nprint(f\"CV:  null mean={mc_cv.mean():.4f} std={mc_cv.std():.4f}  p={p_cv_mc:.4f}\")\nprint(f\"I^2: null mean={mc_I2.mean():.4f} std={mc_I2.std():.4f}  p(two-sided)={p_I2_mc:.4f}\")\n\n# ==========================================================\n# Build output\n# ==========================================================\nconclusion_parts = []\nif p_cv_exact < 0.05:\n    conclusion_parts.append(\n        f\"CV difference significant (exact paired p={p_cv_exact:.4f}): \"\n        f\"instruction CV ({obs_cv_inst:.2f}) < control CV ({obs_cv_ctrl:.2f}), \"\n        f\"instruction heads produce more uniform perturbation across action dims.\"\n    )\nelse:\n    conclusion_parts.append(\n        f\"CV difference not significant at alpha=0.05 (exact paired p={p_cv_exact:.4f}).\"\n    )\n\nif p_I2_exact < 0.05:\n    conclusion_parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f}). \"\n        f\"Limited resolution with 2^5=32 permutations.\"\n    )\nelse:\n    conclusion_parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f}). \"\n        f\"Limited resolution with 2^5=32 permutations.\"\n    )\n\nconclusion_parts.append(\n    f\"MC unpaired: CV p={p_cv_mc:.4f}, I^2 p(two-sided)={p_I2_mc:.4f}.\"\n)\n\nconclusion = \" \".join(conclusion_parts)\nprint(f\"\\nConclusion: {conclusion}\")\n\nresults = {\n    \"method\": \"exact_paired_permutation_test\",\n    \"data_source\": {\n        \"instruction_ablation\": \"24 heads, per-dim CV from 6 continuous dims, per-task d from 5 tasks\",\n        \"control_ablation\": \"8 heads, same dimensions and tasks\",\n    },\n    \"observed\": {\n        \"cv_inst\": float(obs_cv_inst),\n        \"cv_ctrl\": float(obs_cv_ctrl),\n        \"cv_diff_ctrl_minus_inst\": float(obs_cv_diff),\n        \"I2_inst\": float(obs_I2_inst),\n        \"I2_ctrl\": float(obs_I2_ctrl),\n        \"I2_diff_inst_minus_ctrl\": float(obs_I2_diff),\n    },\n    \"cv_test_exact_paired\": {\n        \"n_dims\": n_dims,\n        \"n_permutations\": 2 ** n_dims,\n        \"null_mean\": float(cv_null.mean()),\n        \"null_std\": float(cv_null.std()),\n        \"p_value_one_sided\": float(p_cv_exact),\n        \"significant_005\": bool(p_cv_exact < 0.05),\n    },\n    \"cv_test_7d_sensitivity\": {\n        \"observed_diff\": float(obs_cv_diff_7d),\n        \"p_value\": float(p_cv_7d),\n    },\n    \"I2_test_exact_paired\": {\n        \"n_tasks\": n_tasks,\n        \"n_permutations\": 2 ** n_tasks,\n        \"null_mean\": float(I2_null.mean()),\n        \"null_std\": float(I2_null.std()),\n        \"p_value_one_sided\": float(p_I2_exact),\n        \"significant_005\": bool(p_I2_exact < 0.05),\n        \"note\": f\"Min possible p = 1/{2**n_tasks} = {1/2**n_tasks:.4f}\",\n    },\n    \"monte_carlo_unpaired\": {\n        \"n_iterations\": N_MC,\n        \"seed\": 42,\n        \"cv_p_value\": float(p_cv_mc),\n        \"I2_p_value_two_sided\": float(p_I2_mc),\n    },\n    \"conclusion\": conclusion,\n}\n\nout = \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\"\nwith open(out, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved to {out}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/permutation_test_I2.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Permutation test for CV and I^2 differences between instruction and control ablation.\n\nTests whether the observed CV and I^2 differences could arise from random\ngroup assignment, using exact paired permutation (swap labels within each\ndimension/task pair).\n\"\"\"\n\nimport json\nimport numpy as np\nfrom itertools import product\n\n\ndef compute_I2(d_values, n_per_task=500):\n    \"\"\"Cochran's Q and I^2 using w_i = n weights (matches original analysis).\"\"\"\n    d = np.array(d_values, dtype=np.float64)\n    k = len(d)\n    d_mean = d.mean()\n    Q = n_per_task * np.sum((d - d_mean) ** 2)\n    I2 = max(0.0, (Q - (k - 1)) / Q) if Q > 0 else 0.0\n    return Q, I2\n\n\nwith open(\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\") as f:\n    ext = json.load(f)\n\n# ---------- extract data ----------\nper_dim_cv = ext[\"temporal_coherence_proxy\"][\"per_dim_cv\"]\ninst_cvs_7d = [d[\"inst_cv\"] for d in per_dim_cv]\nctrl_cvs_7d = [d[\"ctrl_cv\"] for d in per_dim_cv]\ninst_cvs_6d = inst_cvs_7d[:6]\nctrl_cvs_6d = ctrl_cvs_7d[:6]\n\ncross_task = ext[\"temporal_coherence_proxy\"][\"cross_task_heterogeneity\"]\ninst_ds = cross_task[\"instruction_ablation\"][\"per_task_d\"]\nctrl_ds = cross_task[\"control_ablation\"][\"per_task_d\"]\n\n# ---------- observed values ----------\nobs_cv_inst = np.mean(inst_cvs_6d)\nobs_cv_ctrl = np.mean(ctrl_cvs_6d)\n_, obs_I2_inst = compute_I2(inst_ds)\n_, obs_I2_ctrl = compute_I2(ctrl_ds)\n\nobs_cv_diff = obs_cv_ctrl - obs_cv_inst   # ctrl > inst\nobs_I2_diff = obs_I2_inst - obs_I2_ctrl    # inst > ctrl\n\nprint(\"=== Observed ===\")\nprint(f\"CV  inst={obs_cv_inst:.4f}  ctrl={obs_cv_ctrl:.4f}  diff={obs_cv_diff:.4f}\")\nprint(f\"I2  inst={obs_I2_inst:.4f}  ctrl={obs_I2_ctrl:.4f}  diff={obs_I2_diff:.4f}\")\n\n# ==========================================================\n# 1. Exact paired permutation — CV (6 continuous dims, 2^6=64)\n# ==========================================================\nn_dims = len(inst_cvs_6d)\ncv_null = []\nfor perm in product([False, True], repeat=n_dims):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_6d[i]); pc.append(inst_cvs_6d[i])\n        else:\n            pi.append(inst_cvs_6d[i]); pc.append(ctrl_cvs_6d[i])\n    cv_null.append(np.mean(pc) - np.mean(pi))\ncv_null = np.array(cv_null)\np_cv_exact = np.mean(cv_null >= obs_cv_diff)\n\nprint(f\"\\n--- CV exact paired permutation (2^{n_dims}={2**n_dims}) ---\")\nprint(f\"Null: mean={cv_null.mean():.4f} std={cv_null.std():.4f}\")\nprint(f\"Observed={obs_cv_diff:.4f}  p={p_cv_exact:.6f}  sig={p_cv_exact<0.05}\")\n\n# sensitivity: 7 dims\ncv_null_7d = []\nfor perm in product([False, True], repeat=7):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_7d[i]); pc.append(inst_cvs_7d[i])\n        else:\n            pi.append(inst_cvs_7d[i]); pc.append(ctrl_cvs_7d[i])\n    cv_null_7d.append(np.mean(pc) - np.mean(pi))\ncv_null_7d = np.array(cv_null_7d)\nobs_cv_diff_7d = np.mean(ctrl_cvs_7d) - np.mean(inst_cvs_7d)\np_cv_7d = np.mean(cv_null_7d >= obs_cv_diff_7d)\nprint(f\"[7d sensitivity] diff={obs_cv_diff_7d:.4f}  p={p_cv_7d:.6f}\")\n\n# ==========================================================\n# 2. Exact paired permutation — I^2 (5 tasks, 2^5=32)\n# ==========================================================\nn_tasks = len(inst_ds)\nI2_null = []\nfor perm in product([False, True], repeat=n_tasks):\n    pi_d, pc_d = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi_d.append(ctrl_ds[i]); pc_d.append(inst_ds[i])\n        else:\n            pi_d.append(inst_ds[i]); pc_d.append(ctrl_ds[i])\n    _, i2_pi = compute_I2(pi_d)\n    _, i2_pc = compute_I2(pc_d)\n    I2_null.append(i2_pi - i2_pc)\nI2_null = np.array(I2_null)\np_I2_exact = np.mean(I2_null >= obs_I2_diff)\n\nprint(f\"\\n--- I^2 exact paired permutation (2^{n_tasks}={2**n_tasks}) ---\")\nprint(f\"Null: mean={I2_null.mean():.4f} std={I2_null.std():.4f}\")\nprint(f\"Observed={obs_I2_diff:.4f}  p={p_I2_exact:.6f}  sig={p_I2_exact<0.05}\")\n\n# ==========================================================\n# 3. Monte-Carlo unpaired permutation (10k) for higher resolution\n# ==========================================================\nrng = np.random.default_rng(42)\nN_MC = 10_000\n\n# CV: pool 12 values, split 6+6\nall_cvs = inst_cvs_6d + ctrl_cvs_6d\nmc_cv = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(12)\n    mc_cv[k] = np.mean([all_cvs[i] for i in idx[6:]]) - np.mean([all_cvs[i] for i in idx[:6]])\np_cv_mc = float(np.mean(mc_cv >= obs_cv_diff))\n\n# I^2: pool 10 d-values, split 5+5\nall_ds = inst_ds + ctrl_ds\nmc_I2 = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(10)\n    g1 = [all_ds[i] for i in idx[:5]]\n    g2 = [all_ds[i] for i in idx[5:]]\n    _, i2_1 = compute_I2(g1)\n    _, i2_2 = compute_I2(g2)\n    mc_I2[k] = i2_1 - i2_2\np_I2_mc = float(np.mean(np.abs(mc_I2) >= abs(obs_I2_diff)))\n\nprint(f\"\\n--- Monte-Carlo unpaired ({N_MC} iterations) ---\")\nprint(f\"CV:  null mean={mc_cv.mean():.4f} std={mc_cv.std():.4f}  p={p_cv_mc:.4f}\")\nprint(f\"I^2: null mean={mc_I2.mean():.4f} std={mc_I2.std():.4f}  p(two-sided)={p_I2_mc:.4f}\")\n\n# ==========================================================\n# Build output\n# ==========================================================\nconclusion_parts = []\nif p_cv_exact < 0.05:\n    conclusion_parts.append(\n        f\"CV difference significant (exact paired p={p_cv_exact:.4f}): \"\n        f\"instruction CV ({obs_cv_inst:.2f}) < control CV ({obs_cv_ctrl:.2f}), \"\n        f\"instruction heads produce more uniform perturbation across action dims.\"\n    )\nelse:\n    conclusion_parts.append(\n        f\"CV difference not significant at alpha=0.05 (exact paired p={p_cv_exact:.4f}).\"\n    )\n\nif p_I2_exact < 0.05:\n    conclusion_parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f}). \"\n        f\"Limited resolution with 2^5=32 permutations.\"\n    )\nelse:\n    conclusion_parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f}). \"\n        f\"Limited resolution with 2^5=32 permutations.\"\n    )\n\nconclusion_parts.append(\n    f\"MC unpaired: CV p={p_cv_mc:.4f}, I^2 p(two-sided)={p_I2_mc:.4f}.\"\n)\n\nconclusion = \" \".join(conclusion_parts)\nprint(f\"\\nConclusion: {conclusion}\")\n\nresults = {\n    \"method\": \"exact_paired_permutation_test\",\n    \"data_source\": {\n        \"instruction_ablation\": \"24 heads, per-dim CV from 6 continuous dims, per-task d from 5 tasks\",\n        \"control_ablation\": \"8 heads, same dimensions and tasks\",\n    },\n    \"observed\": {\n        \"cv_inst\": float(obs_cv_inst),\n        \"cv_ctrl\": float(obs_cv_ctrl),\n        \"cv_diff_ctrl_minus_inst\": float(obs_cv_diff),\n        \"I2_inst\": float(obs_I2_inst),\n        \"I2_ctrl\": float(obs_I2_ctrl),\n        \"I2_diff_inst_minus_ctrl\": float(obs_I2_diff),\n    },\n    \"cv_test_exact_paired\": {\n        \"n_dims\": n_dims,\n        \"n_permutations\": 2 ** n_dims,\n        \"null_mean\": float(cv_null.mean()),\n        \"null_std\": float(cv_null.std()),\n        \"p_value_one_sided\": float(p_cv_exact),\n        \"significant_005\": bool(p_cv_exact < 0.05),\n    },\n    \"cv_test_7d_sensitivity\": {\n        \"observed_diff\": float(obs_cv_diff_7d),\n        \"p_value\": float(p_cv_7d),\n    },\n    \"I2_test_exact_paired\": {\n        \"n_tasks\": n_tasks,\n        \"n_permutations\": 2 ** n_tasks,\n        \"null_mean\": float(I2_null.mean()),\n        \"null_std\": float(I2_null.std()),\n        \"p_value_one_sided\": float(p_I2_exact),\n        \"significant_005\": bool(p_I2_exact < 0.05),\n        \"note\": f\"Min possible p = 1/{2**n_tasks} = {1/2**n_tasks:.4f}\",\n    },\n    \"monte_carlo_unpaired\": {\n        \"n_iterations\": N_MC,\n        \"seed\": 42,\n        \"cv_p_value\": float(p_cv_mc),\n        \"I2_p_value_two_sided\": float(p_I2_mc),\n    },\n    \"conclusion\": conclusion,\n}\n\nout = \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\"\nwith open(out, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved to {out}\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T15:13:37.638386+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/permutation_test_I2.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T15:13:37.638557+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/permutation_test_I2.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Permutation test for CV and I^2 differences between instruction and control ablation.\n\nTests whether the observed CV and I^2 differences could arise from random\ngroup assignment, using exact paired permutation (swap labels within each\ndimension/task pair).\n\"\"\"\n\nimport json\nimport numpy as np\nfrom itertools import product\n\n\ndef compute_I2(d_values, n_per_task=500):\n    \"\"\"Cochran's Q and I^2 using w_i = n weights (matches original analysis).\"\"\"\n    d = np.array(d_values, dtype=np.float64)\n    k = len(d)\n    d_mean = d.mean()\n    Q = n_per_task * np.sum((d - d_mean) ** 2)\n    I2 = max(0.0, (Q - (k - 1)) / Q) if Q > 0 else 0.0\n    return Q, I2\n\n\nwith open(\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\") as f:\n    ext = json.load(f)\n\n# ---------- extract data ----------\nper_dim_cv = ext[\"temporal_coherence_proxy\"][\"per_dim_cv\"]\ninst_cvs_7d = [d[\"inst_cv\"] for d in per_dim_cv]\nctrl_cvs_7d = [d[\"ctrl_cv\"] for d in per_dim_cv]\ninst_cvs_6d = inst_cvs_7d[:6]\nctrl_cvs_6d = ctrl_cvs_7d[:6]\n\ncross_task = ext[\"temporal_coherence_proxy\"][\"cross_task_heterogeneity\"]\ninst_ds = cross_task[\"instruction_ablation\"][\"per_task_d\"]\nctrl_ds = cross_task[\"control_ablation\"][\"per_task_d\"]\n\n# ---------- observed values ----------\nobs_cv_inst = np.mean(inst_cvs_6d)\nobs_cv_ctrl = np.mean(ctrl_cvs_6d)\n_, obs_I2_inst = compute_I2(inst_ds)\n_, obs_I2_ctrl = compute_I2(ctrl_ds)\n\nobs_cv_diff = obs_cv_ctrl - obs_cv_inst\nobs_I2_diff = obs_I2_inst - obs_I2_ctrl\n\nprint(\"=== Observed ===\")\nprint(f\"CV  inst={obs_cv_inst:.4f}  ctrl={obs_cv_ctrl:.4f}  diff={obs_cv_diff:.4f}\")\nprint(f\"I2  inst={obs_I2_inst:.4f}  ctrl={obs_I2_ctrl:.4f}  diff={obs_I2_diff:.4f}\")\n\n# ==========================================================\n# 1. Exact paired permutation - CV (6 continuous dims, 2^6=64)\n# ==========================================================\nn_dims = len(inst_cvs_6d)\ncv_null = []\nfor perm in product([False, True], repeat=n_dims):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_6d[i]); pc.append(inst_cvs_6d[i])\n        else:\n            pi.append(inst_cvs_6d[i]); pc.append(ctrl_cvs_6d[i])\n    cv_null.append(np.mean(pc) - np.mean(pi))\ncv_null = np.array(cv_null)\np_cv_exact = float(np.mean(cv_null >= obs_cv_diff))\n\nprint(f\"\\n--- CV exact paired permutation (2^{n_dims}={2**n_dims}) ---\")\nprint(f\"Null: mean={cv_null.mean():.4f} std={cv_null.std():.4f}\")\nprint(f\"Observed={obs_cv_diff:.4f}  p={p_cv_exact:.6f}  sig={p_cv_exact<0.05}\")\n\n# sensitivity: 7 dims\ncv_null_7d = []\nfor perm in product([False, True], repeat=7):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_7d[i]); pc.append(inst_cvs_7d[i])\n        else:\n            pi.append(inst_cvs_7d[i]); pc.append(ctrl_cvs_7d[i])\n    cv_null_7d.append(np.mean(pc) - np.mean(pi))\ncv_null_7d = np.array(cv_null_7d)\nobs_cv_diff_7d = np.mean(ctrl_cvs_7d) - np.mean(inst_cvs_7d)\np_cv_7d = float(np.mean(cv_null_7d >= obs_cv_diff_7d))\nprint(f\"[7d sensitivity] diff={obs_cv_diff_7d:.4f}  p={p_cv_7d:.6f}\")\n\n# ==========================================================\n# 2. Exact paired permutation - I^2 (5 tasks, 2^5=32)\n# ==========================================================\nn_tasks = len(inst_ds)\nI2_null = []\nfor perm in product([False, True], repeat=n_tasks):\n    pi_d, pc_d = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi_d.append(ctrl_ds[i]); pc_d.append(inst_ds[i])\n        else:\n            pi_d.append(inst_ds[i]); pc_d.append(ctrl_ds[i])\n    _, i2_pi = compute_I2(pi_d)\n    _, i2_pc = compute_I2(pc_d)\n    I2_null.append(i2_pi - i2_pc)\nI2_null = np.array(I2_null)\np_I2_exact = float(np.mean(I2_null >= obs_I2_diff))\n\nprint(f\"\\n--- I^2 exact paired permutation (2^{n_tasks}={2**n_tasks}) ---\")\nprint(f\"Null: mean={I2_null.mean():.4f} std={I2_null.std():.4f}\")\nprint(f\"Observed={obs_I2_diff:.4f}  p={p_I2_exact:.6f}  sig={p_I2_exact<0.05}\")\n\n# ==========================================================\n# 3. Monte-Carlo unpaired permutation (10k)\n# ==========================================================\nrng = np.random.default_rng(42)\nN_MC = 10_000\n\nall_cvs = inst_cvs_6d + ctrl_cvs_6d\nmc_cv = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(12)\n    mc_cv[k] = np.mean([all_cvs[i] for i in idx[6:]]) - np.mean([all_cvs[i] for i in idx[:6]])\np_cv_mc = float(np.mean(mc_cv >= obs_cv_diff))\n\nall_ds = inst_ds + ctrl_ds\nmc_I2 = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(10)\n    g1 = [all_ds[i] for i in idx[:5]]\n    g2 = [all_ds[i] for i in idx[5:]]\n    _, i2_1 = compute_I2(g1)\n    _, i2_2 = compute_I2(g2)\n    mc_I2[k] = i2_1 - i2_2\np_I2_mc = float(np.mean(np.abs(mc_I2) >= abs(obs_I2_diff)))\n\nprint(f\"\\n--- Monte-Carlo unpaired ({N_MC} iterations) ---\")\nprint(f\"CV:  null mean={mc_cv.mean():.4f} std={mc_cv.std():.4f}  p={p_cv_mc:.4f}\")\nprint(f\"I^2: null mean={mc_I2.mean():.4f} std={mc_I2.std():.4f}  p(two-sided)={p_I2_mc:.4f}\")\n\n# ==========================================================\n# Build conclusion and save\n# ==========================================================\nparts = []\nif p_cv_exact < 0.05:\n    parts.append(\n        f\"CV difference significant (exact paired p={p_cv_exact:.4f}): \"\n        f\"instruction CV ({obs_cv_inst:.2f}) < control CV ({obs_cv_ctrl:.2f}), \"\n        f\"instruction heads produce more uniform perturbation across action dims.\"\n    )\nelse:\n    parts.append(f\"CV difference not significant (exact paired p={p_cv_exact:.4f}).\")\n\nif p_I2_exact < 0.05:\n    parts.append(\n        f\"I^2 difference significant (exact paired p={p_I2_exact:.4f}): \"\n        f\"instruction I^2 ({obs_I2_inst:.2f}) > control I^2 ({obs_I2_ctrl:.2f}).\"\n    )\nelse:\n    parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f} with {2**n_tasks} permutations).\"\n    )\n\nparts.append(f\"MC unpaired: CV p={p_cv_mc:.4f}, I^2 p(two-sided)={p_I2_mc:.4f}.\")\nconclusion = \" \".join(parts)\nprint(f\"\\nConclusion: {conclusion}\")\n\nresults = {\n    \"method\": \"exact_paired_permutation_test\",\n    \"data_source\": {\n        \"instruction_ablation\": \"24 heads, per-dim CV from 6 continuous dims, per-task d from 5 tasks\",\n        \"control_ablation\": \"8 heads, same dimensions and tasks\",\n    },\n    \"observed\": {\n        \"cv_inst\": float(obs_cv_inst),\n        \"cv_ctrl\": float(obs_cv_ctrl),\n        \"cv_diff_ctrl_minus_inst\": float(obs_cv_diff),\n        \"I2_inst\": float(obs_I2_inst),\n        \"I2_ctrl\": float(obs_I2_ctrl),\n        \"I2_diff_inst_minus_ctrl\": float(obs_I2_diff),\n    },\n    \"cv_test_exact_paired\": {\n        \"n_dims\": n_dims,\n        \"n_permutations\": 2 ** n_dims,\n        \"null_mean\": float(cv_null.mean()),\n        \"null_std\": float(cv_null.std()),\n        \"p_value_one_sided\": float(p_cv_exact),\n        \"significant_005\": bool(p_cv_exact < 0.05),\n    },\n    \"cv_test_7d_sensitivity\": {\n        \"observed_diff\": float(obs_cv_diff_7d),\n        \"p_value\": float(p_cv_7d),\n    },\n    \"I2_test_exact_paired\": {\n        \"n_tasks\": n_tasks,\n        \"n_permutations\": 2 ** n_tasks,\n        \"null_mean\": float(I2_null.mean()),\n        \"null_std\": float(I2_null.std()),\n        \"p_value_one_sided\": float(p_I2_exact),\n        \"significant_005\": bool(p_I2_exact < 0.05),\n        \"note\": f\"Min possible p = 1/{2**n_tasks} = {1/2**n_tasks:.4f}\",\n    },\n    \"monte_carlo_unpaired\": {\n        \"n_iterations\": N_MC,\n        \"seed\": 42,\n        \"cv_p_value\": float(p_cv_mc),\n        \"I2_p_value_two_sided\": float(p_I2_mc),\n    },\n    \"conclusion\": conclusion,\n}\n\nout = \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\"\nwith open(out, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved to {out}\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/permutation_test_I2.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Permutation test for CV and I^2 differences between instruction and control ablation.\n\nTests whether the observed CV and I^2 differences could arise from random\ngroup assignment, using exact paired permutation (swap labels within each\ndimension/task pair).\n\"\"\"\n\nimport json\nimport numpy as np\nfrom itertools import product\n\n\ndef compute_I2(d_values, n_per_task=500):\n    \"\"\"Cochran's Q and I^2 using w_i = n weights (matches original analysis).\"\"\"\n    d = np.array(d_values, dtype=np.float64)\n    k = len(d)\n    d_mean = d.mean()\n    Q = n_per_task * np.sum((d - d_mean) ** 2)\n    I2 = max(0.0, (Q - (k - 1)) / Q) if Q > 0 else 0.0\n    return Q, I2\n\n\nwith open(\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\") as f:\n    ext = json.load(f)\n\n# ---------- extract data ----------\nper_dim_cv = ext[\"temporal_coherence_proxy\"][\"per_dim_cv\"]\ninst_cvs_7d = [d[\"inst_cv\"] for d in per_dim_cv]\nctrl_cvs_7d = [d[\"ctrl_cv\"] for d in per_dim_cv]\ninst_cvs_6d = inst_cvs_7d[:6]\nctrl_cvs_6d = ctrl_cvs_7d[:6]\n\ncross_task = ext[\"temporal_coherence_proxy\"][\"cross_task_heterogeneity\"]\ninst_ds = cross_task[\"instruction_ablation\"][\"per_task_d\"]\nctrl_ds = cross_task[\"control_ablation\"][\"per_task_d\"]\n\n# ---------- observed values ----------\nobs_cv_inst = np.mean(inst_cvs_6d)\nobs_cv_ctrl = np.mean(ctrl_cvs_6d)\n_, obs_I2_inst = compute_I2(inst_ds)\n_, obs_I2_ctrl = compute_I2(ctrl_ds)\n\nobs_cv_diff = obs_cv_ctrl - obs_cv_inst\nobs_I2_diff = obs_I2_inst - obs_I2_ctrl\n\nprint(\"=== Observed ===\")\nprint(f\"CV  inst={obs_cv_inst:.4f}  ctrl={obs_cv_ctrl:.4f}  diff={obs_cv_diff:.4f}\")\nprint(f\"I2  inst={obs_I2_inst:.4f}  ctrl={obs_I2_ctrl:.4f}  diff={obs_I2_diff:.4f}\")\n\n# ==========================================================\n# 1. Exact paired permutation - CV (6 continuous dims, 2^6=64)\n# ==========================================================\nn_dims = len(inst_cvs_6d)\ncv_null = []\nfor perm in product([False, True], repeat=n_dims):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_6d[i]); pc.append(inst_cvs_6d[i])\n        else:\n            pi.append(inst_cvs_6d[i]); pc.append(ctrl_cvs_6d[i])\n    cv_null.append(np.mean(pc) - np.mean(pi))\ncv_null = np.array(cv_null)\np_cv_exact = float(np.mean(cv_null >= obs_cv_diff))\n\nprint(f\"\\n--- CV exact paired permutation (2^{n_dims}={2**n_dims}) ---\")\nprint(f\"Null: mean={cv_null.mean():.4f} std={cv_null.std():.4f}\")\nprint(f\"Observed={obs_cv_diff:.4f}  p={p_cv_exact:.6f}  sig={p_cv_exact<0.05}\")\n\n# sensitivity: 7 dims\ncv_null_7d = []\nfor perm in product([False, True], repeat=7):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_7d[i]); pc.append(inst_cvs_7d[i])\n        else:\n            pi.append(inst_cvs_7d[i]); pc.append(ctrl_cvs_7d[i])\n    cv_null_7d.append(np.mean(pc) - np.mean(pi))\ncv_null_7d = np.array(cv_null_7d)\nobs_cv_diff_7d = np.mean(ctrl_cvs_7d) - np.mean(inst_cvs_7d)\np_cv_7d = float(np.mean(cv_null_7d >= obs_cv_diff_7d))\nprint(f\"[7d sensitivity] diff={obs_cv_diff_7d:.4f}  p={p_cv_7d:.6f}\")\n\n# ==========================================================\n# 2. Exact paired permutation - I^2 (5 tasks, 2^5=32)\n# ==========================================================\nn_tasks = len(inst_ds)\nI2_null = []\nfor perm in product([False, True], repeat=n_tasks):\n    pi_d, pc_d = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi_d.append(ctrl_ds[i]); pc_d.append(inst_ds[i])\n        else:\n            pi_d.append(inst_ds[i]); pc_d.append(ctrl_ds[i])\n    _, i2_pi = compute_I2(pi_d)\n    _, i2_pc = compute_I2(pc_d)\n    I2_null.append(i2_pi - i2_pc)\nI2_null = np.array(I2_null)\np_I2_exact = float(np.mean(I2_null >= obs_I2_diff))\n\nprint(f\"\\n--- I^2 exact paired permutation (2^{n_tasks}={2**n_tasks}) ---\")\nprint(f\"Null: mean={I2_null.mean():.4f} std={I2_null.std():.4f}\")\nprint(f\"Observed={obs_I2_diff:.4f}  p={p_I2_exact:.6f}  sig={p_I2_exact<0.05}\")\n\n# ==========================================================\n# 3. Monte-Carlo unpaired permutation (10k)\n# ==========================================================\nrng = np.random.default_rng(42)\nN_MC = 10_000\n\nall_cvs = inst_cvs_6d + ctrl_cvs_6d\nmc_cv = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(12)\n    mc_cv[k] = np.mean([all_cvs[i] for i in idx[6:]]) - np.mean([all_cvs[i] for i in idx[:6]])\np_cv_mc = float(np.mean(mc_cv >= obs_cv_diff))\n\nall_ds = inst_ds + ctrl_ds\nmc_I2 = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(10)\n    g1 = [all_ds[i] for i in idx[:5]]\n    g2 = [all_ds[i] for i in idx[5:]]\n    _, i2_1 = compute_I2(g1)\n    _, i2_2 = compute_I2(g2)\n    mc_I2[k] = i2_1 - i2_2\np_I2_mc = float(np.mean(np.abs(mc_I2) >= abs(obs_I2_diff)))\n\nprint(f\"\\n--- Monte-Carlo unpaired ({N_MC} iterations) ---\")\nprint(f\"CV:  null mean={mc_cv.mean():.4f} std={mc_cv.std():.4f}  p={p_cv_mc:.4f}\")\nprint(f\"I^2: null mean={mc_I2.mean():.4f} std={mc_I2.std():.4f}  p(two-sided)={p_I2_mc:.4f}\")\n\n# ==========================================================\n# Build conclusion and save\n# ==========================================================\nparts = []\nif p_cv_exact < 0.05:\n    parts.append(\n        f\"CV difference significant (exact paired p={p_cv_exact:.4f}): \"\n        f\"instruction CV ({obs_cv_inst:.2f}) < control CV ({obs_cv_ctrl:.2f}), \"\n        f\"instruction heads produce more uniform perturbation across action dims.\"\n    )\nelse:\n    parts.append(f\"CV difference not significant (exact paired p={p_cv_exact:.4f}).\")\n\nif p_I2_exact < 0.05:\n    parts.append(\n        f\"I^2 difference significant (exact paired p={p_I2_exact:.4f}): \"\n        f\"instruction I^2 ({obs_I2_inst:.2f}) > control I^2 ({obs_I2_ctrl:.2f}).\"\n    )\nelse:\n    parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f} with {2**n_tasks} permutations).\"\n    )\n\nparts.append(f\"MC unpaired: CV p={p_cv_mc:.4f}, I^2 p(two-sided)={p_I2_mc:.4f}.\")\nconclusion = \" \".join(parts)\nprint(f\"\\nConclusion: {conclusion}\")\n\nresults = {\n    \"method\": \"exact_paired_permutation_test\",\n    \"data_source\": {\n        \"instruction_ablation\": \"24 heads, per-dim CV from 6 continuous dims, per-task d from 5 tasks\",\n        \"control_ablation\": \"8 heads, same dimensions and tasks\",\n    },\n    \"observed\": {\n        \"cv_inst\": float(obs_cv_inst),\n        \"cv_ctrl\": float(obs_cv_ctrl),\n        \"cv_diff_ctrl_minus_inst\": float(obs_cv_diff),\n        \"I2_inst\": float(obs_I2_inst),\n        \"I2_ctrl\": float(obs_I2_ctrl),\n        \"I2_diff_inst_minus_ctrl\": float(obs_I2_diff),\n    },\n    \"cv_test_exact_paired\": {\n        \"n_dims\": n_dims,\n        \"n_permutations\": 2 ** n_dims,\n        \"null_mean\": float(cv_null.mean()),\n        \"null_std\": float(cv_null.std()),\n        \"p_value_one_sided\": float(p_cv_exact),\n        \"significant_005\": bool(p_cv_exact < 0.05),\n    },\n    \"cv_test_7d_sensitivity\": {\n        \"observed_diff\": float(obs_cv_diff_7d),\n        \"p_value\": float(p_cv_7d),\n    },\n    \"I2_test_exact_paired\": {\n        \"n_tasks\": n_tasks,\n        \"n_permutations\": 2 ** n_tasks,\n        \"null_mean\": float(I2_null.mean()),\n        \"null_std\": float(I2_null.std()),\n        \"p_value_one_sided\": float(p_I2_exact),\n        \"significant_005\": bool(p_I2_exact < 0.05),\n        \"note\": f\"Min possible p = 1/{2**n_tasks} = {1/2**n_tasks:.4f}\",\n    },\n    \"monte_carlo_unpaired\": {\n        \"n_iterations\": N_MC,\n        \"seed\": 42,\n        \"cv_p_value\": float(p_cv_mc),\n        \"I2_p_value_two_sided\": float(p_I2_mc),\n    },\n    \"conclusion\": conclusion,\n}\n\nout = \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\"\nwith open(out, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved to {out}\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T15:13:37.638759+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T15:13:37.638889+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate base && cd /root/vla-ssd && python scripts/permutation_test_I2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate base && cd /root/vla-ssd && python scripts/permutation_test_I2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T15:13:37.639049+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Observed ===\\nCV  inst=1.2981  ctrl=2.7441  diff=1.4460\\nI2  inst=0.8675  ctrl=0.7816  diff=0.0859\\n\\n--- CV exact paired permutation (2^6=64) ---\\nNull: mean=-0.0000 std=0.6756\\nObserved=1.4460  p=0.015625  sig=True\\n[7d sensitivity] diff=1.3682  p=0.007812\\n\\n--- I^2 exact paired permutation (2^5=32) ---\\nNull: mean=0.0000 std=0.2468\\nObserved=0.0859  p=0.156250  sig=False\\n\\n--- Monte-Carlo unpaired (10000 iterations) ---\\nCV:  null mean=-0.0063 std=0.6844  p=0.0048\\nI^2: null mean=-0.0000 std=0.1042  p(two-sided)=0.1434\\n\\nConclusion: CV difference significant (exact paired p=0.0156): instruction CV (1.30) < control CV (2.74), instruction heads produce more uniform perturbation across action dims. I^2 difference not significant at alpha=0.05 (exact paired p=0.1562, min possible=0.0312 with 32 permutations). MC unpaired: CV p=0.0048, I^2 p(two-sided)=0.1434.\\n\\nSaved to /root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T15:13:37.639228+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "DONE",
+  "project": "vla-ssd",
+  "spec": "{'command': 'python scripts/permutation_test_I2.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json', 'data_count': '5 tasks x 2 conditions + 7 dims x 2 conditions', 'model_name': 'n/a (statistical test)', 'seed': 42, 'checkpoint_path': 'n/a', 'log_path': '/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "permutation_test_I2",
+    "field": "status",
+    "value": "DONE",
+    "project": "vla-ssd",
+    "spec": "{'command': 'python scripts/permutation_test_I2.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json', 'data_count': '5 tasks x 2 conditions + 7 dims x 2 conditions', 'model_name': 'n/a (statistical test)', 'seed': 42, 'checkpoint_path': 'n/a', 'log_path': '/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T15:13:37.639374+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2572}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T15:13:37.639502+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'python scripts/permutation_test_I2.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json', 'data_count': '5 tasks x 2 conditions + 7 dims x 2 conditions', 'model_name': 'n/a (statistical test)', 'seed': 42, 'checkpoint_path': 'n/a', 'log_path': '/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "permutation_test_I2",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'python scripts/permutation_test_I2.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json', 'data_count': '5 tasks x 2 conditions + 7 dims x 2 conditions', 'model_name': 'n/a (statistical test)', 'seed': 42, 'checkpoint_path': 'n/a', 'log_path': '/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T15:13:37.639648+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2469}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T15:13:37.639777+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "permutation_test_I2",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T15:13:37.639911+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:12:59.830Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9894}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T15:13:37.640073+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'python scripts/permutation_test_I2.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json', 'data_count': '5 tasks x 2 conditions + 7 dims x 2 conditions', 'model_name': 'n/a (statistical test)', 'seed': 42, 'checkpoint_path': 'n/a', 'log_path': '/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "permutation_test_I2",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'python scripts/permutation_test_I2.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json', 'data_count': '5 tasks x 2 conditions + 7 dims x 2 conditions', 'model_name': 'n/a (statistical test)', 'seed': 42, 'checkpoint_path': 'n/a', 'log_path': '/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T15:13:37.640211+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2613}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T15:13:37.640336+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'python scripts/permutation_test_I2.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json', 'data_count': '5 tasks x 2 conditions + 7 dims x 2 conditions', 'model_name': 'n/a (statistical test)', 'seed': 42, 'checkpoint_path': 'n/a', 'log_path': '/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json', 'checkpoint_source': 'n/a', 'eval_data': 'action_trajectory_extended_analysis.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "permutation_test_I2",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'python scripts/permutation_test_I2.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json', 'data_count': '5 tasks x 2 conditions + 7 dims x 2 conditions', 'model_name': 'n/a (statistical test)', 'seed': 42, 'checkpoint_path': 'n/a', 'log_path': '/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json', 'checkpoint_source': 'n/a', 'eval_data': 'action_trajectory_extended_analysis.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T15:13:37.640487+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:10.312Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8786}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T15:13:37.640622+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "metrics",
+  "value": "{'cv_exact_paired_p': 0.0156, 'cv_mc_unpaired_p': 0.0048, 'cv_7d_p': 0.0078, 'I2_exact_paired_p': 0.1562, 'I2_mc_unpaired_p': 0.1434, 'cv_null_mean': 0, 'cv_null_std': 0.6756, 'I2_null_mean': 0, 'I2_null_std': 0.2468}",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "permutation_test_I2",
+    "field": "metrics",
+    "value": "{'cv_exact_paired_p': 0.0156, 'cv_mc_unpaired_p': 0.0048, 'cv_7d_p': 0.0078, 'I2_exact_paired_p': 0.1562, 'I2_mc_unpaired_p': 0.1434, 'cv_null_mean': 0, 'cv_null_std': 0.6756, 'I2_null_mean': 0, 'I2_null_std': 0.2468}",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T15:13:37.640787+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:16.311Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}, \"metrics\": {\"cv_exact_paired_p\": 0.0156, \"cv_mc_unpaired_p\": 0.0048, \"cv_7d_p\": 0.0078, \"I2_exact_paired_p\": 0.1562, \"I2_mc_unpaired_p\": 0.1434, \"cv_null_mean\": 0, \"cv_null_std\": 0.6756, \"I2_null_mean\": 0, \"I2_null_std\": 0.2468}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4846}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T15:13:37.640953+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "conclusion",
+  "value": "CV difference significant (exact paired p=0.0156, MC p=0.0048): instruction heads produce more uniform perturbation across action dims (CV 1.30 vs 2.74). I^2 difference not significant (exact paired p=0.1562, min possible=0.0312 with 2^5=32 permutations; MC p=0.1434). The I^2 test has limited statistical power due to only 5 tasks.",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "permutation_test_I2",
+    "field": "conclusion",
+    "value": "CV difference significant (exact paired p=0.0156, MC p=0.0048): instruction heads produce more uniform perturbation across action dims (CV 1.30 vs 2.74). I^2 difference not significant (exact paired p=0.1562, min possible=0.0312 with 2^5=32 permutations; MC p=0.1434). The I^2 test has limited statistical power due to only 5 tasks.",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T15:13:37.641148+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'CV difference significant (exact paired p=0.0156, MC p=0.0048): instruction heads produce more uniform perturbation across action dims (CV 1.30 vs 2.74). I^2 difference not significant (exact paired p=0.1562, min possible=0.0312 with 2^5=32 permutations; MC p=0.1434). The I^2 test has limited statistical power due to only 5 tasks.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.3433}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T15:13:37.641282+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "permutation_test_I2",
+    "field": "conclusion",
+    "value": "success",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T15:13:37.641452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:21.745Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}, \"metrics\": {\"cv_exact_paired_p\": 0.0156, \"cv_mc_unpaired_p\": 0.0048, \"cv_7d_p\": 0.0078, \"I2_exact_paired_p\": 0.1562, \"I2_mc_unpaired_p\": 0.1434, \"cv_null_mean\": 0, \"cv_null_std\": 0.6756, \"I2_null_mean\": 0, \"I2_null_std\": 0.2468}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4151}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T15:13:37.641617+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "DONE",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "permutation_test_I2",
+    "field": "status",
+    "value": "DONE",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T15:13:37.641786+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:25.536Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}, \"metrics\": {\"cv_exact_paired_p\": 0.0156, \"cv_mc_unpaired_p\": 0.0048, \"cv_7d_p\": 0.0078, \"I2_exact_paired_p\": 0.1562, \"I2_mc_unpaired_p\": 0.1434, \"cv_null_mean\": 0, \"cv_null_std\": 0.6756, \"I2_null_mean\": 0, \"I2_null_std\": 0.2468}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T15:13:25.536Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8588}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-18T15:13:37.642252+00:00_
+
+结果：
+
+| 指标 | 精确配对置换 p | MC 非配对 p |
+|------|--------------|------------|
+| **CV** (ctrl 2.74 vs inst 1.30) | **0.0156** | **0.0048** |
+| **I²** (inst 0.87 vs ctrl 0.78) | 0.1562 | 0.1434 |
+
+**CV 差异显著**：instruction heads 在所有 6 个连续 action 维度上一致地产生更低 CV（更均匀的扰动），精确置换 p=0.0156（2^6=64 种排列中仅 1 种 >= 观测值）。7 维（含 gripper）时 p=0.0078 更强。
+
+**I² 差异不显著**：精确置换仅 32 种排列（2^5），最小可能 p=0.0312，分辨率不足以在 α=0.05 下检测 0.086 的 I² 差距。MC 非配对检验同样不显著（p=0.14）。这是统计功效不足（5 个 task），不代表效应不存在。
+
+结果已保存至 `/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json`，registry 已更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_permutation_test_I2_20260518T150757"
+}
+```
+
+</details>
+
+---

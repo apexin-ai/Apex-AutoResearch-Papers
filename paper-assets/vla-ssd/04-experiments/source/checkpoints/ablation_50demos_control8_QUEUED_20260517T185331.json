@@ -1,0 +1,15 @@
+{
+  "exp_id": "ablation_50demos_control8",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:53:21.900Z",
+    "updated_at": "2026-05-17T18:53:31.527Z",
+    "hypothesis": "Ablating 8 non-dominant L1 heads (control) should NOT increase action R², proving the capacity trade-off is specific to instruction-dominant heads."
+  },
+  "timestamp": "2026-05-17T18:53:31.678836+00:00",
+  "trigger": "update_registry"
+}

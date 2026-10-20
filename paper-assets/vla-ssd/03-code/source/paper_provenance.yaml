@@ -1,0 +1,1544 @@
+paper:
+  title: Formatting Instructions for CoRL 2026 Camera-Ready
+  version: 12
+  generated_at: '2026-05-22T13:27:24.540902+00:00'
+  source: auto-bootstrap from existing tex files
+claims:
+- text: We conduct a systematic cross-architecture analysis of three VLAs built on
+    distinct backbones (Llama-2-7B, Phi-3-mini, Qwen2.5-VL-3B) across four LIBERO
+    task suites, comparing trained and untrained ch
+  type: quantitative
+  location:
+    section: abstract
+    context: result_statement
+  id: C001
+  evidence: []
+  deprecated: false
+- text: Second, all trained VLAs exhibit substantial counterfactual sensitivity to
+    instruction perturbation (Cohen's $d  0.45$ across two architectures and eight
+    suite combinations), though metric incomparabi
+  type: quantitative
+  location:
+    section: abstract
+    context: result_statement
+  id: C002
+  evidence: []
+  deprecated: false
+- text: 'Linear CKA~kornblith2019 reverses the RSA ordering: untrained LLM ($CKA =
+    0.089$) $>$ trained LLM ($0.083$) $>$ DinoSigLIP+Projector ($0.081$) $>$ DINOv2
+    ($0.066$), partially inverting the self-superv'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C003
+  evidence: []
+  deprecated: false
+- text: 'RDM kernel CKA partially resolves this discrepancy: trained ($0.260$) $$
+    Projector ($0.257$) $>$ untrained ($0.246$) $>$ DINOv2 ($0.241$).'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C004
+  evidence: []
+  deprecated: false
+- text: At the per-layer level, linear CKA between image\_mean and the action space
+    rises monotonically from L0 ($0.081$) to L32 ($0.098$), with no inverted-U pattern.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C005
+  evidence: []
+  deprecated: false
+- text: 'Three similarity metrics across representation sources. (a)~RSA ranks DINOv2
+    cls ($0.692$) $>$ Fused ($0.634$) $>$ Projector ($0.615$). (b)~Linear CKA reverses
+    the ordering: Untrained ($0.089$) $>$ Tr'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C006
+  evidence: []
+  deprecated: false
+- text: Fusion produces a representation ($ = 0.634$) that exceeds either branch alone;
+    concatenation captures complementary structure.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C007
+  evidence: []
+  deprecated: false
+- text: 'The MLP projector then compresses this signal: DinoSigLIP+Projector achieves
+    $ = 0.615$, a drop of $ = 0.019$ from the fused 2{,176-D input.'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C008
+  evidence: []
+  deprecated: false
+- text: RSA with the action space ($$) across representation sources. Self-supervised
+    DINOv2 cls\_token ($=0.692$) achieves the highest geometric alignment. CLIP ($0.557$)
+    yields the weakest alignment among p
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C009
+  evidence: []
+  deprecated: false
+- text: Per-layer RSA ($$) for trained and untrained models at image\_mean and readout
+    (last\_preaction) positions. The trained model shows an inverted-U peaking at
+    L12 for both positions; the untrained model
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C010
+  evidence: []
+  deprecated: false
+- text: The trained model peaks at L9 ($R^2 = 0.643  0.014$), consistent with progressive
+    specialization for action-relevant feature integration.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C011
+  evidence: []
+  deprecated: false
+- text: Three conditions show substantial agreement in layer-wise $R^2$ ordering (Kendall's
+    $W = 0.72$, $^2 = 68.99$, $p < 0.001$).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C012
+  evidence: []
+  deprecated: false
+- text: 'Per-layer action probe $R^2$ (image\_mean) across three training conditions:
+    untrained VLA (random weights), Llama-2 base (pretrained, no VLA fine-tuning),
+    and VLA-trained. All conditions share L0 ($0'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C013
+  evidence: []
+  deprecated: false
+- text: Dominant-head ablation increases action $R^2$ by $+0.030$ (within-experiment
+    baseline $0.524$), while random subsets yield a mean increase of $+0.071  0.013$
+    (Figure~fig:random_subset_ablation).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C014
+  evidence: []
+  deprecated: false
+- text: '$R^2$ increase from ablating 24/32 L1 heads. Gray bars: 30 random subsets;
+    red line: dominant-24 heads ($+0.030$). Random subsets yield larger gains (mean
+    $+0.071  0.013$; $z = -3.11$, percentile $= 0'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C015
+  evidence: []
+  deprecated: false
+- text: Per-task Cohen's $d$ values for instruction-head ablation are $0.43$, $0.69$,
+    $0.70$, $0.70$, and $0.73$ (mean $0.65$), with all tasks significant ($p < 10^{-10$).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C016
+  evidence: []
+  deprecated: false
+- text: 'Aggregating per-demo mean actions to the trajectory level reveals that token-level
+    $d$ values are conservative: within-trajectory averaging reduces noise, yielding
+    ${4$ larger effect sizes (mean token'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C017
+  evidence: []
+  deprecated: false
+- text: 'Instruction-head ablation ($N = 50$: 5 tasks $$ 10 demos) yields trajectory
+    $d = 2.943$ (95\% CI $[2.469, 3.707]$); bottom-24 non-instruction heads ($N =
+    30$) yield $d = 2.347$ (CI $[1.854, 3.221]$).'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C018
+  evidence: []
+  deprecated: false
+- text: 'Counterfactual trajectory-level $d$ (10 LIBERO-Goal tasks, $N = 100$): wrong
+    $3.798$ (CI $[3.194, 4.938]$), empty $3.438$ ($[2.921, 4.448]$), shuffled $2.595$
+    ($[2.028, 3.791]$), paraphrased $2.131$ ('
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C019
+  evidence: []
+  deprecated: false
+- text: 'Ablation redirects model outputs ($d = 0.65$) but does not systematically
+    increase error relative to expert demonstrations: original MSE $= 0.498$; top-24
+    instruction-head ablation MSE $= 0.497$ ($ = '
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C020
+  evidence: []
+  deprecated: false
+- text: Per-task breakdown shows all $|MSE| < 3\%$ of baseline with all $p > 0.27$;
+    the near-zero aggregate $$ reflects uniformly small per-task effects rather than
+    cancellation across tasks.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C021
+  evidence: []
+  deprecated: false
+- text: Trajectory divergence increases monotonically from $d = 0.482$ (4 heads) to
+    $d = 0.639$ (32 heads), with steep rise through 12 heads (slope $ d /  4  0.026$),
+    a plateau at 16--20 heads ($ d = 0.001$),
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C022
+  evidence: []
+  deprecated: false
+- text: Empty (no instruction) & 0.000 & 0.978 \\
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C023
+  evidence: []
+  deprecated: false
+- text: 'Activation magnitude grows from $16.5$ (L0) to $90.2$ (L31) for Llama-2 base,
+    compared to $16.5  51.7$ for the VLA-trained model; the pretrained LLM produces
+    larger but non-exploding activations with '
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C024
+  evidence: []
+  deprecated: false
+- text: Per-layer cosine similarity between L0 and deeper layers decreases progressively
+    from $1.0$ to $ 0.28$ at L25, consistent with gradual differentiation rather than
+    catastrophic out-of-distribution beha
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C025
+  evidence: []
+  deprecated: false
+- text: Top-10 principal component variance explained remains stable across all layers
+    ($0.59$--$0.74$), with no low-rank collapse.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C026
+  evidence: []
+  deprecated: false
+- text: To rule out that our findings depend on MLP probe capacity ($N/params  0.06$,
+    overparameterized), we replicate the per-layer analysis with a linear probe ($4{,096  7$,
+    $N/params  2.2$).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C027
+  evidence: []
+  deprecated: false
+- text: 'The trained--untrained gap is larger under the linear probe (L14: $ = +0.324$)
+    than the MLP probe (L8: $ = +0.015$); VLA training thus reorganizes representations
+    to make action information more linea'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C028
+  evidence: []
+  deprecated: false
+- text: 'Untrained deep layers collapse entirely under the linear probe (L25: $R^2
+    = -0.298$); MLP nonlinearity partially rescues these degraded representations.'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C029
+  evidence: []
+  deprecated: false
+- text: For last\_preaction tokens, the linear probe also corroborates the inverted-U
+    (peak L13, $R^2 = 0.596$), with the same peak layer as the MLP probe and a trained-vs-untrained
+    gap of $ = 0.103$ ($p < 0.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C030
+  evidence: []
+  deprecated: false
+- text: 'Functional probe $R^2$ for action prediction (best layer per source). Trained
+    readout ($R^2{=0.678$, L13) and trained image\_mean ($0.655$, L8) exceed the projector
+    baseline ($0.630$); the inverted-U '
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C031
+  evidence: []
+  deprecated: false
+- text: '(a)~Trained vs.\ untrained image\_mean RSA profiles. Training shifts the
+    peak from L0 ($0.612$) to L12 ($0.628$), yielding a modest best-vs-best gain ($=+0.017$,
+    $3\%$). (b)~Instruction invariance: al'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C032
+  evidence: []
+  deprecated: false
+- text: DINOv2 patch\_mean achieves RSA $ = 0.631$, between the cls\_token ($0.692$)
+    and the fused DinoSigLIP ($0.634$).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C033
+  evidence: []
+  deprecated: false
+- text: 'The inverted-U profile replicates on LIBERO-Spatial: trained image\_mean
+    RSA peaks at L14 ($ = 0.691$) and $R^2$ at L13 ($0.696$), with peaks shifting
+    ${2$ layers deeper than LIBERO-Goal (RSA L12, $R^'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C034
+  evidence: []
+  deprecated: false
+- text: Training produces a significant geometric gain (best-vs-best $ = +0.023$,
+    95\% CI $[0.012, 0.036]$, $p < 0.001$), larger than the LIBERO-Goal effect ($
+    = +0.017$, CI includes zero).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C035
+  evidence: []
+  deprecated: false
+- text: 'Cross-benchmark validation: per-layer RSA and $R^2$ profiles on LIBERO-Goal
+    (left) vs.\ LIBERO-Spatial (right). The inverted-U replicates on both benchmarks.
+    LIBERO-Spatial shows a significant trainin'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C036
+  evidence: []
+  deprecated: false
+- text: 'The effect ordering is identical to LIBERO-Goal: empty $>$ wrong $>$ shuffled
+    $>$ paraphrased, with the same shuffled--paraphrased violation ($ = 0.8$).'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C037
+  evidence: []
+  deprecated: false
+- text: Spatial instructions differ only in prepositions (e.g., ``on the plate'' vs.\
+    ``in the drawer''); the wrong-task $d = 0.851$ demonstrates that instruction-dominant
+    heads encode fine-grained spatial re
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C038
+  evidence: []
+  deprecated: false
+- text: Empty (no instruction) & 0.000 & 0.942 & 0.185 \\
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C039
+  evidence: []
+  deprecated: false
+- text: 'Permutation testing (10{,000 shuffles) indicates all observed RSA values
+    are highly significant: observed $$ ($0.42$--$0.63$) exceeds the null distribution
+    maximum ($0.08$--$0.10$) by $15$--$23$ stand'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C040
+  evidence: []
+  deprecated: false
+- text: 'A 15-seed replication confirms stability: trained peak remains at L9 ($R^2
+    = 0.637  0.004$), with all trained/Llama-2-base layers showing CI width ${<0.02$;
+    untrained exhibits higher variance (std $0.'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C041
+  evidence: []
+  deprecated: false
+- text: The RSA peak layer remains at L12 with a profile correlation of $r = 0.970$
+    between 50- and 25-demo conditions (high stability).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C042
+  evidence: []
+  deprecated: false
+- text: The probe peak shifts from L9 to L11 (within the L8--L16 plateau) with $r
+    = 0.819$; $R^2$ is more sensitive to training set size than RSA.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C043
+  evidence: []
+  deprecated: false
+- text: The observed RSA training effect ($ = 0.017$, Cohen's $d_z = 0.56$) achieves
+    power $= 0.356$, confirming the analysis is underpowered for this effect size;
+    the non-significant RSA result (sec:nonmonot
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C044
+  evidence: []
+  deprecated: false
+- text: The observed $R^2$ readout effect ($ = 0.069$, $d_z = 2.68$) achieves power
+    $= 1.000$, confirming adequate sensitivity for the primary functional metric.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C045
+  evidence: []
+  deprecated: false
+- text: 'Training effects on action-relevant structure (LIBERO-Goal; bootstrap, 10{,000
+    resamples). RSA best-vs-best yields a modest geometric gain ($=+0.017$, $3\%$;
+    LIBERO-Spatial: $+0.023$, $p{<0.001$), whi'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C046
+  evidence: []
+  deprecated: false
+- text: 'The step-function onset between L0 ($10\%$, chance) and L1 (${99.6\%$) reflects
+    the high discriminability of instruction embeddings from the frozen tokenizer:
+    even incidental attention (${12\%$) suffi'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C047
+  evidence: []
+  deprecated: false
+- text: Cross-instruction 10-way classification accuracy at readout token, L0--L8.
+    Values reflect dense classification evaluation; main-text Table~tab:dense_routing_main
+    reports sparse single-split results, y
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C048
+  evidence: []
+  deprecated: false
+- text: Trained last\_preaction achieves $100\%  0.00$ across all 10 folds at layers
+    L1--L31 (perfect generalization).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C049
+  evidence: []
+  deprecated: false
+- text: To test whether LLM layers encode task-relevant semantic information beyond
+    instruction identity, we train logistic regression probes (scikit-learn, $C =
+    1.0$, max\_iter $= 1{,000$) to classify task p
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C050
+  evidence: []
+  deprecated: false
+- text: Cross-instruction 10-way classification accuracy at the readout token across
+    all 32 LLM layers. VLA-trained achieves $99.6\%$ at L1, saturating to $100\%$.
+    Llama-2 base starts at $80.2\%$, reaching $1
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C051
+  evidence: []
+  deprecated: false
+- text: 'The probe-attention dissociation at L1 is notable: TraceVLA training increases
+    instruction-dominant heads ($28  32$) while decreasing probe accuracy ($98.1\%  83.6\%$),
+    consistent with representationa'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C052
+  evidence: []
+  deprecated: false
+- text: 'Probe accuracy and attention head count are dissociated at L1: TracVLA-Phi3V
+    increases heads ($28  32$) while decreasing probe accuracy ($98.1\%  83.6\%$),
+    paralleling the information-computation diss'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C053
+  evidence: []
+  deprecated: false
+- text: Head-level instruction attention entropy reaches $99.5\%$ of the uniform maximum;
+    attention is broadly distributed rather than concentrated in a few heads.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C054
+  evidence: []
+  deprecated: false
+- text: 'Per-token normalization reveals a $38.2$ ratio: each instruction token receives
+    $38.2$ the attention of each image token in trained instruction-dominant heads,
+    compared to only $1.5$ in untrained head'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C055
+  evidence: []
+  deprecated: false
+- text: Instruction-dominant heads also show lower attention entropy ($0.465$) than
+    non-dominant heads ($0.569$), indicating more concentrated attention distributions.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C056
+  evidence: []
+  deprecated: false
+- text: Mean absolute error per action dimension under L1 head ablation. Translation
+    dimensions ($dx$/$dy$/$dz$) show 3--5$$ larger instruction-to-control ratio than
+    rotation dimensions (1.9--2.6$$); instruct
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C057
+  evidence: []
+  deprecated: false
+- text: 'Per-task action probe $R^2$ at L1 (MLP probe, 5 demos/task). All 10 tasks
+    show positive ablation effect ($ > 0$): instruction-head ablation uniformly increases
+    action decodability at the entry layer. '
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C058
+  evidence: []
+  deprecated: false
+- text: 3{l{Mann-Whitney $U = 21.0$, $p = 0.033$, ratio $= 2.49$ \\
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C059
+  evidence: []
+  deprecated: false
+- text: All leave-one-out $p$-values remain $ 0.083$ (marginally significant), with
+    no single task removal reversing the effect direction.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C060
+  evidence: []
+  deprecated: false
+- text: Reclassifying the boundary case (cream cheese in bowl) to the instruction-discriminative
+    group strengthens the result ($p = 0.008$).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C061
+  evidence: []
+  deprecated: false
+- text: 'Bootstrap 95\% CI on the complex/simple ratio: $[1.03, 11.12]$ (10{,000 resamples).
+    The wide interval reflects low statistical power from $N=10$ tasks split into
+    groups of 6 and 4; the point estimate '
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C062
+  evidence: []
+  deprecated: false
+- text: All conditions yield comparable ground-truth MSE ($0.487$--$0.504$ vs.\ baseline
+    $0.497$), consistent with direction-selective rather than precision-degrading
+    effects.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C063
+  evidence: []
+  deprecated: false
+- text: 'L1 ablation: 24 dominant vs.\ baseline & 0.65 & 1.17 & 10 tasks \\'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C064
+  evidence: []
+  deprecated: false
+- text: Random-24 ablation vs.\ baseline & --- & $1.84  0.33$ & 30 subsets \\
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C065
+  evidence: []
+  deprecated: false
+- text: 'Untrained profiles differ qualitatively: OpenVLA (Llama-2) peaks at L0 ($R^2
+    = 0.629$) then collapses to near-zero at mid-layers (L20: $0.086$, std $= 0.311$),
+    while Phi-3-V peaks at L6 ($0.578  0.018'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C066
+  evidence: []
+  deprecated: false
+- text: 'Deep-layer variance drops sharply with training: OpenVLA std $0.277  0.040$;
+    Phi-3-V std $0.068  0.011$.'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C067
+  evidence: []
+  deprecated: false
+- text: 'The largest training gains appear at mid-to-deep layers (L15--L25 average:
+    OpenVLA $+0.313$, Phi-3-V $+0.103$), precisely where untrained profiles diverge
+    most.'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C068
+  evidence: []
+  deprecated: false
+- text: To formally test whether the cross-architecture peak $R^2$ values are statistically
+    equivalent (rather than merely failing to differ), we apply the Two One-Sided
+    Tests (TOST) procedure~lakens2017equiv
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C069
+  evidence: []
+  deprecated: false
+- text: 'A conventional two-sample $t$-test yields $p = 0.318$ (not significant),
+    illustrating the distinction between absence of evidence for a difference and
+    evidence of equivalence: the TOST procedure provi'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C070
+  evidence: []
+  deprecated: false
+- text: We apply a Bonferroni correction ($_{adj = 0.05 / 63 = 7.94  10^{-4$) and
+    the less conservative Holm--Bonferroni step-down procedure; both yield identical
+    results.
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C071
+  evidence: []
+  deprecated: false
+- text: Of the 45 originally significant tests, 40 survive correction (88.9\%).
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C072
+  evidence: []
+  deprecated: false
+- text: RSA permutation at L12 ($p < 0.0001$), trained vs.\ untrained image geometry
+    at L12 ($p = 3.9  10^{-5$), counterfactual wrong and empty instruction ($p < 10^{-100$),
+    TOST cross-architecture equivalenc
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C073
+  evidence: []
+  deprecated: false
+- text: That ablation raises $R^2$ yet alters trajectories ($d = 0.65$) without increasing
+    ground-truth error ($MSE  0$; sec:action_trajectory) reflects an information-computation
+    dissociation~hewitt2019contr
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C074
+  evidence: []
+  deprecated: false
+- text: 'Per-layer profiles suggest three stages: redistribution (L0--L1; probe $99.6\%$,
+    24/32 instruction-dominant heads), computation (L8--L13; $R^2$ peak $0.655$--$0.678$),
+    and decay (L14--L31, ${56\%$ of '
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C075
+  evidence: []
+  deprecated: false
+- text: 'The $2 { 2$ trained-vs-untrained comparison reveals a consistent reorganization
+    pattern: untrained OpenVLA collapses from L0 ($R^2 = 0.629$) to near-zero at mid-layers
+    (L20: $0.086$, std $= 0.277$), w'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C076
+  evidence: []
+  deprecated: false
+- text: our findings depend on MLP probe capacity ($N/params  0.06$, overparameterized),
+    we replicate the per-layer analysis with a linear probe ($4{,096
+  type: methodological
+  location:
+    section: appendix
+    context: finding_statement
+  id: C077
+  evidence: []
+  deprecated: false
+- text: This suggests that peak convergence is benchmark-specific rather than a general
+    consequence of training.
+  type: methodological
+  location:
+    section: appendix
+    context: finding_statement
+  id: C078
+  evidence: []
+  deprecated: false
+- text: Despite opposite untrained profiles, both causal-decoder architectures reach
+    similar trained representations ($ = 0.003$), with effects concentrated at the
+    readout rather than image geometry. Code and
+  type: quantitative
+  location:
+    section: conclusion
+    context: result_statement
+  id: C079
+  evidence: []
+  deprecated: false
+- text: 'VLA fine-tuning redistributes instruction attention rather than reshaping
+    visual geometry: training effects concentrate at the readout ($R^2$ $+0.069$,
+    attention $+46$pp) rather than images ($  1.7\%$'
+  type: quantitative
+  location:
+    section: discussion
+    context: result_statement
+  id: C080
+  evidence: []
+  deprecated: true
+- text: '[Placeholder: fig\_r2\_collapse]'
+  type: quantitative
+  location:
+    section: experiments
+    context: bold
+  id: C081
+  evidence: []
+  deprecated: false
+- text: '[Placeholder: fig\_cross\_arch\_l1]'
+  type: quantitative
+  location:
+    section: experiments
+    context: bold
+  id: C082
+  evidence: []
+  deprecated: false
+- text: 'Each architecture is compared in trained and untrained conditions, with a
+    critical asymmetry between untrained baselines: OpenVLA''s untrained checkpoint
+    is the OXE-pretrained~padalkar2023_oxe VLA (alr'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C083
+  evidence: []
+  deprecated: false
+- text: 'For untrained VLMs (Phi-3-Vision, Qwen2.5-VL) that do not produce actions,
+    sensitivity is measured via cosine distance on hidden representations; these metrics
+    operate on different scales and are not '
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C084
+  evidence: []
+  deprecated: false
+- text: 'At L1, three conditions form a gradient of instruction attention: untrained
+    networks allocate 0/32 instruction-dominant heads ($11.7\%$ text attention, $1.5$
+    text-to-image ratio), Llama-2 base~touvron'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C085
+  evidence: []
+  deprecated: false
+- text: 'Four perturbation types across 10 LIBERO-Goal tasks produce action divergence
+    ordered by token novelty ($ = 0.8$): empty instruction ($d = 0.978$), wrong task
+    ($0.924$), shuffled tokens ($0.763$), par'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C086
+  evidence: []
+  deprecated: false
+- text: 'The effect replicates across LIBERO-Spatial (10 tasks) with the same ordering:
+    empty $0.942$, wrong $0.851$, shuffled $0.833$, paraphrased $0.806$ (Appendix
+    Table~tab:counterfactual_spatial).'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C087
+  evidence: []
+  deprecated: false
+- text: 'Dose-response ablation of L1 instruction-dominant heads produces monotonic
+    trajectory divergence: $d$ rises from $0.482$ to $0.639$ as 4--32 heads are progressively
+    ablated, with steep increase throug'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C088
+  evidence: []
+  deprecated: false
+- text: Ablating all 24 instruction-dominant heads alters $72.3\%$ of action tokens
+    (token-level $d = 0.65$, trajectory-level $d = 2.943$); control ablation of 8
+    random heads yields $d = 0.41$ ($29.3\%$ token
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C089
+  evidence: []
+  deprecated: false
+- text: '$R^2$ action probing localizes training effects: trained readout peaks at
+    $R^2 = 0.678$ (L13), untrained readout peaks at $0.609$ (L32), and the training
+    effect concentrates at the readout ($+0.069$) '
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C090
+  evidence: []
+  deprecated: false
+- text: 'LIBERO-Goal trained produces $ R^2 = 0.691$: the profile peaks at $R^2 =
+    0.688$ in mid-layers and drops to $-0.004$ at exit, below chance, so exit-layer
+    representations encode less action-relevant str'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C091
+  evidence: []
+  deprecated: false
+- text: NORA untrained (Qwen2.5-VL) produces $ R^2$ of only $0.044$ and $0.037$ for
+    these two suites (Figure~fig:r2_collapse).
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C092
+  evidence: []
+  deprecated: false
+- text: 'Only the Object suite shows clear collapse: trained $ R^2 = 0.121$ (peak
+    $0.787$, exit $0.666$) vs.\ untrained $0.076$ (peak $0.761$, exit $0.685$).'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C093
+  evidence: []
+  deprecated: false
+- text: Goal ($ R^2 = 0.016$ trained vs.\ $0.033$ untrained) and Long-Horizon ($0.004$
+    vs.\ $0.016$) show near-zero trained collapse; in both cases the untrained model
+    produces a larger peak-to-exit drop than
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C094
+  evidence: []
+  deprecated: false
+- text: 'A one-sided sign test confirms that the VLM-to-VLA collapse direction is
+    consistent: all six cells show trained $ R^2 >$ untrained $ R^2$ ($p = 0.016$).'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C095
+  evidence: []
+  deprecated: false
+- text: 6{l{ $^{$Cosine distances saturated at $1.0$; earlier layers differentiate.\\
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C096
+  evidence: []
+  deprecated: false
+- text: '0.9{1.5cm[Placeholder: fig\_r2\_collapse]1.5cm'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C097
+  evidence: []
+  deprecated: false
+- text: Per-layer $R^2$ action-probe profiles for three architectures, each comparing
+    trained (solid) and untrained (dashed) checkpoints. TracVLA and NORA trained models
+    exhibit pronounced peak-to-exit collap
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C098
+  evidence: []
+  deprecated: false
+- text: Across both architectures and all eight combinations, every perturbation condition
+    produces statistically significant action divergence ($d  0.45$); trained VLAs
+    are sensitive to instruction content r
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C099
+  evidence: []
+  deprecated: false
+- text: The ``empty'' condition ranks first in 7 of 8 cells, with effect sizes from
+    $d = 0.94$ (OpenVLA Spatial) to $1.52$ (TracVLA Goal).
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C100
+  evidence: []
+  deprecated: false
+- text: 'TracVLA produces systematically higher effect sizes than OpenVLA ($d = 0.97$--$1.52$
+    vs.\ $0.45$--$1.21$), consistent with the Phi-3 backbone routing instruction information
+    more strongly through the '
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C101
+  evidence: []
+  deprecated: false
+- text: 'NORA Goal produces saturated exit-layer cosine distances of $1.0$ for all
+    conditions, with differentiation visible only at earlier layers (L24: wrong $=
+    0.123$, empty $= 0.098$).'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C102
+  evidence: []
+  deprecated: false
+- text: Untrained VLMs (Phi-3-Vision, Qwen2.5-VL) do not generate actions; their sensitivity
+    is measured via cosine distance on hidden representations---a metric with different
+    scale, units, and distributiona
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C103
+  evidence: []
+  deprecated: false
+- text: All trained models produce substantial sensitivity (Cohen's $d  0.45$ for
+    OpenVLA and TracVLA; cosine distances up to saturation for NORA), but the trained--untrained
+    gap cannot be quantified as a sin
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C104
+  evidence: []
+  deprecated: false
+- text: 'The result is inverted: the OXE-pretrained model ($d = 1.05$, empty) shows
+    stronger sensitivity than the LIBERO-trained model ($d = 0.56$, shuffled; $0.50$,
+    empty).'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C105
+  evidence: []
+  deprecated: false
+- text: 'Unlike $R^2$ exit collapse, counterfactual sensitivity is not limited to
+    the VLM-to-VLA transition: trained OpenVLA produces $d = 0.98$ (Goal) and $1.21$
+    (Object), and the OXE-pretrained baseline for '
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C106
+  evidence: []
+  deprecated: false
+- text: Phi-3-Vision saturates at 32/32 heads ($100\%$) and Qwen2.5-VL allocates 13--14/16
+    ($81$--$88\%$), proportions characteristic of instruction-tuned language models
+    that attend heavily to text tokens as
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C107
+  evidence: []
+  deprecated: false
+- text: 'Training-induced effects---$R^2$ exit collapse and counterfactual sensitivity---emerge
+    or intensify at the VLM-to-VLA transition: exit collapse is present in 6/6 VLM-to-VLA
+    cells (sign test $p = 0.016'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C108
+  evidence: []
+  deprecated: false
+- text: 'As a secondary observation, vision encoder geometry measured by RSA shows
+    a non-monotonic profile with a middle-layer peak (L12: $ = 0.628$), and standalone
+    DINOv2~oquab2024_dinov2 achieves the highes'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C109
+  evidence: []
+  deprecated: false
+- text: '[width=0.88,height=2in,keepaspectratio]{figures/fig_teaser.pdf'
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C110
+  evidence: []
+  deprecated: false
+- text: '(b)~Instruction-dominant heads per layer (L1 attention $>0.5$). Pretrained
+    Llama-2 peaks at mid-depth; VLA-trained OpenVLA concentrates at L1 and L32. Untrained:
+    zero heads at all layers.'
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C111
+  evidence: []
+  deprecated: false
+- text: Second, a $2{2$ trained-vs-untrained comparison across two causal-decoder
+    VLAs---OpenVLA (Llama-2) and TraceVLA (Phi-3-V), which start from dramatically
+    different untrained profiles---reveals a consis
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C112
+  evidence: []
+  deprecated: false
+- text: DINOv2 ViT-L/14
+  type: quantitative
+  location:
+    section: method
+    context: bold
+  id: C113
+  evidence: []
+  deprecated: false
+- text: CLIP ViT-L/14
+  type: quantitative
+  location:
+    section: method
+    context: bold
+  id: C114
+  evidence: []
+  deprecated: false
+- text: Fine-tuning operates in a low intrinsic dimension~aghajanyan2021intrinsic
+    and can distort pretrained features~kumar2022finetuning; our per-layer analysis
+    reveals where restructuring concentrates and f
+  type: quantitative
+  location:
+    section: related_work
+    context: result_statement
+  id: C115
+  evidence: []
+  deprecated: true
+- text: our analysis is complementary, addressing where instruction information is
+    redistributed across layers and token positions, with trained-vs-untrained contro
+  type: methodological
+  location:
+    section: related_work
+    context: finding_statement
+  id: C116
+  evidence: []
+  deprecated: true
+tables:
+- caption: Per-head bootstrap analysis of L1 ablation effects. Instruction heads are
+    individually weaker but collectively stronger, consistent with coordinated attention
+    redistribution.
+  label: tab:perhead_bootstrap
+  location:
+    section: appendix
+  cells: []
+  id: T001
+  deprecated: false
+- caption: Dose-response data for L1 instruction-head ablation. Cohen's $d$ vs.\ original
+    action sequence; 95\% bootstrap CIs ($10{,
+  label: tab:dose_response
+  location:
+    section: appendix
+  cells: []
+  id: T002
+  deprecated: false
+- caption: 'Counterfactual instruction analysis across all 10 LIBERO-Goal tasks. Jaccard:
+    token overlap with original instruction; Cohen''s $d$: mean across 10 tasks. Token
+    novelty ($1 - \text{Jaccard'
+  label: tab:counterfactual
+  location:
+    section: appendix
+  cells: []
+  id: T003
+  deprecated: false
+- caption: 'Mean absolute action shift per dimension under L1 head ablation. Instruction:
+    24 dominant heads; Control: 8 remaining heads. Gripper shift dominates both conditions.'
+  label: tab:action_shift_perdim
+  location:
+    section: appendix
+  cells: []
+  id: T004
+  deprecated: false
+- caption: Counterfactual instruction analysis on LIBERO-Spatial (10 tasks). Effect
+    ordering replicates LIBERO-Goal (Table~\ref{tab:counterfactual
+  label: tab:counterfactual_spatial
+  location:
+    section: appendix
+  cells: []
+  id: T005
+  deprecated: false
+- caption: Cross-instruction 10-way classification accuracy on LIBERO-Spatial. Trained
+    readout achieves $100\%$ from L4; image\_mean remains at chance. Untrained readout
+    decays more steeply than on LIBERO-Goal (cf.\ Table~\ref{tab:dense_routing_main
+  label: tab:spatial_cross_instruction
+  location:
+    section: appendix
+  cells: []
+  id: T006
+  deprecated: false
+- caption: Peak layer comparison between Euclidean and cosine action distances. Profile
+    $r$ denotes Pearson correlation across all 32 layers.
+  label: tab:metric_invariance
+  location:
+    section: appendix
+  cells: []
+  id: T007
+  deprecated: false
+- caption: Probe $R^2$ peak across 5 random seeds (trained image\_mean).
+  label: tab:seed_sensitivity
+  location:
+    section: appendix
+  cells: []
+  id: T008
+  deprecated: false
+- caption: Inverted-U stability under demonstration subsampling (trained image\_mean).
+  label: tab:demo_sensitivity
+  location:
+    section: appendix
+  cells: []
+  id: T009
+  deprecated: false
+- caption: Training effects on action-relevant structure (LIBERO-Goal; bootstrap,
+    10{,
+  label: tab:training_effects
+  location:
+    section: appendix
+  cells: []
+  id: T010
+  deprecated: false
+- caption: Training effect sizes across metrics. Image\_mean effects are modest; last\_preaction
+    effects are large. Training targets readout-token information integration.
+  label: tab:training_effect_summary
+  location:
+    section: appendix
+  cells: []
+  id: T011
+  deprecated: false
+- caption: Cross-instruction 10-way classification accuracy at readout token, L0--L8.
+    Values reflect dense classification evaluation; main-text Table~\ref{tab:dense_routing_main
+  label: tab:dense_routing
+  location:
+    section: appendix
+  cells: []
+  id: T012
+  deprecated: false
+- caption: QA probe accuracy (progress + subtask classification, best layer).
+  label: tab:qa_probe
+  location:
+    section: appendix
+  cells: []
+  id: T013
+  deprecated: false
+- caption: 'Cross-instruction 10-way probe accuracy and L1 instruction-dominant heads
+    across six conditions. Probe accuracy and attention head count are dissociated
+    at L1: TracVLA-Phi3V increases heads ($28 \to 32$) while decreasing probe accuracy
+    ($98.1\% \to 83.6\%$), paralleling the information-computation dissociation observed
+    in OpenVLA. Image\_mean remains at chance ($10\%$) in all conditions (omitted).'
+  label: tab:cross_arch_probe
+  location:
+    section: appendix
+  cells: []
+  id: T014
+  deprecated: false
+- caption: Instruction-dominant heads and text attention fraction at four sampled
+    layers (subset of the 32-layer profile in Figure~\ref{fig:attention_profile
+  label: tab:multilayer_attention
+  location:
+    section: appendix
+  cells: []
+  id: T015
+  deprecated: false
+- caption: Number of instruction-dominant heads at L1 under varying attention thresholds.
+    The three-condition ordering is stable across all thresholds.
+  label: tab:threshold_sensitivity
+  location:
+    section: appendix
+  cells: []
+  id: T016
+  deprecated: false
+- caption: Attention mass allocation at Layer 1, averaged across 5 samples. Instruction-dominant
+    heads (defined as $>50\%$ attention to instruction tokens) allocate 17.5 percentage
+    points more attention to instruction tokens than control heads, with corresponding
+    reductions in vision ($-8.3$pp) and BOS/sink ($-9.2$pp) attention.
+  label: tab:attention_decomp
+  location:
+    section: appendix
+  cells: []
+  id: T017
+  deprecated: false
+- caption: Mean absolute error per action dimension under L1 head ablation. Translation
+    dimensions ($dx$/$dy$/$dz$) show 3--5$\times$ larger instruction-to-control ratio
+    than rotation dimensions (1.9--2.6$\times$); instruction-dominant heads have disproportionate
+    influence on positional control. Gripper (2.07$\times$) falls between the two
+    groups.
+  label: tab:per_dim_mae
+  location:
+    section: appendix
+  cells: []
+  id: T018
+  deprecated: false
+- caption: 'Per-task action probe $R^2$ at L1 (MLP probe, 5 demos/task). All 10 tasks
+    show positive ablation effect ($\Delta > 0$): instruction-head ablation uniformly
+    increases action decodability at the entry layer. Mean $\Delta R^2 = +0.107$;
+    the 50-demo setting (\S\ref{sec:learned_routing'
+  label: tab:per_task_r2
+  location:
+    section: appendix
+  cells: []
+  id: T019
+  deprecated: false
+- caption: Task-level L1 ablation effects ($|\Delta R^2|$) grouped by instruction
+    dependence. \emph{Primary
+  label: tab:task_complexity
+  location:
+    section: appendix
+  cells: []
+  id: T020
+  deprecated: false
+- caption: 'Matched-size ablation controls: trajectory disruption ($d$) from ablating
+    24-head subsets at L1, ranked by instruction attention fraction. Instruction-dominant
+    heads produce the largest effect, but the modest gap ($8\%$ over random) indicates
+    distributed, attention-graded redistribution rather than a dedicated subset.'
+  label: tab:specificity_control
+  location:
+    section: appendix
+  cells: []
+  id: T021
+  deprecated: false
+- caption: Paired effect sizes ($d_z$) for within-subject comparisons. Standard (unpaired)
+    $d$ reported where available. Paired $d_z$ exceeds standard $d$ when within-subject
+    correlation is high.
+  label: tab:paired_dz
+  location:
+    section: appendix
+  cells: []
+  id: T022
+  deprecated: false
+- caption: $R^2$ profile summary across architectures and training conditions.
+  label: tab:2x2_r2_summary
+  location:
+    section: appendix
+  cells: []
+  id: T023
+  deprecated: false
+- caption: 'Per-layer action prediction $R^2$: training effect across architectures
+    (mean $\pm$ std over 15 seeds). Peak values per condition in \textbf{bold'
+  label: tab:2x2_r2
+  location:
+    section: appendix
+  cells: []
+  id: T024
+  deprecated: false
+- caption: 'Cross-architecture summary of $R^2$ exit collapse ($\Delta R^2$: peak-to-exit
+    drop in action-probe $R^2$) and counterfactual (CF) sensitivity (effect size of
+    top perturbation condition). All 10 available cells in the $3 \times 4$ architecture
+    $\times$ suite matrix are shown. Top CF condition is ``empty'''' for all trained
+    cells except OpenVLA Long (``shuffled''''). \textbf{Trained/untrained asymmetry'
+  label: tab:cross_arch_matrix
+  location:
+    section: experiments
+  cells: []
+  id: T025
+  deprecated: false
+- caption: 'Counterfactual condition ranking for trained models (Cohen''s $d$; higher
+    $=$ greater action divergence under instruction perturbation). Conditions: E $=$
+    empty instruction, W $=$ wrong task, S $=$ shuffled tokens, P $=$ paraphrased.
+    ``Empty'''' ranks first in 7 of 8 cells; OpenVLA Long is the exception. NORA cells
+    use cosine distance and are reported in the text (\S\ref{sec:cf_sensitivity'
+  label: tab:counterfactual
+  location:
+    section: experiments
+  cells: []
+  id: T026
+  deprecated: false
+figures:
+- caption: Three similarity metrics across representation sources. \textbf{(a)
+  label: fig:metric_comparison
+  source_path: figures/fig6.pdf
+  location:
+    section: appendix
+  type: result
+  id: F001
+  deprecated: false
+- caption: RSA with the action space ($\rho$) across representation sources. Self-supervised
+    DINOv2 \texttt{cls\_token
+  label: fig:rsa_bar
+  source_path: figures/fig2.pdf
+  location:
+    section: appendix
+  type: result
+  id: F002
+  deprecated: false
+- caption: 'Per-layer RSA ($\rho$) for trained and untrained models at image\_mean
+    and readout (last\_preaction) positions. The trained model shows an inverted-U
+    peaking at L12 for both positions; the untrained model shows monotonic decline.
+    After L12, readout and image\_mean diverge: readout $\rho$ declines gradually
+    ($0.628 \to 0.584$) while image\_mean $\rho$ drops sharply ($0.628 \to 0.422$),
+    consistent with task-specific conditioning at the readout position.'
+  label: fig:rsa_perlayer_curve
+  source_path: figures/fig_rsa_perlayer_curve.pdf
+  location:
+    section: appendix
+  type: result
+  id: F003
+  deprecated: false
+- caption: 'Per-layer action probe $R^2$ (image\_mean) across three training conditions:
+    untrained VLA (random weights), Llama-2 base (pretrained, no VLA fine-tuning),
+    and VLA-trained. All conditions share L0 ($0.645 \pm 0.008$). Trained model peaks
+    at L9; Llama-2 base declines steadily; untrained shows high cross-seed variance
+    and deep-layer collapse. 50 demonstrations per task, 3 seeds (mean $\pm$ std).'
+  label: fig:action_r2_threecond
+  source_path: figures/fig_action_r2_threecond.pdf
+  location:
+    section: appendix
+  type: result
+  id: F004
+  deprecated: false
+- caption: '$R^2$ increase from ablating 24/32 L1 heads. Gray bars: 30 random subsets;
+    red line: dominant-24 heads ($+0.030$). Random subsets yield larger gains (mean
+    $+0.071 \pm 0.013$; $z = -3.11$, percentile $= 0\%$), consistent with graded attention
+    specialization across L1 heads.'
+  label: fig:random_subset_ablation
+  source_path: figures/fig_specificity_bootstrap_30seeds.pdf
+  location:
+    section: appendix
+  type: result
+  id: F005
+  deprecated: false
+- caption: 'Dose-response gradient: trajectory divergence (Cohen''s $d$) as a function
+    of ablated instruction-dominant heads at L1. Error bars: 95\% bootstrap CIs ($10{,'
+  label: fig:dose_response
+  source_path: figures/fig_dose_response.pdf
+  location:
+    section: appendix
+  type: result
+  id: F006
+  deprecated: false
+- caption: 'Pretrained LLM representation diagnostics under visual input. Left: activation
+    magnitude across layers (Llama-2 base vs.\ VLA-trained). Center: cosine similarity
+    between L0 and deeper layers. Right: top-10 PC variance explained. All three metrics
+    indicate structured, non-degenerate representations.'
+  label: fig:ood_diagnostics
+  source_path: figures/fig_ood_diagnostics.pdf
+  location:
+    section: appendix
+  type: result
+  id: F007
+  deprecated: false
+- caption: Per-layer action probe $R^2$ for linear (dashed) and MLP (solid) probes
+    across trained (blue) and untrained (red) conditions. The inverted-U reproduces
+    under both probe architectures; the trained--untrained gap is larger for linear
+    probes.
+  label: fig:linear_vs_mlp
+  source_path: figures/fig_linear_vs_mlp_probe.pdf
+  location:
+    section: appendix
+  type: result
+  id: F008
+  deprecated: false
+- caption: Functional probe $R^2$ for action prediction (best layer per source). Trained
+    readout ($R^2{=
+  label: fig:probe_bars
+  source_path: figures/fig4.pdf
+  location:
+    section: appendix
+  type: result
+  id: F009
+  deprecated: false
+- caption: \textbf{(a)
+  label: fig:factorial
+  source_path: figures/fig5.pdf
+  location:
+    section: appendix
+  type: result
+  id: F010
+  deprecated: false
+- caption: 'Cross-benchmark validation: per-layer RSA and $R^2$ profiles on LIBERO-Goal
+    (left) vs.\ LIBERO-Spatial (right). The inverted-U replicates on both benchmarks.
+    LIBERO-Spatial shows a significant training effect (RSA best-vs-best $\Delta =
+    +0.023$, $p < 0.001$) and deeper peak layers (RSA L14, $R^2$ L13), but RSA--$R^2$
+    peak convergence does not replicate (6-layer gap).'
+  label: fig:cross_benchmark
+  source_path: figures/fig7.pdf
+  location:
+    section: appendix
+  type: result
+  id: F011
+  deprecated: false
+- caption: Cross-instruction 10-way classification accuracy at the readout token across
+    all 32 LLM layers. VLA-trained achieves $99.6\%$ at L1, saturating to $100\%$.
+    Llama-2 base starts at $80.2\%$, reaching $100\%$ by L5. Untrained starts at $100\%$
+    but decays to $82\%$ by L31.
+  label: fig:probe_conditions_appendix
+  source_path: figures/fig_probe_conditions.pdf
+  location:
+    section: appendix
+  type: result
+  id: F012
+  deprecated: false
+- caption: Instruction-dominant heads across layers for two architectures (OpenVLA
+    / TraceVLA), each comparing pre-VLA and VLA-trained conditions. Despite opposite
+    starting points---OpenVLA (Llama-2) begins with sparse attention while TraceVLA
+    (Phi-3-V) begins with distributed attention---VLA training drives both to entry-exit
+    concentration (L1 saturation, mid-layer suppression, L29--L31 re-engagement).
+  label: fig:cross_arch_attention
+  source_path: figures/fig_cross_architecture_attention.pdf
+  location:
+    section: appendix
+  type: result
+  id: F013
+  deprecated: false
+- caption: 'L1 attention from the readout token across three conditions, per head
+    (sorted by instruction attention fraction). VLA-trained: 24/32 instruction-dominant
+    heads ($57.7\%$ text attention). Llama-2 base: 9/32 heads ($36.5\%$). Untrained:
+    0/32 heads ($11.7\%$). See Table~\ref{tab:routing_gradient'
+  label: fig:attention_appendix
+  source_path: figures/fig_l1_stacked_bar.pdf
+  location:
+    section: appendix
+  type: result
+  id: F014
+  deprecated: false
+- caption: Instruction-dominant heads and mean text attention fraction across layers
+    for three conditions. VLA-trained shows elevated values at L1 and L31; Llama-2
+    base peaks at L16; untrained remains near zero throughout.
+  label: fig:multilayer_attention
+  source_path: figures/fig_multi_layer_attn.pdf
+  location:
+    section: appendix
+  type: result
+  id: F015
+  deprecated: false
+- caption: Per-layer $R^2$ action-probe profiles for three architectures, each comparing
+    trained (solid) and untrained (dashed) checkpoints. TracVLA and NORA trained models
+    exhibit pronounced peak-to-exit collapse ($\Delta R^2 = 0.14$--$0.69$), while
+    their untrained VLM baselines show flat profiles ($\Delta R^2 \leq 0.05$). OpenVLA
+    trained shows clear collapse only for Object ($\Delta R^2 = 0.12$); its untrained
+    baseline is an OXE-pretrained VLA that has already undergone exit-layer reorganization.
+  label: fig:r2_collapse
+  source_path: ''
+  location:
+    section: experiments
+  type: result
+  id: F016
+  deprecated: false
+- caption: L1 instruction-dominant head counts for three architectures, comparing
+    trained and untrained checkpoints. TracVLA untrained (Phi-3-Vision) saturates
+    at 32/32 before any VLA training; training reduces this to 27--30/32. NORA (16-head
+    GQA) shows 13--14/16 in both conditions. OpenVLA ranges from 14--24/32 trained
+    vs.\ 24--26/32 untrained (OXE-pretrained). L1 instruction attention reflects base-model
+    language priors, not VLA fine-tuning.
+  label: fig:cross_arch_l1
+  source_path: ''
+  location:
+    section: experiments
+  type: result
+  id: F017
+  deprecated: false
+- caption: \textbf{VLA fine-tuning redistributes instruction attention to entry-exit
+    layers.
+  label: fig:teaser
+  source_path: figures/fig_teaser.pdf
+  location:
+    section: introduction
+  type: result
+  id: F018
+  deprecated: false
+_completeness:
+  coverage: 0/131
+  claims: 113
+  tables: 26
+  figures: 18
+  tier_counts:
+    tier1: 0
+    tier2: 0
+    tier3: 131
+    tierX: 0
+  last_checked: '2026-05-22T13:27:24.540994+00:00'

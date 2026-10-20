@@ -1,0 +1,36 @@
+{
+  "exp_id": "action_head_decoding_openvla_goal_untrained",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T19:15:54.851Z",
+    "updated_at": "2026-05-26T19:46:21.238Z",
+    "hypothesis": "Untrained OpenVLA (OXE-pretrained, no LIBERO fine-tuning) should NOT show exit-peaking action-head R² because the LM head has not been specialized for LIBERO action decoding. If trained model shows exit-peak and untrained does not, this dissociation confirms format specialization is a training-induced effect, not an architectural artifact.",
+    "metrics": {
+      "exit_layer_r2": -1.028,
+      "min_r2": -3.021,
+      "max_r2": -1.028,
+      "n_samples": 5000,
+      "n_demos": 50,
+      "all_layers_negative": true,
+      "elapsed_seconds": 270
+    },
+    "spec": {
+      "command": "python3 scripts/action_head_decode_untrained_50demos.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": 5000,
+      "model_name": "openvla-7b (untrained)",
+      "seed": 0
+    },
+    "checkpoint_path": "N/A (inference only)",
+    "log_path": "/tmp/action_head_untrained_50demos.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-26T19:46:21.238Z"
+  },
+  "timestamp": "2026-05-26T19:46:21.550900+00:00",
+  "trigger": "update_registry"
+}

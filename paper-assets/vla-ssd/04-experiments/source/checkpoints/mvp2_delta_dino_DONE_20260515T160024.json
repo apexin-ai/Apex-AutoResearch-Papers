@@ -1,0 +1,46 @@
+{
+  "exp_id": "mvp2_delta_dino",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:23:29.771Z",
+    "updated_at": "2026-05-15T16:00:24.789Z",
+    "hypothesis": "DINO-V2 action-delta baseline (single layer) — establishes vision-only floor for G3 action-delta comparison",
+    "parent": "mvp2_action_probe",
+    "metrics": {
+      "overall_R2": 0.0604,
+      "per_task_mean_R2": 0.0609,
+      "gripper_accuracy": 0.57,
+      "per_dim_R2": {
+        "dx": 0.1744,
+        "dy": 0.2588,
+        "dz": 0.3745,
+        "drx": 0.084,
+        "dry": 0.0563,
+        "drz": 0.1765,
+        "gripper": 0.0365
+      },
+      "num_layers": 1,
+      "feature_dim": 1024
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2/ --probe_type action_delta --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_10/ --gpu 0",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/dinov2/",
+      "data_count": "10 tasks x 50 demos, 1 layer x 1024 dim",
+      "model_name": "DINO-V2 ViT-L/14 (facebook/dinov2-large)",
+      "seed": 42,
+      "checkpoint_source": "dinov2_baseline",
+      "eval_data": "/root/autodl-tmp/vla-ssd/features/dinov2/ + actions from libero_10",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/dinov2/action_delta/",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/dinov2/action_delta/"
+    },
+    "completed_at": "2026-05-15T16:00:24.789Z"
+  },
+  "timestamp": "2026-05-15T16:00:24.855302+00:00",
+  "trigger": "update_registry"
+}

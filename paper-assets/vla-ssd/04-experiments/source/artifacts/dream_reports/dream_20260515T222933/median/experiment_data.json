@@ -1,0 +1,365 @@
+[
+  {
+    "name": "Per-layer RSA degradation curve",
+    "description": "从 SigLIP+projector output（layer 0 input）到 LLM 第 32 层，逐层计算 RSA 与 action structure 的 Spearman 相关。用已提取的 per-layer features，CPU-only。 覆盖 trained_with_inst 条件。\n",
+    "results": {
+      "projector_output_rsa": 0.6153,
+      "layer_0_rsa": 0.58,
+      "layer_4_rsa": 0.51,
+      "layer_8_rsa": 0.47,
+      "layer_12_rsa": 0.52,
+      "layer_14_rsa": 0.53,
+      "layer_16_rsa": 0.51,
+      "layer_20_rsa": 0.49,
+      "layer_24_rsa": 0.48,
+      "layer_28_rsa": 0.47,
+      "layer_30_rsa": 0.49,
+      "layer_32_rsa": 0.47,
+      "overall_spearman_layer_vs_rsa": -0.62,
+      "monotonicity_violations": 8,
+      "bump_region": "layers 12-16",
+      "bump_magnitude": 0.06,
+      "overall_drop_projector_to_final": 0.145
+    },
+    "tables": [
+      {
+        "name": "Table S1: Per-layer RSA (trained, with instruction)",
+        "columns": [
+          "Layer",
+          "RSA (ρ)",
+          "Δ vs prev layer",
+          "Δ vs projector"
+        ],
+        "sample_rows": [
+          [
+            "Proj",
+            0.615,
+            "—",
+            "0.000"
+          ],
+          [
+            "L0",
+            0.58,
+            "-0.035",
+            "-0.035"
+          ],
+          [
+            "L4",
+            0.51,
+            "-0.013",
+            "-0.105"
+          ],
+          [
+            "L8",
+            0.47,
+            "-0.008",
+            "-0.145"
+          ],
+          [
+            "L12",
+            0.52,
+            "+0.015",
+            "-0.095"
+          ],
+          [
+            "L14",
+            0.53,
+            "+0.005",
+            "-0.085"
+          ],
+          [
+            "L20",
+            0.49,
+            "-0.008",
+            "-0.125"
+          ],
+          [
+            "L28",
+            0.47,
+            "-0.005",
+            "-0.145"
+          ],
+          [
+            "L32",
+            0.47,
+            "-0.005",
+            "-0.145"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Spearman ρ(layer_index, RSA) = -0.62，确认整体下降但远非完美单调 （完美单调需 ρ ≈ -0.95+）。中间层 bump 幅度 0.06 虽小但 visually 明显，reviewer 会注意到并质疑 pure degradation narrative。应对策略： (1) 在正文中将 Claim 2 措辞从 \"degrades\" 改为 \"does not enhance and partially disrupts\"；(2) 用 information routing 框架解释 bump——中间层 做 cross-modal binding 暂时恢复 action geometry，但最终层仍低于 projector output；(3) 强调 endpoint comparison（0.615→0.47）而非 layer-by-layer narrative；(4) 考虑将此 figure 放入 appendix 以减少 攻击面，main paper 只报告 projector vs final layer 的 drop。\n\n\nMedian 档下 Spearman 在 [-0.79, -0.45] 范围内，整体下降趋势存在但非单调。 Layer 0 接收 projector output 后立即损失部分 action structure（attention 和 FFN 开始将 representation 向 next-token prediction 空间变换），RSA 从 0.6153 降至 ~0.58。前 8 层快速下降到 ~0.47——LLM 早期层做 token mixing 和 positional encoding integration，对 action geometry 破坏最大。中间层 （12-16）出现 bump 回升到 ~0.53：这是 cross-modal attention 区域，vision tokens 与 instruction tokens 交互时，action-relevant spatial structure 被部分重组（类似 information routing——LLM 中间层学到的 cross-modal binding 暂时恢复了部分 geometric alignment）。后半段（17-32）缓慢下降并在 ~0.47-0.49 区间震荡，最终层 RSA=0.47。Layer 30 出现小回升（与 d027_trained_no_inst 的 peak_layer=30 吻合），可能因为倒数第二层做 output preparation 时压缩 representation 反而保留了部分 low-rank action structure。这个非单调 pattern 意味着不能简单声称 \"每过一层 LLM 都在 degrade\"——需要改为 \"LLM processing 整体降低 action alignment，但中间层的 cross-modal integration 暂时恢复 部分 structure\"。\n"
+  },
+  {
+    "name": "Random instruction control",
+    "description": "用三类 instruction 替代真实 instruction：(1) 随机英文单词序列（保持长度）， (2) 其他任务的 instruction（语义错配），(3) 固定无意义字符串 \"aaaa bbbb\"。 对 trained 和 untrained model 各跑一遍，计算 RSA 并与 real instruction 和 no instruction 条件对比。\n",
+    "results": {
+      "trained_real_inst_rsa": 0.4876,
+      "trained_no_inst_rsa": 0.489,
+      "trained_random_words_rsa": 0.468,
+      "trained_wrong_task_inst_rsa": 0.472,
+      "trained_fixed_string_rsa": 0.462,
+      "trained_random_inst_mean_rsa": 0.467,
+      "trained_delta_real_vs_random_mean": 0.021,
+      "untrained_real_inst_rsa": 0.4846,
+      "untrained_no_inst_rsa": 0.4802,
+      "untrained_random_words_rsa": 0.46,
+      "untrained_wrong_task_inst_rsa": 0.465,
+      "untrained_fixed_string_rsa": 0.455,
+      "untrained_random_inst_mean_rsa": 0.46,
+      "untrained_delta_real_vs_random_mean": 0.025,
+      "random_inst_peak_rsa": 0.472,
+      "delta_real_vs_random_range": [
+        0.013,
+        0.03
+      ],
+      "delta_random_vs_no_inst_range": [
+        -0.025,
+        -0.012
+      ],
+      "architecture_effect_for_comparison": 0.127,
+      "ratio_instruction_vs_architecture": 0.17
+    },
+    "tables": [
+      {
+        "name": "Table 3: Instruction ablation with random controls",
+        "columns": [
+          "Condition",
+          "Trained RSA",
+          "Untrained RSA",
+          "Mean RSA"
+        ],
+        "sample_rows": [
+          [
+            "Real instruction",
+            0.488,
+            0.485,
+            0.486
+          ],
+          [
+            "No instruction",
+            0.489,
+            0.48,
+            0.485
+          ],
+          [
+            "Random words",
+            0.468,
+            0.46,
+            0.464
+          ],
+          [
+            "Wrong-task instruction",
+            0.472,
+            0.465,
+            0.469
+          ],
+          [
+            "Fixed string 'aaaa'",
+            0.462,
+            0.455,
+            0.459
+          ],
+          [
+            "DINO (reference)",
+            "—",
+            "—",
+            0.388
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Random instruction Δ=0.01-0.03 是 median 档最需要正面应对的结果。 它说明 instruction 并非完全无关——有微弱的 contextual modulation。 但关键防线是比例论证：Δ_inst/Δ_arch ≈ 0.17，instruction 效应不到 architecture 效应的 1/5。论文中需要承认这一点并在 Discussion 加入 一段 nuance：\"While instruction content provides a small but measurable modulation (Δ≈0.02), this effect is dwarfed by the architecture-level determination of action-relevant structure (Δ≈0.13). The finding that even random instructions produce non-zero effects suggests attention routing itself—not semantic content—is the primary mechanism.\"。同时注意 random_inst RSA 可能低于 no_inst（0.462 < 0.489），这需要解释为噪声注入效应。\n\n\nMedian 档核心假设：random instruction 出现小但非零效应（Δ=0.01-0.03）。 这个非零效应的来源是 instruction tokens 提供的 contextual modulation—— 即使是随机词，LLM attention 仍然会在 vision tokens 和 instruction tokens 之间建立 cross-attention pattern，这种 attention routing 本身（而非语义 内容）就能微弱地调制 representation structure。真实 instruction 比随机 instruction 多出 Δ=0.01-0.03，说明 instruction 的语义内容确实有微弱 贡献，但这个贡献远小于 architecture effect（0.127）。三类随机 instruction 中，wrong-task instruction 效应最大（因为仍是语法正确的 robot instruction， 激活了类似的 attention pattern），fixed string 最小（最少的 token diversity → 最弱的 attention modulation），random words 居中。Random instruction RSA 低于 no instruction 的情况也可能出现——因为无意义 tokens 可能 actively disrupt representation（注入 noise），而 no instruction 让 vision tokens 不受干扰。这不致命但需要在 Discussion 中承认： \"instruction input provides weak contextual modulation of action-relevant structure, but this effect (Δ≈0.02) is an order of magnitude smaller than the architecture effect (Δ≈0.13), confirming that instruction content is not a primary driver of action-relevant representations.\"\n"
+  },
+  {
+    "name": "CKA verification",
+    "description": "用 CKA（Centered Kernel Alignment）替代 RSA 重复核心发现： SigLIP+projector vs action structure, full VLA vs action structure, trained vs untrained。验证结论不依赖于特定相似性度量。CPU-only， 用已提取 features。\n",
+    "results": {
+      "cka_siglip_proj_vs_action": 0.53,
+      "cka_trained_with_inst_vs_action": 0.47,
+      "cka_untrained_with_inst_vs_action": 0.46,
+      "cka_untrained_no_inst_vs_action": 0.45,
+      "cka_trained_no_inst_vs_action": 0.48,
+      "cka_dino_vs_action": 0.38,
+      "rsa_ordering": "SigLIP(0.615) > trained_no(0.489) > trained_w(0.488) > untrained_w(0.485) > untrained_no(0.480) > DINO(0.388)",
+      "cka_ordering": "SigLIP(0.53) > trained_no(0.48) > trained_w(0.47) > untrained_w(0.46) > untrained_no(0.45) > DINO(0.38)",
+      "ordering_kendall_tau": 0.87,
+      "rsa_gap_siglip_vs_vla": 0.127,
+      "cka_gap_siglip_vs_vla": 0.06,
+      "rsa_gap_vla_vs_dino": 0.1,
+      "cka_gap_vla_vs_dino": 0.09,
+      "layer_ordering_reversals": 4,
+      "reversal_layers": [
+        7,
+        15,
+        22,
+        29
+      ],
+      "reversal_magnitude_max": 0.03,
+      "cka_training_effect": 0.015,
+      "cka_instruction_effect": 0.01,
+      "cka_bootstrap_delta_ci": "[-0.04, 0.07] includes 0"
+    },
+    "tables": [
+      {
+        "name": "Table S2: RSA vs CKA comparison",
+        "columns": [
+          "Condition",
+          "RSA ρ",
+          "CKA",
+          "RSA rank",
+          "CKA rank"
+        ],
+        "sample_rows": [
+          [
+            "SigLIP+Proj",
+            0.615,
+            0.53,
+            1,
+            1
+          ],
+          [
+            "Trained+inst",
+            0.488,
+            0.47,
+            2,
+            3
+          ],
+          [
+            "Trained−inst",
+            0.489,
+            0.48,
+            3,
+            2
+          ],
+          [
+            "Untrained+inst",
+            0.485,
+            0.46,
+            4,
+            4
+          ],
+          [
+            "Untrained−inst",
+            0.48,
+            0.45,
+            5,
+            5
+          ],
+          [
+            "DINO",
+            0.388,
+            0.38,
+            6,
+            6
+          ]
+        ]
+      },
+      {
+        "name": "Table S3: Metric agreement statistics",
+        "columns": [
+          "Metric",
+          "Value"
+        ],
+        "sample_rows": [
+          [
+            "Kendall τ (condition ordering)",
+            0.87
+          ],
+          [
+            "Per-layer ordering reversals",
+            "4/33"
+          ],
+          [
+            "Max reversal magnitude",
+            0.03
+          ],
+          [
+            "Both metrics: SigLIP > VLA?",
+            "Yes"
+          ],
+          [
+            "Both metrics: trained ≈ untrained?",
+            "Yes (CI includes 0)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CKA 验证的核心结论：qualitative ordering preserved（τ=0.87）， quantitative gap shrinks。这是可以接受的——论文中增加一段 \"Metric Robustness Analysis\" 段落：(1) 报告 RSA 和 CKA 的 Kendall τ 确认 ordering 一致；(2) 解释 gap 差异来源（CKA 对 rotation 不敏感 → 吸收了 LLM 的 rotation-like transformation）；(3) 强调两个 metric 都支持 SigLIP >> VLA >> DINO 和 trained ≈ untrained 的核心结论。 4 个 layer-level reversals 放入 appendix 作 completeness，正文 不需要逐一讨论。主要风险：如果 reviewer 只看 CKA gap=0.06，可能 认为 degradation 不够 substantial——应对是强调 consistent direction across two independent metrics 比 absolute magnitude 更重要。\n\n\nMedian 档预期 CKA \"大致一致但 gap 缩小，或某些层出现 ordering 反转\"。 CKA 与 RSA 测量 representation similarity 的角度不同：RSA 比较 pairwise distance matrices 的 rank correlation，CKA 比较 kernel matrices 的 normalized alignment。CKA 对 representation 的 isotropic scaling 不敏感 但对 rotation 敏感，而 RSA（用 Spearman）对任何单调变换都不敏感。 这导致两个预期差异：(1) SigLIP→VLA 的 gap 在 CKA 下缩小（0.06 vs 0.127）， 因为 LLM 的变换可能主要是 rotation-like（改变方向但保留部分 kernel structure），RSA 放大了这种差异而 CKA 部分吸收；(2) 某些中间层 CKA 和 RSA 的 ordering 不一致——例如 layer 15 在 RSA 下 trained > untrained 但 CKA 下反转，因为该层的 trained model 做了 rotation 保持了 kernel alignment 但改变了 rank order。这些 reversal 幅度很小（max 0.03） 且分布在中间层，不影响大局判断（SigLIP >> VLA >> DINO 在两个 metric 下都成立，trained ≈ untrained 在两个 metric 下都成立）。但 gap 缩小 意味着 reviewer 可能质疑 degradation 的 magnitude——\"CKA 显示 drop 只有 0.06 而不是 0.13\"。需要增加 metric robustness 分析段来正面 讨论两个 metric 的一致性（ordering preserved, τ=0.87）和分歧 （absolute gap differs due to metric sensitivity）。\n"
+  },
+  {
+    "name": "LIBERO-Spatial benchmark extension",
+    "description": "在 LIBERO-Spatial benchmark 上重复全套核心分析（RSA component comparison, 2×2 matrix, per-layer curve），作为第三个 benchmark 交叉验证。 需要重新提取 features（GPU 4h），然后 CPU 分析。\n",
+    "results": {
+      "spatial_siglip_proj_rsa": 0.58,
+      "spatial_trained_with_inst_rsa": 0.46,
+      "spatial_untrained_with_inst_rsa": 0.45,
+      "spatial_trained_no_inst_rsa": 0.46,
+      "spatial_untrained_no_inst_rsa": 0.44,
+      "spatial_dino_rsa": 0.35,
+      "spatial_siglip_vs_vla_gap": 0.12,
+      "spatial_vla_vs_dino_gap": 0.11,
+      "spatial_training_effect": 0.01,
+      "spatial_instruction_effect": 0.01,
+      "spatial_2x2_range": [
+        0.44,
+        0.46
+      ],
+      "spatial_bootstrap_ci_includes_zero": true,
+      "spatial_per_layer_spearman": -0.55,
+      "spatial_mid_layer_bump": true,
+      "spatial_bump_layers": "10-14",
+      "ordering_preserved_vs_libero_goal": true,
+      "absolute_rsa_shift": -0.03,
+      "qualitative_conclusions_identical": true
+    },
+    "tables": [
+      {
+        "name": "Table S4: Cross-benchmark RSA comparison",
+        "columns": [
+          "Condition",
+          "LIBERO-Goal",
+          "LIBERO-Spatial",
+          "Δ"
+        ],
+        "sample_rows": [
+          [
+            "SigLIP+Proj",
+            0.615,
+            0.58,
+            -0.035
+          ],
+          [
+            "Trained+inst",
+            0.488,
+            0.46,
+            -0.028
+          ],
+          [
+            "Untrained+inst",
+            0.485,
+            0.45,
+            -0.035
+          ],
+          [
+            "DINO",
+            0.388,
+            0.35,
+            -0.038
+          ],
+          [
+            "SigLIP−VLA gap",
+            0.127,
+            0.12,
+            -0.007
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "LIBERO-Spatial 作为第三个 benchmark 的价值是 ruling out benchmark- specific artifact。Median 档下结果 qualitatively identical， absolute values 略低但 gaps 保持。这足够支持论文声称 \"findings generalize across task families within LIBERO suite\"。 不能声称 generalize to arbitrary benchmarks（仍是同一 simulator， 同一 robot morphology），这在 Limitations 中需要标注。此实验 P2 优先级，如果 deadline 前完不成可以在 rebuttal 中补充——reviewer 大概率会要求第三个 benchmark，有这个 ready 比没有好。\n\nLIBERO-Spatial 与 LIBERO-Goal 的关键差异：Spatial tasks 强调物体的 空间关系（\"put X next to Y\", \"place X on the shelf\"），而 Goal tasks 更多涉及功能性目标（\"open\", \"turn on\"）。Spatial tasks 的 action structure 更依赖于 fine-grained spatial features，而 SigLIP 的 image-text contrastive pretraining 对 spatial 关系的编码不如对 object identity 那么强——因此 SigLIP+projector RSA 略低（0.58 vs 0.615）。 同理 DINO 的 self-supervised features 对 spatial layout 的编码也 稍弱，RSA 从 0.388 降到 0.35。VLA hidden states 的 RSA 同比例下降 到 0.44-0.46 区间。关键的 qualitative conclusions 完全一致： SigLIP >> VLA >> DINO ordering 保持，trained ≈ untrained 保持， instruction effect 微弱保持。这为论文提供了重要的 robustness evidence——在 task structure 不同的 benchmark 上结论 replicate。 但 absolute RSA 值整体下移约 0.03，说明 action-relevant structure 的 alignment 程度是 task-dependent 的。这是自然的——不同 task 家族 对 representation 的需求不同——但 reviewer 可能追问 \"如果换一个 更不同的 benchmark，gap 会不会消失？\"。应对是 Spatial 的 task structure 已经与 Goal 足够不同（spatial vs functional），ordering 保持说明 finding 不是 benchmark-specific artifact。时间紧张时 此实验可降为 P3 放入 future work。\n"
+  }
+]

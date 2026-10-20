@@ -1,0 +1,506 @@
+[
+  {
+    "name": "Per-layer RSA degradation curve",
+    "description": "追踪 RSA 从 projector output (layer 0) 到 LLM 各层 (layer 1-32) 的变化轨迹",
+    "results": {
+      "per_layer_rsa_layer0": 0.59,
+      "per_layer_rsa_layer4": 0.52,
+      "per_layer_rsa_layer8": 0.44,
+      "per_layer_rsa_layer12": 0.39,
+      "per_layer_rsa_layer16": 0.38,
+      "per_layer_rsa_layer20": 0.41,
+      "per_layer_rsa_layer24": 0.45,
+      "per_layer_rsa_layer28": 0.48,
+      "per_layer_rsa_layer32": 0.55,
+      "monotonicity_spearman": -0.18,
+      "trough_layer": 16,
+      "trough_rsa": 0.38,
+      "recovery_ratio": 0.85
+    },
+    "tables": [
+      {
+        "name": "Per-layer RSA curve (trained, with instruction)",
+        "columns": [
+          "Layer",
+          "RSA ρ",
+          "Δ from L0",
+          "Phase"
+        ],
+        "rows": [
+          [
+            "0 (proj)",
+            0.59,
+            "—",
+            "projector output"
+          ],
+          [
+            "1",
+            0.57,
+            -0.02,
+            "early"
+          ],
+          [
+            "2",
+            0.55,
+            -0.04,
+            "early"
+          ],
+          [
+            "4",
+            0.52,
+            -0.07,
+            "early"
+          ],
+          [
+            "8",
+            0.44,
+            -0.15,
+            "mid-descent"
+          ],
+          [
+            "12",
+            0.39,
+            -0.2,
+            "trough approach"
+          ],
+          [
+            "16",
+            0.38,
+            -0.21,
+            "trough"
+          ],
+          [
+            "20",
+            0.41,
+            -0.18,
+            "early recovery"
+          ],
+          [
+            "24",
+            0.45,
+            -0.14,
+            "recovery"
+          ],
+          [
+            "28",
+            0.48,
+            -0.11,
+            "recovery"
+          ],
+          [
+            "30",
+            0.52,
+            -0.07,
+            "late recovery"
+          ],
+          [
+            "32",
+            0.55,
+            -0.04,
+            "output"
+          ]
+        ]
+      },
+      {
+        "name": "U-shape statistics",
+        "columns": [
+          "Metric",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Spearman (layer index vs RSA)",
+            -0.18
+          ],
+          [
+            "Trough layer",
+            16
+          ],
+          [
+            "Trough RSA",
+            0.38
+          ],
+          [
+            "L0 RSA",
+            0.59
+          ],
+          [
+            "L32 RSA",
+            0.55
+          ],
+          [
+            "Recovery ratio",
+            "85%"
+          ],
+          [
+            "Monotonic degradation?",
+            "NO"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "U-shape 是 worst 档的定义性信号。它否定了 \"monotonic degradation\" narrative， 但并不否定 vision encoder dominance（L0 仍是全局 peak）。Reframe 路径： LLM 的 32 层变换是 representational detour——先破坏后恢复，净效果接近 identity。 这比 \"degrades\" 更 nuanced，但 \"redundant bottleneck\" 对 CoRL 仍有强 practical message：如果 32 层 LLM 只是把表征转一圈回来，那架构可以大幅简化。 需要额外验证：(1) U-shape 在 untrained 条件下是否也成立；(2) recovery 是否 来自 residual connections（ablation: 去掉 residual 是否消除 recovery）。\n\n\nWorst 档核心信号：RSA 不是单调下降而是 U-shape。Layer 0 (projector output) RSA ≈ 0.59 （略低于 d027 的 0.6153 因为 per-layer 提取方式略有不同），中间层（L12-L16）降至 trough ≈ 0.38 （接近 DINO 水平），但深层（L28-L32）恢复到 0.55 附近。Spearman 单调性 ≈ -0.18，远弱于 monotonic degradation 预期的 < -0.7。这个 U-shape 直接否定 \"LLM degrades\" 的线性叙事： LLM 前半段确实破坏 action structure（为 next-token prediction 重组表征），但后半段 通过 residual connections 和 layer normalization 逐步恢复几何结构。最终 L32 的 0.55 虽低于 projector 的 0.59，但差距远小于 peak degradation 暗示的程度。这说明 LLM 是 lossy-then-recovery 过程，不是单向 degradation。核心 story 必须从 \"degrades\" 转为 \"redundant bottleneck\"——LLM 花了 32 层做了一个近似恢复原始结构的变换。\n"
+  },
+  {
+    "name": "Random instruction control",
+    "description": "用随机/无意义 instruction 替代真实 instruction，验证 instruction content 是否影响 RSA",
+    "results": {
+      "random_inst_peak_rsa_trained": 0.445,
+      "random_inst_peak_rsa_untrained": 0.44,
+      "random_inst_peak_layer_trained": 12,
+      "real_inst_peak_rsa_trained": 0.4876,
+      "delta_random_vs_real_trained": 0.0426,
+      "delta_random_vs_real_untrained": 0.0446,
+      "delta_random_vs_no_inst_trained": -0.044,
+      "no_inst_peak_rsa": 0.4802,
+      "random_inst_direction": "random < no_inst ≈ real_inst"
+    },
+    "tables": [
+      {
+        "name": "Instruction condition comparison",
+        "columns": [
+          "Condition",
+          "Peak RSA",
+          "Peak Layer",
+          "Δ vs Real Inst"
+        ],
+        "rows": [
+          [
+            "Real instruction (trained)",
+            0.4876,
+            9,
+            "—"
+          ],
+          [
+            "Real instruction (untrained)",
+            0.4846,
+            12,
+            "—"
+          ],
+          [
+            "No instruction (trained)",
+            0.489,
+            30,
+            "+0.0014"
+          ],
+          [
+            "No instruction (untrained)",
+            0.4802,
+            12,
+            "-0.0044"
+          ],
+          [
+            "Random instruction (trained)",
+            0.445,
+            12,
+            "-0.0426"
+          ],
+          [
+            "Random instruction (untrained)",
+            0.44,
+            10,
+            "-0.0446"
+          ],
+          [
+            "DINO",
+            0.388,
+            "—",
+            "-0.0996"
+          ]
+        ]
+      },
+      {
+        "name": "Instruction effect decomposition",
+        "columns": [
+          "Comparison",
+          "Δ RSA",
+          "Significant?"
+        ],
+        "rows": [
+          [
+            "Real vs No instruction",
+            0.004,
+            "No (< 0.03)"
+          ],
+          [
+            "Real vs Random instruction",
+            0.043,
+            "Yes (> 0.03)"
+          ],
+          [
+            "No vs Random instruction",
+            0.04,
+            "Yes (> 0.03)"
+          ],
+          [
+            "Random vs DINO",
+            0.057,
+            "Yes"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Random instruction Δ > 0.03 使 \"instruction invariance\" 的绝对表述不成立。 需要 reframe Claim 3：从 \"instruction has no effect\" 改为 \"meaningful instruction content is not utilized for action structure, but adversarial/random instruction can actively degrade it\"。这实际上强化了 redundancy narrative：LLM 不利用 instruction 的语义信息来构建 action structure，但如果被喂入 noise，它的 language processing machinery 会主动干扰 vision-derived signals。Practical implication： VLA 部署时应确保 instruction 质量，或者直接去掉 LLM 以消除这个风险面。\n\n\nWorst 档预测 random instruction 的 RSA 显著低于 real instruction（Δ ≈ 0.04，超过 0.03 threshold），且方向出人意料：random instruction 不仅不等于 real instruction， 反而比 no instruction 还差。这说明 instruction invariance claim 过于简化——instruction content 确实对 RSA 有影响，但方向是 \"garbage in → degradation\" 而非 \"meaningful instruction → enhancement\"。真实 instruction 和空 instruction 效果相近（Δ=0.004）， 但 random tokens 积极干扰 LLM 的表征处理，导致 action structure 额外损失。 这个结果动摇 Claim 3 的 \"instruction invariance\" 表述：instruction 的 presence 不 matter，但 instruction 的 content quality 在极端情况下 does matter。 机制解释：random tokens 激活 LLM 的 language processing pathways 产生 out-of-distribution activations，这些 activations 与 vision tokens 在 attention 中竞争，导致 action-relevant 信号被稀释。No instruction 下 LLM 只处理 vision tokens，没有这种干扰。\n"
+  },
+  {
+    "name": "CKA verification",
+    "description": "用 CKA 指标重复 RSA 发现，确保结论不是 RSA 指标特异性产物",
+    "results": {
+      "cka_siglip_proj_vs_action": 0.52,
+      "cka_vla_trained_vs_action": 0.5,
+      "cka_vla_untrained_vs_action": 0.49,
+      "cka_dino_vs_action": 0.35,
+      "cka_ordering": "SigLIP+proj ≈ VLA_trained ≈ VLA_untrained >> DINO",
+      "rsa_ordering": "SigLIP+proj >> VLA_trained ≈ VLA_untrained >> DINO",
+      "ordering_consistent": false,
+      "cka_siglip_vs_vla_delta": 0.02,
+      "rsa_siglip_vs_vla_delta": 0.127
+    },
+    "tables": [
+      {
+        "name": "RSA vs CKA ordering comparison",
+        "columns": [
+          "Condition",
+          "RSA ρ",
+          "RSA Rank",
+          "CKA",
+          "CKA Rank"
+        ],
+        "rows": [
+          [
+            "SigLIP+projector",
+            0.615,
+            1,
+            0.52,
+            1
+          ],
+          [
+            "VLA trained+inst",
+            0.488,
+            2,
+            0.5,
+            2
+          ],
+          [
+            "VLA untrained+inst",
+            0.485,
+            3,
+            0.49,
+            3
+          ],
+          [
+            "VLA trained no-inst",
+            0.489,
+            2,
+            0.5,
+            2
+          ],
+          [
+            "VLA untrained no-inst",
+            0.48,
+            4,
+            0.48,
+            4
+          ],
+          [
+            "DINO",
+            0.388,
+            5,
+            0.35,
+            5
+          ]
+        ]
+      },
+      {
+        "name": "Metric agreement analysis",
+        "columns": [
+          "Claim",
+          "RSA supports?",
+          "CKA supports?",
+          "Agreement"
+        ],
+        "rows": [
+          [
+            "Vision encoder dominance (SigLIP >> DINO)",
+            "Yes (Δ=0.227)",
+            "Yes (Δ=0.17)",
+            "Consistent"
+          ],
+          [
+            "LLM degradation (SigLIP >> VLA)",
+            "Yes (Δ=0.127)",
+            "Marginal (Δ=0.02)",
+            "Inconsistent"
+          ],
+          [
+            "Training invariance (trained ≈ untrained)",
+            "Yes (Δ=0.003)",
+            "Yes (Δ=0.01)",
+            "Consistent"
+          ],
+          [
+            "Instruction invariance (inst ≈ no-inst)",
+            "Yes (Δ=0.004)",
+            "Yes (Δ=0.02)",
+            "Consistent"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CKA-RSA ordering inconsistency 是 worst 档的第二个关键信号。它不摧毁整个 story （DINO < VLA < SigLIP 的大序仍成立），但削弱了 degradation 的量化 claim。 应对策略：(1) 正面讨论 metric dependency，将其作为 contribution 之一（\"which representational similarity metric is appropriate for evaluating action alignment is itself an open question\"）；(2) 论证 RSA 的 rank-correlation nature 更适合 评估 action structure alignment（因为 action space 的 metric structure 是 ordinal）， 但承认 CKA 给出 weaker version of the claim；(3) 将 degradation claim 从 \"LLM degrades\" 改为 \"LLM at best preserves, does not enhance\" action structure—— 这在两个指标下都成立。\n\n\nWorst 档预测 CKA 和 RSA 给出不同的 ordering。CKA 下 SigLIP+proj (0.52) 与 VLA (0.50) 的差距大幅缩小到 Δ=0.02（RSA 下是 0.127），使得 \"LLM degrades\" 或 \"LLM is redundant\" 的 claim 在 CKA 下几乎不成立——两者统计不可区分。原因：CKA 衡量的是 kernel alignment （关注整体 representational similarity structure），对高阶几何变换更 robust；RSA 衡量的 是 pairwise distance 的 rank correlation，对 local distortions 更敏感。LLM 的变换 主要是 local geometric distortion（为 next-token prediction 旋转/缩放 representation）， 这在 RSA 下表现为 degradation 但在 CKA 下被 absorbed。这意味着 \"LLM degrades action alignment\" 是 metric-dependent conclusion，reviewer 可以攻击指标选择。同时 CKA 仍保持 DINO 显著低于其他条件（0.35 vs 0.49-0.52），所以 vision encoder dominance claim 在两个指标下一致，只是 degradation claim 不 robust。\n"
+  },
+  {
+    "name": "LIBERO-Spatial benchmark extension",
+    "description": "第三个 benchmark 交叉验证核心发现",
+    "results": {
+      "spatial_siglip_proj_rsa": 0.58,
+      "spatial_vla_trained_rsa": 0.47,
+      "spatial_vla_untrained_rsa": 0.46,
+      "spatial_dino_rsa": 0.36,
+      "spatial_per_layer_monotonicity": -0.15,
+      "spatial_u_shape": true,
+      "cross_benchmark_ordering_consistent": true,
+      "spatial_instruction_delta": 0.005
+    },
+    "tables": [
+      {
+        "name": "Cross-benchmark comparison",
+        "columns": [
+          "Condition",
+          "LIBERO-Goal RSA",
+          "LIBERO-Long RSA",
+          "LIBERO-Spatial RSA"
+        ],
+        "rows": [
+          [
+            "SigLIP+projector",
+            0.615,
+            "—",
+            0.58
+          ],
+          [
+            "VLA trained",
+            0.488,
+            0.488,
+            0.47
+          ],
+          [
+            "VLA untrained",
+            0.485,
+            0.485,
+            0.46
+          ],
+          [
+            "DINO",
+            0.388,
+            0.388,
+            0.36
+          ]
+        ]
+      },
+      {
+        "name": "Ordering consistency",
+        "columns": [
+          "Benchmark",
+          "Ordering",
+          "U-shape?",
+          "Instruction Δ"
+        ],
+        "rows": [
+          [
+            "LIBERO-Goal",
+            "SigLIP >> VLA ≈ VLA_u >> DINO",
+            "Yes",
+            0.004
+          ],
+          [
+            "LIBERO-Long",
+            "SigLIP >> VLA ≈ VLA_u >> DINO",
+            "Yes",
+            0.004
+          ],
+          [
+            "LIBERO-Spatial",
+            "SigLIP >> VLA ≈ VLA_u >> DINO",
+            "Yes",
+            0.005
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "LIBERO-Spatial 预期复现核心 ordering，增强 generalization claim。但在 worst 档下， 此实验优先级低于 plan_003 (per-layer curve) 和 CLIP baseline（未在 plan 中但 worst 档下成为 blocking）。如果时间有限应优先完成 CLIP baseline。\n\n\nLIBERO-Spatial 的 task structure 与 LIBERO-Goal/Long 不同（强调空间关系而非 temporal sequence），预期整体 RSA 略低（空间关系在 action space 中更分散）。 但核心 ordering（SigLIP >> VLA ≈ VLA_untrained >> DINO）应保持一致，验证 findings 不是单个 benchmark 的 artifact。U-shape 同样出现但 recovery 程度可能 更弱（空间任务的 action structure 更复杂，LLM recovery 更困难）。 Instruction invariance 同样成立（Δ ≈ 0.005），因为 LIBERO-Spatial 的 instruction 同样是简单描述性语句，不提供超出视觉信息的 action guidance。 此实验在 worst 档下优先级低于 CLIP baseline，但如果有时间做可以增加 robustness。\n"
+  },
+  {
+    "name": "CLIP-ViT baseline (blocking under worst tier)",
+    "description": "补做 CLIP-ViT-L/14（与 SigLIP 同为 vision-language contrastive pretrained）baseline， 分离 SigLIP RSA 优势中 vision-language pretraining 的贡献 vs pure vision quality\n",
+    "results": {
+      "clip_rsa": 0.56,
+      "clip_vs_siglip_delta": 0.055,
+      "clip_vs_dino_delta": 0.172,
+      "clip_vs_vla_delta": 0.072,
+      "pretraining_confound_fraction": 0.76
+    },
+    "tables": [
+      {
+        "name": "Vision encoder comparison with pretraining control",
+        "columns": [
+          "Encoder",
+          "Pretraining",
+          "RSA ρ",
+          "Δ vs DINO"
+        ],
+        "rows": [
+          [
+            "SigLIP-SO400M",
+            "image-text contrastive (WebLI)",
+            0.615,
+            "+0.227"
+          ],
+          [
+            "CLIP-ViT-L/14",
+            "image-text contrastive (LAION)",
+            0.56,
+            "+0.172"
+          ],
+          [
+            "DINOv2-L",
+            "self-supervised (LVD-142M)",
+            0.388,
+            "—"
+          ]
+        ]
+      },
+      {
+        "name": "Confound decomposition",
+        "columns": [
+          "Component",
+          "RSA contribution",
+          "Fraction of SigLIP-DINO gap"
+        ],
+        "rows": [
+          [
+            "Vision-language pretraining effect",
+            0.172,
+            "76%"
+          ],
+          [
+            "SigLIP-specific advantage",
+            0.055,
+            "24%"
+          ],
+          [
+            "Total SigLIP - DINO gap",
+            0.227,
+            "100%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CLIP baseline 在 worst 档下是 blocking experiment。如果 CLIP RSA 确实接近 SigLIP， reviewer 攻击 \"这只是 VL pretraining 的 artifact\" 就有实质依据。应对： (1) 正面接受并 reframe——\"vision-language pretraining, not task-specific fine-tuning, is the primary source of action-relevant structure\"，这是更 general 的 insight； (2) 讨论 SigLIP 剩余 24% 优势可能来自 training data scale (WebLI >> LAION) 或 architecture differences；(3) 核心 message 不变——LLM fine-tuning 仍然是 redundant， 但 \"vision encoder\" 应改为 \"vision-language pretrained encoder\"。\n\nWorst 档下第四个 reviewer 攻击成为 blocking：SigLIP 的 RSA=0.615 优势是否完全来自 vision-language pretraining？CLIP-ViT 是同族模型（contrastive image-text pretraining）， 预期 RSA ≈ 0.56，显著高于 DINO (0.388) 但略低于 SigLIP (0.615)。 这意味着 SigLIP-DINO gap 的 ~76% 可归因于 vision-language pretraining 本身， 而非 SigLIP 特有的架构/数据优势。这个结果迫使 story 调整：不能说 \"SigLIP vision encoder 提供 action structure\"，而应说 \"vision-language pretrained encoders 天然 携带 action-relevant structure，且这种 pretraining bonus 比 VLA fine-tuning 更重要\"。 这实际上是一个 stronger insight（pretraining paradigm > fine-tuning），但需要 重写 Introduction 的 framing。\n"
+  }
+]

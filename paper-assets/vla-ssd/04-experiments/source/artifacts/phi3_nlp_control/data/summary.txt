@@ -1,0 +1,18 @@
+Phi-3-mini-4k-instruct NLP Control Action R2 Probing Results
+=============================================================
+Model: Phi-3-mini-4k-instruct (3.8B params, 32 layers, hidden_dim=3072)
+Samples: 5000 (10 tasks x 10 demos x 50 timesteps)
+Unique hidden states: 10 (one per task instruction)
+
+Per-layer R2:
+L0=0.1555  L1=0.1552  L2=0.1555  L3=0.1553  L4=0.1554  L5=0.1555  L6=0.1554  L7=0.1554
+L8=0.1555  L9=0.1555  L10=0.1552 L11=0.1552 L12=0.1554 L13=0.1555 L14=0.1555 L15=0.1555
+L16=0.1555 L17=0.1555 L18=0.1555 L19=0.1555 L20=0.1555 L21=0.1555 L22=0.1555 L23=0.1555
+L24=0.1555 L25=0.1555 L26=0.1555 L27=0.1555 L28=0.1555 L29=0.1555 L30=0.1555 L31=0.1555
+
+Peak: L0, R2=0.1555
+Exit: L31, R2=0.1555
+Exit collapse (delta_R2): 0.0000
+Mean R2: 0.1555
+
+Remote path: /root/autodl-tmp/vla-ssd/results/phi3_nlp_control/summary.json (westd-19183)

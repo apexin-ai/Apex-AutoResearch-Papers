@@ -1,0 +1,43 @@
+{
+  "exp_id": "plan_008_random_inst_control",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:57:16.908Z",
+    "updated_at": "2026-05-16T01:16:03.037Z",
+    "hypothesis": "Plan_008 (Claim 3): Random instruction control. Replace real instruction with random gibberish (random_s0) or word-shuffled version (shuffled). If RSA ≈ normal instruction (0.488) → instruction content irrelevant, supports invariance. If RSA drops significantly → instruction content matters.",
+    "spec": {
+      "command": "python scripts/extract_features_rand_inst.py --instruction_mode random --seed 0 --gpu 0",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b",
+      "seed": 0
+    },
+    "notes": "RSA instruction control completed. All 4 conditions peak at L16. Deltas vs normal: empty=-0.0165, random_s0=-0.0053, shuffled=-0.0056. Max |Δ|=0.0165 (well within 0.02 threshold). Instruction content is irrelevant to representation-action alignment structure. Result file: /root/autodl-tmp/vla-ssd/results/rsa/rsa_instruction_control_last_preaction.json",
+    "metrics": {
+      "normal_peak_rsa": 0.4888,
+      "normal_peak_layer": 16,
+      "empty_peak_rsa": 0.4723,
+      "empty_peak_layer": 16,
+      "random_s0_peak_rsa": 0.4835,
+      "random_s0_peak_layer": 16,
+      "shuffled_peak_rsa": 0.4832,
+      "shuffled_peak_layer": 16,
+      "delta_empty_vs_normal": -0.0165,
+      "delta_random_s0_vs_normal": -0.0053,
+      "delta_shuffled_vs_normal": -0.0056,
+      "max_absolute_delta": 0.0165,
+      "instruction_invariant": true
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/rsa/rsa_instruction_control_last_preaction.json",
+    "log_path": "/tmp/rsa_ic2.log",
+    "completed_at": "2026-05-16T01:16:03.037Z"
+  },
+  "timestamp": "2026-05-16T01:16:03.132163+00:00",
+  "trigger": "update_registry"
+}

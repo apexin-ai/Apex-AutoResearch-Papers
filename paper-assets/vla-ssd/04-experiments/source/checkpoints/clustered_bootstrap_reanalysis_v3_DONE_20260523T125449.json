@@ -1,0 +1,42 @@
+{
+  "exp_id": "clustered_bootstrap_reanalysis_v3",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:46:06.392Z",
+    "updated_at": "2026-05-23T12:54:48.966Z",
+    "hypothesis": "Monte Carlo Cross-Validation (without-replacement permutation 80/20 demo split × 1000 iterations) fixes v2's train-test demo overlap artifact. Expect bootstrap CIs to center around canonical deltas, confirming VLM→VLA exit collapse significance (TracVLA 4/4, NORA 2/2) while OpenVLA and untrained conditions remain non-significant.",
+    "parent": "clustered_bootstrap_reanalysis_v2",
+    "spec": {
+      "command": "tmux: bootstrap_v3_cuda0 (12 conditions) + bootstrap_v3_cuda1 (8 conditions)",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/results/ (extracted features)",
+      "data_count": "20 conditions (3 arch × 4 suites × 2 conditions)",
+      "model_name": "OpenVLA/TracVLA/NORA kernel ridge probes",
+      "seed": "per-iteration RNG seeds via np.random.default_rng",
+      "checkpoint_source": "clustered_bootstrap_reanalysis_v2 (reusing extracted features)",
+      "eval_data": "LIBERO goal/spatial/object/long demo features (100 demos each)"
+    },
+    "notes": "2026-05-23 11:25 UTC D102决策: (1) NORA goal trained 报 canonical Δ=0.455, 表中脚注 \"†CI unreliable due to near-zero exit-layer R²\" (2) TracVLA goal untrained 直接报告, CI穿零是正面结果. 进度 17/20, 等 tracvla_object/untrained + tracvla_long trained/untrained 完成.",
+    "reproduce": {
+      "finished_at": "2026-05-23T07:47:57.790Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T07:47:59.985Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T07:48:03.448404+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-23T12:54:49.291622+00:00",
+  "trigger": "update_registry"
+}

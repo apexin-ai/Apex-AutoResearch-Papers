@@ -1,0 +1,34 @@
+{
+  "test": "Two One-Sided Tests (TOST) for equivalence",
+  "openvla_peak_layer": "L9",
+  "openvla_peak_mean": 0.63723,
+  "openvla_peak_std": 0.008595,
+  "phi3v_peak_layer": "L11",
+  "phi3v_peak_mean": 0.633977,
+  "phi3v_peak_std": 0.008936,
+  "n_seeds_openvla": 15,
+  "n_seeds_phi3v": 15,
+  "mean_diff": 0.003253,
+  "se": 0.003201,
+  "epsilon": 0.05,
+  "df_welch": 27.96,
+  "t1_upper": -14.6017,
+  "p1_upper": 0.0,
+  "t2_lower": 16.6338,
+  "p2_lower": 0.0,
+  "p_tost": 0.0,
+  "ci_90_lower": -0.002193,
+  "ci_90_upper": 0.008699,
+  "traditional_ttest_t": 1.0161,
+  "traditional_ttest_p": 0.318305,
+  "conclusion": "equivalent",
+  "interpretation": "The 90% CI [-0.0022, 0.0087] falls entirely within [-0.05, +0.05]",
+  "metadata": {
+    "openvla_data_source": "/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json",
+    "phi3v_data_sources": [
+      "/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json",
+      "/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json"
+    ],
+    "computed_at": "2026-05-21T01:48:42.413216"
+  }
+}

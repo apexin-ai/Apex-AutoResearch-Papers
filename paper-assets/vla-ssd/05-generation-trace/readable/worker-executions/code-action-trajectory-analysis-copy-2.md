@@ -1,0 +1,1442 @@
+# code action trajectory analysis
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_code_action_trajectory_analysis_20260518T103600.log`
+- **Structured JSON:** [`91d8710e088e7d07782b.json`](../../sessions/91/91d8710e088e7d07782b.json)
+
+## Before a recorded user message
+
+31 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__submit_training_job",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c8c03b15-1a95-43eb-bd74-5f4d2488c235",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779112800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8a25ac53-1c76-47b9-b99c-3681a3964bc0",
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the existing `behavioral_pilot.py` to understand the DynamicCache fix and L1 ablation hook code that I need to reuse.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "73127467-03b9-406f-8d7f-3302c80d1754",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GxZUhVYac7uGMszvT3RfuP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13925,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13925
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me first read the existing code to understand the patterns to reuse.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "578cf61a-cb07-4610-b136-c12f70d6eeed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GxZUhVYac7uGMszvT3RfuP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13925,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13925
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01EjcsDKMpyQ2M4GvHhuYqhv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "a887978e-4865-47df-9ef1-7f9f8ee21758",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GxZUhVYac7uGMszvT3RfuP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13925,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13925
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T10:37:17.239Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01EjcsDKMpyQ2M4GvHhuYqhv`</summary>
+
+```text
+EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "db512316-f93c-4e05-b2dd-aa19d2290eb0",
+  "tool_use_result": "Error: EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KcFECVBPCn1sSBQ3wW8xF8`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/behavioral_pilot.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "179727c2-330b-4a15-a7ca-f2ed26aada35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GxZUhVYac7uGMszvT3RfuP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13925,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13925
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T10:37:17.619Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01KcFECVBPCn1sSBQ3wW8xF8`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "cc9554f9-d3db-4ca5-9aef-82db7a899999",
+  "tool_use_result": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd."
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+The script is on the remote server. Let me fetch it via SSH.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "d0a9c8ae-f75e-4969-97be-d0f829ee4a46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3pdojLbTj8Bf692jV3WrA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 360,
+      "cache_read_input_tokens": 25766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 360
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XgizDmxeN3hyvtHuLyitug`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__register_artifact",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "6bf493db-e804-4319-a381-eb885fd4f017",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3pdojLbTj8Bf692jV3WrA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 360,
+      "cache_read_input_tokens": 25766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 360
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T10:37:21.937Z_
+
+<details><summary>↩ Tool result · `toolu_01XgizDmxeN3hyvtHuLyitug`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_training_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "e3c97016-12e6-4b85-be15-28ff3f52f221",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WeDaJxQcpC13dnMeGqYNBo`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/behavioral_pilot.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "bfecdd73-e5a9-42a3-b61f-d69960628185",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FuFixUR9145udGoPNSmcoX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2073,
+      "cache_read_input_tokens": 26126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2073
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0152LXm6GEQLsJvJ5nvndEfR`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "cfd5b640-9197-495a-ba1f-ea74086c9bb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FuFixUR9145udGoPNSmcoX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2073,
+      "cache_read_input_tokens": 26126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2073
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T10:37:26.206Z_
+
+<details><summary>↩ Tool result · `toolu_01WeDaJxQcpC13dnMeGqYNBo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Behavioral pilot: compare OpenVLA baseline vs L1-ablated on LIBERO-Goal tasks.\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport gc\\nimport json\\nimport time\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom PIL import Image\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\n# ── Config ──────────────────────────────────────────────────────────────────\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nTASK_IDS = [0, 3, 7]\\nN_EPISODES = 10\\nMAX_STEPS = 300\\nCONDITIONS = [\\\"baseline\\\", \\\"ablated\\\"]\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\\nINSTRUCTION_HEADS_24 = [0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20,\\n                        22, 23, 25, 26, 27, 29, 30, 31]\\n\\nfrom libero.libero import benchmark\\nfrom libero.libero.envs import OffScreenRenderEnv\\nimport libero.libero\\n\\nLIB_DIR = os.path.dirname(libero.libero.__file__)\\n\\n\\ndef make_env(task_id):\\n    bench = benchmark.get_benchmark(\\\"libero_goal\\\")()\\n    task = bench.get_task(task_id)\\n    bddl_path = os.path.join(LIB_DIR, \\\"bddl_files\\\", task.problem_folder, task.bddl_file)\\n    env = OffScreenRenderEnv(\\n        bddl_file_name=bddl_path,\\n        camera_heights=224,\\n        camera_widths=224,\\n        camera_names=\\\"agentview\\\",\\n    )\\n    return env, task.language, task.name\\n\\n\\n# ── Manual autoregressive generation (bypasses generate() DynamicCache issues) ──\\ndef predict_action_manual(model, input_ids, pixel_values, unnorm_key):\\n    action_dim = model.get_action_dim(unnorm_key)\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\\n            dim=1,\\n        )\\n    with torch.no_grad():\\n        outputs = model(\\n            input_ids=input_ids,\\n            attention_mask=torch.ones_like(input_ids),\\n            pixel_values=pixel_values,\\n            past_key_values=None,\\n            use_cache=True,\\n        )\\n    past_key_values = outputs.past_key_values\\n    next_token_logits = outputs.logits[:, -1, :]\\n\\n    generated_ids = []\\n    for _ in range(action_dim):\\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\\n        generated_ids.append(next_token.squeeze().item())\\n        attn_mask = torch.ones(\\n            (1, past_key_values[0][0].shape[2] + 1),\\n            device=input_ids.device, dtype=input_ids.dtype,\\n        )\\n        with torch.no_grad():\\n            outputs = model(\\n                input_ids=next_token,\\n                attention_mask=attn_mask,\\n                pixel_values=None,\\n                past_key_values=past_key_values,\\n                use_cache=True,\\n            )\\n        past_key_values = outputs.past_key_values\\n        next_token_logits = outputs.logits[:, -1, :]\\n\\n    predicted_action_token_ids = np.array(generated_ids)\\n    discretized_actions = model.vocab_size - predicted_action_token_ids\\n    discretized_actions = np.clip(discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1)\\n    normalized_actions = model.bin_centers[discretized_actions]\\n    action_norm_stats = model.get_action_stats(unnorm_key)\\n    mask = action_norm_stats.get(\\\"mask\\\", np.ones_like(action_norm_stats[\\\"q01\\\"], dtype=bool))\\n    action_high, action_low = np.array(action_norm_stats[\\\"q99\\\"]), np.array(action_norm_stats[\\\"q01\\\"])\\n    return np.where(\\n        mask,\\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\n        normalized_actions,\\n    )\\n\\n\\n# ── Ablation hook ─────────────────────────────────────────────────────────���\\ndef install_ablation_hook(model, heads_to_ablate):\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    from transformers.models.llama.modeling_llama import repeat_kv\\n\\n    layer1_attn = model.language_model.model.layers[1].self_attn\\n    layer1\\n\\n... [截断: 输出过长，省略 2978 字符] ...\\n\\n()\\n    all_results = {}\\n    task_names = []\\n\\n    for task_id in TASK_IDS:\\n        task = bench.get_task(task_id)\\n        task_name = task.name\\n        task_lang = task.language\\n        task_names.append(task_name)\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"Task {task_id}: {task_name}\\\")\\n        print(f\\\"  Instruction: {task_lang}\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        all_results[task_name] = {}\\n\\n        for condition in CONDITIONS:\\n            print(f\\\"\\\\n  --- Condition: {condition} ---\\\")\\n\\n            if condition == \\\"ablated\\\":\\n                install_ablation_hook(model, INSTRUCTION_HEADS_24)\\n            else:\\n                model.language_model.model.layers[1].self_attn._ablate_heads = None\\n                llama_mod.eager_attention_forward = original_eager_fn\\n\\n            episodes = []\\n            for ep in range(N_EPISODES):\\n                ep_t0 = time.time()\\n                env, _, _ = make_env(task_id)\\n                np.random.seed(42 + ep)\\n                obs = env.reset()\\n\\n                cumulative_reward = 0.0\\n                success = False\\n\\n                for step_i in range(MAX_STEPS):\\n                    image = obs[\\\"agentview_image\\\"]\\n                    action = get_action(model, processor, image, task_lang)\\n                    obs, reward, done, info = env.step(action)\\n                    cumulative_reward += reward\\n                    if env.env._check_success():\\n                        success = True\\n                        break\\n\\n                ep_result = {\\n                    \\\"success\\\": bool(success),\\n                    \\\"reward\\\": float(cumulative_reward),\\n                    \\\"steps\\\": step_i + 1,\\n                }\\n                episodes.append(ep_result)\\n                env.close()\\n\\n                ep_time = time.time() - ep_t0\\n                status = \\\"SUCCESS\\\" if success else \\\"fail\\\"\\n                print(f\\\"    ep {ep:2d}: {status} | R={cumulative_reward:.3f} | steps={step_i+1} | {ep_time:.1f}s\\\")\\n\\n            sr = sum(e[\\\"success\\\"] for e in episodes) / len(episodes)\\n            avg_r = np.mean([e[\\\"reward\\\"] for e in episodes])\\n            print(f\\\"  >> {condition} SR={sr:.2f}, avg_reward={avg_r:.3f}\\\")\\n\\n            all_results[task_name][condition] = episodes\\n\\n            if condition == \\\"ablated\\\":\\n                remove_ablation_hook(model, original_eager_fn)\\n\\n            gc.collect()\\n            torch.cuda.empty_cache()\\n\\n    # ── Summary ───────────────────────────────��────────────────────────\\n    baseline_successes = 0\\n    ablated_successes = 0\\n    total = 0\\n    per_task = {}\\n\\n    for tname in task_names:\\n        b_sr = sum(e[\\\"success\\\"] for e in all_results[tname][\\\"baseline\\\"]) / N_EPISODES\\n        a_sr = sum(e[\\\"success\\\"] for e in all_results[tname][\\\"ablated\\\"]) / N_EPISODES\\n        per_task[tname] = {\\\"baseline_sr\\\": b_sr, \\\"ablated_sr\\\": a_sr, \\\"delta\\\": b_sr - a_sr}\\n        baseline_successes += sum(e[\\\"success\\\"] for e in all_results[tname][\\\"baseline\\\"])\\n        ablated_successes += sum(e[\\\"success\\\"] for e in all_results[tname][\\\"ablated\\\"])\\n        total += N_EPISODES\\n\\n    summary = {\\n        \\\"baseline_success_rate\\\": baseline_successes / total,\\n        \\\"ablated_success_rate\\\": ablated_successes / total,\\n        \\\"delta\\\": (baseline_successes - ablated_successes) / total,\\n        \\\"per_task\\\": per_task,\\n    }\\n\\n    output = {\\n        \\\"config\\\": {\\n            \\\"n_tasks\\\": len(TASK_IDS),\\n            \\\"n_episodes\\\": N_EPISODES,\\n            \\\"conditions\\\": CONDITIONS,\\n            \\\"max_steps\\\": MAX_STEPS,\\n            \\\"task_ids\\\": TASK_IDS,\\n            \\\"unnorm_key\\\": UNNORM_KEY,\\n            \\\"model_path\\\": MODEL_PATH,\\n            \\\"ablated_heads\\\": INSTRUCTION_HEADS_24,\\n        },\\n        \\\"tasks\\\": task_names,\\n        \\\"results\\\": all_results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    out_path = os.path.join(RESULTS_DIR, \\\"behavioral_pilot.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n    print(json.dumps(summary, indent=2))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "a4b1bc76-fe15-47d9-97e1-a7dfbf713dcf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Behavioral pilot: compare OpenVLA baseline vs L1-ablated on LIBERO-Goal tasks.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/LIBERO\\\\\\\")\\\\n\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom PIL import Image\\\\n\\\\nnp.random.seed(42)\\\\ntorch.manual_seed(42)\\\\n\\\\n# ── Config ──────────────────────────────────────────────────────────────────\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"\\\\nUNNORM_KEY = \\\\\\\"bridge_orig\\\\\\\"\\\\nTASK_IDS = [0, 3, 7]\\\\nN_EPISODES = 10\\\\nMAX_STEPS = 300\\\\nCONDITIONS = [\\\\\\\"baseline\\\\\\\", \\\\\\\"ablated\\\\\\\"]\\\\nRESULTS_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/results\\\\\\\"\\\\n\\\\nNUM_IMAGE_TOKENS = 256\\\\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\\\\nINSTRUCTION_HEADS_24 = [0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20,\\\\n                        22, 23, 25, 26, 27, 29, 30, 31]\\\\n\\\\nfrom libero.libero import benchmark\\\\nfrom libero.libero.envs import OffScreenRenderEnv\\\\nimport libero.libero\\\\n\\\\nLIB_DIR = os.path.dirname(libero.libero.__file__)\\\\n\\\\n\\\\ndef make_env(task_id):\\\\n    bench = benchmark.get_benchmark(\\\\\\\"libero_goal\\\\\\\")()\\\\n    task = bench.get_task(task_id)\\\\n    bddl_path = os.path.join(LIB_DIR, \\\\\\\"bddl_files\\\\\\\", task.problem_folder, task.bddl_file)\\\\n    env = OffScreenRenderEnv(\\\\n        bddl_file_name=bddl_path,\\\\n        camera_heights=224,\\\\n        camera_widths=224,\\\\n        camera_names=\\\\\\\"agentview\\\\\\\",\\\\n    )\\\\n    return env, task.language, task.name\\\\n\\\\n\\\\n# ── Manual autoregressive generation (bypasses generate() DynamicCache issues) ──\\\\ndef predict_action_manual(model, input_ids, pixel_values, unnorm_key):\\\\n    action_dim = model.get_action_dim(unnorm_key)\\\\n    if not torch.all(input_ids[:, -1] == 29871):\\\\n        input_ids = torch.cat(\\\\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\\\\n            dim=1,\\\\n        )\\\\n    with torch.no_grad():\\\\n        outputs = model(\\\\n            input_ids=input_ids,\\\\n            attention_mask=torch.ones_like(input_ids),\\\\n            pixel_values=pixel_values,\\\\n            past_key_values=None,\\\\n            use_cache=True,\\\\n        )\\\\n    past_key_values = outputs.past_key_values\\\\n    next_token_logits = outputs.logits[:, -1, :]\\\\n\\\\n    generated_ids = []\\\\n    for _ in range(action_dim):\\\\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\\\\n        generated_ids.append(next_token.squeeze().item())\\\\n        attn_mask = torch.ones(\\\\n            (1, past_key_values[0][0].shape[2] + 1),\\\\n            device=input_ids.device, dtype=input_ids.dtype,\\\\n        )\\\\n        with torch.no_grad():\\\\n            outputs = model(\\\\n                input_ids=next_token,\\\\n                attention_mask=attn_mask,\\\\n                pixel_values=None,\\\\n                past_key_values=past_key_values,\\\\n                use_cache=True,\\\\n            )\\\\n        past_key_values = outputs.past_key_values\\\\n        next_token_logits = outputs.logits[:, -1, :]\\\\n\\\\n    predicted_action_token_ids = np.array(generated_ids)\\\\n    discretized_actions = model.vocab_size - predicted_action_token_ids\\\\n    discretized_actions = np.clip(discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1)\\\\n    normalized_actions = model.bin_centers[discretized_actions]\\\\n    action_norm_stats = model.get_action_stats(unnorm_key)\\\\n    mask = action_norm_stats.get(\\\\\\\"mask\\\\\\\", np.ones_like(action_norm_stats[\\\\\\\"q01\\\\\\\"], dtype=bool))\\\\n    action_high, action_low = np.array(action_norm_stats[\\\\\\\"q99\\\\\\\"]), np.array(action_norm_stats[\\\\\\\"q01\\\\\\\"])\\\\n    return np.where(\\\\n        mask,\\\\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\\\n        normalized_actions,\\\\n    )\\\\n\\\\n\\\\n# ── Ablation hook ─────────────────────────────────────────────────────────���\\\\ndef install_ablation_hook(model, heads_to_ablate):\\\\n    import transformers.models.llama.modeling_llama as llama_mod\\\\n    from transformers.models.llama.modeling_llama import repeat_kv\\\\n\\\\n    layer1_attn = model.language_model.model.layers[1].self_attn\\\\n    layer1\\\\n\\\\n... [截断: 输出过长，省略 2978 字符] ...\\\\n\\\\n()\\\\n    all_results = {}\\\\n    task_names = []\\\\n\\\\n    for task_id in TASK_IDS:\\\\n        task = bench.get_task(task_id)\\\\n        task_name = task.name\\\\n        task_lang = task.language\\\\n        task_names.append(task_name)\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"Task {task_id}: {task_name}\\\\\\\")\\\\n        print(f\\\\\\\"  Instruction: {task_lang}\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n        all_results[task_name] = {}\\\\n\\\\n        for condition in CONDITIONS:\\\\n            print(f\\\\\\\"\\\\\\\\n  --- Condition: {condition} ---\\\\\\\")\\\\n\\\\n            if condition == \\\\\\\"ablated\\\\\\\":\\\\n                install_ablation_hook(model, INSTRUCTION_HEADS_24)\\\\n            else:\\\\n                model.language_model.model.layers[1].self_attn._ablate_heads = None\\\\n                llama_mod.eager_attention_forward = original_eager_fn\\\\n\\\\n            episodes = []\\\\n            for ep in range(N_EPISODES):\\\\n                ep_t0 = time.time()\\\\n                env, _, _ = make_env(task_id)\\\\n                np.random.seed(42 + ep)\\\\n                obs = env.reset()\\\\n\\\\n                cumulative_reward = 0.0\\\\n                success = False\\\\n\\\\n                for step_i in range(MAX_STEPS):\\\\n                    image = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n                    action = get_action(model, processor, image, task_lang)\\\\n                    obs, reward, done, info = env.step(action)\\\\n                    cumulative_reward += reward\\\\n                    if env.env._check_success():\\\\n                        success = True\\\\n                        break\\\\n\\\\n                ep_result = {\\\\n                    \\\\\\\"success\\\\\\\": bool(success),\\\\n                    \\\\\\\"reward\\\\\\\": float(cumulative_reward),\\\\n                    \\\\\\\"steps\\\\\\\": step_i + 1,\\\\n                }\\\\n                episodes.append(ep_result)\\\\n                env.close()\\\\n\\\\n                ep_time = time.time() - ep_t0\\\\n                status = \\\\\\\"SUCCESS\\\\\\\" if success else \\\\\\\"fail\\\\\\\"\\\\n                print(f\\\\\\\"    ep {ep:2d}: {status} | R={cumulative_reward:.3f} | steps={step_i+1} | {ep_time:.1f}s\\\\\\\")\\\\n\\\\n            sr = sum(e[\\\\\\\"success\\\\\\\"] for e in episodes) / len(episodes)\\\\n            avg_r = np.mean([e[\\\\\\\"reward\\\\\\\"] for e in episodes])\\\\n            print(f\\\\\\\"  >> {condition} SR={sr:.2f}, avg_reward={avg_r:.3f}\\\\\\\")\\\\n\\\\n            all_results[task_name][condition] = episodes\\\\n\\\\n            if condition == \\\\\\\"ablated\\\\\\\":\\\\n                remove_ablation_hook(model, original_eager_fn)\\\\n\\\\n            gc.collect()\\\\n            torch.cuda.empty_cache()\\\\n\\\\n    # ── Summary ───────────────────────────────��────────────────────────\\\\n    baseline_successes = 0\\\\n    ablated_successes = 0\\\\n    total = 0\\\\n    per_task = {}\\\\n\\\\n    for tname in task_names:\\\\n        b_sr = sum(e[\\\\\\\"success\\\\\\\"] for e in all_results[tname][\\\\\\\"baseline\\\\\\\"]) / N_EPISODES\\\\n        a_sr = sum(e[\\\\\\\"success\\\\\\\"] for e in all_results[tname][\\\\\\\"ablated\\\\\\\"]) / N_EPISODES\\\\n        per_task[tname] = {\\\\\\\"baseline_sr\\\\\\\": b_sr, \\\\\\\"ablated_sr\\\\\\\": a_sr, \\\\\\\"delta\\\\\\\": b_sr - a_sr}\\\\n        baseline_successes += sum(e[\\\\\\\"success\\\\\\\"] for e in all_results[tname][\\\\\\\"baseline\\\\\\\"])\\\\n        ablated_successes += sum(e[\\\\\\\"success\\\\\\\"] for e in all_results[tname][\\\\\\\"ablated\\\\\\\"])\\\\n        total += N_EPISODES\\\\n\\\\n    summary = {\\\\n        \\\\\\\"baseline_success_rate\\\\\\\": baseline_successes / total,\\\\n        \\\\\\\"ablated_success_rate\\\\\\\": ablated_successes / total,\\\\n        \\\\\\\"delta\\\\\\\": (baseline_successes - ablated_successes) / total,\\\\n        \\\\\\\"per_task\\\\\\\": per_task,\\\\n    }\\\\n\\\\n    output = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"n_tasks\\\\\\\": len(TASK_IDS),\\\\n            \\\\\\\"n_episodes\\\\\\\": N_EPISODES,\\\\n            \\\\\\\"conditions\\\\\\\": CONDITIONS,\\\\n            \\\\\\\"max_steps\\\\\\\": MAX_STEPS,\\\\n            \\\\\\\"task_ids\\\\\\\": TASK_IDS,\\\\n            \\\\\\\"unnorm_key\\\\\\\": UNNORM_KEY,\\\\n            \\\\\\\"model_path\\\\\\\": MODEL_PATH,\\\\n            \\\\\\\"ablated_heads\\\\\\\": INSTRUCTION_HEADS_24,\\\\n        },\\\\n        \\\\\\\"tasks\\\\\\\": task_names,\\\\n        \\\\\\\"results\\\\\\\": all_results,\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n    }\\\\n\\\\n    out_path = os.path.join(RESULTS_DIR, \\\\\\\"behavioral_pilot.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n    print(json.dumps(summary, indent=2))\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Behavioral pilot: compare OpenVLA baseline vs L1-ablated on LIBERO-Goal tasks.\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport gc\\nimport json\\nimport time\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom PIL import Image\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\n# ── Config ──────────────────────────────────────────────────────────────────\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nTASK_IDS = [0, 3, 7]\\nN_EPISODES = 10\\nMAX_STEPS = 300\\nCONDITIONS = [\\\"baseline\\\", \\\"ablated\\\"]\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\\nINSTRUCTION_HEADS_24 = [0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20,\\n                        22, 23, 25, 26, 27, 29, 30, 31]\\n\\nfrom libero.libero import benchmark\\nfrom libero.libero.envs import OffScreenRenderEnv\\nimport libero.libero\\n\\nLIB_DIR = os.path.dirname(libero.libero.__file__)\\n\\n\\ndef make_env(task_id):\\n    bench = benchmark.get_benchmark(\\\"libero_goal\\\")()\\n    task = bench.get_task(task_id)\\n    bddl_path = os.path.join(LIB_DIR, \\\"bddl_files\\\", task.problem_folder, task.bddl_file)\\n    env = OffScreenRenderEnv(\\n        bddl_file_name=bddl_path,\\n        camera_heights=224,\\n        camera_widths=224,\\n        camera_names=\\\"agentview\\\",\\n    )\\n    return env, task.language, task.name\\n\\n\\n# ── Manual autoregressive generation (bypasses generate() DynamicCache issues) ──\\ndef predict_action_manual(model, input_ids, pixel_values, unnorm_key):\\n    action_dim = model.get_action_dim(unnorm_key)\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\\n            dim=1,\\n        )\\n    with torch.no_grad():\\n        outputs = model(\\n            input_ids=input_ids,\\n            attention_mask=torch.ones_like(input_ids),\\n            pixel_values=pixel_values,\\n            past_key_values=None,\\n            use_cache=True,\\n        )\\n    past_key_values = outputs.past_key_values\\n    next_token_logits = outputs.logits[:, -1, :]\\n\\n    generated_ids = []\\n    for _ in range(action_dim):\\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\\n        generated_ids.append(next_token.squeeze().item())\\n        attn_mask = torch.ones(\\n            (1, past_key_values[0][0].shape[2] + 1),\\n            device=input_ids.device, dtype=input_ids.dtype,\\n        )\\n        with torch.no_grad():\\n            outputs = model(\\n                input_ids=next_token,\\n                attention_mask=attn_mask,\\n                pixel_values=None,\\n                past_key_values=past_key_values,\\n                use_cache=True,\\n            )\\n        past_key_values = outputs.past_key_values\\n        next_token_logits = outputs.logits[:, -1, :]\\n\\n    predicted_action_token_ids = np.array(generated_ids)\\n    discretized_actions = model.vocab_size - predicted_action_token_ids\\n    discretized_actions = np.clip(discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1)\\n    normalized_actions = model.bin_centers[discretized_actions]\\n    action_norm_stats = model.get_action_stats(unnorm_key)\\n    mask = action_norm_stats.get(\\\"mask\\\", np.ones_like(action_norm_stats[\\\"q01\\\"], dtype=bool))\\n    action_high, action_low = np.array(action_norm_stats[\\\"q99\\\"]), np.array(action_norm_stats[\\\"q01\\\"])\\n    return np.where(\\n        mask,\\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\n        normalized_actions,\\n    )\\n\\n\\n# ── Ablation hook ─────────────────────────────────────────────────────────���\\ndef install_ablation_hook(model, heads_to_ablate):\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    from transformers.models.llama.modeling_llama import repeat_kv\\n\\n    layer1_attn = model.language_model.model.layers[1].self_attn\\n    layer1\\n\\n... [截断: 输出过长，省略 2978 字符] ...\\n\\n()\\n    all_results = {}\\n    task_names = []\\n\\n    for task_id in TASK_IDS:\\n        task = bench.get_task(task_id)\\n        task_name = task.name\\n        task_lang = task.language\\n        task_names.append(task_name)\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"Task {task_id}: {task_name}\\\")\\n        print(f\\\"  Instruction: {task_lang}\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        all_results[task_name] = {}\\n\\n        for condition in CONDITIONS:\\n            print(f\\\"\\\\n  --- Condition: {condition} ---\\\")\\n\\n            if condition == \\\"ablated\\\":\\n                install_ablation_hook(model, INSTRUCTION_HEADS_24)\\n            else:\\n                model.language_model.model.layers[1].self_attn._ablate_heads = None\\n                llama_mod.eager_attention_forward = original_eager_fn\\n\\n            episodes = []\\n            for ep in range(N_EPISODES):\\n                ep_t0 = time.time()\\n                env, _, _ = make_env(task_id)\\n                np.random.seed(42 + ep)\\n                obs = env.reset()\\n\\n                cumulative_reward = 0.0\\n                success = False\\n\\n                for step_i in range(MAX_STEPS):\\n                    image = obs[\\\"agentview_image\\\"]\\n                    action = get_action(model, processor, image, task_lang)\\n                    obs, reward, done, info = env.step(action)\\n                    cumulative_reward += reward\\n                    if env.env._check_success():\\n                        success = True\\n                        break\\n\\n                ep_result = {\\n                    \\\"success\\\": bool(success),\\n                    \\\"reward\\\": float(cumulative_reward),\\n                    \\\"steps\\\": step_i + 1,\\n                }\\n                episodes.append(ep_result)\\n                env.close()\\n\\n                ep_time = time.time() - ep_t0\\n                status = \\\"SUCCESS\\\" if success else \\\"fail\\\"\\n                print(f\\\"    ep {ep:2d}: {status} | R={cumulative_reward:.3f} | steps={step_i+1} | {ep_time:.1f}s\\\")\\n\\n            sr = sum(e[\\\"success\\\"] for e in episodes) / len(episodes)\\n            avg_r = np.mean([e[\\\"reward\\\"] for e in episodes])\\n            print(f\\\"  >> {condition} SR={sr:.2f}, avg_reward={avg_r:.3f}\\\")\\n\\n            all_results[task_name][condition] = episodes\\n\\n            if condition == \\\"ablated\\\":\\n                remove_ablation_hook(model, original_eager_fn)\\n\\n            gc.collect()\\n            torch.cuda.empty_cache()\\n\\n    # ── Summary ───────────────────────────────��────────────────────────\\n    baseline_successes = 0\\n    ablated_successes = 0\\n    total = 0\\n    per_task = {}\\n\\n    for tname in task_names:\\n        b_sr = sum(e[\\\"success\\\"] for e in all_results[tname][\\\"baseline\\\"]) / N_EPISODES\\n        a_sr = sum(e[\\\"success\\\"] for e in all_results[tname][\\\"ablated\\\"]) / N_EPISODES\\n        per_task[tname] = {\\\"baseline_sr\\\": b_sr, \\\"ablated_sr\\\": a_sr, \\\"delta\\\": b_sr - a_sr}\\n        baseline_successes += sum(e[\\\"success\\\"] for e in all_results[tname][\\\"baseline\\\"])\\n        ablated_successes += sum(e[\\\"success\\\"] for e in all_results[tname][\\\"ablated\\\"])\\n        total += N_EPISODES\\n\\n    summary = {\\n        \\\"baseline_success_rate\\\": baseline_successes / total,\\n        \\\"ablated_success_rate\\\": ablated_successes / total,\\n        \\\"delta\\\": (baseline_successes - ablated_successes) / total,\\n        \\\"per_task\\\": per_task,\\n    }\\n\\n    output = {\\n        \\\"config\\\": {\\n            \\\"n_tasks\\\": len(TASK_IDS),\\n            \\\"n_episodes\\\": N_EPISODES,\\n            \\\"conditions\\\": CONDITIONS,\\n            \\\"max_steps\\\": MAX_STEPS,\\n            \\\"task_ids\\\": TASK_IDS,\\n            \\\"unnorm_key\\\": UNNORM_KEY,\\n            \\\"model_path\\\": MODEL_PATH,\\n            \\\"ablated_heads\\\": INSTRUCTION_HEADS_24,\\n        },\\n        \\\"tasks\\\": task_names,\\n        \\\"results\\\": all_results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    out_path = os.path.join(RESULTS_DIR, \\\"behavioral_pilot.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n    print(json.dumps(summary, indent=2))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T10:37:26.746Z_
+
+<details><summary>↩ Tool result · `toolu_0152LXm6GEQLsJvJ5nvndEfR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "67f805b7-3f61-44ee-8449-a5cdd6cb53a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\\\nput_the_bowl_on_the_plate_demo.hdf5\\\\nput_the_bowl_on_the_stove_demo.hdf5\\\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\\\nturn_on_the_stove_demo.hdf5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the behavioral_pilot.py code and the list of HDF5 files. Let me now check the structure of an HDF5 file and the full ablation hook code (which was truncated).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "ec10ec2b-9b1c-4c24-a05e-1f87ece53bcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SZUzaHprXGUXk1g3T9b2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3814,
+      "cache_read_input_tokens": 28199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Got the code. The ablation hook was truncated. Let me get the missing part and check the HDF5 structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "cb762ceb-03e8-41fa-bce5-5b77d7d1403e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SZUzaHprXGUXk1g3T9b2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3814,
+      "cache_read_input_tokens": 28199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YEcYXVS7XU1Q5zdm6wF3eb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport h5py\nf = h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5', 'r')\nprint('Keys:', list(f.keys()))\nif 'data' in f:\n    print('Data keys:', list(f['data'].keys()))\n    demo0 = f['data/demo_0']\n    print('Demo_0 keys:', list(demo0.keys()))\n    if 'obs' in demo0:\n        print('Obs keys:', list(demo0['obs'].keys()))\n        if 'agentview_rgb' in demo0['obs']:\n            print('agentview_rgb shape:', demo0['obs']['agentview_rgb'].shape)\n    if 'actions' in demo0:\n        print('actions shape:', demo0['actions'].shape)\n    n_demos = len([k for k in f['data'].keys() if k.startswith('demo_')])\n    print('N demos:', n_demos)\nf.close()\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "5069f48e-a3de-44bb-a815-8af20e489296",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SZUzaHprXGUXk1g3T9b2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3814,
+      "cache_read_input_tokens": 28199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T10:37:34.759Z_
+
+<details><summary>↩ Tool result · `toolu_01YEcYXVS7XU1Q5zdm6wF3eb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "7daf9c26-f184-4116-a5dc-144d0fcd53ec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KX8YnoSdUSCWtUgJN1hi4T`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"install_ablation_hook\\|remove_ablation_hook\\|eager_attention_forward\\|_ablate_heads\" /root/vla-ssd/scripts/behavioral_pilot.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "6442d6ff-604a-4bb6-b0ae-582563e27551",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SZUzaHprXGUXk1g3T9b2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3814,
+      "cache_read_input_tokens": 28199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T10:37:35.283Z_
+
+<details><summary>↩ Tool result · `toolu_01KX8YnoSdUSCWtUgJN1hi4T`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "516b1fd0-87b1-405a-9ed3-2efb9e5773aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lifi6Mh3iiUWeS9ufcC9x3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"install_ablation_hook\\|remove_ablation_hook\\|eager_attention_forward\\|_ablate_heads\" /root/vla-ssd/scripts/behavioral_pilot.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "a138b722-b57a-4c70-8895-59eea4522408",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RhUmh9vqi2LTDdWrJEGHjZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 913,
+      "cache_read_input_tokens": 32013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 913
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T10:37:38.749Z_
+
+<details><summary>↩ Tool result · `toolu_01Lifi6Mh3iiUWeS9ufcC9x3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "d34bbef5-3252-4754-bc85-87e814fe3058",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XdDr5pinxNig4qGhXsdeMv`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python -c \"\nimport h5py\nf = h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5', 'r')\nprint('Keys:', list(f.keys()))\nif 'data' in f:\n    print('Data keys:', list(f['data'].keys())[:5])\n    demo0 = f['data/demo_0']\n    print('Demo_0 keys:', list(demo0.keys()))\n    if 'obs' in demo0:\n        print('Obs keys:', list(demo0['obs'].keys()))\n        if 'agentview_rgb' in demo0['obs']:\n            print('agentview_rgb shape:', demo0['obs']['agentview_rgb'].shape)\n    if 'actions' in demo0:\n        print('actions shape:', demo0['actions'].shape)\n    n_demos = len([k for k in f['data'].keys() if k.startswith('demo_')])\n    print('N demos:', n_demos)\nf.close()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "c9e78b2d-99b4-4ab2-848e-6423c892a0a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RhUmh9vqi2LTDdWrJEGHjZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 913,
+      "cache_read_input_tokens": 32013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 913
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T10:37:41.444Z_
+
+<details><summary>↩ Tool result · `toolu_01XdDr5pinxNig4qGhXsdeMv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python -c \\\"\\\\nimport h5py\\\\nf = h5py.File(\\\\'/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5\\\\', \\\\'r\\\\')\\\\nprint(\\\\'Keys:\\\\', list(f.keys()))\\\\nif \\\\'data\\\\' in f:\\\\n    print(\\\\'Data keys:\\\\', list(f[\\\\'data\\\\'].keys())[:5])\\\\n    demo0 = f[\\\\'data/demo_0\\\\']\\\\n    print(\\\\'Demo_0 keys:\\\\', list(demo0.keys()))\\\\n    if \\\\'obs\\\\' in demo0:\\\\n        print(\\\\'Obs keys:\\\\', list(demo0[\\\\'obs\\\\'].keys()))\\\\n        if \\\\'agentview_rgb\\\\' in demo0[\\\\'obs\\\\']:\\\\n            print(\\\\'agentview_rgb shape:\\\\', demo0[\\\\'obs\\\\'][\\\\'agentview_rgb\\\\'].shape)\\\\n    if \\\\'actions\\\\' in demo0:\\\\n        print(\\\\'actions shape:\\\\', demo0[\\\\'actions\\\\'].shape)\\\\n    n_demos = len([k for k in f[\\\\'data\\\\'].keys() if k.startswith(\\\\'demo_\\\\')])\\\\n    print(\\\\'N demos:\\\\', n_demos)\\\\nf.close()\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "7504544c-db4b-4572-9af2-eb3d71449411",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python -c \\\\\\\"\\\\\\\\nimport h5py\\\\\\\\nf = h5py.File(\\\\\\\\'/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5\\\\\\\\', \\\\\\\\'r\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'Keys:\\\\\\\\', list(f.keys()))\\\\\\\\nif \\\\\\\\'data\\\\\\\\' in f:\\\\\\\\n    print(\\\\\\\\'Data keys:\\\\\\\\', list(f[\\\\\\\\'data\\\\\\\\'].keys())[:5])\\\\\\\\n    demo0 = f[\\\\\\\\'data/demo_0\\\\\\\\']\\\\\\\\n    print(\\\\\\\\'Demo_0 keys:\\\\\\\\', list(demo0.keys()))\\\\\\\\n    if \\\\\\\\'obs\\\\\\\\' in demo0:\\\\\\\\n        print(\\\\\\\\'Obs keys:\\\\\\\\', list(demo0[\\\\\\\\'obs\\\\\\\\'].keys()))\\\\\\\\n        if \\\\\\\\'agentview_rgb\\\\\\\\' in demo0[\\\\\\\\'obs\\\\\\\\']:\\\\\\\\n            print(\\\\\\\\'agentview_rgb shape:\\\\\\\\', demo0[\\\\\\\\'obs\\\\\\\\'][\\\\\\\\'agentview_rgb\\\\\\\\'].shape)\\\\\\\\n    if \\\\\\\\'actions\\\\\\\\' in demo0:\\\\\\\\n        print(\\\\\\\\'actions shape:\\\\\\\\', demo0[\\\\\\\\'actions\\\\\\\\'].shape)\\\\\\\\n    n_demos = len([k for k in f[\\\\\\\\'data\\\\\\\\'].keys() if k.startswith(\\\\\\\\'demo_\\\\\\\\')])\\\\\\\\n    print(\\\\\\\\'N demos:\\\\\\\\', n_demos)\\\\\\\\nf.close()\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python -c \\\"\\\\nimport h5py\\\\nf = h5py.File(\\\\'/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5\\\\', \\\\'r\\\\')\\\\nprint(\\\\'Keys:\\\\', list(f.keys()))\\\\nif \\\\'data\\\\' in f:\\\\n    print(\\\\'Data keys:\\\\', list(f[\\\\'data\\\\'].keys())[:5])\\\\n    demo0 = f[\\\\'data/demo_0\\\\']\\\\n    print(\\\\'Demo_0 keys:\\\\', list(demo0.keys()))\\\\n    if \\\\'obs\\\\' in demo0:\\\\n        print(\\\\'Obs keys:\\\\', list(demo0[\\\\'obs\\\\'].keys()))\\\\n        if \\\\'agentview_rgb\\\\' in demo0[\\\\'obs\\\\']:\\\\n            print(\\\\'agentview_rgb shape:\\\\', demo0[\\\\'obs\\\\'][\\\\'agentview_rgb\\\\'].shape)\\\\n    if \\\\'actions\\\\' in demo0:\\\\n        print(\\\\'actions shape:\\\\', demo0[\\\\'actions\\\\'].shape)\\\\n    n_demos = len([k for k in f[\\\\'data\\\\'].keys() if k.startswith(\\\\'demo_\\\\')])\\\\n    print(\\\\'N demos:\\\\', n_demos)\\\\nf.close()\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Ft9pPMxe2vL2F7w8bQfkcm`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "bash -c \"source /root/miniconda3/bin/activate base && python -c \\\"\nimport h5py\nf = h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5', 'r')\nprint('Keys:', list(f.keys()))\nif 'data' in f:\n    print('Data keys:', list(f['data'].keys())[:5])\n    demo0 = f['data/demo_0']\n    print('Demo_0 keys:', list(demo0.keys()))\n    if 'obs' in demo0:\n        print('Obs keys:', list(demo0['obs'].keys()))\n        if 'agentview_rgb' in demo0['obs']:\n            print('agentview_rgb shape:', demo0['obs']['agentview_rgb'].shape)\n    if 'actions' in demo0:\n        print('actions shape:', demo0['actions'].shape)\n    n_demos = len([k for k in f['data'].keys() if k.startswith('demo_')])\n    print('N demos:', n_demos)\nf.close()\n\\\"\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "229252eb-ca38-4b88-88ef-8762b4bba6fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qdtrvCCrYMLsYKFcftMEH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1136,
+      "cache_read_input_tokens": 32926,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1136
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AAjVinBnEBHxAgPMpApi1u`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -n '100,180p' /root/vla-ssd/scripts/behavioral_pilot.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "e778fc8f-da37-4aa0-8716-1ca4c55fdfc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qdtrvCCrYMLsYKFcftMEH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1136,
+      "cache_read_input_tokens": 32926,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1136
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T10:37:47.992Z_
+
+<details><summary>↩ Tool result · `toolu_01Ft9pPMxe2vL2F7w8bQfkcm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys: ['data']\\nData keys: ['demo_0', 'demo_1', 'demo_10', 'demo_11', 'demo_12']\\nDemo_0 keys: ['actions', 'dones', 'obs', 'rewards', 'robot_states', 'states']\\nObs keys: ['agentview_rgb', 'ee_ori', 'ee_pos', 'ee_states', 'eye_in_hand_rgb', 'gripper_states', 'joint_states']\\nagentview_rgb shape: (138, 128, 128, 3)\\nactions shape: (138, 7)\\nN demos: 50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "8ff3c384-44f9-4a2b-b056-90cf2f0b7ac7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['data']\\\\nData keys: ['demo_0', 'demo_1', 'demo_10', 'demo_11', 'demo_12']\\\\nDemo_0 keys: ['actions', 'dones', 'obs', 'rewards', 'robot_states', 'states']\\\\nObs keys: ['agentview_rgb', 'ee_ori', 'ee_pos', 'ee_states', 'eye_in_hand_rgb', 'gripper_states', 'joint_states']\\\\nagentview_rgb shape: (138, 128, 128, 3)\\\\nactions shape: (138, 7)\\\\nN demos: 50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Keys: ['data']\\nData keys: ['demo_0', 'demo_1', 'demo_10', 'demo_11', 'demo_12']\\nDemo_0 keys: ['actions', 'dones', 'obs', 'rewards', 'robot_states', 'states']\\nObs keys: ['agentview_rgb', 'ee_ori', 'ee_pos', 'ee_states', 'eye_in_hand_rgb', 'gripper_states', 'joint_states']\\nagentview_rgb shape: (138, 128, 128, 3)\\nactions shape: (138, 7)\\nN demos: 50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T10:37:48.004Z_
+
+<details><summary>↩ Tool result · `toolu_01AAjVinBnEBHxAgPMpApi1u`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "587f0917-9f22-4cda-8baa-88d7acb23bee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015ToLGgUsfhiQEChjCh8bg3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +100 /root/vla-ssd/scripts/behavioral_pilot.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "e75ad05f-56f0-4d4b-b18d-53e922a716df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TFS2BrseDb4dnMsMZAMJ3a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 34062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 858
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T10:37:51.737Z_
+
+<details><summary>↩ Tool result · `toolu_015ToLGgUsfhiQEChjCh8bg3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    action_high, action_low = np.array(action_norm_stats[\\\"q99\\\"]), np.array(action_norm_stats[\\\"q01\\\"])\\n    return np.where(\\n        mask,\\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\n        normalized_actions,\\n    )\\n\\n\\n# ── Ablation hook ──────────────────────────────────────────────────────────\\ndef install_ablation_hook(model, heads_to_ablate):\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    from transformers.models.llama.modeling_llama import repeat_kv\\n\\n    layer1_attn = model.language_model.model.layers[1].self_attn\\n    layer1_attn._ablate_heads = heads_to_ablate\\n\\n    original_fn = llama_mod.eager_attention_forward\\n\\n    def ablated_eager_attention_forward(module, query, key, value, attention_mask,\\n                                        scaling, dropout=0.0, **kwargs):\\n        key_states = repeat_kv(key, module.num_key_value_groups)\\n        value_states = repeat_kv(value, module.num_key_value_groups)\\n        attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling\\n        if attention_mask is not None:\\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\\n            attn_weights = attn_weights + causal_mask\\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)\\n        attn_weights = nn.functional.dropout(attn_weights, p=dropout, training=module.training)\\n        if hasattr(module, '_ablate_heads') and module._ablate_heads is not None:\\n            kv_len = attn_weights.shape[-1]\\n            if INST_START < kv_len:\\n                attn_weights[:, module._ablate_heads, :, INST_START:] = 0.0\\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\\n                attn_weights = attn_weights / row_sums\\n        attn_output = torch.matmul(attn_weights, value_states)\\n        attn_output = attn_output.transpose(1, 2).contiguous()\\n        return attn_output, attn_weights\\n\\n    llama_mod.eager_attention_forward = ablated_eager_attention_forward\\n    return original_fn\\n\\n\\ndef remove_ablation_hook(model, original_fn):\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    llama_mod.eager_attention_forward = original_fn\\n    model.language_model.model.layers[1].self_attn._ablate_heads = None\\n\\n\\n# ── Model loading ──────────────────────────────────────────────────────────\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True, low_cpu_mem_usage=True\\n    ).to(\\\"cuda:0\\\").eval()\\n    return model, processor\\n\\n\\ndef get_action(model, processor, image_array, instruction):\\n    img = Image.fromarray(image_array)\\n    prompt = f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n    inputs = processor(prompt, img).to(\\\"cuda:0\\\", dtype=torch.bfloat16)\\n    return predict_action_manual(model, inputs[\\\"input_ids\\\"], inputs[\\\"pixel_values\\\"], UNNORM_KEY)\\n\\n\\n# ── Main ───────────────────────────────────────────────────────────────────\\ndef main():\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\n    print(\\\"Loading model...\\\")\\n    model, processor = load_model()\\n    print(\\\"Model loaded.\\\")\\n\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    original_eager_fn = llama_mod.eager_attention_forward\\n\\n    model.language_model.model.layers[1].self_attn._ablate_heads = None\\n\\n    bench = benchmark.get_benchmark(\\\"libero_goal\\\")()\\n    all_results = {}\\n    task_names = []\\n\\n    for task_id in TASK_IDS:\\n        task = bench.get_task(task_id)\\n        task_name = task.name\\n        task_lang = task.language\\n        task_names.append(task_name)\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"Task {task_id}: {task_name}\\\")\\n        print(f\\\"  Instruction: {task_lang}\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        all_results[task_name] = {}\\n\\n        for condition in CONDITIONS:\\n            print(f\\\"\\\\n  --- Condition: {condition} ---\\\")\\n\\n            if condition == \\\"ablated\\\":\\n                install_ablation_hook(model, INSTRUCTION_HEADS_24)\\n            else:\\n                model.language_model.model.layers[1].self_attn._ablate_heads = None\\n                llama_mod.eager_attention_forward = original_eager_fn\\n\\n            episodes = []\\n            for ep in range(N_EPISODES):\\n                ep_t0 = time.time()\\n                env, _, _ = make_env(task_id)\\n                np.random.seed(42 + ep)\\n                obs = env.reset()\\n\\n                cumulative_reward = 0.0\\n                success = False\\n\\n                for step_i in range(MAX_STEPS):\\n                    image = obs[\\\"agentview_image\\\"]\\n                    action = get_action(model, processor, image, task_lang)\\n                    obs, reward, done, info = env.step(action)\\n                    cumulative_reward += reward\\n                    if env.env._check_success():\\n                        success = True\\n                        break\\n\\n                ep_result = {\\n                    \\\"success\\\": bool(success),\\n                    \\\"reward\\\": float(cumulative_reward),\\n                    \\\"steps\\\": step_i + 1,\\n                }\\n                episodes.append(ep_result)\\n                env.close()\\n\\n                ep_time = time.time() - ep_t0\\n                status = \\\"SUCCESS\\\" if success else \\\"fail\\\"\\n                print(f\\\"    ep {ep:2d}: {status} | R={cumulative_reward:.3f} | steps={step_i+1} | {ep_time:.1f}s\\\")\\n\\n            sr = sum(e[\\\"success\\\"] for e in episodes) / len(episodes)\\n            avg_r = np.mean([e[\\\"reward\\\"] for e in episodes])\\n            print(f\\\"  >> {condition} SR={sr:.2f}, avg_reward={avg_r:.3f}\\\")\\n\\n            all_results[task_name][condition] = episodes\\n\\n            if condition == \\\"ablated\\\":\\n                remove_ablation_hook(model, original_eager_fn)\\n\\n            gc.collect()\\n            torch.cuda.empty_cache()\\n\\n    # ── Summary ────────────────────────────────────────────────────────\\n    baseline_successes = 0\\n    ablated_successes = 0\\n    total = 0\\n    per_task = {}\\n\\n    for tname in task_names:\\n        b_sr = sum(e[\\\"success\\\"] for e in all_results[tname][\\\"baseline\\\"]) / N_EPISODES\\n        a_sr = sum(e[\\\"success\\\"] for e in all_results[tname][\\\"ablated\\\"]) / N_EPISODES\\n        per_task[tname] = {\\\"baseline_sr\\\": b_sr, \\\"ablated_sr\\\": a_sr, \\\"delta\\\": b_sr - a_sr}\\n        baseline_successes += sum(e[\\\"success\\\"] for e in all_results[tname][\\\"baseline\\\"])\\n        ablated_successes += sum(e[\\\"success\\\"] for e in all_results[tname][\\\"ablated\\\"])\\n        total += N_EPISODES\\n\\n    summary = {\\n        \\\"baseline_success_rate\\\": baseline_successes / total,\\n        \\\"ablated_success_rate\\\": ablated_successes / total,\\n        \\\"delta\\\": (baseline_successes - ablated_successes) / total,\\n        \\\"per_task\\\": per_task,\\n    }\\n\\n    output = {\\n        \\\"config\\\": {\\n            \\\"n_tasks\\\": len(TASK_IDS),\\n            \\\"n_episodes\\\": N_EPISODES,\\n            \\\"conditions\\\": CONDITIONS,\\n            \\\"max_steps\\\": MAX_STEPS,\\n            \\\"task_ids\\\": TASK_IDS,\\n            \\\"unnorm_key\\\": UNNORM_KEY,\\n            \\\"model_path\\\": MODEL_PATH,\\n            \\\"ablated_heads\\\": INSTRUCTION_HEADS_24,\\n        },\\n        \\\"tasks\\\": task_names,\\n        \\\"results\\\": all_results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    out_path = os.path.join(RESULTS_DIR, \\\"behavioral_pilot.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n    print(json.dumps(summary, indent=2))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "755daadf-e43d-4377-8ac4-66fb38050519",
+  "uuid": "141c0a88-2ca0-4022-a27c-ae0e17af92c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    action_high, action_low = np.array(action_norm_stats[\\\\\\\"q99\\\\\\\"]), np.array(action_norm_stats[\\\\\\\"q01\\\\\\\"])\\\\n    return np.where(\\\\n        mask,\\\\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\\\n        normalized_actions,\\\\n    )\\\\n\\\\n\\\\n# ── Ablation hook ──────────────────────────────────────────────────────────\\\\ndef install_ablation_hook(model, heads_to_ablate):\\\\n    import transformers.models.llama.modeling_llama as llama_mod\\\\n    from transformers.models.llama.modeling_llama import repeat_kv\\\\n\\\\n    layer1_attn = model.language_model.model.layers[1].self_attn\\\\n    layer1_attn._ablate_heads = heads_to_ablate\\\\n\\\\n    original_fn = llama_mod.eager_attention_forward\\\\n\\\\n    def ablated_eager_attention_forward(module, query, key, value, attention_mask,\\\\n                                        scaling, dropout=0.0, **kwargs):\\\\n        key_states = repeat_kv(key, module.num_key_value_groups)\\\\n        value_states = repeat_kv(value, module.num_key_value_groups)\\\\n        attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling\\\\n        if attention_mask is not None:\\\\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\\\\n            attn_weights = attn_weights + causal_mask\\\\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)\\\\n        attn_weights = nn.functional.dropout(attn_weights, p=dropout, training=module.training)\\\\n        if hasattr(module, '_ablate_heads') and module._ablate_heads is not None:\\\\n            kv_len = attn_weights.shape[-1]\\\\n            if INST_START < kv_len:\\\\n                attn_weights[:, module._ablate_heads, :, INST_START:] = 0.0\\\\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\\\\n                attn_weights = attn_weights / row_sums\\\\n        attn_output = torch.matmul(attn_weights, value_states)\\\\n        attn_output = attn_output.transpose(1, 2).contiguous()\\\\n        return attn_output, attn_weights\\\\n\\\\n    llama_mod.eager_attention_forward = ablated_eager_attention_forward\\\\n    return original_fn\\\\n\\\\n\\\\ndef remove_ablation_hook(model, original_fn):\\\\n    import transformers.models.llama.modeling_llama as llama_mod\\\\n    llama_mod.eager_attention_forward = original_fn\\\\n    model.language_model.model.layers[1].self_attn._ablate_heads = None\\\\n\\\\n\\\\n# ── Model loading ──────────────────────────────────────────────────────────\\\\ndef load_model():\\\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\\\n    model = AutoModelForVision2Seq.from_pretrained(\\\\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True, low_cpu_mem_usage=True\\\\n    ).to(\\\\\\\"cuda:0\\\\\\\").eval()\\\\n    return model, processor\\\\n\\\\n\\\\ndef get_action(model, processor, image_array, instruction):\\\\n    img = Image.fromarray(image_array)\\\\n    prompt = f\\\\\\\"In: What action should the robot take to {instruction}?\\\\\\\\nOut:\\\\\\\"\\\\n    inputs = processor(prompt, img).to(\\\\\\\"cuda:0\\\\\\\", dtype=torch.bfloat16)\\\\n    return predict_action_manual(model, inputs[\\\\\\\"input_ids\\\\\\\"], inputs[\\\\\\\"pixel_values\\\\\\\"], UNNORM_KEY)\\\\n\\\\n\\\\n# ── Main ───────────────────────────────────────────────────────────────────\\\\ndef main():\\\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\\\n    print(\\\\\\\"Loading model...\\\\\\\")\\\\n    model, processor = load_model()\\\\n    print(\\\\\\\"Model loaded.\\\\\\\")\\\\n\\\\n    import transformers.models.llama.modeling_llama as llama_mod\\\\n    original_eager_fn = llama_mod.eager_attention_forward\\\\n\\\\n    model.language_model.model.layers[1].self_attn._ablate_heads = None\\\\n\\\\n    bench = benchmark.get_benchmark(\\\\\\\"libero_goal\\\\\\\")()\\\\n    all_results = {}\\\\n    task_names = []\\\\n\\\\n    for task_id in TASK_IDS:\\\\n        task = bench.get_task(task_id)\\\\n        task_name = task.name\\\\n        task_lang = task.language\\\\n        task_names.append(task_name)\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"Task {task_id}: {task_name}\\\\\\\")\\\\n        print(f\\\\\\\"  Instruction: {task_lang}\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n        all_results[task_name] = {}\\\\n\\\\n        for condition in CONDITIONS:\\\\n            print(f\\\\\\\"\\\\\\\\n  --- Condition: {condition} ---\\\\\\\")\\\\n\\\\n            if condition == \\\\\\\"ablated\\\\\\\":\\\\n                install_ablation_hook(model, INSTRUCTION_HEADS_24)\\\\n            else:\\\\n                model.language_model.model.layers[1].self_attn._ablate_heads = None\\\\n                llama_mod.eager_attention_forward = original_eager_fn\\\\n\\\\n            episodes = []\\\\n            for ep in range(N_EPISODES):\\\\n                ep_t0 = time.time()\\\\n                env, _, _ = make_env(task_id)\\\\n                np.random.seed(42 + ep)\\\\n                obs = env.reset()\\\\n\\\\n                cumulative_reward = 0.0\\\\n                success = False\\\\n\\\\n                for step_i in range(MAX_STEPS):\\\\n                    image = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n                    action = get_action(model, processor, image, task_lang)\\\\n                    obs, reward, done, info = env.step(action)\\\\n                    cumulative_reward += reward\\\\n                    if env.env._check_success():\\\\n                        success = True\\\\n                        break\\\\n\\\\n                ep_result = {\\\\n                    \\\\\\\"success\\\\\\\": bool(success),\\\\n                    \\\\\\\"reward\\\\\\\": float(cumulative_reward),\\\\n                    \\\\\\\"steps\\\\\\\": step_i + 1,\\\\n                }\\\\n                episodes.append(ep_result)\\\\n                env.close()\\\\n\\\\n                ep_time = time.time() - ep_t0\\\\n                status = \\\\\\\"SUCCESS\\\\\\\" if success else \\\\\\\"fail\\\\\\\"\\\\n                print(f\\\\\\\"    ep {ep:2d}: {status} | R={cumulative_reward:.3f} | steps={step_i+1} | {ep_time:.1f}s\\\\\\\")\\\\n\\\\n            sr = sum(e[\\\\\\\"success\\\\\\\"] for e in episodes) / len(episodes)\\\\n            avg_r = np.mean([e[\\\\\\\"reward\\\\\\\"] for e in episodes])\\\\n            print(f\\\\\\\"  >> {condition} SR={sr:.2f}, avg_reward={avg_r:.3f}\\\\\\\")\\\\n\\\\n            all_results[task_name][condition] = episodes\\\\n\\\\n            if condition == \\\\\\\"ablated\\\\\\\":\\\\n                remove_ablation_hook(model, original_eager_fn)\\\\n\\\\n            gc.collect()\\\\n            torch.cuda.empty_cache()\\\\n\\\\n    # ── Summary ────────────────────────────────────────────────────────\\\\n    baseline_successes = 0\\\\n    ablated_successes = 0\\\\n    total = 0\\\\n    per_task = {}\\\\n\\\\n    for tname in task_names:\\\\n        b_sr = sum(e[\\\\\\\"success\\\\\\\"] for e in all_results[tname][\\\\\\\"baseline\\\\\\\"]) / N_EPISODES\\\\n        a_sr = sum(e[\\\\\\\"success\\\\\\\"] for e in all_results[tname][\\\\\\\"ablated\\\\\\\"]) / N_EPISODES\\\\n        per_task[tname] = {\\\\\\\"baseline_sr\\\\\\\": b_sr, \\\\\\\"ablated_sr\\\\\\\": a_sr, \\\\\\\"delta\\\\\\\": b_sr - a_sr}\\\\n        baseline_successes += sum(e[\\\\\\\"success\\\\\\\"] for e in all_results[tname][\\\\\\\"baseline\\\\\\\"])\\\\n        ablated_successes += sum(e[\\\\\\\"success\\\\\\\"] for e in all_results[tname][\\\\\\\"ablated\\\\\\\"])\\\\n        total += N_EPISODES\\\\n\\\\n    summary = {\\\\n        \\\\\\\"baseline_success_rate\\\\\\\": baseline_successes / total,\\\\n        \\\\\\\"ablated_success_rate\\\\\\\": ablated_successes / total,\\\\n        \\\\\\\"delta\\\\\\\": (baseline_successes - ablated_successes) / total,\\\\n        \\\\\\\"per_task\\\\\\\": per_task,\\\\n    }\\\\n\\\\n    output = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"n_tasks\\\\\\\": len(TASK_IDS),\\\\n            \\\\\\\"n_episodes\\\\\\\": N_EPISODES,\\\\n            \\\\\\\"conditions\\\\\\\": CONDITIONS,\\\\n            \\\\\\\"max_steps\\\\\\\": MAX_STEPS,\\\\n            \\\\\\\"task_ids\\\\\\\": TASK_IDS,\\\\n            \\\\\\\"unnorm_key\\\\\\\": UNNORM_KEY,\\\\n            \\\\\\\"model_path\\\\\\\": MODEL_PATH,\\\\n            \\\\\\\"ablated_heads\\\\\\\": INSTRUCTION_HEADS_24,\\\\n        },\\\\n        \\\\\\\"tasks\\\\\\\": task_names,\\\\n        \\\\\\\"results\\\\\\\": all_results,\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n    }\\\\n\\\\n    out_path = os.path.join(RESULTS_DIR, \\\\\\\"behavioral_pilot.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n    print(json.dumps(summary, indent=2))\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    action_high, action_low = np.array(action_norm_stats[\\\"q99\\\"]), np.array(action_norm_stats[\\\"q01\\\"])\\n    return np.where(\\n        mask,\\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\n        normalized_actions,\\n    )\\n\\n\\n# ── Ablation hook ──────────────────────────────────────────────────────────\\ndef install_ablation_hook(model, heads_to_ablate):\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    from transformers.models.llama.modeling_llama import repeat_kv\\n\\n    layer1_attn = model.language_model.model.layers[1].self_attn\\n    layer1_attn._ablate_heads = heads_to_ablate\\n\\n    original_fn = llama_mod.eager_attention_forward\\n\\n    def ablated_eager_attention_forward(module, query, key, value, attention_mask,\\n                                        scaling, dropout=0.0, **kwargs):\\n        key_states = repeat_kv(key, module.num_key_value_groups)\\n        value_states = repeat_kv(value, module.num_key_value_groups)\\n        attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling\\n        if attention_mask is not None:\\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\\n            attn_weights = attn_weights + causal_mask\\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)\\n        attn_weights = nn.functional.dropout(attn_weights, p=dropout, training=module.training)\\n        if hasattr(module, '_ablate_heads') and module._ablate_heads is not None:\\n            kv_len = attn_weights.shape[-1]\\n            if INST_START < kv_len:\\n                attn_weights[:, module._ablate_heads, :, INST_START:] = 0.0\\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\\n                attn_weights = attn_weights / row_sums\\n        attn_output = torch.matmul(attn_weights, value_states)\\n        attn_output = attn_output.transpose(1, 2).contiguous()\\n        return attn_output, attn_weights\\n\\n    llama_mod.eager_attention_forward = ablated_eager_attention_forward\\n    return original_fn\\n\\n\\ndef remove_ablation_hook(model, original_fn):\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    llama_mod.eager_attention_forward = original_fn\\n    model.language_model.model.layers[1].self_attn._ablate_heads = None\\n\\n\\n# ── Model loading ──────────────────────────────────────────────────────────\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True, low_cpu_mem_usage=True\\n    ).to(\\\"cuda:0\\\").eval()\\n    return model, processor\\n\\n\\ndef get_action(model, processor, image_array, instruction):\\n    img = Image.fromarray(image_array)\\n    prompt = f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n    inputs = processor(prompt, img).to(\\\"cuda:0\\\", dtype=torch.bfloat16)\\n    return predict_action_manual(model, inputs[\\\"input_ids\\\"], inputs[\\\"pixel_values\\\"], UNNORM_KEY)\\n\\n\\n# ── Main ───────────────────────────────────────────────────────────────────\\ndef main():\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\n    print(\\\"Loading model...\\\")\\n    model, processor = load_model()\\n    print(\\\"Model loaded.\\\")\\n\\n    import transformers.models.llama.modeling_llama as llama_mod\\n    original_eager_fn = llama_mod.eager_attention_forward\\n\\n    model.language_model.model.layers[1].self_attn._ablate_heads = None\\n\\n    bench = benchmark.get_benchmark(\\\"libero_goal\\\")()\\n    all_results = {}\\n    task_names = []\\n\\n    for task_id in TASK_IDS:\\n        task = bench.get_task(task_id)\\n        task_name = task.name\\n        task_lang = task.language\\n        task_names.append(task_name)\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"Task {task_id}: {task_name}\\\")\\n        print(f\\\"  Instruction: {task_lang}\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        all_results[task_name] = {}\\n\\n        for condition in CONDITIONS:\\n            print(f\\\"\\\\n  --- Condition: {condition} ---\\\")\\n\\n            if condition == \\\"ablated\\\":\\n                install_ablation_hook(model, INSTRUCTION_HEADS_24)\\n            else:\\n                model.language_model.model.layers[1].self_attn._ablate_heads = None\\n                llama_mod.eager_attention_forward = original_eager_fn\\n\\n            episodes = []\\n            for ep in range(N_EPISODES):\\n                ep_t0 = time.time()\\n                env, _, _ = make_env(task_id)\\n                np.random.seed(42 + ep)\\n                obs = env.reset()\\n\\n                cumulative_reward = 0.0\\n                success = False\\n\\n                for step_i in range(MAX_STEPS):\\n                    image = obs[\\\"agentview_image\\\"]\\n                    action = get_action(model, processor, image, task_lang)\\n                    obs, reward, done, info = env.step(action)\\n                    cumulative_reward += reward\\n                    if env.env._check_success():\\n                        success = True\\n                        break\\n\\n                ep_result = {\\n                    \\\"success\\\": bool(success),\\n                    \\\"reward\\\": float(cumulative_reward),\\n                    \\\"steps\\\": step_i + 1,\\n                }\\n                episodes.append(ep_result)\\n                env.close()\\n\\n                ep_time = time.time() - ep_t0\\n                status = \\\"SUCCESS\\\" if success else \\\"fail\\\"\\n                print(f\\\"    ep {ep:2d}: {status} | R={cumulative_reward:.3f} | steps={step_i+1} | {ep_time:.1f}s\\\")\\n\\n            sr = sum(e[\\\"success\\\"] for e in episodes) / len(episodes)\\n            avg_r = np.mean([e[\\\"reward\\\"] for e in episodes])\\n            print(f\\\"  >> {condition} SR={sr:.2f}, avg_reward={avg_r:.3f}\\\")\\n\\n            all_results[task_name][condition] = episodes\\n\\n            if condition == \\\"ablated\\\":\\n                remove_ablation_hook(model, original_eager_fn)\\n\\n            gc.collect()\\n            torch.cuda.empty_cache()\\n\\n    # ── Summary ────────────────────────────────────────────────────────\\n    baseline_successes = 0\\n    ablated_successes = 0\\n    total = 0\\n    per_task = {}\\n\\n    for tname in task_names:\\n        b_sr = sum(e[\\\"success\\\"] for e in all_results[tname][\\\"baseline\\\"]) / N_EPISODES\\n        a_sr = sum(e[\\\"success\\\"] for e in all_results[tname][\\\"ablated\\\"]) / N_EPISODES\\n        per_task[tname] = {\\\"baseline_sr\\\": b_sr, \\\"ablated_sr\\\": a_sr, \\\"delta\\\": b_sr - a_sr}\\n        baseline_successes += sum(e[\\\"success\\\"] for e in all_results[tname][\\\"baseline\\\"])\\n        ablated_successes += sum(e[\\\"success\\\"] for e in all_results[tname][\\\"ablated\\\"])\\n        total += N_EPISODES\\n\\n    summary = {\\n        \\\"baseline_success_rate\\\": baseline_successes / total,\\n        \\\"ablated_success_rate\\\": ablated_successes / total,\\n        \\\"delta\\\": (baseline_successes - ablated_successes) / total,\\n        \\\"per_task\\\": per_task,\\n    }\\n\\n    output = {\\n        \\\"config\\\": {\\n            \\\"n_tasks\\\": len(TASK_IDS),\\n            \\\"n_episodes\\\": N_EPISODES,\\n            \\\"conditions\\\": CONDITIONS,\\n            \\\"max_steps\\\": MAX_STEPS,\\n            \\\"task_ids\\\": TASK_IDS,\\n            \\\"unnorm_key\\\": UNNORM_KEY,\\n            \\\"model_path\\\": MODEL_PATH,\\n            \\\"ablated_heads\\\": INSTRUCTION_HEADS_24,\\n        },\\n        \\\"tasks\\\": task_names,\\n        \\\"results\\\": all_results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    out_path = os.path.join(RESULTS_DIR, \\\"behavioral_pilot.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n    print(json.dumps(summary, indent=2))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,25 @@
+{
+  "exp_id": "rsa_cosine_ablation",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:12:08.680Z",
+    "updated_at": "2026-05-16T10:12:40.559Z",
+    "hypothesis": "Distance metric ablation: RSA with cosine action distance (replacing euclidean). Tests whether inverted-U pattern is metric-invariant.",
+    "spec": {
+      "command": "python /root/vla-ssd/scripts/ablations/rsa_cosine_action_metric.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/trained/",
+      "data_count": 500,
+      "model_name": "openvla-7b (features already extracted)",
+      "seed": 42
+    },
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/ablations/rsa_cosine_metric.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T10:12:40.675378+00:00",
+  "trigger": "update_registry"
+}

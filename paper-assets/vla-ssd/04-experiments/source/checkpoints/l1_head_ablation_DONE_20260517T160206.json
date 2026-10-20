@@ -1,0 +1,99 @@
+{
+  "exp_id": "l1_head_ablation",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:59:16.298Z",
+    "updated_at": "2026-05-17T16:02:05.924Z",
+    "hypothesis": "L1 instruction-dominant heads (24/32 with >50% text attention) are causally necessary for instruction routing: ablating their instruction attention should collapse downstream instruction classification accuracy from ~100% to near-chance, while ablating non-dominant heads (control) should have minimal effect. This upgrades C2 (front-loaded routing) from correlational to partially causal.",
+    "notes": "D057. Results: Classification 1.0 all conditions (instruction identity via residual stream). Action probe R²: L1 baseline=0.256 → ablate_all24=0.363 (Δ=+0.107, p<0.0001, CI [0.063,0.153]) → ablate_all32=0.375 (Δ=+0.119, p<0.0001, CI [0.065,0.167]). L8/L13 ns. Interpretation: L1 instruction-attending heads trade capacity between instruction routing and action encoding. Ablation frees capacity → L1 action R² increases. Deep layers unaffected. Monkey-patch verified working (diagnostic: inst attn → 0, cosine sim = 0.973).",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T12:00:40.435Z"
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_ablation_action_probe.py --readout_layers 1 8 13 --demos_per_task 5 2>&1 | tee /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_log.txt",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "896931",
+      "log_path": "~/runs/vla-ssd/l1_head_ablation.log",
+      "submitted_at": "2026-05-17T14:49:06.028Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4379.9,
+      "gpu_hours": 1.22
+    },
+    "metrics": {
+      "classification_v2": {
+        "baseline": {
+          "L1": 1,
+          "L8": 1,
+          "L16": 1,
+          "L31": 1
+        },
+        "ablate_all24": {
+          "L1": 1,
+          "L8": 1,
+          "L16": 1,
+          "L31": 1
+        },
+        "ablate_all32": {
+          "L1": 1,
+          "L8": 1,
+          "L16": 1,
+          "L31": 1
+        },
+        "ablate_top5": {
+          "L1": 1,
+          "L8": 1,
+          "L16": 1,
+          "L31": 1
+        },
+        "ablate_control8": {
+          "L1": 1,
+          "L8": 1,
+          "L16": 1,
+          "L31": 1
+        }
+      },
+      "action_probe_R2": {
+        "baseline": {
+          "L1": 0.2558,
+          "L8": 0.4401,
+          "L13": 0.524
+        },
+        "ablate_all24": {
+          "L1": 0.3627,
+          "L8": 0.4496,
+          "L13": 0.5194
+        },
+        "ablate_all32": {
+          "L1": 0.3747,
+          "L8": 0.4449,
+          "L13": 0.5184
+        }
+      },
+      "diagnostic": {
+        "monkey_patch": "verified_working",
+        "ablated_inst_attn": 0,
+        "baseline_inst_attn": 0.029,
+        "hidden_cosine_sim": 0.973
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (inference-only experiment, no checkpoint produced)",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/l1_head_ablation/",
+    "completed_at": "2026-05-17T16:02:05.924Z"
+  },
+  "timestamp": "2026-05-17T16:02:06.071532+00:00",
+  "trigger": "update_registry"
+}

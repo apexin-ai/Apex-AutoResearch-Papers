@@ -1,0 +1,28 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Vision-language-action models (VLAs) fine-tune pretrained language models on robot demonstrations to produce actions from visual observations and language instructions~\cite{brohan2023_rt2,kim2024_openvla}, but which of the resulting representational changes reflect action training and which are inherited from the pretrained backbone?
+In these decoder-only architectures, image tokens precede instruction tokens, and the causal attention mask restricts multimodal integration to a single readout token~\cite{wang2025seeing,pei2025rethinking}; how representations at this critical position are reshaped by action fine-tuning remains unknown.
+
+Behavioral studies show that VLAs exhibit visual dominance~\cite{grant2026} and underweight instructions~\cite{haon2025}, but existing representational analyses target single architectures.
+No prior work tests whether instruction routing (the internal mechanisms by which instruction tokens influence action-relevant representations) is consistent across backbone families or decomposes training-associated effects from inherited base-model priors.
+
+We address this gap with a cross-architecture analysis of three VLAs (OpenVLA~\cite{kim2024_openvla}, TraceVLA~\cite{zheng2024tracevla}, and NORA~\cite{hung2025nora}) across four LIBERO~\cite{liu2023_libero} task suites (\S\ref{sec:setup}).
+TraceVLA and NORA baselines are pure VLMs ($N = 2$ independent VLM-to-VLA transitions); OpenVLA's baseline is the Open X-Embodiment (OXE)-pretrained~\cite{padalkar2023_oxe} VLA (VLA-to-VLA transition).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.88\linewidth]{figures/fig_overview.pdf}
+\caption{\textbf{Analysis framework.} We analyze hidden states at image-token averages and the readout token via layer-wise action probes, counterfactual instruction perturbations, and L1 attention profiling to distinguish training-associated changes from inherited backbone priors.}
+\label{fig:overview}
+\end{figure}
+
+Our analysis reveals three findings (Figure~\ref{fig:overview}): (1)~VLM-to-VLA fine-tuning is associated with substantial $R^2$ exit collapse ($\Delta R^2 = 0.16$--$0.46$), whereas VLA-to-VLA fine-tuning and reference models show only small fluctuations ($\Delta R^2 < 0.10$), with three NLP controls (all $\Delta R^2 = 0.000$) confirming transition-type specificity; (2)~all trained VLAs exhibit medium-to-large counterfactual sensitivity (Cohen's $d = 0.45$--$1.52$); and (3)~first-layer (L1) instruction attention reflects base-model priors, not VLA training (\S\ref{sec:r2_collapse}--\ref{sec:l1_priors}).
+While concurrent work evaluates VLA instruction-following behaviorally~\cite{fang2026when,swann2026}, we provide complementary representational analysis of how instruction information is routed internally.
+
+\noindent\textbf{Our contributions:}
+\begin{enumerate}[nosep]
+\item A cross-architecture representational analysis of three VLAs, combining trained/reference controls with token-level probing across a $3 \times 4$ architecture-suite matrix.
+\item Evidence that $R^2$ exit collapse is associated with VLM-to-VLA transitions ($\Delta R^2 > 0.10$ across two architectures) but not with VLA-to-VLA fine-tuning or NLP instruction tuning of the same backbones.
+\item A decomposition of VLA instruction routing into training-associated effects and inherited base-model priors, based on cross-architecture trained/reference contrasts.
+\end{enumerate}

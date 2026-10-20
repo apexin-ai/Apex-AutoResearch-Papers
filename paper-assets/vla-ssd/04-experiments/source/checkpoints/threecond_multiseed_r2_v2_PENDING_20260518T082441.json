@@ -1,0 +1,30 @@
+{
+  "exp_id": "threecond_multiseed_r2_v2",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:04:22.860Z",
+    "updated_at": "2026-05-18T08:24:41.485Z",
+    "hypothesis": "Multi-seed action probes (3 seeds, sequential split matching original experiment) will confirm trained > llama2base > untrained R² gradient with low seed variance, validating single-seed findings are robust and not split-dependent.",
+    "parent": "threecond_multiseed_r2",
+    "spec": {
+      "command": "python scripts/threecond_multiseed_probe_v2.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/{untrained,llama2base,trained}_libero_goal/",
+      "data_count": "10 tasks x 50 demos each",
+      "model_name": "ActionMLPProbe(4096->256->7)",
+      "seed": [
+        42,
+        123,
+        456
+      ],
+      "split": "sequential_80_20_no_shuffle",
+      "r2_space": "original_denormalized"
+    }
+  },
+  "timestamp": "2026-05-18T08:24:41.652459+00:00",
+  "trigger": "update_registry"
+}

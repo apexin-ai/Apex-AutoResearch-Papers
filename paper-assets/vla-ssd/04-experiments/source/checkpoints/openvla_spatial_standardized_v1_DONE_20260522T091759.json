@@ -1,0 +1,44 @@
+{
+  "exp_id": "openvla_spatial_standardized_v1",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-22T01:02:09.424Z",
+    "updated_at": "2026-05-22T09:17:59.170Z",
+    "hypothesis": "OpenVLA (Llama-2-7B backbone) on LIBERO-Spatial standardized 5-phase pipeline (R² probing, L1 attention, cross-instruction classification, RSA, counterfactual). Both trained and untrained conditions. Filling missing R² exit, L1 attention, and untrained CF data for Spatial cell. Expect similar patterns to Goal/Object: R² exit collapse in trained, instruction-dominant L1 heads.",
+    "reproduce": {
+      "finished_at": "2026-05-22T09:17:56.531Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-22T07:21:53.751Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T07:21:57.386888+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "python3 scripts/spatial_resume_pipeline.py",
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "pid": "645135",
+      "log_path": "/tmp/spatial_resume.log",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_spatial",
+      "data_count": 5000,
+      "model_name": "openvla-7b / openvla-7b-finetuned-libero-spatial",
+      "seed": 42
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T09:17:59.454314+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,57 @@
+{
+  "exp_id": "plan_003_perlayer_degradation",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:30:49.507Z",
+    "updated_at": "2026-05-15T22:34:41.446Z",
+    "hypothesis": "D028 plan_003: Per-layer RSA degradation curve. Track RSA from SigLIP+projector output (L0=0.615) through LLM layers 1-32 (~0.48). If monotonic decrease → LLM progressively degrades action alignment. If non-monotonic → some layers partially recover. Supports Claim 2 (LLM degrades action-relevant structure).",
+    "metrics": {
+      "siglip_projector_rsa": 0.6153,
+      "perlayer_summary": {
+        "with_inst_trained": {
+          "peak_rsa": 0.4876,
+          "peak_layer": 9,
+          "proj_to_l1_drop": 0.2036,
+          "pattern": "non_monotonic"
+        },
+        "with_inst_untrained": {
+          "peak_rsa": 0.4846,
+          "peak_layer": 12,
+          "proj_to_l1_drop": 0.1512,
+          "pattern": "non_monotonic"
+        },
+        "no_inst_trained": {
+          "peak_rsa": 0.489,
+          "peak_layer": 30,
+          "proj_to_l1_drop": 0.2526,
+          "pattern": "predominantly_increasing"
+        },
+        "no_inst_untrained": {
+          "peak_rsa": 0.4802,
+          "peak_layer": 6,
+          "proj_to_l1_drop": 0.1374,
+          "pattern": "non_monotonic"
+        }
+      },
+      "total_degradation_range": [
+        0.126,
+        0.135
+      ],
+      "key_findings": [
+        "Proj→L1 is the biggest RSA drop (0.13-0.25, ~20-40%)",
+        "L0 (embedding) is anomaly (RSA≈0 for trained), structure recovers at L1",
+        "No-inst trained is unique: predominantly increasing L1→L30",
+        "All LLM layers RSA >> DINO (0.388)",
+        "Total degradation ~0.13: best LLM layer still 0.13 below projector output"
+      ],
+      "result_path": "/root/autodl-tmp/vla-ssd/results/rsa/perlayer_degradation_curve.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T22:34:41.527525+00:00",
+  "trigger": "update_registry"
+}

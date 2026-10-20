@@ -1,0 +1,16 @@
+Figure: Action Head Decoding vs Independent Probe R² (per layer)
+
+Three curves plotted across layers 0-32:
+1. Action Head: argmax (red circles, solid line) — all negative, range [-7.8, -0.1]
+2. Action Head: softmax EV (orange triangles, solid line) — all negative, range [-1.3, -0.1]  
+3. Independent Probe: trained MLP (blue squares, dashed line) — mostly positive, range [-0.3, 0.68]
+
+Key visual observations:
+- Massive gap between probe and action-head curves at all layers
+- Both action-head curves show mid-layer peaks (L13-L16) matching probe peak
+- Late-layer degradation in action-head R² while probe stays high
+- Gray dashed line at R²=0 separates useful (above) from worse-than-mean (below) predictions
+
+Remote files:
+- PDF: /root/autodl-tmp/vla-ssd/results/action_head_decoding/fig_action_head_vs_probe.pdf
+- PNG: /root/autodl-tmp/vla-ssd/results/action_head_decoding/fig_action_head_vs_probe.png

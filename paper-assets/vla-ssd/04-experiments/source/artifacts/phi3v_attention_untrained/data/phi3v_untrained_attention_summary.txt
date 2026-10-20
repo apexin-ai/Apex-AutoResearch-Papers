@@ -1,0 +1,1 @@
+Summary: L1=28/32 dominant heads (mean_text=0.7745). Trained TracVLA-Phi3V: L1=32/32 (mean_text=0.7348). Delta=+4 heads from VLA training. Contrast with OpenVLA: untrained Llama-2-base had 0/32 → trained 24/32. Phi-3-mini-instruct instruction routing is pre-existing from instruction tuning.

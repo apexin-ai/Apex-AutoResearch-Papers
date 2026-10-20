@@ -1,0 +1,16 @@
+{
+  "exp_id": "closedloop_diagnosis",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:07:32.792Z",
+    "updated_at": "2026-05-19T17:08:19.271Z",
+    "hypothesis": "SR=0/3 in behavioral smoketest is caused by pipeline bugs (image preprocessing, action normalization), not model quality. Fixing these bugs will yield non-zero success rate.",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T17:08:19.458878+00:00",
+  "trigger": "update_registry"
+}

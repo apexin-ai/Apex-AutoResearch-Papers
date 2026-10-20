@@ -1,0 +1,35 @@
+{
+  "exp_id": "cf_batch_part2_v1",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:02:39.069Z",
+    "updated_at": "2026-05-22T00:04:40.940Z",
+    "hypothesis": "Parallel CF补跑 Part 2: TracVLA goal + long untrained counterfactual using cosine_dist. Split from cf_batch_missing_v1 to utilize cuda:1 in parallel, reducing total wall time from ~11h to ~3-4h.",
+    "spec": {
+      "command": "bash -c \"...counterfactual_batch.py tracvla goal+long untrained...\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "585447",
+      "log_path": "~/runs/vla-ssd/cf_batch_part2_v1.log",
+      "submitted_at": "2026-05-21T23:02:49.314Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/",
+      "data_count": "5000 samples/condition",
+      "model_name": "phi3v-base",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T00:04:40.263Z"
+    }
+  },
+  "timestamp": "2026-05-22T00:04:41.234733+00:00",
+  "trigger": "update_registry"
+}

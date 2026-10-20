@@ -1,0 +1,69 @@
+{
+  "exp_id": "threecond_multiseed_r2",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:09:57.814Z",
+    "updated_at": "2026-05-18T07:40:45.586Z",
+    "hypothesis": "Multi-seed action probes will confirm that trained models yield higher per-layer R² than untrained/llama2base with low variance across seeds, validating that the single-seed result is robust.",
+    "parent": "llama2base_action_probe",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T06:44:28.859Z"
+    },
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/threecond_multiseed_probe.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/{trained,untrained,llama2base}_libero_goal/",
+      "data_count": "10 tasks x 50 demos x 3 conditions",
+      "model_name": "ActionMLPProbe(4096->256->7)",
+      "seed": "42,123,456",
+      "checkpoint_source": "pre-extracted features from openvla-7b / openvla-7b-untrained / openvla-7b-llama2base",
+      "eval_data": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/ (10 tasks, 50 demos each, 80/20 split)",
+      "checkpoint_path": "N/A (probe experiment)",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/threecond_multiseed.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "conditions": [
+        "untrained",
+        "llama2base",
+        "trained"
+      ],
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "trained_peak": {
+        "layer": 10,
+        "mean_R2": 0.548,
+        "std": 0.012
+      },
+      "llama2base_peak": {
+        "layer": 0,
+        "mean_R2": 0.538,
+        "std": 0.015
+      },
+      "untrained_peak": {
+        "layer": 0,
+        "mean_R2": 0.538,
+        "std": 0.015
+      },
+      "L0_shared_baseline": 0.538,
+      "pattern_trained": "mild inverted-U, peak L10",
+      "pattern_llama2base": "stable monotonic decline",
+      "pattern_untrained": "high variance, deep layer collapse",
+      "result_path": "/root/autodl-tmp/vla-ssd/results/threecond_multiseed.json"
+    },
+    "completed_at": "2026-05-18T07:40:45.586Z"
+  },
+  "timestamp": "2026-05-18T07:40:45.749659+00:00",
+  "trigger": "update_registry"
+}

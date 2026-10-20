@@ -1,0 +1,3511 @@
+# code d003 remove subtask gate
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 76
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/workers/worker_code_d003-remove-subtask-gate_20260515T123231.log`
+- **Structured JSON:** [`17c0fe26847b734a80df.json`](../../sessions/17/17c0fe26847b734a80df.json)
+
+## Before a recorded user message
+
+76 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3b24164c-534e-41a5-acc0-494c8d78d671",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778857200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "56a92e54-daa1-40bb-b6f2-cc6465bd341f",
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current state of the analyze_results.py script on the remote server to understand the existing code structure before making changes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "6cba73dc-5f53-4368-a43c-d427043f8a38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxbUR2iXCLMPBC9cyXcQsc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11398,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11398
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先看当前脚本内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "dd2fe691-b489-46de-b1e1-a34e6122cdd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxbUR2iXCLMPBC9cyXcQsc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11398,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11398
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ULAR9Z4Bw9vvcHz5ukmkkq`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "1c714b38-7c23-48a0-a3f6-9f1f13599906",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxbUR2iXCLMPBC9cyXcQsc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11398,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11398
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T12:32:45.513Z_
+
+<details><summary>↩ Tool result · `toolu_01ULAR9Z4Bw9vvcHz5ukmkkq`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "101309ae-8263-4fef-9528-67dce87a6ded",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QqPDKrK2XJYGCfAJawqXxZ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "641fd35b-dc9c-4c40-9086-0e3998165e38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013HokXX1f1koxPv4wCgHetb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 927,
+      "cache_read_input_tokens": 23239,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 927
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T12:32:50.498Z_
+
+<details><summary>↩ Tool result · `toolu_01QqPDKrK2XJYGCfAJawqXxZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\ndef extract_per_task_mean_rho(data):\\n    results = data.get(\\\"results\\\", {})\\n    layers, mean_rhos = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        per_task = v.get(\\\"per_task_rho\\\", {})\\n        if per_task:\\n            valid = [r for r in per_task.values()\\n                     if r is not None and not np.isnan(r)]\\n            if valid:\\n                layers.append(int(k))\\n                mean_rhos.append(float(np.mean(valid)))\\n    return np.array(layers), np.array(mean_rhos)\\n\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                m\\n\\n... [截断: 输出过长，省略 11743 字符] ...\\n\\nppend(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        entry = {}\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            entry[\\\"best_layer_pooled\\\"] = int(layers[bi])\\n            entry[\\\"best_pooled_rho\\\"] = float(rhos[bi])\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(data)\\n        if len(rhos_pt) > 0:\\n            bi_pt = int(np.argmax(rhos_pt))\\n            entry[\\\"best_layer\\\"] = int(layers_pt[bi_pt])\\n            entry[\\\"best_rho\\\"] = float(rhos_pt[bi_pt])\\n        if entry:\\n            summary[name] = entry\\n\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "750d76c6-fd9c-4516-9ef9-3703adb1e057",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"analyze_results.py — Compare probe results across models and visualize.\\\\n\\\\nInput:  Multiple result directories (from train_probes.py)\\\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\\\n\\\\nUsage:\\\\n  python analyze_results.py \\\\\\\\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\\\\\\\n    --output_dir results/analysis/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Analyze and compare probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--results_dirs\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", default=\\\\\\\"temporal_distance\\\\\\\",\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\"])\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_results_dirs(s):\\\\n    d = {}\\\\n    for entry in s.split(\\\\\\\",\\\\\\\"):\\\\n        name, path = entry.strip().split(\\\\\\\":\\\\\\\")\\\\n        d[name.strip()] = path.strip()\\\\n    return d\\\\n\\\\n\\\\ndef load_results(results_dir, probe_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load probe results from a directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probe_dir = os.path.join(results_dir, probe_type)\\\\n    summary_path = os.path.join(probe_dir, \\\\\\\"summary.json\\\\\\\")\\\\n    if os.path.exists(summary_path):\\\\n        with open(summary_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    results = {}\\\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\\\\\"layer_*.json\\\\\\\"))):\\\\n        with open(p) as f:\\\\n            m = json.load(f)\\\\n        key = m.get(\\\\\\\"layer\\\\\\\", Path(p).stem.replace(\\\\\\\"layer_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        results[str(key)] = m\\\\n    return {\\\\\\\"results\\\\\\\": results}\\\\n\\\\n\\\\ndef load_oracle(results_dirs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect oracle results from any provided directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for path in results_dirs.values():\\\\n        oracle_dir = os.path.join(path, \\\\\\\"oracle\\\\\\\")\\\\n        summary = os.path.join(oracle_dir, \\\\\\\"summary.json\\\\\\\")\\\\n        if os.path.exists(summary):\\\\n            with open(summary) as f:\\\\n                data = json.load(f)\\\\n            r = data.get(\\\\\\\"results\\\\\\\", {})\\\\n            if \\\\\\\"oracle\\\\\\\" in r:\\\\n                return r[\\\\\\\"oracle\\\\\\\"].get(\\\\\\\"spearman_rho\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef _sort_key(x):\\\\n    try:\\\\n        return (0, int(x))\\\\n    except ValueError:\\\\n        return (1, x)\\\\n\\\\n\\\\ndef extract_layer_metrics(data, metric=\\\\\\\"spearman_rho\\\\\\\"):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers, values = [], []\\\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\\\n        if k == \\\\\\\"oracle\\\\\\\":\\\\n            continue\\\\n        val = v.get(metric)\\\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\\\n            layers.append(int(k))\\\\n            values.append(float(val))\\\\n    return np.array(layers), np.array(values)\\\\n\\\\ndef extract_per_task_mean_rho(data):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers, mean_rhos = [], []\\\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\\\n        if k == \\\\\\\"oracle\\\\\\\":\\\\n            continue\\\\n        per_task = v.get(\\\\\\\"per_task_rho\\\\\\\", {})\\\\n        if per_task:\\\\n            valid = [r for r in per_task.values()\\\\n                     if r is not None and not np.isnan(r)]\\\\n            if valid:\\\\n                layers.append(int(k))\\\\n                mean_rhos.append(float(np.mean(valid)))\\\\n    return np.array(layers), np.array(mean_rhos)\\\\n\\\\n\\\\n\\\\n# ============================================================\\\\n# Plots\\\\n# ============================================================\\\\n\\\\nCOLORS = {\\\\n    \\\\\\\"trained\\\\\\\": \\\\\\\"#2196F3\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"#F44336\\\\\\\",\\\\n    \\\\\\\"dinov2\\\\\\\": \\\\\\\"#4CAF50\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"#FF9800\\\\\\\",\\\\n}\\\\nMARKERS = {\\\\\\\"trained\\\\\\\": \\\\\\\"o\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"s\\\\\\\", \\\\\\\"dinov2\\\\\\\": \\\\\\\"^\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"D\\\\\\\"}\\\\n\\\\n\\\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\\\n    fig, ax = plt.subplots(figsize=(10, 5))\\\\n\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(layers) == 0:\\\\n            continue\\\\n        ax.plot(layers, rhos,\\\\n                m\\\\n\\\\n... [截断: 输出过长，省略 11743 字符] ...\\\\n\\\\nppend(f\\\\\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\\\\\")\\\\n        if p_value_perm >= 0.05:\\\\n            reasons.append(f\\\\\\\"permutation p={p_value_perm:.4f} >= 0.05\\\\\\\")\\\\n    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\\\\\")\\\\n\\\\n    return dict(judgment=judgment, criteria=criteria,\\\\n                reasons=reasons if reasons else [\\\\\\\"All criteria met\\\\\\\"])\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    dirs = parse_results_dirs(args.results_dirs)\\\\n    print(f\\\\\\\"Loading results: {list(dirs.keys())}\\\\\\\")\\\\n\\\\n    all_data = {}\\\\n    for name, path in dirs.items():\\\\n        try:\\\\n            data = load_results(path, args.probe_type)\\\\n            all_data[name] = data\\\\n            n = len(data.get(\\\\\\\"results\\\\\\\", {}))\\\\n            print(f\\\\\\\"  {name}: {n} entries\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  {name}: FAILED ({e})\\\\\\\")\\\\n\\\\n    if not all_data:\\\\n        print(\\\\\\\"No data loaded.\\\\\\\")\\\\n        return\\\\n\\\\n    oracle_rho = load_oracle(dirs)\\\\n    if oracle_rho is not None:\\\\n        print(f\\\\\\\"Oracle rho: {oracle_rho:.4f}\\\\\\\")\\\\n\\\\n    # --- Comparison table ---\\\\n    print(\\\\\\\"\\\\\\\\n=== Layer-wise Spearman rho ===\\\\\\\")\\\\n    names = list(all_data.keys())\\\\n    header = [\\\\\\\"Layer\\\\\\\"] + names\\\\n    print(\\\\\\\" | \\\\\\\".join(f\\\\\\\"{h:>12}\\\\\\\" for h in header))\\\\n    print(\\\\\\\"-\\\\\\\" * (14 * len(header)))\\\\n\\\\n    all_layers = set()\\\\n    for data in all_data.values():\\\\n        layers, _ = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        all_layers.update(layers.tolist())\\\\n\\\\n    for layer in sorted(all_layers):\\\\n        row = [f\\\\\\\"{layer:>12}\\\\\\\"]\\\\n        for name in names:\\\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\\\\\"spearman_rho\\\\\\\")\\\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\\\n            val = lmap.get(layer, float(\\\\\\\"nan\\\\\\\"))\\\\n            row.append(f\\\\\\\"{val:>12.4f}\\\\\\\")\\\\n        print(\\\\\\\" | \\\\\\\".join(row))\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Best Layer ===\\\\\\\")\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            print(f\\\\\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\\\\\")\\\\n\\\\n    # --- Plots ---\\\\n    if args.probe_type == \\\\\\\"temporal_distance\\\\\\\":\\\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\\\n        plot_delta_rho(all_data, args.output_dir)\\\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\\\n\\\\n    if args.probe_type == \\\\\\\"subtask_predicate\\\\\\\":\\\\n        for name, data in all_data.items():\\\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\\\n\\\\n    # --- Judgment ---\\\\n    judgment = compute_judgment(all_data)\\\\n    print(f\\\\\\\"\\\\\\\\n=== Judgment: {judgment['judgment']} ===\\\\\\\")\\\\n    for k, v in judgment[\\\\\\\"criteria\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n    for r in judgment[\\\\\\\"reasons\\\\\\\"]:\\\\n        print(f\\\\\\\"  >> {r}\\\\\\\")\\\\n\\\\n    # --- Save ---\\\\n    summary = dict(\\\\n        models=names,\\\\n        probe_type=args.probe_type,\\\\n        judgment=judgment,\\\\n    )\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        entry = {}\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            entry[\\\\\\\"best_layer_pooled\\\\\\\"] = int(layers[bi])\\\\n            entry[\\\\\\\"best_pooled_rho\\\\\\\"] = float(rhos[bi])\\\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(data)\\\\n        if len(rhos_pt) > 0:\\\\n            bi_pt = int(np.argmax(rhos_pt))\\\\n            entry[\\\\\\\"best_layer\\\\\\\"] = int(layers_pt[bi_pt])\\\\n            entry[\\\\\\\"best_rho\\\\\\\"] = float(rhos_pt[bi_pt])\\\\n        if entry:\\\\n            summary[name] = entry\\\\n\\\\n    if oracle_rho is not None:\\\\n        summary[\\\\\\\"oracle_rho\\\\\\\"] = oracle_rho\\\\n\\\\n    with open(os.path.join(args.output_dir, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved {args.output_dir}/summary.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\ndef extract_per_task_mean_rho(data):\\n    results = data.get(\\\"results\\\", {})\\n    layers, mean_rhos = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        per_task = v.get(\\\"per_task_rho\\\", {})\\n        if per_task:\\n            valid = [r for r in per_task.values()\\n                     if r is not None and not np.isnan(r)]\\n            if valid:\\n                layers.append(int(k))\\n                mean_rhos.append(float(np.mean(valid)))\\n    return np.array(layers), np.array(mean_rhos)\\n\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                m\\n\\n... [截断: 输出过长，省略 11743 字符] ...\\n\\nppend(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        entry = {}\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            entry[\\\"best_layer_pooled\\\"] = int(layers[bi])\\n            entry[\\\"best_pooled_rho\\\"] = float(rhos[bi])\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(data)\\n        if len(rhos_pt) > 0:\\n            bi_pt = int(np.argmax(rhos_pt))\\n            entry[\\\"best_layer\\\"] = int(layers_pt[bi_pt])\\n            entry[\\\"best_rho\\\"] = float(rhos_pt[bi_pt])\\n        if entry:\\n            summary[name] = entry\\n\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me get the full `compute_judgment` function specifically, as that's the main thing I need to modify.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "63b9f449-fb45-48d8-b7fb-441a36fc1285",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMXZKRuujXyoMnp8sHPbqs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3439,
+      "cache_read_input_tokens": 24166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3439
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+输出被截断了，需要看完整的 `compute_judgment` 函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "6c35f241-4339-43af-8b61-5ee5d1c8d69b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMXZKRuujXyoMnp8sHPbqs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3439,
+      "cache_read_input_tokens": 24166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3439
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DFMZkyWwbreH2go6NGhFkM`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def compute_judgment\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "2ea08876-e217-4433-aad4-3bf366b047be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMXZKRuujXyoMnp8sHPbqs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3439,
+      "cache_read_input_tokens": 24166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3439
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T12:32:56.326Z_
+
+<details><summary>↩ Tool result · `toolu_01DFMZkyWwbreH2go6NGhFkM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"304:def compute_judgment(all_data):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "54f2b91b-18e3-4175-90fc-a4e7ca02c1e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"304:def compute_judgment(all_data):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"304:def compute_judgment(all_data):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xxr1zaMfrz8i2pkDnSjXpG`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -n 500 /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "332f15f8-7fff-48f1-8e9c-899eb3e77a52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nthy3FR7KbiXFebXzjvBFD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 27605,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T12:32:59.686Z_
+
+<details><summary>↩ Tool result · `toolu_01Xxr1zaMfrz8i2pkDnSjXpG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\ndef extract_per_task_mean_rho(data):\\n    results = data.get(\\\"results\\\", {})\\n    layers, mean_rhos = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        per_task = v.get(\\\"per_task_rho\\\", {})\\n        if per_task:\\n            valid = [r for r in per_task.values()\\n                     if r is not None and not np.isnan(r)]\\n            if valid:\\n                layers.append(int(k))\\n                mean_rhos.append(float(np.mean(valid)))\\n    return np.array(layers), np.array(mean_rhos)\\n\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                m\\n\\n... [截断: 输出过长，省略 10773 字符] ...\\n\\n_auc\\\"), (int, float)):\\n                dino_best_auc = max(dino_best_auc, v[\\\"macro_auc\\\"])\\n    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"vla_mean_rho\\\"] = vla_mean_rho\\n    criteria[\\\"dino_mean_rho\\\"] = dino_mean_rho\\n    criteria[\\\"vla_best_auc\\\"] = vla_best_auc\\n    criteria[\\\"dino_best_auc\\\"] = dino_best_auc\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"PASS\\\"\\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"CONDITIONAL\\\"\\n    else:\\n        judgment = \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best per-task mean rho = {best_rho:.4f} <= 0.5\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        if not ci_excludes_zero:\\n            reasons.append(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "dca332c8-5116-43e3-9c29-903ce379125c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"analyze_results.py — Compare probe results across models and visualize.\\\\n\\\\nInput:  Multiple result directories (from train_probes.py)\\\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\\\n\\\\nUsage:\\\\n  python analyze_results.py \\\\\\\\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\\\\\\\n    --output_dir results/analysis/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Analyze and compare probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--results_dirs\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", default=\\\\\\\"temporal_distance\\\\\\\",\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\"])\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_results_dirs(s):\\\\n    d = {}\\\\n    for entry in s.split(\\\\\\\",\\\\\\\"):\\\\n        name, path = entry.strip().split(\\\\\\\":\\\\\\\")\\\\n        d[name.strip()] = path.strip()\\\\n    return d\\\\n\\\\n\\\\ndef load_results(results_dir, probe_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load probe results from a directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probe_dir = os.path.join(results_dir, probe_type)\\\\n    summary_path = os.path.join(probe_dir, \\\\\\\"summary.json\\\\\\\")\\\\n    if os.path.exists(summary_path):\\\\n        with open(summary_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    results = {}\\\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\\\\\"layer_*.json\\\\\\\"))):\\\\n        with open(p) as f:\\\\n            m = json.load(f)\\\\n        key = m.get(\\\\\\\"layer\\\\\\\", Path(p).stem.replace(\\\\\\\"layer_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        results[str(key)] = m\\\\n    return {\\\\\\\"results\\\\\\\": results}\\\\n\\\\n\\\\ndef load_oracle(results_dirs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect oracle results from any provided directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for path in results_dirs.values():\\\\n        oracle_dir = os.path.join(path, \\\\\\\"oracle\\\\\\\")\\\\n        summary = os.path.join(oracle_dir, \\\\\\\"summary.json\\\\\\\")\\\\n        if os.path.exists(summary):\\\\n            with open(summary) as f:\\\\n                data = json.load(f)\\\\n            r = data.get(\\\\\\\"results\\\\\\\", {})\\\\n            if \\\\\\\"oracle\\\\\\\" in r:\\\\n                return r[\\\\\\\"oracle\\\\\\\"].get(\\\\\\\"spearman_rho\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef _sort_key(x):\\\\n    try:\\\\n        return (0, int(x))\\\\n    except ValueError:\\\\n        return (1, x)\\\\n\\\\n\\\\ndef extract_layer_metrics(data, metric=\\\\\\\"spearman_rho\\\\\\\"):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers, values = [], []\\\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\\\n        if k == \\\\\\\"oracle\\\\\\\":\\\\n            continue\\\\n        val = v.get(metric)\\\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\\\n            layers.append(int(k))\\\\n            values.append(float(val))\\\\n    return np.array(layers), np.array(values)\\\\n\\\\ndef extract_per_task_mean_rho(data):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers, mean_rhos = [], []\\\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\\\n        if k == \\\\\\\"oracle\\\\\\\":\\\\n            continue\\\\n        per_task = v.get(\\\\\\\"per_task_rho\\\\\\\", {})\\\\n        if per_task:\\\\n            valid = [r for r in per_task.values()\\\\n                     if r is not None and not np.isnan(r)]\\\\n            if valid:\\\\n                layers.append(int(k))\\\\n                mean_rhos.append(float(np.mean(valid)))\\\\n    return np.array(layers), np.array(mean_rhos)\\\\n\\\\n\\\\n\\\\n# ============================================================\\\\n# Plots\\\\n# ============================================================\\\\n\\\\nCOLORS = {\\\\n    \\\\\\\"trained\\\\\\\": \\\\\\\"#2196F3\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"#F44336\\\\\\\",\\\\n    \\\\\\\"dinov2\\\\\\\": \\\\\\\"#4CAF50\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"#FF9800\\\\\\\",\\\\n}\\\\nMARKERS = {\\\\\\\"trained\\\\\\\": \\\\\\\"o\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"s\\\\\\\", \\\\\\\"dinov2\\\\\\\": \\\\\\\"^\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"D\\\\\\\"}\\\\n\\\\n\\\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\\\n    fig, ax = plt.subplots(figsize=(10, 5))\\\\n\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(layers) == 0:\\\\n            continue\\\\n        ax.plot(layers, rhos,\\\\n                m\\\\n\\\\n... [截断: 输出过长，省略 10773 字符] ...\\\\n\\\\n_auc\\\\\\\"), (int, float)):\\\\n                dino_best_auc = max(dino_best_auc, v[\\\\\\\"macro_auc\\\\\\\"])\\\\n    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\\\n\\\\n    criteria[\\\\\\\"vla_ge_dinov2\\\\\\\"] = vla_ge_dino\\\\n    criteria[\\\\\\\"vla_mean_rho\\\\\\\"] = vla_mean_rho\\\\n    criteria[\\\\\\\"dino_mean_rho\\\\\\\"] = dino_mean_rho\\\\n    criteria[\\\\\\\"vla_best_auc\\\\\\\"] = vla_best_auc\\\\n    criteria[\\\\\\\"dino_best_auc\\\\\\\"] = dino_best_auc\\\\n    criteria[\\\\\\\"subtask_auc_pass\\\\\\\"] = subtask_pass\\\\n    criteria[\\\\\\\"third_criterion\\\\\\\"] = vla_ge_dino or subtask_pass\\\\n\\\\n    if criteria[\\\\\\\"rho_pass\\\\\\\"] and criteria[\\\\\\\"delta_pass\\\\\\\"] and criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        judgment = \\\\\\\"PASS\\\\\\\"\\\\n    elif criteria[\\\\\\\"delta_pass\\\\\\\"] and not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        judgment = \\\\\\\"CONDITIONAL\\\\\\\"\\\\n    else:\\\\n        judgment = \\\\\\\"FAIL\\\\\\\"\\\\n\\\\n    reasons = []\\\\n    if not criteria[\\\\\\\"rho_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"best per-task mean rho = {best_rho:.4f} <= 0.5\\\\\\\")\\\\n    if not criteria[\\\\\\\"delta_pass\\\\\\\"]:\\\\n        if not ci_excludes_zero:\\\\n            reasons.append(f\\\\\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\\\\\")\\\\n        if p_value_perm >= 0.05:\\\\n            reasons.append(f\\\\\\\"permutation p={p_value_perm:.4f} >= 0.05\\\\\\\")\\\\n    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\\\\\")\\\\n\\\\n    return dict(judgment=judgment, criteria=criteria,\\\\n                reasons=reasons if reasons else [\\\\\\\"All criteria met\\\\\\\"])\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    dirs = parse_results_dirs(args.results_dirs)\\\\n    print(f\\\\\\\"Loading results: {list(dirs.keys())}\\\\\\\")\\\\n\\\\n    all_data = {}\\\\n    for name, path in dirs.items():\\\\n        try:\\\\n            data = load_results(path, args.probe_type)\\\\n            all_data[name] = data\\\\n            n = len(data.get(\\\\\\\"results\\\\\\\", {}))\\\\n            print(f\\\\\\\"  {name}: {n} entries\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  {name}: FAILED ({e})\\\\\\\")\\\\n\\\\n    if not all_data:\\\\n        print(\\\\\\\"No data loaded.\\\\\\\")\\\\n        return\\\\n\\\\n    oracle_rho = load_oracle(dirs)\\\\n    if oracle_rho is not None:\\\\n        print(f\\\\\\\"Oracle rho: {oracle_rho:.4f}\\\\\\\")\\\\n\\\\n    # --- Comparison table ---\\\\n    print(\\\\\\\"\\\\\\\\n=== Layer-wise Spearman rho ===\\\\\\\")\\\\n    names = list(all_data.keys())\\\\n    header = [\\\\\\\"Layer\\\\\\\"] + names\\\\n    print(\\\\\\\" | \\\\\\\".join(f\\\\\\\"{h:>12}\\\\\\\" for h in header))\\\\n    print(\\\\\\\"-\\\\\\\" * (14 * len(header)))\\\\n\\\\n    all_layers = set()\\\\n    for data in all_data.values():\\\\n        layers, _ = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        all_layers.update(layers.tolist())\\\\n\\\\n    for layer in sorted(all_layers):\\\\n        row = [f\\\\\\\"{layer:>12}\\\\\\\"]\\\\n        for name in names:\\\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\\\\\"spearman_rho\\\\\\\")\\\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\\\n            val = lmap.get(layer, float(\\\\\\\"nan\\\\\\\"))\\\\n            row.append(f\\\\\\\"{val:>12.4f}\\\\\\\")\\\\n        print(\\\\\\\" | \\\\\\\".join(row))\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Best Layer ===\\\\\\\")\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            print(f\\\\\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\\\\\")\\\\n\\\\n    # --- Plots ---\\\\n    if args.probe_type == \\\\\\\"temporal_distance\\\\\\\":\\\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\\\n        plot_delta_rho(all_data, args.output_dir)\\\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\\\n\\\\n    if args.probe_type == \\\\\\\"subtask_predicate\\\\\\\":\\\\n        for name, data in all_data.items():\\\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\\\n\\\\n    # --- Judgment ---\\\\n    judgment = compute_judgment(all_data)\\\\n    print(f\\\\\\\"\\\\\\\\n=== Judgment: {judgment['judgment']} ===\\\\\\\")\\\\n    for k, v in judgment[\\\\\\\"criteria\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n    for r in judgment[\\\\\\\"reasons\\\\\\\"]:\\\\n        print(f\\\\\\\"  >> {r}\\\\\\\")\\\\n\\\\n    # --- Save ---\\\\n    summary = dict(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\ndef extract_per_task_mean_rho(data):\\n    results = data.get(\\\"results\\\", {})\\n    layers, mean_rhos = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        per_task = v.get(\\\"per_task_rho\\\", {})\\n        if per_task:\\n            valid = [r for r in per_task.values()\\n                     if r is not None and not np.isnan(r)]\\n            if valid:\\n                layers.append(int(k))\\n                mean_rhos.append(float(np.mean(valid)))\\n    return np.array(layers), np.array(mean_rhos)\\n\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                m\\n\\n... [截断: 输出过长，省略 10773 字符] ...\\n\\n_auc\\\"), (int, float)):\\n                dino_best_auc = max(dino_best_auc, v[\\\"macro_auc\\\"])\\n    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"vla_mean_rho\\\"] = vla_mean_rho\\n    criteria[\\\"dino_mean_rho\\\"] = dino_mean_rho\\n    criteria[\\\"vla_best_auc\\\"] = vla_best_auc\\n    criteria[\\\"dino_best_auc\\\"] = dino_best_auc\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"PASS\\\"\\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"CONDITIONAL\\\"\\n    else:\\n        judgment = \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best per-task mean rho = {best_rho:.4f} <= 0.5\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        if not ci_excludes_zero:\\n            reasons.append(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output is still truncated. Let me get the complete `compute_judgment` function by reading specific line ranges.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "23c86879-05ed-48fe-b55f-56435116877e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JCALBEXGWxHgWitYH1xYwQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3485,
+      "cache_read_input_tokens": 27869,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+需要看完整的 `compute_judgment` 函数，从第 304 行开始。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "3318a54e-862a-4b6f-9450-f503a3a7239d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JCALBEXGWxHgWitYH1xYwQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3485,
+      "cache_read_input_tokens": 27869,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PkMaya5mgyPZbEqnFnA2e7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +304 /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "ef3922fc-25dd-4981-8013-fae9005b8b3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JCALBEXGWxHgWitYH1xYwQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3485,
+      "cache_read_input_tokens": 27869,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T12:33:03.923Z_
+
+<details><summary>↩ Tool result · `toolu_01PkMaya5mgyPZbEqnFnA2e7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def compute_judgment(all_data):\\n    \\\"\\\"\\\"PASS/FAIL based on three criteria (D002: per-task mean rho).\\\"\\\"\\\"\\n    criteria = {}\\n\\n    # 1) per-task mean rho at best layer > 0.5 (D002)\\n    if \\\"trained\\\" in all_data:\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\\\"trained\\\"])\\n        if len(rhos_pt) > 0:\\n            best_rho = float(rhos_pt.max())\\n            best_layer = int(layers_pt[np.argmax(rhos_pt)])\\n        else:\\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\n    else:\\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\\n\\n    criteria[\\\"best_rho\\\"] = best_rho\\n    criteria[\\\"best_pooled_rho\\\"] = best_pooled_rho\\n    criteria[\\\"best_layer\\\"] = best_layer\\n    criteria[\\\"rho_pass\\\"] = best_rho > 0.5\\n\\n    # 2) delta-rho at best layer with task-level bootstrap CI\\n    delta_at_best = 0.0\\n    delta_ci_lower = 0.0\\n    delta_ci_upper = 0.0\\n    ci_excludes_zero = False\\n    p_value_perm = 1.0\\n    if \\\"trained\\\" in all_data and \\\"untrained\\\" in all_data:\\n        l_tr, rho_tr = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        l_un, rho_un = extract_layer_metrics(all_data[\\\"untrained\\\"], \\\"spearman_rho\\\")\\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\n\\n        if best_layer in tr_map and best_layer in un_map:\\n            delta_at_best = tr_map[best_layer] - un_map[best_layer]\\n\\n        tr_results = all_data[\\\"trained\\\"].get(\\\"results\\\", {})\\n        un_results = all_data[\\\"untrained\\\"].get(\\\"results\\\", {})\\n        best_key = str(best_layer)\\n        has_per_task = (best_key in tr_results\\n                        and \\\"per_task_rho\\\" in tr_results.get(best_key, {})\\n                        and best_key in un_results\\n                        and \\\"per_task_rho\\\" in un_results.get(best_key, {}))\\n        if has_per_task:\\n            delta_at_best, delta_ci_lower, delta_ci_upper, p_value_perm = (\\n                bootstrap_delta_rho(tr_results, un_results, best_key))\\n            ci_excludes_zero = delta_ci_lower > 0\\n\\n    criteria[\\\"delta_at_best\\\"] = delta_at_best\\n    criteria[\\\"delta_ci_lower\\\"] = delta_ci_lower\\n    criteria[\\\"delta_ci_upper\\\"] = delta_ci_upper\\n    criteria[\\\"ci_excludes_zero\\\"] = ci_excludes_zero\\n    criteria[\\\"p_value_perm\\\"] = p_value_perm\\n    criteria[\\\"delta_pass\\\"] = ci_excludes_zero and p_value_perm < 0.05\\n\\n    # 3) VLA per-task mean rho >= DINO per-task mean rho (D002)\\n    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\n    vla_ge_dino = False\\n    vla_mean_rho = 0.0\\n    dino_mean_rho = 0.0\\n    if \\\"trained\\\" in all_data and \\\"dinov2\\\" in all_data:\\n        _, rho_vla_pt = extract_per_task_mean_rho(all_data[\\\"trained\\\"])\\n        _, rho_dino_pt = extract_per_task_mean_rho(all_data[\\\"dinov2\\\"])\\n        if len(rho_vla_pt) > 0:\\n            vla_mean_rho = float(rho_vla_pt.max())\\n        if len(rho_dino_pt) > 0:\\n            dino_mean_rho = float(rho_dino_pt.max())\\n        if len(rho_vla_pt) > 0 and len(rho_dino_pt) > 0:\\n            vla_ge_dino = vla_mean_rho >= dino_mean_rho\\n        elif len(rho_vla_pt) == 0 or len(rho_dino_pt) == 0:\\n            _, rho_vla_pooled = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n            _, rho_dino_pooled = extract_layer_metrics(all_data[\\\"dinov2\\\"], \\\"spearman_rho\\\")\\n            if len(rho_vla_pooled) > 0 and len(rho_dino_pooled) > 0:\\n                vla_ge_dino = float(rho_vla_pooled.max()) >= float(rho_dino_pooled.max())\\n\\n    vla_best_auc = 0.0\\n    dino_best_auc = 0.0\\n    if \\\"trained\\\" in all_data:\\n        for v in all_data[\\\"trained\\\"].get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_a\\n\\n... [截断: 输出过长，省略 1188 字符] ...\\n\\nppend(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        entry = {}\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            entry[\\\"best_layer_pooled\\\"] = int(layers[bi])\\n            entry[\\\"best_pooled_rho\\\"] = float(rhos[bi])\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(data)\\n        if len(rhos_pt) > 0:\\n            bi_pt = int(np.argmax(rhos_pt))\\n            entry[\\\"best_layer\\\"] = int(layers_pt[bi_pt])\\n            entry[\\\"best_rho\\\"] = float(rhos_pt[bi_pt])\\n        if entry:\\n            summary[name] = entry\\n\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "04765bcb-522f-4a99-a75e-8c63b9d3046a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def compute_judgment(all_data):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"PASS/FAIL based on three criteria (D002: per-task mean rho).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    criteria = {}\\\\n\\\\n    # 1) per-task mean rho at best layer > 0.5 (D002)\\\\n    if \\\\\\\"trained\\\\\\\" in all_data:\\\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\\\\\\\"trained\\\\\\\"])\\\\n        if len(rhos_pt) > 0:\\\\n            best_rho = float(rhos_pt.max())\\\\n            best_layer = int(layers_pt[np.argmax(rhos_pt)])\\\\n        else:\\\\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\\\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\\\\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\\\n    else:\\\\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\\\\n\\\\n    criteria[\\\\\\\"best_rho\\\\\\\"] = best_rho\\\\n    criteria[\\\\\\\"best_pooled_rho\\\\\\\"] = best_pooled_rho\\\\n    criteria[\\\\\\\"best_layer\\\\\\\"] = best_layer\\\\n    criteria[\\\\\\\"rho_pass\\\\\\\"] = best_rho > 0.5\\\\n\\\\n    # 2) delta-rho at best layer with task-level bootstrap CI\\\\n    delta_at_best = 0.0\\\\n    delta_ci_lower = 0.0\\\\n    delta_ci_upper = 0.0\\\\n    ci_excludes_zero = False\\\\n    p_value_perm = 1.0\\\\n    if \\\\\\\"trained\\\\\\\" in all_data and \\\\\\\"untrained\\\\\\\" in all_data:\\\\n        l_tr, rho_tr = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        l_un, rho_un = extract_layer_metrics(all_data[\\\\\\\"untrained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\\\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\\\n\\\\n        if best_layer in tr_map and best_layer in un_map:\\\\n            delta_at_best = tr_map[best_layer] - un_map[best_layer]\\\\n\\\\n        tr_results = all_data[\\\\\\\"trained\\\\\\\"].get(\\\\\\\"results\\\\\\\", {})\\\\n        un_results = all_data[\\\\\\\"untrained\\\\\\\"].get(\\\\\\\"results\\\\\\\", {})\\\\n        best_key = str(best_layer)\\\\n        has_per_task = (best_key in tr_results\\\\n                        and \\\\\\\"per_task_rho\\\\\\\" in tr_results.get(best_key, {})\\\\n                        and best_key in un_results\\\\n                        and \\\\\\\"per_task_rho\\\\\\\" in un_results.get(best_key, {}))\\\\n        if has_per_task:\\\\n            delta_at_best, delta_ci_lower, delta_ci_upper, p_value_perm = (\\\\n                bootstrap_delta_rho(tr_results, un_results, best_key))\\\\n            ci_excludes_zero = delta_ci_lower > 0\\\\n\\\\n    criteria[\\\\\\\"delta_at_best\\\\\\\"] = delta_at_best\\\\n    criteria[\\\\\\\"delta_ci_lower\\\\\\\"] = delta_ci_lower\\\\n    criteria[\\\\\\\"delta_ci_upper\\\\\\\"] = delta_ci_upper\\\\n    criteria[\\\\\\\"ci_excludes_zero\\\\\\\"] = ci_excludes_zero\\\\n    criteria[\\\\\\\"p_value_perm\\\\\\\"] = p_value_perm\\\\n    criteria[\\\\\\\"delta_pass\\\\\\\"] = ci_excludes_zero and p_value_perm < 0.05\\\\n\\\\n    # 3) VLA per-task mean rho >= DINO per-task mean rho (D002)\\\\n    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\\\n    vla_ge_dino = False\\\\n    vla_mean_rho = 0.0\\\\n    dino_mean_rho = 0.0\\\\n    if \\\\\\\"trained\\\\\\\" in all_data and \\\\\\\"dinov2\\\\\\\" in all_data:\\\\n        _, rho_vla_pt = extract_per_task_mean_rho(all_data[\\\\\\\"trained\\\\\\\"])\\\\n        _, rho_dino_pt = extract_per_task_mean_rho(all_data[\\\\\\\"dinov2\\\\\\\"])\\\\n        if len(rho_vla_pt) > 0:\\\\n            vla_mean_rho = float(rho_vla_pt.max())\\\\n        if len(rho_dino_pt) > 0:\\\\n            dino_mean_rho = float(rho_dino_pt.max())\\\\n        if len(rho_vla_pt) > 0 and len(rho_dino_pt) > 0:\\\\n            vla_ge_dino = vla_mean_rho >= dino_mean_rho\\\\n        elif len(rho_vla_pt) == 0 or len(rho_dino_pt) == 0:\\\\n            _, rho_vla_pooled = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n            _, rho_dino_pooled = extract_layer_metrics(all_data[\\\\\\\"dinov2\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n            if len(rho_vla_pooled) > 0 and len(rho_dino_pooled) > 0:\\\\n                vla_ge_dino = float(rho_vla_pooled.max()) >= float(rho_dino_pooled.max())\\\\n\\\\n    vla_best_auc = 0.0\\\\n    dino_best_auc = 0.0\\\\n    if \\\\\\\"trained\\\\\\\" in all_data:\\\\n        for v in all_data[\\\\\\\"trained\\\\\\\"].get(\\\\\\\"results\\\\\\\", {}).values():\\\\n            if isinstance(v.get(\\\\\\\"macro_a\\\\n\\\\n... [截断: 输出过长，省略 1188 字符] ...\\\\n\\\\nppend(f\\\\\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\\\\\")\\\\n        if p_value_perm >= 0.05:\\\\n            reasons.append(f\\\\\\\"permutation p={p_value_perm:.4f} >= 0.05\\\\\\\")\\\\n    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\\\\\")\\\\n\\\\n    return dict(judgment=judgment, criteria=criteria,\\\\n                reasons=reasons if reasons else [\\\\\\\"All criteria met\\\\\\\"])\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    dirs = parse_results_dirs(args.results_dirs)\\\\n    print(f\\\\\\\"Loading results: {list(dirs.keys())}\\\\\\\")\\\\n\\\\n    all_data = {}\\\\n    for name, path in dirs.items():\\\\n        try:\\\\n            data = load_results(path, args.probe_type)\\\\n            all_data[name] = data\\\\n            n = len(data.get(\\\\\\\"results\\\\\\\", {}))\\\\n            print(f\\\\\\\"  {name}: {n} entries\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  {name}: FAILED ({e})\\\\\\\")\\\\n\\\\n    if not all_data:\\\\n        print(\\\\\\\"No data loaded.\\\\\\\")\\\\n        return\\\\n\\\\n    oracle_rho = load_oracle(dirs)\\\\n    if oracle_rho is not None:\\\\n        print(f\\\\\\\"Oracle rho: {oracle_rho:.4f}\\\\\\\")\\\\n\\\\n    # --- Comparison table ---\\\\n    print(\\\\\\\"\\\\\\\\n=== Layer-wise Spearman rho ===\\\\\\\")\\\\n    names = list(all_data.keys())\\\\n    header = [\\\\\\\"Layer\\\\\\\"] + names\\\\n    print(\\\\\\\" | \\\\\\\".join(f\\\\\\\"{h:>12}\\\\\\\" for h in header))\\\\n    print(\\\\\\\"-\\\\\\\" * (14 * len(header)))\\\\n\\\\n    all_layers = set()\\\\n    for data in all_data.values():\\\\n        layers, _ = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        all_layers.update(layers.tolist())\\\\n\\\\n    for layer in sorted(all_layers):\\\\n        row = [f\\\\\\\"{layer:>12}\\\\\\\"]\\\\n        for name in names:\\\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\\\\\"spearman_rho\\\\\\\")\\\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\\\n            val = lmap.get(layer, float(\\\\\\\"nan\\\\\\\"))\\\\n            row.append(f\\\\\\\"{val:>12.4f}\\\\\\\")\\\\n        print(\\\\\\\" | \\\\\\\".join(row))\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Best Layer ===\\\\\\\")\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            print(f\\\\\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\\\\\")\\\\n\\\\n    # --- Plots ---\\\\n    if args.probe_type == \\\\\\\"temporal_distance\\\\\\\":\\\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\\\n        plot_delta_rho(all_data, args.output_dir)\\\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\\\n\\\\n    if args.probe_type == \\\\\\\"subtask_predicate\\\\\\\":\\\\n        for name, data in all_data.items():\\\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\\\n\\\\n    # --- Judgment ---\\\\n    judgment = compute_judgment(all_data)\\\\n    print(f\\\\\\\"\\\\\\\\n=== Judgment: {judgment['judgment']} ===\\\\\\\")\\\\n    for k, v in judgment[\\\\\\\"criteria\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n    for r in judgment[\\\\\\\"reasons\\\\\\\"]:\\\\n        print(f\\\\\\\"  >> {r}\\\\\\\")\\\\n\\\\n    # --- Save ---\\\\n    summary = dict(\\\\n        models=names,\\\\n        probe_type=args.probe_type,\\\\n        judgment=judgment,\\\\n    )\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        entry = {}\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            entry[\\\\\\\"best_layer_pooled\\\\\\\"] = int(layers[bi])\\\\n            entry[\\\\\\\"best_pooled_rho\\\\\\\"] = float(rhos[bi])\\\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(data)\\\\n        if len(rhos_pt) > 0:\\\\n            bi_pt = int(np.argmax(rhos_pt))\\\\n            entry[\\\\\\\"best_layer\\\\\\\"] = int(layers_pt[bi_pt])\\\\n            entry[\\\\\\\"best_rho\\\\\\\"] = float(rhos_pt[bi_pt])\\\\n        if entry:\\\\n            summary[name] = entry\\\\n\\\\n    if oracle_rho is not None:\\\\n        summary[\\\\\\\"oracle_rho\\\\\\\"] = oracle_rho\\\\n\\\\n    with open(os.path.join(args.output_dir, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved {args.output_dir}/summary.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def compute_judgment(all_data):\\n    \\\"\\\"\\\"PASS/FAIL based on three criteria (D002: per-task mean rho).\\\"\\\"\\\"\\n    criteria = {}\\n\\n    # 1) per-task mean rho at best layer > 0.5 (D002)\\n    if \\\"trained\\\" in all_data:\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\\\"trained\\\"])\\n        if len(rhos_pt) > 0:\\n            best_rho = float(rhos_pt.max())\\n            best_layer = int(layers_pt[np.argmax(rhos_pt)])\\n        else:\\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\n    else:\\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\\n\\n    criteria[\\\"best_rho\\\"] = best_rho\\n    criteria[\\\"best_pooled_rho\\\"] = best_pooled_rho\\n    criteria[\\\"best_layer\\\"] = best_layer\\n    criteria[\\\"rho_pass\\\"] = best_rho > 0.5\\n\\n    # 2) delta-rho at best layer with task-level bootstrap CI\\n    delta_at_best = 0.0\\n    delta_ci_lower = 0.0\\n    delta_ci_upper = 0.0\\n    ci_excludes_zero = False\\n    p_value_perm = 1.0\\n    if \\\"trained\\\" in all_data and \\\"untrained\\\" in all_data:\\n        l_tr, rho_tr = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        l_un, rho_un = extract_layer_metrics(all_data[\\\"untrained\\\"], \\\"spearman_rho\\\")\\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\n\\n        if best_layer in tr_map and best_layer in un_map:\\n            delta_at_best = tr_map[best_layer] - un_map[best_layer]\\n\\n        tr_results = all_data[\\\"trained\\\"].get(\\\"results\\\", {})\\n        un_results = all_data[\\\"untrained\\\"].get(\\\"results\\\", {})\\n        best_key = str(best_layer)\\n        has_per_task = (best_key in tr_results\\n                        and \\\"per_task_rho\\\" in tr_results.get(best_key, {})\\n                        and best_key in un_results\\n                        and \\\"per_task_rho\\\" in un_results.get(best_key, {}))\\n        if has_per_task:\\n            delta_at_best, delta_ci_lower, delta_ci_upper, p_value_perm = (\\n                bootstrap_delta_rho(tr_results, un_results, best_key))\\n            ci_excludes_zero = delta_ci_lower > 0\\n\\n    criteria[\\\"delta_at_best\\\"] = delta_at_best\\n    criteria[\\\"delta_ci_lower\\\"] = delta_ci_lower\\n    criteria[\\\"delta_ci_upper\\\"] = delta_ci_upper\\n    criteria[\\\"ci_excludes_zero\\\"] = ci_excludes_zero\\n    criteria[\\\"p_value_perm\\\"] = p_value_perm\\n    criteria[\\\"delta_pass\\\"] = ci_excludes_zero and p_value_perm < 0.05\\n\\n    # 3) VLA per-task mean rho >= DINO per-task mean rho (D002)\\n    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\n    vla_ge_dino = False\\n    vla_mean_rho = 0.0\\n    dino_mean_rho = 0.0\\n    if \\\"trained\\\" in all_data and \\\"dinov2\\\" in all_data:\\n        _, rho_vla_pt = extract_per_task_mean_rho(all_data[\\\"trained\\\"])\\n        _, rho_dino_pt = extract_per_task_mean_rho(all_data[\\\"dinov2\\\"])\\n        if len(rho_vla_pt) > 0:\\n            vla_mean_rho = float(rho_vla_pt.max())\\n        if len(rho_dino_pt) > 0:\\n            dino_mean_rho = float(rho_dino_pt.max())\\n        if len(rho_vla_pt) > 0 and len(rho_dino_pt) > 0:\\n            vla_ge_dino = vla_mean_rho >= dino_mean_rho\\n        elif len(rho_vla_pt) == 0 or len(rho_dino_pt) == 0:\\n            _, rho_vla_pooled = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n            _, rho_dino_pooled = extract_layer_metrics(all_data[\\\"dinov2\\\"], \\\"spearman_rho\\\")\\n            if len(rho_vla_pooled) > 0 and len(rho_dino_pooled) > 0:\\n                vla_ge_dino = float(rho_vla_pooled.max()) >= float(rho_dino_pooled.max())\\n\\n    vla_best_auc = 0.0\\n    dino_best_auc = 0.0\\n    if \\\"trained\\\" in all_data:\\n        for v in all_data[\\\"trained\\\"].get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_a\\n\\n... [截断: 输出过长，省略 1188 字符] ...\\n\\nppend(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        entry = {}\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            entry[\\\"best_layer_pooled\\\"] = int(layers[bi])\\n            entry[\\\"best_pooled_rho\\\"] = float(rhos[bi])\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(data)\\n        if len(rhos_pt) > 0:\\n            bi_pt = int(np.argmax(rhos_pt))\\n            entry[\\\"best_layer\\\"] = int(layers_pt[bi_pt])\\n            entry[\\\"best_rho\\\"] = float(rhos_pt[bi_pt])\\n        if entry:\\n            summary[name] = entry\\n\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still truncated in the middle. Let me get the exact line range for the subtask AUC section and the judgment logic. Let me try reading a specific range.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "e613b1ca-71e4-4c14-8bb6-abe4cffe8a58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Njw2AT32s2QAw1qXeXuTN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3705,
+      "cache_read_input_tokens": 31354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+还有中间截断的部分。让我精确读取被截断的区域。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "9113b390-5438-4a2a-a177-9bb827bd944c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Njw2AT32s2QAw1qXeXuTN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3705,
+      "cache_read_input_tokens": 31354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F8jLo6p5QGvZEHx6gzijAv`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -l /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "4633f34b-ac4e-4cd6-810c-f77c123a52d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Njw2AT32s2QAw1qXeXuTN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3705,
+      "cache_read_input_tokens": 31354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T12:33:09.423Z_
+
+<details><summary>↩ Tool result · `toolu_01F8jLo6p5QGvZEHx6gzijAv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"529 /root/vla-ssd/scripts/analyze_results.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "826ffe1b-6794-4a2a-9b27-1be116bffd25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"529 /root/vla-ssd/scripts/analyze_results.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"529 /root/vla-ssd/scripts/analyze_results.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0133eDv6voEacGynEwQhFSVC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -n 440 /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "b66c2710-fee0-4e55-ba0b-040d5c2eeaa0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Njw2AT32s2QAw1qXeXuTN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3705,
+      "cache_read_input_tokens": 31354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T12:33:10.185Z_
+
+<details><summary>↩ Tool result · `toolu_0133eDv6voEacGynEwQhFSVC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\ndef extract_per_task_mean_rho(data):\\n    results = data.get(\\\"results\\\", {})\\n    layers, mean_rhos = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        per_task = v.get(\\\"per_task_rho\\\", {})\\n        if per_task:\\n            valid = [r for r in per_task.values()\\n                     if r is not None and not np.isnan(r)]\\n            if valid:\\n                layers.append(int(k))\\n                mean_rhos.append(float(np.mean(valid)))\\n    return np.array(layers), np.array(mean_rhos)\\n\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                m\\n\\n... [截断: 输出过长，省略 8739 字符] ...\\n\\n_key, {}))\\n        if has_per_task:\\n            delta_at_best, delta_ci_lower, delta_ci_upper, p_value_perm = (\\n                bootstrap_delta_rho(tr_results, un_results, best_key))\\n            ci_excludes_zero = delta_ci_lower > 0\\n\\n    criteria[\\\"delta_at_best\\\"] = delta_at_best\\n    criteria[\\\"delta_ci_lower\\\"] = delta_ci_lower\\n    criteria[\\\"delta_ci_upper\\\"] = delta_ci_upper\\n    criteria[\\\"ci_excludes_zero\\\"] = ci_excludes_zero\\n    criteria[\\\"p_value_perm\\\"] = p_value_perm\\n    criteria[\\\"delta_pass\\\"] = ci_excludes_zero and p_value_perm < 0.05\\n\\n    # 3) VLA per-task mean rho >= DINO per-task mean rho (D002)\\n    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\n    vla_ge_dino = False\\n    vla_mean_rho = 0.0\\n    dino_mean_rho = 0.0\\n    if \\\"trained\\\" in all_data and \\\"dinov2\\\" in all_data:\\n        _, rho_vla_pt = extract_per_task_mean_rho(all_data[\\\"trained\\\"])\\n        _, rho_dino_pt = extract_per_task_mean_rho(all_data[\\\"dinov2\\\"])\\n        if len(rho_vla_pt) > 0:\\n            vla_mean_rho = float(rho_vla_pt.max())\\n        if len(rho_dino_pt) > 0:\\n            dino_mean_rho = float(rho_dino_pt.max())\\n        if len(rho_vla_pt) > 0 and len(rho_dino_pt) > 0:\\n            vla_ge_dino = vla_mean_rho >= dino_mean_rho\\n        elif len(rho_vla_pt) == 0 or len(rho_dino_pt) == 0:\\n            _, rho_vla_pooled = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n            _, rho_dino_pooled = extract_layer_metrics(all_data[\\\"dinov2\\\"], \\\"spearman_rho\\\")\\n            if len(rho_vla_pooled) > 0 and len(rho_dino_pooled) > 0:\\n                vla_ge_dino = float(rho_vla_pooled.max()) >= float(rho_dino_pooled.max())\\n\\n    vla_best_auc = 0.0\\n    dino_best_auc = 0.0\\n    if \\\"trained\\\" in all_data:\\n        for v in all_data[\\\"trained\\\"].get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_auc\\\"), (int, float)):\\n                vla_best_auc = max(vla_best_auc, v[\\\"macro_auc\\\"])\\n    if \\\"dinov2\\\" in all_data:\\n        for v in all_data[\\\"dinov2\\\"].get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_auc\\\"), (int, float)):\\n                dino_best_auc = max(dino_best_auc, v[\\\"macro_auc\\\"])\\n    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"vla_mean_rho\\\"] = vla_mean_rho\\n    criteria[\\\"dino_mean_rho\\\"] = dino_mean_rho\\n    criteria[\\\"vla_best_auc\\\"] = vla_best_auc\\n    criteria[\\\"dino_best_auc\\\"] = dino_best_auc\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"PASS\\\"\\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"CONDITIONAL\\\"\\n    else:\\n        judgment = \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best per-task mean rho = {best_rho:.4f} <= 0.5\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        if not ci_excludes_zero:\\n            reasons.append(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "03086d0d-8dc8-49c7-9b84-ae7aae66d834",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"analyze_results.py — Compare probe results across models and visualize.\\\\n\\\\nInput:  Multiple result directories (from train_probes.py)\\\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\\\n\\\\nUsage:\\\\n  python analyze_results.py \\\\\\\\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\\\\\\\n    --output_dir results/analysis/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Analyze and compare probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--results_dirs\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", default=\\\\\\\"temporal_distance\\\\\\\",\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\"])\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_results_dirs(s):\\\\n    d = {}\\\\n    for entry in s.split(\\\\\\\",\\\\\\\"):\\\\n        name, path = entry.strip().split(\\\\\\\":\\\\\\\")\\\\n        d[name.strip()] = path.strip()\\\\n    return d\\\\n\\\\n\\\\ndef load_results(results_dir, probe_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load probe results from a directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probe_dir = os.path.join(results_dir, probe_type)\\\\n    summary_path = os.path.join(probe_dir, \\\\\\\"summary.json\\\\\\\")\\\\n    if os.path.exists(summary_path):\\\\n        with open(summary_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    results = {}\\\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\\\\\"layer_*.json\\\\\\\"))):\\\\n        with open(p) as f:\\\\n            m = json.load(f)\\\\n        key = m.get(\\\\\\\"layer\\\\\\\", Path(p).stem.replace(\\\\\\\"layer_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        results[str(key)] = m\\\\n    return {\\\\\\\"results\\\\\\\": results}\\\\n\\\\n\\\\ndef load_oracle(results_dirs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect oracle results from any provided directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for path in results_dirs.values():\\\\n        oracle_dir = os.path.join(path, \\\\\\\"oracle\\\\\\\")\\\\n        summary = os.path.join(oracle_dir, \\\\\\\"summary.json\\\\\\\")\\\\n        if os.path.exists(summary):\\\\n            with open(summary) as f:\\\\n                data = json.load(f)\\\\n            r = data.get(\\\\\\\"results\\\\\\\", {})\\\\n            if \\\\\\\"oracle\\\\\\\" in r:\\\\n                return r[\\\\\\\"oracle\\\\\\\"].get(\\\\\\\"spearman_rho\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef _sort_key(x):\\\\n    try:\\\\n        return (0, int(x))\\\\n    except ValueError:\\\\n        return (1, x)\\\\n\\\\n\\\\ndef extract_layer_metrics(data, metric=\\\\\\\"spearman_rho\\\\\\\"):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers, values = [], []\\\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\\\n        if k == \\\\\\\"oracle\\\\\\\":\\\\n            continue\\\\n        val = v.get(metric)\\\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\\\n            layers.append(int(k))\\\\n            values.append(float(val))\\\\n    return np.array(layers), np.array(values)\\\\n\\\\ndef extract_per_task_mean_rho(data):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers, mean_rhos = [], []\\\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\\\n        if k == \\\\\\\"oracle\\\\\\\":\\\\n            continue\\\\n        per_task = v.get(\\\\\\\"per_task_rho\\\\\\\", {})\\\\n        if per_task:\\\\n            valid = [r for r in per_task.values()\\\\n                     if r is not None and not np.isnan(r)]\\\\n            if valid:\\\\n                layers.append(int(k))\\\\n                mean_rhos.append(float(np.mean(valid)))\\\\n    return np.array(layers), np.array(mean_rhos)\\\\n\\\\n\\\\n\\\\n# ============================================================\\\\n# Plots\\\\n# ============================================================\\\\n\\\\nCOLORS = {\\\\n    \\\\\\\"trained\\\\\\\": \\\\\\\"#2196F3\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"#F44336\\\\\\\",\\\\n    \\\\\\\"dinov2\\\\\\\": \\\\\\\"#4CAF50\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"#FF9800\\\\\\\",\\\\n}\\\\nMARKERS = {\\\\\\\"trained\\\\\\\": \\\\\\\"o\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"s\\\\\\\", \\\\\\\"dinov2\\\\\\\": \\\\\\\"^\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"D\\\\\\\"}\\\\n\\\\n\\\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\\\n    fig, ax = plt.subplots(figsize=(10, 5))\\\\n\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(layers) == 0:\\\\n            continue\\\\n        ax.plot(layers, rhos,\\\\n                m\\\\n\\\\n... [截断: 输出过长，省略 8739 字符] ...\\\\n\\\\n_key, {}))\\\\n        if has_per_task:\\\\n            delta_at_best, delta_ci_lower, delta_ci_upper, p_value_perm = (\\\\n                bootstrap_delta_rho(tr_results, un_results, best_key))\\\\n            ci_excludes_zero = delta_ci_lower > 0\\\\n\\\\n    criteria[\\\\\\\"delta_at_best\\\\\\\"] = delta_at_best\\\\n    criteria[\\\\\\\"delta_ci_lower\\\\\\\"] = delta_ci_lower\\\\n    criteria[\\\\\\\"delta_ci_upper\\\\\\\"] = delta_ci_upper\\\\n    criteria[\\\\\\\"ci_excludes_zero\\\\\\\"] = ci_excludes_zero\\\\n    criteria[\\\\\\\"p_value_perm\\\\\\\"] = p_value_perm\\\\n    criteria[\\\\\\\"delta_pass\\\\\\\"] = ci_excludes_zero and p_value_perm < 0.05\\\\n\\\\n    # 3) VLA per-task mean rho >= DINO per-task mean rho (D002)\\\\n    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\\\n    vla_ge_dino = False\\\\n    vla_mean_rho = 0.0\\\\n    dino_mean_rho = 0.0\\\\n    if \\\\\\\"trained\\\\\\\" in all_data and \\\\\\\"dinov2\\\\\\\" in all_data:\\\\n        _, rho_vla_pt = extract_per_task_mean_rho(all_data[\\\\\\\"trained\\\\\\\"])\\\\n        _, rho_dino_pt = extract_per_task_mean_rho(all_data[\\\\\\\"dinov2\\\\\\\"])\\\\n        if len(rho_vla_pt) > 0:\\\\n            vla_mean_rho = float(rho_vla_pt.max())\\\\n        if len(rho_dino_pt) > 0:\\\\n            dino_mean_rho = float(rho_dino_pt.max())\\\\n        if len(rho_vla_pt) > 0 and len(rho_dino_pt) > 0:\\\\n            vla_ge_dino = vla_mean_rho >= dino_mean_rho\\\\n        elif len(rho_vla_pt) == 0 or len(rho_dino_pt) == 0:\\\\n            _, rho_vla_pooled = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n            _, rho_dino_pooled = extract_layer_metrics(all_data[\\\\\\\"dinov2\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n            if len(rho_vla_pooled) > 0 and len(rho_dino_pooled) > 0:\\\\n                vla_ge_dino = float(rho_vla_pooled.max()) >= float(rho_dino_pooled.max())\\\\n\\\\n    vla_best_auc = 0.0\\\\n    dino_best_auc = 0.0\\\\n    if \\\\\\\"trained\\\\\\\" in all_data:\\\\n        for v in all_data[\\\\\\\"trained\\\\\\\"].get(\\\\\\\"results\\\\\\\", {}).values():\\\\n            if isinstance(v.get(\\\\\\\"macro_auc\\\\\\\"), (int, float)):\\\\n                vla_best_auc = max(vla_best_auc, v[\\\\\\\"macro_auc\\\\\\\"])\\\\n    if \\\\\\\"dinov2\\\\\\\" in all_data:\\\\n        for v in all_data[\\\\\\\"dinov2\\\\\\\"].get(\\\\\\\"results\\\\\\\", {}).values():\\\\n            if isinstance(v.get(\\\\\\\"macro_auc\\\\\\\"), (int, float)):\\\\n                dino_best_auc = max(dino_best_auc, v[\\\\\\\"macro_auc\\\\\\\"])\\\\n    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\\\n\\\\n    criteria[\\\\\\\"vla_ge_dinov2\\\\\\\"] = vla_ge_dino\\\\n    criteria[\\\\\\\"vla_mean_rho\\\\\\\"] = vla_mean_rho\\\\n    criteria[\\\\\\\"dino_mean_rho\\\\\\\"] = dino_mean_rho\\\\n    criteria[\\\\\\\"vla_best_auc\\\\\\\"] = vla_best_auc\\\\n    criteria[\\\\\\\"dino_best_auc\\\\\\\"] = dino_best_auc\\\\n    criteria[\\\\\\\"subtask_auc_pass\\\\\\\"] = subtask_pass\\\\n    criteria[\\\\\\\"third_criterion\\\\\\\"] = vla_ge_dino or subtask_pass\\\\n\\\\n    if criteria[\\\\\\\"rho_pass\\\\\\\"] and criteria[\\\\\\\"delta_pass\\\\\\\"] and criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        judgment = \\\\\\\"PASS\\\\\\\"\\\\n    elif criteria[\\\\\\\"delta_pass\\\\\\\"] and not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        judgment = \\\\\\\"CONDITIONAL\\\\\\\"\\\\n    else:\\\\n        judgment = \\\\\\\"FAIL\\\\\\\"\\\\n\\\\n    reasons = []\\\\n    if not criteria[\\\\\\\"rho_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"best per-task mean rho = {best_rho:.4f} <= 0.5\\\\\\\")\\\\n    if not criteria[\\\\\\\"delta_pass\\\\\\\"]:\\\\n        if not ci_excludes_zero:\\\\n            reasons.append(f\\\\\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\\\\\")\\\\n        if p_value_perm >= 0.05:\\\\n            reasons.append(f\\\\\\\"permutation p={p_value_perm:.4f} >= 0.05\\\\\\\")\\\\n    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\\\\\")\\\\n\\\\n    return dict(judgment=judgment, criteria=criteria,\\\\n                reasons=reasons if reasons else [\\\\\\\"All criteria met\\\\\\\"])\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    dirs = parse_results_dirs(args.results_dirs)\\\\n    print(f\\\\\\\"Loading results: {list(dirs.keys())}\\\\\\\")\\\\n\\\\n    all_data = {}\\\\n    for name, path in dirs.items():\\\\n        try:\\\\n            data = load_results(path, args.probe_type)\\\\n            all_data[name] = data\\\\n            n = len(data.get(\\\\\\\"results\\\\\\\", {}))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\ndef extract_per_task_mean_rho(data):\\n    results = data.get(\\\"results\\\", {})\\n    layers, mean_rhos = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        per_task = v.get(\\\"per_task_rho\\\", {})\\n        if per_task:\\n            valid = [r for r in per_task.values()\\n                     if r is not None and not np.isnan(r)]\\n            if valid:\\n                layers.append(int(k))\\n                mean_rhos.append(float(np.mean(valid)))\\n    return np.array(layers), np.array(mean_rhos)\\n\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                m\\n\\n... [截断: 输出过长，省略 8739 字符] ...\\n\\n_key, {}))\\n        if has_per_task:\\n            delta_at_best, delta_ci_lower, delta_ci_upper, p_value_perm = (\\n                bootstrap_delta_rho(tr_results, un_results, best_key))\\n            ci_excludes_zero = delta_ci_lower > 0\\n\\n    criteria[\\\"delta_at_best\\\"] = delta_at_best\\n    criteria[\\\"delta_ci_lower\\\"] = delta_ci_lower\\n    criteria[\\\"delta_ci_upper\\\"] = delta_ci_upper\\n    criteria[\\\"ci_excludes_zero\\\"] = ci_excludes_zero\\n    criteria[\\\"p_value_perm\\\"] = p_value_perm\\n    criteria[\\\"delta_pass\\\"] = ci_excludes_zero and p_value_perm < 0.05\\n\\n    # 3) VLA per-task mean rho >= DINO per-task mean rho (D002)\\n    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\n    vla_ge_dino = False\\n    vla_mean_rho = 0.0\\n    dino_mean_rho = 0.0\\n    if \\\"trained\\\" in all_data and \\\"dinov2\\\" in all_data:\\n        _, rho_vla_pt = extract_per_task_mean_rho(all_data[\\\"trained\\\"])\\n        _, rho_dino_pt = extract_per_task_mean_rho(all_data[\\\"dinov2\\\"])\\n        if len(rho_vla_pt) > 0:\\n            vla_mean_rho = float(rho_vla_pt.max())\\n        if len(rho_dino_pt) > 0:\\n            dino_mean_rho = float(rho_dino_pt.max())\\n        if len(rho_vla_pt) > 0 and len(rho_dino_pt) > 0:\\n            vla_ge_dino = vla_mean_rho >= dino_mean_rho\\n        elif len(rho_vla_pt) == 0 or len(rho_dino_pt) == 0:\\n            _, rho_vla_pooled = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n            _, rho_dino_pooled = extract_layer_metrics(all_data[\\\"dinov2\\\"], \\\"spearman_rho\\\")\\n            if len(rho_vla_pooled) > 0 and len(rho_dino_pooled) > 0:\\n                vla_ge_dino = float(rho_vla_pooled.max()) >= float(rho_dino_pooled.max())\\n\\n    vla_best_auc = 0.0\\n    dino_best_auc = 0.0\\n    if \\\"trained\\\" in all_data:\\n        for v in all_data[\\\"trained\\\"].get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_auc\\\"), (int, float)):\\n                vla_best_auc = max(vla_best_auc, v[\\\"macro_auc\\\"])\\n    if \\\"dinov2\\\" in all_data:\\n        for v in all_data[\\\"dinov2\\\"].get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_auc\\\"), (int, float)):\\n                dino_best_auc = max(dino_best_auc, v[\\\"macro_auc\\\"])\\n    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"vla_mean_rho\\\"] = vla_mean_rho\\n    criteria[\\\"dino_mean_rho\\\"] = dino_mean_rho\\n    criteria[\\\"vla_best_auc\\\"] = vla_best_auc\\n    criteria[\\\"dino_best_auc\\\"] = dino_best_auc\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"PASS\\\"\\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"CONDITIONAL\\\"\\n    else:\\n        judgment = \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best per-task mean rho = {best_rho:.4f} <= 0.5\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        if not ci_excludes_zero:\\n            reasons.append(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the `compute_judgment` function. Let me understand what needs to change:
+
+Current logic for criterion 3:
+- `vla_ge_dino`: VLA per-task mean rho >= DINO per-task mean rho
+- `subtask_pass`: vla_best_auc > 0.7 AND vla_best_auc > dino_best_auc + 0.05
+- `third_criterion`: `vla_ge_dino OR subtask_pass`
+
+Current judgment:
+
+
+- PASS: rho_pass AND delta_pass AND third_criterion
+- CONDITIONAL: delta_pass AND NOT third_criterion
+- FAIL: otherwise
+
+For the new D003 logic, I need to remove the subtask gate entirely and simplify the criteria. Looking at the task spec, PASS requires the best layer's per-task mean ρ > 0.5, a significant improvement in ρ between trained and untrained models, and VLA's per-task mean ρ to exceed DINO's—but I need to clarify whether rho_pass is still required for CONDITIONAL cases. Looking at the FAIL condition more carefully—if ρ ≤ 0.5, it automatically fails regardless of other criteria, so CONDITIONAL must also require ρ > 0.5 to avoid being classified as FAIL. That means the CONDITIONAL logic needs rho_pass AND delta_pass AND the VLA criterion, not just delta_pass alone.
+
+So the three categories should be: PASS when all three conditions hold, CONDITIONAL when the first two pass but VLA doesn't exceed DINO, and FAIL when either rho or delta criteria aren't met. I also need to remove the AUC subtask from the judgment criteria while keeping its calculation for reference.
+
+Now I'm writing a Python script to make these targeted edits to the file. I'm switching to a Python approach since sed gets messy with multiline edits. I'll read the file, make targeted replacements to remove the subtask condition from the third criterion logic, update the conditional to require both rho and delta passes, and write the changes back. Updating the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "da5e2223-41c0-4875-b8ba-e49e9f56ef5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DuRQovzSkZm7XJy5KwA4AA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3998,
+      "cache_read_input_tokens": 35059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+现在我对 `compute_judgment` 函数结构完全清楚了。需要修改的 5 处：
+
+1. 移除 subtask OR 注释
+2. `third_criterion` 从 `vla_ge_dino or subtask_pass` → `vla_ge_dino`
+3. CONDITIONAL 逻辑增加 `rho_pass` 前提
+4. 更新失败原因文本
+5. 更新函数 docstring
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "026c94b0-bc63-4d3a-b548-8ab90c03e536",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DuRQovzSkZm7XJy5KwA4AA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3998,
+      "cache_read_input_tokens": 35059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01S1CTFQ321minUNqCMpgknE`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nwith open('/root/vla-ssd/scripts/analyze_results.py', 'r') as f:\n    content = f.read()\n\n# 1. Update docstring\ncontent = content.replace(\n    '\\\"\\\"\\\"PASS/FAIL based on three criteria (D002: per-task mean rho).\\\"\\\"\\\"',\n    '\\\"\\\"\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\"\\\"\\\"'\n)\n\n# 2. Remove the OR subtask comment\ncontent = content.replace(\n    '    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\n',\n    ''\n)\n\n# 3. Change third_criterion: remove subtask_pass from judgment\ncontent = content.replace(\n    'criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass',\n    'criteria[\\\"third_criterion\\\"] = vla_ge_dino'\n)\n\n# 4. CONDITIONAL now also requires rho_pass (FAIL if rho <= 0.5)\ncontent = content.replace(\n    '    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:',\n    '    elif criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:'\n)\n\n# 5. Update reason text\ncontent = content.replace(\n    'reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\")',\n    'reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f})\\\")'\n)\n\nwith open('/root/vla-ssd/scripts/analyze_results.py', 'w') as f:\n    f.write(content)\n\nprint('OK')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "15b45532-b4e8-4cba-9931-595fd5275b85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DuRQovzSkZm7XJy5KwA4AA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3998,
+      "cache_read_input_tokens": 35059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T12:33:48.826Z_
+
+<details><summary>↩ Tool result · `toolu_01S1CTFQ321minUNqCMpgknE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nwith open(\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Update docstring\\\\ncontent = content.replace(\\\\n    \\\\'\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"PASS/FAIL based on three criteria (D002: per-task mean rho).\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"\\\\',\\\\n    \\\\'\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"\\\\'\\\\n)\\\\n\\\\n# 2. Remove the OR subtask comment\\\\ncontent = content.replace(\\\\n    \\\\'    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\\\\\\\n\\\\',\\\\n    \\\\'\\\\'\\\\n)\\\\n\\\\n# 3. Change third_criterion: remove subtask_pass from judgment\\\\ncontent = content.replace(\\\\n    \\\\'criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"] = vla_ge_dino or subtask_pass\\\\',\\\\n    \\\\'criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"] = vla_ge_dino\\\\'\\\\n)\\\\n\\\\n# 4. CONDITIONAL now also requires rho_pass (FAIL if rho <= 0.5)\\\\ncontent = content.replace(\\\\n    \\\\'    elif criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and not criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]:\\\\',\\\\n    \\\\'    elif criteria[\\\\\\\\\\\"rho_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and not criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]:\\\\'\\\\n)\\\\n\\\\n# 5. Update reason text\\\\ncontent = content.replace(\\\\n    \\\\'reasons.append(f\\\\\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\\\\\\\\\")\\\\',\\\\n    \\\\'reasons.append(f\\\\\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f})\\\\\\\\\\\")\\\\'\\\\n)\\\\n\\\\nwith open(\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\'OK\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "12bd3c5f-9b0a-4dfd-befe-c262ef8c098b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nwith open(\\\\\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# 1. Update docstring\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\"PASS/FAIL based on three criteria (D002: per-task mean rho).\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\',\\\\\\\\n    \\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 2. Remove the OR subtask comment\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\\'    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\\\\\\\\\\\\\\\n\\\\\\\\',\\\\\\\\n    \\\\\\\\'\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 3. Change third_criterion: remove subtask_pass from judgment\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\\'criteria[\\\\\\\\\\\\\\\\\\\\\\\"third_criterion\\\\\\\\\\\\\\\\\\\\\\\"] = vla_ge_dino or subtask_pass\\\\\\\\',\\\\\\\\n    \\\\\\\\'criteria[\\\\\\\\\\\\\\\\\\\\\\\"third_criterion\\\\\\\\\\\\\\\\\\\\\\\"] = vla_ge_dino\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 4. CONDITIONAL now also requires rho_pass (FAIL if rho <= 0.5)\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\\'    elif criteria[\\\\\\\\\\\\\\\\\\\\\\\"delta_pass\\\\\\\\\\\\\\\\\\\\\\\"] and not criteria[\\\\\\\\\\\\\\\\\\\\\\\"third_criterion\\\\\\\\\\\\\\\\\\\\\\\"]:\\\\\\\\',\\\\\\\\n    \\\\\\\\'    elif criteria[\\\\\\\\\\\\\\\\\\\\\\\"rho_pass\\\\\\\\\\\\\\\\\\\\\\\"] and criteria[\\\\\\\\\\\\\\\\\\\\\\\"delta_pass\\\\\\\\\\\\\\\\\\\\\\\"] and not criteria[\\\\\\\\\\\\\\\\\\\\\\\"third_criterion\\\\\\\\\\\\\\\\\\\\\\\"]:\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 5. Update reason text\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\\'reasons.append(f\\\\\\\\\\\\\\\\\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\\\\\\\\\\\\\\\\\\\\\")\\\\\\\\',\\\\\\\\n    \\\\\\\\'reasons.append(f\\\\\\\\\\\\\\\\\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f})\\\\\\\\\\\\\\\\\\\\\\\")\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'OK\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nwith open(\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Update docstring\\\\ncontent = content.replace(\\\\n    \\\\'\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"PASS/FAIL based on three criteria (D002: per-task mean rho).\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"\\\\',\\\\n    \\\\'\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"\\\\'\\\\n)\\\\n\\\\n# 2. Remove the OR subtask comment\\\\ncontent = content.replace(\\\\n    \\\\'    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\\\\\\\n\\\\',\\\\n    \\\\'\\\\'\\\\n)\\\\n\\\\n# 3. Change third_criterion: remove subtask_pass from judgment\\\\ncontent = content.replace(\\\\n    \\\\'criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"] = vla_ge_dino or subtask_pass\\\\',\\\\n    \\\\'criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"] = vla_ge_dino\\\\'\\\\n)\\\\n\\\\n# 4. CONDITIONAL now also requires rho_pass (FAIL if rho <= 0.5)\\\\ncontent = content.replace(\\\\n    \\\\'    elif criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and not criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]:\\\\',\\\\n    \\\\'    elif criteria[\\\\\\\\\\\"rho_pass\\\\\\\\\\\"] and criteria[\\\\\\\\\\\"delta_pass\\\\\\\\\\\"] and not criteria[\\\\\\\\\\\"third_criterion\\\\\\\\\\\"]:\\\\'\\\\n)\\\\n\\\\n# 5. Update reason text\\\\ncontent = content.replace(\\\\n    \\\\'reasons.append(f\\\\\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met\\\\\\\\\\\")\\\\',\\\\n    \\\\'reasons.append(f\\\\\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f})\\\\\\\\\\\")\\\\'\\\\n)\\\\n\\\\nwith open(\\\\'/root/vla-ssd/scripts/analyze_results.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\'OK\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Need to use conda's python. Let me write a script file instead to avoid escaping issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "65474e9e-b9fc-4777-89ea-afc824d04264",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FtgKkQv29oqm3hAwBeZqC4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3548,
+      "cache_read_input_tokens": 39057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3548
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+conda 环境下的 python。写一个临时脚本避免转义问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "18625367-246a-49ed-935f-485cb2998b36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FtgKkQv29oqm3hAwBeZqC4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3548,
+      "cache_read_input_tokens": 39057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3548
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SwAfeXVairSEHriK5d5zUL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /tmp/patch_analyze.py << 'PYEOF'\nwith open('/root/vla-ssd/scripts/analyze_results.py', 'r') as f:\n    content = f.read()\n\n# 1. Update docstring\ncontent = content.replace(\n    '\"\"\"PASS/FAIL based on three criteria (D002: per-task mean rho).\"\"\"',\n    '\"\"\"PASS/FAIL based on three criteria (D003: subtask gate removed).\"\"\"'\n)\n\n# 2. Remove the OR subtask comment\ncontent = content.replace(\n    '    #    OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\\n',\n    ''\n)\n\n# 3. Change third_criterion: remove subtask_pass from judgment\ncontent = content.replace(\n    'criteria[\"third_criterion\"] = vla_ge_dino or subtask_pass',\n    'criteria[\"third_criterion\"] = vla_ge_dino'\n)\n\n# 4. CONDITIONAL now also requires rho_pass (FAIL if rho <= 0.5)\ncontent = content.replace(\n    '    elif criteria[\"delta_pass\"] and not criteria[\"third_criterion\"]:',\n    '    elif criteria[\"rho_pass\"] and criteria[\"delta_pass\"] and not criteria[\"third_criterion\"]:'\n)\n\n# 5. Update reason text\ncontent = content.replace(\n    'AND subtask gate not met\")',\n    '\")'\n)\n\nwith open('/root/vla-ssd/scripts/analyze_results.py', 'w') as f:\n    f.write(content)\n\nprint('OK')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_analyze.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "72a74829-8f0c-4cb1-9e20-b33a9d533d53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FtgKkQv29oqm3hAwBeZqC4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3548,
+      "cache_read_input_tokens": 39057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3548
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T12:33:58.321Z_
+
+<details><summary>↩ Tool result · `toolu_01SwAfeXVairSEHriK5d5zUL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "b3119237-43b2-42ae-807d-0b3f5c7ae67a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+修改完成，验证改动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "8f2f038d-1586-4f1b-a244-e2bf4859c6bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KXDN7EndAE4eHbXtEbNaT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 666,
+      "cache_read_input_tokens": 42605,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 666
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UQphFWaXx1fJJpWcbYcbvY`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"third_criterion\\|subtask_pass\\|subtask gate\\|CONDITIONAL\\|D002\\|D003\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "21f1e9d6-a1ab-4931-bdac-dddc7cff3368",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KXDN7EndAE4eHbXtEbNaT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 666,
+      "cache_read_input_tokens": 42605,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 666
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T12:34:02.500Z_
+
+<details><summary>↩ Tool result · `toolu_01UQphFWaXx1fJJpWcbYcbvY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "0892d7fb-20db-410b-99ba-c683868fb066",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PBfKoqfia94syT7bGJeT2U`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"third_criterion\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "7e0dbd9f-42b2-4aaf-bda2-92c49f373033",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Buv8GmFxK1BwzHmbci748",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 43271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 235
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T12:34:06.324Z_
+
+<details><summary>↩ Tool result · `toolu_01PBfKoqfia94syT7bGJeT2U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"399:    criteria[\\\"third_criterion\\\"] = vla_ge_dino\\n401:    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n403:    elif criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n416:    if not criteria[\\\"third_criterion\\\"]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "0349c059-d6ec-4e73-9c19-c3e4bba8cbaa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"399:    criteria[\\\\\\\"third_criterion\\\\\\\"] = vla_ge_dino\\\\n401:    if criteria[\\\\\\\"rho_pass\\\\\\\"] and criteria[\\\\\\\"delta_pass\\\\\\\"] and criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n403:    elif criteria[\\\\\\\"rho_pass\\\\\\\"] and criteria[\\\\\\\"delta_pass\\\\\\\"] and not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n416:    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"399:    criteria[\\\"third_criterion\\\"] = vla_ge_dino\\n401:    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n403:    elif criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n416:    if not criteria[\\\"third_criterion\\\"]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YJ97dZ2s6Ns647doMVwEt8`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"subtask_pass\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "3a0d7c89-6592-41fa-9a1d-9e2c2e0da2b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Buv8GmFxK1BwzHmbci748",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 43271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 235
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T12:34:07.225Z_
+
+<details><summary>↩ Tool result · `toolu_01YJ97dZ2s6Ns647doMVwEt8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"391:    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n398:    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "a0a5be2a-709a-4e3d-bdb7-80c2eaa8e079",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"391:    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\\\n398:    criteria[\\\\\\\"subtask_auc_pass\\\\\\\"] = subtask_pass\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"391:    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n398:    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PgWUMvSpNoTZyPu2zGXptf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"CONDITIONAL\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "06039210-da2a-44fb-913f-d54c938f599a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Buv8GmFxK1BwzHmbci748",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 43271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 235
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T12:34:08.034Z_
+
+<details><summary>↩ Tool result · `toolu_01PgWUMvSpNoTZyPu2zGXptf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"404:        judgment = \\\"CONDITIONAL\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "3e460631-ab02-4a2b-b058-5da3900a5686",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"404:        judgment = \\\\\\\"CONDITIONAL\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"404:        judgment = \\\"CONDITIONAL\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A24Re3jFeF11j4CxRNBTR9`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"subtask gate\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "f9ebc1ca-e813-46cd-8f41-43feadb35917",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Buv8GmFxK1BwzHmbci748",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 43271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 235
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G3ahgGrQgAjpXKULwoABu3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"D003\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "3747bb19-bb03-475a-ad65-441c407fbcb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Buv8GmFxK1BwzHmbci748",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 43271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 235
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T12:34:08.737Z_
+
+<details><summary>↩ Tool result · `toolu_01A24Re3jFeF11j4CxRNBTR9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"305:    \\\"\\\"\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\"\\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "ca103ff9-ca6f-49ec-be5b-580bb37b8982",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"305:    \\\\\\\"\\\\\\\"\\\\\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"305:    \\\"\\\"\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\"\\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T12:34:09.324Z_
+
+<details><summary>↩ Tool result · `toolu_01G3ahgGrQgAjpXKULwoABu3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"305:    \\\"\\\"\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\"\\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "c4b1dc39-72e5-4db8-b681-39d267f72599",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"305:    \\\\\\\"\\\\\\\"\\\\\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"305:    \\\"\\\"\\\"PASS/FAIL based on three criteria (D003: subtask gate removed).\\\"\\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+所有 5 处改动验证通过：
+
+- **L305**: docstring → D003
+- **L399**: `third_criterion = vla_ge_dino`（移除了 `or subtask_pass`）
+- **L401**: PASS 判定不变
+- **L403**: CONDITIONAL 增加了 `criteria["rho_pass"]` 前提
+- **L391/398**: `subtask_pass` 仍计算并存入 criteria（报告用），但不参与 judgment
+- "subtask gate not met" 文本已移除
+
+确认下 reason 文本部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "1df75a67-b40b-4c12-a385-c869f1ee7562",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fq8nByMwiQfc2avFoUV7qW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1345,
+      "cache_read_input_tokens": 43506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1345
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G2SsgYSa6AJHkwfAfnHvc9`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +410 /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "31472caf-724a-4c3b-b099-f5e61f7d924d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fq8nByMwiQfc2avFoUV7qW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1345,
+      "cache_read_input_tokens": 43506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1345
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T12:34:17.527Z_
+
+<details><summary>↩ Tool result · `toolu_01G2SsgYSa6AJHkwfAfnHvc9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        reasons.append(f\\\"best per-task mean rho = {best_rho:.4f} <= 0.5\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        if not ci_excludes_zero:\\n            reasons.append(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) \\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        entry = {}\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            entry[\\\"best_layer_pooled\\\"] = int(layers[bi])\\n            entry[\\\"best_pooled_rho\\\"] = float(rhos[bi])\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(data)\\n        if len(rhos_pt) > 0:\\n            bi_pt = int(np.argmax(rhos_pt))\\n            entry[\\\"best_layer\\\"] = int(layers_pt[bi_pt])\\n            entry[\\\"best_rho\\\"] = float(rhos_pt[bi_pt])\\n        if entry:\\n            summary[name] = entry\\n\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "a5746bd6-1f50-49dc-872b-27c152043460",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        reasons.append(f\\\\\\\"best per-task mean rho = {best_rho:.4f} <= 0.5\\\\\\\")\\\\n    if not criteria[\\\\\\\"delta_pass\\\\\\\"]:\\\\n        if not ci_excludes_zero:\\\\n            reasons.append(f\\\\\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\\\\\")\\\\n        if p_value_perm >= 0.05:\\\\n            reasons.append(f\\\\\\\"permutation p={p_value_perm:.4f} >= 0.05\\\\\\\")\\\\n    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) \\\\\\\")\\\\n\\\\n    return dict(judgment=judgment, criteria=criteria,\\\\n                reasons=reasons if reasons else [\\\\\\\"All criteria met\\\\\\\"])\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    dirs = parse_results_dirs(args.results_dirs)\\\\n    print(f\\\\\\\"Loading results: {list(dirs.keys())}\\\\\\\")\\\\n\\\\n    all_data = {}\\\\n    for name, path in dirs.items():\\\\n        try:\\\\n            data = load_results(path, args.probe_type)\\\\n            all_data[name] = data\\\\n            n = len(data.get(\\\\\\\"results\\\\\\\", {}))\\\\n            print(f\\\\\\\"  {name}: {n} entries\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  {name}: FAILED ({e})\\\\\\\")\\\\n\\\\n    if not all_data:\\\\n        print(\\\\\\\"No data loaded.\\\\\\\")\\\\n        return\\\\n\\\\n    oracle_rho = load_oracle(dirs)\\\\n    if oracle_rho is not None:\\\\n        print(f\\\\\\\"Oracle rho: {oracle_rho:.4f}\\\\\\\")\\\\n\\\\n    # --- Comparison table ---\\\\n    print(\\\\\\\"\\\\\\\\n=== Layer-wise Spearman rho ===\\\\\\\")\\\\n    names = list(all_data.keys())\\\\n    header = [\\\\\\\"Layer\\\\\\\"] + names\\\\n    print(\\\\\\\" | \\\\\\\".join(f\\\\\\\"{h:>12}\\\\\\\" for h in header))\\\\n    print(\\\\\\\"-\\\\\\\" * (14 * len(header)))\\\\n\\\\n    all_layers = set()\\\\n    for data in all_data.values():\\\\n        layers, _ = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        all_layers.update(layers.tolist())\\\\n\\\\n    for layer in sorted(all_layers):\\\\n        row = [f\\\\\\\"{layer:>12}\\\\\\\"]\\\\n        for name in names:\\\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\\\\\"spearman_rho\\\\\\\")\\\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\\\n            val = lmap.get(layer, float(\\\\\\\"nan\\\\\\\"))\\\\n            row.append(f\\\\\\\"{val:>12.4f}\\\\\\\")\\\\n        print(\\\\\\\" | \\\\\\\".join(row))\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Best Layer ===\\\\\\\")\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            print(f\\\\\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\\\\\")\\\\n\\\\n    # --- Plots ---\\\\n    if args.probe_type == \\\\\\\"temporal_distance\\\\\\\":\\\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\\\n        plot_delta_rho(all_data, args.output_dir)\\\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\\\n\\\\n    if args.probe_type == \\\\\\\"subtask_predicate\\\\\\\":\\\\n        for name, data in all_data.items():\\\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\\\n\\\\n    # --- Judgment ---\\\\n    judgment = compute_judgment(all_data)\\\\n    print(f\\\\\\\"\\\\\\\\n=== Judgment: {judgment['judgment']} ===\\\\\\\")\\\\n    for k, v in judgment[\\\\\\\"criteria\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n    for r in judgment[\\\\\\\"reasons\\\\\\\"]:\\\\n        print(f\\\\\\\"  >> {r}\\\\\\\")\\\\n\\\\n    # --- Save ---\\\\n    summary = dict(\\\\n        models=names,\\\\n        probe_type=args.probe_type,\\\\n        judgment=judgment,\\\\n    )\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        entry = {}\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            entry[\\\\\\\"best_layer_pooled\\\\\\\"] = int(layers[bi])\\\\n            entry[\\\\\\\"best_pooled_rho\\\\\\\"] = float(rhos[bi])\\\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(data)\\\\n        if len(rhos_pt) > 0:\\\\n            bi_pt = int(np.argmax(rhos_pt))\\\\n            entry[\\\\\\\"best_layer\\\\\\\"] = int(layers_pt[bi_pt])\\\\n            entry[\\\\\\\"best_rho\\\\\\\"] = float(rhos_pt[bi_pt])\\\\n        if entry:\\\\n            summary[name] = entry\\\\n\\\\n    if oracle_rho is not None:\\\\n        summary[\\\\\\\"oracle_rho\\\\\\\"] = oracle_rho\\\\n\\\\n    with open(os.path.join(args.output_dir, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved {args.output_dir}/summary.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        reasons.append(f\\\"best per-task mean rho = {best_rho:.4f} <= 0.5\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        if not ci_excludes_zero:\\n            reasons.append(f\\\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\\\")\\n        if p_value_perm >= 0.05:\\n            reasons.append(f\\\"permutation p={p_value_perm:.4f} >= 0.05\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(f\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) \\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        entry = {}\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            entry[\\\"best_layer_pooled\\\"] = int(layers[bi])\\n            entry[\\\"best_pooled_rho\\\"] = float(rhos[bi])\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(data)\\n        if len(rhos_pt) > 0:\\n            bi_pt = int(np.argmax(rhos_pt))\\n            entry[\\\"best_layer\\\"] = int(layers_pt[bi_pt])\\n            entry[\\\"best_rho\\\"] = float(rhos_pt[bi_pt])\\n        if entry:\\n            summary[name] = entry\\n\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+There's a trailing space in the reason text: `"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) "` - there's a space before the closing quote. Let me fix that. The original had `AND subtask gate not met")` which I replaced with `")`, but the replacement left `< DINO ({dino_mean_rho:.4f}) ")` with a trailing space. Let me fix this.
+
+Actually looking more carefully at the replace: the original was:
+```
+reasons.append(f"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) AND subtask gate not met")
+
+
+```
+
+I replaced `AND subtask gate not met")` with `")`, which gives:
+```
+reasons.append(f"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO ({dino_mean_rho:.4f}) ")
+```
+
+There's a trailing space before the `"`. Let me fix that.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "b9aafe8c-9c62-4a4b-b75b-f861e86d0210",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxUaKJW3i3CkidmDbkeJJB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2021,
+      "cache_read_input_tokens": 44851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+reason 文本有一个尾部空格需要清理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "e5450357-d1a2-440a-9c5d-f39500b9d923",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxUaKJW3i3CkidmDbkeJJB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2021,
+      "cache_read_input_tokens": 44851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01ShKC4QDPmriKpDbYD6h3d3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -i 's/< DINO ({dino_mean_rho:.4f}) \")/< DINO ({dino_mean_rho:.4f})\")/' /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "59336a61-1335-4a90-aeb9-49e91aaa5167",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxUaKJW3i3CkidmDbkeJJB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2021,
+      "cache_read_input_tokens": 44851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T12:34:25.328Z_
+
+<details><summary>↩ Tool result · `toolu_01ShKC4QDPmriKpDbYD6h3d3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "c3f8c382-bcdf-4380-8636-488aa04b8951",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+现在做 dry-run 验证语法正确。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "1d25ecfc-8ddf-4c70-8a15-cc602fbc3342",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SJus9twMBwLmCaU1mcGhCe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 512,
+      "cache_read_input_tokens": 46872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 512
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Tf1DKyYidUxsw63SdVPEPB`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import ast; ast.parse(open('/root/vla-ssd/scripts/analyze_results.py').read()); print('Syntax OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "1fa6351a-93f1-4843-8cac-85018e96cd0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SJus9twMBwLmCaU1mcGhCe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 512,
+      "cache_read_input_tokens": 46872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 512
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T12:34:30.519Z_
+
+<details><summary>↩ Tool result · `toolu_01Tf1DKyYidUxsw63SdVPEPB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "8b1e0e97-d14f-4d1b-9aa2-bd96257d3ddb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+语法通过。做 dry-run，用 `--help` 验证脚本能正常加载。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "4a0f470d-117d-4cfe-b90a-f9c05518d6c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7tnwVFazn259F4ttHnjZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 238,
+      "cache_read_input_tokens": 47384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EQAhDL6sPqygJmaTBQ9Xt7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/vla-ssd/scripts/analyze_results.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "e50460b7-c40e-42c9-b719-acc4506f53af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7tnwVFazn259F4ttHnjZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 238,
+      "cache_read_input_tokens": 47384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 238
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T12:34:38.933Z_
+
+<details><summary>↩ Tool result · `toolu_01EQAhDL6sPqygJmaTBQ9Xt7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: analyze_results.py [-h] --results_dirs RESULTS_DIRS --output_dir\\n                          OUTPUT_DIR\\n                          [--probe_type {temporal_distance,subtask_predicate}]\\n\\nAnalyze and compare probe results\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --results_dirs RESULTS_DIRS\\n                        Comma-separated name:path pairs, e.g.\\n                        trained:results/trained/\\n  --output_dir OUTPUT_DIR\\n  --probe_type {temporal_distance,subtask_predicate}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "4a8b6fb5-607f-4bd5-bf21-1abda2730fb2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: analyze_results.py [-h] --results_dirs RESULTS_DIRS --output_dir\\\\n                          OUTPUT_DIR\\\\n                          [--probe_type {temporal_distance,subtask_predicate}]\\\\n\\\\nAnalyze and compare probe results\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --results_dirs RESULTS_DIRS\\\\n                        Comma-separated name:path pairs, e.g.\\\\n                        trained:results/trained/\\\\n  --output_dir OUTPUT_DIR\\\\n  --probe_type {temporal_distance,subtask_predicate}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: analyze_results.py [-h] --results_dirs RESULTS_DIRS --output_dir\\n                          OUTPUT_DIR\\n                          [--probe_type {temporal_distance,subtask_predicate}]\\n\\nAnalyze and compare probe results\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --results_dirs RESULTS_DIRS\\n                        Comma-separated name:path pairs, e.g.\\n                        trained:results/trained/\\n  --output_dir OUTPUT_DIR\\n  --probe_type {temporal_distance,subtask_predicate}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+检查是否有现有的结果数据可以做端到端 dry-run。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "af7edfe5-fdaa-4434-a5df-827e5200e5eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T5KkU1xJ9zsfvryF6t4HGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 378,
+      "cache_read_input_tokens": 47622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 378
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ue8zqDbWR7WQpgobmLLeyq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "489283a6-0a23-478f-b55d-c4fab9e0b1f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T5KkU1xJ9zsfvryF6t4HGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 378,
+      "cache_read_input_tokens": 47622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 378
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T12:34:42.928Z_
+
+<details><summary>↩ Tool result · `toolu_01Ue8zqDbWR7WQpgobmLLeyq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "701871a3-a5ae-4972-a6eb-d135aa1a6cee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SFBBwhvBGWmw7b4z71UfmW`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd -name \"summary.json\" -path \"*/temporal_distance/*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "4ff674fa-1a77-4ff9-97c3-7968849ae75c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U3WVsSpbVFRiuEsacyxryR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 48000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 296
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T12:34:46.724Z_
+
+<details><summary>↩ Tool result · `toolu_01SFBBwhvBGWmw7b4z71UfmW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "64ebd0e9-efa8-434b-bbe2-c28c85e3f166",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+没有现成结果数据，无法做端到端 dry-run。做单元级验证——用内联数据测试 `compute_judgment` 逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "d887f50b-275a-4b21-98f0-e11ab5634473",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuC87MQYG23G1scSDVm9zH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 182,
+      "cache_read_input_tokens": 48296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 182
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EQ1ft9DVtfaMi38d3k58Wn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /tmp/test_judgment.py << 'PYEOF'\nimport sys\nsys.path.insert(0, '/root/vla-ssd/scripts')\nfrom analyze_results import compute_judgment\n\n# Case 1: PASS — rho>0.5, delta CI excludes 0, VLA >= DINO\ndata_pass = {\n    \"trained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.65, \"per_task_rho\": {\"t1\": 0.7, \"t2\": 0.6}},\n    }},\n    \"untrained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.30, \"per_task_rho\": {\"t1\": 0.3, \"t2\": 0.2}},\n    }},\n    \"dinov2\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.50, \"per_task_rho\": {\"t1\": 0.5, \"t2\": 0.4}},\n    }},\n}\nj = compute_judgment(data_pass)\nassert j[\"judgment\"] == \"PASS\", f\"Expected PASS, got {j['judgment']}: {j['reasons']}\"\nprint(f\"Case 1 (PASS): {j['judgment']} — OK\")\n\n# Case 2: CONDITIONAL — rho>0.5, delta CI excludes 0, but VLA < DINO\ndata_cond = {\n    \"trained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.55, \"per_task_rho\": {\"t1\": 0.52, \"t2\": 0.50}},\n    }},\n    \"untrained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.30, \"per_task_rho\": {\"t1\": 0.3, \"t2\": 0.2}},\n    }},\n    \"dinov2\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.60, \"per_task_rho\": {\"t1\": 0.6, \"t2\": 0.58}},\n    }},\n}\nj2 = compute_judgment(data_cond)\nassert j2[\"judgment\"] == \"CONDITIONAL\", f\"Expected CONDITIONAL, got {j2['judgment']}: {j2['reasons']}\"\nprint(f\"Case 2 (CONDITIONAL): {j2['judgment']} — OK\")\n\n# Case 3: FAIL — rho <= 0.5\ndata_fail = {\n    \"trained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.40, \"per_task_rho\": {\"t1\": 0.4, \"t2\": 0.3}},\n    }},\n    \"untrained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.20, \"per_task_rho\": {\"t1\": 0.2, \"t2\": 0.1}},\n    }},\n    \"dinov2\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.50, \"per_task_rho\": {\"t1\": 0.5, \"t2\": 0.4}},\n    }},\n}\nj3 = compute_judgment(data_fail)\nassert j3[\"judgment\"] == \"FAIL\", f\"Expected FAIL, got {j3['judgment']}: {j3['reasons']}\"\nprint(f\"Case 3 (FAIL, low rho): {j3['judgment']} — OK\")\n\n# Case 4: subtask_pass should NOT rescue a CONDITIONAL to PASS\n# VLA < DINO rho, but subtask AUC is great — should still be CONDITIONAL\ndata_sub = {\n    \"trained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.55, \"per_task_rho\": {\"t1\": 0.52, \"t2\": 0.50}, \"macro_auc\": 0.95},\n    }},\n    \"untrained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.30, \"per_task_rho\": {\"t1\": 0.3, \"t2\": 0.2}},\n    }},\n    \"dinov2\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.60, \"per_task_rho\": {\"t1\": 0.6, \"t2\": 0.58}, \"macro_auc\": 0.50},\n    }},\n}\nj4 = compute_judgment(data_sub)\nassert j4[\"judgment\"] == \"CONDITIONAL\", f\"Expected CONDITIONAL (subtask gate removed), got {j4['judgment']}\"\nassert j4[\"criteria\"][\"subtask_auc_pass\"] == True, \"subtask_auc_pass should still be computed as True\"\nprint(f\"Case 4 (subtask gate removed): {j4['judgment']}, subtask_auc_pass={j4['criteria']['subtask_auc_pass']} — OK\")\n\nprint(\"\\nAll 4 cases passed.\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/test_judgment.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "6234d558-dbbb-4bd1-81f3-264dedb87efa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuC87MQYG23G1scSDVm9zH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 182,
+      "cache_read_input_tokens": 48296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 182
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T12:35:11.924Z_
+
+<details><summary>↩ Tool result · `toolu_01EQ1ft9DVtfaMi38d3k58Wn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/test_judgment.py << \\\\'PYEOF\\\\'\\\\nimport sys\\\\nsys.path.insert(0, \\\\'/root/vla-ssd/scripts\\\\')\\\\nfrom analyze_results import compute_judgment\\\\n\\\\n# Case 1: PASS — rho>0.5, delta CI excludes 0, VLA >= DINO\\\\ndata_pass = {\\\\n    \\\"trained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.65, \\\"per_task_rho\\\": {\\\"t1\\\": 0.7, \\\"t2\\\": 0.6}},\\\\n    }},\\\\n    \\\"untrained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.30, \\\"per_task_rho\\\": {\\\"t1\\\": 0.3, \\\"t2\\\": 0.2}},\\\\n    }},\\\\n    \\\"dinov2\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.50, \\\"per_task_rho\\\": {\\\"t1\\\": 0.5, \\\"t2\\\": 0.4}},\\\\n    }},\\\\n}\\\\nj = compute_judgment(data_pass)\\\\nassert j[\\\"judgment\\\"] == \\\"PASS\\\", f\\\"Expected PASS, got {j[\\\\'judgment\\\\']}: {j[\\\\'reasons\\\\']}\\\"\\\\nprint(f\\\"Case 1 (PASS): {j[\\\\'judgment\\\\']} — OK\\\")\\\\n\\\\n# Case 2: CONDITIONAL — rho>0.5, delta CI excludes 0, but VLA < DINO\\\\ndata_cond = {\\\\n    \\\"trained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.55, \\\"per_task_rho\\\": {\\\"t1\\\": 0.52, \\\"t2\\\": 0.50}},\\\\n    }},\\\\n    \\\"untrained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.30, \\\"per_task_rho\\\": {\\\"t1\\\": 0.3, \\\"t2\\\": 0.2}},\\\\n    }},\\\\n    \\\"dinov2\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.60, \\\"per_task_rho\\\": {\\\"t1\\\": 0.6, \\\"t2\\\": 0.58}},\\\\n    }},\\\\n}\\\\nj2 = compute_judgment(data_cond)\\\\nassert j2[\\\"judgment\\\"] == \\\"CONDITIONAL\\\", f\\\"Expected CONDITIONAL, got {j2[\\\\'judgment\\\\']}: {j2[\\\\'reasons\\\\']}\\\"\\\\nprint(f\\\"Case 2 (CONDITIONAL): {j2[\\\\'judgment\\\\']} — OK\\\")\\\\n\\\\n# Case 3: FAIL — rho <= 0.5\\\\ndata_fail = {\\\\n    \\\"trained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.40, \\\"per_task_rho\\\": {\\\"t1\\\": 0.4, \\\"t2\\\": 0.3}},\\\\n    }},\\\\n    \\\"untrained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.20, \\\"per_task_rho\\\": {\\\"t1\\\": 0.2, \\\"t2\\\": 0.1}},\\\\n    }},\\\\n    \\\"dinov2\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.50, \\\"per_task_rho\\\": {\\\"t1\\\": 0.5, \\\"t2\\\": 0.4}},\\\\n    }},\\\\n}\\\\nj3 = compute_judgment(data_fail)\\\\nassert j3[\\\"judgment\\\"] == \\\"FAIL\\\", f\\\"Expected FAIL, got {j3[\\\\'judgment\\\\']}: {j3[\\\\'reasons\\\\']}\\\"\\\\nprint(f\\\"Case 3 (FAIL, low rho): {j3[\\\\'judgment\\\\']} — OK\\\")\\\\n\\\\n# Case 4: subtask_pass should NOT rescue a CONDITIONAL to PASS\\\\n# VLA < DINO rho, but subtask AUC is great — should still be CONDITIONAL\\\\ndata_sub = {\\\\n    \\\"trained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.55, \\\"per_task_rho\\\": {\\\"t1\\\": 0.52, \\\"t2\\\": 0.50}, \\\"macro_auc\\\": 0.95},\\\\n    }},\\\\n    \\\"untrained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.30, \\\"per_task_rho\\\": {\\\"t1\\\": 0.3, \\\"t2\\\": 0.2}},\\\\n    }},\\\\n    \\\"dinov2\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.60, \\\"per_task_rho\\\": {\\\"t1\\\": 0.6, \\\"t2\\\": 0.58}, \\\"macro_auc\\\": 0.50},\\\\n    }},\\\\n}\\\\nj4 = compute_judgment(data_sub)\\\\nassert j4[\\\"judgment\\\"] == \\\"CONDITIONAL\\\", f\\\"Expected CONDITIONAL (subtask gate removed), got {j4[\\\\'judgment\\\\']}\\\"\\\\nassert j4[\\\"criteria\\\"][\\\"subtask_auc_pass\\\"] == True, \\\"subtask_auc_pass should still be computed as True\\\"\\\\nprint(f\\\"Case 4 (subtask gate removed): {j4[\\\\'judgment\\\\']}, subtask_auc_pass={j4[\\\\'criteria\\\\'][\\\\'subtask_auc_pass\\\\']} — OK\\\")\\\\n\\\\nprint(\\\"\\\\\\\\nAll 4 cases passed.\\\")\\\\nPYEOF\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/test_judgment.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"/tmp/test_judgment.py\\\", line 18, in &lt;module>\\n    assert j[\\\"judgment\\\"] == \\\"PASS\\\", f\\\"Expected PASS, got {j['judgment']}: {j['reasons']}\\\"\\n           ^^^^^^^^^^^^^^^^^^^^^^^\\nAssertionError: Expected PASS, got FAIL: ['permutation p=0.1748 >= 0.05']\\n\\n\", \"metadata\": {\"elapsed_seconds\": 7.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "ff38e219-7a56-4fd3-b8db-99ed4e925d0c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat > /tmp/test_judgment.py << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport sys\\\\\\\\nsys.path.insert(0, \\\\\\\\'/root/vla-ssd/scripts\\\\\\\\')\\\\\\\\nfrom analyze_results import compute_judgment\\\\\\\\n\\\\\\\\n# Case 1: PASS — rho>0.5, delta CI excludes 0, VLA >= DINO\\\\\\\\ndata_pass = {\\\\\\\\n    \\\\\\\"trained\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.65, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.7, \\\\\\\"t2\\\\\\\": 0.6}},\\\\\\\\n    }},\\\\\\\\n    \\\\\\\"untrained\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.30, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.3, \\\\\\\"t2\\\\\\\": 0.2}},\\\\\\\\n    }},\\\\\\\\n    \\\\\\\"dinov2\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.50, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.5, \\\\\\\"t2\\\\\\\": 0.4}},\\\\\\\\n    }},\\\\\\\\n}\\\\\\\\nj = compute_judgment(data_pass)\\\\\\\\nassert j[\\\\\\\"judgment\\\\\\\"] == \\\\\\\"PASS\\\\\\\", f\\\\\\\"Expected PASS, got {j[\\\\\\\\'judgment\\\\\\\\']}: {j[\\\\\\\\'reasons\\\\\\\\']}\\\\\\\"\\\\\\\\nprint(f\\\\\\\"Case 1 (PASS): {j[\\\\\\\\'judgment\\\\\\\\']} — OK\\\\\\\")\\\\\\\\n\\\\\\\\n# Case 2: CONDITIONAL — rho>0.5, delta CI excludes 0, but VLA < DINO\\\\\\\\ndata_cond = {\\\\\\\\n    \\\\\\\"trained\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.55, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.52, \\\\\\\"t2\\\\\\\": 0.50}},\\\\\\\\n    }},\\\\\\\\n    \\\\\\\"untrained\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.30, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.3, \\\\\\\"t2\\\\\\\": 0.2}},\\\\\\\\n    }},\\\\\\\\n    \\\\\\\"dinov2\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.60, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.6, \\\\\\\"t2\\\\\\\": 0.58}},\\\\\\\\n    }},\\\\\\\\n}\\\\\\\\nj2 = compute_judgment(data_cond)\\\\\\\\nassert j2[\\\\\\\"judgment\\\\\\\"] == \\\\\\\"CONDITIONAL\\\\\\\", f\\\\\\\"Expected CONDITIONAL, got {j2[\\\\\\\\'judgment\\\\\\\\']}: {j2[\\\\\\\\'reasons\\\\\\\\']}\\\\\\\"\\\\\\\\nprint(f\\\\\\\"Case 2 (CONDITIONAL): {j2[\\\\\\\\'judgment\\\\\\\\']} — OK\\\\\\\")\\\\\\\\n\\\\\\\\n# Case 3: FAIL — rho <= 0.5\\\\\\\\ndata_fail = {\\\\\\\\n    \\\\\\\"trained\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.40, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.4, \\\\\\\"t2\\\\\\\": 0.3}},\\\\\\\\n    }},\\\\\\\\n    \\\\\\\"untrained\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.20, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.2, \\\\\\\"t2\\\\\\\": 0.1}},\\\\\\\\n    }},\\\\\\\\n    \\\\\\\"dinov2\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.50, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.5, \\\\\\\"t2\\\\\\\": 0.4}},\\\\\\\\n    }},\\\\\\\\n}\\\\\\\\nj3 = compute_judgment(data_fail)\\\\\\\\nassert j3[\\\\\\\"judgment\\\\\\\"] == \\\\\\\"FAIL\\\\\\\", f\\\\\\\"Expected FAIL, got {j3[\\\\\\\\'judgment\\\\\\\\']}: {j3[\\\\\\\\'reasons\\\\\\\\']}\\\\\\\"\\\\\\\\nprint(f\\\\\\\"Case 3 (FAIL, low rho): {j3[\\\\\\\\'judgment\\\\\\\\']} — OK\\\\\\\")\\\\\\\\n\\\\\\\\n# Case 4: subtask_pass should NOT rescue a CONDITIONAL to PASS\\\\\\\\n# VLA < DINO rho, but subtask AUC is great — should still be CONDITIONAL\\\\\\\\ndata_sub = {\\\\\\\\n    \\\\\\\"trained\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.55, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.52, \\\\\\\"t2\\\\\\\": 0.50}, \\\\\\\"macro_auc\\\\\\\": 0.95},\\\\\\\\n    }},\\\\\\\\n    \\\\\\\"untrained\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.30, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.3, \\\\\\\"t2\\\\\\\": 0.2}},\\\\\\\\n    }},\\\\\\\\n    \\\\\\\"dinov2\\\\\\\": {\\\\\\\"results\\\\\\\": {\\\\\\\\n        \\\\\\\"10\\\\\\\": {\\\\\\\"spearman_rho\\\\\\\": 0.60, \\\\\\\"per_task_rho\\\\\\\": {\\\\\\\"t1\\\\\\\": 0.6, \\\\\\\"t2\\\\\\\": 0.58}, \\\\\\\"macro_auc\\\\\\\": 0.50},\\\\\\\\n    }},\\\\\\\\n}\\\\\\\\nj4 = compute_judgment(data_sub)\\\\\\\\nassert j4[\\\\\\\"judgment\\\\\\\"] == \\\\\\\"CONDITIONAL\\\\\\\", f\\\\\\\"Expected CONDITIONAL (subtask gate removed), got {j4[\\\\\\\\'judgment\\\\\\\\']}\\\\\\\"\\\\\\\\nassert j4[\\\\\\\"criteria\\\\\\\"][\\\\\\\"subtask_auc_pass\\\\\\\"] == True, \\\\\\\"subtask_auc_pass should still be computed as True\\\\\\\"\\\\\\\\nprint(f\\\\\\\"Case 4 (subtask gate removed): {j4[\\\\\\\\'judgment\\\\\\\\']}, subtask_auc_pass={j4[\\\\\\\\'criteria\\\\\\\\'][\\\\\\\\'subtask_auc_pass\\\\\\\\']} — OK\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\nAll 4 cases passed.\\\\\\\")\\\\\\\\nPYEOF\\\\\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/test_judgment.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/tmp/test_judgment.py\\\\\\\", line 18, in &lt;module>\\\\n    assert j[\\\\\\\"judgment\\\\\\\"] == \\\\\\\"PASS\\\\\\\", f\\\\\\\"Expected PASS, got {j['judgment']}: {j['reasons']}\\\\\\\"\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^\\\\nAssertionError: Expected PASS, got FAIL: ['permutation p=0.1748 >= 0.05']\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/test_judgment.py << \\\\'PYEOF\\\\'\\\\nimport sys\\\\nsys.path.insert(0, \\\\'/root/vla-ssd/scripts\\\\')\\\\nfrom analyze_results import compute_judgment\\\\n\\\\n# Case 1: PASS — rho>0.5, delta CI excludes 0, VLA >= DINO\\\\ndata_pass = {\\\\n    \\\"trained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.65, \\\"per_task_rho\\\": {\\\"t1\\\": 0.7, \\\"t2\\\": 0.6}},\\\\n    }},\\\\n    \\\"untrained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.30, \\\"per_task_rho\\\": {\\\"t1\\\": 0.3, \\\"t2\\\": 0.2}},\\\\n    }},\\\\n    \\\"dinov2\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.50, \\\"per_task_rho\\\": {\\\"t1\\\": 0.5, \\\"t2\\\": 0.4}},\\\\n    }},\\\\n}\\\\nj = compute_judgment(data_pass)\\\\nassert j[\\\"judgment\\\"] == \\\"PASS\\\", f\\\"Expected PASS, got {j[\\\\'judgment\\\\']}: {j[\\\\'reasons\\\\']}\\\"\\\\nprint(f\\\"Case 1 (PASS): {j[\\\\'judgment\\\\']} — OK\\\")\\\\n\\\\n# Case 2: CONDITIONAL — rho>0.5, delta CI excludes 0, but VLA < DINO\\\\ndata_cond = {\\\\n    \\\"trained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.55, \\\"per_task_rho\\\": {\\\"t1\\\": 0.52, \\\"t2\\\": 0.50}},\\\\n    }},\\\\n    \\\"untrained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.30, \\\"per_task_rho\\\": {\\\"t1\\\": 0.3, \\\"t2\\\": 0.2}},\\\\n    }},\\\\n    \\\"dinov2\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.60, \\\"per_task_rho\\\": {\\\"t1\\\": 0.6, \\\"t2\\\": 0.58}},\\\\n    }},\\\\n}\\\\nj2 = compute_judgment(data_cond)\\\\nassert j2[\\\"judgment\\\"] == \\\"CONDITIONAL\\\", f\\\"Expected CONDITIONAL, got {j2[\\\\'judgment\\\\']}: {j2[\\\\'reasons\\\\']}\\\"\\\\nprint(f\\\"Case 2 (CONDITIONAL): {j2[\\\\'judgment\\\\']} — OK\\\")\\\\n\\\\n# Case 3: FAIL — rho <= 0.5\\\\ndata_fail = {\\\\n    \\\"trained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.40, \\\"per_task_rho\\\": {\\\"t1\\\": 0.4, \\\"t2\\\": 0.3}},\\\\n    }},\\\\n    \\\"untrained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.20, \\\"per_task_rho\\\": {\\\"t1\\\": 0.2, \\\"t2\\\": 0.1}},\\\\n    }},\\\\n    \\\"dinov2\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.50, \\\"per_task_rho\\\": {\\\"t1\\\": 0.5, \\\"t2\\\": 0.4}},\\\\n    }},\\\\n}\\\\nj3 = compute_judgment(data_fail)\\\\nassert j3[\\\"judgment\\\"] == \\\"FAIL\\\", f\\\"Expected FAIL, got {j3[\\\\'judgment\\\\']}: {j3[\\\\'reasons\\\\']}\\\"\\\\nprint(f\\\"Case 3 (FAIL, low rho): {j3[\\\\'judgment\\\\']} — OK\\\")\\\\n\\\\n# Case 4: subtask_pass should NOT rescue a CONDITIONAL to PASS\\\\n# VLA < DINO rho, but subtask AUC is great — should still be CONDITIONAL\\\\ndata_sub = {\\\\n    \\\"trained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.55, \\\"per_task_rho\\\": {\\\"t1\\\": 0.52, \\\"t2\\\": 0.50}, \\\"macro_auc\\\": 0.95},\\\\n    }},\\\\n    \\\"untrained\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.30, \\\"per_task_rho\\\": {\\\"t1\\\": 0.3, \\\"t2\\\": 0.2}},\\\\n    }},\\\\n    \\\"dinov2\\\": {\\\"results\\\": {\\\\n        \\\"10\\\": {\\\"spearman_rho\\\": 0.60, \\\"per_task_rho\\\": {\\\"t1\\\": 0.6, \\\"t2\\\": 0.58}, \\\"macro_auc\\\": 0.50},\\\\n    }},\\\\n}\\\\nj4 = compute_judgment(data_sub)\\\\nassert j4[\\\"judgment\\\"] == \\\"CONDITIONAL\\\", f\\\"Expected CONDITIONAL (subtask gate removed), got {j4[\\\\'judgment\\\\']}\\\"\\\\nassert j4[\\\"criteria\\\"][\\\"subtask_auc_pass\\\"] == True, \\\"subtask_auc_pass should still be computed as True\\\"\\\\nprint(f\\\"Case 4 (subtask gate removed): {j4[\\\\'judgment\\\\']}, subtask_auc_pass={j4[\\\\'criteria\\\\'][\\\\'subtask_auc_pass\\\\']} — OK\\\")\\\\n\\\\nprint(\\\"\\\\\\\\nAll 4 cases passed.\\\")\\\\nPYEOF\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/test_judgment.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"/tmp/test_judgment.py\\\", line 18, in &lt;module>\\n    assert j[\\\"judgment\\\"] == \\\"PASS\\\", f\\\"Expected PASS, got {j['judgment']}: {j['reasons']}\\\"\\n           ^^^^^^^^^^^^^^^^^^^^^^^\\nAssertionError: Expected PASS, got FAIL: ['permutation p=0.1748 >= 0.05']\\n\\n\", \"metadata\": {\"elapsed_seconds\": 7.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The bootstrap/permutation test fails because with only 2 tasks and a small sample, the permutation p-value is high. I need to provide more task data for the bootstrap to yield a significant result. Let me adjust the test data to have more tasks and larger deltas to ensure the bootstrap CI excludes zero.
+
+Actually, the issue is that with only 2 tasks, the permutation test can't produce p < 0.05. I need more tasks. Let me provide at least 10 tasks with clear separation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "39a5304e-9111-455b-9846-b46ad1c60605",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xp4U38DiAUJQXSq9CcGdMK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3595,
+      "cache_read_input_tokens": 48478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3595
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+Bootstrap 测试因样本太少 (2 tasks) p 值偏高。增加 task 数量重试。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "2cfb66d3-aba3-473e-ae05-55f6c2d4ceb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xp4U38DiAUJQXSq9CcGdMK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3595,
+      "cache_read_input_tokens": 48478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3595
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014ERAaDvuxViDEMvMoC44zM`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /tmp/test_judgment.py << 'PYEOF'\nimport sys\nsys.path.insert(0, '/root/vla-ssd/scripts')\nfrom analyze_results import compute_judgment\n\ntasks = {f\"t{i}\": 0.7 + i*0.01 for i in range(10)}\ntasks_low = {f\"t{i}\": 0.2 + i*0.01 for i in range(10)}\ntasks_dino = {f\"t{i}\": 0.4 + i*0.01 for i in range(10)}\n\n# Case 1: PASS\ndata_pass = {\n    \"trained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.75, \"per_task_rho\": tasks},\n    }},\n    \"untrained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.30, \"per_task_rho\": tasks_low},\n    }},\n    \"dinov2\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.50, \"per_task_rho\": tasks_dino},\n    }},\n}\nj = compute_judgment(data_pass)\nassert j[\"judgment\"] == \"PASS\", f\"Expected PASS, got {j['judgment']}: {j['reasons']}\"\nprint(f\"Case 1 (PASS): {j['judgment']} — OK\")\n\n# Case 2: CONDITIONAL — VLA < DINO\ntasks_vla_low = {f\"t{i}\": 0.52 + i*0.005 for i in range(10)}\ntasks_dino_high = {f\"t{i}\": 0.6 + i*0.005 for i in range(10)}\ndata_cond = {\n    \"trained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.55, \"per_task_rho\": tasks_vla_low},\n    }},\n    \"untrained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.30, \"per_task_rho\": tasks_low},\n    }},\n    \"dinov2\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.65, \"per_task_rho\": tasks_dino_high},\n    }},\n}\nj2 = compute_judgment(data_cond)\nassert j2[\"judgment\"] == \"CONDITIONAL\", f\"Expected CONDITIONAL, got {j2['judgment']}: {j2['reasons']}\"\nprint(f\"Case 2 (CONDITIONAL): {j2['judgment']} — OK\")\n\n# Case 3: FAIL — rho <= 0.5\ntasks_barely = {f\"t{i}\": 0.4 + i*0.005 for i in range(10)}\ndata_fail = {\n    \"trained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.40, \"per_task_rho\": tasks_barely},\n    }},\n    \"untrained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.20, \"per_task_rho\": tasks_low},\n    }},\n    \"dinov2\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.50, \"per_task_rho\": tasks_dino},\n    }},\n}\nj3 = compute_judgment(data_fail)\nassert j3[\"judgment\"] == \"FAIL\", f\"Expected FAIL, got {j3['judgment']}: {j3['reasons']}\"\nprint(f\"Case 3 (FAIL, low rho): {j3['judgment']} — OK\")\n\n# Case 4: subtask_pass should NOT rescue to PASS\ndata_sub = {\n    \"trained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.55, \"per_task_rho\": tasks_vla_low, \"macro_auc\": 0.95},\n    }},\n    \"untrained\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.30, \"per_task_rho\": tasks_low},\n    }},\n    \"dinov2\": {\"results\": {\n        \"10\": {\"spearman_rho\": 0.65, \"per_task_rho\": tasks_dino_high, \"macro_auc\": 0.50},\n    }},\n}\nj4 = compute_judgment(data_sub)\nassert j4[\"judgment\"] == \"CONDITIONAL\", f\"Expected CONDITIONAL (subtask gate removed), got {j4['judgment']}: {j4['reasons']}\"\nassert j4[\"criteria\"][\"subtask_auc_pass\"] == True, \"subtask_auc_pass should still be computed\"\nprint(f\"Case 4 (subtask gate removed): {j4['judgment']}, subtask_auc_pass={j4['criteria']['subtask_auc_pass']} — OK\")\n\nprint(\"\\nAll 4 cases passed.\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/test_judgment.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "e192b643-eda7-4bd4-b49c-beb426566c0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xp4U38DiAUJQXSq9CcGdMK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3595,
+      "cache_read_input_tokens": 48478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3595
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T12:35:38.618Z_
+
+<details><summary>↩ Tool result · `toolu_014ERAaDvuxViDEMvMoC44zM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Case 1 (PASS): PASS — OK\\nCase 2 (CONDITIONAL): CONDITIONAL — OK\\nCase 3 (FAIL, low rho): FAIL — OK\\nCase 4 (subtask gate removed): CONDITIONAL, subtask_auc_pass=True — OK\\n\\nAll 4 cases passed.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.06}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "3921e540-8500-4676-9b7c-ba9cc571246a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Case 1 (PASS): PASS — OK\\\\nCase 2 (CONDITIONAL): CONDITIONAL — OK\\\\nCase 3 (FAIL, low rho): FAIL — OK\\\\nCase 4 (subtask gate removed): CONDITIONAL, subtask_auc_pass=True — OK\\\\n\\\\nAll 4 cases passed.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.06}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Case 1 (PASS): PASS — OK\\nCase 2 (CONDITIONAL): CONDITIONAL — OK\\nCase 3 (FAIL, low rho): FAIL — OK\\nCase 4 (subtask gate removed): CONDITIONAL, subtask_auc_pass=True — OK\\n\\nAll 4 cases passed.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.06}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+4 个测试用例全部通过：
+
+| Case | 场景 | 期望 | 实际 |
+|------|------|------|------|
+| 1 | ρ>0.5, ΔρCI排除0, VLA≥DINO | PASS | PASS |
+| 2 | ρ>0.5, ΔρCI排除0, VLA&lt;DINO | CONDITIONAL | CONDITIONAL |
+| 3 | ρ≤0.5 | FAIL | FAIL |
+| 4 | VLA&lt;DINO 但 subtask AUC=0.95>0.7 | CONDITIONAL（不被 subtask 救回） | CONDITIONAL |
+
+Case 4 关键验证：`subtask_auc_pass=True` 仍被计算和报告，但不影响 verdict。
+
+清理临时文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "7bee8c65-f723-4b6f-9e2e-e72176f04ac3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121rbiP12MTVMgSwjgpkj1m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1678,
+      "cache_read_input_tokens": 52073,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1678
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019VCdJFX8ZRQokyEGLuVAn1`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "rm /tmp/test_judgment.py /tmp/patch_analyze.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "f90e00d4-2eba-4571-8e94-188193dc195a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121rbiP12MTVMgSwjgpkj1m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1678,
+      "cache_read_input_tokens": 52073,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1678
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T12:35:49.836Z_
+
+<details><summary>↩ Tool result · `toolu_019VCdJFX8ZRQokyEGLuVAn1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "6c1344ab-91ae-41f1-be3a-80ab9891b925",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+完成。`analyze_results.py` 的 `compute_judgment` 已更新为 D003 三分支判定：subtask gate 从 verdict 逻辑中移除，subtask AUC 仍计算并报告但不参与判定。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "uuid": "ab173eff-c6c6-477f-a311-de3179e2b784",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UTVna6zGRLnhyjyX4rmgkH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 401,
+      "cache_read_input_tokens": 53751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 401
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 76_
+
+完成。`analyze_results.py` 的 `compute_judgment` 已更新为 D003 三分支判定：subtask gate 从 verdict 逻辑中移除，subtask AUC 仍计算并报告但不参与判定。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 192382,
+  "duration_api_ms": 162050,
+  "num_turns": 25,
+  "stop_reason": "end_turn",
+  "session_id": "a3c888a3-3565-478a-8dd1-d41a789d86ee",
+  "total_cost_usd": 0.8949102500000001,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 42311,
+    "cache_read_input_tokens": 786899,
+    "output_tokens": 9422,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 42311,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 72,
+        "cache_read_input_tokens": 53751,
+        "cache_creation_input_tokens": 401,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 401
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1262,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0013520000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 9422,
+      "cacheReadInputTokens": 786899,
+      "cacheCreationInputTokens": 42311,
+      "webSearchRequests": 0,
+      "costUSD": 0.8935582500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fb8fba3f-2aa0-45e3-bc20-31c87e5e8d94"
+}
+```
+
+</details>
+
+---

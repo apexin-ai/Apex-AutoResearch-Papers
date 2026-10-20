@@ -1,0 +1,294 @@
+_next_id: 22
+mistakes:
+- id: M001
+  date: '2026-05-16'
+  category: agent_behavior
+  severity: medium
+  summary: QA Probe + Instruction-conditional probe 执行停滞，GPU 长时间空闲
+  root_cause: Agent 在 QA Probe 遇到 LogisticRegression 收敛问题后 kill 进程，但修复后未重启。Instruction-conditional
+    probe 仅完成 L0 dry-run 后未继续 full run。导致双卡空闲数小时。
+  prevention: 批准实验后设置明确的完成预期时间。如果 Agent 汇报修复方案后超过 30min 未汇报结果，主动 urgent 催促。对串行任务（fix
+    → rerun）明确指示"不要等确认，修完直接跑"。
+  status: active
+  context: D044 批准的 instruction-conditional probe 和 QA probe 修复均未按时执行。服务器完全空闲，GPU
+    预算浪费。
+- id: M002
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: 所有 training effect 实验只测 image_mean，遗漏 last_preaction token——导致 7 个 negative
+    结论过于笼统
+  root_cause: 默认用 image_mean 聚合 LLM 层输出，未意识到不同 token position 编码不同信息。VLA 的 image tokens
+    是 instruction-blind 的，training effect 主要在 action token (last_preaction) 上。
+  prevention: 在 VLA 中任何 "trained vs untrained" 对比必须分 token position 报告（至少 image_mean
+    + last_preaction）。Token-specific analysis 应作为标准流程。
+  status: active
+  context: lg_rsa_analysis, d021_instruction_ablation, mvp_001 等 7 个 negative 实验都只在
+    image_mean 上测量，一致显示 trained≈untrained。直到 D044-D047 才发现 last_preaction 是 training
+    effect 的载体。如果更早发现，研究可提速 2+ 天。
+- id: M003
+  date: '2026-05-17'
+  category: code_bug
+  severity: high
+  summary: L1 head ablation 脚本使用 task_id 作为分类标签而非 instruction_id，导致测量视觉场景识别而非指令身份分类
+  root_cause: Worker 在实现 cross-instruction 分类器时，将 label 定义为 task_idx（图像来源任务），而非 instruction
+    index（配对的指令编号）。这导致分类器学习的是"这张图来自哪个任务"而非"显示了哪条指令"，使 ablation 结果无法回答目标问题。
+  prevention: 1. 涉及 cross-instruction 分析的新脚本，必须在 prompt 中明确指定标签定义（label = instruction_id,
+    not task_id）；2. 新实验脚本写完后、执行前，必须 post_to_reviewer 做代码审查；3. 参考现有实现（cross_instruction_classify_spatial.py）的标签逻辑作为
+    reference。
+  status: active
+  fix: 修正标签为 instruction_id，加 PCA-256 降维，加 top-5 graduated ablation 条件，重跑实验。
+- id: M004
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: threecond_multiseed 脚本在归一化空间计算 R²，与主文原始空间 R² 不可比
+  root_cause: Multi-seed 脚本从 fulllayer_action_probe.py 复制时，遗漏了反归一化步骤。y_val 用了归一化版本而非
+    y_val_raw，y_pred 也未反归一化。
+  prevention: 新脚本复用旧 pipeline 时，必须核对 metric 计算空间是否一致。审批实验方案时要求 Agent 明确说明 R²/loss
+    在哪个空间计算，并与已有实验对齐。
+  status: active
+  context: L0 R² = 0.538 (归一化) vs 0.640 (原始)，差值恒定 ~0.102，定性 pattern 不受影响但绝对值不可直接引用。
+  fix: 加载 best model checkpoint，反归一化后重算 R²。不需重新训练。
+- id: M005
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: behavioral_pilot_w4 失败：OpenVLA 使用 bridge_orig unnorm_key，LIBERO action
+    space 不兼容，baseline SR=0
+  root_cause: OpenVLA-7B 未在 LIBERO 上 fine-tune action generation。我们的分析一直是 feature
+    extraction + probe，不涉及 closed-loop action generation。bridge_orig normalization
+    stats 与 LIBERO action space 不匹配。
+  prevention: 规划 behavioral rollout 实验前，先确认模型是否在目标环境的 action space 上 fine-tuned。如果模型只用于
+    feature extraction 分析，closed-loop rollout 需要额外的 fine-tuning 步骤。
+  status: active
+  context: 6/60 episodes 完成，全部 fail (R=0.000)。SIGHUP 导致两个进程都被杀，无结果文件。
+  fix: 转向 open-loop action trajectory analysis：对比 baseline vs ablated 模型在 LIBERO demo
+    上的 action prediction 差异，不需要 closed-loop execution。
+- id: M006
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: Cross-layer action trajectory 使用不可比方法（L1 partial ablation vs L8/L13 full
+    knockout），结果无法解读
+  root_cause: L1 实验 ablate 24/32 heads 仅在 instruction token 位置（~8.7% head-token pairs），L8/L13
+    ablate 全部 32/32 heads 全部 token 位置（100% head-token pairs）。方法论差异使 d 值对比无意义。Reviewer
+    在实验启动时已警告不可比，但未被充分重视。
+  prevention: 跨条件对比实验必须使用 matched methodology：相同的 ablation 方式（partial vs full）、相同的
+    token scope、相同的 head 选择标准。设计跨层/跨条件实验前，先画方法对齐表确认每个变量是否 controlled。
+  status: active
+  context: L1 d=0.65, L8 d=0.652, L13 d=0.668 — 几乎一致，但 KL divergence 显示 L8/L13 扰动远大于
+    L1（6.4 vs 1.69）。d 值在该干预强度下饱和。结果不能用于论文。
+  fix: 不将 cross-layer action trajectory 纳入论文。层级特异性证据回退到 R² gradient（L1 +0.059 >> L8
+    +0.018 >> L13 ≈0，方法论一致）。
+  related_decisions:
+  - D065
+- id: M007
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: 论文 untrained readout 百分比 (95.5%/91.1%) 无法追溯到任何现存数据文件
+  root_cause: 早期实验数据被后续 rerun 覆盖，但论文中的旧数字未同步更新。数据 provenance 断裂。
+  prevention: 论文中每个定量 claim 必须标注 source file path 或 registry exp_id。数值修改后强制 re-verify
+    against source data。建立 "number → source" 追溯表。
+  status: active
+  context: Reviewer 搜遍所有 results JSON 均找不到 95.5%/91.1%。可追溯的数字：registry 98.6%/92.0%、LOOCV
+    96.64%/93.5%、cross_instruction sparse 98.2%/92.3%。
+  fix: 替换为 registry 可追溯数字 98.6%/92.0%
+- id: M008
+  date: '2026-05-19'
+  category: communication
+  severity: low
+  summary: Agent 在 D074 放弃 closed-loop 后仍重试 behavioral_smoketest 第 3 次，浪费 ~10min GPU
+  root_cause: D074 停止指令排在 Agent 队列第 8 位，Agent 处理旧队列消息时又启动了重试。队列积压（depth=8）导致关键决策指令延迟送达。
+  prevention: 方向性决策变更（如放弃某路径）必须用 urgent_agent_message 或 replace_agent_queue，不能用普通
+    director_post_to_main_agent 排队。队列 depth>3 时默认用 urgent。
+  status: active
+  related_decisions:
+  - D074
+- id: M009
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: Worker 只报 L1 attention heads，遗漏 L31 从 18→0 的崩塌，导致错误结论"routing 基本保持"
+  root_cause: Worker 只对比了 L1 层的 instruction-dominant heads（24→22），未检查 L31 和中间层。结论"基本保持
+    bookend pattern"基于不完整数据。
+  prevention: 分析 attention profile 时，必须报告全部关键层（至少 L0, L1, L9-L16 中间段, L24-L30 深层段,
+    L31）。对比实验必须列出完整对比表，不能只看 headline metric。
+  status: active
+  context: libero_finetuned_attention 实验。L31 instruction-dominant heads 从 openvla-7b
+    的 18 崩塌到 LIBERO fine-tuned 的 0。Worker 称"微小下降（2 heads）"完全基于 L1，遗漏了 exit leg 消失这一关键发现。
+  fix: Reviewer 独立审查发现 L31 崩塌。结果重新 frame 为 positive finding：general VLA = entry-exit
+    bookend，task-specific fine-tuning = entry-only（exit engagement 是多任务 overhead）。
+- id: M010
+  date: '2026-05-19'
+  category: experiment_design
+  severity: medium
+  summary: 闭环失败归因错误：将 SR=0 归因于模型能力不足，实际是评估环境不兼容
+  root_cause: D074 在 behavioral_smoketest SR=0/3 后结论为"模型闭环性能不足"。D078 在修复 6 个管线 bug
+    后 SR 仍 0/9 再次确认此结论。但官方 checkpoint（报告 SR 80-96%）在同一环境也 SR=0/15，证明问题在评估环境（LIBERO/robosuite
+    版本、camera config、action space convention），不是模型。两次决策都跳过了"用官方 checkpoint 做 sanity
+    check"这一关键验证步骤。
+  prevention: 闭环评估 SR=0 时，在归因于"模型不行"之前，必须用官方 checkpoint 做 sanity check。如果官方 checkpoint
+    也 SR=0，问题在环境不在模型。这是一个 5 分钟的排查步骤，不能跳过。
+  status: active
+  context: behavioral_smoketest SR=0/3 → D074 关闭闭环。closedloop_diagnosis 修 6 bug 后
+    SR=0/9 → D078 再次关闭。official_checkpoint_sr_test SR=0/15 → 证明环境兼容性是根本原因。
+  related_decisions:
+  - D074
+  - D078
+- id: M011
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 在 read-only 探索阶段耗尽 context，零产出（code_phi3v_analysis_pipeline）
+  root_cause: Worker 试图在写代码前完整理解 Phi3V 架构（约 30 次 ssh_read_only），读了大量模型源码后 context
+    溢出，从未进入 ssh_execute 写入/执行阶段。
+  prevention: 当已有同类分析脚本可复用时，Worker prompt 必须明确：(1) 列出已知架构信息，禁止重复探索；(2) 指定"复制现有脚本 →
+    最小改动 → 执行"的路径；(3) 分步执行，先跑核心脚本再扩展。Director 审批时检查 prompt 是否包含足够的已知信息以避免 worker 进入探索循环。
+  status: active
+  context: code_phi3v_analysis_pipeline worker 需要对 TracVLA-Phi3V 做 attention profile
+    分析。项目已有 OpenVLA 的 libero_finetuned_attention_profile.py 可复用，且 checkpoint_verify
+    worker 已确认关键架构参数（32 layers/32 heads/eager attention/output_attentions=True）。但
+    worker prompt 未包含这些信息，导致 worker 从零探索。
+  fix: 替换 Agent 队列指令，明确列出已知架构信息 + 复用现有脚本的重试策略。
+- id: M012
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: 跨架构对比图使用 random-init 数据标为 "LLaMA-2"，LIBERO-finetuned 数据代替 OXE-trained
+  root_cause: Worker 生成图表时未被指定每个条件对应的具体数据文件路径，自行选择了错误数据源：untrained 用全零数组而非 Llama-2
+    base profile，trained 用 LIBERO-finetuned（L31=0）而非 OXE-trained（L31=18）。
+  prevention: 生成论文图表时，prompt 必须明确指定每个条件对应的数据文件路径和预期数据特征（如 L1=24, L31=18），不能让 Worker
+    自行选择数据源。图表生成后必须与正文数据交叉核对。
+  status: active
+  fix: 用方案 A 修图：替换为 Llama-2 base + OXE-trained 实际数据，修正标签。
+- id: M013
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: Cross-architecture 段落中 Phi3V mid-layer heads 范围声称 0-3，实际 0-12；untrained
+    声称 18-32，实际 10-32
+  root_cause: Paper Agent 写入数据时未交叉核对服务器原始 JSON，可能从 Director/Agent 传达的概括性描述中取数（Reviewer
+    早期报告说"0-3"是只看了 L3-L7 子区间），直接作为 L3-L28 全范围写入。
+  prevention: 论文中任何定量声明（head counts / accuracy / p-values）必须标注数据来源文件路径。Paper Agent
+    写入前用 read_project_file 或 ssh_read_only 直接读原始 JSON 核对，不能从自然语言消息中提取数字。
+  status: active
+  fix: '修正为实际范围：trained L3-L28: 0-12 heads，untrained L3-L28: 10-32 heads。'
+- id: M014
+  date: '2026-05-19'
+  category: experiment_design
+  severity: low
+  summary: phi3v_attention_untrained_10tasks 冗余——原"5-task"脚本已用 glob 加载全部 10 tasks
+  root_cause: 未在派 10-task 扩展实验前核对原始脚本的数据加载逻辑。原脚本用 glob("*_demo.hdf5") 无任务过滤，DATA_DIR
+    含 10 个文件，实际已是 10 tasks。
+  prevention: 扩展实验前，先让 Agent 用 ssh_read_only 检查原脚本的数据加载逻辑和实际处理的文件数，确认当前 baseline 后再决定是否需要扩展。
+  status: active
+  fix: 实验结果正确但冗余。更新 registry 元数据：untrained 实验标注 n_tasks=10。
+- id: M015
+  date: '2026-05-21'
+  category: code_bug
+  severity: medium
+  summary: 同一 argparse bug 在 NORA Spatial 上重现（nora_goal 已修过），cuda:1 白空 70 分钟
+  root_cause: nora_goal 的 argparse --conditions bug 修复后，未同步到所有其他 pipeline 脚本（nora_spatial
+    等）。Agent 修了一个文件但没有全局 grep + 批量修复。
+  prevention: 修复 bug 后必须 grep 所有同类脚本确认是否有相同问题，批量修复而非逐个等崩溃。submit_training_job 后 2-3
+    分钟内检查日志确认启动成功，不能只依赖 cron 回调（cron 间隔太长导致发现延迟）。
+  status: active
+  context: nora_goal_full_pipeline 首次因 argparse EXIT_CODE=2 崩溃，修复后提交 v2。但修复只改了 nora_goal
+    脚本，nora_spatial 脚本有完全相同的 bug，导致 nora_spatial_pipeline_v1 启动即崩，cuda:1 空闲 ~70 分钟。
+  fix: Worker 正在修复 nora_spatial argparse 并重提交为 v2。
+- id: M016
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: 论文和 memory 中错误引用 "OpenVLA untrained L1=0/32" 为 base LLM，实际是 random init
+  root_cause: 早期三条件实验（random init / llama2 base / trained）的结果中，random init 的 0/32
+    被误标为 "base LLM" 并写入论文和 memory.md。未核实原始实验的条件定义就引用了数据。
+  prevention: 引用实验数据到论文前，必须验证实验条件定义（checkpoint 路径、模型身份）与论文叙事一致。跨架构对比时明确列出每个 "untrained"
+    的具体模型和训练历史。
+  status: active
+  context: 'OpenVLA Goal 三条件实际结果：random init 0/32, Llama-2 base ~9/32, trained ~25-26/32。论文
+    teaser 图和 introduction 中引用的 "Untrained: zero heads" 指的是 random init 而非 base LLM。'
+- id: M017
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: transformers 5.9.0 breaking change 导致 openvla_spatial pipeline 5.7h 空转
+  root_cause: pip install 时未锁定 transformers 版本，升级到 5.9.0 引入两个 breaking change：(1)
+    AutoModelForVision2Seq 被移除，(2) tie_weights() 签名变更。脚本 import 阶段崩溃，但下载等待脚本掩盖了错误——进程存活但
+    GPU 0% 利用率。
+  prevention: 1. 环境搭建时用 requirements.txt 锁定关键依赖版本（transformers, torch, accelerate）。2.
+    Pipeline 启动后 5 分钟内必须检查 GPU 利用率是否 > 0%，如果持续 0% 立即告警。3. 下载+执行脚本分离：下载完成后先做 dry-run
+    import 验证，再启动 GPU 密集 pipeline。
+  status: active
+  context: openvla_spatial_standardized_v1 checkpoint 已下完 15G，但 pipeline 从未执行。PID
+    594575 存活 5.7h，日志显示 waiting 循环。cuda:0 全程空转。
+  fix: Worker fix:openvla_spatial_pipeline_v2 正在修复两个兼容性问题（AutoModelForVision2Seq →
+    AutoModelForImageTextToText, tie_weights 签名）。修复后重启 pipeline。
+- id: M018
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: Bootstrap v2 有放回抽样后按位置切分导致 train-test 泄漏，11/19 条件 CI 异常
+  root_cause: _bootstrap_single 中对 100 demos 做有放回抽样（bootstrap）再按位置切 80/20 train/test，未去重。有放回抽样后期望仅
+    ~63 unique demos，同一 demo 可同时出现在 train 和 test 中，导致：(1) R² 虚高（leakage）(2) train
+    中 duplicate 稀释 kernel weights 导致 held-out R² 大幅负值
+  prevention: Bootstrap/cross-validation 代码审查 checklist：(1) 有放回抽样后必须检查 train-test
+    是否有重叠 (2) 推荐使用无放回 Monte Carlo cross-validation 而非 bootstrap + positional split
+    (3) 写完 bootstrap 代码后必须验证 boot_mean ≈ canonical_delta，CI 包含 canonical delta (4)
+    发现 CI 异常（点估计落在 CI 外、方向翻转）时立即怀疑 data leakage
+  status: active
+  context: v2 bootstrap 20 条件中 11 条 CI 异常：NORA goal trained CI [0.996, 1.848] 而 canonical
+    Δ=0.455；TracVLA spatial untrained CI 方向翻转。浪费约 5h GPU 时间。Canonical delta 不受影响因为
+    canonical split 使用 permutation 后切分，train/test 不重叠。
+  fix: '方案 A: Monte Carlo Cross-Validation — 无放回随机抽 80 train / 20 test，重复 1000 次。保存为
+    v3 脚本重跑全部 20 条件。'
+- id: M019
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: Paper Table 4 counterfactual Cohen's d 用了 base openvla-7b 数据而非 finetuned
+    模型数据
+  root_cause: 结果目录下有多个 counterfactual 实验输出：counterfactual_10tasks/（base openvla-7b）和
+    libero_goal/counterfactual_combined.json（finetuned）。Paper Agent/Worker 在填表时取了旧版
+    base 模型结果（d=0.98）而非正确的 finetuned 结果（d=1.17）。paper_framing.md 中的 d=1.09 则是混淆了 empty
+    和 shuffled condition。
+  prevention: 论文表格引用实验数据时，必须明确指定数据文件路径并验证模型条件（trained/reference）与表格标注一致。对同一实验有多个输出文件时，在
+    registry 中记录权威文件路径。
+  status: active
+  context: 'OpenVLA-Goal trained Cohen''s d: 实际 empty=1.170, wrong=1.182。Table 4 错误地显示
+    empty=0.98, wrong=0.92（差距约 20%）。影响论文 Table 4 全部 OpenVLA 行的数值以及正文中的 d 范围描述。'
+  fix: 从原始 JSON 确认正确值，派 Paper Agent 更新 Table 4 全部 OpenVLA 数据行、正文 d 范围（0.45-1.52 而非
+    0.45-1.97）、empty 排名描述（6/8 而非 7/8）。
+- id: M020
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Blanket "Untrained→Reference" replacement in figures corrupted random-init
+    labels
+  root_cause: Worker did global string replacement without distinguishing "untrained
+    = random initialization" (0/32 heads) from "untrained = OXE-pretrained reference
+    checkpoint" (24-26/32 heads). The two concepts share the word "untrained" but
+    mean completely different things.
+  prevention: 'When doing global terminology replacements across figures, Director
+    must specify exclusion rules (e.g. "random init stays as is"). Worker must check
+    each figure''s semantic context before replacing, not do blanket find-replace.
+    Add a checklist: for each figure, verify what the label actually refers to before
+    renaming.'
+  status: active
+  context: fig_multi_layer_attn.pdf and fig_32layer_attention.pdf had their "Randomly
+    Initialized" label changed to "Reference VLA", which in paper terminology refers
+    to OXE-pretrained checkpoint. This created a direct contradiction with appendix
+    caption text.
+- id: M021
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 两次删除 Director 明确要求保留的 "first" 关键词
+  root_cause: Agent 精读时按自己的保守判断删除 "first" claim，忽略了 Director 在指令中明确说"我已恢复 first，Reviewer
+    确认事实准确"的上下文
+  prevention: 给 Agent 的写作指令中，对不可修改的内容用 **[DO NOT CHANGE]** 标记。涉及 claim 强度的关键词增删必须由
+    Director 决定，Agent 不得自行调整
+  status: active
+  fix: Director 手动恢复 "a first cross-architecture decomposition"

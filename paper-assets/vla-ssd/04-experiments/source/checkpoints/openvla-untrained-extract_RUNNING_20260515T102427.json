@@ -1,0 +1,32 @@
+{
+  "exp_id": "openvla-untrained-extract",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:07:29.551Z",
+    "updated_at": "2026-05-15T10:24:27.443Z",
+    "spec": {
+      "command": "python scripts/extract_features.py --model_path openvla-7b-untrained --output_dir features/untrained/ --gpu 0 --max_demos 50",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "28155",
+      "log_path": "~/runs/vla-ssd/openvla-untrained-extract.log",
+      "submitted_at": "2026-05-15T10:07:29.545Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_10/",
+      "data_count": "10 tasks x 50 demos x ~250 timesteps",
+      "model_name": "openvla/openvla-7b-untrained (LLM 6.74B random from_config, Vision 0.80B preserved)",
+      "seed": 42,
+      "notes": "transformers 版本差异: 模型期望 4.40.1, 实际 4.57.6。trained/untrained 使用同一版本，对比有效。"
+    }
+  },
+  "timestamp": "2026-05-15T10:24:27.452286+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,19 @@
+Results saved at: /root/autodl-tmp/vla-ssd/results/functional_validation/patch_mean_probe.json
+
+=== Action Probe R² (patch_mean) ===
+clip_patch_mean:  mean_R²=0.591, overall_R²=0.669
+dino_patch_mean:  mean_R²=0.631, overall_R²=0.697
+
+=== DINO RSA (rsa_clip.py methodology) ===
+DINO cls_token RSA:  0.6915 [0.641, 0.740]
+DINO patch_mean RSA: 0.6307 [0.533, 0.704]
+
+=== Bootstrap Pairwise (10000 resamples) ===
+clip_patch_mean vs dino_patch_mean: Δ=-0.040, p=0.0002 (DINO > CLIP)
+clip_patch_mean vs projector:       Δ=-0.039, p<0.001  (projector > CLIP)
+dino_patch_mean vs dino_cls:        Δ=-0.003, p=0.620  (n.s.)
+dino_patch_mean vs projector:       Δ=+0.001, p=0.911  (n.s.)
+clip_patch_mean vs clip_cls:        Δ=+0.004, p=0.644  (n.s.)
+
+=== Key Finding ===
+DINO RSA=0.388 (hardcoded in cka_verification.py/rsa_results.json) used cls_token but a DIFFERENT RSA methodology than rsa_clip.py. Same-method recomputation gives 0.6915 (cls_token) / 0.6307 (patch_mean).

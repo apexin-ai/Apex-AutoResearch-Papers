@@ -1,0 +1,1168 @@
+# diagnose fulllayer action probe status
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_diagnose_fulllayer_action_probe_status_20260516T044354.log`
+- **Structured JSON:** [`20cf29a205a16a6cab0a.json`](../../sessions/20/20cf29a205a16a6cab0a.json)
+
+## Before a recorded user message
+
+24 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3858bb3f-e2c3-496a-8f4e-dfa05f609c72",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778921400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7e3637a0-5b9d-46c6-a849-10452c5b5aa8",
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the status of the `fulllayer_action_probe` experiment on the remote server. I need to use `ssh_read_only` to run the diagnostic commands. Let me first load the tool schema.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "336e848f-6af6-4da3-95f6-cd07831a4522",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMh7x7F5r6W6HnerJEFGm1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11501,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11501
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QpNHfSS9CBH6ShK4JNnFSj`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "b131bd8b-5258-42e4-a0d7-807681514371",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMh7x7F5r6W6HnerJEFGm1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11501,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11501
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T04:44:03.589Z_
+
+<details><summary>↩ Tool result · `toolu_01QpNHfSS9CBH6ShK4JNnFSj`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "497307d5-3a68-4957-bbdc-7c5dcac26835",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L1QQcFychxVRhG5TePib3W`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 700649 -o pid,stat,etime,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "1be9483a-7830-496d-a1a2-8db507df3d2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyW7sWnvHXhJsAK3WUyck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CwoXU6A1d5Q6viWEgGpdKv`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tmux list-sessions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "69bf3e90-48b2-4948-8717-8ecdad2c6b48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyW7sWnvHXhJsAK3WUyck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T04:44:09.526Z_
+
+<details><summary>↩ Tool result · `toolu_01L1QQcFychxVRhG5TePib3W`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "837f21f9-bc74-4354-a836-a3e4e491ea64",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T04:44:09.536Z_
+
+<details><summary>↩ Tool result · `toolu_01CwoXU6A1d5Q6viWEgGpdKv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "6054beff-6dea-43f4-b45f-1ea06f2985c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012E1v9FCoUsKfi97FjQSzAG`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -50 /root/runs/vla-ssd/fulllayer_action_probe.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "bbf01d28-d2ad-491f-b89d-f12508ecc96e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyW7sWnvHXhJsAK3WUyck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VTrHmWp9CXhjvzXBzkkuDb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "0c360468-4003-43fb-b814-3a084e457eb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyW7sWnvHXhJsAK3WUyck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T04:44:10.570Z_
+
+<details><summary>↩ Tool result · `toolu_012E1v9FCoUsKfi97FjQSzAG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  trained/image_mean/L31: mean_R2=0.3803 (14.8s, ep=32)\\n  trained/image_mean/L32: mean_R2=0.5390 (13.4s, ep=17)\\n  trained/last_preaction/L0: mean_R2=-0.3314 (14.9s, ep=10)\\n  trained/last_preaction/L1: mean_R2=0.4403 (18.9s, ep=50)\\n  trained/last_preaction/L2: mean_R2=0.5534 (19.2s, ep=50)\\n  trained/last_preaction/L3: mean_R2=0.5211 (19.2s, ep=50)\\n  trained/last_preaction/L4: mean_R2=0.5604 (19.0s, ep=50)\\n  trained/last_preaction/L5: mean_R2=0.5553 (21.3s, ep=48)\\n  trained/last_preaction/L6: mean_R2=0.5705 (20.5s, ep=42)\\n  trained/last_preaction/L7: mean_R2=0.5788 (18.8s, ep=25)\\n  trained/last_preaction/L8: mean_R2=0.6184 (18.6s, ep=29)\\n  trained/last_preaction/L9: mean_R2=0.6305 (18.3s, ep=24)\\n  trained/last_preaction/L10: mean_R2=0.6590 (18.1s, ep=24)\\n  trained/last_preaction/L11: mean_R2=0.6579 (18.2s, ep=24)\\n  trained/last_preaction/L12: mean_R2=0.6663 (17.2s, ep=15)\\n  trained/last_preaction/L13: mean_R2=0.6779 (17.3s, ep=15)\\n  trained/last_preaction/L14: mean_R2=0.6760 (17.3s, ep=15)\\n  trained/last_preaction/L15: mean_R2=0.6553 (16.6s, ep=9)\\n  trained/last_preaction/L16: mean_R2=0.6581 (16.8s, ep=9)\\n  trained/last_preaction/L17: mean_R2=0.6663 (16.6s, ep=9)\\n  trained/last_preaction/L18: mean_R2=0.6675 (16.8s, ep=9)\\n  trained/last_preaction/L19: mean_R2=0.6711 (16.5s, ep=9)\\n  trained/last_preaction/L20: mean_R2=0.6672 (16.6s, ep=9)\\n  trained/last_preaction/L21: mean_R2=0.6621 (17.1s, ep=9)\\n  trained/last_preaction/L22: mean_R2=0.6711 (16.9s, ep=9)\\n  trained/last_preaction/L23: mean_R2=0.6688 (16.5s, ep=9)\\n  trained/last_preaction/L24: mean_R2=0.6694 (16.6s, ep=9)\\n  trained/last_preaction/L25: mean_R2=0.6736 (16.6s, ep=9)\\n  trained/last_preaction/L26: mean_R2=0.6744 (16.8s, ep=9)\\n  trained/last_preaction/L27: mean_R2=0.6743 (16.9s, ep=9)\\n  trained/last_preaction/L28: mean_R2=0.6471 (16.6s, ep=7)\\n  trained/last_preaction/L29: mean_R2=0.6347 (16.6s, ep=7)\\n  trained/last_preaction/L30: mean_R2=0.6438 (12.0s, ep=7)\\n  trained/last_preaction/L31: mean_R2=0.6300 (11.7s, ep=7)\\n  trained/last_preaction/L32: mean_R2=0.6133 (12.0s, ep=6)\\nStarted untrained on cuda:1\\nPeak trained/image_mean: L8 mean_R2=0.6553\\nPeak trained/last_preaction: L13 mean_R2=0.6779\\nPeak untrained/image_mean: L0 mean_R2=0.6403\\nPeak untrained/last_preaction: L32 mean_R2=0.6093\\n\\n=== Bootstrap Comparisons ===\\n  projector vs trained imgmean peak (L8): delta=-0.0254, CI=[-0.035736515149474166, -0.015673171095550043], p=0.0000\\n  trained(L8) vs untrained(L0) imgmean best-vs-best: delta=0.0149, CI=[0.004007903262972787, 0.025098973140120516], p=0.0060\\n  trained(L13) vs untrained(L32) lastpre best-vs-best: delta=0.0686, CI=[0.047302312329411504, 0.09029129177331918], p=0.0000\\n  same-layer(L8) imgmean: delta=0.1229, CI=[0.0739687946066261, 0.19060997642576696], p=0.0000\\n  same-layer(L13) lastpre: delta=1.0071, CI=[0.7470319014787674, 1.3420179168134927], p=0.0000\\n\\nDone in 19.5 min. Saved to /root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "3b4512b1-8a70-4a46-90ba-583f952ec78c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  trained/image_mean/L31: mean_R2=0.3803 (14.8s, ep=32)\\\\n  trained/image_mean/L32: mean_R2=0.5390 (13.4s, ep=17)\\\\n  trained/last_preaction/L0: mean_R2=-0.3314 (14.9s, ep=10)\\\\n  trained/last_preaction/L1: mean_R2=0.4403 (18.9s, ep=50)\\\\n  trained/last_preaction/L2: mean_R2=0.5534 (19.2s, ep=50)\\\\n  trained/last_preaction/L3: mean_R2=0.5211 (19.2s, ep=50)\\\\n  trained/last_preaction/L4: mean_R2=0.5604 (19.0s, ep=50)\\\\n  trained/last_preaction/L5: mean_R2=0.5553 (21.3s, ep=48)\\\\n  trained/last_preaction/L6: mean_R2=0.5705 (20.5s, ep=42)\\\\n  trained/last_preaction/L7: mean_R2=0.5788 (18.8s, ep=25)\\\\n  trained/last_preaction/L8: mean_R2=0.6184 (18.6s, ep=29)\\\\n  trained/last_preaction/L9: mean_R2=0.6305 (18.3s, ep=24)\\\\n  trained/last_preaction/L10: mean_R2=0.6590 (18.1s, ep=24)\\\\n  trained/last_preaction/L11: mean_R2=0.6579 (18.2s, ep=24)\\\\n  trained/last_preaction/L12: mean_R2=0.6663 (17.2s, ep=15)\\\\n  trained/last_preaction/L13: mean_R2=0.6779 (17.3s, ep=15)\\\\n  trained/last_preaction/L14: mean_R2=0.6760 (17.3s, ep=15)\\\\n  trained/last_preaction/L15: mean_R2=0.6553 (16.6s, ep=9)\\\\n  trained/last_preaction/L16: mean_R2=0.6581 (16.8s, ep=9)\\\\n  trained/last_preaction/L17: mean_R2=0.6663 (16.6s, ep=9)\\\\n  trained/last_preaction/L18: mean_R2=0.6675 (16.8s, ep=9)\\\\n  trained/last_preaction/L19: mean_R2=0.6711 (16.5s, ep=9)\\\\n  trained/last_preaction/L20: mean_R2=0.6672 (16.6s, ep=9)\\\\n  trained/last_preaction/L21: mean_R2=0.6621 (17.1s, ep=9)\\\\n  trained/last_preaction/L22: mean_R2=0.6711 (16.9s, ep=9)\\\\n  trained/last_preaction/L23: mean_R2=0.6688 (16.5s, ep=9)\\\\n  trained/last_preaction/L24: mean_R2=0.6694 (16.6s, ep=9)\\\\n  trained/last_preaction/L25: mean_R2=0.6736 (16.6s, ep=9)\\\\n  trained/last_preaction/L26: mean_R2=0.6744 (16.8s, ep=9)\\\\n  trained/last_preaction/L27: mean_R2=0.6743 (16.9s, ep=9)\\\\n  trained/last_preaction/L28: mean_R2=0.6471 (16.6s, ep=7)\\\\n  trained/last_preaction/L29: mean_R2=0.6347 (16.6s, ep=7)\\\\n  trained/last_preaction/L30: mean_R2=0.6438 (12.0s, ep=7)\\\\n  trained/last_preaction/L31: mean_R2=0.6300 (11.7s, ep=7)\\\\n  trained/last_preaction/L32: mean_R2=0.6133 (12.0s, ep=6)\\\\nStarted untrained on cuda:1\\\\nPeak trained/image_mean: L8 mean_R2=0.6553\\\\nPeak trained/last_preaction: L13 mean_R2=0.6779\\\\nPeak untrained/image_mean: L0 mean_R2=0.6403\\\\nPeak untrained/last_preaction: L32 mean_R2=0.6093\\\\n\\\\n=== Bootstrap Comparisons ===\\\\n  projector vs trained imgmean peak (L8): delta=-0.0254, CI=[-0.035736515149474166, -0.015673171095550043], p=0.0000\\\\n  trained(L8) vs untrained(L0) imgmean best-vs-best: delta=0.0149, CI=[0.004007903262972787, 0.025098973140120516], p=0.0060\\\\n  trained(L13) vs untrained(L32) lastpre best-vs-best: delta=0.0686, CI=[0.047302312329411504, 0.09029129177331918], p=0.0000\\\\n  same-layer(L8) imgmean: delta=0.1229, CI=[0.0739687946066261, 0.19060997642576696], p=0.0000\\\\n  same-layer(L13) lastpre: delta=1.0071, CI=[0.7470319014787674, 1.3420179168134927], p=0.0000\\\\n\\\\nDone in 19.5 min. Saved to /root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  trained/image_mean/L31: mean_R2=0.3803 (14.8s, ep=32)\\n  trained/image_mean/L32: mean_R2=0.5390 (13.4s, ep=17)\\n  trained/last_preaction/L0: mean_R2=-0.3314 (14.9s, ep=10)\\n  trained/last_preaction/L1: mean_R2=0.4403 (18.9s, ep=50)\\n  trained/last_preaction/L2: mean_R2=0.5534 (19.2s, ep=50)\\n  trained/last_preaction/L3: mean_R2=0.5211 (19.2s, ep=50)\\n  trained/last_preaction/L4: mean_R2=0.5604 (19.0s, ep=50)\\n  trained/last_preaction/L5: mean_R2=0.5553 (21.3s, ep=48)\\n  trained/last_preaction/L6: mean_R2=0.5705 (20.5s, ep=42)\\n  trained/last_preaction/L7: mean_R2=0.5788 (18.8s, ep=25)\\n  trained/last_preaction/L8: mean_R2=0.6184 (18.6s, ep=29)\\n  trained/last_preaction/L9: mean_R2=0.6305 (18.3s, ep=24)\\n  trained/last_preaction/L10: mean_R2=0.6590 (18.1s, ep=24)\\n  trained/last_preaction/L11: mean_R2=0.6579 (18.2s, ep=24)\\n  trained/last_preaction/L12: mean_R2=0.6663 (17.2s, ep=15)\\n  trained/last_preaction/L13: mean_R2=0.6779 (17.3s, ep=15)\\n  trained/last_preaction/L14: mean_R2=0.6760 (17.3s, ep=15)\\n  trained/last_preaction/L15: mean_R2=0.6553 (16.6s, ep=9)\\n  trained/last_preaction/L16: mean_R2=0.6581 (16.8s, ep=9)\\n  trained/last_preaction/L17: mean_R2=0.6663 (16.6s, ep=9)\\n  trained/last_preaction/L18: mean_R2=0.6675 (16.8s, ep=9)\\n  trained/last_preaction/L19: mean_R2=0.6711 (16.5s, ep=9)\\n  trained/last_preaction/L20: mean_R2=0.6672 (16.6s, ep=9)\\n  trained/last_preaction/L21: mean_R2=0.6621 (17.1s, ep=9)\\n  trained/last_preaction/L22: mean_R2=0.6711 (16.9s, ep=9)\\n  trained/last_preaction/L23: mean_R2=0.6688 (16.5s, ep=9)\\n  trained/last_preaction/L24: mean_R2=0.6694 (16.6s, ep=9)\\n  trained/last_preaction/L25: mean_R2=0.6736 (16.6s, ep=9)\\n  trained/last_preaction/L26: mean_R2=0.6744 (16.8s, ep=9)\\n  trained/last_preaction/L27: mean_R2=0.6743 (16.9s, ep=9)\\n  trained/last_preaction/L28: mean_R2=0.6471 (16.6s, ep=7)\\n  trained/last_preaction/L29: mean_R2=0.6347 (16.6s, ep=7)\\n  trained/last_preaction/L30: mean_R2=0.6438 (12.0s, ep=7)\\n  trained/last_preaction/L31: mean_R2=0.6300 (11.7s, ep=7)\\n  trained/last_preaction/L32: mean_R2=0.6133 (12.0s, ep=6)\\nStarted untrained on cuda:1\\nPeak trained/image_mean: L8 mean_R2=0.6553\\nPeak trained/last_preaction: L13 mean_R2=0.6779\\nPeak untrained/image_mean: L0 mean_R2=0.6403\\nPeak untrained/last_preaction: L32 mean_R2=0.6093\\n\\n=== Bootstrap Comparisons ===\\n  projector vs trained imgmean peak (L8): delta=-0.0254, CI=[-0.035736515149474166, -0.015673171095550043], p=0.0000\\n  trained(L8) vs untrained(L0) imgmean best-vs-best: delta=0.0149, CI=[0.004007903262972787, 0.025098973140120516], p=0.0060\\n  trained(L13) vs untrained(L32) lastpre best-vs-best: delta=0.0686, CI=[0.047302312329411504, 0.09029129177331918], p=0.0000\\n  same-layer(L8) imgmean: delta=0.1229, CI=[0.0739687946066261, 0.19060997642576696], p=0.0000\\n  same-layer(L13) lastpre: delta=1.0071, CI=[0.7470319014787674, 1.3420179168134927], p=0.0000\\n\\nDone in 19.5 min. Saved to /root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T04:44:11.164Z_
+
+<details><summary>↩ Tool result · `toolu_01VTrHmWp9CXhjvzXBzkkuDb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "0408a99c-793d-48d8-9a2b-c9b4160b027b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K8vCEYaRLSt251brhLdWdj`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "d70bd4f4-7f97-4acd-90a8-6e38de9ff11e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyW7sWnvHXhJsAK3WUyck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GmN5NwuQN5JoBDtTy7RpwE`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/action_probe/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "f5a0c3a2-39bc-452a-8898-b5d0bdbc6d8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyW7sWnvHXhJsAK3WUyck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T04:44:11.832Z_
+
+<details><summary>↩ Tool result · `toolu_01K8vCEYaRLSt251brhLdWdj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 0 %\\n1, 0 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "b3e937c0-cf88-4964-91a8-33677e148be5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 0 %\\\\n1, 0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 0 %\\n1, 0 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CpN1HXvTZWX95zm736crCq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/vla-ssd/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "99638878-6e2e-4025-b2ff-5fccf4ddbd92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyW7sWnvHXhJsAK3WUyck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T04:44:12.372Z_
+
+<details><summary>↩ Tool result · `toolu_01GmN5NwuQN5JoBDtTy7RpwE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/vla-ssd/results/action_probe/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "e0ec0ccc-54a4-4221-8f48-f7c0fe36ac58",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/vla-ssd/results/action_probe/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/vla-ssd/results/action_probe/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T04:44:12.903Z_
+
+<details><summary>↩ Tool result · `toolu_01CpN1HXvTZWX95zm736crCq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 5 root root   97 May 15 23:24 .\\ndrwxr-xr-x 7 root root 4096 May 16 11:41 ..\\ndrwxr-xr-x 3 root root   39 May 15 22:35 trained_dryrun\\ndrwxr-xr-x 3 root root   39 May 15 22:37 trained_dryrun_pca1024\\ndrwxr-xr-x 4 root root   63 May 15 23:29 trained_pca1024\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "fd439e0e-4636-4cb6-8936-bcb566cf598a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 5 root root   97 May 15 23:24 .\\\\ndrwxr-xr-x 7 root root 4096 May 16 11:41 ..\\\\ndrwxr-xr-x 3 root root   39 May 15 22:35 trained_dryrun\\\\ndrwxr-xr-x 3 root root   39 May 15 22:37 trained_dryrun_pca1024\\\\ndrwxr-xr-x 4 root root   63 May 15 23:29 trained_pca1024\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 5 root root   97 May 15 23:24 .\\ndrwxr-xr-x 7 root root 4096 May 16 11:41 ..\\ndrwxr-xr-x 3 root root   39 May 15 22:35 trained_dryrun\\ndrwxr-xr-x 3 root root   39 May 15 22:37 trained_dryrun_pca1024\\ndrwxr-xr-x 4 root root   63 May 15 23:29 trained_pca1024\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XJ5iLVKCpJVdfemcubsz5n`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "5422955a-3cb0-4bc9-9980-427b124b0b7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXQCWXcGAkkoQ2USA3Rx4o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3169,
+      "cache_read_input_tokens": 23833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3169
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T04:44:16.088Z_
+
+<details><summary>↩ Tool result · `toolu_01XJ5iLVKCpJVdfemcubsz5n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 120236 May 16 12:10 /root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "b598ac9c-ee31-4f4e-87fd-d7390ccacab3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 120236 May 16 12:10 /root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 120236 May 16 12:10 /root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+**结论：DONE** — 进程已正常完成。
+
+| 项目 | 状态 |
+|------|------|
+| PID 700649 | 已退出（不在进程表中） |
+| 退出码 | `EXIT_CODE=0`（成功） |
+| 运行时长 | 19.5 分钟 |
+| GPU | 两块 GPU 均已释放（0 MiB / 0% 利用率） |
+| 结果文件 | `/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json`（120KB，写入时间 12:10） |
+
+### 实验结果摘要
+
+**Trained model probing（33层，L0-L32）：**
+- `image_mean` peak: **L8, R²=0.6553**
+- `last_preaction` peak: **L13, R²=0.6779**
+
+**Untrained model probing：**
+- `image_mean` peak: **L0, R²=0.6403**
+- `last_preaction` peak: **L32, R²=0.6093**
+
+**Bootstrap 对比（全部显著）：**
+- trained(L8) vs untrained(L0) image_mean: delta=+0.0149, p=0.006
+- trained(L13) vs untrained(L32) last_preaction: delta=+0.0686, p<0.0001
+- same-layer(L8) image_mean trained vs untrained: delta=+0.1229, p<0.0001
+- same-layer(L13) last_preaction trained vs untrained: delta=+1.0071, p<0.0001
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "uuid": "56ab1fa7-b6db-4acf-a3dc-3ff4dd40169d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Harb7vCDXwntWsoko8tNbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 27002,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 245
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 24_
+
+**结论：DONE** — 进程已正常完成。
+
+| 项目 | 状态 |
+|------|------|
+| PID 700649 | 已退出（不在进程表中） |
+| 退出码 | `EXIT_CODE=0`（成功） |
+| 运行时长 | 19.5 分钟 |
+| GPU | 两块 GPU 均已释放（0 MiB / 0% 利用率） |
+| 结果文件 | `/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json`（120KB，写入时间 12:10） |
+
+### 实验结果摘要
+
+**Trained model probing（33层，L0-L32）：**
+- `image_mean` peak: **L8, R²=0.6553**
+- `last_preaction` peak: **L13, R²=0.6779**
+
+**Untrained model probing：**
+- `image_mean` peak: **L0, R²=0.6403**
+- `last_preaction` peak: **L32, R²=0.6093**
+
+**Bootstrap 对比（全部显著）：**
+- trained(L8) vs untrained(L0) image_mean: delta=+0.0149, p=0.006
+- trained(L13) vs untrained(L32) last_preaction: delta=+0.0686, p<0.0001
+- same-layer(L8) image_mean trained vs untrained: delta=+0.1229, p<0.0001
+- same-layer(L13) last_preaction trained vs untrained: delta=+1.0071, p<0.0001
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 24853,
+  "duration_api_ms": 24657,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "2498a543-8d0c-4ab2-a8c3-aa2dbec9b0ac",
+  "total_cost_usd": 0.1743425,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 15406,
+    "cache_read_input_tokens": 86018,
+    "output_tokens": 1342,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15406,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 448,
+        "cache_read_input_tokens": 27002,
+        "cache_creation_input_tokens": 245,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 245
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1366,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001456,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1342,
+      "cacheReadInputTokens": 86018,
+      "cacheCreationInputTokens": 15406,
+      "webSearchRequests": 0,
+      "costUSD": 0.1728865,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "562fa913-1383-4fd2-af48-6114fda2e6e4"
+}
+```
+
+</details>
+
+---

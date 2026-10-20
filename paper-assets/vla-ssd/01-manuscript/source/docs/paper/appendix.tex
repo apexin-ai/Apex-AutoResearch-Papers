@@ -1,0 +1,1286 @@
+\clearpage
+\appendix
+
+\section{Supplementary Material}
+\label{sec:appendix}
+
+Unless noted otherwise, all analyses use OpenVLA-7B (\texttt{openvla/openvla-7b} on HuggingFace) evaluated on LIBERO-Goal (10 tasks $\times$ 50 demonstrations, $N = 63{,}228$ observations after excluding terminal frames).
+Model conditions, representation extraction, metric definitions, and probe architectures follow \S\ref{sec:method}.
+Cross-suite experiments (\S\ref{sec:cross_benchmark_appendix}) use LIBERO-Spatial with the same protocol (10 tasks $\times$ 50 demonstrations).
+All experiments ran on 2$\times$ NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs (96\,GB each); random seed is 42 unless stated otherwise.
+
+\subsection{Architecture Summary}
+Architecture details are provided in Table~\ref{tab:arch_overview} (main text).
+
+\subsection{OpenVLA-Specific Analysis Methods}
+\label{sec:openvla_methods_appendix}
+
+Three additional analyses are applied to OpenVLA to characterize instruction encoding and representational geometry.
+
+\paragraph{Cross-instruction probes.}
+Each visual frame is paired with all 10 LIBERO-Goal task instructions, producing 10 representation vectors per frame per layer.
+A 10-way linear classifier identifies which instruction was present, applied separately at image\_mean and readout, with leave-one-out cross-validation (LOOCV) over 10 folds.
+
+\paragraph{Representational similarity analysis (RSA).}
+RSA~\cite{kriegeskorte2008} quantifies geometric alignment between representations and the action space.
+For each task, we compute pairwise representational dissimilarity matrices (RDMs) using cosine distances for representations and Euclidean distances for 7-D action vectors, from within-task observation pairs across 50 demonstrations.
+Alignment is measured via Spearman $\rho$ between upper-triangular RDM entries; we report mean $\rho$ across 10 tasks with 95\% confidence intervals from 10{,}000 bootstrap resamples at the task level~\cite{nili2014toolbox}.
+We prefer RSA over CKA~\cite{kornblith2019}: RSA captures relative distance structure via scale-invariant rank correlation, suited to comparing high- and low-dimensional spaces (4{,}096-D vs.\ 7-D), while CKA measures global subspace overlap that can remain high when geometric structure differs.
+Both metrics are reported in \S\ref{sec:cka_appendix}; their divergence (\S\ref{sec:routing_synthesis}) confirms that neither alone fully characterizes representational structure.
+
+\paragraph{External baselines.}
+DINOv2 ViT-L/14~\cite{oquab2024_dinov2} (\texttt{cls\_token}/\texttt{patch\_mean}) and CLIP ViT-L/14~\cite{radford2021_clip} (\texttt{patch\_mean}) provide self-supervised and vision-language pretrained reference points for probing and RSA.
+
+\subsection{OpenVLA Single-Architecture Deep Dive}
+\label{sec:openvla_deepdive_appendix}
+
+This section provides the full single-architecture analysis summarized in \S\ref{sec:openvla_routing}.
+
+\paragraph{Cross-instruction probes.}
+Cross-instruction probes validate the analysis framework on OpenVLA~\cite{kim2024_openvla}: as predicted by the causal mask, image\_mean instruction classification stays at chance ($10\%$) across all 32 layers in all conditions (full profile in \S\ref{sec:dense_routing}).
+Trained readout achieves $100\%$ 10-way classification from L1 onward and maintains this through L31 (LOOCV-confirmed; \S\ref{sec:loocv}).
+Reference readout also reaches $100\%$ at L1 but decays to $82\%$ by L31; the readout token is thus the primary multimodal integration site, and instruction encoding remains stable across depth in the trained model.
+All patterns reproduce with a linear probe (\S\ref{sec:linear_probe}).
+
+\paragraph{L1 attention gradient.}
+At L1, three conditions form a gradient of instruction attention: randomly initialized networks allocate 0/32 instruction-dominant heads ($11.7\%$ text attention, $1.5\times$ text-to-image ratio), Llama-2 base~\cite{touvron2023_llama2} allocates 9/32 ($36.5\%$), and VLA-trained allocates 24/32 ($57.7\%$, $38.2\times$ text-to-image ratio; \S\ref{sec:attention_decomp}).
+The 32-layer attention profile reveals qualitatively distinct organizations: Llama-2 base concentrates instruction attention at mid-depth (L9--L16: 15--22 heads), while VLA fine-tuning produces an entry-exit bookend pattern with L0--L1 at 21--24 heads, L31 at 18, and intermediate layers at 0--11 (\S\ref{sec:threshold_sensitivity}).
+Head counts are computed at a $50\%$ threshold; sensitivity analysis ($30\%$--$70\%$) confirms ordering robustness.
+A fourth condition, OpenVLA fine-tuned on LIBERO, preserves L1 entry concentration (22/32 heads) but loses L31 exit re-engagement entirely (0 vs.\ 18 heads for the OXE-pretrained model), consistent with exit-layer attention serving multi-task flexibility rather than task-specific routing.
+The redistribution beyond Llama-2 base priors is consistent with VLA fine-tuning being associated with instruction routing beyond what is inherited from language-model attention.
+
+\paragraph{Counterfactual perturbation.}
+Four perturbation types across 10 LIBERO-Goal tasks produce large action divergence: wrong task ($d = 1.182$), empty instruction ($1.170$), shuffled tokens ($1.096$), paraphrased ($0.996$).
+All four conditions yield $d \geq 1.0$, with ``wrong'' slightly exceeding ``empty.''
+The effect replicates across LIBERO-Spatial (10 tasks): empty $1.173$, shuffled $0.979$, wrong $0.885$, paraphrased $0.807$ (Table~\ref{tab:counterfactual_spatial}).
+Across both suites (20 tasks), the gradient spans $d = 0.81$--$1.18$.
+Spatial instructions differ only in prepositions, yet wrong-task perturbation still produces $d = 0.885$; instruction-dominant heads route fine-grained spatial information, not merely task identity.
+
+\paragraph{Dose-response ablation.}
+Dose-response ablation of L1 instruction-dominant heads produces monotonic trajectory divergence: $d$ rises from $0.482$ to $0.639$ as 4--32 heads are progressively ablated, with steep increase through 12 heads and plateau beyond 20 (\S\ref{sec:action_trajectory}).
+Ablating all 24 instruction-dominant heads alters $72.3\%$ of action tokens (token-level $d = 0.65$, trajectory-level $d = 2.943$); control ablation of 8 random heads yields $d = 0.41$ ($29.3\%$ tokens affected), concentrated on the gripper dimension.
+The routing effect is task-dependent: instruction-discriminative tasks show $2.5\times$ larger $|\Delta R^2|$ under L1 ablation than visually-sufficient tasks ($p = 0.033$; \S\ref{sec:task_complexity}).
+
+\paragraph{$R^2$ localization.}
+$R^2$ action probing localizes training effects: trained readout peaks at $R^2 = 0.678$ (L13), reference readout peaks at $0.609$ (L32), and the training effect concentrates at the readout ($+0.069$) rather than at image\_mean ($+0.015$; \S\ref{sec:action_r2_threecond}).
+These effects survive Bonferroni correction across all 63 tests (\S\ref{sec:bonferroni_correction}).
+
+\subsection{Counterfactual Sensitivity Details}
+\label{sec:cf_details_appendix}
+
+\begin{table}[h]
+\caption{\textbf{Counterfactual sensitivity summary.} Cohen's $d$ range and most sensitive perturbation for action-producing models (OpenVLA, TraceVLA). NORA uses cosine distance on representations (different scale; \S\ref{sec:cf_repr}).}
+\label{tab:cf_summary}
+\small
+\centering
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}llcl@{}}
+\toprule
+\textbf{Architecture} & \textbf{$d$ range} & \textbf{Most sensitive} & \textbf{Metric} \\
+\midrule
+OpenVLA & 0.45--1.21 & empty (2/4) & Cohen's $d$ \\
+TraceVLA & 0.97--1.52 & empty (4/4) & Cohen's $d$ \\
+\midrule
+NORA    & 0.28--sat. & --- & cosine dist.$^{a}$ \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^{a}$Representation-space only; not comparable to Cohen's $d$.}\\
+\multicolumn{4}{l}{\footnotesize Empty ranks first in 6/8 cells across both architectures.}\\
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:counterfactual} reports per-condition counterfactual rankings for all eight cells where Cohen's $d$ is available.
+
+\begin{table}[h]
+\centering
+\caption{Counterfactual condition ranking for trained models (Cohen's $d$; higher $=$ greater action divergence under instruction perturbation). Conditions: E $=$ empty instruction, W $=$ wrong task, S $=$ shuffled tokens, P $=$ paraphrased. ``Empty'' ranks first in 6 of 8 cells; OpenVLA Goal (``wrong'' first) and Long (``shuffled'' first) are the exceptions. NORA cells use cosine distance and are reported in \S\ref{sec:cf_sensitivity}.}
+\label{tab:counterfactual}
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Arch.} & \textbf{Suite} & \textbf{1st} & \textbf{2nd} & \textbf{3rd} & \textbf{4th} \\
+\midrule
+OpenVLA & Goal    & W\,1.18 & E\,1.17 & S\,1.10 & P\,1.00 \\
+OpenVLA & Spatial & E\,1.17 & S\,0.98 & W\,0.89 & P\,0.81 \\
+OpenVLA & Object  & E\,1.21 & W\,1.19 & S\,1.12 & P\,0.90 \\
+OpenVLA & Long    & S\,0.57 & W\,0.55 & E\,0.51 & P\,0.45 \\
+\midrule
+TraceVLA & Goal    & E\,1.52 & W\,1.40 & S\,1.34 & P\,1.21 \\
+TraceVLA & Spatial & E\,1.33 & S\,1.30 & P\,1.18 & W\,1.17 \\
+TraceVLA & Object  & E\,1.21 & S\,1.16 & W\,1.06 & P\,0.97 \\
+TraceVLA & Long    & E\,1.47 & W\,1.42 & S\,1.39 & P\,1.16 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Metric constraints on trained--reference comparison.}
+Trained models produce action outputs, enabling Cohen's $d$ on action MSE (OpenVLA, TraceVLA) or cosine distance on action tokens (NORA).
+Reference VLMs (Phi-3-Vision, Qwen2.5-VL) do not generate actions; their sensitivity is measured via cosine distance on hidden representations, a metric with different scale, units, and distributional properties.
+Ratios between Cohen's $d$ and cosine distance are therefore methodologically invalid, and we do not report cross-metric amplification factors.
+Qualitatively, reference VLMs show weak sensitivity: the TraceVLA reference (Phi-3-Vision) produces peak cosine distances of $0.15$--$0.19$; the NORA reference (Qwen2.5-VL) yields $0.081$ on Goal.
+
+\paragraph{NORA details.}
+NORA Goal produces saturated exit-layer cosine distances of $1.0$ for all conditions, with differentiation visible only at earlier layers (L24: wrong $= 0.123$, empty $= 0.098$).
+NORA Spatial produces a peak cosine distance of $0.275$ for the ``wrong'' condition.
+
+\subsection{CKA Analysis Method}
+\label{sec:cka_appendix}
+
+We employ Centered Kernel Alignment (CKA)~\cite{kornblith2019} alongside RSA as a complementary perspective.
+While RSA captures local geometric alignment via rank-order preservation, CKA measures global representational similarity through kernel-based comparisons.
+
+We compute both \emph{linear CKA}, which uses a linear kernel and is sensitive to second-order statistics, and \emph{RDM kernel CKA}, which operates on the same distance matrices as RSA but aggregates them differently.
+Using both variants tests whether conclusions about representation structure are robust to the choice of similarity metric.
+
+Linear CKA between high-dimensional representations (4{,}096-D for LLM layers) and the 7-D action space is subject to a known dimension mismatch: the linear kernel in the low-dimensional space may not capture the same structure as in the high-dimensional space.
+RDM kernel CKA avoids this issue by operating on distance matrices of equal size regardless of the original feature dimensionality.
+
+\subsection{Metric Sensitivity: RSA versus CKA}
+Linear CKA~\cite{kornblith2019} reverses the RSA ordering: reference LLM ($\text{CKA} = 0.089$) $>$ trained LLM ($0.083$) $>$ DinoSigLIP+Projector ($0.081$) $>$ DINOv2 ($0.066$), partially inverting the self-supervised advantage (Figure~\ref{fig:metric_comparison}).
+RDM kernel CKA partially resolves this discrepancy: trained ($0.260$) $\approx$ Projector ($0.257$) $>$ reference ($0.246$) $>$ DINOv2 ($0.241$).
+This divergence reflects the known sensitivity of representation similarity metrics to different geometric properties.
+
+At the per-layer level, linear CKA between image\_mean and the action space rises monotonically from L0 ($0.081$) to L32 ($0.098$), with no inverted-U pattern.
+RSA captures rank-order geometric alignment; CKA captures global linear structure.
+The dissociation indicates that the geometric refinement in early layers operates on the relative arrangement of representations (affecting RSA) without altering the overall covariance structure (captured by CKA).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig6.pdf}
+\caption{Three similarity metrics across representation sources. \textbf{(a)}~RSA ranks DINOv2 cls ($0.692$) $>$ Fused ($0.634$) $>$ Projector ($0.615$). \textbf{(b)}~Linear CKA reverses the ordering: Reference ($0.089$) $>$ Trained ($0.083$) $>$ Projector ($0.081$) $>$ DINOv2 ($0.066$). \textbf{(c)}~RDM kernel CKA: Trained ($0.260$) $\approx$ Projector ($0.257$) $>$ Reference ($0.246$) $>$ DINOv2 ($0.241$). The metric divergence underscores that RSA and CKA capture different aspects of representational structure.}
+\label{fig:metric_comparison}
+\end{figure}
+
+\subsection{Branch-Split Detailed Analysis}
+To disentangle the contributions of the two encoder streams within DinoSigLIP, we extract representations from the DINOv2 branch (1{,}024-D) and SigLIP branch (1{,}152-D) separately before fusion.
+The two branches yield near-identical RSA: DINOv2 branch $\rho = 0.619$, SigLIP branch $\rho = 0.621$.
+Fusion produces a representation ($\rho = 0.634$) that exceeds either branch alone; concatenation captures complementary structure.
+The MLP projector then compresses this signal: DinoSigLIP+Projector achieves $\rho = 0.615$, a drop of $\Delta = 0.019$ from the fused 2{,}176-D input.
+
+\subsection{RSA Across Representation Sources}
+Figure~\ref{fig:rsa_bar} shows RSA with the action space across all representation sources; the ordering matches the RSA results reported in \S\ref{sec:routing_synthesis}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig2.pdf}
+\caption{RSA with the action space ($\rho$) across representation sources. Self-supervised DINOv2 \texttt{cls\_token} ($\rho{=}0.692$) achieves the highest geometric alignment. CLIP ($0.557$) yields the weakest alignment among pretrained encoders. Error bars: 95\% bootstrap CIs.}
+\label{fig:rsa_bar}
+\end{figure}
+
+\subsection{Per-Layer RSA Profiles}
+% Figure promoted to main text (Figure~\ref{fig:rsa_perlayer} in \S\ref{sec:cross_arch_analyses}).
+The per-layer RSA profile (Figure~\ref{fig:rsa_perlayer} in main text) extends Figure~\ref{fig:r2_collapse} by adding readout and reference profiles.
+
+\subsection{Per-Layer Action Decoding Across Training Stages}
+\label{sec:action_r2_threecond}
+
+Figure~\ref{fig:action_r2_threecond} compares per-layer action probe $R^2$ across three training stages (randomly initialized, Llama-2 base, VLA-trained) using 50 demonstrations per task, averaged over 3 seeds (mean $\pm$ std).
+All three conditions share L0 representations ($R^2 = 0.645 \pm 0.008$); subsequent differences thus arise from Transformer processing rather than input variation.
+The trained model peaks at L9 ($R^2 = 0.643 \pm 0.014$), consistent with progressive specialization for action-relevant feature integration.
+Llama-2 base shows a steady decline (L0: $0.645 \to$ L31: $0.557$, std $0.003$--$0.028$), consistent with stable but unspecialized processing.
+The randomly initialized model exhibits high cross-seed variance and deep-layer collapse, with negative $R^2$ and bimodal behavior across seeds at late layers; this instability indicates that randomly initialized Transformer layers produce destructive interference on action-relevant structure.
+Random weights at intermediate layers produce anti-correlated representations ($R^2 < 0$, L10--L11), consistent with randomly initialized networks lacking structured computation.
+The three-condition gradient (trained $>$ Llama-2 base $>$ randomly initialized) holds from L1 through L15, with a reversal at L32 where trained $R^2$ drops below the pretrained baseline.
+The qualitative pattern is consistent across all 3 seeds.
+Three conditions show substantial agreement in layer-wise $R^2$ ordering (Kendall's $W = 0.72$, $\chi^2 = 68.99$, $p < 0.001$).
+
+% Figure promoted to main text (Figure~\ref{fig:action_r2_threecond} in \S\ref{sec:openvla_routing}).
+
+\subsection{Random-Subset Ablation Details}
+To evaluate whether the ablation effect in \S\ref{sec:openvla_routing} is specific to instruction-dominant heads, we compare dominant-head ablation against 30 random subsets of 24/32 L1 heads (each subset drawn without replacement).
+Dominant-head ablation increases action $R^2$ by $+0.030$ (within-experiment baseline $0.524$), while random subsets yield a mean increase of $+0.071 \pm 0.013$ (Figure~\ref{fig:random_subset_ablation}).
+The dominant-head effect falls below all 30 random subsets ($z = -3.11$, percentile $= 0\%$); heads with higher instruction-attention fraction carry more organized attention signals, consistent with graded rather than binary specialization.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\columnwidth]{figures/fig_specificity_bootstrap_30seeds.pdf}
+\caption{$R^2$ increase from ablating 24/32 L1 heads. Gray bars: 30 random subsets; red line: dominant-24 heads ($+0.030$). Random subsets yield larger gains (mean $+0.071 \pm 0.013$; $z = -3.11$, percentile $= 0\%$), consistent with graded attention specialization across L1 heads.}
+\label{fig:random_subset_ablation}
+\end{figure}
+
+\subsection{Action Trajectory Analysis Details}
+\label{sec:action_trajectory}
+
+Table~\ref{tab:action_shift_perdim} reports per-dimension mean absolute shift for instruction-dominant (24 heads) and control (8 heads) L1 ablations.
+Both conditions produce negligible shifts on translational dimensions ($dx$, $dy$, $dz$ $< 0.01$) and small rotational shifts ($rx$, $ry$, $rz$ $< 0.04$).
+The gripper dimension absorbs the majority of the effect: instruction-head ablation shifts gripper predictions by $0.291$ (control: $0.141$), consistent with L1 attention influencing discrete open/close decisions.
+
+Per-task Cohen's $d$ values for instruction-head ablation are $0.43$, $0.69$, $0.70$, $0.70$, and $0.73$ (mean $0.65$), with all tasks significant ($p < 10^{-10}$).
+Token-level KL divergence between original and ablated action distributions is $5.08$ for instruction heads and $1.69$ for control heads.
+
+\paragraph{Trajectory-level aggregation.}
+Aggregating per-demo mean actions to the trajectory level reveals that token-level $d$ values are conservative: within-trajectory averaging reduces noise, yielding ${\sim}4\times$ larger effect sizes (mean token-to-trajectory ratio $0.245$).
+Instruction-head ablation ($N = 50$: 5 tasks $\times$ 10 demos) yields trajectory $d = 2.943$ (95\% CI $[2.469, 3.707]$); bottom-24 non-instruction heads ($N = 30$) yield $d = 2.347$ (CI $[1.854, 3.221]$).
+All 14 conditions produce trajectory $d > 2.0$ with CI lower bounds $> 1.7$.
+Counterfactual trajectory-level $d$ (10 LIBERO-Goal tasks, $N = 100$): wrong $3.798$ (CI $[3.194, 4.938]$), empty $3.438$ ($[2.921, 4.448]$), shuffled $2.595$ ($[2.028, 3.791]$), paraphrased $2.131$ ($[1.740, 2.819]$).
+Token-level $d$ underestimates trajectory-level effects by ${\times}3.1$--$4.5$, consistent with within-trajectory averaging reducing noise.
+Fine-grained ordering is not reliably distinguished at trajectory level ($N = 100$); token-level comparisons ($N {\sim} 5{,}000$) provide higher resolution for ordering claims.
+
+\paragraph{Ground-truth action error.}
+Ablation redirects model outputs ($d = 0.65$) but does not systematically increase error relative to expert demonstrations: original MSE $= 0.498$; top-24 instruction-head ablation MSE $= 0.497$ ($\Delta = -0.001$, Wilcoxon $p = 0.52$, n.s.); bottom-24 non-instruction heads MSE $= 0.506$ ($\Delta = +0.008$).
+Changes concentrate on the gripper dimension; translation and rotation dimensions are negligibly affected.
+Per-task breakdown shows all $|\Delta\text{MSE}| < 3\%$ of baseline with all $p > 0.27$; the near-zero aggregate $\Delta$ reflects uniformly small per-task effects rather than cancellation across tasks.
+This is consistent with the information-computation dissociation: instruction-dominant heads control instruction-specific direction selection rather than action precision.
+
+Table~\ref{tab:perhead_bootstrap} reports per-head bootstrap CIs ($10{,}000$ resamples).
+Individual control heads produce ${\sim}1.9\times$ stronger effects ($d = 0.051$) than instruction heads ($d = 0.027$, $p = 0.0018$), consistent across all 5 tasks.
+The 24 instruction heads nonetheless produce a larger aggregate perturbation ($d = 0.65$ vs.\ $0.41$), consistent with collective coordination rather than individual strength.
+
+\begin{table}[h]
+\centering
+\caption{Per-head bootstrap analysis of L1 ablation effects. Instruction heads are individually weaker but collectively stronger, consistent with coordinated attention redistribution.}
+\label{tab:perhead_bootstrap}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Group} & \textbf{$N$ heads} & \textbf{Collective $d$} & \textbf{Per-head $d$ [95\% CI]} \\
+\midrule
+Instruction-dominant & 24 & 0.65 & 0.027 [0.026, 0.029] \\
+Control & 8 & 0.41 & 0.051 [0.048, 0.055] \\
+\midrule
+Difference & --- & --- & 0.024, $p = 0.0018$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Instruction-head ablation produces more uniform perturbation across action dimensions (CV${}=1.30$ vs.\ control CV${}=2.74$, permutation $p = 0.016$), consistent with structured, language-conditioned computation rather than diffuse noise.
+
+Table~\ref{tab:dose_response} reports the dose-response data for instruction-head ablation at L1 (Figure~\ref{fig:synthesis_panels} in main text).
+Trajectory divergence increases monotonically from $d = 0.482$ (4 heads) to $d = 0.639$ (32 heads), with steep rise through 12 heads, plateau at 16--20, and slow increase at 20--32.
+
+\begin{table}[h]
+\centering
+\caption{Dose-response data for L1 instruction-head ablation. Cohen's $d$ vs.\ original action sequence; 95\% bootstrap CIs ($10{,}000$ resamples).}
+\label{tab:dose_response}
+\small
+\begin{tabular}{rcc}
+\toprule
+\textbf{Heads ablated} & \textbf{Cohen's $d$} & \textbf{95\% CI} \\
+\midrule
+4 & 0.482 & [0.449, 0.511] \\
+8 & 0.508 & [0.479, 0.541] \\
+12 & 0.560 & [0.529, 0.593] \\
+16 & 0.592 & [0.559, 0.625] \\
+20 & 0.593 & [0.559, 0.627] \\
+24 & 0.611 & [0.578, 0.645] \\
+28 & 0.619 & [0.587, 0.654] \\
+32 & 0.639 & [0.603, 0.671] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Counterfactual instruction analysis across all 10 LIBERO-Goal tasks. Jaccard: token overlap with original instruction; Cohen's $d$: mean across 10 tasks. ``Wrong'' slightly exceeds ``empty'' ($d = 1.182$ vs.\ $1.170$); all four conditions produce large effects ($d \geq 1.0$). L1 ablation included for comparison.}
+\label{tab:counterfactual_goal}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Condition} & \textbf{Jaccard} & \textbf{Cohen's $d$} \\
+\midrule
+Empty (no instruction) & 0.000 & 1.170 \\
+Wrong (different task) & 0.174 & 1.182 \\
+Shuffled (random order) & 1.000 & 1.096 \\
+Paraphrased & 0.533 & 0.996 \\
+\midrule
+L1 ablation (24 heads) & --- & 0.650 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Mean absolute action shift per dimension under L1 head ablation. Instruction: 24 dominant heads; Control: 8 remaining heads. Gripper shift dominates both conditions.}
+\label{tab:action_shift_perdim}
+\small
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Condition} & \textbf{$dx$} & \textbf{$dy$} & \textbf{$dz$} & \textbf{$rx$} & \textbf{$ry$} & \textbf{$rz$} & \textbf{Gripper} \\
+\midrule
+Instruction (24) & 0.002 & 0.005 & 0.008 & 0.021 & 0.031 & 0.034 & 0.291 \\
+Control (8) & 0.000 & 0.001 & 0.002 & 0.008 & 0.014 & 0.018 & 0.141 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Pretrained LLM Representation Quality Under Visual Input}
+A potential concern with the three-condition comparison (\S\ref{sec:arch_data}) is that the pretrained Llama-2 backbone never encountered projected visual tokens during pretraining, so its representations of such input could be degenerate.
+We evaluate three diagnostics to assess representation quality.
+Activation magnitude grows from $16.5$ (L0) to $90.2$ (L31) for Llama-2 base, compared to $16.5 \to 51.7$ for the VLA-trained model; the pretrained LLM produces larger but non-exploding activations with no evidence of collapse.
+Per-layer cosine similarity between L0 and deeper layers decreases progressively from $1.0$ to $\approx 0.28$ at L25, consistent with gradual differentiation rather than catastrophic out-of-distribution behavior.
+Top-10 principal component variance explained remains stable across all layers ($0.59$--$0.74$), with no low-rank collapse.
+These diagnostics indicate that the pretrained LLM produces structured, full-rank representations of visual input despite never encountering projected visual tokens during pretraining (Figure~\ref{fig:ood_diagnostics}). These results support the validity of the three-condition comparison.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_ood_diagnostics.pdf}
+\caption{Pretrained LLM representation diagnostics under visual input. Left: activation magnitude across layers (Llama-2 base vs.\ VLA-trained). Center: cosine similarity between L0 and deeper layers. Right: top-10 PC variance explained. All three metrics indicate structured, non-degenerate representations.}
+\label{fig:ood_diagnostics}
+\end{figure}
+
+\subsection{Probe Architecture Sensitivity}
+\label{sec:linear_probe}
+
+To rule out that our findings depend on MLP probe capacity ($N/\text{params} \approx 0.06$, overparameterized), we replicate the per-layer analysis with a linear probe ($4{,}096 \to 7$, $N/\text{params} \approx 2.2$).
+The inverted-U pattern reproduces: trained image\_mean peaks at L14 ($R^2 = 0.565$), while the reference declines monotonically from L0 ($R^2 = 0.517$).
+The trained--reference gap is larger under the linear probe (L14: $\Delta = +0.324$) than the MLP probe (L8: $\Delta = +0.015$); trained representations are thus more probe-decodable for action information.
+Reference deep layers collapse entirely under the linear probe (L25: $R^2 = -0.298$); MLP nonlinearity partially rescues these degraded representations.
+For readout tokens, the linear probe also corroborates the inverted-U (peak L13, $R^2 = 0.596$), with the same peak layer as the MLP probe and a trained-vs-reference gap of $\Delta = 0.103$ ($p < 0.001$).
+These results indicate that our qualitative findings reflect representational structure rather than probe capacity artifacts (Figure~\ref{fig:linear_vs_mlp}).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_linear_vs_mlp_probe.pdf}
+\caption{Per-layer action probe $R^2$ for linear (dashed) and MLP (solid) probes across trained (blue) and reference (red) conditions. The inverted-U reproduces under both probe architectures; the trained--reference gap is larger for linear probes.}
+\label{fig:linear_vs_mlp}
+\end{figure}
+
+\subsection{Functional Probe Comparison}
+Figure~\ref{fig:probe_bars} compares functional probe $R^2$ across representation sources at each source's best layer.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig4.pdf}
+\caption{Functional probe $R^2$ for action prediction (best layer per source). Trained readout ($R^2{=}0.678$, L13) and trained image\_mean ($0.655$, L8) exceed the projector baseline ($0.630$); the inverted-U extends to functional capacity.}
+\label{fig:probe_bars}
+\end{figure}
+
+\subsection{Training Effect and Instruction Invariance}
+Figure~\ref{fig:factorial} shows trained vs.\ reference RSA profiles and instruction invariance.
+Instruction invariance holds across all conditions: maximum $|\Delta| < 0.006$, so action geometry is visually grounded and not modulated by language instructions.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig5.pdf}
+\caption{\textbf{(a)}~Trained vs.\ reference image\_mean RSA profiles. Training shifts the peak from L0 ($0.612$) to L12 ($0.628$), yielding a modest best-vs-best gain ($\Delta{=}+0.017$, $3\%$). \textbf{(b)}~Instruction invariance: all conditions within $|\Delta|{<}0.006$; action geometry is visually grounded.}
+\label{fig:factorial}
+\end{figure}
+
+\subsection{Additional RSA Values}
+DINOv2 \texttt{patch\_mean} achieves RSA $\rho = 0.631$, between the \texttt{cls\_token} ($0.692$) and the fused DinoSigLIP ($0.634$).
+VLA reference readout peaks at L1 ($\rho = 0.626$).
+
+\subsection{Cross-Suite Validation within LIBERO: Spatial}
+\label{sec:cross_benchmark_appendix}
+
+To assess generalization beyond in-distribution tasks, we repeat the core RSA and probe analyses on LIBERO-Spatial (10 out-of-distribution tasks $\times$ 50 demonstrations each, requiring spatial reasoning).
+Figure~\ref{fig:cross_benchmark} shows per-layer RSA and $R^2$ profiles for both LIBERO-Goal and LIBERO-Spatial side by side.
+
+The inverted-U profile replicates on LIBERO-Spatial: trained image\_mean RSA peaks at L14 ($\rho = 0.691$) and $R^2$ at L13 ($0.696$), with peaks shifting ${\sim}2$ layers deeper than LIBERO-Goal (RSA L12, $R^2$ L8--L10), consistent with increased task difficulty requiring deeper processing.
+Training produces a significant geometric gain (best-vs-best $\Delta = +0.023$, 95\% CI $[0.012, 0.036]$, $p < 0.001$), larger than the LIBERO-Goal effect ($\Delta = +0.017$, CI includes zero).
+
+Two notable differences are observed.
+First, the absolute RSA values are higher on Spatial ($0.691$ vs.\ $0.628$), possibly reflecting greater action diversity in spatial tasks that produces a more discriminative action RDM.
+Second, RSA--$R^2$ peak convergence does not replicate: readout RSA peaks at L15 while $R^2$ peaks at L21 (6-layer gap), contrasting with the near-alignment on Goal ($|\Delta_\text{layer}| = 1$).
+This suggests that peak convergence is benchmark-specific rather than a general consequence of training.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig7.pdf}
+\caption{Cross-suite validation: per-layer RSA and $R^2$ profiles on LIBERO-Goal (left) vs.\ LIBERO-Spatial (right). The inverted-U replicates across suites. LIBERO-Spatial shows a significant training effect (RSA best-vs-best $\Delta = +0.023$, $p < 0.001$) and deeper peak layers (RSA L14, $R^2$ L13), but RSA--$R^2$ peak convergence does not replicate (6-layer gap).}
+\label{fig:cross_benchmark}
+\end{figure}
+
+\paragraph{Cross-Suite Counterfactual Replication}
+Table~\ref{tab:counterfactual_spatial} reports counterfactual instruction analysis on LIBERO-Spatial (10 tasks).
+The ordering differs from LIBERO-Goal: empty $>$ shuffled $>$ wrong $>$ paraphrased (vs.\ wrong $>$ empty $>$ shuffled $>$ paraphrased on Goal).
+All global effect sizes exceed $d = 0.8$ (per-task wrong minimum is $0.591$).
+Spatial instructions differ only in prepositions (e.g., ``on the plate'' vs.\ ``in the drawer''); the wrong-task $d = 0.885$ suggests that instruction-dominant heads encode fine-grained spatial relations, not merely task identity.
+
+\begin{table}[h]
+\centering
+\caption{Counterfactual instruction analysis on LIBERO-Spatial (10 tasks). Ordering: empty $>$ shuffled $>$ wrong $>$ paraphrased, differing from Goal. All global $d > 0.8$.}
+\label{tab:counterfactual_spatial}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Condition} & \textbf{Jaccard} & \textbf{Cohen's $d$} & \textbf{CV} \\
+\midrule
+Empty (no instruction) & 0.000 & 1.173 & 0.087 \\
+Wrong (different task) & 0.174 & 0.885 & 0.272 \\
+Shuffled (random order) & 1.000 & 0.979 & 0.162 \\
+Paraphrased & 0.533 & 0.807 & 0.179 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-Instruction Probe on LIBERO-Spatial}
+Table~\ref{tab:spatial_cross_instruction} reports cross-instruction 10-way classification accuracy on LIBERO-Spatial.
+The core pattern from LIBERO-Goal replicates: image\_mean remains at chance (${\sim}10\%$) across all layers and conditions, while the trained readout token saturates to $100\%$ by L4.
+The reference readout decays more steeply than on LIBERO-Goal ($75.4\%$ at L31 vs.\ $82\%$), consistent with greater task difficulty.
+
+\begin{table}[h]
+\centering
+\caption{Cross-instruction 10-way classification accuracy on LIBERO-Spatial. Trained readout achieves $100\%$ from L4; image\_mean remains at chance. Reference readout decays more steeply than on LIBERO-Goal (cf.\ \S\ref{sec:openvla_routing}).}
+\label{tab:spatial_cross_instruction}
+\small
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Token} & \textbf{Condition} & \textbf{L1} & \textbf{L4} & \textbf{L8} & \textbf{L16} & \textbf{L31} \\
+\midrule
+readout & Trained & 98.9\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% \\
+readout & Reference & 99.5\% & 98.3\% & 85.7\% & 68.3\% & 75.4\% \\
+image\_mean & Trained & 10.2\% & 10.0\% & 9.9\% & 10.0\% & 10.1\% \\
+image\_mean & Reference & 10.1\% & 10.0\% & 10.0\% & 10.0\% & 10.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Robustness Analyses}
+\paragraph{Distance Metric Invariance}
+The inverted-U profile is robust to distance metric choice: cosine action distance yields identical peak layers (L12) and Pearson correlation $r > 0.989$ with the Euclidean profile reported in the main text (Table~\ref{tab:metric_invariance}).
+
+\begin{table}[h]
+\centering
+\caption{Peak layer comparison between Euclidean and cosine action distances. Profile $r$ denotes Pearson correlation across all 32 layers.}
+\label{tab:metric_invariance}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Condition} & \textbf{Eucl.\ Peak} & \textbf{Cos.\ Peak} & \textbf{Profile $r$} \\
+\midrule
+Trained image\_mean & L12 & L12 & 0.990 \\
+Trained readout & L12 & L13 & 0.990 \\
+Reference image\_mean & L0 & L0 & 0.995 \\
+Reference readout & L1 & L1 & 0.992 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Per-DOF Decomposition}
+RSA decomposition by action dimension indicates the inverted-U is not driven by any single degree of freedom: xyz translation (peak L13, $\rho = 0.193$), rotation (peak L12, $\rho = 0.175$), and gripper (peak L13, $\rho = 0.106$) all exhibit non-monotonic profiles.
+Per-DOF RSA values are lower than the 7-D RSA because single-dimension distances carry less discriminative information than the full action space.
+
+\paragraph{Permutation Test}
+Permutation testing (10{,}000 shuffles) indicates all observed RSA values are highly significant: observed $\rho$ ($0.42$--$0.63$) exceeds the null distribution maximum ($0.08$--$0.10$) by $15$--$23$ standard deviations (all $p < 0.0001$).
+
+\paragraph{Probe Seed Sensitivity}
+Action probe $R^2$ is highly stable across random seeds.
+Over 5 seeds (trained image\_mean, full-layer scan), per-layer $R^2$ standard deviation is uniformly below $0.01$ (mean $0.004$), and the peak $R^2$ varies by less than $0.4\%$ ($0.655 \pm 0.002$; Table~\ref{tab:seed_sensitivity}).
+Peak layer concentrates in the L8--L10 region ($4/5$ seeds); the inverted-U shape is not a seed artifact.
+Seed 1 peaks at L16, but with $R^2$ difference ${<}0.002$. The inverted-U plateau (L8--L16) is sufficiently flat that argmax is sensitive to minor noise while the profile shape is invariant.
+A 15-seed replication confirms stability: trained peak remains at L9 ($R^2 = 0.637 \pm 0.004$), with all trained/Llama-2-base layers showing CI width ${<}0.02$; the randomly initialized condition exhibits higher variance (std $0.185$ at peak), consistent with random initialization instability.
+Fixed-layer analysis at L9 yields $R^2 = 0.637 \pm 0.008$ (trained) and $0.635 \pm 0.011$ (Llama-2 base), confirming the inverted-U pattern.
+The per-seed peak method reports higher absolute values ($0.655$) because each seed selects its optimal layer independently; both methods agree on the qualitative pattern and the trained $>$ randomly initialized ordering.
+
+\begin{table}[h]
+\centering
+\caption{Probe $R^2$ peak across 5 random seeds (trained image\_mean).}
+\label{tab:seed_sensitivity}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Seed} & \textbf{Peak Layer} & \textbf{Peak $R^2$} \\
+\midrule
+0 & L9 & 0.654 \\
+1 & L16 & 0.656 \\
+2 & L9 & 0.653 \\
+3 & L10 & 0.655 \\
+42 & L9 & 0.655 \\
+\midrule
+Mean$\pm$std & $10.6\pm2.7$ & $0.655\pm0.002$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-architecture $\Delta R^2$ seed sensitivity.}
+To verify that $\Delta R^2$ values are not sensitive to probe initialization, we retrain MLP probes with 4 different random seeds (0, 1, 2, 42) on three representative cells.
+Results show high stability: TraceVLA Goal $0.227 \pm 0.010$, TraceVLA Spatial $0.136 \pm 0.002$, OpenVLA Goal $0.013 \pm 0.001$ (mean $\pm$ std across seeds).
+All standard deviations are below 0.02, confirming that the exit collapse pattern ($\Delta R^2 > 0.10$ for VLM-to-VLA vs.\ $< 0.10$ for VLA-to-VLA) is robust to probe initialization.
+
+\paragraph{Bootstrap confidence intervals for $\Delta R^2$.}
+To assess uncertainty in individual $\Delta R^2$ estimates, we compute 95\% confidence intervals via 1{,}000-iteration Monte Carlo cross-validation bootstrap.
+Results for 9 cells (excluding NORA-Goal due to exit-layer instability):
+\begin{itemize}[nosep]
+\item \textbf{VLA-to-VLA} (4 cells): CIs range from $[-0.056, 0.106]$ (widest: OpenVLA Goal) to $[0.004, 0.103]$ (OpenVLA Long).
+\item \textbf{VLM-to-VLA} (5 cells): CIs range from $[0.091, 0.224]$ (TraceVLA Spatial) to $[0.283, 0.504]$ (TraceVLA Object).
+\end{itemize}
+The point-estimate gap ($0.097$ vs.\ $0.156$, span $= 0.059$) cleanly separates the two groups.
+At the 95\% CI level, a marginal overlap of $0.016$ exists between the upper bound of OpenVLA Goal ($0.106$) and the lower bound of TraceVLA Spatial ($0.091$).
+This overlap involves only 2 of 9 cells and is driven by OpenVLA Goal's unusually wide CI (due to high variance in its exit-layer probe).
+All other cell pairs show non-overlapping CIs, confirming that the exit-collapse pattern is robust to measurement uncertainty.
+A permutation test assesses whether the gap between VLM-to-VLA and VLA-to-VLA $\Delta R^2$ values could arise by chance.
+The 9 trained-model $\Delta R^2$ values (4 VLA-to-VLA, 5 VLM-to-VLA; NORA Goal excluded due to CI instability) are randomly reassigned to groups of size 4 and 5 ($10{,}000$ permutations); the test statistic is $\min(\text{VLM-to-VLA group}) - \max(\text{VLA-to-VLA group})$.
+The observed gap ($0.070$) is exceeded by $0.8\%$ of permuted distributions ($p = 0.008$), indicating that the separation is unlikely to arise by chance.
+Note that the permutation shuffles transition-type labels (VLM$\to$VLA vs.\ VLA$\to$VLA), not trained/reference labels; all 9 values come from trained models.
+
+\paragraph{Demonstration Subsample Sensitivity}
+To verify that the inverted-U pattern is not an artifact of sample size, we subsample 25 from 50 demonstrations per task and recompute both RSA and probe profiles (Table~\ref{tab:demo_sensitivity}).
+The RSA peak layer remains at L12 with a profile correlation of $r = 0.970$ between 50- and 25-demo conditions (high stability).
+The probe peak shifts from L9 to L11 (within the L8--L16 plateau) with $r = 0.819$; $R^2$ is more sensitive to training set size than RSA.
+Both metrics show reduced absolute values (RSA $-3.6\%$, $R^2$ $-7.6\%$) as expected from halved data, but the non-monotonic profile shape is preserved.
+
+\begin{table}[h]
+\centering
+\caption{Inverted-U stability under demonstration subsampling (trained image\_mean).}
+\label{tab:demo_sensitivity}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{50 demos} & \textbf{25 demos} & \textbf{$\Delta$} \\
+\midrule
+RSA peak layer & L12 & L12 & 0 \\
+RSA peak $\rho$ & 0.628 & 0.606 & $-3.6\%$ \\
+$R^2$ peak layer & L9 & L11 & $+2$ \\
+$R^2$ peak value & 0.659 & 0.609 & $-7.6\%$ \\
+RSA profile $r$ & --- & 0.970 & --- \\
+$R^2$ profile $r$ & --- & 0.819 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Label Permutation Sanity Check}
+\label{sec:label_permutation}
+
+To confirm that probe performance reflects genuine action-relevant structure rather than overfitting, we repeat the per-layer action probe with randomly shuffled labels (Figure~\ref{fig:label_permutation}).
+Under permuted labels, Spearman $\rho$ drops from $0.955$ to $0.001$ (trained) and from $0.933$ to $0.000$ (reference), with all 33 layers producing $|\rho| < 0.013$.
+This establishes that the high probe accuracy reported throughout the paper is attributable to learned action-relevant representations, not probe capacity artifacts.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.55\columnwidth]{figures/fig_label_permutation.pdf}
+\caption{\textbf{Label permutation control.} Action-probe Spearman $\rho$ under real versus shuffled labels for OpenVLA trained and reference conditions. Shuffled-label $\rho$ is indistinguishable from zero, confirming that probe performance reflects genuine representational structure. (Evaluated with random frame splitting; demo-level split yields lower absolute values but identical null-vs-real separation; see \S\ref{sec:cross_arch_analyses}.)}
+\label{fig:label_permutation}
+\end{figure}
+
+\paragraph{Statistical Power}
+Post-hoc power analysis ($N = 10$ tasks, $\alpha = 0.05$, target power $= 0.80$) indicates minimum detectable effect sizes of $\Delta_{\text{RSA}} = 0.030$ and $\Delta_{R^2} = 0.026$.
+The observed RSA training effect ($\Delta = 0.017$, Cohen's $d_z = 0.56$) achieves power $= 0.356$, confirming the analysis is underpowered for this effect size; the non-significant RSA result (\S\ref{sec:routing_synthesis}) should not be interpreted as evidence of absence.
+The observed $R^2$ readout effect ($\Delta = 0.069$, $d_z = 2.68$) achieves power $= 1.000$, confirming adequate sensitivity for the primary functional metric.
+
+\paragraph{$\Delta R^2$ Threshold Robustness}
+\label{sec:delta_r2_threshold}
+
+The main text classifies $\Delta R^2 > 0.10$ as substantial exit collapse.
+Table~\ref{tab:delta_r2_threshold} shows that any threshold in the interval $(0.097, 0.156)$ yields identical three-way separation: all VLM-to-VLA trained cells above threshold, all OpenVLA trained and all reference cells below.
+This interval is bounded by the largest non-VLM-to-VLA value ($0.097$, TraceVLA Long reference) and the smallest VLM-to-VLA trained value ($0.156$, TraceVLA Spatial).
+The $0.10$ threshold was not selected to maximize separation; rather, it represents a natural effect-size boundary ($\geq 10\%$ absolute change in explained variance) that happens to fall within this gap.
+
+\begin{table}[h]
+\centering
+\caption{Sensitivity of group separation to $\Delta R^2$ threshold choice. Clean separation (all VLM-to-VLA trained above, all others below) holds for any threshold in $(0.097, 0.156)$; the 0.10 threshold is not boundary-sensitive.}
+\label{tab:delta_r2_threshold}
+\small
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Threshold} & \textbf{VLM$\to$VLA Tr.} & \textbf{OpenVLA Tr.} & \textbf{Reference} & \textbf{Clean} \\
+& \textbf{($N\!/6$)} & \textbf{($N\!/4$)} & \textbf{($N\!/10$)} & \textbf{sep.} \\
+\midrule
+0.05 & 6/6 & 1/4 & 6/10 & No \\
+0.08 & 6/6 & 1/4 & 3/10 & No \\
+\textbf{0.10} & \textbf{6/6} & \textbf{0/4} & \textbf{0/10} & \textbf{Yes} \\
+\textbf{0.15} & \textbf{6/6} & \textbf{0/4} & \textbf{0/10} & \textbf{Yes} \\
+0.20 & 5/6 & 0/4 & 0/10 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Detailed Training Effects}
+Table~\ref{tab:training_effects} reports bootstrap-based statistical comparisons of training effects on RSA and probe $R^2$.
+
+\begin{table}[h]
+\centering
+\caption{Training effects on action-relevant structure (LIBERO-Goal; bootstrap, 10{,}000 resamples). RSA best-vs-best yields a modest geometric gain ($\Delta{=}+0.017$, $3\%$; LIBERO-Spatial: $+0.023$, $p{<}0.001$), while $R^2$ shows substantially larger functional gains.}
+\label{tab:training_effects}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Comparison} & \textbf{$\Delta$} & \textbf{95\% CI} & \textbf{$p$} \\
+\midrule
+\multicolumn{4}{l}{\emph{RSA ($\rho$)}} \\
+Best-vs-best image\_mean & $+$0.017 & incl.\ 0 & n.s. \\
+\quad (trained L12 vs.\ reference L0) & & & \\
+Same-layer L12 image\_mean & $+$0.079 & excl.\ 0 & $<$0.0001 \\
+\quad (trained vs.\ reference) & & & \\
+Instruction effect (max $|\Delta|$) & 0.006 & --- & n.s. \\
+\midrule
+\multicolumn{4}{l}{\emph{Probe $R^2$}} \\
+Best-vs-best image\_mean & $+$0.015 & excl.\ 0 & 0.006 \\
+\quad (trained L8 vs.\ reference L0) & & & \\
+Best-vs-best readout & $+$0.069 & excl.\ 0 & $<$0.0001 \\
+\quad (trained L13 vs.\ reference L32) & & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Training Effect Size Summary}
+Table~\ref{tab:training_effect_summary} consolidates training effects across all metrics.
+Training effects on image\_mean metrics are modest (RSA $\Delta = +0.017$, $R^2$ $\Delta = +0.015$), but effects on readout metrics are substantial (instruction attention $+18$pp, attention $+46$pp, $R^2$ $\Delta = +0.069$).
+This asymmetry indicates that training primarily changes how the readout token integrates information rather than altering the visual representations carried by image tokens.
+
+\begin{table}[h]
+\centering
+\caption{Training effect sizes across metrics. Image\_mean effects are modest; readout effects are large. Training targets readout-token information integration.}
+\label{tab:training_effect_summary}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Trained} & \textbf{Reference} & \textbf{$\Delta$} \\
+\midrule
+RSA peak (image\_mean) & 0.628 (L12) & 0.612 (L0) & $+$0.017 \\
+$R^2$ peak (image\_mean) & 0.655 (L8) & 0.640 (L0) & $+$0.015 \\
+$R^2$ peak (readout) & 0.678 (L13) & 0.609 (L32) & $+$0.069 \\
+Instruction attention L31 & 100\% & 82\% & $+$18pp \\
+Instruction attention L1 & 58\% & 12\% & $+$46pp \\
+Progress classification & 86.3\% (L20) & 85.3\% (L4) & $+$1pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Instruction Classification Probes}
+\paragraph{Cross-Instruction Classification: Dense Layer Profile}
+\label{sec:dense_routing}
+
+Table~\ref{tab:dense_routing} shows the dense per-layer profile of cross-instruction classification (10-way) at the readout token for layers L0--L8.
+The step-function onset between L0 ($10\%$, chance) and L1 (${\geq}99.6\%$) reflects the high discriminability of instruction embeddings from the frozen tokenizer: even incidental attention (${\sim}12\%$) suffices for linear classification at L1.
+The VLA-trained model sustains $100\%$ through L31; Llama-2 base reaches $100\%$ by L5 and maintains it. The OXE-pretrained reference and random initialization both decay to ${\sim}82\%$ by L31, indicating that deep-layer instruction maintenance requires either VLA training or structured language-model pretraining on text-only data.
+
+\begin{table}[h]
+\centering
+\caption{Cross-instruction 10-way classification accuracy at readout token, L0--L8. Values reflect dense classification evaluation; the main text (\S\ref{sec:openvla_routing}) reports sparse single-split results, yielding minor differences (e.g., L8: $98.2\%$ vs.\ $98.6\%$).}
+\label{tab:dense_routing}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Layer} & \textbf{Trained} & \textbf{Reference} & \textbf{Image\_mean (trained)} \\
+\midrule
+L0 & 10.0\% & 10.0\% & 10.0\% \\
+L1 & 100.0\% & 100.0\% & 10.0\% \\
+L2 & 100.0\% & 99.6\% & 10.0\% \\
+L3 & 100.0\% & 99.6\% & 10.0\% \\
+L4 & 100.0\% & 99.1\% & 10.0\% \\
+L5 & 100.0\% & 98.2\% & 10.0\% \\
+L6 & 100.0\% & 97.3\% & 10.0\% \\
+L7 & 100.0\% & 96.4\% & 10.0\% \\
+L8 & 100.0\% & 98.6\% & 10.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-Instruction LOOCV Validation}
+\label{sec:loocv}
+
+Leave-one-out cross-validation over 10 folds (each fold holds out one task's instructions) validates that the cross-instruction probe result is not driven by memorization.
+Trained readout achieves $100\% \pm 0.00$ across all 10 folds at layers L1--L31 (perfect generalization).
+
+\paragraph{QA Probe: Progress and Subtask Classification}
+To test whether LLM layers encode task-relevant semantic information beyond instruction identity, we train logistic regression probes (scikit-learn, $C = 1.0$, max\_iter $= 1{,}000$) to classify task progress (4-class: each trajectory split into 4 equal temporal segments) and active subtask (binary: first vs.\ second half) from frozen representations, with an 80/20 random train/test split (Table~\ref{tab:qa_probe}).
+
+\begin{table}[h]
+\centering
+\caption{QA probe accuracy (progress + subtask classification, best layer).}
+\label{tab:qa_probe}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Source} & \textbf{Best Layer} & \textbf{Accuracy} \\
+\midrule
+Trained readout & L20 & 86.3\% \\
+Reference readout & L20 & 85.3\% \\
+DINOv2 cls\_token & --- & 82.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-Instruction Probe Profiles}
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_probe_conditions.pdf}
+\caption{Cross-instruction 10-way classification accuracy at the readout token across all 32 LLM layers. VLA-trained achieves $99.6\%$ at L1, saturating to $100\%$. Llama-2 base starts at $80.2\%$, reaching $100\%$ by L5. Reference starts at $100\%$ but decays to $82\%$ by L31.}
+\end{figure}
+
+\paragraph{Cross-Architecture Probe and Attention Profile}
+Table~\ref{tab:cross_arch_probe} reports cross-instruction probe accuracy and L1 instruction-dominant head counts across six conditions spanning two architectures.
+The probe-attention dissociation at L1 is notable: TraceVLA training slightly \emph{reduces} instruction-dominant heads ($32 \to 27$--$30/32$) while \emph{decreasing} probe accuracy ($98.1\% \to 83.6\%$), consistent with representational reorganization rather than linear separability.
+
+\begin{table}[h]
+\centering
+\caption{Cross-instruction 10-way probe accuracy and L1 instruction-dominant heads across six conditions.
+Probe accuracy and attention head count are dissociated at L1: TraceVLA training slightly reduces heads ($32 \to 27$--$30/32$) while decreasing probe accuracy ($98.1\% \to 83.6\%$), paralleling the information-computation dissociation observed in OpenVLA.
+Image\_mean remains at chance ($10\%$) in all conditions (omitted).}
+\label{tab:cross_arch_probe}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{L1 heads} & \textbf{L1} & \textbf{L2+} & \textbf{L31} & \textbf{Mode} \\
+\midrule
+\multicolumn{6}{l}{\emph{OpenVLA (Llama-2 7B)}} \\
+\quad Random init & 0/32 & 100.0\% & decays & 82.0\% & incid.+forget \\
+\quad Llama-2 base & 9/32 & 80.2\% & L5: 100\% & 100.0\% & gradual+stable \\
+\quad VLA trained & 24/32 & 99.6\% & 100\% & 100.0\% & immed.+stable \\
+\quad LIBERO-finetuned & 22/32 & 99.7\% & 100\% & 100.0\% & immed.+stable \\
+\midrule
+\multicolumn{6}{l}{\emph{TraceVLA (Phi-3-V 4B)}} \\
+\quad Phi-3-Vision & 32/32 & 98.1\% & 100\% & 100.0\% & inherited+stable \\
+\quad VLA trained & 27--30/32 & 83.6\% & 100\% & 100.0\% & reorg.+stable \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_cross_architecture_attention.pdf}
+\caption{Instruction-dominant heads across layers for two architectures (OpenVLA / TraceVLA), each comparing pre-VLA and VLA-trained conditions. Despite opposite starting points (OpenVLA/Llama-2 begins with sparse attention; TraceVLA/Phi-3-V begins with distributed attention), VLA training drives both to entry-exit concentration (L1 saturation, mid-layer suppression, L29--L31 re-engagement).}
+\end{figure}
+
+\paragraph{Cross-Architecture L1 Instruction Dominance}
+Figure~\ref{fig:cross_arch_l1_bar} complements the main-text summary (Figure~\ref{fig:cross_arch_l1}) by showing the fraction of instruction-dominant heads at L1 across all three architectures in a single comparison. The trained/reference fractions are comparable within each architecture (OpenVLA: 23/32 vs.\ 26/32; TraceVLA: 29/32 vs.\ 32/32; NORA: 13/16 vs.\ 14/16), consistent with L1 instruction attention being largely inherited from the pretrained backbone rather than acquired during VLA fine-tuning.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.65\columnwidth]{figures/fig_cross_arch_l1.pdf}
+\caption{\textbf{L1 instruction-dominant head fractions across three architectures.} Trained and reference conditions show comparable fractions in all three VLAs, indicating that L1 instruction attention largely pre-exists in the pretrained backbone.}
+\label{fig:cross_arch_l1_bar}
+\end{figure}
+
+\paragraph{L1 Attention Pattern Analysis}
+Figure~\ref{fig:attention_appendix} shows the per-head L1 attention distribution at the readout token.
+The three-level gradient (randomly initialized 0/32, Llama-2 base 9/32, VLA-trained 24/32 instruction-dominant heads) shows that language pretraining seeds partial instruction attention and VLA fine-tuning shifts it further toward instruction dominance.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_l1_stacked_bar.pdf}
+\caption{L1 attention from the readout token across three conditions, per head (sorted by instruction attention fraction). VLA-trained: 24/32 instruction-dominant heads ($57.7\%$ text attention). Llama-2 base: 9/32 heads ($36.5\%$). Randomly initialized: 0/32 heads ($11.7\%$). See Table~\ref{tab:multilayer_attention} for quantitative comparison across layers.}
+\label{fig:attention_appendix}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\columnwidth]{figures/fig_l1_attention.pdf}
+\caption{L1 instruction-dominant heads (trained vs.\ reference). VLMs saturate; training does not increase counts.}
+\label{fig:cross_arch_l1}
+\end{figure}
+
+\paragraph{Multi-Layer Attention Patterns}
+Table~\ref{tab:multilayer_attention} shows a 4-layer subset of the full 32-layer attention profile.
+The full profile (Figure~\ref{fig:synthesis_panels}) reveals three qualitatively distinct patterns: the randomly initialized model maintains 0 instruction-dominant heads at all 32 layers; Llama-2 base shows a mid-depth peak (L9--L16: 15--22 heads), consistent with typical autoregressive LM processing depth; VLA fine-tuning produces an entry-exit pattern (L0--L1: 21--24 heads, L31: 18 heads, intermediate layers 0--11).
+
+% Figure promoted to main text (Figure~\ref{fig:multilayer_attention} in \S\ref{sec:synthesis}).
+
+\begin{table}[h]
+\centering
+\caption{Instruction-dominant heads and text attention fraction at four sampled layers (subset of the 32-layer profile in Figure~\ref{fig:synthesis_panels}). VLA-trained shows entry-exit concentration (L1, L31); Llama-2 base peaks at mid-depth (L16); randomly initialized shows no instruction attention. Head counts from the 32-layer bulk extraction may differ slightly from dedicated per-layer analyses (\S\ref{sec:openvla_routing}) due to threshold boundary effects.}
+\label{tab:multilayer_attention}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{VLA Trained}} & \multicolumn{2}{c}{\textbf{Llama-2 base}} & \multicolumn{2}{c}{\textbf{Rand.\ Init}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+\textbf{Layer} & \textbf{Heads} & \textbf{Text\%} & \textbf{Heads} & \textbf{Text\%} & \textbf{Heads} & \textbf{Text\%} \\
+\midrule
+L1 & \textbf{24/32} & 57.7 & 9/32 & 36.5 & 0/32 & 11.7 \\
+L8 & 4/32 & 46.8 & 8/32 & 48.8 & 0/32 & 7.9 \\
+L16 & 10/32 & 48.4 & \textbf{25/32} & 60.2 & 0/32 & 9.2 \\
+L31 & \textbf{18/32} & 56.3 & 8/32 & 34.9 & 0/32 & 7.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Threshold Sensitivity Analysis}
+\label{sec:threshold_sensitivity}
+
+The main text defines instruction-dominant heads as those allocating $>50\%$ attention to instruction tokens.
+Table~\ref{tab:threshold_sensitivity} shows that the three-condition gradient (randomly initialized $<$ Llama-2 base $<$ VLA-trained) holds across all thresholds from 30\% to 70\%; the 50\% threshold is not a boundary-sensitive choice.
+
+\begin{table}[h]
+\centering
+\caption{Number of instruction-dominant heads at L1 under varying attention thresholds. The three-condition ordering is stable across all thresholds.}
+\label{tab:threshold_sensitivity}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Threshold} & \textbf{VLA Trained} & \textbf{Llama-2 base} & \textbf{Rand.\ Init} \\
+\midrule
+30\% & 32 & 13 & 0 \\
+40\% & 31 & 10 & 0 \\
+50\% & 24 & 9 & 0 \\
+60\% & 9 & 4 & 0 \\
+70\% & 5 & 3 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{L1 Attention Decomposition by Head Group}
+\label{sec:attention_decomp}
+
+Table~\ref{tab:attention_decomp} decomposes L1 attention mass at the readout token into three token categories for instruction-dominant and control head groups.
+
+\begin{table}[h]
+\centering
+\caption{Attention mass allocation at Layer 1, averaged across 5 samples. Instruction-dominant heads (defined as $>50\%$ attention to instruction tokens) allocate 17.5 percentage points more attention to instruction tokens than control heads, with corresponding reductions in vision ($-8.3$pp) and BOS/sink ($-9.2$pp) attention.}
+\label{tab:attention_decomp}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Head Group} & \textbf{$N$} & \textbf{Instruction} & \textbf{Vision} & \textbf{BOS/Other} \\
+\midrule
+Instruction-dominant & 24 & 62.4\% & 18.8\% & 18.8\% \\
+Control & 8 & 44.9\% & 27.1\% & 28.0\% \\
+\midrule
+$\Delta$ & --- & $+$17.5pp & $-$8.3pp & $-$9.2pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Head-level instruction attention entropy reaches $99.5\%$ of the uniform maximum; attention is broadly distributed rather than concentrated in a few heads.
+
+\paragraph{Per-token attention normalization.}
+The $57.7\%$ aggregate text attention in instruction-dominant heads partly reflects token-count imbalance (22 instruction vs.\ 256 image tokens).
+Per-token normalization reveals a $38.2\times$ ratio: each instruction token receives $38.2\times$ the attention of each image token in trained instruction-dominant heads, compared to only $1.5\times$ in randomly initialized heads (a $25.5\times$ increase from training).
+Instruction-dominant heads also show lower attention entropy ($0.465$) than non-dominant heads ($0.569$), indicating more concentrated attention distributions.
+
+\subsection{Per-Dimension Action MAE Under Head Ablation}
+Table~\ref{tab:per_dim_mae} extends Table~\ref{tab:action_shift_perdim} with full per-dimension control-head data and instruction-to-control MAE ratios.
+
+\begin{table}[h]
+\centering
+\caption{Mean absolute error per action dimension under L1 head ablation. Translation dimensions ($dx$/$dy$/$dz$) show 3--5$\times$ larger instruction-to-control ratio than rotation dimensions (1.9--2.6$\times$); instruction-dominant heads have disproportionate influence on positional control. Gripper (2.07$\times$) falls between the two groups.}
+\label{tab:per_dim_mae}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Dimension} & \textbf{Instr.\ 24h MAE} & \textbf{Control 8h MAE} & \textbf{Ratio} \\
+\midrule
+$dx$ & 0.00189 & 0.00037 & 5.09$\times$ \\
+$dy$ & 0.00531 & 0.00125 & 4.26$\times$ \\
+$dz$ & 0.00762 & 0.00243 & 3.14$\times$ \\
+$roll$ & 0.02059 & 0.00785 & 2.62$\times$ \\
+$pitch$ & 0.03071 & 0.01387 & 2.21$\times$ \\
+$yaw$ & 0.03388 & 0.01783 & 1.90$\times$ \\
+$gripper$ & 0.29072 & 0.14072 & 2.07$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Per-Task $R^2$ Distribution Under L1 Ablation}
+Table~\ref{tab:per_task_r2} reports per-task action probe $R^2$ at L1 under baseline and 24-head ablation conditions (MLP probe, 5 demonstrations per task).
+
+\begin{table}[h]
+\centering
+\caption{Per-task action probe $R^2$ at L1 (MLP probe, 5 demos/task). All 10 tasks show positive ablation effect ($\Delta > 0$): instruction-head ablation uniformly increases action decodability at the entry layer. Mean $\Delta R^2 = +0.107$; the 50-demo setting (\S\ref{sec:openvla_routing}) yields a consistent $+0.059$.}
+\label{tab:per_task_r2}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Task} & \textbf{Baseline $R^2$} & \textbf{Ablated $R^2$} & \textbf{$\Delta R^2$} \\
+\midrule
+open middle drawer & 0.197 & 0.221 & $+$0.024 \\
+open top drawer + bowl & 0.265 & 0.340 & $+$0.075 \\
+push plate to stove & 0.190 & 0.197 & $+$0.007 \\
+put bowl on plate & 0.375 & 0.474 & $+$0.099 \\
+put bowl on stove & 0.235 & 0.395 & $+$0.160 \\
+put bowl on cabinet & 0.256 & 0.457 & $+$0.201 \\
+put cream cheese in bowl & 0.186 & 0.345 & $+$0.159 \\
+put wine on rack & 0.189 & 0.424 & $+$0.235 \\
+put wine on cabinet & 0.279 & 0.353 & $+$0.074 \\
+turn on stove & 0.385 & 0.421 & $+$0.036 \\
+\midrule
+Mean $\pm$ std & $0.256 \pm 0.070$ & $0.363 \pm 0.088$ & $+$0.107 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Task Complexity and Attention Dependence}
+\label{sec:task_complexity}
+
+We classify tasks as \emph{instruction-discriminative} when multiple tasks share the same manipulated object(s), requiring instruction content to disambiguate the target action (e.g., ``put bowl on plate'' vs.\ ``put bowl on stove''); remaining tasks involve unique object-action pairings recoverable from visual context alone.
+Table~\ref{tab:task_complexity} reports per-task $|\Delta R^2|$ under both groupings.
+
+\begin{table}[h]
+\centering
+\caption{Task-level L1 ablation effects ($|\Delta R^2|$) grouped by instruction dependence. \emph{Primary} (conservative): cream cheese in bowl classified as visual-sufficient ($2.5\times$, $p = 0.033$). \emph{Sensitivity} (shared-object criterion): cream cheese reclassified as instruction-discriminative ($6.5\times$, $p = 0.008$).}
+\label{tab:task_complexity}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Task} & \textbf{$|\Delta R^2|$} & \textbf{Group} \\
+\midrule
+put wine on rack & 0.235 & Instr-disc \\
+put bowl on cabinet & 0.201 & Instr-disc \\
+put bowl on stove & 0.160 & Instr-disc \\
+put bowl on plate & 0.099 & Instr-disc \\
+open top drawer + bowl & 0.075 & Instr-disc \\
+put wine on cabinet & 0.074 & Instr-disc \\
+\midrule
+put cream cheese in bowl$^\dagger$ & 0.159 & Vis-suff \\
+turn on stove & 0.036 & Vis-suff \\
+open middle drawer & 0.024 & Vis-suff \\
+push plate to stove & 0.007 & Vis-suff \\
+\midrule
+\multicolumn{3}{l}{\textbf{Primary}: Instr-disc mean $0.141$; Vis-suff mean $0.057$} \\
+\multicolumn{3}{l}{Mann-Whitney $U = 21.0$, $p = 0.033$, ratio $= 2.49\times$} \\
+\multicolumn{3}{l}{\textbf{Sensitivity}$^\dagger$: cream cheese as Instr-disc: $p = 0.008$, $6.5\times$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Leave-one-out sensitivity.}
+All leave-one-out $p$-values remain $\leq 0.083$ (marginally significant), with no single task removal reversing the effect direction.
+Reclassifying the boundary case (cream cheese in bowl) to the instruction-discriminative group strengthens the result ($p = 0.008$).
+
+Bootstrap 95\% CI on the complex/simple ratio: $[1.03, 11.12]$ (10{,}000 resamples). The wide interval reflects low statistical power from $N=10$ tasks split into groups of 6 and 4; the point estimate ($2.5\times$) persists under leave-one-out analysis (all $p \leq 0.083$, marginally significant; \S\ref{sec:task_complexity}).
+
+\subsection{Specificity Control: Matched-Size Head Ablation}
+To test whether ablation effects are specific to instruction-dominant heads, we ablate four matched-size subsets of 24 heads at L1: instruction-dominant (highest instruction attention fraction), image-dominant (highest image attention fraction), random (5 seeds), and bottom-24 (lowest instruction attention fraction; overlaps 16/24 heads with the instruction-dominant group).
+
+\begin{table}[h]
+\centering
+\caption{Matched-size ablation controls: trajectory disruption ($d$) from ablating 24-head subsets at L1, ranked by instruction attention fraction. Instruction-dominant heads produce the largest effect, but the modest gap ($8\%$ over random) indicates distributed, attention-graded redistribution rather than a dedicated subset.}
+\label{tab:specificity_control}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Condition (24 heads)} & \textbf{Cohen's $d$} & \textbf{95\% CI} \\
+\midrule
+Instruction-dominant & 0.650 & (reference) \\
+Random (5 seeds) & $0.601 \pm 0.021$ & $[0.568, 0.622]$ \\
+Image-dominant & 0.580 & $[0.547, 0.613]$ \\
+Bottom-24 & 0.565 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All conditions yield comparable ground-truth MSE ($0.487$--$0.504$ vs.\ baseline $0.497$), consistent with direction-selective rather than precision-degrading effects.
+
+\subsection{Paired Effect Sizes}
+Main-text Cohen's $d$ values use the standard (unpaired) formula for token-level comparisons where observations are independent tokens.
+For within-subject effects where the same tasks or demonstrations are measured under two conditions, we additionally report paired $d_z = \bar{\Delta} / s_\Delta$, which accounts for within-subject correlation and yields larger effect sizes when correlation is high (Table~\ref{tab:paired_dz}).
+
+\begin{table}[h]
+\centering
+\caption{Paired effect sizes ($d_z$) for within-subject comparisons. Standard (unpaired) $d$ reported where available. Paired $d_z$ exceeds standard $d$ when within-subject correlation is high.}
+\label{tab:paired_dz}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Comparison} & \textbf{Standard $d$} & \textbf{Paired $d_z$} & \textbf{$N$} \\
+\midrule
+L1 ablation: 24 dominant vs.\ baseline & 0.65 & 1.17 & 10 tasks \\
+Random-24 ablation vs.\ baseline & --- & $1.84 \pm 0.33$ & 30 subsets \\
+Dose-response: 32 vs.\ 4 heads (MSE) & --- & 1.79 & 10 tasks \\
+RSA: trained vs.\ reference (best-vs-best) & --- & 0.55 & 10 tasks \\
+Cross-arch: OpenVLA vs.\ TraceVLA peak & --- & 0.48 & 15 seeds \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Architecture Action Decodability: $2 \times 2$ Design}
+\label{sec:cross_arch_r2}
+
+Table~\ref{tab:2x2_r2} reports per-layer action prediction $R^2$ across two architectures (OpenVLA, TraceVLA) $\times$ two training conditions (VLA-trained, reference base LLM), providing a $2 \times 2$ factorial view of how per-layer action decodability differs between trained and reference conditions.
+
+\paragraph{Convergent reorganization from divergent starting points.}
+Reference profiles differ qualitatively: OpenVLA (Llama-2) peaks at L0 ($R^2 = 0.629$) then collapses to near-zero at mid-layers (L20: $0.086$, std $= 0.311$), while Phi-3-V peaks at L6 ($0.578 \pm 0.018$) with gradual monotonic decline (late-layer std $= 0.068$).
+After VLA training, both architectures reach nearly identical mid-layer peaks (OpenVLA at L9, $R^2 = 0.637 \pm 0.008$; TraceVLA at L11, $0.634 \pm 0.009$) with $\Delta = 0.003$ and overlapping CIs.
+Deep-layer variance drops sharply with training: OpenVLA std $0.277 \to 0.040$; Phi-3-V std $0.068 \to 0.011$.
+Peak $R^2$ values are comparable before and after training (reference peaks reach $91$--$99\%$ of trained), but peak locations shift deeper (L0$\to$L9; L6$\to$L11) and profile shapes transform from architecture-specific patterns to a shared mid-layer plateau.
+
+\paragraph{Summary.}
+Table~\ref{tab:2x2_r2_summary} condenses the key contrasts.
+The L0 values are identical between trained and reference within each architecture (shared frozen vision encoder + projector), confirming that training effects arise from LLM weight changes.
+The largest training gains appear at mid-to-deep layers (L15--L25 average: OpenVLA $+0.313$, Phi-3-V $+0.103$), precisely where reference profiles diverge most.
+
+\begin{table}[h]
+\centering
+\caption{$R^2$ profile summary across architectures and training conditions.}
+\label{tab:2x2_r2_summary}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{OpenVLA (Llama-2-7B)}} & \multicolumn{2}{c}{\textbf{TraceVLA (Phi-3-mini)}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & \textbf{Reference} & \textbf{Trained} & \textbf{Reference} & \textbf{Trained} \\
+\midrule
+Peak Layer       & L0          & L9          & L6          & L11         \\
+Peak $R^2$       & 0.629       & 0.637       & 0.578       & 0.634       \\
+Profile Shape    & Collapse    & Flat plateau & Ramp $\to$ decline & Ramp $\to$ plateau \\
+Late-layer std   & 0.277       & 0.040       & 0.068       & 0.011       \\
+$\Delta_{\text{train}}$ (peak) & \multicolumn{2}{c}{$+0.008$ (L0$\to$L9)} & \multicolumn{2}{c}{$+0.056$ (L6$\to$L11)} \\
+$\Delta_{\text{train}}$ (L15--L25 avg)$^\dagger$ & \multicolumn{2}{c}{$+0.313$} & \multicolumn{2}{c}{$+0.103$} \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+{\footnotesize $^\dagger$Computed from full-precision per-seed values before rounding; displayed per-layer values (Table~\ref{tab:2x2_r2}) may yield slightly different averages due to rounding. Late-layer std computed over L20--L31.}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Per-layer action prediction $R^2$: training effect across architectures (mean $\pm$ std over 15 seeds). Peak values per condition in \textbf{bold}.}
+\label{tab:2x2_r2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Layer} & \multicolumn{2}{c}{\textbf{OpenVLA (Llama-2-7B)}} & \multicolumn{2}{c}{\textbf{TraceVLA (Phi-3-mini)}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & \textbf{Reference} & \textbf{Trained} & \textbf{Reference} & \textbf{Trained} \\
+\midrule
+L0  & $\mathbf{0.629 \pm 0.016}$ & $0.629 \pm 0.016$ & $-0.330 \pm 0.003$ & $-0.330 \pm 0.002$ \\
+L1  & $0.539 \pm 0.023$ & $0.625 \pm 0.017$ & $0.429 \pm 0.034$ & $0.447 \pm 0.013$ \\
+L2  & $0.517 \pm 0.047$ & $0.622 \pm 0.010$ & $0.458 \pm 0.023$ & $0.522 \pm 0.014$ \\
+L3  & $0.448 \pm 0.216$ & $0.624 \pm 0.014$ & $0.498 \pm 0.036$ & $0.579 \pm 0.011$ \\
+L4  & $0.496 \pm 0.057$ & $0.628 \pm 0.014$ & $0.572 \pm 0.021$ & $0.592 \pm 0.009$ \\
+L5  & $0.475 \pm 0.101$ & $0.627 \pm 0.019$ & $0.573 \pm 0.020$ & $0.602 \pm 0.010$ \\
+L6  & $0.422 \pm 0.119$ & $0.631 \pm 0.012$ & $\mathbf{0.578 \pm 0.018}$ & $0.609 \pm 0.012$ \\
+L7  & $0.459 \pm 0.093$ & $0.632 \pm 0.012$ & $0.569 \pm 0.023$ & $0.616 \pm 0.014$ \\
+L8  & $0.347 \pm 0.283$ & $0.635 \pm 0.013$ & $0.560 \pm 0.025$ & $0.615 \pm 0.010$ \\
+L9  & $0.445 \pm 0.127$ & $\mathbf{0.637 \pm 0.008}$ & $0.564 \pm 0.021$ & $0.617 \pm 0.013$ \\
+L10 & $0.353 \pm 0.224$ & $0.624 \pm 0.014$ & $0.551 \pm 0.027$ & $0.625 \pm 0.007$ \\
+L11 & $0.356 \pm 0.122$ & $0.623 \pm 0.016$ & $0.561 \pm 0.025$ & $\mathbf{0.634 \pm 0.009}$ \\
+L12 & $0.409 \pm 0.203$ & $0.626 \pm 0.011$ & $0.557 \pm 0.026$ & $0.632 \pm 0.005$ \\
+L13 & $0.341 \pm 0.227$ & $0.624 \pm 0.013$ & $0.547 \pm 0.028$ & $0.633 \pm 0.008$ \\
+L14 & $0.374 \pm 0.211$ & $0.623 \pm 0.015$ & $0.550 \pm 0.023$ & $0.631 \pm 0.009$ \\
+L15 & $0.297 \pm 0.225$ & $0.619 \pm 0.012$ & $0.550 \pm 0.022$ & $0.633 \pm 0.010$ \\
+L16 & $0.323 \pm 0.226$ & $0.619 \pm 0.011$ & $0.534 \pm 0.018$ & $0.631 \pm 0.010$ \\
+L17 & $0.395 \pm 0.109$ & $0.609 \pm 0.023$ & $0.519 \pm 0.024$ & $0.633 \pm 0.007$ \\
+L18 & $0.214 \pm 0.307$ & $0.613 \pm 0.017$ & $0.502 \pm 0.047$ & $0.629 \pm 0.012$ \\
+L19 & $0.241 \pm 0.258$ & $0.613 \pm 0.013$ & $0.499 \pm 0.058$ & $0.627 \pm 0.008$ \\
+L20 & $0.086 \pm 0.311$ & $0.611 \pm 0.014$ & $0.482 \pm 0.048$ & $0.628 \pm 0.011$ \\
+L21 & $0.330 \pm 0.216$ & $0.589 \pm 0.023$ & $0.476 \pm 0.036$ & $0.624 \pm 0.007$ \\
+L22 & $0.207 \pm 0.283$ & $0.586 \pm 0.013$ & $0.408 \pm 0.140$ & $0.616 \pm 0.008$ \\
+L23 & $0.264 \pm 0.227$ & $0.578 \pm 0.028$ & $0.455 \pm 0.074$ & $0.613 \pm 0.007$ \\
+L24 & $0.173 \pm 0.275$ & $0.577 \pm 0.013$ & $0.446 \pm 0.062$ & $0.610 \pm 0.008$ \\
+L25 & $0.130 \pm 0.305$ & $0.553 \pm 0.053$ & $0.479 \pm 0.039$ & $0.609 \pm 0.010$ \\
+L26 & $0.251 \pm 0.254$ & $0.535 \pm 0.046$ & $0.411 \pm 0.098$ & $0.611 \pm 0.008$ \\
+L27 & $0.099 \pm 0.278$ & $0.552 \pm 0.027$ & $0.366 \pm 0.197$ & $0.604 \pm 0.011$ \\
+L28 & $0.099 \pm 0.307$ & $0.544 \pm 0.034$ & $0.358 \pm 0.218$ & $0.596 \pm 0.015$ \\
+L29 & $0.088 \pm 0.275$ & $0.530 \pm 0.034$ & $0.356 \pm 0.271$ & $0.585 \pm 0.010$ \\
+L30 & $0.220 \pm 0.234$ & $0.511 \pm 0.029$ & $0.424 \pm 0.104$ & $0.574 \pm 0.008$ \\
+L31 & $0.069 \pm 0.284$ & $0.488 \pm 0.054$ & $0.332 \pm 0.262$ & $0.557 \pm 0.016$ \\
+L32 & $0.584 \pm 0.011$ & $0.535 \pm 0.015$ & $0.410 \pm 0.185$ & $0.550 \pm 0.007$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{Equivalence testing.}
+To formally test whether the cross-architecture peak $R^2$ values are statistically equivalent (rather than merely failing to differ), we apply the Two One-Sided Tests (TOST) procedure~\cite{lakens2017equivalence} with equivalence bound $\varepsilon = 0.05$.
+The observed difference is $\Delta = 0.003$ (OpenVLA L9: $0.637 \pm 0.008$; TraceVLA L11: $0.634 \pm 0.009$).
+Both one-sided tests reject at $p < 0.0001$; the 90\% confidence interval for the difference is $[-0.002, 0.009]$, falling entirely within $[-0.05, 0.05]$.
+A conventional two-sample $t$-test yields $p = 0.318$ (not significant), illustrating the distinction between absence of evidence for a difference and evidence of equivalence: the TOST procedure provides the latter.
+
+\subsection{Global Multiple Comparison Correction}
+\label{sec:bonferroni_correction}
+
+The paper reports 63 statistical tests spanning permutation tests, $t$-tests, bootstrap comparisons, TOST equivalence, and Spearman correlations.
+We apply a Bonferroni correction ($\alpha_{\text{adj}} = 0.05 / 63 = 7.94 \times 10^{-4}$) and the less conservative Holm--Bonferroni step-down procedure; both yield identical results.
+Of the 45 originally significant tests, 40 survive correction (88.9\%).
+
+All eight core tests supporting the paper's main claims remain significant:
+RSA permutation at L12 ($p < 0.0001$), trained vs.\ reference image geometry at L12 ($p = 3.9 \times 10^{-5}$), counterfactual wrong and empty instruction ($p < 10^{-100}$), TOST cross-architecture equivalence ($p < 0.0001$), dose-response top-24 ablation ($p < 10^{-100}$), trained vs.\ reference probe $R^2$ ($p < 0.0001$), and bottom-24 specificity ($p < 10^{-90}$).
+
+Five auxiliary tests lose significance under correction:
+(i)~RSA trained vs.\ reference preaction at L12 ($p = 0.005 \to p_{\text{adj}} = 0.284$),
+(ii)~DINOv2 vs.\ SigLIP RSA ($p = 0.032 \to p_{\text{adj}} = 1.0$),
+(iii)~fused backbone vs.\ SigLIP RSA ($p = 0.011 \to p_{\text{adj}} = 0.673$),
+(iv)~CV exact paired permutation ($p = 0.016 \to p_{\text{adj}} = 0.984$),
+and (v)~$R^2$ projector vs.\ VLA Spearman correlation ($p = 0.003 \to p_{\text{adj}} = 0.183$).
+These concern auxiliary comparisons (encoder ranking, coefficient-of-variation ordering) rather than the core redistribution, probing, or counterfactual findings; no main-text conclusion requires revision.
+
+\subsection{Mechanistic Interpretation}
+Matched-size ablation ($d$: instruction $0.65$, random $0.60$, image $0.58$; Table~\ref{tab:specificity_control}) and dose-response (steep through 12 heads, plateau beyond 20) indicate distributed attention redistribution.
+Counterfactual perturbation produces large effects across all conditions ($d = 1.0$--$1.2$ on Goal; \S\ref{sec:openvla_routing}), with shuffled tokens exceeding paraphrased ($d = 1.096$ vs.\ $0.996$) despite identical token sets, indicating positional sensitivity.
+That ablation raises $R^2$ yet alters trajectories ($d = 0.65$) without increasing ground-truth error ($\Delta\text{MSE} \approx 0$; \S\ref{sec:action_trajectory}) reflects an information-computation dissociation~\cite{hewitt2019control}: instruction-dominant heads control direction rather than precision. Random ablation yields larger $R^2$ gains ($+0.071$ vs.\ $+0.030$; $z = -3.11$, $0$\textsuperscript{th} percentile), consistent with distinct $R^2$ signatures.
+
+\subsection{Functional Stages and Predictions}
+Per-layer profiles suggest three stages: redistribution (L0--L1; probe $99.6\%$, 24/32 instruction-dominant heads), computation (L8--L13; $R^2$ peak $0.655$--$0.678$), and decay (L14--L31, ${\sim}56\%$ of parameters; declining $R^2$ and RSA suggest pruning potential).
+Task-specific fine-tuning eliminates L31 re-engagement (18 $\to$ 0 heads; \S\ref{sec:openvla_routing}), consistent with exit-layer attention serving multi-task flexibility ($N{=}2$).
+TraceVLA~\cite{zheng2024tracevla} (Phi-3-V) shows consistent entry-exit attention concentration from an opposite starting point (\S\ref{sec:openvla_routing}).
+The $2 {\times} 2$ trained-vs-reference comparison reveals a consistent reorganization pattern: reference OpenVLA collapses from L0 ($R^2 = 0.629$) to near-zero at mid-layers (L20: $0.086$, std $= 0.277$), while reference Phi-3-V peaks at L6 ($0.578$) with gradual decline (std $= 0.068$), producing qualitatively opposite reference landscapes.
+Yet training drives both to nearly identical mid-layer peaks ($0.637$ vs.\ $0.634$, $\Delta = 0.003$) with stabilized deep-layer variance (OpenVLA std $0.277 \to 0.040$; Phi-3-V $0.068 \to 0.011$).
+This consistent outcome from divergent starting points suggests that mid-layer action specialization is a consistent convergence pattern of VLA training, not an architectural artifact.
+Exit-layer $R^2$ differs ($0.488$ vs.\ $0.557$), possibly reflecting architectural differences in late-layer processing.
+Remaining predictions: cross-attention VLAs ($\pi_0$~\cite{black2024_pi0}, Octo~\cite{ghosh2024_octo}) should lack L1 instruction-dominant heads; larger VLAs should yield flatter per-head contributions.
+For deployments, L1 instruction probes can flag instruction-discriminative tasks and L1 attention entropy can monitor instruction under-attendance at runtime.
+
+\subsection{Extended Discussion}
+\label{sec:extended_discussion_appendix}
+
+\paragraph{Observational three-tier gradient.}
+The cross-architecture matrix suggests a three-tier gradient of representational adaptation.
+Tier~1 (VLM bases, no action training): inherited L1 attention (TraceVLA 32/32, NORA 13--14/16), negligible exit collapse ($\Delta R^2 \leq 0.048$), and minimal counterfactual sensitivity (cosine distance $\leq 0.185$).
+Tier~2 (general-purpose VLA, OXE-pretrained): strong L1 routing (24--26/32 heads), moderate counterfactual sensitivity ($d \approx 1.0$), and no systematic exit collapse across suites.
+Tier~3 (task-specific VLAs, fine-tuned on LIBERO): exit collapse at every VLM-to-VLA cell and medium-to-large counterfactual sensitivity ($d = 0.45$--$1.52$).
+This gradient is suggestive but limited: Tier~2 contains a single architecture (OpenVLA), and the Tier~2/Tier~3 boundary confounds training stage with architecture.
+Testing additional general-purpose VLAs (e.g., Octo~\cite{ghosh2024_octo}, $\pi_0$~\cite{black2024_pi0}) at Tier~2 is necessary before the three-tier structure can be treated as a robust empirical pattern.
+
+\paragraph{Exit collapse mechanism.}
+One possible explanation for the VLM-to-VLA / VLA-to-VLA asymmetry is that VLM-to-VLA references lack action-relevant exit-layer structure, forcing mid-layer construction without exit preservation (analogous to fine-tuning-induced feature distortion~\cite{kumar2022finetuning}), while VLA-to-VLA references already maintain this structure.
+Validating this explanation causally requires controlled training-stage experiments, but the consistency across architectures supports its directional value.
+
+\paragraph{Behavioral relevance.}
+Correlating trained $\Delta R^2$ with published LIBERO success rates across all nine available architecture-suite cells yields a positive but non-significant trend (Spearman $\rho = 0.583$, $p = 0.10$, $n = 9$), marginally above the conventional significance threshold.
+Within-suite comparisons, which control for task difficulty, are uniformly positive: on Goal ($n = 3$ architectures), $\Delta R^2$ and success rate are perfectly rank-correlated ($\rho = 1.0$), and every remaining suite ($n = 2$ each) shows the same direction.
+This directional evidence is consistent with stronger mid-network action encoding (higher peak $R^2$) followed by more aggressive exit-layer compression being associated with better task performance.
+Several caveats temper this interpretation: architecture capacity differences (model size, backbone quality) are not controlled, suite difficulty co-varies with both $\Delta R^2$ and success rate, multiple suites from the same architecture are not independent observations, and the sample size limits statistical power.
+Post-hoc power analysis (Fisher $Z$-transform, two-tailed $\alpha = 0.05$) yields achieved power $= 0.37$ at $n = 9$; reaching $80\%$ power would require $n \geq 21$ architecture-suite cells.
+The current analysis is therefore underpowered, and the non-significant $p$-value should not be interpreted as evidence of absence; it reflects insufficient sample size rather than a weak effect.
+This correlational evidence does not establish a causal link between exit collapse and task success.
+Closed-loop behavioral validation, including intervention experiments that directly manipulate exit-layer representations, remains a priority for future work.
+
+\paragraph{Closed-loop evaluation attempt.}
+We attempted closed-loop evaluation on LIBERO-Goal using the OpenVLA official checkpoint but achieved SR$=$0/3 across tested configurations, consistent with known reproducibility challenges in VLA deployment (sensitivity to hardware setup, action tokenization, and environment configuration).
+This negative result motivates our representational analysis approach, which does not require successful task completion.
+
+\paragraph{Metric constraints.}
+Counterfactual sensitivity is measured via Cohen's $d$ on action MSE for models that produce actions and via cosine distance on hidden representations for reference VLMs (\S\ref{sec:cf_sensitivity}).
+These metrics differ in scale and distributional properties; ratios between them are not meaningful.
+The OpenVLA Long-Horizon inversion (trained $d = 0.56$, reference $d = 1.05$) illustrates how same-metric comparisons can reverse the expected direction, cautioning against overinterpretation of any single cell.
+A standardized metric framework for cross-condition counterfactual comparison remains an open problem.
+
+\paragraph{Extended limitations.}
+Each architecture is analyzed at a single trained checkpoint, precluding characterization of how exit collapse or counterfactual sensitivity develop during training.
+All analyses are open-loop, consistent with prior representational studies~\cite{grant2026,haon2025}; closed-loop validation would provide complementary evidence about the behavioral relevance of the identified routing structures.
+The three-tier gradient has $n = 1$ at Tier~2, limiting its inferential power; populating this tier with additional general-purpose VLAs is a priority for future work.
+
+\paragraph{Coarse training dynamics.}
+Although intermediate checkpoints are unavailable (\S\ref{sec:limitations}), the cross-condition design provides coarse-grained evidence about when exit collapse emerges.
+Figure~\ref{fig:training_dynamics} plots $\Delta R^2$ across four training-pathway categories.
+NLP fine-tuning ($\Delta R^2 = 0.000$) and pretrained references ($\Delta R^2 \leq 0.097$) cluster below the $0.10$ threshold; VLM-to-VLA fine-tuning produces large collapse ($\Delta R^2 = 0.156$--$0.455$); subsequent VLA-to-VLA fine-tuning does not intensify it ($\Delta R^2 = 0.033$--$0.086$).
+This constrains the onset: exit collapse emerges during the first action-grounded training stage and does not accumulate with continued task-specific fine-tuning.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.55\columnwidth]{figures/fig_training_dynamics.pdf}
+\caption{\textbf{$\Delta R^2$ across training pathways.} Each point is one architecture-suite cell; markers distinguish backbone families. Exit collapse (above dashed line) is confined to VLM-to-VLA transitions and does not intensify during VLA-to-VLA fine-tuning.}
+\label{fig:training_dynamics}
+\end{figure}
+
+\subsection{Extended Practical Implications}
+\label{sec:extended_practical_implications}
+
+The main text identifies three use cases for the entry-exit decomposition; here we elaborate on each.
+
+\paragraph{Checkpoint selection.}
+$\Delta R^2$ provides a probe-based screening signal ($> 0.10$ flags reorganization) requiring only a forward pass and a linear probe.
+Its wall-clock cost scales with model size rather than environment complexity, unlike rollout evaluation which requires physics simulation and multi-step execution.
+Practitioners can rank checkpoints by $\Delta R^2$ and reserve rollout budgets for the top candidates, substantially reducing the number of expensive closed-loop evaluations needed during model selection.
+
+\paragraph{Transfer learning strategy.}
+The flat VLA-to-VLA $\Delta R^2$ profile (\S\ref{sec:r2_collapse}) shows that VLA-to-VLA transitions preserve exit structure, justifying staged pipelines (VLM$\to$VLA$\to$task) that reuse the first-stage action head without re-learning exit representations.
+Inherited L1 routing can further serve as a frozen prior, reducing tunable parameters during domain transfer.
+This suggests that practitioners adapting a general-purpose VLA to a new task suite may benefit from freezing early layers while focusing capacity on mid-to-late layer adaptation.
+
+\paragraph{Mid-layer probe value.}
+Where exit collapse is pronounced, mid-layer representations ($R^2$ peak at L9--L11 across architectures) outperform exit-layer features for downstream tasks such as reward modeling, distillation targets, or auxiliary prediction heads.
+For knowledge distillation, matching mid-layer features of the teacher rather than exit-layer features may yield better student performance in VLA settings.
+For reward modeling, training reward predictors on mid-layer features rather than final-layer outputs may provide more informative training signals.
+
+\subsection{Methodological Context}
+Representational analysis is an established methodology in the interpretability tradition; behavioral validation provides complementary evidence but is not a prerequisite for mechanistic characterization.
+Table~\ref{tab:methodological_precedent} situates our approach within this tradition.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Methodological precedent.} Representative interpretability studies and their use of behavioral evaluation. Partial behavioral eval includes correlational or indirect evidence.}
+\label{tab:methodological_precedent}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Paper} & \textbf{Domain} & \textbf{Method} & \textbf{Behav.\ eval?} \\
+\midrule
+Belinkov~\cite{belinkov2022} & NLP & Probing survey & No \\
+Olsson et al.~\cite{olsson2022} & LM & Induction heads & No \\
+Wang et al.~\cite{wang2023_ioi} & LM & IOI circuit & No \\
+Meng et al.~\cite{meng2022_rome} & LM & Causal tracing (localization) & No \\
+Grant et al.~\cite{grant2026} & VLA & Visual dominance & Partial \\
+Haon et al.~\cite{haon2025} & VLA & Sparse directions & No \\
+\midrule
+Ours & VLA & $\Delta R^2$ + attn.\ profiling & Partial ($\rho{=}0.583$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{NLP Finetuning Controls}
+\label{sec:nlp_control_appendix}
+
+Table~\ref{tab:nlp_controls} compares the three NLP finetuning controls used to test whether exit collapse is specific to action-oriented training.
+All three chat-finetuned models produce flat action-probe profiles with $\Delta R^2 = 0.000$, confirming that NLP instruction tuning does not induce the peak-to-exit drop observed in VLM-to-VLA transitions in any of the three backbone families.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{NLP finetuning control comparison.} All three models are instruction-tuned for conversational use without action heads or robot demonstration data. None exhibits exit collapse.}
+\label{tab:nlp_controls}
+\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+\textbf{Model} & \textbf{VLA backbone} & \textbf{$\Delta R^2$} & \textbf{Mean $R^2$} & \textbf{Layers} \\
+\midrule
+Llama-2-7b-chat & OpenVLA (Llama-2-7B) & 0.000 & $0.155 \pm 0.001$ & 32 \\
+Phi-3-mini-4k-instruct & TraceVLA (Phi-3-mini) & 0.000 & $0.155 \pm 0.000$ & 32 \\
+Qwen2.5-3B-Instruct$^{*}$ & NORA (Qwen2.5-VL-3B) & 0.000 & $0.155 \pm 0.000$ & 36 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^{*}$Qwen2.5-3B-Instruct shares the Qwen2.5 language backbone with NORA's}\\
+\multicolumn{5}{l}{\footnotesize Qwen2.5-VL-3B but lacks the vision encoder and cross-attention modules.}\\
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:r2_collapse} (main text) overlays the NLP control profiles (dotted gray) against the corresponding VLA trained and reference curves.
+
+\subsection{Claim-Evidence Summary}
+\label{sec:claim_evidence_appendix}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_claim_evidence.pdf}
+\caption{\textbf{Claim--evidence--scope summary.} Each main finding is paired with its supporting analysis and its main limitation. The figure distinguishes directly observed representational patterns from stronger causal interpretations that require interventional or training-dynamics evidence.}
+\end{figure}
+
+\subsection{Cross-Architecture Design Rationale}
+The two VLM-to-VLA transitions (TraceVLA and NORA) were selected to maximize structural diversity within the constraint of publicly available LIBERO-evaluated checkpoints.
+Table~\ref{tab:arch_diversity} summarizes the design-axis differences.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Structural diversity between the two VLM-to-VLA transitions.} The two architectures differ on nearly every major design axis, strengthening the generality of shared findings.}
+\label{tab:arch_diversity}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Design Axis} & \textbf{TraceVLA} & \textbf{NORA} \\
+\midrule
+Language backbone & Phi-3-mini (3.8B) & Qwen2.5-VL (3B) \\
+Backbone family & Microsoft & Alibaba \\
+Attention mechanism & Multi-Head Attention & Grouped-Query Attention \\
+Number of layers & 32 & 36 \\
+Vision encoder & SigLIP (shared w/ base) & Native ViT (dynamic resolution) \\
+Vision integration & Projector (late fusion) & Token concatenation (native) \\
+Pretraining data & English-centric web & Multilingual web + code \\
+Action head design & Linear projection & MLP \\
+Training data & OXE + LIBERO & OXE + LIBERO + custom \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Despite these differences, both transitions exhibit the same exit-collapse pattern ($\Delta R^2 = 0.156$--$0.455$), while their respective reference VLMs show only small fluctuations ($\Delta R^2 \leq 0.097$).
+The probability of observing consistent collapse in two structurally divergent architectures under a null hypothesis of random association is low (permutation test $p = 0.008$; \S\ref{sec:delta_r2_threshold}).
+Structural diversity thus provides evidential weight beyond what the raw $N = 2$ count suggests.
+
+\subsection{Convergent Evidence Summary}
+Three methodologically distinct approaches triangulate instruction routing in VLAs.
+Table~\ref{tab:convergent_evidence} summarizes what each method measures, its key finding, evidence type, and acknowledged limitation.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Convergent evidence across three analytical methods.} Each method addresses a different aspect of instruction routing; no single method is sufficient alone, but their convergence strengthens the overall characterization.}
+\label{tab:convergent_evidence}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{2.0cm}p{2.8cm}p{3.2cm}p{1.8cm}p{2.8cm}@{}}
+\toprule
+\textbf{Method} & \textbf{What it measures} & \textbf{Key finding} & \textbf{Evidence type} & \textbf{Limitation} \\
+\midrule
+Layer-wise probing (\S\ref{sec:r2_collapse}) & Where action-relevant information is decodable & VLM-to-VLA: peak-to-exit collapse ($\Delta R^2 = 0.16$--$0.46$); VLA-to-VLA: flat & Correlational (decodability) & Does not establish causal necessity \\
+\addlinespace
+Counterfactual perturbation (\S\ref{sec:cf_sensitivity}) & Whether instruction content affects model outputs & All trained VLAs: graded divergence ($d = 0.45$--$1.52$) ordered by perturbation severity & Behavioral (input--output) & Does not localize which layers are responsible \\
+\addlinespace
+Attention head ablation (Appendix~\ref{sec:action_trajectory}) & Whether identified structures carry functional signals & Dose-response: monotonic divergence ($d = 0.48$--$0.64$) upon progressive head removal & Interventional (causal contribution) & Single architecture (OpenVLA); contribution $\neq$ necessity \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The three methods form a complementary chain: probing identifies \emph{where} instruction information concentrates across layers, perturbation confirms \emph{whether} instruction content functionally affects behavior, and ablation demonstrates \emph{that} the identified attention structures carry relevant signals.
+No method alone supports causal claims about instruction routing mechanisms; their convergence provides stronger evidence than any single approach.
+
+\section{Use of Generative AI}
+\label{sec:use_of_ai}
+
+Generative AI tools (Claude, GPT-4) assisted with code implementation and manuscript editing; all scientific content was produced by the authors.
+

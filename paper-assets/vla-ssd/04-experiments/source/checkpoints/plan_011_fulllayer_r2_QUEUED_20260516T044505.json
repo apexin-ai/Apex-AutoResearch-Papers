@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_011_fulllayer_r2",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:45:03.186Z",
+    "updated_at": "2026-05-16T04:45:05.595Z",
+    "hypothesis": "Full-layer R² scan (L0-L32) for trained/untrained × image_mean/last_preaction. Key question: does R² peak align with RSA peak at L12, or diverge (e.g., L19 as in current single-layer data)? RSA-R² peak alignment/misalignment itself is a finding for Claim 2 (redistribution mechanism)."
+  },
+  "timestamp": "2026-05-16T04:45:05.741068+00:00",
+  "trigger": "update_registry"
+}

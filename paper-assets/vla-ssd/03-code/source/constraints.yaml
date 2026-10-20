@@ -1,0 +1,9 @@
+_next_id: 2
+constraints:
+- id: C001
+  added: 2026-05-15 19:40 UTC
+  summary: Goal classification 实验必须 trained + untrained 对照数据齐全后才写 conclusion。单臂数据只记数字，禁止下结论。
+  scope: all
+  reason: Agent 两次在缺少 untrained 对照时错误归因（memory.md "language grounding" + lg_gc_trained_frame0
+    "instruction integration"），均被 Reviewer CRITICAL 打回。
+  decision_id: D018

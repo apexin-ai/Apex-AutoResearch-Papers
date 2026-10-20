@@ -1,0 +1,1753 @@
+narrative_guidance: '原始 framing 完全成立。论文叙事以跨架构 routing 一致性为核心：C2 三层级路由梯度（VLM→OXE-VLA→task-VLA）作为
+  headline finding， R² exit collapse 的 VLM→VLA 二元分离（6/6 vs 0/4）作为 mechanistic insight，NLP
+  finetuning control（ΔR²=0.000） 作为 specificity evidence。C1 框架的跨架构可复用性被独立 valued。C3
+  作为 RSA-qualified observation 不受挑战。 Reviewers 在 best 档接受：(1) 3架构×4suite 矩阵为充分覆盖，(2)
+  Δ>0.10 阈值非 arbitrary， (3) CF metric incomparability 被 properly caveated 后不成为 dealbreaker，(4)
+  无 closed-loop 验证不 fatal， (5) L1 head count base-model-dependent 解读被视为 honest science。
+
+  '
+imagined_experiments:
+- name: SigLIP+Projector RSA vs Full VLA vs DINO
+  plan_id: plan_001
+  description: 提取 frozen SigLIP+projector 的 4096d 输出，计算 RSA 对齐度，与 VLA 各层和 standalone
+    DINO 对比
+  expected_results:
+    siglip_projector_rsa: 0.615
+    bootstrap_95_ci:
+    - 0.526
+    - 0.695
+    trained_vla_peak_rsa: 0.488
+    untrained_vla_peak_rsa: 0.485
+    dino_rsa: 0.388
+    llm_degradation_delta: -0.127
+  result_rationale: '在 best 档下，SigLIP+projector RSA=0.615 远高于 VLA 任何层（~0.49）和 DINO（0.388），
+    reviewers 接受这一证据说明 action-relevant geometric structure 的主要来源是 frozen vision encoder。
+    LLM 降解 0.127 的 gap 被解读为 LLM 在保持 action structure 的同时重分配信息用于 instruction routing——
+    这不是损失而是 functional trade-off。reviewer 不会要求 unfrozen encoder 对照实验， 因为 frozen encoder
+    是三种 VLA 架构的共同设计选择，实验覆盖了实际部署的设计空间。
+
+    '
+  tables:
+  - title: 'Action-Aligned Geometry: Source Localization'
+    columns:
+    - Representation
+    - RSA (ρ)
+    - 95% CI
+    - vs DINO Δ
+    rows:
+    - - SigLIP+Projector (4096d)
+      - '0.615'
+      - '[0.526, 0.695]'
+      - '+0.227'
+    - - VLA Trained peak (L9)
+      - '0.488'
+      - '[0.41, 0.56]'
+      - '+0.100'
+    - - VLA Untrained peak (L12)
+      - '0.485'
+      - '[0.40, 0.56]'
+      - '+0.097'
+    - - DINOv2 cls_token
+      - '0.388'
+      - '[0.30, 0.47]'
+      - —
+  figures_description:
+  - 'Bar chart: four representations ordered by RSA magnitude, with 95% CI error bars.
+    SigLIP+Proj visually dominant.'
+  analysis: 'Vision encoder 提供 RSA=0.615 的 action-relevant structure，LLM 层将其降至 ~0.49。
+    四条件（trained/untrained × with/without inst）在 0.48-0.49 band 内收敛，说明 LLM 降解幅度与训练状态和
+    instruction 存在与否无关。在 best 档下，这一结果为 C1 框架 提供了定量基础：framework 正确识别了 vision encoder
+    作为 action geometry 的 source。
+
+    '
+- name: DINOv2 Baseline RSA
+  plan_id: plan_002
+  description: 提取 standalone DINOv2 ViT-L/14 cls_token 和 patch_mean，作为 non-VL vision
+    model 基准
+  expected_results:
+    dino_cls_rsa: 0.692
+    dino_patch_mean_rsa: 0.631
+    dino_action_probe_R2: 0.687
+    temporal_rho_per_task_mean: 0.901
+    subtask_macro_auc: 0.972
+    control_b_permutation_rho: 0.039
+  result_rationale: 'DINOv2 cls_token RSA=0.692 是所有 standalone encoder 中最高的（under
+    RSA metric）， 这为 C3 observation 提供基础——DINOv2 的 self-supervised 预训练产生了最高的 geometric  alignment。在
+    best 档下，reviewers 接受 "under RSA" qualifier，不要求 CKA 一致性， 因为 RSA 和 CKA 捕捉不同 representational
+    property 的观点被视为 metric-aware honest reporting。 DINOv2 action probe R²=0.687 作为
+    functional baseline 确认 cls_token 的 action-decodability。 label permutation control
+    ρ=0.039 ≈ 0 排除了 probe overfitting。
+
+    '
+  tables:
+  - title: DINOv2 Standalone Baselines
+    columns:
+    - Feature
+    - RSA (ρ)
+    - Action R²
+    - Temporal ρ
+    rows:
+    - - DINOv2 cls_token
+      - '0.692'
+      - '0.687'
+      - '0.901'
+    - - DINOv2 patch_mean
+      - '0.631'
+      - —
+      - —
+    - - Label-permuted control
+      - —
+      - '-0.052'
+      - '0.039'
+  figures_description:
+  - DINOv2 作为 RSA ordering 的 anchor point 出现在 cross-encoder comparison table 中
+  analysis: 'DINOv2 RSA=0.692 > SigLIP+Proj=0.615 > VLA layers ~0.49 > CLIP=0.557。
+    在 best 档下，DINOv2 在 RSA 下的最高排名被 properly qualified， 不会被 reviewer 攻击为 overclaimed。
+
+    '
+- name: Per-layer RSA Curve
+  plan_id: plan_003
+  description: 33 层 × 4 条件（trained/untrained × with/without inst）的 RSA 逐层曲线
+  expected_results:
+    trained_image_mean:
+      peak_layer: 12
+      peak_rsa: 0.628
+      L0_rsa: 0.612
+      L32_rsa: 0.422
+      pattern: inverted-U
+    untrained_image_mean:
+      peak_layer: 0
+      peak_rsa: 0.612
+      L32_rsa: 0.545
+      pattern: monotonic_decay
+    projector_to_L1_drop: 0.204
+    training_shifts_peak: L0 → L12
+  result_rationale: 'Trained image_mean 展现 inverted-U（L0=0.612→L12=0.628 peak→L32=0.422），
+    而 untrained 单调衰减（L0=0.612→L32=0.545）。在 best 档下，reviewers 接受： (1) training 将 RSA
+    peak 从 L0 移到 L12——对应 mid-layer processing 的 VLM 预训练模式； (2) exit 层的 RSA 陡降（trained
+    L32=0.422 vs untrained L32=0.545）与 R² exit collapse  在 direction 上一致；(3) Proj→L1
+    是最大 drop（~0.20），因为 token mixing 在第一个  transformer layer 就开始了。这一 per-layer profile
+    为 C2 的 bookend attention pattern  提供 representational 维度的补充证据。
+
+    '
+  tables:
+  - title: Per-layer RSA Profile (image_mean, with instruction)
+    columns:
+    - Layer
+    - Trained RSA
+    - Untrained RSA
+    - Δ(T-U)
+    rows:
+    - - Projector
+      - '0.615'
+      - '0.615'
+      - '0.000'
+    - - L0
+      - '0.612'
+      - '0.612'
+      - '0.000'
+    - - L4
+      - '0.472'
+      - '0.470'
+      - '+0.002'
+    - - L8
+      - '0.512'
+      - '0.478'
+      - '+0.034'
+    - - L12
+      - '0.628'
+      - '0.476'
+      - '+0.152'
+    - - L16
+      - '0.523'
+      - '0.470'
+      - '+0.053'
+    - - L24
+      - '0.476'
+      - '0.460'
+      - '+0.016'
+    - - L32
+      - '0.422'
+      - '0.545'
+      - '-0.123'
+  figures_description:
+  - 'Line plot: 33-layer RSA curve, four conditions overlaid. Trained image_mean inverted-U
+    clearly visible, untrained monotonic decay.'
+  analysis: 'Trained model 在 mid-layers (L8-L16) 维持甚至略增 RSA，然后在 exit layers 急剧下降。
+    Untrained 从 L0 开始就单调衰减。Training 的效果是在 mid-layers  暂时 preserve/enhance action geometry（与
+    LLM 预训练的 mid-layer processing 模式一致）， 然后在 exit layers 选择性丢弃——这正是 R² exit collapse
+    在 RSA 维度的体现。
+
+    '
+- name: Output Head Analysis
+  plan_id: plan_004
+  description: 比较 trained 和 untrained 的权重变化分布，验证 vision encoder 和 projector frozen
+  expected_results:
+    vision_backbone:
+      count: 685
+      mean_rel_change: 0.0
+      cos_sim: 1.0
+      verdict: IDENTICAL
+    projector:
+      count: 6
+      mean_rel_change: 0.0
+      cos_sim: 1.001
+      verdict: IDENTICAL
+    llm_layers:
+      count: 288
+      mean_rel_change: 1.316
+      std: 0.376
+      cos_sim: 0.218
+      range:
+      - 1.22
+      - 1.37
+    head_vs_llm_ratio: 1.12
+  result_rationale: 'Vision backbone 和 projector 在 trained/untrained 间完全相同（cos_sim=1.0），
+    这是 OpenVLA 架构设计的必然——frozen encoder 不接收梯度。LLM 32层的 rel_change  均匀分布（1.22-1.37），说明训练影响分散在全部
+    LLM 层而非集中在 output head 或特定层。 在 best 档下，reviewers 将此解读为：frozen encoder 是三种架构的共同
+    design pattern， 四条件 RSA 收敛（0.48-0.49）正是因为 encoder output 在所有条件下相同。 head_vs_llm_ratio=1.12
+    < 3x threshold 说明 LLM head 不特殊—— action mapping 不是 shallow adaptation 而是分布式计算。
+
+    '
+  tables:
+  - title: Weight Change Distribution by Component
+    columns:
+    - Component
+    - '# Params'
+    - Mean rel_change
+    - cos_sim
+    - Verdict
+    rows:
+    - - Vision Backbone
+      - '685'
+      - '0.000'
+      - '1.000'
+      - IDENTICAL
+    - - Projector
+      - '6'
+      - '0.000'
+      - '1.001'
+      - IDENTICAL
+    - - LLM (32 layers)
+      - '288'
+      - '1.316'
+      - '0.218'
+      - DISTRIBUTED
+    - - LM Head
+      - '1'
+      - '1.475'
+      - '0.000'
+      - CHANGED
+  figures_description:
+  - 'Histogram: per-component rel_change distribution showing vision/projector at
+    0 and LLM layers uniform ~1.3'
+  analysis: 'Frozen encoder 确认为 C1 framework 的物理基础。LLM 权重变化均匀分布为 C2  的分布式 routing
+    机制提供 weight-space 证据：training 不是局部改写几层， 而是全局 reorganize attention pattern。
+
+    '
+- name: 6 Probing Methods × 2 Benchmarks
+  plan_id: plan_005
+  description: temporal distance ρ, action R², delta R², RSA, CKA, classification
+    六种方法在 LIBERO-Goal 和 LIBERO-Long 上交叉验证
+  expected_results:
+    consistency_verdict: 'All 6 methods: trained ≈ untrained >> DINO'
+    temporal_rho:
+      trained_best: 0.955
+      untrained_best: 0.933
+      delta: 0.022
+    action_R2:
+      trained_best: 0.683
+      untrained_best: 0.616
+      dino: 0.676
+    delta_R2:
+      trained_best: 0.059
+      untrained_best: 0.049
+      dino: 0.06
+    rsa:
+      trained_peak: 0.488
+      untrained_peak: 0.485
+      dino: 0.388
+  result_rationale: '六种方法一致显示 VLA representations（无论训练与否）远优于 standalone DINO， 但 trained
+    和 untrained 间差异小（特别是 RSA 维度 Δ=0.003）。这在 best 档下 被解读为 frozen encoder 贡献的 strong
+    confirmation：vision encoder 决定了 representational quality 的 baseline，LLM training
+    的贡献在 geometry（RSA/CKA） 维度小但在 routing（attention/probe）维度显著。方法一致性本身被 reviewers 视为
+    framework robustness 的证据——C1 的多方法设计不是 p-hacking 而是 convergent validation。
+
+    '
+  tables:
+  - title: Six-Method Consistency Summary
+    columns:
+    - Method
+    - Trained
+    - Untrained
+    - DINO
+    - T≈U?
+    - T>>D?
+    rows:
+    - - Temporal ρ
+      - '0.955'
+      - '0.933'
+      - '0.901'
+      - Yes (Δ=0.02)
+      - 'Yes'
+    - - Action R²
+      - '0.683'
+      - '0.616'
+      - '0.676'
+      - Marginal
+      - 'Yes'
+    - - Delta R²
+      - '0.059'
+      - '0.049'
+      - '0.060'
+      - 'Yes'
+      - 'No'
+    - - RSA (ρ)
+      - '0.488'
+      - '0.485'
+      - '0.388'
+      - Yes (Δ=0.003)
+      - 'Yes'
+    - - CKA
+      - '0.083'
+      - '0.089'
+      - '0.066'
+      - 'Yes'
+      - 'Yes'
+    - - Classification
+      - '1.000'
+      - '1.000'
+      - '0.863'
+      - 'Yes'
+      - 'Yes'
+  figures_description:
+  - 'Radar chart or grouped bar: six methods × three conditions, visualizing the consistency
+    pattern'
+  analysis: '六方法 convergence 是 C1 framework 的核心贡献之一。在 best 档下， 这种多维验证被视为 methodological
+    rigor 的标志。Trained ≈ untrained  在 image_mean RSA 维度成立，为 C3 observation 提供支撑。
+
+    '
+- name: Instruction Ablation
+  plan_id: plan_006
+  description: 移除 instruction text（替换为空字符串），测试 RSA 是否下降
+  expected_results:
+    with_inst_untrained_peak_rsa: 0.485
+    no_inst_untrained_peak_rsa: 0.48
+    delta: 0.004
+    gate_threshold: 0.1
+    gate_judgment: FAIL — Δ=0.004 << 0.10
+  result_rationale: '移除 instruction 后 RSA 仅下降 0.004（远小于 0.10 阈值），说明 image_mean  位置的
+    action-aligned geometry 是 vision-driven 而非 instruction-driven。 这在 best 档下与 C1
+    的 causal mask 论证完美一致：image tokens 在序列中 先于 instruction tokens，causal mask 阻止了 information
+    flow， 所以移除 instruction 对 image tokens 的表征没有影响。 Reviewers 接受这是 C1 framework 的 expected
+    confirmation 而非 trivial finding—— 因为 residual stream 理论上可以 leak information，实验验证了
+    no leakage。
+
+    '
+  tables:
+  - title: Instruction Ablation (Untrained, image_mean)
+    columns:
+    - Condition
+    - Peak RSA
+    - Peak Layer
+    - Δ vs with-inst
+    rows:
+    - - With instruction
+      - '0.485'
+      - L12
+      - —
+    - - No instruction (empty)
+      - '0.480'
+      - L6
+      - '-0.004'
+    - - Gate threshold
+      - —
+      - —
+      - '0.10'
+  figures_description:
+  - 'Per-layer RSA curve overlay: with vs without instruction, nearly indistinguishable'
+  analysis: 'Instruction 对 image_mean RSA 的影响可忽略。结合 plan_008 的 instruction content  不变性，形成三重不变性：training
+    + instruction presence + instruction content  均不影响 image_mean RSA。这精确界定了 C1 framework
+    中 "image tokens 不参与  instruction routing" 的结论边界。
+
+    '
+- name: 2×2 Matrix (Training × Instruction)
+  plan_id: plan_007
+  description: 四条件完整矩阵：trained/untrained × with/without instruction
+  expected_results:
+    trained_with_inst: 0.488
+    trained_no_inst: 0.489
+    untrained_with_inst: 0.485
+    untrained_no_inst: 0.48
+    dino_baseline: 0.388
+    training_effect_with_inst: 0.003
+    training_effect_no_inst: 0.009
+    instruction_effect_trained: -0.001
+    instruction_effect_untrained: 0.004
+    bootstrap_delta_ci: '[-0.058, 0.072]'
+  result_rationale: '四条件收敛在 0.48-0.49 band 内，Bootstrap CI 包含 0，确认 training 和  instruction
+    均非 image_mean RSA 的显著影响因素。在 best 档下，这一 2×2  factorial design 被 reviewers 视为 rigorous
+    experimental methodology—— 不是仅比较 trained vs untrained，而是完整析因设计控制了交互效应。 训练效应（Δ=0.003-0.009）和
+    instruction 效应（Δ=-0.001 到 0.004） 均在 noise level，而所有四条件都远高于 DINO（+0.09-0.10）， 说明
+    VLA 架构本身（而非训练或 instruction）提供了 action-relevant structure。
+
+    '
+  tables:
+  - title: 2×2 Factorial RSA Matrix
+    columns:
+    - ''
+    - With Instruction
+    - No Instruction
+    - Instruction Effect
+    rows:
+    - - Trained
+      - '0.488'
+      - '0.489'
+      - '-0.001'
+    - - Untrained
+      - '0.485'
+      - '0.480'
+      - '+0.004'
+    - - Training Effect
+      - '+0.003'
+      - '+0.009'
+      - ''
+  figures_description:
+  - 2×2 heatmap with RSA values, color-coded to show convergence in 0.48-0.49 band
+  analysis: 'Bootstrap CI=[-0.058, 0.072] includes 0。在 best 档下，这是 C1 framework  最强的
+    quantitative evidence 之一：vision encoder geometry 对 training 和  instruction 双重不变。
+
+    '
+- name: Random Instruction Control
+  plan_id: plan_008
+  description: 用 random tokens、word-shuffled、empty string 替代真实 instruction，验证 instruction
+    content 不影响 RSA
+  expected_results:
+    normal_peak_rsa: 0.489
+    random_peak_rsa: 0.484
+    shuffled_peak_rsa: 0.483
+    empty_peak_rsa: 0.472
+    max_absolute_delta: 0.017
+    instruction_invariant: true
+  result_rationale: '四种 instruction 条件（normal/random/shuffled/empty）在 ±0.017 内收敛，
+    确认 instruction content 对 image_mean RSA 无影响。Empty 最低（0.472） 可能反映 shorter sequence
+    的 minor 位置效应，但 Δ=0.017 远小于 meaningful threshold。 在 best 档下，这一 three-way instruction
+    invariance（presence + content + semantic） 被视为排除了 "trivial separability" 攻击面——即使
+    random tokens 也不改变 geometry， 说明 image representation 确实 decouple from language
+    processing。 Reviewers 认为这是 thorough ablation 的标志。
+
+    '
+  tables:
+  - title: Instruction Content Ablation
+    columns:
+    - Instruction Type
+    - Peak RSA
+    - Peak Layer
+    - Δ vs Normal
+    rows:
+    - - Normal (real task instruction)
+      - '0.489'
+      - L16
+      - —
+    - - Random tokens
+      - '0.484'
+      - L16
+      - '-0.005'
+    - - Word-shuffled
+      - '0.483'
+      - L16
+      - '-0.006'
+    - - Empty string
+      - '0.472'
+      - L16
+      - '-0.017'
+  figures_description:
+  - Four overlapping per-layer RSA curves, visually indistinguishable within CI
+  analysis: '三重不变性完备：training invariance (plan_007) + instruction presence  invariance
+    (plan_006) + instruction content invariance (plan_008)。 在 best 档下，这是 C1 framework
+    的 definitive validation。
+
+    '
+- name: CKA Verification
+  plan_id: plan_009
+  description: 用 CKA 指标重复 RSA 发现，检验 metric robustness
+  expected_results:
+    linear_cka:
+      untrained_img_mean_L23: 0.089
+      trained_img_mean_L23: 0.083
+      projector: 0.081
+      dino: 0.066
+      trained_last_preaction_L32: 0.127
+    rdm_cka:
+      trained_img_mean_L23: 0.26
+      projector: 0.257
+      untrained_img_mean_L23: 0.246
+      dino: 0.241
+    ordering_reversal: 'CKA: untrained > trained > projector > DINO (vs RSA: projector
+      > trained ≈ untrained > DINO)'
+  result_rationale: 'CKA ordering 反转了 RSA ordering（CKA 中 untrained > trained，RSA 中相反；
+    CKA 中 projector 排名下降），但 DINO 在两种 metric 下都最低（robust finding）。 在 best 档下，reviewers
+    接受 RSA-CKA dissociation 作为 honest methodological finding  而非 weakness：RSA 捕捉 geometric
+    alignment（action-distance correspondence）， CKA 捕捉 global structure（representational
+    similarity invariant to rotation）。 LLM 处理降解了前者但保留了后者。last_preaction CKA=0.127
+    最高的事实与 C2  的 instruction routing narrative 一致——instruction-conditioned token position  保留了最多的与
+    action structure 相关的全局结构。 C3 中 DINOv2 ranking 被限定为 "under RSA"，CKA 反转在正文中 acknowledge。
+
+    '
+  tables:
+  - title: RSA vs CKA Ordering Comparison
+    columns:
+    - Rank
+    - RSA Ordering
+    - Linear CKA Ordering
+    rows:
+    - - 1st
+      - SigLIP+Proj (0.615)
+      - last_preaction L32 (0.127)
+    - - 2nd
+      - Trained img_mean (0.488)
+      - Untrained img_mean (0.089)
+    - - 3rd
+      - Untrained img_mean (0.485)
+      - Trained img_mean (0.083)
+    - - 4th
+      - DINO (0.388)
+      - Projector (0.081)
+    - - 5th
+      - —
+      - DINO (0.066)
+  figures_description:
+  - Side-by-side rank comparison showing RSA vs CKA ordering reversal
+  analysis: 'Metric dissociation 本身是 informative finding：LLM 在 preserving global structure  (CKA)
+    的同时 disrupting geometric alignment (RSA)。在 best 档下， 这一 honest reporting 被视为 methodological
+    maturity 而非 conflicting evidence。
+
+    '
+- name: LIBERO-Spatial Benchmark Extension
+  plan_id: plan_010
+  description: 第三个 LIBERO benchmark 交叉验证所有发现的 generalizability
+  expected_results:
+    rsa:
+      trained_image_mean_peak:
+        layer: 14
+        rsa: 0.691
+      trained_last_preaction_peak:
+        layer: 15
+        rsa: 0.695
+      untrained_image_mean_peak:
+        layer: 0
+        rsa: 0.652
+      untrained_last_preaction_peak:
+        layer: 1
+        rsa: 0.666
+    action_probe:
+      trained_image_mean_peak:
+        layer: 13
+        R2: 0.696
+      trained_last_preaction_peak:
+        layer: 21
+        R2: 0.675
+      untrained_image_mean_peak:
+        layer: 0
+        R2: 0.673
+      untrained_last_preaction_peak:
+        layer: 1
+        R2: 0.635
+    bootstrap_significance: p < 0.001 for all trained vs untrained comparisons
+    cross_benchmark_consistency: RSA peak Goal L12 vs Spatial L14-15; probe peak Goal
+      L8-13 vs Spatial L13-21
+  result_rationale: 'LIBERO-Spatial 复现了 LIBERO-Goal 的所有核心 pattern：(1) trained inverted-U
+    RSA confirmed， (2) untrained flat/declining，(3) trained > untrained in action
+    probe 在所有层， (4) peak layer 在 2-layer range 内一致。在 best 档下，cross-benchmark replication  被视为
+    strong evidence against task-specific overfitting。RSA peak 从 Goal L12  移到 Spatial
+    L14-15 的微小偏移被解读为 task-dependent modulation（不同空间推理需求 导致 slightly deeper processing），而非
+    inconsistency。p<0.001 的 bootstrap significance  排除了 random fluctuation。这一结果为 C1
+    framework 的跨任务适用性提供了 within-architecture  validation，补充 C2 的跨架构 validation。
+
+    '
+  tables:
+  - title: Cross-Benchmark Consistency (OpenVLA)
+    columns:
+    - Metric
+    - LIBERO-Goal
+    - LIBERO-Spatial
+    - Consistent?
+    rows:
+    - - RSA peak (trained img_mean)
+      - L12 (0.628)
+      - L14 (0.691)
+      - Yes (±2L)
+    - - R² peak (trained img_mean)
+      - L8 (0.655)
+      - L13 (0.696)
+      - 'Yes'
+    - - Untrained RSA peak
+      - L0 (0.612)
+      - L0 (0.652)
+      - 'Yes'
+    - - Training effect Δ (best-vs-best)
+      - '+0.017'
+      - '+0.023'
+      - Both sig.
+    - - Untrained last_pre collapse
+      - L10-L13
+      - L5-L31
+      - Both collapse
+  figures_description:
+  - 'Dual-panel line plot: Goal vs Spatial per-layer RSA and R² profiles overlaid'
+  analysis: '跨 benchmark 一致性确认 OpenVLA 内部的 representational pattern 不是 task-specific。
+    这为后续跨架构验证（TracVLA, NORA）提供了 within-architecture baseline。
+
+    '
+- name: Full-layer R² Scan
+  plan_id: plan_011
+  description: 33 layers × 2 conditions × 2 aggregations = 132 MLP action probes，获取
+    R² per-layer curve
+  expected_results:
+    trained_image_mean_peak:
+      layer: 8
+      mean_R2: 0.655
+    trained_last_preaction_peak:
+      layer: 13
+      mean_R2: 0.678
+    untrained_image_mean_peak:
+      layer: 0
+      mean_R2: 0.64
+    untrained_last_preaction_peak:
+      layer: 32
+      mean_R2: 0.609
+    projector_R2: 0.63
+    bootstrap_best_vs_best:
+      image_mean:
+        delta: 0.015
+        p: 0.006
+      last_preaction:
+        delta: 0.069
+        p: 0.0001
+    untrained_pathological_layers: L10-L13 R²≈0
+  result_rationale: 'R² per-layer curve 与 RSA inverted-U 一致，但揭示了 RSA 无法捕捉的关键差异： (1)
+    Trained last_preaction peak=0.678 > projector=0.630（p<0.001），说明 LLM  在 instruction-conditioned
+    token 位置确实增强了 action-decodability—— 这是 C2 routing 的 functional evidence； (2) Untrained
+    L10-L13 R²≈0（pathological collapse），说明 random LLM weights  在这些层创造了不可解码的表征——与 trained
+    的平滑 inverted-U 形成鲜明对比； (3) last_preaction 的 best-vs-best Δ=0.069（p<0.0001）远大于
+    image_mean Δ=0.015， 确认 training effect 集中在 instruction-conditioned token position。
+    在 best 档下，这一 R²-RSA convergence 被视为 metric-robust validation。
+
+    '
+  tables:
+  - title: R² Per-layer Peak Summary
+    columns:
+    - Condition
+    - Token
+    - Peak Layer
+    - Peak R²
+    - Exit R²
+    - Δ(peak-exit)
+    rows:
+    - - Trained
+      - image_mean
+      - L8
+      - '0.655'
+      - 0.422*
+      - '0.233'
+    - - Trained
+      - last_preaction
+      - L13
+      - '0.678'
+      - '0.609'
+      - '0.069'
+    - - Untrained
+      - image_mean
+      - L0
+      - '0.640'
+      - 0.545*
+      - '0.095'
+    - - Untrained
+      - last_preaction
+      - L32
+      - '0.609'
+      - '0.609'
+      - '0.000'
+    - - Projector
+      - —
+      - —
+      - '0.630'
+      - —
+      - —
+  figures_description:
+  - 'Dual-panel: image_mean and last_preaction R² per-layer curves, trained (solid)
+    vs untrained (dashed), with projector baseline horizontal line'
+  analysis: 'R² scan 是连接 C1（framework）和 C2（routing）的桥梁实验。image_mean 的 training  invariance（Δ=0.015,
+    small）支持 C1/C3；last_preaction 的 training effect  （Δ=0.069, p<0.0001）支持 C2 的 instruction
+    routing narrative。 这一 dissociation 本身是论文的核心 insight：training 不改变 vision geometry  但
+    reshape instruction routing。
+
+    '
+- name: CLIP-ViT Pretraining Control
+  plan_id: plan_012
+  description: 用 CLIP ViT-L/14 替代 SigLIP，区分 VL pretraining 贡献 vs encoder 本身质量
+  expected_results:
+    clip_cls_rsa: 0.557
+    clip_cls_R2: 0.587
+    dino_cls_rsa: 0.692
+    dino_cls_R2: 0.634
+    projector_R2: 0.63
+    ordering: last_preaction_L19 (0.671) > DINO (0.634) ≈ Projector (0.630) > image_mean_L19
+      (0.599) > CLIP (0.587)
+  result_rationale: 'CLIP RSA=0.557 和 R²=0.587 均低于 DINOv2（RSA=0.692, R²=0.634）， 否定了
+    "VL pretraining 优于 self-supervised" 的假说。在 best 档下， reviewers 接受这一结果说明 action-relevant
+    geometry 更多来自 spatial/temporal  feature quality（DINOv2 的 self-supervised 目标天然对齐）而非
+    language-grounding  能力（CLIP 的 contrastive objective 不直接服务 action prediction）。
+    这为 C3 的 DINOv2 ranking observation 提供了额外的 interpretive depth： DINOv2 的优势不是因为它
+    "understand language" 而是因为它的 patch-level  features 保留了更多 spatial-temporal structure。
+
+    '
+  tables:
+  - title: Cross-Encoder Comparison (Unified Probe)
+    columns:
+    - Encoder
+    - RSA (ρ)
+    - Action R²
+    - Pretraining
+    rows:
+    - - DINOv2 cls
+      - '0.692'
+      - '0.634'
+      - Self-supervised (iBOT+DINO)
+    - - SigLIP+Proj
+      - '0.615'
+      - '0.630'
+      - VL contrastive
+    - - CLIP ViT-L cls
+      - '0.557'
+      - '0.587'
+      - VL contrastive
+    - - VLA last_pre L19
+      - —
+      - '0.671'
+      - VLA finetuned
+    - - VLA img_mean L19
+      - —
+      - '0.599'
+      - VLA finetuned
+  figures_description:
+  - 'Grouped bar: RSA and R² side by side for each encoder, DINOv2 dominant in RSA'
+  analysis: 'CLIP < DINO 在两个维度上成立。在 best 档下，这排除了 "VL pretraining  is the key" 解释，支持
+    "spatial feature quality matters more than  language grounding for action prediction"
+    的结论。
+
+    '
+- name: Branch-Split RSA
+  plan_id: plan_013
+  description: 在 DinoSigLIP fused backbone 中分离 DINOv2 branch (1088d) 和 SigLIP branch
+    (1088d) 的 RSA
+  expected_results:
+    dinov2_branch_rsa: 0.619
+    siglip_branch_rsa: 0.621
+    fused_2176d_rsa: 0.634
+    post_projector_4096d_rsa: 0.615
+    standalone_dino_cls_rsa: 0.692
+  result_rationale: 'DINOv2 branch (0.619) ≈ SigLIP branch (0.621)，Δ<0.002，说明在 fused
+    backbone  中两个分支贡献几乎相等。Fused=0.634 > either branch (complementary benefit)， projector
+    压缩 0.634→0.615（-0.019 的信息损失）。 Standalone DINO cls=0.692 > in-backbone DINOv2=0.619
+    的差异来自不同的 extraction layer  和 CLS vs patch-mean 的聚合方式差异。 在 best 档下，reviewers 接受
+    branch-split 分析作为 C3 observation 的 fine-grained  support：vision encoder 的两个分支互补而非冗余，projector
+    起到了 information bottleneck  的作用（轻微压缩但保持核心 structure）。
+
+    '
+  tables:
+  - title: Branch-Split RSA Analysis
+    columns:
+    - Representation
+    - Dim
+    - RSA (ρ)
+    - Δ vs Fused
+    rows:
+    - - DINOv2 branch (in-backbone)
+      - '1088'
+      - '0.619'
+      - '-0.015'
+    - - SigLIP branch (in-backbone)
+      - '1088'
+      - '0.621'
+      - '-0.013'
+    - - Fused backbone
+      - '2176'
+      - '0.634'
+      - —
+    - - Post-projector
+      - '4096'
+      - '0.615'
+      - '-0.019'
+    - - Standalone DINOv2 cls
+      - '1024'
+      - '0.692'
+      - '+0.058'
+  figures_description:
+  - 'Waterfall chart: Fused (0.634) → Projector compression → LLM degradation → final
+    VLA layer'
+  analysis: '两分支等贡献 + projector 轻微压缩 + LLM 进一步降解 = 完整的 information flow 图。 在 best
+    档下，这是 C1 framework 的 architectural decomposition， 让 reviewers 看到 action-relevant
+    information 在每个 pipeline stage 的 fate。
+
+    '
+- name: Cross-Architecture R² Exit Collapse Matrix
+  plan_id: cross_arch_r2_collapse
+  description: 3 架构 × 4 suite 的 R² exit collapse 矩阵，验证 VLM→VLA 二元分离
+  expected_results:
+    vlm_to_vla_cells:
+      tracvla_goal:
+        trained_delta: 0.228
+        untrained_delta: 0.048
+        collapse: true
+      tracvla_spatial:
+        trained_delta: 0.138
+        untrained_delta: 0.016
+        collapse: true
+      tracvla_object:
+        trained_delta: 0.294
+        untrained_delta: 0.009
+        collapse: true
+      tracvla_long:
+        trained_delta: 0.198
+        untrained_delta: 0.028
+        collapse: true
+      nora_goal:
+        trained_delta: 0.691
+        untrained_delta: 0.044
+        collapse: true
+      nora_spatial:
+        trained_delta: 0.302
+        untrained_delta: 0.037
+        collapse: true
+    vla_to_vla_cells:
+      openvla_goal:
+        trained_delta: 0.016
+        untrained_delta: 0.033
+        collapse: false
+      openvla_spatial:
+        trained_delta: 0.037
+        untrained_delta: 0.034
+        collapse: false
+      openvla_object:
+        trained_delta: 0.037
+        untrained_delta: 0.076
+        collapse: false
+      openvla_long:
+        trained_delta: 0.004
+        untrained_delta: 0.016
+        collapse: false
+    binary_separation: 6/6 VLM→VLA collapse vs 0/4 VLA→VLA collapse
+    threshold: 0.1
+    nlp_control_delta: 0.0
+  result_rationale: 'R² exit collapse 在 VLM→VLA 转换中 6/6 一致出现（TracVLA Δ=0.138-0.294,
+    NORA Δ=0.302-0.691）， 在 VLA→VLA 转换中 0/4 出现（OpenVLA Δ=0.004-0.037, 全部 < 0.10 threshold）。
+    NLP finetuning control ΔR²=0.000 排除了 generic fine-tuning artifact。 在 best 档下，这一
+    clean binary separation 被 reviewers 视为 novel mechanistic insight： exit collapse
+    是 VLM→VLA transition 的 one-time representational reorganization， 反映了 action head
+    学习选择性丢弃 exit-layer action information 的过程。 一旦这个 reorganization 完成（OXE pretraining
+    阶段），进一步 task-specific finetuning  不再触发新的 collapse。Δ>0.10 threshold 基于 v3 MCCV（demo-level
+    cross-validation  修正了 v2 的 train-test leakage），reviewers 不视为 arbitrary 因为它将两类转换  完全分离。NORA
+    Goal 的 Δ=0.691 是最极端的 collapse，可能与 Qwen2.5-VL-3B  的较小模型容量有关（更多 information 被压缩到
+    exit 层）。
+
+    '
+  tables:
+  - title: 'R² Exit Collapse: VLM→VLA vs VLA→VLA Binary Separation'
+    columns:
+    - Architecture
+    - Backbone
+    - Suite
+    - Transition Type
+    - Trained Δ
+    - Untrained Δ
+    - Collapse?
+    rows:
+    - - TracVLA
+      - Phi-3-mini
+      - Goal
+      - VLM→VLA
+      - '0.228'
+      - '0.048'
+      - 'Yes'
+    - - TracVLA
+      - Phi-3-mini
+      - Spatial
+      - VLM→VLA
+      - '0.138'
+      - '0.016'
+      - 'Yes'
+    - - TracVLA
+      - Phi-3-mini
+      - Object
+      - VLM→VLA
+      - '0.294'
+      - '0.009'
+      - 'Yes'
+    - - TracVLA
+      - Phi-3-mini
+      - Long
+      - VLM→VLA
+      - '0.198'
+      - '0.028'
+      - 'Yes'
+    - - NORA
+      - Qwen2.5-VL-3B
+      - Goal
+      - VLM→VLA
+      - '0.691'
+      - '0.044'
+      - 'Yes'
+    - - NORA
+      - Qwen2.5-VL-3B
+      - Spatial
+      - VLM→VLA
+      - '0.302'
+      - '0.037'
+      - 'Yes'
+    - - OpenVLA
+      - Llama-2-7B
+      - Goal
+      - VLA→VLA
+      - '0.016'
+      - '0.033'
+      - 'No'
+    - - OpenVLA
+      - Llama-2-7B
+      - Spatial
+      - VLA→VLA
+      - '0.037'
+      - '0.034'
+      - 'No'
+    - - OpenVLA
+      - Llama-2-7B
+      - Object
+      - VLA→VLA
+      - '0.037'
+      - '0.076'
+      - 'No'
+    - - OpenVLA
+      - Llama-2-7B
+      - Long (OFT)
+      - VLA→VLA
+      - '0.004'
+      - '0.016'
+      - 'No'
+    - - NLP Control
+      - Llama-2-7B
+      - —
+      - LLM→Chat
+      - '0.000'
+      - —
+      - 'No'
+  figures_description:
+  - 'Grouped bar chart: Trained Δ(peak-exit) for each cell, color-coded by transition
+    type. Clear visual separation between VLM→VLA (tall bars) and VLA→VLA (flat bars).'
+  - 'Scatter plot: Trained Δ on x-axis, colored by transition type, showing perfect
+    linear separation at Δ=0.10'
+  analysis: '6/6 vs 0/4 + NLP control ΔR²=0.000 形成论文最强的跨架构 finding。 在 best 档下 (exit_collapse_reviewer_acceptance:
+    0.85-1.0)， reviewers 接受这是 VLA training 的 emergent property， 而非特定架构或任务的 artifact。
+
+    '
+- name: Cross-Architecture Counterfactual Sensitivity
+  plan_id: cross_arch_cf
+  description: 3 架构 × 4 suite 的 counterfactual perturbation 分析
+  expected_results:
+    openvla_same_metric_comparisons:
+      goal:
+        trained_d: 1.182
+        untrained_d: 1.048
+        delta: 0.134
+        metric: cohen_d
+      spatial:
+        trained_d: 1.173
+        untrained_d: 0.936
+        delta: 0.237
+        metric: cohen_d
+    tracvla_trained_d_range:
+    - 1.17
+    - 1.52
+    tracvla_untrained_cos_range:
+    - 0.153
+    - 0.185
+    nora_trained: cos=1.0 (saturated)
+    nora_untrained_cos: 0.081
+    metric_incomparability_count: 5/8 cross-arch cells
+  result_rationale: 'CF sensitivity 一致存在于所有 trained VLAs（Cohen''s d ≥ 0.45 across
+    all tested conditions）， 但 metric incomparability 限制了跨条件定量比较。在 best 档下，reviewers
+    接受： (1) OpenVLA 是唯一可做公平 trained-vs-untrained 比较的架构（两个条件都能生成 actions， 用同一 Cohen''s
+    d metric），结果 trained 高于 untrained 但 gap 适中（Δ=0.04-0.24）， 因为 OXE-pretrained untrained
+    已是训练过的 VLA； (2) TracVLA/NORA 的 trained 用 d（action space），untrained 用 cos（hidden
+    space）， 两者不可比，但论文 properly caveat 这一点而非 overclaim； (3) "empty" 在 6/8 trained settings
+    排第一（最大 perturbation = 完全移除 instruction）， 这一 consistent ordering 跨架构成立，支持 instruction
+    routing 的 functional 解读。 CF sensitivity reviewer acceptance 在 best 档为 70-90%——部分
+    reviewers  可能对 metric incomparability 有保留，但 proper caveating 化解了大多数担忧。
+
+    '
+  tables:
+  - title: 'Counterfactual Sensitivity: Fair Comparisons (OpenVLA, same metric)'
+    columns:
+    - Suite
+    - Trained top d
+    - Untrained top d
+    - Δ
+    - Trained top condition
+    rows:
+    - - Goal
+      - 1.182 (wrong)
+      - 1.048 (empty)
+      - '+0.134'
+      - wrong
+    - - Spatial
+      - 1.173 (empty)
+      - 0.936 (empty)
+      - '+0.237'
+      - empty
+    - - Object
+      - 1.210 (empty)
+      - cos=0.569*
+      - incommensurable
+      - empty
+    - - Long (OFT)
+      - 0.565 (shuffled)
+      - —
+      - —
+      - shuffled
+  - title: 'Counterfactual Sensitivity: Cross-Architecture (trained only)'
+    columns:
+    - Architecture
+    - Suite
+    - Top d/cos
+    - Top Condition
+    - Metric
+    rows:
+    - - OpenVLA
+      - Goal
+      - d=1.182
+      - wrong
+      - Cohen's d
+    - - OpenVLA
+      - Spatial
+      - d=1.173
+      - empty
+      - Cohen's d
+    - - TracVLA
+      - Goal
+      - d=1.524
+      - empty
+      - Cohen's d
+    - - TracVLA
+      - Spatial
+      - d=1.327
+      - empty
+      - Cohen's d
+    - - TracVLA
+      - Object
+      - d=1.212
+      - empty
+      - Cohen's d
+    - - TracVLA
+      - Long
+      - d=1.473
+      - empty
+      - Cohen's d
+    - - NORA
+      - Goal
+      - cos=1.0
+      - saturated
+      - cosine dist
+  figures_description:
+  - 'Heatmap: architecture × suite, cell color = Cohen''s d magnitude, with metric
+    type annotation'
+  analysis: 'CF sensitivity 的跨架构一致性支持 C2 routing narrative。在 best 档下， metric incomparability
+    被 properly caveated 后不构成 fatal objection， 因为 OpenVLA 的 within-metric comparison
+    已足够作为 fair evidence。
+
+    '
+- name: Three-Tier Routing Gradient
+  plan_id: three_tier_gradient
+  description: VLM base → OXE-pretrained VLA → task-finetuned VLA 的三层级 routing 梯度验证
+  expected_results:
+    tier1_vlm_base:
+      r2_exit_collapse: None (0/2)
+      cf_sensitivity: cos < 0.2 (TracVLA/NORA untrained)
+      l1_heads: 'base-model-dependent (Phi-3: 32/32, Qwen: 13/16)'
+    tier2_oxe_pretrained:
+      r2_exit_collapse: None (0/4 OpenVLA cells < 0.10)
+      cf_sensitivity: d=1.048 (strong, same metric comparison)
+      l1_heads: 25/32 (OpenVLA untrained)
+    tier3_task_finetuned:
+      r2_exit_collapse: 6/6 VLM→VLA cells > 0.10
+      cf_sensitivity: d ≥ 1.17 (TracVLA/NORA trained)
+      l1_heads: architecture-dependent (22-30/32)
+    routing_progression: No routing → General routing (OXE) → Task-specific routing
+      (LIBERO)
+  result_rationale: '三层级梯度是论文的 narrative spine。在 best 档下，reviewers 接受这一 staged  emergence
+    story：(1) VLM base（Phi-3-Vision, Qwen2.5-VL）无 action training， 无 exit collapse，CF
+    sensitivity 极低（cos<0.2），L1 heads 完全来自语言预训练； (2) OXE-pretrained VLA（openvla-7b,
+    970K episodes）已有强 L1 routing（25/32 heads）， 强 CF（d=1.048），但无 exit collapse——说明
+    OXE training 创建了 routing  但尚未触发 exit-layer reorganization； (3) Task-finetuned
+    VLA（TracVLA/NORA）在 VLM→VLA 转换时触发 exit collapse， CF sensitivity 进一步增强，h13/h22 mixed
+    heads emerge (TracVLA)。 关键区分：L1 head count 是 base-model-dependent（Phi-3 的 instruction
+    tuning  已创建 32/32 heads，训练反而减少到 27-30/32），而 R² collapse 和 CF sensitivity  是 training-induced。这一
+    honest distinction 在 best 档下被视为  methodological sophistication，而非 weakness。
+
+    '
+  tables:
+  - title: Three-Tier Routing Gradient
+    columns:
+    - Tier
+    - Example
+    - R² Collapse
+    - CF Sensitivity
+    - L1 Heads
+    - Routing
+    rows:
+    - - 'Tier 1: VLM base'
+      - Phi-3-Vision
+      - None
+      - cos<0.2
+      - 32/32 (pretrained)
+      - Language-only
+    - - 'Tier 1: VLM base'
+      - Qwen2.5-VL
+      - None
+      - cos=0.081
+      - 13/16 (pretrained)
+      - Language-only
+    - - 'Tier 2: OXE VLA'
+      - openvla-7b
+      - None (Δ<0.10)
+      - d=1.048
+      - 25/32
+      - General action
+    - - 'Tier 3: Task VLA'
+      - TracVLA-Goal
+      - Δ=0.228
+      - d=1.524
+      - 27/32
+      - Task-specific
+    - - 'Tier 3: Task VLA'
+      - NORA-Goal
+      - Δ=0.691
+      - cos=1.0*
+      - 13/16
+      - Task-specific
+    - - 'Control: NLP'
+      - Llama-2-chat
+      - ΔR²=0.000
+      - N/A
+      - N/A
+      - None (language only)
+  figures_description:
+  - 'Schematic: three tiers as pipeline stages, each tier annotated with R² collapse
+    status, CF magnitude, and L1 head count'
+  analysis: '三层级梯度将 exit collapse、CF sensitivity、L1 heads 统一在一个 developmental narrative
+    中。 在 best 档下，这是论文从 "observation collection" 升级到 "mechanistic story" 的关键。
+
+    '
+- name: NLP Finetuning Control
+  plan_id: nlp_control
+  description: Llama-2-7b-chat（SFT+RLHF）+ Phi-3-mini-instruct + Qwen2.5-3B-Instruct
+    的 R² profile，排除 generic finetuning artifact
+  expected_results:
+    llama2_chat:
+      mean_r2: 0.1553
+      r2_range:
+      - 0.1547
+      - 0.1555
+      delta_r2: 0.0
+      profile: flat constant across all 32 layers
+    phi3_instruct:
+      mean_r2: 0.1555
+      r2_range:
+      - 0.1552
+      - 0.1555
+      delta_r2: 0.0
+    qwen25_instruct:
+      mean_r2: 0.1554
+      r2_range:
+      - 0.155
+      - 0.1555
+      delta_r2: 0.0
+    interpretation: R² ≈ 0.155 is noise floor; NLP finetuning creates zero layer-differentiated
+      action representation
+  result_rationale: '三个 NLP-finetuned models 在所有层 R²≈0.155（noise floor，仅拟合 between-task
+    variance）， ΔR²=0.000。对比同 backbone 的 VLM→VLA 转换：TracVLA Δ=0.156-0.294，NORA Δ=0.302-0.691。
+    在 best 档下（A6 假设），reviewers 接受这是 strong evidence 排除 "exit collapse  is a generic
+    fine-tuning artifact"。逻辑链：(1) 同 backbone（Llama-2-7B）+  不同 finetuning（NLP chat
+    vs VLA action）= 只有 VLA 产生 exit collapse； (2) 不同 backbone（Llama-2, Phi-3, Qwen2.5）+
+    同 finetuning 类型（NLP instruction tuning） = 三个都没有 exit collapse。这双重排除了 backbone-specific
+    和 finetuning-generic 两种  alternative explanations。R²=0.155 的物理含义是 ridge regression
+    只从 between-task  variance（10 classes → ~10% base + inter-task feature differences）中拟合，
+    无 layer-specific action information。
+
+    '
+  tables:
+  - title: 'NLP Finetuning Control: R² Exit Collapse Comparison'
+    columns:
+    - Model
+    - Backbone
+    - Finetuning
+    - Peak R²
+    - Exit R²
+    - ΔR²
+    rows:
+    - - Llama-2-7b-chat
+      - Llama-2-7B
+      - SFT+RLHF (NLP)
+      - '0.1555'
+      - '0.1555'
+      - '0.000'
+    - - Phi-3-mini-instruct
+      - Phi-3-mini
+      - Instruction tuning (NLP)
+      - '0.1555'
+      - '0.1555'
+      - '0.000'
+    - - Qwen2.5-3B-Instruct
+      - Qwen2.5-3B
+      - Instruction tuning (NLP)
+      - '0.1555'
+      - '0.1555'
+      - '0.000'
+    - - TracVLA (trained)
+      - Phi-3-mini
+      - VLA (VLM→VLA)
+      - '0.839'
+      - '0.574'
+      - 0.265*
+    - - NORA (trained)
+      - Qwen2.5-VL-3B
+      - VLA (VLM→VLA)
+      - '0.697'
+      - '-0.004'
+      - 0.701*
+    - - OpenVLA (trained)
+      - Llama-2-7B
+      - VLA (VLA→VLA)
+      - '0.869'
+      - '0.853'
+      - '0.016'
+  figures_description:
+  - 'Per-layer R² plot: three NLP controls as flat lines at 0.155, overlaid with VLA
+    trained curves showing inverted-U + exit collapse'
+  analysis: 'NLP control 是论文的 specificity killshot。在 best 档下， 这一三 backbone 一致的 null
+    result 让 "generic finetuning"  和 "backbone-specific" 两种 alternative explanations
+    同时被排除。
+
+    '
+- name: L1 Instruction-Dominant Head Analysis (Cross-Architecture)
+  plan_id: cross_arch_l1_heads
+  description: 三架构 × 多 suite 的 L1 attention head 分析，区分 training-induced vs base-model-dependent
+  expected_results:
+    openvla:
+      trained_goal: 23
+      untrained_goal: 26
+      trained_object: 24
+      untrained_object: 24
+      interpretation: OXE pretraining 已创建 routing; finetuning 减少 heads (→mixed)
+    tracvla:
+      trained_range:
+      - 27
+      - 30
+      untrained_all: 32
+      interpretation: Phi-3-Vision 32/32; training 减少到 27-30 (repurpose)
+    nora:
+      trained_goal: 13
+      untrained_goal: 13
+      trained_spatial: 12
+      untrained_spatial: 14
+      interpretation: Qwen2.5-VL 预训练已 13/16
+  result_rationale: 'L1 head count 的跨架构比较清楚地表明这是 base-model-dependent 而非 training-induced：
+    TracVLA untrained（纯 Phi-3-Vision）已 32/32 instruction-dominant，训练反而减少到 27-30/32；
+    NORA trained ≈ untrained（13/16 vs 13-14/16）；OpenVLA untrained（OXE pretrained）
+    已 25-26/32。在 best 档下（A5 假设），reviewers 将 "what training creates vs  what it inherits"
+    的区分视为 honest science——论文不 overclaim L1 heads 是训练效果， 而是准确归因为 base model 的语言预训练
+    attention pattern。 这种 intellectual honesty 提升而非降低论文的可信度。
+
+    '
+  tables:
+  - title: 'L1 Instruction-Dominant Heads: Training vs Inheritance'
+    columns:
+    - Architecture
+    - Backbone
+    - Suite
+    - Trained
+    - Untrained
+    - Δ
+    - Source
+    rows:
+    - - OpenVLA
+      - Llama-2-7B
+      - Goal
+      - 23/32
+      - 26/32 (OXE)
+      - '-3'
+      - Base+OXE
+    - - OpenVLA
+      - Llama-2-7B
+      - Object
+      - 24/32
+      - 24/32 (OXE)
+      - '0'
+      - Base+OXE
+    - - TracVLA
+      - Phi-3-mini
+      - Goal
+      - 27/32
+      - 32/32 (VLM)
+      - '-5'
+      - Base VLM
+    - - TracVLA
+      - Phi-3-mini
+      - Object
+      - 30/32
+      - 32/32 (VLM)
+      - '-2'
+      - Base VLM
+    - - NORA
+      - Qwen2.5-VL
+      - Goal
+      - 13/16
+      - 13/16 (VLM)
+      - '0'
+      - Base VLM
+    - - NORA
+      - Qwen2.5-VL
+      - Spatial
+      - 12/16
+      - 14/16 (VLM)
+      - '-2'
+      - Base VLM
+  figures_description:
+  - 'Paired bar: trained vs untrained L1 heads per architecture, showing that untrained
+    ≥ trained in most cases'
+  analysis: 'Training 不增加 L1 heads——在多数情况下反而减少（repurpose some heads to mixed function）。
+    在 best 档下，这一 counter-intuitive finding 被视为 nuanced insight， 强化了论文区分 training effect
+    和 inherited property 的贡献。
+
+    '
+- name: Cross-Instruction Probe (Dense Layer Profile)
+  plan_id: cross_inst_probe
+  description: 10-way instruction classification × 33 layers × 3 conditions（trained/untrained/Llama-2
+    base），验证 instruction routing 的逐层 dynamics
+  expected_results:
+    trained_last_preaction:
+      L0: 0.1
+      L1: 0.996
+      L2_to_L32: 1.0
+      pattern: immediate routing — L1 saturates
+    llama2base_last_preaction:
+      L0: 0.1
+      L1: 0.802
+      L2: 0.987
+      L5_plus: 1.0
+      pattern: gradual buildup — saturates at L5
+    untrained_last_preaction:
+      L0: 0.1
+      L1: 1.0
+      L8: 0.986
+      L16: 0.923
+      L24: 0.864
+      L31: 0.82
+      pattern: accidental routing + gradual forgetting
+    image_mean_all_conditions: 0.1
+    loocv_trained: 100.00±0.00
+    loocv_untrained: 96.64±7.07 → 84.76±11.59
+  result_rationale: '三条件的 cross-instruction probe 揭示了三种定性不同的 routing 策略： (1) Trained
+    在 L1 即达 99.6% → 全程 100%——VLA training 创建了 immediate dedicated routing， instruction
+    identity 在第一层就被提取并全程保持； (2) Llama-2 base 从 L1=80.2% 逐渐升至 L5=100%——语言预训练创建了 gradual
+    processing， instruction 需要多层处理才能被 fully resolve，但一旦 resolve 就稳定保持； (3) Untrained（random
+    init）L1=100% 看似最好，但 L31=82%——"偶然路由"因 high-dim  random features 的 trivial separability
+    在 L1 成功，但 random weight 的 noise accumulation  导致 signal 逐层衰减。 Image_mean 在所有条件下都是
+    10%（chance），确认 causal mask 阻止了 image→instruction  information flow。在 best 档下，这一
+    three-way comparison 是 C2 的 definitive evidence， 展示了 VLA training 的 unique contribution（immediacy
+    + stability）vs pretrained  language processing（gradual + stable）vs random baseline（accidental
+    + decaying）。
+
+    '
+  tables:
+  - title: 'Cross-Instruction Classification: Three Routing Strategies'
+    columns:
+    - Layer
+    - VLA Trained
+    - Llama-2 Base
+    - Untrained (Random)
+    - Image Mean (all)
+    rows:
+    - - L0
+      - 10%
+      - 10%
+      - 10%
+      - 10%
+    - - L1
+      - 99.6%
+      - 80.2%
+      - 100%
+      - 10%
+    - - L2
+      - 100%
+      - 98.7%
+      - 100%
+      - 10%
+    - - L5
+      - 100%
+      - 100%
+      - 99.x%
+      - 10%
+    - - L8
+      - 100%
+      - 100%
+      - 98.6%
+      - 10%
+    - - L16
+      - 100%
+      - 100%
+      - 92.3%
+      - 10%
+    - - L24
+      - 100%
+      - 100%
+      - 86.4%
+      - 10%
+    - - L31
+      - 100%
+      - 100%
+      - 82.0%
+      - 10%
+  figures_description:
+  - 'Three-line plot: instruction classification accuracy across 33 layers. Trained=flat
+    at 100%, Llama-2 base=rising to 100% by L5, Untrained=declining from 100% to 82%'
+  analysis: '三条件 probe profile 是论文最 visually compelling 的 figure 之一。 在 best 档下，reviewers
+    一眼就能看到 three qualitatively different strategies， 这是 C2 claim "VLA fine-tuning
+    achieves immediate dedicated routing" 的 direct evidence。
+
+    '
+- name: L1 Attention Three-Condition Profile
+  plan_id: l1_attention_three_cond
+  description: L1 attention pattern 的 untrained/Llama-2 base/VLA trained 三条件对比
+  expected_results:
+    untrained:
+      text_attention: 0.117
+      image_attention: 0.878
+      instruction_dominant_heads: 0
+    llama2base:
+      text_attention: 0.365
+      image_attention: 0.617
+      instruction_dominant_heads: 9
+    trained:
+      text_attention: 0.577
+      image_attention: 0.213
+      instruction_dominant_heads: 24
+    per_token_normalized_ratio:
+      trained_instr_dom: 38.2
+      untrained: 1.5
+      training_amplification: 25.5
+  result_rationale: 'L1 attention 的三条件梯度（0→9→24 instruction-dominant heads, 12%→37%→58%
+    text attention） 是 C2 的 mechanistic evidence。Per-token normalization（考虑 ~11.5x
+    image/text  token count asymmetry）后，trained instruction-dominant heads 的 text/image
+    ratio  达 38.2x（vs untrained 1.5x），说明 training 创建了 extreme instruction specialization。
+    在 best 档下，这一 gradient 与 cross-instruction probe 的 three strategies  在 mechanistic
+    level 对应：(1) untrained 0 heads → 无 instruction processing capacity； (2) Llama-2
+    base 9 heads → 中等语言处理能力（mid-layer inverted-U）； (3) VLA trained 24 heads → immediate
+    instruction capture（L1 saturated probe）。
+
+    '
+  tables:
+  - title: 'L1 Attention Pattern: Three-Condition Gradient'
+    columns:
+    - Metric
+    - Untrained
+    - Llama-2 Base
+    - VLA Trained
+    rows:
+    - - Attention to text/instruction
+      - 11.7%
+      - 36.5%
+      - 57.7%
+    - - Attention to image
+      - 87.8%
+      - 61.7%
+      - 21.3%
+    - - Instruction-dominant heads (>50%)
+      - 0/32
+      - 9/32
+      - 24/32
+    - - Per-token text/image ratio
+      - 1.5x
+      - —
+      - 38.2x
+  figures_description:
+  - 'Stacked bar or pie charts: attention distribution at L1 for three conditions'
+  analysis: '0→9→24 gradient 是 C2 headline finding 的 most concise summary。 在 best
+    档下，per-token normalization 排除了 token-count confound， strengthening the claim that
+    training creates genuine instruction specialization。
+
+    '
+- name: 32-Layer Dense Attention Profile
+  plan_id: dense_attention_profile
+  description: 全 32 层 × 三条件的 instruction-dominant head count profile
+  expected_results:
+    untrained_pattern: 0 heads at all 32 layers — no language processing capacity
+    llama2base_pattern: Inverted-U — L0-L4 low (0-10) → L9-L16 peak (15-22) → L31
+      decline (8)
+    trained_pattern: Bookend — L0-L1 peak (21-24) → L2-L30 valley (0-11) → L31 re-engagement
+      (18)
+  result_rationale: 'Dense 32-layer profile 是 C2 的 strongest mechanistic evidence：
+    VLA training 将 instruction attention 从 Llama-2 base 的 mid-layer processing  模式（inverted-U,
+    peak L9-L16）reorganize 到 bookend 模式（entry L0-L1 + exit L31）。 这一 temporal reorganization
+    与 cross-instruction probe 在 functional level 一致： trained model 在 entry 层 capture
+    instruction（L1=99.6%）并在 exit 层 re-engage  for action conditioning（L31 18 heads）。
+    在 best 档下，bookend pattern 被解读为 efficient routing architecture： entry 层 extract
+    instruction identity，mid-layers 用于 vision-dominated computation， exit 层 re-inject
+    instruction signal for action generation。 Llama-2 base 的 inverted-U 是经典 LM pattern（mid-layer
+    deep semantic processing）， VLA training 保留了总体 attention capacity 但 redistribute
+    了 temporal allocation。
+
+    '
+  tables:
+  - title: 'Dense Attention Profile: Representative Layers'
+    columns:
+    - Layer
+    - Untrained
+    - Llama-2 Base
+    - VLA Trained
+    - Trained Pattern
+    rows:
+    - - L0
+      - '0'
+      - '2'
+      - '21'
+      - Entry peak
+    - - L1
+      - '0'
+      - '4'
+      - '24'
+      - Entry peak
+    - - L4
+      - '0'
+      - '8'
+      - '5'
+      - Valley
+    - - L9
+      - '0'
+      - '18'
+      - '3'
+      - Valley
+    - - L12
+      - '0'
+      - '22'
+      - '1'
+      - Valley
+    - - L16
+      - '0'
+      - '20'
+      - '4'
+      - Valley
+    - - L24
+      - '0'
+      - '12'
+      - '7'
+      - Valley
+    - - L31
+      - '0'
+      - '8'
+      - '18'
+      - Exit re-engagement
+  figures_description:
+  - 'Three-panel line plot: instruction-dominant head count across 32 layers for each
+    condition. Bookend vs inverted-U vs flat-zero patterns clearly distinguishable.'
+  analysis: 'Mid-layer inverted-U → bookend reorganization 是论文的 narrative centerpiece。
+    在 best 档下，这一 visualization 是 Figure 1 或 Figure 2 的核心 panel， 让 reviewers 直观理解 VLA
+    training 的 routing reorganization。
+
+    '
+- name: Counterfactual Action Trajectory Analysis (OpenVLA)
+  plan_id: cf_trajectory_analysis
+  description: L1 head ablation 对 action output 的影响：Cohen's d, MSE, token divergence,
+    GT error
+  expected_results:
+    head_ablation_top24:
+      cohens_d: 0.651
+      trajectory_d: 2.943
+      paired_mse: 0.042
+      token_divergence: 0.723
+      delta_gt_mse: -0.001
+    specificity_ratio: 1.08
+    gt_error_delta: ΔMSE ≈ 0 (p=0.519)
+    token_overlap_spearman: 1.0
+  result_rationale: 'Ablating 24 instruction-dominant heads 在 L1 产生 d=0.651 的 action
+    shift， trajectory level d=2.943（~4.5x inflation due to within-trajectory correlation）。
+    关键 finding：ΔMSE_vs_GT ≈ 0（p=0.519），说明 ablation redirects action outputs  without
+    degrading accuracy。在 best 档下，这一 information-computation dissociation  被解读为 instruction
+    heads 控制 action direction（哪个 action space region） 而非 action quality（与 ground truth
+    的距离）。 Specificity ratio 1.08x（instruction 24 heads vs random 24 heads）modest，
+    但 per-head analysis 显示 control heads 有 ~1.9x per-head effect， instruction heads
+    通过 24-head collective coordination 产生更大 total effect。 Token overlap Spearman ρ=1.0
+    确认 CF sensitivity 与 lexical/positional novelty  而非 semantic distance 相关——这是 honest
+    caveat，论文不 overclaim semantic processing。
+
+    '
+  tables:
+  - title: Counterfactual Action Analysis
+    columns:
+    - Metric
+    - Instruction 24h Ablation
+    - Control 8h Ablation
+    - Ratio
+    rows:
+    - - Cohen's d (token)
+      - '0.651'
+      - '0.410'
+      - '1.59'
+    - - Trajectory d
+      - '2.943'
+      - —
+      - —
+    - - Paired MSE
+      - '0.042'
+      - '0.020'
+      - '2.07'
+    - - Token divergence
+      - '0.723'
+      - '0.293'
+      - '2.47'
+    - - KL divergence
+      - '5.079'
+      - '1.690'
+      - '3.00'
+    - - GT MSE delta
+      - -0.001 (n.s.)
+      - +0.008 (n.s.)
+      - —
+    - - Per-head d
+      - '0.027'
+      - '0.051'
+      - '0.53'
+  figures_description:
+  - 'Dual panel: (A) token-level d comparison instruction vs control, (B) GT MSE showing
+    no degradation'
+  analysis: 'ΔMSE≈0 是 C2 的关键 evidence for information-computation dissociation。 在
+    best 档下，reviewers 接受 "open-loop functional sensitivity" framing—— instruction
+    heads modulate output direction without systematic quality change。
+
+    '
+- name: Training Trajectory (4-condition)
+  plan_id: training_trajectory
+  description: untrained → llama2base → bridge-vla → libero-finetuned 的 L1 attention
+    和 probe 演化轨迹
+  expected_results:
+    l1_heads_progression:
+      untrained: 0
+      llama2base: 9
+      bridge_vla: 24
+      libero_finetuned: 22
+    l31_exit_engagement:
+      bridge_vla: 18
+      libero_finetuned: 0
+    probe_accuracy_L31:
+      bridge_vla: 1.0
+      libero_finetuned: 1.0
+    attention_representation_dissociation: true
+  result_rationale: '4-condition trajectory 展示 routing 的 developmental history： (1)
+    Entry routing 在 OXE pretraining 时 emerge（0→24 heads），task finetuning  略减（24→22）但基本稳定；
+    (2) Exit engagement L31 从 bridge-vla 的 18 heads 到 libero-finetuned 的 0 heads——
+    entry-exit bookend → entry-only sharpening； (3) Probe accuracy 在 L31 保持 100%（两个条件都是），确认
+    attention-representation  dissociation：exit attention 消失但 representational capacity
+    不变。 在 best 档下，这一 dissociation 被视为 refinement 而非 contradiction—— LIBERO finetuning
+    sharpens routing to entry-only while maintaining representational  capacity at
+    exit through residual stream。
+
+    '
+  tables:
+  - title: 'Training Trajectory: 4-Condition L1 Evolution'
+    columns:
+    - Stage
+    - L1 Heads
+    - L31 Heads
+    - L31 Probe Acc
+    - Interpretation
+    rows:
+    - - Random init
+      - 0/32
+      - 0/32
+      - 82%
+      - No routing
+    - - Llama-2 base
+      - 9/32
+      - 8/32
+      - 100%
+      - Language processing
+    - - OXE-pretrained (bridge)
+      - 24/32
+      - 18/32
+      - 100%
+      - Bookend routing
+    - - LIBERO-finetuned
+      - 22/32
+      - 0/32
+      - 100%
+      - Entry-only sharpening
+  figures_description:
+  - 'Developmental timeline: L1 and L31 head counts across four training stages'
+  analysis: 'Attention-representation dissociation at L31 是 subtle but important finding。
+    在 best 档下，reviewers 接受这是 training 的 efficiency optimization： 从 bookend 到 entry-only，因为
+    residual stream 已足够 maintain information。
+
+    '
+- name: TracVLA Universal Mixed Heads (h13, h22)
+  plan_id: tracvla_mixed_heads
+  description: TracVLA 中 h13 和 h22 在全部 4 suites 的 trained 模型中一致作为 mixed head 出现
+  expected_results:
+    h13_status_all_suites: mixed (non-instruction-dominant, non-image-dominant)
+    h22_status_all_suites: mixed
+    untrained_mixed_heads: none (32/32 instruction-dominant)
+    consistency: 4/4 suites
+  result_rationale: 'h13 和 h22 在 TracVLA 的全部 4 个 LIBERO suite 中一致从 instruction-dominant  变为
+    mixed，而 untrained（Phi-3-Vision）无此 pattern（32/32 全 instruction-dominant）。 在 best
+    档下，这被解读为 training 创建了 functionally specialized mixed-modality heads—— 这些 heads
+    可能负责 cross-modal integration（同时处理 image 和 instruction information）， 而非单一 modality
+    的 routing。跨 suite 一致性排除了 task-specific artifact。 论文不 overclaim 具体功能（"may perform
+    cross-modal integration"）， 这种 measured language 在 best 档下被视为 appropriate caution。
+
+    '
+  tables:
+  - title: TracVLA Mixed Heads Across Suites
+    columns:
+    - Suite
+    - Trained Instr-Dom
+    - Trained Mixed
+    - Untrained Instr-Dom
+    - h13 Status
+    - h22 Status
+    rows:
+    - - Goal
+      - 27/32
+      - '5'
+      - 32/32
+      - mixed
+      - mixed
+    - - Spatial
+      - 30/32
+      - '2'
+      - 32/32
+      - mixed
+      - mixed
+    - - Object
+      - 30/32
+      - '2'
+      - 32/32
+      - mixed
+      - mixed
+    - - Long
+      - 30/32
+      - '2'
+      - 32/32
+      - mixed
+      - mixed
+  figures_description:
+  - 'Head-level attention heatmap: 32 heads × 4 suites, h13 and h22 highlighted as
+    consistently mixed'
+  analysis: Universal mixed heads 是 TracVLA-specific observation，补充 C2 的 cross-architecture
+    narrative。 在 best 档下，这是 interesting finding 但不是 core claim 的依赖项。

@@ -1,0 +1,23 @@
+{
+  "exp_id": "l1_head_ablation",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:59:16.298Z",
+    "updated_at": "2026-05-17T12:01:40.859Z",
+    "hypothesis": "L1 instruction-dominant heads (24/32 with >50% text attention) are causally necessary for instruction routing: ablating their instruction attention should collapse downstream instruction classification accuracy from ~100% to near-chance, while ablating non-dominant heads (control) should have minimal effect. This upgrades C2 (front-loaded routing) from correlational to partially causal.",
+    "notes": "D057. 3 conditions: (A) ablate all 24 dominant heads, (B) ablate 8 non-dominant heads (control), (C) no ablation (baseline, existing data). Also graduated: top-5 strongest heads. Monkey-patch layers[1].self_attn.forward, zero instruction token positions after softmax + renormalize. Extract features at L1/L8/L16/L31, run cross-instruction 10-way classifier + action probe R². GPU: westd-19183 cuda:0, ~1.5-2 GPU·h.",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T12:00:40.435Z"
+    }
+  },
+  "timestamp": "2026-05-17T12:01:41.027345+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,4 @@
+2026-05-27 02:46:28,621 WARNING core.tools.dream  [dream] Phase 2 median parse failed (attempt 0): Phase 2 output must be a mapping
+2026-05-27 03:24:35,846 INFO    core.tools.dream  [dream] appended reference check results for vla-ssd/best
+2026-05-27 03:31:53,411 INFO    core.tools.dream  [dream] appended reference check results for vla-ssd/median
+2026-05-27 03:39:16,560 INFO    core.tools.dream  [dream] appended reference check results for vla-ssd/worst

@@ -1,0 +1,75 @@
+{
+  "exp_id": "d021_output_head_analysis",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:11:17.179Z",
+    "updated_at": "2026-05-15T20:18:12.515Z",
+    "hypothesis": "D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences per layer (Frobenius norm ratio). PASS: output head norm ratio >> LLM deep layer mean (>3x), confirming shallow adaptation. FAIL: differences uniformly distributed.",
+    "spec": {
+      "command": "python output_head_analysis.py (load trained + untrained state_dicts, compute per-layer Frobenius norm ratio)",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/ + openvla-7b-untrained/",
+      "data_count": "2 models x ~7B params each",
+      "model_name": "openvla/openvla-7b vs openvla-7b-untrained weight comparison",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/output_head_analysis.json",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/",
+      "note": "Worker: worker_ssh_output-head-analysis_20260515T200957. CPU-only analysis. PASS: output head norm ratio > 3x LLM layer mean."
+    },
+    "metrics": {
+      "group_summary": {
+        "vision": {
+          "count": 685,
+          "mean_rel_change": 0,
+          "cos_sim": 1,
+          "verdict": "IDENTICAL"
+        },
+        "projector": {
+          "count": 6,
+          "mean_rel_change": 0,
+          "cos_sim": 1.001,
+          "verdict": "IDENTICAL"
+        },
+        "embedding": {
+          "count": 1,
+          "rel_change": 1.3287,
+          "cos_sim": -0.0001
+        },
+        "llm": {
+          "count": 288,
+          "mean_rel_change": 1.3156,
+          "std": 0.3759,
+          "cos_sim": 0.2178,
+          "range": [
+            1.22,
+            1.37
+          ]
+        },
+        "llm_final_norm": {
+          "count": 1,
+          "rel_change": 0.8628,
+          "cos_sim": 0.998
+        },
+        "head_lm_head": {
+          "count": 1,
+          "rel_change": 1.4754,
+          "cos_sim": 0.0002
+        }
+      },
+      "head_vs_llm_ratio": 1.12,
+      "shallow_adaptation_gate": "FAIL (ratio 1.12x, threshold 3x)",
+      "key_finding_1": "Vision backbone + Projector IDENTICAL between trained and untrained (rel_change=0, cos_sim=1.0)",
+      "key_finding_2": "LLM weight diffs uniformly distributed across all 32 layers (rel_change 1.22-1.37), head not special",
+      "key_finding_3": "Shared frozen components (SigLIP + projector) explain WHY trained ≈ untrained in representation structure — regardless of LLM weights",
+      "caveat": "Comparison is pretrained Llama + fine-tune vs random init, not fine-tuned vs pre-fine-tuning. Differences dominated by pretrained vs random."
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-15T20:18:12.515Z"
+  },
+  "timestamp": "2026-05-15T20:18:12.597771+00:00",
+  "trigger": "update_registry"
+}

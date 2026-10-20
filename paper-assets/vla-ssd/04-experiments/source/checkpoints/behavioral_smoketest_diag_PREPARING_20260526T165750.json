@@ -1,0 +1,17 @@
+{
+  "exp_id": "behavioral_smoketest_diag",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:05:18.989Z",
+    "updated_at": "2026-05-26T16:57:50.103Z",
+    "parent": "behavioral_smoketest",
+    "conclusion": "killed",
+    "notes": "D074: C-2 closed-loop path formally abandoned. Diagnostic cancelled before completion."
+  },
+  "timestamp": "2026-05-26T16:57:50.396316+00:00",
+  "trigger": "update_registry"
+}

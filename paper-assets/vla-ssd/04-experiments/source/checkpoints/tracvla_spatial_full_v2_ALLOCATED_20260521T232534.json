@@ -1,0 +1,100 @@
+{
+  "exp_id": "tracvla_spatial_full_v2",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:39:48.973Z",
+    "updated_at": "2026-05-21T23:25:33.978Z",
+    "hypothesis": "TraceVLA (Phi-3-mini) on LIBERO-Spatial shows the convergent entry-exit routing pattern when fine-tuned, and the untrained base model (Phi-3-Vision) lacks this pattern. Cross-suite validation for second architecture.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py --conditions trained untrained\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "551645",
+      "log_path": "~/runs/vla-ssd/tracvla_spatial_full_v2.log",
+      "submitted_at": "2026-05-21T10:41:03.971Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "Trained condition completed (160 min). Untrained FAILED: phi3v-base config.json had _attn_implementation=flash_attention_2 overriding eager kwarg. Config fixed. Untrained rerun needed → tracvla_spatial_untrained_v1",
+    "metrics": {
+      "trained_only_NO_UNTRAINED": true,
+      "r2_probing": {
+        "image_mean": {
+          "L0": 0.8059,
+          "L4": 0.8091,
+          "L8": 0.8134,
+          "L12": 0.8231,
+          "L16": 0.8311,
+          "L20": 0.831,
+          "L24": 0.8169,
+          "L28": 0.8223,
+          "L31": 0.7907,
+          "PEAK": "0.8347 @ L19"
+        },
+        "last_preaction": {
+          "L0": 0.6656,
+          "L4": 0.7954,
+          "L8": 0.7908,
+          "L12": 0.798,
+          "L16": 0.8035,
+          "L20": 0.7981,
+          "L24": 0.7463,
+          "L28": 0.615,
+          "L31": 0.6712,
+          "PEAK": "0.8090 @ L17"
+        }
+      },
+      "l1_attention": {
+        "instruction_dominant": 30,
+        "total_heads": 32,
+        "top3": [
+          [
+            "head_8",
+            0.945
+          ],
+          [
+            "head_26",
+            0.913
+          ],
+          [
+            "head_19",
+            0.903
+          ]
+        ]
+      },
+      "cross_instruction_classification": {
+        "L0_image_mean": 1,
+        "L0_last_preaction": 0.923,
+        "L1+_all": 1
+      },
+      "counterfactual_ranking": [
+        {
+          "condition": "empty",
+          "cohens_d": 1.3268
+        },
+        {
+          "condition": "shuffled",
+          "cohens_d": 1.2947
+        },
+        {
+          "condition": "paraphrased",
+          "cohens_d": 1.1825
+        },
+        {
+          "condition": "wrong",
+          "cohens_d": 1.1724
+        }
+      ]
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T23:25:34.278850+00:00",
+  "trigger": "update_registry"
+}

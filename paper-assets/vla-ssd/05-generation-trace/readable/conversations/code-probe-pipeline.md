@@ -1,0 +1,1431 @@
+# code probe pipeline
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/chats/worker_code_probe-pipeline_20260515T065409.jsonl`
+- **Structured JSON:** [`e6c51705686ffdacec0b.json`](../../sessions/e6/e6c51705686ffdacec0b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+49 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T07:08:19.452191+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T07:08:19.452500+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T07:08:19.452679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/vla-ssd/scripts/ 2>/dev/null; echo \"---\"; ls /root/vla-ssd/features/ 2>/dev/null; echo \"---\"; find /root/vla-ssd -name \"*.py\" -maxdepth 2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls -la /root/vla-ssd/scripts/ 2>/dev/null; echo \"---\"; ls /root/vla-ssd/features/ 2>/dev/null; echo \"---\"; find /root/vla-ssd -name \"*.py\" -maxdepth 2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T07:08:19.452820+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T07:08:19.452983+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/features/trained/ 2>/dev/null; echo \"===\"; python3 -c \"import h5py; f=h5py.File('/root/vla-ssd/features/trained/close_jar.h5','r'); print(list(f.keys())); t=list(f.keys())[0]; print(list(f[t].keys())); print({k:f[t][k].shape for k in f[t].keys()})\" 2>/dev/null; echo \"===HDF5_DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/vla-ssd/features/trained/ 2>/dev/null; echo \"===\"; python3 -c \"import h5py; f=h5py.File('/root/vla-ssd/features/trained/close_jar.h5','r'); print(list(f.keys())); t=list(f.keys())[0]; print(list(f[t].keys())); print({k:f[t][k].shape for k in f[t].keys()})\" 2>/dev/null; echo \"===HDF5_DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T07:08:19.453129+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T07:08:19.453263+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd -maxdepth 2 -name \"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/vla-ssd -maxdepth 2 -name \"*.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T07:08:19.453379+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/vla-ssd/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls -la /root/vla-ssd/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T07:08:19.453492+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/features/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/vla-ssd/features/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T07:08:19.453631+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/extract_features.py\\n/root/vla-ssd/scripts/extract_dinov2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T07:08:19.453768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x 2 root root   70 May 15 14:54 .\\ndrwxr-xr-x 4 root root  104 May 15 13:13 ..\\n-rw-r--r-- 1 root root 4239 May 15 14:54 extract_dinov2.py\\n-rw-r--r-- 1 root root 6856 May 15 13:39 extract_features.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T07:08:19.453897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dinov2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T07:08:19.454038+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/extract_features.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/extract_features.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T07:08:19.454155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/extract_dinov2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/extract_dinov2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T07:08:19.454375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"extract_features.py — Extract OpenVLA hidden states for temporal distance probing.\\n\\nFor each LIBERO-Long demo timestep, runs a forward pass through OpenVLA and\\nsaves per-layer hidden states with two token aggregation strategies:\\n  - last_preaction: last token's hidden state (pre-action position)\\n  - image_mean: mean of 256 image token hidden states\\n\\nOutput: one HDF5 per task in --output_dir, each containing per-demo features.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport os\\nimport re\\nimport time\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom PIL import Image\\nfrom tqdm import tqdm\\n\\nNUM_IMAGE_TOKENS = 256\\nNUM_HIDDEN_LAYERS = 33  # embedding + 32 transformer layers\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", required=True)\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/vla-ssd/data/libero/libero_10/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--mode\\\", choices=[\\\"trained\\\", \\\"untrained\\\"], default=\\\"trained\\\")\\n    p.add_argument(\\\"--task_filter\\\", default=None, help=\\\"Substring filter on filename\\\")\\n    p.add_argument(\\\"--max_demos\\\", type=int, default=None)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=4)\\n    return p.parse_args()\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    m = re.match(r\\\"^[A-Z_]+SCENE\\\\d+_(.+)$\\\", stem)\\n    if m:\\n        return m.group(1).replace(\\\"_\\\", \\\" \\\")\\n    return stem.replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef load_model(model_path, mode, device):\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(model_path, trust
+…[truncated 5798 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T07:08:19.454573+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"DINO-V2 ViT-L/14 feature extraction on LIBERO-10 demos.\\\"\\\"\\\"\\nimport argparse\\nimport os\\nimport glob\\nimport time\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoModel, AutoImageProcessor\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument('--model_path', default='/root/vla-ssd/checkpoints/dinov2-large')\\n    parser.add_argument('--data_dir', default='/root/vla-ssd/data/libero/libero_10/')\\n    parser.add_argument('--output_dir', default='/root/vla-ssd/features/dinov2/')\\n    parser.add_argument('--gpu', type=int, default=0)\\n    parser.add_argument('--batch_size', type=int, default=32)\\n    parser.add_argument('--image_key', default='agentview_rgb')\\n    return parser.parse_args()\\n\\n\\ndef extract_features_for_file(model, processor, hdf5_path, args, device):\\n    \\\"\\\"\\\"Extract DINO-V2 features for all demos in one HDF5 file.\\\"\\\"\\\"\\n    task_name = os.path.basename(hdf5_path).replace('_demo.hdf5', '').replace('.hdf5', '')\\n    output_path = os.path.join(args.output_dir, f'{task_name}.h5')\\n\\n    with h5py.File(hdf5_path, 'r') as src:\\n        demo_keys = sorted(\\n            [k for k in src['data'].keys() if k.startswith('demo_')],\\n            key=lambda x: int(x.split('_')[1])\\n        )\\n        print(f'  {len(demo_keys)} demos found')\\n\\n        total_steps = 0\\n        t0 = time.time()\\n\\n        with h5py.File(output_path, 'w') as dst:\\n            for di, dk in enumerate(demo_keys):\\n                images = src[f'data/{dk}/obs/{args.image_key}'][:]  # (T, 128, 128, 3)\\n                T = images.shape[0]\\n                total_steps += T\\n\\n                cls_tokens = []\\n                patch_means = []\\n\\n                for start in range(0, T, args.batch_size):\\n                    end = min(start + args.batch_size, T)\\n                    batch_imgs = ima
+…[truncated 2655 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T07:08:19.454862+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/features/dinov2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/vla-ssd/features/dinov2/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T07:08:19.455067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.h5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T07:08:19.455206+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py; f=h5py.File('/root/vla-ssd/features/dinov2/LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_of_the_shelf.h5','r'); print(list(f.keys())[:3]); k=list(f.keys())[0]; print(list(f[k].keys())); print({kk:f[k][kk].shape for kk in f[k].keys()}); f.close()\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import h5py; f=h5py.File('/root/vla-ssd/features/dinov2/LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_of_the_shelf.h5','r'); print(list(f.keys())[:3]); k=list(f.keys())[0]; print(list(f[k].keys())); print({kk:f[k][kk].shape for kk in f[k].keys()}); f.close()\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T07:08:19.455333+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T07:08:19.455456+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/scripts/__init__.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/vla-ssd/scripts/__init__.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T07:08:19.455576+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/vla-ssd/scripts/__init__.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T07:08:19.455692+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && python3 -c \"\nimport h5py\nf = h5py.File('features/dinov2/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5','r')\nkeys = sorted(f.keys())\nprint('traj keys:', keys[:3], '...', f'total={len(keys)}')\nk = keys[0]\nprint('datasets:', list(f[k].keys()))\nprint('shapes:', {kk: f[k][kk].shape for kk in f[k].keys()})\nf.close()\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && python3 -c \"\nimport h5py\nf = h5py.File('features/dinov2/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5','r')\nkeys = sorted(f.keys())\nprint('traj keys:', keys[:3], '...', f'total={len(keys)}')\nk = keys[0]\nprint('datasets:', list(f[k].keys()))\nprint('shapes:', {kk: f[k][kk].shape for kk in f[k].keys()})\nf.close()\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T07:08:19.455822+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/vla-ssd && python3 -c \\\"\\\\nimport h5py\\\\nf = h5py.File(\\\\'features/dinov2/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5\\\\',\\\\'r\\\\')\\\\nkeys = sorted(f.keys())\\\\nprint(\\\\'traj keys:\\\\', keys[:3], \\\\'...\\\\', f\\\\'total={len(keys)}\\\\')\\\\nk = keys[0]\\\\nprint(\\\\'datasets:\\\\', list(f[k].keys()))\\\\nprint(\\\\'shapes:\\\\', {kk: f[k][kk].shape for kk in f[k].keys()})\\\\nf.close()\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T07:08:19.455991+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 -c \"\nimport h5py\nf = h5py.File('features/dinov2/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5','r')\nkeys = sorted(f.keys())\nprint('traj keys:', keys[:3], '... total=', len(keys))\nk = keys[0]\nprint('datasets:', list(f[k].keys()))\nprint('shapes:', {kk: f[k][kk].shape for kk in f[k].keys()})\nf.close()\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 -c \"\nimport h5py\nf = h5py.File('features/dinov2/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5','r')\nkeys = sorted(f.keys())\nprint('traj keys:', keys[:3], '... total=', len(keys))\nk = keys[0]\nprint('datasets:', list(f[k].keys()))\nprint('shapes:', {kk: f[k][kk].shape for kk in f[k].keys()})\nf.close()\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T07:08:19.456140+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 -c \\\"\\\\nimport h5py\\\\nf = h5py.File(\\\\'features/dinov2/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5\\\\',\\\\'r\\\\')\\\\nkeys = sorted(f.keys())\\\\nprint(\\\\'traj keys:\\\\', keys[:3], \\\\'... total=\\\\', len(keys))\\\\nk = keys[0]\\\\nprint(\\\\'datasets:\\\\', list(f[k].keys()))\\\\nprint(\\\\'shapes:\\\\', {kk: f[k][kk].shape for kk in f[k].keys()})\\\\nf.close()\\\\n\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/h5py/_hl/files.py\\\", line 555, in __init__\\n    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/h5py/_hl/files.py\\\", line 232, in make_fid\\n    fid = h5f.open(name, flags, fapl=fapl)\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"h5py/_objects.pyx\\\", line 54, in h5py._objects.with_phil.wrapper\\n  File \\\"h5py/_objects.pyx\\\", line 55, in h5py._objects.with_phil.wrapper\\n  File \\\"h5py/h5f.pyx\\\", line 106, in h5py.h5f.open\\nOSError: Unable to synchronously open file (bad object header version number)\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.26}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T07:08:19.456299+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -lh /root/vla-ssd/features/dinov2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls -lh /root/vla-ssd/features/dinov2/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T07:08:19.456426+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/features -name \"*.h5\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/vla-ssd/features -name \"*.h5\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T07:08:19.456546+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T07:08:19.456661+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T07:08:19.457140+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "touch /root/vla-ssd/scripts/__init__.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "touch /root/vla-ssd/scripts/__init__.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T07:08:19.457321+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T07:08:19.457506+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/train_probes.py << 'PYEOF'\n\"\"\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\n\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\n\nUsage:\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport os\nimport glob\nimport time\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy.stats import spearmanr\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\n\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\nAGG_MAP = {\n    \"last_preaction\": (\"last_preaction\", \"cls_token\"),\n    \"image_mean\": (\"image_mean\", \"patch_mean\"),\n}\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Train linear probes on VLA/DINO-V2 features\")\n    p.add_argument(\"--features_dir\", required=True,\n                   help=\"Directory with per-task HDF5 feature files\")\n    p.add_argument(\"--output_dir\", required=True,\n                   help=\"Directory to save probe results\")\n    p.add_argument(\"--probe_type\", required=True,\n                   choices=[\"temporal_distance\", \"subtask_predicate\", \"oracle\"])\n    p.add_argument(\"--layers\", default=None,\n                   help=\"Layer range '0-32' or list '0,5,10'. Default: all\")\n    p.add_argument(\"--aggregation\", default=\"last_preaction\",\n                   choices=[\"last_preaction\", \"image_mean\"])\n    p.add_argument(\"--label_file\", default=None,\n                   help=\"Predicate labels JSON (required for subtask_predicate)\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--batch_size\", type=int, default=256)\n    p.add_argument(\"--lr\", type=float, default=1e-3)\n    p.add_argument(\"--epochs\", type=int, default=50)\n    p.add_argument(\"--patience\", type=int, default=5)\n    p.add_argument(\"--pairs_per_bin\", type=int, default=50)\n    p.add_argument(\"--n_bins\", type=int, default=10)\n    p.add_argument(\"--gpu\", type=int, default=0)\n    return p.parse_args()\n\n\n# ============================================================\n# Feature scanning & loading\n# ============================================================\n\ndef scan_features(features_dir, aggregation):\n    \"\"\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\"\"\"\n    primary, fallback = AGG_MAP[aggregation]\n    traj_metas = []\n    n_layers = hidden_dim = None\n\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \"*.h5\"))):\n        task = Path(h5_path).stem\n        with h5py.File(h5_path, \"r\") as f:\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\"_\")[-1]))\n            for hk in keys:\n                if primary in f[hk]:\n                    fk = primary\n                elif fallback in f[hk]:\n                    fk = fallback\n                else:\n                    raise KeyError(f\"No feature key in {h5_path}/{hk}\")\n\n                shape = f[hk][fk].shape\n                is_3d = len(shape) == 3\n                T = shape[0]\n                if n_layers is None:\n                    n_layers = shape[1] if is_3d else 1\n                    hidden_dim = shape[-1]\n\n                traj_metas.append(dict(\n                    task=task, h5_path=h5_path, h5_key=hk,\n                    feat_key=fk, T=T, is_3d=is_3d,\n                ))\n\n    if not traj_metas:\n        raise FileNotFoundError(f\"No .h5 files found in {features_dir}\")\n    return traj_metas, n_layers, hidden_dim\n\n\ndef split_by_task(traj_metas):\n    \"\"\"80/20 split per task (first 80 % train, rest val).\"\"\"\n    by_task = defaultdict(list)\n    for i, m in enumerate(traj_metas):\n        by_task[m[\"task\"]].append(i)\n\n    train_ids, val_ids = [], []\n    for task in sorted(by_task):\n        ids = by_task[task]\n        n_train = int(len(ids) * 0.8)\n        train_ids.extend(ids[:n_train])\n        val_ids.extend(ids[n_train:])\n    return train_ids, val_ids\n\n\ndef load_layer_features(traj_metas, indices, layer):\n    \"\"\"Load one layer's features for selected trajectories.\n\n    Returns list of (T, D) float32 arrays, aligned with `indices`.\n    \"\"\"\n    by_file = defaultdict(list)\n    for pos, idx in enumerate(indices):\n        m = traj_metas[idx]\n        by_file[m[\"h5_path\"]].append((pos, m))\n\n    feats = [None] * len(indices)\n    for h5_path, entries in by_file.items():\n        with h5py.File(h5_path, \"r\") as f:\n            for pos, m in entries:\n                ds = f[m[\"h5_key\"]][m[\"feat_key\"]]\n                if m[\"is_3d\"]:\n                    data = ds[:, layer, :]\n                else:\n                    data = ds[:]\n                feats[pos] = np.asarray(data, dtype=np.float32)\n    return feats\n\n\ndef parse_layers(layers_str, max_layer):\n    if layers_str is None:\n        return list(range(max_layer + 1))\n    if \"-\" in layers_str and \",\" not in layers_str:\n        lo, hi = layers_str.split(\"-\")\n        return list(range(int(lo), int(hi) + 1))\n    return [int(x) for x in layers_str.split(\",\")]\n\n\n# ============================================================\n# Distance-stratified pair sampling\n# ============================================================\n\ndef sample_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\n    \"\"\"Within-trajectory distance-stratified pair sampling.\n\n    Returns list of (local_pos, t_i, t_j, norm_dist).\n    local_pos indexes into `indices`.\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    all_pairs = []\n\n    for pos, idx in enumerate(indices):\n        T = traj_metas[idx][\"T\"]\n        if T < 2:\n            continue\n        ii, jj = np.triu_indices(T, k=1)\n        dists = (jj - ii).astype(np.float32) / T\n\n        edges = np.linspace(0.0, 1.0, n_bins + 1)\n        edges[-1] += 1e-6\n\n        for b in range(n_bins):\n            mask = (dists >= edges[b]) & (dists < edges[b + 1])\n            valid = np.where(mask)[0]\n            if len(valid) == 0:\n                continue\n            n = min(pairs_per_bin, len(valid))\n            chosen = rng.choice(valid, size=n, replace=False)\n            for c in chosen:\n                all_pairs.append((pos, int(ii[c]), int(jj[c]), float(dists[c])))\n\n    return all_pairs\n\n\ndef build_pair_tensors(feats, pairs):\n    \"\"\"Build |h(t_j) - h(t_i)| inputs and distance targets.\"\"\"\n    N = len(pairs)\n    D = feats[0].shape[-1]\n    X = np.empty((N, D), dtype=np.float32)\n    y = np.empty(N, dtype=np.float32)\n    for n, (pos, ti, tj, dist) in enumerate(pairs):\n        X[n] = np.abs(feats[pos][tj] - feats[pos][ti])\n        y[n] = dist\n    return torch.from_numpy(X), torch.from_numpy(y)\n\n\ndef build_oracle_tensors(pairs):\n    \"\"\"Oracle: input = scalar distance (same as target).\"\"\"\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\n    return X, y\n\n\n# ============================================================\n# Probes\n# ============================================================\n\nclass LinearProbe(nn.Module):\n    def __init__(self, in_dim):\n        super().__init__()\n        self.fc = nn.Linear(in_dim, 1)\n\n    def forward(self, x):\n        return self.fc(x).squeeze(-1)\n\n\nclass MultiLabelProbe(nn.Module):\n    def __init__(self, in_dim, n_labels):\n        super().__init__()\n        self.fc = nn.Linear(in_dim, n_labels)\n\n    def forward(self, x):\n        return self.fc(x)\n\n\ndef train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\n    model = LinearProbe(in_dim).to(device)\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\n    crit = nn.MSELoss()\n\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\n    X_val, y_val = X_val.to(device), y_val.to(device)\n\n    best_loss, best_state, wait, final_ep = float(\"inf\"), None, 0, 0\n\n    for ep in range(args.epochs):\n        model.train()\n        perm = torch.randperm(len(X_tr), device=device)\n        for s in range(0, len(X_tr), args.batch_size):\n            idx = perm[s : s + args.batch_size]\n            loss = crit(model(X_tr[idx]), y_tr[idx])\n            opt.zero_grad()\n            loss.backward()\n            opt.step()\n\n        model.eval()\n        with torch.no_grad():\n            vl = crit(model(X_val), y_val).item()\n\n        if vl < best_loss:\n            best_loss = vl\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\n            wait = 0\n        else:\n            wait += 1\n            if wait >= args.patience:\n                final_ep = ep + 1\n                break\n        final_ep = ep + 1\n\n    model.load_state_dict(best_state)\n    model.eval()\n    with torch.no_grad():\n        pred = model(X_val).cpu().numpy()\n    y_np = y_val.cpu().numpy()\n\n    rho, pval = spearmanr(pred, y_np)\n    return dict(\n        spearman_rho=float(rho) if not np.isnan(rho) else 0.0,\n        spearman_p=float(pval) if not np.isnan(pval) else 1.0,\n        r2=float(r2_score(y_np, pred)),\n        mae=float(mean_absolute_error(y_np, pred)),\n        val_loss=best_loss,\n        epochs_trained=final_ep,\n    )\n\n\ndef train_classification_probe(X_tr, y_tr, X_val, y_val, in_dim, n_labels, args, device):\n    model = MultiLabelProbe(in_dim, n_labels).to(device)\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\n    crit = nn.BCEWithLogitsLoss()\n\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\n    X_val, y_val = X_val.to(device), y_val.to(device)\n\n    bs = 512\n    best_loss, best_state, wait, final_ep = float(\"inf\"), None, 0, 0\n\n    for ep in range(args.epochs):\n        model.train()\n        perm = torch.randperm(len(X_tr), device=device)\n        for s in range(0, len(X_tr), bs):\n            idx = perm[s : s + bs]\n            loss = crit(model(X_tr[idx]), y_tr[idx])\n            opt.zero_grad()\n            loss.backward()\n            opt.step()\n\n        model.eval()\n        with torch.no_grad():\n            vl = crit(model(X_val), y_val).item()\n\n        if vl < best_loss:\n            best_loss = vl\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\n            wait = 0\n        else:\n            wait += 1\n            if wait >= args.patience:\n                final_ep = ep + 1\n                break\n        final_ep = ep + 1\n\n    model.load_state_dict(best_state)\n    model.eval()\n    with torch.no_grad():\n        scores = torch.sigmoid(model(X_val)).cpu().numpy()\n    y_np = y_val.cpu().numpy()\n\n    auc_per = {}\n    for k in range(n_labels):\n        col = y_np[:, k]\n        if col.sum() > 0 and col.sum() < len(col):\n            auc_per[k] = float(roc_auc_score(col, scores[:, k]))\n        else:\n            auc_per[k] = float(\"nan\")\n\n    valid = [v for v in auc_per.values() if not np.isnan(v)]\n    return dict(\n        auc_per_predicate={str(k): v for k, v in auc_per.items()},\n        macro_auc=float(np.mean(valid)) if valid else float(\"nan\"),\n        val_loss=best_loss,\n        epochs_trained=final_ep,\n    )\n\n\n# ============================================================\n# Runners\n# ============================================================\n\ndef run_temporal_distance(args, device):\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\n    layers = parse_layers(args.layers, n_layers - 1)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    print(f\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\")\n    print(f\"Split: {len(train_ids)} train / {len(val_ids)} val\")\n\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    print(f\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\")\n\n    results = {}\n    for li, layer in enumerate(layers):\n        print(f\"\\n[Layer {layer}] ({li+1}/{len(layers)})\", flush=True)\n        t0 = time.time()\n\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\n        del train_feats\n\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\n        del val_feats\n\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\n        m[\"layer\"] = layer\n        results[layer] = m\n        del X_tr, y_tr, X_val, y_val\n\n        print(f\"  rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  \"\n              f\"MAE={m['mae']:.4f}  ep={m['epochs_trained']}  {time.time()-t0:.1f}s\")\n\n    return results\n\n\ndef run_oracle(args, device):\n    traj_metas, _, _ = scan_features(args.features_dir, args.aggregation)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    print(f\"Oracle: {len(train_pairs)} train / {len(val_pairs)} val pairs\")\n\n    X_tr, y_tr = build_oracle_tensors(train_pairs)\n    X_val, y_val = build_oracle_tensors(val_pairs)\n\n    m = train_regression_probe(X_tr, y_tr, X_val, y_val, 1, args, device)\n    m[\"layer\"] = \"oracle\"\n    print(f\"Oracle: rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  MAE={m['mae']:.4f}\")\n    return {\"oracle\": m}\n\n\ndef run_subtask_predicate(args, device):\n    if not args.label_file:\n        raise ValueError(\"--label_file required for subtask_predicate\")\n\n    with open(args.label_file) as f:\n        label_data = json.load(f)\n    pred_names = label_data[\"predicate_names\"]\n    labels = label_data[\"labels\"]\n    n_pred = len(pred_names)\n    print(f\"Predicates ({n_pred}): {pred_names}\")\n\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\n    layers = parse_layers(args.layers, n_layers - 1)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    results = {}\n    for li, layer in enumerate(layers):\n        print(f\"\\n[Layer {layer}] ({li+1}/{len(layers)})\", flush=True)\n        t0 = time.time()\n\n        def gather(ids):\n            Xs, Ys = [], []\n            feats = load_layer_features(traj_metas, ids, layer)\n            for pos, idx in enumerate(ids):\n                m = traj_metas[idx]\n                tk = m[\"h5_key\"]\n                if m[\"task\"] not in labels or tk not in labels[m[\"task\"]]:\n                    continue\n                lab = np.array(labels[m[\"task\"]][tk], dtype=np.float32)\n                T = min(feats[pos].shape[0], lab.shape[0])\n                Xs.append(torch.from_numpy(feats[pos][:T]))\n                Ys.append(torch.from_numpy(lab[:T]))\n            if not Xs:\n                return None, None\n            return torch.cat(Xs, dim=0), torch.cat(Ys, dim=0)\n\n        X_tr, y_tr = gather(train_ids)\n        X_val, y_val = gather(val_ids)\n\n        if X_tr is None or X_val is None:\n            print(\"  No valid data, skipping\")\n            continue\n\n        print(f\"  Samples: {len(X_tr)} train / {len(X_val)} val\")\n        met = train_classification_probe(\n            X_tr, y_tr, X_val, y_val, hidden_dim, n_pred, args, device\n        )\n        met[\"layer\"] = layer\n        met[\"predicate_names\"] = pred_names\n        results[layer] = met\n\n        print(f\"  macro_AUC={met['macro_auc']:.4f}  ep={met['epochs_trained']}  \"\n              f\"{time.time()-t0:.1f}s\")\n\n    return results\n\n\n# ============================================================\n# Results I/O\n# ============================================================\n\ndef save_results(results, output_dir, probe_type):\n    out = os.path.join(output_dir, probe_type)\n    os.makedirs(out, exist_ok=True)\n\n    for key, m in results.items():\n        with open(os.path.join(out, f\"layer_{key}.json\"), \"w\") as f:\n            json.dump(m, f, indent=2)\n\n    csv_path = os.path.join(out, \"summary.csv\")\n    if probe_type in (\"temporal_distance\", \"oracle\"):\n        fields = [\"layer\", \"spearman_rho\", \"spearman_p\", \"r2\", \"mae\",\n                   \"val_loss\", \"epochs_trained\"]\n    else:\n        fields = [\"layer\", \"macro_auc\", \"val_loss\", \"epochs_trained\"]\n\n    with open(csv_path, \"w\", newline=\"\") as f:\n        w = csv.DictWriter(f, fieldnames=fields)\n        w.writeheader()\n        for key in sorted(results.keys(), key=lambda x: (isinstance(x, str), x)):\n            row = {k: results[key].get(k, \"\") for k in fields}\n            w.writerow(row)\n\n    summary = dict(probe_type=probe_type, n_entries=len(results),\n                   results={str(k): v for k, v in results.items()})\n\n    if probe_type == \"temporal_distance\" and results:\n        best = max(results, key=lambda k: results[k][\"spearman_rho\"])\n        summary[\"best_layer\"] = best\n        summary[\"best_rho\"] = results[best][\"spearman_rho\"]\n\n    with open(os.path.join(out, \"summary.json\"), \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    print(f\"\\nSaved to {out}/\")\n\n\ndef main():\n    args = parse_args()\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"=== Probe Training: {args.probe_type} | device={device} ===\")\n\n    runners = dict(\n        temporal_distance=run_temporal_distance,\n        oracle=run_oracle,\n        subtask_predicate=run_subtask_predicate,\n    )\n    results = runners[args.probe_type](args, device)\n    save_results(results, args.output_dir, args.probe_type)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/train_probes.py << 'PYEOF'\n\"\"\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\n\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\n\nUsage:\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport os\nimport glob\nimport time\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy.stats import spearmanr\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\n\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\nAGG_MAP = {\n    \"last_preaction\": (\"last_preaction\", \"cls_token\"),\n    \"image_mean\": (\"image_mean\", \"patch_mean\"),\n}\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Train linear probes on VLA/DINO-V2 features\")\n    p.add_argument(\"--features_dir\", required=True,\n                   help=\"Directory with per-task HDF5 feature files\")\n    p.add_argument(\"--output_dir\", required=True,\n                   help=\"Directory to save probe results\")\n    p.add_argument(\"--probe_type\", required=True,\n                   choices=[\"temporal_distance\", \"subtask_predicate\", \"oracle\"])\n    p.add_argument(\"--layers\", default=None,\n                   help=\"Layer range '0-32' or list '0,5,10'. Default: all\")\n    p.add_argument(\"--aggregation\", default=\"last_preaction\",\n                   choices=[\"last_preaction\", \"image_mean\"])\n    p.add_argument(\"--label_file\", default=None,\n                   help=\"Predicate labels JSON (required for subtask_predicate)\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--batch_size\", type=int, default=256)\n    p.add_argument(\"--lr\", type=float, default=1e-3)\n    p.add_argument(\"--epochs\", type=int, default=50)\n    p.add_argument(\"--patience\", type=int, default=5)\n    p.add_argument(\"--pairs_per_bin\", type=int, default=50)\n    p.add_argument(\"--n_bins\", type=int, default=10)\n    p.add_argument(\"--gpu\", type=int, default=0)\n    return p.parse_args()\n\n\n# ============================================================\n# Feature scanning & loading\n# ============================================================\n\ndef scan_features(features_dir, aggregation):\n    \"\"\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\"\"\"\n    primary, fallback = AGG_MAP[aggregation]\n    traj_metas = []\n    n_layers = hidden_dim = None\n\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \"*.h5\"))):\n        task = Path(h5_path).stem\n        with h5py.File(h5_path, \"r\") as f:\n            keys = sorted(f.keys(), key=lambda x: int(x.split(\"_\")[-1]))\n            for hk in keys:\n                if primary in f[hk]:\n                    fk = primary\n                elif fallback in f[hk]:\n                    fk = fallback\n                else:\n                    raise KeyError(f\"No feature key in {h5_path}/{hk}\")\n\n                shape = f[hk][fk].shape\n                is_3d = len(shape) == 3\n                T = shape[0]\n                if n_layers is None:\n                    n_layers = shape[1] if is_3d else 1\n                    hidden_dim = shape[-1]\n\n                traj_metas.append(dict(\n                    task=task, h5_path=h5_path, h5_key=hk,\n                    feat_key=fk, T=T, is_3d=is_3d,\n                ))\n\n    if not traj_metas:\n        raise FileNotFoundError(f\"No .h5 files found in {features_dir}\")\n    return traj_metas, n_layers, hidden_dim\n\n\ndef split_by_task(traj_metas):\n    \"\"\"80/20 split per task (first 80 % train, rest val).\"\"\"\n    by_task = defaultdict(list)\n    for i, m in enumerate(traj_metas):\n        by_task[m[\"task\"]].append(i)\n\n    train_ids, val_ids = [], []\n    for task in sorted(by_task):\n        ids = by_task[task]\n        n_train = int(len(ids) * 0.8)\n        train_ids.extend(ids[:n_train])\n        val_ids.extend(ids[n_train:])\n    return train_ids, val_ids\n\n\ndef load_layer_features(traj_metas, indices, layer):\n    \"\"\"Load one layer's features for selected trajectories.\n\n    Returns list of (T, D) float32 arrays, aligned with `indices`.\n    \"\"\"\n    by_file = defaultdict(list)\n    for pos, idx in enumerate(indices):\n        m = traj_metas[idx]\n        by_file[m[\"h5_path\"]].append((pos, m))\n\n    feats = [None] * len(indices)\n    for h5_path, entries in by_file.items():\n        with h5py.File(h5_path, \"r\") as f:\n            for pos, m in entries:\n                ds = f[m[\"h5_key\"]][m[\"feat_key\"]]\n                if m[\"is_3d\"]:\n                    data = ds[:, layer, :]\n                else:\n                    data = ds[:]\n                feats[pos] = np.asarray(data, dtype=np.float32)\n    return feats\n\n\ndef parse_layers(layers_str, max_layer):\n    if layers_str is None:\n        return list(range(max_layer + 1))\n    if \"-\" in layers_str and \",\" not in layers_str:\n        lo, hi = layers_str.split(\"-\")\n        return list(range(int(lo), int(hi) + 1))\n    return [int(x) for x in layers_str.split(\",\")]\n\n\n# ============================================================\n# Distance-stratified pair sampling\n# ============================================================\n\ndef sample_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\n    \"\"\"Within-trajectory distance-stratified pair sampling.\n\n    Returns list of (local_pos, t_i, t_j, norm_dist).\n    local_pos indexes into `indices`.\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    all_pairs = []\n\n    for pos, idx in enumerate(indices):\n        T = traj_metas[idx][\"T\"]\n        if T < 2:\n            continue\n        ii, jj = np.triu_indices(T, k=1)\n        dists = (jj - ii).astype(np.float32) / T\n\n        edges = np.linspace(0.0, 1.0, n_bins + 1)\n        edges[-1] += 1e-6\n\n        for b in range(n_bins):\n            mask = (dists >= edges[b]) & (dists < edges[b + 1])\n            valid = np.where(mask)[0]\n            if len(valid) == 0:\n                continue\n            n = min(pairs_per_bin, len(valid))\n            chosen = rng.choice(valid, size=n, replace=False)\n            for c in chosen:\n                all_pairs.append((pos, int(ii[c]), int(jj[c]), float(dists[c])))\n\n    return all_pairs\n\n\ndef build_pair_tensors(feats, pairs):\n    \"\"\"Build |h(t_j) - h(t_i)| inputs and distance targets.\"\"\"\n    N = len(pairs)\n    D = feats[0].shape[-1]\n    X = np.empty((N, D), dtype=np.float32)\n    y = np.empty(N, dtype=np.float32)\n    for n, (pos, ti, tj, dist) in enumerate(pairs):\n        X[n] = np.abs(feats[pos][tj] - feats[pos][ti])\n        y[n] = dist\n    return torch.from_numpy(X), torch.from_numpy(y)\n\n\ndef build_oracle_tensors(pairs):\n    \"\"\"Oracle: input = scalar distance (same as target).\"\"\"\n    X = torch.tensor([[p[3]] for p in pairs], dtype=torch.float32)\n    y = torch.tensor([p[3] for p in pairs], dtype=torch.float32)\n    return X, y\n\n\n# ============================================================\n# Probes\n# ============================================================\n\nclass LinearProbe(nn.Module):\n    def __init__(self, in_dim):\n        super().__init__()\n        self.fc = nn.Linear(in_dim, 1)\n\n    def forward(self, x):\n        return self.fc(x).squeeze(-1)\n\n\nclass MultiLabelProbe(nn.Module):\n    def __init__(self, in_dim, n_labels):\n        super().__init__()\n        self.fc = nn.Linear(in_dim, n_labels)\n\n    def forward(self, x):\n        return self.fc(x)\n\n\ndef train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\n    model = LinearProbe(in_dim).to(device)\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\n    crit = nn.MSELoss()\n\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\n    X_val, y_val = X_val.to(device), y_val.to(device)\n\n    best_loss, best_state, wait, final_ep = float(\"inf\"), None, 0, 0\n\n    for ep in range(args.epochs):\n        model.train()\n        perm = torch.randperm(len(X_tr), device=device)\n        for s in range(0, len(X_tr), args.batch_size):\n            idx = perm[s : s + args.batch_size]\n            loss = crit(model(X_tr[idx]), y_tr[idx])\n            opt.zero_grad()\n            loss.backward()\n            opt.step()\n\n        model.eval()\n        with torch.no_grad():\n            vl = crit(model(X_val), y_val).item()\n\n        if vl < best_loss:\n            best_loss = vl\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\n            wait = 0\n        else:\n            wait += 1\n            if wait >= args.patience:\n                final_ep = ep + 1\n                break\n        final_ep = ep + 1\n\n    model.load_state_dict(best_state)\n    model.eval()\n    with torch.no_grad():\n        pred = model(X_val).cpu().numpy()\n    y_np = y_val.cpu().numpy()\n\n    rho, pval = spearmanr(pred, y_np)\n    return dict(\n        spearman_rho=float(rho) if not np.isnan(rho) else 0.0,\n        spearman_p=float(pval) if not np.isnan(pval) else 1.0,\n        r2=float(r2_score(y_np, pred)),\n        mae=float(mean_absolute_error(y_np, pred)),\n        val_loss=best_loss,\n        epochs_trained=final_ep,\n    )\n\n\ndef train_classification_probe(X_tr, y_tr, X_val, y_val, in_dim, n_labels, args, device):\n    model = MultiLabelProbe(in_dim, n_labels).to(device)\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\n    crit = nn.BCEWithLogitsLoss()\n\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\n    X_val, y_val = X_val.to(device), y_val.to(device)\n\n    bs = 512\n    best_loss, best_state, wait, final_ep = float(\"inf\"), None, 0, 0\n\n    for ep in range(args.epochs):\n        model.train()\n        perm = torch.randperm(len(X_tr), device=device)\n        for s in range(0, len(X_tr), bs):\n            idx = perm[s : s + bs]\n            loss = crit(model(X_tr[idx]), y_tr[idx])\n            opt.zero_grad()\n            loss.backward()\n            opt.step()\n\n        model.eval()\n        with torch.no_grad():\n            vl = crit(model(X_val), y_val).item()\n\n        if vl < best_loss:\n            best_loss = vl\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\n            wait = 0\n        else:\n            wait += 1\n            if wait >= args.patience:\n                final_ep = ep + 1\n                break\n        final_ep = ep + 1\n\n    model.load_state_dict(best_state)\n    model.eval()\n    with torch.no_grad():\n        scores = torch.sigmoid(model(X_val)).cpu().numpy()\n    y_np = y_val.cpu().numpy()\n\n    auc_per = {}\n    for k in range(n_labels):\n        col = y_np[:, k]\n        if col.sum() > 0 and col.sum() < len(col):\n            auc_per[k] = float(roc_auc_score(col, scores[:, k]))\n        else:\n            auc_per[k] = float(\"nan\")\n\n    valid = [v for v in auc_per.values() if not np.isnan(v)]\n    return dict(\n        auc_per_predicate={str(k): v for k, v in auc_per.items()},\n        macro_auc=float(np.mean(valid)) if valid else float(\"nan\"),\n        val_loss=best_loss,\n        epochs_trained=final_ep,\n    )\n\n\n# ============================================================\n# Runners\n# ============================================================\n\ndef run_temporal_distance(args, device):\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\n    layers = parse_layers(args.layers, n_layers - 1)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    print(f\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\")\n    print(f\"Split: {len(train_ids)} train / {len(val_ids)} val\")\n\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    print(f\"Pairs: {len(train_pairs)} train / {len(val_pairs)} val\")\n\n    results = {}\n    for li, layer in enumerate(layers):\n        print(f\"\\n[Layer {layer}] ({li+1}/{len(layers)})\", flush=True)\n        t0 = time.time()\n\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\n        X_tr, y_tr = build_pair_tensors(train_feats, train_pairs)\n        del train_feats\n\n        val_feats = load_layer_features(traj_metas, val_ids, layer)\n        X_val, y_val = build_pair_tensors(val_feats, val_pairs)\n        del val_feats\n\n        m = train_regression_probe(X_tr, y_tr, X_val, y_val, hidden_dim, args, device)\n        m[\"layer\"] = layer\n        results[layer] = m\n        del X_tr, y_tr, X_val, y_val\n\n        print(f\"  rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  \"\n              f\"MAE={m['mae']:.4f}  ep={m['epochs_trained']}  {time.time()-t0:.1f}s\")\n\n    return results\n\n\ndef run_oracle(args, device):\n    traj_metas, _, _ = scan_features(args.features_dir, args.aggregation)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    train_pairs = sample_pairs(traj_metas, train_ids, args.n_bins, args.pairs_per_bin, args.seed)\n    val_pairs = sample_pairs(traj_metas, val_ids, args.n_bins, args.pairs_per_bin, args.seed + 1)\n    print(f\"Oracle: {len(train_pairs)} train / {len(val_pairs)} val pairs\")\n\n    X_tr, y_tr = build_oracle_tensors(train_pairs)\n    X_val, y_val = build_oracle_tensors(val_pairs)\n\n    m = train_regression_probe(X_tr, y_tr, X_val, y_val, 1, args, device)\n    m[\"layer\"] = \"oracle\"\n    print(f\"Oracle: rho={m['spearman_rho']:.4f}  R2={m['r2']:.4f}  MAE={m['mae']:.4f}\")\n    return {\"oracle\": m}\n\n\ndef run_subtask_predicate(args, device):\n    if not args.label_file:\n        raise ValueError(\"--label_file required for subtask_predicate\")\n\n    with open(args.label_file) as f:\n        label_data = json.load(f)\n    pred_names = label_data[\"predicate_names\"]\n    labels = label_data[\"labels\"]\n    n_pred = len(pred_names)\n    print(f\"Predicates ({n_pred}): {pred_names}\")\n\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\n    layers = parse_layers(args.layers, n_layers - 1)\n    train_ids, val_ids = split_by_task(traj_metas)\n\n    results = {}\n    for li, layer in enumerate(layers):\n        print(f\"\\n[Layer {layer}] ({li+1}/{len(layers)})\", flush=True)\n        t0 = time.time()\n\n        def gather(ids):\n            Xs, Ys = [], []\n            feats = load_layer_features(traj_metas, ids, layer)\n            for pos, idx in enumerate(ids):\n                m = traj_metas[idx]\n                tk = m[\"h5_key\"]\n                if m[\"task\"] not in labels or tk not in labels[m[\"task\"]]:\n                    continue\n                lab = np.array(labels[m[\"task\"]][tk], dtype=np.float32)\n                T = min(feats[pos].shape[0], lab.shape[0])\n                Xs.append(torch.from_numpy(feats[pos][:T]))\n                Ys.append(torch.from_numpy(lab[:T]))\n            if not Xs:\n                return None, None\n            return torch.cat(Xs, dim=0), torch.cat(Ys, dim=0)\n\n        X_tr, y_tr = gather(train_ids)\n        X_val, y_val = gather(val_ids)\n\n        if X_tr is None or X_val is None:\n            print(\"  No valid data, skipping\")\n            continue\n\n        print(f\"  Samples: {len(X_tr)} train / {len(X_val)} val\")\n        met = train_classification_probe(\n            X_tr, y_tr, X_val, y_val, hidden_dim, n_pred, args, device\n        )\n        met[\"layer\"] = layer\n        met[\"predicate_names\"] = pred_names\n        results[layer] = met\n\n        print(f\"  macro_AUC={met['macro_auc']:.4f}  ep={met['epochs_trained']}  \"\n              f\"{time.time()-t0:.1f}s\")\n\n    return results\n\n\n# ============================================================\n# Results I/O\n# ============================================================\n\ndef save_results(results, output_dir, probe_type):\n    out = os.path.join(output_dir, probe_type)\n    os.makedirs(out, exist_ok=True)\n\n    for key, m in results.items():\n        with open(os.path.join(out, f\"layer_{key}.json\"), \"w\") as f:\n            json.dump(m, f, indent=2)\n\n    csv_path = os.path.join(out, \"summary.csv\")\n    if probe_type in (\"temporal_distance\", \"oracle\"):\n        fields = [\"layer\", \"spearman_rho\", \"spearman_p\", \"r2\", \"mae\",\n                   \"val_loss\", \"epochs_trained\"]\n    else:\n        fields = [\"layer\", \"macro_auc\", \"val_loss\", \"epochs_trained\"]\n\n    with open(csv_path, \"w\", newline=\"\") as f:\n        w = csv.DictWriter(f, fieldnames=fields)\n        w.writeheader()\n        for key in sorted(results.keys(), key=lambda x: (isinstance(x, str), x)):\n            row = {k: results[key].get(k, \"\") for k in fields}\n            w.writerow(row)\n\n    summary = dict(probe_type=probe_type, n_entries=len(results),\n                   results={str(k): v for k, v in results.items()})\n\n    if probe_type == \"temporal_distance\" and results:\n        best = max(results, key=lambda k: results[k][\"spearman_rho\"])\n        summary[\"best_layer\"] = best\n        summary[\"best_rho\"] = results[best][\"spearman_rho\"]\n\n    with open(os.path.join(out, \"summary.json\"), \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    print(f\"\\nSaved to {out}/\")\n\n\ndef main():\n    args = parse_args()\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"=== Probe Training: {args.probe_type} | device={device} ===\")\n\n    runners = dict(\n        temporal_distance=run_temporal_distance,\n        oracle=run_oracle,\n        subtask_predicate=run_subtask_predicate,\n    )\n    results = runners[args.probe_type](args, device)\n    save_results(results, args.output_dir, args.probe_type)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T07:08:19.457870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T07:08:19.458087+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/analyze_results.py << 'PYEOF'\n\"\"\"analyze_results.py — Compare probe results across models and visualize.\n\nInput:  Multiple result directories (from train_probes.py)\nOutput: Comparison tables, plots, PASS/FAIL judgment\n\nUsage:\n  python analyze_results.py \\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\n    --output_dir results/analysis/\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport glob\nfrom pathlib import Path\n\nimport numpy as np\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Analyze and compare probe results\")\n    p.add_argument(\"--results_dirs\", required=True,\n                   help=\"Comma-separated name:path pairs, e.g. trained:results/trained/\")\n    p.add_argument(\"--output_dir\", required=True)\n    p.add_argument(\"--probe_type\", default=\"temporal_distance\",\n                   choices=[\"temporal_distance\", \"subtask_predicate\"])\n    return p.parse_args()\n\n\ndef parse_results_dirs(s):\n    d = {}\n    for entry in s.split(\",\"):\n        name, path = entry.strip().split(\":\")\n        d[name.strip()] = path.strip()\n    return d\n\n\ndef load_results(results_dir, probe_type):\n    \"\"\"Load probe results from a directory.\"\"\"\n    probe_dir = os.path.join(results_dir, probe_type)\n    summary_path = os.path.join(probe_dir, \"summary.json\")\n    if os.path.exists(summary_path):\n        with open(summary_path) as f:\n            return json.load(f)\n\n    results = {}\n    for p in sorted(glob.glob(os.path.join(probe_dir, \"layer_*.json\"))):\n        with open(p) as f:\n            m = json.load(f)\n        key = m.get(\"layer\", Path(p).stem.replace(\"layer_\", \"\"))\n        results[str(key)] = m\n    return {\"results\": results}\n\n\ndef load_oracle(results_dirs):\n    \"\"\"Auto-detect oracle results from any provided directory.\"\"\"\n    for path in results_dirs.values():\n        oracle_dir = os.path.join(path, \"oracle\")\n        summary = os.path.join(oracle_dir, \"summary.json\")\n        if os.path.exists(summary):\n            with open(summary) as f:\n                data = json.load(f)\n            r = data.get(\"results\", {})\n            if \"oracle\" in r:\n                return r[\"oracle\"].get(\"spearman_rho\")\n    return None\n\n\ndef _sort_key(x):\n    try:\n        return (0, int(x))\n    except ValueError:\n        return (1, x)\n\n\ndef extract_layer_metrics(data, metric=\"spearman_rho\"):\n    results = data.get(\"results\", {})\n    layers, values = [], []\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\n        if k == \"oracle\":\n            continue\n        val = v.get(metric)\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\n            layers.append(int(k))\n            values.append(float(val))\n    return np.array(layers), np.array(values)\n\n\n# ============================================================\n# Plots\n# ============================================================\n\nCOLORS = {\n    \"trained\": \"#2196F3\", \"untrained\": \"#F44336\",\n    \"dinov2\": \"#4CAF50\", \"oracle\": \"#FF9800\",\n}\nMARKERS = {\"trained\": \"o\", \"untrained\": \"s\", \"dinov2\": \"^\", \"oracle\": \"D\"}\n\n\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\n    fig, ax = plt.subplots(figsize=(10, 5))\n\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(layers) == 0:\n            continue\n        ax.plot(layers, rhos,\n                marker=MARKERS.get(name, \"o\"),\n                color=COLORS.get(name, \"#999\"),\n                label=name, linewidth=2, markersize=5)\n\n    if oracle_rho is not None:\n        ax.axhline(y=oracle_rho, color=COLORS[\"oracle\"],\n                   linestyle=\"--\", label=f\"oracle (rho={oracle_rho:.3f})\", alpha=0.7)\n\n    ax.set_xlabel(\"Layer\")\n    ax.set_ylabel(\"Spearman rho\")\n    ax.set_title(\"Temporal Distance Probe: Layer-wise Spearman rho\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"layer_rho.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_delta_rho(all_data, output_dir):\n    if \"trained\" not in all_data or \"untrained\" not in all_data:\n        print(\"Skipping delta-rho plot (need trained + untrained)\")\n        return\n\n    l_tr, rho_tr = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n    l_un, rho_un = extract_layer_metrics(all_data[\"untrained\"], \"spearman_rho\")\n\n    tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\n    un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\n    common = sorted(set(l_tr.tolist()) & set(l_un.tolist()))\n    if not common:\n        return\n\n    layers = np.array(common)\n    deltas = np.array([tr_map[l] - un_map[l] for l in common])\n\n    fig, ax = plt.subplots(figsize=(10, 5))\n    colors = [\"#2196F3\" if d >= 0 else \"#F44336\" for d in deltas]\n    ax.bar(layers, deltas, color=colors, width=0.8)\n    ax.axhline(y=0.1, color=\"green\", linestyle=\"--\", alpha=0.5, label=\"threshold=0.1\")\n    ax.axhline(y=0, color=\"black\", linewidth=0.5)\n    ax.set_xlabel(\"Layer\")\n    ax.set_ylabel(\"Delta-rho (trained - untrained)\")\n    ax.set_title(\"Temporal Distance Probe: Delta-rho per Layer\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"delta_rho.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_subtask_auc_heatmap(data, output_dir, name=\"trained\"):\n    results = data.get(\"results\", {})\n    layers = sorted([int(k) for k in results if k != \"oracle\"])\n    if not layers:\n        return\n\n    pred_names = None\n    for v in results.values():\n        if \"predicate_names\" in v:\n            pred_names = v[\"predicate_names\"]\n            break\n    if pred_names is None:\n        return\n\n    n_pred = len(pred_names)\n    heatmap = np.full((len(layers), n_pred), np.nan)\n\n    for li, layer in enumerate(layers):\n        auc = results[str(layer)].get(\"auc_per_predicate\", {})\n        for k in range(n_pred):\n            val = auc.get(str(k), np.nan)\n            heatmap[li, k] = val\n\n    fig, ax = plt.subplots(figsize=(max(8, n_pred), max(6, len(layers) * 0.3)))\n    im = ax.imshow(heatmap, aspect=\"auto\", cmap=\"YlOrRd\", vmin=0.5, vmax=1.0)\n    ax.set_xticks(range(n_pred))\n    ax.set_xticklabels(pred_names, rotation=45, ha=\"right\", fontsize=8)\n    ax.set_yticks(range(len(layers)))\n    ax.set_yticklabels(layers)\n    ax.set_xlabel(\"Predicate\")\n    ax.set_ylabel(\"Layer\")\n    ax.set_title(f\"Sub-task Predicate AUC ({name})\")\n    fig.colorbar(im, ax=ax, label=\"AUC-ROC\")\n\n    path = os.path.join(output_dir, f\"subtask_auc_{name}.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\n# ============================================================\n# Judgment\n# ============================================================\n\ndef compute_judgment(all_data):\n    \"\"\"PASS/FAIL based on three criteria.\"\"\"\n    criteria = {}\n\n    # 1) best rho > 0.3\n    if \"trained\" in all_data:\n        _, rhos = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\n        layers, _ = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\n    else:\n        best_rho, best_layer = 0.0, -1\n\n    criteria[\"best_rho\"] = best_rho\n    criteria[\"best_layer\"] = best_layer\n    criteria[\"rho_pass\"] = best_rho > 0.3\n\n    # 2) delta-rho > 0.1\n    max_delta = 0.0\n    if \"trained\" in all_data and \"untrained\" in all_data:\n        l_tr, rho_tr = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        l_un, rho_un = extract_layer_metrics(all_data[\"untrained\"], \"spearman_rho\")\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\n        common = set(l_tr.tolist()) & set(l_un.tolist())\n        if common:\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\n\n    criteria[\"max_delta_rho\"] = max_delta\n    criteria[\"delta_pass\"] = max_delta > 0.1\n\n    # 3) VLA >= DINO-V2 OR sub-task AUC > 0.7\n    vla_ge_dino = False\n    if \"trained\" in all_data and \"dinov2\" in all_data:\n        _, rho_vla = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        _, rho_dino = extract_layer_metrics(all_data[\"dinov2\"], \"spearman_rho\")\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\n\n    subtask_pass = False\n    for data in all_data.values():\n        for v in data.get(\"results\", {}).values():\n            if isinstance(v.get(\"macro_auc\"), (int, float)) and v[\"macro_auc\"] > 0.7:\n                subtask_pass = True\n                break\n\n    criteria[\"vla_ge_dinov2\"] = vla_ge_dino\n    criteria[\"subtask_auc_pass\"] = subtask_pass\n    criteria[\"third_criterion\"] = vla_ge_dino or subtask_pass\n\n    passed = criteria[\"rho_pass\"] and criteria[\"delta_pass\"] and criteria[\"third_criterion\"]\n    judgment = \"PASS\" if passed else \"FAIL\"\n\n    reasons = []\n    if not criteria[\"rho_pass\"]:\n        reasons.append(f\"best rho = {best_rho:.4f} <= 0.3\")\n    if not criteria[\"delta_pass\"]:\n        reasons.append(f\"max delta-rho = {max_delta:.4f} <= 0.1\")\n    if not criteria[\"third_criterion\"]:\n        reasons.append(\"VLA < DINO-V2 AND no sub-task AUC > 0.7\")\n\n    return dict(judgment=judgment, criteria=criteria,\n                reasons=reasons if reasons else [\"All criteria met\"])\n\n\n# ============================================================\n# Main\n# ============================================================\n\ndef main():\n    args = parse_args()\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    dirs = parse_results_dirs(args.results_dirs)\n    print(f\"Loading results: {list(dirs.keys())}\")\n\n    all_data = {}\n    for name, path in dirs.items():\n        try:\n            data = load_results(path, args.probe_type)\n            all_data[name] = data\n            n = len(data.get(\"results\", {}))\n            print(f\"  {name}: {n} entries\")\n        except Exception as e:\n            print(f\"  {name}: FAILED ({e})\")\n\n    if not all_data:\n        print(\"No data loaded.\")\n        return\n\n    oracle_rho = load_oracle(dirs)\n    if oracle_rho is not None:\n        print(f\"Oracle rho: {oracle_rho:.4f}\")\n\n    # --- Comparison table ---\n    print(\"\\n=== Layer-wise Spearman rho ===\")\n    names = list(all_data.keys())\n    header = [\"Layer\"] + names\n    print(\" | \".join(f\"{h:>12}\" for h in header))\n    print(\"-\" * (14 * len(header)))\n\n    all_layers = set()\n    for data in all_data.values():\n        layers, _ = extract_layer_metrics(data, \"spearman_rho\")\n        all_layers.update(layers.tolist())\n\n    for layer in sorted(all_layers):\n        row = [f\"{layer:>12}\"]\n        for name in names:\n            layers, rhos = extract_layer_metrics(all_data[name], \"spearman_rho\")\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\n            val = lmap.get(layer, float(\"nan\"))\n            row.append(f\"{val:>12.4f}\")\n        print(\" | \".join(row))\n\n    print(\"\\n=== Best Layer ===\")\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(rhos) > 0:\n            bi = int(np.argmax(rhos))\n            print(f\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\")\n\n    # --- Plots ---\n    if args.probe_type == \"temporal_distance\":\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\n        plot_delta_rho(all_data, args.output_dir)\n\n    if args.probe_type == \"subtask_predicate\":\n        for name, data in all_data.items():\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\n\n    # --- Judgment ---\n    judgment = compute_judgment(all_data)\n    print(f\"\\n=== Judgment: {judgment['judgment']} ===\")\n    for k, v in judgment[\"criteria\"].items():\n        print(f\"  {k}: {v}\")\n    for r in judgment[\"reasons\"]:\n        print(f\"  >> {r}\")\n\n    # --- Save ---\n    summary = dict(\n        models=names,\n        probe_type=args.probe_type,\n        judgment=judgment,\n    )\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(rhos) > 0:\n            bi = int(np.argmax(rhos))\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\n    if oracle_rho is not None:\n        summary[\"oracle_rho\"] = oracle_rho\n\n    with open(os.path.join(args.output_dir, \"summary.json\"), \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"\\nSaved {args.output_dir}/summary.json\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/analyze_results.py << 'PYEOF'\n\"\"\"analyze_results.py — Compare probe results across models and visualize.\n\nInput:  Multiple result directories (from train_probes.py)\nOutput: Comparison tables, plots, PASS/FAIL judgment\n\nUsage:\n  python analyze_results.py \\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\n    --output_dir results/analysis/\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport glob\nfrom pathlib import Path\n\nimport numpy as np\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Analyze and compare probe results\")\n    p.add_argument(\"--results_dirs\", required=True,\n                   help=\"Comma-separated name:path pairs, e.g. trained:results/trained/\")\n    p.add_argument(\"--output_dir\", required=True)\n    p.add_argument(\"--probe_type\", default=\"temporal_distance\",\n                   choices=[\"temporal_distance\", \"subtask_predicate\"])\n    return p.parse_args()\n\n\ndef parse_results_dirs(s):\n    d = {}\n    for entry in s.split(\",\"):\n        name, path = entry.strip().split(\":\")\n        d[name.strip()] = path.strip()\n    return d\n\n\ndef load_results(results_dir, probe_type):\n    \"\"\"Load probe results from a directory.\"\"\"\n    probe_dir = os.path.join(results_dir, probe_type)\n    summary_path = os.path.join(probe_dir, \"summary.json\")\n    if os.path.exists(summary_path):\n        with open(summary_path) as f:\n            return json.load(f)\n\n    results = {}\n    for p in sorted(glob.glob(os.path.join(probe_dir, \"layer_*.json\"))):\n        with open(p) as f:\n            m = json.load(f)\n        key = m.get(\"layer\", Path(p).stem.replace(\"layer_\", \"\"))\n        results[str(key)] = m\n    return {\"results\": results}\n\n\ndef load_oracle(results_dirs):\n    \"\"\"Auto-detect oracle results from any provided directory.\"\"\"\n    for path in results_dirs.values():\n        oracle_dir = os.path.join(path, \"oracle\")\n        summary = os.path.join(oracle_dir, \"summary.json\")\n        if os.path.exists(summary):\n            with open(summary) as f:\n                data = json.load(f)\n            r = data.get(\"results\", {})\n            if \"oracle\" in r:\n                return r[\"oracle\"].get(\"spearman_rho\")\n    return None\n\n\ndef _sort_key(x):\n    try:\n        return (0, int(x))\n    except ValueError:\n        return (1, x)\n\n\ndef extract_layer_metrics(data, metric=\"spearman_rho\"):\n    results = data.get(\"results\", {})\n    layers, values = [], []\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\n        if k == \"oracle\":\n            continue\n        val = v.get(metric)\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\n            layers.append(int(k))\n            values.append(float(val))\n    return np.array(layers), np.array(values)\n\n\n# ============================================================\n# Plots\n# ============================================================\n\nCOLORS = {\n    \"trained\": \"#2196F3\", \"untrained\": \"#F44336\",\n    \"dinov2\": \"#4CAF50\", \"oracle\": \"#FF9800\",\n}\nMARKERS = {\"trained\": \"o\", \"untrained\": \"s\", \"dinov2\": \"^\", \"oracle\": \"D\"}\n\n\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\n    fig, ax = plt.subplots(figsize=(10, 5))\n\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(layers) == 0:\n            continue\n        ax.plot(layers, rhos,\n                marker=MARKERS.get(name, \"o\"),\n                color=COLORS.get(name, \"#999\"),\n                label=name, linewidth=2, markersize=5)\n\n    if oracle_rho is not None:\n        ax.axhline(y=oracle_rho, color=COLORS[\"oracle\"],\n                   linestyle=\"--\", label=f\"oracle (rho={oracle_rho:.3f})\", alpha=0.7)\n\n    ax.set_xlabel(\"Layer\")\n    ax.set_ylabel(\"Spearman rho\")\n    ax.set_title(\"Temporal Distance Probe: Layer-wise Spearman rho\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"layer_rho.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_delta_rho(all_data, output_dir):\n    if \"trained\" not in all_data or \"untrained\" not in all_data:\n        print(\"Skipping delta-rho plot (need trained + untrained)\")\n        return\n\n    l_tr, rho_tr = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n    l_un, rho_un = extract_layer_metrics(all_data[\"untrained\"], \"spearman_rho\")\n\n    tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\n    un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\n    common = sorted(set(l_tr.tolist()) & set(l_un.tolist()))\n    if not common:\n        return\n\n    layers = np.array(common)\n    deltas = np.array([tr_map[l] - un_map[l] for l in common])\n\n    fig, ax = plt.subplots(figsize=(10, 5))\n    colors = [\"#2196F3\" if d >= 0 else \"#F44336\" for d in deltas]\n    ax.bar(layers, deltas, color=colors, width=0.8)\n    ax.axhline(y=0.1, color=\"green\", linestyle=\"--\", alpha=0.5, label=\"threshold=0.1\")\n    ax.axhline(y=0, color=\"black\", linewidth=0.5)\n    ax.set_xlabel(\"Layer\")\n    ax.set_ylabel(\"Delta-rho (trained - untrained)\")\n    ax.set_title(\"Temporal Distance Probe: Delta-rho per Layer\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"delta_rho.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_subtask_auc_heatmap(data, output_dir, name=\"trained\"):\n    results = data.get(\"results\", {})\n    layers = sorted([int(k) for k in results if k != \"oracle\"])\n    if not layers:\n        return\n\n    pred_names = None\n    for v in results.values():\n        if \"predicate_names\" in v:\n            pred_names = v[\"predicate_names\"]\n            break\n    if pred_names is None:\n        return\n\n    n_pred = len(pred_names)\n    heatmap = np.full((len(layers), n_pred), np.nan)\n\n    for li, layer in enumerate(layers):\n        auc = results[str(layer)].get(\"auc_per_predicate\", {})\n        for k in range(n_pred):\n            val = auc.get(str(k), np.nan)\n            heatmap[li, k] = val\n\n    fig, ax = plt.subplots(figsize=(max(8, n_pred), max(6, len(layers) * 0.3)))\n    im = ax.imshow(heatmap, aspect=\"auto\", cmap=\"YlOrRd\", vmin=0.5, vmax=1.0)\n    ax.set_xticks(range(n_pred))\n    ax.set_xticklabels(pred_names, rotation=45, ha=\"right\", fontsize=8)\n    ax.set_yticks(range(len(layers)))\n    ax.set_yticklabels(layers)\n    ax.set_xlabel(\"Predicate\")\n    ax.set_ylabel(\"Layer\")\n    ax.set_title(f\"Sub-task Predicate AUC ({name})\")\n    fig.colorbar(im, ax=ax, label=\"AUC-ROC\")\n\n    path = os.path.join(output_dir, f\"subtask_auc_{name}.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\n# ============================================================\n# Judgment\n# ============================================================\n\ndef compute_judgment(all_data):\n    \"\"\"PASS/FAIL based on three criteria.\"\"\"\n    criteria = {}\n\n    # 1) best rho > 0.3\n    if \"trained\" in all_data:\n        _, rhos = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\n        layers, _ = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\n    else:\n        best_rho, best_layer = 0.0, -1\n\n    criteria[\"best_rho\"] = best_rho\n    criteria[\"best_layer\"] = best_layer\n    criteria[\"rho_pass\"] = best_rho > 0.3\n\n    # 2) delta-rho > 0.1\n    max_delta = 0.0\n    if \"trained\" in all_data and \"untrained\" in all_data:\n        l_tr, rho_tr = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        l_un, rho_un = extract_layer_metrics(all_data[\"untrained\"], \"spearman_rho\")\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\n        common = set(l_tr.tolist()) & set(l_un.tolist())\n        if common:\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\n\n    criteria[\"max_delta_rho\"] = max_delta\n    criteria[\"delta_pass\"] = max_delta > 0.1\n\n    # 3) VLA >= DINO-V2 OR sub-task AUC > 0.7\n    vla_ge_dino = False\n    if \"trained\" in all_data and \"dinov2\" in all_data:\n        _, rho_vla = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        _, rho_dino = extract_layer_metrics(all_data[\"dinov2\"], \"spearman_rho\")\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\n\n    subtask_pass = False\n    for data in all_data.values():\n        for v in data.get(\"results\", {}).values():\n            if isinstance(v.get(\"macro_auc\"), (int, float)) and v[\"macro_auc\"] > 0.7:\n                subtask_pass = True\n                break\n\n    criteria[\"vla_ge_dinov2\"] = vla_ge_dino\n    criteria[\"subtask_auc_pass\"] = subtask_pass\n    criteria[\"third_criterion\"] = vla_ge_dino or subtask_pass\n\n    passed = criteria[\"rho_pass\"] and criteria[\"delta_pass\"] and criteria[\"third_criterion\"]\n    judgment = \"PASS\" if passed else \"FAIL\"\n\n    reasons = []\n    if not criteria[\"rho_pass\"]:\n        reasons.append(f\"best rho = {best_rho:.4f} <= 0.3\")\n    if not criteria[\"delta_pass\"]:\n        reasons.append(f\"max delta-rho = {max_delta:.4f} <= 0.1\")\n    if not criteria[\"third_criterion\"]:\n        reasons.append(\"VLA < DINO-V2 AND no sub-task AUC > 0.7\")\n\n    return dict(judgment=judgment, criteria=criteria,\n                reasons=reasons if reasons else [\"All criteria met\"])\n\n\n# ============================================================\n# Main\n# ============================================================\n\ndef main():\n    args = parse_args()\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    dirs = parse_results_dirs(args.results_dirs)\n    print(f\"Loading results: {list(dirs.keys())}\")\n\n    all_data = {}\n    for name, path in dirs.items():\n        try:\n            data = load_results(path, args.probe_type)\n            all_data[name] = data\n            n = len(data.get(\"results\", {}))\n            print(f\"  {name}: {n} entries\")\n        except Exception as e:\n            print(f\"  {name}: FAILED ({e})\")\n\n    if not all_data:\n        print(\"No data loaded.\")\n        return\n\n    oracle_rho = load_oracle(dirs)\n    if oracle_rho is not None:\n        print(f\"Oracle rho: {oracle_rho:.4f}\")\n\n    # --- Comparison table ---\n    print(\"\\n=== Layer-wise Spearman rho ===\")\n    names = list(all_data.keys())\n    header = [\"Layer\"] + names\n    print(\" | \".join(f\"{h:>12}\" for h in header))\n    print(\"-\" * (14 * len(header)))\n\n    all_layers = set()\n    for data in all_data.values():\n        layers, _ = extract_layer_metrics(data, \"spearman_rho\")\n        all_layers.update(layers.tolist())\n\n    for layer in sorted(all_layers):\n        row = [f\"{layer:>12}\"]\n        for name in names:\n            layers, rhos = extract_layer_metrics(all_data[name], \"spearman_rho\")\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\n            val = lmap.get(layer, float(\"nan\"))\n            row.append(f\"{val:>12.4f}\")\n        print(\" | \".join(row))\n\n    print(\"\\n=== Best Layer ===\")\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(rhos) > 0:\n            bi = int(np.argmax(rhos))\n            print(f\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\")\n\n    # --- Plots ---\n    if args.probe_type == \"temporal_distance\":\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\n        plot_delta_rho(all_data, args.output_dir)\n\n    if args.probe_type == \"subtask_predicate\":\n        for name, data in all_data.items():\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\n\n    # --- Judgment ---\n    judgment = compute_judgment(all_data)\n    print(f\"\\n=== Judgment: {judgment['judgment']} ===\")\n    for k, v in judgment[\"criteria\"].items():\n        print(f\"  {k}: {v}\")\n    for r in judgment[\"reasons\"]:\n        print(f\"  >> {r}\")\n\n    # --- Save ---\n    summary = dict(\n        models=names,\n        probe_type=args.probe_type,\n        judgment=judgment,\n    )\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(rhos) > 0:\n            bi = int(np.argmax(rhos))\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\n    if oracle_rho is not None:\n        summary[\"oracle_rho\"] = oracle_rho\n\n    with open(os.path.join(args.output_dir, \"summary.json\"), \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"\\nSaved {args.output_dir}/summary.json\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T07:08:19.458357+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T07:08:19.458504+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/init_untrained.py << 'PYEOF'\n\"\"\"init_untrained.py — Reinitialize OpenVLA LLM backbone with random weights.\n\nKeeps vision encoder (DINOv2 + SigLIP) and projector intact.\n2D+ params -> xavier_normal_, 1D params -> zeros_.\n\nInput:  Pretrained OpenVLA checkpoint\nOutput: New checkpoint with randomized LLM backbone\n\nUsage:\n  python init_untrained.py --model_path checkpoints/openvla-7b \\\n                           --output_path checkpoints/openvla-7b-untrained/\n\"\"\"\n\nimport argparse\nimport gc\nimport os\n\nimport torch\nimport torch.nn as nn\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Reinitialize OpenVLA LLM backbone\")\n    p.add_argument(\"--model_path\", required=True,\n                   help=\"Path to pretrained OpenVLA checkpoint\")\n    p.add_argument(\"--output_path\", required=True,\n                   help=\"Path to save reinitialized model\")\n    return p.parse_args()\n\n\ndef reinit_llm_backbone(model):\n    \"\"\"Reinitialize language_model.* parameters. Returns counts and names.\"\"\"\n    n_reinit = 0\n    n_kept = 0\n    reinit_names = []\n\n    for name, param in model.named_parameters():\n        if not name.startswith(\"language_model.\"):\n            n_kept += 1\n            continue\n\n        with torch.no_grad():\n            if param.dim() >= 2:\n                nn.init.xavier_normal_(param)\n            else:\n                nn.init.zeros_(param)\n        n_reinit += 1\n        reinit_names.append(name)\n\n    return n_reinit, n_kept, reinit_names\n\n\ndef main():\n    args = parse_args()\n\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    print(f\"Loading model from {args.model_path} ...\")\n    model = AutoModelForVision2Seq.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n    )\n    processor = AutoProcessor.from_pretrained(args.model_path, trust_remote_code=True)\n\n    total = sum(p.numel() for p in model.parameters())\n    llm = sum(p.numel() for n, p in model.named_parameters()\n              if n.startswith(\"language_model.\"))\n    vision = total - llm\n    print(f\"Total: {total/1e9:.2f}B | LLM: {llm/1e9:.2f}B | Vision+Proj: {vision/1e9:.2f}B\")\n\n    print(\"Reinitializing LLM backbone ...\")\n    n_reinit, n_kept, reinit_names = reinit_llm_backbone(model)\n    print(f\"Reinitialized: {n_reinit} params | Kept: {n_kept} params\")\n\n    module_counts = {}\n    for name in reinit_names:\n        mod = \".\".join(name.split(\".\")[:3])\n        module_counts[mod] = module_counts.get(mod, 0) + 1\n    print(\"Reinitialized modules:\")\n    for mod, cnt in sorted(module_counts.items()):\n        print(f\"  {mod}: {cnt} params\")\n\n    print(f\"\\nSaving to {args.output_path} ...\")\n    os.makedirs(args.output_path, exist_ok=True)\n    model.save_pretrained(args.output_path)\n    processor.save_pretrained(args.output_path)\n\n    saved_size = sum(\n        os.path.getsize(os.path.join(dp, fn))\n        for dp, _, fns in os.walk(args.output_path) for fn in fns\n    ) / 1024**3\n    print(f\"Saved ({saved_size:.1f} GB)\")\n\n    # Quick sanity check\n    for name, param in model.named_parameters():\n        if name.startswith(\"language_model.\") and param.dim() >= 2:\n            print(f\"  LLM sample std: {param.float().std().item():.6f} ({name})\")\n            break\n    for name, param in model.named_parameters():\n        if not name.startswith(\"language_model.\") and param.dim() >= 2:\n            print(f\"  Vision sample std: {param.float().std().item():.6f} ({name})\")\n            break\n\n    del model\n    gc.collect()\n    print(\"Done.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/init_untrained.py << 'PYEOF'\n\"\"\"init_untrained.py — Reinitialize OpenVLA LLM backbone with random weights.\n\nKeeps vision encoder (DINOv2 + SigLIP) and projector intact.\n2D+ params -> xavier_normal_, 1D params -> zeros_.\n\nInput:  Pretrained OpenVLA checkpoint\nOutput: New checkpoint with randomized LLM backbone\n\nUsage:\n  python init_untrained.py --model_path checkpoints/openvla-7b \\\n                           --output_path checkpoints/openvla-7b-untrained/\n\"\"\"\n\nimport argparse\nimport gc\nimport os\n\nimport torch\nimport torch.nn as nn\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Reinitialize OpenVLA LLM backbone\")\n    p.add_argument(\"--model_path\", required=True,\n                   help=\"Path to pretrained OpenVLA checkpoint\")\n    p.add_argument(\"--output_path\", required=True,\n                   help=\"Path to save reinitialized model\")\n    return p.parse_args()\n\n\ndef reinit_llm_backbone(model):\n    \"\"\"Reinitialize language_model.* parameters. Returns counts and names.\"\"\"\n    n_reinit = 0\n    n_kept = 0\n    reinit_names = []\n\n    for name, param in model.named_parameters():\n        if not name.startswith(\"language_model.\"):\n            n_kept += 1\n            continue\n\n        with torch.no_grad():\n            if param.dim() >= 2:\n                nn.init.xavier_normal_(param)\n            else:\n                nn.init.zeros_(param)\n        n_reinit += 1\n        reinit_names.append(name)\n\n    return n_reinit, n_kept, reinit_names\n\n\ndef main():\n    args = parse_args()\n\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    print(f\"Loading model from {args.model_path} ...\")\n    model = AutoModelForVision2Seq.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n    )\n    processor = AutoProcessor.from_pretrained(args.model_path, trust_remote_code=True)\n\n    total = sum(p.numel() for p in model.parameters())\n    llm = sum(p.numel() for n, p in model.named_parameters()\n              if n.startswith(\"language_model.\"))\n    vision = total - llm\n    print(f\"Total: {total/1e9:.2f}B | LLM: {llm/1e9:.2f}B | Vision+Proj: {vision/1e9:.2f}B\")\n\n    print(\"Reinitializing LLM backbone ...\")\n    n_reinit, n_kept, reinit_names = reinit_llm_backbone(model)\n    print(f\"Reinitialized: {n_reinit} params | Kept: {n_kept} params\")\n\n    module_counts = {}\n    for name in reinit_names:\n        mod = \".\".join(name.split(\".\")[:3])\n        module_counts[mod] = module_counts.get(mod, 0) + 1\n    print(\"Reinitialized modules:\")\n    for mod, cnt in sorted(module_counts.items()):\n        print(f\"  {mod}: {cnt} params\")\n\n    print(f\"\\nSaving to {args.output_path} ...\")\n    os.makedirs(args.output_path, exist_ok=True)\n    model.save_pretrained(args.output_path)\n    processor.save_pretrained(args.output_path)\n\n    saved_size = sum(\n        os.path.getsize(os.path.join(dp, fn))\n        for dp, _, fns in os.walk(args.output_path) for fn in fns\n    ) / 1024**3\n    print(f\"Saved ({saved_size:.1f} GB)\")\n\n    # Quick sanity check\n    for name, param in model.named_parameters():\n        if name.startswith(\"language_model.\") and param.dim() >= 2:\n            print(f\"  LLM sample std: {param.float().std().item():.6f} ({name})\")\n            break\n    for name, param in model.named_parameters():\n        if not name.startswith(\"language_model.\") and param.dim() >= 2:\n            print(f\"  Vision sample std: {param.float().std().item():.6f} ({name})\")\n            break\n\n    del model\n    gc.collect()\n    print(\"Done.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T07:08:19.458672+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T07:08:19.458826+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 -c \"import scripts.train_probes; print('train_probes OK')\" && python3 -c \"import scripts.analyze_results; print('analyze_results OK')\" && python3 -c \"import scripts.init_untrained; print('init_untrained OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 -c \"import scripts.train_probes; print('train_probes OK')\" && python3 -c \"import scripts.analyze_results; print('analyze_results OK')\" && python3 -c \"import scripts.init_untrained; print('init_untrained OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T07:08:19.458975+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"train_probes OK\\nanalyze_results OK\\ninit_untrained OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.22}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T07:08:19.459100+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 scripts/train_probes.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 scripts/train_probes.py --help"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T07:08:19.459217+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 scripts/analyze_results.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 scripts/analyze_results.py --help"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T07:08:19.459330+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 scripts/init_untrained.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 scripts/init_untrained.py --help"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T07:08:19.459459+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: train_probes.py [-h] --features_dir FEATURES_DIR --output_dir\\n                       OUTPUT_DIR --probe_type\\n                       {temporal_distance,subtask_predicate,oracle}\\n                       [--layers LAYERS]\\n                       [--aggregation {last_preaction,image_mean}]\\n                       [--label_file LABEL_FILE] [--seed SEED]\\n                       [--batch_size BATCH_SIZE] [--lr LR] [--epochs EPOCHS]\\n                       [--patience PATIENCE] [--pairs_per_bin PAIRS_PER_BIN]\\n                       [--n_bins N_BINS] [--gpu GPU]\\n\\nTrain linear probes on VLA/DINO-V2 features\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --features_dir FEATURES_DIR\\n                        Directory with per-task HDF5 feature files\\n  --output_dir OUTPUT_DIR\\n                        Directory to save probe results\\n  --probe_type {temporal_distance,subtask_predicate,oracle}\\n  --layers LAYERS       Layer range '0-32' or list '0,5,10'. Default: all\\n  --aggregation {last_preaction,image_mean}\\n  --label_file LABEL_FILE\\n                        Predicate labels JSON (required for subtask_predicate)\\n  --seed SEED\\n  --batch_size BATCH_SIZE\\n  --lr LR\\n  --epochs EPOCHS\\n  --patience PATIENCE\\n  --pairs_per_bin PAIRS_PER_BIN\\n  --n_bins N_BINS\\n  --gpu GPU\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.25}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T07:08:19.459597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: analyze_results.py [-h] --results_dirs RESULTS_DIRS --output_dir\\n                          OUTPUT_DIR\\n                          [--probe_type {temporal_distance,subtask_predicate}]\\n\\nAnalyze and compare probe results\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --results_dirs RESULTS_DIRS\\n                        Comma-separated name:path pairs, e.g.\\n                        trained:results/trained/\\n  --output_dir OUTPUT_DIR\\n  --probe_type {temporal_distance,subtask_predicate}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T07:08:19.459722+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: init_untrained.py [-h] --model_path MODEL_PATH --output_path\\n                         OUTPUT_PATH\\n\\nReinitialize OpenVLA LLM backbone\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model_path MODEL_PATH\\n                        Path to pretrained OpenVLA checkpoint\\n  --output_path OUTPUT_PATH\\n                        Path to save reinitialized model\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T07:08:19.459856+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -lh /root/vla-ssd/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls -lh /root/vla-ssd/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T07:08:19.460003+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 56K\\n-rw-r--r-- 1 root root    0 May 15 15:05 __init__.py\\ndrwxr-xr-x 2 root root  171 May 15 15:07 __pycache__\\n-rw-r--r-- 1 root root  13K May 15 15:07 analyze_results.py\\n-rw-r--r-- 1 root root 4.2K May 15 14:54 extract_dinov2.py\\n-rw-r--r-- 1 root root 6.7K May 15 13:39 extract_features.py\\n-rw-r--r-- 1 root root 3.5K May 15 15:07 init_untrained.py\\n-rw-r--r-- 1 root root  18K May 15 15:06 train_probes.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_probe-pipeline_20260515T065409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-15T07:08:19.460168+00:00_
+
+已部署到 `/root/vla-ssd/scripts/`：
+
+| 脚本 | 大小 | 功能 |
+|------|------|------|
+| `train_probes.py` | 18K | Probe 训练（temporal_distance / subtask_predicate / oracle） |
+| `analyze_results.py` | 13K | 多模型结果对比、可视化、PASS/FAIL 判定 |
+| `init_untrained.py` | 3.5K | OpenVLA LLM backbone 随机重初始化 |
+
+**使用示例**：
+
+```bash
+# 1. Temporal distance probe（对每层训练线性 probe）
+python scripts/train_probes.py \
+  --features_dir features/trained/ \
+  --output_dir results/trained/ \
+  --probe_type temporal_distance
+
+# 2. Oracle 基线（输入=时间差标量，预期 ρ≈1.0）
+python scripts/train_probes.py \
+  --features_dir features/trained/ \
+  --output_dir results/trained/ \
+  --probe_type oracle
+
+# 3. Sub-task predicate probe（需要 label 文件）
+python scripts/train_probes.py \
+  --features_dir features/trained/ \
+  --output_dir results/trained/ \
+  --probe_type subtask_predicate \
+  --label_file labels/predicates.json
+
+# 4. 初始化 untrained 模型
+python scripts/init_untrained.py \
+  --model_path checkpoints/openvla-7b \
+  --output_path checkpoints/openvla-7b-untrained/
+
+# 5. 结果分析与对比
+python scripts/analyze_results.py \
+  --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \
+  --output_dir results/analysis/
+```
+
+**关键设计**：
+- 逐层加载特征（避免一次性加载 33 层 × 所有轨迹的内存爆炸）
+- 自动检测 OpenVLA（`demo_N/last_preaction`）和 DINO-V2（`traj_N/cls_token`）格式
+- Distance-stratified sampling：10 bins × 50 pairs/bin/traj → 训练约 200K pairs
+- 分析脚本自动检测 oracle 结果并画入对比图，输出 PNG + PDF
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_probe-pipeline_20260515T065409"
+}
+```
+
+</details>
+
+---

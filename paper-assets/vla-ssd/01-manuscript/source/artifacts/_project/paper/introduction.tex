@@ -1,0 +1,39 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Vision-language-action models (VLAs) achieve impressive robotic manipulation performance by fine-tuning large language models on robot demonstration data~\cite{brohan2023_rt2,kim2024_openvla}.
+The dominant architecture grafts a frozen vision encoder onto a pretrained LLM backbone, then fine-tunes the system end-to-end to map visual observations and language instructions to continuous actions~\cite{karamcheti2024}.
+An implicit assumption underlies this paradigm: fine-tuning injects action-relevant representational knowledge into the LLM.
+But where do action representations actually come from?
+Do they originate in the vision encoder's pretrained features, emerge through LLM processing, or arise from task-specific fine-tuning?
+
+Recent work reveals cracks in this assumption.
+Grant et al.~\cite{grant2026} showed that the visual pathway dominates action generation across multiple VLA architectures, with ablations to the language stream producing minimal behavioral degradation.
+Independently, Hou et al.~\cite{hou2026} and Fei et al.~\cite{fei2025} demonstrated that VLAs largely ignore language instructions during policy execution.
+These findings challenge the prevailing narrative but remain at the behavioral level---they reveal \emph{what} drives VLA outputs without explaining \emph{where} action-relevant structure resides in the representation space.
+No prior work has performed a representational decomposition that measures each component's independent contribution to action-relevant structure.
+Without this, we cannot determine whether fine-tuning truly injects action knowledge or merely learns to route pre-existing structure.
+
+We present the first systematic representational and functional analysis of a VLA.
+Taking OpenVLA-7B~\cite{kim2024_openvla} as a case study, we decompose its processing pipeline into constituent components: the frozen SigLIP vision encoder~\cite{zhai2023_siglip} with MLP projector, every layer of the Llama-2 7B backbone, and the readout token position.
+We apply Representational Similarity Analysis (RSA)~\cite{kriegeskorte2008} to measure geometric alignment with the action space and train functional probes to measure action decodability.
+A $2 \times 2$ factorial design crossing training status (trained vs.\ untrained LLM) with instruction presence (with vs.\ without) isolates each factor's contribution.
+External baselines---DINOv2~\cite{oquab2024_dinov2} (vision-only) and CLIP ViT-L/14~\cite{radford2021_clip} (vision-language pretrained, no VLA training)---anchor our comparisons.
+
+Three findings emerge from experiments on the LIBERO-Goal benchmark~\cite{liu2023_libero}.
+\textbf{First}, frozen vision-language encoders provide the dominant action-relevant geometric structure.
+SigLIP+Projector achieves the highest action-space alignment (RSA $\rho = 0.615$), followed by CLIP ($\rho = 0.557$), both far exceeding the vision-only DINOv2 ($\rho = 0.388$).
+Yet DINOv2 matches SigLIP+Projector in action prediction capacity ($R^2 = 0.712$ vs.\ $0.706$, $p = 0.22$), revealing a geometric-functional dissociation: VL pretraining provides geometric alignment with the action space without increasing raw decodability.
+\textbf{Second}, the LLM degrades distributed geometric alignment (RSA $0.615 \to 0.501$) but concentrates a functionally superior signal at the readout token ($R^2 = 0.731$, exceeding the projector's $0.706$).
+This concentration is training-dependent: an untrained LLM's readout achieves only $R^2 = 0.686$, falling below the projector baseline.
+\textbf{Third}, training teaches routing, not creating.
+Distributed RSA is training-invariant ($\Delta = 0.021$, 95\% CI includes zero, $p = 0.20$), while readout concentration shows a large training effect ($\Delta = 0.045$, $p < 0.0001$).
+Language instructions affect neither metric.
+
+These results reframe how we understand VLA representations and carry direct design implications: vision encoder pretraining quality---not LLM fine-tuning---is the primary lever for action-relevant structure~\cite{haon2025}.
+Our contributions are:
+\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]
+    \item The first systematic representational decomposition of a VLA, quantifying each component's contribution to action-relevant structure with both geometric (RSA) and functional (probe $R^2$) metrics.
+    \item Discovery of a geometric-functional dissociation: vision-language pretraining provides geometric alignment with the action space beyond what raw information content predicts, while vision-only features are functionally rich but geometrically dissimilar.
+    \item Evidence that LLM fine-tuning teaches information routing---concentrating pre-existing vision-encoder structure at the readout position---rather than creating new action-relevant representations.
+\end{enumerate}

@@ -1,0 +1,651 @@
+# check bootstrap gpu crosscheck
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 12
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/workers/worker_check_bootstrap_gpu_crosscheck_20260523T041453.log`
+- **Structured JSON:** [`5141cac1424b228f4ab7.json`](../../sessions/51/5141cac1424b228f4ab7.json)
+
+## Before a recorded user message
+
+12 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d64d2056-1190-4e88-9045-1d085a8d725f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779527400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1cb0387e-b588-49cf-a404-3138f05e4fe0",
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the GPU status on the server and potentially restart bootstrap processes. Let me execute the diagnostic commands first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "uuid": "2672db98-eb3a-4e11-b9e4-15610c9b2d00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Fyzt2aSctsSSCqK1UVqUJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11568,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11568
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+检查 GPU 和 bootstrap 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "uuid": "1353ad54-5ce8-43a4-a9e9-1c709b654c34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Fyzt2aSctsSSCqK1UVqUJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11568,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11568
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011a2DJKXefzFzPZaMbGUChd`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "uuid": "a933ede0-954b-4a53-afbb-7b63d675f7dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Fyzt2aSctsSSCqK1UVqUJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11568,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11568
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T04:15:06.974Z_
+
+<details><summary>↩ Tool result · `toolu_011a2DJKXefzFzPZaMbGUChd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "uuid": "504b10be-d6cf-455f-95dc-fc2a467d1b73",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UivMEChyzU6NJ9ojoVsXJZ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "nvidia-smi && echo \"==TMUX==\" && tmux ls 2>&1 && echo \"==PROCS==\" && ps aux | grep -E \"bootstrap|python\" | grep -v grep && echo \"==RESULTS==\" && find /root/autodl-tmp/vla-ssd/results/bootstrap_r2/ -name \"*.json\" 2>/dev/null | wc -l && find /root/autodl-tmp/vla-ssd/results/bootstrap_r2/ -name \"*.json\" 2>/dev/null | sort && echo \"==LOG0==\" && tail -20 /tmp/bootstrap_cuda0.log 2>&1 && echo \"==LOG1==\" && tail -20 /tmp/bootstrap_cuda1.log 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "uuid": "69e21613-dfc0-4ba8-9593-cce3e7fbd6ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015pbF2vBwje6tgq2nHq9DN3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 23409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T04:15:14.564Z_
+
+<details><summary>↩ Tool result · `toolu_01UivMEChyzU6NJ9ojoVsXJZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Sat May 23 12:15:14 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   36C    P0             87W /  600W |     691MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   46C    P0             96W /  600W |   12641MiB /  97887MiB |     26%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          716170      C   python3                                 682MiB |\\n|    1   N/A  N/A          714671      C   python3                               12632MiB |\\n+-----------------------------------------------------------------------------------------+\\n==TMUX==\\nbootstrap_cuda0: 1 windows (created Sat May 23 11:43:10 2026)\\nbootstrap_cuda1: 1 windows (created Sat May 23 11:43:10 2026)\\n==PROCS==\\nroot        820  0.0  0.0 3328480 69256 ?       Sl   May15   6:22 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        825  0.0  0.0 191520 98560 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        908  0.0  0.0 28341068 10564 ?      Sl   May15  10:35 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ul7je562/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ul7je562/startup_error\\nroot     163845  0.0  0.0   4364  2044 ?        S    May20   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\" import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*a, directory='/root/autodl-tmp/vla-ssd/results/figures', **k)  srv = http.server.HTTPServer(('0.0.0.0', port), H) print(f'PORT={port}') import sys; sys.stdout.flush() srv.handle_request() srv.handle_request() srv.shutdown() \\\" & sleep 1 echo \\\"SERVER_STARTED\\\"\\nroot     163851  0.0  0.0  25496 17528 ?        S    May20   0:00 python3 -c  import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*\\n\\n... [截断: 输出过长，省略 26606 字符] ...\\n\\n+  12:07   3:26 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     716804 42.0  0.6 29712440 6735188 pts/0 R+  12:07   3:24 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     716805 41.8  0.6 29649936 6723048 pts/0 R+  12:07   3:23 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     716806 41.9  0.6 29712440 6738620 pts/0 R+  12:07   3:24 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     716807 46.5  0.6 29712440 6772112 pts/0 R+  12:07   3:46 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     759475  0.0  0.0   4364  1812 ?        S    May17   0:00 bash -c cd /root/autodl-tmp/vla-ssd/results/attention && /root/miniconda3/bin/python3 -m http.server 8765 > /dev/null 2>&1 &\\nroot     759476  0.0  0.0  26624 16584 ?        S    May17   0:59 /root/miniconda3/bin/python3 -m http.server 8765\\n==RESULTS==\\n12\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/nora_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_long/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_spatial/trained.json\\n==LOG0==\\n[12:03:35]     4450/5000 samples\\n[12:03:37]     4500/5000 samples\\n[12:03:37]   Task 9/10: turn_on_the_stove\\n[12:03:39]     4550/5000 samples\\n[12:03:40]     4600/5000 samples\\n[12:03:42]     4650/5000 samples\\n[12:03:44]     4700/5000 samples\\n[12:03:46]     4750/5000 samples\\n[12:03:48]     4800/5000 samples\\n[12:03:50]     4850/5000 samples\\n[12:03:52]     4900/5000 samples\\n[12:03:54]     4950/5000 samples\\n[12:03:55]     5000/5000 samples\\n[12:03:55]   Extraction done: 5000 samples, 100 demos\\n[12:03:55] Extraction: 187.6s\\n[12:03:55]   100 demos, split 80/20\\n[12:03:55]   Canonical split -- fitting RidgeCV per layer...\\n[12:06:47]   Precomputing kernel matrices...\\n[12:06:59]   Bootstrap (1000 iterations, parallel)...\\n[12:06:59]   Using 100 workers\\n==LOG1==\\n[12:05:16]     2850/5000 samples\\n[12:05:32]     2900/5000 samples\\n[12:05:49]     2950/5000 samples\\n[12:06:05]     3000/5000 samples\\n[12:06:05]   Task 6/10: pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\n[12:06:22]     3050/5000 samples\\n[12:06:38]     3100/5000 samples\\n[12:06:55]     3150/5000 samples\\n[12:07:18]     3200/5000 samples\\n[12:08:08]     3250/5000 samples\\n[12:08:50]     3300/5000 samples\\n[12:09:39]     3350/5000 samples\\n[12:10:28]     3400/5000 samples\\n[12:11:18]     3450/5000 samples\\n[12:12:07]     3500/5000 samples\\n[12:12:07]   Task 7/10: pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\n[12:12:53]     3550/5000 samples\\n[12:13:36]     3600/5000 samples\\n[12:14:15]     3650/5000 samples\\n[12:14:55]     3700/5000 samples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "uuid": "8145a56a-0139-4024-b417-76be4051fa81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 23 12:15:14 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   36C    P0             87W /  600W |     691MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   46C    P0             96W /  600W |   12641MiB /  97887MiB |     26%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          716170      C   python3                                 682MiB |\\\\n|    1   N/A  N/A          714671      C   python3                               12632MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n==TMUX==\\\\nbootstrap_cuda0: 1 windows (created Sat May 23 11:43:10 2026)\\\\nbootstrap_cuda1: 1 windows (created Sat May 23 11:43:10 2026)\\\\n==PROCS==\\\\nroot        820  0.0  0.0 3328480 69256 ?       Sl   May15   6:22 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        825  0.0  0.0 191520 98560 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        908  0.0  0.0 28341068 10564 ?      Sl   May15  10:35 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ul7je562/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ul7je562/startup_error\\\\nroot     163845  0.0  0.0   4364  2044 ?        S    May20   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\" import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*a, directory='/root/autodl-tmp/vla-ssd/results/figures', **k)  srv = http.server.HTTPServer(('0.0.0.0', port), H) print(f'PORT={port}') import sys; sys.stdout.flush() srv.handle_request() srv.handle_request() srv.shutdown() \\\\\\\" & sleep 1 echo \\\\\\\"SERVER_STARTED\\\\\\\"\\\\nroot     163851  0.0  0.0  25496 17528 ?        S    May20   0:00 python3 -c  import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*\\\\n\\\\n... [截断: 输出过长，省略 26606 字符] ...\\\\n\\\\n+  12:07   3:26 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\\\nroot     716804 42.0  0.6 29712440 6735188 pts/0 R+  12:07   3:24 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\\\nroot     716805 41.8  0.6 29649936 6723048 pts/0 R+  12:07   3:23 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\\\nroot     716806 41.9  0.6 29712440 6738620 pts/0 R+  12:07   3:24 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\\\nroot     716807 46.5  0.6 29712440 6772112 pts/0 R+  12:07   3:46 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\\\nroot     759475  0.0  0.0   4364  1812 ?        S    May17   0:00 bash -c cd /root/autodl-tmp/vla-ssd/results/attention && /root/miniconda3/bin/python3 -m http.server 8765 > /dev/null 2>&1 &\\\\nroot     759476  0.0  0.0  26624 16584 ?        S    May17   0:59 /root/miniconda3/bin/python3 -m http.server 8765\\\\n==RESULTS==\\\\n12\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/nora_goal/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_goal/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_goal/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_long/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_long/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_object/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_object/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_spatial/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_spatial/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_spatial/trained.json\\\\n==LOG0==\\\\n[12:03:35]     4450/5000 samples\\\\n[12:03:37]     4500/5000 samples\\\\n[12:03:37]   Task 9/10: turn_on_the_stove\\\\n[12:03:39]     4550/5000 samples\\\\n[12:03:40]     4600/5000 samples\\\\n[12:03:42]     4650/5000 samples\\\\n[12:03:44]     4700/5000 samples\\\\n[12:03:46]     4750/5000 samples\\\\n[12:03:48]     4800/5000 samples\\\\n[12:03:50]     4850/5000 samples\\\\n[12:03:52]     4900/5000 samples\\\\n[12:03:54]     4950/5000 samples\\\\n[12:03:55]     5000/5000 samples\\\\n[12:03:55]   Extraction done: 5000 samples, 100 demos\\\\n[12:03:55] Extraction: 187.6s\\\\n[12:03:55]   100 demos, split 80/20\\\\n[12:03:55]   Canonical split -- fitting RidgeCV per layer...\\\\n[12:06:47]   Precomputing kernel matrices...\\\\n[12:06:59]   Bootstrap (1000 iterations, parallel)...\\\\n[12:06:59]   Using 100 workers\\\\n==LOG1==\\\\n[12:05:16]     2850/5000 samples\\\\n[12:05:32]     2900/5000 samples\\\\n[12:05:49]     2950/5000 samples\\\\n[12:06:05]     3000/5000 samples\\\\n[12:06:05]   Task 6/10: pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\n[12:06:22]     3050/5000 samples\\\\n[12:06:38]     3100/5000 samples\\\\n[12:06:55]     3150/5000 samples\\\\n[12:07:18]     3200/5000 samples\\\\n[12:08:08]     3250/5000 samples\\\\n[12:08:50]     3300/5000 samples\\\\n[12:09:39]     3350/5000 samples\\\\n[12:10:28]     3400/5000 samples\\\\n[12:11:18]     3450/5000 samples\\\\n[12:12:07]     3500/5000 samples\\\\n[12:12:07]   Task 7/10: pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\n[12:12:53]     3550/5000 samples\\\\n[12:13:36]     3600/5000 samples\\\\n[12:14:15]     3650/5000 samples\\\\n[12:14:55]     3700/5000 samples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Sat May 23 12:15:14 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   36C    P0             87W /  600W |     691MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   46C    P0             96W /  600W |   12641MiB /  97887MiB |     26%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          716170      C   python3                                 682MiB |\\n|    1   N/A  N/A          714671      C   python3                               12632MiB |\\n+-----------------------------------------------------------------------------------------+\\n==TMUX==\\nbootstrap_cuda0: 1 windows (created Sat May 23 11:43:10 2026)\\nbootstrap_cuda1: 1 windows (created Sat May 23 11:43:10 2026)\\n==PROCS==\\nroot        820  0.0  0.0 3328480 69256 ?       Sl   May15   6:22 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        825  0.0  0.0 191520 98560 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        908  0.0  0.0 28341068 10564 ?      Sl   May15  10:35 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ul7je562/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ul7je562/startup_error\\nroot     163845  0.0  0.0   4364  2044 ?        S    May20   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\" import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*a, directory='/root/autodl-tmp/vla-ssd/results/figures', **k)  srv = http.server.HTTPServer(('0.0.0.0', port), H) print(f'PORT={port}') import sys; sys.stdout.flush() srv.handle_request() srv.handle_request() srv.shutdown() \\\" & sleep 1 echo \\\"SERVER_STARTED\\\"\\nroot     163851  0.0  0.0  25496 17528 ?        S    May20   0:00 python3 -c  import http.server, threading, socket  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) s.bind(('', 0)) port = s.getsockname()[1] s.close()  class H(http.server.SimpleHTTPRequestHandler):     def __init__(self, *a, **k):         super().__init__(*\\n\\n... [截断: 输出过长，省略 26606 字符] ...\\n\\n+  12:07   3:26 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     716804 42.0  0.6 29712440 6735188 pts/0 R+  12:07   3:24 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     716805 41.8  0.6 29649936 6723048 pts/0 R+  12:07   3:23 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     716806 41.9  0.6 29712440 6738620 pts/0 R+  12:07   3:24 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     716807 46.5  0.6 29712440 6772112 pts/0 R+  12:07   3:46 python3 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py --arch nora --suite goal --condition untrained --n_bootstrap 1000 --output_dir /root/autodl-tmp/vla-ssd/results/bootstrap_r2\\nroot     759475  0.0  0.0   4364  1812 ?        S    May17   0:00 bash -c cd /root/autodl-tmp/vla-ssd/results/attention && /root/miniconda3/bin/python3 -m http.server 8765 > /dev/null 2>&1 &\\nroot     759476  0.0  0.0  26624 16584 ?        S    May17   0:59 /root/miniconda3/bin/python3 -m http.server 8765\\n==RESULTS==\\n12\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/nora_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_long/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/openvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_spatial/trained.json\\n==LOG0==\\n[12:03:35]     4450/5000 samples\\n[12:03:37]     4500/5000 samples\\n[12:03:37]   Task 9/10: turn_on_the_stove\\n[12:03:39]     4550/5000 samples\\n[12:03:40]     4600/5000 samples\\n[12:03:42]     4650/5000 samples\\n[12:03:44]     4700/5000 samples\\n[12:03:46]     4750/5000 samples\\n[12:03:48]     4800/5000 samples\\n[12:03:50]     4850/5000 samples\\n[12:03:52]     4900/5000 samples\\n[12:03:54]     4950/5000 samples\\n[12:03:55]     5000/5000 samples\\n[12:03:55]   Extraction done: 5000 samples, 100 demos\\n[12:03:55] Extraction: 187.6s\\n[12:03:55]   100 demos, split 80/20\\n[12:03:55]   Canonical split -- fitting RidgeCV per layer...\\n[12:06:47]   Precomputing kernel matrices...\\n[12:06:59]   Bootstrap (1000 iterations, parallel)...\\n[12:06:59]   Using 100 workers\\n==LOG1==\\n[12:05:16]     2850/5000 samples\\n[12:05:32]     2900/5000 samples\\n[12:05:49]     2950/5000 samples\\n[12:06:05]     3000/5000 samples\\n[12:06:05]   Task 6/10: pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\n[12:06:22]     3050/5000 samples\\n[12:06:38]     3100/5000 samples\\n[12:06:55]     3150/5000 samples\\n[12:07:18]     3200/5000 samples\\n[12:08:08]     3250/5000 samples\\n[12:08:50]     3300/5000 samples\\n[12:09:39]     3350/5000 samples\\n[12:10:28]     3400/5000 samples\\n[12:11:18]     3450/5000 samples\\n[12:12:07]     3500/5000 samples\\n[12:12:07]   Task 7/10: pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\n[12:12:53]     3550/5000 samples\\n[12:13:36]     3600/5000 samples\\n[12:14:15]     3650/5000 samples\\n[12:14:55]     3700/5000 samples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the situation:
+
+1. **GPU 0**: 691MiB used, 0% utilization - process PID 716170 exists
+2. **GPU 1**: 12641MiB used, 26% utilization - process PID 714671 exists
+
+3. **tmux sessions**: Both bootstrap_cuda0 and bootstrap_cuda1 are running
+
+4. **Processes**: Multiple python3 processes running `clustered_bootstrap_probe.py` with `--arch nora --suite goal --condition untrained`
+
+5. **Results completed**: 12 JSON files
+   - nora_goal: trained only (missing untrained)
+   - openvla_goal, openvla_long, openvla_object, openvla_spatial: all have both trained and untrained results
+   - tracvla_goal: has both trained and untrained
+   - tracvla_spatial: trained only (missing untrained)
+
+6. **Current progress**: GPU 0 is running the nora_goal bootstrap with 1000 iterations (extraction already finished), while GPU 1 is still extracting samples at 3700 out of 5000.
+
+7. **GPU utilization**: GPU 0 shows 0% utilization because the bootstrap phase is CPU-bound with 100 parallel workers, so the GPU sits idle during this phase. GPU 1 is at 26% utilization while doing feature extraction. This is expected behavior—the processes are alive and progressing normally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "uuid": "1fde0f9e-df11-4e49-b958-9d57ac955365",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W9g5NyitqfLEamSCQntc4m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3447,
+      "cache_read_input_tokens": 23809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3447
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+**状态正常，无需重启。**
+
+| 卡 | 显存 | GPU利用率 | 状态 |
+|---|---|---|---|
+| GPU 0 | 691MiB | 0% | nora_goal untrained — **已进入 bootstrap 阶段**（CPU密集，100 workers 并行，GPU 空闲是正常的） |
+| GPU 1 | 12641MiB | 26% | nora 相关任务 — 仍在 feature extraction（3700/5000 samples） |
+
+**已完成 12 个 JSON**：
+- openvla: goal/long/object/spatial 全部 trained+untrained ✓
+- tracvla: goal trained+untrained ✓, spatial trained（缺 untrained）
+- nora: goal trained（untrained 正在跑）
+
+**GPU 利用率低的原因**：GPU 0 已完成特征提取，当前在做 1000 次 bootstrap 重采样——这是纯 CPU 计算（RidgeCV + kernel matrix），GPU 自然空闲。GPU 1 在做特征提取但该模型（nora）推理本身显存占用不高，利用率 26% 属正常范围。
+
+两个 tmux session 和所有 python 进程均存活，进度正常推进。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "uuid": "20de02a2-7cc1-4e3a-9906-4834f74c5be7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W9g5NyitqfLEamSCQntc4m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3447,
+      "cache_read_input_tokens": 23809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3447
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 12_
+
+**状态正常，无需重启。**
+
+| 卡 | 显存 | GPU利用率 | 状态 |
+|---|---|---|---|
+| GPU 0 | 691MiB | 0% | nora_goal untrained — **已进入 bootstrap 阶段**（CPU密集，100 workers 并行，GPU 空闲是正常的） |
+| GPU 1 | 12641MiB | 26% | nora 相关任务 — 仍在 feature extraction（3700/5000 samples） |
+
+**已完成 12 个 JSON**：
+- openvla: goal/long/object/spatial 全部 trained+untrained ✓
+- tracvla: goal trained+untrained ✓, spatial trained（缺 untrained）
+- nora: goal trained（untrained 正在跑）
+
+**GPU 利用率低的原因**：GPU 0 已完成特征提取，当前在做 1000 次 bootstrap 重采样——这是纯 CPU 计算（RidgeCV + kernel matrix），GPU 自然空闲。GPU 1 在做特征提取但该模型（nora）推理本身显存占用不高，利用率 26% 属正常范围。
+
+两个 tmux session 和所有 python 进程均存活，进度正常推进。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 34770,
+  "duration_api_ms": 34327,
+  "num_turns": 3,
+  "stop_reason": "end_turn",
+  "session_id": "2358b8f9-0456-4298-a401-7a39b5d06a6d",
+  "total_cost_usd": 0.16166825,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 15415,
+    "cache_read_input_tokens": 59059,
+    "output_tokens": 1374,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15415,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 948,
+        "cache_read_input_tokens": 23809,
+        "cache_creation_input_tokens": 3447,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3447
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1330,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00141,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 1374,
+      "cacheReadInputTokens": 59059,
+      "cacheCreationInputTokens": 15415,
+      "webSearchRequests": 0,
+      "costUSD": 0.16025825,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1e00f4f3-c4a0-451a-b988-8191bef33197"
+}
+```
+
+</details>
+
+---

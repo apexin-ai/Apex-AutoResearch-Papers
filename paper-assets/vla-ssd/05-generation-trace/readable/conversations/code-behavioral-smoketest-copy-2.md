@@ -1,0 +1,3185 @@
+# code behavioral smoketest
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 109
+- **Recorded user turns:** 0
+- **Tool calls:** 54
+- **Original source:** `logs/chats/worker_code_behavioral_smoketest_20260519T044416.jsonl`
+- **Structured JSON:** [`e42a76e13a61c6916bcc.json`](../../sessions/e4/e42a76e13a61c6916bcc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+109 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T04:54:11.635523+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T04:54:11.635886+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T04:54:11.636110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "conda env list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "conda env list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T04:54:11.636256+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'conda' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T04:54:11.636384+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/ -name \"behavioral_pilot*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/ -name \"behavioral_pilot*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T04:54:11.636505+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T04:54:11.636629+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/behavioral_pilot.py\\n/root/vla-ssd/scripts/behavioral_pilot_v2.py\\n/root/runs/vla-ssd/behavioral_pilot_w4.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T04:54:11.636778+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\nadded_tokens.json\\nconfig.json\\nconfiguration_prismatic.py\\ndataset_statistics.json\\ngeneration_config.json\\nmodel-00001-of-00004.safetensors\\nmodel-00002-of-00004.safetensors\\nmodel-00003-of-00004.safetensors\\nmodel-00004-of-00004.safetensors\\nmodel.safetensors.index.json\\nmodeling_prismatic.py\\npreprocessor_config.json\\nprocessing_prismatic.py\\nprocessor_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T04:54:11.636941+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "conda env list",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "conda env list",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T04:54:11.637259+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: conda: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T04:54:11.637436+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/vla-ssd/scripts/behavioral_pilot_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -100 /root/vla-ssd/scripts/behavioral_pilot_v2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T04:54:11.637630+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Behavioral Pilot v2: 3 tasks x 10 episodes x 2 conditions (baseline vs L1-ablated).\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"MUJOCO_EGL_DEVICE_ID\\\"] = os.environ.get(\\\"MUJOCO_EGL_DEVICE_ID\\\", \\\"0\\\")\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport gc\\nimport json\\nimport time\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom PIL import Image\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nUNNORM_KEY = \\\"libero_goal\\\"\\nTASK_IDS = [0, 3, 7]\\nN_EPISODES = 10\\nMAX_STEPS = 300\\nCONDITIONS = [\\\"baseline\\\", \\\"ablated\\\"]\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\nINSTRUCTION_HEADS_24 = [0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20,\\n                        22, 23, 25, 26, 27, 29, 30, 31]\\n\\nfrom libero.libero import benchmark\\nfrom libero.libero.envs import OffScreenRenderEnv\\nimport libero.libero\\n\\nLIB_DIR = os.path.dirname(libero.libero.__file__)\\n\\n\\ndef make_env(task_id):\\n    bench = benchmark.get_benchmark(\\\"libero_goal\\\")()\\n    task = bench.get_task(task_id)\\n    bddl_path = os.path.join(LIB_DIR, \\\"bddl_files\\\", task.problem_folder, task.bddl_file)\\n    env = OffScreenRenderEnv(\\n        bddl_file_name=bddl_path,\\n        camera_heights=224,\\n        camera_widths=224,\\n        camera_names=\\\"agentview\\\",\\n    )\\n    return env, task.language, task.name\\n\\n\\ndef predict_action_manual(model, input_ids, pixel_values, unnorm_key):\\n    action_dim = model.get_action_dim(unnorm_key)\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torc
+…[truncated 1944 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T04:54:11.637984+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/miniconda3/bin/conda 2>/dev/null; ls /root/anaconda3/bin/conda 2>/dev/null; which python3",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/miniconda3/bin/conda 2>/dev/null; ls /root/anaconda3/bin/conda 2>/dev/null; which python3",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T04:54:11.638211+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/miniconda3/bin/conda\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T04:54:11.638341+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -200 /root/vla-ssd/scripts/behavioral_pilot_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -200 /root/vla-ssd/scripts/behavioral_pilot_v2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T04:54:11.638559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Behavioral Pilot v2: 3 tasks x 10 episodes x 2 conditions (baseline vs L1-ablated).\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"MUJOCO_EGL_DEVICE_ID\\\"] = os.environ.get(\\\"MUJOCO_EGL_DEVICE_ID\\\", \\\"0\\\")\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport gc\\nimport json\\nimport time\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom PIL import Image\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nUNNORM_KEY = \\\"libero_goal\\\"\\nTASK_IDS = [0, 3, 7]\\nN_EPISODES = 10\\nMAX_STEPS = 300\\nCONDITIONS = [\\\"baseline\\\", \\\"ablated\\\"]\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\nINSTRUCTION_HEADS_24 = [0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20,\\n                        22, 23, 25, 26, 27, 29, 30, 31]\\n\\nfrom libero.libero import benchmark\\nfrom libero.libero.envs import OffScreenRenderEnv\\nimport libero.libero\\n\\nLIB_DIR = os.path.dirname(libero.libero.__file__)\\n\\n\\ndef make_env(task_id):\\n    bench = benchmark.get_benchmark(\\\"libero_goal\\\")()\\n    task = bench.get_task(task_id)\\n    bddl_path = os.path.join(LIB_DIR, \\\"bddl_files\\\", task.problem_folder, task.bddl_file)\\n    env = OffScreenRenderEnv(\\n        bddl_file_name=bddl_path,\\n        camera_heights=224,\\n        camera_widths=224,\\n        camera_names=\\\"agentview\\\",\\n    )\\n    return env, task.language, task.name\\n\\n\\ndef predict_action_manual(model, input_ids, pixel_values, unnorm_key):\\n    action_dim = model.get_action_dim(unnorm_key)\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torc
+…[truncated 6241 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T04:54:11.638898+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate && conda env list",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate && conda env list",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T04:54:11.639064+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# conda environments:\\n#\\nbase                  *  /root/miniconda3\\nlibero                   /root/miniconda3/envs/libero\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T04:54:11.639189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -100 /root/vla-ssd/scripts/behavioral_pilot_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -100 /root/vla-ssd/scripts/behavioral_pilot_v2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T04:54:11.639460+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        all_results[task_name] = {}\\n\\n        for condition in CONDITIONS:\\n            print(f\\\"\\\\n  --- Condition: {condition} ---\\\", flush=True)\\n\\n            if condition == \\\"ablated\\\":\\n                install_ablation_hook(model, INSTRUCTION_HEADS_24)\\n            else:\\n                model.language_model.model.layers[1].self_attn._ablate_heads = None\\n                llama_mod.eager_attention_forward = original_eager_fn\\n\\n            episodes = []\\n            for ep in range(N_EPISODES):\\n                ep_t0 = time.time()\\n                env, _, _ = make_env(task_id)\\n                np.random.seed(42 + ep)\\n                obs = env.reset()\\n\\n                cumulative_reward = 0.0\\n                success = False\\n\\n                for step_i in range(MAX_STEPS):\\n                    image = obs[\\\"agentview_image\\\"]\\n                    action = get_action(model, processor, image, task_lang)\\n                    obs, reward, done, info = env.step(action)\\n                    cumulative_reward += reward\\n                    if env.env._check_success():\\n                        success = True\\n                        break\\n\\n                ep_result = {\\n                    \\\"success\\\": bool(success),\\n                    \\\"reward\\\": float(cumulative_reward),\\n                    \\\"steps\\\": step_i + 1,\\n                }\\n                episodes.append(ep_result)\\n                env.close()\\n\\n                ep_time = time.time() - ep_t0\\n                status = \\\"SUCCESS\\\" if success else \\\"fail\\\"\\n                print(f\\\"    ep {ep:2d}: {status} | R={cumulative_reward:.3f} | steps={step_i+1} | {ep_time:.1f}s\\\", flush=True)\\n\\n            sr = sum(e[\\\"success\\\"] for e in episodes) / len(episodes)\\n            avg_r = np.mean([e[\\\"reward\\\"] for e in episodes])\\n            print(f\\\"  >> {conditio
+…[truncated 2313 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T04:54:11.639943+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && python3 -c \"import mujoco; print('mujoco', mujoco.__version__)\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && python3 -c \"import mujoco; print('mujoco', mujoco.__version__)\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T04:54:11.640124+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 1, in &lt;module>\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/__init__.py\\\", line 251, in &lt;module>\\n    _load_all_bundled_plugins()\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/__init__.py\\\", line 244, in _load_all_bundled_plugins\\n    PLUGIN_HANDLES.append(ctypes.CDLL(os.path.join(directory, filename)))\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/ctypes/__init__.py\\\", line 374, in __init__\\n    self._handle = _dlopen(self._name, mode)\\nOSError: libmujoco.so.3.1.6: cannot open shared object file: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T04:54:11.640298+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && python3 -c \"import sys; sys.path.insert(0,'/root/autodl-tmp/LIBERO'); from libero.libero import benchmark; print('LIBERO OK')\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && python3 -c \"import sys; sys.path.insert(0,'/root/autodl-tmp/LIBERO'); from libero.libero import benchmark; print('LIBERO OK')\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T04:54:11.640586+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && MUJOCO_GL=egl python3 -c \"import os; os.environ['MUJOCO_GL']='egl'; import mujoco; print('EGL OK')\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && MUJOCO_GL=egl python3 -c \"import os; os.environ['MUJOCO_GL']='egl'; import mujoco; print('EGL OK')\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T04:54:11.640729+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LIBERO OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T04:54:11.640867+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && python3 -c \"import robosuite; print('robosuite', robosuite.__version__)\" 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && python3 -c \"import robosuite; print('robosuite', robosuite.__version__)\" 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T04:54:11.641022+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 1, in &lt;module>\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/__init__.py\\\", line 251, in &lt;module>\\n    _load_all_bundled_plugins()\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/__init__.py\\\", line 244, in _load_all_bundled_plugins\\n    PLUGIN_HANDLES.append(ctypes.CDLL(os.path.join(directory, filename)))\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/ctypes/__init__.py\\\", line 374, in __init__\\n    self._handle = _dlopen(self._name, mode)\\nOSError: libmujoco.so.3.1.6: cannot open shared object file: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T04:54:11.641166+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 1, in &lt;module>\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/__init__.py\\\", line 1, in &lt;module>\\n    from robosuite.environments.base import make\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/environments/__init__.py\\\", line 1, in &lt;module>\\n    from .base import REGISTERED_ENVS, MujocoEnv\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/environments/base.py\\\", line 12, in &lt;module>\\n    from robosuite.utils.binding_utils import MjRenderContextOffscreen, MjSim\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/utils/binding_utils.py\\\", line 12, in &lt;module>\\n    import mujoco\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/__init__.py\\\", line 251, in &lt;module>\\n    _load_all_bundled_plugins()\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/__init__.py\\\", line 244, in _load_all_bundled_plugins\\n    PLUGIN_HANDLES.append(ctypes.CDLL(os.path.join(directory, filename)))\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/ctypes/__init__.py\\\", line 374, in __init__\\n    self._handle = _dlopen(self._name, mode)\\nOSError: libmujoco.so.3.1.6: cannot open shared object file: No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T04:54:11.641333+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && pip show mujoco 2>&1 | head -5",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && pip show mujoco 2>&1 | head -5",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T04:54:11.641504+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Name: mujoco\\nVersion: 3.1.6\\nSummary: MuJoCo Physics Simulator\\nHome-page: https://github.com/google-deepmind/mujoco\\nAuthor: \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T04:54:11.641646+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && find /root/miniconda3/envs/libero/ -name \"libmujoco*\" 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && find /root/miniconda3/envs/libero/ -name \"libmujoco*\" 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T04:54:11.641772+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/libmujoco.so.3.8.1\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/libmujoco.so.3.1.6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T04:54:11.641891+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && ls /root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/*.so* 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && ls /root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/*.so* 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T04:54:11.642048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_callbacks.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_constants.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_enums.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_errors.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_functions.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_render.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_rollout.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_simulate.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_specs.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/_structs.cpython-310-x86_64-linux-gnu.so\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/libmujoco.so.3.1.6\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/libmujoco.so.3.8.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T04:54:11.642220+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH python3 -c \"import mujoco; print('mujoco', mujoco.__version__)\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH python3 -c \"import mujoco; print('mujoco', mujoco.__version__)\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T04:54:11.642350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mujoco 3.8.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T04:54:11.642499+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && MUJOCO_GL=egl python3 -c \"import mujoco; print('mujoco OK:', mujoco.__version__); import robosuite; print('robosuite OK'); import sys; sys.path.insert(0,'/root/autodl-tmp/LIBERO'); from libero.libero import benchmark; print('LIBERO OK'); from libero.libero.envs import OffScreenRenderEnv; print('OffScreenRenderEnv OK')\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && MUJOCO_GL=egl python3 -c \"import mujoco; print('mujoco OK:', mujoco.__version__); import robosuite; print('robosuite OK'); import sys; sys.path.insert(0,'/root/autodl-tmp/LIBERO'); from libero.libero import benchmark; print('LIBERO OK'); from libero.libero.envs import OffScreenRenderEnv; print('OffScreenRenderEnv OK')\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T04:54:11.642638+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mujoco OK: 3.8.1\\nrobosuite OK\\nLIBERO OK\\nOffScreenRenderEnv OK\\n\", \"stderr\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/scipy/__init__.py:132: UserWarning: A NumPy version >=1.21.6 and <1.28.0 is required for this version of SciPy (detected version 2.0.2)\\n  warnings.warn(f\\\"A NumPy version >={np_minversion} and <{np_maxversion}\\\"\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T04:54:11.642807+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/behavioral_smoketest.py << 'PYEOF'\n\"\"\"Behavioral smoke test: 1 task x 3 episodes x baseline only.\"\"\"\n\nimport os\nimport sys\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"MUJOCO_EGL_DEVICE_ID\"] = os.environ.get(\"MUJOCO_EGL_DEVICE_ID\", \"0\")\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport gc\nimport json\nimport time\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom PIL import Image\n\nnp.random.seed(42)\ntorch.manual_seed(42)\n\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nUNNORM_KEY = \"libero_goal\"\nTASK_IDS = [0]\nN_EPISODES = 3\nMAX_STEPS = 300\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS\n\nfrom libero.libero import benchmark\nfrom libero.libero.envs import OffScreenRenderEnv\nimport libero.libero\n\nLIB_DIR = os.path.dirname(libero.libero.__file__)\n\n\ndef make_env(task_id):\n    bench = benchmark.get_benchmark(\"libero_goal\")()\n    task = bench.get_task(task_id)\n    bddl_path = os.path.join(LIB_DIR, \"bddl_files\", task.problem_folder, task.bddl_file)\n    env = OffScreenRenderEnv(\n        bddl_file_name=bddl_path,\n        camera_heights=224,\n        camera_widths=224,\n        camera_names=\"agentview\",\n    )\n    return env, task.language, task.name\n\n\ndef predict_action_manual(model, input_ids, pixel_values, unnorm_key):\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    for _ in range(action_dim):\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device, dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1)\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high, action_low = np.array(action_norm_stats[\"q99\"]), np.array(action_norm_stats[\"q01\"])\n    return np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n\n\ndef load_model():\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True,\n        low_cpu_mem_usage=True, device_map=\"cuda:0\"\n    ).eval()\n    return model, processor\n\n\ndef center_crop_90(img):\n    w, h = img.size\n    new_w, new_h = int(w * 0.9), int(h * 0.9)\n    left = (w - new_w) // 2\n    top = (h - new_h) // 2\n    return img.crop((left, top, left + new_w, top + new_h))\n\n\ndef get_action(model, processor, image_array, instruction):\n    img = Image.fromarray(image_array)\n    img = center_crop_90(img)\n    prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n    inputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n    return predict_action_manual(model, inputs[\"input_ids\"], inputs[\"pixel_values\"], UNNORM_KEY)\n\n\ndef main():\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    print(\"Loading model...\", flush=True)\n    t0 = time.time()\n    model, processor = load_model()\n    print(f\"Model loaded in {time.time()-t0:.1f}s\", flush=True)\n\n    bench = benchmark.get_benchmark(\"libero_goal\")()\n    all_results = {}\n\n    for task_id in TASK_IDS:\n        task = bench.get_task(task_id)\n        task_name = task.name\n        task_lang = task.language\n        print(f\"\\n{'='*60}\", flush=True)\n        print(f\"Task {task_id}: {task_name}\", flush=True)\n        print(f\"  Instruction: {task_lang}\", flush=True)\n        print(f\"{'='*60}\", flush=True)\n\n        episodes = []\n        for ep in range(N_EPISODES):\n            ep_t0 = time.time()\n            env, _, _ = make_env(task_id)\n            np.random.seed(42 + ep)\n            obs = env.reset()\n\n            cumulative_reward = 0.0\n            success = False\n\n            for step_i in range(MAX_STEPS):\n                image = obs[\"agentview_image\"]\n                action = get_action(model, processor, image, task_lang)\n                obs, reward, done, info = env.step(action)\n                cumulative_reward += reward\n                if env.env._check_success():\n                    success = True\n                    break\n\n            ep_result = {\n                \"success\": bool(success),\n                \"reward\": float(cumulative_reward),\n                \"steps\": step_i + 1,\n            }\n            episodes.append(ep_result)\n            env.close()\n\n            ep_time = time.time() - ep_t0\n            status = \"SUCCESS\" if success else \"fail\"\n            print(f\"    ep {ep:2d}: {status} | R={cumulative_reward:.3f} | steps={step_i+1} | {ep_time:.1f}s\", flush=True)\n\n        sr = sum(e[\"success\"] for e in episodes) / len(episodes)\n        avg_r = np.mean([e[\"reward\"] for e in episodes])\n        print(f\"  >> baseline SR={sr:.2f}, avg_reward={avg_r:.3f}\", flush=True)\n\n        all_results[task_name] = {\"baseline\": episodes}\n\n    total_success = sum(e[\"success\"] for t in all_results.values() for e in t[\"baseline\"])\n    total_eps = sum(len(t[\"baseline\"]) for t in all_results.values())\n    summary = {\n        \"baseline_sr\": total_success / total_eps,\n        \"n_tasks\": len(TASK_IDS),\n        \"n_episodes\": N_EPISODES,\n        \"task_ids\": TASK_IDS,\n    }\n\n    output = {\n        \"config\": {\n            \"checkpoint\": \"openvla-7b-finetuned-libero-goal\",\n            \"unnorm_key\": UNNORM_KEY,\n            \"n_tasks\": len(TASK_IDS),\n            \"n_episodes\": N_EPISODES,\n            \"max_steps\": MAX_STEPS,\n            \"task_ids\": TASK_IDS,\n            \"model_path\": MODEL_PATH,\n        },\n        \"results\": all_results,\n        \"summary\": summary,\n    }\n\n    out_path = os.path.join(RESULTS_DIR, \"behavioral_smoketest.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\", flush=True)\n    print(json.dumps(summary, indent=2), flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script created: $?\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/behavioral_smoketest.py << 'PYEOF'\n\"\"\"Behavioral smoke test: 1 task x 3 episodes x baseline only.\"\"\"\n\nimport os\nimport sys\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"MUJOCO_EGL_DEVICE_ID\"] = os.environ.get(\"MUJOCO_EGL_DEVICE_ID\", \"0\")\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport gc\nimport json\nimport time\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom PIL import Image\n\nnp.random.seed(42)\ntorch.manual_seed(42)\n\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nUNNORM_KEY = \"libero_goal\"\nTASK_IDS = [0]\nN_EPISODES = 3\nMAX_STEPS = 300\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS\n\nfrom libero.libero import benchmark\nfrom libero.libero.envs import OffScreenRenderEnv\nimport libero.libero\n\nLIB_DIR = os.path.dirname(libero.libero.__file__)\n\n\ndef make_env(task_id):\n    bench = benchmark.get_benchmark(\"libero_goal\")()\n    task = bench.get_task(task_id)\n    bddl_path = os.path.join(LIB_DIR, \"bddl_files\", task.problem_folder, task.bddl_file)\n    env = OffScreenRenderEnv(\n        bddl_file_name=bddl_path,\n        camera_heights=224,\n        camera_widths=224,\n        camera_names=\"agentview\",\n    )\n    return env, task.language, task.name\n\n\ndef predict_action_manual(model, input_ids, pixel_values, unnorm_key):\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    for _ in range(action_dim):\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device, dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1)\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high, action_low = np.array(action_norm_stats[\"q99\"]), np.array(action_norm_stats[\"q01\"])\n    return np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n\n\ndef load_model():\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True,\n        low_cpu_mem_usage=True, device_map=\"cuda:0\"\n    ).eval()\n    return model, processor\n\n\ndef center_crop_90(img):\n    w, h = img.size\n    new_w, new_h = int(w * 0.9), int(h * 0.9)\n    left = (w - new_w) // 2\n    top = (h - new_h) // 2\n    return img.crop((left, top, left + new_w, top + new_h))\n\n\ndef get_action(model, processor, image_array, instruction):\n    img = Image.fromarray(image_array)\n    img = center_crop_90(img)\n    prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n    inputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n    return predict_action_manual(model, inputs[\"input_ids\"], inputs[\"pixel_values\"], UNNORM_KEY)\n\n\ndef main():\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    print(\"Loading model...\", flush=True)\n    t0 = time.time()\n    model, processor = load_model()\n    print(f\"Model loaded in {time.time()-t0:.1f}s\", flush=True)\n\n    bench = benchmark.get_benchmark(\"libero_goal\")()\n    all_results = {}\n\n    for task_id in TASK_IDS:\n        task = bench.get_task(task_id)\n        task_name = task.name\n        task_lang = task.language\n        print(f\"\\n{'='*60}\", flush=True)\n        print(f\"Task {task_id}: {task_name}\", flush=True)\n        print(f\"  Instruction: {task_lang}\", flush=True)\n        print(f\"{'='*60}\", flush=True)\n\n        episodes = []\n        for ep in range(N_EPISODES):\n            ep_t0 = time.time()\n            env, _, _ = make_env(task_id)\n            np.random.seed(42 + ep)\n            obs = env.reset()\n\n            cumulative_reward = 0.0\n            success = False\n\n            for step_i in range(MAX_STEPS):\n                image = obs[\"agentview_image\"]\n                action = get_action(model, processor, image, task_lang)\n                obs, reward, done, info = env.step(action)\n                cumulative_reward += reward\n                if env.env._check_success():\n                    success = True\n                    break\n\n            ep_result = {\n                \"success\": bool(success),\n                \"reward\": float(cumulative_reward),\n                \"steps\": step_i + 1,\n            }\n            episodes.append(ep_result)\n            env.close()\n\n            ep_time = time.time() - ep_t0\n            status = \"SUCCESS\" if success else \"fail\"\n            print(f\"    ep {ep:2d}: {status} | R={cumulative_reward:.3f} | steps={step_i+1} | {ep_time:.1f}s\", flush=True)\n\n        sr = sum(e[\"success\"] for e in episodes) / len(episodes)\n        avg_r = np.mean([e[\"reward\"] for e in episodes])\n        print(f\"  >> baseline SR={sr:.2f}, avg_reward={avg_r:.3f}\", flush=True)\n\n        all_results[task_name] = {\"baseline\": episodes}\n\n    total_success = sum(e[\"success\"] for t in all_results.values() for e in t[\"baseline\"])\n    total_eps = sum(len(t[\"baseline\"]) for t in all_results.values())\n    summary = {\n        \"baseline_sr\": total_success / total_eps,\n        \"n_tasks\": len(TASK_IDS),\n        \"n_episodes\": N_EPISODES,\n        \"task_ids\": TASK_IDS,\n    }\n\n    output = {\n        \"config\": {\n            \"checkpoint\": \"openvla-7b-finetuned-libero-goal\",\n            \"unnorm_key\": UNNORM_KEY,\n            \"n_tasks\": len(TASK_IDS),\n            \"n_episodes\": N_EPISODES,\n            \"max_steps\": MAX_STEPS,\n            \"task_ids\": TASK_IDS,\n            \"model_path\": MODEL_PATH,\n        },\n        \"results\": all_results,\n        \"summary\": summary,\n    }\n\n    out_path = os.path.join(RESULTS_DIR, \"behavioral_smoketest.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\", flush=True)\n    print(json.dumps(summary, indent=2), flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script created: $?\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T04:54:11.643025+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script created: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T04:54:11.643173+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "submit training job",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T04:54:11.643297+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T04:54:11.643442+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tmux new-session -d -s behavioral_smoketest \"source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:\\$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=0 && python3 /root/vla-ssd/scripts/behavioral_smoketest.py 2>&1 | tee /root/runs/vla-ssd/behavioral_smoketest.log\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tmux new-session -d -s behavioral_smoketest \"source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:\\$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=0 && python3 /root/vla-ssd/scripts/behavioral_smoketest.py 2>&1 | tee /root/runs/vla-ssd/behavioral_smoketest.log\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T04:54:11.643799+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T04:54:11.644051+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tmux list-sessions 2>&1; sleep 3; cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | tail -5",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tmux list-sessions 2>&1; sleep 3; cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | tail -5",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T04:54:11.644230+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"no server running on /tmp/tmux-0/default\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/environments/base.py\\\", line 12, in &lt;module>\\n    from robosuite.utils.binding_utils import MjRenderContextOffscreen, MjSim\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/utils/binding_utils.py\\\", line 34, in &lt;module>\\n    MUJOCO_EGL_DEVICE_ID in CUDA_VISIBLE_DEVICES\\nAssertionError: MUJOCO_EGL_DEVICE_ID needs to be set to one of the device id specified in CUDA_VISIBLE_DEVICES\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T04:54:11.644413+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "mkdir -p /root/runs/vla-ssd && tmux new-session -d -s behavioral_smoketest \"source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:\\$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && python3 /root/vla-ssd/scripts/behavioral_smoketest.py 2>&1 | tee /root/runs/vla-ssd/behavioral_smoketest.log\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "mkdir -p /root/runs/vla-ssd && tmux new-session -d -s behavioral_smoketest \"source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:\\$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && python3 /root/vla-ssd/scripts/behavioral_smoketest.py 2>&1 | tee /root/runs/vla-ssd/behavioral_smoketest.log\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T04:54:11.644541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T04:54:11.644666+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sleep 5 && tmux list-sessions 2>&1 && echo \"---LOG---\" && cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | tail -10",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sleep 5 && tmux list-sessions 2>&1 && echo \"---LOG---\" && cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | tail -10",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T04:54:11.644809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"behavioral_smoketest: 1 windows (created Tue May 19 12:47:25 2026)\\n---LOG---\\n  File \\\"/root/autodl-tmp/LIBERO/libero/libero/envs/bddl_base_domain.py\\\", line 135 in __init__\\n  File \\\"/root/autodl-tmp/LIBERO/libero/libero/envs/problems/libero_tabletop_manipulation.py\\\", line 40 in __init__\\n  File \\\"/root/autodl-tmp/LIBERO/libero/libero/envs/env_wrapper.py\\\", line 56 in __init__\\n  File \\\"/root/autodl-tmp/LIBERO/libero/libero/envs/env_wrapper.py\\\", line 161 in __init__\\n  File \\\"/root/vla-ssd/scripts/behavioral_smoketest.py\\\", line 44 in make_env\\n  File \\\"/root/vla-ssd/scripts/behavioral_smoketest.py\\\", line 152 in main\\n  File \\\"/root/vla-ssd/scripts/behavioral_smoketest.py\\\", line 217 in &lt;module>\\n\\nExtension modules: numpy._core._multiarray_umath, numpy._core._multiarray_tests, numpy.linalg._umath_linalg, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, cuda.bindings._bindings.cydriver, cuda.bindings.cydriver, cuda.bindings.driver, cuda.bindings._bindings.cyruntime_ptds, cuda.bindings._bindings.cyruntime, cuda.bindings.cyruntime, cuda.bindings.runtime, PIL._imaging, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._mt19937, numpy.random.mtrand, numpy.random._philox, numpy.random._pcg64, numpy.random._sfc64, numpy.random._generator, yaml._yaml, charset_normalizer.md, charset_normalizer.cd, scipy._lib._ccallback_c, numba.core.typeconv._typeconv, numba._helperlib, numba._dynfunc, numba._dispatcher, numba.core.runtime._nrt_python, numba.np.ufunc._internal, numba.experimental.jitclass._box, kiwisolver._cext, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, sentenc
+…[truncated 214 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T04:54:11.644995+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T04:54:11.645265+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/scipy/__init__.py:132: UserWarning: A NumPy version >=1.21.6 and <1.28.0 is required for this version of SciPy (detected version 2.0.2)\\n  warnings.warn(f\\\"A NumPy version >={np_minversion} and <{np_maxversion}\\\"\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\nLoading model...\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.40.2` and `tokenizers==0.19.1`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.63s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.51s/it]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.47s/it]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.06it/s]
+…[truncated 6577 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T04:54:11.645870+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && pip install 'numpy<2' 2>&1 | tail -5",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && pip install 'numpy<2' 2>&1 | tail -5",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T04:54:11.646311+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    Found existing installation: numpy 2.0.2\\n    Uninstalling numpy-2.0.2:\\n      Successfully uninstalled numpy-2.0.2\\nSuccessfully installed numpy-1.26.4\\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T04:54:11.646508+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 CUDA_VISIBLE_DEVICES=1 python3 -c \"\nimport sys; sys.path.insert(0,'/root/autodl-tmp/LIBERO')\nimport numpy as np; print('numpy', np.__version__)\nfrom libero.libero import benchmark\nfrom libero.libero.envs import OffScreenRenderEnv\nimport libero.libero, os\nLIB_DIR = os.path.dirname(libero.libero.__file__)\nbench = benchmark.get_benchmark('libero_goal')()\ntask = bench.get_task(0)\nbddl_path = os.path.join(LIB_DIR, 'bddl_files', task.problem_folder, task.bddl_file)\nenv = OffScreenRenderEnv(bddl_file_name=bddl_path, camera_heights=224, camera_widths=224, camera_names='agentview')\nobs = env.reset()\nprint('Env OK, obs keys:', list(obs.keys()))\nprint('agentview shape:', obs['agentview_image'].shape)\nenv.close()\nprint('ALL OK')\n\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 CUDA_VISIBLE_DEVICES=1 python3 -c \"\nimport sys; sys.path.insert(0,'/root/autodl-tmp/LIBERO')\nimport numpy as np; print('numpy', np.__version__)\nfrom libero.libero import benchmark\nfrom libero.libero.envs import OffScreenRenderEnv\nimport libero.libero, os\nLIB_DIR = os.path.dirname(libero.libero.__file__)\nbench = benchmark.get_benchmark('libero_goal')()\ntask = bench.get_task(0)\nbddl_path = os.path.join(LIB_DIR, 'bddl_files', task.problem_folder, task.bddl_file)\nenv = OffScreenRenderEnv(bddl_file_name=bddl_path, camera_heights=224, camera_widths=224, camera_names='agentview')\nobs = env.reset()\nprint('Env OK, obs keys:', list(obs.keys()))\nprint('agentview shape:', obs['agentview_image'].shape)\nenv.close()\nprint('ALL OK')\n\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T04:54:11.646665+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"numpy 1.26.4\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\nEnv OK, obs keys: ['robot0_joint_pos', 'robot0_joint_pos_cos', 'robot0_joint_pos_sin', 'robot0_joint_vel', 'robot0_eef_pos', 'robot0_eef_quat', 'robot0_gripper_qpos', 'robot0_gripper_qvel', 'agentview_image', 'akita_black_bowl_1_pos', 'akita_black_bowl_1_quat', 'akita_black_bowl_1_to_robot0_eef_pos', 'akita_black_bowl_1_to_robot0_eef_quat', 'cream_cheese_1_pos', 'cream_cheese_1_quat', 'cream_cheese_1_to_robot0_eef_pos', 'cream_cheese_1_to_robot0_eef_quat', 'wine_bottle_1_pos', 'wine_bottle_1_quat', 'wine_bottle_1_to_robot0_eef_pos', 'wine_bottle_1_to_robot0_eef_quat', 'plate_1_pos', 'plate_1_quat', 'plate_1_to_robot0_eef_pos', 'plate_1_to_robot0_eef_quat', 'robot0_proprio-state', 'object-state']\\nagentview shape: (224, 224, 3)\\nALL OK\\n\", \"stderr\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T04:54:11.646831+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tmux new-session -d -s behavioral_smoketest \"source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:\\$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && python3 /root/vla-ssd/scripts/behavioral_smoketest.py 2>&1 | tee /root/runs/vla-ssd/behavioral_smoketest.log\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tmux new-session -d -s behavioral_smoketest \"source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:\\$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && python3 /root/vla-ssd/scripts/behavioral_smoketest.py 2>&1 | tee /root/runs/vla-ssd/behavioral_smoketest.log\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T04:54:11.646985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T04:54:11.647114+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sleep 10 && tmux list-sessions 2>&1 && echo \"---\" && tail -10 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sleep 10 && tmux list-sessions 2>&1 && echo \"---\" && tail -10 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T04:54:11.647238+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"no server running on /tmp/tmux-0/default\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 10.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T04:54:11.647383+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | tail -30",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | tail -30",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T04:54:11.647544+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    main()\\n  File \\\"/root/vla-ssd/scripts/behavioral_smoketest.py\\\", line 134, in main\\n    model, processor = load_model()\\n  File \\\"/root/vla-ssd/scripts/behavioral_smoketest.py\\\", line 107, in load_model\\n    model = AutoModelForVision2Seq.from_pretrained(\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py\\\", line 550, in from_pretrained\\n    model_class = get_class_from_dynamic_module(\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/transformers/dynamic_module_utils.py\\\", line 501, in get_class_from_dynamic_module\\n    return get_class_in_module(class_name, final_module)\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/transformers/dynamic_module_utils.py\\\", line 201, in get_class_in_module\\n    module = importlib.machinery.SourceFileLoader(name, module_path).load_module()\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 548, in _check_name_wrapper\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 1063, in load_module\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 888, in load_module\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 290, in _load_module_shim\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 719, in _load\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 688, in _load_unlocked\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 883, in exec_module\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 241, in _call_with_frames_removed\\n  File \\\"/root/.cache/huggingface/modules/transformers_modules/openvla-7b-finetuned-libero-goal/modeling_prismatic.py\\\", line 27, in &lt;module>\\n    from transformers import AutoModelForCausalLM, PretrainedConfig, PreTrainedModel\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 1075, in _handle_fromlist\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packag
+…[truncated 770 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T04:54:11.647722+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && python3 -c \"import numpy; print(numpy.__version__); import torch; print('torch ok'); from transformers import AutoModelForVision2Seq; print('transformers ok')\" 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && python3 -c \"import numpy; print(numpy.__version__); import torch; print('torch ok'); from transformers import AutoModelForVision2Seq; print('transformers ok')\" 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T04:54:11.647852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.26.4\\ntorch ok\\ntransformers ok\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T04:54:11.648025+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/.cache/huggingface/modules/ -name \"__pycache__\" -type d -exec rm -rf {} + 2>/dev/null; find /root/.cache/huggingface/modules/ -name \"*.pyc\" -delete 2>/dev/null; echo \"Cleaned\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/.cache/huggingface/modules/ -name \"__pycache__\" -type d -exec rm -rf {} + 2>/dev/null; find /root/.cache/huggingface/modules/ -name \"*.pyc\" -delete 2>/dev/null; echo \"Cleaned\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T04:54:11.648156+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Cleaned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T04:54:11.648280+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/ -name \"__pycache__\" -type d -exec rm -rf {} + 2>/dev/null; echo \"Cleaned torch pycache\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/ -name \"__pycache__\" -type d -exec rm -rf {} + 2>/dev/null; echo \"Cleaned torch pycache\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T04:54:11.648401+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Cleaned torch pycache\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T04:54:11.648534+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tmux new-session -d -s bstest \"source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:\\$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && python3 /root/vla-ssd/scripts/behavioral_smoketest.py 2>&1 | tee /root/runs/vla-ssd/behavioral_smoketest.log\" && sleep 15 && tmux list-sessions 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tmux new-session -d -s bstest \"source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:\\$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && python3 /root/vla-ssd/scripts/behavioral_smoketest.py 2>&1 | tee /root/runs/vla-ssd/behavioral_smoketest.log\" && sleep 15 && tmux list-sessions 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T04:54:11.648659+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"no server running on /tmp/tmux-0/default\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 15.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-19T04:54:11.648773+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-19T04:54:11.648909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    module = importlib.machinery.SourceFileLoader(name, module_path).load_module()\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 548, in _check_name_wrapper\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 1063, in load_module\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 888, in load_module\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 290, in _load_module_shim\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 719, in _load\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 688, in _load_unlocked\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 883, in exec_module\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 241, in _call_with_frames_removed\\n  File \\\"/root/.cache/huggingface/modules/transformers_modules/openvla-7b-finetuned-libero-goal/modeling_prismatic.py\\\", line 27, in &lt;module>\\n    from transformers import AutoModelForCausalLM, PretrainedConfig, PreTrainedModel\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 1075, in _handle_fromlist\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/transformers/utils/import_utils.py\\\", line 1500, in __getattr__\\n    module = self._get_module(self._class_to_module[name])\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/transformers/utils/import_utils.py\\\", line 1512, in _get_module\\n    raise RuntimeError(\\nRuntimeError: Failed to import transformers.modeling_utils because of the following error (look up to see its traceback):\\nFailed to import transformers.generation.utils because of the following error (look up to see its traceback):\\nmodule 'numpy._core' has no attribute 'multiarray'\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T04:54:11.649689+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && python3 -c \"\nimport sys, os\nsys.path.insert(0, '/root/autodl-tmp/LIBERO')\nos.environ['MUJOCO_GL'] = 'egl'\nos.environ['MUJOCO_EGL_DEVICE_ID'] = '1'\nos.environ['HDF5_USE_FILE_LOCKING'] = 'FALSE'\nimport numpy as np\nprint('numpy', np.__version__)\nimport torch\nprint('torch ok')\nfrom libero.libero import benchmark\nfrom libero.libero.envs import OffScreenRenderEnv\nprint('libero ok')\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\nprint('transformers ok')\n\" 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && python3 -c \"\nimport sys, os\nsys.path.insert(0, '/root/autodl-tmp/LIBERO')\nos.environ['MUJOCO_GL'] = 'egl'\nos.environ['MUJOCO_EGL_DEVICE_ID'] = '1'\nos.environ['HDF5_USE_FILE_LOCKING'] = 'FALSE'\nimport numpy as np\nprint('numpy', np.__version__)\nimport torch\nprint('torch ok')\nfrom libero.libero import benchmark\nfrom libero.libero.envs import OffScreenRenderEnv\nprint('libero ok')\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\nprint('transformers ok')\n\" 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T04:54:11.650049+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 12, in &lt;module>\\n  File \\\"/root/autodl-tmp/LIBERO/libero/libero/envs/__init__.py\\\", line 1, in &lt;module>\\n    from .bddl_base_domain import TASK_MAPPING\\n  File \\\"/root/autodl-tmp/LIBERO/libero/libero/envs/bddl_base_domain.py\\\", line 3, in &lt;module>\\n    import robosuite.utils.transform_utils as T\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/__init__.py\\\", line 1, in &lt;module>\\n    from robosuite.environments.base import make\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/environments/__init__.py\\\", line 1, in &lt;module>\\n    from .base import REGISTERED_ENVS, MujocoEnv\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/environments/base.py\\\", line 12, in &lt;module>\\n    from robosuite.utils.binding_utils import MjRenderContextOffscreen, MjSim\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/utils/binding_utils.py\\\", line 12, in &lt;module>\\n    import mujoco\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/__init__.py\\\", line 251, in &lt;module>\\n    _load_all_bundled_plugins()\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco/__init__.py\\\", line 244, in _load_all_bundled_plugins\\n    PLUGIN_HANDLES.append(ctypes.CDLL(os.path.join(directory, filename)))\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/ctypes/__init__.py\\\", line 374, in __init__\\n    self._handle = _dlopen(self._name, mode)\\nOSError: libmujoco.so.3.1.6: cannot open shar
+…[truncated 185 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-19T04:54:11.650258+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && python3 -c \"\nimport sys, os\nsys.path.insert(0, '/root/autodl-tmp/LIBERO')\nos.environ['MUJOCO_GL'] = 'egl'\nos.environ['MUJOCO_EGL_DEVICE_ID'] = '1'\nos.environ['HDF5_USE_FILE_LOCKING'] = 'FALSE'\nos.environ['CUDA_VISIBLE_DEVICES'] = '1'\nimport numpy as np\nprint('numpy', np.__version__)\nimport mujoco\nprint('mujoco ok')\nimport torch\nprint('torch ok')\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\nprint('transformers ok')\nprocessor = AutoProcessor.from_pretrained('/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', trust_remote_code=True)\nprint('processor ok')\n\" 2>&1 | tail -20",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && python3 -c \"\nimport sys, os\nsys.path.insert(0, '/root/autodl-tmp/LIBERO')\nos.environ['MUJOCO_GL'] = 'egl'\nos.environ['MUJOCO_EGL_DEVICE_ID'] = '1'\nos.environ['HDF5_USE_FILE_LOCKING'] = 'FALSE'\nos.environ['CUDA_VISIBLE_DEVICES'] = '1'\nimport numpy as np\nprint('numpy', np.__version__)\nimport mujoco\nprint('mujoco ok')\nimport torch\nprint('torch ok')\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\nprint('transformers ok')\nprocessor = AutoProcessor.from_pretrained('/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', trust_remote_code=True)\nprint('processor ok')\n\" 2>&1 | tail -20",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-19T04:54:11.650405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"numpy 1.26.4\\nmujoco ok\\ntorch ok\\ntransformers ok\\nprocessor ok\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-19T04:54:11.650559+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": ": > /root/runs/vla-ssd/behavioral_smoketest.log && source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && nohup python3 /root/vla-ssd/scripts/behavioral_smoketest.py > /root/runs/vla-ssd/behavioral_smoketest.log 2>&1 &\necho \"PID=$!\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": ": > /root/runs/vla-ssd/behavioral_smoketest.log && source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && nohup python3 /root/vla-ssd/scripts/behavioral_smoketest.py > /root/runs/vla-ssd/behavioral_smoketest.log 2>&1 &\necho \"PID=$!\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-19T04:54:11.650692+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=110761\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-19T04:54:11.650811+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sleep 15 && ps aux | grep behavioral_smoketest | grep -v grep && echo \"---\" && tail -10 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sleep 15 && ps aux | grep behavioral_smoketest | grep -v grep && echo \"---\" && tail -10 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-19T04:54:11.650951+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 15.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-19T04:54:11.651078+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | head -30",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | head -30",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-19T04:54:11.651226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\nLoading model...\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/transformers/utils/import_utils.py\\\", line 1510, in _get_module\\n    return importlib.import_module(\\\".\\\" + module_name, self.__name__)\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/importlib/__init__.py\\\", line 126, in import_module\\n    return _bootstrap._gcd_import(name[level:], package, level)\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 1050, in _gcd_import\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 1027, in _find_and_load\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 1006, in _find_and_load_unlocked\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 688, in _load_unlocked\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 883, in exec_module\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line
+…[truncated 1007 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-19T04:54:11.651372+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | head -60 | tail -30",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null | head -60 | tail -30",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-19T04:54:11.651523+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    from ..big_modeling import dispatch_model, init_empty_weights\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/accelerate/big_modeling.py\\\", line 25, in &lt;module>\\n    from .hooks import (\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/accelerate/hooks.py\\\", line 37, in &lt;module>\\n    from .utils.other import recursive_getattr\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/accelerate/utils/other.py\\\", line 397, in &lt;module>\\n    np_core.multiarray._reconstruct,\\nAttributeError: module 'numpy._core' has no attribute 'multiarray'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/transformers/utils/import_utils.py\\\", line 1510, in _get_module\\n    return importlib.import_module(\\\".\\\" + module_name, self.__name__)\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/importlib/__init__.py\\\", line 126, in import_module\\n    return _bootstrap._gcd_import(name[level:], package, level)\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 1050, in _gcd_import\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 1027, in _find_and_load\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 1006, in _find_and_load_unlocked\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 688, in _load_unlocked\\n  File \\\"&lt;frozen importlib._bootstrap_external>\\\", line 883, in exec_module\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 241, in _call_with_frames_removed\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/transformers/modeling_utils.py\\\", line 45, in &lt;module>\\n    from .generation import GenerationConfig, GenerationMixin\\n  File \\\"&lt;frozen importlib._bootstrap>\\\", line 1075, in _handle_fromlist\\n  File \\\"/root/miniconda3/envs/libero/lib/python3.10/site-packages/
+…[truncated 522 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-19T04:54:11.651720+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && pip show accelerate scipy numba 2>&1 | grep -E \"^(Name|Version)\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && pip show accelerate scipy numba 2>&1 | grep -E \"^(Name|Version)\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-19T04:54:11.651856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Name: accelerate\\nVersion: 1.13.0\\nName: scipy\\nVersion: 1.11.4\\nName: numba\\nVersion: 0.65.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-19T04:54:11.652029+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && pip install 'numpy>=2.0' 'scipy>=1.13' 2>&1 | tail -10",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && pip install 'numpy>=2.0' 'scipy>=1.13' 2>&1 | tail -10",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-19T04:54:11.652165+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    Found existing installation: numpy 1.26.4\\n    Uninstalling numpy-1.26.4:\\n      Successfully uninstalled numpy-1.26.4\\n  Attempting uninstall: scipy\\n    Found existing installation: scipy 1.11.4\\n    Uninstalling scipy-1.11.4:\\n      Successfully uninstalled scipy-1.11.4\\n\\nSuccessfully installed numpy-2.2.6 scipy-1.15.3\\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-19T04:54:11.652685+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python3 -c \"\nimport sys, os\nsys.path.insert(0, '/root/autodl-tmp/LIBERO')\nos.environ['MUJOCO_GL'] = 'egl'\nos.environ['MUJOCO_EGL_DEVICE_ID'] = '1'\nos.environ['HDF5_USE_FILE_LOCKING'] = 'FALSE'\nos.environ['CUDA_VISIBLE_DEVICES'] = '1'\nimport numpy as np; print('numpy', np.__version__)\nimport mujoco; print('mujoco', mujoco.__version__)\nimport torch; print('torch ok, cuda:', torch.cuda.is_available())\nfrom libero.libero import benchmark\nfrom libero.libero.envs import OffScreenRenderEnv\nimport libero.libero\nprint('libero ok')\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\nprint('transformers ok')\nLIB_DIR = os.path.dirname(libero.libero.__file__)\nbench = benchmark.get_benchmark('libero_goal')()\ntask = bench.get_task(0)\nbddl_path = os.path.join(LIB_DIR, 'bddl_files', task.problem_folder, task.bddl_file)\nenv = OffScreenRenderEnv(bddl_file_name=bddl_path, camera_heights=224, camera_widths=224, camera_names='agentview')\nobs = env.reset()\nprint('Env OK, agentview shape:', obs['agentview_image'].shape)\nenv.close()\nprocessor = AutoProcessor.from_pretrained('/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', trust_remote_code=True)\nmodel = AutoModelForVision2Seq.from_pretrained('/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', torch_dtype=torch.bfloat16, trust_remote_code=True, low_cpu_mem_usage=True, device_map='cuda:0').eval()\nprint('Model loaded OK')\nprint('ALL CHECKS PASSED')\n\" 2>&1 | grep -E \"(numpy|mujoco|torch|libero|transformers|Env|Model|ALL|Error|error|Traceback)\" | head -20",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python3 -c \"\nimport sys, os\nsys.path.insert(0, '/root/autodl-tmp/LIBERO')\nos.environ['MUJOCO_GL'] = 'egl'\nos.environ['MUJOCO_EGL_DEVICE_ID'] = '1'\nos.environ['HDF5_USE_FILE_LOCKING'] = 'FALSE'\nos.environ['CUDA_VISIBLE_DEVICES'] = '1'\nimport numpy as np; print('numpy', np.__version__)\nimport mujoco; print('mujoco', mujoco.__version__)\nimport torch; print('torch ok, cuda:', torch.cuda.is_available())\nfrom libero.libero import benchmark\nfrom libero.libero.envs import OffScreenRenderEnv\nimport libero.libero\nprint('libero ok')\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\nprint('transformers ok')\nLIB_DIR = os.path.dirname(libero.libero.__file__)\nbench = benchmark.get_benchmark('libero_goal')()\ntask = bench.get_task(0)\nbddl_path = os.path.join(LIB_DIR, 'bddl_files', task.problem_folder, task.bddl_file)\nenv = OffScreenRenderEnv(bddl_file_name=bddl_path, camera_heights=224, camera_widths=224, camera_names='agentview')\nobs = env.reset()\nprint('Env OK, agentview shape:', obs['agentview_image'].shape)\nenv.close()\nprocessor = AutoProcessor.from_pretrained('/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', trust_remote_code=True)\nmodel = AutoModelForVision2Seq.from_pretrained('/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', torch_dtype=torch.bfloat16, trust_remote_code=True, low_cpu_mem_usage=True, device_map='cuda:0').eval()\nprint('Model loaded OK')\nprint('ALL CHECKS PASSED')\n\" 2>&1 | grep -E \"(numpy|mujoco|torch|libero|transformers|Env|Model|ALL|Error|error|Traceback)\" | head -20",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-19T04:54:11.652995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.40.2` and `tokenizers==0.19.1`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\nnumpy 2.2.6\\nmujoco 3.8.1\\ntorch ok, cuda: True\\nlibero ok\\ntransformers ok\\nEnv OK, agentview shape: (224, 224, 3)\\nModel loaded OK\\nALL CHECKS PASSED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-19T04:54:11.653190+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": ": > /root/runs/vla-ssd/behavioral_smoketest.log && source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && nohup python3 /root/vla-ssd/scripts/behavioral_smoketest.py > /root/runs/vla-ssd/behavioral_smoketest.log 2>&1 &\necho \"PID=$!\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": ": > /root/runs/vla-ssd/behavioral_smoketest.log && source /root/miniconda3/bin/activate libero && export LD_LIBRARY_PATH=/root/miniconda3/envs/libero/lib/python3.10/site-packages/mujoco:$LD_LIBRARY_PATH && export CUDA_VISIBLE_DEVICES=1 && export MUJOCO_GL=egl && export MUJOCO_EGL_DEVICE_ID=1 && nohup python3 /root/vla-ssd/scripts/behavioral_smoketest.py > /root/runs/vla-ssd/behavioral_smoketest.log 2>&1 &\necho \"PID=$!\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-19T04:54:11.653343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=111373\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-19T04:54:11.653757+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sleep 20 && ps -p 111373 -o pid,state,etime 2>/dev/null && echo \"---\" && tail -10 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sleep 20 && ps -p 111373 -o pid,state,etime 2>/dev/null && echo \"---\" && tail -10 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-19T04:54:11.653987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID S     ELAPSED\\n111373 S       00:56\\n---\\n&lt;frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.40.2` and `tokenizers==0.19.1`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.74s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.55s/it]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.48s/it]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.05it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.17s/it]\\nModel loaded in 6.3s\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n\\n============================================================\\nTask 0: open_the_middle_drawer_of_the_cabinet\\n  Instruction: open the middle drawer of the cabinet\\n============================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-19T04:54:11.654184+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "hypothesis",
+  "value": "Smoke test: verify LIBERO closed-loop evaluation pipeline works end-to-end with openvla-7b-finetuned-libero-goal checkpoint on 1 task x 3 episodes baseline-only before running full behavioral pilot v2."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "behavioral_smoketest",
+    "field": "hypothesis",
+    "value": "Smoke test: verify LIBERO closed-loop evaluation pipeline works end-to-end with openvla-7b-finetuned-libero-goal checkpoint on 1 task x 3 episodes baseline-only before running full behavioral pilot v2."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-19T04:54:11.654342+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:02:09.517Z\", \"updated_at\": \"2026-05-19T04:53:27.995Z\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\", \"conclusion\": \"negative\", \"notes\": \"Baseline SR=0% on task 0 (open_the_middle_drawer_of_the_cabinet), 3 eps all failed at max 400 steps with R=0. Ablation skipped. Model checkpoint may not be functional for this task.\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"hypothesis\": \"Smoke test: verify LIBERO closed-loop evaluation pipeline works end-to-end with openvla-7b-finetuned-libero-goal checkpoint on 1 task x 3 episodes baseline-only before running full behavioral pilot v2.\", \"completed_at\": \"2026-05-19T04:02:42.170Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0151}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-19T04:54:11.654516+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": "{'command': 'python3 /root/vla-ssd/scripts/behavioral_smoketest.py', 'server': 'westd-19183', 'gpu_ids': ['cuda:1'], 'data_path': '/root/autodl-tmp/LIBERO', 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 42, 'data_count': 3, 'notes': 'Re-run after fixing numpy/scipy/mujoco LD_LIBRARY_PATH. 1 task (task_id=0) x 3 eps x baseline only. PID=111373.'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "behavioral_smoketest",
+    "field": "status",
+    "value": "RUNNING",
+    "spec": "{'command': 'python3 /root/vla-ssd/scripts/behavioral_smoketest.py', 'server': 'westd-19183', 'gpu_ids': ['cuda:1'], 'data_path': '/root/autodl-tmp/LIBERO', 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 42, 'data_count': 3, 'notes': 'Re-run after fixing numpy/scipy/mujoco LD_LIBRARY_PATH. 1 task (task_id=0) x 3 eps x baseline only. PID=111373.'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-19T04:54:11.654949+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.005}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-19T04:54:11.655130+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "status",
+  "value": "PREPARING"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "behavioral_smoketest",
+    "field": "status",
+    "value": "PREPARING"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-19T04:54:11.655402+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T04:02:09.517Z\", \"updated_at\": \"2026-05-19T04:53:42.796Z\", \"notes\": \"Baseline SR=0% on task 0 (open_the_middle_drawer_of_the_cabinet), 3 eps all failed at max 400 steps with R=0. Ablation skipped. Model checkpoint may not be functional for this task.\", \"hypothesis\": \"Smoke test: verify LIBERO closed-loop evaluation pipeline works end-to-end with openvla-7b-finetuned-libero-goal checkpoint on 1 task x 3 episodes baseline-only before running full behavioral pilot v2.\", \"completed_at\": \"2026-05-19T04:02:42.170Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"negative\", \"notes\": \"Baseline SR=0% on task 0 (open_the_middle_drawer_of_the_cabinet), 3 eps all failed at max 400 steps with R=0. Ablation skipped. Model checkpoint may not be functional for this task.\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0605}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-19T04:54:11.655547+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": "{'command': 'python3 /root/vla-ssd/scripts/behavioral_smoketest.py', 'server': 'westd-19183', 'gpu_ids': ['cuda:1'], 'data_path': '/root/autodl-tmp/LIBERO', 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 42, 'data_count': 3, 'notes': 'Re-run after fixing numpy 2.2.6 + scipy 1.15.3 + mujoco LD_LIBRARY_PATH. 1 task (id=0) x 3 eps x baseline. PID=111373.'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "behavioral_smoketest",
+    "field": "status",
+    "value": "RUNNING",
+    "spec": "{'command': 'python3 /root/vla-ssd/scripts/behavioral_smoketest.py', 'server': 'westd-19183', 'gpu_ids': ['cuda:1'], 'data_path': '/root/autodl-tmp/LIBERO', 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 42, 'data_count': 3, 'notes': 'Re-run after fixing numpy 2.2.6 + scipy 1.15.3 + mujoco LD_LIBRARY_PATH. 1 task (id=0) x 3 eps x baseline. PID=111373.'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-19T04:54:11.655693+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0064}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-19T04:54:11.656024+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "status",
+  "value": "QUEUED"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "behavioral_smoketest",
+    "field": "status",
+    "value": "QUEUED"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-19T04:54:11.656196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-19T04:02:09.517Z\", \"updated_at\": \"2026-05-19T04:53:49.856Z\", \"notes\": \"Baseline SR=0% on task 0 (open_the_middle_drawer_of_the_cabinet), 3 eps all failed at max 400 steps with R=0. Ablation skipped. Model checkpoint may not be functional for this task.\", \"hypothesis\": \"Smoke test: verify LIBERO closed-loop evaluation pipeline works end-to-end with openvla-7b-finetuned-libero-goal checkpoint on 1 task x 3 episodes baseline-only before running full behavioral pilot v2.\", \"completed_at\": \"2026-05-19T04:02:42.170Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"negative\", \"notes\": \"Baseline SR=0% on task 0 (open_the_middle_drawer_of_the_cabinet), 3 eps all failed at max 400 steps with R=0. Ablation skipped. Model checkpoint may not be functional for this task.\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0356}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-19T04:54:11.656345+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": "{'command': 'python3 /root/vla-ssd/scripts/behavioral_smoketest.py', 'server': 'westd-19183', 'gpu_ids': ['cuda:1'], 'data_path': '/root/autodl-tmp/LIBERO', 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 42, 'data_count': 3, 'notes': 'Retry after fixing numpy 2.2.6 + scipy 1.15.3 + mujoco LD_LIBRARY_PATH. 1 task (id=0) x 3 eps x baseline. PID=111373.'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "behavioral_smoketest",
+    "field": "status",
+    "value": "RUNNING",
+    "spec": "{'command': 'python3 /root/vla-ssd/scripts/behavioral_smoketest.py', 'server': 'westd-19183', 'gpu_ids': ['cuda:1'], 'data_path': '/root/autodl-tmp/LIBERO', 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 42, 'data_count': 3, 'notes': 'Retry after fixing numpy 2.2.6 + scipy 1.15.3 + mujoco LD_LIBRARY_PATH. 1 task (id=0) x 3 eps x baseline. PID=111373.'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-19T04:54:11.656505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T04:02:09.517Z\", \"updated_at\": \"2026-05-19T04:53:53.609Z\", \"notes\": \"Baseline SR=0% on task 0 (open_the_middle_drawer_of_the_cabinet), 3 eps all failed at max 400 steps with R=0. Ablation skipped. Model checkpoint may not be functional for this task.\", \"hypothesis\": \"Smoke test: verify LIBERO closed-loop evaluation pipeline works end-to-end with openvla-7b-finetuned-libero-goal checkpoint on 1 task x 3 episodes baseline-only before running full behavioral pilot v2.\", \"completed_at\": \"2026-05-19T04:02:42.170Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"negative\", \"notes\": \"Baseline SR=0% on task 0 (open_the_middle_drawer_of_the_cabinet), 3 eps all failed at max 400 steps with R=0. Ablation skipped. Model checkpoint may not be functional for this task.\"}}, \"spec\": {\"command\": \"python3 /root/vla-ssd/scripts/behavioral_smoketest.py\", \"server\": \"westd-19183\", \"gpu_ids\": [\"cuda:1\"], \"data_path\": \"/root/autodl-tmp/LIBERO\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"data_count\": 3, \"notes\": \"Retry after fixing numpy 2.2.6 + scipy 1.15.3 + mujoco LD_LIBRARY_PATH. 1 task (id=0) x 3 eps x baseline. PID=111373.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0438}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-19T04:54:11.656917+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 111373 -o pid,state,etime 2>/dev/null && tail -5 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 111373 -o pid,state,etime 2>/dev/null && tail -5 /root/runs/vla-ssd/behavioral_smoketest.log 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-19T04:54:11.657116+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID S     ELAPSED\\n111373 S       01:39\\nTask 0: open_the_middle_drawer_of_the_cabinet\\n  Instruction: open the middle drawer of the cabinet\\n============================================================\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n    ep  0: fail | R=0.000 | steps=300 | 52.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_behavioral_smoketest_20260519T044416",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-19T04:54:11.657302+00:00_
+
+进程运行中。ep 0 完成：fail，R=0.000，300 steps，52s。还有 ep 1 和 ep 2。
+
+**当前状态汇总：**
+
+- **环境修复**：修复了 3 个问题：
+  1. MuJoCo `LD_LIBRARY_PATH` 缺失 → 添加 mujoco 包目录
+  2. `MUJOCO_EGL_DEVICE_ID` 与 `CUDA_VISIBLE_DEVICES` 不匹配 → 设为 1
+  3. numpy/scipy/accelerate 版本冲突 → 升级 scipy 1.11.4→1.15.3，numpy 恢复 2.2.6
+
+- **Smoke test 正在跑**：PID=111373，cuda:1，1 task × 3 episodes × baseline
+  - ep 0: fail (R=0, 300 steps, 52s)
+  - ep 1-2 进行中
+  - 预计 ~3min 后完成
+
+- **注意**：之前的 smoketest 也是 SR=0%。如果本轮也全 fail，说明问题不在环境而在 checkpoint/task 匹配度，需要进一步排查。
+
+- **Registry**: `behavioral_smoketest` → RUNNING
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_behavioral_smoketest_20260519T044416"
+}
+```
+
+</details>
+
+---

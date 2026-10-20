@@ -1,0 +1,92 @@
+\section{Method}
+\label{sec:method}
+
+We investigate where action-relevant representations originate within a vision-language-action (VLA) model by combining representational similarity analysis, functional probing, and kernel alignment across a factorial design of training and instruction conditions.
+
+\subsection{Model and Data}
+\label{sec:model_data}
+
+\paragraph{Architecture.}
+We study OpenVLA-7B~\cite{kim2024_openvla,karamcheti2024}, a VLA model comprising four components: (1)~a SigLIP-SO400M vision encoder~\cite{zhai2023_siglip} that maps RGB observations to patch-level visual tokens, (2)~an MLP projector that maps vision tokens into the language model's embedding space, (3)~a Llama-2 7B language backbone (32 transformer layers) that processes the concatenated sequence of projected image tokens and tokenized language instructions, and (4)~an action head that decodes 7-dimensional continuous actions (3D translation, 3D rotation, 1D gripper) from the final hidden states.
+
+\paragraph{Training data.}
+We fine-tune OpenVLA on the LIBERO-10 split~\cite{liu2023_libero}, which contains 10 tabletop manipulation tasks with 50 human demonstrations each (500 demonstrations total).
+We evaluate generalization on LIBERO-Goal, an out-of-distribution benchmark where episodes share initial object configurations but differ in goal specifications.
+
+\paragraph{Untrained control.}
+To isolate the LLM's learned contribution from the vision encoder's pretrained geometry, we construct an untrained control by calling \texttt{from\_config()} to reinitialize all LLM parameters (6.74B weights drawn from random initialization) while preserving the frozen SigLIP encoder (0.80B pretrained weights).
+The untrained model processes identical visual inputs through an identical vision encoder but lacks any learned language or action structure in its LLM layers.
+
+\subsection{Representation Extraction}
+\label{sec:rep_extraction}
+
+We extract representations from five sources spanning the VLA processing pipeline and two external baselines:
+
+\begin{enumerate}[label=(\alph*),nosep,leftmargin=*]
+    \item \textbf{SigLIP+Projector} --- the vision encoder output after MLP projection into the LLM's input space, before any LLM processing. This captures the representation that the LLM receives as input.
+    \item \textbf{LLM image\_mean} --- the mean activation across all image token positions at each of the 32 LLM layers. This captures how the LLM transforms distributed visual information through its depth.
+    \item \textbf{LLM last\_preaction} --- the activation at the final token position before action decoding (the readout token) at each LLM layer. This captures the representation from which actions are directly decoded.
+    \item \textbf{DINOv2 ViT-L/14}~\cite{oquab2024_dinov2} \texttt{cls\_token} --- a vision-only baseline pretrained with self-supervised objectives and no language supervision.
+    \item \textbf{CLIP ViT-L/14}~\cite{radford2021_clip} \texttt{patch\_mean} --- a vision-language baseline pretrained on image-text pairs, serving as a generalization control for VL pretraining effects independent of the VLA pipeline.
+\end{enumerate}
+
+Sources (a)--(c) probe representations within the VLA model itself, while (d) and (e) provide external references with no VLA training signal.
+
+\paragraph{Factorial design.}
+We cross two factors in a $2 \times 2$ design: \emph{training status} (trained vs.\ untrained LLM) and \emph{instruction presence} (with vs.\ without language instruction).
+This yields four conditions per LLM representation source, enabling us to disentangle the contributions of LLM training and language grounding to action-relevant structure.
+External baselines (d) and (e) are evaluated once, as they are independent of both factors.
+
+\subsection{Representational Similarity Analysis}
+\label{sec:rsa}
+
+We adopt Representational Similarity Analysis (RSA)~\cite{kriegeskorte2008} to quantify the geometric alignment between neural representations and the action space.
+
+\paragraph{Representational dissimilarity matrices.}
+For a set of $n$ observations, we compute an $n \times n$ representational dissimilarity matrix (RDM) for each representation source using Euclidean distance between representation vectors.
+We similarly construct an action RDM from the 7-dimensional action vectors.
+
+\paragraph{RSA correlation.}
+We measure alignment between a representation RDM and the action RDM via Spearman rank correlation $\rho$ between their upper-triangular elements.
+Higher $\rho$ indicates that observations with similar representations also have similar actions, i.e., the representation geometry mirrors the action space geometry.
+
+\paragraph{Statistical inference.}
+We compute 95\% confidence intervals from 10{,}000 bootstrap resamples of observation pairs for all pairwise comparisons.
+RSA is computed per task and aggregated across the 10 tasks.
+
+\subsection{Functional Action Probes}
+\label{sec:probes}
+
+RSA measures geometric alignment but does not assess whether action information is linearly decodable from representations.
+We complement RSA with functional probing~\cite{alain2017} to measure the action information accessible to a lightweight decoder.
+
+\paragraph{Probe architecture.}
+We train two-layer MLP probes (Linear $\to$ ReLU $\to$ Linear) mapping from the representation dimensionality to a 256-dimensional hidden layer and then to the 7-dimensional action space.
+
+\paragraph{Training protocol.}
+Probes are optimized with Adam (learning rate $10^{-3}$, batch size 256) for 50 epochs with early stopping (patience 5 epochs on validation loss).
+Representations are frozen throughout; only probe parameters are updated.
+We use per-task 80/20 train/validation splits and report mean $R^2$ across the 7 action dimensions as the primary metric.
+
+\paragraph{Action-delta probes.}
+In addition to predicting absolute actions $\mathbf{a}_t$, we train probes to predict action deltas $\Delta\mathbf{a} = \mathbf{a}_{t+1} - \mathbf{a}_t$, which capture the dynamic component of action structure independent of the current action magnitude.
+
+\paragraph{Statistical comparison.}
+We use bootstrap paired comparison (10{,}000 resamples) to test whether $R^2$ differences between representation sources are statistically significant.
+
+\subsection{Centered Kernel Alignment}
+\label{sec:cka}
+
+RSA captures local geometric alignment---whether pairwise distances in representation space mirror those in action space.
+To assess global structural preservation, we additionally employ Centered Kernel Alignment (CKA)~\cite{kornblith2019} in two variants.
+
+\paragraph{Linear CKA.}
+Linear CKA computes the normalized Hilbert-Schmidt Independence Criterion between linear kernel matrices of two representation sets.
+It is invariant to orthogonal transformations and isotropic scaling, making it sensitive to global structure rather than local distance preservation.
+
+\paragraph{RDM kernel CKA.}
+We also compute CKA using the RDMs themselves as kernel matrices, providing a bridge between the local sensitivity of RSA and the global perspective of linear CKA.
+
+\paragraph{Dimensionality caveat.}
+When comparing high-dimensional representations (e.g., 4096-D LLM activations) with low-dimensional action vectors (7-D), linear CKA may be dominated by the few directions that span the action space, potentially inflating similarity estimates.
+We report both CKA variants alongside RSA to ensure that conclusions are robust to metric choice.

@@ -1,0 +1,16 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+\looseness=-2
+We presented a cross-architecture representational analysis of instruction routing in three VLA architectures across four LIBERO task suites.
+Our analyses consistently decompose instruction routing into training-associated effects (exit collapse $\Delta R^2 = 0.16$--$0.46$; counterfactual sensitivity $d = 0.45$--$1.52$), specific to VLM-to-VLA fine-tuning, and inherited L1 attention priors.
+These findings may enable practical diagnostics: $\Delta R^2 > 0.10$ flags under-utilized exit representations without rollouts, and mid-layer peaks converging to within $R^2 = 0.003$ across architectures offer principled tap points for downstream modules.
+
+\section{Limitations}
+\label{sec:limitations}
+
+\looseness=-2
+Our study covers $N{=}2$ VLM-to-VLA and one VLA-to-VLA transition, all autoregressive decoders on a single benchmark (LIBERO).
+Flow-matching~\cite{black2024_pi0} and diffusion~\cite{ghosh2024_octo} action heads use different decoding mechanisms; our patterns may not transfer.
+All analyses are correlational and open-loop; counterfactual and ablation results suggest functional dependence but do not establish necessity or sufficiency for deployment success.
+Extending to non-autoregressive architectures, additional benchmarks, and closed-loop validation remain important directions (Appendix~\ref{sec:extended_discussion_appendix}).

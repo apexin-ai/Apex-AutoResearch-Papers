@@ -1,0 +1,5331 @@
+# code counterfactual batch template
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 115
+- **Recorded user turns:** 0
+- **Tool calls:** 42
+- **Original source:** `logs/workers/worker_code_counterfactual_batch_template_20260521T164440.log`
+- **Structured JSON:** [`1e988c869cdd886afb6c.json`](../../sessions/1e/1e988c869cdd886afb6c.json)
+
+## Before a recorded user message
+
+115 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "53d012be-b5b2-41a5-8a9d-20c4e375e343",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779393000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "88403175-93e6-4baf-9185-89c30d6526b2",
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the existing counterfactual implementations in the codebase. I need to read several existing pipeline scripts to understand the patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "c754ab3a-99b4-4b91-b7dd-803f13a9ee0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVRLperpL4dg7FyJXqaqSs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12641,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12641
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取现有脚本的 counterfactual 实现和 checkpoint 路径映射。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "189afab8-667f-41e3-8a3c-b5d5fe171780",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVRLperpL4dg7FyJXqaqSs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12641,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12641
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Q25iBrJqmpZNpaC5ymJ1xm`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "a97d7f29-abd7-4804-80c0-891cf2b1b0ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVRLperpL4dg7FyJXqaqSs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12641,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12641
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T16:44:53.291Z_
+
+<details><summary>↩ Tool result · `toolu_01Q25iBrJqmpZNpaC5ymJ1xm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "6ae13d61-9add-40ef-8f67-0b9912bed5a4",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NNiQMChcSsXTPiSHRwxzAW`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/scripts/*pipeline*.py /root/autodl-tmp/vla-ssd/scripts/*counterfactual*.py 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "d55b6b84-9ab7-4a3f-86c1-21189af00371",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DAQ7R9hc2MtEt6UUYqn7wh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 24482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 744
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T16:44:56.631Z_
+
+<details><summary>↩ Tool result · `toolu_01NNiQMChcSsXTPiSHRwxzAW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "622013fb-69a9-4c66-a6ca-b7f6110be5a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015qAQCiNsG8mCFegW7rywuB`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts -name \"*pipeline*.py\" -o -name \"*counterfactual*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "58f2ed62-0535-4bb8-b993-ed83a7497e22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hvsjm9ksUmAFZCdtffrcoT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 25226,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T16:45:01.275Z_
+
+<details><summary>↩ Tool result · `toolu_015qAQCiNsG8mCFegW7rywuB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "1c2f798b-784d-443d-8d45-f1b5b74668c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I found the scripts. Let me now read the key scripts to understand the counterfactual implementation. I'll read:
+1. `tracvla_object_full_pipeline.py` - has trained counterfactual
+2. `nora_goal_full_pipeline.py` - has cosine distance method
+3. `libero_long_full_pipeline.py` - has OFT norm_stats fix
+4. `nora_goal_untrained_counterfactual_only.py` - existing counterfactual-only script
+
+
+Now I'm examining these files in parallel to see how they differ.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "81d0995f-5d96-4ed0-990a-abe5a40cfa53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6oMc4Pp2r6x4rEKnYLjqe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 25453,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Let me read the key scripts in parallel to understand both counterfactual methods and checkpoint paths.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "b59a5c1c-6d09-4798-a2b7-9fbc6c308282",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6oMc4Pp2r6x4rEKnYLjqe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 25453,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019aRwGNygbma5VfvLLbWT5p`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "98c54191-3bfa-4547-b2dd-f268f9fe1c30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6oMc4Pp2r6x4rEKnYLjqe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 25453,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T16:45:06.620Z_
+
+<details><summary>↩ Tool result · `toolu_019aRwGNygbma5VfvLLbWT5p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Standalone: run counterfactual phase only for untrained Qwen2.5-VL-3B on LIBERO-Goal.\\\"\\\"\\\"\\n\\nimport json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\\\"\\nDEVICE = \\\"cuda:0\\\"\\n\\nN_LAYERS = 36\\nN_HEADS = 16\\nHIDDEN = 2048\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"open the cabinet's middle drawer\\\",\\n    \\\"open the top drawer and place the bowl in it\\\",\\n    \\\"slide the plate to the stove's front\\\",\\n    \\\"place the bowl onto the plate\\\",\\n    \\\"place the bowl onto the stove\\\",\\n    \\\"place the bowl on the cabinet top\\\",\\n    \\\"put cream cheese into the bowl\\\",\\n    \\\"place the wine bottle on the rack\\\",\\n    \\\"place the wine bottle on the cabinet top\\\",\\n    \\\"switch on the stove\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    messages = [{'role': 'user', 'content': [\\n        {'type': 'image', 'image': image},\\n        {'type': 'text', 'text': instruction}\\n    ]}]\\n    text = processor.apply_chat_template(\\n        messages, tokenize=False, add_generation_prompt=True)\\n    inputs = processor(\\n        text=[text], images=[image], return_tensors='pt', padding=True)\\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\n            for k, v in inputs.items()}\\n\\n\\ndef _cf_instruction(task_idx, condition):\\n    if condition == \\\"wrong\\\":\\n        return INSTRUCTIONS[(task_idx + 1) % len(TASKS)]\\n    elif condition == \\\"empty\\\":\\n        return \\\"\\\"\\n    elif condition == \\\"shuffled\\\":\\n        words = INSTRUCTIONS[task_idx].split()\\n        random.Random(42 + task_idx).shuffle(words)\\n        return \\\" \\\".join(words)\\n    elif condition == \\\"paraphrased\\\":\\n        return PARAPHRASES[task_idx]\\n\\n\\ndef run_counterfactual(model, processor, config, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Counterfactual analysis (representation-based)\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n    cf_layers = sorted(set(list(range(0, N_LAYERS, 3)) + [N_LAYERS - 1]))\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_nora_goal\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"qwen25-vl-3b-base-untrained\\\",\\n            \\\"method\\\": \\\"representation_cosine_distance\\\",\\n            \\\"note\\\": \\\"NORA uses FAST+ action tokens; MSE-based counterfactual \\\"\\n                    \\\"not applicable. Using readout cosine distance instead.\\\",\\n            \\\"layers_analyzed\\\": cf_layers,\\n            \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        per_layer_dists = {l: [] for l in cf_layers}\\n        per_task_dists = defaultdict(list)\\n        per_task_demo_dists = defaultdict(lambda: defaultdict(list))\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n          \\n\\n... [截断: 输出过长，省略 2004 字符] ...\\n\\nnp.array(per_layer_dists[l])\\n            cond_res[\\\"global_metrics\\\"][\\\"per_layer_cosine_distance\\\"][\\n                f\\\"L{l}\\\"\\n            ] = {\\n                \\\"mean\\\": round(float(arr.mean()), 6),\\n                \\\"std\\\": round(float(arr.std()), 6),\\n                \\\"n_samples\\\": len(arr),\\n            }\\n\\n        last_l = cf_layers[-1]\\n        last_arr = np.array(per_layer_dists[last_l])\\n        global_d = (\\n            float(last_arr.mean() / last_arr.std(ddof=1))\\n            if last_arr.std(ddof=1) > 0\\n            else 0.0\\n        )\\n        cond_res[\\\"global_metrics\\\"][\\\"last_layer_summary\\\"] = {\\n            \\\"layer\\\": last_l,\\n            \\\"mean\\\": round(float(last_arr.mean()), 6),\\n            \\\"std\\\": round(float(last_arr.std()), 6),\\n            \\\"cohens_d\\\": round(global_d, 4),\\n            \\\"n_samples\\\": len(last_arr),\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_dists[ti])\\n            td = (\\n                float(tm.mean() / tm.std(ddof=1))\\n                if tm.std(ddof=1) > 0\\n                else 0.0\\n            )\\n            per_task_ds.append(td)\\n\\n            demo_means = [\\n                float(np.mean(per_task_demo_dists[ti][di]))\\n                for di in range(n_demos)\\n            ]\\n            da = np.array(demo_means)\\n            dd = (\\n                float(da.mean() / da.std(ddof=1))\\n                if da.std(ddof=1) > 0\\n                else 0.0\\n            )\\n\\n            entry = {\\n                \\\"cohens_d\\\": round(td, 4),\\n                \\\"demo_level_cohens_d\\\": round(dd, 4),\\n                \\\"n_samples\\\": len(tm),\\n                \\\"mean_cosine_distance\\\": round(float(tm.mean()), 6),\\n                \\\"demo_distances\\\": [round(v, 6) for v in demo_means],\\n                \\\"instruction_correct\\\": INSTRUCTIONS[ti],\\n                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n            }\\n            cond_res[\\\"per_task\\\"][TASKS[ti]] = entry\\n\\n        cond_res[\\\"cross_task_variance\\\"] = {\\n            \\\"cohens_d\\\": {\\n                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": (\\n                    round(\\n                        float(np.std(per_task_ds) / np.mean(per_task_ds)), 4\\n                    )\\n                    if np.mean(per_task_ds) > 0\\n                    else 0.0\\n                ),\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(\\n            f\\\"  {cond}: last-layer cos_dist={last_arr.mean():.4f}  \\\"\\n            f\\\"cross-task d={np.mean(per_task_ds):.4f}\\\"\\n        )\\n\\n    ranking = sorted(\\n        conditions,\\n        key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"last_layer_summary\\\"][\\n            \\\"mean\\\"\\n        ],\\n        reverse=True,\\n    )\\n    all_res[\\\"ranking_by_cosine_distance\\\"] = [\\n        {\\n            \\\"condition\\\": c,\\n            \\\"mean_cosine_distance\\\": all_res[c][\\\"global_metrics\\\"][\\n                \\\"last_layer_summary\\\"\\n            ][\\\"mean\\\"],\\n        }\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\ndef main():\\n    log(f\\\"Loading untrained model from {CKPT}\\\")\\n    t0 = time.time()\\n    model = AutoModelForImageTextToText.from_pretrained(\\n        CKPT,\\n        torch_dtype=torch.bfloat16,\\n        attn_implementation=\\\"eager\\\",\\n        low_cpu_mem_usage=True,\\n        local_files_only=True,\\n        device_map=DEVICE,\\n    )\\n    model.eval()\\n    processor = AutoProcessor.from_pretrained(CKPT, local_files_only=True)\\n    config = model.config\\n    log(f\\\"Loaded in {time.time()-t0:.1f}s\\\")\\n\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\n    cf_res = run_counterfactual(model, processor, config,\\n                                len(TASKS), N_DEMOS, N_TIMESTEPS)\\n\\n    out_path = os.path.join(RESULTS_DIR, \\\"counterfactual_combined.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(cf_res, f, indent=2)\\n    log(f\\\"Saved -> {out_path}\\\")\\n    log(f\\\"Total: {(time.time()-t0)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "b8c914e0-17bf-47c2-ae4e-6e095211b56a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Standalone: run counterfactual phase only for untrained Qwen2.5-VL-3B on LIBERO-Goal.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom PIL import Image\\\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\\\n\\\\nCKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\\\\\"\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nRESULTS_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\nN_LAYERS = 36\\\\nN_HEADS = 16\\\\nHIDDEN = 2048\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"open the cabinet's middle drawer\\\\\\\",\\\\n    \\\\\\\"open the top drawer and place the bowl in it\\\\\\\",\\\\n    \\\\\\\"slide the plate to the stove's front\\\\\\\",\\\\n    \\\\\\\"place the bowl onto the plate\\\\\\\",\\\\n    \\\\\\\"place the bowl onto the stove\\\\\\\",\\\\n    \\\\\\\"place the bowl on the cabinet top\\\\\\\",\\\\n    \\\\\\\"put cream cheese into the bowl\\\\\\\",\\\\n    \\\\\\\"place the wine bottle on the rack\\\\\\\",\\\\n    \\\\\\\"place the wine bottle on the cabinet top\\\\\\\",\\\\n    \\\\\\\"switch on the stove\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    messages = [{'role': 'user', 'content': [\\\\n        {'type': 'image', 'image': image},\\\\n        {'type': 'text', 'text': instruction}\\\\n    ]}]\\\\n    text = processor.apply_chat_template(\\\\n        messages, tokenize=False, add_generation_prompt=True)\\\\n    inputs = processor(\\\\n        text=[text], images=[image], return_tensors='pt', padding=True)\\\\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\\\n            for k, v in inputs.items()}\\\\n\\\\n\\\\ndef _cf_instruction(task_idx, condition):\\\\n    if condition == \\\\\\\"wrong\\\\\\\":\\\\n        return INSTRUCTIONS[(task_idx + 1) % len(TASKS)]\\\\n    elif condition == \\\\\\\"empty\\\\\\\":\\\\n        return \\\\\\\"\\\\\\\"\\\\n    elif condition == \\\\\\\"shuffled\\\\\\\":\\\\n        words = INSTRUCTIONS[task_idx].split()\\\\n        random.Random(42 + task_idx).shuffle(words)\\\\n        return \\\\\\\" \\\\\\\".join(words)\\\\n    elif condition == \\\\\\\"paraphrased\\\\\\\":\\\\n        return PARAPHRASES[task_idx]\\\\n\\\\n\\\\ndef run_counterfactual(model, processor, config, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Counterfactual analysis (representation-based)\\\\\\\")\\\\n    conditions = [\\\\\\\"wrong\\\\\\\", \\\\\\\"empty\\\\\\\", \\\\\\\"shuffled\\\\\\\", \\\\\\\"paraphrased\\\\\\\"]\\\\n    cf_layers = sorted(set(list(range(0, N_LAYERS, 3)) + [N_LAYERS - 1]))\\\\n\\\\n    all_res = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_nora_goal\\\\\\\",\\\\n            \\\\\\\"conditions\\\\\\\": conditions,\\\\n            \\\\\\\"n_tasks\\\\\\\": n_tasks,\\\\n            \\\\\\\"n_demos_per_task\\\\\\\": n_demos,\\\\n            \\\\\\\"n_timesteps_per_demo\\\\\\\": n_timesteps,\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"qwen25-vl-3b-base-untrained\\\\\\\",\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"representation_cosine_distance\\\\\\\",\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"NORA uses FAST+ action tokens; MSE-based counterfactual \\\\\\\"\\\\n                    \\\\\\\"not applicable. Using readout cosine distance instead.\\\\\\\",\\\\n            \\\\\\\"layers_analyzed\\\\\\\": cf_layers,\\\\n            \\\\\\\"seed\\\\\\\": 42,\\\\n            \\\\\\\"task_names\\\\\\\": TASKS[:n_tasks],\\\\n        }\\\\n    }\\\\n\\\\n    for cond in conditions:\\\\n        log(f\\\\\\\"  Condition: {cond}\\\\\\\")\\\\n        per_layer_dists = {l: [] for l in cf_layers}\\\\n        per_task_dists = defaultdict(list)\\\\n        per_task_demo_dists = defaultdict(lambda: defaultdict(list))\\\\n        sample_n = 0\\\\n\\\\n        for ti in range(n_tasks):\\\\n            cf_instr = _cf_instruction(ti, cond)\\\\n            hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n\\\\n            with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n                for di in range(n_demos):\\\\n          \\\\n\\\\n... [截断: 输出过长，省略 2004 字符] ...\\\\n\\\\nnp.array(per_layer_dists[l])\\\\n            cond_res[\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"per_layer_cosine_distance\\\\\\\"][\\\\n                f\\\\\\\"L{l}\\\\\\\"\\\\n            ] = {\\\\n                \\\\\\\"mean\\\\\\\": round(float(arr.mean()), 6),\\\\n                \\\\\\\"std\\\\\\\": round(float(arr.std()), 6),\\\\n                \\\\\\\"n_samples\\\\\\\": len(arr),\\\\n            }\\\\n\\\\n        last_l = cf_layers[-1]\\\\n        last_arr = np.array(per_layer_dists[last_l])\\\\n        global_d = (\\\\n            float(last_arr.mean() / last_arr.std(ddof=1))\\\\n            if last_arr.std(ddof=1) > 0\\\\n            else 0.0\\\\n        )\\\\n        cond_res[\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"last_layer_summary\\\\\\\"] = {\\\\n            \\\\\\\"layer\\\\\\\": last_l,\\\\n            \\\\\\\"mean\\\\\\\": round(float(last_arr.mean()), 6),\\\\n            \\\\\\\"std\\\\\\\": round(float(last_arr.std()), 6),\\\\n            \\\\\\\"cohens_d\\\\\\\": round(global_d, 4),\\\\n            \\\\\\\"n_samples\\\\\\\": len(last_arr),\\\\n        }\\\\n\\\\n        per_task_ds = []\\\\n        for ti in range(n_tasks):\\\\n            tm = np.array(per_task_dists[ti])\\\\n            td = (\\\\n                float(tm.mean() / tm.std(ddof=1))\\\\n                if tm.std(ddof=1) > 0\\\\n                else 0.0\\\\n            )\\\\n            per_task_ds.append(td)\\\\n\\\\n            demo_means = [\\\\n                float(np.mean(per_task_demo_dists[ti][di]))\\\\n                for di in range(n_demos)\\\\n            ]\\\\n            da = np.array(demo_means)\\\\n            dd = (\\\\n                float(da.mean() / da.std(ddof=1))\\\\n                if da.std(ddof=1) > 0\\\\n                else 0.0\\\\n            )\\\\n\\\\n            entry = {\\\\n                \\\\\\\"cohens_d\\\\\\\": round(td, 4),\\\\n                \\\\\\\"demo_level_cohens_d\\\\\\\": round(dd, 4),\\\\n                \\\\\\\"n_samples\\\\\\\": len(tm),\\\\n                \\\\\\\"mean_cosine_distance\\\\\\\": round(float(tm.mean()), 6),\\\\n                \\\\\\\"demo_distances\\\\\\\": [round(v, 6) for v in demo_means],\\\\n                \\\\\\\"instruction_correct\\\\\\\": INSTRUCTIONS[ti],\\\\n                \\\\\\\"instruction_counterfactual\\\\\\\": _cf_instruction(ti, cond),\\\\n            }\\\\n            cond_res[\\\\\\\"per_task\\\\\\\"][TASKS[ti]] = entry\\\\n\\\\n        cond_res[\\\\\\\"cross_task_variance\\\\\\\"] = {\\\\n            \\\\\\\"cohens_d\\\\\\\": {\\\\n                \\\\\\\"values\\\\\\\": [round(v, 4) for v in per_task_ds],\\\\n                \\\\\\\"mean\\\\\\\": round(float(np.mean(per_task_ds)), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(np.std(per_task_ds)), 4),\\\\n                \\\\\\\"cv\\\\\\\": (\\\\n                    round(\\\\n                        float(np.std(per_task_ds) / np.mean(per_task_ds)), 4\\\\n                    )\\\\n                    if np.mean(per_task_ds) > 0\\\\n                    else 0.0\\\\n                ),\\\\n            }\\\\n        }\\\\n        all_res[cond] = cond_res\\\\n        log(\\\\n            f\\\\\\\"  {cond}: last-layer cos_dist={last_arr.mean():.4f}  \\\\\\\"\\\\n            f\\\\\\\"cross-task d={np.mean(per_task_ds):.4f}\\\\\\\"\\\\n        )\\\\n\\\\n    ranking = sorted(\\\\n        conditions,\\\\n        key=lambda c: all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"last_layer_summary\\\\\\\"][\\\\n            \\\\\\\"mean\\\\\\\"\\\\n        ],\\\\n        reverse=True,\\\\n    )\\\\n    all_res[\\\\\\\"ranking_by_cosine_distance\\\\\\\"] = [\\\\n        {\\\\n            \\\\\\\"condition\\\\\\\": c,\\\\n            \\\\\\\"mean_cosine_distance\\\\\\\": all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\n                \\\\\\\"last_layer_summary\\\\\\\"\\\\n            ][\\\\\\\"mean\\\\\\\"],\\\\n        }\\\\n        for c in ranking\\\\n    ]\\\\n    return all_res\\\\n\\\\n\\\\ndef main():\\\\n    log(f\\\\\\\"Loading untrained model from {CKPT}\\\\\\\")\\\\n    t0 = time.time()\\\\n    model = AutoModelForImageTextToText.from_pretrained(\\\\n        CKPT,\\\\n        torch_dtype=torch.bfloat16,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n        low_cpu_mem_usage=True,\\\\n        local_files_only=True,\\\\n        device_map=DEVICE,\\\\n    )\\\\n    model.eval()\\\\n    processor = AutoProcessor.from_pretrained(CKPT, local_files_only=True)\\\\n    config = model.config\\\\n    log(f\\\\\\\"Loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\\\n    cf_res = run_counterfactual(model, processor, config,\\\\n                                len(TASKS), N_DEMOS, N_TIMESTEPS)\\\\n\\\\n    out_path = os.path.join(RESULTS_DIR, \\\\\\\"counterfactual_combined.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(cf_res, f, indent=2)\\\\n    log(f\\\\\\\"Saved -> {out_path}\\\\\\\")\\\\n    log(f\\\\\\\"Total: {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Standalone: run counterfactual phase only for untrained Qwen2.5-VL-3B on LIBERO-Goal.\\\"\\\"\\\"\\n\\nimport json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\\\"\\nDEVICE = \\\"cuda:0\\\"\\n\\nN_LAYERS = 36\\nN_HEADS = 16\\nHIDDEN = 2048\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"open the cabinet's middle drawer\\\",\\n    \\\"open the top drawer and place the bowl in it\\\",\\n    \\\"slide the plate to the stove's front\\\",\\n    \\\"place the bowl onto the plate\\\",\\n    \\\"place the bowl onto the stove\\\",\\n    \\\"place the bowl on the cabinet top\\\",\\n    \\\"put cream cheese into the bowl\\\",\\n    \\\"place the wine bottle on the rack\\\",\\n    \\\"place the wine bottle on the cabinet top\\\",\\n    \\\"switch on the stove\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    messages = [{'role': 'user', 'content': [\\n        {'type': 'image', 'image': image},\\n        {'type': 'text', 'text': instruction}\\n    ]}]\\n    text = processor.apply_chat_template(\\n        messages, tokenize=False, add_generation_prompt=True)\\n    inputs = processor(\\n        text=[text], images=[image], return_tensors='pt', padding=True)\\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\n            for k, v in inputs.items()}\\n\\n\\ndef _cf_instruction(task_idx, condition):\\n    if condition == \\\"wrong\\\":\\n        return INSTRUCTIONS[(task_idx + 1) % len(TASKS)]\\n    elif condition == \\\"empty\\\":\\n        return \\\"\\\"\\n    elif condition == \\\"shuffled\\\":\\n        words = INSTRUCTIONS[task_idx].split()\\n        random.Random(42 + task_idx).shuffle(words)\\n        return \\\" \\\".join(words)\\n    elif condition == \\\"paraphrased\\\":\\n        return PARAPHRASES[task_idx]\\n\\n\\ndef run_counterfactual(model, processor, config, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Counterfactual analysis (representation-based)\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n    cf_layers = sorted(set(list(range(0, N_LAYERS, 3)) + [N_LAYERS - 1]))\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_nora_goal\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"qwen25-vl-3b-base-untrained\\\",\\n            \\\"method\\\": \\\"representation_cosine_distance\\\",\\n            \\\"note\\\": \\\"NORA uses FAST+ action tokens; MSE-based counterfactual \\\"\\n                    \\\"not applicable. Using readout cosine distance instead.\\\",\\n            \\\"layers_analyzed\\\": cf_layers,\\n            \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        per_layer_dists = {l: [] for l in cf_layers}\\n        per_task_dists = defaultdict(list)\\n        per_task_demo_dists = defaultdict(lambda: defaultdict(list))\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n          \\n\\n... [截断: 输出过长，省略 2004 字符] ...\\n\\nnp.array(per_layer_dists[l])\\n            cond_res[\\\"global_metrics\\\"][\\\"per_layer_cosine_distance\\\"][\\n                f\\\"L{l}\\\"\\n            ] = {\\n                \\\"mean\\\": round(float(arr.mean()), 6),\\n                \\\"std\\\": round(float(arr.std()), 6),\\n                \\\"n_samples\\\": len(arr),\\n            }\\n\\n        last_l = cf_layers[-1]\\n        last_arr = np.array(per_layer_dists[last_l])\\n        global_d = (\\n            float(last_arr.mean() / last_arr.std(ddof=1))\\n            if last_arr.std(ddof=1) > 0\\n            else 0.0\\n        )\\n        cond_res[\\\"global_metrics\\\"][\\\"last_layer_summary\\\"] = {\\n            \\\"layer\\\": last_l,\\n            \\\"mean\\\": round(float(last_arr.mean()), 6),\\n            \\\"std\\\": round(float(last_arr.std()), 6),\\n            \\\"cohens_d\\\": round(global_d, 4),\\n            \\\"n_samples\\\": len(last_arr),\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_dists[ti])\\n            td = (\\n                float(tm.mean() / tm.std(ddof=1))\\n                if tm.std(ddof=1) > 0\\n                else 0.0\\n            )\\n            per_task_ds.append(td)\\n\\n            demo_means = [\\n                float(np.mean(per_task_demo_dists[ti][di]))\\n                for di in range(n_demos)\\n            ]\\n            da = np.array(demo_means)\\n            dd = (\\n                float(da.mean() / da.std(ddof=1))\\n                if da.std(ddof=1) > 0\\n                else 0.0\\n            )\\n\\n            entry = {\\n                \\\"cohens_d\\\": round(td, 4),\\n                \\\"demo_level_cohens_d\\\": round(dd, 4),\\n                \\\"n_samples\\\": len(tm),\\n                \\\"mean_cosine_distance\\\": round(float(tm.mean()), 6),\\n                \\\"demo_distances\\\": [round(v, 6) for v in demo_means],\\n                \\\"instruction_correct\\\": INSTRUCTIONS[ti],\\n                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n            }\\n            cond_res[\\\"per_task\\\"][TASKS[ti]] = entry\\n\\n        cond_res[\\\"cross_task_variance\\\"] = {\\n            \\\"cohens_d\\\": {\\n                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": (\\n                    round(\\n                        float(np.std(per_task_ds) / np.mean(per_task_ds)), 4\\n                    )\\n                    if np.mean(per_task_ds) > 0\\n                    else 0.0\\n                ),\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(\\n            f\\\"  {cond}: last-layer cos_dist={last_arr.mean():.4f}  \\\"\\n            f\\\"cross-task d={np.mean(per_task_ds):.4f}\\\"\\n        )\\n\\n    ranking = sorted(\\n        conditions,\\n        key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"last_layer_summary\\\"][\\n            \\\"mean\\\"\\n        ],\\n        reverse=True,\\n    )\\n    all_res[\\\"ranking_by_cosine_distance\\\"] = [\\n        {\\n            \\\"condition\\\": c,\\n            \\\"mean_cosine_distance\\\": all_res[c][\\\"global_metrics\\\"][\\n                \\\"last_layer_summary\\\"\\n            ][\\\"mean\\\"],\\n        }\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\ndef main():\\n    log(f\\\"Loading untrained model from {CKPT}\\\")\\n    t0 = time.time()\\n    model = AutoModelForImageTextToText.from_pretrained(\\n        CKPT,\\n        torch_dtype=torch.bfloat16,\\n        attn_implementation=\\\"eager\\\",\\n        low_cpu_mem_usage=True,\\n        local_files_only=True,\\n        device_map=DEVICE,\\n    )\\n    model.eval()\\n    processor = AutoProcessor.from_pretrained(CKPT, local_files_only=True)\\n    config = model.config\\n    log(f\\\"Loaded in {time.time()-t0:.1f}s\\\")\\n\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\n    cf_res = run_counterfactual(model, processor, config,\\n                                len(TASKS), N_DEMOS, N_TIMESTEPS)\\n\\n    out_path = os.path.join(RESULTS_DIR, \\\"counterfactual_combined.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(cf_res, f, indent=2)\\n    log(f\\\"Saved -> {out_path}\\\")\\n    log(f\\\"Total: {(time.time()-t0)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I got the NORA untrained counterfactual-only script. It was truncated though. Let me get the missing middle part, and also read the other scripts for action-space MSE method and checkpoint paths.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "4d2f43ac-eb19-4679-9c2b-05e9c94bbea4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScPBbr5MBLfqhdK652fH53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3801,
+      "cache_read_input_tokens": 25938,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3801
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011kXYVPh6MA2hcb1m31i2Cu`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"counterfactual\\|Phase 6\\|def run_counterfactual\\|CONDITION_MAP\\|predict_action\\|action_mse\\|cosine_dist\\|CHECKPOINT\\|checkpoint\\|model_path\\|TRAINED\\|UNTRAINED\\|norm_stats\\|dataset_statistics\\|CKPT\\|SUITE\\|DATA_DIR\\|RESULTS\" /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "1ff4e2fe-4850-469e-9ebc-62b97cd93c38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScPBbr5MBLfqhdK652fH53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3801,
+      "cache_read_input_tokens": 25938,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3801
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T16:45:13.075Z_
+
+<details><summary>↩ Tool result · `toolu_011kXYVPh6MA2hcb1m31i2Cu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "eba78e20-09bf-4fb2-8c10-cd75f5f628e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XMv55a95uXsiZEbvur3s9A`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"CKPT\\|CHECKPOINT\\|DATA\\|RESULTS\\|SUITE\\|counterfactual\\|Phase 6\\|def run_counterfactual\\|predict_action\\|cosine_dist\\|norm_stats\\|dataset_statistics\\|TRAINED\\|UNTRAINED\" /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "41a00735-4f49-4495-9213-17ea5ef99375",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011hhSRfSV7sYZpPc6eQ15WJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 364,
+      "cache_read_input_tokens": 29739,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 364
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T16:45:16.887Z_
+
+<details><summary>↩ Tool result · `toolu_01XMv55a95uXsiZEbvur3s9A`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "3c5f4137-3537-4eaf-8881-1e404bb3cddd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PDwKvF3TDm9uMTSnRU4uL1`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"CKPT\\|CHECKPOINT\\|DATA\\|RESULTS\\|SUITE\\|counterfactual\\|Phase 6\\|predict_action\\|cosine_dist\\|norm_stats\\|TRAINED\\|UNTRAINED\" /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "68fca048-9fc0-4649-806d-b3f8ad95b17d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwzRinMYyBQcHsqxsELVdw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 278,
+      "cache_read_input_tokens": 30103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 278
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T16:45:20.070Z_
+
+<details><summary>↩ Tool result · `toolu_01PDwKvF3TDm9uMTSnRU4uL1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "8f959156-a4a2-4f7e-860a-bd29682a9569",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` in the grep pattern with `\|` (OR) seems to be treated as a pipe. Let me use `-E` with `|` instead... no, that won't work either. Let me try `-e` flags for multiple patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "f66078a9-3174-4efb-a12c-85d7c16b64a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SWzUbBZJ3fwQSoaxdESdq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 30381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NuzgREyand7xr4XH6fdXSm`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -nE \"CKPT|CHECKPOINT|RESULTS_DIR|DATA_DIR|SUITE|counterfactual|Phase.6|predict_action|cosine|norm_stats\" /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "43eed3ca-ee87-49bf-8bf3-9a4cea6ad998",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SWzUbBZJ3fwQSoaxdESdq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 30381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T16:45:25.195Z_
+
+<details><summary>↩ Tool result · `toolu_01NuzgREyand7xr4XH6fdXSm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "c08936f1-0685-4d67-88e5-1e6ac8e0c965",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+The pipe character in regex is being blocked. Let me read the full files instead.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "e6dd3809-46b8-4d02-a7fb-76fea4b7c269",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019j2XtgEZavrhxLUqiAUhSx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 423,
+      "cache_read_input_tokens": 30645,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 423
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0162MMYZi6JUe3HLdM6J2jJG`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -l /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "3c479755-6a6f-4b76-a9b7-6deabc63bebf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019j2XtgEZavrhxLUqiAUhSx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 423,
+      "cache_read_input_tokens": 30645,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 423
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T16:45:29.959Z_
+
+<details><summary>↩ Tool result · `toolu_0162MMYZi6JUe3HLdM6J2jJG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  642 /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n  665 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n  633 /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n  622 /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n 2562 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "7440403a-3bd4-4966-a2bb-14a1a527ee54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  642 /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\\\n  665 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\n  633 /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\\\n  622 /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\\\n 2562 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  642 /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n  665 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n  633 /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n  622 /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n 2562 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018udS2eoP9wjWBvH3MWQ5N1`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "35da4e80-355e-4f65-b5cc-8574e0b3552c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BbRL86TQdphYpQ2fVh7vMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 416,
+      "cache_read_input_tokens": 31068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 416
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T16:45:33.070Z_
+
+<details><summary>↩ Tool result · `toolu_018udS2eoP9wjWBvH3MWQ5N1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Object Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_object\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the alphabet soup and put it into the basket\\\",\\n    \\\"grab the bbq sauce and put it into the basket\\\",\\n    \\\"grab the butter and put it into the basket\\\",\\n    \\\"grab the chocolate pudding and put it into the basket\\\",\\n    \\\"grab the cream cheese and put it into the basket\\\",\\n    \\\"grab the ketchup and put it into the basket\\\",\\n    \\\"grab the milk and put it into the basket\\\",\\n    \\\"grab the orange juice and put it into the basket\\\",\\n    \\\"grab the salad dressing and put it into the basket\\\",\\n    \\\"grab the tomato sauce and put it into the basket\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef detect_image_token_id(processor):\\n    return -1\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "ae2ab026-0e77-4e79-8dfc-5384d0990ce0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Object Full Analysis Pipeline for TracVLA-Phi3V\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\\\n\\\\n# --- Checkpoints ---\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\nUNTRAINED_CACHE = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\n\\\\n# --- Data ---\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_object\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\\\n\\\\n# --- Architecture ---\\\\nN_LAYERS = 32\\\\nN_HEADS = 32\\\\nHIDDEN = 3072\\\\nN_IMG_TOKENS = 0  # auto-detected\\\\nIMG_TOKEN_ID = -1  # auto-detected\\\\n\\\\n# --- Data config ---\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"grab the alphabet soup and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the bbq sauce and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the butter and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the chocolate pudding and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the cream cheese and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the ketchup and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the milk and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the orange juice and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the salad dressing and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the tomato sauce and put it into the basket\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return (\\\\n        f\\\\\\\"<|user|>\\\\\\\\n<|image_1|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"What action should the robot take to {instruction}?<|end|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"<|assistant|>\\\\\\\\n\\\\\\\"\\\\n    )\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    prompt = make_prompt(instruction)\\\\n    inputs = processor(prompt, [image], return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n    if \\\\\\\"pixel_values\\\\\\\" in inputs:\\\\n        inputs[\\\\\\\"pixel_values\\\\\\\"] = inputs[\\\\\\\"pixel_values\\\\\\\"].to(torch.bfloat16)\\\\n    return inputs\\\\n\\\\n\\\\ndef detect_image_token_id(processor):\\\\n    return -1\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Object Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_object\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the alphabet soup and put it into the basket\\\",\\n    \\\"grab the bbq sauce and put it into the basket\\\",\\n    \\\"grab the butter and put it into the basket\\\",\\n    \\\"grab the chocolate pudding and put it into the basket\\\",\\n    \\\"grab the cream cheese and put it into the basket\\\",\\n    \\\"grab the ketchup and put it into the basket\\\",\\n    \\\"grab the milk and put it into the basket\\\",\\n    \\\"grab the orange juice and put it into the basket\\\",\\n    \\\"grab the salad dressing and put it into the basket\\\",\\n    \\\"grab the tomato sauce and put it into the basket\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef detect_image_token_id(processor):\\n    return -1\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018gA2ssUEKJJbqXA3azn85Y`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "f3001c7f-da40-45bb-859d-fa167c386998",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BbRL86TQdphYpQ2fVh7vMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 416,
+      "cache_read_input_tokens": 31068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 416
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MX2rQt9jmXCZnVoezQfT69`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "59e20a25-92ea-4ec5-85bc-3942d1c343eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BbRL86TQdphYpQ2fVh7vMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 416,
+      "cache_read_input_tokens": 31068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 416
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T16:45:34.071Z_
+
+<details><summary>↩ Tool result · `toolu_018gA2ssUEKJJbqXA3azn85Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM_TRAINED = \\\"libero_10_no_noops\\\"\\nUNNORM_UNTRAINED = \\\"bridge_orig\\\"\\nUNNORM = UNNORM_TRAINED\\n\\nTASKS = [\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\",\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\",\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\",\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\",\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\",\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\",\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"turn on the stove and put the moka pot on it\\\",\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\",\\n    \\\"put the yellow and white mug in the microwave and close it\\\",\\n    \\\"put both moka pots on the stove\\\",\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\",\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\",\\n    \\\"put both the cream cheese box and the butter in the basket\\\",\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\",\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\",\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\",\\n]\\nPARAPHRASES = [\\n    \\\"switch on the stove and place the moka pot on it\\\",\\n    \\\"place the black bowl in the bottom drawer of the cabinet and shut it\\\",\\n    \\\"place the yellow and white mug in the microwave and shut it\\\",\\n    \\\"put both of the moka pots on the stove\\\",\\n    \\\"place the alphabet soup and cream cheese box into the basket\\\",\\n    \\\"place the alphabet soup and tomato sauce into the basket\\\",\\n    \\\"place the cream cheese box and butter into the basket\\\",\\n    \\\"place the white mug on the left plate and the yellow white mug on the right plate\\\",\\n    \\\"place the white mug on the plate and the chocolate pudding to the right of the plate\\\",\\n    \\\"grab the book and put it in the back section of the caddy\\\",\\n]\\n\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 4096\\nN_IMG_TOKENS = 256\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, image).to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "5597090f-aaad-4b8a-b35a-9fb962e5e484",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. RSA: representational similarity across conditions\\\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nAll results -> RESULTS_DIR/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nUNNORM_TRAINED = \\\\\\\"libero_10_no_noops\\\\\\\"\\\\nUNNORM_UNTRAINED = \\\\\\\"bridge_orig\\\\\\\"\\\\nUNNORM = UNNORM_TRAINED\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\",\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [\\\\n    \\\\\\\"turn on the stove and put the moka pot on it\\\\\\\",\\\\n    \\\\\\\"put the black bowl in the bottom drawer of the cabinet and close it\\\\\\\",\\\\n    \\\\\\\"put the yellow and white mug in the microwave and close it\\\\\\\",\\\\n    \\\\\\\"put both moka pots on the stove\\\\\\\",\\\\n    \\\\\\\"put both the alphabet soup and the cream cheese box in the basket\\\\\\\",\\\\n    \\\\\\\"put both the alphabet soup and the tomato sauce in the basket\\\\\\\",\\\\n    \\\\\\\"put both the cream cheese box and the butter in the basket\\\\\\\",\\\\n    \\\\\\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\\\\\",\\\\n    \\\\\\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\\\\",\\\\n    \\\\\\\"pick up the book and place it in the back compartment of the caddy\\\\\\\",\\\\n]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"switch on the stove and place the moka pot on it\\\\\\\",\\\\n    \\\\\\\"place the black bowl in the bottom drawer of the cabinet and shut it\\\\\\\",\\\\n    \\\\\\\"place the yellow and white mug in the microwave and shut it\\\\\\\",\\\\n    \\\\\\\"put both of the moka pots on the stove\\\\\\\",\\\\n    \\\\\\\"place the alphabet soup and cream cheese box into the basket\\\\\\\",\\\\n    \\\\\\\"place the alphabet soup and tomato sauce into the basket\\\\\\\",\\\\n    \\\\\\\"place the cream cheese box and butter into the basket\\\\\\\",\\\\n    \\\\\\\"place the white mug on the left plate and the yellow white mug on the right plate\\\\\\\",\\\\n    \\\\\\\"place the white mug on the plate and the chocolate pudding to the right of the plate\\\\\\\",\\\\n    \\\\\\\"grab the book and put it in the back section of the caddy\\\\\\\",\\\\n]\\\\n\\\\nN_LAYERS = 32\\\\nN_HEADS = 32\\\\nHIDDEN = 4096\\\\nN_IMG_TOKENS = 256\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return f\\\\\\\"In: What action should the robot take to {instruction}?\\\\\\\\nOut:\\\\\\\"\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    prompt = make_prompt(instruction)\\\\n    inputs = processor(prompt, image).to(DEVICE)\\\\n    if \\\\\\\"pixel_values\\\\\\\" in inputs:\\\\n        inputs[\\\\\\\"pixel_values\\\\\\\"] = inputs[\\\\\\\"pixel_values\\\\\\\"].to(torch.bfloat16)\\\\n    return inputs\\\\n\\\\n\\\\ndef generate_action(model, processor, instruction, image):\\\\n    inputs = prepare_inputs(processor, instruction, image)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM_TRAINED = \\\"libero_10_no_noops\\\"\\nUNNORM_UNTRAINED = \\\"bridge_orig\\\"\\nUNNORM = UNNORM_TRAINED\\n\\nTASKS = [\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\",\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\",\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\",\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\",\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\",\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\",\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"turn on the stove and put the moka pot on it\\\",\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\",\\n    \\\"put the yellow and white mug in the microwave and close it\\\",\\n    \\\"put both moka pots on the stove\\\",\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\",\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\",\\n    \\\"put both the cream cheese box and the butter in the basket\\\",\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\",\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\",\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\",\\n]\\nPARAPHRASES = [\\n    \\\"switch on the stove and place the moka pot on it\\\",\\n    \\\"place the black bowl in the bottom drawer of the cabinet and shut it\\\",\\n    \\\"place the yellow and white mug in the microwave and shut it\\\",\\n    \\\"put both of the moka pots on the stove\\\",\\n    \\\"place the alphabet soup and cream cheese box into the basket\\\",\\n    \\\"place the alphabet soup and tomato sauce into the basket\\\",\\n    \\\"place the cream cheese box and butter into the basket\\\",\\n    \\\"place the white mug on the left plate and the yellow white mug on the right plate\\\",\\n    \\\"place the white mug on the plate and the chocolate pudding to the right of the plate\\\",\\n    \\\"grab the book and put it in the back section of the caddy\\\",\\n]\\n\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 4096\\nN_IMG_TOKENS = 256\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, image).to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KXzRqagHTaHQDDPeyXqxoK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "12461e3c-acf5-4d2b-bf30-3808437aa6fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BbRL86TQdphYpQ2fVh7vMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 416,
+      "cache_read_input_tokens": 31068,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 416
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T16:45:34.669Z_
+
+<details><summary>↩ Tool result · `toolu_01MX2rQt9jmXCZnVoezQfT69`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Object Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_object\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM = \\\"libero_object\\\"\\n\\nTASKS = [\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the alphabet soup and put it into the basket\\\",\\n    \\\"grab the cream cheese and put it into the basket\\\",\\n    \\\"grab the salad dressing and put it into the basket\\\",\\n    \\\"grab the bbq sauce and put it into the basket\\\",\\n    \\\"grab the ketchup and put it into the basket\\\",\\n    \\\"grab the tomato sauce and put it into the basket\\\",\\n    \\\"grab the butter and put it into the basket\\\",\\n    \\\"grab the milk and put it into the basket\\\",\\n    \\\"grab the chocolate pudding and put it into the basket\\\",\\n    \\\"grab the orange juice and put it into the basket\\\",\\n]\\n\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 4096\\nN_IMG_TOKENS = 256\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, image).to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "c5ff4d61-dfd3-4531-afd4-4d2924a72f4d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Object Full Analysis Pipeline (Streaming)\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. RSA: representational similarity across conditions\\\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nAll results -> RESULTS_DIR/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_object\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nUNNORM = \\\\\\\"libero_object\\\\\\\"\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"grab the alphabet soup and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the cream cheese and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the salad dressing and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the bbq sauce and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the ketchup and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the tomato sauce and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the butter and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the milk and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the chocolate pudding and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the orange juice and put it into the basket\\\\\\\",\\\\n]\\\\n\\\\nN_LAYERS = 32\\\\nN_HEADS = 32\\\\nHIDDEN = 4096\\\\nN_IMG_TOKENS = 256\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return f\\\\\\\"In: What action should the robot take to {instruction}?\\\\\\\\nOut:\\\\\\\"\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    prompt = make_prompt(instruction)\\\\n    inputs = processor(prompt, image).to(DEVICE)\\\\n    if \\\\\\\"pixel_values\\\\\\\" in inputs:\\\\n        inputs[\\\\\\\"pixel_values\\\\\\\"] = inputs[\\\\\\\"pixel_values\\\\\\\"].to(torch.bfloat16)\\\\n    return inputs\\\\n\\\\n\\\\ndef generate_action(model, processor, instruction, image):\\\\n    inputs = prepare_inputs(processor, instruction, image)\\\\n    input_ids = inputs[\\\\\\\"input_ids\\\\\\\"]\\\\n\\\\n    if not torch.all(input_ids[:, -1] == 29871):\\\\n        input_ids = torch.cat(\\\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\\\n        )\\\\n        if \\\\\\\"attention_mask\\\\\\\" in inputs:\\\\n            inputs[\\\\\\\"attention_mask\\\\\\\"] = torch.cat(\\\\n                (inputs[\\\\\\\"attention_mask\\\\\\\"],\\\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\\\\\"attention_mask\\\\\\\"].dtype)), dim=1\\\\n            )\\\\n    inputs[\\\\\\\"input_ids\\\\\\\"] = input_ids\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Object Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_object\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM = \\\"libero_object\\\"\\n\\nTASKS = [\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the alphabet soup and put it into the basket\\\",\\n    \\\"grab the cream cheese and put it into the basket\\\",\\n    \\\"grab the salad dressing and put it into the basket\\\",\\n    \\\"grab the bbq sauce and put it into the basket\\\",\\n    \\\"grab the ketchup and put it into the basket\\\",\\n    \\\"grab the tomato sauce and put it into the basket\\\",\\n    \\\"grab the butter and put it into the basket\\\",\\n    \\\"grab the milk and put it into the basket\\\",\\n    \\\"grab the chocolate pudding and put it into the basket\\\",\\n    \\\"grab the orange juice and put it into the basket\\\",\\n]\\n\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 4096\\nN_IMG_TOKENS = 256\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, image).to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T16:45:35.269Z_
+
+<details><summary>↩ Tool result · `toolu_01KXzRqagHTaHQDDPeyXqxoK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nNORA LIBERO-Goal Full Analysis Pipeline\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased)\\n\\nRuns both trained (NORA) and untrained (Qwen2.5-VL-3B base) sequentially.\\nNORA uses FAST+ action tokenizer, so counterfactual uses representation-based\\ncosine distance instead of action MSE.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/nora_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\n\\n# --- Architecture (Qwen2.5-VL-3B) ---\\nN_LAYERS = 36\\nN_HEADS = 16\\nHIDDEN = 2048\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"open the cabinet's middle drawer\\\",\\n    \\\"open the top drawer and place the bowl in it\\\",\\n    \\\"slide the plate to the stove's front\\\",\\n    \\\"place the bowl onto the plate\\\",\\n    \\\"place the bowl onto the stove\\\",\\n    \\\"place the bowl on the cabinet top\\\",\\n    \\\"put cream cheese into the bowl\\\",\\n    \\\"place the wine bottle on the rack\\\",\\n    \\\"place the wine bottle on the cabinet top\\\",\\n    \\\"switch on the stove\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    messages = [{'role': 'user', 'content': [\\n        {'type': 'image', 'image': image},\\n        {'type': 'text', 'text': instruction}\\n    ]}]\\n    text = processor.apply_chat_template(\\n        messages, tokenize=False, add_generation_prompt=True)\\n    inputs = processor(\\n        text=[text], images=[image], return_tensors='pt', padding=True)\\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\n            for k, v in inputs.items()}\\n\\n\\ndef find_token_regions(input_ids, config):\\n    ids = input_ids[0].cpu().numpy()\\n    vs_id = config.vision_start_token_id\\n    ve_id = config.vision_end_token_id\\n\\n    vs_pos = np.where(ids == vs_id)[0]\\n    ve_pos = np.where(ids == ve_id)[0]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "ff6dedf8-a43b-4a3c-83a5-ea90e2d46a46",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nNORA LIBERO-Goal Full Analysis Pipeline\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased)\\\\n\\\\nRuns both trained (NORA) and untrained (Qwen2.5-VL-3B base) sequentially.\\\\nNORA uses FAST+ action tokenizer, so counterfactual uses representation-based\\\\ncosine distance instead of action MSE.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\\\n\\\\n# --- Checkpoints ---\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\\\\\"\\\\n\\\\n# --- Data ---\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/nora_goal\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\n# --- Architecture (Qwen2.5-VL-3B) ---\\\\nN_LAYERS = 36\\\\nN_HEADS = 16\\\\nHIDDEN = 2048\\\\n\\\\n# --- Data config ---\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"open the cabinet's middle drawer\\\\\\\",\\\\n    \\\\\\\"open the top drawer and place the bowl in it\\\\\\\",\\\\n    \\\\\\\"slide the plate to the stove's front\\\\\\\",\\\\n    \\\\\\\"place the bowl onto the plate\\\\\\\",\\\\n    \\\\\\\"place the bowl onto the stove\\\\\\\",\\\\n    \\\\\\\"place the bowl on the cabinet top\\\\\\\",\\\\n    \\\\\\\"put cream cheese into the bowl\\\\\\\",\\\\n    \\\\\\\"place the wine bottle on the rack\\\\\\\",\\\\n    \\\\\\\"place the wine bottle on the cabinet top\\\\\\\",\\\\n    \\\\\\\"switch on the stove\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    messages = [{'role': 'user', 'content': [\\\\n        {'type': 'image', 'image': image},\\\\n        {'type': 'text', 'text': instruction}\\\\n    ]}]\\\\n    text = processor.apply_chat_template(\\\\n        messages, tokenize=False, add_generation_prompt=True)\\\\n    inputs = processor(\\\\n        text=[text], images=[image], return_tensors='pt', padding=True)\\\\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\\\n            for k, v in inputs.items()}\\\\n\\\\n\\\\ndef find_token_regions(input_ids, config):\\\\n    ids = input_ids[0].cpu().numpy()\\\\n    vs_id = config.vision_start_token_id\\\\n    ve_id = config.vision_end_token_id\\\\n\\\\n    vs_pos = np.where(ids == vs_id)[0]\\\\n    ve_pos = np.where(ids == ve_id)[0]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nNORA LIBERO-Goal Full Analysis Pipeline\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased)\\n\\nRuns both trained (NORA) and untrained (Qwen2.5-VL-3B base) sequentially.\\nNORA uses FAST+ action tokenizer, so counterfactual uses representation-based\\ncosine distance instead of action MSE.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/nora_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\n\\n# --- Architecture (Qwen2.5-VL-3B) ---\\nN_LAYERS = 36\\nN_HEADS = 16\\nHIDDEN = 2048\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"open the cabinet's middle drawer\\\",\\n    \\\"open the top drawer and place the bowl in it\\\",\\n    \\\"slide the plate to the stove's front\\\",\\n    \\\"place the bowl onto the plate\\\",\\n    \\\"place the bowl onto the stove\\\",\\n    \\\"place the bowl on the cabinet top\\\",\\n    \\\"put cream cheese into the bowl\\\",\\n    \\\"place the wine bottle on the rack\\\",\\n    \\\"place the wine bottle on the cabinet top\\\",\\n    \\\"switch on the stove\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    messages = [{'role': 'user', 'content': [\\n        {'type': 'image', 'image': image},\\n        {'type': 'text', 'text': instruction}\\n    ]}]\\n    text = processor.apply_chat_template(\\n        messages, tokenize=False, add_generation_prompt=True)\\n    inputs = processor(\\n        text=[text], images=[image], return_tensors='pt', padding=True)\\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\n            for k, v in inputs.items()}\\n\\n\\ndef find_token_regions(input_ids, config):\\n    ids = input_ids[0].cpu().numpy()\\n    vs_id = config.vision_start_token_id\\n    ve_id = config.vision_end_token_id\\n\\n    vs_pos = np.where(ids == vs_id)[0]\\n    ve_pos = np.where(ids == ve_id)[0]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the top of each script. Now I need to read the counterfactual (Phase 6) sections. Let me read the counterfactual parts from:
+1. tracvla_object - for TracVLA cosine distance method
+2. libero_object or libero_long - for OpenVLA action MSE method
+3. libero_long - for OFT norm_stats handling
+
+Let me also check the remaining data: tracvla_spatial, tracvla_long, nora_spatial scripts for their configs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "266ed62d-e308-491b-948c-ee4a4142cd7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3KbSqvrToDDgPi9txmgKp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6950,
+      "cache_read_input_tokens": 31484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+Now let me read the counterfactual sections from the scripts — the Phase 6 parts near the end.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "c24e8e69-e191-4dbb-9962-d82aa57a3aaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3KbSqvrToDDgPi9txmgKp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6950,
+      "cache_read_input_tokens": 31484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GaBdKos18RiX66DU2Qbrdy`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -200 /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "a6582938-9fd9-4dd1-8345-9d80d41ef81e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3KbSqvrToDDgPi9txmgKp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6950,
+      "cache_read_input_tokens": 31484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T16:45:43.562Z_
+
+<details><summary>↩ Tool result · `toolu_01GaBdKos18RiX66DU2Qbrdy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                \\\"n_samples\\\": len(tm),\\n                \\\"mean_mse\\\": round(float(tm.mean()), 6),\\n                \\\"demo_mses\\\": [round(v, 6) for v in demo_means],\\n                \\\"instruction_correct\\\": INSTRUCTIONS[ti],\\n                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n            }\\n            cond_res[\\\"per_task\\\"][TASKS[ti]] = entry\\n\\n        cond_res[\\\"cross_task_variance\\\"] = {\\n            \\\"cohens_d\\\": {\\n                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": (\\n                    round(float(np.std(per_task_ds) / np.mean(per_task_ds)), 4)\\n                    if np.mean(per_task_ds) > 0\\n                    else 0.0\\n                ),\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(\\n            f\\\"  {cond}: global d={global_d:.4f}  \\\"\\n            f\\\"cross-task mean={np.mean(per_task_ds):.4f}  \\\"\\n            f\\\"token_div={np.mean(all_tok_div):.3f}\\\"\\n        )\\n\\n    ranking = sorted(\\n        conditions,\\n        key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n        reverse=True,\\n    )\\n    all_res[\\\"ranking_by_cohens_d\\\"] = [\\n        {\\n            \\\"condition\\\": c,\\n            \\\"cohens_d\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n            \\\"paired_mse_mean\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"mean\\\"],\\n        }\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\ndef load_model(ckpt_path, condition):\\n    log(f\\\"Loading {condition} model from {ckpt_path} ...\\\")\\n    t0 = time.time()\\n\\n    model = AutoModelForCausalLM.from_pretrained(\\n        ckpt_path,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=\\\"eager\\\",\\n    ).to(DEVICE).eval()\\n\\n    processor = AutoProcessor.from_pretrained(\\n        ckpt_path, trust_remote_code=True, num_crops=1\\n    )\\n\\n    log(f\\\"  Model loaded in {time.time()-t0:.1f}s\\\")\\n    return model, processor\\n\\n\\ndef run_pipeline(model, processor, condition, results_dir, args):\\n    global N_IMG_TOKENS, IMG_TOKEN_ID\\n    os.makedirs(results_dir, exist_ok=True)\\n\\n    nt = 2 if args.dry_run else len(TASKS)\\n    nd = 1 if args.dry_run else N_DEMOS\\n    ns = 2 if args.dry_run else N_TIMESTEPS\\n    nps = 2 if args.dry_run else N_PROBE_SEEDS\\n    cls_layers = [0, 8, 16, 24, 31] if args.dry_run else None\\n\\n    log(f\\\"=== {condition.upper()} pipeline ===\\\")\\n    log(f\\\"Config: tasks={nt} demos={nd} timesteps={ns} seeds={nps} dry_run={args.dry_run}\\\")\\n    log(f\\\"Output: {results_dir}\\\")\\n\\n    IMG_TOKEN_ID = detect_image_token_id(processor)\\n    log(f\\\"  Image token ID: {IMG_TOKEN_ID}\\\")\\n\\n    log(\\\"Validating token layout ...\\\")\\n    hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n    with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n        img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n    inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n    original_ids = inputs[\\\"input_ids\\\"].clone()\\n    log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n    if \\\"pixel_values\\\" in inputs:\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n    if \\\"image_sizes\\\" in inputs:\\n        log(f\\\"  image_sizes: {inputs['image_sizes']}\\\")\\n\\n    with torch.no_grad():\\n        out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n\\n    hs0_shape = out.hidden_states[0].shape\\n    log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n\\n    tr = find_token_regions(original_ids, IMG_TOKEN_ID)\\n    N_IMG_TOKENS = tr[\\\"image\\\"][1] - tr[\\\"image\\\"][0]\\n    log(f\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\")\\n    log(f\\\"  N_IMG_TOKENS={N_IMG_TOKENS}\\\")\\n    log(f\\\"  Total seq_len: input_ids={inputs['input_ids'].shape[1]}, hidden={hs0_shape[1]}\\\")\\n\\n    n_attn_layers = len(out.attentions)\\n    attn_shape = out.attentions[0].shape\\n    log(f\\\"  Attention: {n_attn_layers} layers, shape={attn_shape}\\\")\\n\\n    del out, inputs\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n        model, processor, nt, nd, ns, IMG_TOKEN_ID\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    if not args.skip_probing:\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    t3 = time.time()\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n    with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n        json.dump(attn_res, f, indent=2)\\n    log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n    del attn_ratio_sum, attn_ratio_sq_sum\\n\\n    t4 = time.time()\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\n    with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n        json.dump(cls_res, f, indent=2)\\n    log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n    del reps, actions, labels\\n\\n    if condition == \\\"trained\\\" and not args.skip_counterfactual:\\n        t5 = time.time()\\n        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n        with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n            json.dump(cf_res, f, indent=2)\\n        log(f\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n    elif condition != \\\"trained\\\":\\n        log(\\\"Phase 5: skipped (untrained model cannot generate meaningful actions)\\\")\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\", \\\"untrained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    args = p.parse_args()\\n\\n    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\"config.json\\\")):\\n                ckpt = UNTRAINED_CACHE\\n            else:\\n                ckpt = UNTRAINED_CKPT\\n                log(f\\\"  Will download untrained model from {ckpt}\\\")\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n\\n        try:\\n            model, processor = load_model(ckpt, condition)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            log(f\\\"  Skipping {condition} condition\\\")\\n            continue\\n\\n        tc = time.time()\\n        run_pipeline(model, processor, condition, results_dir, args)\\n        log(f\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "76f96658-d9a3-471b-896e-16aaef61ecc7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                \\\\\\\"n_samples\\\\\\\": len(tm),\\\\n                \\\\\\\"mean_mse\\\\\\\": round(float(tm.mean()), 6),\\\\n                \\\\\\\"demo_mses\\\\\\\": [round(v, 6) for v in demo_means],\\\\n                \\\\\\\"instruction_correct\\\\\\\": INSTRUCTIONS[ti],\\\\n                \\\\\\\"instruction_counterfactual\\\\\\\": _cf_instruction(ti, cond),\\\\n            }\\\\n            cond_res[\\\\\\\"per_task\\\\\\\"][TASKS[ti]] = entry\\\\n\\\\n        cond_res[\\\\\\\"cross_task_variance\\\\\\\"] = {\\\\n            \\\\\\\"cohens_d\\\\\\\": {\\\\n                \\\\\\\"values\\\\\\\": [round(v, 4) for v in per_task_ds],\\\\n                \\\\\\\"mean\\\\\\\": round(float(np.mean(per_task_ds)), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(np.std(per_task_ds)), 4),\\\\n                \\\\\\\"cv\\\\\\\": (\\\\n                    round(float(np.std(per_task_ds) / np.mean(per_task_ds)), 4)\\\\n                    if np.mean(per_task_ds) > 0\\\\n                    else 0.0\\\\n                ),\\\\n            }\\\\n        }\\\\n        all_res[cond] = cond_res\\\\n        log(\\\\n            f\\\\\\\"  {cond}: global d={global_d:.4f}  \\\\\\\"\\\\n            f\\\\\\\"cross-task mean={np.mean(per_task_ds):.4f}  \\\\\\\"\\\\n            f\\\\\\\"token_div={np.mean(all_tok_div):.3f}\\\\\\\"\\\\n        )\\\\n\\\\n    ranking = sorted(\\\\n        conditions,\\\\n        key=lambda c: all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"paired_mse\\\\\\\"][\\\\\\\"cohens_d\\\\\\\"],\\\\n        reverse=True,\\\\n    )\\\\n    all_res[\\\\\\\"ranking_by_cohens_d\\\\\\\"] = [\\\\n        {\\\\n            \\\\\\\"condition\\\\\\\": c,\\\\n            \\\\\\\"cohens_d\\\\\\\": all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"paired_mse\\\\\\\"][\\\\\\\"cohens_d\\\\\\\"],\\\\n            \\\\\\\"paired_mse_mean\\\\\\\": all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"paired_mse\\\\\\\"][\\\\\\\"mean\\\\\\\"],\\\\n        }\\\\n        for c in ranking\\\\n    ]\\\\n    return all_res\\\\n\\\\n\\\\ndef load_model(ckpt_path, condition):\\\\n    log(f\\\\\\\"Loading {condition} model from {ckpt_path} ...\\\\\\\")\\\\n    t0 = time.time()\\\\n\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        ckpt_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n    ).to(DEVICE).eval()\\\\n\\\\n    processor = AutoProcessor.from_pretrained(\\\\n        ckpt_path, trust_remote_code=True, num_crops=1\\\\n    )\\\\n\\\\n    log(f\\\\\\\"  Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n    return model, processor\\\\n\\\\n\\\\ndef run_pipeline(model, processor, condition, results_dir, args):\\\\n    global N_IMG_TOKENS, IMG_TOKEN_ID\\\\n    os.makedirs(results_dir, exist_ok=True)\\\\n\\\\n    nt = 2 if args.dry_run else len(TASKS)\\\\n    nd = 1 if args.dry_run else N_DEMOS\\\\n    ns = 2 if args.dry_run else N_TIMESTEPS\\\\n    nps = 2 if args.dry_run else N_PROBE_SEEDS\\\\n    cls_layers = [0, 8, 16, 24, 31] if args.dry_run else None\\\\n\\\\n    log(f\\\\\\\"=== {condition.upper()} pipeline ===\\\\\\\")\\\\n    log(f\\\\\\\"Config: tasks={nt} demos={nd} timesteps={ns} seeds={nps} dry_run={args.dry_run}\\\\\\\")\\\\n    log(f\\\\\\\"Output: {results_dir}\\\\\\\")\\\\n\\\\n    IMG_TOKEN_ID = detect_image_token_id(processor)\\\\n    log(f\\\\\\\"  Image token ID: {IMG_TOKEN_ID}\\\\\\\")\\\\n\\\\n    log(\\\\\\\"Validating token layout ...\\\\\\\")\\\\n    hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[0]}_demo.hdf5\\\\\\\")\\\\n    with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n        img = Image.fromarray(hf[\\\\\\\"data/demo_0/obs/agentview_rgb\\\\\\\"][0])\\\\n    inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\\\n    original_ids = inputs[\\\\\\\"input_ids\\\\\\\"].clone()\\\\n    log(f\\\\\\\"  input_ids shape: {inputs['input_ids'].shape}\\\\\\\")\\\\n    if \\\\\\\"pixel_values\\\\\\\" in inputs:\\\\n        log(f\\\\\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\\\\\")\\\\n    if \\\\\\\"image_sizes\\\\\\\" in inputs:\\\\n        log(f\\\\\\\"  image_sizes: {inputs['image_sizes']}\\\\\\\")\\\\n\\\\n    with torch.no_grad():\\\\n        out = model(**inputs, output_hidden_states=True, output_attentions=True)\\\\n\\\\n    hs0_shape = out.hidden_states[0].shape\\\\n    log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n\\\\n    tr = find_token_regions(original_ids, IMG_TOKEN_ID)\\\\n    N_IMG_TOKENS = tr[\\\\\\\"image\\\\\\\"][1] - tr[\\\\\\\"image\\\\\\\"][0]\\\\n    log(f\\\\\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\\\\\")\\\\n    log(f\\\\\\\"  N_IMG_TOKENS={N_IMG_TOKENS}\\\\\\\")\\\\n    log(f\\\\\\\"  Total seq_len: input_ids={inputs['input_ids'].shape[1]}, hidden={hs0_shape[1]}\\\\\\\")\\\\n\\\\n    n_attn_layers = len(out.attentions)\\\\n    attn_shape = out.attentions[0].shape\\\\n    log(f\\\\\\\"  Attention: {n_attn_layers} layers, shape={attn_shape}\\\\\\\")\\\\n\\\\n    del out, inputs\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    t1 = time.time()\\\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n        model, processor, nt, nd, ns, IMG_TOKEN_ID\\\\n    )\\\\n    log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n    if not args.skip_probing:\\\\n        t2 = time.time()\\\\n        probe_res = run_probing(reps, actions, nps)\\\\n        with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(probe_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n    t3 = time.time()\\\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n    with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(attn_res, f, indent=2)\\\\n    log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n    del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n    t4 = time.time()\\\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n    with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(cls_res, f, indent=2)\\\\n    log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n    del reps, actions, labels\\\\n\\\\n    if condition == \\\\\\\"trained\\\\\\\" and not args.skip_counterfactual:\\\\n        t5 = time.time()\\\\n        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n        with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(cf_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n    elif condition != \\\\\\\"trained\\\\\\\":\\\\n        log(\\\\\\\"Phase 5: skipped (untrained model cannot generate meaningful actions)\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip-probing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\n        \\\\\\\"--conditions\\\\\\\", nargs=\\\\\\\"+\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n        default=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n        help=\\\\\\\"Conditions to run (trained untrained)\\\\\\\",\\\\n    )\\\\n    args = p.parse_args()\\\\n\\\\n    conditions = args.conditions\\\\n    log(f\\\\\\\"Pipeline conditions: {conditions}\\\\\\\")\\\\n\\\\n    t_start = time.time()\\\\n\\\\n    for condition in conditions:\\\\n        if condition == \\\\\\\"trained\\\\\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n        elif condition == \\\\\\\"untrained\\\\\\\":\\\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\\\\\"config.json\\\\\\\")):\\\\n                ckpt = UNTRAINED_CACHE\\\\n            else:\\\\n                ckpt = UNTRAINED_CKPT\\\\n                log(f\\\\\\\"  Will download untrained model from {ckpt}\\\\\\\")\\\\n        else:\\\\n            log(f\\\\\\\"  Unknown condition: {condition}, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\\\n\\\\n        try:\\\\n            model, processor = load_model(ckpt, condition)\\\\n        except Exception as e:\\\\n            log(f\\\\\\\"  ERROR loading {condition} model: {e}\\\\\\\")\\\\n            log(f\\\\\\\"  Skipping {condition} condition\\\\\\\")\\\\n            continue\\\\n\\\\n        tc = time.time()\\\\n        run_pipeline(model, processor, condition, results_dir, args)\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"                \\\"n_samples\\\": len(tm),\\n                \\\"mean_mse\\\": round(float(tm.mean()), 6),\\n                \\\"demo_mses\\\": [round(v, 6) for v in demo_means],\\n                \\\"instruction_correct\\\": INSTRUCTIONS[ti],\\n                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n            }\\n            cond_res[\\\"per_task\\\"][TASKS[ti]] = entry\\n\\n        cond_res[\\\"cross_task_variance\\\"] = {\\n            \\\"cohens_d\\\": {\\n                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": (\\n                    round(float(np.std(per_task_ds) / np.mean(per_task_ds)), 4)\\n                    if np.mean(per_task_ds) > 0\\n                    else 0.0\\n                ),\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(\\n            f\\\"  {cond}: global d={global_d:.4f}  \\\"\\n            f\\\"cross-task mean={np.mean(per_task_ds):.4f}  \\\"\\n            f\\\"token_div={np.mean(all_tok_div):.3f}\\\"\\n        )\\n\\n    ranking = sorted(\\n        conditions,\\n        key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n        reverse=True,\\n    )\\n    all_res[\\\"ranking_by_cohens_d\\\"] = [\\n        {\\n            \\\"condition\\\": c,\\n            \\\"cohens_d\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n            \\\"paired_mse_mean\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"mean\\\"],\\n        }\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\ndef load_model(ckpt_path, condition):\\n    log(f\\\"Loading {condition} model from {ckpt_path} ...\\\")\\n    t0 = time.time()\\n\\n    model = AutoModelForCausalLM.from_pretrained(\\n        ckpt_path,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=\\\"eager\\\",\\n    ).to(DEVICE).eval()\\n\\n    processor = AutoProcessor.from_pretrained(\\n        ckpt_path, trust_remote_code=True, num_crops=1\\n    )\\n\\n    log(f\\\"  Model loaded in {time.time()-t0:.1f}s\\\")\\n    return model, processor\\n\\n\\ndef run_pipeline(model, processor, condition, results_dir, args):\\n    global N_IMG_TOKENS, IMG_TOKEN_ID\\n    os.makedirs(results_dir, exist_ok=True)\\n\\n    nt = 2 if args.dry_run else len(TASKS)\\n    nd = 1 if args.dry_run else N_DEMOS\\n    ns = 2 if args.dry_run else N_TIMESTEPS\\n    nps = 2 if args.dry_run else N_PROBE_SEEDS\\n    cls_layers = [0, 8, 16, 24, 31] if args.dry_run else None\\n\\n    log(f\\\"=== {condition.upper()} pipeline ===\\\")\\n    log(f\\\"Config: tasks={nt} demos={nd} timesteps={ns} seeds={nps} dry_run={args.dry_run}\\\")\\n    log(f\\\"Output: {results_dir}\\\")\\n\\n    IMG_TOKEN_ID = detect_image_token_id(processor)\\n    log(f\\\"  Image token ID: {IMG_TOKEN_ID}\\\")\\n\\n    log(\\\"Validating token layout ...\\\")\\n    hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n    with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n        img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n    inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n    original_ids = inputs[\\\"input_ids\\\"].clone()\\n    log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n    if \\\"pixel_values\\\" in inputs:\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n    if \\\"image_sizes\\\" in inputs:\\n        log(f\\\"  image_sizes: {inputs['image_sizes']}\\\")\\n\\n    with torch.no_grad():\\n        out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n\\n    hs0_shape = out.hidden_states[0].shape\\n    log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n\\n    tr = find_token_regions(original_ids, IMG_TOKEN_ID)\\n    N_IMG_TOKENS = tr[\\\"image\\\"][1] - tr[\\\"image\\\"][0]\\n    log(f\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\")\\n    log(f\\\"  N_IMG_TOKENS={N_IMG_TOKENS}\\\")\\n    log(f\\\"  Total seq_len: input_ids={inputs['input_ids'].shape[1]}, hidden={hs0_shape[1]}\\\")\\n\\n    n_attn_layers = len(out.attentions)\\n    attn_shape = out.attentions[0].shape\\n    log(f\\\"  Attention: {n_attn_layers} layers, shape={attn_shape}\\\")\\n\\n    del out, inputs\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n        model, processor, nt, nd, ns, IMG_TOKEN_ID\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    if not args.skip_probing:\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    t3 = time.time()\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n    with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n        json.dump(attn_res, f, indent=2)\\n    log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n    del attn_ratio_sum, attn_ratio_sq_sum\\n\\n    t4 = time.time()\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\n    with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n        json.dump(cls_res, f, indent=2)\\n    log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n    del reps, actions, labels\\n\\n    if condition == \\\"trained\\\" and not args.skip_counterfactual:\\n        t5 = time.time()\\n        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n        with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n            json.dump(cf_res, f, indent=2)\\n        log(f\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n    elif condition != \\\"trained\\\":\\n        log(\\\"Phase 5: skipped (untrained model cannot generate meaningful actions)\\\")\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\", \\\"untrained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    args = p.parse_args()\\n\\n    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\"config.json\\\")):\\n                ckpt = UNTRAINED_CACHE\\n            else:\\n                ckpt = UNTRAINED_CKPT\\n                log(f\\\"  Will download untrained model from {ckpt}\\\")\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n\\n        try:\\n            model, processor = load_model(ckpt, condition)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            log(f\\\"  Skipping {condition} condition\\\")\\n            continue\\n\\n        tc = time.time()\\n        run_pipeline(model, processor, condition, results_dir, args)\\n        log(f\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017ELp1J2FUSBc2Pdf5JNfD9`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -250 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "3c74f90e-7c3d-4e34-999f-60d88ae27733",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3KbSqvrToDDgPi9txmgKp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6950,
+      "cache_read_input_tokens": 31484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F89fhE1393xcCyBCgTFS4i`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -250 /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "9f1626b1-ad3f-4714-8cbf-20543b1bf2d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3KbSqvrToDDgPi9txmgKp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6950,
+      "cache_read_input_tokens": 31484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T16:45:47.669Z_
+
+<details><summary>↩ Tool result · `toolu_017ELp1J2FUSBc2Pdf5JNfD9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": round(float(np.std(per_task_ds) / np.mean(per_task_ds)), 4)\\n                     if np.mean(per_task_ds) > 0 else 0.0,\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(f\\\"  {cond}: global d={global_d:.4f}  \\\"\\n            f\\\"cross-task mean={np.mean(per_task_ds):.4f}  \\\"\\n            f\\\"token_div={np.mean(all_tok_div):.3f}\\\")\\n\\n    ranking = sorted(conditions,\\n                     key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n                     reverse=True)\\n    all_res[\\\"ranking_by_cohens_d\\\"] = [\\n        {\\\"condition\\\": c,\\n         \\\"cohens_d\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n         \\\"paired_mse_mean\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"mean\\\"]}\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\n\\ndef run_rsa(reps, actions, task_labels, n_sample=20, bootstrap_n=1000, seed=42):\\n    log(\\\"Phase 5: RSA analysis\\\")\\n    from scipy.spatial.distance import pdist\\n    from scipy.stats import spearmanr\\n\\n    rng = np.random.RandomState(seed)\\n    n_tasks = int(task_labels.max()) + 1\\n    layers_to_check = [0, 4, 8, 12, 16, 20, 24, 28, 31]\\n\\n    results = {\\n        \\\"method\\\": {\\n            \\\"pairing\\\": \\\"within-task\\\",\\n            \\\"rep_distance\\\": \\\"cosine\\\",\\n            \\\"act_distance\\\": \\\"euclidean\\\",\\n            \\\"n_sample\\\": n_sample,\\n            \\\"bootstrap_n\\\": bootstrap_n,\\n            \\\"seed\\\": seed,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"layers\\\": layers_to_check,\\n        },\\n        \\\"per_layer\\\": {},\\n    }\\n\\n    for l in layers_to_check:\\n        for pos in (\\\"image_mean\\\", \\\"last_preaction\\\"):\\n            task_rhos = []\\n            for ti in range(n_tasks):\\n                mask = task_labels == ti\\n                X = reps[l][pos][mask]\\n                A = actions[mask]\\n                n = len(X)\\n                if n < n_sample:\\n                    continue\\n\\n                idx = rng.choice(n, size=n_sample, replace=False)\\n                Xs, As = X[idx], A[idx]\\n\\n                rep_d = pdist(Xs.astype(np.float64), metric=\\\"cosine\\\")\\n                act_d = pdist(As.astype(np.float64), metric=\\\"euclidean\\\")\\n\\n                if rep_d.std() < 1e-10 or act_d.std() < 1e-10:\\n                    continue\\n                rho, _ = spearmanr(rep_d, act_d)\\n                task_rhos.append(float(rho))\\n\\n            if not task_rhos:\\n                continue\\n            arr = np.array(task_rhos)\\n            boot_means = [float(np.mean(rng.choice(arr, size=len(arr), replace=True)))\\n                          for _ in range(bootstrap_n)]\\n            boot_means.sort()\\n            ci_lo = boot_means[int(0.025 * bootstrap_n)]\\n            ci_hi = boot_means[int(0.975 * bootstrap_n)]\\n\\n            key = f\\\"L{l}_{pos}\\\"\\n            results[\\\"per_layer\\\"][key] = {\\n                \\\"mean_rsa\\\": round(float(arr.mean()), 6),\\n                \\\"std\\\": round(float(arr.std()), 6),\\n                \\\"ci_95\\\": [round(ci_lo, 6), round(ci_hi, 6)],\\n                \\\"per_task\\\": [round(v, 6) for v in task_rhos],\\n                \\\"n_tasks\\\": len(task_rhos),\\n            }\\n        if l % 8 == 0:\\n            im_key = f\\\"L{l}_image_mean\\\"\\n            lp_key = f\\\"L{l}_last_preaction\\\"\\n            im_v = results[\\\"per_layer\\\"].get(im_key, {}).get(\\\"mean_rsa\\\", \\\"N/A\\\")\\n            lp_v = results[\\\"per_layer\\\"].get(lp_key, {}).get(\\\"mean_rsa\\\", \\\"N/A\\\")\\n            log(f\\\"  L{l}: img_mean RSA={im_v}  last_pre RSA={lp_v}\\\")\\n\\n    if results[\\\"per_layer\\\"]:\\n        best_key = max(results[\\\"per_layer\\\"], key=lambda k: results[\\\"per_layer\\\"][k][\\\"mean_rsa\\\"])\\n        results[\\\"best\\\"] = {\\\"key\\\": best_key, **results[\\\"per_layer\\\"][best_key]}\\n        log(f\\\"  Best RSA: {best_key} = {results['per_layer'][best_key]['mean_rsa']:.4f}\\\")\\n    return results\\n\\n\\ndef main():\\n    global N_IMG_TOKENS\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n             \\n\\n... [截断: 输出过长，省略 2486 字符] ...\\n\\nson\\\")\\n        if os.path.exists(ds_path):\\n            with open(ds_path, \\\"r\\\") as _f:\\n                ds_stats = json.load(_f)\\n            for k, v in ds_stats.items():\\n                if k not in model.norm_stats:\\n                    model.norm_stats[k] = v\\n                    log(f\\\"  Merged norm_stats key: {k}\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        if not args.only_counterfactual:\\n            t1 = time.time()\\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n                model, processor, nt, nd, ns)\\n            log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.only_counterfactual and not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        if not args.only_counterfactual:\\n            t3 = time.time()\\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n            with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n                json.dump(attn_res, f, indent=2)\\n            log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n            del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        if not args.only_counterfactual:\\n            t4 = time.time()\\n            cls_res = run_classification(reps, labels, layers=cls_layers)\\n            with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n                json.dump(cls_res, f, indent=2)\\n            log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.only_counterfactual and not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        if not args.only_counterfactual:\\n            del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "8c7297b7-ad67-40fe-9e42-b1d34afba576",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                \\\\\\\"values\\\\\\\": [round(v, 4) for v in per_task_ds],\\\\n                \\\\\\\"mean\\\\\\\": round(float(np.mean(per_task_ds)), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(np.std(per_task_ds)), 4),\\\\n                \\\\\\\"cv\\\\\\\": round(float(np.std(per_task_ds) / np.mean(per_task_ds)), 4)\\\\n                     if np.mean(per_task_ds) > 0 else 0.0,\\\\n            }\\\\n        }\\\\n        all_res[cond] = cond_res\\\\n        log(f\\\\\\\"  {cond}: global d={global_d:.4f}  \\\\\\\"\\\\n            f\\\\\\\"cross-task mean={np.mean(per_task_ds):.4f}  \\\\\\\"\\\\n            f\\\\\\\"token_div={np.mean(all_tok_div):.3f}\\\\\\\")\\\\n\\\\n    ranking = sorted(conditions,\\\\n                     key=lambda c: all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"paired_mse\\\\\\\"][\\\\\\\"cohens_d\\\\\\\"],\\\\n                     reverse=True)\\\\n    all_res[\\\\\\\"ranking_by_cohens_d\\\\\\\"] = [\\\\n        {\\\\\\\"condition\\\\\\\": c,\\\\n         \\\\\\\"cohens_d\\\\\\\": all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"paired_mse\\\\\\\"][\\\\\\\"cohens_d\\\\\\\"],\\\\n         \\\\\\\"paired_mse_mean\\\\\\\": all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"paired_mse\\\\\\\"][\\\\\\\"mean\\\\\\\"]}\\\\n        for c in ranking\\\\n    ]\\\\n    return all_res\\\\n\\\\n\\\\n\\\\ndef run_rsa(reps, actions, task_labels, n_sample=20, bootstrap_n=1000, seed=42):\\\\n    log(\\\\\\\"Phase 5: RSA analysis\\\\\\\")\\\\n    from scipy.spatial.distance import pdist\\\\n    from scipy.stats import spearmanr\\\\n\\\\n    rng = np.random.RandomState(seed)\\\\n    n_tasks = int(task_labels.max()) + 1\\\\n    layers_to_check = [0, 4, 8, 12, 16, 20, 24, 28, 31]\\\\n\\\\n    results = {\\\\n        \\\\\\\"method\\\\\\\": {\\\\n            \\\\\\\"pairing\\\\\\\": \\\\\\\"within-task\\\\\\\",\\\\n            \\\\\\\"rep_distance\\\\\\\": \\\\\\\"cosine\\\\\\\",\\\\n            \\\\\\\"act_distance\\\\\\\": \\\\\\\"euclidean\\\\\\\",\\\\n            \\\\\\\"n_sample\\\\\\\": n_sample,\\\\n            \\\\\\\"bootstrap_n\\\\\\\": bootstrap_n,\\\\n            \\\\\\\"seed\\\\\\\": seed,\\\\n            \\\\\\\"n_tasks\\\\\\\": n_tasks,\\\\n            \\\\\\\"layers\\\\\\\": layers_to_check,\\\\n        },\\\\n        \\\\\\\"per_layer\\\\\\\": {},\\\\n    }\\\\n\\\\n    for l in layers_to_check:\\\\n        for pos in (\\\\\\\"image_mean\\\\\\\", \\\\\\\"last_preaction\\\\\\\"):\\\\n            task_rhos = []\\\\n            for ti in range(n_tasks):\\\\n                mask = task_labels == ti\\\\n                X = reps[l][pos][mask]\\\\n                A = actions[mask]\\\\n                n = len(X)\\\\n                if n < n_sample:\\\\n                    continue\\\\n\\\\n                idx = rng.choice(n, size=n_sample, replace=False)\\\\n                Xs, As = X[idx], A[idx]\\\\n\\\\n                rep_d = pdist(Xs.astype(np.float64), metric=\\\\\\\"cosine\\\\\\\")\\\\n                act_d = pdist(As.astype(np.float64), metric=\\\\\\\"euclidean\\\\\\\")\\\\n\\\\n                if rep_d.std() < 1e-10 or act_d.std() < 1e-10:\\\\n                    continue\\\\n                rho, _ = spearmanr(rep_d, act_d)\\\\n                task_rhos.append(float(rho))\\\\n\\\\n            if not task_rhos:\\\\n                continue\\\\n            arr = np.array(task_rhos)\\\\n            boot_means = [float(np.mean(rng.choice(arr, size=len(arr), replace=True)))\\\\n                          for _ in range(bootstrap_n)]\\\\n            boot_means.sort()\\\\n            ci_lo = boot_means[int(0.025 * bootstrap_n)]\\\\n            ci_hi = boot_means[int(0.975 * bootstrap_n)]\\\\n\\\\n            key = f\\\\\\\"L{l}_{pos}\\\\\\\"\\\\n            results[\\\\\\\"per_layer\\\\\\\"][key] = {\\\\n                \\\\\\\"mean_rsa\\\\\\\": round(float(arr.mean()), 6),\\\\n                \\\\\\\"std\\\\\\\": round(float(arr.std()), 6),\\\\n                \\\\\\\"ci_95\\\\\\\": [round(ci_lo, 6), round(ci_hi, 6)],\\\\n                \\\\\\\"per_task\\\\\\\": [round(v, 6) for v in task_rhos],\\\\n                \\\\\\\"n_tasks\\\\\\\": len(task_rhos),\\\\n            }\\\\n        if l % 8 == 0:\\\\n            im_key = f\\\\\\\"L{l}_image_mean\\\\\\\"\\\\n            lp_key = f\\\\\\\"L{l}_last_preaction\\\\\\\"\\\\n            im_v = results[\\\\\\\"per_layer\\\\\\\"].get(im_key, {}).get(\\\\\\\"mean_rsa\\\\\\\", \\\\\\\"N/A\\\\\\\")\\\\n            lp_v = results[\\\\\\\"per_layer\\\\\\\"].get(lp_key, {}).get(\\\\\\\"mean_rsa\\\\\\\", \\\\\\\"N/A\\\\\\\")\\\\n            log(f\\\\\\\"  L{l}: img_mean RSA={im_v}  last_pre RSA={lp_v}\\\\\\\")\\\\n\\\\n    if results[\\\\\\\"per_layer\\\\\\\"]:\\\\n        best_key = max(results[\\\\\\\"per_layer\\\\\\\"], key=lambda k: results[\\\\\\\"per_layer\\\\\\\"][k][\\\\\\\"mean_rsa\\\\\\\"])\\\\n        results[\\\\\\\"best\\\\\\\"] = {\\\\\\\"key\\\\\\\": best_key, **results[\\\\\\\"per_layer\\\\\\\"][best_key]}\\\\n        log(f\\\\\\\"  Best RSA: {best_key} = {results['per_layer'][best_key]['mean_rsa']:.4f}\\\\\\\")\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    global N_IMG_TOKENS\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n             \\\\n\\\\n... [截断: 输出过长，省略 2486 字符] ...\\\\n\\\\nson\\\\\\\")\\\\n        if os.path.exists(ds_path):\\\\n            with open(ds_path, \\\\\\\"r\\\\\\\") as _f:\\\\n                ds_stats = json.load(_f)\\\\n            for k, v in ds_stats.items():\\\\n                if k not in model.norm_stats:\\\\n                    model.norm_stats[k] = v\\\\n                    log(f\\\\\\\"  Merged norm_stats key: {k}\\\\\\\")\\\\n\\\\n        log(\\\\\\\"Validating token layout ...\\\\\\\")\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[0]}_demo.hdf5\\\\\\\")\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            img = Image.fromarray(hf[\\\\\\\"data/demo_0/obs/agentview_rgb\\\\\\\"][0])\\\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\\\n        log(f\\\\\\\"  input_ids shape: {inputs['input_ids'].shape}\\\\\\\")\\\\n        log(f\\\\\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\\\\\")\\\\n        with torch.no_grad():\\\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\\\n        hs0_shape = out.hidden_states[0].shape\\\\n        log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n        expected_seq = inputs[\\\\\\\"input_ids\\\\\\\"].shape[1] + N_IMG_TOKENS\\\\n        actual_seq = hs0_shape[1]\\\\n        if actual_seq != expected_seq:\\\\n            log(f\\\\\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\\\\\")\\\\n            log(f\\\\\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\\\\\")\\\\n            N_IMG_TOKENS = actual_seq - inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]\\\\n        log(f\\\\\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\\\\\")\\\\n        del out, inputs\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        if not args.only_counterfactual:\\\\n            t1 = time.time()\\\\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n                model, processor, nt, nd, ns)\\\\n            log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n        if not args.only_counterfactual and not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n        if not args.only_counterfactual:\\\\n            t3 = time.time()\\\\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n            with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(attn_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n            del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n        if not args.only_counterfactual:\\\\n            t4 = time.time()\\\\n            cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n            with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(cls_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n        if not args.only_counterfactual and not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\\\\\"rsa_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\\\\\")\\\\n\\\\n        if not args.only_counterfactual:\\\\n            del reps, actions, labels\\\\n\\\\n        if not args.skip_counterfactual:\\\\n            t5 = time.time()\\\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n            with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(cf_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": round(float(np.std(per_task_ds) / np.mean(per_task_ds)), 4)\\n                     if np.mean(per_task_ds) > 0 else 0.0,\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(f\\\"  {cond}: global d={global_d:.4f}  \\\"\\n            f\\\"cross-task mean={np.mean(per_task_ds):.4f}  \\\"\\n            f\\\"token_div={np.mean(all_tok_div):.3f}\\\")\\n\\n    ranking = sorted(conditions,\\n                     key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n                     reverse=True)\\n    all_res[\\\"ranking_by_cohens_d\\\"] = [\\n        {\\\"condition\\\": c,\\n         \\\"cohens_d\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n         \\\"paired_mse_mean\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"mean\\\"]}\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\n\\ndef run_rsa(reps, actions, task_labels, n_sample=20, bootstrap_n=1000, seed=42):\\n    log(\\\"Phase 5: RSA analysis\\\")\\n    from scipy.spatial.distance import pdist\\n    from scipy.stats import spearmanr\\n\\n    rng = np.random.RandomState(seed)\\n    n_tasks = int(task_labels.max()) + 1\\n    layers_to_check = [0, 4, 8, 12, 16, 20, 24, 28, 31]\\n\\n    results = {\\n        \\\"method\\\": {\\n            \\\"pairing\\\": \\\"within-task\\\",\\n            \\\"rep_distance\\\": \\\"cosine\\\",\\n            \\\"act_distance\\\": \\\"euclidean\\\",\\n            \\\"n_sample\\\": n_sample,\\n            \\\"bootstrap_n\\\": bootstrap_n,\\n            \\\"seed\\\": seed,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"layers\\\": layers_to_check,\\n        },\\n        \\\"per_layer\\\": {},\\n    }\\n\\n    for l in layers_to_check:\\n        for pos in (\\\"image_mean\\\", \\\"last_preaction\\\"):\\n            task_rhos = []\\n            for ti in range(n_tasks):\\n                mask = task_labels == ti\\n                X = reps[l][pos][mask]\\n                A = actions[mask]\\n                n = len(X)\\n                if n < n_sample:\\n                    continue\\n\\n                idx = rng.choice(n, size=n_sample, replace=False)\\n                Xs, As = X[idx], A[idx]\\n\\n                rep_d = pdist(Xs.astype(np.float64), metric=\\\"cosine\\\")\\n                act_d = pdist(As.astype(np.float64), metric=\\\"euclidean\\\")\\n\\n                if rep_d.std() < 1e-10 or act_d.std() < 1e-10:\\n                    continue\\n                rho, _ = spearmanr(rep_d, act_d)\\n                task_rhos.append(float(rho))\\n\\n            if not task_rhos:\\n                continue\\n            arr = np.array(task_rhos)\\n            boot_means = [float(np.mean(rng.choice(arr, size=len(arr), replace=True)))\\n                          for _ in range(bootstrap_n)]\\n            boot_means.sort()\\n            ci_lo = boot_means[int(0.025 * bootstrap_n)]\\n            ci_hi = boot_means[int(0.975 * bootstrap_n)]\\n\\n            key = f\\\"L{l}_{pos}\\\"\\n            results[\\\"per_layer\\\"][key] = {\\n                \\\"mean_rsa\\\": round(float(arr.mean()), 6),\\n                \\\"std\\\": round(float(arr.std()), 6),\\n                \\\"ci_95\\\": [round(ci_lo, 6), round(ci_hi, 6)],\\n                \\\"per_task\\\": [round(v, 6) for v in task_rhos],\\n                \\\"n_tasks\\\": len(task_rhos),\\n            }\\n        if l % 8 == 0:\\n            im_key = f\\\"L{l}_image_mean\\\"\\n            lp_key = f\\\"L{l}_last_preaction\\\"\\n            im_v = results[\\\"per_layer\\\"].get(im_key, {}).get(\\\"mean_rsa\\\", \\\"N/A\\\")\\n            lp_v = results[\\\"per_layer\\\"].get(lp_key, {}).get(\\\"mean_rsa\\\", \\\"N/A\\\")\\n            log(f\\\"  L{l}: img_mean RSA={im_v}  last_pre RSA={lp_v}\\\")\\n\\n    if results[\\\"per_layer\\\"]:\\n        best_key = max(results[\\\"per_layer\\\"], key=lambda k: results[\\\"per_layer\\\"][k][\\\"mean_rsa\\\"])\\n        results[\\\"best\\\"] = {\\\"key\\\": best_key, **results[\\\"per_layer\\\"][best_key]}\\n        log(f\\\"  Best RSA: {best_key} = {results['per_layer'][best_key]['mean_rsa']:.4f}\\\")\\n    return results\\n\\n\\ndef main():\\n    global N_IMG_TOKENS\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n             \\n\\n... [截断: 输出过长，省略 2486 字符] ...\\n\\nson\\\")\\n        if os.path.exists(ds_path):\\n            with open(ds_path, \\\"r\\\") as _f:\\n                ds_stats = json.load(_f)\\n            for k, v in ds_stats.items():\\n                if k not in model.norm_stats:\\n                    model.norm_stats[k] = v\\n                    log(f\\\"  Merged norm_stats key: {k}\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        if not args.only_counterfactual:\\n            t1 = time.time()\\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n                model, processor, nt, nd, ns)\\n            log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.only_counterfactual and not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        if not args.only_counterfactual:\\n            t3 = time.time()\\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n            with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n                json.dump(attn_res, f, indent=2)\\n            log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n            del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        if not args.only_counterfactual:\\n            t4 = time.time()\\n            cls_res = run_classification(reps, labels, layers=cls_layers)\\n            with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n                json.dump(cls_res, f, indent=2)\\n            log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.only_counterfactual and not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        if not args.only_counterfactual:\\n            del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T16:45:48.269Z_
+
+<details><summary>↩ Tool result · `toolu_01F89fhE1393xcCyBCgTFS4i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\\n                          for di in range(n_demos)]\\n            da = np.array(demo_means)\\n            dd = float(da.mean() / da.std(ddof=1)) if da.std(ddof=1) > 0 else 0.0\\n\\n            entry = {\\n                \\\"cohens_d\\\": round(td, 4),\\n                \\\"demo_level_cohens_d\\\": round(dd, 4),\\n                \\\"n_samples\\\": len(tm),\\n                \\\"mean_mse\\\": round(float(tm.mean()), 6),\\n                \\\"demo_mses\\\": [round(v, 6) for v in demo_means],\\n                \\\"instruction_correct\\\": INSTRUCTIONS[ti],\\n                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n            }\\n            cond_res[\\\"per_task\\\"][TASKS[ti]] = entry\\n\\n        cond_res[\\\"cross_task_variance\\\"] = {\\n            \\\"cohens_d\\\": {\\n                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": round(float(np.std(per_task_ds) / np.mean(per_task_ds)), 4)\\n                     if np.mean(per_task_ds) > 0 else 0.0,\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(f\\\"  {cond}: global d={global_d:.4f}  \\\"\\n            f\\\"cross-task mean={np.mean(per_task_ds):.4f}  \\\"\\n            f\\\"token_div={np.mean(all_tok_div):.3f}\\\")\\n\\n    ranking = sorted(conditions,\\n                     key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n                     reverse=True)\\n    all_res[\\\"ranking_by_cohens_d\\\"] = [\\n        {\\\"condition\\\": c,\\n         \\\"cohens_d\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n         \\\"paired_mse_mean\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"mean\\\"]}\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\n\\ndef run_rsa(reps, actions, task_labels, n_sample=20, bootstrap_n=1000, seed=42):\\n    log(\\\"Phase 5: RSA analysis\\\")\\n    from scipy.spatial.distance import pdist\\n    from scipy.stats import spearmanr\\n\\n    rng = np.random.RandomState(seed)\\n    n_tasks = int(task_labels.max()) + 1\\n    layers_to_check = [0, 4, 8, 12, 16, 20, 24, 28, 31]\\n\\n    results = {\\n        \\\"method\\\": {\\n            \\\"pairing\\\": \\\"within-task\\\",\\n            \\\"rep_distance\\\": \\\"cosine\\\",\\n            \\\"act_distance\\\": \\\"euclidean\\\",\\n            \\\"n_sample\\\": n_sample,\\n            \\\"bootstrap_n\\\": bootstrap_n,\\n            \\\"seed\\\": seed,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"layers\\\": layers_to_check,\\n        },\\n        \\\"per_layer\\\": {},\\n    }\\n\\n    for l in layers_to_check:\\n        for pos in (\\\"image_mean\\\", \\\"last_preaction\\\"):\\n            task_rhos = []\\n            for ti in range(n_tasks):\\n                mask = task_labels == ti\\n                X = reps[l][pos][mask]\\n                A = actions[mask]\\n                n = len(X)\\n                if n < n_sample:\\n                    continue\\n\\n                idx = rng.choice(n, size=n_sample, replace=False)\\n                Xs, As = X[idx], A[idx]\\n\\n                rep_d = pdist(Xs.astype(np.float64), metric=\\\"cosine\\\")\\n                act_d = pdist(As.astype(np.float64), metric=\\\"euclidean\\\")\\n\\n                if rep_d.std() < 1e-10 or act_d.std() < 1e-10:\\n                    continue\\n                rho, _ = spearmanr(rep_d, act_d)\\n                task_rhos.append(float(rho))\\n\\n            if not task_rhos:\\n                continue\\n            arr = np.array(task_rhos)\\n            boot_means = [float(np.mean(rng.choice(arr, size=len(arr), replace=True)))\\n                          for _ in range(bootstrap_n)]\\n            boot_means.sort()\\n            ci_lo = boot_means[int(0.025 * bootstrap_n)]\\n            ci_hi = boot_means[int(0.975 * bootstrap_n)]\\n\\n            key = f\\\"L{l}_{pos}\\\"\\n            results[\\\"per_layer\\\"][key] = {\\n                \\\"mean_rsa\\\": round(float(arr.mean()), 6),\\n                \\\"std\\\": round(float(arr.std()), 6),\\n                \\\"ci_95\\\": [round(ci_lo, 6), round(ci_hi, 6)],\\n                \\\"per_task\\\": [round(v, 6) for v in task_rhos],\\n                \\\"n_tasks\\\": len(task_rhos),\\n            }\\n\\n\\n... [截断: 输出过长，省略 2287 字符] ...\\n\\n= time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "f9f359ea-a34d-4824-bbe1-0b314bfc7ad9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\\\\n                          for di in range(n_demos)]\\\\n            da = np.array(demo_means)\\\\n            dd = float(da.mean() / da.std(ddof=1)) if da.std(ddof=1) > 0 else 0.0\\\\n\\\\n            entry = {\\\\n                \\\\\\\"cohens_d\\\\\\\": round(td, 4),\\\\n                \\\\\\\"demo_level_cohens_d\\\\\\\": round(dd, 4),\\\\n                \\\\\\\"n_samples\\\\\\\": len(tm),\\\\n                \\\\\\\"mean_mse\\\\\\\": round(float(tm.mean()), 6),\\\\n                \\\\\\\"demo_mses\\\\\\\": [round(v, 6) for v in demo_means],\\\\n                \\\\\\\"instruction_correct\\\\\\\": INSTRUCTIONS[ti],\\\\n                \\\\\\\"instruction_counterfactual\\\\\\\": _cf_instruction(ti, cond),\\\\n            }\\\\n            cond_res[\\\\\\\"per_task\\\\\\\"][TASKS[ti]] = entry\\\\n\\\\n        cond_res[\\\\\\\"cross_task_variance\\\\\\\"] = {\\\\n            \\\\\\\"cohens_d\\\\\\\": {\\\\n                \\\\\\\"values\\\\\\\": [round(v, 4) for v in per_task_ds],\\\\n                \\\\\\\"mean\\\\\\\": round(float(np.mean(per_task_ds)), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(np.std(per_task_ds)), 4),\\\\n                \\\\\\\"cv\\\\\\\": round(float(np.std(per_task_ds) / np.mean(per_task_ds)), 4)\\\\n                     if np.mean(per_task_ds) > 0 else 0.0,\\\\n            }\\\\n        }\\\\n        all_res[cond] = cond_res\\\\n        log(f\\\\\\\"  {cond}: global d={global_d:.4f}  \\\\\\\"\\\\n            f\\\\\\\"cross-task mean={np.mean(per_task_ds):.4f}  \\\\\\\"\\\\n            f\\\\\\\"token_div={np.mean(all_tok_div):.3f}\\\\\\\")\\\\n\\\\n    ranking = sorted(conditions,\\\\n                     key=lambda c: all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"paired_mse\\\\\\\"][\\\\\\\"cohens_d\\\\\\\"],\\\\n                     reverse=True)\\\\n    all_res[\\\\\\\"ranking_by_cohens_d\\\\\\\"] = [\\\\n        {\\\\\\\"condition\\\\\\\": c,\\\\n         \\\\\\\"cohens_d\\\\\\\": all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"paired_mse\\\\\\\"][\\\\\\\"cohens_d\\\\\\\"],\\\\n         \\\\\\\"paired_mse_mean\\\\\\\": all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"paired_mse\\\\\\\"][\\\\\\\"mean\\\\\\\"]}\\\\n        for c in ranking\\\\n    ]\\\\n    return all_res\\\\n\\\\n\\\\n\\\\ndef run_rsa(reps, actions, task_labels, n_sample=20, bootstrap_n=1000, seed=42):\\\\n    log(\\\\\\\"Phase 5: RSA analysis\\\\\\\")\\\\n    from scipy.spatial.distance import pdist\\\\n    from scipy.stats import spearmanr\\\\n\\\\n    rng = np.random.RandomState(seed)\\\\n    n_tasks = int(task_labels.max()) + 1\\\\n    layers_to_check = [0, 4, 8, 12, 16, 20, 24, 28, 31]\\\\n\\\\n    results = {\\\\n        \\\\\\\"method\\\\\\\": {\\\\n            \\\\\\\"pairing\\\\\\\": \\\\\\\"within-task\\\\\\\",\\\\n            \\\\\\\"rep_distance\\\\\\\": \\\\\\\"cosine\\\\\\\",\\\\n            \\\\\\\"act_distance\\\\\\\": \\\\\\\"euclidean\\\\\\\",\\\\n            \\\\\\\"n_sample\\\\\\\": n_sample,\\\\n            \\\\\\\"bootstrap_n\\\\\\\": bootstrap_n,\\\\n            \\\\\\\"seed\\\\\\\": seed,\\\\n            \\\\\\\"n_tasks\\\\\\\": n_tasks,\\\\n            \\\\\\\"layers\\\\\\\": layers_to_check,\\\\n        },\\\\n        \\\\\\\"per_layer\\\\\\\": {},\\\\n    }\\\\n\\\\n    for l in layers_to_check:\\\\n        for pos in (\\\\\\\"image_mean\\\\\\\", \\\\\\\"last_preaction\\\\\\\"):\\\\n            task_rhos = []\\\\n            for ti in range(n_tasks):\\\\n                mask = task_labels == ti\\\\n                X = reps[l][pos][mask]\\\\n                A = actions[mask]\\\\n                n = len(X)\\\\n                if n < n_sample:\\\\n                    continue\\\\n\\\\n                idx = rng.choice(n, size=n_sample, replace=False)\\\\n                Xs, As = X[idx], A[idx]\\\\n\\\\n                rep_d = pdist(Xs.astype(np.float64), metric=\\\\\\\"cosine\\\\\\\")\\\\n                act_d = pdist(As.astype(np.float64), metric=\\\\\\\"euclidean\\\\\\\")\\\\n\\\\n                if rep_d.std() < 1e-10 or act_d.std() < 1e-10:\\\\n                    continue\\\\n                rho, _ = spearmanr(rep_d, act_d)\\\\n                task_rhos.append(float(rho))\\\\n\\\\n            if not task_rhos:\\\\n                continue\\\\n            arr = np.array(task_rhos)\\\\n            boot_means = [float(np.mean(rng.choice(arr, size=len(arr), replace=True)))\\\\n                          for _ in range(bootstrap_n)]\\\\n            boot_means.sort()\\\\n            ci_lo = boot_means[int(0.025 * bootstrap_n)]\\\\n            ci_hi = boot_means[int(0.975 * bootstrap_n)]\\\\n\\\\n            key = f\\\\\\\"L{l}_{pos}\\\\\\\"\\\\n            results[\\\\\\\"per_layer\\\\\\\"][key] = {\\\\n                \\\\\\\"mean_rsa\\\\\\\": round(float(arr.mean()), 6),\\\\n                \\\\\\\"std\\\\\\\": round(float(arr.std()), 6),\\\\n                \\\\\\\"ci_95\\\\\\\": [round(ci_lo, 6), round(ci_hi, 6)],\\\\n                \\\\\\\"per_task\\\\\\\": [round(v, 6) for v in task_rhos],\\\\n                \\\\\\\"n_tasks\\\\\\\": len(task_rhos),\\\\n            }\\\\n\\\\n\\\\n... [截断: 输出过长，省略 2287 字符] ...\\\\n\\\\n= time.time()\\\\n        model = AutoModelForVision2Seq.from_pretrained(\\\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\\\n        ).to(DEVICE).eval()\\\\n        import importlib.util, sys\\\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\\\n        mod = importlib.util.module_from_spec(spec)\\\\n        sys.modules['processing_prismatic'] = mod\\\\n        spec.loader.exec_module(mod)\\\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\\\n        log(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n        log(\\\\\\\"Validating token layout ...\\\\\\\")\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[0]}_demo.hdf5\\\\\\\")\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            img = Image.fromarray(hf[\\\\\\\"data/demo_0/obs/agentview_rgb\\\\\\\"][0])\\\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\\\n        log(f\\\\\\\"  input_ids shape: {inputs['input_ids'].shape}\\\\\\\")\\\\n        log(f\\\\\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\\\\\")\\\\n        with torch.no_grad():\\\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\\\n        hs0_shape = out.hidden_states[0].shape\\\\n        log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n        expected_seq = inputs[\\\\\\\"input_ids\\\\\\\"].shape[1] + N_IMG_TOKENS\\\\n        actual_seq = hs0_shape[1]\\\\n        if actual_seq != expected_seq:\\\\n            log(f\\\\\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\\\\\")\\\\n            log(f\\\\\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\\\\\")\\\\n            N_IMG_TOKENS = actual_seq - inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]\\\\n        log(f\\\\\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\\\\\")\\\\n        del out, inputs\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        t1 = time.time()\\\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n            model, processor, nt, nd, ns)\\\\n        log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n        if not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n        t3 = time.time()\\\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n        with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(attn_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n        del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n        t4 = time.time()\\\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n        with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(cls_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n        if not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\\\\\"rsa_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\\\\\")\\\\n\\\\n        del reps, actions, labels\\\\n\\\\n        if not args.skip_counterfactual:\\\\n            t5 = time.time()\\\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n            with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(cf_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\\n                          for di in range(n_demos)]\\n            da = np.array(demo_means)\\n            dd = float(da.mean() / da.std(ddof=1)) if da.std(ddof=1) > 0 else 0.0\\n\\n            entry = {\\n                \\\"cohens_d\\\": round(td, 4),\\n                \\\"demo_level_cohens_d\\\": round(dd, 4),\\n                \\\"n_samples\\\": len(tm),\\n                \\\"mean_mse\\\": round(float(tm.mean()), 6),\\n                \\\"demo_mses\\\": [round(v, 6) for v in demo_means],\\n                \\\"instruction_correct\\\": INSTRUCTIONS[ti],\\n                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n            }\\n            cond_res[\\\"per_task\\\"][TASKS[ti]] = entry\\n\\n        cond_res[\\\"cross_task_variance\\\"] = {\\n            \\\"cohens_d\\\": {\\n                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": round(float(np.std(per_task_ds) / np.mean(per_task_ds)), 4)\\n                     if np.mean(per_task_ds) > 0 else 0.0,\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(f\\\"  {cond}: global d={global_d:.4f}  \\\"\\n            f\\\"cross-task mean={np.mean(per_task_ds):.4f}  \\\"\\n            f\\\"token_div={np.mean(all_tok_div):.3f}\\\")\\n\\n    ranking = sorted(conditions,\\n                     key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n                     reverse=True)\\n    all_res[\\\"ranking_by_cohens_d\\\"] = [\\n        {\\\"condition\\\": c,\\n         \\\"cohens_d\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"cohens_d\\\"],\\n         \\\"paired_mse_mean\\\": all_res[c][\\\"global_metrics\\\"][\\\"paired_mse\\\"][\\\"mean\\\"]}\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\n\\ndef run_rsa(reps, actions, task_labels, n_sample=20, bootstrap_n=1000, seed=42):\\n    log(\\\"Phase 5: RSA analysis\\\")\\n    from scipy.spatial.distance import pdist\\n    from scipy.stats import spearmanr\\n\\n    rng = np.random.RandomState(seed)\\n    n_tasks = int(task_labels.max()) + 1\\n    layers_to_check = [0, 4, 8, 12, 16, 20, 24, 28, 31]\\n\\n    results = {\\n        \\\"method\\\": {\\n            \\\"pairing\\\": \\\"within-task\\\",\\n            \\\"rep_distance\\\": \\\"cosine\\\",\\n            \\\"act_distance\\\": \\\"euclidean\\\",\\n            \\\"n_sample\\\": n_sample,\\n            \\\"bootstrap_n\\\": bootstrap_n,\\n            \\\"seed\\\": seed,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"layers\\\": layers_to_check,\\n        },\\n        \\\"per_layer\\\": {},\\n    }\\n\\n    for l in layers_to_check:\\n        for pos in (\\\"image_mean\\\", \\\"last_preaction\\\"):\\n            task_rhos = []\\n            for ti in range(n_tasks):\\n                mask = task_labels == ti\\n                X = reps[l][pos][mask]\\n                A = actions[mask]\\n                n = len(X)\\n                if n < n_sample:\\n                    continue\\n\\n                idx = rng.choice(n, size=n_sample, replace=False)\\n                Xs, As = X[idx], A[idx]\\n\\n                rep_d = pdist(Xs.astype(np.float64), metric=\\\"cosine\\\")\\n                act_d = pdist(As.astype(np.float64), metric=\\\"euclidean\\\")\\n\\n                if rep_d.std() < 1e-10 or act_d.std() < 1e-10:\\n                    continue\\n                rho, _ = spearmanr(rep_d, act_d)\\n                task_rhos.append(float(rho))\\n\\n            if not task_rhos:\\n                continue\\n            arr = np.array(task_rhos)\\n            boot_means = [float(np.mean(rng.choice(arr, size=len(arr), replace=True)))\\n                          for _ in range(bootstrap_n)]\\n            boot_means.sort()\\n            ci_lo = boot_means[int(0.025 * bootstrap_n)]\\n            ci_hi = boot_means[int(0.975 * bootstrap_n)]\\n\\n            key = f\\\"L{l}_{pos}\\\"\\n            results[\\\"per_layer\\\"][key] = {\\n                \\\"mean_rsa\\\": round(float(arr.mean()), 6),\\n                \\\"std\\\": round(float(arr.std()), 6),\\n                \\\"ci_95\\\": [round(ci_lo, 6), round(ci_hi, 6)],\\n                \\\"per_task\\\": [round(v, 6) for v in task_rhos],\\n                \\\"n_tasks\\\": len(task_rhos),\\n            }\\n\\n\\n... [截断: 输出过长，省略 2287 字符] ...\\n\\n= time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to see the actual `run_counterfactual` function implementations for both the action MSE method (OpenVLA) and the cosine distance method (TracVLA/NORA). Let me read the specific sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "2dc87352-ad69-4785-8fbb-51278e533351",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019znf64WXdzAxR3DNKLtiBD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10658,
+      "cache_read_input_tokens": 38434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+Now let me read the `run_counterfactual` functions in detail — the action MSE version and the cosine distance version.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "36c1a38f-023f-4acc-9a31-2382b0acaaa9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019znf64WXdzAxR3DNKLtiBD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10658,
+      "cache_read_input_tokens": 38434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JRZgXkitcRUsDHwpn38MbE`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def run_counterfactual\" /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "48584eae-2732-4ed3-a655-7c1c51031e0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019znf64WXdzAxR3DNKLtiBD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10658,
+      "cache_read_input_tokens": 38434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T16:45:55.769Z_
+
+<details><summary>↩ Tool result · `toolu_01JRZgXkitcRUsDHwpn38MbE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py:296:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py:328:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py:299:def run_counterfactual(model, processor, config, n_tasks, n_demos, n_timesteps):\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py:309:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "46c46a81-1c7c-4fff-80d1-a7d3737235f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py:296:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py:328:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py:299:def run_counterfactual(model, processor, config, n_tasks, n_demos, n_timesteps):\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py:309:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py:296:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py:328:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py:299:def run_counterfactual(model, processor, config, n_tasks, n_demos, n_timesteps):\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py:309:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MdhEfDr3jECPpUWfjmdXXF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -n '296,420p' /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "b2e7d70b-1f9a-4654-965a-f03170519648",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QndXDeNrQufbHcwossUTZv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 596,
+      "cache_read_input_tokens": 49092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 596
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T16:45:59.091Z_
+
+<details><summary>↩ Tool result · `toolu_01MdhEfDr3jECPpUWfjmdXXF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "42ff22a0-8861-4885-9944-855ae1be7f1a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dsnf3U4dyNjUeFJL5KqVJp`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -n '328,460p' /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "3ceee886-6f05-4ede-9711-15ab5f8d737e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QndXDeNrQufbHcwossUTZv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 596,
+      "cache_read_input_tokens": 49092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 596
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T16:45:59.546Z_
+
+<details><summary>↩ Tool result · `toolu_01Dsnf3U4dyNjUeFJL5KqVJp`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "fa294f38-cb38-4d0f-83fa-fe74bad1eea6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EAkVQmZ8RmJrVx9t9V4USS`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -n '299,430p' /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "7d828701-8398-49ba-b9b9-845c40a90e14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QndXDeNrQufbHcwossUTZv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 596,
+      "cache_read_input_tokens": 49092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 596
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T16:46:00.151Z_
+
+<details><summary>↩ Tool result · `toolu_01EAkVQmZ8RmJrVx9t9V4USS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "460b1775-b39c-451f-8034-6e43646198ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015NJTUECBC2nQTeZDd75w5B`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +296 /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "0fc67b3a-14e8-4d32-94ee-53f3bb13766a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PoiUCB3dPcbzK33QFkYBvx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 49688,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 685
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ni284R3bFnkLLtxvVRuRTr`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +328 /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "9bc103e9-d185-426c-bacb-f51aa07feddf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PoiUCB3dPcbzK33QFkYBvx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 49688,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 685
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T16:46:04.145Z_
+
+<details><summary>↩ Tool result · `toolu_015NJTUECBC2nQTeZDd75w5B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 6: counterfactual analysis\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_libero_object\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks, \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"openvla-7b-finetuned-libero-object\\\",\\n            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        all_mses, all_tok_div = [], []\\n        per_task_mses = defaultdict(list)\\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\\n        per_task_correct = defaultdict(list)\\n        per_task_cf = defaultdict(list)\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n                    n_avail = hf[f\\\"data/demo_{di}/actions\\\"].shape[0]\\n                    for t in range(min(n_timesteps, n_avail)):\\n                        img = Image.fromarray(\\n                            hf[f\\\"data/demo_{di}/obs/agentview_rgb\\\"][t])\\n\\n                        c_act, c_tok = generate_action(\\n                            model, processor, INSTRUCTIONS[ti], img)\\n                        f_act, f_tok = generate_action(\\n                            model, processor, cf_instr, img)\\n\\n                        mse = float(np.mean((c_act - f_act) ** 2))\\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\\n\\n                        all_mses.append(mse)\\n                        all_tok_div.append(tok_div)\\n                        per_task_mses[ti].append(mse)\\n                        per_task_demo_mses[ti][di].append(mse)\\n                        per_task_correct[ti].append(c_act)\\n                        per_task_cf[ti].append(f_act)\\n\\n                        sample_n += 1\\n                        if sample_n % 200 == 0:\\n                            torch.cuda.empty_cache()\\n                            log(f\\\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\\\")\\n\\n        mse_arr = np.array(all_mses)\\n        global_d = float(mse_arr.mean() / mse_arr.std(ddof=1)) if mse_arr.std(ddof=1) > 0 else 0.0\\n\\n        ca_all = np.concatenate([np.array(per_task_correct[ti]) for ti in range(n_tasks)])\\n        cf_all = np.concatenate([np.array(per_task_cf[ti]) for ti in range(n_tasks)])\\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\\n\\n        cond_res = {\\n            \\\"global_metrics\\\": {\\n                \\\"paired_mse\\\": {\\n                    \\\"mean\\\": round(float(mse_arr.mean()), 6),\\n                    \\\"std\\\": round(float(mse_arr.std()), 6),\\n                    \\\"cohens_d\\\": round(global_d, 4),\\n                },\\n                \\\"per_dim_shift\\\": {\\n                    \\\"means\\\": [round(v, 6) for v in pdm],\\n                    \\\"stds\\\": [round(v, 6) for v in pds],\\n                    \\\"dim_names\\\": [\\\"dx\\\",\\\"dy\\\",\\\"dz\\\",\\\"rx\\\",\\\"ry\\\",\\\"rz\\\",\\\"gripper\\\"],\\n                },\\n                \\\"token_divergence_rate\\\": round(float(np.mean(all_tok_div)), 4),\\n                \\\"n_samples\\\": len(mse_arr),\\n            },\\n            \\\"per_task\\\": {},\\n            \\\"cross_task_variance\\\": {},\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_mses[ti])\\n            td = float(tm.mean() / tm.std(ddof=1)) if tm.std(ddof=1) > 0 else 0.0\\n            per_task_ds.append(td)\\n\\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\\n                          for di in range(n_demos)]\\n            da = np.array(demo_means)\\n            dd = float(da.mean() / da.std(ddof=1)) if da.std(ddof=1) > 0 else 0.0\\n\\n            entry = {\\n              \\n\\n... [截断: 输出过长，省略 6008 字符] ...\\n\\n= time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "b006d570-60a7-4343-a135-decdb22bbccd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Phase 6: counterfactual analysis\\\\\\\")\\\\n    conditions = [\\\\\\\"wrong\\\\\\\", \\\\\\\"empty\\\\\\\", \\\\\\\"shuffled\\\\\\\", \\\\\\\"paraphrased\\\\\\\"]\\\\n\\\\n    all_res = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_libero_object\\\\\\\",\\\\n            \\\\\\\"conditions\\\\\\\": conditions,\\\\n            \\\\\\\"n_tasks\\\\\\\": n_tasks, \\\\\\\"n_demos_per_task\\\\\\\": n_demos,\\\\n            \\\\\\\"n_timesteps_per_demo\\\\\\\": n_timesteps,\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b-finetuned-libero-object\\\\\\\",\\\\n            \\\\\\\"unnorm_key\\\\\\\": UNNORM, \\\\\\\"seed\\\\\\\": 42,\\\\n            \\\\\\\"task_names\\\\\\\": TASKS[:n_tasks],\\\\n        }\\\\n    }\\\\n\\\\n    for cond in conditions:\\\\n        log(f\\\\\\\"  Condition: {cond}\\\\\\\")\\\\n        all_mses, all_tok_div = [], []\\\\n        per_task_mses = defaultdict(list)\\\\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\\\\n        per_task_correct = defaultdict(list)\\\\n        per_task_cf = defaultdict(list)\\\\n        sample_n = 0\\\\n\\\\n        for ti in range(n_tasks):\\\\n            cf_instr = _cf_instruction(ti, cond)\\\\n            hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n\\\\n            with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n                for di in range(n_demos):\\\\n                    n_avail = hf[f\\\\\\\"data/demo_{di}/actions\\\\\\\"].shape[0]\\\\n                    for t in range(min(n_timesteps, n_avail)):\\\\n                        img = Image.fromarray(\\\\n                            hf[f\\\\\\\"data/demo_{di}/obs/agentview_rgb\\\\\\\"][t])\\\\n\\\\n                        c_act, c_tok = generate_action(\\\\n                            model, processor, INSTRUCTIONS[ti], img)\\\\n                        f_act, f_tok = generate_action(\\\\n                            model, processor, cf_instr, img)\\\\n\\\\n                        mse = float(np.mean((c_act - f_act) ** 2))\\\\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\\\\n\\\\n                        all_mses.append(mse)\\\\n                        all_tok_div.append(tok_div)\\\\n                        per_task_mses[ti].append(mse)\\\\n                        per_task_demo_mses[ti][di].append(mse)\\\\n                        per_task_correct[ti].append(c_act)\\\\n                        per_task_cf[ti].append(f_act)\\\\n\\\\n                        sample_n += 1\\\\n                        if sample_n % 200 == 0:\\\\n                            torch.cuda.empty_cache()\\\\n                            log(f\\\\\\\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\\\\\\\")\\\\n\\\\n        mse_arr = np.array(all_mses)\\\\n        global_d = float(mse_arr.mean() / mse_arr.std(ddof=1)) if mse_arr.std(ddof=1) > 0 else 0.0\\\\n\\\\n        ca_all = np.concatenate([np.array(per_task_correct[ti]) for ti in range(n_tasks)])\\\\n        cf_all = np.concatenate([np.array(per_task_cf[ti]) for ti in range(n_tasks)])\\\\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\\\\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\\\\n\\\\n        cond_res = {\\\\n            \\\\\\\"global_metrics\\\\\\\": {\\\\n                \\\\\\\"paired_mse\\\\\\\": {\\\\n                    \\\\\\\"mean\\\\\\\": round(float(mse_arr.mean()), 6),\\\\n                    \\\\\\\"std\\\\\\\": round(float(mse_arr.std()), 6),\\\\n                    \\\\\\\"cohens_d\\\\\\\": round(global_d, 4),\\\\n                },\\\\n                \\\\\\\"per_dim_shift\\\\\\\": {\\\\n                    \\\\\\\"means\\\\\\\": [round(v, 6) for v in pdm],\\\\n                    \\\\\\\"stds\\\\\\\": [round(v, 6) for v in pds],\\\\n                    \\\\\\\"dim_names\\\\\\\": [\\\\\\\"dx\\\\\\\",\\\\\\\"dy\\\\\\\",\\\\\\\"dz\\\\\\\",\\\\\\\"rx\\\\\\\",\\\\\\\"ry\\\\\\\",\\\\\\\"rz\\\\\\\",\\\\\\\"gripper\\\\\\\"],\\\\n                },\\\\n                \\\\\\\"token_divergence_rate\\\\\\\": round(float(np.mean(all_tok_div)), 4),\\\\n                \\\\\\\"n_samples\\\\\\\": len(mse_arr),\\\\n            },\\\\n            \\\\\\\"per_task\\\\\\\": {},\\\\n            \\\\\\\"cross_task_variance\\\\\\\": {},\\\\n        }\\\\n\\\\n        per_task_ds = []\\\\n        for ti in range(n_tasks):\\\\n            tm = np.array(per_task_mses[ti])\\\\n            td = float(tm.mean() / tm.std(ddof=1)) if tm.std(ddof=1) > 0 else 0.0\\\\n            per_task_ds.append(td)\\\\n\\\\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\\\\n                          for di in range(n_demos)]\\\\n            da = np.array(demo_means)\\\\n            dd = float(da.mean() / da.std(ddof=1)) if da.std(ddof=1) > 0 else 0.0\\\\n\\\\n            entry = {\\\\n              \\\\n\\\\n... [截断: 输出过长，省略 6008 字符] ...\\\\n\\\\n= time.time()\\\\n        model = AutoModelForVision2Seq.from_pretrained(\\\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\\\n        ).to(DEVICE).eval()\\\\n        import importlib.util, sys\\\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\\\n        mod = importlib.util.module_from_spec(spec)\\\\n        sys.modules['processing_prismatic'] = mod\\\\n        spec.loader.exec_module(mod)\\\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\\\n        log(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n        log(\\\\\\\"Validating token layout ...\\\\\\\")\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[0]}_demo.hdf5\\\\\\\")\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            img = Image.fromarray(hf[\\\\\\\"data/demo_0/obs/agentview_rgb\\\\\\\"][0])\\\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\\\n        log(f\\\\\\\"  input_ids shape: {inputs['input_ids'].shape}\\\\\\\")\\\\n        log(f\\\\\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\\\\\")\\\\n        with torch.no_grad():\\\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\\\n        hs0_shape = out.hidden_states[0].shape\\\\n        log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n        expected_seq = inputs[\\\\\\\"input_ids\\\\\\\"].shape[1] + N_IMG_TOKENS\\\\n        actual_seq = hs0_shape[1]\\\\n        if actual_seq != expected_seq:\\\\n            log(f\\\\\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\\\\\")\\\\n            log(f\\\\\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\\\\\")\\\\n            N_IMG_TOKENS = actual_seq - inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]\\\\n        log(f\\\\\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\\\\\")\\\\n        del out, inputs\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        t1 = time.time()\\\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n            model, processor, nt, nd, ns)\\\\n        log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n        if not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n        t3 = time.time()\\\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n        with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(attn_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n        del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n        t4 = time.time()\\\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n        with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(cls_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n        if not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\\\\\"rsa_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\\\\\")\\\\n\\\\n        del reps, actions, labels\\\\n\\\\n        if not args.skip_counterfactual:\\\\n            t5 = time.time()\\\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n            with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(cf_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 6: counterfactual analysis\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_libero_object\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks, \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"openvla-7b-finetuned-libero-object\\\",\\n            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        all_mses, all_tok_div = [], []\\n        per_task_mses = defaultdict(list)\\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\\n        per_task_correct = defaultdict(list)\\n        per_task_cf = defaultdict(list)\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n                    n_avail = hf[f\\\"data/demo_{di}/actions\\\"].shape[0]\\n                    for t in range(min(n_timesteps, n_avail)):\\n                        img = Image.fromarray(\\n                            hf[f\\\"data/demo_{di}/obs/agentview_rgb\\\"][t])\\n\\n                        c_act, c_tok = generate_action(\\n                            model, processor, INSTRUCTIONS[ti], img)\\n                        f_act, f_tok = generate_action(\\n                            model, processor, cf_instr, img)\\n\\n                        mse = float(np.mean((c_act - f_act) ** 2))\\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\\n\\n                        all_mses.append(mse)\\n                        all_tok_div.append(tok_div)\\n                        per_task_mses[ti].append(mse)\\n                        per_task_demo_mses[ti][di].append(mse)\\n                        per_task_correct[ti].append(c_act)\\n                        per_task_cf[ti].append(f_act)\\n\\n                        sample_n += 1\\n                        if sample_n % 200 == 0:\\n                            torch.cuda.empty_cache()\\n                            log(f\\\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\\\")\\n\\n        mse_arr = np.array(all_mses)\\n        global_d = float(mse_arr.mean() / mse_arr.std(ddof=1)) if mse_arr.std(ddof=1) > 0 else 0.0\\n\\n        ca_all = np.concatenate([np.array(per_task_correct[ti]) for ti in range(n_tasks)])\\n        cf_all = np.concatenate([np.array(per_task_cf[ti]) for ti in range(n_tasks)])\\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\\n\\n        cond_res = {\\n            \\\"global_metrics\\\": {\\n                \\\"paired_mse\\\": {\\n                    \\\"mean\\\": round(float(mse_arr.mean()), 6),\\n                    \\\"std\\\": round(float(mse_arr.std()), 6),\\n                    \\\"cohens_d\\\": round(global_d, 4),\\n                },\\n                \\\"per_dim_shift\\\": {\\n                    \\\"means\\\": [round(v, 6) for v in pdm],\\n                    \\\"stds\\\": [round(v, 6) for v in pds],\\n                    \\\"dim_names\\\": [\\\"dx\\\",\\\"dy\\\",\\\"dz\\\",\\\"rx\\\",\\\"ry\\\",\\\"rz\\\",\\\"gripper\\\"],\\n                },\\n                \\\"token_divergence_rate\\\": round(float(np.mean(all_tok_div)), 4),\\n                \\\"n_samples\\\": len(mse_arr),\\n            },\\n            \\\"per_task\\\": {},\\n            \\\"cross_task_variance\\\": {},\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_mses[ti])\\n            td = float(tm.mean() / tm.std(ddof=1)) if tm.std(ddof=1) > 0 else 0.0\\n            per_task_ds.append(td)\\n\\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\\n                          for di in range(n_demos)]\\n            da = np.array(demo_means)\\n            dd = float(da.mean() / da.std(ddof=1)) if da.std(ddof=1) > 0 else 0.0\\n\\n            entry = {\\n              \\n\\n... [截断: 输出过长，省略 6008 字符] ...\\n\\n= time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HTsE4Wwe22goZkqyFnYQxk`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +299 /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "e31d93e6-a704-4747-a420-bc1c72547557",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PoiUCB3dPcbzK33QFkYBvx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 49688,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 685
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T16:46:04.694Z_
+
+<details><summary>↩ Tool result · `toolu_01Ni284R3bFnkLLtxvVRuRTr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 5: counterfactual analysis\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_tracvla_object\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"tracevla-phi3v\\\",\\n            \\\"action_space\\\": \\\"normalized_bins\\\",\\n            \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        all_mses, all_tok_div = [], []\\n        per_task_mses = defaultdict(list)\\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\\n        per_task_correct = defaultdict(list)\\n        per_task_cf = defaultdict(list)\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n                    n_avail = hf[f\\\"data/demo_{di}/actions\\\"].shape[0]\\n                    for t in range(min(n_timesteps, n_avail)):\\n                        img = Image.fromarray(\\n                            hf[f\\\"data/demo_{di}/obs/agentview_rgb\\\"][t]\\n                        )\\n\\n                        c_act, c_tok = generate_action_phi3v(\\n                            model, processor, INSTRUCTIONS[ti], img\\n                        )\\n                        f_act, f_tok = generate_action_phi3v(\\n                            model, processor, cf_instr, img\\n                        )\\n\\n                        mse = float(np.mean((c_act - f_act) ** 2))\\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\\n\\n                        all_mses.append(mse)\\n                        all_tok_div.append(tok_div)\\n                        per_task_mses[ti].append(mse)\\n                        per_task_demo_mses[ti][di].append(mse)\\n                        per_task_correct[ti].append(c_act)\\n                        per_task_cf[ti].append(f_act)\\n\\n                        sample_n += 1\\n                        if sample_n % 200 == 0:\\n                            torch.cuda.empty_cache()\\n                            log(f\\\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\\\")\\n\\n        mse_arr = np.array(all_mses)\\n        global_d = (\\n            float(mse_arr.mean() / mse_arr.std(ddof=1))\\n            if mse_arr.std(ddof=1) > 0\\n            else 0.0\\n        )\\n\\n        ca_all = np.concatenate(\\n            [np.array(per_task_correct[ti]) for ti in range(n_tasks)]\\n        )\\n        cf_all = np.concatenate(\\n            [np.array(per_task_cf[ti]) for ti in range(n_tasks)]\\n        )\\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\\n\\n        cond_res = {\\n            \\\"global_metrics\\\": {\\n                \\\"paired_mse\\\": {\\n                    \\\"mean\\\": round(float(mse_arr.mean()), 6),\\n                    \\\"std\\\": round(float(mse_arr.std()), 6),\\n                    \\\"cohens_d\\\": round(global_d, 4),\\n                },\\n                \\\"per_dim_shift\\\": {\\n                    \\\"means\\\": [round(v, 6) for v in pdm],\\n                    \\\"stds\\\": [round(v, 6) for v in pds],\\n                    \\\"dim_names\\\": [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"],\\n                },\\n                \\\"token_divergence_rate\\\": round(float(np.mean(all_tok_div)), 4),\\n                \\\"n_samples\\\": len(mse_arr),\\n            },\\n            \\\"per_task\\\": {},\\n            \\\"cross_task_variance\\\": {},\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_mses[ti])\\n            td = (\\n                float(tm.mean() / tm.std(ddof=1)) if tm.std(ddof=1) > 0 else 0.0\\n            )\\n            per_task_ds.append(td)\\n\\n            demo_means = [\\n                \\n\\n... [截断: 输出过长，省略 3650 字符] ...\\n\\noutput_hidden_states=True, output_attentions=True)\\n\\n    hs0_shape = out.hidden_states[0].shape\\n    log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n\\n    tr = find_token_regions(original_ids, IMG_TOKEN_ID)\\n    N_IMG_TOKENS = tr[\\\"image\\\"][1] - tr[\\\"image\\\"][0]\\n    log(f\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\")\\n    log(f\\\"  N_IMG_TOKENS={N_IMG_TOKENS}\\\")\\n    log(f\\\"  Total seq_len: input_ids={inputs['input_ids'].shape[1]}, hidden={hs0_shape[1]}\\\")\\n\\n    n_attn_layers = len(out.attentions)\\n    attn_shape = out.attentions[0].shape\\n    log(f\\\"  Attention: {n_attn_layers} layers, shape={attn_shape}\\\")\\n\\n    del out, inputs\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n        model, processor, nt, nd, ns, IMG_TOKEN_ID\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    if not args.skip_probing:\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    t3 = time.time()\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n    with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n        json.dump(attn_res, f, indent=2)\\n    log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n    del attn_ratio_sum, attn_ratio_sq_sum\\n\\n    t4 = time.time()\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\n    with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n        json.dump(cls_res, f, indent=2)\\n    log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n    del reps, actions, labels\\n\\n    if condition == \\\"trained\\\" and not args.skip_counterfactual:\\n        t5 = time.time()\\n        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n        with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n            json.dump(cf_res, f, indent=2)\\n        log(f\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n    elif condition != \\\"trained\\\":\\n        log(\\\"Phase 5: skipped (untrained model cannot generate meaningful actions)\\\")\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\", \\\"untrained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    args = p.parse_args()\\n\\n    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\"config.json\\\")):\\n                ckpt = UNTRAINED_CACHE\\n            else:\\n                ckpt = UNTRAINED_CKPT\\n                log(f\\\"  Will download untrained model from {ckpt}\\\")\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n\\n        try:\\n            model, processor = load_model(ckpt, condition)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            log(f\\\"  Skipping {condition} condition\\\")\\n            continue\\n\\n        tc = time.time()\\n        run_pipeline(model, processor, condition, results_dir, args)\\n        log(f\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "8d6fe4c0-f26b-4b33-80aa-12f2e96eb634",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Phase 5: counterfactual analysis\\\\\\\")\\\\n    conditions = [\\\\\\\"wrong\\\\\\\", \\\\\\\"empty\\\\\\\", \\\\\\\"shuffled\\\\\\\", \\\\\\\"paraphrased\\\\\\\"]\\\\n\\\\n    all_res = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_tracvla_object\\\\\\\",\\\\n            \\\\\\\"conditions\\\\\\\": conditions,\\\\n            \\\\\\\"n_tasks\\\\\\\": n_tasks,\\\\n            \\\\\\\"n_demos_per_task\\\\\\\": n_demos,\\\\n            \\\\\\\"n_timesteps_per_demo\\\\\\\": n_timesteps,\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"tracevla-phi3v\\\\\\\",\\\\n            \\\\\\\"action_space\\\\\\\": \\\\\\\"normalized_bins\\\\\\\",\\\\n            \\\\\\\"seed\\\\\\\": 42,\\\\n            \\\\\\\"task_names\\\\\\\": TASKS[:n_tasks],\\\\n        }\\\\n    }\\\\n\\\\n    for cond in conditions:\\\\n        log(f\\\\\\\"  Condition: {cond}\\\\\\\")\\\\n        all_mses, all_tok_div = [], []\\\\n        per_task_mses = defaultdict(list)\\\\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\\\\n        per_task_correct = defaultdict(list)\\\\n        per_task_cf = defaultdict(list)\\\\n        sample_n = 0\\\\n\\\\n        for ti in range(n_tasks):\\\\n            cf_instr = _cf_instruction(ti, cond)\\\\n            hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n\\\\n            with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n                for di in range(n_demos):\\\\n                    n_avail = hf[f\\\\\\\"data/demo_{di}/actions\\\\\\\"].shape[0]\\\\n                    for t in range(min(n_timesteps, n_avail)):\\\\n                        img = Image.fromarray(\\\\n                            hf[f\\\\\\\"data/demo_{di}/obs/agentview_rgb\\\\\\\"][t]\\\\n                        )\\\\n\\\\n                        c_act, c_tok = generate_action_phi3v(\\\\n                            model, processor, INSTRUCTIONS[ti], img\\\\n                        )\\\\n                        f_act, f_tok = generate_action_phi3v(\\\\n                            model, processor, cf_instr, img\\\\n                        )\\\\n\\\\n                        mse = float(np.mean((c_act - f_act) ** 2))\\\\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\\\\n\\\\n                        all_mses.append(mse)\\\\n                        all_tok_div.append(tok_div)\\\\n                        per_task_mses[ti].append(mse)\\\\n                        per_task_demo_mses[ti][di].append(mse)\\\\n                        per_task_correct[ti].append(c_act)\\\\n                        per_task_cf[ti].append(f_act)\\\\n\\\\n                        sample_n += 1\\\\n                        if sample_n % 200 == 0:\\\\n                            torch.cuda.empty_cache()\\\\n                            log(f\\\\\\\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\\\\\\\")\\\\n\\\\n        mse_arr = np.array(all_mses)\\\\n        global_d = (\\\\n            float(mse_arr.mean() / mse_arr.std(ddof=1))\\\\n            if mse_arr.std(ddof=1) > 0\\\\n            else 0.0\\\\n        )\\\\n\\\\n        ca_all = np.concatenate(\\\\n            [np.array(per_task_correct[ti]) for ti in range(n_tasks)]\\\\n        )\\\\n        cf_all = np.concatenate(\\\\n            [np.array(per_task_cf[ti]) for ti in range(n_tasks)]\\\\n        )\\\\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\\\\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\\\\n\\\\n        cond_res = {\\\\n            \\\\\\\"global_metrics\\\\\\\": {\\\\n                \\\\\\\"paired_mse\\\\\\\": {\\\\n                    \\\\\\\"mean\\\\\\\": round(float(mse_arr.mean()), 6),\\\\n                    \\\\\\\"std\\\\\\\": round(float(mse_arr.std()), 6),\\\\n                    \\\\\\\"cohens_d\\\\\\\": round(global_d, 4),\\\\n                },\\\\n                \\\\\\\"per_dim_shift\\\\\\\": {\\\\n                    \\\\\\\"means\\\\\\\": [round(v, 6) for v in pdm],\\\\n                    \\\\\\\"stds\\\\\\\": [round(v, 6) for v in pds],\\\\n                    \\\\\\\"dim_names\\\\\\\": [\\\\\\\"dx\\\\\\\", \\\\\\\"dy\\\\\\\", \\\\\\\"dz\\\\\\\", \\\\\\\"rx\\\\\\\", \\\\\\\"ry\\\\\\\", \\\\\\\"rz\\\\\\\", \\\\\\\"gripper\\\\\\\"],\\\\n                },\\\\n                \\\\\\\"token_divergence_rate\\\\\\\": round(float(np.mean(all_tok_div)), 4),\\\\n                \\\\\\\"n_samples\\\\\\\": len(mse_arr),\\\\n            },\\\\n            \\\\\\\"per_task\\\\\\\": {},\\\\n            \\\\\\\"cross_task_variance\\\\\\\": {},\\\\n        }\\\\n\\\\n        per_task_ds = []\\\\n        for ti in range(n_tasks):\\\\n            tm = np.array(per_task_mses[ti])\\\\n            td = (\\\\n                float(tm.mean() / tm.std(ddof=1)) if tm.std(ddof=1) > 0 else 0.0\\\\n            )\\\\n            per_task_ds.append(td)\\\\n\\\\n            demo_means = [\\\\n                \\\\n\\\\n... [截断: 输出过长，省略 3650 字符] ...\\\\n\\\\noutput_hidden_states=True, output_attentions=True)\\\\n\\\\n    hs0_shape = out.hidden_states[0].shape\\\\n    log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n\\\\n    tr = find_token_regions(original_ids, IMG_TOKEN_ID)\\\\n    N_IMG_TOKENS = tr[\\\\\\\"image\\\\\\\"][1] - tr[\\\\\\\"image\\\\\\\"][0]\\\\n    log(f\\\\\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\\\\\")\\\\n    log(f\\\\\\\"  N_IMG_TOKENS={N_IMG_TOKENS}\\\\\\\")\\\\n    log(f\\\\\\\"  Total seq_len: input_ids={inputs['input_ids'].shape[1]}, hidden={hs0_shape[1]}\\\\\\\")\\\\n\\\\n    n_attn_layers = len(out.attentions)\\\\n    attn_shape = out.attentions[0].shape\\\\n    log(f\\\\\\\"  Attention: {n_attn_layers} layers, shape={attn_shape}\\\\\\\")\\\\n\\\\n    del out, inputs\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    t1 = time.time()\\\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n        model, processor, nt, nd, ns, IMG_TOKEN_ID\\\\n    )\\\\n    log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n    if not args.skip_probing:\\\\n        t2 = time.time()\\\\n        probe_res = run_probing(reps, actions, nps)\\\\n        with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(probe_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n    t3 = time.time()\\\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n    with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(attn_res, f, indent=2)\\\\n    log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n    del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n    t4 = time.time()\\\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n    with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(cls_res, f, indent=2)\\\\n    log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n    del reps, actions, labels\\\\n\\\\n    if condition == \\\\\\\"trained\\\\\\\" and not args.skip_counterfactual:\\\\n        t5 = time.time()\\\\n        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n        with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(cf_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n    elif condition != \\\\\\\"trained\\\\\\\":\\\\n        log(\\\\\\\"Phase 5: skipped (untrained model cannot generate meaningful actions)\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip-probing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\n        \\\\\\\"--conditions\\\\\\\", nargs=\\\\\\\"+\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n        default=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n        help=\\\\\\\"Conditions to run (trained untrained)\\\\\\\",\\\\n    )\\\\n    args = p.parse_args()\\\\n\\\\n    conditions = args.conditions\\\\n    log(f\\\\\\\"Pipeline conditions: {conditions}\\\\\\\")\\\\n\\\\n    t_start = time.time()\\\\n\\\\n    for condition in conditions:\\\\n        if condition == \\\\\\\"trained\\\\\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n        elif condition == \\\\\\\"untrained\\\\\\\":\\\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\\\\\"config.json\\\\\\\")):\\\\n                ckpt = UNTRAINED_CACHE\\\\n            else:\\\\n                ckpt = UNTRAINED_CKPT\\\\n                log(f\\\\\\\"  Will download untrained model from {ckpt}\\\\\\\")\\\\n        else:\\\\n            log(f\\\\\\\"  Unknown condition: {condition}, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\\\n\\\\n        try:\\\\n            model, processor = load_model(ckpt, condition)\\\\n        except Exception as e:\\\\n            log(f\\\\\\\"  ERROR loading {condition} model: {e}\\\\\\\")\\\\n            log(f\\\\\\\"  Skipping {condition} condition\\\\\\\")\\\\n            continue\\\\n\\\\n        tc = time.time()\\\\n        run_pipeline(model, processor, condition, results_dir, args)\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 5: counterfactual analysis\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_tracvla_object\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"tracevla-phi3v\\\",\\n            \\\"action_space\\\": \\\"normalized_bins\\\",\\n            \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        all_mses, all_tok_div = [], []\\n        per_task_mses = defaultdict(list)\\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\\n        per_task_correct = defaultdict(list)\\n        per_task_cf = defaultdict(list)\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n                    n_avail = hf[f\\\"data/demo_{di}/actions\\\"].shape[0]\\n                    for t in range(min(n_timesteps, n_avail)):\\n                        img = Image.fromarray(\\n                            hf[f\\\"data/demo_{di}/obs/agentview_rgb\\\"][t]\\n                        )\\n\\n                        c_act, c_tok = generate_action_phi3v(\\n                            model, processor, INSTRUCTIONS[ti], img\\n                        )\\n                        f_act, f_tok = generate_action_phi3v(\\n                            model, processor, cf_instr, img\\n                        )\\n\\n                        mse = float(np.mean((c_act - f_act) ** 2))\\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\\n\\n                        all_mses.append(mse)\\n                        all_tok_div.append(tok_div)\\n                        per_task_mses[ti].append(mse)\\n                        per_task_demo_mses[ti][di].append(mse)\\n                        per_task_correct[ti].append(c_act)\\n                        per_task_cf[ti].append(f_act)\\n\\n                        sample_n += 1\\n                        if sample_n % 200 == 0:\\n                            torch.cuda.empty_cache()\\n                            log(f\\\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\\\")\\n\\n        mse_arr = np.array(all_mses)\\n        global_d = (\\n            float(mse_arr.mean() / mse_arr.std(ddof=1))\\n            if mse_arr.std(ddof=1) > 0\\n            else 0.0\\n        )\\n\\n        ca_all = np.concatenate(\\n            [np.array(per_task_correct[ti]) for ti in range(n_tasks)]\\n        )\\n        cf_all = np.concatenate(\\n            [np.array(per_task_cf[ti]) for ti in range(n_tasks)]\\n        )\\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\\n\\n        cond_res = {\\n            \\\"global_metrics\\\": {\\n                \\\"paired_mse\\\": {\\n                    \\\"mean\\\": round(float(mse_arr.mean()), 6),\\n                    \\\"std\\\": round(float(mse_arr.std()), 6),\\n                    \\\"cohens_d\\\": round(global_d, 4),\\n                },\\n                \\\"per_dim_shift\\\": {\\n                    \\\"means\\\": [round(v, 6) for v in pdm],\\n                    \\\"stds\\\": [round(v, 6) for v in pds],\\n                    \\\"dim_names\\\": [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"],\\n                },\\n                \\\"token_divergence_rate\\\": round(float(np.mean(all_tok_div)), 4),\\n                \\\"n_samples\\\": len(mse_arr),\\n            },\\n            \\\"per_task\\\": {},\\n            \\\"cross_task_variance\\\": {},\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_mses[ti])\\n            td = (\\n                float(tm.mean() / tm.std(ddof=1)) if tm.std(ddof=1) > 0 else 0.0\\n            )\\n            per_task_ds.append(td)\\n\\n            demo_means = [\\n                \\n\\n... [截断: 输出过长，省略 3650 字符] ...\\n\\noutput_hidden_states=True, output_attentions=True)\\n\\n    hs0_shape = out.hidden_states[0].shape\\n    log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n\\n    tr = find_token_regions(original_ids, IMG_TOKEN_ID)\\n    N_IMG_TOKENS = tr[\\\"image\\\"][1] - tr[\\\"image\\\"][0]\\n    log(f\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\")\\n    log(f\\\"  N_IMG_TOKENS={N_IMG_TOKENS}\\\")\\n    log(f\\\"  Total seq_len: input_ids={inputs['input_ids'].shape[1]}, hidden={hs0_shape[1]}\\\")\\n\\n    n_attn_layers = len(out.attentions)\\n    attn_shape = out.attentions[0].shape\\n    log(f\\\"  Attention: {n_attn_layers} layers, shape={attn_shape}\\\")\\n\\n    del out, inputs\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n        model, processor, nt, nd, ns, IMG_TOKEN_ID\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    if not args.skip_probing:\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    t3 = time.time()\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n    with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n        json.dump(attn_res, f, indent=2)\\n    log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n    del attn_ratio_sum, attn_ratio_sq_sum\\n\\n    t4 = time.time()\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\n    with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n        json.dump(cls_res, f, indent=2)\\n    log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n    del reps, actions, labels\\n\\n    if condition == \\\"trained\\\" and not args.skip_counterfactual:\\n        t5 = time.time()\\n        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n        with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n            json.dump(cf_res, f, indent=2)\\n        log(f\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n    elif condition != \\\"trained\\\":\\n        log(\\\"Phase 5: skipped (untrained model cannot generate meaningful actions)\\\")\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\", \\\"untrained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    args = p.parse_args()\\n\\n    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\"config.json\\\")):\\n                ckpt = UNTRAINED_CACHE\\n            else:\\n                ckpt = UNTRAINED_CKPT\\n                log(f\\\"  Will download untrained model from {ckpt}\\\")\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n\\n        try:\\n            model, processor = load_model(ckpt, condition)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            log(f\\\"  Skipping {condition} condition\\\")\\n            continue\\n\\n        tc = time.time()\\n        run_pipeline(model, processor, condition, results_dir, args)\\n        log(f\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T16:46:05.269Z_
+
+<details><summary>↩ Tool result · `toolu_01HTsE4Wwe22goZkqyFnYQxk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def run_counterfactual(model, processor, config, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 5: counterfactual analysis (representation-based)\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n\\n    cf_layers = sorted(set(list(range(0, N_LAYERS, 3)) + [N_LAYERS - 1]))\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_nora_goal\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"nora-libero-goal\\\",\\n            \\\"method\\\": \\\"representation_cosine_distance\\\",\\n            \\\"note\\\": \\\"NORA uses FAST+ action tokens; MSE-based counterfactual \\\"\\n                    \\\"not applicable. Using readout cosine distance instead.\\\",\\n            \\\"layers_analyzed\\\": cf_layers,\\n            \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        per_layer_dists = {l: [] for l in cf_layers}\\n        per_task_dists = defaultdict(list)\\n        per_task_demo_dists = defaultdict(lambda: defaultdict(list))\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n                    n_avail = hf[f\\\"data/demo_{di}/actions\\\"].shape[0]\\n                    for t in range(min(n_timesteps, n_avail)):\\n                        img = Image.fromarray(\\n                            hf[f\\\"data/demo_{di}/obs/agentview_rgb\\\"][t]\\n                        )\\n\\n                        c_inputs = prepare_inputs(\\n                            processor, INSTRUCTIONS[ti], img)\\n                        with torch.no_grad():\\n                            c_out = model(\\n                                **c_inputs, output_hidden_states=True)\\n\\n                        f_inputs = prepare_inputs(processor, cf_instr, img)\\n                        with torch.no_grad():\\n                            f_out = model(\\n                                **f_inputs, output_hidden_states=True)\\n\\n                        for l in cf_layers:\\n                            c_r = c_out.hidden_states[l + 1][0, -1].float()\\n                            f_r = f_out.hidden_states[l + 1][0, -1].float()\\n                            cos_sim = F.cosine_similarity(\\n                                c_r.unsqueeze(0), f_r.unsqueeze(0)\\n                            ).item()\\n                            per_layer_dists[l].append(1.0 - cos_sim)\\n\\n                        last_dist = per_layer_dists[cf_layers[-1]][-1]\\n                        per_task_dists[ti].append(last_dist)\\n                        per_task_demo_dists[ti][di].append(last_dist)\\n\\n                        sample_n += 1\\n                        del c_out, f_out, c_inputs, f_inputs\\n                        if sample_n % 200 == 0:\\n                            torch.cuda.empty_cache()\\n                            log(\\n                                f\\\"    {sample_n}/\\\"\\n                                f\\\"{n_tasks * n_demos * n_timesteps}\\\"\\n                            )\\n\\n        cond_res = {\\n            \\\"global_metrics\\\": {\\\"per_layer_cosine_distance\\\": {}},\\n            \\\"per_task\\\": {},\\n            \\\"cross_task_variance\\\": {},\\n        }\\n\\n        for l in cf_layers:\\n            arr = np.array(per_layer_dists[l])\\n            cond_res[\\\"global_metrics\\\"][\\\"per_layer_cosine_distance\\\"][\\n                f\\\"L{l}\\\"\\n            ] = {\\n                \\\"mean\\\": round(float(arr.mean()), 6),\\n                \\\"std\\\": round(float(arr.std()), 6),\\n                \\\"n_samples\\\": len(arr),\\n            }\\n\\n        last_l = cf_layers[-1]\\n        last_arr = np.array(per_layer_dists[last_l])\\n        global_d = (\\n            float(last_arr.mean() / last_arr.std(ddof=1))\\n            if last_arr.std(ddof=1) > 0\\n            else 0.0\\n        )\\n        cond_res[\\\"global_metrics\\\"][\\\"last_\\n\\n... [截断: 输出过长，省略 3622 字符] ...\\n\\n    with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n        img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n    inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n    log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n\\n    with torch.no_grad():\\n        out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n\\n    tr = find_token_regions(inputs[\\\"input_ids\\\"], config)\\n    n_img = tr[\\\"image\\\"][1] - tr[\\\"image\\\"][0]\\n    log(f\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\")\\n    log(f\\\"  N_IMG_TOKENS={n_img}, hidden={out.hidden_states[0].shape}\\\")\\n    log(f\\\"  Attention: {len(out.attentions)} layers, shape={out.attentions[0].shape}\\\")\\n\\n    del out, inputs\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n        model, processor, config, nt, nd, ns\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    if not args.skip_probing:\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    t3 = time.time()\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n    with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n        json.dump(attn_res, f, indent=2)\\n    log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n    del attn_ratio_sum, attn_ratio_sq_sum\\n\\n    t4 = time.time()\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\n    with open(\\n        os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\"\\n    ) as f:\\n        json.dump(cls_res, f, indent=2)\\n    log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n    del reps, actions, labels\\n\\n    if condition == \\\"trained\\\" and not args.skip_counterfactual:\\n        t5 = time.time()\\n        cf_res = run_counterfactual(model, processor, config, nt, nd, ns)\\n        with open(\\n            os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\"\\n        ) as f:\\n            json.dump(cf_res, f, indent=2)\\n        log(f\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n    elif condition != \\\"trained\\\":\\n        log(\\\"Phase 5: skipped (untrained model)\\\")\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\", \\\"untrained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    p.add_argument(\\\"--device\\\", default=None)\\n    args = p.parse_args()\\n\\n    global DEVICE\\n    if args.device:\\n        DEVICE = args.device\\n\\n    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            ckpt = UNTRAINED_CKPT\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n\\n        try:\\n            model, processor = load_model(ckpt)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            log(f\\\"  Skipping {condition} condition\\\")\\n            continue\\n\\n        config = model.config\\n        tc = time.time()\\n        run_pipeline(model, processor, config, condition, results_dir, args)\\n        log(f\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "1baf8f23-1ebd-41c1-9d85-92972daefdbc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def run_counterfactual(model, processor, config, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Phase 5: counterfactual analysis (representation-based)\\\\\\\")\\\\n    conditions = [\\\\\\\"wrong\\\\\\\", \\\\\\\"empty\\\\\\\", \\\\\\\"shuffled\\\\\\\", \\\\\\\"paraphrased\\\\\\\"]\\\\n\\\\n    cf_layers = sorted(set(list(range(0, N_LAYERS, 3)) + [N_LAYERS - 1]))\\\\n\\\\n    all_res = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_nora_goal\\\\\\\",\\\\n            \\\\\\\"conditions\\\\\\\": conditions,\\\\n            \\\\\\\"n_tasks\\\\\\\": n_tasks,\\\\n            \\\\\\\"n_demos_per_task\\\\\\\": n_demos,\\\\n            \\\\\\\"n_timesteps_per_demo\\\\\\\": n_timesteps,\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"nora-libero-goal\\\\\\\",\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"representation_cosine_distance\\\\\\\",\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"NORA uses FAST+ action tokens; MSE-based counterfactual \\\\\\\"\\\\n                    \\\\\\\"not applicable. Using readout cosine distance instead.\\\\\\\",\\\\n            \\\\\\\"layers_analyzed\\\\\\\": cf_layers,\\\\n            \\\\\\\"seed\\\\\\\": 42,\\\\n            \\\\\\\"task_names\\\\\\\": TASKS[:n_tasks],\\\\n        }\\\\n    }\\\\n\\\\n    for cond in conditions:\\\\n        log(f\\\\\\\"  Condition: {cond}\\\\\\\")\\\\n        per_layer_dists = {l: [] for l in cf_layers}\\\\n        per_task_dists = defaultdict(list)\\\\n        per_task_demo_dists = defaultdict(lambda: defaultdict(list))\\\\n        sample_n = 0\\\\n\\\\n        for ti in range(n_tasks):\\\\n            cf_instr = _cf_instruction(ti, cond)\\\\n            hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n\\\\n            with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n                for di in range(n_demos):\\\\n                    n_avail = hf[f\\\\\\\"data/demo_{di}/actions\\\\\\\"].shape[0]\\\\n                    for t in range(min(n_timesteps, n_avail)):\\\\n                        img = Image.fromarray(\\\\n                            hf[f\\\\\\\"data/demo_{di}/obs/agentview_rgb\\\\\\\"][t]\\\\n                        )\\\\n\\\\n                        c_inputs = prepare_inputs(\\\\n                            processor, INSTRUCTIONS[ti], img)\\\\n                        with torch.no_grad():\\\\n                            c_out = model(\\\\n                                **c_inputs, output_hidden_states=True)\\\\n\\\\n                        f_inputs = prepare_inputs(processor, cf_instr, img)\\\\n                        with torch.no_grad():\\\\n                            f_out = model(\\\\n                                **f_inputs, output_hidden_states=True)\\\\n\\\\n                        for l in cf_layers:\\\\n                            c_r = c_out.hidden_states[l + 1][0, -1].float()\\\\n                            f_r = f_out.hidden_states[l + 1][0, -1].float()\\\\n                            cos_sim = F.cosine_similarity(\\\\n                                c_r.unsqueeze(0), f_r.unsqueeze(0)\\\\n                            ).item()\\\\n                            per_layer_dists[l].append(1.0 - cos_sim)\\\\n\\\\n                        last_dist = per_layer_dists[cf_layers[-1]][-1]\\\\n                        per_task_dists[ti].append(last_dist)\\\\n                        per_task_demo_dists[ti][di].append(last_dist)\\\\n\\\\n                        sample_n += 1\\\\n                        del c_out, f_out, c_inputs, f_inputs\\\\n                        if sample_n % 200 == 0:\\\\n                            torch.cuda.empty_cache()\\\\n                            log(\\\\n                                f\\\\\\\"    {sample_n}/\\\\\\\"\\\\n                                f\\\\\\\"{n_tasks * n_demos * n_timesteps}\\\\\\\"\\\\n                            )\\\\n\\\\n        cond_res = {\\\\n            \\\\\\\"global_metrics\\\\\\\": {\\\\\\\"per_layer_cosine_distance\\\\\\\": {}},\\\\n            \\\\\\\"per_task\\\\\\\": {},\\\\n            \\\\\\\"cross_task_variance\\\\\\\": {},\\\\n        }\\\\n\\\\n        for l in cf_layers:\\\\n            arr = np.array(per_layer_dists[l])\\\\n            cond_res[\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"per_layer_cosine_distance\\\\\\\"][\\\\n                f\\\\\\\"L{l}\\\\\\\"\\\\n            ] = {\\\\n                \\\\\\\"mean\\\\\\\": round(float(arr.mean()), 6),\\\\n                \\\\\\\"std\\\\\\\": round(float(arr.std()), 6),\\\\n                \\\\\\\"n_samples\\\\\\\": len(arr),\\\\n            }\\\\n\\\\n        last_l = cf_layers[-1]\\\\n        last_arr = np.array(per_layer_dists[last_l])\\\\n        global_d = (\\\\n            float(last_arr.mean() / last_arr.std(ddof=1))\\\\n            if last_arr.std(ddof=1) > 0\\\\n            else 0.0\\\\n        )\\\\n        cond_res[\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"last_\\\\n\\\\n... [截断: 输出过长，省略 3622 字符] ...\\\\n\\\\n    with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n        img = Image.fromarray(hf[\\\\\\\"data/demo_0/obs/agentview_rgb\\\\\\\"][0])\\\\n    inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\\\n    log(f\\\\\\\"  input_ids shape: {inputs['input_ids'].shape}\\\\\\\")\\\\n\\\\n    with torch.no_grad():\\\\n        out = model(**inputs, output_hidden_states=True, output_attentions=True)\\\\n\\\\n    tr = find_token_regions(inputs[\\\\\\\"input_ids\\\\\\\"], config)\\\\n    n_img = tr[\\\\\\\"image\\\\\\\"][1] - tr[\\\\\\\"image\\\\\\\"][0]\\\\n    log(f\\\\\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\\\\\")\\\\n    log(f\\\\\\\"  N_IMG_TOKENS={n_img}, hidden={out.hidden_states[0].shape}\\\\\\\")\\\\n    log(f\\\\\\\"  Attention: {len(out.attentions)} layers, shape={out.attentions[0].shape}\\\\\\\")\\\\n\\\\n    del out, inputs\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    t1 = time.time()\\\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n        model, processor, config, nt, nd, ns\\\\n    )\\\\n    log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n    if not args.skip_probing:\\\\n        t2 = time.time()\\\\n        probe_res = run_probing(reps, actions, nps)\\\\n        with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(probe_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n    t3 = time.time()\\\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n    with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(attn_res, f, indent=2)\\\\n    log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n    del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n    t4 = time.time()\\\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n    with open(\\\\n        os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\"\\\\n    ) as f:\\\\n        json.dump(cls_res, f, indent=2)\\\\n    log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n    del reps, actions, labels\\\\n\\\\n    if condition == \\\\\\\"trained\\\\\\\" and not args.skip_counterfactual:\\\\n        t5 = time.time()\\\\n        cf_res = run_counterfactual(model, processor, config, nt, nd, ns)\\\\n        with open(\\\\n            os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\"\\\\n        ) as f:\\\\n            json.dump(cf_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n    elif condition != \\\\\\\"trained\\\\\\\":\\\\n        log(\\\\\\\"Phase 5: skipped (untrained model)\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip-probing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\n        \\\\\\\"--conditions\\\\\\\", nargs=\\\\\\\"+\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n        default=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n        help=\\\\\\\"Conditions to run (trained untrained)\\\\\\\",\\\\n    )\\\\n    p.add_argument(\\\\\\\"--device\\\\\\\", default=None)\\\\n    args = p.parse_args()\\\\n\\\\n    global DEVICE\\\\n    if args.device:\\\\n        DEVICE = args.device\\\\n\\\\n    conditions = args.conditions\\\\n    log(f\\\\\\\"Pipeline conditions: {conditions}\\\\\\\")\\\\n\\\\n    t_start = time.time()\\\\n\\\\n    for condition in conditions:\\\\n        if condition == \\\\\\\"trained\\\\\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n        elif condition == \\\\\\\"untrained\\\\\\\":\\\\n            ckpt = UNTRAINED_CKPT\\\\n        else:\\\\n            log(f\\\\\\\"  Unknown condition: {condition}, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\\\n\\\\n        try:\\\\n            model, processor = load_model(ckpt)\\\\n        except Exception as e:\\\\n            log(f\\\\\\\"  ERROR loading {condition} model: {e}\\\\\\\")\\\\n            log(f\\\\\\\"  Skipping {condition} condition\\\\\\\")\\\\n            continue\\\\n\\\\n        config = model.config\\\\n        tc = time.time()\\\\n        run_pipeline(model, processor, config, condition, results_dir, args)\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def run_counterfactual(model, processor, config, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 5: counterfactual analysis (representation-based)\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n\\n    cf_layers = sorted(set(list(range(0, N_LAYERS, 3)) + [N_LAYERS - 1]))\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_nora_goal\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"nora-libero-goal\\\",\\n            \\\"method\\\": \\\"representation_cosine_distance\\\",\\n            \\\"note\\\": \\\"NORA uses FAST+ action tokens; MSE-based counterfactual \\\"\\n                    \\\"not applicable. Using readout cosine distance instead.\\\",\\n            \\\"layers_analyzed\\\": cf_layers,\\n            \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        per_layer_dists = {l: [] for l in cf_layers}\\n        per_task_dists = defaultdict(list)\\n        per_task_demo_dists = defaultdict(lambda: defaultdict(list))\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n                    n_avail = hf[f\\\"data/demo_{di}/actions\\\"].shape[0]\\n                    for t in range(min(n_timesteps, n_avail)):\\n                        img = Image.fromarray(\\n                            hf[f\\\"data/demo_{di}/obs/agentview_rgb\\\"][t]\\n                        )\\n\\n                        c_inputs = prepare_inputs(\\n                            processor, INSTRUCTIONS[ti], img)\\n                        with torch.no_grad():\\n                            c_out = model(\\n                                **c_inputs, output_hidden_states=True)\\n\\n                        f_inputs = prepare_inputs(processor, cf_instr, img)\\n                        with torch.no_grad():\\n                            f_out = model(\\n                                **f_inputs, output_hidden_states=True)\\n\\n                        for l in cf_layers:\\n                            c_r = c_out.hidden_states[l + 1][0, -1].float()\\n                            f_r = f_out.hidden_states[l + 1][0, -1].float()\\n                            cos_sim = F.cosine_similarity(\\n                                c_r.unsqueeze(0), f_r.unsqueeze(0)\\n                            ).item()\\n                            per_layer_dists[l].append(1.0 - cos_sim)\\n\\n                        last_dist = per_layer_dists[cf_layers[-1]][-1]\\n                        per_task_dists[ti].append(last_dist)\\n                        per_task_demo_dists[ti][di].append(last_dist)\\n\\n                        sample_n += 1\\n                        del c_out, f_out, c_inputs, f_inputs\\n                        if sample_n % 200 == 0:\\n                            torch.cuda.empty_cache()\\n                            log(\\n                                f\\\"    {sample_n}/\\\"\\n                                f\\\"{n_tasks * n_demos * n_timesteps}\\\"\\n                            )\\n\\n        cond_res = {\\n            \\\"global_metrics\\\": {\\\"per_layer_cosine_distance\\\": {}},\\n            \\\"per_task\\\": {},\\n            \\\"cross_task_variance\\\": {},\\n        }\\n\\n        for l in cf_layers:\\n            arr = np.array(per_layer_dists[l])\\n            cond_res[\\\"global_metrics\\\"][\\\"per_layer_cosine_distance\\\"][\\n                f\\\"L{l}\\\"\\n            ] = {\\n                \\\"mean\\\": round(float(arr.mean()), 6),\\n                \\\"std\\\": round(float(arr.std()), 6),\\n                \\\"n_samples\\\": len(arr),\\n            }\\n\\n        last_l = cf_layers[-1]\\n        last_arr = np.array(per_layer_dists[last_l])\\n        global_d = (\\n            float(last_arr.mean() / last_arr.std(ddof=1))\\n            if last_arr.std(ddof=1) > 0\\n            else 0.0\\n        )\\n        cond_res[\\\"global_metrics\\\"][\\\"last_\\n\\n... [截断: 输出过长，省略 3622 字符] ...\\n\\n    with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n        img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n    inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n    log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n\\n    with torch.no_grad():\\n        out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n\\n    tr = find_token_regions(inputs[\\\"input_ids\\\"], config)\\n    n_img = tr[\\\"image\\\"][1] - tr[\\\"image\\\"][0]\\n    log(f\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\")\\n    log(f\\\"  N_IMG_TOKENS={n_img}, hidden={out.hidden_states[0].shape}\\\")\\n    log(f\\\"  Attention: {len(out.attentions)} layers, shape={out.attentions[0].shape}\\\")\\n\\n    del out, inputs\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n        model, processor, config, nt, nd, ns\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    if not args.skip_probing:\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    t3 = time.time()\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n    with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n        json.dump(attn_res, f, indent=2)\\n    log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n    del attn_ratio_sum, attn_ratio_sq_sum\\n\\n    t4 = time.time()\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\n    with open(\\n        os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\"\\n    ) as f:\\n        json.dump(cls_res, f, indent=2)\\n    log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n    del reps, actions, labels\\n\\n    if condition == \\\"trained\\\" and not args.skip_counterfactual:\\n        t5 = time.time()\\n        cf_res = run_counterfactual(model, processor, config, nt, nd, ns)\\n        with open(\\n            os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\"\\n        ) as f:\\n            json.dump(cf_res, f, indent=2)\\n        log(f\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n    elif condition != \\\"trained\\\":\\n        log(\\\"Phase 5: skipped (untrained model)\\\")\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\", \\\"untrained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    p.add_argument(\\\"--device\\\", default=None)\\n    args = p.parse_args()\\n\\n    global DEVICE\\n    if args.device:\\n        DEVICE = args.device\\n\\n    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            ckpt = UNTRAINED_CKPT\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n\\n        try:\\n            model, processor = load_model(ckpt)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            log(f\\\"  Skipping {condition} condition\\\")\\n            continue\\n\\n        config = model.config\\n        tc = time.time()\\n        run_pipeline(model, processor, config, condition, results_dir, args)\\n        log(f\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to see:
+1. The `generate_action` functions for OpenVLA and TracVLA
+2. The remaining scripts for spatial/long tasks and paraphrases
+3. Check what checkpoints exist for all combos
+
+Let me also get the tracvla_spatial and nora_spatial scripts, and the libero_long generate_action + norm_stats merge logic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "41c3b7c5-4e85-4559-aa28-1c0915216b12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TaXZ1S7kmnQYAhZyThT7jz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10309,
+      "cache_read_input_tokens": 50373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+Let me get the remaining pieces: generate_action functions, spatial/long task lists, and the OFT norm_stats logic.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "ba163cc0-aaee-48bb-972e-c3a37930d8f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TaXZ1S7kmnQYAhZyThT7jz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10309,
+      "cache_read_input_tokens": 50373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019oCwf55xXySNByh9cZcLAm`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def generate_action\" /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "1d2c3415-ddc0-45ed-a492-a005f61b45c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TaXZ1S7kmnQYAhZyThT7jz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10309,
+      "cache_read_input_tokens": 50373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T16:46:13.668Z_
+
+<details><summary>↩ Tool result · `toolu_019oCwf55xXySNByh9cZcLAm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py:86:def generate_action(model, processor, instruction, image):\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py:118:def generate_action_phi3v(model, processor, instruction, image):\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py:99:def generate_action(model, processor, instruction, image):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "1f109e84-757e-49fa-bad5-c15b79fa8ef9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py:86:def generate_action(model, processor, instruction, image):\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py:118:def generate_action_phi3v(model, processor, instruction, image):\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py:99:def generate_action(model, processor, instruction, image):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py:86:def generate_action(model, processor, instruction, image):\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py:118:def generate_action_phi3v(model, processor, instruction, image):\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py:99:def generate_action(model, processor, instruction, image):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015dmn3DuCDLBy2T6C1cqJw5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "a4d4bb7d-3a9b-4210-9597-334cb2c8f22f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TaXZ1S7kmnQYAhZyThT7jz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10309,
+      "cache_read_input_tokens": 50373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WoJGFDKgeAsaVAaSE7djZs`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "26eb5f29-6ca4-4e45-a700-424a018df348",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TaXZ1S7kmnQYAhZyThT7jz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10309,
+      "cache_read_input_tokens": 50373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-21T16:46:14.780Z_
+
+<details><summary>↩ Tool result · `toolu_015dmn3DuCDLBy2T6C1cqJw5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the black bowl between the plate and ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl on the ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl on the cookie box and put it on the plate\\\",\\n    \\\"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\\\",\\n    \\\"grab the black bowl from the center of the table and put it on the plate\\\",\\n    \\\"grab the black bowl next to the cookie box and put it on the plate\\\",\\n    \\\"grab the black bowl on the stove and put it on the plate\\\",\\n    \\\"grab the black bowl on the wooden cabinet and put it on the plate\\\",\\n    \\\"grab the black bowl next to the plate and put it on the plate\\\",\\n    \\\"grab the black bowl next to the ramekin and put it on the plate\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef detect_image_token_id(processor):\\n    return -1\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "aeeafa4e-b3a1-4840-a45a-4db761dec4ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\\\n\\\\n# --- Checkpoints ---\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\nUNTRAINED_CACHE = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\n\\\\n# --- Data ---\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\\\n\\\\n# --- Architecture ---\\\\nN_LAYERS = 32\\\\nN_HEADS = 32\\\\nHIDDEN = 3072\\\\nN_IMG_TOKENS = 0  # auto-detected\\\\nIMG_TOKEN_ID = -1  # auto-detected\\\\n\\\\n# --- Data config ---\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"grab the black bowl between the plate and ramekin and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl on the ramekin and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl on the cookie box and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl from the center of the table and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl next to the cookie box and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl on the stove and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl on the wooden cabinet and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl next to the plate and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl next to the ramekin and put it on the plate\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return (\\\\n        f\\\\\\\"<|user|>\\\\\\\\n<|image_1|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"What action should the robot take to {instruction}?<|end|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"<|assistant|>\\\\\\\\n\\\\\\\"\\\\n    )\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    prompt = make_prompt(instruction)\\\\n    inputs = processor(prompt, [image], return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n    if \\\\\\\"pixel_values\\\\\\\" in inputs:\\\\n        inputs[\\\\\\\"pixel_values\\\\\\\"] = inputs[\\\\\\\"pixel_values\\\\\\\"].to(torch.bfloat16)\\\\n    return inputs\\\\n\\\\n\\\\ndef detect_image_token_id(processor):\\\\n    return -1\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the black bowl between the plate and ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl on the ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl on the cookie box and put it on the plate\\\",\\n    \\\"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\\\",\\n    \\\"grab the black bowl from the center of the table and put it on the plate\\\",\\n    \\\"grab the black bowl next to the cookie box and put it on the plate\\\",\\n    \\\"grab the black bowl on the stove and put it on the plate\\\",\\n    \\\"grab the black bowl on the wooden cabinet and put it on the plate\\\",\\n    \\\"grab the black bowl next to the plate and put it on the plate\\\",\\n    \\\"grab the black bowl next to the ramekin and put it on the plate\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef detect_image_token_id(processor):\\n    return -1\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T16:46:15.370Z_
+
+<details><summary>↩ Tool result · `toolu_01WoJGFDKgeAsaVAaSE7djZs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nNORA LIBERO-Spatial Full Analysis Pipeline\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased)\\n\\nRuns both trained (NORA) and untrained (Qwen2.5-VL-3B base) sequentially.\\nNORA uses FAST+ action tokenizer, so counterfactual uses representation-based\\ncosine distance instead of action MSE.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/nora_spatial\\\"\\nDEVICE = \\\"cuda:0\\\"\\n\\n# --- Architecture (Qwen2.5-VL-3B) ---\\nN_LAYERS = 36\\nN_HEADS = 16\\nHIDDEN = 2048\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the black bowl between the plate and ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl from the center of the table and put it on the plate\\\",\\n    \\\"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\\\",\\n    \\\"grab the black bowl next to the cookie box and put it on the plate\\\",\\n    \\\"grab the black bowl next to the plate and put it on the plate\\\",\\n    \\\"grab the black bowl next to the ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl on the cookie box and put it on the plate\\\",\\n    \\\"grab the black bowl on the ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl on the stove and put it on the plate\\\",\\n    \\\"grab the black bowl on the wooden cabinet and put it on the plate\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    messages = [{'role': 'user', 'content': [\\n        {'type': 'image', 'image': image},\\n        {'type': 'text', 'text': instruction}\\n    ]}]\\n    text = processor.apply_chat_template(\\n        messages, tokenize=False, add_generation_prompt=True)\\n    inputs = processor(\\n        text=[text], images=[image], return_tensors='pt', padding=True)\\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\n            for k, v in inputs.items()}\\n\\n\\ndef find_token_regions(input_ids, config):\\n    ids = input_ids[0].cpu().numpy()\\n    vs_id = config.vision_start_token_id\\n    ve_id = config.vision_end_token_id\\n\\n    vs_pos = np.where(ids == vs_id)[0]\\n    ve_pos = np.where(ids == ve_id)[0]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "02fe30b3-ea1c-4b33-b46d-cdf14d4bb319",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nNORA LIBERO-Spatial Full Analysis Pipeline\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased)\\\\n\\\\nRuns both trained (NORA) and untrained (Qwen2.5-VL-3B base) sequentially.\\\\nNORA uses FAST+ action tokenizer, so counterfactual uses representation-based\\\\ncosine distance instead of action MSE.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\\\n\\\\n# --- Checkpoints ---\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\\\\\"\\\\n\\\\n# --- Data ---\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/nora_spatial\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\n# --- Architecture (Qwen2.5-VL-3B) ---\\\\nN_LAYERS = 36\\\\nN_HEADS = 16\\\\nHIDDEN = 2048\\\\n\\\\n# --- Data config ---\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"grab the black bowl between the plate and ramekin and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl from the center of the table and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl next to the cookie box and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl next to the plate and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl next to the ramekin and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl on the cookie box and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl on the ramekin and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl on the stove and put it on the plate\\\\\\\",\\\\n    \\\\\\\"grab the black bowl on the wooden cabinet and put it on the plate\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    messages = [{'role': 'user', 'content': [\\\\n        {'type': 'image', 'image': image},\\\\n        {'type': 'text', 'text': instruction}\\\\n    ]}]\\\\n    text = processor.apply_chat_template(\\\\n        messages, tokenize=False, add_generation_prompt=True)\\\\n    inputs = processor(\\\\n        text=[text], images=[image], return_tensors='pt', padding=True)\\\\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\\\n            for k, v in inputs.items()}\\\\n\\\\n\\\\ndef find_token_regions(input_ids, config):\\\\n    ids = input_ids[0].cpu().numpy()\\\\n    vs_id = config.vision_start_token_id\\\\n    ve_id = config.vision_end_token_id\\\\n\\\\n    vs_pos = np.where(ids == vs_id)[0]\\\\n    ve_pos = np.where(ids == ve_id)[0]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nNORA LIBERO-Spatial Full Analysis Pipeline\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased)\\n\\nRuns both trained (NORA) and untrained (Qwen2.5-VL-3B base) sequentially.\\nNORA uses FAST+ action tokenizer, so counterfactual uses representation-based\\ncosine distance instead of action MSE.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/nora_spatial\\\"\\nDEVICE = \\\"cuda:0\\\"\\n\\n# --- Architecture (Qwen2.5-VL-3B) ---\\nN_LAYERS = 36\\nN_HEADS = 16\\nHIDDEN = 2048\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the black bowl between the plate and ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl from the center of the table and put it on the plate\\\",\\n    \\\"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\\\",\\n    \\\"grab the black bowl next to the cookie box and put it on the plate\\\",\\n    \\\"grab the black bowl next to the plate and put it on the plate\\\",\\n    \\\"grab the black bowl next to the ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl on the cookie box and put it on the plate\\\",\\n    \\\"grab the black bowl on the ramekin and put it on the plate\\\",\\n    \\\"grab the black bowl on the stove and put it on the plate\\\",\\n    \\\"grab the black bowl on the wooden cabinet and put it on the plate\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    messages = [{'role': 'user', 'content': [\\n        {'type': 'image', 'image': image},\\n        {'type': 'text', 'text': instruction}\\n    ]}]\\n    text = processor.apply_chat_template(\\n        messages, tokenize=False, add_generation_prompt=True)\\n    inputs = processor(\\n        text=[text], images=[image], return_tensors='pt', padding=True)\\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\n            for k, v in inputs.items()}\\n\\n\\ndef find_token_regions(input_ids, config):\\n    ids = input_ids[0].cpu().numpy()\\n    vs_id = config.vision_start_token_id\\n    ve_id = config.vision_end_token_id\\n\\n    vs_pos = np.where(ids == vs_id)[0]\\n    ve_pos = np.where(ids == ve_id)[0]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+Now let me read the `generate_action` functions and the OFT norm_stats merge logic.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "7c4a71e1-e20d-45fc-a97e-63bfadd31e41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjoHcuKUisu9bSTu3VaHap",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4318,
+      "cache_read_input_tokens": 60682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4318
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Sz6Eid5vgq7NTsFyHmeEJM`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +86 /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "830c89c5-afe6-4967-93a5-da7a2224285f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjoHcuKUisu9bSTu3VaHap",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4318,
+      "cache_read_input_tokens": 60682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4318
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017EnGoAA5WYy9WUzD7u954C`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +99 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "b4b5f0de-5d87-44f8-86c4-8af5c3d7fec5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjoHcuKUisu9bSTu3VaHap",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4318,
+      "cache_read_input_tokens": 60682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4318
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-21T16:46:20.723Z_
+
+<details><summary>↩ Tool result · `toolu_01Sz6Eid5vgq7NTsFyHmeEJM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            max_new_tokens=7, do_sample=False,\\n        )\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n\\n    vocab_size = model.vocab_size\\n    disc = np.clip(vocab_size - token_ids - 1, 0, model.bin_centers.shape[0] - 1)\\n    norm_act = model.bin_centers[disc]\\n\\n    stats = model.get_action_stats(UNNORM)\\n    mask = np.array(stats.get(\\\"mask\\\", [True] * 7))\\n    high, low = np.array(stats[\\\"q99\\\"]), np.array(stats[\\\"q01\\\"])\\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low, norm_act)\\n\\n    del inputs, gen_ids\\n    return action.astype(np.float64), token_ids\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: representation extraction\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n    task_labels = np.zeros(total, dtype=np.int64)\\n    head_instr_ratio_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    head_instr_ratio_sq_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    attn_count = 0\\n\\n    idx = 0\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo = f\\\"data/demo_{di}\\\"\\n                n_avail = hf[demo][\\\"actions\\\"].shape[0]\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\n                    with torch.no_grad():\\n                        out = model(**inputs,\\n                                    output_hidden_states=True,\\n                                    output_attentions=True)\\n\\n                    seq_len = out.hidden_states[0].shape[1]\\n                    img_s, img_e = 1, 1 + N_IMG_TOKENS\\n                    txt_s, txt_e = img_e, seq_len\\n\\n                    for l in range(N_LAYERS):\\n                        hs = out.hidden_states[l + 1][0]\\n                        reps[l][\\\"image_mean\\\"][idx] = hs[img_s:img_e].float().mean(0).cpu().numpy()\\n                        reps[l][\\\"last_preaction\\\"][idx] = hs[-1].float().cpu().numpy()\\n\\n                    l1 = out.attentions[1][0].float()\\n                    last_pos = l1.shape[1] - 1\\n                    action_attn = l1[:, last_pos, :]\\n                    _img_a = action_attn[:, img_s:img_e].sum(dim=-1)\\n                    _txt_a = action_attn[:, txt_s:txt_e].sum(dim=-1)\\n                    _bos_a = action_attn[:, 0:1].sum(dim=-1)\\n                    _total = _img_a + _txt_a + _bos_a\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\n                    _ratio_np = _ratio.cpu().numpy()\\n                    head_instr_ratio_sum += _ratio_np\\n                    head_instr_ratio_sq_sum += _ratio\\n\\n... [截断: 输出过长，省略 14430 字符] ...\\n\\n= time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "e5fd4555-016d-4de1-8cbd-e9cad4f2a5dc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def generate_action(model, processor, instruction, image):\\\\n    inputs = prepare_inputs(processor, instruction, image)\\\\n    input_ids = inputs[\\\\\\\"input_ids\\\\\\\"]\\\\n\\\\n    if not torch.all(input_ids[:, -1] == 29871):\\\\n        input_ids = torch.cat(\\\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\\\n        )\\\\n        if \\\\\\\"attention_mask\\\\\\\" in inputs:\\\\n            inputs[\\\\\\\"attention_mask\\\\\\\"] = torch.cat(\\\\n                (inputs[\\\\\\\"attention_mask\\\\\\\"],\\\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\\\\\"attention_mask\\\\\\\"].dtype)), dim=1\\\\n            )\\\\n    inputs[\\\\\\\"input_ids\\\\\\\"] = input_ids\\\\n\\\\n    with torch.no_grad():\\\\n        gen_ids = model.generate(\\\\n            inputs[\\\\\\\"input_ids\\\\\\\"],\\\\n            attention_mask=inputs.get(\\\\\\\"attention_mask\\\\\\\"),\\\\n            pixel_values=inputs.get(\\\\\\\"pixel_values\\\\\\\"),\\\\n            max_new_tokens=7, do_sample=False,\\\\n        )\\\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\\\n\\\\n    vocab_size = model.vocab_size\\\\n    disc = np.clip(vocab_size - token_ids - 1, 0, model.bin_centers.shape[0] - 1)\\\\n    norm_act = model.bin_centers[disc]\\\\n\\\\n    stats = model.get_action_stats(UNNORM)\\\\n    mask = np.array(stats.get(\\\\\\\"mask\\\\\\\", [True] * 7))\\\\n    high, low = np.array(stats[\\\\\\\"q99\\\\\\\"]), np.array(stats[\\\\\\\"q01\\\\\\\"])\\\\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low, norm_act)\\\\n\\\\n    del inputs, gen_ids\\\\n    return action.astype(np.float64), token_ids\\\\n\\\\n\\\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Phase 1: representation extraction\\\\\\\")\\\\n    total = n_tasks * n_demos * n_timesteps\\\\n\\\\n    reps = {\\\\n        l: {\\\\n            \\\\\\\"image_mean\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n            \\\\\\\"last_preaction\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n        }\\\\n        for l in range(N_LAYERS)\\\\n    }\\\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\\\n    task_labels = np.zeros(total, dtype=np.int64)\\\\n    head_instr_ratio_sum = np.zeros(N_HEADS, dtype=np.float64)\\\\n    head_instr_ratio_sq_sum = np.zeros(N_HEADS, dtype=np.float64)\\\\n    attn_count = 0\\\\n\\\\n    idx = 0\\\\n    for ti in range(n_tasks):\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n        log(f\\\\\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\\\\\")\\\\n\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            for di in range(n_demos):\\\\n                demo = f\\\\\\\"data/demo_{di}\\\\\\\"\\\\n                n_avail = hf[demo][\\\\\\\"actions\\\\\\\"].shape[0]\\\\n                for t in range(min(n_timesteps, n_avail)):\\\\n                    img = Image.fromarray(hf[f\\\\\\\"{demo}/obs/agentview_rgb\\\\\\\"][t])\\\\n                    act = np.array(hf[f\\\\\\\"{demo}/actions\\\\\\\"][t], dtype=np.float32)\\\\n\\\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\\\n                    with torch.no_grad():\\\\n                        out = model(**inputs,\\\\n                                    output_hidden_states=True,\\\\n                                    output_attentions=True)\\\\n\\\\n                    seq_len = out.hidden_states[0].shape[1]\\\\n                    img_s, img_e = 1, 1 + N_IMG_TOKENS\\\\n                    txt_s, txt_e = img_e, seq_len\\\\n\\\\n                    for l in range(N_LAYERS):\\\\n                        hs = out.hidden_states[l + 1][0]\\\\n                        reps[l][\\\\\\\"image_mean\\\\\\\"][idx] = hs[img_s:img_e].float().mean(0).cpu().numpy()\\\\n                        reps[l][\\\\\\\"last_preaction\\\\\\\"][idx] = hs[-1].float().cpu().numpy()\\\\n\\\\n                    l1 = out.attentions[1][0].float()\\\\n                    last_pos = l1.shape[1] - 1\\\\n                    action_attn = l1[:, last_pos, :]\\\\n                    _img_a = action_attn[:, img_s:img_e].sum(dim=-1)\\\\n                    _txt_a = action_attn[:, txt_s:txt_e].sum(dim=-1)\\\\n                    _bos_a = action_attn[:, 0:1].sum(dim=-1)\\\\n                    _total = _img_a + _txt_a + _bos_a\\\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\\\n                    _ratio_np = _ratio.cpu().numpy()\\\\n                    head_instr_ratio_sum += _ratio_np\\\\n                    head_instr_ratio_sq_sum += _ratio\\\\n\\\\n... [截断: 输出过长，省略 14430 字符] ...\\\\n\\\\n= time.time()\\\\n        model = AutoModelForVision2Seq.from_pretrained(\\\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\\\n        ).to(DEVICE).eval()\\\\n        import importlib.util, sys\\\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\\\n        mod = importlib.util.module_from_spec(spec)\\\\n        sys.modules['processing_prismatic'] = mod\\\\n        spec.loader.exec_module(mod)\\\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\\\n        log(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n        log(\\\\\\\"Validating token layout ...\\\\\\\")\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[0]}_demo.hdf5\\\\\\\")\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            img = Image.fromarray(hf[\\\\\\\"data/demo_0/obs/agentview_rgb\\\\\\\"][0])\\\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\\\n        log(f\\\\\\\"  input_ids shape: {inputs['input_ids'].shape}\\\\\\\")\\\\n        log(f\\\\\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\\\\\")\\\\n        with torch.no_grad():\\\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\\\n        hs0_shape = out.hidden_states[0].shape\\\\n        log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n        expected_seq = inputs[\\\\\\\"input_ids\\\\\\\"].shape[1] + N_IMG_TOKENS\\\\n        actual_seq = hs0_shape[1]\\\\n        if actual_seq != expected_seq:\\\\n            log(f\\\\\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\\\\\")\\\\n            log(f\\\\\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\\\\\")\\\\n            N_IMG_TOKENS = actual_seq - inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]\\\\n        log(f\\\\\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\\\\\")\\\\n        del out, inputs\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        t1 = time.time()\\\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n            model, processor, nt, nd, ns)\\\\n        log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n        if not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n        t3 = time.time()\\\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n        with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(attn_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n        del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n        t4 = time.time()\\\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n        with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(cls_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n        if not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\\\\\"rsa_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\\\\\")\\\\n\\\\n        del reps, actions, labels\\\\n\\\\n        if not args.skip_counterfactual:\\\\n            t5 = time.time()\\\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n            with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(cf_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            max_new_tokens=7, do_sample=False,\\n        )\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n\\n    vocab_size = model.vocab_size\\n    disc = np.clip(vocab_size - token_ids - 1, 0, model.bin_centers.shape[0] - 1)\\n    norm_act = model.bin_centers[disc]\\n\\n    stats = model.get_action_stats(UNNORM)\\n    mask = np.array(stats.get(\\\"mask\\\", [True] * 7))\\n    high, low = np.array(stats[\\\"q99\\\"]), np.array(stats[\\\"q01\\\"])\\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low, norm_act)\\n\\n    del inputs, gen_ids\\n    return action.astype(np.float64), token_ids\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: representation extraction\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n    task_labels = np.zeros(total, dtype=np.int64)\\n    head_instr_ratio_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    head_instr_ratio_sq_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    attn_count = 0\\n\\n    idx = 0\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo = f\\\"data/demo_{di}\\\"\\n                n_avail = hf[demo][\\\"actions\\\"].shape[0]\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\n                    with torch.no_grad():\\n                        out = model(**inputs,\\n                                    output_hidden_states=True,\\n                                    output_attentions=True)\\n\\n                    seq_len = out.hidden_states[0].shape[1]\\n                    img_s, img_e = 1, 1 + N_IMG_TOKENS\\n                    txt_s, txt_e = img_e, seq_len\\n\\n                    for l in range(N_LAYERS):\\n                        hs = out.hidden_states[l + 1][0]\\n                        reps[l][\\\"image_mean\\\"][idx] = hs[img_s:img_e].float().mean(0).cpu().numpy()\\n                        reps[l][\\\"last_preaction\\\"][idx] = hs[-1].float().cpu().numpy()\\n\\n                    l1 = out.attentions[1][0].float()\\n                    last_pos = l1.shape[1] - 1\\n                    action_attn = l1[:, last_pos, :]\\n                    _img_a = action_attn[:, img_s:img_e].sum(dim=-1)\\n                    _txt_a = action_attn[:, txt_s:txt_e].sum(dim=-1)\\n                    _bos_a = action_attn[:, 0:1].sum(dim=-1)\\n                    _total = _img_a + _txt_a + _bos_a\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\n                    _ratio_np = _ratio.cpu().numpy()\\n                    head_instr_ratio_sum += _ratio_np\\n                    head_instr_ratio_sq_sum += _ratio\\n\\n... [截断: 输出过长，省略 14430 字符] ...\\n\\n= time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015AzchHt9Ghh4ouACA8FhKY`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +118 /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "c42fea6f-2a14-4e97-a711-1402c01beb0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjoHcuKUisu9bSTu3VaHap",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4318,
+      "cache_read_input_tokens": 60682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4318
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T16:46:21.280Z_
+
+<details><summary>↩ Tool result · `toolu_017EnGoAA5WYy9WUzD7u954C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            max_new_tokens=7, do_sample=False,\\n        )\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n\\n    vocab_size = model.vocab_size\\n    disc = np.clip(vocab_size - token_ids - 1, 0, model.bin_centers.shape[0] - 1)\\n    norm_act = model.bin_centers[disc]\\n\\n    stats = model.get_action_stats(UNNORM)\\n    mask = np.array(stats.get(\\\"mask\\\", [True] * 7))\\n    high, low = np.array(stats[\\\"q99\\\"]), np.array(stats[\\\"q01\\\"])\\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low, norm_act)\\n\\n    del inputs, gen_ids\\n    return action.astype(np.float64), token_ids\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: representation extraction\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n    task_labels = np.zeros(total, dtype=np.int64)\\n    head_instr_ratio_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    head_instr_ratio_sq_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    attn_count = 0\\n\\n    idx = 0\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo = f\\\"data/demo_{di}\\\"\\n                n_avail = hf[demo][\\\"actions\\\"].shape[0]\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\n                    with torch.no_grad():\\n                        out = model(**inputs,\\n                                    output_hidden_states=True,\\n                                    output_attentions=True)\\n\\n                    seq_len = out.hidden_states[0].shape[1]\\n                    img_s, img_e = 1, 1 + N_IMG_TOKENS\\n                    txt_s, txt_e = img_e, seq_len\\n\\n                    for l in range(N_LAYERS):\\n                        hs = out.hidden_states[l + 1][0]\\n                        reps[l][\\\"image_mean\\\"][idx] = hs[img_s:img_e].float().mean(0).cpu().numpy()\\n                        reps[l][\\\"last_preaction\\\"][idx] = hs[-1].float().cpu().numpy()\\n\\n                    l1 = out.attentions[1][0].float()\\n                    last_pos = l1.shape[1] - 1\\n                    action_attn = l1[:, last_pos, :]\\n                    _img_a = action_attn[:, img_s:img_e].sum(dim=-1)\\n                    _txt_a = action_attn[:, txt_s:txt_e].sum(dim=-1)\\n                    _bos_a = action_attn[:, 0:1].sum(dim=-1)\\n                    _total = _img_a + _txt_a + _bos_a\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\n                    _ratio_np = _ratio.cpu().numpy()\\n                    head_instr_ratio_sum += _ratio_np\\n                    head_instr_ratio_sq_sum += _ratio\\n\\n... [截断: 输出过长，省略 15412 字符] ...\\n\\nson\\\")\\n        if os.path.exists(ds_path):\\n            with open(ds_path, \\\"r\\\") as _f:\\n                ds_stats = json.load(_f)\\n            for k, v in ds_stats.items():\\n                if k not in model.norm_stats:\\n                    model.norm_stats[k] = v\\n                    log(f\\\"  Merged norm_stats key: {k}\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        if not args.only_counterfactual:\\n            t1 = time.time()\\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n                model, processor, nt, nd, ns)\\n            log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.only_counterfactual and not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        if not args.only_counterfactual:\\n            t3 = time.time()\\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n            with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n                json.dump(attn_res, f, indent=2)\\n            log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n            del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        if not args.only_counterfactual:\\n            t4 = time.time()\\n            cls_res = run_classification(reps, labels, layers=cls_layers)\\n            with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n                json.dump(cls_res, f, indent=2)\\n            log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.only_counterfactual and not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        if not args.only_counterfactual:\\n            del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "799f9d00-9f7c-43f4-a118-ac65b10c8f24",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def generate_action(model, processor, instruction, image):\\\\n    inputs = prepare_inputs(processor, instruction, image)\\\\n    input_ids = inputs[\\\\\\\"input_ids\\\\\\\"]\\\\n\\\\n    if not torch.all(input_ids[:, -1] == 29871):\\\\n        input_ids = torch.cat(\\\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\\\n        )\\\\n        if \\\\\\\"attention_mask\\\\\\\" in inputs:\\\\n            inputs[\\\\\\\"attention_mask\\\\\\\"] = torch.cat(\\\\n                (inputs[\\\\\\\"attention_mask\\\\\\\"],\\\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\\\\\"attention_mask\\\\\\\"].dtype)), dim=1\\\\n            )\\\\n    inputs[\\\\\\\"input_ids\\\\\\\"] = input_ids\\\\n\\\\n    with torch.no_grad():\\\\n        gen_ids = model.generate(\\\\n            inputs[\\\\\\\"input_ids\\\\\\\"],\\\\n            attention_mask=inputs.get(\\\\\\\"attention_mask\\\\\\\"),\\\\n            pixel_values=inputs.get(\\\\\\\"pixel_values\\\\\\\"),\\\\n            max_new_tokens=7, do_sample=False,\\\\n        )\\\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\\\n\\\\n    vocab_size = model.vocab_size\\\\n    disc = np.clip(vocab_size - token_ids - 1, 0, model.bin_centers.shape[0] - 1)\\\\n    norm_act = model.bin_centers[disc]\\\\n\\\\n    stats = model.get_action_stats(UNNORM)\\\\n    mask = np.array(stats.get(\\\\\\\"mask\\\\\\\", [True] * 7))\\\\n    high, low = np.array(stats[\\\\\\\"q99\\\\\\\"]), np.array(stats[\\\\\\\"q01\\\\\\\"])\\\\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low, norm_act)\\\\n\\\\n    del inputs, gen_ids\\\\n    return action.astype(np.float64), token_ids\\\\n\\\\n\\\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Phase 1: representation extraction\\\\\\\")\\\\n    total = n_tasks * n_demos * n_timesteps\\\\n\\\\n    reps = {\\\\n        l: {\\\\n            \\\\\\\"image_mean\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n            \\\\\\\"last_preaction\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n        }\\\\n        for l in range(N_LAYERS)\\\\n    }\\\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\\\n    task_labels = np.zeros(total, dtype=np.int64)\\\\n    head_instr_ratio_sum = np.zeros(N_HEADS, dtype=np.float64)\\\\n    head_instr_ratio_sq_sum = np.zeros(N_HEADS, dtype=np.float64)\\\\n    attn_count = 0\\\\n\\\\n    idx = 0\\\\n    for ti in range(n_tasks):\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n        log(f\\\\\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\\\\\")\\\\n\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            for di in range(n_demos):\\\\n                demo = f\\\\\\\"data/demo_{di}\\\\\\\"\\\\n                n_avail = hf[demo][\\\\\\\"actions\\\\\\\"].shape[0]\\\\n                for t in range(min(n_timesteps, n_avail)):\\\\n                    img = Image.fromarray(hf[f\\\\\\\"{demo}/obs/agentview_rgb\\\\\\\"][t])\\\\n                    act = np.array(hf[f\\\\\\\"{demo}/actions\\\\\\\"][t], dtype=np.float32)\\\\n\\\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\\\n                    with torch.no_grad():\\\\n                        out = model(**inputs,\\\\n                                    output_hidden_states=True,\\\\n                                    output_attentions=True)\\\\n\\\\n                    seq_len = out.hidden_states[0].shape[1]\\\\n                    img_s, img_e = 1, 1 + N_IMG_TOKENS\\\\n                    txt_s, txt_e = img_e, seq_len\\\\n\\\\n                    for l in range(N_LAYERS):\\\\n                        hs = out.hidden_states[l + 1][0]\\\\n                        reps[l][\\\\\\\"image_mean\\\\\\\"][idx] = hs[img_s:img_e].float().mean(0).cpu().numpy()\\\\n                        reps[l][\\\\\\\"last_preaction\\\\\\\"][idx] = hs[-1].float().cpu().numpy()\\\\n\\\\n                    l1 = out.attentions[1][0].float()\\\\n                    last_pos = l1.shape[1] - 1\\\\n                    action_attn = l1[:, last_pos, :]\\\\n                    _img_a = action_attn[:, img_s:img_e].sum(dim=-1)\\\\n                    _txt_a = action_attn[:, txt_s:txt_e].sum(dim=-1)\\\\n                    _bos_a = action_attn[:, 0:1].sum(dim=-1)\\\\n                    _total = _img_a + _txt_a + _bos_a\\\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\\\n                    _ratio_np = _ratio.cpu().numpy()\\\\n                    head_instr_ratio_sum += _ratio_np\\\\n                    head_instr_ratio_sq_sum += _ratio\\\\n\\\\n... [截断: 输出过长，省略 15412 字符] ...\\\\n\\\\nson\\\\\\\")\\\\n        if os.path.exists(ds_path):\\\\n            with open(ds_path, \\\\\\\"r\\\\\\\") as _f:\\\\n                ds_stats = json.load(_f)\\\\n            for k, v in ds_stats.items():\\\\n                if k not in model.norm_stats:\\\\n                    model.norm_stats[k] = v\\\\n                    log(f\\\\\\\"  Merged norm_stats key: {k}\\\\\\\")\\\\n\\\\n        log(\\\\\\\"Validating token layout ...\\\\\\\")\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[0]}_demo.hdf5\\\\\\\")\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            img = Image.fromarray(hf[\\\\\\\"data/demo_0/obs/agentview_rgb\\\\\\\"][0])\\\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\\\n        log(f\\\\\\\"  input_ids shape: {inputs['input_ids'].shape}\\\\\\\")\\\\n        log(f\\\\\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\\\\\")\\\\n        with torch.no_grad():\\\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\\\n        hs0_shape = out.hidden_states[0].shape\\\\n        log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n        expected_seq = inputs[\\\\\\\"input_ids\\\\\\\"].shape[1] + N_IMG_TOKENS\\\\n        actual_seq = hs0_shape[1]\\\\n        if actual_seq != expected_seq:\\\\n            log(f\\\\\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\\\\\")\\\\n            log(f\\\\\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\\\\\")\\\\n            N_IMG_TOKENS = actual_seq - inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]\\\\n        log(f\\\\\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\\\\\")\\\\n        del out, inputs\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        if not args.only_counterfactual:\\\\n            t1 = time.time()\\\\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n                model, processor, nt, nd, ns)\\\\n            log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n        if not args.only_counterfactual and not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n        if not args.only_counterfactual:\\\\n            t3 = time.time()\\\\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n            with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(attn_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n            del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n        if not args.only_counterfactual:\\\\n            t4 = time.time()\\\\n            cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n            with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(cls_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n        if not args.only_counterfactual and not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\\\\\"rsa_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\\\\\")\\\\n\\\\n        if not args.only_counterfactual:\\\\n            del reps, actions, labels\\\\n\\\\n        if not args.skip_counterfactual:\\\\n            t5 = time.time()\\\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n            with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(cf_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            max_new_tokens=7, do_sample=False,\\n        )\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n\\n    vocab_size = model.vocab_size\\n    disc = np.clip(vocab_size - token_ids - 1, 0, model.bin_centers.shape[0] - 1)\\n    norm_act = model.bin_centers[disc]\\n\\n    stats = model.get_action_stats(UNNORM)\\n    mask = np.array(stats.get(\\\"mask\\\", [True] * 7))\\n    high, low = np.array(stats[\\\"q99\\\"]), np.array(stats[\\\"q01\\\"])\\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low, norm_act)\\n\\n    del inputs, gen_ids\\n    return action.astype(np.float64), token_ids\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: representation extraction\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n    task_labels = np.zeros(total, dtype=np.int64)\\n    head_instr_ratio_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    head_instr_ratio_sq_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    attn_count = 0\\n\\n    idx = 0\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo = f\\\"data/demo_{di}\\\"\\n                n_avail = hf[demo][\\\"actions\\\"].shape[0]\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\n                    with torch.no_grad():\\n                        out = model(**inputs,\\n                                    output_hidden_states=True,\\n                                    output_attentions=True)\\n\\n                    seq_len = out.hidden_states[0].shape[1]\\n                    img_s, img_e = 1, 1 + N_IMG_TOKENS\\n                    txt_s, txt_e = img_e, seq_len\\n\\n                    for l in range(N_LAYERS):\\n                        hs = out.hidden_states[l + 1][0]\\n                        reps[l][\\\"image_mean\\\"][idx] = hs[img_s:img_e].float().mean(0).cpu().numpy()\\n                        reps[l][\\\"last_preaction\\\"][idx] = hs[-1].float().cpu().numpy()\\n\\n                    l1 = out.attentions[1][0].float()\\n                    last_pos = l1.shape[1] - 1\\n                    action_attn = l1[:, last_pos, :]\\n                    _img_a = action_attn[:, img_s:img_e].sum(dim=-1)\\n                    _txt_a = action_attn[:, txt_s:txt_e].sum(dim=-1)\\n                    _bos_a = action_attn[:, 0:1].sum(dim=-1)\\n                    _total = _img_a + _txt_a + _bos_a\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\n                    _ratio_np = _ratio.cpu().numpy()\\n                    head_instr_ratio_sum += _ratio_np\\n                    head_instr_ratio_sq_sum += _ratio\\n\\n... [截断: 输出过长，省略 15412 字符] ...\\n\\nson\\\")\\n        if os.path.exists(ds_path):\\n            with open(ds_path, \\\"r\\\") as _f:\\n                ds_stats = json.load(_f)\\n            for k, v in ds_stats.items():\\n                if k not in model.norm_stats:\\n                    model.norm_stats[k] = v\\n                    log(f\\\"  Merged norm_stats key: {k}\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        if not args.only_counterfactual:\\n            t1 = time.time()\\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n                model, processor, nt, nd, ns)\\n            log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.only_counterfactual and not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        if not args.only_counterfactual:\\n            t3 = time.time()\\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n            with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n                json.dump(attn_res, f, indent=2)\\n            log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n            del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        if not args.only_counterfactual:\\n            t4 = time.time()\\n            cls_res = run_classification(reps, labels, layers=cls_layers)\\n            with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n                json.dump(cls_res, f, indent=2)\\n            log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.only_counterfactual and not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        if not args.only_counterfactual:\\n            del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-21T16:46:21.860Z_
+
+<details><summary>↩ Tool result · `toolu_015AzchHt9Ghh4ouACA8FhKY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def generate_action_phi3v(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            input_ids=inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            image_sizes=inputs.get(\\\"image_sizes\\\"),\\n            max_new_tokens=7,\\n            do_sample=False,\\n        )\\n\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n    vocab_size = model.config.vocab_size\\n    n_bins = 256\\n    bins = np.linspace(-1, 1, n_bins)\\n    bin_centers = (bins[:-1] + bins[1:]) / 2.0\\n\\n    disc = np.clip(vocab_size - token_ids - 1, a_min=0, a_max=bin_centers.shape[0] - 1)\\n    norm_act = bin_centers[disc]\\n\\n    del inputs, gen_ids\\n    return norm_act.astype(np.float64), token_ids\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps, img_token_id):\\n    log(\\\"Phase 1: representation extraction\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n    task_labels = np.zeros(total, dtype=np.int64)\\n    head_instr_ratio_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    head_instr_ratio_sq_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    attn_count = 0\\n\\n    idx = 0\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo = f\\\"data/demo_{di}\\\"\\n                n_avail = hf[demo][\\\"actions\\\"].shape[0]\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\n                    original_ids = inputs[\\\"input_ids\\\"].clone()\\n                    with torch.no_grad():\\n                        out = model(\\n                            **inputs,\\n                            output_hidden_states=True,\\n                            output_attentions=True,\\n                        )\\n\\n                    tr = find_token_regions(original_ids, img_token_id)\\n                    img_s, img_e = tr[\\\"image\\\"]\\n\\n                    for l in range(N_LAYERS):\\n                        hs = out.hidden_states[l + 1][0]\\n                        reps[l][\\\"image_mean\\\"][idx] = (\\n                            hs[img_s:img_e].float().mean(0).cpu().numpy()\\n                        )\\n                        reps[l][\\\"last_preaction\\\"][idx] = (\\n                            hs[-1].float().cpu().numpy()\\n                        )\\n\\n                    l1 = out.attentions[1][0].float()\\n                    last_pos = l1.shape[1] - 1\\n                    action_attn = l1[:, last_pos, :]\\n                    _is, _ie = tr[\\\"image\\\"]\\n                    _ts, _te = tr[\\\"text\\\"]\\n                    _bs, _be = tr[\\\"bos\\\"]\\n                    _img_a = action_attn[:, _is:_ie].sum(dim=-1)\\n                    _txt_a = action_attn[:, _ts:_te].sum(dim=-1)\\n                    _bos_a = action_attn[:, _bs:_be].sum(dim=-1)\\n                    _total = _img_a + _txt_a + _bos_a\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\n                    _ratio_np = _ratio.cpu().numpy()\\n                    head_instr_ratio_sum += _ratio_np\\n                    head_instr_ratio_sq_sum += _ratio_np ** 2\\n                    attn_count += 1\\n                    del l1\\n\\n                    actions_arr[idx] = act\\n                    task_labels[idx] = ti\\n                    idx += 1\\n\\n                    del out, inputs\\n                  \\n\\n... [截断: 输出过长，省略 11849 字符] ...\\n\\noutput_hidden_states=True, output_attentions=True)\\n\\n    hs0_shape = out.hidden_states[0].shape\\n    log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n\\n    tr = find_token_regions(original_ids, IMG_TOKEN_ID)\\n    N_IMG_TOKENS = tr[\\\"image\\\"][1] - tr[\\\"image\\\"][0]\\n    log(f\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\")\\n    log(f\\\"  N_IMG_TOKENS={N_IMG_TOKENS}\\\")\\n    log(f\\\"  Total seq_len: input_ids={inputs['input_ids'].shape[1]}, hidden={hs0_shape[1]}\\\")\\n\\n    n_attn_layers = len(out.attentions)\\n    attn_shape = out.attentions[0].shape\\n    log(f\\\"  Attention: {n_attn_layers} layers, shape={attn_shape}\\\")\\n\\n    del out, inputs\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n        model, processor, nt, nd, ns, IMG_TOKEN_ID\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    if not args.skip_probing:\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    t3 = time.time()\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n    with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n        json.dump(attn_res, f, indent=2)\\n    log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n    del attn_ratio_sum, attn_ratio_sq_sum\\n\\n    t4 = time.time()\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\n    with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n        json.dump(cls_res, f, indent=2)\\n    log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n    del reps, actions, labels\\n\\n    if condition == \\\"trained\\\" and not args.skip_counterfactual:\\n        t5 = time.time()\\n        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n        with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n            json.dump(cf_res, f, indent=2)\\n        log(f\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n    elif condition != \\\"trained\\\":\\n        log(\\\"Phase 5: skipped (untrained model cannot generate meaningful actions)\\\")\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\", \\\"untrained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    args = p.parse_args()\\n\\n    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\"config.json\\\")):\\n                ckpt = UNTRAINED_CACHE\\n            else:\\n                ckpt = UNTRAINED_CKPT\\n                log(f\\\"  Will download untrained model from {ckpt}\\\")\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n\\n        try:\\n            model, processor = load_model(ckpt, condition)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            log(f\\\"  Skipping {condition} condition\\\")\\n            continue\\n\\n        tc = time.time()\\n        run_pipeline(model, processor, condition, results_dir, args)\\n        log(f\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "01132b22-34cd-496e-af70-d6b458b735f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def generate_action_phi3v(model, processor, instruction, image):\\\\n    inputs = prepare_inputs(processor, instruction, image)\\\\n\\\\n    with torch.no_grad():\\\\n        gen_ids = model.generate(\\\\n            input_ids=inputs[\\\\\\\"input_ids\\\\\\\"],\\\\n            attention_mask=inputs.get(\\\\\\\"attention_mask\\\\\\\"),\\\\n            pixel_values=inputs.get(\\\\\\\"pixel_values\\\\\\\"),\\\\n            image_sizes=inputs.get(\\\\\\\"image_sizes\\\\\\\"),\\\\n            max_new_tokens=7,\\\\n            do_sample=False,\\\\n        )\\\\n\\\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\\\n    vocab_size = model.config.vocab_size\\\\n    n_bins = 256\\\\n    bins = np.linspace(-1, 1, n_bins)\\\\n    bin_centers = (bins[:-1] + bins[1:]) / 2.0\\\\n\\\\n    disc = np.clip(vocab_size - token_ids - 1, a_min=0, a_max=bin_centers.shape[0] - 1)\\\\n    norm_act = bin_centers[disc]\\\\n\\\\n    del inputs, gen_ids\\\\n    return norm_act.astype(np.float64), token_ids\\\\n\\\\n\\\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps, img_token_id):\\\\n    log(\\\\\\\"Phase 1: representation extraction\\\\\\\")\\\\n    total = n_tasks * n_demos * n_timesteps\\\\n\\\\n    reps = {\\\\n        l: {\\\\n            \\\\\\\"image_mean\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n            \\\\\\\"last_preaction\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n        }\\\\n        for l in range(N_LAYERS)\\\\n    }\\\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\\\n    task_labels = np.zeros(total, dtype=np.int64)\\\\n    head_instr_ratio_sum = np.zeros(N_HEADS, dtype=np.float64)\\\\n    head_instr_ratio_sq_sum = np.zeros(N_HEADS, dtype=np.float64)\\\\n    attn_count = 0\\\\n\\\\n    idx = 0\\\\n    for ti in range(n_tasks):\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n        log(f\\\\\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\\\\\")\\\\n\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            for di in range(n_demos):\\\\n                demo = f\\\\\\\"data/demo_{di}\\\\\\\"\\\\n                n_avail = hf[demo][\\\\\\\"actions\\\\\\\"].shape[0]\\\\n                for t in range(min(n_timesteps, n_avail)):\\\\n                    img = Image.fromarray(hf[f\\\\\\\"{demo}/obs/agentview_rgb\\\\\\\"][t])\\\\n                    act = np.array(hf[f\\\\\\\"{demo}/actions\\\\\\\"][t], dtype=np.float32)\\\\n\\\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\\\n                    original_ids = inputs[\\\\\\\"input_ids\\\\\\\"].clone()\\\\n                    with torch.no_grad():\\\\n                        out = model(\\\\n                            **inputs,\\\\n                            output_hidden_states=True,\\\\n                            output_attentions=True,\\\\n                        )\\\\n\\\\n                    tr = find_token_regions(original_ids, img_token_id)\\\\n                    img_s, img_e = tr[\\\\\\\"image\\\\\\\"]\\\\n\\\\n                    for l in range(N_LAYERS):\\\\n                        hs = out.hidden_states[l + 1][0]\\\\n                        reps[l][\\\\\\\"image_mean\\\\\\\"][idx] = (\\\\n                            hs[img_s:img_e].float().mean(0).cpu().numpy()\\\\n                        )\\\\n                        reps[l][\\\\\\\"last_preaction\\\\\\\"][idx] = (\\\\n                            hs[-1].float().cpu().numpy()\\\\n                        )\\\\n\\\\n                    l1 = out.attentions[1][0].float()\\\\n                    last_pos = l1.shape[1] - 1\\\\n                    action_attn = l1[:, last_pos, :]\\\\n                    _is, _ie = tr[\\\\\\\"image\\\\\\\"]\\\\n                    _ts, _te = tr[\\\\\\\"text\\\\\\\"]\\\\n                    _bs, _be = tr[\\\\\\\"bos\\\\\\\"]\\\\n                    _img_a = action_attn[:, _is:_ie].sum(dim=-1)\\\\n                    _txt_a = action_attn[:, _ts:_te].sum(dim=-1)\\\\n                    _bos_a = action_attn[:, _bs:_be].sum(dim=-1)\\\\n                    _total = _img_a + _txt_a + _bos_a\\\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\\\n                    _ratio_np = _ratio.cpu().numpy()\\\\n                    head_instr_ratio_sum += _ratio_np\\\\n                    head_instr_ratio_sq_sum += _ratio_np ** 2\\\\n                    attn_count += 1\\\\n                    del l1\\\\n\\\\n                    actions_arr[idx] = act\\\\n                    task_labels[idx] = ti\\\\n                    idx += 1\\\\n\\\\n                    del out, inputs\\\\n                  \\\\n\\\\n... [截断: 输出过长，省略 11849 字符] ...\\\\n\\\\noutput_hidden_states=True, output_attentions=True)\\\\n\\\\n    hs0_shape = out.hidden_states[0].shape\\\\n    log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n\\\\n    tr = find_token_regions(original_ids, IMG_TOKEN_ID)\\\\n    N_IMG_TOKENS = tr[\\\\\\\"image\\\\\\\"][1] - tr[\\\\\\\"image\\\\\\\"][0]\\\\n    log(f\\\\\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\\\\\")\\\\n    log(f\\\\\\\"  N_IMG_TOKENS={N_IMG_TOKENS}\\\\\\\")\\\\n    log(f\\\\\\\"  Total seq_len: input_ids={inputs['input_ids'].shape[1]}, hidden={hs0_shape[1]}\\\\\\\")\\\\n\\\\n    n_attn_layers = len(out.attentions)\\\\n    attn_shape = out.attentions[0].shape\\\\n    log(f\\\\\\\"  Attention: {n_attn_layers} layers, shape={attn_shape}\\\\\\\")\\\\n\\\\n    del out, inputs\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    t1 = time.time()\\\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n        model, processor, nt, nd, ns, IMG_TOKEN_ID\\\\n    )\\\\n    log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n    if not args.skip_probing:\\\\n        t2 = time.time()\\\\n        probe_res = run_probing(reps, actions, nps)\\\\n        with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(probe_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n    t3 = time.time()\\\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n    with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(attn_res, f, indent=2)\\\\n    log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n    del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n    t4 = time.time()\\\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n    with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(cls_res, f, indent=2)\\\\n    log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n    del reps, actions, labels\\\\n\\\\n    if condition == \\\\\\\"trained\\\\\\\" and not args.skip_counterfactual:\\\\n        t5 = time.time()\\\\n        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n        with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(cf_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n    elif condition != \\\\\\\"trained\\\\\\\":\\\\n        log(\\\\\\\"Phase 5: skipped (untrained model cannot generate meaningful actions)\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip-probing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\n        \\\\\\\"--conditions\\\\\\\", nargs=\\\\\\\"+\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n        default=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n        help=\\\\\\\"Conditions to run (trained untrained)\\\\\\\",\\\\n    )\\\\n    args = p.parse_args()\\\\n\\\\n    conditions = args.conditions\\\\n    log(f\\\\\\\"Pipeline conditions: {conditions}\\\\\\\")\\\\n\\\\n    t_start = time.time()\\\\n\\\\n    for condition in conditions:\\\\n        if condition == \\\\\\\"trained\\\\\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n        elif condition == \\\\\\\"untrained\\\\\\\":\\\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\\\\\"config.json\\\\\\\")):\\\\n                ckpt = UNTRAINED_CACHE\\\\n            else:\\\\n                ckpt = UNTRAINED_CKPT\\\\n                log(f\\\\\\\"  Will download untrained model from {ckpt}\\\\\\\")\\\\n        else:\\\\n            log(f\\\\\\\"  Unknown condition: {condition}, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\\\n\\\\n        try:\\\\n            model, processor = load_model(ckpt, condition)\\\\n        except Exception as e:\\\\n            log(f\\\\\\\"  ERROR loading {condition} model: {e}\\\\\\\")\\\\n            log(f\\\\\\\"  Skipping {condition} condition\\\\\\\")\\\\n            continue\\\\n\\\\n        tc = time.time()\\\\n        run_pipeline(model, processor, condition, results_dir, args)\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def generate_action_phi3v(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            input_ids=inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            image_sizes=inputs.get(\\\"image_sizes\\\"),\\n            max_new_tokens=7,\\n            do_sample=False,\\n        )\\n\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n    vocab_size = model.config.vocab_size\\n    n_bins = 256\\n    bins = np.linspace(-1, 1, n_bins)\\n    bin_centers = (bins[:-1] + bins[1:]) / 2.0\\n\\n    disc = np.clip(vocab_size - token_ids - 1, a_min=0, a_max=bin_centers.shape[0] - 1)\\n    norm_act = bin_centers[disc]\\n\\n    del inputs, gen_ids\\n    return norm_act.astype(np.float64), token_ids\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps, img_token_id):\\n    log(\\\"Phase 1: representation extraction\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n    task_labels = np.zeros(total, dtype=np.int64)\\n    head_instr_ratio_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    head_instr_ratio_sq_sum = np.zeros(N_HEADS, dtype=np.float64)\\n    attn_count = 0\\n\\n    idx = 0\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo = f\\\"data/demo_{di}\\\"\\n                n_avail = hf[demo][\\\"actions\\\"].shape[0]\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\n                    original_ids = inputs[\\\"input_ids\\\"].clone()\\n                    with torch.no_grad():\\n                        out = model(\\n                            **inputs,\\n                            output_hidden_states=True,\\n                            output_attentions=True,\\n                        )\\n\\n                    tr = find_token_regions(original_ids, img_token_id)\\n                    img_s, img_e = tr[\\\"image\\\"]\\n\\n                    for l in range(N_LAYERS):\\n                        hs = out.hidden_states[l + 1][0]\\n                        reps[l][\\\"image_mean\\\"][idx] = (\\n                            hs[img_s:img_e].float().mean(0).cpu().numpy()\\n                        )\\n                        reps[l][\\\"last_preaction\\\"][idx] = (\\n                            hs[-1].float().cpu().numpy()\\n                        )\\n\\n                    l1 = out.attentions[1][0].float()\\n                    last_pos = l1.shape[1] - 1\\n                    action_attn = l1[:, last_pos, :]\\n                    _is, _ie = tr[\\\"image\\\"]\\n                    _ts, _te = tr[\\\"text\\\"]\\n                    _bs, _be = tr[\\\"bos\\\"]\\n                    _img_a = action_attn[:, _is:_ie].sum(dim=-1)\\n                    _txt_a = action_attn[:, _ts:_te].sum(dim=-1)\\n                    _bos_a = action_attn[:, _bs:_be].sum(dim=-1)\\n                    _total = _img_a + _txt_a + _bos_a\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\n                    _ratio_np = _ratio.cpu().numpy()\\n                    head_instr_ratio_sum += _ratio_np\\n                    head_instr_ratio_sq_sum += _ratio_np ** 2\\n                    attn_count += 1\\n                    del l1\\n\\n                    actions_arr[idx] = act\\n                    task_labels[idx] = ti\\n                    idx += 1\\n\\n                    del out, inputs\\n                  \\n\\n... [截断: 输出过长，省略 11849 字符] ...\\n\\noutput_hidden_states=True, output_attentions=True)\\n\\n    hs0_shape = out.hidden_states[0].shape\\n    log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n\\n    tr = find_token_regions(original_ids, IMG_TOKEN_ID)\\n    N_IMG_TOKENS = tr[\\\"image\\\"][1] - tr[\\\"image\\\"][0]\\n    log(f\\\"  Token regions: bos={tr['bos']} image={tr['image']} text={tr['text']}\\\")\\n    log(f\\\"  N_IMG_TOKENS={N_IMG_TOKENS}\\\")\\n    log(f\\\"  Total seq_len: input_ids={inputs['input_ids'].shape[1]}, hidden={hs0_shape[1]}\\\")\\n\\n    n_attn_layers = len(out.attentions)\\n    attn_shape = out.attentions[0].shape\\n    log(f\\\"  Attention: {n_attn_layers} layers, shape={attn_shape}\\\")\\n\\n    del out, inputs\\n    torch.cuda.empty_cache()\\n\\n    t1 = time.time()\\n    reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n        model, processor, nt, nd, ns, IMG_TOKEN_ID\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    if not args.skip_probing:\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    t3 = time.time()\\n    attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n    with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n        json.dump(attn_res, f, indent=2)\\n    log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n    del attn_ratio_sum, attn_ratio_sq_sum\\n\\n    t4 = time.time()\\n    cls_res = run_classification(reps, labels, layers=cls_layers)\\n    with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n        json.dump(cls_res, f, indent=2)\\n    log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n    del reps, actions, labels\\n\\n    if condition == \\\"trained\\\" and not args.skip_counterfactual:\\n        t5 = time.time()\\n        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n        with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n            json.dump(cf_res, f, indent=2)\\n        log(f\\\"Phase 5: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n    elif condition != \\\"trained\\\":\\n        log(\\\"Phase 5: skipped (untrained model cannot generate meaningful actions)\\\")\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\", \\\"untrained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    args = p.parse_args()\\n\\n    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\"config.json\\\")):\\n                ckpt = UNTRAINED_CACHE\\n            else:\\n                ckpt = UNTRAINED_CKPT\\n                log(f\\\"  Will download untrained model from {ckpt}\\\")\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n\\n        try:\\n            model, processor = load_model(ckpt, condition)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            log(f\\\"  Skipping {condition} condition\\\")\\n            continue\\n\\n        tc = time.time()\\n        run_pipeline(model, processor, condition, results_dir, args)\\n        log(f\\\"  {condition} complete in {(time.time()-tc)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check:
+1. tracvla_long and tracvla_goal checkpoints
+2. The LIBERO-Long and LIBERO-Goal task lists for OpenVLA
+3. Whether there's a `_cf_instruction` function for all scripts (to understand paraphrases)
+4. Whether there's a libero_goal_full_pipeline.py script
+
+Let me also check the existing results directories and the tracvla_long/tracvla_goal scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "79d24af3-a5e3-44f2-8ff1-cdf8be6c6a24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTjh3LcKovcdcj8qfzEytr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10180,
+      "cache_read_input_tokens": 65000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10180
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+Let me check the remaining scripts for tracvla_long and tracvla_goal, plus the libero_long data paths.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "420f8257-1a5b-4281-81de-bcd7f0d6bfc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTjh3LcKovcdcj8qfzEytr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10180,
+      "cache_read_input_tokens": 65000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10180
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0181xDHChgKBgLnUPYRwKosN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -90 /root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "f4ad23da-da90-4acb-8cb6-ac6f364b154b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTjh3LcKovcdcj8qfzEytr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10180,
+      "cache_read_input_tokens": 65000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10180
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-21T16:46:31.769Z_
+
+<details><summary>↩ Tool result · `toolu_0181xDHChgKBgLnUPYRwKosN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_long\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\",\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\",\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\",\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\",\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\",\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\",\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"turn on the stove and put the moka pot on it\\\",\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\",\\n    \\\"put the yellow and white mug in the microwave and close it\\\",\\n    \\\"put both moka pots on the stove\\\",\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\",\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\",\\n    \\\"put both the cream cheese box and the butter in the basket\\\",\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\",\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\",\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\",\\n]\\nPARAPHRASES = [\\n    \\\"switch on the stove and place the moka pot on it\\\",\\n    \\\"place the black bowl in the bottom drawer of the cabinet and shut it\\\",\\n    \\\"place the yellow and white mug in the microwave and shut it\\\",\\n    \\\"put both of the moka pots on the stove\\\",\\n    \\\"place the alphabet soup and cream cheese box into the basket\\\",\\n    \\\"place the alphabet soup and tomato sauce into the basket\\\",\\n    \\\"place the cream cheese box and butter into the basket\\\",\\n    \\\"place the white mug on the left plate and the yellow white mug on the right plate\\\",\\n    \\\"place the white mug on the plate and the chocolate pudding to the right of the plate\\\",\\n    \\\"grab the book and put it in the back section of the caddy\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "edd4b447-70b5-4972-a8e6-3ddbc21a1fc3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Long Full Analysis Pipeline for TracVLA-Phi3V\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\\\n\\\\n# --- Checkpoints ---\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\nUNTRAINED_CACHE = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\n\\\\n# --- Data ---\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_long\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\\\n\\\\n# --- Architecture ---\\\\nN_LAYERS = 32\\\\nN_HEADS = 32\\\\nHIDDEN = 3072\\\\nN_IMG_TOKENS = 0  # auto-detected\\\\nIMG_TOKEN_ID = -1  # auto-detected\\\\n\\\\n# --- Data config ---\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\",\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [\\\\n    \\\\\\\"turn on the stove and put the moka pot on it\\\\\\\",\\\\n    \\\\\\\"put the black bowl in the bottom drawer of the cabinet and close it\\\\\\\",\\\\n    \\\\\\\"put the yellow and white mug in the microwave and close it\\\\\\\",\\\\n    \\\\\\\"put both moka pots on the stove\\\\\\\",\\\\n    \\\\\\\"put both the alphabet soup and the cream cheese box in the basket\\\\\\\",\\\\n    \\\\\\\"put both the alphabet soup and the tomato sauce in the basket\\\\\\\",\\\\n    \\\\\\\"put both the cream cheese box and the butter in the basket\\\\\\\",\\\\n    \\\\\\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\\\\\",\\\\n    \\\\\\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\\\\",\\\\n    \\\\\\\"pick up the book and place it in the back compartment of the caddy\\\\\\\",\\\\n]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"switch on the stove and place the moka pot on it\\\\\\\",\\\\n    \\\\\\\"place the black bowl in the bottom drawer of the cabinet and shut it\\\\\\\",\\\\n    \\\\\\\"place the yellow and white mug in the microwave and shut it\\\\\\\",\\\\n    \\\\\\\"put both of the moka pots on the stove\\\\\\\",\\\\n    \\\\\\\"place the alphabet soup and cream cheese box into the basket\\\\\\\",\\\\n    \\\\\\\"place the alphabet soup and tomato sauce into the basket\\\\\\\",\\\\n    \\\\\\\"place the cream cheese box and butter into the basket\\\\\\\",\\\\n    \\\\\\\"place the white mug on the left plate and the yellow white mug on the right plate\\\\\\\",\\\\n    \\\\\\\"place the white mug on the plate and the chocolate pudding to the right of the plate\\\\\\\",\\\\n    \\\\\\\"grab the book and put it in the back section of the caddy\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_long\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\",\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\",\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\",\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\",\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\",\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\",\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"turn on the stove and put the moka pot on it\\\",\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\",\\n    \\\"put the yellow and white mug in the microwave and close it\\\",\\n    \\\"put both moka pots on the stove\\\",\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\",\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\",\\n    \\\"put both the cream cheese box and the butter in the basket\\\",\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\",\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\",\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\",\\n]\\nPARAPHRASES = [\\n    \\\"switch on the stove and place the moka pot on it\\\",\\n    \\\"place the black bowl in the bottom drawer of the cabinet and shut it\\\",\\n    \\\"place the yellow and white mug in the microwave and shut it\\\",\\n    \\\"put both of the moka pots on the stove\\\",\\n    \\\"place the alphabet soup and cream cheese box into the basket\\\",\\n    \\\"place the alphabet soup and tomato sauce into the basket\\\",\\n    \\\"place the cream cheese box and butter into the basket\\\",\\n    \\\"place the white mug on the left plate and the yellow white mug on the right plate\\\",\\n    \\\"place the white mug on the plate and the chocolate pudding to the right of the plate\\\",\\n    \\\"grab the book and put it in the back section of the caddy\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01As4sM9etPiLiNFG8vEhdqu`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -90 /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "2e9e7c0f-08f2-4325-b76e-b2abf5dd2e9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTjh3LcKovcdcj8qfzEytr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10180,
+      "cache_read_input_tokens": 65000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10180
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F1kETmrVmwHcGjyCmgcKUK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts -name \"*goal*pipeline*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "1bc676d6-1256-4bee-8593-0e7cdaffb3dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTjh3LcKovcdcj8qfzEytr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10180,
+      "cache_read_input_tokens": 65000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10180
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T16:46:32.769Z_
+
+<details><summary>↩ Tool result · `toolu_01As4sM9etPiLiNFG8vEhdqu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"open the cabinet's middle drawer\\\",\\n    \\\"open the top drawer and place the bowl in it\\\",\\n    \\\"slide the plate to the stove's front\\\",\\n    \\\"place the bowl onto the plate\\\",\\n    \\\"place the bowl onto the stove\\\",\\n    \\\"place the bowl on the cabinet top\\\",\\n    \\\"put cream cheese into the bowl\\\",\\n    \\\"place the wine bottle on the rack\\\",\\n    \\\"place the wine bottle on the cabinet top\\\",\\n    \\\"switch on the stove\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "fdb8b3f9-0365-4e5e-84e5-1d0eab446f8f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\\\n\\\\n# --- Checkpoints ---\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\nUNTRAINED_CACHE = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\n\\\\n# --- Data ---\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\\\n\\\\n# --- Architecture ---\\\\nN_LAYERS = 32\\\\nN_HEADS = 32\\\\nHIDDEN = 3072\\\\nN_IMG_TOKENS = 0  # auto-detected\\\\nIMG_TOKEN_ID = -1  # auto-detected\\\\n\\\\n# --- Data config ---\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"open the cabinet's middle drawer\\\\\\\",\\\\n    \\\\\\\"open the top drawer and place the bowl in it\\\\\\\",\\\\n    \\\\\\\"slide the plate to the stove's front\\\\\\\",\\\\n    \\\\\\\"place the bowl onto the plate\\\\\\\",\\\\n    \\\\\\\"place the bowl onto the stove\\\\\\\",\\\\n    \\\\\\\"place the bowl on the cabinet top\\\\\\\",\\\\n    \\\\\\\"put cream cheese into the bowl\\\\\\\",\\\\n    \\\\\\\"place the wine bottle on the rack\\\\\\\",\\\\n    \\\\\\\"place the wine bottle on the cabinet top\\\\\\\",\\\\n    \\\\\\\"switch on the stove\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return (\\\\n        f\\\\\\\"<|user|>\\\\\\\\n<|image_1|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"What action should the robot take to {instruction}?<|end|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"<|assistant|>\\\\\\\\n\\\\\\\"\\\\n    )\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    prompt = make_prompt(instruction)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"open the cabinet's middle drawer\\\",\\n    \\\"open the top drawer and place the bowl in it\\\",\\n    \\\"slide the plate to the stove's front\\\",\\n    \\\"place the bowl onto the plate\\\",\\n    \\\"place the bowl onto the stove\\\",\\n    \\\"place the bowl on the cabinet top\\\",\\n    \\\"put cream cheese into the bowl\\\",\\n    \\\"place the wine bottle on the rack\\\",\\n    \\\"place the wine bottle on the cabinet top\\\",\\n    \\\"switch on the stove\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-21T16:46:33.369Z_
+
+<details><summary>↩ Tool result · `toolu_01F1kETmrVmwHcGjyCmgcKUK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py.bak\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "6b9f4c51-6101-4952-bee5-2a521ae70c07",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py.bak\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py.bak\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of all the scripts. Let me also check the `_cf_instruction` function and check whether there's a libero_goal OpenVLA pipeline (I notice there's no `libero_goal_full_pipeline.py` for OpenVLA).
+
+Let me also check the existing libero_object_untrained_full_pipeline.py since that's an untrained pipeline that might have the cosine distance method for OpenVLA.
+
+Let me also check how the OpenVLA untrained model handles counterfactual - since untrained OpenVLA can't use action MSE, it needs cosine distance. 
+
+Looking at the untrained pipeline...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "9715ee1a-5483-459f-85a1-fa7e72c557d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N23rJWesgdwbKTXKraoTfC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3774,
+      "cache_read_input_tokens": 75180,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3774
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HGbymvkGxXwuSCCkPmFj4V`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "5fa04a23-7347-4578-998e-0670c60ba8dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N23rJWesgdwbKTXKraoTfC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3774,
+      "cache_read_input_tokens": 75180,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3774
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F5Lc8eLrtAGixZbcN3wYLq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def _cf_instruction\" /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "4838be6e-a1b5-4bf9-97f8-ad52514269f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N23rJWesgdwbKTXKraoTfC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3774,
+      "cache_read_input_tokens": 75180,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3774
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-21T16:46:41.072Z_
+
+<details><summary>↩ Tool result · `toolu_01HGbymvkGxXwuSCCkPmFj4V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Object Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results/libero_object_untrained\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM = \\\"bridge_orig\\\"\\n\\nTASKS = [\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the alphabet soup and put it into the basket\\\",\\n    \\\"grab the cream cheese and put it into the basket\\\",\\n    \\\"grab the salad dressing and put it into the basket\\\",\\n    \\\"grab the bbq sauce and put it into the basket\\\",\\n    \\\"grab the ketchup and put it into the basket\\\",\\n    \\\"grab the tomato sauce and put it into the basket\\\",\\n    \\\"grab the butter and put it into the basket\\\",\\n    \\\"grab the milk and put it into the basket\\\",\\n    \\\"grab the chocolate pudding and put it into the basket\\\",\\n    \\\"grab the orange juice and put it into the basket\\\",\\n]\\n\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 4096\\nN_IMG_TOKENS = 256\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, image).to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n    with torch.no_grad():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "444b2303-12aa-490d-8331-874f60a5630e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Object Full Analysis Pipeline (Streaming)\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. RSA: representational similarity across conditions\\\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nAll results -> RESULTS_DIR/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\nCKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\\\\\"\\\\nRESULTS_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_object_untrained\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nUNNORM = \\\\\\\"bridge_orig\\\\\\\"\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\",\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"grab the alphabet soup and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the cream cheese and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the salad dressing and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the bbq sauce and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the ketchup and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the tomato sauce and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the butter and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the milk and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the chocolate pudding and put it into the basket\\\\\\\",\\\\n    \\\\\\\"grab the orange juice and put it into the basket\\\\\\\",\\\\n]\\\\n\\\\nN_LAYERS = 32\\\\nN_HEADS = 32\\\\nHIDDEN = 4096\\\\nN_IMG_TOKENS = 256\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return f\\\\\\\"In: What action should the robot take to {instruction}?\\\\\\\\nOut:\\\\\\\"\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    prompt = make_prompt(instruction)\\\\n    inputs = processor(prompt, image).to(DEVICE)\\\\n    if \\\\\\\"pixel_values\\\\\\\" in inputs:\\\\n        inputs[\\\\\\\"pixel_values\\\\\\\"] = inputs[\\\\\\\"pixel_values\\\\\\\"].to(torch.bfloat16)\\\\n    return inputs\\\\n\\\\n\\\\ndef generate_action(model, processor, instruction, image):\\\\n    inputs = prepare_inputs(processor, instruction, image)\\\\n    input_ids = inputs[\\\\\\\"input_ids\\\\\\\"]\\\\n\\\\n    if not torch.all(input_ids[:, -1] == 29871):\\\\n        input_ids = torch.cat(\\\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\\\n        )\\\\n        if \\\\\\\"attention_mask\\\\\\\" in inputs:\\\\n            inputs[\\\\\\\"attention_mask\\\\\\\"] = torch.cat(\\\\n                (inputs[\\\\\\\"attention_mask\\\\\\\"],\\\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\\\\\"attention_mask\\\\\\\"].dtype)), dim=1\\\\n            )\\\\n    inputs[\\\\\\\"input_ids\\\\\\\"] = input_ids\\\\n\\\\n    with torch.no_grad():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Object Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results/libero_object_untrained\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM = \\\"bridge_orig\\\"\\n\\nTASKS = [\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"grab the alphabet soup and put it into the basket\\\",\\n    \\\"grab the cream cheese and put it into the basket\\\",\\n    \\\"grab the salad dressing and put it into the basket\\\",\\n    \\\"grab the bbq sauce and put it into the basket\\\",\\n    \\\"grab the ketchup and put it into the basket\\\",\\n    \\\"grab the tomato sauce and put it into the basket\\\",\\n    \\\"grab the butter and put it into the basket\\\",\\n    \\\"grab the milk and put it into the basket\\\",\\n    \\\"grab the chocolate pudding and put it into the basket\\\",\\n    \\\"grab the orange juice and put it into the basket\\\",\\n]\\n\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 4096\\nN_IMG_TOKENS = 256\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, image).to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n    with torch.no_grad():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-21T16:46:41.670Z_
+
+<details><summary>↩ Tool result · `toolu_01F5Lc8eLrtAGixZbcN3wYLq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"283:def _cf_instruction(task_idx, condition):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "f6ae6049-3fd9-4d46-8338-10628db1b23b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"283:def _cf_instruction(task_idx, condition):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"283:def _cf_instruction(task_idx, condition):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017f7S1WvL8MqnUURHPbjRt1`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"counterfactual\" /root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "49e5ae41-1d49-46e9-98d7-4b6a825854db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTiYaUsWbRjZP2WAWV2vJq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2172,
+      "cache_read_input_tokens": 78954,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2172
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-21T16:46:45.552Z_
+
+<details><summary>↩ Tool result · `toolu_017f7S1WvL8MqnUURHPbjRt1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"295:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n296:    log(\\\"Phase 6: counterfactual analysis\\\")\\n301:            \\\"experiment\\\": \\\"counterfactual_libero_object\\\",\\n396:                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n508:    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n594:    if not args.skip_counterfactual:\\n596:        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n597:        with open(os.path.join(RESULTS_DIR, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n599:        log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "5ea5d95a-9dd5-4c4c-a303-0b0960458ec3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"295:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\\\n296:    log(\\\\\\\"Phase 6: counterfactual analysis\\\\\\\")\\\\n301:            \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_libero_object\\\\\\\",\\\\n396:                \\\\\\\"instruction_counterfactual\\\\\\\": _cf_instruction(ti, cond),\\\\n508:    p.add_argument(\\\\\\\"--skip-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n594:    if not args.skip_counterfactual:\\\\n596:        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n597:        with open(os.path.join(RESULTS_DIR, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n599:        log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"295:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n296:    log(\\\"Phase 6: counterfactual analysis\\\")\\n301:            \\\"experiment\\\": \\\"counterfactual_libero_object\\\",\\n396:                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n508:    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n594:    if not args.skip_counterfactual:\\n596:        cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n597:        with open(os.path.join(RESULTS_DIR, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n599:        log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the untrained OpenVLA pipeline uses action MSE too (with `bridge_orig` as UNNORM key). Interesting - so even untrained OpenVLA uses the generate_action approach, since the base openvla-7b still has norm_stats and bin_centers (it was pretrained on OXE including bridge).
+
+Now let me also check the nora_goal untrained counterfactual script more closely to understand the truncated middle section - the inner loop with hidden states extraction.
+
+Actually, I have enough information now. Let me also check if there are any existing OpenVLA goal pipeline scripts and what data directories exist.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "d91fd69c-22a7-43a5-b813-16d1c70c3916",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HstgTAB3ueBFgDHkB78ecW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 81126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92_
+
+Now let me check what data and checkpoint directories exist.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "26397cbe-d2bc-4906-b616-a1dbf37f0360",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HstgTAB3ueBFgDHkB78ecW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 81126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GinCBRFXcyJzm6ZwPS8R3f`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "2939756e-370c-4cbc-aa09-dad65552585c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HstgTAB3ueBFgDHkB78ecW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 81126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-21T16:46:52.969Z_
+
+<details><summary>↩ Tool result · `toolu_01GinCBRFXcyJzm6ZwPS8R3f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"libero_10\\nlibero_90\\nlibero_goal\\nlibero_object\\nlibero_spatial\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "6b8ca5f3-f3b9-4249-9830-8dd788380e24",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"libero_10\\\\nlibero_90\\\\nlibero_goal\\\\nlibero_object\\\\nlibero_spatial\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"libero_10\\nlibero_90\\nlibero_goal\\nlibero_object\\nlibero_spatial\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C7LFxW8EFPsYV3VcXRR3P7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "8f32d9b8-870d-4f0f-b500-00211fca7668",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HstgTAB3ueBFgDHkB78ecW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 81126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-21T16:46:53.558Z_
+
+<details><summary>↩ Tool result · `toolu_01C7LFxW8EFPsYV3VcXRR3P7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dinov2-large\\nnora-libero-goal\\nnora-libero-spatial\\nopenvla-7b\\nopenvla-7b-finetuned-libero-goal\\nopenvla-7b-finetuned-libero-object\\nopenvla-7b-oft-finetuned-libero-10\\nopenvla-phi3v\\nphi3v-base\\nphi3v-base-ms\\nqwen25-vl-3b-base\\ntracevla-phi3v\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "16acf600-2ab0-45d8-8d5a-7c756335846c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dinov2-large\\\\nnora-libero-goal\\\\nnora-libero-spatial\\\\nopenvla-7b\\\\nopenvla-7b-finetuned-libero-goal\\\\nopenvla-7b-finetuned-libero-object\\\\nopenvla-7b-oft-finetuned-libero-10\\\\nopenvla-phi3v\\\\nphi3v-base\\\\nphi3v-base-ms\\\\nqwen25-vl-3b-base\\\\ntracevla-phi3v\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"dinov2-large\\nnora-libero-goal\\nnora-libero-spatial\\nopenvla-7b\\nopenvla-7b-finetuned-libero-goal\\nopenvla-7b-finetuned-libero-object\\nopenvla-7b-oft-finetuned-libero-10\\nopenvla-phi3v\\nphi3v-base\\nphi3v-base-ms\\nqwen25-vl-3b-base\\ntracevla-phi3v\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me also check the libero_long_full_pipeline.py for the dataset_statistics.json merge (OFT norm_stats logic), and see if there's a `libero_goal_full_pipeline.py` script for OpenVLA.
+
+Actually, I notice there's no `libero_goal_full_pipeline.py` in the list. There is `openvla-7b-finetuned-libero-goal` checkpoint though. But for the counterfactual batch script, I need to know the configurations for all arch+suite combos.
+
+Let me also check if there's a `libero_spatial_full_pipeline.py` for OpenVLA, and whether there's one already for OpenVLA goal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "d9c44c28-06dc-4073-ba54-d726bfebebbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019eubqxxeAxvrg5HvzTBn4w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 81580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QdUJpv1BLP3bmGezrQ1V6U`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts -name \"*libero*\" -name \"*pipeline*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "6227759b-10eb-40db-824f-3e86cb243e46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019eubqxxeAxvrg5HvzTBn4w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 81580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-21T16:47:00.469Z_
+
+<details><summary>↩ Tool result · `toolu_01QdUJpv1BLP3bmGezrQ1V6U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "3187f7fa-45ad-42df-83dc-86006e27799e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so there's no `libero_goal_full_pipeline.py` or `libero_spatial_full_pipeline.py` for OpenVLA - those suites are only done via NORA and TracVLA pipelines. But there is a `openvla-7b-finetuned-libero-goal` checkpoint.
+
+Wait, looking at the task list more carefully:
+- libero_object = OpenVLA object suite  
+- libero_long = OpenVLA long suite (with OFT checkpoint)
+- No OpenVLA goal or spatial pipeline scripts exist
+
+But the user's list of missing counterfactuals is:
+
+
+1. tracvla_spatial untrained
+2. tracvla_object untrained  
+3. openvla_object untrained
+4. openvla_long trained
+5. openvla_long untrained (full flow, not counterfactual-only)
+
+So I need to build a batch script that handles all these combinations. Let me map out the checkpoint paths I've found so far.
+
+Writing batch script... Now I'm mapping out the data directories for the different LIBERO task variants and organizing the results structure across various model configurations.
+
+Looking at the architecture specifications, I can see the parameter differences between OpenVLA, TracVLA, and NORA—OpenVLA has the largest hidden dimension at 4096 with 256 image tokens, while NORA is more compact with 2048 hidden units and 16 attention heads.
+
+For the training methods, I'm noting that OpenVLA uses standard action MSE with model generation and bin center unnormalization, whereas TracVLA uses a Phi3V variant without the unnormalization step, and I need to clarify the remaining approach.
+
+Now I'm realizing the key issue: for untrained models, the existing TracVLA scripts skip counterfactual evaluation entirely, but the user wants to run it anyway. Since NORA uses FAST+ tokens rather than action bins, it needs cosine distance for both trained and untrained versions. For untrained OpenVLA, I can leverage the existing bin centers and normalization statistics from the bridge, so action MSE is viable there too. I'm realizing the distinction here—for untrained models across the board, cosine distance should be the unified approach since they lack either an action head or matching normalization stats. But I need to reconsider whether untrained OpenVLA models actually retain action generation capability despite missing those components, which would affect whether they can fall back to action MSE or must use cosine distance exclusively. action_mse, untrained -> cosine_dist. But nora always uses cosine_dist regardless of training status since it uses FAST+ tokens. So the auto logic becomes: if it's nora, always cosine_dist; if untrained, always cosine_dist; otherwise trained openvla or tracvla gets action_mse. For the unnormalized keys, openvla object trained uses `libero_object`, the long-trained OFT variant uses `libero_10_no_noops`, and the untrained variants use `bridge_orig` though that doesn't matter since they're using cosine_dist anyway.
+
+TracVLA trained doesn't need unnormalization since it works directly with normalized bins in the [-1, 1] range. Now I'm realizing the paraphrases are suite-specific, so each suite needs its own task list and instruction set. Rather than hardcoding everything, I should create a config structure that maps each suite to its tasks, instructions, and paraphrases, since the suites like goal, spatial, and object have overlapping architectures but different task definitions and sometimes different orderings.
+
+The task order actually matters for the counterfactual condition—it uses modular arithmetic to pick the "wrong" instruction, so different orderings produce different wrong tasks even when the underlying task set is the same. I need to preserve the existing task orders from the original scripts to maintain consistency, which means the batch script has to track the correct ordering for each architecture and suite combination.
+
+Looking at the actual task lists, openvla and tracvla have different orderings for the object tasks, so I'll need a comprehensive configuration that maps out these differences rather than assuming they're uniform across architectures. The task order varies by architecture and suite combination, so I need to organize the configuration by (arch, suite) pairs and pull the correct task sequences from the existing scripts for each one. This way, when running the batch script, each counterfactual combination will use the right task order that matches what was already executed.
+
+Building the registry structure... I need to account for nora with spatial and untrained variants too. I'll build a complete registry of all valid architecture and pipeline combinations, then have the script validate against it and error out if someone requests an unsupported pairing. Now I'm mapping out the results directory structure based on the existing naming patterns to ensure consistency across different model and condition combinations. Looking at the openvla_long results structure, it actually follows the same pattern as TracVLA and NORA—the results base is `libero_long` and then conditions like `trained` or `untrained` are subdirectories, so all three frameworks use a `results_base/condition/` structure that I can standardize.
+
+The inconsistency is that the untrained pipelines use a flat single directory (like `libero_object_untrained`) instead of following the conditional subdirectory pattern, which is what needs to be fixed to align with the user's specification of having untrained results in dedicated subdirectories. Now I'm setting up the model loading logic for both OpenVLA and TracVLA, handling their different processor requirements and attention implementations.
+
+For the prompt formatting, each model expects its own structure—OpenVLA uses a simple instruction format, TracVLA wraps it in a chat template with image tokens, and NORA applies its own chat template.
+
+For action generation, I'm starting with OpenVLA's approach of generating 7 tokens and decoding them.
+
+Now I'm checking the next part: TracVLA also generates 7 tokens but decodes differently using bin_centers without unnormalization, while the cosine distance method works across all architectures by running a forward pass with hidden states enabled and computing cosine distance on the final layer's last position.
+
+I also need to verify if there's a special norm_stats merge step for the long pipeline—checking if dataset statistics exist in the checkpoint and merging them into the model's norm_stats if they're not already present.
+
+Now that I have the full picture, I'm ready to write the script, but first I should consider what task list and paraphrases the openvla_goal pipeline would use—it would match the nora_goal and tracvla_goal since they all use the same LIBERO-Goal suite. I also need to be careful about the spatial task ordering between tracvla and nora, so let me verify the task sequences.
+
+Checking the tracvla spatial tasks... I'm noticing the nora_spatial version has a different ordering and includes some variations in object locations—like picking up bowls from the cookie box, ramekin, stove, and wooden cabinet—compared to the earlier list.
+
+The key insight is that different architectures need their own task orderings, so I need to restructure the config to be keyed by both architecture and suite rather than just suite. I'm planning to organize this with separate sections for architecture configs, checkpoint paths, data directories, and task specifications, using factory functions for model loading to keep the script manageable.
+
+Now I'm checking whether the trained and untrained versions of the object suite have different task orderings by comparing the actual pipeline files.
+
+Looking at the openvla variants, both trained and untrained follow the same task sequence, but when I compare that to tracvla's object pipeline, the ordering is completely different. So the task order is determined by the architecture, not by whether it's trained or untrained.
+
+My strategy is to organize the configuration by (arch, suite) pairs, where each architecture defines its own task ordering for each suite, and trained/untrained variants within the same architecture share that ordering.
+
+Writing the script structure... Writing configuration dictionaries...
+
+Actually, I'm reconsidering the scope here. The user asked for a focused counterfactual-only script, so I should narrow down to just the four missing architecture-metric combinations rather than trying to be comprehensive across all possibilities. Let me target the specific gaps: tracvla with spatial untrained using cosine distance, and a few other missing pairs.
+
+But I'm noticing a potential conflict—the existing untrained pipeline for openvla_object uses action_mse, while the auto method specification says untrained should default to cosine_dist. I should stick with what the user explicitly stated and let them override if needed, rather than trying to reconcile the existing pipeline behavior.
+
+For the auto method logic, I'll set it up so nora always uses cosine_dist, untrained models always use cosine_dist, and trained openvla/tracvla models use action_mse. Now I need to understand what the `_cf_instruction` function does to implement it correctly—it looks like it handles different instruction manipulation conditions like replacing with a wrong task instruction, clearing it entirely, or shuffling the words.
+
+For model loading, OpenVLA requires dynamically importing a custom processor module from the checkpoint directory, while TracVLA uses the standard AutoModelForCausalLM with bfloat16 precision and remote code execution enabled.
+
+Continuing with model setup... Writing model inference code... Now I'm ready to write the script and need to establish the directory structure for storing results. Based on the specifications, I'm mapping out the paths for each model variant—the untrained tracvla and openvla models go into their respective directories, while the trained openvla_long model follows a different convention with a `trained` subdirectory. I'll set up a registry to track these exact paths. produce. Now I'm writing out the final script with a practical focus. For the cosine distance approach on OpenVLA and TracVLA, I need to extract hidden states the same way NORA does—taking layer l+1's output at the last token position, which represents the pre-action readout. Let me verify the cf_layers selection logic...
+
+Writing the batch script... Writing the batch runner script... Writing checkpoint registry... Writing config dictionaries... Defining more result paths... Continuing to map out the unnormalization keys for OpenVLA across different task configurations, then setting up the task configs organized by architecture and suite.
+
+I'm noticing that some task lists overlap across different model-suite combinations—goal tasks are identical between tracvla_goal and nora_goal, long tasks match between openvla_long and tracvla_long—but the spatial and object tasks have different orderings. Since the paraphrases need to align with each task's position, I'll need to embed the full configs per (arch, suite) pair rather than trying to deduplicate, even though it means some repetition. Writing the pipeline script... I need to handle the norm_stats merging for the OFT checkpoint since it might not have all the necessary keys embedded—I'll add code that loads the dataset_statistics.json file and merges any missing statistics into the model's norm_stats dictionary. Now I'm ready to write out the complete batch script.
+
+I'm debating whether to write the script locally first or directly to the server via SSH. Since I can't directly access the server's filesystem, I'll compose the script content and use SSH to write it directly, defining the task configurations inline as a single dictionary structure for cleaner organization. Writing the heredoc approach...
+
+I need to handle the different prompt formats between NORA and OpenVLA/TracVLA in the batch script, and make sure the UNNORM parameter gets passed correctly to the generate_action function for the trained method. Now I'll structure the complete script with the necessary imports, device configuration, and core parameters.
+
+Setting up model loading functions... Finishing the NORA model loader and moving into input preparation functions for different model architectures. Moving the tensors to the device and then defining the action generation function for OpenVLA, which prepares inputs and handles the input IDs, ensuring the proper token is appended and updating attention masks accordingly.
+
+Now I'm generating actions by running the model with the prepared inputs, extracting the generated token IDs, and then converting them to normalized actions using the model's bin centers and action statistics. Writing action generation code... Writing the full script with heredoc...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "c8046304-c680-4683-8f3a-4a15fced0fd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VxVQPEEiNpdzwWdVK657BN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 82308,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101_
+
+I have all the info I need from the existing scripts. Now I'll create the batch counterfactual script. Let me write it to the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "946d4f7f-05ee-4f87-adda-9929ab7e445e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VxVQPEEiNpdzwWdVK657BN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 82308,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01H6z3QNUbtDhwMwGiD7SM1a`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat << 'SCRIPT_EOF' > /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\n#!/usr/bin/env python3\n\"\"\"\nCounterfactual-only batch runner for VLA-SSD experiments.\n\nSupports openvla/tracvla/nora architectures across goal/spatial/object/long suites.\nAuto-selects method: action_mse for trained openvla/tracvla, cosine_dist for nora\nand all untrained models. Override with --method.\n\nUsage:\n  python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\n  python counterfactual_batch.py --arch openvla --suite long --condition trained\n  python counterfactual_batch.py --arch openvla --suite object --condition untrained\n  python counterfactual_batch.py --arch nora --suite goal --condition untrained\n\"\"\"\n\nimport argparse, json, os, random, sys, time\nfrom collections import defaultdict\n\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\nfrom PIL import Image\n\nDEVICE = \"cuda:0\"\n\ndef log(msg):\n    print(f\"[{time.strftime('%H:%M:%S')}] {msg}\", flush=True)\n\n# ============================================================\n# Architecture configs\n# ============================================================\nARCH_CFG = {\n    \"openvla\": {\"n_layers\": 32, \"n_heads\": 32, \"hidden\": 4096},\n    \"tracvla\": {\"n_layers\": 32, \"n_heads\": 32, \"hidden\": 3072},\n    \"nora\":    {\"n_layers\": 36, \"n_heads\": 16, \"hidden\": 2048},\n}\n\n# ============================================================\n# Checkpoint registry\n# ============================================================\nCKPT_MAP = {\n    (\"openvla\", \"object\", \"trained\"):   \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\",\n    (\"openvla\", \"object\", \"untrained\"): \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\",\n    (\"openvla\", \"long\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\",\n    (\"openvla\", \"long\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\",\n    (\"openvla\", \"goal\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\",\n    (\"openvla\", \"goal\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\",\n    (\"tracvla\", \"object\", \"trained\"):   \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\",\n    (\"tracvla\", \"object\", \"untrained\"): \"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\",\n    (\"tracvla\", \"spatial\", \"trained\"):  \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\",\n    (\"tracvla\", \"spatial\", \"untrained\"):\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\",\n    (\"tracvla\", \"goal\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\",\n    (\"tracvla\", \"goal\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\",\n    (\"tracvla\", \"long\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\",\n    (\"tracvla\", \"long\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\",\n    (\"nora\", \"goal\", \"trained\"):        \"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\",\n    (\"nora\", \"goal\", \"untrained\"):      \"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\",\n    (\"nora\", \"spatial\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\",\n    (\"nora\", \"spatial\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\",\n}\n\n# ============================================================\n# Data directories\n# ============================================================\nDATA_MAP = {\n    \"goal\":    \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\",\n    \"spatial\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\",\n    \"object\":  \"/root/autodl-tmp/vla-ssd/data/libero/libero_object\",\n    \"long\":    \"/root/autodl-tmp/vla-ssd/data/libero/libero_10\",\n}\n\n# ============================================================\n# Results directories\n# ============================================================\nRESULTS_MAP = {\n    (\"openvla\", \"object\", \"trained\"):   \"/root/autodl-tmp/vla-ssd/results/libero_object/trained\",\n    (\"openvla\", \"object\", \"untrained\"): \"/root/autodl-tmp/vla-ssd/results/libero_object_untrained\",\n    (\"openvla\", \"long\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/results/libero_long/trained\",\n    (\"openvla\", \"long\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/results/libero_long/untrained\",\n    (\"openvla\", \"goal\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/results/libero_goal/trained\",\n    (\"openvla\", \"goal\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/results/libero_goal/untrained\",\n    (\"tracvla\", \"object\", \"trained\"):   \"/root/autodl-tmp/vla-ssd/results/tracvla_object/trained\",\n    (\"tracvla\", \"object\", \"untrained\"): \"/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained\",\n    (\"tracvla\", \"spatial\", \"trained\"):  \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained\",\n    (\"tracvla\", \"spatial\", \"untrained\"):\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained\",\n    (\"tracvla\", \"goal\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained\",\n    (\"tracvla\", \"goal\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained\",\n    (\"tracvla\", \"long\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/results/tracvla_long/trained\",\n    (\"tracvla\", \"long\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained\",\n    (\"nora\", \"goal\", \"trained\"):        \"/root/autodl-tmp/vla-ssd/results/nora_goal/trained\",\n    (\"nora\", \"goal\", \"untrained\"):      \"/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\",\n    (\"nora\", \"spatial\", \"trained\"):     \"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained\",\n    (\"nora\", \"spatial\", \"untrained\"):   \"/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained\",\n}\n\n# ============================================================\n# Unnorm keys (only for action_mse on OpenVLA)\n# ============================================================\nUNNORM_MAP = {\n    (\"openvla\", \"object\", \"trained\"):   \"libero_object\",\n    (\"openvla\", \"object\", \"untrained\"): \"bridge_orig\",\n    (\"openvla\", \"long\", \"trained\"):     \"libero_10_no_noops\",\n    (\"openvla\", \"long\", \"untrained\"):   \"bridge_orig\",\n    (\"openvla\", \"goal\", \"trained\"):     \"libero_goal\",\n    (\"openvla\", \"goal\", \"untrained\"):   \"bridge_orig\",\n}\n\n# ============================================================\n# Task configurations per (arch, suite)\n# Tasks and paraphrases must match the ordering used in the\n# original full_pipeline scripts so \"wrong\" condition is consistent.\n# ============================================================\n\n_GOAL_TASKS = [\n    \"open_the_middle_drawer_of_the_cabinet\",\n    \"open_the_top_drawer_and_put_the_bowl_inside\",\n    \"push_the_plate_to_the_front_of_the_stove\",\n    \"put_the_bowl_on_the_plate\",\n    \"put_the_bowl_on_the_stove\",\n    \"put_the_bowl_on_top_of_the_cabinet\",\n    \"put_the_cream_cheese_in_the_bowl\",\n    \"put_the_wine_bottle_on_the_rack\",\n    \"put_the_wine_bottle_on_top_of_the_cabinet\",\n    \"turn_on_the_stove\",\n]\n_GOAL_PARA = [\n    \"open the cabinet's middle drawer\",\n    \"open the top drawer and place the bowl in it\",\n    \"slide the plate to the stove's front\",\n    \"place the bowl onto the plate\",\n    \"place the bowl onto the stove\",\n    \"place the bowl on the cabinet top\",\n    \"put cream cheese into the bowl\",\n    \"place the wine bottle on the rack\",\n    \"place the wine bottle on the cabinet top\",\n    \"switch on the stove\",\n]\n\n_LONG_TASKS = [\n    \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\",\n    \"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\",\n    \"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\",\n    \"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\",\n    \"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\",\n    \"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\",\n    \"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\",\n    \"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\",\n]\n_LONG_INSTR = [\n    \"turn on the stove and put the moka pot on it\",\n    \"put the black bowl in the bottom drawer of the cabinet and close it\",\n    \"put the yellow and white mug in the microwave and close it\",\n    \"put both moka pots on the stove\",\n    \"put both the alphabet soup and the cream cheese box in the basket\",\n    \"put both the alphabet soup and the tomato sauce in the basket\",\n    \"put both the cream cheese box and the butter in the basket\",\n    \"put the white mug on the left plate and put the yellow and white mug on the right plate\",\n    \"put the white mug on the plate and put the chocolate pudding to the right of the plate\",\n    \"pick up the book and place it in the back compartment of the caddy\",\n]\n_LONG_PARA = [\n    \"switch on the stove and place the moka pot on it\",\n    \"place the black bowl in the bottom drawer of the cabinet and shut it\",\n    \"place the yellow and white mug in the microwave and shut it\",\n    \"put both of the moka pots on the stove\",\n    \"place the alphabet soup and cream cheese box into the basket\",\n    \"place the alphabet soup and tomato sauce into the basket\",\n    \"place the cream cheese box and butter into the basket\",\n    \"place the white mug on the left plate and the yellow white mug on the right plate\",\n    \"place the white mug on the plate and the chocolate pudding to the right of the plate\",\n    \"grab the book and put it in the back section of the caddy\",\n]\n\n_OBJECT_OPENVLA_TASKS = [\n    \"pick_up_the_alphabet_soup_and_place_it_in_the_basket\",\n    \"pick_up_the_cream_cheese_and_place_it_in_the_basket\",\n    \"pick_up_the_salad_dressing_and_place_it_in_the_basket\",\n    \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\",\n    \"pick_up_the_ketchup_and_place_it_in_the_basket\",\n    \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\",\n    \"pick_up_the_butter_and_place_it_in_the_basket\",\n    \"pick_up_the_milk_and_place_it_in_the_basket\",\n    \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\",\n    \"pick_up_the_orange_juice_and_place_it_in_the_basket\",\n]\n_OBJECT_OPENVLA_PARA = [\n    \"grab the alphabet soup and put it into the basket\",\n    \"grab the cream cheese and put it into the basket\",\n    \"grab the salad dressing and put it into the basket\",\n    \"grab the bbq sauce and put it into the basket\",\n    \"grab the ketchup and put it into the basket\",\n    \"grab the tomato sauce and put it into the basket\",\n    \"grab the butter and put it into the basket\",\n    \"grab the milk and put it into the basket\",\n    \"grab the chocolate pudding and put it into the basket\",\n    \"grab the orange juice and put it into the basket\",\n]\n\n_OBJECT_TRACVLA_TASKS = [\n    \"pick_up_the_alphabet_soup_and_place_it_in_the_basket\",\n    \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\",\n    \"pick_up_the_butter_and_place_it_in_the_basket\",\n    \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\",\n    \"pick_up_the_cream_cheese_and_place_it_in_the_basket\",\n    \"pick_up_the_ketchup_and_place_it_in_the_basket\",\n    \"pick_up_the_milk_and_place_it_in_the_basket\",\n    \"pick_up_the_orange_juice_and_place_it_in_the_basket\",\n    \"pick_up_the_salad_dressing_and_place_it_in_the_basket\",\n    \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\",\n]\n_OBJECT_TRACVLA_PARA = [\n    \"grab the alphabet soup and put it into the basket\",\n    \"grab the bbq sauce and put it into the basket\",\n    \"grab the butter and put it into the basket\",\n    \"grab the chocolate pudding and put it into the basket\",\n    \"grab the cream cheese and put it into the basket\",\n    \"grab the ketchup and put it into the basket\",\n    \"grab the milk and put it into the basket\",\n    \"grab the orange juice and put it into the basket\",\n    \"grab the salad dressing and put it into the basket\",\n    \"grab the tomato sauce and put it into the basket\",\n]\n\n_SPATIAL_TRACVLA_TASKS = [\n    \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\",\n]\n_SPATIAL_TRACVLA_PARA = [\n    \"grab the black bowl between the plate and ramekin and put it on the plate\",\n    \"grab the black bowl on the ramekin and put it on the plate\",\n    \"grab the black bowl on the cookie box and put it on the plate\",\n    \"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\",\n    \"grab the black bowl from the center of the table and put it on the plate\",\n    \"grab the black bowl next to the cookie box and put it on the plate\",\n    \"grab the black bowl on the stove and put it on the plate\",\n    \"grab the black bowl on the wooden cabinet and put it on the plate\",\n    \"grab the black bowl next to the plate and put it on the plate\",\n    \"grab the black bowl next to the ramekin and put it on the plate\",\n]\n\n_SPATIAL_NORA_TASKS = [\n    \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\",\n]\n_SPATIAL_NORA_PARA = [\n    \"grab the black bowl between the plate and ramekin and put it on the plate\",\n    \"grab the black bowl from the center of the table and put it on the plate\",\n    \"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\",\n    \"grab the black bowl next to the cookie box and put it on the plate\",\n    \"grab the black bowl next to the plate and put it on the plate\",\n    \"grab the black bowl next to the ramekin and put it on the plate\",\n    \"grab the black bowl on the cookie box and put it on the plate\",\n    \"grab the black bowl on the ramekin and put it on the plate\",\n    \"grab the black bowl on the stove and put it on the plate\",\n    \"grab the black bowl on the wooden cabinet and put it on the plate\",\n]\n\n\ndef _make_instr(tasks):\n    return [t.replace(\"_\", \" \") for t in tasks]\n\n\ndef _get_task_config(arch, suite):\n    if suite == \"goal\":\n        return _GOAL_TASKS, _make_instr(_GOAL_TASKS), _GOAL_PARA\n    elif suite == \"long\":\n        return _LONG_TASKS, _LONG_INSTR, _LONG_PARA\n    elif suite == \"object\":\n        if arch == \"openvla\":\n            return _OBJECT_OPENVLA_TASKS, _make_instr(_OBJECT_OPENVLA_TASKS), _OBJECT_OPENVLA_PARA\n        else:\n            return _OBJECT_TRACVLA_TASKS, _make_instr(_OBJECT_TRACVLA_TASKS), _OBJECT_TRACVLA_PARA\n    elif suite == \"spatial\":\n        if arch == \"nora\":\n            return _SPATIAL_NORA_TASKS, _make_instr(_SPATIAL_NORA_TASKS), _SPATIAL_NORA_PARA\n        else:\n            return _SPATIAL_TRACVLA_TASKS, _make_instr(_SPATIAL_TRACVLA_TASKS), _SPATIAL_TRACVLA_PARA\n    raise ValueError(f\"Unknown suite: {suite}\")\n\n\n# ============================================================\n# Model loading\n# ============================================================\n\ndef load_openvla(ckpt_path):\n    from transformers import AutoModelForVision2Seq\n    log(f\"Loading OpenVLA from {ckpt_path}\")\n    t0 = time.time()\n    model = AutoModelForVision2Seq.from_pretrained(\n        ckpt_path, torch_dtype=torch.bfloat16, trust_remote_code=True\n    ).to(DEVICE).eval()\n\n    import importlib.util\n    spec = importlib.util.spec_from_file_location(\n        'processing_prismatic',\n        os.path.join(ckpt_path, 'processing_prismatic.py'))\n    mod = importlib.util.module_from_spec(spec)\n    sys.modules['processing_prismatic'] = mod\n    spec.loader.exec_module(mod)\n    processor = mod.PrismaticProcessor.from_pretrained(\n        ckpt_path, trust_remote_code=True)\n\n    # OFT norm_stats merge (needed for openvla-7b-oft-finetuned-libero-10)\n    ds_path = os.path.join(ckpt_path, \"dataset_statistics.json\")\n    if os.path.exists(ds_path) and hasattr(model, 'norm_stats'):\n        with open(ds_path, \"r\") as f:\n            ds_stats = json.load(f)\n        for k, v in ds_stats.items():\n            if k not in model.norm_stats:\n                model.norm_stats[k] = v\n                log(f\"  Merged norm_stats key: {k}\")\n\n    log(f\"  Loaded in {time.time()-t0:.1f}s\")\n    return model, processor\n\n\ndef load_tracvla(ckpt_path):\n    from transformers import AutoModelForCausalLM, AutoProcessor\n    log(f\"Loading TracVLA from {ckpt_path}\")\n    t0 = time.time()\n    model = AutoModelForCausalLM.from_pretrained(\n        ckpt_path, torch_dtype=torch.bfloat16, trust_remote_code=True,\n        attn_implementation=\"eager\"\n    ).to(DEVICE).eval()\n    processor = AutoProcessor.from_pretrained(\n        ckpt_path, trust_remote_code=True, num_crops=1)\n    log(f\"  Loaded in {time.time()-t0:.1f}s\")\n    return model, processor\n\n\ndef load_nora(ckpt_path):\n    from transformers import AutoModelForImageTextToText, AutoProcessor\n    log(f\"Loading NORA/Qwen2.5-VL from {ckpt_path}\")\n    t0 = time.time()\n    model = AutoModelForImageTextToText.from_pretrained(\n        ckpt_path, torch_dtype=torch.bfloat16, attn_implementation=\"eager\",\n        low_cpu_mem_usage=True, local_files_only=True, device_map=DEVICE\n    ).eval()\n    processor = AutoProcessor.from_pretrained(ckpt_path, local_files_only=True)\n    log(f\"  Loaded in {time.time()-t0:.1f}s\")\n    return model, processor\n\n\nLOADER = {\"openvla\": load_openvla, \"tracvla\": load_tracvla, \"nora\": load_nora}\n\n\n# ============================================================\n# Input preparation\n# ============================================================\n\ndef prepare_openvla(processor, instruction, image):\n    prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n    inputs = processor(prompt, image).to(DEVICE)\n    if \"pixel_values\" in inputs:\n        inputs[\"pixel_values\"] = inputs[\"pixel_values\"].to(torch.bfloat16)\n    return inputs\n\n\ndef prepare_tracvla(processor, instruction, image):\n    prompt = (f\"<|user|>\\n<|image_1|>\\n\"\n              f\"What action should the robot take to {instruction}?<|end|>\\n\"\n              f\"<|assistant|>\\n\")\n    inputs = processor(prompt, [image], return_tensors=\"pt\").to(DEVICE)\n    if \"pixel_values\" in inputs:\n        inputs[\"pixel_values\"] = inputs[\"pixel_values\"].to(torch.bfloat16)\n    return inputs\n\n\ndef prepare_nora(processor, instruction, image):\n    messages = [{'role': 'user', 'content': [\n        {'type': 'image', 'image': image},\n        {'type': 'text', 'text': instruction}\n    ]}]\n    text = processor.apply_chat_template(\n        messages, tokenize=False, add_generation_prompt=True)\n    inputs = processor(\n        text=[text], images=[image], return_tensors='pt', padding=True)\n    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\n            for k, v in inputs.items()}\n\n\nPREPARE = {\"openvla\": prepare_openvla, \"tracvla\": prepare_tracvla, \"nora\": prepare_nora}\n\n\n# ============================================================\n# Action generation (for action_mse method)\n# ============================================================\n\ndef gen_action_openvla(model, processor, instruction, image, unnorm_key):\n    inputs = prepare_openvla(processor, instruction, image)\n    input_ids = inputs[\"input_ids\"]\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids,\n             torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)),\n            dim=1)\n        if \"attention_mask\" in inputs:\n            inputs[\"attention_mask\"] = torch.cat(\n                (inputs[\"attention_mask\"],\n                 torch.ones(1, 1, device=DEVICE,\n                            dtype=inputs[\"attention_mask\"].dtype)),\n                dim=1)\n    inputs[\"input_ids\"] = input_ids\n    with torch.no_grad():\n        gen_ids = model.generate(\n            inputs[\"input_ids\"],\n            attention_mask=inputs.get(\"attention_mask\"),\n            pixel_values=inputs.get(\"pixel_values\"),\n            max_new_tokens=7, do_sample=False)\n    token_ids = gen_ids[0, -7:].cpu().numpy()\n    disc = np.clip(model.vocab_size - token_ids - 1, 0,\n                   model.bin_centers.shape[0] - 1)\n    norm_act = model.bin_centers[disc]\n    stats = model.get_action_stats(unnorm_key)\n    mask = np.array(stats.get(\"mask\", [True] * 7))\n    high, low = np.array(stats[\"q99\"]), np.array(stats[\"q01\"])\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low,\n                      norm_act)\n    del inputs, gen_ids\n    return action.astype(np.float64), token_ids\n\n\ndef gen_action_tracvla(model, processor, instruction, image, _unnorm_key=None):\n    inputs = prepare_tracvla(processor, instruction, image)\n    with torch.no_grad():\n        gen_ids = model.generate(\n            input_ids=inputs[\"input_ids\"],\n            attention_mask=inputs.get(\"attention_mask\"),\n            pixel_values=inputs.get(\"pixel_values\"),\n            image_sizes=inputs.get(\"image_sizes\"),\n            max_new_tokens=7, do_sample=False)\n    token_ids = gen_ids[0, -7:].cpu().numpy()\n    vocab_size = model.config.vocab_size\n    bins = np.linspace(-1, 1, 256)\n    bin_centers = (bins[:-1] + bins[1:]) / 2.0\n    disc = np.clip(vocab_size - token_ids - 1, a_min=0,\n                   a_max=bin_centers.shape[0] - 1)\n    norm_act = bin_centers[disc]\n    del inputs, gen_ids\n    return norm_act.astype(np.float64), token_ids\n\n\nGEN_ACTION = {\"openvla\": gen_action_openvla, \"tracvla\": gen_action_tracvla}\n\n\n# ============================================================\n# Counterfactual instruction\n# ============================================================\n\ndef cf_instruction(task_idx, cond, instructions, paraphrases):\n    if cond == \"wrong\":\n        return instructions[(task_idx + 1) % len(instructions)]\n    elif cond == \"empty\":\n        return \"\"\n    elif cond == \"shuffled\":\n        words = instructions[task_idx].split()\n        random.Random(42 + task_idx).shuffle(words)\n        return \" \".join(words)\n    elif cond == \"paraphrased\":\n        return paraphrases[task_idx]\n    raise ValueError(f\"Unknown condition: {cond}\")\n\n\n# ============================================================\n# Counterfactual: action MSE\n# ============================================================\n\ndef run_cf_action_mse(arch, model, processor, tasks, instructions,\n                      paraphrases, data_dir, unnorm_key, n_demos, n_timesteps):\n    log(\"Counterfactual analysis (action MSE)\")\n    conditions = [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"]\n    gen_fn = GEN_ACTION[arch]\n    n_tasks = len(tasks)\n\n    all_res = {\n        \"config\": {\n            \"experiment\": f\"counterfactual_{arch}\",\n            \"conditions\": conditions,\n            \"n_tasks\": n_tasks,\n            \"n_demos_per_task\": n_demos,\n            \"n_timesteps_per_demo\": n_timesteps,\n            \"method\": \"action_mse\",\n            \"unnorm_key\": unnorm_key,\n            \"seed\": 42,\n            \"task_names\": tasks,\n        }\n    }\n\n    for cond in conditions:\n        log(f\"  Condition: {cond}\")\n        all_mses, all_tok_div = [], []\n        per_task_mses = defaultdict(list)\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\n        per_task_correct = defaultdict(list)\n        per_task_cf = defaultdict(list)\n        sample_n = 0\n\n        for ti in range(n_tasks):\n            cf_instr = cf_instruction(ti, cond, instructions, paraphrases)\n            hdf5_path = os.path.join(data_dir, f\"{tasks[ti]}_demo.hdf5\")\n\n            with h5py.File(hdf5_path, \"r\") as hf:\n                for di in range(n_demos):\n                    n_avail = hf[f\"data/demo_{di}/actions\"].shape[0]\n                    for t in range(min(n_timesteps, n_avail)):\n                        img = Image.fromarray(\n                            hf[f\"data/demo_{di}/obs/agentview_rgb\"][t])\n\n                        c_act, c_tok = gen_fn(\n                            model, processor, instructions[ti], img, unnorm_key)\n                        f_act, f_tok = gen_fn(\n                            model, processor, cf_instr, img, unnorm_key)\n\n                        mse = float(np.mean((c_act - f_act) ** 2))\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\n\n                        all_mses.append(mse)\n                        all_tok_div.append(tok_div)\n                        per_task_mses[ti].append(mse)\n                        per_task_demo_mses[ti][di].append(mse)\n                        per_task_correct[ti].append(c_act)\n                        per_task_cf[ti].append(f_act)\n\n                        sample_n += 1\n                        if sample_n % 200 == 0:\n                            torch.cuda.empty_cache()\n                            log(f\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\")\n\n        mse_arr = np.array(all_mses)\n        global_d = (float(mse_arr.mean() / mse_arr.std(ddof=1))\n                    if mse_arr.std(ddof=1) > 0 else 0.0)\n\n        ca_all = np.concatenate(\n            [np.array(per_task_correct[ti]) for ti in range(n_tasks)])\n        cf_all = np.concatenate(\n            [np.array(per_task_cf[ti]) for ti in range(n_tasks)])\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\n\n        cond_res = {\n            \"global_metrics\": {\n                \"paired_mse\": {\n                    \"mean\": round(float(mse_arr.mean()), 6),\n                    \"std\": round(float(mse_arr.std()), 6),\n                    \"cohens_d\": round(global_d, 4),\n                },\n                \"per_dim_shift\": {\n                    \"means\": [round(v, 6) for v in pdm],\n                    \"stds\": [round(v, 6) for v in pds],\n                    \"dim_names\": [\"dx\",\"dy\",\"dz\",\"rx\",\"ry\",\"rz\",\"gripper\"],\n                },\n                \"token_divergence_rate\": round(float(np.mean(all_tok_div)), 4),\n                \"n_samples\": len(mse_arr),\n            },\n            \"per_task\": {},\n            \"cross_task_variance\": {},\n        }\n\n        per_task_ds = []\n        for ti in range(n_tasks):\n            tm = np.array(per_task_mses[ti])\n            td = (float(tm.mean() / tm.std(ddof=1))\n                  if tm.std(ddof=1) > 0 else 0.0)\n            per_task_ds.append(td)\n\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\n                          for di in range(n_demos)]\n            da = np.array(demo_means)\n            dd = (float(da.mean() / da.std(ddof=1))\n                  if da.std(ddof=1) > 0 else 0.0)\n\n            entry = {\n                \"cohens_d\": round(td, 4),\n                \"demo_level_cohens_d\": round(dd, 4),\n                \"n_samples\": len(tm),\n                \"mean_mse\": round(float(tm.mean()), 6),\n                \"demo_mses\": [round(v, 6) for v in demo_means],\n                \"instruction_correct\": instructions[ti],\n                \"instruction_counterfactual\": cf_instruction(\n                    ti, cond, instructions, paraphrases),\n            }\n            cond_res[\"per_task\"][tasks[ti]] = entry\n\n        cond_res[\"cross_task_variance\"] = {\n            \"cohens_d\": {\n                \"values\": [round(v, 4) for v in per_task_ds],\n                \"mean\": round(float(np.mean(per_task_ds)), 4),\n                \"std\": round(float(np.std(per_task_ds)), 4),\n                \"cv\": (round(float(np.std(per_task_ds) /\n                                   np.mean(per_task_ds)), 4)\n                       if np.mean(per_task_ds) > 0 else 0.0),\n            }\n        }\n        all_res[cond] = cond_res\n        log(f\"  {cond}: global d={global_d:.4f}  \"\n            f\"cross-task mean={np.mean(per_task_ds):.4f}  \"\n            f\"token_div={np.mean(all_tok_div):.3f}\")\n\n    ranking = sorted(\n        conditions,\n        key=lambda c: all_res[c][\"global_metrics\"][\"paired_mse\"][\"cohens_d\"],\n        reverse=True)\n    all_res[\"ranking_by_cohens_d\"] = [\n        {\"condition\": c,\n         \"cohens_d\": all_res[c][\"global_metrics\"][\"paired_mse\"][\"cohens_d\"],\n         \"paired_mse_mean\": all_res[c][\"global_metrics\"][\"paired_mse\"][\"mean\"]}\n        for c in ranking\n    ]\n    return all_res\n\n\n# ============================================================\n# Counterfactual: cosine distance\n# ============================================================\n\ndef run_cf_cosine_dist(arch, model, processor, tasks, instructions,\n                       paraphrases, data_dir, n_layers, n_demos, n_timesteps):\n    log(\"Counterfactual analysis (cosine distance)\")\n    conditions = [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"]\n    prep_fn = PREPARE[arch]\n    cf_layers = sorted(set(list(range(0, n_layers, 3)) + [n_layers - 1]))\n    n_tasks = len(tasks)\n\n    all_res = {\n        \"config\": {\n            \"experiment\": f\"counterfactual_{arch}\",\n            \"conditions\": conditions,\n            \"n_tasks\": n_tasks,\n            \"n_demos_per_task\": n_demos,\n            \"n_timesteps_per_demo\": n_timesteps,\n            \"method\": \"representation_cosine_distance\",\n            \"layers_analyzed\": cf_layers,\n            \"seed\": 42,\n            \"task_names\": tasks,\n        }\n    }\n\n    for cond in conditions:\n        log(f\"  Condition: {cond}\")\n        per_layer_dists = {l: [] for l in cf_layers}\n        per_task_dists = defaultdict(list)\n        per_task_demo_dists = defaultdict(lambda: defaultdict(list))\n        sample_n = 0\n\n        for ti in range(n_tasks):\n            cf_instr = cf_instruction(ti, cond, instructions, paraphrases)\n            hdf5_path = os.path.join(data_dir, f\"{tasks[ti]}_demo.hdf5\")\n\n            with h5py.File(hdf5_path, \"r\") as hf:\n                for di in range(n_demos):\n                    n_avail = hf[f\"data/demo_{di}/actions\"].shape[0]\n                    for t in range(min(n_timesteps, n_avail)):\n                        img = Image.fromarray(\n                            hf[f\"data/demo_{di}/obs/agentview_rgb\"][t])\n\n                        c_inputs = prep_fn(processor, instructions[ti], img)\n                        with torch.no_grad():\n                            c_out = model(**c_inputs,\n                                          output_hidden_states=True)\n\n                        f_inputs = prep_fn(processor, cf_instr, img)\n                        with torch.no_grad():\n                            f_out = model(**f_inputs,\n                                          output_hidden_states=True)\n\n                        for l in cf_layers:\n                            c_r = c_out.hidden_states[l + 1][0, -1].float()\n                            f_r = f_out.hidden_states[l + 1][0, -1].float()\n                            cos_sim = F.cosine_similarity(\n                                c_r.unsqueeze(0), f_r.unsqueeze(0)).item()\n                            per_layer_dists[l].append(1.0 - cos_sim)\n\n                        last_dist = per_layer_dists[cf_layers[-1]][-1]\n                        per_task_dists[ti].append(last_dist)\n                        per_task_demo_dists[ti][di].append(last_dist)\n\n                        sample_n += 1\n                        del c_out, f_out, c_inputs, f_inputs\n                        if sample_n % 200 == 0:\n                            torch.cuda.empty_cache()\n                            log(f\"    {sample_n}/\"\n                                f\"{n_tasks * n_demos * n_timesteps}\")\n\n        cond_res = {\n            \"global_metrics\": {\"per_layer_cosine_distance\": {}},\n            \"per_task\": {},\n            \"cross_task_variance\": {},\n        }\n\n        for l in cf_layers:\n            arr = np.array(per_layer_dists[l])\n            cond_res[\"global_metrics\"][\"per_layer_cosine_distance\"][\n                f\"L{l}\"] = {\n                \"mean\": round(float(arr.mean()), 6),\n                \"std\": round(float(arr.std()), 6),\n                \"n_samples\": len(arr),\n            }\n\n        last_l = cf_layers[-1]\n        last_arr = np.array(per_layer_dists[last_l])\n        global_d = (float(last_arr.mean() / last_arr.std(ddof=1))\n                    if last_arr.std(ddof=1) > 0 else 0.0)\n        cond_res[\"global_metrics\"][\"last_layer_summary\"] = {\n            \"layer\": last_l,\n            \"mean\": round(float(last_arr.mean()), 6),\n            \"std\": round(float(last_arr.std()), 6),\n            \"cohens_d\": round(global_d, 4),\n            \"n_samples\": len(last_arr),\n        }\n\n        per_task_ds = []\n        for ti in range(n_tasks):\n            tm = np.array(per_task_dists[ti])\n            td = (float(tm.mean() / tm.std(ddof=1))\n                  if tm.std(ddof=1) > 0 else 0.0)\n            per_task_ds.append(td)\n\n            demo_means = [float(np.mean(per_task_demo_dists[ti][di]))\n                          for di in range(n_demos)]\n            da = np.array(demo_means)\n            dd = (float(da.mean() / da.std(ddof=1))\n                  if da.std(ddof=1) > 0 else 0.0)\n\n            entry = {\n                \"cohens_d\": round(td, 4),\n                \"demo_level_cohens_d\": round(dd, 4),\n                \"n_samples\": len(tm),\n                \"mean_cosine_distance\": round(float(tm.mean()), 6),\n                \"demo_distances\": [round(v, 6) for v in demo_means],\n                \"instruction_correct\": instructions[ti],\n                \"instruction_counterfactual\": cf_instruction(\n                    ti, cond, instructions, paraphrases),\n            }\n            cond_res[\"per_task\"][tasks[ti]] = entry\n\n        cond_res[\"cross_task_variance\"] = {\n            \"cohens_d\": {\n                \"values\": [round(v, 4) for v in per_task_ds],\n                \"mean\": round(float(np.mean(per_task_ds)), 4),\n                \"std\": round(float(np.std(per_task_ds)), 4),\n                \"cv\": (round(float(np.std(per_task_ds) /\n                                   np.mean(per_task_ds)), 4)\n                       if np.mean(per_task_ds) > 0 else 0.0),\n            }\n        }\n        all_res[cond] = cond_res\n        log(f\"  {cond}: last-layer cos_dist={last_arr.mean():.4f}  \"\n            f\"cross-task d={np.mean(per_task_ds):.4f}\")\n\n    ranking = sorted(\n        conditions,\n        key=lambda c: all_res[c][\"global_metrics\"][\"last_layer_summary\"][\"mean\"],\n        reverse=True)\n    all_res[\"ranking_by_cosine_distance\"] = [\n        {\"condition\": c,\n         \"mean_cosine_distance\": all_res[c][\"global_metrics\"][\n             \"last_layer_summary\"][\"mean\"]}\n        for c in ranking\n    ]\n    return all_res\n\n\n# ============================================================\n# Method selection\n# ============================================================\n\ndef resolve_method(arch, condition, method):\n    if method != \"auto\":\n        return method\n    if arch == \"nora\":\n        return \"cosine_dist\"\n    if condition == \"untrained\":\n        return \"cosine_dist\"\n    return \"action_mse\"\n\n\n# ============================================================\n# Main\n# ============================================================\n\ndef main():\n    global DEVICE\n\n    p = argparse.ArgumentParser(\n        description=\"Counterfactual-only batch runner for VLA-SSD\")\n    p.add_argument(\"--arch\", required=True,\n                   choices=[\"openvla\", \"tracvla\", \"nora\"])\n    p.add_argument(\"--suite\", required=True,\n                   choices=[\"goal\", \"spatial\", \"object\", \"long\"])\n    p.add_argument(\"--condition\", required=True,\n                   choices=[\"trained\", \"untrained\"])\n    p.add_argument(\"--method\", default=\"auto\",\n                   choices=[\"auto\", \"action_mse\", \"cosine_dist\"])\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--n-demos\", type=int, default=10)\n    p.add_argument(\"--n-timesteps\", type=int, default=50)\n    p.add_argument(\"--results-dir\", default=None,\n                   help=\"Override output directory\")\n    p.add_argument(\"--dry-run\", action=\"store_true\",\n                   help=\"Run with 2 tasks, 1 demo, 2 timesteps\")\n    args = p.parse_args()\n\n    DEVICE = f\"cuda:{args.gpu}\"\n    key = (args.arch, args.suite, args.condition)\n\n    if key not in CKPT_MAP:\n        print(f\"ERROR: Unsupported combination: {key}\")\n        print(f\"Available: {sorted(CKPT_MAP.keys())}\")\n        sys.exit(1)\n\n    ckpt_path = CKPT_MAP[key]\n    data_dir = DATA_MAP[args.suite]\n    results_dir = args.results_dir or RESULTS_MAP[key]\n    method = resolve_method(args.arch, args.condition, args.method)\n    tasks, instructions, paraphrases = _get_task_config(args.arch, args.suite)\n    n_layers = ARCH_CFG[args.arch][\"n_layers\"]\n\n    n_demos = 1 if args.dry_run else args.n_demos\n    n_timesteps = 2 if args.dry_run else args.n_timesteps\n    if args.dry_run:\n        tasks = tasks[:2]\n        instructions = instructions[:2]\n        paraphrases = paraphrases[:2]\n\n    log(f\"Config: arch={args.arch} suite={args.suite} \"\n        f\"condition={args.condition} method={method}\")\n    log(f\"Checkpoint: {ckpt_path}\")\n    log(f\"Data: {data_dir}\")\n    log(f\"Results: {results_dir}\")\n    log(f\"Tasks: {len(tasks)}  Demos: {n_demos}  Timesteps: {n_timesteps}\")\n\n    os.makedirs(results_dir, exist_ok=True)\n\n    model, processor = LOADER[args.arch](ckpt_path)\n\n    t0 = time.time()\n    if method == \"action_mse\":\n        unnorm_key = UNNORM_MAP.get(key)\n        if unnorm_key is None:\n            print(f\"ERROR: No unnorm_key for {key}. \"\n                  f\"Use --method cosine_dist or add key to UNNORM_MAP.\")\n            sys.exit(1)\n        cf_res = run_cf_action_mse(\n            args.arch, model, processor, tasks, instructions, paraphrases,\n            data_dir, unnorm_key, n_demos, n_timesteps)\n    else:\n        cf_res = run_cf_cosine_dist(\n            args.arch, model, processor, tasks, instructions, paraphrases,\n            data_dir, n_layers, n_demos, n_timesteps)\n\n    out_path = os.path.join(results_dir, \"counterfactual_combined.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(cf_res, f, indent=2)\n\n    log(f\"Saved -> {out_path}\")\n    log(f\"Total: {(time.time()-t0)/60:.1f} min\")\n\n    del model, processor\n    torch.cuda.empty_cache()\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "b27f5c13-bd5c-47ed-883d-4809e0502ee2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VxVQPEEiNpdzwWdVK657BN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 82308,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-21T16:53:15.672Z_
+
+<details><summary>↩ Tool result · `toolu_01H6z3QNUbtDhwMwGiD7SM1a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "fa9e8595-73b4-45e1-b1cc-ee77c1897ee5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104_
+
+脚本已创建。验证 argparse 是否正常。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "1d882578-0c7e-4225-a359-c4d2a2ef4b94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9gvW9JMgUQ1QRSEeiYXUd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 29759,
+      "cache_read_input_tokens": 82799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 29759
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YUY2EcGv7GWeqyTYBxwRbU`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "93aebfde-5dd1-475d-8fe3-3d03101223aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9gvW9JMgUQ1QRSEeiYXUd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 29759,
+      "cache_read_input_tokens": 82799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 29759
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-21T16:53:26.680Z_
+
+<details><summary>↩ Tool result · `toolu_01YUY2EcGv7GWeqyTYBxwRbU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: counterfactual_batch.py [-h] --arch {openvla,tracvla,nora} --suite\\n                               {goal,spatial,object,long} --condition\\n                               {trained,untrained}\\n                               [--method {auto,action_mse,cosine_dist}]\\n                               [--gpu GPU] [--n-demos N_DEMOS]\\n                               [--n-timesteps N_TIMESTEPS]\\n                               [--results-dir RESULTS_DIR] [--dry-run]\\n\\nCounterfactual-only batch runner for VLA-SSD\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --arch {openvla,tracvla,nora}\\n  --suite {goal,spatial,object,long}\\n  --condition {trained,untrained}\\n  --method {auto,action_mse,cosine_dist}\\n  --gpu GPU\\n  --n-demos N_DEMOS\\n  --n-timesteps N_TIMESTEPS\\n  --results-dir RESULTS_DIR\\n                        Override output directory\\n  --dry-run             Run with 2 tasks, 1 demo, 2 timesteps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "360a5b6e-4cad-4397-b480-7b3c0aef4378",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: counterfactual_batch.py [-h] --arch {openvla,tracvla,nora} --suite\\\\n                               {goal,spatial,object,long} --condition\\\\n                               {trained,untrained}\\\\n                               [--method {auto,action_mse,cosine_dist}]\\\\n                               [--gpu GPU] [--n-demos N_DEMOS]\\\\n                               [--n-timesteps N_TIMESTEPS]\\\\n                               [--results-dir RESULTS_DIR] [--dry-run]\\\\n\\\\nCounterfactual-only batch runner for VLA-SSD\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --arch {openvla,tracvla,nora}\\\\n  --suite {goal,spatial,object,long}\\\\n  --condition {trained,untrained}\\\\n  --method {auto,action_mse,cosine_dist}\\\\n  --gpu GPU\\\\n  --n-demos N_DEMOS\\\\n  --n-timesteps N_TIMESTEPS\\\\n  --results-dir RESULTS_DIR\\\\n                        Override output directory\\\\n  --dry-run             Run with 2 tasks, 1 demo, 2 timesteps\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: counterfactual_batch.py [-h] --arch {openvla,tracvla,nora} --suite\\n                               {goal,spatial,object,long} --condition\\n                               {trained,untrained}\\n                               [--method {auto,action_mse,cosine_dist}]\\n                               [--gpu GPU] [--n-demos N_DEMOS]\\n                               [--n-timesteps N_TIMESTEPS]\\n                               [--results-dir RESULTS_DIR] [--dry-run]\\n\\nCounterfactual-only batch runner for VLA-SSD\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --arch {openvla,tracvla,nora}\\n  --suite {goal,spatial,object,long}\\n  --condition {trained,untrained}\\n  --method {auto,action_mse,cosine_dist}\\n  --gpu GPU\\n  --n-demos N_DEMOS\\n  --n-timesteps N_TIMESTEPS\\n  --results-dir RESULTS_DIR\\n                        Override output directory\\n  --dry-run             Run with 2 tasks, 1 demo, 2 timesteps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 107_
+
+验证各个目标 combo 的参数解析和配置查找。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "43785416-e8ea-4a22-9255-4c8705421365",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ba3R5DE6YiCsfWc7he2jsY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 112558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 527
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RzvURYqhzdUX9h3LmCdenY`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport sys; sys.argv = ['test']\nexec(open('/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py').read().split('def main():')[0])\n\ncombos = [\n    ('tracvla', 'spatial', 'untrained'),\n    ('tracvla', 'object', 'untrained'),\n    ('openvla', 'object', 'untrained'),\n    ('openvla', 'long', 'trained'),\n    ('nora', 'goal', 'untrained'),\n]\nfor arch, suite, cond in combos:\n    key = (arch, suite, cond)\n    method = resolve_method(arch, cond, 'auto')\n    tasks, instr, para = _get_task_config(arch, suite)\n    print(f'{key} -> method={method}, ckpt={CKPT_MAP[key].split(\\\"/\\\")[-1]}, '\n          f'results={RESULTS_MAP[key].split(\\\"results/\\\")[-1]}, '\n          f'n_tasks={len(tasks)}, n_layers={ARCH_CFG[arch][\\\"n_layers\\\"]}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "dde292c5-71b9-4111-a968-a40c6ab44ca9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ba3R5DE6YiCsfWc7he2jsY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 112558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 527
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-21T16:53:44.968Z_
+
+<details><summary>↩ Tool result · `toolu_01RzvURYqhzdUX9h3LmCdenY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"('tracvla', 'spatial', 'untrained') -> method=cosine_dist, ckpt=, results=tracvla_spatial/untrained, n_tasks=10, n_layers=32\\n('tracvla', 'object', 'untrained') -> method=cosine_dist, ckpt=, results=tracvla_object/untrained, n_tasks=10, n_layers=32\\n('openvla', 'object', 'untrained') -> method=cosine_dist, ckpt=openvla-7b, results=libero_object_untrained, n_tasks=10, n_layers=32\\n('openvla', 'long', 'trained') -> method=action_mse, ckpt=openvla-7b-oft-finetuned-libero-10, results=libero_long/trained, n_tasks=10, n_layers=32\\n('nora', 'goal', 'untrained') -> method=cosine_dist, ckpt=, results=nora_goal/untrained, n_tasks=10, n_layers=36\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "c0efa69f-089c-45c2-bb5c-421c72d4df0e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"('tracvla', 'spatial', 'untrained') -> method=cosine_dist, ckpt=, results=tracvla_spatial/untrained, n_tasks=10, n_layers=32\\\\n('tracvla', 'object', 'untrained') -> method=cosine_dist, ckpt=, results=tracvla_object/untrained, n_tasks=10, n_layers=32\\\\n('openvla', 'object', 'untrained') -> method=cosine_dist, ckpt=openvla-7b, results=libero_object_untrained, n_tasks=10, n_layers=32\\\\n('openvla', 'long', 'trained') -> method=action_mse, ckpt=openvla-7b-oft-finetuned-libero-10, results=libero_long/trained, n_tasks=10, n_layers=32\\\\n('nora', 'goal', 'untrained') -> method=cosine_dist, ckpt=, results=nora_goal/untrained, n_tasks=10, n_layers=36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"('tracvla', 'spatial', 'untrained') -> method=cosine_dist, ckpt=, results=tracvla_spatial/untrained, n_tasks=10, n_layers=32\\n('tracvla', 'object', 'untrained') -> method=cosine_dist, ckpt=, results=tracvla_object/untrained, n_tasks=10, n_layers=32\\n('openvla', 'object', 'untrained') -> method=cosine_dist, ckpt=openvla-7b, results=libero_object_untrained, n_tasks=10, n_layers=32\\n('openvla', 'long', 'trained') -> method=action_mse, ckpt=openvla-7b-oft-finetuned-libero-10, results=libero_long/trained, n_tasks=10, n_layers=32\\n('nora', 'goal', 'untrained') -> method=cosine_dist, ckpt=, results=nora_goal/untrained, n_tasks=10, n_layers=36\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The "ckpt=" shows empty for some because the path ends with "/". That's fine - the checkpoint path itself is correct, it's just the split that doesn't show it nicely. Let me verify the full paths are correct.
+
+The output looks good:
+1. tracvla_spatial untrained → cosine_dist, phi3v-base, tracvla_spatial/untrained
+2. tracvla_object untrained → cosine_dist, phi3v-base, tracvla_object/untrained
+
+
+3. openvla_object untrained → cosine_dist, openvla-7b, libero_object_untrained
+4. openvla_long trained → action_mse, openvla-7b-oft-finetuned-libero-10, libero_long/trained
+5. nora_goal untrained → cosine_dist, qwen25-vl-3b-base, nora_goal/untrained
+
+All the paths are correct - the empty ckpt values are just a display artifact from the split. Now let me check the script line count.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "d4a99be6-f015-46f7-b9ec-6373f102e83e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012eodfL3B9zhaZWgm7EMMtr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 113085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111_
+
+所有 5 个目标 combo 配置正确:
+- tracvla_spatial untrained → cosine_dist, phi3v-base
+- tracvla_object untrained → cosine_dist, phi3v-base
+- openvla_object untrained → cosine_dist, openvla-7b
+- openvla_long trained → action_mse, openvla-7b-oft-finetuned-libero-10
+- nora_goal untrained → cosine_dist, qwen25-vl-3b-base
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "bcba43c8-297c-4b9a-b321-86fab7f62946",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012eodfL3B9zhaZWgm7EMMtr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 113085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016J1AMv3tCwgpb7BDo47cBZ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -l /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "b514f08b-000a-48ed-99c5-918128bfdf91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012eodfL3B9zhaZWgm7EMMtr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 113085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-21T16:53:54.772Z_
+
+<details><summary>↩ Tool result · `toolu_016J1AMv3tCwgpb7BDo47cBZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"884 /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "bdbdd658-6697-4512-addb-a605636da773",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"884 /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"884 /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 114_
+
+脚本已创建: `/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py` (884 行)
+
+功能:
+- 支持 `--arch openvla/tracvla/nora`, `--suite goal/spatial/object/long`, `--condition trained/untrained`
+- `--method auto` 自动选择: trained openvla/tracvla → action_mse, nora 和所有 untrained → cosine_dist
+- 内置全部 checkpoint/data/results 路径映射，匹配现有 pipeline 脚本的 task 顺序
+- OFT checkpoint 自动合并 dataset_statistics.json 到 norm_stats
+- `--dry-run` 快速验证, `--results-dir` 可覆盖输出目录
+- `--gpu`, `--n-demos`, `--n-timesteps` 可调
+
+用法:
+```bash
+python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained
+python counterfactual_batch.py --arch openvla --suite long --condition trained
+python counterfactual_batch.py --arch openvla --suite object --condition untrained
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "uuid": "40c33320-442a-4786-a9be-d5f84d1a4b44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ABbqiZeE9neTzbWd7suA2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 619,
+      "cache_read_input_tokens": 113956,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 619
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 115_
+
+脚本已创建: `/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py` (884 行)
+
+功能:
+- 支持 `--arch openvla/tracvla/nora`, `--suite goal/spatial/object/long`, `--condition trained/untrained`
+- `--method auto` 自动选择: trained openvla/tracvla → action_mse, nora 和所有 untrained → cosine_dist
+- 内置全部 checkpoint/data/results 路径映射，匹配现有 pipeline 脚本的 task 顺序
+- OFT checkpoint 自动合并 dataset_statistics.json 到 norm_stats
+- `--dry-run` 快速验证, `--results-dir` 可覆盖输出目录
+- `--gpu`, `--n-demos`, `--n-timesteps` 可调
+
+用法:
+```bash
+python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained
+python counterfactual_batch.py --arch openvla --suite long --condition trained
+python counterfactual_batch.py --arch openvla --suite object --condition untrained
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 553285,
+  "duration_api_ms": 528864,
+  "num_turns": 43,
+  "stop_reason": "end_turn",
+  "session_id": "84c86ce3-1382-4e4f-9c87-6ecf8709ef72",
+  "total_cost_usd": 2.2894650000000003,
+  "usage": {
+    "input_tokens": 30,
+    "cache_creation_input_tokens": 102734,
+    "cache_read_input_tokens": 1431175,
+    "output_tokens": 37166,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 102734,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 310,
+        "cache_read_input_tokens": 113956,
+        "cache_creation_input_tokens": 619,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 619
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2400,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0024899999999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 30,
+      "outputTokens": 37166,
+      "cacheReadInputTokens": 1431175,
+      "cacheCreationInputTokens": 102734,
+      "webSearchRequests": 0,
+      "costUSD": 2.2869750000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b091b4c0-9728-4e8f-affb-5adda633cb2b"
+}
+```
+
+</details>
+
+---

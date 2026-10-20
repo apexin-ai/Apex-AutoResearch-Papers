@@ -1,0 +1,24 @@
+DINO-V2 Subtask AUC Baseline Results
+=====================================
+
+Macro AUC: 0.9717
+  subtask_0: AUC = 0.9694
+  subtask_1: AUC = 0.9739
+
+Per-task AUC (subtask_0 / subtask_1):
+  KITCHEN_SCENE3 (stove + moka pot):     0.9685 / 0.9715
+  KITCHEN_SCENE4 (bowl in drawer):       0.9787 / 0.9960
+  KITCHEN_SCENE6 (mug in microwave):     0.9658 / 0.9989
+  KITCHEN_SCENE8 (both moka pots):       0.9750 / 0.9816
+  LIVING_ROOM_SCENE1 (soup + cheese):    0.9809 / 0.9692
+  LIVING_ROOM_SCENE2 (soup + sauce):     0.9810 / 0.9706
+  LIVING_ROOM_SCENE2 (cheese + butter):  0.9549 / 0.9750
+  LIVING_ROOM_SCENE5 (mugs on plates):   0.9735 / 0.9822
+  LIVING_ROOM_SCENE6 (mug + pudding):    0.9609 / 0.9070
+  STUDY_SCENE1 (book in caddy):          0.9462 / 0.9467
+
+Method: sklearn LogisticRegression (L-BFGS, C=1.0) with StandardScaler
+Features: DINO-V2 ViT-L/14 cls_token (1024-dim)
+Labels: auto-extracted from MuJoCo state step transitions
+Train: 110,660 frames / Val: 27,430 frames (80/20 per-task split)
+Server: westd-19183, results at /root/autodl-tmp/vla-ssd/results/dinov2/subtask_predicate/summary.json

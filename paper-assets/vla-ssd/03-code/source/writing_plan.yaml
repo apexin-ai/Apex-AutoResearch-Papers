@@ -1,0 +1,293 @@
+meta:
+  venue: CoRL 2026
+  track: main
+  template: templates/latex/corl2026/
+  template_note: "existing paper uses corl_2026.sty"
+  page_limit: 8
+  abstract_ddl: 2026-05-26
+  paper_ddl: 2026-05-29
+  title: "Three Architectures, One Routing Pattern: How VLA Fine-Tuning Reshapes Instruction Flow"
+  core_claim: >
+    VLA fine-tuning produces consistent routing reorganization across two VLM-to-VLA
+    transitions (TracVLA/Phi-3, NORA/Qwen2.5-VL)—R² exit collapse (6/6 cells, sign test
+    p=0.016) and counterfactual sensitivity (Cohen's d ≥ 0.45) emerge at the VLM→VLA
+    transition, while L1 head counts reflect base-model priors. OpenVLA partially confirms
+    (2/4 suites for R² collapse). Metric incomparability precludes cross-metric amplification ratios.
+  created_at: 2026-05-22T12:00:00Z
+  approved: 2026-05-22
+  approved_title: "Three Architectures, One Routing Pattern: How VLA Fine-Tuning Reshapes Instruction Flow"
+
+# ============================================================
+# FLOAT BUDGET (Director-approved: max 4 fig + 3 tab = 7 floats)
+# ============================================================
+float_budget:
+  main_figures: 4
+  main_tables: 3
+  total: 7
+  appendix: "dose-response, per-layer RSA, and excess tables"
+
+# ============================================================
+# STORY ARC (D095 Cross-Architecture Upgrade)
+# ============================================================
+story_arc:
+  hook: >
+    VLAs fine-tune LLMs on robot demonstrations, but do the internal mechanisms
+    they learn generalize across architectures—or are they artifacts of a specific backbone?
+  gap: >
+    Prior behavioral studies (Grant 2026, Haon 2025) revealed visual dominance and
+    sparse directions in single VLAs, but no work has tested whether instruction routing
+    mechanisms are architecture-specific or universal, nor decomposed what training creates
+    vs what it inherits from the base model.
+  insight: >
+    Two training effects are consistent across two VLM-to-VLA transitions (R² exit collapse,
+    counterfactual sensitivity), while L1 head count is base-model-dependent. Exit collapse
+    marks the VLM→VLA transition (6/6) but not VLA→VLA (1/3). Three-tier gradient
+    is an observational synthesis (n=1 at Tier 2), discussed but not a main contribution.
+  evidence: >
+    R² exit collapse: trained Δ=0.12-0.69 vs untrained Δ=0.01-0.08 (6/6 VLM→VLA, sign test p=0.016).
+    CF sensitivity: all trained Cohen's d ≥ 0.45; metric incomparability prevents trained/untrained ratios.
+
+# ============================================================
+# SECTIONS
+# ============================================================
+paper_outline:
+
+  - section: abstract
+    word_budget: 200
+    priority: HIGHEST  # DDL May 26, 4 days
+    core_bullets:
+      - "Problem: VLAs fine-tune LLMs for robot control, but whether learned routing mechanisms generalize across architectures is unknown"
+      - "Method: systematic token-level analysis of 3 VLA architectures (Llama-2-7B, Phi-3-mini, Qwen2.5-VL-3B) × 4 LIBERO suites (10 cells)"
+      - "Finding 1: R² exit collapse at VLM→VLA transition (6/6 cells, sign test p=0.016) but not VLA→VLA (1/3)"
+      - "Finding 2: consistent CF sensitivity (Cohen's d ≥ 0.45); metric incomparability prevents trained/untrained ratios"
+      - "Finding 3 (base-model-dependent): L1 head count reflects pretraining, NOT VLA training"
+      - "Implication: training-induced vs inherited routing distinction, consistent across two VLM→VLA architectures"
+    dependencies: [experiments, method]
+
+  - section: introduction
+    word_budget: 1100
+    core_bullets:
+      - "Hook: VLAs achieve manipulation by fine-tuning LLMs, but are the mechanisms universal or architecture-specific?"
+      - "Gap: all prior mechanistic VLA analyses on single architectures"
+      - "Approach: 3 architectures × 4 task suites (10 cells); trained vs untrained × token type"
+      - "Contributions: (C1) empirical cross-architecture analysis framework; (C2) R² exit collapse as VLM→VLA transition marker; (C3) training-induced vs inherited routing decomposition"
+    dependencies: [experiments]
+    figures: [fig1_teaser]
+
+  - section: related_work
+    word_budget: 600
+    core_bullets:
+      - "VLA models + conditioning"
+      - "Mechanistic interpretability in transformers"
+      - "Behavioral/mechanistic VLA analysis → we add cross-architecture validation"
+      - "Token-level specialization"
+      - "RSA/probing methodology"
+    dependencies: [introduction]
+    note: "mostly preserved; add cross-arch positioning"
+
+  - section: method
+    word_budget: 1000
+    core_bullets:
+      - "3 architectures: OpenVLA/Llama-2-7B, TraceVLA/Phi-3-mini, NORA/Qwen2.5-VL-3B"
+      - "4 LIBERO suites: Goal, Spatial, Object, Long"
+      - "Trained vs untrained conditions (asymmetric: OpenVLA untrained=OXE-pretrained VLA, others=pure VLM)"
+      - "Analyses: probe, attention, R², counterfactual"
+    dependencies: []
+    tables: [tab_arch_overview]
+
+  - section: experiments
+    word_budget: 2800
+    core_bullets:
+      - "4.1 OpenVLA deep dive (L1 routing, probe, attention, counterfactual)"
+      - "4.2 Cross-arch R² exit collapse (6/6 VLM→VLA, 1/3 VLA→VLA, sign test p=0.016)"
+      - "4.3 Cross-arch CF sensitivity (all trained d≥0.45; metric incomparability prevents ratios)"
+      - "4.4 L1 heads = base-model-dependent"
+      - "4.5 Synthesis: training-induced vs inherited routing (brief, defers three-tier to Discussion)"
+    dependencies: []
+    tables: [tab_cross_arch_matrix, tab_counterfactual]
+    figures: [fig_r2_collapse, fig_cross_arch_l1]
+    d097_note: "fig_three_tier moved to Discussion or removed; three-tier demoted to observation"
+
+  - section: discussion
+    word_budget: 500
+    core_bullets:
+      - "Routing consistency across two VLM→VLA transitions = compatible with task-structure constraint (not architecture-specific)"
+      - "Training-induced vs inherited routing decomposition"
+      - "Three-tier gradient as observational synthesis (n=1 at Tier 2, not a main contribution)"
+      - "OpenVLA partial confirmation tempers generality"
+      - "Metric incomparability limitation for CF trained/untrained comparison"
+    dependencies: [experiments]
+    d097_note: "receives three-tier gradient content from experiments §4.6 (demoted)"
+
+  - section: limitations
+    word_budget: 200
+    dependencies: [experiments]
+
+  - section: conclusion
+    word_budget: 200
+    dependencies: [experiments, discussion]
+
+# ============================================================
+# VISUALIZATION PLAN (4 main figures, rest → appendix)
+# ============================================================
+visualization_plan:
+
+  - fig_id: fig1_teaser
+    type: conceptual
+    tool: matplotlib
+    description: "3 arch × 4 suite matrix overview with key findings"
+    narrative_intent: "R² exit collapse and CF sensitivity are consistent across all architectures"
+    design_notes:
+      - "Heatmap matrix with Δ values color-coded"
+      - "Annotate OpenVLA Long outlier"
+    placement: introduction
+    aspect_ratio: "16:9"
+    data_source: "artifacts/matrix_summary_table.md"
+
+  - fig_id: fig_r2_collapse
+    type: statistical
+    tool: matplotlib
+    description: "R² per-layer curves: 3 architectures, trained vs untrained, showing exit collapse"
+    narrative_intent: "Trained VLAs universally show R² exit collapse regardless of backbone"
+    design_notes:
+      - "3-panel (one per arch) or overlaid"
+      - "Solid=trained, dashed=untrained"
+      - "Annotate Δ per arch"
+    placement: experiments
+    aspect_ratio: "16:6"
+    data_source: "registry: tracvla_goal_v1, nora_goal_pipeline_v3, object_pipeline_ridge_v2"
+
+  - fig_id: fig_cross_arch_l1
+    type: statistical
+    tool: matplotlib
+    description: "L1 instruction-dominant head count: trained vs untrained per architecture"
+    narrative_intent: "L1 head count is inherited from base model, not created by VLA training"
+    design_notes:
+      - "Grouped bars per architecture"
+      - "Show training direction arrows"
+    placement: experiments
+    aspect_ratio: "4:3"
+    data_source: "artifacts/matrix_summary_table.md"
+
+  - fig_id: fig_three_tier
+    type: statistical
+    tool: matplotlib
+    description: "Three-tier routing gradient: VLM base → OXE-pretrained → task-finetuned"
+    narrative_intent: "Routing emerges at VLM→VLA transition and reshapes with task specialization"
+    design_notes:
+      - "Radar or grouped comparison showing CF sensitivity + R² collapse + L1 heads"
+      - "Three tiers clearly separated"
+    placement: experiments
+    aspect_ratio: "4:3"
+    data_source: "artifacts/matrix_summary_table.md"
+
+  # Appendix figures (moved from main):
+  - fig_id: fig_dose_response_appendix
+    type: statistical
+    tool: matplotlib
+    description: "Dose-response ablation (moved to appendix)"
+    placement: appendix
+    data_source: "registry: dose_response_curve"
+    note: "existing figure, moved from main"
+
+  - fig_id: fig_layer_curves_appendix
+    type: statistical
+    tool: matplotlib
+    description: "Per-layer RSA curves OpenVLA (moved to appendix)"
+    placement: appendix
+    data_source: "registry: d041_method_b_rsa"
+    note: "existing figure, moved from main"
+
+# ============================================================
+# TABLE PLAN (3 main tables, rest → appendix)
+# ============================================================
+table_plan:
+
+  - table_id: tab_arch_overview
+    caption: "Three VLA architectures analyzed."
+    placement: method
+    type: configuration
+    columns: [Architecture, Backbone, Layers, Attention, Vision Encoder, Training Data]
+    data_source: "manual"
+
+  - table_id: tab_cross_arch_matrix
+    caption: "Cross-architecture R² exit collapse and CF sensitivity. Trained Δ >> untrained Δ in 9/10 cells."
+    placement: experiments
+    type: comparison
+    columns: [Arch, Suite, "Trained R² Δ", "Untrained R² Δ", "Trained CF (top d)", "Untrained CF"]
+    data_source: "artifacts/matrix_summary_table.md"
+    notes: "merged R² + CF table per Director instruction"
+
+  - table_id: tab_counterfactual
+    caption: "Counterfactual condition ranking across architectures and suites."
+    placement: experiments
+    type: statistics
+    columns: [Arch, Suite, 1st, 2nd, 3rd, 4th]
+    data_source: "artifacts/matrix_summary_table.md"
+
+# ============================================================
+# WRITING ORDER (Abstract first — DDL May 26)
+# ============================================================
+writing_order:
+  - section: abstract
+    reason: "DDL May 26 — must be finalized within 2-3 days"
+    deadline: 2026-05-25
+  - section: experiments
+    reason: "Evidence-first: cross-arch sections are the core new content"
+  - section: method
+    reason: "Formalize cross-architecture experimental design"
+  - section: introduction
+    reason: "Story arc clear after experiments + method"
+  - section: discussion
+    reason: "Synthesize cross-architecture implications"
+  - section: related_work
+    reason: "Position; mostly preserved"
+  - section: conclusion
+    reason: "Compress the story"
+
+# ============================================================
+# LITERATURE STRATEGY
+# ============================================================
+literature_strategy:
+  citation_budget: 35
+  verify_refs: true
+  micro_clusters:
+    - cluster_name: "VLA Models"
+      must_cite:
+        - "Brohan et al. 2023 RT-2"
+        - "Kim et al. 2024 OpenVLA"
+        - "Zheng et al. 2024 TraceVLA"
+        - "Black et al. 2024 Pi0"
+      target_count: 6
+    - cluster_name: "VLA Analysis"
+      must_cite:
+        - "Grant et al. 2026"
+        - "Haon et al. 2025"
+        - "Swann et al. 2026"
+        - "Fang 2025"
+      target_count: 6
+    - cluster_name: "Mechanistic Interpretability"
+      must_cite:
+        - "Elhage et al. 2021"
+        - "Olsson et al. 2022"
+        - "Michel et al. 2019"
+      target_count: 5
+    - cluster_name: "RSA/Probing"
+      must_cite:
+        - "Kriegeskorte et al. 2008"
+        - "Kornblith et al. 2019"
+      target_count: 3
+
+# ============================================================
+# PENDING EXPERIMENTS
+# ============================================================
+pending:
+  - exp_id: openvla_goal_standardized_v1
+    status: RUNNING
+    impact: "fills Goal cell; write with placeholder"
+  - exp_id: openvla_spatial_standardized_v1
+    status: RUNNING
+    impact: "fills Spatial cell; write with placeholder"
+  - exp_id: cf_batch_missing_v1
+    status: ANALYZING
+    impact: "completes untrained CF columns"

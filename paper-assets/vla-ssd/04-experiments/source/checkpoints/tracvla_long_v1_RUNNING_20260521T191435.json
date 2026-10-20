@@ -1,0 +1,32 @@
+{
+  "exp_id": "tracvla_long_v1",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:39:01.752Z",
+    "updated_at": "2026-05-21T19:14:35.071Z",
+    "hypothesis": "The convergent entry-exit routing architecture (inverted-U R² profile, L1 instruction-dominance with consistent mixed heads h13/h22, counterfactual sensitivity) observed in TraceVLA on Spatial/Object generalizes to LIBERO-Long (multi-step tasks). Tests cross-suite consistency for second architecture family. Both trained and untrained conditions.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_long_full_pipeline.py --conditions trained untrained\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "568677",
+      "log_path": "~/runs/vla-ssd/tracvla_long_v1.log",
+      "submitted_at": "2026-05-21T16:39:14.839Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_10/",
+      "data_count": 500,
+      "model_name": "tracevla-phi3v / phi3v-base",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-21T19:14:35.334488+00:00",
+  "trigger": "update_registry"
+}

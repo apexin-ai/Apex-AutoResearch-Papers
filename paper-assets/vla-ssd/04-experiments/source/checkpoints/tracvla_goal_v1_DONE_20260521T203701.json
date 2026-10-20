@@ -1,0 +1,134 @@
+{
+  "exp_id": "tracvla_goal_v1",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:39:07.781Z",
+    "updated_at": "2026-05-21T20:37:01.235Z",
+    "hypothesis": "TraceVLA (Phi-3-mini) on LIBERO-Goal shows convergent entry-exit routing when fine-tuned, absent in untrained Phi-3-Vision base. Completing the Goal column for TraceVLA architecture. Both trained and untrained conditions with full 5-phase pipeline.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_goal_full_pipeline.py --conditions trained untrained\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "568838",
+      "log_path": "~/runs/vla-ssd/tracvla_goal_v1.log",
+      "submitted_at": "2026-05-21T16:39:20.464Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": 500,
+      "model_name": "tracevla-phi3v / phi3v-base",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/outputs/tracvla_goal_v1/",
+      "wall_clock_seconds": 14260.8,
+      "gpu_hours": 3.96
+    },
+    "metrics": {
+      "trained": {
+        "r2_probing": {
+          "image_mean": {
+            "L0": 0.803,
+            "L7": 0.828,
+            "L11": 0.824,
+            "L16": 0.827,
+            "L18": 0.836,
+            "L23": 0.842,
+            "L27": 0.816,
+            "L30": 0.812,
+            "L31": 0.805,
+            "PEAK": "0.842 @ L23"
+          },
+          "last_preaction": {
+            "L0": 0.612,
+            "L7": 0.779,
+            "L11": 0.786,
+            "L16": 0.788,
+            "L18": 0.802,
+            "L23": 0.75,
+            "L27": 0.653,
+            "L30": 0.307,
+            "L31": 0.574,
+            "PEAK": "0.802 @ L18"
+          }
+        },
+        "l1_attention": {
+          "instruction_dominant": 27,
+          "total_heads": 32,
+          "mixed_heads": [
+            "h2",
+            "h6",
+            "h13",
+            "h22",
+            "h24"
+          ]
+        },
+        "cross_instruction": {
+          "image_mean_L0": 0.996,
+          "image_mean_L10_plus": 1,
+          "last_preaction_L0": 0.915,
+          "last_preaction_L1_plus": 1
+        },
+        "counterfactual": {
+          "empty_d": 1.524,
+          "wrong_d": 1.405,
+          "shuffled_d": 1.336,
+          "paraphrased_d": 1.213
+        }
+      },
+      "untrained": {
+        "r2_probing": {
+          "image_mean": {
+            "L0": 0.788,
+            "L8": 0.808,
+            "L16": 0.784,
+            "L20": 0.79,
+            "L28": 0.762,
+            "L30": 0.756,
+            "L31": 0.729,
+            "profile": "flat, no collapse"
+          },
+          "last_preaction": {
+            "L0": 0.537,
+            "L4": 0.654,
+            "L8": 0.688,
+            "L16": 0.705,
+            "L20": 0.682,
+            "L28": 0.68,
+            "L30": 0.655,
+            "L31": 0.671,
+            "profile": "flat plateau ~0.65-0.70, no inverted-U"
+          }
+        },
+        "l1_attention": {
+          "instruction_dominant": 32,
+          "total_heads": 32,
+          "mixed_heads": []
+        },
+        "classification_phase": "RUNNING (L22/31)",
+        "counterfactual_phase": "NOT_STARTED"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T20:34:22.785Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T20:34:29.492632+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T20:37:01.235Z"
+  },
+  "timestamp": "2026-05-21T20:37:01.523283+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,404 @@
+\relax 
+\bibstyle{corlabbrvnat}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023_rt2,kim2024_openvla}
+\citation{wang2025seeing,pei2025rethinking}
+\citation{grant2026}
+\citation{haon2025}
+\citation{kim2024_openvla}
+\citation{zheng2024tracevla}
+\citation{hung2025nora}
+\citation{liu2023_libero}
+\citation{padalkar2023_oxe}
+\citation{fang2026when,swann2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\citation{brohan2023_rt2,kim2024_openvla,karamcheti2024,black2024_pi0,zheng2024tracevla,hung2025nora,xiao2025ava}
+\citation{wei2022finetuned,ouyang2022training}
+\citation{aghajanyan2021intrinsic}
+\citation{kumar2022finetuning}
+\citation{grover2025preserving,hancock2025actions}
+\citation{elhage2021}
+\citation{olsson2022}
+\citation{wang2023_ioi,conmy2023}
+\citation{meng2022_rome}
+\citation{clark2019}
+\citation{michel2019sixteen}
+\citation{fan2026visual}
+\citation{neo2025interpreting,long2026understanding}
+\citation{zhang2026instruction}
+\citation{grant2026,hou2026,fei2025}
+\citation{haon2025}
+\citation{swann2026,buurmeijer2026}
+\citation{lu2025,molinari2025}
+\citation{fang2025}
+\citation{mitra2025mechanistic}
+\citation{liu2026forgetting}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Analysis framework.} We analyze hidden states at image-token averages and the readout token via layer-wise action probes, counterfactual instruction perturbations, and L1 attention profiling to distinguish training-associated changes from inherited backbone priors.}}{2}{figure.1}\protected@file@percent }
+\newlabel{fig:overview}{{1}{2}{\textbf {Analysis framework.} We analyze hidden states at image-token averages and the readout token via layer-wise action probes, counterfactual instruction perturbations, and L1 attention profiling to distinguish training-associated changes from inherited backbone priors}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Vision-language-action models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mechanistic and behavioral analysis.}{2}{section*.2}\protected@file@percent }
+\citation{grant2026}
+\citation{haon2025}
+\citation{swann2026}
+\citation{buurmeijer2026}
+\citation{fang2026when}
+\citation{fang2026when}
+\citation{buurmeijer2026}
+\citation{kachaev2025dont}
+\citation{lian2026bayesianvla}
+\citation{kriegeskorte2008}
+\citation{kornblith2019}
+\citation{alain2017,belinkov2022}
+\citation{kim2024_openvla,karamcheti2024}
+\citation{touvron2023_llama2}
+\citation{padalkar2023_oxe}
+\citation{zheng2024tracevla}
+\citation{abdin2024phi3}
+\citation{hung2025nora}
+\citation{liu2023_libero}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Comparison with concurrent VLA representational analyses.} Each prior study targets a single architecture and lacks a reference-model control; our work spans three backbone families with systematic trained/reference comparisons using probes, attention profiling, and counterfactual perturbation.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:related_comparison}{{1}{3}{\textbf {Comparison with concurrent VLA representational analyses.} Each prior study targets a single architecture and lacks a reference-model control; our work spans three backbone families with systematic trained/reference comparisons using probes, attention profiling, and counterfactual perturbation}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Architectures studied. The reference baselines differ in kind: OpenVLA's is an OXE-pretrained VLA; TraceVLA and NORA references are pure VLMs. MHA = multi-head attention; GQA = grouped-query attention; DinoSigLIP = fused DINOv2+SigLIP vision encoder.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:arch_overview}{{2}{3}{Architectures studied. The reference baselines differ in kind: OpenVLA's is an OXE-pretrained VLA; TraceVLA and NORA references are pure VLMs. MHA = multi-head attention; GQA = grouped-query attention; DinoSigLIP = fused DINOv2+SigLIP vision encoder}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Concurrent work.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probing and similarity methodology.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Architectures and Data}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:arch_data}{{3.1}{3}{Architectures and Data}{subsection.3.1}{}}
+\citation{alain2017}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Per-layer RSA (Spearman $\rho $) for trained/reference OpenVLA. Trained: inverted-U peaking at L12; reference: monotonic decline. Readout and image\_mean diverge after L12.}}{4}{figure.2}\protected@file@percent }
+\newlabel{fig:rsa_perlayer}{{2}{4}{Per-layer RSA (Spearman $\rho $) for trained/reference OpenVLA. Trained: inverted-U peaking at L12; reference: monotonic decline. Readout and image\_mean diverge after L12}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Representation Extraction}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cross-Architecture Analyses}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:cross_arch_analyses}{{3.3}{4}{Cross-Architecture Analyses}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Action probes.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{L1 attention head profiling.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual instruction perturbation.}{4}{section*.7}\protected@file@percent }
+\citation{kriegeskorte2008}
+\citation{oquab2024_dinov2}
+\citation{radford2021_clip}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Cross-architecture analysis matrix.} Three architectures (OpenVLA, TraceVLA, NORA) $\times $ four LIBERO suites; 10 of 12 cells filled. Color encodes $\Delta R^2$ (peak$-$exit); bold borders mark VLM-to-VLA transitions exhibiting substantial exit collapse ($\Delta R^2 > 0.10$).}}{5}{figure.3}\protected@file@percent }
+\newlabel{fig:result_matrix}{{3}{5}{\textbf {Cross-architecture analysis matrix.} Three architectures (OpenVLA, TraceVLA, NORA) $\times $ four LIBERO suites; 10 of 12 cells filled. Color encodes $\Delta R^2$ (peak$-$exit); bold borders mark VLM-to-VLA transitions exhibiting substantial exit collapse ($\Delta R^2 > 0.10$)}{figure.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{5}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{5}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:setup}{{4.1}{5}{Experimental Setup}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}OpenVLA: Motivating Single-Architecture Analysis}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:openvla_routing}{{4.2}{5}{OpenVLA: Motivating Single-Architecture Analysis}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Exit Collapse: Layer-Wise Action Probing}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:r2_collapse}{{4.3}{5}{Exit Collapse: Layer-Wise Action Probing}{subsection.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Per-layer action-probe $R^2$ for three OpenVLA conditions (3 seeds, mean $\pm $ std); all share L0 ($R^2 = 0.645$). Trained model peaks at L9, Llama-2 base declines from L0, random initialization collapses at deep layers.}}{6}{figure.4}\protected@file@percent }
+\newlabel{fig:action_r2_threecond}{{4}{6}{Per-layer action-probe $R^2$ for three OpenVLA conditions (3 seeds, mean $\pm $ std); all share L0 ($R^2 = 0.645$). Trained model peaks at L9, Llama-2 base declines from L0, random initialization collapses at deep layers}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Counterfactual sensitivity, measured as Cohen's $d$ (OpenVLA, TraceVLA; dashed: $d{=}0.8$) and cosine distance (NORA, ref.\ VLMs; \S  \ref {sec:cf_repr}). E=empty, W=wrong, S=shuffled, P=paraphrased.}}{6}{figure.5}\protected@file@percent }
+\newlabel{fig:counterfactual_bar}{{5}{6}{Counterfactual sensitivity, measured as Cohen's $d$ (OpenVLA, TraceVLA; dashed: $d{=}0.8$) and cosine distance (NORA, ref.\ VLMs; \S \ref {sec:cf_repr}). E=empty, W=wrong, S=shuffled, P=paraphrased}{figure.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{NLP finetuning control.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Instruction Sensitivity: Counterfactual Perturbation}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:cf_sensitivity}{{4.4}{6}{Instruction Sensitivity: Counterfactual Perturbation}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Instruction Sensitivity in Action-Producing VLAs}{6}{section*.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \textbf  {Layer-wise action-probe $R^2$ (LIBERO-Goal, readout token).} Solid blue: trained; dashed orange: reference; dotted gray: NLP finetuning control ($R^2 = 0.155$, matching backbone family). VLM-to-VLA transitions exhibit pronounced peak-to-exit drops ($\Delta R^2 = 0.16$--$0.46$); VLA-to-VLA remains flat ($< 0.09$); NLP controls produce flat profiles ($\Delta R^2 = 0.000$). Demo-level splitting; see Table~\ref {tab:cross_arch_matrix}.}}{7}{figure.6}\protected@file@percent }
+\newlabel{fig:r2_collapse}{{6}{7}{\textbf {Layer-wise action-probe $R^2$ (LIBERO-Goal, readout token).} Solid blue: trained; dashed orange: reference; dotted gray: NLP finetuning control ($R^2 = 0.155$, matching backbone family). VLM-to-VLA transitions exhibit pronounced peak-to-exit drops ($\Delta R^2 = 0.16$--$0.46$); VLA-to-VLA remains flat ($< 0.09$); NLP controls produce flat profiles ($\Delta R^2 = 0.000$). Demo-level splitting; see Table~\ref {tab:cross_arch_matrix}}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \textbf  {Left:} Instruction-dominant heads across all 32 layers (L1, L31 entry-exit for VLA-trained; L16 peak for Llama-2 base; zero for random). \textbf  {Right:} Dose-response ablation (progressively masking instruction-dominant heads); divergence rises through 12 heads then plateaus. 95\% bootstrap CIs.}}{7}{figure.7}\protected@file@percent }
+\newlabel{fig:synthesis_panels}{{7}{7}{\textbf {Left:} Instruction-dominant heads across all 32 layers (L1, L31 entry-exit for VLA-trained; L16 peak for Llama-2 base; zero for random). \textbf {Right:} Dose-response ablation (progressively masking instruction-dominant heads); divergence rises through 12 heads then plateaus. 95\% bootstrap CIs}{figure.7}{}}
+\newlabel{sec:cf_repr}{{4.4}{7}{Representation-Space Sensitivity in NORA and Reference VLMs}{section*.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Representation-Space Sensitivity in NORA and Reference VLMs}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Inherited Routing: L1 Attention Profiling}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:l1_priors}{{4.5}{7}{Inherited Routing: L1 Attention Profiling}{subsection.4.5}{}}
+\citation{black2024_pi0}
+\citation{ghosh2024_octo}
+\bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces \textbf  {Peak-to-exit action-probe drop across the architecture-suite matrix.} $\Delta R^2$ is computed as the difference between the maximum layer-wise action-probe $R^2$ and the exit-layer $R^2$. Values above 0.10 are treated as substantial descriptive drops. OpenVLA is a VLA-to-VLA comparison, whereas TraceVLA and NORA are VLM-to-VLA comparisons.}}{8}{table.3}\protected@file@percent }
+\newlabel{tab:cross_arch_matrix}{{3}{8}{\textbf {Peak-to-exit action-probe drop across the architecture-suite matrix.} $\Delta R^2$ is computed as the difference between the maximum layer-wise action-probe $R^2$ and the exit-layer $R^2$. Values above 0.10 are treated as substantial descriptive drops. OpenVLA is a VLA-to-VLA comparison, whereas TraceVLA and NORA are VLM-to-VLA comparisons}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Synthesis: Training-Associated vs.\ Inherited Routing}{8}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:routing_synthesis}{{4.6}{8}{Synthesis: Training-Associated vs.\ Inherited Routing}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{8}{Conclusion}{section.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{8}{section.6}\protected@file@percent }
+\newlabel{sec:limitations}{{6}{8}{Limitations}{section.6}{}}
+\bibcite{brohan2023_rt2}{{1}{2023}{{Brohan et~al.}}{{Brohan, Brown, Carbajal, Chebotar, Chen, Choromanski, Ding, Driess, Dubey, Finn, et~al.}}}
+\bibcite{kim2024_openvla}{{2}{2024}{{Kim et~al.}}{{Kim, Pertsch, Karamcheti, Xiao, Balakrishna, Nair, Rafailov, Foster, Lam, Sanketi, Lu, Kollar, Burchfiel, Tedrake, Sadigh, Levine, Liang, and Finn}}}
+\bibcite{wang2025seeing}{{3}{2025}{{Wang et~al.}}{{Wang, Wang, Suzuki, and Kobayashi}}}
+\bibcite{pei2025rethinking}{{4}{2025}{{Pei et~al.}}{{Pei, Huang, Ma, and Xu}}}
+\bibcite{grant2026}{{5}{2026}{{Grant et~al.}}{{Grant, Zhao, and Wang}}}
+\bibcite{haon2025}{{6}{2025}{{H{\"a}on et~al.}}{{H{\"a}on, Stocking, Chuang, and Tomlin}}}
+\bibcite{zheng2024tracevla}{{7}{2025}{{Zheng et~al.}}{{Zheng, Liang, Huang, Gao, Daum{\'e}~III, Kolobov, Huang, and Yang}}}
+\bibcite{hung2025nora}{{8}{2025}{{Hung et~al.}}{{Hung, Sun, Hong, Zadeh, Li, Tan, Majumder, and Poria}}}
+\bibcite{liu2023_libero}{{9}{2023}{{Liu et~al.}}{{Liu, Zhu, Gao, Feng, Liu, Zhu, and Stone}}}
+\bibcite{padalkar2023_oxe}{{10}{2024}{{Padalkar et~al.}}{{Padalkar, Poolber, Bewley, et~al.}}}
+\bibcite{fang2026when}{{11}{2026}{{Fang et~al.}}{{Fang, Li, Li, Zhang, Guo, and Zhang}}}
+\bibcite{swann2026}{{12}{2026}{{Swann et~al.}}{{Swann, McGranahan, Buurmeijer, Kennedy, and Schwager}}}
+\bibcite{karamcheti2024}{{13}{2024}{{Karamcheti et~al.}}{{Karamcheti, Nair, Balakrishna, Liang, Kollar, and Sadigh}}}
+\bibcite{black2024_pi0}{{14}{2025}{{Black et~al.}}{{Black, Brown, Driess, Esmail, Equi, Finn, Fusai, Groom, Hausman, Ichter, Jakubczak, Jones, Ke, Levine, Li-Bell, Mothukuri, Nair, Pertsch, Shi, Tanner, Vuong, Walling, Wang, and Zhilinsky}}}
+\bibcite{xiao2025ava}{{15}{2026}{{Xiao et~al.}}{{Xiao, Li, Gao, Ye, Jin, Qian, Zhang, Wu, and Yu}}}
+\bibcite{wei2022finetuned}{{16}{2022}{{Wei et~al.}}{{Wei, Bosma, Zhao, Guu, Yu, Lester, Du, Dai, and Le}}}
+\bibcite{ouyang2022training}{{17}{2022}{{Ouyang et~al.}}{{Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin, Zhang, Agarwal, Slama, Ray, et~al.}}}
+\bibcite{aghajanyan2021intrinsic}{{18}{2021}{{Aghajanyan et~al.}}{{Aghajanyan, Gupta, and Zettlemoyer}}}
+\bibcite{kumar2022finetuning}{{19}{2022}{{Kumar et~al.}}{{Kumar, Raghunathan, Jones, Ma, and Liang}}}
+\bibcite{grover2025preserving}{{20}{2025}{{Grover et~al.}}{{Grover, Gopalkrishnan, Ai, Christensen, Su, and Li}}}
+\bibcite{hancock2025actions}{{21}{2025}{{Hancock et~al.}}{{Hancock, Wu, Zha, Russakovsky, and Majumdar}}}
+\bibcite{elhage2021}{{22}{2021}{{Elhage et~al.}}{{Elhage, Nanda, Olsson, Henighan, Joseph, Mann, Askell, Bai, Chen, Conerly, DasSarma, Drain, Ganguli, Hatfield-Dodds, Hernandez, Jones, Kernion, Lovitt, Ndousse, Amodei, Brown, Clark, Kaplan, McCandlish, and Olah}}}
+\bibcite{olsson2022}{{23}{2022}{{Olsson et~al.}}{{Olsson, Elhage, Nanda, Joseph, DasSarma, Henighan, Mann, Askell, Bai, Chen, Conerly, Drain, Ganguli, Hatfield-Dodds, Hernandez, Johnston, Jones, Kernion, Lovitt, Ndousse, Amodei, Brown, Clark, Kaplan, McCandlish, and Olah}}}
+\bibcite{wang2023_ioi}{{24}{2023}{{Wang et~al.}}{{Wang, Variengien, Conmy, Shlegeris, and Steinhardt}}}
+\bibcite{conmy2023}{{25}{2023}{{Conmy et~al.}}{{Conmy, Mavor-Parker, Lynch, Heimersheim, and Garriga-Alonso}}}
+\bibcite{meng2022_rome}{{26}{2022}{{Meng et~al.}}{{Meng, Bau, Andonian, and Belinkov}}}
+\bibcite{clark2019}{{27}{2019}{{Clark et~al.}}{{Clark, Khandelwal, Levy, and Manning}}}
+\bibcite{michel2019sixteen}{{28}{2019}{{Michel et~al.}}{{Michel, Levy, and Neubig}}}
+\bibcite{fan2026visual}{{29}{2026}{{Fan et~al.}}{{Fan, Tong, Zhao, and Shen}}}
+\bibcite{neo2025interpreting}{{30}{2025}{{Neo et~al.}}{{Neo, Ong, Torr, Geva, Krueger, and Barez}}}
+\bibcite{long2026understanding}{{31}{2026}{{Long et~al.}}{{Long, Oh, Park, and Li}}}
+\bibcite{zhang2026instruction}{{32}{2026}{{Zhang et~al.}}{{Zhang, Xu, Bai, Chen, Zhang, Xiang, and Zhang}}}
+\bibcite{hou2026}{{33}{2026}{{Hou and Zhao}}{{}}}
+\bibcite{fei2025}{{34}{2025}{{Fei et~al.}}{{Fei, Wang, Shi, Dai, Cai, Qian, Ji, He, Zhang, Fei, Fu, Gong, and Qiu}}}
+\bibcite{buurmeijer2026}{{35}{2026}{{Buurmeijer et~al.}}{{Buurmeijer, Amo~Alonso, Swann, and Pavone}}}
+\bibcite{lu2025}{{36}{2025}{{Lu et~al.}}{{Lu, Li, Shahani, Herbers, and Scheutz}}}
+\bibcite{molinari2025}{{37}{2025}{{Molinari et~al.}}{{Molinari, Nevali, Navani, and Younis}}}
+\bibcite{fang2025}{{38}{2025}{{Fang et~al.}}{{Fang, Liu, Liu, Chen, Zeng, Huang, Chen, Chen, Zhang, and Zhao}}}
+\bibcite{mitra2025mechanistic}{{39}{2025}{{Mitra et~al.}}{{Mitra, Luo, Saravanan, Niu, Pai, Thomason, Darrell, Anwar, Ramanan, and Herzig}}}
+\bibcite{liu2026forgetting}{{40}{2026}{{Liu et~al.}}{{Liu, Kim, Liu, Liu, and Zhu}}}
+\bibcite{kachaev2025dont}{{41}{2025}{{Kachaev et~al.}}{{Kachaev, Lyzhov, Konovalov, and Panov}}}
+\bibcite{lian2026bayesianvla}{{42}{2026}{{Lian et~al.}}{{Lian, Yu, Lin, Yang, Shen, Wu, Miao, Huang, and Chen}}}
+\bibcite{kriegeskorte2008}{{43}{2008}{{Kriegeskorte et~al.}}{{Kriegeskorte, Mur, and Bandettini}}}
+\bibcite{kornblith2019}{{44}{2019}{{Kornblith et~al.}}{{Kornblith, Norouzi, Lee, and Hinton}}}
+\bibcite{alain2017}{{45}{2017}{{Alain and Bengio}}{{}}}
+\bibcite{belinkov2022}{{46}{2022}{{Belinkov}}{{}}}
+\bibcite{touvron2023_llama2}{{47}{2023}{{Touvron et~al.}}{{Touvron, Martin, Stone, Albert, Almahairi, Babaei, Bashlykov, Batra, Bhargava, Bhosale, et~al.}}}
+\bibcite{abdin2024phi3}{{48}{2024}{{Abdin et~al.}}{{Abdin, Jacobs, Amin, Aneja, Awadalla, Awadalla, Bach, Bahree, Bakber, Beez, et~al.}}}
+\bibcite{oquab2024_dinov2}{{49}{2024}{{Oquab et~al.}}{{Oquab, Darcet, Moutakanni, Vo, Szafraniec, Khalidov, Fernandez, Haziza, Massa, El-Nouby, et~al.}}}
+\bibcite{radford2021_clip}{{50}{2021}{{Radford et~al.}}{{Radford, Kim, Hallacy, Ramesh, Goh, Agarwal, Sastry, Askell, Mishkin, Clark, et~al.}}}
+\bibcite{ghosh2024_octo}{{51}{2024}{{Ghosh et~al.}}{{Ghosh, Walke, Pertsch, Black, Mees, Dasari, Hejna, Kreiman, Xu, You, Wu, Finn, Kumar, Hausman, and Levine}}}
+\bibcite{nili2014toolbox}{{52}{2014}{{Nili et~al.}}{{Nili, Wingfield, Walther, Su, Marslen-Wilson, and Kriegeskorte}}}
+\bibcite{lakens2017equivalence}{{53}{2017}{{Lakens}}{{}}}
+\bibcite{hewitt2019control}{{54}{2019}{{Hewitt and Liang}}{{}}}
+\citation{kriegeskorte2008}
+\citation{nili2014toolbox}
+\citation{kornblith2019}
+\citation{oquab2024_dinov2}
+\citation{radford2021_clip}
+\citation{kim2024_openvla}
+\citation{touvron2023_llama2}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Supplementary Material}{13}{appendix.A}\protected@file@percent }
+\newlabel{sec:appendix}{{A}{13}{Supplementary Material}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Architecture Summary}{13}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}OpenVLA-Specific Analysis Methods}{13}{subsection.A.2}\protected@file@percent }
+\newlabel{sec:openvla_methods_appendix}{{A.2}{13}{OpenVLA-Specific Analysis Methods}{subsection.A.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-instruction probes.}{13}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representational similarity analysis (RSA).}{13}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{External baselines.}{13}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}OpenVLA Single-Architecture Deep Dive}{13}{subsection.A.3}\protected@file@percent }
+\newlabel{sec:openvla_deepdive_appendix}{{A.3}{13}{OpenVLA Single-Architecture Deep Dive}{subsection.A.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-instruction probes.}{13}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{L1 attention gradient.}{13}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual perturbation.}{14}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dose-response ablation.}{14}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$R^2$ localization.}{14}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Counterfactual Sensitivity Details}{14}{subsection.A.4}\protected@file@percent }
+\newlabel{sec:cf_details_appendix}{{A.4}{14}{Counterfactual Sensitivity Details}{subsection.A.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \textbf  {Counterfactual sensitivity summary.} Cohen's $d$ range and most sensitive perturbation for action-producing models (OpenVLA, TraceVLA). NORA uses cosine distance on representations (different scale; \S  \ref {sec:cf_repr}).}}{14}{table.4}\protected@file@percent }
+\newlabel{tab:cf_summary}{{4}{14}{\textbf {Counterfactual sensitivity summary.} Cohen's $d$ range and most sensitive perturbation for action-producing models (OpenVLA, TraceVLA). NORA uses cosine distance on representations (different scale; \S \ref {sec:cf_repr})}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Metric constraints on trained--reference comparison.}{14}{section*.20}\protected@file@percent }
+\citation{kornblith2019}
+\citation{kornblith2019}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Counterfactual condition ranking for trained models (Cohen's $d$; higher $=$ greater action divergence under instruction perturbation). Conditions: E $=$ empty instruction, W $=$ wrong task, S $=$ shuffled tokens, P $=$ paraphrased. ``Empty'' ranks first in 6 of 8 cells; OpenVLA Goal (``wrong'' first) and Long (``shuffled'' first) are the exceptions. NORA cells use cosine distance and are reported in \S  \ref {sec:cf_sensitivity}.}}{15}{table.5}\protected@file@percent }
+\newlabel{tab:counterfactual}{{5}{15}{Counterfactual condition ranking for trained models (Cohen's $d$; higher $=$ greater action divergence under instruction perturbation). Conditions: E $=$ empty instruction, W $=$ wrong task, S $=$ shuffled tokens, P $=$ paraphrased. ``Empty'' ranks first in 6 of 8 cells; OpenVLA Goal (``wrong'' first) and Long (``shuffled'' first) are the exceptions. NORA cells use cosine distance and are reported in \S \ref {sec:cf_sensitivity}}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{NORA details.}{15}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}CKA Analysis Method}{15}{subsection.A.5}\protected@file@percent }
+\newlabel{sec:cka_appendix}{{A.5}{15}{CKA Analysis Method}{subsection.A.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Metric Sensitivity: RSA versus CKA}{15}{subsection.A.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.7}Branch-Split Detailed Analysis}{15}{subsection.A.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Three similarity metrics across representation sources. \textbf  {(a)}~RSA ranks DINOv2 cls ($0.692$) $>$ Fused ($0.634$) $>$ Projector ($0.615$). \textbf  {(b)}~Linear CKA reverses the ordering: Reference ($0.089$) $>$ Trained ($0.083$) $>$ Projector ($0.081$) $>$ DINOv2 ($0.066$). \textbf  {(c)}~RDM kernel CKA: Trained ($0.260$) $\approx $ Projector ($0.257$) $>$ Reference ($0.246$) $>$ DINOv2 ($0.241$). The metric divergence underscores that RSA and CKA capture different aspects of representational structure.}}{16}{figure.8}\protected@file@percent }
+\newlabel{fig:metric_comparison}{{8}{16}{Three similarity metrics across representation sources. \textbf {(a)}~RSA ranks DINOv2 cls ($0.692$) $>$ Fused ($0.634$) $>$ Projector ($0.615$). \textbf {(b)}~Linear CKA reverses the ordering: Reference ($0.089$) $>$ Trained ($0.083$) $>$ Projector ($0.081$) $>$ DINOv2 ($0.066$). \textbf {(c)}~RDM kernel CKA: Trained ($0.260$) $\approx $ Projector ($0.257$) $>$ Reference ($0.246$) $>$ DINOv2 ($0.241$). The metric divergence underscores that RSA and CKA capture different aspects of representational structure}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.8}RSA Across Representation Sources}{16}{subsection.A.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces RSA with the action space ($\rho $) across representation sources. Self-supervised DINOv2 \texttt  {cls\_token} ($\rho {=}0.692$) achieves the highest geometric alignment. CLIP ($0.557$) yields the weakest alignment among pretrained encoders. Error bars: 95\% bootstrap CIs.}}{16}{figure.9}\protected@file@percent }
+\newlabel{fig:rsa_bar}{{9}{16}{RSA with the action space ($\rho $) across representation sources. Self-supervised DINOv2 \texttt {cls\_token} ($\rho {=}0.692$) achieves the highest geometric alignment. CLIP ($0.557$) yields the weakest alignment among pretrained encoders. Error bars: 95\% bootstrap CIs}{figure.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.9}Per-Layer RSA Profiles}{16}{subsection.A.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.10}Per-Layer Action Decoding Across Training Stages}{17}{subsection.A.10}\protected@file@percent }
+\newlabel{sec:action_r2_threecond}{{A.10}{17}{Per-Layer Action Decoding Across Training Stages}{subsection.A.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.11}Random-Subset Ablation Details}{17}{subsection.A.11}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces $R^2$ increase from ablating 24/32 L1 heads. Gray bars: 30 random subsets; red line: dominant-24 heads ($+0.030$). Random subsets yield larger gains (mean $+0.071 \pm 0.013$; $z = -3.11$, percentile $= 0\%$), consistent with graded attention specialization across L1 heads.}}{17}{figure.10}\protected@file@percent }
+\newlabel{fig:random_subset_ablation}{{10}{17}{$R^2$ increase from ablating 24/32 L1 heads. Gray bars: 30 random subsets; red line: dominant-24 heads ($+0.030$). Random subsets yield larger gains (mean $+0.071 \pm 0.013$; $z = -3.11$, percentile $= 0\%$), consistent with graded attention specialization across L1 heads}{figure.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.12}Action Trajectory Analysis Details}{17}{subsection.A.12}\protected@file@percent }
+\newlabel{sec:action_trajectory}{{A.12}{17}{Action Trajectory Analysis Details}{subsection.A.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trajectory-level aggregation.}{18}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ground-truth action error.}{18}{section*.23}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-head bootstrap analysis of L1 ablation effects. Instruction heads are individually weaker but collectively stronger, consistent with coordinated attention redistribution.}}{18}{table.6}\protected@file@percent }
+\newlabel{tab:perhead_bootstrap}{{6}{18}{Per-head bootstrap analysis of L1 ablation effects. Instruction heads are individually weaker but collectively stronger, consistent with coordinated attention redistribution}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.13}Pretrained LLM Representation Quality Under Visual Input}{18}{subsection.A.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Dose-response data for L1 instruction-head ablation. Cohen's $d$ vs.\ original action sequence; 95\% bootstrap CIs ($10{,}000$ resamples).}}{19}{table.7}\protected@file@percent }
+\newlabel{tab:dose_response}{{7}{19}{Dose-response data for L1 instruction-head ablation. Cohen's $d$ vs.\ original action sequence; 95\% bootstrap CIs ($10{,}000$ resamples)}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Counterfactual instruction analysis across all 10 LIBERO-Goal tasks. Jaccard: token overlap with original instruction; Cohen's $d$: mean across 10 tasks. ``Wrong'' slightly exceeds ``empty'' ($d = 1.182$ vs.\ $1.170$); all four conditions produce large effects ($d \geq 1.0$). L1 ablation included for comparison.}}{19}{table.8}\protected@file@percent }
+\newlabel{tab:counterfactual_goal}{{8}{19}{Counterfactual instruction analysis across all 10 LIBERO-Goal tasks. Jaccard: token overlap with original instruction; Cohen's $d$: mean across 10 tasks. ``Wrong'' slightly exceeds ``empty'' ($d = 1.182$ vs.\ $1.170$); all four conditions produce large effects ($d \geq 1.0$). L1 ablation included for comparison}{table.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Pretrained LLM representation diagnostics under visual input. Left: activation magnitude across layers (Llama-2 base vs.\ VLA-trained). Center: cosine similarity between L0 and deeper layers. Right: top-10 PC variance explained. All three metrics indicate structured, non-degenerate representations.}}{19}{figure.11}\protected@file@percent }
+\newlabel{fig:ood_diagnostics}{{11}{19}{Pretrained LLM representation diagnostics under visual input. Left: activation magnitude across layers (Llama-2 base vs.\ VLA-trained). Center: cosine similarity between L0 and deeper layers. Right: top-10 PC variance explained. All three metrics indicate structured, non-degenerate representations}{figure.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.14}Probe Architecture Sensitivity}{19}{subsection.A.14}\protected@file@percent }
+\newlabel{sec:linear_probe}{{A.14}{19}{Probe Architecture Sensitivity}{subsection.A.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Mean absolute action shift per dimension under L1 head ablation. Instruction: 24 dominant heads; Control: 8 remaining heads. Gripper shift dominates both conditions.}}{20}{table.9}\protected@file@percent }
+\newlabel{tab:action_shift_perdim}{{9}{20}{Mean absolute action shift per dimension under L1 head ablation. Instruction: 24 dominant heads; Control: 8 remaining heads. Gripper shift dominates both conditions}{table.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Per-layer action probe $R^2$ for linear (dashed) and MLP (solid) probes across trained (blue) and reference (red) conditions. The inverted-U reproduces under both probe architectures; the trained--reference gap is larger for linear probes.}}{20}{figure.12}\protected@file@percent }
+\newlabel{fig:linear_vs_mlp}{{12}{20}{Per-layer action probe $R^2$ for linear (dashed) and MLP (solid) probes across trained (blue) and reference (red) conditions. The inverted-U reproduces under both probe architectures; the trained--reference gap is larger for linear probes}{figure.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.15}Functional Probe Comparison}{20}{subsection.A.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.16}Training Effect and Instruction Invariance}{20}{subsection.A.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.17}Additional RSA Values}{20}{subsection.A.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.18}Cross-Suite Validation within LIBERO: Spatial}{20}{subsection.A.18}\protected@file@percent }
+\newlabel{sec:cross_benchmark_appendix}{{A.18}{20}{Cross-Suite Validation within LIBERO: Spatial}{subsection.A.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Functional probe $R^2$ for action prediction (best layer per source). Trained readout ($R^2{=}0.678$, L13) and trained image\_mean ($0.655$, L8) exceed the projector baseline ($0.630$); the inverted-U extends to functional capacity.}}{21}{figure.13}\protected@file@percent }
+\newlabel{fig:probe_bars}{{13}{21}{Functional probe $R^2$ for action prediction (best layer per source). Trained readout ($R^2{=}0.678$, L13) and trained image\_mean ($0.655$, L8) exceed the projector baseline ($0.630$); the inverted-U extends to functional capacity}{figure.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces \textbf  {(a)}~Trained vs.\ reference image\_mean RSA profiles. Training shifts the peak from L0 ($0.612$) to L12 ($0.628$), yielding a modest best-vs-best gain ($\Delta {=}+0.017$, $3\%$). \textbf  {(b)}~Instruction invariance: all conditions within $|\Delta |{<}0.006$; action geometry is visually grounded.}}{21}{figure.14}\protected@file@percent }
+\newlabel{fig:factorial}{{14}{21}{\textbf {(a)}~Trained vs.\ reference image\_mean RSA profiles. Training shifts the peak from L0 ($0.612$) to L12 ($0.628$), yielding a modest best-vs-best gain ($\Delta {=}+0.017$, $3\%$). \textbf {(b)}~Instruction invariance: all conditions within $|\Delta |{<}0.006$; action geometry is visually grounded}{figure.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Suite Counterfactual Replication}{21}{section*.24}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Cross-suite validation: per-layer RSA and $R^2$ profiles on LIBERO-Goal (left) vs.\ LIBERO-Spatial (right). The inverted-U replicates across suites. LIBERO-Spatial shows a significant training effect (RSA best-vs-best $\Delta = +0.023$, $p < 0.001$) and deeper peak layers (RSA L14, $R^2$ L13), but RSA--$R^2$ peak convergence does not replicate (6-layer gap).}}{22}{figure.15}\protected@file@percent }
+\newlabel{fig:cross_benchmark}{{15}{22}{Cross-suite validation: per-layer RSA and $R^2$ profiles on LIBERO-Goal (left) vs.\ LIBERO-Spatial (right). The inverted-U replicates across suites. LIBERO-Spatial shows a significant training effect (RSA best-vs-best $\Delta = +0.023$, $p < 0.001$) and deeper peak layers (RSA L14, $R^2$ L13), but RSA--$R^2$ peak convergence does not replicate (6-layer gap)}{figure.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Counterfactual instruction analysis on LIBERO-Spatial (10 tasks). Ordering: empty $>$ shuffled $>$ wrong $>$ paraphrased, differing from Goal. All global $d > 0.8$.}}{22}{table.10}\protected@file@percent }
+\newlabel{tab:counterfactual_spatial}{{10}{22}{Counterfactual instruction analysis on LIBERO-Spatial (10 tasks). Ordering: empty $>$ shuffled $>$ wrong $>$ paraphrased, differing from Goal. All global $d > 0.8$}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Instruction Probe on LIBERO-Spatial}{22}{section*.25}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cross-instruction 10-way classification accuracy on LIBERO-Spatial. Trained readout achieves $100\%$ from L4; image\_mean remains at chance. Reference readout decays more steeply than on LIBERO-Goal (cf.\ \S  \ref {sec:openvla_routing}).}}{22}{table.11}\protected@file@percent }
+\newlabel{tab:spatial_cross_instruction}{{11}{22}{Cross-instruction 10-way classification accuracy on LIBERO-Spatial. Trained readout achieves $100\%$ from L4; image\_mean remains at chance. Reference readout decays more steeply than on LIBERO-Goal (cf.\ \S \ref {sec:openvla_routing})}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.19}Robustness Analyses}{22}{subsection.A.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Distance Metric Invariance}{22}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-DOF Decomposition}{22}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Permutation Test}{22}{section*.28}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Peak layer comparison between Euclidean and cosine action distances. Profile $r$ denotes Pearson correlation across all 32 layers.}}{23}{table.12}\protected@file@percent }
+\newlabel{tab:metric_invariance}{{12}{23}{Peak layer comparison between Euclidean and cosine action distances. Profile $r$ denotes Pearson correlation across all 32 layers}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Probe Seed Sensitivity}{23}{section*.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Probe $R^2$ peak across 5 random seeds (trained image\_mean).}}{23}{table.13}\protected@file@percent }
+\newlabel{tab:seed_sensitivity}{{13}{23}{Probe $R^2$ peak across 5 random seeds (trained image\_mean)}{table.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture $\Delta R^2$ seed sensitivity.}{23}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap confidence intervals for $\Delta R^2$.}{23}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Demonstration Subsample Sensitivity}{24}{section*.32}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Inverted-U stability under demonstration subsampling (trained image\_mean).}}{24}{table.14}\protected@file@percent }
+\newlabel{tab:demo_sensitivity}{{14}{24}{Inverted-U stability under demonstration subsampling (trained image\_mean)}{table.14}{}}
+\newlabel{sec:label_permutation}{{A.19}{24}{Label Permutation Sanity Check}{section*.33}{}}
+\@writefile{toc}{\contentsline {paragraph}{Label Permutation Sanity Check}{24}{section*.33}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces \textbf  {Label permutation control.} Action-probe Spearman $\rho $ under real versus shuffled labels for OpenVLA trained and reference conditions. Shuffled-label $\rho $ is indistinguishable from zero, confirming that probe performance reflects genuine representational structure. (Evaluated with random frame splitting; demo-level split yields lower absolute values but identical null-vs-real separation; see \S  \ref {sec:cross_arch_analyses}.)}}{24}{figure.16}\protected@file@percent }
+\newlabel{fig:label_permutation}{{16}{24}{\textbf {Label permutation control.} Action-probe Spearman $\rho $ under real versus shuffled labels for OpenVLA trained and reference conditions. Shuffled-label $\rho $ is indistinguishable from zero, confirming that probe performance reflects genuine representational structure. (Evaluated with random frame splitting; demo-level split yields lower absolute values but identical null-vs-real separation; see \S \ref {sec:cross_arch_analyses}.)}{figure.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Statistical Power}{24}{section*.34}\protected@file@percent }
+\newlabel{sec:delta_r2_threshold}{{A.19}{25}{$\Delta R^2$ Threshold Robustness}{section*.35}{}}
+\@writefile{toc}{\contentsline {paragraph}{$\Delta R^2$ Threshold Robustness}{25}{section*.35}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Sensitivity of group separation to $\Delta R^2$ threshold choice. Clean separation (all VLM-to-VLA trained above, all others below) holds for any threshold in $(0.097, 0.156)$; the 0.10 threshold is not boundary-sensitive.}}{25}{table.15}\protected@file@percent }
+\newlabel{tab:delta_r2_threshold}{{15}{25}{Sensitivity of group separation to $\Delta R^2$ threshold choice. Clean separation (all VLM-to-VLA trained above, all others below) holds for any threshold in $(0.097, 0.156)$; the 0.10 threshold is not boundary-sensitive}{table.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.20}Detailed Training Effects}{25}{subsection.A.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Training effects on action-relevant structure (LIBERO-Goal; bootstrap, 10{,}000 resamples). RSA best-vs-best yields a modest geometric gain ($\Delta {=}+0.017$, $3\%$; LIBERO-Spatial: $+0.023$, $p{<}0.001$), while $R^2$ shows substantially larger functional gains.}}{25}{table.16}\protected@file@percent }
+\newlabel{tab:training_effects}{{16}{25}{Training effects on action-relevant structure (LIBERO-Goal; bootstrap, 10{,}000 resamples). RSA best-vs-best yields a modest geometric gain ($\Delta {=}+0.017$, $3\%$; LIBERO-Spatial: $+0.023$, $p{<}0.001$), while $R^2$ shows substantially larger functional gains}{table.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.21}Training Effect Size Summary}{25}{subsection.A.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.22}Instruction Classification Probes}{25}{subsection.A.22}\protected@file@percent }
+\newlabel{sec:dense_routing}{{A.22}{25}{Cross-Instruction Classification: Dense Layer Profile}{section*.36}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Instruction Classification: Dense Layer Profile}{25}{section*.36}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Training effect sizes across metrics. Image\_mean effects are modest; readout effects are large. Training targets readout-token information integration.}}{26}{table.17}\protected@file@percent }
+\newlabel{tab:training_effect_summary}{{17}{26}{Training effect sizes across metrics. Image\_mean effects are modest; readout effects are large. Training targets readout-token information integration}{table.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Cross-instruction 10-way classification accuracy at readout token, L0--L8. Values reflect dense classification evaluation; the main text (\S  \ref {sec:openvla_routing}) reports sparse single-split results, yielding minor differences (e.g., L8: $98.2\%$ vs.\ $98.6\%$).}}{26}{table.18}\protected@file@percent }
+\newlabel{tab:dense_routing}{{18}{26}{Cross-instruction 10-way classification accuracy at readout token, L0--L8. Values reflect dense classification evaluation; the main text (\S \ref {sec:openvla_routing}) reports sparse single-split results, yielding minor differences (e.g., L8: $98.2\%$ vs.\ $98.6\%$)}{table.18}{}}
+\newlabel{sec:loocv}{{A.22}{26}{Cross-Instruction LOOCV Validation}{section*.37}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Instruction LOOCV Validation}{26}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{QA Probe: Progress and Subtask Classification}{26}{section*.38}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces QA probe accuracy (progress + subtask classification, best layer).}}{26}{table.19}\protected@file@percent }
+\newlabel{tab:qa_probe}{{19}{26}{QA probe accuracy (progress + subtask classification, best layer)}{table.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Instruction Probe Profiles}{26}{figure.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Architecture Probe and Attention Profile}{26}{section*.40}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Cross-instruction 10-way classification accuracy at the readout token across all 32 LLM layers. VLA-trained achieves $99.6\%$ at L1, saturating to $100\%$. Llama-2 base starts at $80.2\%$, reaching $100\%$ by L5. Reference starts at $100\%$ but decays to $82\%$ by L31.}}{27}{figure.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Cross-instruction 10-way probe accuracy and L1 instruction-dominant heads across six conditions. Probe accuracy and attention head count are dissociated at L1: TraceVLA training slightly reduces heads ($32 \to 27$--$30/32$) while decreasing probe accuracy ($98.1\% \to 83.6\%$), paralleling the information-computation dissociation observed in OpenVLA. Image\_mean remains at chance ($10\%$) in all conditions (omitted).}}{27}{table.20}\protected@file@percent }
+\newlabel{tab:cross_arch_probe}{{20}{27}{Cross-instruction 10-way probe accuracy and L1 instruction-dominant heads across six conditions. Probe accuracy and attention head count are dissociated at L1: TraceVLA training slightly reduces heads ($32 \to 27$--$30/32$) while decreasing probe accuracy ($98.1\% \to 83.6\%$), paralleling the information-computation dissociation observed in OpenVLA. Image\_mean remains at chance ($10\%$) in all conditions (omitted)}{table.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Architecture L1 Instruction Dominance}{27}{section*.41}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Instruction-dominant heads across layers for two architectures (OpenVLA / TraceVLA), each comparing pre-VLA and VLA-trained conditions. Despite opposite starting points (OpenVLA/Llama-2 begins with sparse attention; TraceVLA/Phi-3-V begins with distributed attention), VLA training drives both to entry-exit concentration (L1 saturation, mid-layer suppression, L29--L31 re-engagement).}}{28}{figure.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{L1 Attention Pattern Analysis}{28}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Layer Attention Patterns}{28}{section*.43}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Instruction-dominant heads and text attention fraction at four sampled layers (subset of the 32-layer profile in Figure~\ref {fig:synthesis_panels}). VLA-trained shows entry-exit concentration (L1, L31); Llama-2 base peaks at mid-depth (L16); randomly initialized shows no instruction attention. Head counts from the 32-layer bulk extraction may differ slightly from dedicated per-layer analyses (\S  \ref {sec:openvla_routing}) due to threshold boundary effects.}}{28}{table.21}\protected@file@percent }
+\newlabel{tab:multilayer_attention}{{21}{28}{Instruction-dominant heads and text attention fraction at four sampled layers (subset of the 32-layer profile in Figure~\ref {fig:synthesis_panels}). VLA-trained shows entry-exit concentration (L1, L31); Llama-2 base peaks at mid-depth (L16); randomly initialized shows no instruction attention. Head counts from the 32-layer bulk extraction may differ slightly from dedicated per-layer analyses (\S \ref {sec:openvla_routing}) due to threshold boundary effects}{table.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces \textbf  {L1 instruction-dominant head fractions across three architectures.} Trained and reference conditions show comparable fractions in all three VLAs, indicating that L1 instruction attention largely pre-exists in the pretrained backbone.}}{29}{figure.19}\protected@file@percent }
+\newlabel{fig:cross_arch_l1_bar}{{19}{29}{\textbf {L1 instruction-dominant head fractions across three architectures.} Trained and reference conditions show comparable fractions in all three VLAs, indicating that L1 instruction attention largely pre-exists in the pretrained backbone}{figure.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces L1 attention from the readout token across three conditions, per head (sorted by instruction attention fraction). VLA-trained: 24/32 instruction-dominant heads ($57.7\%$ text attention). Llama-2 base: 9/32 heads ($36.5\%$). Randomly initialized: 0/32 heads ($11.7\%$). See Table~\ref {tab:multilayer_attention} for quantitative comparison across layers.}}{29}{figure.20}\protected@file@percent }
+\newlabel{fig:attention_appendix}{{20}{29}{L1 attention from the readout token across three conditions, per head (sorted by instruction attention fraction). VLA-trained: 24/32 instruction-dominant heads ($57.7\%$ text attention). Llama-2 base: 9/32 heads ($36.5\%$). Randomly initialized: 0/32 heads ($11.7\%$). See Table~\ref {tab:multilayer_attention} for quantitative comparison across layers}{figure.20}{}}
+\newlabel{sec:threshold_sensitivity}{{A.22}{29}{Threshold Sensitivity Analysis}{section*.44}{}}
+\@writefile{toc}{\contentsline {paragraph}{Threshold Sensitivity Analysis}{29}{section*.44}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Number of instruction-dominant heads at L1 under varying attention thresholds. The three-condition ordering is stable across all thresholds.}}{29}{table.22}\protected@file@percent }
+\newlabel{tab:threshold_sensitivity}{{22}{29}{Number of instruction-dominant heads at L1 under varying attention thresholds. The three-condition ordering is stable across all thresholds}{table.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.23}L1 Attention Decomposition by Head Group}{29}{subsection.A.23}\protected@file@percent }
+\newlabel{sec:attention_decomp}{{A.23}{29}{L1 Attention Decomposition by Head Group}{subsection.A.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces L1 instruction-dominant heads (trained vs.\ reference). VLMs saturate; training does not increase counts.}}{30}{figure.21}\protected@file@percent }
+\newlabel{fig:cross_arch_l1}{{21}{30}{L1 instruction-dominant heads (trained vs.\ reference). VLMs saturate; training does not increase counts}{figure.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Attention mass allocation at Layer 1, averaged across 5 samples. Instruction-dominant heads (defined as $>50\%$ attention to instruction tokens) allocate 17.5 percentage points more attention to instruction tokens than control heads, with corresponding reductions in vision ($-8.3$pp) and BOS/sink ($-9.2$pp) attention.}}{30}{table.23}\protected@file@percent }
+\newlabel{tab:attention_decomp}{{23}{30}{Attention mass allocation at Layer 1, averaged across 5 samples. Instruction-dominant heads (defined as $>50\%$ attention to instruction tokens) allocate 17.5 percentage points more attention to instruction tokens than control heads, with corresponding reductions in vision ($-8.3$pp) and BOS/sink ($-9.2$pp) attention}{table.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-token attention normalization.}{30}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.24}Per-Dimension Action MAE Under Head Ablation}{30}{subsection.A.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.25}Per-Task $R^2$ Distribution Under L1 Ablation}{30}{subsection.A.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.26}Task Complexity and Attention Dependence}{30}{subsection.A.26}\protected@file@percent }
+\newlabel{sec:task_complexity}{{A.26}{30}{Task Complexity and Attention Dependence}{subsection.A.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Mean absolute error per action dimension under L1 head ablation. Translation dimensions ($dx$/$dy$/$dz$) show 3--5$\times $ larger instruction-to-control ratio than rotation dimensions (1.9--2.6$\times $); instruction-dominant heads have disproportionate influence on positional control. Gripper (2.07$\times $) falls between the two groups.}}{31}{table.24}\protected@file@percent }
+\newlabel{tab:per_dim_mae}{{24}{31}{Mean absolute error per action dimension under L1 head ablation. Translation dimensions ($dx$/$dy$/$dz$) show 3--5$\times $ larger instruction-to-control ratio than rotation dimensions (1.9--2.6$\times $); instruction-dominant heads have disproportionate influence on positional control. Gripper (2.07$\times $) falls between the two groups}{table.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Per-task action probe $R^2$ at L1 (MLP probe, 5 demos/task). All 10 tasks show positive ablation effect ($\Delta > 0$): instruction-head ablation uniformly increases action decodability at the entry layer. Mean $\Delta R^2 = +0.107$; the 50-demo setting (\S  \ref {sec:openvla_routing}) yields a consistent $+0.059$.}}{31}{table.25}\protected@file@percent }
+\newlabel{tab:per_task_r2}{{25}{31}{Per-task action probe $R^2$ at L1 (MLP probe, 5 demos/task). All 10 tasks show positive ablation effect ($\Delta > 0$): instruction-head ablation uniformly increases action decodability at the entry layer. Mean $\Delta R^2 = +0.107$; the 50-demo setting (\S \ref {sec:openvla_routing}) yields a consistent $+0.059$}{table.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Leave-one-out sensitivity.}{31}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.27}Specificity Control: Matched-Size Head Ablation}{31}{subsection.A.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.28}Paired Effect Sizes}{31}{subsection.A.28}\protected@file@percent }
+\citation{lakens2017equivalence}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Task-level L1 ablation effects ($|\Delta R^2|$) grouped by instruction dependence. \emph  {Primary} (conservative): cream cheese in bowl classified as visual-sufficient ($2.5\times $, $p = 0.033$). \emph  {Sensitivity} (shared-object criterion): cream cheese reclassified as instruction-discriminative ($6.5\times $, $p = 0.008$).}}{32}{table.26}\protected@file@percent }
+\newlabel{tab:task_complexity}{{26}{32}{Task-level L1 ablation effects ($|\Delta R^2|$) grouped by instruction dependence. \emph {Primary} (conservative): cream cheese in bowl classified as visual-sufficient ($2.5\times $, $p = 0.033$). \emph {Sensitivity} (shared-object criterion): cream cheese reclassified as instruction-discriminative ($6.5\times $, $p = 0.008$)}{table.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces Matched-size ablation controls: trajectory disruption ($d$) from ablating 24-head subsets at L1, ranked by instruction attention fraction. Instruction-dominant heads produce the largest effect, but the modest gap ($8\%$ over random) indicates distributed, attention-graded redistribution rather than a dedicated subset.}}{32}{table.27}\protected@file@percent }
+\newlabel{tab:specificity_control}{{27}{32}{Matched-size ablation controls: trajectory disruption ($d$) from ablating 24-head subsets at L1, ranked by instruction attention fraction. Instruction-dominant heads produce the largest effect, but the modest gap ($8\%$ over random) indicates distributed, attention-graded redistribution rather than a dedicated subset}{table.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.29}Cross-Architecture Action Decodability: $2 \times 2$ Design}{32}{subsection.A.29}\protected@file@percent }
+\newlabel{sec:cross_arch_r2}{{A.29}{32}{Cross-Architecture Action Decodability: $2 \times 2$ Design}{subsection.A.29}{}}
+\@writefile{toc}{\contentsline {paragraph}{Convergent reorganization from divergent starting points.}{32}{section*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Summary.}{32}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Equivalence testing.}{32}{section*.49}\protected@file@percent }
+\citation{hewitt2019control}
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces Paired effect sizes ($d_z$) for within-subject comparisons. Standard (unpaired) $d$ reported where available. Paired $d_z$ exceeds standard $d$ when within-subject correlation is high.}}{33}{table.28}\protected@file@percent }
+\newlabel{tab:paired_dz}{{28}{33}{Paired effect sizes ($d_z$) for within-subject comparisons. Standard (unpaired) $d$ reported where available. Paired $d_z$ exceeds standard $d$ when within-subject correlation is high}{table.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces $R^2$ profile summary across architectures and training conditions.}}{33}{table.29}\protected@file@percent }
+\newlabel{tab:2x2_r2_summary}{{29}{33}{$R^2$ profile summary across architectures and training conditions}{table.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.30}Global Multiple Comparison Correction}{33}{subsection.A.30}\protected@file@percent }
+\newlabel{sec:bonferroni_correction}{{A.30}{33}{Global Multiple Comparison Correction}{subsection.A.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.31}Mechanistic Interpretation}{33}{subsection.A.31}\protected@file@percent }
+\citation{zheng2024tracevla}
+\citation{black2024_pi0}
+\citation{ghosh2024_octo}
+\citation{ghosh2024_octo}
+\citation{black2024_pi0}
+\citation{kumar2022finetuning}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.32}Functional Stages and Predictions}{34}{subsection.A.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.33}Extended Discussion}{34}{subsection.A.33}\protected@file@percent }
+\newlabel{sec:extended_discussion_appendix}{{A.33}{34}{Extended Discussion}{subsection.A.33}{}}
+\@writefile{toc}{\contentsline {paragraph}{Observational three-tier gradient.}{34}{section*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exit collapse mechanism.}{34}{section*.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Behavioral relevance.}{34}{section*.52}\protected@file@percent }
+\citation{grant2026,haon2025}
+\@writefile{toc}{\contentsline {paragraph}{Closed-loop evaluation attempt.}{35}{section*.53}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metric constraints.}{35}{section*.54}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Extended limitations.}{35}{section*.55}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Coarse training dynamics.}{35}{section*.56}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.34}Extended Practical Implications}{35}{subsection.A.34}\protected@file@percent }
+\newlabel{sec:extended_practical_implications}{{A.34}{35}{Extended Practical Implications}{subsection.A.34}{}}
+\@writefile{toc}{\contentsline {paragraph}{Checkpoint selection.}{35}{section*.57}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Transfer learning strategy.}{35}{section*.58}\protected@file@percent }
+\citation{belinkov2022}
+\citation{olsson2022}
+\citation{wang2023_ioi}
+\citation{meng2022_rome}
+\citation{grant2026}
+\citation{haon2025}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces \textbf  {$\Delta R^2$ across training pathways.} Each point is one architecture-suite cell; markers distinguish backbone families. Exit collapse (above dashed line) is confined to VLM-to-VLA transitions and does not intensify during VLA-to-VLA fine-tuning.}}{36}{figure.22}\protected@file@percent }
+\newlabel{fig:training_dynamics}{{22}{36}{\textbf {$\Delta R^2$ across training pathways.} Each point is one architecture-suite cell; markers distinguish backbone families. Exit collapse (above dashed line) is confined to VLM-to-VLA transitions and does not intensify during VLA-to-VLA fine-tuning}{figure.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mid-layer probe value.}{36}{section*.59}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.35}Methodological Context}{36}{subsection.A.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.36}NLP Finetuning Controls}{36}{subsection.A.36}\protected@file@percent }
+\newlabel{sec:nlp_control_appendix}{{A.36}{36}{NLP Finetuning Controls}{subsection.A.36}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.37}Claim-Evidence Summary}{36}{subsection.A.37}\protected@file@percent }
+\newlabel{sec:claim_evidence_appendix}{{A.37}{36}{Claim-Evidence Summary}{subsection.A.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.38}Cross-Architecture Design Rationale}{36}{subsection.A.38}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces \textbf  {Claim--evidence--scope summary.} Each main finding is paired with its supporting analysis and its main limitation. The figure distinguishes directly observed representational patterns from stronger causal interpretations that require interventional or training-dynamics evidence.}}{37}{figure.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.39}Convergent Evidence Summary}{37}{subsection.A.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Use of Generative AI}{37}{appendix.B}\protected@file@percent }
+\newlabel{sec:use_of_ai}{{B}{37}{Use of Generative AI}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces Per-layer action prediction $R^2$: training effect across architectures (mean $\pm $ std over 15 seeds). Peak values per condition in \textbf  {bold}.}}{38}{table.30}\protected@file@percent }
+\newlabel{tab:2x2_r2}{{30}{38}{Per-layer action prediction $R^2$: training effect across architectures (mean $\pm $ std over 15 seeds). Peak values per condition in \textbf {bold}}{table.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces \textbf  {Methodological precedent.} Representative interpretability studies and their use of behavioral evaluation. Partial behavioral eval includes correlational or indirect evidence.}}{39}{table.31}\protected@file@percent }
+\newlabel{tab:methodological_precedent}{{31}{39}{\textbf {Methodological precedent.} Representative interpretability studies and their use of behavioral evaluation. Partial behavioral eval includes correlational or indirect evidence}{table.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces \textbf  {NLP finetuning control comparison.} All three models are instruction-tuned for conversational use without action heads or robot demonstration data. None exhibits exit collapse.}}{39}{table.32}\protected@file@percent }
+\newlabel{tab:nlp_controls}{{32}{39}{\textbf {NLP finetuning control comparison.} All three models are instruction-tuned for conversational use without action heads or robot demonstration data. None exhibits exit collapse}{table.32}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {33}{\ignorespaces \textbf  {Structural diversity between the two VLM-to-VLA transitions.} The two architectures differ on nearly every major design axis, strengthening the generality of shared findings.}}{39}{table.33}\protected@file@percent }
+\newlabel{tab:arch_diversity}{{33}{39}{\textbf {Structural diversity between the two VLM-to-VLA transitions.} The two architectures differ on nearly every major design axis, strengthening the generality of shared findings}{table.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {34}{\ignorespaces \textbf  {Convergent evidence across three analytical methods.} Each method addresses a different aspect of instruction routing; no single method is sufficient alone, but their convergence strengthens the overall characterization.}}{39}{table.34}\protected@file@percent }
+\newlabel{tab:convergent_evidence}{{34}{39}{\textbf {Convergent evidence across three analytical methods.} Each method addresses a different aspect of instruction routing; no single method is sufficient alone, but their convergence strengthens the overall characterization}{table.34}{}}
+\gdef \@abspage@last{39}

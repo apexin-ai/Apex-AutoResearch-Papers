@@ -1,0 +1,2286 @@
+# code ablation analysis script
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_code_ablation_analysis_script_20260517T200820.log`
+- **Structured JSON:** [`39f50ed60419ff3391a3.json`](../../sessions/39/39f50ed60419ff3391a3.json)
+
+## Before a recorded user message
+
+50 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a57560c6-cccc-4dfd-bac2-1ac2d7ab6a2b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779061800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5c1fb3ac-b171-4c26-a969-30e76cf57f51",
+  "session_id": "7754b019-593b-4097-843b-4490605646b0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by SSH-ing to the server to check the JSON file structure and matplotlib availability, then write the analysis script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "db2377fa-a7cd-406a-bfe0-8ca3c3069fc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSdWpG3h8TGiChhKHLNCHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13414,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13414
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me先查看服务器上的数据格式和环境。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "4c67efef-1cfc-430f-95e3-c1a728c36260",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSdWpG3h8TGiChhKHLNCHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13414,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13414
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CqVPWq2dCPq49us2zygsfu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "9420b3d8-9422-42d4-aa9f-8bbc01f76901",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSdWpG3h8TGiChhKHLNCHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13414,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13414
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T20:08:31.912Z_
+
+<details><summary>↩ Tool result · `toolu_01CqVPWq2dCPq49us2zygsfu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "dafa1304-dbe3-4fb1-a1f9-375a62a238fa",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the JSON file structure and matplotlib availability on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "955de77c-d20c-4627-87b4-f1f9f07bb759",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwCfcAqQvg1wHFP9UoeGC7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 730,
+      "cache_read_input_tokens": 25255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 730
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01985gYNeVyfnFGw2gisF5Ew`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -80 /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "80326abc-5fc2-46a5-a0f4-2590e0a41915",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwCfcAqQvg1wHFP9UoeGC7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 730,
+      "cache_read_input_tokens": 25255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 730
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ur8PguusNY6XbHx1R7bzfb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "86e569ab-db2e-460b-95aa-7afe181d6693",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwCfcAqQvg1wHFP9UoeGC7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 730,
+      "cache_read_input_tokens": 25255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 730
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XmDC43b6fgGAmtmD8cC3Rs`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/l1_head_ablation/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "84551300-e43a-4a0c-8ae1-4519574602a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwCfcAqQvg1wHFP9UoeGC7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 730,
+      "cache_read_input_tokens": 25255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 730
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T20:08:37.200Z_
+
+<details><summary>↩ Tool result · `toolu_01985gYNeVyfnFGw2gisF5Ew`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"action_probe_R2\\\": {\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": 0.5732,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6787\\n    }\\n  },\\n  \\\"detailed_results\\\": {\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.5732,\\n        \\\"overall_R2\\\": 0.6431,\\n        \\\"per_dim_R2\\\": [\\n          0.6484,\\n          0.6816,\\n          0.5696,\\n          0.5851,\\n          0.399,\\n          0.727,\\n          0.6567\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4241,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.6547,\\n          \\\"push the plate to the front of the stove\\\": 0.6532,\\n          \\\"put the bowl on the plate\\\": 0.5379,\\n          \\\"put the bowl on the stove\\\": 0.624,\\n          \\\"put the bowl on top of the cabinet\\\": 0.5594,\\n          \\\"put the cream cheese in the bowl\\\": 0.4522,\\n          \\\"put the wine bottle on the rack\\\": 0.504,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.5747,\\n          \\\"turn on the stove\\\": 0.748\\n        },\\n        \\\"epochs_trained\\\": 44,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.57322,\\n          \\\"ci_lo\\\": 0.5149,\\n          \\\"ci_hi\\\": 0.6321,\\n          \\\"ci_level\\\": 0.95,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.6311,\\n        \\\"overall_R2\\\": 0.6927,\\n        \\\"per_dim_R2\\\": [\\n          0.718,\\n          0.7229,\\n          0.649,\\n          0.5744,\\n          0.4186,\\n          0.749,\\n          0.6973\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4748,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.7029,\\n          \\\"push the plate to the front of the stove\\\": 0.6824,\\n          \\\"put the bowl on the plate\\\": 0.6167,\\n          \\\"put the bowl on the stove\\\": 0.6906,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6411,\\n          \\\"put the cream cheese in the bowl\\\": 0.5657,\\n          \\\"put the wine bottle on the rack\\\": 0.5408,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6092,\\n          \\\"turn on the stove\\\": 0.7863\\n        },\\n        \\\"epochs_trained\\\": 29,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.63105,\\n          \\\"ci_lo\\\": 0.5773,\\n          \\\"ci_hi\\\": 0.6834,\\n          \\\"ci_level\\\": 0.95,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "14d1b8b4-32b2-4761-86d1-e32919c7c2b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"action_probe_R2\\\\\\\": {\\\\n    \\\\\\\"ablate_control8\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.5732,\\\\n      \\\\\\\"L8\\\\\\\": 0.6311,\\\\n      \\\\\\\"L13\\\\\\\": 0.6787\\\\n    }\\\\n  },\\\\n  \\\\\\\"detailed_results\\\\\\\": {\\\\n    \\\\\\\"ablate_control8\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.5732,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6431,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.6484,\\\\n          0.6816,\\\\n          0.5696,\\\\n          0.5851,\\\\n          0.399,\\\\n          0.727,\\\\n          0.6567\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.4241,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.6547,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.6532,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.5379,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.624,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.5594,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.4522,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.504,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.5747,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.748\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 44,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.57322,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5149,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6321,\\\\n          \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        }\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6311,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6927,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.718,\\\\n          0.7229,\\\\n          0.649,\\\\n          0.5744,\\\\n          0.4186,\\\\n          0.749,\\\\n          0.6973\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.4748,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.7029,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.6824,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.6167,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.6906,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6411,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.5657,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.5408,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.6092,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.7863\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 29,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.63105,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5773,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6834,\\\\n          \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        }\\\\n      },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"action_probe_R2\\\": {\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": 0.5732,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6787\\n    }\\n  },\\n  \\\"detailed_results\\\": {\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.5732,\\n        \\\"overall_R2\\\": 0.6431,\\n        \\\"per_dim_R2\\\": [\\n          0.6484,\\n          0.6816,\\n          0.5696,\\n          0.5851,\\n          0.399,\\n          0.727,\\n          0.6567\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4241,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.6547,\\n          \\\"push the plate to the front of the stove\\\": 0.6532,\\n          \\\"put the bowl on the plate\\\": 0.5379,\\n          \\\"put the bowl on the stove\\\": 0.624,\\n          \\\"put the bowl on top of the cabinet\\\": 0.5594,\\n          \\\"put the cream cheese in the bowl\\\": 0.4522,\\n          \\\"put the wine bottle on the rack\\\": 0.504,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.5747,\\n          \\\"turn on the stove\\\": 0.748\\n        },\\n        \\\"epochs_trained\\\": 44,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.57322,\\n          \\\"ci_lo\\\": 0.5149,\\n          \\\"ci_hi\\\": 0.6321,\\n          \\\"ci_level\\\": 0.95,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.6311,\\n        \\\"overall_R2\\\": 0.6927,\\n        \\\"per_dim_R2\\\": [\\n          0.718,\\n          0.7229,\\n          0.649,\\n          0.5744,\\n          0.4186,\\n          0.749,\\n          0.6973\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4748,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.7029,\\n          \\\"push the plate to the front of the stove\\\": 0.6824,\\n          \\\"put the bowl on the plate\\\": 0.6167,\\n          \\\"put the bowl on the stove\\\": 0.6906,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6411,\\n          \\\"put the cream cheese in the bowl\\\": 0.5657,\\n          \\\"put the wine bottle on the rack\\\": 0.5408,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6092,\\n          \\\"turn on the stove\\\": 0.7863\\n        },\\n        \\\"epochs_trained\\\": 29,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.63105,\\n          \\\"ci_lo\\\": 0.5773,\\n          \\\"ci_hi\\\": 0.6834,\\n          \\\"ci_level\\\": 0.95,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T20:08:37.223Z_
+
+<details><summary>↩ Tool result · `toolu_01Ur8PguusNY6XbHx1R7bzfb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "a3f983d7-be54-4b3b-aca8-f09173400df5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T20:08:37.721Z_
+
+<details><summary>↩ Tool result · `toolu_01XmDC43b6fgGAmtmD8cC3Rs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_probe_50demos_control8.json\\naction_probe_log.txt\\naction_probe_results.json\\nbootstrap_ci_results.json\\nresults.json\\nresults_v2.json\\nresults_v3_all32.json\\ntest_results.json\\ntest_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "34e420a4-17d0-45c4-8bd4-544f4382f8d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"action_probe_50demos_control8.json\\\\naction_probe_log.txt\\\\naction_probe_results.json\\\\nbootstrap_ci_results.json\\\\nresults.json\\\\nresults_v2.json\\\\nresults_v3_all32.json\\\\ntest_results.json\\\\ntest_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"action_probe_50demos_control8.json\\naction_probe_log.txt\\naction_probe_results.json\\nbootstrap_ci_results.json\\nresults.json\\nresults_v2.json\\nresults_v3_all32.json\\ntest_results.json\\ntest_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018C8wHqm1VJttWf1QDTPmZN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "2c199ee2-0bf8-4de1-b4ec-f5cf50295e80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2imFAkdnN7wSBtVxHs92m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1890,
+      "cache_read_input_tokens": 25985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1890
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T20:08:40.788Z_
+
+<details><summary>↩ Tool result · `toolu_018C8wHqm1VJttWf1QDTPmZN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "06e1c521-b808-46f7-ad5c-73ba20d6faad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017QGLvvtKHDfTGFVNYCDqRi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -50 /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "665ad1c0-c2e6-4bd6-bb53-564274c0b2c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2imFAkdnN7wSBtVxHs92m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1890,
+      "cache_read_input_tokens": 25985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1890
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T20:08:41.916Z_
+
+<details><summary>↩ Tool result · `toolu_017QGLvvtKHDfTGFVNYCDqRi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"target\\\": \\\"next_action a_{t+1} from feature at time t\\\",\\n    \\\"normalization\\\": \\\"z-score (train mean/std)\\\",\\n    \\\"split\\\": \\\"80/20 per-task by demo index\\\",\\n    \\\"readout_layers\\\": [\\n      1,\\n      8,\\n      13\\n    ],\\n    \\\"demos_per_task\\\": 50,\\n    \\\"n_tasks\\\": 10,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    \\\"instruction_heads_24\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"control_heads_8\\\": [\\n      3,\\n      5,\\n      6,\\n      9,\\n      13,\\n      21,\\n      24,\\n      28\\n    ],\\n    \\\"n_bootstrap\\\": 10000\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "108a3592-2864-4d96-abe3-3483c988e725",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"target\\\\\\\": \\\\\\\"next_action a_{t+1} from feature at time t\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score (train mean/std)\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20 per-task by demo index\\\\\\\",\\\\n    \\\\\\\"readout_layers\\\\\\\": [\\\\n      1,\\\\n      8,\\\\n      13\\\\n    ],\\\\n    \\\\\\\"demos_per_task\\\\\\\": 50,\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    \\\\\\\"instruction_heads_24\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"control_heads_8\\\\\\\": [\\\\n      3,\\\\n      5,\\\\n      6,\\\\n      9,\\\\n      13,\\\\n      21,\\\\n      24,\\\\n      28\\\\n    ],\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    \\\"target\\\": \\\"next_action a_{t+1} from feature at time t\\\",\\n    \\\"normalization\\\": \\\"z-score (train mean/std)\\\",\\n    \\\"split\\\": \\\"80/20 per-task by demo index\\\",\\n    \\\"readout_layers\\\": [\\n      1,\\n      8,\\n      13\\n    ],\\n    \\\"demos_per_task\\\": 50,\\n    \\\"n_tasks\\\": 10,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    \\\"instruction_heads_24\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"control_heads_8\\\": [\\n      3,\\n      5,\\n      6,\\n      9,\\n      13,\\n      21,\\n      24,\\n      28\\n    ],\\n    \\\"n_bootstrap\\\": 10000\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PTS1KW7WkpfETBydy2Tt5v`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "c30a508e-56cb-48c6-8a1c-1fd4db2352fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdjV9bETMAYufWDcAjKdkF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 27875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FGRt5oo7Z6o4vUhioJnXsX`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "b5b8bdc6-c02d-4850-bb70-a867af069aa7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdjV9bETMAYufWDcAjKdkF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 27875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T20:08:47.642Z_
+
+<details><summary>↩ Tool result · `toolu_01PTS1KW7WkpfETBydy2Tt5v`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import matplotlib; print(matplotlib.__version__)\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "e9ceb6a3-612f-42be-87b3-478811dbd239",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import matplotlib; print(matplotlib.__version__)\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import matplotlib; print(matplotlib.__version__)\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T20:08:48.719Z_
+
+<details><summary>↩ Tool result · `toolu_01FGRt5oo7Z6o4vUhioJnXsX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nablations\\naction_probe_libero_spatial.py\\naction_probe_projector.py\\naction_probe_v2.py\\nanalyze_action_probes.py\\nanalyze_goal_probes.py\\nanalyze_mvp_DEPRECATED.py\\nanalyze_results.py\\nanalyze_results.py.bak2\\nanalyze_timestep_accuracy.py\\nbootstrap_action_probe.py\\ncka_verification.py\\ncreate_llama2_base_openvla.py\\ncross_instruction_classify.py\\ncross_instruction_classify_dense.py\\ncross_instruction_classify_full.py\\ncross_instruction_classify_spatial.py\\ncross_instruction_extract_dense.py\\ncross_instruction_extract_layers.py\\ncross_instruction_loocv.py\\ncross_instruction_mlp_controls.py\\ndino_action_probe.py\\nextract_clip_features.py\\nextract_dinov2.py\\nextract_features.py\\nextract_features_clip.py\\nextract_features_rand_inst.py\\nextract_fused_backbone.py\\nextract_siglip_features.py\\nextract_subtask_labels.py\\nfig_32layer_attention_profile.pdf\\nfig_32layer_attention_profile.png\\nfig_three_condition_probe.pdf\\nfig_three_condition_probe.png\\nfull_layer_attention_analysis.py\\nfulllayer_action_probe.py\\ninit_untrained.py\\ninstruction_conditional_extract.py\\ninstruction_conditional_probe.py\\nl1_ablation_action_probe.py\\nl1_ablation_action_probe_50demos.py\\nl1_ablation_action_probe_control8.py\\nl1_ablation_diagnostic.py\\nl1_attention_visualization.py\\nl1_head_ablation.py\\nmulti_layer_attention.py\\npatch_mean_action_probe.py\\npca_linear_probe_perlayer.py\\npca_linear_probe_pertimestep.py\\nperlayer_degradation.py\\nplot_32layer_attention_profile.py\\nplot_action_probes.py\\nplot_full_32layer_attention.py\\nplot_l1_attention_three_conditions.py\\nplot_spatial_results.py\\nplot_three_condition_probe.py\\nplot_timestep_accuracy.py\\npost_download_pipeline.py\\nqa_probe_classification.py\\nrsa_branch_split.py\\nrsa_clip.py\\nrsa_definitive.py\\nrsa_demo_standardized.py\\nrsa_dino_standalone.py\\nrsa_instruction_control.py\\nrsa_libero_spatial.py\\nrsa_method_audit.py\\nrsa_siglip_only.py\\nrsa_unified_vla.py\\nrun_action_delta_all.py\\nrun_clip_action_probe.py\\nrun_clip_action_probe_final.py\\nrun_llama2base_experiments.sh\\nrun_no_inst_extraction.sh\\nrun_spatial_extract.sh\\nshuffled_token_control.py\\nsubtask_auc_dinov2.py\\ntest_forward.py\\ntrain_probes.py\\ntrain_probes.py.bak2\\ntrain_probes.py.bak3\\nunified_action_probe.py\\nuntrained_last_preaction_probe.py\\nverify_and_continue.sh\\nverify_shard.py\\nvisual_similarity_gate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "5e143ddb-077d-439c-8dae-aef37582fbbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nablations\\\\naction_probe_libero_spatial.py\\\\naction_probe_projector.py\\\\naction_probe_v2.py\\\\nanalyze_action_probes.py\\\\nanalyze_goal_probes.py\\\\nanalyze_mvp_DEPRECATED.py\\\\nanalyze_results.py\\\\nanalyze_results.py.bak2\\\\nanalyze_timestep_accuracy.py\\\\nbootstrap_action_probe.py\\\\ncka_verification.py\\\\ncreate_llama2_base_openvla.py\\\\ncross_instruction_classify.py\\\\ncross_instruction_classify_dense.py\\\\ncross_instruction_classify_full.py\\\\ncross_instruction_classify_spatial.py\\\\ncross_instruction_extract_dense.py\\\\ncross_instruction_extract_layers.py\\\\ncross_instruction_loocv.py\\\\ncross_instruction_mlp_controls.py\\\\ndino_action_probe.py\\\\nextract_clip_features.py\\\\nextract_dinov2.py\\\\nextract_features.py\\\\nextract_features_clip.py\\\\nextract_features_rand_inst.py\\\\nextract_fused_backbone.py\\\\nextract_siglip_features.py\\\\nextract_subtask_labels.py\\\\nfig_32layer_attention_profile.pdf\\\\nfig_32layer_attention_profile.png\\\\nfig_three_condition_probe.pdf\\\\nfig_three_condition_probe.png\\\\nfull_layer_attention_analysis.py\\\\nfulllayer_action_probe.py\\\\ninit_untrained.py\\\\ninstruction_conditional_extract.py\\\\ninstruction_conditional_probe.py\\\\nl1_ablation_action_probe.py\\\\nl1_ablation_action_probe_50demos.py\\\\nl1_ablation_action_probe_control8.py\\\\nl1_ablation_diagnostic.py\\\\nl1_attention_visualization.py\\\\nl1_head_ablation.py\\\\nmulti_layer_attention.py\\\\npatch_mean_action_probe.py\\\\npca_linear_probe_perlayer.py\\\\npca_linear_probe_pertimestep.py\\\\nperlayer_degradation.py\\\\nplot_32layer_attention_profile.py\\\\nplot_action_probes.py\\\\nplot_full_32layer_attention.py\\\\nplot_l1_attention_three_conditions.py\\\\nplot_spatial_results.py\\\\nplot_three_condition_probe.py\\\\nplot_timestep_accuracy.py\\\\npost_download_pipeline.py\\\\nqa_probe_classification.py\\\\nrsa_branch_split.py\\\\nrsa_clip.py\\\\nrsa_definitive.py\\\\nrsa_demo_standardized.py\\\\nrsa_dino_standalone.py\\\\nrsa_instruction_control.py\\\\nrsa_libero_spatial.py\\\\nrsa_method_audit.py\\\\nrsa_siglip_only.py\\\\nrsa_unified_vla.py\\\\nrun_action_delta_all.py\\\\nrun_clip_action_probe.py\\\\nrun_clip_action_probe_final.py\\\\nrun_llama2base_experiments.sh\\\\nrun_no_inst_extraction.sh\\\\nrun_spatial_extract.sh\\\\nshuffled_token_control.py\\\\nsubtask_auc_dinov2.py\\\\ntest_forward.py\\\\ntrain_probes.py\\\\ntrain_probes.py.bak2\\\\ntrain_probes.py.bak3\\\\nunified_action_probe.py\\\\nuntrained_last_preaction_probe.py\\\\nverify_and_continue.sh\\\\nverify_shard.py\\\\nvisual_similarity_gate.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nablations\\naction_probe_libero_spatial.py\\naction_probe_projector.py\\naction_probe_v2.py\\nanalyze_action_probes.py\\nanalyze_goal_probes.py\\nanalyze_mvp_DEPRECATED.py\\nanalyze_results.py\\nanalyze_results.py.bak2\\nanalyze_timestep_accuracy.py\\nbootstrap_action_probe.py\\ncka_verification.py\\ncreate_llama2_base_openvla.py\\ncross_instruction_classify.py\\ncross_instruction_classify_dense.py\\ncross_instruction_classify_full.py\\ncross_instruction_classify_spatial.py\\ncross_instruction_extract_dense.py\\ncross_instruction_extract_layers.py\\ncross_instruction_loocv.py\\ncross_instruction_mlp_controls.py\\ndino_action_probe.py\\nextract_clip_features.py\\nextract_dinov2.py\\nextract_features.py\\nextract_features_clip.py\\nextract_features_rand_inst.py\\nextract_fused_backbone.py\\nextract_siglip_features.py\\nextract_subtask_labels.py\\nfig_32layer_attention_profile.pdf\\nfig_32layer_attention_profile.png\\nfig_three_condition_probe.pdf\\nfig_three_condition_probe.png\\nfull_layer_attention_analysis.py\\nfulllayer_action_probe.py\\ninit_untrained.py\\ninstruction_conditional_extract.py\\ninstruction_conditional_probe.py\\nl1_ablation_action_probe.py\\nl1_ablation_action_probe_50demos.py\\nl1_ablation_action_probe_control8.py\\nl1_ablation_diagnostic.py\\nl1_attention_visualization.py\\nl1_head_ablation.py\\nmulti_layer_attention.py\\npatch_mean_action_probe.py\\npca_linear_probe_perlayer.py\\npca_linear_probe_pertimestep.py\\nperlayer_degradation.py\\nplot_32layer_attention_profile.py\\nplot_action_probes.py\\nplot_full_32layer_attention.py\\nplot_l1_attention_three_conditions.py\\nplot_spatial_results.py\\nplot_three_condition_probe.py\\nplot_timestep_accuracy.py\\npost_download_pipeline.py\\nqa_probe_classification.py\\nrsa_branch_split.py\\nrsa_clip.py\\nrsa_definitive.py\\nrsa_demo_standardized.py\\nrsa_dino_standalone.py\\nrsa_instruction_control.py\\nrsa_libero_spatial.py\\nrsa_method_audit.py\\nrsa_siglip_only.py\\nrsa_unified_vla.py\\nrun_action_delta_all.py\\nrun_clip_action_probe.py\\nrun_clip_action_probe_final.py\\nrun_llama2base_experiments.sh\\nrun_no_inst_extraction.sh\\nrun_spatial_extract.sh\\nshuffled_token_control.py\\nsubtask_auc_dinov2.py\\ntest_forward.py\\ntrain_probes.py\\ntrain_probes.py.bak2\\ntrain_probes.py.bak3\\nunified_action_probe.py\\nuntrained_last_preaction_probe.py\\nverify_and_continue.sh\\nverify_shard.py\\nvisual_similarity_gate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LrbXPhbrecLYie4RNrjfWS`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "which python && python -c \"import matplotlib; print(matplotlib.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "701dec50-368d-44fb-8be8-d8fa643d4daa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VuWPapwkw2Cs6FoVykzeXo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1379,
+      "cache_read_input_tokens": 28706,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1379
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T20:08:51.937Z_
+
+<details><summary>↩ Tool result · `toolu_01LrbXPhbrecLYie4RNrjfWS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python && python -c \\\"import matplotlib; print(matplotlib.__version__)\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "f9fe43cd-7b3e-44ab-80f1-7b6b430d9f52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'which python && python -c \\\\\\\"import matplotlib; print(matplotlib.__version__)\\\\\\\"'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python && python -c \\\"import matplotlib; print(matplotlib.__version__)\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MSGPxG2h23Lye9UL9RQLut`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/miniconda3/envs/*/bin/python 2>/dev/null || ls /root/anaconda3/envs/*/bin/python 2>/dev/null || find /root -name python -type f 2>/dev/null | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "d9f4716f-00c2-4231-aa8d-5066a55505ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FF3b3sbkuqBt19sMWEQxCQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 326,
+      "cache_read_input_tokens": 30085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 326
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T20:08:56.394Z_
+
+<details><summary>↩ Tool result · `toolu_01MSGPxG2h23Lye9UL9RQLut`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "43f86287-e74c-4e67-8d9c-d77d68794628",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SaT4Q8nfnm21uyWL5nJ8Fj`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "4057b929-8d88-4b14-8eb6-4e0cf2264c63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PR2ZgkBPbZMC5vXFkPHW6m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 30411,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T20:08:59.738Z_
+
+<details><summary>↩ Tool result · `toolu_01SaT4Q8nfnm21uyWL5nJ8Fj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"L1 Head Ablation + Action Probe R²: measure how ablating L1 instruction-attending\\nheads affects action-relevant information at different readout layers.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "921e54ef-ac2c-4d0b-8eb1-e79fb23e1efa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"L1 Head Ablation + Action Probe R²: measure how ablating L1 instruction-attending\\\\nheads affects action-relevant information at different readout layers.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"L1 Head Ablation + Action Probe R²: measure how ablating L1 instruction-attending\\nheads affects action-relevant information at different readout layers.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01S1tz3WoBm2P4oW5AVQfrAg`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -1 /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py | cat && grep -n \"python\\|#!/\" /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py | head -3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "2924d3db-2097-4512-9ffa-85d0b36ed886",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UgP6NicwkifgbNRJzfy5hW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 30630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 249
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T20:09:03.761Z_
+
+<details><summary>↩ Tool result · `toolu_01S1tz3WoBm2P4oW5AVQfrAg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"L1 Head Ablation + Action Probe R²: measure how ablating L1 instruction-attending\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "8b54869e-b712-4caf-bf4f-638f944651af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"L1 Head Ablation + Action Probe R²: measure how ablating L1 instruction-attending\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"L1 Head Ablation + Action Probe R²: measure how ablating L1 instruction-attending\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LVSFG6gRB29cTh4eNoXs1u`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /proc/$(pgrep -f \"l1_ablation\" | head -1)/cmdline 2>/dev/null | tr '\\0' ' ' || echo \"no process found\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "5d4ad537-fa10-44ca-9af4-f89c1d94ef1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VEiSkG8eKrvB2LpgKSRY9G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 257,
+      "cache_read_input_tokens": 30879,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 257
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T20:09:07.486Z_
+
+<details><summary>↩ Tool result · `toolu_01LVSFG6gRB29cTh4eNoXs1u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"tmux new-session -d -s l1_head_ablation_control8 rm -f /tmp/agent-ml-exit/l1_head_ablation_control8.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/vla-ssd/l1_head_ablation_control8.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/l1_head_ablation_control8.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/vla-ssd && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_ablation_action_probe_control8.py --demos_per_task 50 --readout_layers 1 8 13 --output /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json'; } > ~/runs/vla-ssd/l1_head_ablation_control8.log 2>&1 \", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "8d57678f-560f-4f27-bb55-cd2075947ab1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"tmux new-session -d -s l1_head_ablation_control8 rm -f /tmp/agent-ml-exit/l1_head_ablation_control8.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/vla-ssd/l1_head_ablation_control8.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/l1_head_ablation_control8.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/vla-ssd && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_ablation_action_probe_control8.py --demos_per_task 50 --readout_layers 1 8 13 --output /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json'; } > ~/runs/vla-ssd/l1_head_ablation_control8.log 2>&1 \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"tmux new-session -d -s l1_head_ablation_control8 rm -f /tmp/agent-ml-exit/l1_head_ablation_control8.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/vla-ssd/l1_head_ablation_control8.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/l1_head_ablation_control8.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/vla-ssd && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_ablation_action_probe_control8.py --demos_per_task 50 --readout_layers 1 8 13 --output /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json'; } > ~/runs/vla-ssd/l1_head_ablation_control8.log 2>&1 \", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+Python 路径是 `/root/miniconda3/bin/python3.12`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "535b4d8e-3c11-400e-aa47-1841bc05f693",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01142ZQivh6xReVPGGmCmBb7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 31136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TJ4PRAKPFivSaHZc3eeBF6`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python3.12 -c \"import matplotlib; print(matplotlib.__version__); import numpy; print(numpy.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "a5b9799b-a96d-422f-818f-dc523f2f8c78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01142ZQivh6xReVPGGmCmBb7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 31136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016WpV9ifEGqDSTbqBqttqWM`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/figures/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "df05ebbe-dd07-4a24-a2c0-76ba73435e58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01142ZQivh6xReVPGGmCmBb7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 31136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T20:09:13.534Z_
+
+<details><summary>↩ Tool result · `toolu_01TJ4PRAKPFivSaHZc3eeBF6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3.10.5\\n1.26.4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "bd3a95f3-1c90-4656-aa22-c016a49370c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3.10.5\\\\n1.26.4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3.10.5\\n1.26.4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T20:09:13.544Z_
+
+<details><summary>↩ Tool result · `toolu_016WpV9ifEGqDSTbqBqttqWM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "0ce7f099-2e61-4992-aac9-9e8f254a7996",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QBTTvfXAfYpPPUiuSdA9dR`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/figures/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "0d3e88a3-59a9-4fcc-8ae2-2f1a98d341af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JGbYqSihFQwr2Pj157ytAE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 31707,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 473
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T20:09:16.738Z_
+
+<details><summary>↩ Tool result · `toolu_01QBTTvfXAfYpPPUiuSdA9dR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross_benchmark_comparison.pdf\\ncross_benchmark_comparison.png\\nfig1_action_prediction_layer_r2.pdf\\nfig1_action_prediction_layer_r2.png\\nfig3_per_dim_r2.pdf\\nfig3_per_dim_r2.png\\nlibero_spatial_r2_perlayer.pdf\\nlibero_spatial_r2_perlayer.png\\nlibero_spatial_rsa_perlayer.pdf\\nlibero_spatial_rsa_perlayer.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "430d8b7a-b24e-47ba-8958-48d4816e5a75",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cross_benchmark_comparison.pdf\\\\ncross_benchmark_comparison.png\\\\nfig1_action_prediction_layer_r2.pdf\\\\nfig1_action_prediction_layer_r2.png\\\\nfig3_per_dim_r2.pdf\\\\nfig3_per_dim_r2.png\\\\nlibero_spatial_r2_perlayer.pdf\\\\nlibero_spatial_r2_perlayer.png\\\\nlibero_spatial_rsa_perlayer.pdf\\\\nlibero_spatial_rsa_perlayer.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"cross_benchmark_comparison.pdf\\ncross_benchmark_comparison.png\\nfig1_action_prediction_layer_r2.pdf\\nfig1_action_prediction_layer_r2.png\\nfig3_per_dim_r2.pdf\\nfig3_per_dim_r2.png\\nlibero_spatial_r2_perlayer.pdf\\nlibero_spatial_r2_perlayer.png\\nlibero_spatial_rsa_perlayer.pdf\\nlibero_spatial_rsa_perlayer.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+数据格式已明确。现在编写分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "008fef90-ac19-4d7f-8424-6f0e67f3fa93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hh2KUEqsAt4y3RHHRzGthm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 32180,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 314
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — Write · `toolu_0179kP8AoTqSM7pVXhgwk65e`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/analyze_ablation_50demos.py",
+  "content": "\"\"\"4-condition ablation analysis: baseline / control8 / ablate_all24 / ablate_all32.\n\nInputs:\n  - /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\n    (baseline, ablate_all24, ablate_all32)\n  - /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\n    (ablate_control8)\n\nOutputs:\n  - Prints 4-condition × 3-layer summary table + bootstrap Δ CI + specificity check\n  - /root/autodl-tmp/vla-ssd/results/figures/fig_ablation_4condition_bar.pdf\n  - /root/autodl-tmp/vla-ssd/results/figures/fig_ablation_3layer_grouped.pdf\n  - /root/autodl-tmp/vla-ssd/results/l1_head_ablation/ablation_50demos_combined.json\n\nDependencies: numpy, matplotlib (available in /root/miniconda3/bin/python3.12)\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport numpy as np\n\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation\"\nFIGURES_DIR = \"/root/autodl-tmp/vla-ssd/results/figures\"\nMAIN_FILE = os.path.join(RESULTS_DIR, \"action_probe_50demos.json\")\nCONTROL_FILE = os.path.join(RESULTS_DIR, \"action_probe_50demos_control8.json\")\nLAYERS = [\"L1\", \"L8\", \"L13\"]\nCONDITIONS = [\"baseline\", \"ablate_control8\", \"ablate_all24\", \"ablate_all32\"]\nDISPLAY_NAMES = {\"baseline\": \"baseline\", \"ablate_control8\": \"control8\",\n                 \"ablate_all24\": \"all24\", \"ablate_all32\": \"all32\"}\nCOLORS = {\"baseline\": \"#888888\", \"ablate_control8\": \"#6BAED6\",\n           \"ablate_all24\": \"#E6550D\", \"ablate_all32\": \"#D62728\"}\nN_BOOTSTRAP = 10000\nSEED = 42\n\n\ndef load_data():\n    if not os.path.exists(MAIN_FILE):\n        print(\"waiting for main experiment\")\n        sys.exit(0)\n    with open(MAIN_FILE) as f:\n        main_data = json.load(f)\n    with open(CONTROL_FILE) as f:\n        control_data = json.load(f)\n    return main_data, control_data\n\n\ndef extract_per_task(data, condition, layer):\n    \"\"\"Extract per-task R² values as a numpy array.\"\"\"\n    detailed = data[\"detailed_results\"][condition][layer]\n    task_r2 = detailed[\"per_task_R2\"]\n    return np.array(list(task_r2.values()))\n\n\ndef extract_mean(data, condition, layer):\n    return data[\"detailed_results\"][condition][layer][\"mean_R2\"]\n\n\ndef bootstrap_diff_ci(vals_a, vals_b, n_boot=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Bootstrap CI for mean(vals_a) - mean(vals_b), task-level resampling.\"\"\"\n    rng = np.random.default_rng(seed)\n    n = len(vals_a)\n    diffs = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        diffs[i] = vals_a[idx].mean() - vals_b[idx].mean()\n    obs_diff = vals_a.mean() - vals_b.mean()\n    ci_lo = np.percentile(diffs, 2.5)\n    ci_hi = np.percentile(diffs, 97.5)\n    p_value = np.mean(diffs >= 0) if obs_diff < 0 else np.mean(diffs <= 0)\n    p_value = min(p_value * 2, 1.0)  # two-sided\n    return obs_diff, ci_lo, ci_hi, p_value\n\n\ndef bootstrap_ci(vals, n_boot=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Bootstrap CI for the mean of vals.\"\"\"\n    rng = np.random.default_rng(seed)\n    n = len(vals)\n    means = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        means[i] = vals[idx].mean()\n    return np.percentile(means, 2.5), np.percentile(means, 97.5)\n\n\ndef make_bar_chart_l1(means, cis, save_path):\n    \"\"\"Single-layer (L1) 4-condition bar chart.\"\"\"\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n    plt.rcParams.update({\"font.family\": \"serif\", \"font.size\": 9,\n                         \"axes.linewidth\": 0.8, \"xtick.major.width\": 0.6,\n                         \"ytick.major.width\": 0.6})\n\n    fig, ax = plt.subplots(figsize=(4.0, 3.2))\n    x = np.arange(4)\n    labels = [\"Baseline\", \"Control-8\", \"All-24\", \"All-32\"]\n    colors = [COLORS[\"baseline\"], COLORS[\"ablate_control8\"],\n              COLORS[\"ablate_all24\"], COLORS[\"ablate_all32\"]]\n    bar_vals = [means[\"baseline\"][\"L1\"], means[\"ablate_control8\"][\"L1\"],\n                means[\"ablate_all24\"][\"L1\"], means[\"ablate_all32\"][\"L1\"]]\n    errs_lo = [bar_vals[i] - cis[c][\"L1\"][0]\n               for i, c in enumerate(CONDITIONS)]\n    errs_hi = [cis[c][\"L1\"][1] - bar_vals[i]\n               for i, c in enumerate(CONDITIONS)]\n\n    ax.bar(x, bar_vals, color=colors, width=0.6, edgecolor=\"black\", linewidth=0.5,\n           yerr=[errs_lo, errs_hi], capsize=4, error_kw={\"linewidth\": 0.8})\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels)\n    ax.set_ylabel(\"Action Probe R² (Layer 1)\")\n    ax.set_ylim(0, max(bar_vals) * 1.15)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    fig.tight_layout()\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n    fig.savefig(save_path, dpi=300, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {save_path}\")\n\n\ndef make_grouped_bar_chart(means, cis, save_path):\n    \"\"\"3-layer × 4-condition grouped bar chart.\"\"\"\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n    plt.rcParams.update({\"font.family\": \"serif\", \"font.size\": 9,\n                         \"axes.linewidth\": 0.8, \"xtick.major.width\": 0.6,\n                         \"ytick.major.width\": 0.6})\n\n    fig, ax = plt.subplots(figsize=(6.0, 3.5))\n    n_groups = 3\n    n_bars = 4\n    width = 0.18\n    x = np.arange(n_groups)\n    labels_cond = [\"Baseline\", \"Control-8\", \"All-24\", \"All-32\"]\n    colors = [COLORS[\"baseline\"], COLORS[\"ablate_control8\"],\n              COLORS[\"ablate_all24\"], COLORS[\"ablate_all32\"]]\n\n    for i, cond in enumerate(CONDITIONS):\n        vals = [means[cond][L] for L in LAYERS]\n        lo = [means[cond][L] - cis[cond][L][0] for L in LAYERS]\n        hi = [cis[cond][L][1] - means[cond][L] for L in LAYERS]\n        offset = (i - 1.5) * width\n        ax.bar(x + offset, vals, width=width, color=colors[i],\n               edgecolor=\"black\", linewidth=0.4, label=labels_cond[i],\n               yerr=[lo, hi], capsize=3, error_kw={\"linewidth\": 0.6})\n\n    ax.set_xticks(x)\n    ax.set_xticklabels([\"Layer 1\", \"Layer 8\", \"Layer 13\"])\n    ax.set_ylabel(\"Action Probe R²\")\n    ax.set_ylim(0, max(means[c][L] for c in CONDITIONS for L in LAYERS) * 1.12)\n    ax.legend(frameon=False, fontsize=8, ncol=4, loc=\"upper left\")\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    fig.tight_layout()\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n    fig.savefig(save_path, dpi=300, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {save_path}\")\n\n\ndef main():\n    main_data, control_data = load_data()\n\n    # Merge into unified structure\n    all_data = {\n        \"detailed_results\": {\n            **{k: main_data[\"detailed_results\"][k] for k in [\"baseline\", \"ablate_all24\", \"ablate_all32\"]},\n            \"ablate_control8\": control_data[\"detailed_results\"][\"ablate_control8\"]\n        }\n    }\n\n    # Extract means and per-task values\n    means = {}\n    task_vals = {}\n    cis = {}\n    for cond in CONDITIONS:\n        means[cond] = {}\n        task_vals[cond] = {}\n        cis[cond] = {}\n        for layer in LAYERS:\n            means[cond][layer] = extract_mean(all_data, cond, layer)\n            task_vals[cond][layer] = extract_per_task(all_data, cond, layer)\n            cis[cond][layer] = bootstrap_ci(task_vals[cond][layer])\n\n    # Print summary table\n    print(\"\\n=== 50-demo Ablation Results (4 conditions × 3 layers) ===\\n\")\n    print(f\"{'Layer':<6} | {'baseline':<10} | {'control8':<10} | {'all24':<10} | {'all32':<10}\")\n    print(\"-\" * 60)\n    for layer in LAYERS:\n        print(f\"{layer:<6} | {means['baseline'][layer]:<10.4f} | \"\n              f\"{means['ablate_control8'][layer]:<10.4f} | \"\n              f\"{means['ablate_all24'][layer]:<10.4f} | \"\n              f\"{means['ablate_all32'][layer]:<10.4f}\")\n\n    # Bootstrap Δ vs baseline\n    print(\"\\n=== Bootstrap Δ vs baseline (95% CI) ===\")\n    diff_results = {}\n    for cond in [\"ablate_all24\", \"ablate_all32\", \"ablate_control8\"]:\n        diff_results[cond] = {}\n        for layer in LAYERS:\n            d, lo, hi, p = bootstrap_diff_ci(\n                task_vals[cond][layer], task_vals[\"baseline\"][layer])\n            diff_results[cond][layer] = {\"delta\": d, \"ci_lo\": lo, \"ci_hi\": hi, \"p\": p}\n            name = DISPLAY_NAMES[cond]\n            print(f\"{name} {layer}:  Δ={d:+.4f} [{lo:.4f}, {hi:.4f}] p={p:.4f}\")\n\n    # Specificity check: all24 vs control8\n    print(\"\\n=== Specificity Check ===\")\n    spec_results = {}\n    for layer in LAYERS:\n        d, lo, hi, p = bootstrap_diff_ci(\n            task_vals[\"ablate_all24\"][layer], task_vals[\"ablate_control8\"][layer])\n        spec_results[layer] = {\"delta\": d, \"ci_lo\": lo, \"ci_hi\": hi, \"p\": p}\n        print(f\"all24 vs control8 {layer}: Δ={d:+.4f} [{lo:.4f}, {hi:.4f}] p={p:.4f}\")\n\n    # Generate figures\n    make_bar_chart_l1(means, cis,\n                      os.path.join(FIGURES_DIR, \"fig_ablation_4condition_bar.pdf\"))\n    make_grouped_bar_chart(means, cis,\n                           os.path.join(FIGURES_DIR, \"fig_ablation_3layer_grouped.pdf\"))\n\n    # Save combined JSON\n    output = {\n        \"means\": {c: {L: float(means[c][L]) for L in LAYERS} for c in CONDITIONS},\n        \"bootstrap_ci\": {c: {L: {\"ci_lo\": float(cis[c][L][0]),\n                                  \"ci_hi\": float(cis[c][L][1])}\n                             for L in LAYERS} for c in CONDITIONS},\n        \"diff_vs_baseline\": {c: {L: {k: float(v) for k, v in diff_results[c][L].items()}\n                                 for L in LAYERS}\n                             for c in [\"ablate_all24\", \"ablate_all32\", \"ablate_control8\"]},\n        \"specificity_all24_vs_control8\": {L: {k: float(v) for k, v in spec_results[L].items()}\n                                          for L in LAYERS},\n        \"metadata\": {\n            \"n_bootstrap\": N_BOOTSTRAP,\n            \"seed\": SEED,\n            \"conditions\": CONDITIONS,\n            \"layers\": LAYERS,\n            \"source_files\": [MAIN_FILE, CONTROL_FILE]\n        }\n    }\n    out_path = os.path.join(RESULTS_DIR, \"ablation_50demos_combined.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "b8257c13-afc5-477e-ae13-c84b73c9ead9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hh2KUEqsAt4y3RHHRzGthm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 32180,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 314
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T20:10:07.968Z_
+
+<details><summary>↩ Tool result · `toolu_0179kP8AoTqSM7pVXhgwk65e`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/analyze_ablation_50demos.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "06fcd19d-f70d-4317-95d8-335edad049ef",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/analyze_ablation_50demos.py",
+    "content": "\"\"\"4-condition ablation analysis: baseline / control8 / ablate_all24 / ablate_all32.\n\nInputs:\n  - /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\n    (baseline, ablate_all24, ablate_all32)\n  - /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\n    (ablate_control8)\n\nOutputs:\n  - Prints 4-condition × 3-layer summary table + bootstrap Δ CI + specificity check\n  - /root/autodl-tmp/vla-ssd/results/figures/fig_ablation_4condition_bar.pdf\n  - /root/autodl-tmp/vla-ssd/results/figures/fig_ablation_3layer_grouped.pdf\n  - /root/autodl-tmp/vla-ssd/results/l1_head_ablation/ablation_50demos_combined.json\n\nDependencies: numpy, matplotlib (available in /root/miniconda3/bin/python3.12)\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport numpy as np\n\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation\"\nFIGURES_DIR = \"/root/autodl-tmp/vla-ssd/results/figures\"\nMAIN_FILE = os.path.join(RESULTS_DIR, \"action_probe_50demos.json\")\nCONTROL_FILE = os.path.join(RESULTS_DIR, \"action_probe_50demos_control8.json\")\nLAYERS = [\"L1\", \"L8\", \"L13\"]\nCONDITIONS = [\"baseline\", \"ablate_control8\", \"ablate_all24\", \"ablate_all32\"]\nDISPLAY_NAMES = {\"baseline\": \"baseline\", \"ablate_control8\": \"control8\",\n                 \"ablate_all24\": \"all24\", \"ablate_all32\": \"all32\"}\nCOLORS = {\"baseline\": \"#888888\", \"ablate_control8\": \"#6BAED6\",\n           \"ablate_all24\": \"#E6550D\", \"ablate_all32\": \"#D62728\"}\nN_BOOTSTRAP = 10000\nSEED = 42\n\n\ndef load_data():\n    if not os.path.exists(MAIN_FILE):\n        print(\"waiting for main experiment\")\n        sys.exit(0)\n    with open(MAIN_FILE) as f:\n        main_data = json.load(f)\n    with open(CONTROL_FILE) as f:\n        control_data = json.load(f)\n    return main_data, control_data\n\n\ndef extract_per_task(data, condition, layer):\n    \"\"\"Extract per-task R² values as a numpy array.\"\"\"\n    detailed = data[\"detailed_results\"][condition][layer]\n    task_r2 = detailed[\"per_task_R2\"]\n    return np.array(list(task_r2.values()))\n\n\ndef extract_mean(data, condition, layer):\n    return data[\"detailed_results\"][condition][layer][\"mean_R2\"]\n\n\ndef bootstrap_diff_ci(vals_a, vals_b, n_boot=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Bootstrap CI for mean(vals_a) - mean(vals_b), task-level resampling.\"\"\"\n    rng = np.random.default_rng(seed)\n    n = len(vals_a)\n    diffs = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        diffs[i] = vals_a[idx].mean() - vals_b[idx].mean()\n    obs_diff = vals_a.mean() - vals_b.mean()\n    ci_lo = np.percentile(diffs, 2.5)\n    ci_hi = np.percentile(diffs, 97.5)\n    p_value = np.mean(diffs >= 0) if obs_diff < 0 else np.mean(diffs <= 0)\n    p_value = min(p_value * 2, 1.0)  # two-sided\n    return obs_diff, ci_lo, ci_hi, p_value\n\n\ndef bootstrap_ci(vals, n_boot=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Bootstrap CI for the mean of vals.\"\"\"\n    rng = np.random.default_rng(seed)\n    n = len(vals)\n    means = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        means[i] = vals[idx].mean()\n    return np.percentile(means, 2.5), np.percentile(means, 97.5)\n\n\ndef make_bar_chart_l1(means, cis, save_path):\n    \"\"\"Single-layer (L1) 4-condition bar chart.\"\"\"\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n    plt.rcParams.update({\"font.family\": \"serif\", \"font.size\": 9,\n                         \"axes.linewidth\": 0.8, \"xtick.major.width\": 0.6,\n                         \"ytick.major.width\": 0.6})\n\n    fig, ax = plt.subplots(figsize=(4.0, 3.2))\n    x = np.arange(4)\n    labels = [\"Baseline\", \"Control-8\", \"All-24\", \"All-32\"]\n    colors = [COLORS[\"baseline\"], COLORS[\"ablate_control8\"],\n              COLORS[\"ablate_all24\"], COLORS[\"ablate_all32\"]]\n    bar_vals = [means[\"baseline\"][\"L1\"], means[\"ablate_control8\"][\"L1\"],\n                means[\"ablate_all24\"][\"L1\"], means[\"ablate_all32\"][\"L1\"]]\n    errs_lo = [bar_vals[i] - cis[c][\"L1\"][0]\n               for i, c in enumerate(CONDITIONS)]\n    errs_hi = [cis[c][\"L1\"][1] - bar_vals[i]\n               for i, c in enumerate(CONDITIONS)]\n\n    ax.bar(x, bar_vals, color=colors, width=0.6, edgecolor=\"black\", linewidth=0.5,\n           yerr=[errs_lo, errs_hi], capsize=4, error_kw={\"linewidth\": 0.8})\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels)\n    ax.set_ylabel(\"Action Probe R² (Layer 1)\")\n    ax.set_ylim(0, max(bar_vals) * 1.15)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    fig.tight_layout()\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n    fig.savefig(save_path, dpi=300, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {save_path}\")\n\n\ndef make_grouped_bar_chart(means, cis, save_path):\n    \"\"\"3-layer × 4-condition grouped bar chart.\"\"\"\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n    plt.rcParams.update({\"font.family\": \"serif\", \"font.size\": 9,\n                         \"axes.linewidth\": 0.8, \"xtick.major.width\": 0.6,\n                         \"ytick.major.width\": 0.6})\n\n    fig, ax = plt.subplots(figsize=(6.0, 3.5))\n    n_groups = 3\n    n_bars = 4\n    width = 0.18\n    x = np.arange(n_groups)\n    labels_cond = [\"Baseline\", \"Control-8\", \"All-24\", \"All-32\"]\n    colors = [COLORS[\"baseline\"], COLORS[\"ablate_control8\"],\n              COLORS[\"ablate_all24\"], COLORS[\"ablate_all32\"]]\n\n    for i, cond in enumerate(CONDITIONS):\n        vals = [means[cond][L] for L in LAYERS]\n        lo = [means[cond][L] - cis[cond][L][0] for L in LAYERS]\n        hi = [cis[cond][L][1] - means[cond][L] for L in LAYERS]\n        offset = (i - 1.5) * width\n        ax.bar(x + offset, vals, width=width, color=colors[i],\n               edgecolor=\"black\", linewidth=0.4, label=labels_cond[i],\n               yerr=[lo, hi], capsize=3, error_kw={\"linewidth\": 0.6})\n\n    ax.set_xticks(x)\n    ax.set_xticklabels([\"Layer 1\", \"Layer 8\", \"Layer 13\"])\n    ax.set_ylabel(\"Action Probe R²\")\n    ax.set_ylim(0, max(means[c][L] for c in CONDITIONS for L in LAYERS) * 1.12)\n    ax.legend(frameon=False, fontsize=8, ncol=4, loc=\"upper left\")\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    fig.tight_layout()\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n    fig.savefig(save_path, dpi=300, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {save_path}\")\n\n\ndef main():\n    main_data, control_data = load_data()\n\n    # Merge into unified structure\n    all_data = {\n        \"detailed_results\": {\n            **{k: main_data[\"detailed_results\"][k] for k in [\"baseline\", \"ablate_all24\", \"ablate_all32\"]},\n            \"ablate_control8\": control_data[\"detailed_results\"][\"ablate_control8\"]\n        }\n    }\n\n    # Extract means and per-task values\n    means = {}\n    task_vals = {}\n    cis = {}\n    for cond in CONDITIONS:\n        means[cond] = {}\n        task_vals[cond] = {}\n        cis[cond] = {}\n        for layer in LAYERS:\n            means[cond][layer] = extract_mean(all_data, cond, layer)\n            task_vals[cond][layer] = extract_per_task(all_data, cond, layer)\n            cis[cond][layer] = bootstrap_ci(task_vals[cond][layer])\n\n    # Print summary table\n    print(\"\\n=== 50-demo Ablation Results (4 conditions × 3 layers) ===\\n\")\n    print(f\"{'Layer':<6} | {'baseline':<10} | {'control8':<10} | {'all24':<10} | {'all32':<10}\")\n    print(\"-\" * 60)\n    for layer in LAYERS:\n        print(f\"{layer:<6} | {means['baseline'][layer]:<10.4f} | \"\n              f\"{means['ablate_control8'][layer]:<10.4f} | \"\n              f\"{means['ablate_all24'][layer]:<10.4f} | \"\n              f\"{means['ablate_all32'][layer]:<10.4f}\")\n\n    # Bootstrap Δ vs baseline\n    print(\"\\n=== Bootstrap Δ vs baseline (95% CI) ===\")\n    diff_results = {}\n    for cond in [\"ablate_all24\", \"ablate_all32\", \"ablate_control8\"]:\n        diff_results[cond] = {}\n        for layer in LAYERS:\n            d, lo, hi, p = bootstrap_diff_ci(\n                task_vals[cond][layer], task_vals[\"baseline\"][layer])\n            diff_results[cond][layer] = {\"delta\": d, \"ci_lo\": lo, \"ci_hi\": hi, \"p\": p}\n            name = DISPLAY_NAMES[cond]\n            print(f\"{name} {layer}:  Δ={d:+.4f} [{lo:.4f}, {hi:.4f}] p={p:.4f}\")\n\n    # Specificity check: all24 vs control8\n    print(\"\\n=== Specificity Check ===\")\n    spec_results = {}\n    for layer in LAYERS:\n        d, lo, hi, p = bootstrap_diff_ci(\n            task_vals[\"ablate_all24\"][layer], task_vals[\"ablate_control8\"][layer])\n        spec_results[layer] = {\"delta\": d, \"ci_lo\": lo, \"ci_hi\": hi, \"p\": p}\n        print(f\"all24 vs control8 {layer}: Δ={d:+.4f} [{lo:.4f}, {hi:.4f}] p={p:.4f}\")\n\n    # Generate figures\n    make_bar_chart_l1(means, cis,\n                      os.path.join(FIGURES_DIR, \"fig_ablation_4condition_bar.pdf\"))\n    make_grouped_bar_chart(means, cis,\n                           os.path.join(FIGURES_DIR, \"fig_ablation_3layer_grouped.pdf\"))\n\n    # Save combined JSON\n    output = {\n        \"means\": {c: {L: float(means[c][L]) for L in LAYERS} for c in CONDITIONS},\n        \"bootstrap_ci\": {c: {L: {\"ci_lo\": float(cis[c][L][0]),\n                                  \"ci_hi\": float(cis[c][L][1])}\n                             for L in LAYERS} for c in CONDITIONS},\n        \"diff_vs_baseline\": {c: {L: {k: float(v) for k, v in diff_results[c][L].items()}\n                                 for L in LAYERS}\n                             for c in [\"ablate_all24\", \"ablate_all32\", \"ablate_control8\"]},\n        \"specificity_all24_vs_control8\": {L: {k: float(v) for k, v in spec_results[L].items()}\n                                          for L in LAYERS},\n        \"metadata\": {\n            \"n_bootstrap\": N_BOOTSTRAP,\n            \"seed\": SEED,\n            \"conditions\": CONDITIONS,\n            \"layers\": LAYERS,\n            \"source_files\": [MAIN_FILE, CONTROL_FILE]\n        }\n    }\n    out_path = os.path.join(RESULTS_DIR, \"ablation_50demos_combined.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+Now deploying to the server and doing a dry-run.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "010da553-badb-4a74-b17c-242a697bcb99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013nzesAWoJZr7sExPtEat8q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 32494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4004
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HLDcb7qACPg3KSgSuLPzcJ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/analyze_ablation_50demos.py << 'SCRIPT_EOF'\n\"\"\"4-condition ablation analysis: baseline / control8 / ablate_all24 / ablate_all32.\n\nInputs:\n  - /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\n    (baseline, ablate_all24, ablate_all32)\n  - /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\n    (ablate_control8)\n\nOutputs:\n  - Prints 4-condition x 3-layer summary table + bootstrap delta CI + specificity check\n  - /root/autodl-tmp/vla-ssd/results/figures/fig_ablation_4condition_bar.pdf\n  - /root/autodl-tmp/vla-ssd/results/figures/fig_ablation_3layer_grouped.pdf\n  - /root/autodl-tmp/vla-ssd/results/l1_head_ablation/ablation_50demos_combined.json\n\nDependencies: numpy, matplotlib (available in /root/miniconda3/bin/python3.12)\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport numpy as np\n\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation\"\nFIGURES_DIR = \"/root/autodl-tmp/vla-ssd/results/figures\"\nMAIN_FILE = os.path.join(RESULTS_DIR, \"action_probe_50demos.json\")\nCONTROL_FILE = os.path.join(RESULTS_DIR, \"action_probe_50demos_control8.json\")\nLAYERS = [\"L1\", \"L8\", \"L13\"]\nCONDITIONS = [\"baseline\", \"ablate_control8\", \"ablate_all24\", \"ablate_all32\"]\nDISPLAY_NAMES = {\"baseline\": \"baseline\", \"ablate_control8\": \"control8\",\n                 \"ablate_all24\": \"all24\", \"ablate_all32\": \"all32\"}\nCOLORS = {\"baseline\": \"#888888\", \"ablate_control8\": \"#6BAED6\",\n           \"ablate_all24\": \"#E6550D\", \"ablate_all32\": \"#D62728\"}\nN_BOOTSTRAP = 10000\nSEED = 42\n\n\ndef load_data():\n    if not os.path.exists(MAIN_FILE):\n        print(\"waiting for main experiment\")\n        sys.exit(0)\n    with open(MAIN_FILE) as f:\n        main_data = json.load(f)\n    with open(CONTROL_FILE) as f:\n        control_data = json.load(f)\n    return main_data, control_data\n\n\ndef extract_per_task(data, condition, layer):\n    \"\"\"Extract per-task R2 values as a numpy array.\"\"\"\n    detailed = data[\"detailed_results\"][condition][layer]\n    task_r2 = detailed[\"per_task_R2\"]\n    return np.array(list(task_r2.values()))\n\n\ndef extract_mean(data, condition, layer):\n    return data[\"detailed_results\"][condition][layer][\"mean_R2\"]\n\n\ndef bootstrap_diff_ci(vals_a, vals_b, n_boot=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Bootstrap CI for mean(vals_a) - mean(vals_b), task-level resampling.\"\"\"\n    rng = np.random.default_rng(seed)\n    n = len(vals_a)\n    diffs = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        diffs[i] = vals_a[idx].mean() - vals_b[idx].mean()\n    obs_diff = vals_a.mean() - vals_b.mean()\n    ci_lo = np.percentile(diffs, 2.5)\n    ci_hi = np.percentile(diffs, 97.5)\n    p_value = np.mean(diffs >= 0) if obs_diff < 0 else np.mean(diffs <= 0)\n    p_value = min(p_value * 2, 1.0)  # two-sided\n    return obs_diff, ci_lo, ci_hi, p_value\n\n\ndef bootstrap_ci(vals, n_boot=N_BOOTSTRAP, seed=SEED):\n    \"\"\"Bootstrap CI for the mean of vals.\"\"\"\n    rng = np.random.default_rng(seed)\n    n = len(vals)\n    means = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        means[i] = vals[idx].mean()\n    return np.percentile(means, 2.5), np.percentile(means, 97.5)\n\n\ndef make_bar_chart_l1(means, cis, save_path):\n    \"\"\"Single-layer (L1) 4-condition bar chart.\"\"\"\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n    plt.rcParams.update({\"font.family\": \"serif\", \"font.size\": 9,\n                         \"axes.linewidth\": 0.8, \"xtick.major.width\": 0.6,\n                         \"ytick.major.width\": 0.6})\n\n    fig, ax = plt.subplots(figsize=(4.0, 3.2))\n    x = np.arange(4)\n    labels = [\"Baseline\", \"Control-8\", \"All-24\", \"All-32\"]\n    colors = [COLORS[\"baseline\"], COLORS[\"ablate_control8\"],\n              COLORS[\"ablate_all24\"], COLORS[\"ablate_all32\"]]\n    bar_vals = [means[\"baseline\"][\"L1\"], means[\"ablate_control8\"][\"L1\"],\n                means[\"ablate_all24\"][\"L1\"], means[\"ablate_all32\"][\"L1\"]]\n    errs_lo = [bar_vals[i] - cis[c][\"L1\"][0]\n               for i, c in enumerate(CONDITIONS)]\n    errs_hi = [cis[c][\"L1\"][1] - bar_vals[i]\n               for i, c in enumerate(CONDITIONS)]\n\n    ax.bar(x, bar_vals, color=colors, width=0.6, edgecolor=\"black\", linewidth=0.5,\n           yerr=[errs_lo, errs_hi], capsize=4, error_kw={\"linewidth\": 0.8})\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels)\n    ax.set_ylabel(\"Action Probe R² (Layer 1)\")\n    ax.set_ylim(0, max(bar_vals) * 1.15)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    fig.tight_layout()\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n    fig.savefig(save_path, dpi=300, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {save_path}\")\n\n\ndef make_grouped_bar_chart(means, cis, save_path):\n    \"\"\"3-layer x 4-condition grouped bar chart.\"\"\"\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n    plt.rcParams.update({\"font.family\": \"serif\", \"font.size\": 9,\n                         \"axes.linewidth\": 0.8, \"xtick.major.width\": 0.6,\n                         \"ytick.major.width\": 0.6})\n\n    fig, ax = plt.subplots(figsize=(6.0, 3.5))\n    n_groups = 3\n    n_bars = 4\n    width = 0.18\n    x = np.arange(n_groups)\n    labels_cond = [\"Baseline\", \"Control-8\", \"All-24\", \"All-32\"]\n    colors = [COLORS[\"baseline\"], COLORS[\"ablate_control8\"],\n              COLORS[\"ablate_all24\"], COLORS[\"ablate_all32\"]]\n\n    for i, cond in enumerate(CONDITIONS):\n        vals = [means[cond][L] for L in LAYERS]\n        lo = [means[cond][L] - cis[cond][L][0] for L in LAYERS]\n        hi = [cis[cond][L][1] - means[cond][L] for L in LAYERS]\n        offset = (i - 1.5) * width\n        ax.bar(x + offset, vals, width=width, color=colors[i],\n               edgecolor=\"black\", linewidth=0.4, label=labels_cond[i],\n               yerr=[lo, hi], capsize=3, error_kw={\"linewidth\": 0.6})\n\n    ax.set_xticks(x)\n    ax.set_xticklabels([\"Layer 1\", \"Layer 8\", \"Layer 13\"])\n    ax.set_ylabel(\"Action Probe R²\")\n    ax.set_ylim(0, max(means[c][L] for c in CONDITIONS for L in LAYERS) * 1.12)\n    ax.legend(frameon=False, fontsize=8, ncol=4, loc=\"upper left\")\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    fig.tight_layout()\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n    fig.savefig(save_path, dpi=300, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {save_path}\")\n\n\ndef main():\n    main_data, control_data = load_data()\n\n    # Merge into unified structure\n    all_data = {\n        \"detailed_results\": {\n            **{k: main_data[\"detailed_results\"][k] for k in [\"baseline\", \"ablate_all24\", \"ablate_all32\"]},\n            \"ablate_control8\": control_data[\"detailed_results\"][\"ablate_control8\"]\n        }\n    }\n\n    # Extract means and per-task values\n    means = {}\n    task_vals = {}\n    cis = {}\n    for cond in CONDITIONS:\n        means[cond] = {}\n        task_vals[cond] = {}\n        cis[cond] = {}\n        for layer in LAYERS:\n            means[cond][layer] = extract_mean(all_data, cond, layer)\n            task_vals[cond][layer] = extract_per_task(all_data, cond, layer)\n            cis[cond][layer] = bootstrap_ci(task_vals[cond][layer])\n\n    # Print summary table\n    print(\"\\n=== 50-demo Ablation Results (4 conditions x 3 layers) ===\\n\")\n    print(f\"{'Layer':<6} | {'baseline':<10} | {'control8':<10} | {'all24':<10} | {'all32':<10}\")\n    print(\"-\" * 60)\n    for layer in LAYERS:\n        print(f\"{layer:<6} | {means['baseline'][layer]:<10.4f} | \"\n              f\"{means['ablate_control8'][layer]:<10.4f} | \"\n              f\"{means['ablate_all24'][layer]:<10.4f} | \"\n              f\"{means['ablate_all32'][layer]:<10.4f}\")\n\n    # Bootstrap delta vs baseline\n    print(\"\\n=== Bootstrap delta vs baseline (95% CI) ===\")\n    diff_results = {}\n    for cond in [\"ablate_all24\", \"ablate_all32\", \"ablate_control8\"]:\n        diff_results[cond] = {}\n        for layer in LAYERS:\n            d, lo, hi, p = bootstrap_diff_ci(\n                task_vals[cond][layer], task_vals[\"baseline\"][layer])\n            diff_results[cond][layer] = {\"delta\": d, \"ci_lo\": lo, \"ci_hi\": hi, \"p\": p}\n            name = DISPLAY_NAMES[cond]\n            print(f\"{name} {layer}:  delta={d:+.4f} [{lo:.4f}, {hi:.4f}] p={p:.4f}\")\n\n    # Specificity check: all24 vs control8\n    print(\"\\n=== Specificity Check ===\")\n    spec_results = {}\n    for layer in LAYERS:\n        d, lo, hi, p = bootstrap_diff_ci(\n            task_vals[\"ablate_all24\"][layer], task_vals[\"ablate_control8\"][layer])\n        spec_results[layer] = {\"delta\": d, \"ci_lo\": lo, \"ci_hi\": hi, \"p\": p}\n        print(f\"all24 vs control8 {layer}: delta={d:+.4f} [{lo:.4f}, {hi:.4f}] p={p:.4f}\")\n\n    # Generate figures\n    make_bar_chart_l1(means, cis,\n                      os.path.join(FIGURES_DIR, \"fig_ablation_4condition_bar.pdf\"))\n    make_grouped_bar_chart(means, cis,\n                           os.path.join(FIGURES_DIR, \"fig_ablation_3layer_grouped.pdf\"))\n\n    # Save combined JSON\n    output = {\n        \"means\": {c: {L: float(means[c][L]) for L in LAYERS} for c in CONDITIONS},\n        \"bootstrap_ci\": {c: {L: {\"ci_lo\": float(cis[c][L][0]),\n                                  \"ci_hi\": float(cis[c][L][1])}\n                             for L in LAYERS} for c in CONDITIONS},\n        \"diff_vs_baseline\": {c: {L: {k: float(v) for k, v in diff_results[c][L].items()}\n                                 for L in LAYERS}\n                             for c in [\"ablate_all24\", \"ablate_all32\", \"ablate_control8\"]},\n        \"specificity_all24_vs_control8\": {L: {k: float(v) for k, v in spec_results[L].items()}\n                                          for L in LAYERS},\n        \"metadata\": {\n            \"n_bootstrap\": N_BOOTSTRAP,\n            \"seed\": SEED,\n            \"conditions\": CONDITIONS,\n            \"layers\": LAYERS,\n            \"source_files\": [MAIN_FILE, CONTROL_FILE]\n        }\n    }\n    out_path = os.path.join(RESULTS_DIR, \"ablation_50demos_combined.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "30b93513-60a7-4edf-8056-ac660b02c8be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013nzesAWoJZr7sExPtEat8q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 32494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4004
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T20:10:40.827Z_
+
+<details><summary>↩ Tool result · `toolu_01HLDcb7qACPg3KSgSuLPzcJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "26865bc8-b71f-4931-a96a-0e1599b10b3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+Dry-run（main 文件尚不存在，应优雅退出）：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "366b615a-433a-4868-958e-cdebf79e8eef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V9mftVpRAMvs9rd4Lko9cz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3914,
+      "cache_read_input_tokens": 36498,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3914
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KWS3SmVCTD15LydBocywvb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/analyze_ablation_50demos.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "9c0a2d3c-916f-4e02-87b4-ca137fb61b52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V9mftVpRAMvs9rd4Lko9cz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3914,
+      "cache_read_input_tokens": 36498,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3914
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T20:10:45.598Z_
+
+<details><summary>↩ Tool result · `toolu_01KWS3SmVCTD15LydBocywvb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"waiting for main experiment\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "1d5385d7-061a-40c5-acd8-5dcd1bc20d50",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"waiting for main experiment\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"waiting for main experiment\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+脚本已部署到 `/root/vla-ssd/scripts/analyze_ablation_50demos.py` 并通过 dry-run 验证。
+
+main 文件不存在时优雅退出，打印 "waiting for main experiment"。一旦 `action_probe_50demos.json` 就绪，执行：
+
+```bash
+/root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/analyze_ablation_50demos.py
+```
+
+即可输出完整 4-condition 分析（summary table + bootstrap CI + specificity check + 两张 PDF figure + combined JSON）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "uuid": "15eb1142-3326-45e9-9332-23432516d9f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJT6MAwdkfXwCAT4s1aqWH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 220,
+      "cache_read_input_tokens": 40412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 220
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 50_
+
+脚本已部署到 `/root/vla-ssd/scripts/analyze_ablation_50demos.py` 并通过 dry-run 验证。
+
+main 文件不存在时优雅退出，打印 "waiting for main experiment"。一旦 `action_probe_50demos.json` 就绪，执行：
+
+```bash
+/root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/analyze_ablation_50demos.py
+```
+
+即可输出完整 4-condition 分析（summary table + bootstrap CI + specificity check + 两张 PDF figure + combined JSON）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 143563,
+  "duration_api_ms": 138200,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "7754b019-593b-4097-843b-4490605646b0",
+  "total_cost_usd": 0.65115775,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 28791,
+    "cache_read_input_tokens": 446094,
+    "output_tokens": 9839,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28791,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 168,
+        "cache_read_input_tokens": 40412,
+        "cache_creation_input_tokens": 220,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 220
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2017,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002102,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 9839,
+      "cacheReadInputTokens": 446094,
+      "cacheCreationInputTokens": 28791,
+      "webSearchRequests": 0,
+      "costUSD": 0.64905575,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1f5d9355-eaf4-49ee-9b0d-49cb84a5e00d"
+}
+```
+
+</details>
+
+---

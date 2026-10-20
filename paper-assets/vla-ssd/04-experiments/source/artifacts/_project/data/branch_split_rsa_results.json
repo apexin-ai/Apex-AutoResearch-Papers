@@ -1,0 +1,1 @@
+See /root/vla-ssd/branch_split_rsa_results.json on westd-19183. DINOv2 branch (1024d) RSA=0.619 [0.522,0.705], SigLIP branch (1152d) RSA=0.621 [0.520,0.701], Fused pre-projector (2176d) RSA=0.634 [0.537,0.722], Projector (4096d) RSA=0.615 [0.526,0.695]. Method B inter-demo pairwise, cosine rep dist, euclidean action dist, Spearman.

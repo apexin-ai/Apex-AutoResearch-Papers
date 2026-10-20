@@ -1,0 +1,99 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023rt2,kim2024openvla}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{brohan2023rt2}
+\citation{kim2024openvla}
+\citation{kriegeskorte2008rsa}
+\citation{kornblith2019cka}
+\citation{kornblith2019cka}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Behavioral Evidence for Visual Dominance.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representational Analysis in Vision-Language Models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Architecture Under Study}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Representational Similarity Metrics}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RSA.}{2}{section*.4}\protected@file@percent }
+\citation{liu2024libero}
+\citation{oquab2024dinov2}
+\citation{radford2021clip}
+\@writefile{toc}{\contentsline {paragraph}{CKA.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Probing Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Benchmarks}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Baselines}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experiment 1: Per-Layer RSA Reveals a U-Shaped Trajectory}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp1}{{4.1}{3}{Experiment 1: Per-Layer RSA Reveals a U-Shaped Trajectory}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experiment 2: Random Instruction Control}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp2}{{4.2}{3}{Experiment 2: Random Instruction Control}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{3}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Per-layer RSA trajectory through the LLM (trained, with instruction). The U-shape trajectory shows degradation in early-to-mid layers followed by substantial recovery.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:perlayer}{{1}{4}{Per-layer RSA trajectory through the LLM (trained, with instruction). The U-shape trajectory shows degradation in early-to-mid layers followed by substantial recovery}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces U-shape summary statistics. The low monotonicity Spearman and high recovery ratio confirm a lossy-then-recovery process rather than monotonic degradation.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:ushape}{{2}{4}{U-shape summary statistics. The low monotonicity Spearman and high recovery ratio confirm a lossy-then-recovery process rather than monotonic degradation}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experiment 3: CKA Verification and Metric Dependency}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp3}{{4.3}{4}{Experiment 3: CKA Verification and Metric Dependency}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{4}{section*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Instruction condition comparison. Real and no-instruction conditions are indistinguishable, but random-token instructions actively degrade action alignment.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:instruction}{{3}{5}{Instruction condition comparison. Real and no-instruction conditions are indistinguishable, but random-token instructions actively degrade action alignment}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Instruction effect decomposition. The $\Delta >0.03$ for random vs.\ real/no instruction violates strict instruction invariance.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:inst_decomp}{{4}{5}{Instruction effect decomposition. The $\Delta >0.03$ for random vs.\ real/no instruction violates strict instruction invariance}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{5}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Experiment 4: Cross-Benchmark Generalization (LIBERO-Spatial)}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp4}{{4.4}{5}{Experiment 4: Cross-Benchmark Generalization (LIBERO-Spatial)}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{5}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{5}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{5}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Experiment 5: CLIP-ViT Baseline---Isolating the Pretraining Confound}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp5}{{4.5}{5}{Experiment 5: CLIP-ViT Baseline---Isolating the Pretraining Confound}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{5}{section*.26}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RSA vs CKA ordering comparison. Ordinal agreement is strong, but the magnitude of the LLM effect is metric-dependent.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:cka_rsa}{{5}{6}{RSA vs CKA ordering comparison. Ordinal agreement is strong, but the magnitude of the LLM effect is metric-dependent}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Metric agreement analysis. The key inconsistency is on the LLM degradation claim, where CKA shows only a marginal gap.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:metric_agreement}{{6}{6}{Metric agreement analysis. The key inconsistency is on the LLM degradation claim, where CKA shows only a marginal gap}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{6}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{6}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{The Redundant Bottleneck Interpretation.}{6}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metric Dependency.}{6}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instruction Vulnerability.}{6}{section*.33}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{brohan2023rt2}{{1}{2023}{{Brohan et~al.}}{{}}}
+\bibcite{fang2025finetuning}{{2}{2025}{{Fang et~al.}}{{}}}
+\bibcite{fei2025liberoplus}{{3}{2025}{{Fei et~al.}}{{}}}
+\bibcite{grant2026visual}{{4}{2026}{{Grant et~al.}}{{}}}
+\bibcite{hou2026langgap}{{5}{2026}{{Hou et~al.}}{{}}}
+\bibcite{kim2024openvla}{{6}{2024}{{Kim et~al.}}{{}}}
+\bibcite{kornblith2019cka}{{7}{2019}{{Kornblith et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-benchmark comparison. Core ordering and phenomena replicate across all three LIBERO benchmarks.}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{7}{7}{Cross-benchmark comparison. Core ordering and phenomena replicate across all three LIBERO benchmarks}{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Ordering consistency across benchmarks.}}{7}{table.caption.24}\protected@file@percent }
+\newlabel{tab:ordering_consistency}{{8}{7}{Ordering consistency across benchmarks}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language Pretraining as the Key Factor.}{7}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{7}{Conclusion}{section.6}{}}
+\bibcite{kriegeskorte2008rsa}{{8}{2008}{{Kriegeskorte et~al.}}{{}}}
+\bibcite{liu2024libero}{{9}{2024}{{Liu et~al.}}{{}}}
+\bibcite{oquab2024dinov2}{{10}{2024}{{Oquab et~al.}}{{}}}
+\bibcite{radford2021clip}{{11}{2021}{{Radford et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Vision encoder comparison with pretraining control. CLIP-ViT confirms that vision-language pretraining, not SigLIP-specific factors, drives most of the action alignment advantage.}}{8}{table.caption.28}\protected@file@percent }
+\newlabel{tab:clip}{{9}{8}{Vision encoder comparison with pretraining control. CLIP-ViT confirms that vision-language pretraining, not SigLIP-specific factors, drives most of the action alignment advantage}{table.caption.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Confound decomposition. Vision-language pretraining accounts for the majority of the gap.}}{8}{table.caption.29}\protected@file@percent }
+\newlabel{tab:confound}{{10}{8}{Confound decomposition. Vision-language pretraining accounts for the majority of the gap}{table.caption.29}{}}
+\gdef \@abspage@last{8}

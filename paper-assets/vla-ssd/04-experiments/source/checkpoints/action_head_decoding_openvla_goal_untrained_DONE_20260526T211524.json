@@ -1,0 +1,40 @@
+{
+  "exp_id": "action_head_decoding_openvla_goal_untrained",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T19:15:54.851Z",
+    "updated_at": "2026-05-26T21:15:24.601Z",
+    "hypothesis": "Untrained OpenVLA (OXE-pretrained, no LIBERO fine-tuning) should NOT show exit-peaking action-head R² because the LM head has not been specialized for LIBERO action decoding. If trained model shows exit-peak and untrained does not, this dissociation confirms format specialization is a training-induced effect, not an architectural artifact.",
+    "metrics": {
+      "n_samples": 5000,
+      "peak_r2": -3.5474,
+      "peak_layer": 32,
+      "exit_r2": -3.5474,
+      "exit_mse": 0.8694,
+      "peak_mse": 0.7838,
+      "all_layers_negative": true,
+      "elapsed_seconds": 249
+    },
+    "spec": {
+      "command": "python /root/vla-ssd/action_head_v2_untrained.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": 5000,
+      "model_name": "openvla-7b",
+      "seed": null,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/untrained_v2.log"
+    },
+    "checkpoint_path": "N/A (inference only)",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/untrained_v2.log",
+    "conclusion": "negative",
+    "completed_at": "2026-05-26T19:46:21.238Z",
+    "notes": "v2 rerun with 3 bug fixes (transformers 4.40.1, no double-norm, clone hidden states). 5000 samples. All 33 layers R² negative (-5.61 to -3.55). Peak R²=-3.55 at exit layer (L32). Compared to trained v2: trained peak=-2.77 (L31), trained exit=-3.04 (L32). Both show all-negative R² - action head cannot decode meaningful actions from any layer in either model."
+  },
+  "timestamp": "2026-05-26T21:15:24.906657+00:00",
+  "trigger": "update_registry"
+}

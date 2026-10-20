@@ -1,0 +1,590 @@
+papers:
+  # ============================================================
+  # DIRECT COMPETITORS — VLA Representation Analysis / Interpretability
+  # ============================================================
+  - id: grant2026
+    title: "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models"
+    authors: "Bryce Grant, Xijia Zhao, Peng Wang"
+    year: 2026
+    venue: "arXiv preprint (under review)"
+    arxiv_id: "2603.19233"
+    category: direct-competitor
+    role: competitor
+    key_findings: >
+      Visual pathway dominates action generation across all 6 tested VLA architectures (80M–7B params, 394K+ rollout episodes, 4 benchmarks).
+      Language sensitivity depends on task structure: when visual context uniquely specifies the task, language is IGNORED;
+      when multiple goals share a scene, language becomes essential ("encoded but not used").
+      Cross-task activation injection steers robots toward source-task positions (99.8% trajectory alignment with source in X-VLA).
+      Multi-pathway architectures (pi0.5, SmolVLA, GR00T) separate motor programs (expert pathway) from goal semantics (VLM pathway).
+    relevance_to_us: >
+      Most direct competitor. Behavioral intervention (activation injection, SAE, probing) reveals vision dominance + language encoded but not used.
+      Uses OpenVLA-OFT checkpoint; we use standard fine-tuning — must qualify this difference in Related Work.
+    novelty_gap: >
+      No trained vs untrained representation analysis. They compare different model architectures,
+      we compare trained vs untrained representation structure within the same architecture.
+      Their "encoded but not used" is a behavioral-level conclusion; we demonstrate at the representation level
+      that instruction conditioning comes from the input pathway, not training. Complementary work.
+    notes: >
+      Action Atlas interactive exploration tool released. 6 models: OpenVLA, X-VLA, pi0.5, SmolVLA, GR00T, Octo.
+      OFT checkpoint difference may affect direct comparability.
+
+  - id: swann2026
+    title: "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models"
+    authors: "Aiden Swann, Lachlain McGranahan, Hugo Buurmeijer, Monroe Kennedy III, Mac Schwager"
+    year: 2026
+    venue: "arXiv preprint"
+    arxiv_id: "2603.19183"
+    category: direct-competitor
+    role: competitor
+    key_findings: >
+      SAE features on OpenVLA: majority of extracted features correspond to memorized training sequences,
+      but some correspond to interpretable, general, and steerable motion primitives and semantic properties.
+    relevance_to_us: >
+      Also OpenVLA interpretability work. They use SAE for feature-level decomposition,
+      we use probing + RSA for representation-level analysis. Methodologically complementary.
+    novelty_gap: >
+      No language features analysis. No trained vs untrained comparison.
+      Does not investigate source of instruction conditioning (input pathway vs training).
+    notes: "Stanford team. Published on arXiv same day as Grant 2026 (2026-03-19)."
+
+  - id: rizzardo2026
+    title: "Observing and Controlling Features in Vision-Language-Action Models"
+    authors: "Rizzardo et al."
+    year: 2026
+    venue: "arXiv preprint"
+    arxiv_id: "2603.05487"
+    category: direct-competitor
+    role: competitor
+    key_findings: >
+      Introduces feature-observability and feature-controllability concepts bridging LLM mechanistic
+      interpretability and VLAs. Linear classifier observation + optimal-control-based minimal intervention steering.
+      Validated on pi0.5 and OpenVLA — targeted interventions steer robot behavior while preserving closed-loop capabilities.
+    relevance_to_us: >
+      Also VLA internal representation analysis. They focus on how to steer,
+      we focus on where conditioning comes from (input pathway vs training).
+    novelty_gap: >
+      No trained vs untrained comparison. No instruction pathway vs training separation analysis.
+      Focuses on controllability rather than representation structure origin.
+    notes: "Submitted 2026-03-05."
+
+  - id: haon2025
+    title: "Mechanistic Interpretability for Steering Vision-Language-Action Models"
+    authors: "Bear Haon, Kaylene Stocking, Ian Chuang, Claire Tomlin"
+    year: 2025
+    venue: "CoRL 2025"
+    arxiv_id: "2509.00328"
+    category: direct-competitor
+    role: methodology
+    key_findings: >
+      First VLA mechanistic interpretability framework. Projects feedforward activations onto token embedding basis,
+      identifies sparse semantic directions (speed, direction) causally linked to action selection.
+      Activation steering modulates behavior in real time without fine-tuning.
+      Validated on Pi0 and OpenVLA in LIBERO (simulation) and UR5 (real robot).
+    relevance_to_us: >
+      Methodological reference: their activation steering proves VLAs have interpretable semantic directions.
+      Our RSA/probing results can dialogue with their mechanistic findings.
+    novelty_gap: >
+      No trained vs untrained comparison. No systematic representation structure analysis (RSA/CKA).
+      Focuses on individual semantic direction causal intervention, not overall structure comparison.
+    notes: "CoRL 2025 accepted. Pioneering work in VLA interpretability."
+
+  - id: molinari2025
+    title: "Emergent World Representations in OpenVLA"
+    authors: "Marco Molinari, Leonardo Nevali, Saharsha Navani, Omar G. Younis"
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2509.24559"
+    category: direct-competitor
+    role: context
+    key_findings: >
+      OpenVLA implicitly learns a world model. Embedding arithmetic tests state transition knowledge;
+      linear/non-linear probes show statistically significant state transition prediction ability across layers.
+      SAE pipeline analyzes fine-grained world model structure.
+    relevance_to_us: >
+      Also OpenVLA probing work. They study world model, we study instruction conditioning.
+      Their layer-wise probe results can be compared with our layer-wise RSA.
+    novelty_gap: >
+      No language/instruction analysis. No trained vs untrained comparison.
+      Only focuses on state transitions, not goal/instruction representation.
+    notes: "Submitted 2025-09-29. Has OpenReview discussion."
+
+  - id: lu2025
+    title: "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture"
+    authors: "Hong Lu, Hengxu Li, Prithviraj Singh Shahani, Stephanie Herbers, Matthias Scheutz"
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2502.04558"
+    category: direct-competitor
+    role: methodology
+    key_findings: >
+      Probes OpenVLA hidden layers to extract symbolic representations (object properties, relations, action states).
+      LIBERO-spatial pick-and-place probing accuracy > 0.90 across most layers.
+      Integration with cognitive architecture improves interpretability and robustness.
+    relevance_to_us: >
+      Directly related methodology: both use linear probes on OpenVLA layers on LIBERO.
+      Their finding that symbolic states are decodable (>0.90) is consistent with our goal classification at 100%.
+    novelty_gap: >
+      Only trained model probing, no untrained control.
+      Only LIBERO-spatial single task, no cross-task/cross-condition analysis.
+      No instruction conditioning source analysis.
+    notes: "Submitted 2025-02-06. Tufts University."
+
+  - id: fang_intention2025
+    title: "From Intention to Execution: Probing the Generalization Boundaries of Vision-Language-Action Models"
+    authors: "Irving Fang, Juexiao Zhang, Shengbang Tong, Chen Feng"
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2506.09930"
+    category: direct-competitor
+    role: context
+    key_findings: >
+      Unified probing suite (50 simulation tasks, 10 subcategories) evaluating VLA generalization boundaries.
+      VLM backbone provides robust perceptual understanding + high-level planning (good intentions),
+      but cannot reliably translate to precise motor execution (perception-to-action gap).
+      Action data fine-tuning erodes original VLM generalist reasoning abilities.
+    relevance_to_us: >
+      "Fine-tuning erodes VLM reasoning" echoes our "training doesn't improve representation" finding.
+      They discover intention != execution at behavioral level; we discover
+      training ~= untrained in representation structure.
+    novelty_gap: >
+      Behavioral-level probing (success rates), not representation-level analysis.
+      No trained vs untrained representation structure comparison.
+    notes: "Submitted 2025-06-11. INT-ACT benchmark open-sourced. NYU/ai4ce team."
+
+  # ============================================================
+  # DIRECT COMPETITORS — Language Grounding / Counterfactual
+  # ============================================================
+  - id: fang_cf2026
+    title: "When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs"
+    authors: "Yu Fang, Yuchun Feng, Dong Jing, Jiaqi Liu, Yue Yang, Zhenyu Wei, Daniel Szafir, Mingyu Ding"
+    year: 2026
+    venue: "arXiv preprint"
+    arxiv_id: "2602.17659"
+    category: direct-competitor
+    role: competitor
+    key_findings: >
+      Introduces LIBERO-CF counterfactual benchmark. VLAs exhibit severe counterfactual failures:
+      vision shortcuts + dataset biases cause models to ignore language intent.
+      OpenVLA-OFT: 4.7% grounding rate, 0.4% success rate.
+      Best model: 30.8% grounding rate, 13.2% success rate.
+      Proposes Counterfactual Action Guidance (CAG) dual-branch inference scheme.
+    relevance_to_us: >
+      Directly validates "language encoded but not used" severity under counterfactual settings.
+      Their behavioral findings complement our representation-level findings.
+      They test OpenVLA-OFT — same checkpoint issue as Grant 2026.
+    novelty_gap: >
+      Pure behavioral benchmark, no representation analysis.
+      No trained vs untrained comparison. No instruction pathway causal analysis.
+    notes: "Submitted 2026-02-19. LIBERO-CF has 4 sub-suites (CF-Spatial, CF-Object, CF-Long, CF-OOD)."
+
+  - id: hou2026
+    title: "LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models"
+    authors: "Yuchen Hou, Lin Zhao"
+    year: 2026
+    venue: "arXiv preprint"
+    arxiv_id: "2603.00592"
+    category: direct-competitor
+    role: context
+    key_findings: >
+      SOTA VLAs achieve >95% on standard benchmarks but largely ignore language instructions.
+      Four-dimensional semantic perturbation method exposes language understanding deficits.
+      LIBERO assigns only 1 task per layout, so models dont need to understand language.
+      LangGap benchmark forces multi-task shared layouts; data augmentation improves from 0% to 90%.
+    relevance_to_us: >
+      Systematic diagnosis of "VLAs ignore language" supports our story:
+      instruction conditioning comes from input pathway, not training — even trained VLAs dont truly leverage language.
+    novelty_gap: >
+      Behavioral-level diagnosis + data augmentation solution. No representation analysis.
+      No trained vs untrained comparison. No input pathway causal analysis.
+    notes: "Submitted 2026-02-28. GitHub open-sourced."
+
+  # ============================================================
+  # METHOD COMPONENT — RSA, CKA, Linear Probing
+  # ============================================================
+  - id: kriegeskorte2008
+    title: "Representational Similarity Analysis - Connecting the Branches of Systems Neuroscience"
+    authors: "Nikolaus Kriegeskorte, Marieke Mur, Peter Bandettini"
+    year: 2008
+    venue: "Frontiers in Systems Neuroscience"
+    arxiv_id: null
+    doi: "10.3389/neuro.06.004.2008"
+    category: method-component
+    role: methodology
+    key_findings: >
+      Introduces Representational Dissimilarity Matrix (RDM) framework for comparing multi-channel
+      neural activity measurements with computational models and behavior.
+      Validated on fMRI visual cortex data.
+    relevance_to_us: "RSA is one of our core analysis methods for comparing trained/untrained/DINO representation structures."
+    novelty_gap: null
+    notes: "Original RSA paper. 5000+ citations."
+
+  - id: kornblith2019
+    title: "Similarity of Neural Network Representations Revisited"
+    authors: "Simon Kornblith, Mohammad Norouzi, Honglak Lee, Geoffrey Hinton"
+    year: 2019
+    venue: "ICML 2019"
+    arxiv_id: "1905.00414"
+    category: method-component
+    role: methodology
+    key_findings: >
+      Introduces Centered Kernel Alignment (CKA) as representation similarity metric.
+      CKA reliably identifies representation correspondences across differently initialized networks,
+      outperforming CCA-based methods.
+    relevance_to_us: >
+      CKA is one of our core tools for comparing trained vs untrained representations.
+      Deep-layer CKA reaching 0.86 demonstrates high representation similarity.
+    novelty_gap: null
+    notes: "Google Brain. CKA is now standard for representation comparison."
+
+  - id: alain2017
+    title: "Understanding Intermediate Layers Using Linear Classifier Probes"
+    authors: "Guillaume Alain, Yoshua Bengio"
+    year: 2017
+    venue: "ICLR 2017 Workshop"
+    arxiv_id: "1610.01644"
+    category: method-component
+    role: methodology
+    key_findings: >
+      Proposes linear classifier probes to monitor feature suitability for classification at every layer.
+      Linear separability increases monotonically along network depth.
+      Validated on Inception v3 and ResNet-50.
+    relevance_to_us: "Linear probing is the methodological foundation for our goal classification and action prediction experiments."
+    novelty_gap: null
+    notes: "Foundational probing methodology work."
+
+  # ============================================================
+  # VISION ENCODERS — SigLIP, DINOv2, CLIP
+  # ============================================================
+  - id: zhai2023_siglip
+    title: "Sigmoid Loss for Language Image Pre-Training"
+    authors: "Xiaohua Zhai, Basil Mustafa, Alexander Kolesnikov, Lucas Beyer"
+    year: 2023
+    venue: "ICCV 2023"
+    arxiv_id: "2303.15343"
+    category: vision-encoder
+    role: baseline
+    verified: true
+    key_findings: >
+      Replaces softmax contrastive loss with pairwise sigmoid loss for VL pretraining.
+      Eliminates global batch normalization, enabling smaller batch training.
+      SigLIP-SO400M achieves competitive zero-shot performance with simpler training.
+    relevance_to_us: >
+      SigLIP-SO400M is OpenVLA's frozen vision encoder. Our RSA=0.615 for SigLIP+Projector
+      shows this encoder provides dominant action-relevant geometric structure.
+    novelty_gap: null
+    notes: "Google. OpenVLA uses SigLIP-SO400M/14 variant."
+
+  - id: oquab2024_dinov2
+    title: "DINOv2: Learning Robust Visual Features without Supervision"
+    authors: "Maxime Oquab, Timothée Darcet, Théo Moutakanni, et al."
+    year: 2024
+    venue: "TMLR 2024"
+    arxiv_id: "2304.07193"
+    category: vision-encoder
+    role: baseline
+    verified: true
+    key_findings: >
+      Self-supervised ViT trained on curated 142M image dataset (LVD-142M).
+      Produces general-purpose features competitive with task-specific models.
+      No language supervision — purely vision self-supervised.
+    relevance_to_us: >
+      Vision-only baseline in our analysis. DINO RSA=0.388 << SigLIP 0.615,
+      but DINO R²=0.712 ≈ Projector R²=0.706 — key geometric-functional dissociation.
+    novelty_gap: null
+    notes: "Meta AI. DINOv2 ViT-L/14 used as vision-only control."
+
+  - id: radford2021_clip
+    title: "Learning Transferable Visual Models From Natural Language Supervision"
+    authors: "Alec Radford, Jong Wook Kim, Chris Hallacy, et al."
+    year: 2021
+    venue: "ICML 2021"
+    arxiv_id: "2103.00020"
+    category: vision-encoder
+    role: baseline
+    verified: true
+    key_findings: >
+      Contrastive language-image pretraining on 400M image-text pairs.
+      Zero-shot transfer competitive with supervised baselines.
+      Pioneering VL pretraining approach.
+    relevance_to_us: >
+      CLIP ViT-L/14 RSA=0.557 confirms VL pretraining universality:
+      both CLIP (0.557) and SigLIP+Proj (0.615) >> DINO (0.388).
+      Action-relevant geometric structure is a universal product of VL pretraining.
+    novelty_gap: null
+    notes: "OpenAI. CLIP ViT-L/14 used as VL pretraining generalization control (plan_012)."
+
+  # ============================================================
+  # BACKGROUND — VLM Design, Frozen Encoders, Multi-modal Fusion
+  # ============================================================
+  - id: karamcheti2024
+    title: "Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models"
+    authors: "Siddharth Karamcheti, Suraj Nair, Ashwin Balakrishna, Percy Liang, Thomas Kollar, Dorsa Sadigh"
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2402.07865"
+    category: background
+    role: baseline
+    key_findings: >
+      Systematic investigation of VLM design space: pretrained visual representations, base vs instruct-tuned LM, etc.
+      Different vision encoder ensembles (SigLIP, DINOv2) improve performance.
+      OpenVLA is directly built on the Prismatic architecture.
+    relevance_to_us: >
+      OpenVLA's VLM backbone origin. The SigLIP+DINOv2 fusion design choice
+      is the architectural basis for our analysis of "frozen vision encoder carries instruction conditioning."
+    novelty_gap: >
+      VLM design space exploration, no VLA-specific representation analysis.
+      No trained vs untrained comparison.
+    notes: "Significant author overlap with OpenVLA team."
+
+  - id: vla_survey2025
+    title: "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges"
+    authors: "Multiple authors"
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2505.04769"
+    category: background
+    role: context
+    key_findings: >
+      Comprehensive survey of 100+ VLA architectures, 26 major VLA datasets.
+      Large-scale quantitative analysis linking model design choices to normalized performance.
+      Covers fusion strategy, action representation, encoder selection.
+    relevance_to_us: "Provides VLA landscape for positioning our work in the representation analysis sub-direction."
+    novelty_gap: "Survey, no original experimental analysis."
+    notes: "Most comprehensive VLA survey as of 2025-05."
+
+  # ============================================================
+  # EVALUATION — LIBERO Benchmark Ecosystem
+  # ============================================================
+  - id: liu2023_libero
+    title: "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning"
+    authors: "Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, Peter Stone"
+    year: 2023
+    venue: "NeurIPS 2023"
+    arxiv_id: "2306.03310"
+    category: evaluation
+    role: baseline
+    key_findings: >
+      130 tasks across 4 suites (LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, LIBERO-Long).
+      Procedural generation + skill blending + human teleoperation demonstrations.
+      Lifelong learning benchmark with knowledge transfer evaluation.
+    relevance_to_us: "Our primary experimental platform. LIBERO-10 (fine-tuning) + LIBERO-Goal (OOD test)."
+    novelty_gap: null
+    notes: "NeurIPS 2023 Datasets and Benchmarks track."
+
+  - id: fei2025_libero_plus
+    title: "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models"
+    authors: "Senyu Fei, Siyin Wang, Junhao Shi, et al."
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2510.13626"
+    category: evaluation
+    role: context
+    key_findings: >
+      7-dimension controlled perturbations expose VLA fragility.
+      Performance drops from 95% to <30% (camera viewpoint, robot initial state most sensitive).
+      Models are insensitive to language variations — largely ignore language instructions.
+      Positional bias over genuine semantic understanding.
+    relevance_to_us: >
+      "Models ignore language instructions" is consistent with our finding that
+      training doesnt improve representation structure — VLAs have not truly learned language grounding.
+    novelty_gap: "Behavioral robustness analysis, no representation-level analysis."
+    notes: "Submitted 2025-10. OpenMOSS team."
+
+  - id: zhou2025_libero_pro
+    title: "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization"
+    authors: "Xueyang Zhou, Yangming Xu, Guiyao Tie, et al."
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2510.03827"
+    category: evaluation
+    role: context
+    key_findings: >
+      Standard LIBERO >90% accuracy, but generalized setting collapses to 0.0%.
+      Exposes reliance on rote memorization (action sequences + environment layouts)
+      rather than genuine task understanding or environmental perception.
+    relevance_to_us: >
+      "Memorization not understanding" supports our story:
+      VLA training improves action sequence memorization, not representation structure.
+    novelty_gap: "Behavioral evaluation, no representation analysis."
+    notes: "Submitted 2025-10."
+
+  - id: libero_para2026
+    title: "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models"
+    authors: "Multiple authors"
+    year: 2026
+    venue: "arXiv preprint"
+    arxiv_id: "2603.28301"
+    category: evaluation
+    role: context
+    key_findings: >
+      7 VLA configurations (0.6B-7.5B) show 22-52pp performance degradation under paraphrasing.
+      80-96% of failures from planning-level trajectory divergence (not execution errors),
+      indicating paraphrasing disrupts task identification.
+      Synonym substitution alone causes large drops — relies on surface-level matching, not semantic grounding.
+    relevance_to_us: >
+      Further confirms VLAs lack true language grounding.
+      Complements our "instruction conditioning comes from input pathway structure, not semantic training."
+    novelty_gap: "Paraphrase robustness diagnosis, no representation analysis."
+    notes: "Submitted 2026-03-30."
+
+  # ============================================================
+  # RELATED ARCHITECTURE — VLA Models
+  # ============================================================
+  - id: kim2024_openvla
+    title: "OpenVLA: An Open-Source Vision-Language-Action Model"
+    authors: "Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, et al."
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2406.09246"
+    category: related-architecture
+    role: baseline
+    key_findings: >
+      7B-param VLA trained on 970k real-world robot demonstrations (Open X-Embodiment).
+      Llama 2 7B backbone + DINOv2+SigLIP fused vision encoder.
+      Outperforms RT-2-X (55B) by 16.5% absolute with 7x fewer parameters.
+    relevance_to_us: >
+      Our analysis target. All probing/RSA/CKA experiments use OpenVLA-7B.
+      Architecture details (frozen SigLIP, Llama 2 backbone) directly affect our interpretation
+      of "input pathway vs training."
+    novelty_gap: null
+    notes: "Stanford/Toyota/Google. Open-source checkpoints + training code."
+
+  - id: brohan2023_rt2
+    title: "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control"
+    authors: "Anthony Brohan et al."
+    year: 2023
+    venue: "arXiv preprint"
+    arxiv_id: "2307.15818"
+    category: related-architecture
+    role: context
+    key_findings: >
+      Co-fine-tunes VLM (PaLM-E 55B) on robotic trajectory data + internet-scale VL tasks.
+      Robot actions represented as text tokens.
+      Demonstrates emergent capabilities: novel object generalization, chain-of-thought reasoning.
+    relevance_to_us: >
+      Pioneering VLA architecture. RT-2 uses PaLM-E, OpenVLA uses Llama 2,
+      but shares the "LLM backbone + frozen vision encoder" core design.
+      Our findings may generalize to similar architectures.
+    novelty_gap: "No representation analysis. No trained vs untrained comparison."
+    notes: "Google DeepMind. 55B params, not open-source."
+
+  - id: ghosh2024_octo
+    title: "Octo: An Open-Source Generalist Robot Policy"
+    authors: "Octo Model Team, Dibya Ghosh, Homer Walke, Karl Pertsch, et al."
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2405.12213"
+    category: related-architecture
+    role: context
+    key_findings: >
+      Transformer-based diffusion policy pretrained on 800k robot episodes (Open X-Embodiment).
+      Lightweight CNN vision encoder + language model for text instructions.
+      27M (Small) / 93M (Base) params, consumer GPU fine-tuning.
+    relevance_to_us: >
+      Alternative VLA architecture (not LLM-based). Grant 2026 tests include Octo.
+      If our findings generalize to Octo, the input pathway effect is cross-architectural.
+    novelty_gap: "No representation analysis. No frozen encoder analysis."
+    notes: "Berkeley. Author overlap with OpenVLA."
+
+  - id: black2024_pi0
+    title: "pi0: A Vision-Language-Action Flow Model for General Robot Control"
+    authors: "Kevin Black et al."
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2410.24164"
+    category: related-architecture
+    role: context
+    key_findings: >
+      Flow matching action head (not autoregressive tokens), 50Hz continuous trajectories.
+      Pre-trained VLM backbone + flow matching combination.
+      7 robotic platforms, 68 tasks. Real-world dexterous manipulation.
+    relevance_to_us: >
+      pi0 uses continuous flow matching vs discrete tokens — different action representation.
+      Grant 2026 and Haon 2025 both tested Pi0/pi0.5, enabling cross-reference with our OpenVLA results.
+    novelty_gap: "No representation structure analysis."
+    notes: "Physical Intelligence. Commercial frontier VLA."
+
+# ============================================================
+# CATEGORY INDEX
+# ============================================================
+categories:
+  direct-competitor:
+    description: "VLA representation / interpretability / language grounding analysis"
+    papers:
+      - grant2026
+      - swann2026
+      - rizzardo2026
+      - haon2025
+      - molinari2025
+      - lu2025
+      - fang_intention2025
+      - fang_cf2026
+      - hou2026
+
+  method-component:
+    description: "RSA, CKA, linear probing methodological references"
+    papers:
+      - kriegeskorte2008
+      - kornblith2019
+      - alain2017
+
+  vision-encoder:
+    description: "Vision encoder architectures used in our analysis (SigLIP, DINOv2, CLIP)"
+    papers:
+      - zhai2023_siglip
+      - oquab2024_dinov2
+      - radford2021_clip
+
+  background:
+    description: "VLM design space, frozen encoder effects, multi-modal fusion"
+    papers:
+      - karamcheti2024
+      - vla_survey2025
+
+  evaluation:
+    description: "LIBERO benchmark ecosystem and VLA robustness evaluation"
+    papers:
+      - liu2023_libero
+      - fei2025_libero_plus
+      - zhou2025_libero_pro
+      - libero_para2026
+
+  related-architecture:
+    description: "VLA model architectures (OpenVLA, RT-2, Octo, pi0)"
+    papers:
+      - kim2024_openvla
+      - brohan2023_rt2
+      - ghosh2024_octo
+      - black2024_pi0
+
+# ============================================================
+# SYNTHESIS: OUR NOVELTY POSITION
+# ============================================================
+synthesis:
+  our_core_claim: "Instruction Input Pathway Drives Conditioning, Not Training"
+
+  what_others_have_done:
+    behavioral_level:
+      - "Grant 2026: vision pathway dominates, language 'encoded but not used' (activation injection)"
+      - "LIBERO-CF/LangGap/LIBERO-Plus: VLAs ignore language instructions (counterfactual/robustness tests)"
+      - "LIBERO-PRO: models rely on memorization not understanding"
+      - "Fang 2025: fine-tuning erodes VLM reasoning (intention != execution)"
+    representation_level:
+      - "Swann 2026: SAE features mostly memorized sequences, some interpretable (OpenVLA)"
+      - "Molinari 2025: world model emerges in middle layers (OpenVLA)"
+      - "Lu 2025: symbolic states decodable with >0.90 accuracy (OpenVLA + LIBERO)"
+      - "Haon 2025: sparse semantic directions causally linked to actions (Pi0 + OpenVLA)"
+      - "Rizzardo 2026: feature-observability and controllability (pi0.5 + OpenVLA)"
+
+  what_nobody_has_done:
+    - "Trained vs untrained VLA representation comparison (we find trained ~= untrained >> DINO)"
+    - "Instruction input pathway vs LLM training separation analysis (6 probing rounds + RSA all consistent)"
+    - "Systematic layer-wise RSA/CKA comparison of trained/untrained/DINO representation structures"
+    - "Instruction ablation causal verification: removing instruction drops RSA to DINO level"
+
+  key_differentiation_from_grant2026: >
+    Grant 2026 compares different VLA models (architectural differences);
+    we compare trained vs untrained within the same model (training effect isolation).
+    Grant finds "language encoded but not used" (behavioral level);
+    we find "conditioning comes from input pathway, not training" (representation level).
+    Complementary, not competing. Related Work must qualify OFT vs standard fine-tuning difference.

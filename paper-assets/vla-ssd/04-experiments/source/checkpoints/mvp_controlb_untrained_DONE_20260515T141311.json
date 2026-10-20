@@ -1,0 +1,58 @@
+{
+  "exp_id": "mvp_controlb_untrained",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:49:54.491Z",
+    "updated_at": "2026-05-15T14:13:11.588Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/untrained/ --output_dir /root/autodl-tmp/vla-ssd/results/untrained_label_perm/ --probe_type temporal_distance --shuffle_labels --seed 42 --gpu 0\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "608886",
+      "log_path": "~/runs/vla-ssd/mvp_controlb_untrained.log",
+      "submitted_at": "2026-05-15T13:49:54.473Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/untrained/",
+      "data_count": "10 tasks x 50 demos, 33 layers x 4096 dim, labels shuffled",
+      "model_name": "MLP probe (shuffle_labels=True)",
+      "seed": 42,
+      "wall_clock_seconds": 1377.0,
+      "gpu_hours": 0.38
+    },
+    "hypothesis": "Control B (label permutation): untrained features with shuffled distance labels, expected ρ≈0 — null control for probe validity",
+    "reproduce": {
+      "finished_at": "2026-05-15T14:10:00.561Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T14:10:02.045813+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "best_layer": 1,
+      "best_per_task_mean_rho": 0.0093,
+      "best_pooled_rho": 0.0085,
+      "R2": -0.0031,
+      "max_abs_rho_all_layers": 0.0093,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/untrained_label_perm/",
+      "log_path": "~/runs/vla-ssd/mvp_controlb_untrained.log"
+    },
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/untrained_label_perm/",
+    "completed_at": "2026-05-15T14:12:51.504Z"
+  },
+  "timestamp": "2026-05-15T14:13:11.612681+00:00",
+  "trigger": "update_registry"
+}

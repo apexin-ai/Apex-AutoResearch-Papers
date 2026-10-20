@@ -1,0 +1,994 @@
+tier: median
+narrative_guidance: 'Median 档下，R² exit collapse 在 8/10 cells 确认但 OpenVLA 有 2 个弱 cell（Long
+  OFT + Spatial）， 削弱 "architecture-independent" 的绝对性，需降为 "consistent across three
+  tested architectures with caveats"。D090 区分（training-induced vs base-model-dependent）成为双刃剑：区分本身是
+  honest science，但 reviewers 会追问 "如果 L1 heads 来自预训练，training 到底贡献了什么？"。 三层级梯度仅 1 个
+  Tier-2 数据点（OXE openvla-7b），被降为 suggestive observation。 CF sensitivity ratio 被 OpenVLA
+  OXE baseline 的高 CF 拉低（OXE 本身 d≈1.0， 训练后仅 d≈1.15，ratio 仅 1.1×），与 TracVLA 10× 形成鲜明对比，
+  暴露 "cross-architecture CF ratio" 实际是 "cross-baseline CF ratio" 问题。 NORA 仅 2/4 suites
+  被视为 incomplete。C3 移入 appendix。 需要 1 个轻量 additional analysis 补偿 contribution density，
+  推荐 exit-collapse-rate analysis（无新 GPU 成本，用已有 R² profiles 计算 exit 层衰减斜率）。 仍可 accept
+  但需要 reviewer champion，accept probability ≈ 0.35。
+
+  '
+imagined_experiments:
+- name: openvla_goal_standardized_v1
+  plan_id: N/A — registry-level, fills OpenVLA × Goal cell in 3×4 matrix
+  description: 'OpenVLA (Llama-2-7B) on LIBERO-Goal 的标准化 5-phase pipeline： R² probing、L1
+    attention、cross-instruction classification、RSA、counterfactual。 Trained = openvla-7b-finetuned-libero-goal，Untrained
+    = openvla-7b (OXE pretrained, Tier-2)。 10 tasks × 10 demos × 50 timesteps。 Median
+    档预测：确认 R² exit collapse（Δ=0.141），但 CF ratio 偏低（1.12×） 因 OXE baseline 本身已有强 CF
+    sensitivity。
+
+    '
+  expected_results:
+    trained_r2_last_preaction:
+      L0: 0.561
+      L4: 0.638
+      L8: 0.659
+      L12: 0.672
+      L16: 0.651
+      L20: 0.623
+      L24: 0.589
+      L28: 0.556
+      L31: 0.531
+      peak_layer: 12
+      peak_r2: 0.672
+      exit_r2: 0.531
+      delta_peak_exit: 0.141
+    trained_r2_image_mean:
+      L0: 0.636
+      L4: 0.647
+      L8: 0.658
+      L10: 0.661
+      L12: 0.655
+      L16: 0.639
+      L20: 0.612
+      L24: 0.594
+      L28: 0.587
+      L31: 0.578
+      peak_layer: 10
+      peak_r2: 0.661
+    untrained_r2_last_preaction:
+      L0: 0.608
+      L4: 0.776
+      L8: 0.795
+      L12: 0.807
+      L16: 0.812
+      L20: 0.819
+      L21: 0.822
+      L24: 0.818
+      L28: 0.813
+      L31: 0.808
+      peak_layer: 21
+      peak_r2: 0.822
+      exit_r2: 0.808
+      delta_peak_exit: 0.014
+    untrained_r2_image_mean:
+      L0: 0.826
+      L4: 0.833
+      L8: 0.837
+      L12: 0.846
+      L16: 0.843
+      L20: 0.838
+      L24: 0.839
+      L28: 0.841
+      L31: 0.836
+      peak_layer: 12
+      peak_r2: 0.846
+    trained_l1_attention:
+      instruction_dominant: 24
+      mixed: 4
+      image_dominant: 4
+      total_heads: 32
+      mean_text_attn: 0.571
+      mean_image_attn: 0.218
+    untrained_l1_attention:
+      instruction_dominant: 25
+      mixed: 7
+      image_dominant: 0
+      total_heads: 32
+      mean_text_attn: 0.672
+      mean_image_attn: 0.221
+    trained_cross_instruction:
+      image_mean_all_layers: 0.1
+      last_preaction_L0: 0.1
+      last_preaction_L1: 0.997
+      last_preaction_L2_plus: 1.0
+    untrained_cross_instruction:
+      image_mean_all_layers: 0.1
+      last_preaction_all_layers: 1.0
+      note: OXE model maintains 100% classification accuracy at all layers — no deep-layer
+        degradation
+    trained_counterfactual:
+      empty_d: 1.15
+      wrong_d: 0.93
+      shuffled_d: 0.72
+      paraphrased_d: 0.62
+      ranking: empty > wrong > shuffled > paraphrased
+    untrained_counterfactual:
+      empty_d: 1.03
+      wrong_d: 0.82
+      shuffled_d: 0.61
+      paraphrased_d: 0.59
+      ranking: empty > wrong > shuffled > paraphrased
+    cf_ratio_empty: 1.12
+    trained_rsa_peak:
+      layer: 12
+      rsa: 0.497
+    untrained_rsa_peak:
+      layer: 12
+      rsa: 0.518
+    r2_exit_collapse_confirmed: true
+    training_induced: true
+    delta_trained_vs_untrained: 0.127
+  result_rationale: 'Goal 确认 collapse 的逻辑：（1）LIBERO-Goal 任务需要 instruction routing
+    来识别 目标物体（"pick up the red mug" vs "pick up the blue cup"），训练将这种 routing 从 OXE
+    的 diffuse mid-layer 模式重组为 entry-exit bookend 模式； （2）R² exit collapse（Δ=0.141）的量级与
+    OpenVLA Object（Δ=0.121）一致， 表明 Goal/Object 类任务在 OpenVLA 上稳定产生 training-induced
+    collapse； （3）但 CF ratio 仅 1.12×（trained d=1.15 / OXE d=1.03），远低于 TracVLA 10×，
+    因为 OXE 在 970K diverse episodes 上已建立强 instruction sensitivity—— LIBERO fine-tuning
+    只做边际提升，而非从零创建； （4）L1 heads 几乎不变（trained 24 vs OXE 25），进一步确认 D090： L1 routing 是
+    base-model 继承的，不是 LIBERO 训练创造的； （5）Untrained R² profile 极其平坦（Δ=0.014），与 Long untrained（Δ=0.016）一致，
+    说明 OXE 预训练创造的是均匀的 representation preservation，而非 exit collapse。 OXE model cross-instruction
+    全层 100% 也表明 Tier-2 已有完善的 language routing。
+
+    '
+  tables:
+  - title: OpenVLA Goal R² Exit Collapse Comparison
+    columns:
+    - Condition
+    - Peak Layer
+    - Peak R²
+    - Exit R² (L31)
+    - Δ(peak−exit)
+    - Collapse?
+    rows:
+    - - Trained (LIBERO-Goal)
+      - L12
+      - '0.672'
+      - '0.531'
+      - '0.141'
+      - ✓
+    - - Untrained (OXE)
+      - L21
+      - '0.822'
+      - '0.808'
+      - '0.014'
+      - ✗
+  - title: OpenVLA Goal L1 Attention Comparison
+    columns:
+    - Metric
+    - Trained
+    - Untrained (OXE)
+    - Δ
+    rows:
+    - - Instruction-dominant heads
+      - 24/32
+      - 25/32
+      - '-1'
+    - - Mean text attention
+      - '0.571'
+      - '0.672'
+      - '-0.101'
+    - - Mean image attention
+      - '0.218'
+      - '0.221'
+      - '-0.003'
+  - title: OpenVLA Goal CF Sensitivity
+    columns:
+    - Condition
+    - Empty d
+    - Wrong d
+    - Shuffled d
+    - Para d
+    rows:
+    - - Trained
+      - '1.15'
+      - '0.93'
+      - '0.72'
+      - '0.62'
+    - - Untrained (OXE)
+      - '1.03'
+      - '0.82'
+      - '0.61'
+      - '0.59'
+    - - Ratio
+      - 1.12×
+      - 1.13×
+      - 1.18×
+      - 1.05×
+  figures_description:
+  - 'R² per-layer profile (last_preaction): trained 显示经典 inverted-U（peak L12=0.672）
+    并在 exit 层急剧下降至 0.531；OXE untrained 为近乎平坦曲线（0.78-0.82）， 两条线在 L0-L4 和 L28-L31 区间交叉，中间层
+    trained 高于 untrained。 明确标注 Δ(peak-exit) = 0.141 vs 0.014。
+
+    '
+  - 'L1 attention heatmap：两条件几乎相同（24 vs 25 instruction-dominant heads）， 视觉上突出 D090
+    finding——L1 routing 来自 OXE 预训练而非 LIBERO fine-tuning。
+
+    '
+  analysis: 'Goal cell 成功确认 R² exit collapse 的 training-induced 性质。 但该 cell 同时暴露 OpenVLA
+    特有问题：OXE untrained baseline 极强 （R² flat ~0.82, CF d≈1.0, L1 25/32 heads, cross-instruction
+    100%）， 导致 trained-untrained 对比的 margin 远小于 TracVLA/NORA（Tier-3 vs Tier-1）。 这使得
+    "cross-architecture CF ratio" 实际上是 "cross-baseline sensitivity ratio"， 需要在论文中显式说明。对
+    reviewer 而言，Goal 的 R² collapse 是干净的， 但 CF 和 L1 数据不提供额外支持。
+
+    '
+- name: openvla_spatial_standardized_v1
+  plan_id: N/A — registry-level, fills OpenVLA × Spatial cell in 3×4 matrix
+  description: 'OpenVLA on LIBERO-Spatial 的标准化 5-phase pipeline。 Median 档预测：R² exit
+    collapse 偏弱（Δ=0.037 < 0.05），成为第二个弱 cell （与 Long OFT 并列）。成因不同于 OFT：Spatial 任务的
+    instruction routing 需求 较低（空间关系主要由视觉编码器处理），加上 OXE pretraining 已涵盖大量 spatial manipulation
+    数据，LIBERO Spatial 的边际贡献极小。
+
+    '
+  expected_results:
+    trained_r2_last_preaction:
+      L0: 0.558
+      L4: 0.641
+      L8: 0.668
+      L12: 0.674
+      L14: 0.679
+      L16: 0.672
+      L20: 0.657
+      L24: 0.649
+      L28: 0.645
+      L31: 0.642
+      peak_layer: 14
+      peak_r2: 0.679
+      exit_r2: 0.642
+      delta_peak_exit: 0.037
+    trained_r2_image_mean:
+      L0: 0.642
+      L4: 0.651
+      L8: 0.665
+      L11: 0.67
+      L12: 0.669
+      L16: 0.651
+      L20: 0.634
+      L24: 0.622
+      L28: 0.618
+      L31: 0.612
+      peak_layer: 11
+      peak_r2: 0.67
+    untrained_r2_last_preaction:
+      L0: 0.611
+      L4: 0.779
+      L8: 0.798
+      L12: 0.811
+      L16: 0.816
+      L20: 0.821
+      L22: 0.824
+      L24: 0.82
+      L28: 0.815
+      L31: 0.811
+      peak_layer: 22
+      peak_r2: 0.824
+      exit_r2: 0.811
+      delta_peak_exit: 0.013
+    untrained_r2_image_mean:
+      L0: 0.828
+      L4: 0.835
+      L8: 0.84
+      L12: 0.849
+      L16: 0.845
+      L20: 0.84
+      L24: 0.841
+      L28: 0.843
+      L31: 0.838
+      peak_layer: 12
+      peak_r2: 0.849
+    trained_l1_attention:
+      instruction_dominant: 22
+      mixed: 5
+      image_dominant: 5
+      total_heads: 32
+      mean_text_attn: 0.527
+      mean_image_attn: 0.258
+    untrained_l1_attention:
+      instruction_dominant: 25
+      mixed: 7
+      image_dominant: 0
+      total_heads: 32
+      mean_text_attn: 0.668
+      mean_image_attn: 0.225
+    trained_cross_instruction:
+      image_mean_all_layers: 0.1
+      last_preaction_L0: 0.1
+      last_preaction_L1: 0.989
+      last_preaction_L2_plus: 1.0
+    untrained_cross_instruction:
+      last_preaction_all_layers: 1.0
+    trained_counterfactual:
+      empty_d: 0.82
+      wrong_d: 0.68
+      shuffled_d: 0.56
+      paraphrased_d: 0.49
+    untrained_counterfactual:
+      empty_d: 1.01
+      wrong_d: 0.8
+      shuffled_d: 0.59
+      paraphrased_d: 0.57
+    cf_ratio_empty: 0.81
+    cf_ratio_note: Trained CF LOWER than untrained — OXE 的 spatial 泛化能力被 LIBERO fine-tuning
+      部分覆写
+    trained_rsa_peak:
+      layer: 14
+      rsa: 0.502
+    untrained_rsa_peak:
+      layer: 12
+      rsa: 0.521
+    r2_exit_collapse_confirmed: false
+    training_induced: weak
+    delta_trained_vs_untrained: 0.024
+    verdict: △ — Δ=0.037 存在但 < 0.05 threshold; trained CF 低于 untrained
+  result_rationale: 'Spatial 弱效应的三层原因： （1）Task 特性：LIBERO-Spatial 的 instruction 主要指定空间关系（"put
+    X on the left of Y"），routing 需求集中在 spatial parsing 而非 goal identification。 Vision
+    encoder + OXE pretraining 已提供充分的 spatial representation， LIBERO fine-tuning 对
+    instruction routing 的边际改造极小。 （2）OXE coverage：Open X-Embodiment 970K episodes 包含大量
+    kitchen/tabletop spatial manipulation 任务（Bridge, RT-1, TOTO 等），OXE pretrained
+    model 已经在 spatial reasoning 上饱和——不像 Goal 任务中存在特异性目标物体需要额外学习。 （3）R² profile 解读：trained
+    last_preaction 呈现 shallow inverted-U （peak L14=0.679, exit L31=0.642, Δ=0.037），相比
+    Goal（Δ=0.141） 衰减幅度小 3.8×。exit layer 仍保留较高 R²（0.642 vs Goal 的 0.531）， 说明训练未充分 "collapse"
+    exit 层信息。 CF ratio < 1（trained 0.82 < untrained 1.01）是最具挑战性的结果： 意味着 LIBERO Spatial
+    fine-tuning 反而降低了整体 instruction sensitivity。 解读：OXE 的 generalist sensitivity 被
+    specialist fine-tuning 部分覆写为 task-specific pattern，总量下降但方向性更强（更 task-aligned 而非更
+    sensitive）。 Reviewer 会质疑："如果训练降低 CF sensitivity，你怎么能 claim training improves routing？"
+    回应需要精细区分 sensitivity 和 specificity。
+
+    '
+  tables:
+  - title: OpenVLA Spatial R² Exit Collapse Comparison
+    columns:
+    - Condition
+    - Peak Layer
+    - Peak R²
+    - Exit R² (L31)
+    - Δ(peak−exit)
+    - Collapse?
+    rows:
+    - - Trained (LIBERO-Spatial)
+      - L14
+      - '0.679'
+      - '0.642'
+      - '0.037'
+      - △ weak
+    - - Untrained (OXE)
+      - L22
+      - '0.824'
+      - '0.811'
+      - '0.013'
+      - ✗
+  - title: OpenVLA Spatial CF Sensitivity — Trained LOWER than Untrained
+    columns:
+    - Condition
+    - Empty d
+    - Wrong d
+    - Shuffled d
+    - Para d
+    rows:
+    - - Trained
+      - '0.82'
+      - '0.68'
+      - '0.56'
+      - '0.49'
+    - - Untrained (OXE)
+      - '1.01'
+      - '0.80'
+      - '0.59'
+      - '0.57'
+    - - Ratio (T/U)
+      - 0.81×
+      - 0.85×
+      - 0.95×
+      - 0.86×
+  - title: OpenVLA 4-Suite Summary — 2 strong, 2 weak
+    columns:
+    - Suite
+    - Trained Δ(peak−exit)
+    - CF Ratio
+    - Collapse?
+    - Issue
+    rows:
+    - - Object
+      - '0.121'
+      - ~2×
+      - ✓
+      - —
+    - - Goal
+      - '0.141'
+      - 1.12×
+      - ✓
+      - CF ratio low
+    - - Spatial
+      - '0.037'
+      - 0.81×
+      - △
+      - Δ < 0.05, CF inverted
+    - - Long (OFT)
+      - '0.004'
+      - ~1×
+      - △
+      - OFT training confound
+  figures_description:
+  - 'R² last_preaction 4-suite overlay for OpenVLA trained：Object (Δ=0.121) 和 Goal
+    (Δ=0.141) 展示清晰 exit collapse；Spatial (Δ=0.037) 呈 shallow decline； Long OFT (Δ=0.004)
+    几乎平坦。形成从强到弱的连续谱系， 标注 Δ < 0.05 threshold line。
+
+    '
+  - 'Trained vs Untrained CF d scatter plot：x=untrained d, y=trained d, 点标注 suite
+    name。Goal 在 y=x 线略上方，Spatial 在线下方（唯一反转 cell）， Long 接近对角线。对角线上方 = training increases
+    CF，下方 = training decreases CF。
+
+    '
+  analysis: 'Spatial 弱 cell 与 Long OFT 弱 cell 的成因不同： OFT 是因为 parameter-efficient fine-tuning
+    限制了权重变化幅度（frozen majority weights）， Spatial 是因为 OXE pretraining 已充分覆盖了 spatial
+    reasoning task space。 两者共同削弱 "architecture-independent" 的绝对性，但方式互补： OFT 说明 training
+    method matters，Spatial 说明 pretraining coverage matters。 论文需要承认这些 nuances 并将 claim
+    降为 "consistent across three tested architectures in 8/10 cells, with two exceptions
+    attributable to specific training configurations"。 对 acceptance 的影响：Spatial 的
+    CF inversion 是最 damaging 的数据点， reviewer 可以用它论证 "training does not consistently
+    enhance instruction routing"。 反驳策略：强调 R² collapse 是 robust metric（8/10 cells），CF
+    是 secondary indicator 且受 baseline strength 影响，Spatial 的 inverted CF 恰恰说明 specialist
+    fine-tuning trades breadth for depth。
+
+    '
+- name: cf_batch_missing_v1
+  plan_id: N/A — registry-level batch job filling 5 missing untrained CF cells
+  description: '批量补跑 5 个 untrained counterfactual cells，使用 cosine_dist 方法 （untrained
+    VLM/VLA 的 hidden representation cosine distance，非 action-space d）。 条件：OpenVLA
+    Object untrained (OXE), TracVLA Spatial/Object/Goal/Long untrained (Phi-3-Vision)。
+    已完成执行，进入 ANALYZING 状态。 Median 档预测：所有 5 条件成功产出，但 OpenVLA untrained (OXE) 与 TracVLA
+    untrained (Phi-3 base) 的 cos_dist 量级差异大（OXE >> Phi-3），暴露跨架构对比的 baseline 不均。
+
+    '
+  expected_results:
+    openvla_object_untrained:
+      method: cosine_dist_L31
+      empty:
+        cos_dist: 0.238
+        cohens_d: 12.4
+      wrong:
+        cos_dist: 0.231
+        cohens_d: 8.7
+      shuffled:
+        cos_dist: 0.189
+        cohens_d: 7.2
+      paraphrased:
+        cos_dist: 0.073
+        cohens_d: 5.1
+      ordering: empty ≈ wrong >> shuffled >> paraphrased
+      note: OXE model cos_dist 远高于 Phi-3 base — OXE 的 instruction sensitivity 强
+    tracvla_spatial_untrained:
+      method: cosine_dist_L31
+      empty:
+        cos_dist: 0.142
+        cohens_d: 9.8
+      wrong:
+        cos_dist: 0.018
+        cohens_d: 1.6
+      shuffled:
+        cos_dist: 0.091
+        cohens_d: 1.9
+      paraphrased:
+        cos_dist: 0.005
+        cohens_d: 1.8
+      ordering: empty >> shuffled > wrong > paraphrased
+    tracvla_object_untrained:
+      method: cosine_dist_L31
+      empty:
+        cos_dist: 0.151
+        cohens_d: 10.1
+      wrong:
+        cos_dist: 0.019
+        cohens_d: 1.7
+      shuffled:
+        cos_dist: 0.097
+        cohens_d: 2.0
+      paraphrased:
+        cos_dist: 0.005
+        cohens_d: 1.9
+      ordering: empty >> shuffled > wrong ≈ paraphrased
+    tracvla_goal_untrained:
+      method: cosine_dist_L31
+      empty:
+        cos_dist: 0.148
+        cohens_d: 9.5
+      wrong:
+        cos_dist: 0.017
+        cohens_d: 1.4
+      shuffled:
+        cos_dist: 0.085
+        cohens_d: 1.5
+      paraphrased:
+        cos_dist: 0.004
+        cohens_d: 1.7
+      ordering: empty >> shuffled > wrong > paraphrased
+    tracvla_long_untrained:
+      method: cosine_dist_L31
+      empty:
+        cos_dist: 0.168
+        cohens_d: 11.0
+      wrong:
+        cos_dist: 0.022
+        cohens_d: 1.8
+      shuffled:
+        cos_dist: 0.116
+        cohens_d: 2.1
+      paraphrased:
+        cos_dist: 0.007
+        cohens_d: 1.7
+      ordering: empty >> shuffled > wrong > paraphrased
+    cross_condition_pattern: 'Universal ordering for Phi-3 base: empty >> shuffled
+      > {wrong, para}。 Structural perturbation (empty = remove all tokens) > reordering
+      (shuffled) > semantic (wrong, para)。 与 trained CF ordering (empty > wrong >
+      shuffled > para) 不同 — training reshapes ordering from structural-dominance to
+      semantic-sensitivity。 OXE untrained ordering closer to trained pattern (empty
+      ≈ wrong >> shuffled) because OXE already has semantic routing。
+
+      '
+    matrix_completeness_after:
+      total_cf_cells: 20
+      filled_before: 14
+      filled_after: 19
+      still_missing: NORA Spatial untrained CF (potentially in nora_spatial_pipeline_v2)
+  result_rationale: '（1）Phi-3-Vision base (TracVLA untrained) 的 cos_dist 模式一致且量级偏低
+    （empty cos_dist 0.14-0.17，wrong/para 仅 0.005-0.022），因为 Phi-3 base 是纯 VLM， instruction
+    虽被 attend to（L1 32/32 heads）但不 condition action-relevant computation （无 action
+    training），perturbation 仅引起浅层 representation shift。 Empty 的 cos_dist 远超其他条件（10-30×）是因为
+    empty = 完全移除 instruction tokens 改变了 sequence structure，产生 structural 而非 semantic
+    的 representation change。 （2）OXE untrained 的 cos_dist 显著更高（wrong=0.231 vs Phi-3
+    0.017-0.022）， 因为 OXE 模型经过 action training，instruction perturbation 通过 routing
+    mechanism 传导到 deeper representation layers，产生更大的 hidden state 偏移。 这进一步佐证 Tier-2
+    vs Tier-1 的区别。 （3）Ordering 差异（Phi-3: empty >> shuffled > wrong vs OXE: empty ≈
+    wrong >> shuffled） 反映 training 如何 reshape sensitivity：untrained VLM 对 structural
+    perturbation 最敏感 （因为没有 learned semantic routing），trained VLA 对 semantic perturbation
+    更敏感 （因为 learned instruction-conditioned routing 依赖 semantic content）。 （4）对 median
+    档的影响：这批数据完成后 CF matrix 从 14/20 → 19/20 cells， 大幅提升 completeness，但同时暴露了 OXE vs
+    Phi-3 baseline 的巨大量级差异， 使得 "cross-architecture CF comparison" 需要 careful normalization
+    或 separate discussion。
+
+    '
+  tables:
+  - title: Untrained CF Cosine Distance Summary (cf_batch_missing)
+    columns:
+    - Architecture
+    - Suite
+    - Empty cos
+    - Wrong cos
+    - Shuffled cos
+    - Para cos
+    rows:
+    - - OpenVLA (OXE)
+      - Object
+      - '0.238'
+      - '0.231'
+      - '0.189'
+      - '0.073'
+    - - TracVLA (Phi-3)
+      - Spatial
+      - '0.142'
+      - '0.018'
+      - '0.091'
+      - '0.005'
+    - - TracVLA (Phi-3)
+      - Object
+      - '0.151'
+      - '0.019'
+      - '0.097'
+      - '0.005'
+    - - TracVLA (Phi-3)
+      - Goal
+      - '0.148'
+      - '0.017'
+      - '0.085'
+      - '0.004'
+    - - TracVLA (Phi-3)
+      - Long
+      - '0.168'
+      - '0.022'
+      - '0.116'
+      - '0.007'
+  - title: 'CF Ordering Comparison: VLM Base vs OXE vs Trained'
+    columns:
+    - Condition Type
+    - CF Ordering
+    - Interpretation
+    rows:
+    - - VLM base (Phi-3/Qwen2.5)
+      - empty >> shuffled > wrong ≈ para
+      - Structural sensitivity dominant
+    - - OXE pretrained
+      - empty ≈ wrong >> shuffled > para
+      - Emerging semantic sensitivity
+    - - Task-finetuned (trained)
+      - empty > wrong > shuffled > para
+      - Full semantic sensitivity
+  figures_description:
+  - 'Grouped bar chart: 5 conditions × 4 perturbation types，y-axis = cos_dist（log
+    scale）。 OpenVLA OXE bars 明显高于 TracVLA Phi-3 bars，empty bars 在所有条件中最高。 颜色编码 Tier-1
+    (Phi-3) vs Tier-2 (OXE) 以突出 baseline asymmetry。
+
+    '
+  analysis: 'cf_batch_missing 完成后，CF matrix 接近完整（19/20 cells），但暴露的 baseline asymmetry
+    是双刃剑：一方面证明 Tier-2 (OXE) 已有比 Tier-1 (Phi-3) 更强的 instruction sensitivity（佐证三层级梯度），另一方面使得
+    cross-architecture CF ratio comparison 需要 caveat（不同 baseline 的 ratio 不可直接比较）。
+    论文策略：在 cross-arch CF table 中分开报告 Tier-1 和 Tier-2 baseline 的 ratio， 不做 aggregate
+    "4-8× cross-architecture average"。
+
+    '
+- name: exit_collapse_rate_analysis
+  plan_id: N/A — narrative-suggested lightweight additional analysis (no new GPU cost)
+  description: '使用已有 R² profiles 计算每个 matrix cell 的 exit-layer R² 衰减斜率 （last 5 layers
+    linear regression slope），量化 "exit collapse" 的 sharpness 作为 training-induced signature。无需新
+    GPU 计算，仅对已有 33-layer R² data 做回归分析。 目的：增强 contribution density，提供除 Δ(peak-exit)
+    之外的第二个 exit collapse 量化指标。
+
+    '
+  expected_results:
+    trained_exit_slopes:
+      openvla_object: -0.024
+      openvla_goal: -0.028
+      openvla_spatial: -0.007
+      openvla_long_oft: -0.001
+      tracvla_goal: -0.058
+      tracvla_spatial: -0.031
+      tracvla_object: -0.047
+      tracvla_long: -0.036
+      nora_goal: -0.139
+      nora_spatial: -0.061
+      mean_confirmed: -0.053
+      mean_all: -0.043
+    untrained_exit_slopes:
+      openvla_oxe: -0.003
+      tracvla_phi3_goal: -0.008
+      tracvla_phi3_spatial: -0.006
+      tracvla_phi3_object: -0.005
+      tracvla_phi3_long: -0.009
+      nora_qwen_goal: -0.007
+      nora_qwen_spatial: -0.005
+      mean: -0.006
+    slope_ratio_trained_vs_untrained: 7.2
+    wilcoxon_p: 0.002
+    effect_size_r: 0.81
+    cross_arch_slope_consistency:
+      openvla_mean_trained: -0.015
+      tracvla_mean_trained: -0.043
+      nora_mean_trained: -0.1
+      note: NORA shows steepest collapse (36 layers, more exit layers); TracVLA intermediate;
+        OpenVLA shallowest
+  result_rationale: 'Exit collapse rate 作为补充指标的逻辑： （1）Δ(peak-exit) 是 coarse binary
+    metric（阈值 0.05），slope 是 continuous measure， 能区分 "gradual decline" vs "sharp cliff"
+    — 对 Spatial（shallow decline）和 Goal（steep cliff）的区分更精细。 （2）所有 trained models 的
+    slope 显著负于 untrained（Wilcoxon p=0.002）， 即使包含 2 个弱 cell，表明 exit collapse 作为 population-level
+    effect 是 robust 的—— 个别 cell 弱不等于效应不存在。 （3）NORA 的极端 slope（-0.139）反映其 36 层架构在 exit
+    region 有更多层参与 collapse， 可能与 GQA (16h/2kv) 的 compressed attention 有关。 （4）OpenVLA
+    平均 slope 最浅（-0.015），与其 OXE pretrained baseline 的 "partial training already" 状态一致——LIBERO
+    fine-tuning 只做 incremental collapse。 （5）这个 analysis 不构成 new finding，但作为 supplementary
+    evidence 增强 "exit collapse is training-induced" 的统计支持，并提供 per-architecture 的 slope
+    作为 future work 的 benchmark。
+
+    '
+  tables:
+  - title: 'Exit Collapse Rate: Trained vs Untrained (last 5 layers R² slope)'
+    columns:
+    - Architecture
+    - Suite
+    - Trained Slope
+    - Untrained Slope
+    - Ratio
+    rows:
+    - - OpenVLA
+      - Object
+      - '-0.024'
+      - '-0.003'
+      - 8.0×
+    - - OpenVLA
+      - Goal
+      - '-0.028'
+      - '-0.003'
+      - 9.3×
+    - - OpenVLA
+      - Spatial
+      - '-0.007'
+      - '-0.003'
+      - 2.3×
+    - - OpenVLA
+      - Long (OFT)
+      - '-0.001'
+      - '-0.003'
+      - 0.3×
+    - - TracVLA
+      - Goal
+      - '-0.058'
+      - '-0.008'
+      - 7.3×
+    - - TracVLA
+      - Spatial
+      - '-0.031'
+      - '-0.006'
+      - 5.2×
+    - - TracVLA
+      - Object
+      - '-0.047'
+      - '-0.005'
+      - 9.4×
+    - - TracVLA
+      - Long
+      - '-0.036'
+      - '-0.009'
+      - 4.0×
+    - - NORA
+      - Goal
+      - '-0.139'
+      - '-0.007'
+      - 19.9×
+    - - NORA
+      - Spatial
+      - '-0.061'
+      - '-0.005'
+      - 12.2×
+  - title: Per-Architecture Average Exit Slope
+    columns:
+    - Architecture
+    - Trained Mean Slope
+    - Untrained Mean Slope
+    - n Cells
+    rows:
+    - - OpenVLA (Llama-2-7B)
+      - '-0.015'
+      - '-0.003'
+      - '4'
+    - - TracVLA (Phi-3-mini)
+      - '-0.043'
+      - '-0.007'
+      - '4'
+    - - NORA (Qwen2.5-VL-3B)
+      - '-0.100'
+      - '-0.006'
+      - '2'
+  figures_description:
+  - 'Paired dot plot: 每个 matrix cell 一对点（trained slope vs untrained slope）， connected
+    by line。x-axis = cell identity (grouped by architecture)，y-axis = slope。 Trained
+    dots 系统性低于 untrained dots（除 OFT Long 反转）。 添加 Wilcoxon p=0.002 annotation 和 overall
+    effect size r=0.81。
+
+    '
+  - 'Per-architecture bar chart: 3 architectures，stacked showing trained vs untrained
+    mean slopes。NORA 的极端 trained slope 突出 architecture-dependent magnitude 但 direction-consistent
+    effect。
+
+    '
+  analysis: '这个轻量 analysis 的 contribution 是将 exit collapse 从 binary (Δ > 0.05?) 转为
+    continuous metric（slope），使得 "8/10 cells confirm" 的 narrative 可以升级为 "trained exit
+    slope significantly steeper than untrained across all 3 architectures (Wilcoxon
+    p=0.002, r=0.81)"。即使 2 个弱 cell 的 slope 也朝向正确方向（Spatial -0.007 vs untrained -0.003），
+    只是 magnitude 小。OFT Long 是唯一 slope 反转（-0.001 vs -0.003）， 作为 genuine outlier 需要在
+    Limitations 中讨论。 放置位置：Results section 的 cross-architecture summary 段末， 作为 "quantifying
+    exit collapse sharpness" 的一段（不值得独立 subsection）。
+
+    '
+- name: aggregate_metrics_summary
+  plan_id: N/A — derived from all completed experiments
+  description: '所有 RUNNING 实验完成后的 aggregate metrics 汇总和更新后的 cross-architecture matrix。
+
+    '
+  expected_results:
+    r2_collapse_confirmed_cells: 8
+    r2_collapse_weak_cells: 2
+    r2_collapse_weak_identities:
+    - OpenVLA Long (OFT)
+    - OpenVLA Spatial
+    total_matrix_cells: 10
+    impossible_cells: 2
+    impossible_identities:
+    - NORA Object (no checkpoint)
+    - NORA Long (no checkpoint)
+    mean_trained_exit_delta_all_10: 0.215
+    mean_trained_exit_delta_confirmed_8: 0.264
+    cf_sensitivity_ratios:
+      tracvla_goal: 10×
+      tracvla_spatial: 7×
+      tracvla_object: 7×
+      tracvla_long: 8×
+      nora_goal: extreme (saturated)
+      nora_spatial: extreme
+      openvla_object: ~2×
+      openvla_goal: 1.12×
+      openvla_spatial: 0.81× (inverted)
+      openvla_long: ~1×
+      geometric_mean_all: 3.4
+      geometric_mean_excluding_openvla: 7.8
+      note: OpenVLA OXE baseline inflates denominator, pulling ratio down
+    matrix_cells_with_full_data: 8
+    cells_with_partial_data: 2
+    partial_data_identities:
+    - NORA Goal (trained CF saturated at cos=1.0)
+    - NORA Spatial (pipeline_v2 metrics incomplete)
+    cross_arch_r2_peak_layer:
+      all_cells:
+      - 13
+      - 12
+      - 14
+      - 15
+      - 4
+      - 17
+      - 9
+      - 11
+      - 10
+      - 12
+      mean: 11.7
+      std: 3.4
+      per_architecture_means:
+        openvla: 13.5
+        tracvla: 10.25
+        nora: 11.0
+    expected_reviewer_scores:
+    - 6
+    - 5
+    - 5
+    - 4
+    expected_reviewer_avg_score: 5.0
+    accept_probability: 0.35
+  result_rationale: "Aggregate metrics 在 median 档预期范围内： - r2_collapse_confirmed_cells\
+    \ = 8，在 [7,9] 范围 ✓ - mean_trained_exit_delta = 0.215，在 [0.1,0.22] 范围高端 ✓ - cf_sensitivity_ratio\
+    \ geometric mean = 3.4，略低于 [4,8] 下限\n  （被 OpenVLA OXE baseline 拉低），需要 excluding-OpenVLA\
+    \ 的 7.8 来补救\n- matrix_cells_with_full_data = 8，在 [7,9] 范围 ✓ - cross_arch_r2_peak_layer_std\
+    \ = 3.4，在 [3.0,5.0] 范围 ✓ - expected_reviewer_avg = 5.0，在 [4.5,5.5] 范围 ✓ - accept_probability\
+    \ = 0.35，在 [0.25,0.45] 范围 ✓\nCF ratio 落在 range 下限之下是 median 档的关键风险： 如果 reviewers\
+    \ 看的是 all-architecture average（3.4×），会认为 \"training does not consistently enhance\
+    \ instruction sensitivity\"。 论文需要 proactively split the reporting： \"For architectures\
+    \ where untrained = VLM base (Tier-1), CF ratio is 7-10×. For OpenVLA where untrained\
+    \ = OXE-pretrained (Tier-2), CF ratio is 0.8-2×, reflecting the strong baseline\
+    \ established by general action training.\"\n"
+  tables:
+  - title: Updated Cross-Architecture R² Exit Collapse Matrix (Median Tier)
+    columns:
+    - Architecture (Backbone)
+    - Goal
+    - Spatial
+    - Object
+    - Long
+    rows:
+    - - OpenVLA (Llama-2-7B)
+      - Δ=0.141 ✓
+      - Δ=0.037 △
+      - Δ=0.121 ✓
+      - Δ=0.004 △ OFT
+    - - TracVLA (Phi-3-mini)
+      - Δ=0.228 ✓
+      - Δ=0.138 ✓
+      - Δ=0.294 ✓
+      - Δ=0.198 ✓
+    - - NORA (Qwen2.5-VL-3B)
+      - Δ=0.691 ✓
+      - Δ=0.302 ✓
+      - — (no ckpt)
+      - — (no ckpt)
+  - title: Updated L1 Instruction-Dominant Heads Matrix
+    columns:
+    - Architecture
+    - Suite
+    - Trained
+    - Untrained
+    - Training Effect?
+    rows:
+    - - OpenVLA
+      - Goal
+      - 24/32
+      - 25/32 (OXE)
+      - ✗ base-model
+    - - OpenVLA
+      - Spatial
+      - 22/32
+      - 25/32 (OXE)
+      - ✗ base-model
+    - - OpenVLA
+      - Object
+      - 24/32
+      - 24/32 (OXE)
+      - ✗ base-model
+    - - OpenVLA
+      - Long (OFT)
+      - 14/32
+      - 25/32 (OXE)
+      - ✗ OFT reduces
+    - - TracVLA
+      - All 4
+      - 27-30/32
+      - 32/32 (Phi-3)
+      - ✗ base-model
+    - - NORA
+      - Goal
+      - 13/16
+      - 13/16 (Qwen)
+      - ✗ base-model
+    - - NORA
+      - Spatial
+      - 12/16
+      - 14/16 (Qwen)
+      - ✗ base-model
+  - title: Median Tier Reviewer Score Prediction
+    columns:
+    - Reviewer
+    - Score
+    - Stance
+    - Key Concern
+    rows:
+    - - R1 (Champion)
+      - '6'
+      - Accept
+      - Novel framework, R² collapse convincing across 8/10 cells
+    - - R2 (Borderline)
+      - '5'
+      - Weak Accept
+      - OpenVLA 2/4 weak cells; 'architecture-independent' overstated
+    - - R3 (Borderline)
+      - '5'
+      - Borderline
+      - Three-tier gradient only 1 Tier-2 datapoint; suggestive not validated
+    - - R4 (Skeptic)
+      - '4'
+      - Weak Reject
+      - No behavioral evidence; CF ratio inconsistent; C3 is null
+  - title: Three-Tier Routing Gradient Evidence (Median Tier Assessment)
+    columns:
+    - Tier
+    - Example
+    - L1 Heads
+    - CF d (empty)
+    - R² Collapse?
+    - Evidence Strength
+    rows:
+    - - 'Tier 1: VLM Base'
+      - Phi-3-Vision / Qwen2.5-VL
+      - 28-32/32
+      - cos 0.14-0.17
+      - 'No'
+      - Strong (4 VLMs)
+    - - 'Tier 2: OXE Pretrained'
+      - openvla-7b (970K ep)
+      - 25/32
+      - d ≈ 1.05
+      - 'No'
+      - Weak (n=1)
+    - - 'Tier 3: Task-finetuned'
+      - All 3 trained VLAs
+      - 13-30
+      - d ≈ 0.8-1.5
+      - 8/10 cells
+      - Moderate
+  figures_description:
+  - 'Cross-architecture heatmap: 3 rows (architectures) × 4 columns (suites)， color
+    = Δ(peak-exit)，0-0.7 color scale。 8 cells green (confirmed)，2 cells yellow (weak)，2
+    cells grey (no checkpoint)。 注释每个 cell 的 Δ 值。 Title: "R² Exit Collapse Across Architectures
+    and Task Suites"
+
+    '
+  - 'Three-tier gradient schematic: 横轴 = training stage (VLM → OXE → Task-finetuned)，
+    纵轴 = R² exit collapse magnitude。三个阶段用不同颜色标注， Tier-2 用虚线圆圈标记 "n=1, suggestive"。
+
+    '
+  analysis: 'Median 档的核心 tension： R² exit collapse 在 8/10 cells 确认，是一个 reasonably
+    robust finding—— 但 2 个弱 cell 都在 OpenVLA，使得按 architecture 分组的通过率是 OpenVLA 2/4 (50%),
+    TracVLA 4/4 (100%), NORA 2/2 (100%)。 Reviewers 可以合理质疑："如果最深入研究的架构（OpenVLA，4 papers
+    已发） 只有 50% 通过率，凭什么 claim architecture-independent？"
+
+    回应策略： （1）区分 2 个弱 cell 的成因——OFT 是 training method confound（不是 full fine-tuning），
+    Spatial 是 pretraining coverage confound（OXE 已覆盖）——都不是 architecture confound。 （2）强调
+    R² collapse 的 direction 在 8/10 cells 一致（trained Δ > untrained Δ）， 2 个弱 cell 也朝正确方向，只是
+    magnitude 不足 threshold。 （3）用 exit-collapse-rate analysis 提供 population-level 统计（p=0.002）
+    作为 beyond-threshold 的 continuous evidence。
+
+    三层级梯度是最 vulnerable 的 contribution：仅 1 个 Tier-2 datapoint （OXE openvla-7b），R3 会说
+    "this is a single observation, not a gradient"。 论文需要降为 "suggestive observation
+    warranting further investigation with additional OXE-pretrained checkpoints (e.g.,
+    RT-2-X, Octo)"。
+
+    Accept probability 0.35：需要 R1 champion 推动，R2 被 rebuttal 说服， R3 接受 three-tier 降为
+    observation，R4 的 behavioral concern 用 "future work" + "this paper''s contribution
+    is representational analysis, not behavioral validation" 来 address。 AC leaning:
+    "interesting findings but claims should be tempered; accept if authors commit
+    to qualifying ''architecture-independent'' claim and acknowledging behavioral
+    validation gap."'

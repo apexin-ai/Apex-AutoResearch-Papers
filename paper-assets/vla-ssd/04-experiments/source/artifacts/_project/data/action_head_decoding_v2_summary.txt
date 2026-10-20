@@ -1,0 +1,30 @@
+Action-Head Decoding v2 Results Summary
+
+Experiment: action_head_decoding_v2
+Model: openvla-7b-finetuned-libero-goal
+Samples: 5000 (10 tasks x 50 demos x 10 frames)
+
+Layer  Argmax_R2    EV_R2     Probe_R2
+L0     -6.2456     -1.2777    -0.331
+L4     -7.7902     -1.1899     0.502
+L8     -3.7080     -0.2878     0.571
+L13    -0.1123     -0.1083     0.678 (probe peak)
+L16    -0.7405     -0.0962     0.654
+L20    -5.3137     -0.7547     0.647
+L24    -3.3150     -0.7655     0.640
+L28    -2.2201     -0.7496     0.627
+L31    -0.4636     -0.3644     0.616
+L32    -0.4745     -0.2013     0.613
+
+Key Findings:
+1. ALL action-head R2 values are NEGATIVE across all 33 layers
+2. Softmax EV is consistently less negative than argmax
+3. Mid-layer peaks: argmax best at L13 (-0.11), EV best at L16 (-0.10)
+4. Late layers (L20-L32) show R2 degradation vs mid-layers
+5. Contrasts sharply with independent probe R2 (positive, peak L13=0.68)
+6. Supports format specialization hypothesis: exit layers encode actions in LM-head format that collapses per-position diversity
+
+Remote paths:
+- JSON: /root/autodl-tmp/vla-ssd/results/action_head_decoding/openvla_goal_action_head_r2_v2.json
+- Figure: /root/autodl-tmp/vla-ssd/results/action_head_decoding/fig_action_head_vs_probe.pdf
+- PNG: /root/autodl-tmp/vla-ssd/results/action_head_decoding/fig_action_head_vs_probe.png

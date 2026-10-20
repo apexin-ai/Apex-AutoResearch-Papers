@@ -1,0 +1,61 @@
+{
+  "exp_id": "counterfactual_token_overlap",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:14:54.973Z",
+    "updated_at": "2026-05-19T01:20:12.794Z",
+    "hypothesis": "The paraphrased > shuffled Cohen's d ordering is explained by token-level identity changes (token novelty), not semantic distance alone. If token novelty (1 - Jaccard similarity) rank-correlates perfectly with Cohen's d across perturbation types, then the model's sensitivity to instruction perturbation is primarily driven by token identity rather than semantic content.",
+    "parent": "counterfactual_instruction",
+    "spec": {
+      "command": "python scripts/token_overlap_analysis.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json",
+      "data_count": 3,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "counterfactual_instruction",
+      "eval_data": "counterfactual_combined.json"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/counterfactual_token_overlap.json",
+    "log_path": "/root/vla-ssd/scripts/token_overlap_analysis.py",
+    "metrics": {
+      "summary": {
+        "empty": {
+          "mean_jaccard": 0,
+          "token_novelty": 1,
+          "cohens_d": 0.9677
+        },
+        "wrong": {
+          "mean_jaccard": 0.1735,
+          "token_novelty": 0.8265,
+          "cohens_d": 0.8438
+        },
+        "paraphrased": {
+          "mean_jaccard": 0.5333,
+          "token_novelty": 0.4667,
+          "cohens_d": 0.6971
+        },
+        "shuffled": {
+          "mean_jaccard": 1,
+          "token_novelty": 0,
+          "cohens_d": 0.6246
+        }
+      },
+      "correlation": {
+        "spearman_r": 1,
+        "pearson_r": 0.9566
+      },
+      "tokenizer": "llama2_bpe",
+      "n_tasks": 3
+    },
+    "notes": "Token novelty (1-Jaccard) perfectly rank-correlates with Cohen's d (Spearman r=1.0, Pearson r=0.957). Shuffled preserves all tokens (Jaccard=1.0) but still shifts actions (d=0.625), confirming word order sensitivity. Paraphrased introduces ~47% novel tokens, explaining its higher d (0.697) vs shuffled. The paraphrased > shuffled ordering is a compound effect of token identity change + word order change, supporting the reviewer's token-level identity sensitivity hypothesis.",
+    "completed_at": "2026-05-19T01:20:12.794Z"
+  },
+  "timestamp": "2026-05-19T01:20:12.986497+00:00",
+  "trigger": "update_registry"
+}

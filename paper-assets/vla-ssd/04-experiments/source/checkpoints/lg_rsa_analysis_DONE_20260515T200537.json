@@ -1,0 +1,66 @@
+{
+  "exp_id": "lg_rsa_analysis",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:45:51.878Z",
+    "updated_at": "2026-05-15T20:05:37.885Z",
+    "hypothesis": "D019/D020: RSA on LIBERO-Goal features. Same-scene/different-goal cross-goal RSA: representation RDM vs action RDM correlation. Gates (D020): G1 trained best-layer RSA ρ > 0.15; G2 Δρ(trained-untrained) > 0.08 with bootstrap 95% CI excluding 0; G3 trained ρ > DINO ρ (any positive margin).",
+    "spec": {
+      "command": "python rsa_analysis.py (full run on LIBERO-Goal features)",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/{trained,untrained,dinov2}_libero_goal/",
+      "data_count": "10 tasks x 50 demos x 33 layers (VLA) / 1 layer (DINO)",
+      "model_name": "RSA: Spearman(repr_RDM, action_RDM) per layer + CKA",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/rsa/rsa_results.json",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/rsa/"
+    },
+    "metrics": {
+      "trained_peak_rsa": 0.4876,
+      "trained_peak_layer": 9,
+      "untrained_peak_rsa": 0.4846,
+      "untrained_peak_layer": 12,
+      "dino_rsa": 0.388,
+      "delta_TU_at_trained_peak": 0.003,
+      "delta_TU_range": [
+        -0.0722,
+        0.0109
+      ],
+      "layers_trained_gt_untrained": 4,
+      "layers_total": 33,
+      "per_phase": {
+        "early": {
+          "trained": 0.3197,
+          "untrained": 0.4148,
+          "dino": 0.4909
+        },
+        "mid": {
+          "trained": 0.5231,
+          "untrained": 0.5248,
+          "dino": 0.4132
+        },
+        "late": {
+          "trained": 0.4758,
+          "untrained": 0.4592,
+          "dino": 0.2601
+        }
+      },
+      "cka_range": [
+        0.687,
+        0.86
+      ],
+      "gate_G1_D020": "PASS (0.4876 > 0.15)",
+      "gate_G2_D020": "FAIL (Δρ=0.003, threshold 0.08)",
+      "gate_G3_D020": "PASS (0.4876 > 0.388, margin +0.0996)",
+      "interpretation": "Architecture matters (VLA >> DINO), training doesn't (trained ≈ untrained). Instruction input adds action-relevant structure, but LLM training does not improve it."
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-15T20:05:37.885Z"
+  },
+  "timestamp": "2026-05-15T20:05:37.963332+00:00",
+  "trigger": "update_registry"
+}

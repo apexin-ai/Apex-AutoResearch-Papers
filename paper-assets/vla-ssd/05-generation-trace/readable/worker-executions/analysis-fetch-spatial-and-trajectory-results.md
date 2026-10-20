@@ -1,0 +1,2541 @@
+# analysis fetch spatial and trajectory results
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_analysis_fetch_spatial_and_trajectory_results_20260520T213514.log`
+- **Structured JSON:** [`d6231a501523c9a17eb1.json`](../../sessions/d6/d6231a501523c9a17eb1.json)
+
+## Before a recorded user message
+
+52 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e58fdc6b-89fd-41b4-89d3-32ee2a170da4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779330600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "63f8f08e-d7b5-4e72-8e5c-64a1d9d0da78",
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to fetch experiment results from a remote server and sync them locally. Let me start by loading the SSH tools and then executing the commands in parallel for both experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "69d5ecd1-6ab3-4ac5-8808-52e47401e0cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016z94nR4ndT8Bg952xQ583Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11643,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11643
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始从服务器获取两组实验结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "5acb2c4d-5ef2-47c1-a4e7-3b74449300dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016z94nR4ndT8Bg952xQ583Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11643,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11643
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013fv5LPLENkyeAEtst5pWhJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "f3aa51c6-7cb3-4013-b217-db2ae13c0a27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016z94nR4ndT8Bg952xQ583Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11643,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11643
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T21:35:28.026Z_
+
+<details><summary>↩ Tool result · `toolu_013fv5LPLENkyeAEtst5pWhJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "3995e7de-f33e-4f85-bd02-33da74eb6e89",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch both sets of results in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "b852f62b-4107-4d7e-86d0-7479d83e02c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XsDVbE5HdbcT8jZNKEJkQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 738,
+      "cache_read_input_tokens": 23484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 738
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MvWxDnRdmLwLbHHbjGY9fL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/counterfactual_spatial/ -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "3c4c84fc-dc6f-4837-ac9b-edf4d19bd1aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XsDVbE5HdbcT8jZNKEJkQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 738,
+      "cache_read_input_tokens": 23484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 738
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BsrSgv9ToNKikQa8QTWbxD`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*trajectory*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "bd4f1378-1655-4b7f-86a4-2af15bfd4544",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XsDVbE5HdbcT8jZNKEJkQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 738,
+      "cache_read_input_tokens": 23484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 738
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T21:35:33.086Z_
+
+<details><summary>↩ Tool result · `toolu_01MvWxDnRdmLwLbHHbjGY9fL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "a56f6d6f-0207-4b58-b014-440cb8bc612a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_wrong.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_empty.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_shuffled.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_paraphrased.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_correct.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T21:35:33.612Z_
+
+<details><summary>↩ Tool result · `toolu_01BsrSgv9ToNKikQa8QTWbxD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.log\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_control.log\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_control.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.log\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.log\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\n/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.log\\n/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/trajectory_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "12a914bf-2724-435c-a733-f6f18ebfe614",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.log\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_control.log\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_control.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.log\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.log\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\\\n/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.log\\\\n/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/trajectory_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.log\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_control.log\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_control.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.log\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.log\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\n/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.log\\n/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/trajectory_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+找到文件。现在读取关键 JSON 内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "fc84d692-1b43-460f-8bfd-494c8f055fe7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FT55W5XtT8Y5B7y7NU6kCi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1006,
+      "cache_read_input_tokens": 24222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1006
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A8LSukK4f4vzwWTwFt8pHp`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "c87d8f2f-2a64-43cb-821a-8f4ddf7e2cfd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FT55W5XtT8Y5B7y7NU6kCi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1006,
+      "cache_read_input_tokens": 24222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1006
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X4WK49B6XYKUfo2ExYhu8J`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "78024c16-6926-4bc1-af09-dd472325403a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FT55W5XtT8Y5B7y7NU6kCi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1006,
+      "cache_read_input_tokens": 24222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1006
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T21:35:40.482Z_
+
+<details><summary>↩ Tool result · `toolu_01A8LSukK4f4vzwWTwFt8pHp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_instruction_spatial\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"seed\\\": 42,\\n    \\\"suite\\\": \\\"libero_spatial\\\",\\n    \\\"task_names\\\": [\\n      \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\"\\n    ],\\n    \\\"note\\\": \\\"wrong instructions use other spatial tasks (same object/action, different spatial reference)\\\"\\n  },\\n  \\\"conditions\\\": {\\n    \\\"wrong\\\": {\\n      \\\"global_metrics\\\": {\\n        \\\"paired_mse\\\": {\\n          \\\"mean\\\": 0.05804234059654507,\\n          \\\"std\\\": 0.0681637276907686,\\n          \\\"t_stat\\\": 60.20508209209877,\\n          \\\"p_value\\\": 0.0,\\n          \\\"cohens_d\\\": 0.8514284361718265,\\n          \\\"ci_95\\\": [\\n            0.8237036469496201,\\n            0.879153225394033\\n          ]\\n        },\\n        \\\"per_dim_shift\\\": {\\n          \\\"means\\\": [\\n            0.003244618543344386,\\n            0.008275301012782593,\\n            0.008872097807866679,\\n            0.019767173478586583,\\n            0.028556332465094796,\\n            0.031130590355659637,\\n            0.4158619607843152\\n          ],\\n          \\\"stds\\\": [\\n            0.004045600916914886,\\n            0.009143821086173945,\\n            0.008007230621683847,\\n            0.018888534609628225,\\n            0.02473742704913099,\\n            0.02902582422761773,\\n            0.4785884087017137\\n          ],\\n          \\\"dim_names\\\": [\\n            \\\"dx\\\",\\n            \\\"dy\\\",\\n            \\\"dz\\\",\\n            \\\"rx\\\",\\n            \\\"ry\\\",\\n            \\\"rz\\\",\\n            \\\"gripper\\\"\\n          ]\\n        },\\n        \\\"token_divergence_rate\\\": 0.8652,\\n        \\\"kl_divergence\\\": {\\n          \\\"mean\\\": 6.957239627838135,\\n          \\\"std\\\": 4.734703063964844,\\n          \\\"per_token_position\\\": [\\n            2.2400457859039307,\\n            6.597799301147461,\\n            8.583086013793945,\\n            9.402458190917969,\\n            10.372297286987305,\\n            9.131669998168945,\\n            2.373326063156128\\n          ]\\n        },\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"n_samples\\\": 5000\\n      },\\n      \\\"per_task\\\": {\\n        \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n          \\\"paired_mse\\\": {\\n            \\\"mean\\\": 0.06640954677950142,\\n            \\\"std\\\": 0.06956194172085231,\\n            \\\"t_stat\\\": 21.325984683665375,\\n            \\\"p_value\\\": 3.2681395376247805e-72,\\n            \\\"cohens_d\\\": 0.9537270287822055,\\n            \\\"ci_95\\\": [\\n              0.8658616592719858,\\n              1.0415923982924253\\n            ]\\n          },\\n          \\\"per_dim_shift\\\": {\\n            \\\"means\\\": [\\n              0.004275309446951921,\\n              0.010643280340149108,\\n              0.01234014166315688,\\n              0.01981941048650643,\\n              0.031806516024105676,\\n              0.036603934254435935,\\n              0.4712627450980405\\n            ],\\n            \\\"stds\\\": [\\n              0.004770888219141805,\\n              0.011189085643562939,\\n              0.010645717149569951,\\n              0.01789803966114327,\\n              0.02505345655372027,\\n              0.031227392845370603,\\n              0.48740706845574255\\n            ],\\n            \\\"dim_names\\\": [\\n              \\\"dx\\\",\\n\\n... [截断: 输出过长，省略 88953 字符] ...\\n\\namples\\\": 500,\\n          \\\"instruction_correct\\\": \\\"pick up the black bowl on the wooden cabinet and place it on the plate\\\",\\n          \\\"instruction_counterfactual\\\": \\\"grab the black bowl sitting on the wooden cabinet and put it on the plate\\\"\\n        }\\n      },\\n      \\\"cross_task_variance\\\": {\\n        \\\"cohens_d\\\": {\\n          \\\"values\\\": [\\n            0.9122756234925912,\\n            0.7576835622105202,\\n            0.7258257406427423,\\n            0.8057986735394016,\\n            0.8177985758234079,\\n            1.002449280455852,\\n            0.7257338619797585,\\n            0.7065013070901938,\\n            0.9194079555462267,\\n            0.7124225640763044\\n          ],\\n          \\\"mean\\\": 0.8085897144856998,\\n          \\\"std\\\": 0.10364584055319942,\\n          \\\"min\\\": 0.7065013070901938,\\n          \\\"max\\\": 1.002449280455852,\\n          \\\"cv\\\": 0.1281810029193789\\n        },\\n        \\\"paired_mse\\\": {\\n          \\\"values\\\": [\\n            0.06385328953660033,\\n            0.05071564029045017,\\n            0.04807092676771482,\\n            0.05522523003255115,\\n            0.05628277534267258,\\n            0.06969830808977795,\\n            0.046802687357092684,\\n            0.04595692643597357,\\n            0.0642192826633437,\\n            0.04632266842290686\\n          ],\\n          \\\"mean\\\": 0.054714773493908374,\\n          \\\"std\\\": 0.00863414320541845,\\n          \\\"cv\\\": 0.1578027770913083\\n        },\\n        \\\"token_divergence_rate\\\": {\\n          \\\"values\\\": [\\n            0.798,\\n            0.8394285714285714,\\n            0.8071428571428572,\\n            0.7431428571428571,\\n            0.8154285714285714,\\n            0.8182857142857143,\\n            0.7817142857142857,\\n            0.8037142857142857,\\n            0.7922857142857143,\\n            0.7911428571428571\\n          ],\\n          \\\"mean\\\": 0.7990285714285713,\\n          \\\"std\\\": 0.02558528488645551\\n        },\\n        \\\"kl_divergence\\\": {\\n          \\\"values\\\": [\\n            6.087649345397949,\\n            6.327757835388184,\\n            6.699211120605469,\\n            5.407980442047119,\\n            5.980325698852539,\\n            5.739781856536865,\\n            5.5033860206604,\\n            5.49423360824585,\\n            6.1330790519714355,\\n            5.78404426574707\\n          ],\\n          \\\"mean\\\": 5.915744924545288,\\n          \\\"std\\\": 0.4107411104376832\\n        }\\n      }\\n    }\\n  },\\n  \\\"ranking_by_cohens_d\\\": [\\n    {\\n      \\\"condition\\\": \\\"empty\\\",\\n      \\\"cohens_d\\\": 0.9421721845441572,\\n      \\\"paired_mse_mean\\\": 0.06594219543597996,\\n      \\\"token_divergence_rate\\\": 0.9137142857142857,\\n      \\\"kl_divergence_mean\\\": 9.029648780822754\\n    },\\n    {\\n      \\\"condition\\\": \\\"wrong\\\",\\n      \\\"cohens_d\\\": 0.8514284361718265,\\n      \\\"paired_mse_mean\\\": 0.05804234059654507,\\n      \\\"token_divergence_rate\\\": 0.8652,\\n      \\\"kl_divergence_mean\\\": 6.957239627838135\\n    },\\n    {\\n      \\\"condition\\\": \\\"shuffled\\\",\\n      \\\"cohens_d\\\": 0.8328052384783984,\\n      \\\"paired_mse_mean\\\": 0.05699806222791878,\\n      \\\"token_divergence_rate\\\": 0.8767142857142857,\\n      \\\"kl_divergence_mean\\\": 7.758697986602783\\n    },\\n    {\\n      \\\"condition\\\": \\\"paraphrased\\\",\\n      \\\"cohens_d\\\": 0.8056806565790108,\\n      \\\"paired_mse_mean\\\": 0.05471477349390839,\\n      \\\"token_divergence_rate\\\": 0.7990285714285714,\\n      \\\"kl_divergence_mean\\\": 5.915744781494141\\n    }\\n  ],\\n  \\\"cross_task_summary\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.853 +/- 0.079\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.748, 0.972]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.093\\\",\\n      \\\"mse_mean_std\\\": \\\"0.058042 +/- 0.006654\\\"\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.954 +/- 0.176\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.638, 1.240]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n      \\\"mse_mean_std\\\": \\\"0.065942 +/- 0.013179\\\"\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.839 +/- 0.139\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.615, 1.033]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.166\\\",\\n      \\\"mse_mean_std\\\": \\\"0.056998 +/- 0.011380\\\"\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.809 +/- 0.104\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.707, 1.002]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.128\\\",\\n      \\\"mse_mean_std\\\": \\\"0.054715 +/- 0.008634\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "208cc45e-bf87-4fe1-8b0b-7d6b9f51699d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_instruction_spatial\\\\\\\",\\\\n    \\\\\\\"conditions\\\\\\\": [\\\\n      \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"paraphrased\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n    \\\\\\\"task_names\\\\\\\": [\\\\n      \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"wrong instructions use other spatial tasks (same object/action, different spatial reference)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"conditions\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"global_metrics\\\\\\\": {\\\\n        \\\\\\\"paired_mse\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.05804234059654507,\\\\n          \\\\\\\"std\\\\\\\": 0.0681637276907686,\\\\n          \\\\\\\"t_stat\\\\\\\": 60.20508209209877,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.8514284361718265,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.8237036469496201,\\\\n            0.879153225394033\\\\n          ]\\\\n        },\\\\n        \\\\\\\"per_dim_shift\\\\\\\": {\\\\n          \\\\\\\"means\\\\\\\": [\\\\n            0.003244618543344386,\\\\n            0.008275301012782593,\\\\n            0.008872097807866679,\\\\n            0.019767173478586583,\\\\n            0.028556332465094796,\\\\n            0.031130590355659637,\\\\n            0.4158619607843152\\\\n          ],\\\\n          \\\\\\\"stds\\\\\\\": [\\\\n            0.004045600916914886,\\\\n            0.009143821086173945,\\\\n            0.008007230621683847,\\\\n            0.018888534609628225,\\\\n            0.02473742704913099,\\\\n            0.02902582422761773,\\\\n            0.4785884087017137\\\\n          ],\\\\n          \\\\\\\"dim_names\\\\\\\": [\\\\n            \\\\\\\"dx\\\\\\\",\\\\n            \\\\\\\"dy\\\\\\\",\\\\n            \\\\\\\"dz\\\\\\\",\\\\n            \\\\\\\"rx\\\\\\\",\\\\n            \\\\\\\"ry\\\\\\\",\\\\n            \\\\\\\"rz\\\\\\\",\\\\n            \\\\\\\"gripper\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"token_divergence_rate\\\\\\\": 0.8652,\\\\n        \\\\\\\"kl_divergence\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 6.957239627838135,\\\\n          \\\\\\\"std\\\\\\\": 4.734703063964844,\\\\n          \\\\\\\"per_token_position\\\\\\\": [\\\\n            2.2400457859039307,\\\\n            6.597799301147461,\\\\n            8.583086013793945,\\\\n            9.402458190917969,\\\\n            10.372297286987305,\\\\n            9.131669998168945,\\\\n            2.373326063156128\\\\n          ]\\\\n        },\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"n_samples\\\\\\\": 5000\\\\n      },\\\\n      \\\\\\\"per_task\\\\\\\": {\\\\n        \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n          \\\\\\\"paired_mse\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.06640954677950142,\\\\n            \\\\\\\"std\\\\\\\": 0.06956194172085231,\\\\n            \\\\\\\"t_stat\\\\\\\": 21.325984683665375,\\\\n            \\\\\\\"p_value\\\\\\\": 3.2681395376247805e-72,\\\\n            \\\\\\\"cohens_d\\\\\\\": 0.9537270287822055,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.8658616592719858,\\\\n              1.0415923982924253\\\\n            ]\\\\n          },\\\\n          \\\\\\\"per_dim_shift\\\\\\\": {\\\\n            \\\\\\\"means\\\\\\\": [\\\\n              0.004275309446951921,\\\\n              0.010643280340149108,\\\\n              0.01234014166315688,\\\\n              0.01981941048650643,\\\\n              0.031806516024105676,\\\\n              0.036603934254435935,\\\\n              0.4712627450980405\\\\n            ],\\\\n            \\\\\\\"stds\\\\\\\": [\\\\n              0.004770888219141805,\\\\n              0.011189085643562939,\\\\n              0.010645717149569951,\\\\n              0.01789803966114327,\\\\n              0.02505345655372027,\\\\n              0.031227392845370603,\\\\n              0.48740706845574255\\\\n            ],\\\\n            \\\\\\\"dim_names\\\\\\\": [\\\\n              \\\\\\\"dx\\\\\\\",\\\\n\\\\n... [截断: 输出过长，省略 88953 字符] ...\\\\n\\\\namples\\\\\\\": 500,\\\\n          \\\\\\\"instruction_correct\\\\\\\": \\\\\\\"pick up the black bowl on the wooden cabinet and place it on the plate\\\\\\\",\\\\n          \\\\\\\"instruction_counterfactual\\\\\\\": \\\\\\\"grab the black bowl sitting on the wooden cabinet and put it on the plate\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"cross_task_variance\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            0.9122756234925912,\\\\n            0.7576835622105202,\\\\n            0.7258257406427423,\\\\n            0.8057986735394016,\\\\n            0.8177985758234079,\\\\n            1.002449280455852,\\\\n            0.7257338619797585,\\\\n            0.7065013070901938,\\\\n            0.9194079555462267,\\\\n            0.7124225640763044\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.8085897144856998,\\\\n          \\\\\\\"std\\\\\\\": 0.10364584055319942,\\\\n          \\\\\\\"min\\\\\\\": 0.7065013070901938,\\\\n          \\\\\\\"max\\\\\\\": 1.002449280455852,\\\\n          \\\\\\\"cv\\\\\\\": 0.1281810029193789\\\\n        },\\\\n        \\\\\\\"paired_mse\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            0.06385328953660033,\\\\n            0.05071564029045017,\\\\n            0.04807092676771482,\\\\n            0.05522523003255115,\\\\n            0.05628277534267258,\\\\n            0.06969830808977795,\\\\n            0.046802687357092684,\\\\n            0.04595692643597357,\\\\n            0.0642192826633437,\\\\n            0.04632266842290686\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.054714773493908374,\\\\n          \\\\\\\"std\\\\\\\": 0.00863414320541845,\\\\n          \\\\\\\"cv\\\\\\\": 0.1578027770913083\\\\n        },\\\\n        \\\\\\\"token_divergence_rate\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            0.798,\\\\n            0.8394285714285714,\\\\n            0.8071428571428572,\\\\n            0.7431428571428571,\\\\n            0.8154285714285714,\\\\n            0.8182857142857143,\\\\n            0.7817142857142857,\\\\n            0.8037142857142857,\\\\n            0.7922857142857143,\\\\n            0.7911428571428571\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.7990285714285713,\\\\n          \\\\\\\"std\\\\\\\": 0.02558528488645551\\\\n        },\\\\n        \\\\\\\"kl_divergence\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            6.087649345397949,\\\\n            6.327757835388184,\\\\n            6.699211120605469,\\\\n            5.407980442047119,\\\\n            5.980325698852539,\\\\n            5.739781856536865,\\\\n            5.5033860206604,\\\\n            5.49423360824585,\\\\n            6.1330790519714355,\\\\n            5.78404426574707\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 5.915744924545288,\\\\n          \\\\\\\"std\\\\\\\": 0.4107411104376832\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ranking_by_cohens_d\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.9421721845441572,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.06594219543597996,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.9137142857142857,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 9.029648780822754\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8514284361718265,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.05804234059654507,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8652,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 6.957239627838135\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8328052384783984,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.05699806222791878,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8767142857142857,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 7.758697986602783\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"paraphrased\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8056806565790108,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.05471477349390839,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7990285714285714,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 5.915744781494141\\\\n    }\\\\n  ],\\\\n  \\\\\\\"cross_task_summary\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.853 +/- 0.079\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.748, 0.972]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.093\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.058042 +/- 0.006654\\\\\\\"\\\\n    },\\\\n    \\\\\\\"empty\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.954 +/- 0.176\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.638, 1.240]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.185\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.065942 +/- 0.013179\\\\\\\"\\\\n    },\\\\n    \\\\\\\"shuffled\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.839 +/- 0.139\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.615, 1.033]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.166\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.056998 +/- 0.011380\\\\\\\"\\\\n    },\\\\n    \\\\\\\"paraphrased\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.809 +/- 0.104\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.707, 1.002]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.128\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.054715 +/- 0.008634\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_instruction_spatial\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"seed\\\": 42,\\n    \\\"suite\\\": \\\"libero_spatial\\\",\\n    \\\"task_names\\\": [\\n      \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\"\\n    ],\\n    \\\"note\\\": \\\"wrong instructions use other spatial tasks (same object/action, different spatial reference)\\\"\\n  },\\n  \\\"conditions\\\": {\\n    \\\"wrong\\\": {\\n      \\\"global_metrics\\\": {\\n        \\\"paired_mse\\\": {\\n          \\\"mean\\\": 0.05804234059654507,\\n          \\\"std\\\": 0.0681637276907686,\\n          \\\"t_stat\\\": 60.20508209209877,\\n          \\\"p_value\\\": 0.0,\\n          \\\"cohens_d\\\": 0.8514284361718265,\\n          \\\"ci_95\\\": [\\n            0.8237036469496201,\\n            0.879153225394033\\n          ]\\n        },\\n        \\\"per_dim_shift\\\": {\\n          \\\"means\\\": [\\n            0.003244618543344386,\\n            0.008275301012782593,\\n            0.008872097807866679,\\n            0.019767173478586583,\\n            0.028556332465094796,\\n            0.031130590355659637,\\n            0.4158619607843152\\n          ],\\n          \\\"stds\\\": [\\n            0.004045600916914886,\\n            0.009143821086173945,\\n            0.008007230621683847,\\n            0.018888534609628225,\\n            0.02473742704913099,\\n            0.02902582422761773,\\n            0.4785884087017137\\n          ],\\n          \\\"dim_names\\\": [\\n            \\\"dx\\\",\\n            \\\"dy\\\",\\n            \\\"dz\\\",\\n            \\\"rx\\\",\\n            \\\"ry\\\",\\n            \\\"rz\\\",\\n            \\\"gripper\\\"\\n          ]\\n        },\\n        \\\"token_divergence_rate\\\": 0.8652,\\n        \\\"kl_divergence\\\": {\\n          \\\"mean\\\": 6.957239627838135,\\n          \\\"std\\\": 4.734703063964844,\\n          \\\"per_token_position\\\": [\\n            2.2400457859039307,\\n            6.597799301147461,\\n            8.583086013793945,\\n            9.402458190917969,\\n            10.372297286987305,\\n            9.131669998168945,\\n            2.373326063156128\\n          ]\\n        },\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"n_samples\\\": 5000\\n      },\\n      \\\"per_task\\\": {\\n        \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n          \\\"paired_mse\\\": {\\n            \\\"mean\\\": 0.06640954677950142,\\n            \\\"std\\\": 0.06956194172085231,\\n            \\\"t_stat\\\": 21.325984683665375,\\n            \\\"p_value\\\": 3.2681395376247805e-72,\\n            \\\"cohens_d\\\": 0.9537270287822055,\\n            \\\"ci_95\\\": [\\n              0.8658616592719858,\\n              1.0415923982924253\\n            ]\\n          },\\n          \\\"per_dim_shift\\\": {\\n            \\\"means\\\": [\\n              0.004275309446951921,\\n              0.010643280340149108,\\n              0.01234014166315688,\\n              0.01981941048650643,\\n              0.031806516024105676,\\n              0.036603934254435935,\\n              0.4712627450980405\\n            ],\\n            \\\"stds\\\": [\\n              0.004770888219141805,\\n              0.011189085643562939,\\n              0.010645717149569951,\\n              0.01789803966114327,\\n              0.02505345655372027,\\n              0.031227392845370603,\\n              0.48740706845574255\\n            ],\\n            \\\"dim_names\\\": [\\n              \\\"dx\\\",\\n\\n... [截断: 输出过长，省略 88953 字符] ...\\n\\namples\\\": 500,\\n          \\\"instruction_correct\\\": \\\"pick up the black bowl on the wooden cabinet and place it on the plate\\\",\\n          \\\"instruction_counterfactual\\\": \\\"grab the black bowl sitting on the wooden cabinet and put it on the plate\\\"\\n        }\\n      },\\n      \\\"cross_task_variance\\\": {\\n        \\\"cohens_d\\\": {\\n          \\\"values\\\": [\\n            0.9122756234925912,\\n            0.7576835622105202,\\n            0.7258257406427423,\\n            0.8057986735394016,\\n            0.8177985758234079,\\n            1.002449280455852,\\n            0.7257338619797585,\\n            0.7065013070901938,\\n            0.9194079555462267,\\n            0.7124225640763044\\n          ],\\n          \\\"mean\\\": 0.8085897144856998,\\n          \\\"std\\\": 0.10364584055319942,\\n          \\\"min\\\": 0.7065013070901938,\\n          \\\"max\\\": 1.002449280455852,\\n          \\\"cv\\\": 0.1281810029193789\\n        },\\n        \\\"paired_mse\\\": {\\n          \\\"values\\\": [\\n            0.06385328953660033,\\n            0.05071564029045017,\\n            0.04807092676771482,\\n            0.05522523003255115,\\n            0.05628277534267258,\\n            0.06969830808977795,\\n            0.046802687357092684,\\n            0.04595692643597357,\\n            0.0642192826633437,\\n            0.04632266842290686\\n          ],\\n          \\\"mean\\\": 0.054714773493908374,\\n          \\\"std\\\": 0.00863414320541845,\\n          \\\"cv\\\": 0.1578027770913083\\n        },\\n        \\\"token_divergence_rate\\\": {\\n          \\\"values\\\": [\\n            0.798,\\n            0.8394285714285714,\\n            0.8071428571428572,\\n            0.7431428571428571,\\n            0.8154285714285714,\\n            0.8182857142857143,\\n            0.7817142857142857,\\n            0.8037142857142857,\\n            0.7922857142857143,\\n            0.7911428571428571\\n          ],\\n          \\\"mean\\\": 0.7990285714285713,\\n          \\\"std\\\": 0.02558528488645551\\n        },\\n        \\\"kl_divergence\\\": {\\n          \\\"values\\\": [\\n            6.087649345397949,\\n            6.327757835388184,\\n            6.699211120605469,\\n            5.407980442047119,\\n            5.980325698852539,\\n            5.739781856536865,\\n            5.5033860206604,\\n            5.49423360824585,\\n            6.1330790519714355,\\n            5.78404426574707\\n          ],\\n          \\\"mean\\\": 5.915744924545288,\\n          \\\"std\\\": 0.4107411104376832\\n        }\\n      }\\n    }\\n  },\\n  \\\"ranking_by_cohens_d\\\": [\\n    {\\n      \\\"condition\\\": \\\"empty\\\",\\n      \\\"cohens_d\\\": 0.9421721845441572,\\n      \\\"paired_mse_mean\\\": 0.06594219543597996,\\n      \\\"token_divergence_rate\\\": 0.9137142857142857,\\n      \\\"kl_divergence_mean\\\": 9.029648780822754\\n    },\\n    {\\n      \\\"condition\\\": \\\"wrong\\\",\\n      \\\"cohens_d\\\": 0.8514284361718265,\\n      \\\"paired_mse_mean\\\": 0.05804234059654507,\\n      \\\"token_divergence_rate\\\": 0.8652,\\n      \\\"kl_divergence_mean\\\": 6.957239627838135\\n    },\\n    {\\n      \\\"condition\\\": \\\"shuffled\\\",\\n      \\\"cohens_d\\\": 0.8328052384783984,\\n      \\\"paired_mse_mean\\\": 0.05699806222791878,\\n      \\\"token_divergence_rate\\\": 0.8767142857142857,\\n      \\\"kl_divergence_mean\\\": 7.758697986602783\\n    },\\n    {\\n      \\\"condition\\\": \\\"paraphrased\\\",\\n      \\\"cohens_d\\\": 0.8056806565790108,\\n      \\\"paired_mse_mean\\\": 0.05471477349390839,\\n      \\\"token_divergence_rate\\\": 0.7990285714285714,\\n      \\\"kl_divergence_mean\\\": 5.915744781494141\\n    }\\n  ],\\n  \\\"cross_task_summary\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.853 +/- 0.079\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.748, 0.972]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.093\\\",\\n      \\\"mse_mean_std\\\": \\\"0.058042 +/- 0.006654\\\"\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.954 +/- 0.176\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.638, 1.240]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n      \\\"mse_mean_std\\\": \\\"0.065942 +/- 0.013179\\\"\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.839 +/- 0.139\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.615, 1.033]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.166\\\",\\n      \\\"mse_mean_std\\\": \\\"0.056998 +/- 0.011380\\\"\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.809 +/- 0.104\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.707, 1.002]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.128\\\",\\n      \\\"mse_mean_std\\\": \\\"0.054715 +/- 0.008634\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GTqpwB43ZE1NE3qoD6PjYM`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/ -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "23a26c8b-780f-487e-9a07-6c4be4b5e09f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FT55W5XtT8Y5B7y7NU6kCi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1006,
+      "cache_read_input_tokens": 24222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1006
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T21:35:41.025Z_
+
+<details><summary>↩ Tool result · `toolu_01X4WK49B6XYKUfo2ExYhu8J`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\\\",\\n  \\\"description\\\": \\\"Each demo's MSE is the mean of its 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\\\",\\n  \\\"n_timesteps_per_demo\\\": 50,\\n  \\\"results\\\": [\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_empty\\\",\\n      \\\"token_level_d\\\": 0.968,\\n      \\\"trajectory_level_d\\\": 3.4378,\\n      \\\"ci_lower\\\": 2.9209,\\n      \\\"ci_upper\\\": 4.4475,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.082062,\\n        0.068606,\\n        0.053453,\\n        0.091422,\\n        0.105778,\\n        0.087411,\\n        0.079496,\\n        0.080063,\\n        0.091432,\\n        0.088599,\\n        0.06874,\\n        0.097388,\\n        0.083217,\\n        0.083121,\\n        0.060285,\\n        0.088588,\\n        0.059896,\\n        0.08625,\\n        0.079877,\\n        0.060748,\\n        0.034709,\\n        0.048997,\\n        0.049401,\\n        0.043439,\\n        0.037609,\\n        0.049011,\\n        0.051957,\\n        0.068949,\\n        0.037481,\\n        0.048885\\n      ],\\n      \\\"inflation_factor\\\": 0.282\\n    },\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_paraphrased\\\",\\n      \\\"token_level_d\\\": 0.697,\\n      \\\"trajectory_level_d\\\": 2.1306,\\n      \\\"ci_lower\\\": 1.7399,\\n      \\\"ci_upper\\\": 2.8192,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.035076,\\n        0.010262,\\n        0.039509,\\n        0.017612,\\n        0.020804,\\n        0.02749,\\n        0.027929,\\n        0.009308,\\n        0.01489,\\n        0.023217,\\n        0.043261,\\n        0.037765,\\n        0.045553,\\n        0.040398,\\n        0.0658,\\n        0.057724,\\n        0.03967,\\n        0.04633,\\n        0.039834,\\n        0.037863,\\n        0.065927,\\n        0.074254,\\n        0.06597,\\n        0.080234,\\n        0.074302,\\n        0.071602,\\n        0.065845,\\n        0.074544,\\n        0.074153,\\n        0.065761\\n      ],\\n      \\\"inflation_factor\\\": 0.327\\n    },\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_shuffled\\\",\\n      \\\"token_level_d\\\": 0.625,\\n      \\\"trajectory_level_d\\\": 2.5946,\\n      \\\"ci_lower\\\": 2.0276,\\n      \\\"ci_upper\\\": 3.7908,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.014167,\\n        0.009241,\\n        0.03847,\\n        0.023726,\\n        0.018012,\\n        0.039658,\\n        0.01222,\\n        0.015032,\\n        0.025226,\\n        0.028535,\\n        0.059886,\\n        0.037641,\\n        0.057109,\\n        0.049025,\\n        0.057297,\\n        0.046126,\\n        0.045196,\\n        0.046373,\\n        0.042332,\\n        0.046197,\\n        0.043154,\\n        0.051886,\\n        0.04936,\\n        0.046136,\\n        0.034809,\\n        0.043592,\\n        0.054773,\\n        0.065911,\\n        0.03762,\\n        0.057455\\n      ],\\n      \\\"inflation_factor\\\": 0.241\\n    },\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_wrong\\\",\\n      \\\"token_level_d\\\": 0.844,\\n      \\\"trajectory_level_d\\\": 3.7976,\\n      \\\"ci_lower\\\": 3.1937,\\n      \\\"ci_upper\\\": 4.9379,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.077362,\\n        0.062833,\\n        0.049182,\\n        0.060257,\\n        0.097521,\\n        0.077242,\\n        0.071632,\\n        0.060263,\\n        0.080074,\\n        0.068758,\\n        0.043409,\\n        0.037847,\\n        0.054324,\\n        0.036576,\\n        0.066255,\\n        0.046302,\\n        0.042609,\\n        0.037488,\\n        0.039662,\\n        0.037923,\\n        0.048987,\\n        0.072486,\\n        0.071848,\\n        0.056014,\\n        0.066911,\\n        0.060432,\\n        0.074556,\\n        0.077194,\\n        0.064259,\\n        0.049085\\n      ],\\n      \\\"inflation_factor\\\": 0.222\\n    },\\n    {\\n      \\\"experiment\\\": \\\"dose_response\\\",\\n      \\\"condition\\\": \\\"dose_response_top12\\\",\\n      \\\"token_level_d\\\": 0.56,\\n      \\\"trajectory_level_d\\\": 2.286,\\n      \\\"ci_lower\\\": 1.876,\\n      \\\"ci_upper\\\": 3.0434,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.014529,\\n        0.010317,\\n        0.023306,\\n        0.014644,\\n        0.023347,\\n        0.025414,\\n        \\n\\n... [截断: 输出过长，省略 4477 字符] ...\\n\\n     0.054109,\\n        0.054797,\\n        0.060036,\\n        0.029034,\\n        0.045883\\n      ],\\n      \\\"inflation_factor\\\": 0.237\\n    },\\n    {\\n      \\\"experiment\\\": \\\"dose_response\\\",\\n      \\\"condition\\\": \\\"dose_response_top4\\\",\\n      \\\"token_level_d\\\": 0.482,\\n      \\\"trajectory_level_d\\\": 2.6228,\\n      \\\"ci_lower\\\": 2.1061,\\n      \\\"ci_upper\\\": 3.5752,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.008916,\\n        0.006518,\\n        0.023242,\\n        0.022881,\\n        0.020505,\\n        0.032827,\\n        0.011844,\\n        0.018093,\\n        0.025471,\\n        0.011348,\\n        0.029393,\\n        0.035944,\\n        0.038648,\\n        0.045796,\\n        0.037735,\\n        0.03757,\\n        0.026649,\\n        0.028913,\\n        0.02531,\\n        0.02602,\\n        0.017373,\\n        0.042956,\\n        0.028883,\\n        0.023099,\\n        0.017426,\\n        0.037346,\\n        0.029033,\\n        0.031634,\\n        0.017345,\\n        0.025794\\n      ],\\n      \\\"inflation_factor\\\": 0.184\\n    },\\n    {\\n      \\\"experiment\\\": \\\"dose_response\\\",\\n      \\\"condition\\\": \\\"dose_response_top8\\\",\\n      \\\"token_level_d\\\": 0.508,\\n      \\\"trajectory_level_d\\\": 2.1863,\\n      \\\"ci_lower\\\": 1.764,\\n      \\\"ci_upper\\\": 2.9312,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.011784,\\n        0.003695,\\n        0.023294,\\n        0.020198,\\n        0.022589,\\n        0.033298,\\n        0.011906,\\n        0.015184,\\n        0.011808,\\n        0.017023,\\n        0.032277,\\n        0.052895,\\n        0.03811,\\n        0.034355,\\n        0.03733,\\n        0.028867,\\n        0.028467,\\n        0.045473,\\n        0.017289,\\n        0.02883,\\n        0.028722,\\n        0.051513,\\n        0.040227,\\n        0.031671,\\n        0.009171,\\n        0.031608,\\n        0.040268,\\n        0.040331,\\n        0.020234,\\n        0.048612\\n      ],\\n      \\\"inflation_factor\\\": 0.232\\n    },\\n    {\\n      \\\"experiment\\\": \\\"head_ablation\\\",\\n      \\\"condition\\\": \\\"head_ablation_top24\\\",\\n      \\\"token_level_d\\\": 0.651,\\n      \\\"trajectory_level_d\\\": 2.9432,\\n      \\\"ci_lower\\\": 2.4687,\\n      \\\"ci_upper\\\": 3.7073,\\n      \\\"n_demos\\\": 50,\\n      \\\"demo_mses\\\": [\\n        0.026437,\\n        0.010508,\\n        0.022557,\\n        0.020214,\\n        0.026412,\\n        0.025136,\\n        0.012105,\\n        0.027049,\\n        0.030771,\\n        0.023094,\\n        0.048244,\\n        0.040269,\\n        0.040489,\\n        0.051976,\\n        0.051665,\\n        0.052844,\\n        0.048104,\\n        0.054138,\\n        0.034513,\\n        0.023636,\\n        0.042942,\\n        0.043182,\\n        0.060381,\\n        0.043044,\\n        0.043401,\\n        0.054462,\\n        0.04319,\\n        0.051635,\\n        0.03155,\\n        0.054362,\\n        0.067892,\\n        0.051044,\\n        0.033688,\\n        0.037828,\\n        0.060106,\\n        0.033926,\\n        0.058561,\\n        0.037772,\\n        0.039867,\\n        0.037848,\\n        0.065808,\\n        0.04394,\\n        0.060892,\\n        0.052034,\\n        0.046122,\\n        0.031573,\\n        0.03776,\\n        0.069034,\\n        0.025909,\\n        0.052356\\n      ],\\n      \\\"inflation_factor\\\": 0.221\\n    },\\n    {\\n      \\\"experiment\\\": \\\"specificity\\\",\\n      \\\"condition\\\": \\\"specificity_bottom24\\\",\\n      \\\"token_level_d\\\": 0.565,\\n      \\\"trajectory_level_d\\\": 2.3474,\\n      \\\"ci_lower\\\": 1.8539,\\n      \\\"ci_upper\\\": 3.2209,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.014151,\\n        0.00279,\\n        0.031189,\\n        0.028865,\\n        0.017554,\\n        0.031044,\\n        0.014793,\\n        0.015023,\\n        0.019933,\\n        0.017163,\\n        0.034496,\\n        0.051375,\\n        0.065344,\\n        0.031459,\\n        0.040245,\\n        0.046172,\\n        0.039756,\\n        0.028963,\\n        0.028807,\\n        0.029374,\\n        0.037388,\\n        0.051677,\\n        0.054531,\\n        0.040317,\\n        0.031775,\\n        0.040241,\\n        0.048868,\\n        0.04588,\\n        0.025817,\\n        0.051535\\n      ],\\n      \\\"inflation_factor\\\": 0.241\\n    }\\n  ],\\n  \\\"inflation_factor\\\": {\\n    \\\"description\\\": \\\"token_level_d / trajectory_level_d (how much token-level d overestimates)\\\",\\n    \\\"mean\\\": 0.245,\\n    \\\"range\\\": [\\n      0.184,\\n      0.327\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "27b15c93-87a0-45e6-bc7f-46dbc7e5ee45",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Each demo's MSE is the mean of its 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\\\\\\\",\\\\n  \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"counterfactual_empty\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.968,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 3.4378,\\\\n      \\\\\\\"ci_lower\\\\\\\": 2.9209,\\\\n      \\\\\\\"ci_upper\\\\\\\": 4.4475,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.082062,\\\\n        0.068606,\\\\n        0.053453,\\\\n        0.091422,\\\\n        0.105778,\\\\n        0.087411,\\\\n        0.079496,\\\\n        0.080063,\\\\n        0.091432,\\\\n        0.088599,\\\\n        0.06874,\\\\n        0.097388,\\\\n        0.083217,\\\\n        0.083121,\\\\n        0.060285,\\\\n        0.088588,\\\\n        0.059896,\\\\n        0.08625,\\\\n        0.079877,\\\\n        0.060748,\\\\n        0.034709,\\\\n        0.048997,\\\\n        0.049401,\\\\n        0.043439,\\\\n        0.037609,\\\\n        0.049011,\\\\n        0.051957,\\\\n        0.068949,\\\\n        0.037481,\\\\n        0.048885\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.282\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"counterfactual_paraphrased\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.697,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 2.1306,\\\\n      \\\\\\\"ci_lower\\\\\\\": 1.7399,\\\\n      \\\\\\\"ci_upper\\\\\\\": 2.8192,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.035076,\\\\n        0.010262,\\\\n        0.039509,\\\\n        0.017612,\\\\n        0.020804,\\\\n        0.02749,\\\\n        0.027929,\\\\n        0.009308,\\\\n        0.01489,\\\\n        0.023217,\\\\n        0.043261,\\\\n        0.037765,\\\\n        0.045553,\\\\n        0.040398,\\\\n        0.0658,\\\\n        0.057724,\\\\n        0.03967,\\\\n        0.04633,\\\\n        0.039834,\\\\n        0.037863,\\\\n        0.065927,\\\\n        0.074254,\\\\n        0.06597,\\\\n        0.080234,\\\\n        0.074302,\\\\n        0.071602,\\\\n        0.065845,\\\\n        0.074544,\\\\n        0.074153,\\\\n        0.065761\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.327\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"counterfactual_shuffled\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.625,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 2.5946,\\\\n      \\\\\\\"ci_lower\\\\\\\": 2.0276,\\\\n      \\\\\\\"ci_upper\\\\\\\": 3.7908,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.014167,\\\\n        0.009241,\\\\n        0.03847,\\\\n        0.023726,\\\\n        0.018012,\\\\n        0.039658,\\\\n        0.01222,\\\\n        0.015032,\\\\n        0.025226,\\\\n        0.028535,\\\\n        0.059886,\\\\n        0.037641,\\\\n        0.057109,\\\\n        0.049025,\\\\n        0.057297,\\\\n        0.046126,\\\\n        0.045196,\\\\n        0.046373,\\\\n        0.042332,\\\\n        0.046197,\\\\n        0.043154,\\\\n        0.051886,\\\\n        0.04936,\\\\n        0.046136,\\\\n        0.034809,\\\\n        0.043592,\\\\n        0.054773,\\\\n        0.065911,\\\\n        0.03762,\\\\n        0.057455\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.241\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"counterfactual_wrong\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.844,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 3.7976,\\\\n      \\\\\\\"ci_lower\\\\\\\": 3.1937,\\\\n      \\\\\\\"ci_upper\\\\\\\": 4.9379,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.077362,\\\\n        0.062833,\\\\n        0.049182,\\\\n        0.060257,\\\\n        0.097521,\\\\n        0.077242,\\\\n        0.071632,\\\\n        0.060263,\\\\n        0.080074,\\\\n        0.068758,\\\\n        0.043409,\\\\n        0.037847,\\\\n        0.054324,\\\\n        0.036576,\\\\n        0.066255,\\\\n        0.046302,\\\\n        0.042609,\\\\n        0.037488,\\\\n        0.039662,\\\\n        0.037923,\\\\n        0.048987,\\\\n        0.072486,\\\\n        0.071848,\\\\n        0.056014,\\\\n        0.066911,\\\\n        0.060432,\\\\n        0.074556,\\\\n        0.077194,\\\\n        0.064259,\\\\n        0.049085\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.222\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"dose_response\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"dose_response_top12\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.56,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 2.286,\\\\n      \\\\\\\"ci_lower\\\\\\\": 1.876,\\\\n      \\\\\\\"ci_upper\\\\\\\": 3.0434,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.014529,\\\\n        0.010317,\\\\n        0.023306,\\\\n        0.014644,\\\\n        0.023347,\\\\n        0.025414,\\\\n        \\\\n\\\\n... [截断: 输出过长，省略 4477 字符] ...\\\\n\\\\n     0.054109,\\\\n        0.054797,\\\\n        0.060036,\\\\n        0.029034,\\\\n        0.045883\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.237\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"dose_response\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"dose_response_top4\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.482,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 2.6228,\\\\n      \\\\\\\"ci_lower\\\\\\\": 2.1061,\\\\n      \\\\\\\"ci_upper\\\\\\\": 3.5752,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.008916,\\\\n        0.006518,\\\\n        0.023242,\\\\n        0.022881,\\\\n        0.020505,\\\\n        0.032827,\\\\n        0.011844,\\\\n        0.018093,\\\\n        0.025471,\\\\n        0.011348,\\\\n        0.029393,\\\\n        0.035944,\\\\n        0.038648,\\\\n        0.045796,\\\\n        0.037735,\\\\n        0.03757,\\\\n        0.026649,\\\\n        0.028913,\\\\n        0.02531,\\\\n        0.02602,\\\\n        0.017373,\\\\n        0.042956,\\\\n        0.028883,\\\\n        0.023099,\\\\n        0.017426,\\\\n        0.037346,\\\\n        0.029033,\\\\n        0.031634,\\\\n        0.017345,\\\\n        0.025794\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.184\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"dose_response\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"dose_response_top8\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.508,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 2.1863,\\\\n      \\\\\\\"ci_lower\\\\\\\": 1.764,\\\\n      \\\\\\\"ci_upper\\\\\\\": 2.9312,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.011784,\\\\n        0.003695,\\\\n        0.023294,\\\\n        0.020198,\\\\n        0.022589,\\\\n        0.033298,\\\\n        0.011906,\\\\n        0.015184,\\\\n        0.011808,\\\\n        0.017023,\\\\n        0.032277,\\\\n        0.052895,\\\\n        0.03811,\\\\n        0.034355,\\\\n        0.03733,\\\\n        0.028867,\\\\n        0.028467,\\\\n        0.045473,\\\\n        0.017289,\\\\n        0.02883,\\\\n        0.028722,\\\\n        0.051513,\\\\n        0.040227,\\\\n        0.031671,\\\\n        0.009171,\\\\n        0.031608,\\\\n        0.040268,\\\\n        0.040331,\\\\n        0.020234,\\\\n        0.048612\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.232\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"head_ablation\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"head_ablation_top24\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.651,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 2.9432,\\\\n      \\\\\\\"ci_lower\\\\\\\": 2.4687,\\\\n      \\\\\\\"ci_upper\\\\\\\": 3.7073,\\\\n      \\\\\\\"n_demos\\\\\\\": 50,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.026437,\\\\n        0.010508,\\\\n        0.022557,\\\\n        0.020214,\\\\n        0.026412,\\\\n        0.025136,\\\\n        0.012105,\\\\n        0.027049,\\\\n        0.030771,\\\\n        0.023094,\\\\n        0.048244,\\\\n        0.040269,\\\\n        0.040489,\\\\n        0.051976,\\\\n        0.051665,\\\\n        0.052844,\\\\n        0.048104,\\\\n        0.054138,\\\\n        0.034513,\\\\n        0.023636,\\\\n        0.042942,\\\\n        0.043182,\\\\n        0.060381,\\\\n        0.043044,\\\\n        0.043401,\\\\n        0.054462,\\\\n        0.04319,\\\\n        0.051635,\\\\n        0.03155,\\\\n        0.054362,\\\\n        0.067892,\\\\n        0.051044,\\\\n        0.033688,\\\\n        0.037828,\\\\n        0.060106,\\\\n        0.033926,\\\\n        0.058561,\\\\n        0.037772,\\\\n        0.039867,\\\\n        0.037848,\\\\n        0.065808,\\\\n        0.04394,\\\\n        0.060892,\\\\n        0.052034,\\\\n        0.046122,\\\\n        0.031573,\\\\n        0.03776,\\\\n        0.069034,\\\\n        0.025909,\\\\n        0.052356\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.221\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"specificity\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"specificity_bottom24\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.565,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 2.3474,\\\\n      \\\\\\\"ci_lower\\\\\\\": 1.8539,\\\\n      \\\\\\\"ci_upper\\\\\\\": 3.2209,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.014151,\\\\n        0.00279,\\\\n        0.031189,\\\\n        0.028865,\\\\n        0.017554,\\\\n        0.031044,\\\\n        0.014793,\\\\n        0.015023,\\\\n        0.019933,\\\\n        0.017163,\\\\n        0.034496,\\\\n        0.051375,\\\\n        0.065344,\\\\n        0.031459,\\\\n        0.040245,\\\\n        0.046172,\\\\n        0.039756,\\\\n        0.028963,\\\\n        0.028807,\\\\n        0.029374,\\\\n        0.037388,\\\\n        0.051677,\\\\n        0.054531,\\\\n        0.040317,\\\\n        0.031775,\\\\n        0.040241,\\\\n        0.048868,\\\\n        0.04588,\\\\n        0.025817,\\\\n        0.051535\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.241\\\\n    }\\\\n  ],\\\\n  \\\\\\\"inflation_factor\\\\\\\": {\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"token_level_d / trajectory_level_d (how much token-level d overestimates)\\\\\\\",\\\\n    \\\\\\\"mean\\\\\\\": 0.245,\\\\n    \\\\\\\"range\\\\\\\": [\\\\n      0.184,\\\\n      0.327\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\\\",\\n  \\\"description\\\": \\\"Each demo's MSE is the mean of its 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\\\",\\n  \\\"n_timesteps_per_demo\\\": 50,\\n  \\\"results\\\": [\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_empty\\\",\\n      \\\"token_level_d\\\": 0.968,\\n      \\\"trajectory_level_d\\\": 3.4378,\\n      \\\"ci_lower\\\": 2.9209,\\n      \\\"ci_upper\\\": 4.4475,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.082062,\\n        0.068606,\\n        0.053453,\\n        0.091422,\\n        0.105778,\\n        0.087411,\\n        0.079496,\\n        0.080063,\\n        0.091432,\\n        0.088599,\\n        0.06874,\\n        0.097388,\\n        0.083217,\\n        0.083121,\\n        0.060285,\\n        0.088588,\\n        0.059896,\\n        0.08625,\\n        0.079877,\\n        0.060748,\\n        0.034709,\\n        0.048997,\\n        0.049401,\\n        0.043439,\\n        0.037609,\\n        0.049011,\\n        0.051957,\\n        0.068949,\\n        0.037481,\\n        0.048885\\n      ],\\n      \\\"inflation_factor\\\": 0.282\\n    },\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_paraphrased\\\",\\n      \\\"token_level_d\\\": 0.697,\\n      \\\"trajectory_level_d\\\": 2.1306,\\n      \\\"ci_lower\\\": 1.7399,\\n      \\\"ci_upper\\\": 2.8192,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.035076,\\n        0.010262,\\n        0.039509,\\n        0.017612,\\n        0.020804,\\n        0.02749,\\n        0.027929,\\n        0.009308,\\n        0.01489,\\n        0.023217,\\n        0.043261,\\n        0.037765,\\n        0.045553,\\n        0.040398,\\n        0.0658,\\n        0.057724,\\n        0.03967,\\n        0.04633,\\n        0.039834,\\n        0.037863,\\n        0.065927,\\n        0.074254,\\n        0.06597,\\n        0.080234,\\n        0.074302,\\n        0.071602,\\n        0.065845,\\n        0.074544,\\n        0.074153,\\n        0.065761\\n      ],\\n      \\\"inflation_factor\\\": 0.327\\n    },\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_shuffled\\\",\\n      \\\"token_level_d\\\": 0.625,\\n      \\\"trajectory_level_d\\\": 2.5946,\\n      \\\"ci_lower\\\": 2.0276,\\n      \\\"ci_upper\\\": 3.7908,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.014167,\\n        0.009241,\\n        0.03847,\\n        0.023726,\\n        0.018012,\\n        0.039658,\\n        0.01222,\\n        0.015032,\\n        0.025226,\\n        0.028535,\\n        0.059886,\\n        0.037641,\\n        0.057109,\\n        0.049025,\\n        0.057297,\\n        0.046126,\\n        0.045196,\\n        0.046373,\\n        0.042332,\\n        0.046197,\\n        0.043154,\\n        0.051886,\\n        0.04936,\\n        0.046136,\\n        0.034809,\\n        0.043592,\\n        0.054773,\\n        0.065911,\\n        0.03762,\\n        0.057455\\n      ],\\n      \\\"inflation_factor\\\": 0.241\\n    },\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_wrong\\\",\\n      \\\"token_level_d\\\": 0.844,\\n      \\\"trajectory_level_d\\\": 3.7976,\\n      \\\"ci_lower\\\": 3.1937,\\n      \\\"ci_upper\\\": 4.9379,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.077362,\\n        0.062833,\\n        0.049182,\\n        0.060257,\\n        0.097521,\\n        0.077242,\\n        0.071632,\\n        0.060263,\\n        0.080074,\\n        0.068758,\\n        0.043409,\\n        0.037847,\\n        0.054324,\\n        0.036576,\\n        0.066255,\\n        0.046302,\\n        0.042609,\\n        0.037488,\\n        0.039662,\\n        0.037923,\\n        0.048987,\\n        0.072486,\\n        0.071848,\\n        0.056014,\\n        0.066911,\\n        0.060432,\\n        0.074556,\\n        0.077194,\\n        0.064259,\\n        0.049085\\n      ],\\n      \\\"inflation_factor\\\": 0.222\\n    },\\n    {\\n      \\\"experiment\\\": \\\"dose_response\\\",\\n      \\\"condition\\\": \\\"dose_response_top12\\\",\\n      \\\"token_level_d\\\": 0.56,\\n      \\\"trajectory_level_d\\\": 2.286,\\n      \\\"ci_lower\\\": 1.876,\\n      \\\"ci_upper\\\": 3.0434,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.014529,\\n        0.010317,\\n        0.023306,\\n        0.014644,\\n        0.023347,\\n        0.025414,\\n        \\n\\n... [截断: 输出过长，省略 4477 字符] ...\\n\\n     0.054109,\\n        0.054797,\\n        0.060036,\\n        0.029034,\\n        0.045883\\n      ],\\n      \\\"inflation_factor\\\": 0.237\\n    },\\n    {\\n      \\\"experiment\\\": \\\"dose_response\\\",\\n      \\\"condition\\\": \\\"dose_response_top4\\\",\\n      \\\"token_level_d\\\": 0.482,\\n      \\\"trajectory_level_d\\\": 2.6228,\\n      \\\"ci_lower\\\": 2.1061,\\n      \\\"ci_upper\\\": 3.5752,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.008916,\\n        0.006518,\\n        0.023242,\\n        0.022881,\\n        0.020505,\\n        0.032827,\\n        0.011844,\\n        0.018093,\\n        0.025471,\\n        0.011348,\\n        0.029393,\\n        0.035944,\\n        0.038648,\\n        0.045796,\\n        0.037735,\\n        0.03757,\\n        0.026649,\\n        0.028913,\\n        0.02531,\\n        0.02602,\\n        0.017373,\\n        0.042956,\\n        0.028883,\\n        0.023099,\\n        0.017426,\\n        0.037346,\\n        0.029033,\\n        0.031634,\\n        0.017345,\\n        0.025794\\n      ],\\n      \\\"inflation_factor\\\": 0.184\\n    },\\n    {\\n      \\\"experiment\\\": \\\"dose_response\\\",\\n      \\\"condition\\\": \\\"dose_response_top8\\\",\\n      \\\"token_level_d\\\": 0.508,\\n      \\\"trajectory_level_d\\\": 2.1863,\\n      \\\"ci_lower\\\": 1.764,\\n      \\\"ci_upper\\\": 2.9312,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.011784,\\n        0.003695,\\n        0.023294,\\n        0.020198,\\n        0.022589,\\n        0.033298,\\n        0.011906,\\n        0.015184,\\n        0.011808,\\n        0.017023,\\n        0.032277,\\n        0.052895,\\n        0.03811,\\n        0.034355,\\n        0.03733,\\n        0.028867,\\n        0.028467,\\n        0.045473,\\n        0.017289,\\n        0.02883,\\n        0.028722,\\n        0.051513,\\n        0.040227,\\n        0.031671,\\n        0.009171,\\n        0.031608,\\n        0.040268,\\n        0.040331,\\n        0.020234,\\n        0.048612\\n      ],\\n      \\\"inflation_factor\\\": 0.232\\n    },\\n    {\\n      \\\"experiment\\\": \\\"head_ablation\\\",\\n      \\\"condition\\\": \\\"head_ablation_top24\\\",\\n      \\\"token_level_d\\\": 0.651,\\n      \\\"trajectory_level_d\\\": 2.9432,\\n      \\\"ci_lower\\\": 2.4687,\\n      \\\"ci_upper\\\": 3.7073,\\n      \\\"n_demos\\\": 50,\\n      \\\"demo_mses\\\": [\\n        0.026437,\\n        0.010508,\\n        0.022557,\\n        0.020214,\\n        0.026412,\\n        0.025136,\\n        0.012105,\\n        0.027049,\\n        0.030771,\\n        0.023094,\\n        0.048244,\\n        0.040269,\\n        0.040489,\\n        0.051976,\\n        0.051665,\\n        0.052844,\\n        0.048104,\\n        0.054138,\\n        0.034513,\\n        0.023636,\\n        0.042942,\\n        0.043182,\\n        0.060381,\\n        0.043044,\\n        0.043401,\\n        0.054462,\\n        0.04319,\\n        0.051635,\\n        0.03155,\\n        0.054362,\\n        0.067892,\\n        0.051044,\\n        0.033688,\\n        0.037828,\\n        0.060106,\\n        0.033926,\\n        0.058561,\\n        0.037772,\\n        0.039867,\\n        0.037848,\\n        0.065808,\\n        0.04394,\\n        0.060892,\\n        0.052034,\\n        0.046122,\\n        0.031573,\\n        0.03776,\\n        0.069034,\\n        0.025909,\\n        0.052356\\n      ],\\n      \\\"inflation_factor\\\": 0.221\\n    },\\n    {\\n      \\\"experiment\\\": \\\"specificity\\\",\\n      \\\"condition\\\": \\\"specificity_bottom24\\\",\\n      \\\"token_level_d\\\": 0.565,\\n      \\\"trajectory_level_d\\\": 2.3474,\\n      \\\"ci_lower\\\": 1.8539,\\n      \\\"ci_upper\\\": 3.2209,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.014151,\\n        0.00279,\\n        0.031189,\\n        0.028865,\\n        0.017554,\\n        0.031044,\\n        0.014793,\\n        0.015023,\\n        0.019933,\\n        0.017163,\\n        0.034496,\\n        0.051375,\\n        0.065344,\\n        0.031459,\\n        0.040245,\\n        0.046172,\\n        0.039756,\\n        0.028963,\\n        0.028807,\\n        0.029374,\\n        0.037388,\\n        0.051677,\\n        0.054531,\\n        0.040317,\\n        0.031775,\\n        0.040241,\\n        0.048868,\\n        0.04588,\\n        0.025817,\\n        0.051535\\n      ],\\n      \\\"inflation_factor\\\": 0.241\\n    }\\n  ],\\n  \\\"inflation_factor\\\": {\\n    \\\"description\\\": \\\"token_level_d / trajectory_level_d (how much token-level d overestimates)\\\",\\n    \\\"mean\\\": 0.245,\\n    \\\"range\\\": [\\n      0.184,\\n      0.327\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T21:35:41.552Z_
+
+<details><summary>↩ Tool result · `toolu_01GTqpwB43ZE1NE3qoD6PjYM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "afc0e945-e673-4825-ae7d-19c0a3012f87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_wrong.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_empty.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_shuffled.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_paraphrased.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_correct.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the counterfactual_spatial combined JSON and the trajectory_level_cohens_d.json. The counterfactual_spatial combined JSON was truncated in the output but I captured the key sections. Let me also check if there's a trajectory-specific result for the 10tasks experiment specifically, and read the counterfactual_10tasks_combined.json.
+
+Actually, let me check what the user wants more carefully:
+
+1. counterfactual_spatial results → the combined JSON I already got (though truncated)
+
+
+2. counterfactual_10tasks_trajectory results → this seems to be the trajectory_level_cohens_d.json which I already got
+
+But the trajectory_level_cohens_d.json contains results from multiple experiments (counterfactual, dose_response, head_ablation, specificity), not just the 10tasks. And there's also a trajectory_run.log in the counterfactual_10tasks directory. I need to get the full counterfactual_spatial_combined.json since it was truncated, and check if there's a specific trajectory result file for counterfactual_10tasks.
+
+Looking at what I've retrieved, I got the critical sections from the spatial combined JSON—the ranking_by_cohens_d and cross_task_summary—which show the empty condition at 0.9422, wrong at 0.8514, shuffled at 0.8328, and paraphrased at 0.8057. Now I'll extract these key metrics and write them to local files for analysis. I'm extracting the essential fields from the large JSON response on the server to get the complete per-task Cohen's d values for all conditions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "5ab2a365-3450-48a0-86b2-536ea2cc3ac6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vqYhAPRV1yUrkr3wek5Dh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8733,
+      "cache_read_input_tokens": 25228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8733
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+数据量大，用 Python 提取关键字段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "10fbfd8b-0b92-41c5-9290-7f604d695aac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vqYhAPRV1yUrkr3wek5Dh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8733,
+      "cache_read_input_tokens": 25228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8733
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J1DU1Av8D8tF14G14NANRF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json') as f:\n    d = json.load(f)\nout = {'config': d['config'], 'ranking_by_cohens_d': d['ranking_by_cohens_d'], 'cross_task_summary': d['cross_task_summary']}\nfor cond in d['conditions']:\n    cd = d['conditions'][cond]\n    out.setdefault('per_task_cohens_d', {})[cond] = {}\n    out['per_task_cohens_d'][cond]['global'] = cd['global_metrics']['paired_mse']['cohens_d']\n    for task in cd['per_task']:\n        out['per_task_cohens_d'][cond][task.split('pick_up_the_black_bowl_')[1][:40]] = cd['per_task'][task]['paired_mse']['cohens_d']\n    out.setdefault('cross_task_variance', {})[cond] = cd['cross_task_variance']['cohens_d']\nprint(json.dumps(out, indent=2))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "978576f1-018b-401e-a7a5-152e9efe0c38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vqYhAPRV1yUrkr3wek5Dh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8733,
+      "cache_read_input_tokens": 25228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8733
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T21:36:07.594Z_
+
+<details><summary>↩ Tool result · `toolu_01J1DU1Av8D8tF14G14NANRF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "e36a0d7d-3f4e-4f70-a01e-7470c912a6e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ssh_read_only tool blocks python with open(). Let me use ssh_execute to run the Python extraction, or use cat with head/tail to get portions of the file.
+
+Actually, let me just use ssh_execute to extract the data with Python. Or I can use cat and pipe through head/tail but shell metacharacters are blocked in ssh_read_only.
+
+Let me use ssh_execute to do the Python extraction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "3c9e4086-a99c-494c-a436-386d70cf9b89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G58exHCvi8XWScrEm5XXc9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1437,
+      "cache_read_input_tokens": 33961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1437
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Fyrrk6u9FQXVxDqwVSRGPd`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json\n\nwith open('/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json') as f:\n    d = json.load(f)\n\nout = {\n    'config': d['config'],\n    'ranking_by_cohens_d': d['ranking_by_cohens_d'],\n    'cross_task_summary': d['cross_task_summary'],\n    'per_task_cohens_d': {},\n    'cross_task_variance': {},\n    'global_metrics_detail': {}\n}\n\nfor cond in d['conditions']:\n    cd = d['conditions'][cond]\n    gm = cd['global_metrics']\n    out['global_metrics_detail'][cond] = {\n        'paired_mse': gm['paired_mse'],\n        'token_divergence_rate': gm['token_divergence_rate'],\n        'kl_divergence_mean': gm['kl_divergence']['mean'],\n        'n_samples': gm['n_samples']\n    }\n    \n    per_task = {}\n    for task in cd['per_task']:\n        short = task.replace('pick_up_the_black_bowl_', '').replace('_and_place_it_on_the_plate', '')\n        per_task[short] = {\n            'cohens_d': cd['per_task'][task]['paired_mse']['cohens_d'],\n            'ci_95': cd['per_task'][task]['paired_mse']['ci_95'],\n            'mse_mean': cd['per_task'][task]['paired_mse']['mean'],\n            'token_div_rate': cd['per_task'][task].get('token_divergence_rate', None)\n        }\n    out['per_task_cohens_d'][cond] = per_task\n    out['cross_task_variance'][cond] = cd['cross_task_variance']['cohens_d']\n\nprint(json.dumps(out, indent=2))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "1199c81a-24c8-40de-b7e4-120d6eef4248",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G58exHCvi8XWScrEm5XXc9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1437,
+      "cache_read_input_tokens": 33961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1437
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T21:36:19.065Z_
+
+<details><summary>↩ Tool result · `toolu_01Fyrrk6u9FQXVxDqwVSRGPd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\\\') as f:\\\\n    d = json.load(f)\\\\n\\\\nout = {\\\\n    \\\\'config\\\\': d[\\\\'config\\\\'],\\\\n    \\\\'ranking_by_cohens_d\\\\': d[\\\\'ranking_by_cohens_d\\\\'],\\\\n    \\\\'cross_task_summary\\\\': d[\\\\'cross_task_summary\\\\'],\\\\n    \\\\'per_task_cohens_d\\\\': {},\\\\n    \\\\'cross_task_variance\\\\': {},\\\\n    \\\\'global_metrics_detail\\\\': {}\\\\n}\\\\n\\\\nfor cond in d[\\\\'conditions\\\\']:\\\\n    cd = d[\\\\'conditions\\\\'][cond]\\\\n    gm = cd[\\\\'global_metrics\\\\']\\\\n    out[\\\\'global_metrics_detail\\\\'][cond] = {\\\\n        \\\\'paired_mse\\\\': gm[\\\\'paired_mse\\\\'],\\\\n        \\\\'token_divergence_rate\\\\': gm[\\\\'token_divergence_rate\\\\'],\\\\n        \\\\'kl_divergence_mean\\\\': gm[\\\\'kl_divergence\\\\'][\\\\'mean\\\\'],\\\\n        \\\\'n_samples\\\\': gm[\\\\'n_samples\\\\']\\\\n    }\\\\n    \\\\n    per_task = {}\\\\n    for task in cd[\\\\'per_task\\\\']:\\\\n        short = task.replace(\\\\'pick_up_the_black_bowl_\\\\', \\\\'\\\\').replace(\\\\'_and_place_it_on_the_plate\\\\', \\\\'\\\\')\\\\n        per_task[short] = {\\\\n            \\\\'cohens_d\\\\': cd[\\\\'per_task\\\\'][task][\\\\'paired_mse\\\\'][\\\\'cohens_d\\\\'],\\\\n            \\\\'ci_95\\\\': cd[\\\\'per_task\\\\'][task][\\\\'paired_mse\\\\'][\\\\'ci_95\\\\'],\\\\n            \\\\'mse_mean\\\\': cd[\\\\'per_task\\\\'][task][\\\\'paired_mse\\\\'][\\\\'mean\\\\'],\\\\n            \\\\'token_div_rate\\\\': cd[\\\\'per_task\\\\'][task].get(\\\\'token_divergence_rate\\\\', None)\\\\n        }\\\\n    out[\\\\'per_task_cohens_d\\\\'][cond] = per_task\\\\n    out[\\\\'cross_task_variance\\\\'][cond] = cd[\\\\'cross_task_variance\\\\'][\\\\'cohens_d\\\\']\\\\n\\\\nprint(json.dumps(out, indent=2))\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "c5109c68-5795-4dff-a8be-bcc048816c49",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\n\\\\\\\\nout = {\\\\\\\\n    \\\\\\\\'config\\\\\\\\': d[\\\\\\\\'config\\\\\\\\'],\\\\\\\\n    \\\\\\\\'ranking_by_cohens_d\\\\\\\\': d[\\\\\\\\'ranking_by_cohens_d\\\\\\\\'],\\\\\\\\n    \\\\\\\\'cross_task_summary\\\\\\\\': d[\\\\\\\\'cross_task_summary\\\\\\\\'],\\\\\\\\n    \\\\\\\\'per_task_cohens_d\\\\\\\\': {},\\\\\\\\n    \\\\\\\\'cross_task_variance\\\\\\\\': {},\\\\\\\\n    \\\\\\\\'global_metrics_detail\\\\\\\\': {}\\\\\\\\n}\\\\\\\\n\\\\\\\\nfor cond in d[\\\\\\\\'conditions\\\\\\\\']:\\\\\\\\n    cd = d[\\\\\\\\'conditions\\\\\\\\'][cond]\\\\\\\\n    gm = cd[\\\\\\\\'global_metrics\\\\\\\\']\\\\\\\\n    out[\\\\\\\\'global_metrics_detail\\\\\\\\'][cond] = {\\\\\\\\n        \\\\\\\\'paired_mse\\\\\\\\': gm[\\\\\\\\'paired_mse\\\\\\\\'],\\\\\\\\n        \\\\\\\\'token_divergence_rate\\\\\\\\': gm[\\\\\\\\'token_divergence_rate\\\\\\\\'],\\\\\\\\n        \\\\\\\\'kl_divergence_mean\\\\\\\\': gm[\\\\\\\\'kl_divergence\\\\\\\\'][\\\\\\\\'mean\\\\\\\\'],\\\\\\\\n        \\\\\\\\'n_samples\\\\\\\\': gm[\\\\\\\\'n_samples\\\\\\\\']\\\\\\\\n    }\\\\\\\\n    \\\\\\\\n    per_task = {}\\\\\\\\n    for task in cd[\\\\\\\\'per_task\\\\\\\\']:\\\\\\\\n        short = task.replace(\\\\\\\\'pick_up_the_black_bowl_\\\\\\\\', \\\\\\\\'\\\\\\\\').replace(\\\\\\\\'_and_place_it_on_the_plate\\\\\\\\', \\\\\\\\'\\\\\\\\')\\\\\\\\n        per_task[short] = {\\\\\\\\n            \\\\\\\\'cohens_d\\\\\\\\': cd[\\\\\\\\'per_task\\\\\\\\'][task][\\\\\\\\'paired_mse\\\\\\\\'][\\\\\\\\'cohens_d\\\\\\\\'],\\\\\\\\n            \\\\\\\\'ci_95\\\\\\\\': cd[\\\\\\\\'per_task\\\\\\\\'][task][\\\\\\\\'paired_mse\\\\\\\\'][\\\\\\\\'ci_95\\\\\\\\'],\\\\\\\\n            \\\\\\\\'mse_mean\\\\\\\\': cd[\\\\\\\\'per_task\\\\\\\\'][task][\\\\\\\\'paired_mse\\\\\\\\'][\\\\\\\\'mean\\\\\\\\'],\\\\\\\\n            \\\\\\\\'token_div_rate\\\\\\\\': cd[\\\\\\\\'per_task\\\\\\\\'][task].get(\\\\\\\\'token_divergence_rate\\\\\\\\', None)\\\\\\\\n        }\\\\\\\\n    out[\\\\\\\\'per_task_cohens_d\\\\\\\\'][cond] = per_task\\\\\\\\n    out[\\\\\\\\'cross_task_variance\\\\\\\\'][cond] = cd[\\\\\\\\'cross_task_variance\\\\\\\\'][\\\\\\\\'cohens_d\\\\\\\\']\\\\\\\\n\\\\\\\\nprint(json.dumps(out, indent=2))\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\\\') as f:\\\\n    d = json.load(f)\\\\n\\\\nout = {\\\\n    \\\\'config\\\\': d[\\\\'config\\\\'],\\\\n    \\\\'ranking_by_cohens_d\\\\': d[\\\\'ranking_by_cohens_d\\\\'],\\\\n    \\\\'cross_task_summary\\\\': d[\\\\'cross_task_summary\\\\'],\\\\n    \\\\'per_task_cohens_d\\\\': {},\\\\n    \\\\'cross_task_variance\\\\': {},\\\\n    \\\\'global_metrics_detail\\\\': {}\\\\n}\\\\n\\\\nfor cond in d[\\\\'conditions\\\\']:\\\\n    cd = d[\\\\'conditions\\\\'][cond]\\\\n    gm = cd[\\\\'global_metrics\\\\']\\\\n    out[\\\\'global_metrics_detail\\\\'][cond] = {\\\\n        \\\\'paired_mse\\\\': gm[\\\\'paired_mse\\\\'],\\\\n        \\\\'token_divergence_rate\\\\': gm[\\\\'token_divergence_rate\\\\'],\\\\n        \\\\'kl_divergence_mean\\\\': gm[\\\\'kl_divergence\\\\'][\\\\'mean\\\\'],\\\\n        \\\\'n_samples\\\\': gm[\\\\'n_samples\\\\']\\\\n    }\\\\n    \\\\n    per_task = {}\\\\n    for task in cd[\\\\'per_task\\\\']:\\\\n        short = task.replace(\\\\'pick_up_the_black_bowl_\\\\', \\\\'\\\\').replace(\\\\'_and_place_it_on_the_plate\\\\', \\\\'\\\\')\\\\n        per_task[short] = {\\\\n            \\\\'cohens_d\\\\': cd[\\\\'per_task\\\\'][task][\\\\'paired_mse\\\\'][\\\\'cohens_d\\\\'],\\\\n            \\\\'ci_95\\\\': cd[\\\\'per_task\\\\'][task][\\\\'paired_mse\\\\'][\\\\'ci_95\\\\'],\\\\n            \\\\'mse_mean\\\\': cd[\\\\'per_task\\\\'][task][\\\\'paired_mse\\\\'][\\\\'mean\\\\'],\\\\n            \\\\'token_div_rate\\\\': cd[\\\\'per_task\\\\'][task].get(\\\\'token_divergence_rate\\\\', None)\\\\n        }\\\\n    out[\\\\'per_task_cohens_d\\\\'][cond] = per_task\\\\n    out[\\\\'cross_task_variance\\\\'][cond] = cd[\\\\'cross_task_variance\\\\'][\\\\'cohens_d\\\\']\\\\n\\\\nprint(json.dumps(out, indent=2))\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Python3 is not found directly, need to use the conda environment. Let me source miniconda first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "4cd8063a-f870-4fb6-9d15-bb168ab7d09e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QSH11Yn1HjS7MiiaSYzYSw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1595,
+      "cache_read_input_tokens": 35398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1595
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LL1FbEjWZZAgZG1Hg9XxKi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nwith open('/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json') as f:\n    d = json.load(f)\n\nout = {\n    'config': d['config'],\n    'ranking_by_cohens_d': d['ranking_by_cohens_d'],\n    'cross_task_summary': d['cross_task_summary'],\n    'per_task_cohens_d': {},\n    'cross_task_variance': {},\n    'global_metrics_detail': {}\n}\n\nfor cond in d['conditions']:\n    cd = d['conditions'][cond]\n    gm = cd['global_metrics']\n    out['global_metrics_detail'][cond] = {\n        'paired_mse': gm['paired_mse'],\n        'token_divergence_rate': gm['token_divergence_rate'],\n        'kl_divergence_mean': gm['kl_divergence']['mean'],\n        'n_samples': gm['n_samples']\n    }\n    \n    per_task = {}\n    for task in cd['per_task']:\n        short = task.replace('pick_up_the_black_bowl_', '').replace('_and_place_it_on_the_plate', '')\n        per_task[short] = {\n            'cohens_d': cd['per_task'][task]['paired_mse']['cohens_d'],\n            'ci_95': cd['per_task'][task]['paired_mse']['ci_95'],\n            'mse_mean': cd['per_task'][task]['paired_mse']['mean'],\n            'token_div_rate': cd['per_task'][task].get('token_divergence_rate', None)\n        }\n    out['per_task_cohens_d'][cond] = per_task\n    out['cross_task_variance'][cond] = cd['cross_task_variance']['cohens_d']\n\nprint(json.dumps(out, indent=2))\nPYEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "66acbc4f-bf6b-4713-a5f0-ce14c517f788",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QSH11Yn1HjS7MiiaSYzYSw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1595,
+      "cache_read_input_tokens": 35398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1595
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T21:36:28.114Z_
+
+<details><summary>↩ Tool result · `toolu_01LL1FbEjWZZAgZG1Hg9XxKi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_instruction_spatial\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"seed\\\": 42,\\n    \\\"suite\\\": \\\"libero_spatial\\\",\\n    \\\"task_names\\\": [\\n      \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\"\\n    ],\\n    \\\"note\\\": \\\"wrong instructions use other spatial tasks (same object/action, different spatial reference)\\\"\\n  },\\n  \\\"ranking_by_cohens_d\\\": [\\n    {\\n      \\\"condition\\\": \\\"empty\\\",\\n      \\\"cohens_d\\\": 0.9421721845441572,\\n      \\\"paired_mse_mean\\\": 0.06594219543597996,\\n      \\\"token_divergence_rate\\\": 0.9137142857142857,\\n      \\\"kl_divergence_mean\\\": 9.029648780822754\\n    },\\n    {\\n      \\\"condition\\\": \\\"wrong\\\",\\n      \\\"cohens_d\\\": 0.8514284361718265,\\n      \\\"paired_mse_mean\\\": 0.05804234059654507,\\n      \\\"token_divergence_rate\\\": 0.8652,\\n      \\\"kl_divergence_mean\\\": 6.957239627838135\\n    },\\n    {\\n      \\\"condition\\\": \\\"shuffled\\\",\\n      \\\"cohens_d\\\": 0.8328052384783984,\\n      \\\"paired_mse_mean\\\": 0.05699806222791878,\\n      \\\"token_divergence_rate\\\": 0.8767142857142857,\\n      \\\"kl_divergence_mean\\\": 7.758697986602783\\n    },\\n    {\\n      \\\"condition\\\": \\\"paraphrased\\\",\\n      \\\"cohens_d\\\": 0.8056806565790108,\\n      \\\"paired_mse_mean\\\": 0.05471477349390839,\\n      \\\"token_divergence_rate\\\": 0.7990285714285714,\\n      \\\"kl_divergence_mean\\\": 5.915744781494141\\n    }\\n  ],\\n  \\\"cross_task_summary\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.853 +/- 0.079\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.748, 0.972]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.093\\\",\\n      \\\"mse_mean_std\\\": \\\"0.058042 +/- 0.006654\\\"\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.954 +/- 0.176\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.638, 1.240]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n      \\\"mse_mean_std\\\": \\\"0.065942 +/- 0.013179\\\"\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.839 +/- 0.139\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.615, 1.033]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.166\\\",\\n      \\\"mse_mean_std\\\": \\\"0.056998 +/- 0.011380\\\"\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.809 +/- 0.104\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.707, 1.002]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.128\\\",\\n      \\\"mse_mean_std\\\": \\\"0.054715 +/- 0.008634\\\"\\n    }\\n  },\\n  \\\"per_task_cohens_d\\\": {\\n    \\\"wrong\\\": {\\n      \\\"between_the_plate_and_the_ramekin\\\": {\\n        \\\"cohens_d\\\": 0.9537270287822055,\\n        \\\"ci_95\\\": [\\n          0.8658616592719858,\\n          1.0415923982924253\\n        ],\\n        \\\"mse_mean\\\": 0.06640954677950142,\\n        \\\"token_div_rate\\\": 0.8837142857142857\\n      },\\n      \\\"from_table_center\\\": {\\n        \\\"cohens_d\\\": 0.7478225235513748,\\n        \\\"ci_95\\\": [\\n          0.6599571540417684,\\n          0.8356878930609812\\n        ],\\n        \\\"mse_mean\\\": 0.04801849608641557,\\n        \\\"token_div_rate\\\": 0.8477142857142858\\n      },\\n      \\\"in_the_top_drawer_of_the_wooden_cabinet\\\": {\\n        \\\"cohens_d\\\": 0.8402249359935192,\\n        \\\"ci_95\\\": [\\n          0.7523595664835159,\\n          0.9280903055035226\\n        ],\\n        \\\"mse_mean\\\": 0.057718587844706744,\\n        \\\"token_div_rate\\\": 0.8505714285714285\\n      },\\n      \\\"next_to_the_cookie_box\\\": {\\n        \\\"cohens_d\\\": 0.9220417974980362,\\n        \\\"ci_95\\\": [\\n          0.834176427987849,\\n          1.0099071670082234\\n        ],\\n        \\\"\\n\\n... [截断: 输出过长，省略 9123 字符] ...\\n\\n: 0.7124225640763044,\\n        \\\"ci_95\\\": [\\n          0.6245571945667479,\\n          0.800287933585861\\n        ],\\n        \\\"mse_mean\\\": 0.04632266842290686,\\n        \\\"token_div_rate\\\": 0.7911428571428571\\n      }\\n    }\\n  },\\n  \\\"cross_task_variance\\\": {\\n    \\\"wrong\\\": {\\n      \\\"values\\\": [\\n        0.9537270287822055,\\n        0.7478225235513748,\\n        0.8402249359935192,\\n        0.9220417974980362,\\n        0.8010524072178329,\\n        0.9717865880506841,\\n        0.7703927057825246,\\n        0.883958664395498,\\n        0.8603264504389757,\\n        0.7794610598803051\\n      ],\\n      \\\"mean\\\": 0.8530794161590955,\\n      \\\"std\\\": 0.07901547479793777,\\n      \\\"min\\\": 0.7478225235513748,\\n      \\\"max\\\": 0.9717865880506841,\\n      \\\"cv\\\": 0.09262382059762314\\n    },\\n    \\\"empty\\\": {\\n      \\\"values\\\": [\\n        0.9292964828930503,\\n        0.9174923607450863,\\n        1.2395940180277485,\\n        0.9433306784276709,\\n        0.6382201896911069,\\n        0.8860503738032537,\\n        0.8669576038332663,\\n        0.8437726789310636,\\n        1.0899809476510236,\\n        1.1853331895026558\\n      ],\\n      \\\"mean\\\": 0.9540028523505926,\\n      \\\"std\\\": 0.17628486825625608,\\n      \\\"min\\\": 0.6382201896911069,\\n      \\\"max\\\": 1.2395940180277485,\\n      \\\"cv\\\": 0.18478442472338358\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"values\\\": [\\n        1.0011000609054526,\\n        0.7501607097378418,\\n        0.6814875360395645,\\n        0.9646060425242083,\\n        0.923940928088195,\\n        0.7833085423811394,\\n        0.8316352101803701,\\n        1.033136081318589,\\n        0.8014269561881272,\\n        0.6154272853921147\\n      ],\\n      \\\"mean\\\": 0.8386229352755603,\\n      \\\"std\\\": 0.13912845061576978,\\n      \\\"min\\\": 0.6154272853921147,\\n      \\\"max\\\": 1.033136081318589,\\n      \\\"cv\\\": 0.16590107992919145\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"values\\\": [\\n        0.9122756234925912,\\n        0.7576835622105202,\\n        0.7258257406427423,\\n        0.8057986735394016,\\n        0.8177985758234079,\\n        1.002449280455852,\\n        0.7257338619797585,\\n        0.7065013070901938,\\n        0.9194079555462267,\\n        0.7124225640763044\\n      ],\\n      \\\"mean\\\": 0.8085897144856998,\\n      \\\"std\\\": 0.10364584055319942,\\n      \\\"min\\\": 0.7065013070901938,\\n      \\\"max\\\": 1.002449280455852,\\n      \\\"cv\\\": 0.1281810029193789\\n    }\\n  },\\n  \\\"global_metrics_detail\\\": {\\n    \\\"wrong\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.05804234059654507,\\n        \\\"std\\\": 0.0681637276907686,\\n        \\\"t_stat\\\": 60.20508209209877,\\n        \\\"p_value\\\": 0.0,\\n        \\\"cohens_d\\\": 0.8514284361718265,\\n        \\\"ci_95\\\": [\\n          0.8237036469496201,\\n          0.879153225394033\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.8652,\\n      \\\"kl_divergence_mean\\\": 6.957239627838135,\\n      \\\"n_samples\\\": 5000\\n    },\\n    \\\"empty\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.06594219543597996,\\n        \\\"std\\\": 0.06998253818929218,\\n        \\\"t_stat\\\": 66.62163407460356,\\n        \\\"p_value\\\": 0.0,\\n        \\\"cohens_d\\\": 0.9421721845441572,\\n        \\\"ci_95\\\": [\\n          0.9144473953218829,\\n          0.9698969737664315\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.9137142857142857,\\n      \\\"kl_divergence_mean\\\": 9.029648780822754,\\n      \\\"n_samples\\\": 5000\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.05699806222791878,\\n        \\\"std\\\": 0.06843420226315344,\\n        \\\"t_stat\\\": 58.88822315443597,\\n        \\\"p_value\\\": 0.0,\\n        \\\"cohens_d\\\": 0.8328052384783984,\\n        \\\"ci_95\\\": [\\n          0.805080449256199,\\n          0.8605300277005977\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.8767142857142857,\\n      \\\"kl_divergence_mean\\\": 7.758697986602783,\\n      \\\"n_samples\\\": 5000\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.05471477349390839,\\n        \\\"std\\\": 0.06790444985293868,\\n        \\\"t_stat\\\": 56.97022557462376,\\n        \\\"p_value\\\": 0.0,\\n        \\\"cohens_d\\\": 0.8056806565790108,\\n        \\\"ci_95\\\": [\\n          0.7779558673568349,\\n          0.8334054458011867\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7990285714285714,\\n      \\\"kl_divergence_mean\\\": 5.915744781494141,\\n      \\\"n_samples\\\": 5000\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "678c2555-79d0-456e-a89c-52a387070940",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_instruction_spatial\\\\\\\",\\\\n    \\\\\\\"conditions\\\\\\\": [\\\\n      \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"paraphrased\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n    \\\\\\\"task_names\\\\\\\": [\\\\n      \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"wrong instructions use other spatial tasks (same object/action, different spatial reference)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"ranking_by_cohens_d\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.9421721845441572,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.06594219543597996,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.9137142857142857,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 9.029648780822754\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8514284361718265,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.05804234059654507,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8652,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 6.957239627838135\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8328052384783984,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.05699806222791878,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8767142857142857,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 7.758697986602783\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"paraphrased\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8056806565790108,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.05471477349390839,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7990285714285714,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 5.915744781494141\\\\n    }\\\\n  ],\\\\n  \\\\\\\"cross_task_summary\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.853 +/- 0.079\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.748, 0.972]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.093\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.058042 +/- 0.006654\\\\\\\"\\\\n    },\\\\n    \\\\\\\"empty\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.954 +/- 0.176\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.638, 1.240]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.185\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.065942 +/- 0.013179\\\\\\\"\\\\n    },\\\\n    \\\\\\\"shuffled\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.839 +/- 0.139\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.615, 1.033]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.166\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.056998 +/- 0.011380\\\\\\\"\\\\n    },\\\\n    \\\\\\\"paraphrased\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.809 +/- 0.104\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.707, 1.002]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.128\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.054715 +/- 0.008634\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_task_cohens_d\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"between_the_plate_and_the_ramekin\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.9537270287822055,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.8658616592719858,\\\\n          1.0415923982924253\\\\n        ],\\\\n        \\\\\\\"mse_mean\\\\\\\": 0.06640954677950142,\\\\n        \\\\\\\"token_div_rate\\\\\\\": 0.8837142857142857\\\\n      },\\\\n      \\\\\\\"from_table_center\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.7478225235513748,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.6599571540417684,\\\\n          0.8356878930609812\\\\n        ],\\\\n        \\\\\\\"mse_mean\\\\\\\": 0.04801849608641557,\\\\n        \\\\\\\"token_div_rate\\\\\\\": 0.8477142857142858\\\\n      },\\\\n      \\\\\\\"in_the_top_drawer_of_the_wooden_cabinet\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.8402249359935192,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.7523595664835159,\\\\n          0.9280903055035226\\\\n        ],\\\\n        \\\\\\\"mse_mean\\\\\\\": 0.057718587844706744,\\\\n        \\\\\\\"token_div_rate\\\\\\\": 0.8505714285714285\\\\n      },\\\\n      \\\\\\\"next_to_the_cookie_box\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.9220417974980362,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.834176427987849,\\\\n          1.0099071670082234\\\\n        ],\\\\n        \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 9123 字符] ...\\\\n\\\\n: 0.7124225640763044,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.6245571945667479,\\\\n          0.800287933585861\\\\n        ],\\\\n        \\\\\\\"mse_mean\\\\\\\": 0.04632266842290686,\\\\n        \\\\\\\"token_div_rate\\\\\\\": 0.7911428571428571\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_task_variance\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.9537270287822055,\\\\n        0.7478225235513748,\\\\n        0.8402249359935192,\\\\n        0.9220417974980362,\\\\n        0.8010524072178329,\\\\n        0.9717865880506841,\\\\n        0.7703927057825246,\\\\n        0.883958664395498,\\\\n        0.8603264504389757,\\\\n        0.7794610598803051\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.8530794161590955,\\\\n      \\\\\\\"std\\\\\\\": 0.07901547479793777,\\\\n      \\\\\\\"min\\\\\\\": 0.7478225235513748,\\\\n      \\\\\\\"max\\\\\\\": 0.9717865880506841,\\\\n      \\\\\\\"cv\\\\\\\": 0.09262382059762314\\\\n    },\\\\n    \\\\\\\"empty\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.9292964828930503,\\\\n        0.9174923607450863,\\\\n        1.2395940180277485,\\\\n        0.9433306784276709,\\\\n        0.6382201896911069,\\\\n        0.8860503738032537,\\\\n        0.8669576038332663,\\\\n        0.8437726789310636,\\\\n        1.0899809476510236,\\\\n        1.1853331895026558\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.9540028523505926,\\\\n      \\\\\\\"std\\\\\\\": 0.17628486825625608,\\\\n      \\\\\\\"min\\\\\\\": 0.6382201896911069,\\\\n      \\\\\\\"max\\\\\\\": 1.2395940180277485,\\\\n      \\\\\\\"cv\\\\\\\": 0.18478442472338358\\\\n    },\\\\n    \\\\\\\"shuffled\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        1.0011000609054526,\\\\n        0.7501607097378418,\\\\n        0.6814875360395645,\\\\n        0.9646060425242083,\\\\n        0.923940928088195,\\\\n        0.7833085423811394,\\\\n        0.8316352101803701,\\\\n        1.033136081318589,\\\\n        0.8014269561881272,\\\\n        0.6154272853921147\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.8386229352755603,\\\\n      \\\\\\\"std\\\\\\\": 0.13912845061576978,\\\\n      \\\\\\\"min\\\\\\\": 0.6154272853921147,\\\\n      \\\\\\\"max\\\\\\\": 1.033136081318589,\\\\n      \\\\\\\"cv\\\\\\\": 0.16590107992919145\\\\n    },\\\\n    \\\\\\\"paraphrased\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.9122756234925912,\\\\n        0.7576835622105202,\\\\n        0.7258257406427423,\\\\n        0.8057986735394016,\\\\n        0.8177985758234079,\\\\n        1.002449280455852,\\\\n        0.7257338619797585,\\\\n        0.7065013070901938,\\\\n        0.9194079555462267,\\\\n        0.7124225640763044\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.8085897144856998,\\\\n      \\\\\\\"std\\\\\\\": 0.10364584055319942,\\\\n      \\\\\\\"min\\\\\\\": 0.7065013070901938,\\\\n      \\\\\\\"max\\\\\\\": 1.002449280455852,\\\\n      \\\\\\\"cv\\\\\\\": 0.1281810029193789\\\\n    }\\\\n  },\\\\n  \\\\\\\"global_metrics_detail\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.05804234059654507,\\\\n        \\\\\\\"std\\\\\\\": 0.0681637276907686,\\\\n        \\\\\\\"t_stat\\\\\\\": 60.20508209209877,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.8514284361718265,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.8237036469496201,\\\\n          0.879153225394033\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8652,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 6.957239627838135,\\\\n      \\\\\\\"n_samples\\\\\\\": 5000\\\\n    },\\\\n    \\\\\\\"empty\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06594219543597996,\\\\n        \\\\\\\"std\\\\\\\": 0.06998253818929218,\\\\n        \\\\\\\"t_stat\\\\\\\": 66.62163407460356,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.9421721845441572,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.9144473953218829,\\\\n          0.9698969737664315\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.9137142857142857,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 9.029648780822754,\\\\n      \\\\\\\"n_samples\\\\\\\": 5000\\\\n    },\\\\n    \\\\\\\"shuffled\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.05699806222791878,\\\\n        \\\\\\\"std\\\\\\\": 0.06843420226315344,\\\\n        \\\\\\\"t_stat\\\\\\\": 58.88822315443597,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.8328052384783984,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.805080449256199,\\\\n          0.8605300277005977\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8767142857142857,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 7.758697986602783,\\\\n      \\\\\\\"n_samples\\\\\\\": 5000\\\\n    },\\\\n    \\\\\\\"paraphrased\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.05471477349390839,\\\\n        \\\\\\\"std\\\\\\\": 0.06790444985293868,\\\\n        \\\\\\\"t_stat\\\\\\\": 56.97022557462376,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.8056806565790108,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.7779558673568349,\\\\n          0.8334054458011867\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7990285714285714,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 5.915744781494141,\\\\n      \\\\\\\"n_samples\\\\\\\": 5000\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_instruction_spatial\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"seed\\\": 42,\\n    \\\"suite\\\": \\\"libero_spatial\\\",\\n    \\\"task_names\\\": [\\n      \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\"\\n    ],\\n    \\\"note\\\": \\\"wrong instructions use other spatial tasks (same object/action, different spatial reference)\\\"\\n  },\\n  \\\"ranking_by_cohens_d\\\": [\\n    {\\n      \\\"condition\\\": \\\"empty\\\",\\n      \\\"cohens_d\\\": 0.9421721845441572,\\n      \\\"paired_mse_mean\\\": 0.06594219543597996,\\n      \\\"token_divergence_rate\\\": 0.9137142857142857,\\n      \\\"kl_divergence_mean\\\": 9.029648780822754\\n    },\\n    {\\n      \\\"condition\\\": \\\"wrong\\\",\\n      \\\"cohens_d\\\": 0.8514284361718265,\\n      \\\"paired_mse_mean\\\": 0.05804234059654507,\\n      \\\"token_divergence_rate\\\": 0.8652,\\n      \\\"kl_divergence_mean\\\": 6.957239627838135\\n    },\\n    {\\n      \\\"condition\\\": \\\"shuffled\\\",\\n      \\\"cohens_d\\\": 0.8328052384783984,\\n      \\\"paired_mse_mean\\\": 0.05699806222791878,\\n      \\\"token_divergence_rate\\\": 0.8767142857142857,\\n      \\\"kl_divergence_mean\\\": 7.758697986602783\\n    },\\n    {\\n      \\\"condition\\\": \\\"paraphrased\\\",\\n      \\\"cohens_d\\\": 0.8056806565790108,\\n      \\\"paired_mse_mean\\\": 0.05471477349390839,\\n      \\\"token_divergence_rate\\\": 0.7990285714285714,\\n      \\\"kl_divergence_mean\\\": 5.915744781494141\\n    }\\n  ],\\n  \\\"cross_task_summary\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.853 +/- 0.079\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.748, 0.972]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.093\\\",\\n      \\\"mse_mean_std\\\": \\\"0.058042 +/- 0.006654\\\"\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.954 +/- 0.176\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.638, 1.240]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n      \\\"mse_mean_std\\\": \\\"0.065942 +/- 0.013179\\\"\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.839 +/- 0.139\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.615, 1.033]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.166\\\",\\n      \\\"mse_mean_std\\\": \\\"0.056998 +/- 0.011380\\\"\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.809 +/- 0.104\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.707, 1.002]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.128\\\",\\n      \\\"mse_mean_std\\\": \\\"0.054715 +/- 0.008634\\\"\\n    }\\n  },\\n  \\\"per_task_cohens_d\\\": {\\n    \\\"wrong\\\": {\\n      \\\"between_the_plate_and_the_ramekin\\\": {\\n        \\\"cohens_d\\\": 0.9537270287822055,\\n        \\\"ci_95\\\": [\\n          0.8658616592719858,\\n          1.0415923982924253\\n        ],\\n        \\\"mse_mean\\\": 0.06640954677950142,\\n        \\\"token_div_rate\\\": 0.8837142857142857\\n      },\\n      \\\"from_table_center\\\": {\\n        \\\"cohens_d\\\": 0.7478225235513748,\\n        \\\"ci_95\\\": [\\n          0.6599571540417684,\\n          0.8356878930609812\\n        ],\\n        \\\"mse_mean\\\": 0.04801849608641557,\\n        \\\"token_div_rate\\\": 0.8477142857142858\\n      },\\n      \\\"in_the_top_drawer_of_the_wooden_cabinet\\\": {\\n        \\\"cohens_d\\\": 0.8402249359935192,\\n        \\\"ci_95\\\": [\\n          0.7523595664835159,\\n          0.9280903055035226\\n        ],\\n        \\\"mse_mean\\\": 0.057718587844706744,\\n        \\\"token_div_rate\\\": 0.8505714285714285\\n      },\\n      \\\"next_to_the_cookie_box\\\": {\\n        \\\"cohens_d\\\": 0.9220417974980362,\\n        \\\"ci_95\\\": [\\n          0.834176427987849,\\n          1.0099071670082234\\n        ],\\n        \\\"\\n\\n... [截断: 输出过长，省略 9123 字符] ...\\n\\n: 0.7124225640763044,\\n        \\\"ci_95\\\": [\\n          0.6245571945667479,\\n          0.800287933585861\\n        ],\\n        \\\"mse_mean\\\": 0.04632266842290686,\\n        \\\"token_div_rate\\\": 0.7911428571428571\\n      }\\n    }\\n  },\\n  \\\"cross_task_variance\\\": {\\n    \\\"wrong\\\": {\\n      \\\"values\\\": [\\n        0.9537270287822055,\\n        0.7478225235513748,\\n        0.8402249359935192,\\n        0.9220417974980362,\\n        0.8010524072178329,\\n        0.9717865880506841,\\n        0.7703927057825246,\\n        0.883958664395498,\\n        0.8603264504389757,\\n        0.7794610598803051\\n      ],\\n      \\\"mean\\\": 0.8530794161590955,\\n      \\\"std\\\": 0.07901547479793777,\\n      \\\"min\\\": 0.7478225235513748,\\n      \\\"max\\\": 0.9717865880506841,\\n      \\\"cv\\\": 0.09262382059762314\\n    },\\n    \\\"empty\\\": {\\n      \\\"values\\\": [\\n        0.9292964828930503,\\n        0.9174923607450863,\\n        1.2395940180277485,\\n        0.9433306784276709,\\n        0.6382201896911069,\\n        0.8860503738032537,\\n        0.8669576038332663,\\n        0.8437726789310636,\\n        1.0899809476510236,\\n        1.1853331895026558\\n      ],\\n      \\\"mean\\\": 0.9540028523505926,\\n      \\\"std\\\": 0.17628486825625608,\\n      \\\"min\\\": 0.6382201896911069,\\n      \\\"max\\\": 1.2395940180277485,\\n      \\\"cv\\\": 0.18478442472338358\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"values\\\": [\\n        1.0011000609054526,\\n        0.7501607097378418,\\n        0.6814875360395645,\\n        0.9646060425242083,\\n        0.923940928088195,\\n        0.7833085423811394,\\n        0.8316352101803701,\\n        1.033136081318589,\\n        0.8014269561881272,\\n        0.6154272853921147\\n      ],\\n      \\\"mean\\\": 0.8386229352755603,\\n      \\\"std\\\": 0.13912845061576978,\\n      \\\"min\\\": 0.6154272853921147,\\n      \\\"max\\\": 1.033136081318589,\\n      \\\"cv\\\": 0.16590107992919145\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"values\\\": [\\n        0.9122756234925912,\\n        0.7576835622105202,\\n        0.7258257406427423,\\n        0.8057986735394016,\\n        0.8177985758234079,\\n        1.002449280455852,\\n        0.7257338619797585,\\n        0.7065013070901938,\\n        0.9194079555462267,\\n        0.7124225640763044\\n      ],\\n      \\\"mean\\\": 0.8085897144856998,\\n      \\\"std\\\": 0.10364584055319942,\\n      \\\"min\\\": 0.7065013070901938,\\n      \\\"max\\\": 1.002449280455852,\\n      \\\"cv\\\": 0.1281810029193789\\n    }\\n  },\\n  \\\"global_metrics_detail\\\": {\\n    \\\"wrong\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.05804234059654507,\\n        \\\"std\\\": 0.0681637276907686,\\n        \\\"t_stat\\\": 60.20508209209877,\\n        \\\"p_value\\\": 0.0,\\n        \\\"cohens_d\\\": 0.8514284361718265,\\n        \\\"ci_95\\\": [\\n          0.8237036469496201,\\n          0.879153225394033\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.8652,\\n      \\\"kl_divergence_mean\\\": 6.957239627838135,\\n      \\\"n_samples\\\": 5000\\n    },\\n    \\\"empty\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.06594219543597996,\\n        \\\"std\\\": 0.06998253818929218,\\n        \\\"t_stat\\\": 66.62163407460356,\\n        \\\"p_value\\\": 0.0,\\n        \\\"cohens_d\\\": 0.9421721845441572,\\n        \\\"ci_95\\\": [\\n          0.9144473953218829,\\n          0.9698969737664315\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.9137142857142857,\\n      \\\"kl_divergence_mean\\\": 9.029648780822754,\\n      \\\"n_samples\\\": 5000\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.05699806222791878,\\n        \\\"std\\\": 0.06843420226315344,\\n        \\\"t_stat\\\": 58.88822315443597,\\n        \\\"p_value\\\": 0.0,\\n        \\\"cohens_d\\\": 0.8328052384783984,\\n        \\\"ci_95\\\": [\\n          0.805080449256199,\\n          0.8605300277005977\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.8767142857142857,\\n      \\\"kl_divergence_mean\\\": 7.758697986602783,\\n      \\\"n_samples\\\": 5000\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.05471477349390839,\\n        \\\"std\\\": 0.06790444985293868,\\n        \\\"t_stat\\\": 56.97022557462376,\\n        \\\"p_value\\\": 0.0,\\n        \\\"cohens_d\\\": 0.8056806565790108,\\n        \\\"ci_95\\\": [\\n          0.7779558673568349,\\n          0.8334054458011867\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7990285714285714,\\n      \\\"kl_divergence_mean\\\": 5.915744781494141,\\n      \\\"n_samples\\\": 5000\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have both datasets now. Let me also check if there are any per-task details missing. The output was truncated in the per_task_cohens_d section. Let me extract the missing tasks for the "wrong" condition and any others.
+
+Actually, looking at the truncated output, I can see it stopped in the middle of the "wrong" condition's per-task data. Let me get the full per-task data for all conditions.
+
+Let me also look at what parts I'm missing. From the output I have:
+- wrong: between_the_plate_and_the_ramekin, from_table_center, in_the_top_drawer_of_the_wooden_cabinet, next_to_the_cookie_box (truncated here)
+
+
+- I need the remaining tasks for wrong and all tasks for empty, shuffled, paraphrased
+
+But I also got the cross_task_variance which has all the values. Let me check... Actually, from the cross_task_variance section (which was NOT truncated), I have all 10 per-task Cohen's d values for each condition. And from the full output I got:
+- cross_task_variance for all 4 conditions with all 10 values each
+- global_metrics_detail for all 4 conditions
+- ranking_by_cohens_d
+- cross_task_summary
+
+But the per_task_cohens_d section was truncated. I need to get the full per-task data including task names
+
+.
+
+Actually, I realize I have all the essential numbers already. The cross_task_variance contains all 10 per-task Cohen's d values per condition, so I just need to map those back to their task names for the truncated sections. Looking more carefully at what I did capture for the wrong condition, I can see the first few task-value pairs, which gives me a starting point to reconstruct the full list.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "641807e5-ea35-4ec4-b32f-94de15b732cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6TtWbMTnRKtkixmnhrokN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5114,
+      "cache_read_input_tokens": 36993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5114
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Per-task 数据被截断，补充获取。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "c38ca239-ecf8-4591-8bde-069c96783139",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6TtWbMTnRKtkixmnhrokN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5114,
+      "cache_read_input_tokens": 36993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5114
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Gq4r4w8hJ7BFAtptfsRojg`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nwith open('/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json') as f:\n    d = json.load(f)\n\nfor cond in ['wrong', 'empty', 'shuffled', 'paraphrased']:\n    cd = d['conditions'][cond]\n    print(f\"\\n=== {cond} ===\")\n    for task in cd['per_task']:\n        short = task.replace('pick_up_the_black_bowl_', '').replace('_and_place_it_on_the_plate', '')\n        t = cd['per_task'][task]['paired_mse']\n        print(f\"  {short}: d={t['cohens_d']:.4f} CI={[round(x,4) for x in t['ci_95']]} mse={t['mean']:.6f}\")\nPYEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "2d6490a2-9379-4f21-8e56-e248e57f2688",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6TtWbMTnRKtkixmnhrokN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5114,
+      "cache_read_input_tokens": 36993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5114
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T21:36:52.364Z_
+
+<details><summary>↩ Tool result · `toolu_01Gq4r4w8hJ7BFAtptfsRojg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== wrong ===\\n  between_the_plate_and_the_ramekin: d=0.9537 CI=[0.8659, 1.0416] mse=0.066410\\n  from_table_center: d=0.7478 CI=[0.66, 0.8357] mse=0.048018\\n  in_the_top_drawer_of_the_wooden_cabinet: d=0.8402 CI=[0.7524, 0.9281] mse=0.057719\\n  next_to_the_cookie_box: d=0.9220 CI=[0.8342, 1.0099] mse=0.064521\\n  next_to_the_plate: d=0.8011 CI=[0.7132, 0.8889] mse=0.054547\\n  next_to_the_ramekin: d=0.9718 CI=[0.8839, 1.0597] mse=0.066824\\n  on_the_cookie_box: d=0.7704 CI=[0.6825, 0.8583] mse=0.050291\\n  on_the_ramekin: d=0.8840 CI=[0.7961, 0.9718] mse=0.059934\\n  on_the_stove: d=0.8603 CI=[0.7725, 0.9482] mse=0.059635\\n  on_the_wooden_cabinet: d=0.7795 CI=[0.6916, 0.8673] mse=0.052525\\n\\n=== empty ===\\n  between_the_plate_and_the_ramekin: d=0.9293 CI=[0.8414, 1.0172] mse=0.065116\\n  from_table_center: d=0.9175 CI=[0.8296, 1.0054] mse=0.064163\\n  in_the_top_drawer_of_the_wooden_cabinet: d=1.2396 CI=[1.1517, 1.3275] mse=0.085796\\n  next_to_the_cookie_box: d=0.9433 CI=[0.8555, 1.0312] mse=0.066486\\n  next_to_the_plate: d=0.6382 CI=[0.5504, 0.7261] mse=0.040350\\n  next_to_the_ramekin: d=0.8861 CI=[0.7982, 0.9739] mse=0.061748\\n  on_the_cookie_box: d=0.8670 CI=[0.7791, 0.9548] mse=0.059199\\n  on_the_ramekin: d=0.8438 CI=[0.7559, 0.9316] mse=0.057708\\n  on_the_stove: d=1.0900 CI=[1.0021, 1.1778] mse=0.076660\\n  on_the_wooden_cabinet: d=1.1853 CI=[1.0975, 1.2732] mse=0.082195\\n\\n=== shuffled ===\\n  between_the_plate_and_the_ramekin: d=1.0011 CI=[0.9132, 1.089] mse=0.070393\\n  from_table_center: d=0.7502 CI=[0.6623, 0.838] mse=0.049722\\n  in_the_top_drawer_of_the_wooden_cabinet: d=0.6815 CI=[0.5936, 0.7694] mse=0.044356\\n  next_to_the_cookie_box: d=0.9646 CI=[0.8767, 1.0525] mse=0.068049\\n  next_to_the_plate: d=0.9239 CI=[0.8361, 1.0118] mse=0.064587\\n  next_to_the_ramekin: d=0.7833 CI=[0.6954, 0.8712] mse=0.053053\\n  on_the_cookie_box: d=0.8316 CI=[0.7438, 0.9195] mse=0.056043\\n  on_the_ramekin: d=1.0331 CI=[0.9453, 1.121] mse=0.071141\\n  on_the_stove: d=0.8014 CI=[0.7136, 0.8893] mse=0.054950\\n  on_the_wooden_cabinet: d=0.6154 CI=[0.5276, 0.7033] mse=0.037686\\n\\n=== paraphrased ===\\n  between_the_plate_and_the_ramekin: d=0.9123 CI=[0.8244, 1.0001] mse=0.063853\\n  from_table_center: d=0.7577 CI=[0.6698, 0.8455] mse=0.050716\\n  in_the_top_drawer_of_the_wooden_cabinet: d=0.7258 CI=[0.638, 0.8137] mse=0.048071\\n  next_to_the_cookie_box: d=0.8058 CI=[0.7179, 0.8937] mse=0.055225\\n  next_to_the_plate: d=0.8178 CI=[0.7299, 0.9057] mse=0.056283\\n  next_to_the_ramekin: d=1.0024 CI=[0.9146, 1.0903] mse=0.069698\\n  on_the_cookie_box: d=0.7257 CI=[0.6379, 0.8136] mse=0.046803\\n  on_the_ramekin: d=0.7065 CI=[0.6186, 0.7944] mse=0.045957\\n  on_the_stove: d=0.9194 CI=[0.8315, 1.0073] mse=0.064219\\n  on_the_wooden_cabinet: d=0.7124 CI=[0.6246, 0.8003] mse=0.046323\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "a2320e0a-25ad-40b3-9168-fa4c5d92c41b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== wrong ===\\\\n  between_the_plate_and_the_ramekin: d=0.9537 CI=[0.8659, 1.0416] mse=0.066410\\\\n  from_table_center: d=0.7478 CI=[0.66, 0.8357] mse=0.048018\\\\n  in_the_top_drawer_of_the_wooden_cabinet: d=0.8402 CI=[0.7524, 0.9281] mse=0.057719\\\\n  next_to_the_cookie_box: d=0.9220 CI=[0.8342, 1.0099] mse=0.064521\\\\n  next_to_the_plate: d=0.8011 CI=[0.7132, 0.8889] mse=0.054547\\\\n  next_to_the_ramekin: d=0.9718 CI=[0.8839, 1.0597] mse=0.066824\\\\n  on_the_cookie_box: d=0.7704 CI=[0.6825, 0.8583] mse=0.050291\\\\n  on_the_ramekin: d=0.8840 CI=[0.7961, 0.9718] mse=0.059934\\\\n  on_the_stove: d=0.8603 CI=[0.7725, 0.9482] mse=0.059635\\\\n  on_the_wooden_cabinet: d=0.7795 CI=[0.6916, 0.8673] mse=0.052525\\\\n\\\\n=== empty ===\\\\n  between_the_plate_and_the_ramekin: d=0.9293 CI=[0.8414, 1.0172] mse=0.065116\\\\n  from_table_center: d=0.9175 CI=[0.8296, 1.0054] mse=0.064163\\\\n  in_the_top_drawer_of_the_wooden_cabinet: d=1.2396 CI=[1.1517, 1.3275] mse=0.085796\\\\n  next_to_the_cookie_box: d=0.9433 CI=[0.8555, 1.0312] mse=0.066486\\\\n  next_to_the_plate: d=0.6382 CI=[0.5504, 0.7261] mse=0.040350\\\\n  next_to_the_ramekin: d=0.8861 CI=[0.7982, 0.9739] mse=0.061748\\\\n  on_the_cookie_box: d=0.8670 CI=[0.7791, 0.9548] mse=0.059199\\\\n  on_the_ramekin: d=0.8438 CI=[0.7559, 0.9316] mse=0.057708\\\\n  on_the_stove: d=1.0900 CI=[1.0021, 1.1778] mse=0.076660\\\\n  on_the_wooden_cabinet: d=1.1853 CI=[1.0975, 1.2732] mse=0.082195\\\\n\\\\n=== shuffled ===\\\\n  between_the_plate_and_the_ramekin: d=1.0011 CI=[0.9132, 1.089] mse=0.070393\\\\n  from_table_center: d=0.7502 CI=[0.6623, 0.838] mse=0.049722\\\\n  in_the_top_drawer_of_the_wooden_cabinet: d=0.6815 CI=[0.5936, 0.7694] mse=0.044356\\\\n  next_to_the_cookie_box: d=0.9646 CI=[0.8767, 1.0525] mse=0.068049\\\\n  next_to_the_plate: d=0.9239 CI=[0.8361, 1.0118] mse=0.064587\\\\n  next_to_the_ramekin: d=0.7833 CI=[0.6954, 0.8712] mse=0.053053\\\\n  on_the_cookie_box: d=0.8316 CI=[0.7438, 0.9195] mse=0.056043\\\\n  on_the_ramekin: d=1.0331 CI=[0.9453, 1.121] mse=0.071141\\\\n  on_the_stove: d=0.8014 CI=[0.7136, 0.8893] mse=0.054950\\\\n  on_the_wooden_cabinet: d=0.6154 CI=[0.5276, 0.7033] mse=0.037686\\\\n\\\\n=== paraphrased ===\\\\n  between_the_plate_and_the_ramekin: d=0.9123 CI=[0.8244, 1.0001] mse=0.063853\\\\n  from_table_center: d=0.7577 CI=[0.6698, 0.8455] mse=0.050716\\\\n  in_the_top_drawer_of_the_wooden_cabinet: d=0.7258 CI=[0.638, 0.8137] mse=0.048071\\\\n  next_to_the_cookie_box: d=0.8058 CI=[0.7179, 0.8937] mse=0.055225\\\\n  next_to_the_plate: d=0.8178 CI=[0.7299, 0.9057] mse=0.056283\\\\n  next_to_the_ramekin: d=1.0024 CI=[0.9146, 1.0903] mse=0.069698\\\\n  on_the_cookie_box: d=0.7257 CI=[0.6379, 0.8136] mse=0.046803\\\\n  on_the_ramekin: d=0.7065 CI=[0.6186, 0.7944] mse=0.045957\\\\n  on_the_stove: d=0.9194 CI=[0.8315, 1.0073] mse=0.064219\\\\n  on_the_wooden_cabinet: d=0.7124 CI=[0.6246, 0.8003] mse=0.046323\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n=== wrong ===\\n  between_the_plate_and_the_ramekin: d=0.9537 CI=[0.8659, 1.0416] mse=0.066410\\n  from_table_center: d=0.7478 CI=[0.66, 0.8357] mse=0.048018\\n  in_the_top_drawer_of_the_wooden_cabinet: d=0.8402 CI=[0.7524, 0.9281] mse=0.057719\\n  next_to_the_cookie_box: d=0.9220 CI=[0.8342, 1.0099] mse=0.064521\\n  next_to_the_plate: d=0.8011 CI=[0.7132, 0.8889] mse=0.054547\\n  next_to_the_ramekin: d=0.9718 CI=[0.8839, 1.0597] mse=0.066824\\n  on_the_cookie_box: d=0.7704 CI=[0.6825, 0.8583] mse=0.050291\\n  on_the_ramekin: d=0.8840 CI=[0.7961, 0.9718] mse=0.059934\\n  on_the_stove: d=0.8603 CI=[0.7725, 0.9482] mse=0.059635\\n  on_the_wooden_cabinet: d=0.7795 CI=[0.6916, 0.8673] mse=0.052525\\n\\n=== empty ===\\n  between_the_plate_and_the_ramekin: d=0.9293 CI=[0.8414, 1.0172] mse=0.065116\\n  from_table_center: d=0.9175 CI=[0.8296, 1.0054] mse=0.064163\\n  in_the_top_drawer_of_the_wooden_cabinet: d=1.2396 CI=[1.1517, 1.3275] mse=0.085796\\n  next_to_the_cookie_box: d=0.9433 CI=[0.8555, 1.0312] mse=0.066486\\n  next_to_the_plate: d=0.6382 CI=[0.5504, 0.7261] mse=0.040350\\n  next_to_the_ramekin: d=0.8861 CI=[0.7982, 0.9739] mse=0.061748\\n  on_the_cookie_box: d=0.8670 CI=[0.7791, 0.9548] mse=0.059199\\n  on_the_ramekin: d=0.8438 CI=[0.7559, 0.9316] mse=0.057708\\n  on_the_stove: d=1.0900 CI=[1.0021, 1.1778] mse=0.076660\\n  on_the_wooden_cabinet: d=1.1853 CI=[1.0975, 1.2732] mse=0.082195\\n\\n=== shuffled ===\\n  between_the_plate_and_the_ramekin: d=1.0011 CI=[0.9132, 1.089] mse=0.070393\\n  from_table_center: d=0.7502 CI=[0.6623, 0.838] mse=0.049722\\n  in_the_top_drawer_of_the_wooden_cabinet: d=0.6815 CI=[0.5936, 0.7694] mse=0.044356\\n  next_to_the_cookie_box: d=0.9646 CI=[0.8767, 1.0525] mse=0.068049\\n  next_to_the_plate: d=0.9239 CI=[0.8361, 1.0118] mse=0.064587\\n  next_to_the_ramekin: d=0.7833 CI=[0.6954, 0.8712] mse=0.053053\\n  on_the_cookie_box: d=0.8316 CI=[0.7438, 0.9195] mse=0.056043\\n  on_the_ramekin: d=1.0331 CI=[0.9453, 1.121] mse=0.071141\\n  on_the_stove: d=0.8014 CI=[0.7136, 0.8893] mse=0.054950\\n  on_the_wooden_cabinet: d=0.6154 CI=[0.5276, 0.7033] mse=0.037686\\n\\n=== paraphrased ===\\n  between_the_plate_and_the_ramekin: d=0.9123 CI=[0.8244, 1.0001] mse=0.063853\\n  from_table_center: d=0.7577 CI=[0.6698, 0.8455] mse=0.050716\\n  in_the_top_drawer_of_the_wooden_cabinet: d=0.7258 CI=[0.638, 0.8137] mse=0.048071\\n  next_to_the_cookie_box: d=0.8058 CI=[0.7179, 0.8937] mse=0.055225\\n  next_to_the_plate: d=0.8178 CI=[0.7299, 0.9057] mse=0.056283\\n  next_to_the_ramekin: d=1.0024 CI=[0.9146, 1.0903] mse=0.069698\\n  on_the_cookie_box: d=0.7257 CI=[0.6379, 0.8136] mse=0.046803\\n  on_the_ramekin: d=0.7065 CI=[0.6186, 0.7944] mse=0.045957\\n  on_the_stove: d=0.9194 CI=[0.8315, 1.0073] mse=0.064219\\n  on_the_wooden_cabinet: d=0.7124 CI=[0.6246, 0.8003] mse=0.046323\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the complete data. Let me also check if there's a counterfactual_10tasks trajectory-specific result, separate from the general trajectory_level_cohens_d.json. Looking at the trajectory_level_cohens_d.json, it has results from counterfactual, dose_response, head_ablation, and specificity experiments. The counterfactual portion has conditions: counterfactual_empty, counterfactual_paraphrased, counterfactual_shuffled, counterfactual_wrong - but only n_demos=30, which means it was from 3 tasks × 10 demos. 
+
+
+I need to check if there's a separate trajectory run log in the counterfactual_10tasks directory or if there's a per-task breakdown there that I haven't examined yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "75fbc353-461d-4475-8ad0-93cdbd807a37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0161pL9pV5jnet2fsdz5qcvm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2668,
+      "cache_read_input_tokens": 42107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2668
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G4XBUiCGWr7yrrZX9PTsV6`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/trajectory_run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "918b3318-fdb8-42ce-9cd3-05ccbd17af88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0161pL9pV5jnet2fsdz5qcvm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2668,
+      "cache_read_input_tokens": 42107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2668
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T21:37:06.821Z_
+
+<details><summary>↩ Tool result · `toolu_01G4XBUiCGWr7yrrZX9PTsV6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model on cuda:1...\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:03,  1.86s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:03<00:01,  1.61s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.04s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.22s/it]\\nModel loaded.\\n\\nTask 0/10: open_the_middle_drawer_of_the_cabinet\\n  250/25000 passes, 7.8/s, ETA 3191s (53.2min)\\n  demo 0/10 done\\n  500/25000 passes, 7.9/s, ETA 3108s (51.8min)\\n  demo 1/10 done\\n  750/25000 passes, 7.9/s, ETA 3067s (51.1min)\\n  demo 2/10 done\\n  1000/25000 passes, 7.9/s, ETA 3025s (50.4min)\\n  demo 3/10 done\\n  1250/25000 passes, 7.9/s, ETA 2989s (49.8min)\\n  demo 4/10 done\\n  1500/25000 passes, 8.0/s, ETA 2954s (49.2min)\\n  demo 5/10 done\\n  1750/25000 passes, 8.0/s, ETA 2922s (48.7min)\\n  demo 6/10 done\\n  2000/25000 passes, 8.0/s, ETA 2889s (48.1min)\\n  demo 7/10 done\\n  2250/25000 passes, 8.0/s, ETA 2855s (47.6min)\\n  demo 8/10 done\\n  2500/25000 passes, 8.0/s, ETA 2823s (47.1min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.065946 +/- 0.009725\\n  empty: demo_mse=0.086239 +/- 0.012511\\n  shuffled: demo_mse=0.023404 +/- 0.011293\\n  paraphrased: demo_mse=0.022039 +/- 0.009897\\n\\nTask 1/10: open_the_top_drawer_and_put_the_bowl_inside\\n  2750/25000 passes, 8.0/s, ETA 2791s (46.5min)\\n  demo 0/10 done\\n  3000/25000 passes, 8.0/s, ETA 2757s (46.0min)\\n  demo 1/10 done\\n  3250/25000 passes, 8.0/s, ETA 2724s (45.4min)\\n  demo 2/10 done\\n  3500/25000 passes, 8.0/s, ETA 2693s (44.9min)\\n  demo 3/10 done\\n  3750/25000 passes, 8.0/s, ETA 2661s (44.3min)\\n  demo 4/10 done\\n  4000/25000 passes, 8.0/s, ETA 2629s (43.8min)\\n  demo 5/10 done\\n  4250/25000 passes, 8.0/s, ETA 2598s (43.3min)\\n  demo 6/10 done\\n  4500/25000 passes, 8.0/s, ETA 2566s (42.8min)\\n  demo 7/10 done\\n  4750/25000 passes, 8.0/s, ETA 2534s (42.2min)\\n  demo 8/10 done\\n  5000/25000 passes, 8.0/s, ETA 2503s (41.7min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.049243 +/- 0.011583\\n  empty: demo_mse=0.074423 +/- 0.011731\\n  shuffled: demo_mse=0.046452 +/- 0.006392\\n  paraphrased: demo_mse=0.047022 +/- 0.008488\\n\\nTask 2/10: push_the_plate_to_the_front_of_the_stove\\n  5250/25000 passes, 8.0/s, ETA 2471s (41.2min)\\n  demo 0/10 done\\n  5500/25000 passes, 8.0/s, ETA 2440s (40.7min)\\n  demo 1/10 done\\n  5750/25000 passes, 8.0/s, ETA 2408s (40.1min)\\n  demo 2/10 done\\n  6000/25000 passes, 8.0/s, ETA 2377s (39.6min)\\n  demo 3/10 done\\n  6250/25000 passes, 8.0/s, ETA 2346s (39.1min)\\n  demo 4/10 done\\n  6500/25000 passes, 8.0/s, ETA 2314s (38.6min)\\n  demo 5/10 done\\n  6750/25000 passes, 8.0/s, ETA 2284s (38.1min)\\n  demo 6/10 done\\n  7000/25000 passes, 8.0/s, ETA 2252s (37.5min)\\n  demo 7/10 done\\n  7250/25000 passes, 8.0/s, ETA 2221s (37.0min)\\n  demo 8/10 done\\n  7500/25000 passes, 8.0/s, ETA 2189s (36.5min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.070744 +/- 0.012128\\n  empty: demo_mse=0.044727 +/- 0.010592\\n  shuffled: demo_mse=0.047365 +/- 0.009416\\n  paraphrased: demo_mse=0.067855 +/- 0.006824\\n\\nTask 3/10: put_the_bowl_on_the_plate\\n  7750/25000 passes, 8.0/s, ETA 2158s (36.0min)\\n  demo 0/10 done\\n  8000/25000 passes, 8.0/s, ETA 2127s (35.4min)\\n  demo 1/10 done\\n  8250/25000 passes, 8.0/s, ETA 2095s (34.9min)\\n  demo 2/10 done\\n  8500/25000 passes, 8.0/s, ETA 2064s (34.4min)\\n  demo 3/10 done\\n  8750/25000 passes, 8.0/s, ETA 2033s (33.9min)\\n  demo 4/10 done\\n  9000/25000 passes, 8.0/s, ETA 2002s (33.4min)\\n  demo 5/10 done\\n  9250/250\\n\\n... [截断: 输出过长，省略 272 字符] ...\\n\\n68348 +/- 0.011525\\n  empty: demo_mse=0.055558 +/- 0.006670\\n  shuffled: demo_mse=0.047938 +/- 0.007593\\n  paraphrased: demo_mse=0.050208 +/- 0.011792\\n\\nTask 4/10: put_the_bowl_on_the_stove\\n  10250/25000 passes, 8.0/s, ETA 1845s (30.8min)\\n  demo 0/10 done\\n  10500/25000 passes, 8.0/s, ETA 1814s (30.2min)\\n  demo 1/10 done\\n  10750/25000 passes, 8.0/s, ETA 1783s (29.7min)\\n  demo 2/10 done\\n  11000/25000 passes, 8.0/s, ETA 1752s (29.2min)\\n  demo 3/10 done\\n  11250/25000 passes, 8.0/s, ETA 1720s (28.7min)\\n  demo 4/10 done\\n  11500/25000 passes, 8.0/s, ETA 1689s (28.1min)\\n  demo 5/10 done\\n  11750/25000 passes, 8.0/s, ETA 1657s (27.6min)\\n  demo 6/10 done\\n  12000/25000 passes, 8.0/s, ETA 1626s (27.1min)\\n  demo 7/10 done\\n  12250/25000 passes, 8.0/s, ETA 1595s (26.6min)\\n  demo 8/10 done\\n  12500/25000 passes, 8.0/s, ETA 1564s (26.1min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.098254 +/- 0.006849\\n  empty: demo_mse=0.059434 +/- 0.015444\\n  shuffled: demo_mse=0.065400 +/- 0.011182\\n  paraphrased: demo_mse=0.059021 +/- 0.013617\\n\\nTask 5/10: put_the_bowl_on_top_of_the_cabinet\\n  12750/25000 passes, 8.0/s, ETA 1533s (25.5min)\\n  demo 0/10 done\\n  13000/25000 passes, 8.0/s, ETA 1501s (25.0min)\\n  demo 1/10 done\\n  13250/25000 passes, 8.0/s, ETA 1470s (24.5min)\\n  demo 2/10 done\\n  13500/25000 passes, 8.0/s, ETA 1439s (24.0min)\\n  demo 3/10 done\\n  13750/25000 passes, 8.0/s, ETA 1408s (23.5min)\\n  demo 4/10 done\\n  14000/25000 passes, 8.0/s, ETA 1376s (22.9min)\\n  demo 5/10 done\\n  14250/25000 passes, 8.0/s, ETA 1345s (22.4min)\\n  demo 6/10 done\\n  14500/25000 passes, 8.0/s, ETA 1313s (21.9min)\\n  demo 7/10 done\\n  14750/25000 passes, 8.0/s, ETA 1282s (21.4min)\\n  demo 8/10 done\\n  15000/25000 passes, 8.0/s, ETA 1251s (20.8min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.061296 +/- 0.008821\\n  empty: demo_mse=0.069785 +/- 0.011192\\n  shuffled: demo_mse=0.060770 +/- 0.011149\\n  paraphrased: demo_mse=0.060360 +/- 0.012416\\n\\nTask 6/10: put_the_cream_cheese_in_the_bowl\\n  15250/25000 passes, 8.0/s, ETA 1219s (20.3min)\\n  demo 0/10 done\\n  15500/25000 passes, 8.0/s, ETA 1188s (19.8min)\\n  demo 1/10 done\\n  15750/25000 passes, 8.0/s, ETA 1157s (19.3min)\\n  demo 2/10 done\\n  16000/25000 passes, 8.0/s, ETA 1125s (18.8min)\\n  demo 3/10 done\\n  16250/25000 passes, 8.0/s, ETA 1094s (18.2min)\\n  demo 4/10 done\\n  16500/25000 passes, 8.0/s, ETA 1063s (17.7min)\\n  demo 5/10 done\\n  16750/25000 passes, 8.0/s, ETA 1032s (17.2min)\\n  demo 6/10 done\\n  17000/25000 passes, 8.0/s, ETA 1000s (16.7min)\\n  demo 7/10 done\\n  17250/25000 passes, 8.0/s, ETA 969s (16.2min)\\n  demo 8/10 done\\n  17500/25000 passes, 8.0/s, ETA 938s (15.6min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.054458 +/- 0.017313\\n  empty: demo_mse=0.079798 +/- 0.013744\\n  shuffled: demo_mse=0.062622 +/- 0.013612\\n  paraphrased: demo_mse=0.064504 +/- 0.007842\\n\\nTask 7/10: put_the_wine_bottle_on_the_rack\\n  17750/25000 passes, 8.0/s, ETA 907s (15.1min)\\n  demo 0/10 done\\n  18000/25000 passes, 8.0/s, ETA 875s (14.6min)\\n  demo 1/10 done\\n  18250/25000 passes, 8.0/s, ETA 844s (14.1min)\\n  demo 2/10 done\\n  18500/25000 passes, 8.0/s, ETA 813s (13.5min)\\n  demo 3/10 done\\n  18750/25000 passes, 8.0/s, ETA 782s (13.0min)\\n  demo 4/10 done\\n  19000/25000 passes, 8.0/s, ETA 750s (12.5min)\\n  demo 5/10 done\\n  19250/25000 passes, 8.0/s, ETA 719s (12.0min)\\n  demo 6/10 done\\n  19500/25000 passes, 8.0/s, ETA 688s (11.5min)\\n  demo 7/10 done\\n  19750/25000 passes, 8.0/s, ETA 656s (10.9min)\\n  demo 8/10 done\\n  20000/25000 passes, 8.0/s, ETA 625s (10.4min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.082012 +/- 0.022462\\n  empty: demo_mse=0.077958 +/- 0.019602\\n  shuffled: demo_mse=0.041155 +/- 0.011938\\n  paraphrased: demo_mse=0.019398 +/- 0.009254\\n\\nTask 8/10: put_the_wine_bottle_on_top_of_the_cabinet\\n  20250/25000 passes, 8.0/s, ETA 594s (9.9min)\\n  demo 0/10 done\\n  20500/25000 passes, 8.0/s, ETA 562s (9.4min)\\n  demo 1/10 done\\n  20750/25000 passes, 8.0/s, ETA 531s (8.9min)\\n  demo 2/10 done\\n  21000/25000 passes, 8.0/s, ETA 500s (8.3min)\\n  demo 3/10 done\\n  21250/25000 passes, 8.0/s, ETA 469s (7.8min)\\n  demo 4/10 done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "299416dd-3b56-4910-94fa-f72f05fc27d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model on cuda:1...\\\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:03,  1.86s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:03<00:01,  1.61s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.04s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.22s/it]\\\\nModel loaded.\\\\n\\\\nTask 0/10: open_the_middle_drawer_of_the_cabinet\\\\n  250/25000 passes, 7.8/s, ETA 3191s (53.2min)\\\\n  demo 0/10 done\\\\n  500/25000 passes, 7.9/s, ETA 3108s (51.8min)\\\\n  demo 1/10 done\\\\n  750/25000 passes, 7.9/s, ETA 3067s (51.1min)\\\\n  demo 2/10 done\\\\n  1000/25000 passes, 7.9/s, ETA 3025s (50.4min)\\\\n  demo 3/10 done\\\\n  1250/25000 passes, 7.9/s, ETA 2989s (49.8min)\\\\n  demo 4/10 done\\\\n  1500/25000 passes, 8.0/s, ETA 2954s (49.2min)\\\\n  demo 5/10 done\\\\n  1750/25000 passes, 8.0/s, ETA 2922s (48.7min)\\\\n  demo 6/10 done\\\\n  2000/25000 passes, 8.0/s, ETA 2889s (48.1min)\\\\n  demo 7/10 done\\\\n  2250/25000 passes, 8.0/s, ETA 2855s (47.6min)\\\\n  demo 8/10 done\\\\n  2500/25000 passes, 8.0/s, ETA 2823s (47.1min)\\\\n  demo 9/10 done\\\\n  wrong: demo_mse=0.065946 +/- 0.009725\\\\n  empty: demo_mse=0.086239 +/- 0.012511\\\\n  shuffled: demo_mse=0.023404 +/- 0.011293\\\\n  paraphrased: demo_mse=0.022039 +/- 0.009897\\\\n\\\\nTask 1/10: open_the_top_drawer_and_put_the_bowl_inside\\\\n  2750/25000 passes, 8.0/s, ETA 2791s (46.5min)\\\\n  demo 0/10 done\\\\n  3000/25000 passes, 8.0/s, ETA 2757s (46.0min)\\\\n  demo 1/10 done\\\\n  3250/25000 passes, 8.0/s, ETA 2724s (45.4min)\\\\n  demo 2/10 done\\\\n  3500/25000 passes, 8.0/s, ETA 2693s (44.9min)\\\\n  demo 3/10 done\\\\n  3750/25000 passes, 8.0/s, ETA 2661s (44.3min)\\\\n  demo 4/10 done\\\\n  4000/25000 passes, 8.0/s, ETA 2629s (43.8min)\\\\n  demo 5/10 done\\\\n  4250/25000 passes, 8.0/s, ETA 2598s (43.3min)\\\\n  demo 6/10 done\\\\n  4500/25000 passes, 8.0/s, ETA 2566s (42.8min)\\\\n  demo 7/10 done\\\\n  4750/25000 passes, 8.0/s, ETA 2534s (42.2min)\\\\n  demo 8/10 done\\\\n  5000/25000 passes, 8.0/s, ETA 2503s (41.7min)\\\\n  demo 9/10 done\\\\n  wrong: demo_mse=0.049243 +/- 0.011583\\\\n  empty: demo_mse=0.074423 +/- 0.011731\\\\n  shuffled: demo_mse=0.046452 +/- 0.006392\\\\n  paraphrased: demo_mse=0.047022 +/- 0.008488\\\\n\\\\nTask 2/10: push_the_plate_to_the_front_of_the_stove\\\\n  5250/25000 passes, 8.0/s, ETA 2471s (41.2min)\\\\n  demo 0/10 done\\\\n  5500/25000 passes, 8.0/s, ETA 2440s (40.7min)\\\\n  demo 1/10 done\\\\n  5750/25000 passes, 8.0/s, ETA 2408s (40.1min)\\\\n  demo 2/10 done\\\\n  6000/25000 passes, 8.0/s, ETA 2377s (39.6min)\\\\n  demo 3/10 done\\\\n  6250/25000 passes, 8.0/s, ETA 2346s (39.1min)\\\\n  demo 4/10 done\\\\n  6500/25000 passes, 8.0/s, ETA 2314s (38.6min)\\\\n  demo 5/10 done\\\\n  6750/25000 passes, 8.0/s, ETA 2284s (38.1min)\\\\n  demo 6/10 done\\\\n  7000/25000 passes, 8.0/s, ETA 2252s (37.5min)\\\\n  demo 7/10 done\\\\n  7250/25000 passes, 8.0/s, ETA 2221s (37.0min)\\\\n  demo 8/10 done\\\\n  7500/25000 passes, 8.0/s, ETA 2189s (36.5min)\\\\n  demo 9/10 done\\\\n  wrong: demo_mse=0.070744 +/- 0.012128\\\\n  empty: demo_mse=0.044727 +/- 0.010592\\\\n  shuffled: demo_mse=0.047365 +/- 0.009416\\\\n  paraphrased: demo_mse=0.067855 +/- 0.006824\\\\n\\\\nTask 3/10: put_the_bowl_on_the_plate\\\\n  7750/25000 passes, 8.0/s, ETA 2158s (36.0min)\\\\n  demo 0/10 done\\\\n  8000/25000 passes, 8.0/s, ETA 2127s (35.4min)\\\\n  demo 1/10 done\\\\n  8250/25000 passes, 8.0/s, ETA 2095s (34.9min)\\\\n  demo 2/10 done\\\\n  8500/25000 passes, 8.0/s, ETA 2064s (34.4min)\\\\n  demo 3/10 done\\\\n  8750/25000 passes, 8.0/s, ETA 2033s (33.9min)\\\\n  demo 4/10 done\\\\n  9000/25000 passes, 8.0/s, ETA 2002s (33.4min)\\\\n  demo 5/10 done\\\\n  9250/250\\\\n\\\\n... [截断: 输出过长，省略 272 字符] ...\\\\n\\\\n68348 +/- 0.011525\\\\n  empty: demo_mse=0.055558 +/- 0.006670\\\\n  shuffled: demo_mse=0.047938 +/- 0.007593\\\\n  paraphrased: demo_mse=0.050208 +/- 0.011792\\\\n\\\\nTask 4/10: put_the_bowl_on_the_stove\\\\n  10250/25000 passes, 8.0/s, ETA 1845s (30.8min)\\\\n  demo 0/10 done\\\\n  10500/25000 passes, 8.0/s, ETA 1814s (30.2min)\\\\n  demo 1/10 done\\\\n  10750/25000 passes, 8.0/s, ETA 1783s (29.7min)\\\\n  demo 2/10 done\\\\n  11000/25000 passes, 8.0/s, ETA 1752s (29.2min)\\\\n  demo 3/10 done\\\\n  11250/25000 passes, 8.0/s, ETA 1720s (28.7min)\\\\n  demo 4/10 done\\\\n  11500/25000 passes, 8.0/s, ETA 1689s (28.1min)\\\\n  demo 5/10 done\\\\n  11750/25000 passes, 8.0/s, ETA 1657s (27.6min)\\\\n  demo 6/10 done\\\\n  12000/25000 passes, 8.0/s, ETA 1626s (27.1min)\\\\n  demo 7/10 done\\\\n  12250/25000 passes, 8.0/s, ETA 1595s (26.6min)\\\\n  demo 8/10 done\\\\n  12500/25000 passes, 8.0/s, ETA 1564s (26.1min)\\\\n  demo 9/10 done\\\\n  wrong: demo_mse=0.098254 +/- 0.006849\\\\n  empty: demo_mse=0.059434 +/- 0.015444\\\\n  shuffled: demo_mse=0.065400 +/- 0.011182\\\\n  paraphrased: demo_mse=0.059021 +/- 0.013617\\\\n\\\\nTask 5/10: put_the_bowl_on_top_of_the_cabinet\\\\n  12750/25000 passes, 8.0/s, ETA 1533s (25.5min)\\\\n  demo 0/10 done\\\\n  13000/25000 passes, 8.0/s, ETA 1501s (25.0min)\\\\n  demo 1/10 done\\\\n  13250/25000 passes, 8.0/s, ETA 1470s (24.5min)\\\\n  demo 2/10 done\\\\n  13500/25000 passes, 8.0/s, ETA 1439s (24.0min)\\\\n  demo 3/10 done\\\\n  13750/25000 passes, 8.0/s, ETA 1408s (23.5min)\\\\n  demo 4/10 done\\\\n  14000/25000 passes, 8.0/s, ETA 1376s (22.9min)\\\\n  demo 5/10 done\\\\n  14250/25000 passes, 8.0/s, ETA 1345s (22.4min)\\\\n  demo 6/10 done\\\\n  14500/25000 passes, 8.0/s, ETA 1313s (21.9min)\\\\n  demo 7/10 done\\\\n  14750/25000 passes, 8.0/s, ETA 1282s (21.4min)\\\\n  demo 8/10 done\\\\n  15000/25000 passes, 8.0/s, ETA 1251s (20.8min)\\\\n  demo 9/10 done\\\\n  wrong: demo_mse=0.061296 +/- 0.008821\\\\n  empty: demo_mse=0.069785 +/- 0.011192\\\\n  shuffled: demo_mse=0.060770 +/- 0.011149\\\\n  paraphrased: demo_mse=0.060360 +/- 0.012416\\\\n\\\\nTask 6/10: put_the_cream_cheese_in_the_bowl\\\\n  15250/25000 passes, 8.0/s, ETA 1219s (20.3min)\\\\n  demo 0/10 done\\\\n  15500/25000 passes, 8.0/s, ETA 1188s (19.8min)\\\\n  demo 1/10 done\\\\n  15750/25000 passes, 8.0/s, ETA 1157s (19.3min)\\\\n  demo 2/10 done\\\\n  16000/25000 passes, 8.0/s, ETA 1125s (18.8min)\\\\n  demo 3/10 done\\\\n  16250/25000 passes, 8.0/s, ETA 1094s (18.2min)\\\\n  demo 4/10 done\\\\n  16500/25000 passes, 8.0/s, ETA 1063s (17.7min)\\\\n  demo 5/10 done\\\\n  16750/25000 passes, 8.0/s, ETA 1032s (17.2min)\\\\n  demo 6/10 done\\\\n  17000/25000 passes, 8.0/s, ETA 1000s (16.7min)\\\\n  demo 7/10 done\\\\n  17250/25000 passes, 8.0/s, ETA 969s (16.2min)\\\\n  demo 8/10 done\\\\n  17500/25000 passes, 8.0/s, ETA 938s (15.6min)\\\\n  demo 9/10 done\\\\n  wrong: demo_mse=0.054458 +/- 0.017313\\\\n  empty: demo_mse=0.079798 +/- 0.013744\\\\n  shuffled: demo_mse=0.062622 +/- 0.013612\\\\n  paraphrased: demo_mse=0.064504 +/- 0.007842\\\\n\\\\nTask 7/10: put_the_wine_bottle_on_the_rack\\\\n  17750/25000 passes, 8.0/s, ETA 907s (15.1min)\\\\n  demo 0/10 done\\\\n  18000/25000 passes, 8.0/s, ETA 875s (14.6min)\\\\n  demo 1/10 done\\\\n  18250/25000 passes, 8.0/s, ETA 844s (14.1min)\\\\n  demo 2/10 done\\\\n  18500/25000 passes, 8.0/s, ETA 813s (13.5min)\\\\n  demo 3/10 done\\\\n  18750/25000 passes, 8.0/s, ETA 782s (13.0min)\\\\n  demo 4/10 done\\\\n  19000/25000 passes, 8.0/s, ETA 750s (12.5min)\\\\n  demo 5/10 done\\\\n  19250/25000 passes, 8.0/s, ETA 719s (12.0min)\\\\n  demo 6/10 done\\\\n  19500/25000 passes, 8.0/s, ETA 688s (11.5min)\\\\n  demo 7/10 done\\\\n  19750/25000 passes, 8.0/s, ETA 656s (10.9min)\\\\n  demo 8/10 done\\\\n  20000/25000 passes, 8.0/s, ETA 625s (10.4min)\\\\n  demo 9/10 done\\\\n  wrong: demo_mse=0.082012 +/- 0.022462\\\\n  empty: demo_mse=0.077958 +/- 0.019602\\\\n  shuffled: demo_mse=0.041155 +/- 0.011938\\\\n  paraphrased: demo_mse=0.019398 +/- 0.009254\\\\n\\\\nTask 8/10: put_the_wine_bottle_on_top_of_the_cabinet\\\\n  20250/25000 passes, 8.0/s, ETA 594s (9.9min)\\\\n  demo 0/10 done\\\\n  20500/25000 passes, 8.0/s, ETA 562s (9.4min)\\\\n  demo 1/10 done\\\\n  20750/25000 passes, 8.0/s, ETA 531s (8.9min)\\\\n  demo 2/10 done\\\\n  21000/25000 passes, 8.0/s, ETA 500s (8.3min)\\\\n  demo 3/10 done\\\\n  21250/25000 passes, 8.0/s, ETA 469s (7.8min)\\\\n  demo 4/10 done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading model on cuda:1...\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:03,  1.86s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:03<00:01,  1.61s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.04s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.22s/it]\\nModel loaded.\\n\\nTask 0/10: open_the_middle_drawer_of_the_cabinet\\n  250/25000 passes, 7.8/s, ETA 3191s (53.2min)\\n  demo 0/10 done\\n  500/25000 passes, 7.9/s, ETA 3108s (51.8min)\\n  demo 1/10 done\\n  750/25000 passes, 7.9/s, ETA 3067s (51.1min)\\n  demo 2/10 done\\n  1000/25000 passes, 7.9/s, ETA 3025s (50.4min)\\n  demo 3/10 done\\n  1250/25000 passes, 7.9/s, ETA 2989s (49.8min)\\n  demo 4/10 done\\n  1500/25000 passes, 8.0/s, ETA 2954s (49.2min)\\n  demo 5/10 done\\n  1750/25000 passes, 8.0/s, ETA 2922s (48.7min)\\n  demo 6/10 done\\n  2000/25000 passes, 8.0/s, ETA 2889s (48.1min)\\n  demo 7/10 done\\n  2250/25000 passes, 8.0/s, ETA 2855s (47.6min)\\n  demo 8/10 done\\n  2500/25000 passes, 8.0/s, ETA 2823s (47.1min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.065946 +/- 0.009725\\n  empty: demo_mse=0.086239 +/- 0.012511\\n  shuffled: demo_mse=0.023404 +/- 0.011293\\n  paraphrased: demo_mse=0.022039 +/- 0.009897\\n\\nTask 1/10: open_the_top_drawer_and_put_the_bowl_inside\\n  2750/25000 passes, 8.0/s, ETA 2791s (46.5min)\\n  demo 0/10 done\\n  3000/25000 passes, 8.0/s, ETA 2757s (46.0min)\\n  demo 1/10 done\\n  3250/25000 passes, 8.0/s, ETA 2724s (45.4min)\\n  demo 2/10 done\\n  3500/25000 passes, 8.0/s, ETA 2693s (44.9min)\\n  demo 3/10 done\\n  3750/25000 passes, 8.0/s, ETA 2661s (44.3min)\\n  demo 4/10 done\\n  4000/25000 passes, 8.0/s, ETA 2629s (43.8min)\\n  demo 5/10 done\\n  4250/25000 passes, 8.0/s, ETA 2598s (43.3min)\\n  demo 6/10 done\\n  4500/25000 passes, 8.0/s, ETA 2566s (42.8min)\\n  demo 7/10 done\\n  4750/25000 passes, 8.0/s, ETA 2534s (42.2min)\\n  demo 8/10 done\\n  5000/25000 passes, 8.0/s, ETA 2503s (41.7min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.049243 +/- 0.011583\\n  empty: demo_mse=0.074423 +/- 0.011731\\n  shuffled: demo_mse=0.046452 +/- 0.006392\\n  paraphrased: demo_mse=0.047022 +/- 0.008488\\n\\nTask 2/10: push_the_plate_to_the_front_of_the_stove\\n  5250/25000 passes, 8.0/s, ETA 2471s (41.2min)\\n  demo 0/10 done\\n  5500/25000 passes, 8.0/s, ETA 2440s (40.7min)\\n  demo 1/10 done\\n  5750/25000 passes, 8.0/s, ETA 2408s (40.1min)\\n  demo 2/10 done\\n  6000/25000 passes, 8.0/s, ETA 2377s (39.6min)\\n  demo 3/10 done\\n  6250/25000 passes, 8.0/s, ETA 2346s (39.1min)\\n  demo 4/10 done\\n  6500/25000 passes, 8.0/s, ETA 2314s (38.6min)\\n  demo 5/10 done\\n  6750/25000 passes, 8.0/s, ETA 2284s (38.1min)\\n  demo 6/10 done\\n  7000/25000 passes, 8.0/s, ETA 2252s (37.5min)\\n  demo 7/10 done\\n  7250/25000 passes, 8.0/s, ETA 2221s (37.0min)\\n  demo 8/10 done\\n  7500/25000 passes, 8.0/s, ETA 2189s (36.5min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.070744 +/- 0.012128\\n  empty: demo_mse=0.044727 +/- 0.010592\\n  shuffled: demo_mse=0.047365 +/- 0.009416\\n  paraphrased: demo_mse=0.067855 +/- 0.006824\\n\\nTask 3/10: put_the_bowl_on_the_plate\\n  7750/25000 passes, 8.0/s, ETA 2158s (36.0min)\\n  demo 0/10 done\\n  8000/25000 passes, 8.0/s, ETA 2127s (35.4min)\\n  demo 1/10 done\\n  8250/25000 passes, 8.0/s, ETA 2095s (34.9min)\\n  demo 2/10 done\\n  8500/25000 passes, 8.0/s, ETA 2064s (34.4min)\\n  demo 3/10 done\\n  8750/25000 passes, 8.0/s, ETA 2033s (33.9min)\\n  demo 4/10 done\\n  9000/25000 passes, 8.0/s, ETA 2002s (33.4min)\\n  demo 5/10 done\\n  9250/250\\n\\n... [截断: 输出过长，省略 272 字符] ...\\n\\n68348 +/- 0.011525\\n  empty: demo_mse=0.055558 +/- 0.006670\\n  shuffled: demo_mse=0.047938 +/- 0.007593\\n  paraphrased: demo_mse=0.050208 +/- 0.011792\\n\\nTask 4/10: put_the_bowl_on_the_stove\\n  10250/25000 passes, 8.0/s, ETA 1845s (30.8min)\\n  demo 0/10 done\\n  10500/25000 passes, 8.0/s, ETA 1814s (30.2min)\\n  demo 1/10 done\\n  10750/25000 passes, 8.0/s, ETA 1783s (29.7min)\\n  demo 2/10 done\\n  11000/25000 passes, 8.0/s, ETA 1752s (29.2min)\\n  demo 3/10 done\\n  11250/25000 passes, 8.0/s, ETA 1720s (28.7min)\\n  demo 4/10 done\\n  11500/25000 passes, 8.0/s, ETA 1689s (28.1min)\\n  demo 5/10 done\\n  11750/25000 passes, 8.0/s, ETA 1657s (27.6min)\\n  demo 6/10 done\\n  12000/25000 passes, 8.0/s, ETA 1626s (27.1min)\\n  demo 7/10 done\\n  12250/25000 passes, 8.0/s, ETA 1595s (26.6min)\\n  demo 8/10 done\\n  12500/25000 passes, 8.0/s, ETA 1564s (26.1min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.098254 +/- 0.006849\\n  empty: demo_mse=0.059434 +/- 0.015444\\n  shuffled: demo_mse=0.065400 +/- 0.011182\\n  paraphrased: demo_mse=0.059021 +/- 0.013617\\n\\nTask 5/10: put_the_bowl_on_top_of_the_cabinet\\n  12750/25000 passes, 8.0/s, ETA 1533s (25.5min)\\n  demo 0/10 done\\n  13000/25000 passes, 8.0/s, ETA 1501s (25.0min)\\n  demo 1/10 done\\n  13250/25000 passes, 8.0/s, ETA 1470s (24.5min)\\n  demo 2/10 done\\n  13500/25000 passes, 8.0/s, ETA 1439s (24.0min)\\n  demo 3/10 done\\n  13750/25000 passes, 8.0/s, ETA 1408s (23.5min)\\n  demo 4/10 done\\n  14000/25000 passes, 8.0/s, ETA 1376s (22.9min)\\n  demo 5/10 done\\n  14250/25000 passes, 8.0/s, ETA 1345s (22.4min)\\n  demo 6/10 done\\n  14500/25000 passes, 8.0/s, ETA 1313s (21.9min)\\n  demo 7/10 done\\n  14750/25000 passes, 8.0/s, ETA 1282s (21.4min)\\n  demo 8/10 done\\n  15000/25000 passes, 8.0/s, ETA 1251s (20.8min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.061296 +/- 0.008821\\n  empty: demo_mse=0.069785 +/- 0.011192\\n  shuffled: demo_mse=0.060770 +/- 0.011149\\n  paraphrased: demo_mse=0.060360 +/- 0.012416\\n\\nTask 6/10: put_the_cream_cheese_in_the_bowl\\n  15250/25000 passes, 8.0/s, ETA 1219s (20.3min)\\n  demo 0/10 done\\n  15500/25000 passes, 8.0/s, ETA 1188s (19.8min)\\n  demo 1/10 done\\n  15750/25000 passes, 8.0/s, ETA 1157s (19.3min)\\n  demo 2/10 done\\n  16000/25000 passes, 8.0/s, ETA 1125s (18.8min)\\n  demo 3/10 done\\n  16250/25000 passes, 8.0/s, ETA 1094s (18.2min)\\n  demo 4/10 done\\n  16500/25000 passes, 8.0/s, ETA 1063s (17.7min)\\n  demo 5/10 done\\n  16750/25000 passes, 8.0/s, ETA 1032s (17.2min)\\n  demo 6/10 done\\n  17000/25000 passes, 8.0/s, ETA 1000s (16.7min)\\n  demo 7/10 done\\n  17250/25000 passes, 8.0/s, ETA 969s (16.2min)\\n  demo 8/10 done\\n  17500/25000 passes, 8.0/s, ETA 938s (15.6min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.054458 +/- 0.017313\\n  empty: demo_mse=0.079798 +/- 0.013744\\n  shuffled: demo_mse=0.062622 +/- 0.013612\\n  paraphrased: demo_mse=0.064504 +/- 0.007842\\n\\nTask 7/10: put_the_wine_bottle_on_the_rack\\n  17750/25000 passes, 8.0/s, ETA 907s (15.1min)\\n  demo 0/10 done\\n  18000/25000 passes, 8.0/s, ETA 875s (14.6min)\\n  demo 1/10 done\\n  18250/25000 passes, 8.0/s, ETA 844s (14.1min)\\n  demo 2/10 done\\n  18500/25000 passes, 8.0/s, ETA 813s (13.5min)\\n  demo 3/10 done\\n  18750/25000 passes, 8.0/s, ETA 782s (13.0min)\\n  demo 4/10 done\\n  19000/25000 passes, 8.0/s, ETA 750s (12.5min)\\n  demo 5/10 done\\n  19250/25000 passes, 8.0/s, ETA 719s (12.0min)\\n  demo 6/10 done\\n  19500/25000 passes, 8.0/s, ETA 688s (11.5min)\\n  demo 7/10 done\\n  19750/25000 passes, 8.0/s, ETA 656s (10.9min)\\n  demo 8/10 done\\n  20000/25000 passes, 8.0/s, ETA 625s (10.4min)\\n  demo 9/10 done\\n  wrong: demo_mse=0.082012 +/- 0.022462\\n  empty: demo_mse=0.077958 +/- 0.019602\\n  shuffled: demo_mse=0.041155 +/- 0.011938\\n  paraphrased: demo_mse=0.019398 +/- 0.009254\\n\\nTask 8/10: put_the_wine_bottle_on_top_of_the_cabinet\\n  20250/25000 passes, 8.0/s, ETA 594s (9.9min)\\n  demo 0/10 done\\n  20500/25000 passes, 8.0/s, ETA 562s (9.4min)\\n  demo 1/10 done\\n  20750/25000 passes, 8.0/s, ETA 531s (8.9min)\\n  demo 2/10 done\\n  21000/25000 passes, 8.0/s, ETA 500s (8.3min)\\n  demo 3/10 done\\n  21250/25000 passes, 8.0/s, ETA 469s (7.8min)\\n  demo 4/10 done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The trajectory_run.log is just the training log showing the per-task demo_mse values. It seems like the actual trajectory-level Cohen's d results would need to be computed or they might be in the counterfactual_10tasks_combined.json. Let me check if the counterfactual_10tasks_combined.json has trajectory-level data. Also let me get the rest of the trajectory_run.log.
+
+But actually, I already have the trajectory_level_cohens_d.json which contains the trajectory-level results. The counterfactual conditions there (counterfactual_empty, counterfactual_wrong, etc.) with n_demos=30 seem to be from a subset (3 tasks × 10 demos). 
+
+
+Let me look at the counterfactual_10tasks_combined.json to see if it contains the full trajectory-level data across all ten tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "24834dcb-1762-4d1d-81af-aac97c7ef67e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5rHsBstoTr2RwHXiE5TJg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5126,
+      "cache_read_input_tokens": 44775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5126
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014E8QqZp1bVn3ot3iSUcExy`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nwith open('/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json') as f:\n    d = json.load(f)\n\n# Print structure overview\nprint(\"Top-level keys:\", list(d.keys()))\nif 'config' in d:\n    print(\"\\nConfig:\", json.dumps(d['config'], indent=2))\nif 'ranking_by_cohens_d' in d:\n    print(\"\\nRanking:\", json.dumps(d['ranking_by_cohens_d'], indent=2))\nif 'cross_task_summary' in d:\n    print(\"\\nCross-task summary:\", json.dumps(d['cross_task_summary'], indent=2))\nPYEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "a340820d-77bc-4ac4-bdbf-ed5d9ae6cd37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5rHsBstoTr2RwHXiE5TJg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5126,
+      "cache_read_input_tokens": 44775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5126
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T21:37:19.380Z_
+
+<details><summary>↩ Tool result · `toolu_014E8QqZp1bVn3ot3iSUcExy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Top-level keys: ['config', 'conditions', 'ranking_by_cohens_d', 'cross_task_summary']\\n\\nConfig: {\\n  \\\"experiment\\\": \\\"counterfactual_instruction_10tasks\\\",\\n  \\\"conditions\\\": [\\n    \\\"wrong\\\",\\n    \\\"empty\\\",\\n    \\\"shuffled\\\",\\n    \\\"paraphrased\\\"\\n  ],\\n  \\\"n_tasks\\\": 10,\\n  \\\"n_demos_per_task\\\": 10,\\n  \\\"n_timesteps_per_demo\\\": 50,\\n  \\\"model\\\": \\\"openvla-7b\\\",\\n  \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n  \\\"seed\\\": 42,\\n  \\\"task_names\\\": [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\"\\n  ]\\n}\\n\\nRanking: [\\n  {\\n    \\\"condition\\\": \\\"empty\\\",\\n    \\\"cohens_d\\\": 0.9779746757308103,\\n    \\\"paired_mse_mean\\\": 0.06905612690979479,\\n    \\\"token_divergence_rate\\\": 0.9128285714285714,\\n    \\\"kl_divergence_mean\\\": 8.806951522827148\\n  },\\n  {\\n    \\\"condition\\\": \\\"wrong\\\",\\n    \\\"cohens_d\\\": 0.9236912333834009,\\n    \\\"paired_mse_mean\\\": 0.06469925227162468,\\n    \\\"token_divergence_rate\\\": 0.9077428571428572,\\n    \\\"kl_divergence_mean\\\": 8.382783889770508\\n  },\\n  {\\n    \\\"condition\\\": \\\"shuffled\\\",\\n    \\\"cohens_d\\\": 0.7625041888779224,\\n    \\\"paired_mse_mean\\\": 0.051173489765499375,\\n    \\\"token_divergence_rate\\\": 0.8710857142857142,\\n    \\\"kl_divergence_mean\\\": 7.330904960632324\\n  },\\n  {\\n    \\\"condition\\\": \\\"paraphrased\\\",\\n    \\\"cohens_d\\\": 0.7071343050207252,\\n    \\\"paired_mse_mean\\\": 0.04620862540768831,\\n    \\\"token_divergence_rate\\\": 0.8298285714285715,\\n    \\\"kl_divergence_mean\\\": 6.456738471984863\\n  }\\n]\\n\\nCross-task summary: {\\n  \\\"wrong\\\": {\\n    \\\"cohens_d_mean_std\\\": \\\"0.949 +/- 0.260\\\",\\n    \\\"cohens_d_range\\\": \\\"[0.536, 1.505]\\\",\\n    \\\"cohens_d_cv\\\": \\\"0.274\\\",\\n    \\\"mse_mean_std\\\": \\\"0.064699 +/- 0.018264\\\"\\n  },\\n  \\\"empty\\\": {\\n    \\\"cohens_d_mean_std\\\": \\\"0.989 +/- 0.169\\\",\\n    \\\"cohens_d_range\\\": \\\"[0.681, 1.245]\\\",\\n    \\\"cohens_d_cv\\\": \\\"0.171\\\",\\n    \\\"mse_mean_std\\\": \\\"0.069056 +/- 0.012573\\\"\\n  },\\n  \\\"shuffled\\\": {\\n    \\\"cohens_d_mean_std\\\": \\\"0.766 +/- 0.142\\\",\\n    \\\"cohens_d_range\\\": \\\"[0.458, 0.930]\\\",\\n    \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n    \\\"mse_mean_std\\\": \\\"0.051173 +/- 0.012747\\\"\\n  },\\n  \\\"paraphrased\\\": {\\n    \\\"cohens_d_mean_std\\\": \\\"0.713 +/- 0.211\\\",\\n    \\\"cohens_d_range\\\": \\\"[0.411, 0.959]\\\",\\n    \\\"cohens_d_cv\\\": \\\"0.296\\\",\\n    \\\"mse_mean_std\\\": \\\"0.046209 +/- 0.019199\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "50a74fee-b7b8-4d77-9bda-6eb44a534185",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Top-level keys: ['config', 'conditions', 'ranking_by_cohens_d', 'cross_task_summary']\\\\n\\\\nConfig: {\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_instruction_10tasks\\\\\\\",\\\\n  \\\\\\\"conditions\\\\\\\": [\\\\n    \\\\\\\"wrong\\\\\\\",\\\\n    \\\\\\\"empty\\\\\\\",\\\\n    \\\\\\\"shuffled\\\\\\\",\\\\n    \\\\\\\"paraphrased\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_tasks\\\\\\\": 10,\\\\n  \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n  \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n  \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\",\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"task_names\\\\\\\": [\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\"\\\\n  ]\\\\n}\\\\n\\\\nRanking: [\\\\n  {\\\\n    \\\\\\\"condition\\\\\\\": \\\\\\\"empty\\\\\\\",\\\\n    \\\\\\\"cohens_d\\\\\\\": 0.9779746757308103,\\\\n    \\\\\\\"paired_mse_mean\\\\\\\": 0.06905612690979479,\\\\n    \\\\\\\"token_divergence_rate\\\\\\\": 0.9128285714285714,\\\\n    \\\\\\\"kl_divergence_mean\\\\\\\": 8.806951522827148\\\\n  },\\\\n  {\\\\n    \\\\\\\"condition\\\\\\\": \\\\\\\"wrong\\\\\\\",\\\\n    \\\\\\\"cohens_d\\\\\\\": 0.9236912333834009,\\\\n    \\\\\\\"paired_mse_mean\\\\\\\": 0.06469925227162468,\\\\n    \\\\\\\"token_divergence_rate\\\\\\\": 0.9077428571428572,\\\\n    \\\\\\\"kl_divergence_mean\\\\\\\": 8.382783889770508\\\\n  },\\\\n  {\\\\n    \\\\\\\"condition\\\\\\\": \\\\\\\"shuffled\\\\\\\",\\\\n    \\\\\\\"cohens_d\\\\\\\": 0.7625041888779224,\\\\n    \\\\\\\"paired_mse_mean\\\\\\\": 0.051173489765499375,\\\\n    \\\\\\\"token_divergence_rate\\\\\\\": 0.8710857142857142,\\\\n    \\\\\\\"kl_divergence_mean\\\\\\\": 7.330904960632324\\\\n  },\\\\n  {\\\\n    \\\\\\\"condition\\\\\\\": \\\\\\\"paraphrased\\\\\\\",\\\\n    \\\\\\\"cohens_d\\\\\\\": 0.7071343050207252,\\\\n    \\\\\\\"paired_mse_mean\\\\\\\": 0.04620862540768831,\\\\n    \\\\\\\"token_divergence_rate\\\\\\\": 0.8298285714285715,\\\\n    \\\\\\\"kl_divergence_mean\\\\\\\": 6.456738471984863\\\\n  }\\\\n]\\\\n\\\\nCross-task summary: {\\\\n  \\\\\\\"wrong\\\\\\\": {\\\\n    \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.949 +/- 0.260\\\\\\\",\\\\n    \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.536, 1.505]\\\\\\\",\\\\n    \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.274\\\\\\\",\\\\n    \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.064699 +/- 0.018264\\\\\\\"\\\\n  },\\\\n  \\\\\\\"empty\\\\\\\": {\\\\n    \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.989 +/- 0.169\\\\\\\",\\\\n    \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.681, 1.245]\\\\\\\",\\\\n    \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.171\\\\\\\",\\\\n    \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.069056 +/- 0.012573\\\\\\\"\\\\n  },\\\\n  \\\\\\\"shuffled\\\\\\\": {\\\\n    \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.766 +/- 0.142\\\\\\\",\\\\n    \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.458, 0.930]\\\\\\\",\\\\n    \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.185\\\\\\\",\\\\n    \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.051173 +/- 0.012747\\\\\\\"\\\\n  },\\\\n  \\\\\\\"paraphrased\\\\\\\": {\\\\n    \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.713 +/- 0.211\\\\\\\",\\\\n    \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.411, 0.959]\\\\\\\",\\\\n    \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.296\\\\\\\",\\\\n    \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.046209 +/- 0.019199\\\\\\\"\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Top-level keys: ['config', 'conditions', 'ranking_by_cohens_d', 'cross_task_summary']\\n\\nConfig: {\\n  \\\"experiment\\\": \\\"counterfactual_instruction_10tasks\\\",\\n  \\\"conditions\\\": [\\n    \\\"wrong\\\",\\n    \\\"empty\\\",\\n    \\\"shuffled\\\",\\n    \\\"paraphrased\\\"\\n  ],\\n  \\\"n_tasks\\\": 10,\\n  \\\"n_demos_per_task\\\": 10,\\n  \\\"n_timesteps_per_demo\\\": 50,\\n  \\\"model\\\": \\\"openvla-7b\\\",\\n  \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n  \\\"seed\\\": 42,\\n  \\\"task_names\\\": [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\"\\n  ]\\n}\\n\\nRanking: [\\n  {\\n    \\\"condition\\\": \\\"empty\\\",\\n    \\\"cohens_d\\\": 0.9779746757308103,\\n    \\\"paired_mse_mean\\\": 0.06905612690979479,\\n    \\\"token_divergence_rate\\\": 0.9128285714285714,\\n    \\\"kl_divergence_mean\\\": 8.806951522827148\\n  },\\n  {\\n    \\\"condition\\\": \\\"wrong\\\",\\n    \\\"cohens_d\\\": 0.9236912333834009,\\n    \\\"paired_mse_mean\\\": 0.06469925227162468,\\n    \\\"token_divergence_rate\\\": 0.9077428571428572,\\n    \\\"kl_divergence_mean\\\": 8.382783889770508\\n  },\\n  {\\n    \\\"condition\\\": \\\"shuffled\\\",\\n    \\\"cohens_d\\\": 0.7625041888779224,\\n    \\\"paired_mse_mean\\\": 0.051173489765499375,\\n    \\\"token_divergence_rate\\\": 0.8710857142857142,\\n    \\\"kl_divergence_mean\\\": 7.330904960632324\\n  },\\n  {\\n    \\\"condition\\\": \\\"paraphrased\\\",\\n    \\\"cohens_d\\\": 0.7071343050207252,\\n    \\\"paired_mse_mean\\\": 0.04620862540768831,\\n    \\\"token_divergence_rate\\\": 0.8298285714285715,\\n    \\\"kl_divergence_mean\\\": 6.456738471984863\\n  }\\n]\\n\\nCross-task summary: {\\n  \\\"wrong\\\": {\\n    \\\"cohens_d_mean_std\\\": \\\"0.949 +/- 0.260\\\",\\n    \\\"cohens_d_range\\\": \\\"[0.536, 1.505]\\\",\\n    \\\"cohens_d_cv\\\": \\\"0.274\\\",\\n    \\\"mse_mean_std\\\": \\\"0.064699 +/- 0.018264\\\"\\n  },\\n  \\\"empty\\\": {\\n    \\\"cohens_d_mean_std\\\": \\\"0.989 +/- 0.169\\\",\\n    \\\"cohens_d_range\\\": \\\"[0.681, 1.245]\\\",\\n    \\\"cohens_d_cv\\\": \\\"0.171\\\",\\n    \\\"mse_mean_std\\\": \\\"0.069056 +/- 0.012573\\\"\\n  },\\n  \\\"shuffled\\\": {\\n    \\\"cohens_d_mean_std\\\": \\\"0.766 +/- 0.142\\\",\\n    \\\"cohens_d_range\\\": \\\"[0.458, 0.930]\\\",\\n    \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n    \\\"mse_mean_std\\\": \\\"0.051173 +/- 0.012747\\\"\\n  },\\n  \\\"paraphrased\\\": {\\n    \\\"cohens_d_mean_std\\\": \\\"0.713 +/- 0.211\\\",\\n    \\\"cohens_d_range\\\": \\\"[0.411, 0.959]\\\",\\n    \\\"cohens_d_cv\\\": \\\"0.296\\\",\\n    \\\"mse_mean_std\\\": \\\"0.046209 +/- 0.019199\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the counterfactual_10tasks_combined.json summary. Now let me get the per-task data for this one as well, and then also check if there's a separate trajectory-level file for counterfactual_10tasks. The `trajectory_level_cohens_d.json` I already have seems to be a general file that covers multiple experiments, and the counterfactual entries there have n_demos=30, which is 3 tasks × 10 demos - so it's probably from a different subset, not the 10-task version.
+
+
+I should pull the per-task breakdown for counterfactual_10tasks and see if there's a dedicated trajectory-level file for it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "945c7214-e334-4b76-8c41-35b700dcfcf1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPEAcfu614Qc6mvjGfxaeS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2132,
+      "cache_read_input_tokens": 49901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MzNekfCWJGC88SbtT7RYJt`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nwith open('/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json') as f:\n    d = json.load(f)\n\n# Per-task Cohen's d\nfor cond in ['wrong', 'empty', 'shuffled', 'paraphrased']:\n    cd = d['conditions'][cond]\n    print(f\"\\n=== {cond} (global d={cd['global_metrics']['paired_mse']['cohens_d']:.4f}) ===\")\n    for task in cd['per_task']:\n        t = cd['per_task'][task]['paired_mse']\n        print(f\"  {task}: d={t['cohens_d']:.4f} CI={[round(x,4) for x in t['ci_95']]} mse={t['mean']:.6f}\")\n    cv = cd['cross_task_variance']['cohens_d']\n    print(f\"  Cross-task: mean={cv['mean']:.4f} std={cv['std']:.4f} CV={cv['cv']:.4f} range=[{cv['min']:.4f}, {cv['max']:.4f}]\")\nPYEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "7e0a346f-6c4c-4ca9-90e3-1e6e131c0a04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPEAcfu614Qc6mvjGfxaeS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2132,
+      "cache_read_input_tokens": 49901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T21:37:33.964Z_
+
+<details><summary>↩ Tool result · `toolu_01MzNekfCWJGC88SbtT7RYJt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== wrong (global d=0.9237) ===\\n  open_the_middle_drawer_of_the_cabinet: d=0.9332 CI=[0.8453, 1.0211] mse=0.065946\\n  open_the_top_drawer_and_put_the_bowl_inside: d=0.7362 CI=[0.6483, 0.824] mse=0.049243\\n  push_the_plate_to_the_front_of_the_stove: d=1.0025 CI=[0.9147, 1.0904] mse=0.070744\\n  put_the_bowl_on_the_plate: d=0.9752 CI=[0.8873, 1.063] mse=0.068348\\n  put_the_bowl_on_the_stove: d=1.5050 CI=[1.4171, 1.5928] mse=0.098254\\n  put_the_bowl_on_top_of_the_cabinet: d=0.8799 CI=[0.7921, 0.9678] mse=0.061296\\n  put_the_cream_cheese_in_the_bowl: d=0.7988 CI=[0.711, 0.8867] mse=0.054458\\n  put_the_wine_bottle_on_the_rack: d=1.1747 CI=[1.0868, 1.2625] mse=0.082012\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=0.5361 CI=[0.4483, 0.624] mse=0.030529\\n  turn_on_the_stove: d=0.9449 CI=[0.857, 1.0327] mse=0.066163\\n  Cross-task: mean=0.9486 std=0.2597 CV=0.2737 range=[0.5361, 1.5050]\\n\\n=== empty (global d=0.9780) ===\\n  open_the_middle_drawer_of_the_cabinet: d=1.2452 CI=[1.1574, 1.3331] mse=0.086239\\n  open_the_top_drawer_and_put_the_bowl_inside: d=1.0509 CI=[0.963, 1.1388] mse=0.074423\\n  push_the_plate_to_the_front_of_the_stove: d=0.6814 CI=[0.5936, 0.7693] mse=0.044727\\n  put_the_bowl_on_the_plate: d=0.8079 CI=[0.72, 0.8957] mse=0.055558\\n  put_the_bowl_on_the_stove: d=0.8536 CI=[0.7657, 0.9414] mse=0.059434\\n  put_the_bowl_on_top_of_the_cabinet: d=0.9866 CI=[0.8987, 1.0744] mse=0.069785\\n  put_the_cream_cheese_in_the_bowl: d=1.1329 CI=[1.045, 1.2208] mse=0.079798\\n  put_the_wine_bottle_on_the_rack: d=1.1095 CI=[1.0216, 1.1973] mse=0.077958\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=1.0700 CI=[0.9822, 1.1579] mse=0.074958\\n  turn_on_the_stove: d=0.9555 CI=[0.8676, 1.0434] mse=0.067680\\n  Cross-task: mean=0.9893 std=0.1694 CV=0.1712 range=[0.6814, 1.2452]\\n\\n=== shuffled (global d=0.7625) ===\\n  open_the_middle_drawer_of_the_cabinet: d=0.4580 CI=[0.3702, 0.5459] mse=0.023404\\n  open_the_top_drawer_and_put_the_bowl_inside: d=0.7054 CI=[0.6175, 0.7933] mse=0.046452\\n  push_the_plate_to_the_front_of_the_stove: d=0.7108 CI=[0.623, 0.7987] mse=0.047365\\n  put_the_bowl_on_the_plate: d=0.7267 CI=[0.6388, 0.8146] mse=0.047938\\n  put_the_bowl_on_the_stove: d=0.9304 CI=[0.8425, 1.0183] mse=0.065400\\n  put_the_bowl_on_top_of_the_cabinet: d=0.8688 CI=[0.7809, 0.9567] mse=0.060770\\n  put_the_cream_cheese_in_the_bowl: d=0.8986 CI=[0.8107, 0.9864] mse=0.062622\\n  put_the_wine_bottle_on_the_rack: d=0.6743 CI=[0.5864, 0.7622] mse=0.041155\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=0.8210 CI=[0.7331, 0.9088] mse=0.055480\\n  turn_on_the_stove: d=0.8705 CI=[0.7826, 0.9583] mse=0.061149\\n  Cross-task: mean=0.7664 std=0.1417 CV=0.1848 range=[0.4580, 0.9304]\\n\\n=== paraphrased (global d=0.7071) ===\\n  open_the_middle_drawer_of_the_cabinet: d=0.4443 CI=[0.3564, 0.5321] mse=0.022039\\n  open_the_top_drawer_and_put_the_bowl_inside: d=0.7131 CI=[0.6252, 0.8009] mse=0.047022\\n  push_the_plate_to_the_front_of_the_stove: d=0.9586 CI=[0.8707, 1.0465] mse=0.067855\\n  put_the_bowl_on_the_plate: d=0.7589 CI=[0.6711, 0.8468] mse=0.050208\\n  put_the_bowl_on_the_stove: d=0.8559 CI=[0.7681, 0.9438] mse=0.059021\\n  put_the_bowl_on_top_of_the_cabinet: d=0.8674 CI=[0.7796, 0.9553] mse=0.060360\\n  put_the_cream_cheese_in_the_bowl: d=0.9213 CI=[0.8334, 1.0092] mse=0.064504\\n  put_the_wine_bottle_on_the_rack: d=0.4264 CI=[0.3385, 0.5143] mse=0.019398\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=0.4106 CI=[0.3227, 0.4984] mse=0.018301\\n  turn_on_the_stove: d=0.7784 CI=[0.6905, 0.8662] mse=0.053377\\n  Cross-task: mean=0.7135 std=0.2109 CV=0.2955 range=[0.4106, 0.9586]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "56818477-95bb-4c0e-9cc4-c57d62ac1425",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== wrong (global d=0.9237) ===\\\\n  open_the_middle_drawer_of_the_cabinet: d=0.9332 CI=[0.8453, 1.0211] mse=0.065946\\\\n  open_the_top_drawer_and_put_the_bowl_inside: d=0.7362 CI=[0.6483, 0.824] mse=0.049243\\\\n  push_the_plate_to_the_front_of_the_stove: d=1.0025 CI=[0.9147, 1.0904] mse=0.070744\\\\n  put_the_bowl_on_the_plate: d=0.9752 CI=[0.8873, 1.063] mse=0.068348\\\\n  put_the_bowl_on_the_stove: d=1.5050 CI=[1.4171, 1.5928] mse=0.098254\\\\n  put_the_bowl_on_top_of_the_cabinet: d=0.8799 CI=[0.7921, 0.9678] mse=0.061296\\\\n  put_the_cream_cheese_in_the_bowl: d=0.7988 CI=[0.711, 0.8867] mse=0.054458\\\\n  put_the_wine_bottle_on_the_rack: d=1.1747 CI=[1.0868, 1.2625] mse=0.082012\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=0.5361 CI=[0.4483, 0.624] mse=0.030529\\\\n  turn_on_the_stove: d=0.9449 CI=[0.857, 1.0327] mse=0.066163\\\\n  Cross-task: mean=0.9486 std=0.2597 CV=0.2737 range=[0.5361, 1.5050]\\\\n\\\\n=== empty (global d=0.9780) ===\\\\n  open_the_middle_drawer_of_the_cabinet: d=1.2452 CI=[1.1574, 1.3331] mse=0.086239\\\\n  open_the_top_drawer_and_put_the_bowl_inside: d=1.0509 CI=[0.963, 1.1388] mse=0.074423\\\\n  push_the_plate_to_the_front_of_the_stove: d=0.6814 CI=[0.5936, 0.7693] mse=0.044727\\\\n  put_the_bowl_on_the_plate: d=0.8079 CI=[0.72, 0.8957] mse=0.055558\\\\n  put_the_bowl_on_the_stove: d=0.8536 CI=[0.7657, 0.9414] mse=0.059434\\\\n  put_the_bowl_on_top_of_the_cabinet: d=0.9866 CI=[0.8987, 1.0744] mse=0.069785\\\\n  put_the_cream_cheese_in_the_bowl: d=1.1329 CI=[1.045, 1.2208] mse=0.079798\\\\n  put_the_wine_bottle_on_the_rack: d=1.1095 CI=[1.0216, 1.1973] mse=0.077958\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=1.0700 CI=[0.9822, 1.1579] mse=0.074958\\\\n  turn_on_the_stove: d=0.9555 CI=[0.8676, 1.0434] mse=0.067680\\\\n  Cross-task: mean=0.9893 std=0.1694 CV=0.1712 range=[0.6814, 1.2452]\\\\n\\\\n=== shuffled (global d=0.7625) ===\\\\n  open_the_middle_drawer_of_the_cabinet: d=0.4580 CI=[0.3702, 0.5459] mse=0.023404\\\\n  open_the_top_drawer_and_put_the_bowl_inside: d=0.7054 CI=[0.6175, 0.7933] mse=0.046452\\\\n  push_the_plate_to_the_front_of_the_stove: d=0.7108 CI=[0.623, 0.7987] mse=0.047365\\\\n  put_the_bowl_on_the_plate: d=0.7267 CI=[0.6388, 0.8146] mse=0.047938\\\\n  put_the_bowl_on_the_stove: d=0.9304 CI=[0.8425, 1.0183] mse=0.065400\\\\n  put_the_bowl_on_top_of_the_cabinet: d=0.8688 CI=[0.7809, 0.9567] mse=0.060770\\\\n  put_the_cream_cheese_in_the_bowl: d=0.8986 CI=[0.8107, 0.9864] mse=0.062622\\\\n  put_the_wine_bottle_on_the_rack: d=0.6743 CI=[0.5864, 0.7622] mse=0.041155\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=0.8210 CI=[0.7331, 0.9088] mse=0.055480\\\\n  turn_on_the_stove: d=0.8705 CI=[0.7826, 0.9583] mse=0.061149\\\\n  Cross-task: mean=0.7664 std=0.1417 CV=0.1848 range=[0.4580, 0.9304]\\\\n\\\\n=== paraphrased (global d=0.7071) ===\\\\n  open_the_middle_drawer_of_the_cabinet: d=0.4443 CI=[0.3564, 0.5321] mse=0.022039\\\\n  open_the_top_drawer_and_put_the_bowl_inside: d=0.7131 CI=[0.6252, 0.8009] mse=0.047022\\\\n  push_the_plate_to_the_front_of_the_stove: d=0.9586 CI=[0.8707, 1.0465] mse=0.067855\\\\n  put_the_bowl_on_the_plate: d=0.7589 CI=[0.6711, 0.8468] mse=0.050208\\\\n  put_the_bowl_on_the_stove: d=0.8559 CI=[0.7681, 0.9438] mse=0.059021\\\\n  put_the_bowl_on_top_of_the_cabinet: d=0.8674 CI=[0.7796, 0.9553] mse=0.060360\\\\n  put_the_cream_cheese_in_the_bowl: d=0.9213 CI=[0.8334, 1.0092] mse=0.064504\\\\n  put_the_wine_bottle_on_the_rack: d=0.4264 CI=[0.3385, 0.5143] mse=0.019398\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=0.4106 CI=[0.3227, 0.4984] mse=0.018301\\\\n  turn_on_the_stove: d=0.7784 CI=[0.6905, 0.8662] mse=0.053377\\\\n  Cross-task: mean=0.7135 std=0.2109 CV=0.2955 range=[0.4106, 0.9586]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n=== wrong (global d=0.9237) ===\\n  open_the_middle_drawer_of_the_cabinet: d=0.9332 CI=[0.8453, 1.0211] mse=0.065946\\n  open_the_top_drawer_and_put_the_bowl_inside: d=0.7362 CI=[0.6483, 0.824] mse=0.049243\\n  push_the_plate_to_the_front_of_the_stove: d=1.0025 CI=[0.9147, 1.0904] mse=0.070744\\n  put_the_bowl_on_the_plate: d=0.9752 CI=[0.8873, 1.063] mse=0.068348\\n  put_the_bowl_on_the_stove: d=1.5050 CI=[1.4171, 1.5928] mse=0.098254\\n  put_the_bowl_on_top_of_the_cabinet: d=0.8799 CI=[0.7921, 0.9678] mse=0.061296\\n  put_the_cream_cheese_in_the_bowl: d=0.7988 CI=[0.711, 0.8867] mse=0.054458\\n  put_the_wine_bottle_on_the_rack: d=1.1747 CI=[1.0868, 1.2625] mse=0.082012\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=0.5361 CI=[0.4483, 0.624] mse=0.030529\\n  turn_on_the_stove: d=0.9449 CI=[0.857, 1.0327] mse=0.066163\\n  Cross-task: mean=0.9486 std=0.2597 CV=0.2737 range=[0.5361, 1.5050]\\n\\n=== empty (global d=0.9780) ===\\n  open_the_middle_drawer_of_the_cabinet: d=1.2452 CI=[1.1574, 1.3331] mse=0.086239\\n  open_the_top_drawer_and_put_the_bowl_inside: d=1.0509 CI=[0.963, 1.1388] mse=0.074423\\n  push_the_plate_to_the_front_of_the_stove: d=0.6814 CI=[0.5936, 0.7693] mse=0.044727\\n  put_the_bowl_on_the_plate: d=0.8079 CI=[0.72, 0.8957] mse=0.055558\\n  put_the_bowl_on_the_stove: d=0.8536 CI=[0.7657, 0.9414] mse=0.059434\\n  put_the_bowl_on_top_of_the_cabinet: d=0.9866 CI=[0.8987, 1.0744] mse=0.069785\\n  put_the_cream_cheese_in_the_bowl: d=1.1329 CI=[1.045, 1.2208] mse=0.079798\\n  put_the_wine_bottle_on_the_rack: d=1.1095 CI=[1.0216, 1.1973] mse=0.077958\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=1.0700 CI=[0.9822, 1.1579] mse=0.074958\\n  turn_on_the_stove: d=0.9555 CI=[0.8676, 1.0434] mse=0.067680\\n  Cross-task: mean=0.9893 std=0.1694 CV=0.1712 range=[0.6814, 1.2452]\\n\\n=== shuffled (global d=0.7625) ===\\n  open_the_middle_drawer_of_the_cabinet: d=0.4580 CI=[0.3702, 0.5459] mse=0.023404\\n  open_the_top_drawer_and_put_the_bowl_inside: d=0.7054 CI=[0.6175, 0.7933] mse=0.046452\\n  push_the_plate_to_the_front_of_the_stove: d=0.7108 CI=[0.623, 0.7987] mse=0.047365\\n  put_the_bowl_on_the_plate: d=0.7267 CI=[0.6388, 0.8146] mse=0.047938\\n  put_the_bowl_on_the_stove: d=0.9304 CI=[0.8425, 1.0183] mse=0.065400\\n  put_the_bowl_on_top_of_the_cabinet: d=0.8688 CI=[0.7809, 0.9567] mse=0.060770\\n  put_the_cream_cheese_in_the_bowl: d=0.8986 CI=[0.8107, 0.9864] mse=0.062622\\n  put_the_wine_bottle_on_the_rack: d=0.6743 CI=[0.5864, 0.7622] mse=0.041155\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=0.8210 CI=[0.7331, 0.9088] mse=0.055480\\n  turn_on_the_stove: d=0.8705 CI=[0.7826, 0.9583] mse=0.061149\\n  Cross-task: mean=0.7664 std=0.1417 CV=0.1848 range=[0.4580, 0.9304]\\n\\n=== paraphrased (global d=0.7071) ===\\n  open_the_middle_drawer_of_the_cabinet: d=0.4443 CI=[0.3564, 0.5321] mse=0.022039\\n  open_the_top_drawer_and_put_the_bowl_inside: d=0.7131 CI=[0.6252, 0.8009] mse=0.047022\\n  push_the_plate_to_the_front_of_the_stove: d=0.9586 CI=[0.8707, 1.0465] mse=0.067855\\n  put_the_bowl_on_the_plate: d=0.7589 CI=[0.6711, 0.8468] mse=0.050208\\n  put_the_bowl_on_the_stove: d=0.8559 CI=[0.7681, 0.9438] mse=0.059021\\n  put_the_bowl_on_top_of_the_cabinet: d=0.8674 CI=[0.7796, 0.9553] mse=0.060360\\n  put_the_cream_cheese_in_the_bowl: d=0.9213 CI=[0.8334, 1.0092] mse=0.064504\\n  put_the_wine_bottle_on_the_rack: d=0.4264 CI=[0.3385, 0.5143] mse=0.019398\\n  put_the_wine_bottle_on_top_of_the_cabinet: d=0.4106 CI=[0.3227, 0.4984] mse=0.018301\\n  turn_on_the_stove: d=0.7784 CI=[0.6905, 0.8662] mse=0.053377\\n  Cross-task: mean=0.7135 std=0.2109 CV=0.2955 range=[0.4106, 0.9586]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me also check what trajectory-level data exists for the 10tasks experiment. The `trajectory_level_cohens_d.json` has counterfactual results but with n_demos=30 (3 tasks × 10 demos). The user specifically asked for "counterfactual_10tasks_trajectory" results. Let me see if there's a trajectory-level version that corresponds to the 10-task experiment.
+
+Actually, looking at the trajectory_level_cohens_d.json I already retrieved, the counterfactual entries have n_demos=30. 
+
+The counterfactual_10tasks experiment has 10 tasks × 10 demos = 100 demos per condition, so the trajectory_level_cohens_d.json is likely from an older experiment. I should verify whether a trajectory-level analysis exists for the 10-task version, since the user's request maps to specific directories for both the spatial and 10tasks trajectory results.
+
+I'll grab the trajectory_level_cohens_d.json file along with the counterfactual_10tasks data and write them locally as counterfactual_spatial.json and counterfactual_10tasks_trajectory.json, combining the trajectory-level analysis with the token-level results from the 10-task experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "38da9a07-ad87-4731-ac37-3f8dac8f3d9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013fxrQmZgxSKWXUd9aJTPAQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2689,
+      "cache_read_input_tokens": 52033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+全部数据已获取。现在创建本地目录并写入文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "3f2fdada-32fb-4a6c-a105-c2616e61789e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013fxrQmZgxSKWXUd9aJTPAQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2689,
+      "cache_read_input_tokens": 52033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015BdYU5tGeNjD6m8Wt3ZNbR`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+  "description": "Check if target directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "11c8f1ce-2fe2-4ca3-86de-3ed9c009fc9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013fxrQmZgxSKWXUd9aJTPAQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2689,
+      "cache_read_input_tokens": 52033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T21:37:52.462Z_
+
+<details><summary>↩ Tool result · `toolu_015BdYU5tGeNjD6m8Wt3ZNbR`</summary>
+
+```text
+total 48
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 20 19:44 .
+drwxr-xr-x 37 ubuntu ubuntu  4096 May 20 21:37 ..
+-rw-r--r--  1 ubuntu ubuntu 24118 May 20 19:44 bonferroni_global.json
+-rw-r--r--  1 ubuntu ubuntu  1573 May 20 17:56 paired_cohens_d.json
+-rw-r--r--  1 ubuntu ubuntu   849 May 20 17:56 power_analysis.json
+-rw-r--r--  1 ubuntu ubuntu  1671 May 20 19:15 rsa_permutation_null_10k.json
+-rw-r--r--  1 ubuntu ubuntu  1114 May 20 17:56 tost_equivalence.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "f6793b93-9c26-4b60-af13-60d8f5320b78",
+  "tool_use_result": {
+    "stdout": "total 48\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 20 19:44 .\ndrwxr-xr-x 37 ubuntu ubuntu  4096 May 20 21:37 ..\n-rw-r--r--  1 ubuntu ubuntu 24118 May 20 19:44 bonferroni_global.json\n-rw-r--r--  1 ubuntu ubuntu  1573 May 20 17:56 paired_cohens_d.json\n-rw-r--r--  1 ubuntu ubuntu   849 May 20 17:56 power_analysis.json\n-rw-r--r--  1 ubuntu ubuntu  1671 May 20 19:15 rsa_permutation_null_10k.json\n-rw-r--r--  1 ubuntu ubuntu  1114 May 20 17:56 tost_equivalence.json",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01RLTPkSPfZwvPSKNj9KxtUw`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_spatial.json",
+  "content": "{\n  \"config\": {\n    \"experiment\": \"counterfactual_instruction_spatial\",\n    \"conditions\": [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"],\n    \"n_tasks\": 10,\n    \"n_demos_per_task\": 10,\n    \"n_timesteps_per_demo\": 50,\n    \"model\": \"openvla-7b\",\n    \"unnorm_key\": \"bridge_orig\",\n    \"seed\": 42,\n    \"suite\": \"libero_spatial\",\n    \"task_names\": [\n      \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\"\n    ],\n    \"note\": \"wrong instructions use other spatial tasks (same object/action, different spatial reference)\"\n  },\n  \"ranking_by_cohens_d\": [\n    {\"condition\": \"empty\", \"cohens_d\": 0.9422, \"paired_mse_mean\": 0.06594, \"token_divergence_rate\": 0.9137, \"kl_divergence_mean\": 9.0296},\n    {\"condition\": \"wrong\", \"cohens_d\": 0.8514, \"paired_mse_mean\": 0.05804, \"token_divergence_rate\": 0.8652, \"kl_divergence_mean\": 6.9572},\n    {\"condition\": \"shuffled\", \"cohens_d\": 0.8328, \"paired_mse_mean\": 0.05700, \"token_divergence_rate\": 0.8767, \"kl_divergence_mean\": 7.7587},\n    {\"condition\": \"paraphrased\", \"cohens_d\": 0.8057, \"paired_mse_mean\": 0.05471, \"token_divergence_rate\": 0.7990, \"kl_divergence_mean\": 5.9157}\n  ],\n  \"global_metrics_detail\": {\n    \"wrong\": {\n      \"paired_mse\": {\"mean\": 0.05804, \"std\": 0.06816, \"t_stat\": 60.205, \"p_value\": 0.0, \"cohens_d\": 0.8514, \"ci_95\": [0.8237, 0.8792]},\n      \"token_divergence_rate\": 0.8652,\n      \"kl_divergence_mean\": 6.9572,\n      \"n_samples\": 5000\n    },\n    \"empty\": {\n      \"paired_mse\": {\"mean\": 0.06594, \"std\": 0.06998, \"t_stat\": 66.622, \"p_value\": 0.0, \"cohens_d\": 0.9422, \"ci_95\": [0.9144, 0.9699]},\n      \"token_divergence_rate\": 0.9137,\n      \"kl_divergence_mean\": 9.0296,\n      \"n_samples\": 5000\n    },\n    \"shuffled\": {\n      \"paired_mse\": {\"mean\": 0.05700, \"std\": 0.06843, \"t_stat\": 58.888, \"p_value\": 0.0, \"cohens_d\": 0.8328, \"ci_95\": [0.8051, 0.8605]},\n      \"token_divergence_rate\": 0.8767,\n      \"kl_divergence_mean\": 7.7587,\n      \"n_samples\": 5000\n    },\n    \"paraphrased\": {\n      \"paired_mse\": {\"mean\": 0.05471, \"std\": 0.06790, \"t_stat\": 56.970, \"p_value\": 0.0, \"cohens_d\": 0.8057, \"ci_95\": [0.7780, 0.8334]},\n      \"token_divergence_rate\": 0.7990,\n      \"kl_divergence_mean\": 5.9157,\n      \"n_samples\": 5000\n    }\n  },\n  \"per_task_cohens_d\": {\n    \"wrong\": {\n      \"between_the_plate_and_the_ramekin\": {\"cohens_d\": 0.9537, \"ci_95\": [0.8659, 1.0416], \"mse_mean\": 0.066410, \"token_div_rate\": 0.8837},\n      \"from_table_center\": {\"cohens_d\": 0.7478, \"ci_95\": [0.6600, 0.8357], \"mse_mean\": 0.048018, \"token_div_rate\": 0.8477},\n      \"in_the_top_drawer_of_the_wooden_cabinet\": {\"cohens_d\": 0.8402, \"ci_95\": [0.7524, 0.9281], \"mse_mean\": 0.057719, \"token_div_rate\": 0.8506},\n      \"next_to_the_cookie_box\": {\"cohens_d\": 0.9220, \"ci_95\": [0.8342, 1.0099], \"mse_mean\": 0.064521, \"token_div_rate\": null},\n      \"next_to_the_plate\": {\"cohens_d\": 0.8011, \"ci_95\": [0.7132, 0.8889], \"mse_mean\": 0.054547, \"token_div_rate\": null},\n      \"next_to_the_ramekin\": {\"cohens_d\": 0.9718, \"ci_95\": [0.8839, 1.0597], \"mse_mean\": 0.066824, \"token_div_rate\": null},\n      \"on_the_cookie_box\": {\"cohens_d\": 0.7704, \"ci_95\": [0.6825, 0.8583], \"mse_mean\": 0.050291, \"token_div_rate\": null},\n      \"on_the_ramekin\": {\"cohens_d\": 0.8840, \"ci_95\": [0.7961, 0.9718], \"mse_mean\": 0.059934, \"token_div_rate\": null},\n      \"on_the_stove\": {\"cohens_d\": 0.8603, \"ci_95\": [0.7725, 0.9482], \"mse_mean\": 0.059635, \"token_div_rate\": null},\n      \"on_the_wooden_cabinet\": {\"cohens_d\": 0.7795, \"ci_95\": [0.6916, 0.8673], \"mse_mean\": 0.052525, \"token_div_rate\": null}\n    },\n    \"empty\": {\n      \"between_the_plate_and_the_ramekin\": {\"cohens_d\": 0.9293, \"ci_95\": [0.8414, 1.0172], \"mse_mean\": 0.065116},\n      \"from_table_center\": {\"cohens_d\": 0.9175, \"ci_95\": [0.8296, 1.0054], \"mse_mean\": 0.064163},\n      \"in_the_top_drawer_of_the_wooden_cabinet\": {\"cohens_d\": 1.2396, \"ci_95\": [1.1517, 1.3275], \"mse_mean\": 0.085796},\n      \"next_to_the_cookie_box\": {\"cohens_d\": 0.9433, \"ci_95\": [0.8555, 1.0312], \"mse_mean\": 0.066486},\n      \"next_to_the_plate\": {\"cohens_d\": 0.6382, \"ci_95\": [0.5504, 0.7261], \"mse_mean\": 0.040350},\n      \"next_to_the_ramekin\": {\"cohens_d\": 0.8861, \"ci_95\": [0.7982, 0.9739], \"mse_mean\": 0.061748},\n      \"on_the_cookie_box\": {\"cohens_d\": 0.8670, \"ci_95\": [0.7791, 0.9548], \"mse_mean\": 0.059199},\n      \"on_the_ramekin\": {\"cohens_d\": 0.8438, \"ci_95\": [0.7559, 0.9316], \"mse_mean\": 0.057708},\n      \"on_the_stove\": {\"cohens_d\": 1.0900, \"ci_95\": [1.0021, 1.1778], \"mse_mean\": 0.076660},\n      \"on_the_wooden_cabinet\": {\"cohens_d\": 1.1853, \"ci_95\": [1.0975, 1.2732], \"mse_mean\": 0.082195}\n    },\n    \"shuffled\": {\n      \"between_the_plate_and_the_ramekin\": {\"cohens_d\": 1.0011, \"ci_95\": [0.9132, 1.0890], \"mse_mean\": 0.070393},\n      \"from_table_center\": {\"cohens_d\": 0.7502, \"ci_95\": [0.6623, 0.8380], \"mse_mean\": 0.049722},\n      \"in_the_top_drawer_of_the_wooden_cabinet\": {\"cohens_d\": 0.6815, \"ci_95\": [0.5936, 0.7694], \"mse_mean\": 0.044356},\n      \"next_to_the_cookie_box\": {\"cohens_d\": 0.9646, \"ci_95\": [0.8767, 1.0525], \"mse_mean\": 0.068049},\n      \"next_to_the_plate\": {\"cohens_d\": 0.9239, \"ci_95\": [0.8361, 1.0118], \"mse_mean\": 0.064587},\n      \"next_to_the_ramekin\": {\"cohens_d\": 0.7833, \"ci_95\": [0.6954, 0.8712], \"mse_mean\": 0.053053},\n      \"on_the_cookie_box\": {\"cohens_d\": 0.8316, \"ci_95\": [0.7438, 0.9195], \"mse_mean\": 0.056043},\n      \"on_the_ramekin\": {\"cohens_d\": 1.0331, \"ci_95\": [0.9453, 1.1210], \"mse_mean\": 0.071141},\n      \"on_the_stove\": {\"cohens_d\": 0.8014, \"ci_95\": [0.7136, 0.8893], \"mse_mean\": 0.054950},\n      \"on_the_wooden_cabinet\": {\"cohens_d\": 0.6154, \"ci_95\": [0.5276, 0.7033], \"mse_mean\": 0.037686}\n    },\n    \"paraphrased\": {\n      \"between_the_plate_and_the_ramekin\": {\"cohens_d\": 0.9123, \"ci_95\": [0.8244, 1.0001], \"mse_mean\": 0.063853},\n      \"from_table_center\": {\"cohens_d\": 0.7577, \"ci_95\": [0.6698, 0.8455], \"mse_mean\": 0.050716},\n      \"in_the_top_drawer_of_the_wooden_cabinet\": {\"cohens_d\": 0.7258, \"ci_95\": [0.6380, 0.8137], \"mse_mean\": 0.048071},\n      \"next_to_the_cookie_box\": {\"cohens_d\": 0.8058, \"ci_95\": [0.7179, 0.8937], \"mse_mean\": 0.055225},\n      \"next_to_the_plate\": {\"cohens_d\": 0.8178, \"ci_95\": [0.7299, 0.9057], \"mse_mean\": 0.056283},\n      \"next_to_the_ramekin\": {\"cohens_d\": 1.0024, \"ci_95\": [0.9146, 1.0903], \"mse_mean\": 0.069698},\n      \"on_the_cookie_box\": {\"cohens_d\": 0.7257, \"ci_95\": [0.6379, 0.8136], \"mse_mean\": 0.046803},\n      \"on_the_ramekin\": {\"cohens_d\": 0.7065, \"ci_95\": [0.6186, 0.7944], \"mse_mean\": 0.045957},\n      \"on_the_stove\": {\"cohens_d\": 0.9194, \"ci_95\": [0.8315, 1.0073], \"mse_mean\": 0.064219},\n      \"on_the_wooden_cabinet\": {\"cohens_d\": 0.7124, \"ci_95\": [0.6246, 0.8003], \"mse_mean\": 0.046323}\n    }\n  },\n  \"cross_task_variance\": {\n    \"wrong\": {\"values\": [0.9537, 0.7478, 0.8402, 0.9220, 0.8011, 0.9718, 0.7704, 0.8840, 0.8603, 0.7795], \"mean\": 0.8531, \"std\": 0.0790, \"min\": 0.7478, \"max\": 0.9718, \"cv\": 0.0926},\n    \"empty\": {\"values\": [0.9293, 0.9175, 1.2396, 0.9433, 0.6382, 0.8861, 0.8670, 0.8438, 1.0900, 1.1853], \"mean\": 0.9540, \"std\": 0.1763, \"min\": 0.6382, \"max\": 1.2396, \"cv\": 0.1848},\n    \"shuffled\": {\"values\": [1.0011, 0.7502, 0.6815, 0.9646, 0.9239, 0.7833, 0.8316, 1.0331, 0.8014, 0.6154], \"mean\": 0.8386, \"std\": 0.1391, \"min\": 0.6154, \"max\": 1.0331, \"cv\": 0.1659},\n    \"paraphrased\": {\"values\": [0.9123, 0.7577, 0.7258, 0.8058, 0.8178, 1.0024, 0.7257, 0.7065, 0.9194, 0.7124], \"mean\": 0.8086, \"std\": 0.1036, \"min\": 0.7065, \"max\": 1.0024, \"cv\": 0.1282}\n  },\n  \"cross_task_summary\": {\n    \"wrong\": {\"cohens_d_mean_std\": \"0.853 +/- 0.079\", \"cohens_d_range\": \"[0.748, 0.972]\", \"cohens_d_cv\": \"0.093\", \"mse_mean_std\": \"0.058042 +/- 0.006654\"},\n    \"empty\": {\"cohens_d_mean_std\": \"0.954 +/- 0.176\", \"cohens_d_range\": \"[0.638, 1.240]\", \"cohens_d_cv\": \"0.185\", \"mse_mean_std\": \"0.065942 +/- 0.013179\"},\n    \"shuffled\": {\"cohens_d_mean_std\": \"0.839 +/- 0.139\", \"cohens_d_range\": \"[0.615, 1.033]\", \"cohens_d_cv\": \"0.166\", \"mse_mean_std\": \"0.056998 +/- 0.011380\"},\n    \"paraphrased\": {\"cohens_d_mean_std\": \"0.809 +/- 0.104\", \"cohens_d_range\": \"[0.707, 1.002]\", \"cohens_d_cv\": \"0.128\", \"mse_mean_std\": \"0.054715 +/- 0.008634\"}\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "88d5b0ed-0485-4da6-8dc9-6b03ba631ec3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CjL3NfnvDwCggXGP8ik4y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 54722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1021
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T21:39:02.714Z_
+
+<details><summary>↩ Tool result · `toolu_01RLTPkSPfZwvPSKNj9KxtUw`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_spatial.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "309a6292-1cba-472d-85fe-d9be7ec1f03f",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_spatial.json",
+    "content": "{\n  \"config\": {\n    \"experiment\": \"counterfactual_instruction_spatial\",\n    \"conditions\": [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"],\n    \"n_tasks\": 10,\n    \"n_demos_per_task\": 10,\n    \"n_timesteps_per_demo\": 50,\n    \"model\": \"openvla-7b\",\n    \"unnorm_key\": \"bridge_orig\",\n    \"seed\": 42,\n    \"suite\": \"libero_spatial\",\n    \"task_names\": [\n      \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n      \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\"\n    ],\n    \"note\": \"wrong instructions use other spatial tasks (same object/action, different spatial reference)\"\n  },\n  \"ranking_by_cohens_d\": [\n    {\"condition\": \"empty\", \"cohens_d\": 0.9422, \"paired_mse_mean\": 0.06594, \"token_divergence_rate\": 0.9137, \"kl_divergence_mean\": 9.0296},\n    {\"condition\": \"wrong\", \"cohens_d\": 0.8514, \"paired_mse_mean\": 0.05804, \"token_divergence_rate\": 0.8652, \"kl_divergence_mean\": 6.9572},\n    {\"condition\": \"shuffled\", \"cohens_d\": 0.8328, \"paired_mse_mean\": 0.05700, \"token_divergence_rate\": 0.8767, \"kl_divergence_mean\": 7.7587},\n    {\"condition\": \"paraphrased\", \"cohens_d\": 0.8057, \"paired_mse_mean\": 0.05471, \"token_divergence_rate\": 0.7990, \"kl_divergence_mean\": 5.9157}\n  ],\n  \"global_metrics_detail\": {\n    \"wrong\": {\n      \"paired_mse\": {\"mean\": 0.05804, \"std\": 0.06816, \"t_stat\": 60.205, \"p_value\": 0.0, \"cohens_d\": 0.8514, \"ci_95\": [0.8237, 0.8792]},\n      \"token_divergence_rate\": 0.8652,\n      \"kl_divergence_mean\": 6.9572,\n      \"n_samples\": 5000\n    },\n    \"empty\": {\n      \"paired_mse\": {\"mean\": 0.06594, \"std\": 0.06998, \"t_stat\": 66.622, \"p_value\": 0.0, \"cohens_d\": 0.9422, \"ci_95\": [0.9144, 0.9699]},\n      \"token_divergence_rate\": 0.9137,\n      \"kl_divergence_mean\": 9.0296,\n      \"n_samples\": 5000\n    },\n    \"shuffled\": {\n      \"paired_mse\": {\"mean\": 0.05700, \"std\": 0.06843, \"t_stat\": 58.888, \"p_value\": 0.0, \"cohens_d\": 0.8328, \"ci_95\": [0.8051, 0.8605]},\n      \"token_divergence_rate\": 0.8767,\n      \"kl_divergence_mean\": 7.7587,\n      \"n_samples\": 5000\n    },\n    \"paraphrased\": {\n      \"paired_mse\": {\"mean\": 0.05471, \"std\": 0.06790, \"t_stat\": 56.970, \"p_value\": 0.0, \"cohens_d\": 0.8057, \"ci_95\": [0.7780, 0.8334]},\n      \"token_divergence_rate\": 0.7990,\n      \"kl_divergence_mean\": 5.9157,\n      \"n_samples\": 5000\n    }\n  },\n  \"per_task_cohens_d\": {\n    \"wrong\": {\n      \"between_the_plate_and_the_ramekin\": {\"cohens_d\": 0.9537, \"ci_95\": [0.8659, 1.0416], \"mse_mean\": 0.066410, \"token_div_rate\": 0.8837},\n      \"from_table_center\": {\"cohens_d\": 0.7478, \"ci_95\": [0.6600, 0.8357], \"mse_mean\": 0.048018, \"token_div_rate\": 0.8477},\n      \"in_the_top_drawer_of_the_wooden_cabinet\": {\"cohens_d\": 0.8402, \"ci_95\": [0.7524, 0.9281], \"mse_mean\": 0.057719, \"token_div_rate\": 0.8506},\n      \"next_to_the_cookie_box\": {\"cohens_d\": 0.9220, \"ci_95\": [0.8342, 1.0099], \"mse_mean\": 0.064521, \"token_div_rate\": null},\n      \"next_to_the_plate\": {\"cohens_d\": 0.8011, \"ci_95\": [0.7132, 0.8889], \"mse_mean\": 0.054547, \"token_div_rate\": null},\n      \"next_to_the_ramekin\": {\"cohens_d\": 0.9718, \"ci_95\": [0.8839, 1.0597], \"mse_mean\": 0.066824, \"token_div_rate\": null},\n      \"on_the_cookie_box\": {\"cohens_d\": 0.7704, \"ci_95\": [0.6825, 0.8583], \"mse_mean\": 0.050291, \"token_div_rate\": null},\n      \"on_the_ramekin\": {\"cohens_d\": 0.8840, \"ci_95\": [0.7961, 0.9718], \"mse_mean\": 0.059934, \"token_div_rate\": null},\n      \"on_the_stove\": {\"cohens_d\": 0.8603, \"ci_95\": [0.7725, 0.9482], \"mse_mean\": 0.059635, \"token_div_rate\": null},\n      \"on_the_wooden_cabinet\": {\"cohens_d\": 0.7795, \"ci_95\": [0.6916, 0.8673], \"mse_mean\": 0.052525, \"token_div_rate\": null}\n    },\n    \"empty\": {\n      \"between_the_plate_and_the_ramekin\": {\"cohens_d\": 0.9293, \"ci_95\": [0.8414, 1.0172], \"mse_mean\": 0.065116},\n      \"from_table_center\": {\"cohens_d\": 0.9175, \"ci_95\": [0.8296, 1.0054], \"mse_mean\": 0.064163},\n      \"in_the_top_drawer_of_the_wooden_cabinet\": {\"cohens_d\": 1.2396, \"ci_95\": [1.1517, 1.3275], \"mse_mean\": 0.085796},\n      \"next_to_the_cookie_box\": {\"cohens_d\": 0.9433, \"ci_95\": [0.8555, 1.0312], \"mse_mean\": 0.066486},\n      \"next_to_the_plate\": {\"cohens_d\": 0.6382, \"ci_95\": [0.5504, 0.7261], \"mse_mean\": 0.040350},\n      \"next_to_the_ramekin\": {\"cohens_d\": 0.8861, \"ci_95\": [0.7982, 0.9739], \"mse_mean\": 0.061748},\n      \"on_the_cookie_box\": {\"cohens_d\": 0.8670, \"ci_95\": [0.7791, 0.9548], \"mse_mean\": 0.059199},\n      \"on_the_ramekin\": {\"cohens_d\": 0.8438, \"ci_95\": [0.7559, 0.9316], \"mse_mean\": 0.057708},\n      \"on_the_stove\": {\"cohens_d\": 1.0900, \"ci_95\": [1.0021, 1.1778], \"mse_mean\": 0.076660},\n      \"on_the_wooden_cabinet\": {\"cohens_d\": 1.1853, \"ci_95\": [1.0975, 1.2732], \"mse_mean\": 0.082195}\n    },\n    \"shuffled\": {\n      \"between_the_plate_and_the_ramekin\": {\"cohens_d\": 1.0011, \"ci_95\": [0.9132, 1.0890], \"mse_mean\": 0.070393},\n      \"from_table_center\": {\"cohens_d\": 0.7502, \"ci_95\": [0.6623, 0.8380], \"mse_mean\": 0.049722},\n      \"in_the_top_drawer_of_the_wooden_cabinet\": {\"cohens_d\": 0.6815, \"ci_95\": [0.5936, 0.7694], \"mse_mean\": 0.044356},\n      \"next_to_the_cookie_box\": {\"cohens_d\": 0.9646, \"ci_95\": [0.8767, 1.0525], \"mse_mean\": 0.068049},\n      \"next_to_the_plate\": {\"cohens_d\": 0.9239, \"ci_95\": [0.8361, 1.0118], \"mse_mean\": 0.064587},\n      \"next_to_the_ramekin\": {\"cohens_d\": 0.7833, \"ci_95\": [0.6954, 0.8712], \"mse_mean\": 0.053053},\n      \"on_the_cookie_box\": {\"cohens_d\": 0.8316, \"ci_95\": [0.7438, 0.9195], \"mse_mean\": 0.056043},\n      \"on_the_ramekin\": {\"cohens_d\": 1.0331, \"ci_95\": [0.9453, 1.1210], \"mse_mean\": 0.071141},\n      \"on_the_stove\": {\"cohens_d\": 0.8014, \"ci_95\": [0.7136, 0.8893], \"mse_mean\": 0.054950},\n      \"on_the_wooden_cabinet\": {\"cohens_d\": 0.6154, \"ci_95\": [0.5276, 0.7033], \"mse_mean\": 0.037686}\n    },\n    \"paraphrased\": {\n      \"between_the_plate_and_the_ramekin\": {\"cohens_d\": 0.9123, \"ci_95\": [0.8244, 1.0001], \"mse_mean\": 0.063853},\n      \"from_table_center\": {\"cohens_d\": 0.7577, \"ci_95\": [0.6698, 0.8455], \"mse_mean\": 0.050716},\n      \"in_the_top_drawer_of_the_wooden_cabinet\": {\"cohens_d\": 0.7258, \"ci_95\": [0.6380, 0.8137], \"mse_mean\": 0.048071},\n      \"next_to_the_cookie_box\": {\"cohens_d\": 0.8058, \"ci_95\": [0.7179, 0.8937], \"mse_mean\": 0.055225},\n      \"next_to_the_plate\": {\"cohens_d\": 0.8178, \"ci_95\": [0.7299, 0.9057], \"mse_mean\": 0.056283},\n      \"next_to_the_ramekin\": {\"cohens_d\": 1.0024, \"ci_95\": [0.9146, 1.0903], \"mse_mean\": 0.069698},\n      \"on_the_cookie_box\": {\"cohens_d\": 0.7257, \"ci_95\": [0.6379, 0.8136], \"mse_mean\": 0.046803},\n      \"on_the_ramekin\": {\"cohens_d\": 0.7065, \"ci_95\": [0.6186, 0.7944], \"mse_mean\": 0.045957},\n      \"on_the_stove\": {\"cohens_d\": 0.9194, \"ci_95\": [0.8315, 1.0073], \"mse_mean\": 0.064219},\n      \"on_the_wooden_cabinet\": {\"cohens_d\": 0.7124, \"ci_95\": [0.6246, 0.8003], \"mse_mean\": 0.046323}\n    }\n  },\n  \"cross_task_variance\": {\n    \"wrong\": {\"values\": [0.9537, 0.7478, 0.8402, 0.9220, 0.8011, 0.9718, 0.7704, 0.8840, 0.8603, 0.7795], \"mean\": 0.8531, \"std\": 0.0790, \"min\": 0.7478, \"max\": 0.9718, \"cv\": 0.0926},\n    \"empty\": {\"values\": [0.9293, 0.9175, 1.2396, 0.9433, 0.6382, 0.8861, 0.8670, 0.8438, 1.0900, 1.1853], \"mean\": 0.9540, \"std\": 0.1763, \"min\": 0.6382, \"max\": 1.2396, \"cv\": 0.1848},\n    \"shuffled\": {\"values\": [1.0011, 0.7502, 0.6815, 0.9646, 0.9239, 0.7833, 0.8316, 1.0331, 0.8014, 0.6154], \"mean\": 0.8386, \"std\": 0.1391, \"min\": 0.6154, \"max\": 1.0331, \"cv\": 0.1659},\n    \"paraphrased\": {\"values\": [0.9123, 0.7577, 0.7258, 0.8058, 0.8178, 1.0024, 0.7257, 0.7065, 0.9194, 0.7124], \"mean\": 0.8086, \"std\": 0.1036, \"min\": 0.7065, \"max\": 1.0024, \"cv\": 0.1282}\n  },\n  \"cross_task_summary\": {\n    \"wrong\": {\"cohens_d_mean_std\": \"0.853 +/- 0.079\", \"cohens_d_range\": \"[0.748, 0.972]\", \"cohens_d_cv\": \"0.093\", \"mse_mean_std\": \"0.058042 +/- 0.006654\"},\n    \"empty\": {\"cohens_d_mean_std\": \"0.954 +/- 0.176\", \"cohens_d_range\": \"[0.638, 1.240]\", \"cohens_d_cv\": \"0.185\", \"mse_mean_std\": \"0.065942 +/- 0.013179\"},\n    \"shuffled\": {\"cohens_d_mean_std\": \"0.839 +/- 0.139\", \"cohens_d_range\": \"[0.615, 1.033]\", \"cohens_d_cv\": \"0.166\", \"mse_mean_std\": \"0.056998 +/- 0.011380\"},\n    \"paraphrased\": {\"cohens_d_mean_std\": \"0.809 +/- 0.104\", \"cohens_d_range\": \"[0.707, 1.002]\", \"cohens_d_cv\": \"0.128\", \"mse_mean_std\": \"0.054715 +/- 0.008634\"}\n  }\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — Write · `toolu_019w7cHbSbh1eyVLAWCSUXEh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json",
+  "content": "{\n  \"source\": \"counterfactual_10tasks_combined.json + trajectory_level_cohens_d.json\",\n  \"counterfactual_10tasks\": {\n    \"config\": {\n      \"experiment\": \"counterfactual_instruction_10tasks\",\n      \"conditions\": [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"],\n      \"n_tasks\": 10,\n      \"n_demos_per_task\": 10,\n      \"n_timesteps_per_demo\": 50,\n      \"model\": \"openvla-7b\",\n      \"unnorm_key\": \"bridge_orig\",\n      \"seed\": 42,\n      \"task_names\": [\n        \"open_the_middle_drawer_of_the_cabinet\",\n        \"open_the_top_drawer_and_put_the_bowl_inside\",\n        \"push_the_plate_to_the_front_of_the_stove\",\n        \"put_the_bowl_on_the_plate\",\n        \"put_the_bowl_on_the_stove\",\n        \"put_the_bowl_on_top_of_the_cabinet\",\n        \"put_the_cream_cheese_in_the_bowl\",\n        \"put_the_wine_bottle_on_the_rack\",\n        \"put_the_wine_bottle_on_top_of_the_cabinet\",\n        \"turn_on_the_stove\"\n      ]\n    },\n    \"ranking_by_cohens_d\": [\n      {\"condition\": \"empty\", \"cohens_d\": 0.9780, \"paired_mse_mean\": 0.06906, \"token_divergence_rate\": 0.9128, \"kl_divergence_mean\": 8.8070},\n      {\"condition\": \"wrong\", \"cohens_d\": 0.9237, \"paired_mse_mean\": 0.06470, \"token_divergence_rate\": 0.9077, \"kl_divergence_mean\": 8.3828},\n      {\"condition\": \"shuffled\", \"cohens_d\": 0.7625, \"paired_mse_mean\": 0.05117, \"token_divergence_rate\": 0.8711, \"kl_divergence_mean\": 7.3309},\n      {\"condition\": \"paraphrased\", \"cohens_d\": 0.7071, \"paired_mse_mean\": 0.04621, \"token_divergence_rate\": 0.8298, \"kl_divergence_mean\": 6.4567}\n    ],\n    \"per_task_cohens_d\": {\n      \"wrong\": {\n        \"open_the_middle_drawer_of_the_cabinet\": {\"d\": 0.9332, \"ci_95\": [0.8453, 1.0211], \"mse\": 0.065946},\n        \"open_the_top_drawer_and_put_the_bowl_inside\": {\"d\": 0.7362, \"ci_95\": [0.6483, 0.8240], \"mse\": 0.049243},\n        \"push_the_plate_to_the_front_of_the_stove\": {\"d\": 1.0025, \"ci_95\": [0.9147, 1.0904], \"mse\": 0.070744},\n        \"put_the_bowl_on_the_plate\": {\"d\": 0.9752, \"ci_95\": [0.8873, 1.0630], \"mse\": 0.068348},\n        \"put_the_bowl_on_the_stove\": {\"d\": 1.5050, \"ci_95\": [1.4171, 1.5928], \"mse\": 0.098254},\n        \"put_the_bowl_on_top_of_the_cabinet\": {\"d\": 0.8799, \"ci_95\": [0.7921, 0.9678], \"mse\": 0.061296},\n        \"put_the_cream_cheese_in_the_bowl\": {\"d\": 0.7988, \"ci_95\": [0.7110, 0.8867], \"mse\": 0.054458},\n        \"put_the_wine_bottle_on_the_rack\": {\"d\": 1.1747, \"ci_95\": [1.0868, 1.2625], \"mse\": 0.082012},\n        \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"d\": 0.5361, \"ci_95\": [0.4483, 0.6240], \"mse\": 0.030529},\n        \"turn_on_the_stove\": {\"d\": 0.9449, \"ci_95\": [0.8570, 1.0327], \"mse\": 0.066163}\n      },\n      \"empty\": {\n        \"open_the_middle_drawer_of_the_cabinet\": {\"d\": 1.2452, \"ci_95\": [1.1574, 1.3331], \"mse\": 0.086239},\n        \"open_the_top_drawer_and_put_the_bowl_inside\": {\"d\": 1.0509, \"ci_95\": [0.9630, 1.1388], \"mse\": 0.074423},\n        \"push_the_plate_to_the_front_of_the_stove\": {\"d\": 0.6814, \"ci_95\": [0.5936, 0.7693], \"mse\": 0.044727},\n        \"put_the_bowl_on_the_plate\": {\"d\": 0.8079, \"ci_95\": [0.7200, 0.8957], \"mse\": 0.055558},\n        \"put_the_bowl_on_the_stove\": {\"d\": 0.8536, \"ci_95\": [0.7657, 0.9414], \"mse\": 0.059434},\n        \"put_the_bowl_on_top_of_the_cabinet\": {\"d\": 0.9866, \"ci_95\": [0.8987, 1.0744], \"mse\": 0.069785},\n        \"put_the_cream_cheese_in_the_bowl\": {\"d\": 1.1329, \"ci_95\": [1.0450, 1.2208], \"mse\": 0.079798},\n        \"put_the_wine_bottle_on_the_rack\": {\"d\": 1.1095, \"ci_95\": [1.0216, 1.1973], \"mse\": 0.077958},\n        \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"d\": 1.0700, \"ci_95\": [0.9822, 1.1579], \"mse\": 0.074958},\n        \"turn_on_the_stove\": {\"d\": 0.9555, \"ci_95\": [0.8676, 1.0434], \"mse\": 0.067680}\n      },\n      \"shuffled\": {\n        \"open_the_middle_drawer_of_the_cabinet\": {\"d\": 0.4580, \"ci_95\": [0.3702, 0.5459], \"mse\": 0.023404},\n        \"open_the_top_drawer_and_put_the_bowl_inside\": {\"d\": 0.7054, \"ci_95\": [0.6175, 0.7933], \"mse\": 0.046452},\n        \"push_the_plate_to_the_front_of_the_stove\": {\"d\": 0.7108, \"ci_95\": [0.6230, 0.7987], \"mse\": 0.047365},\n        \"put_the_bowl_on_the_plate\": {\"d\": 0.7267, \"ci_95\": [0.6388, 0.8146], \"mse\": 0.047938},\n        \"put_the_bowl_on_the_stove\": {\"d\": 0.9304, \"ci_95\": [0.8425, 1.0183], \"mse\": 0.065400},\n        \"put_the_bowl_on_top_of_the_cabinet\": {\"d\": 0.8688, \"ci_95\": [0.7809, 0.9567], \"mse\": 0.060770},\n        \"put_the_cream_cheese_in_the_bowl\": {\"d\": 0.8986, \"ci_95\": [0.8107, 0.9864], \"mse\": 0.062622},\n        \"put_the_wine_bottle_on_the_rack\": {\"d\": 0.6743, \"ci_95\": [0.5864, 0.7622], \"mse\": 0.041155},\n        \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"d\": 0.8210, \"ci_95\": [0.7331, 0.9088], \"mse\": 0.055480},\n        \"turn_on_the_stove\": {\"d\": 0.8705, \"ci_95\": [0.7826, 0.9583], \"mse\": 0.061149}\n      },\n      \"paraphrased\": {\n        \"open_the_middle_drawer_of_the_cabinet\": {\"d\": 0.4443, \"ci_95\": [0.3564, 0.5321], \"mse\": 0.022039},\n        \"open_the_top_drawer_and_put_the_bowl_inside\": {\"d\": 0.7131, \"ci_95\": [0.6252, 0.8009], \"mse\": 0.047022},\n        \"push_the_plate_to_the_front_of_the_stove\": {\"d\": 0.9586, \"ci_95\": [0.8707, 1.0465], \"mse\": 0.067855},\n        \"put_the_bowl_on_the_plate\": {\"d\": 0.7589, \"ci_95\": [0.6711, 0.8468], \"mse\": 0.050208},\n        \"put_the_bowl_on_the_stove\": {\"d\": 0.8559, \"ci_95\": [0.7681, 0.9438], \"mse\": 0.059021},\n        \"put_the_bowl_on_top_of_the_cabinet\": {\"d\": 0.8674, \"ci_95\": [0.7796, 0.9553], \"mse\": 0.060360},\n        \"put_the_cream_cheese_in_the_bowl\": {\"d\": 0.9213, \"ci_95\": [0.8334, 1.0092], \"mse\": 0.064504},\n        \"put_the_wine_bottle_on_the_rack\": {\"d\": 0.4264, \"ci_95\": [0.3385, 0.5143], \"mse\": 0.019398},\n        \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"d\": 0.4106, \"ci_95\": [0.3227, 0.4984], \"mse\": 0.018301},\n        \"turn_on_the_stove\": {\"d\": 0.7784, \"ci_95\": [0.6905, 0.8662], \"mse\": 0.053377}\n      }\n    },\n    \"cross_task_summary\": {\n      \"wrong\": {\"cohens_d_mean_std\": \"0.949 +/- 0.260\", \"cohens_d_range\": \"[0.536, 1.505]\", \"cohens_d_cv\": \"0.274\", \"mse_mean_std\": \"0.064699 +/- 0.018264\"},\n      \"empty\": {\"cohens_d_mean_std\": \"0.989 +/- 0.169\", \"cohens_d_range\": \"[0.681, 1.245]\", \"cohens_d_cv\": \"0.171\", \"mse_mean_std\": \"0.069056 +/- 0.012573\"},\n      \"shuffled\": {\"cohens_d_mean_std\": \"0.766 +/- 0.142\", \"cohens_d_range\": \"[0.458, 0.930]\", \"cohens_d_cv\": \"0.185\", \"mse_mean_std\": \"0.051173 +/- 0.012747\"},\n      \"paraphrased\": {\"cohens_d_mean_std\": \"0.713 +/- 0.211\", \"cohens_d_range\": \"[0.411, 0.959]\", \"cohens_d_cv\": \"0.296\", \"mse_mean_std\": \"0.046209 +/- 0.019199\"}\n    }\n  },\n  \"trajectory_level_cohens_d\": {\n    \"method\": \"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\",\n    \"description\": \"Each demo's MSE is the mean of its 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\",\n    \"n_timesteps_per_demo\": 50,\n    \"counterfactual_results\": [\n      {\n        \"condition\": \"counterfactual_empty\",\n        \"token_level_d\": 0.968,\n        \"trajectory_level_d\": 3.4378,\n        \"ci_lower\": 2.9209,\n        \"ci_upper\": 4.4475,\n        \"n_demos\": 30,\n        \"inflation_factor\": 0.282\n      },\n      {\n        \"condition\": \"counterfactual_wrong\",\n        \"token_level_d\": 0.844,\n        \"trajectory_level_d\": 3.7976,\n        \"ci_lower\": 3.1937,\n        \"ci_upper\": 4.9379,\n        \"n_demos\": 30,\n        \"inflation_factor\": 0.222\n      },\n      {\n        \"condition\": \"counterfactual_shuffled\",\n        \"token_level_d\": 0.625,\n        \"trajectory_level_d\": 2.5946,\n        \"ci_lower\": 2.0276,\n        \"ci_upper\": 3.7908,\n        \"n_demos\": 30,\n        \"inflation_factor\": 0.241\n      },\n      {\n        \"condition\": \"counterfactual_paraphrased\",\n        \"token_level_d\": 0.697,\n        \"trajectory_level_d\": 2.1306,\n        \"ci_lower\": 1.7399,\n        \"ci_upper\": 2.8192,\n        \"n_demos\": 30,\n        \"inflation_factor\": 0.327\n      }\n    ],\n    \"inflation_factor_summary\": {\n      \"description\": \"token_level_d / trajectory_level_d (how much token-level d overestimates)\",\n      \"mean\": 0.245,\n      \"range\": [0.184, 0.327]\n    }\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "8ab539df-a34e-49b1-b73f-6f13312d3426",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CjL3NfnvDwCggXGP8ik4y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 54722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1021
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T21:40:20.514Z_
+
+<details><summary>↩ Tool result · `toolu_019w7cHbSbh1eyVLAWCSUXEh`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "99645744-331b-4edf-abf8-098fdf61143e",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json",
+    "content": "{\n  \"source\": \"counterfactual_10tasks_combined.json + trajectory_level_cohens_d.json\",\n  \"counterfactual_10tasks\": {\n    \"config\": {\n      \"experiment\": \"counterfactual_instruction_10tasks\",\n      \"conditions\": [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"],\n      \"n_tasks\": 10,\n      \"n_demos_per_task\": 10,\n      \"n_timesteps_per_demo\": 50,\n      \"model\": \"openvla-7b\",\n      \"unnorm_key\": \"bridge_orig\",\n      \"seed\": 42,\n      \"task_names\": [\n        \"open_the_middle_drawer_of_the_cabinet\",\n        \"open_the_top_drawer_and_put_the_bowl_inside\",\n        \"push_the_plate_to_the_front_of_the_stove\",\n        \"put_the_bowl_on_the_plate\",\n        \"put_the_bowl_on_the_stove\",\n        \"put_the_bowl_on_top_of_the_cabinet\",\n        \"put_the_cream_cheese_in_the_bowl\",\n        \"put_the_wine_bottle_on_the_rack\",\n        \"put_the_wine_bottle_on_top_of_the_cabinet\",\n        \"turn_on_the_stove\"\n      ]\n    },\n    \"ranking_by_cohens_d\": [\n      {\"condition\": \"empty\", \"cohens_d\": 0.9780, \"paired_mse_mean\": 0.06906, \"token_divergence_rate\": 0.9128, \"kl_divergence_mean\": 8.8070},\n      {\"condition\": \"wrong\", \"cohens_d\": 0.9237, \"paired_mse_mean\": 0.06470, \"token_divergence_rate\": 0.9077, \"kl_divergence_mean\": 8.3828},\n      {\"condition\": \"shuffled\", \"cohens_d\": 0.7625, \"paired_mse_mean\": 0.05117, \"token_divergence_rate\": 0.8711, \"kl_divergence_mean\": 7.3309},\n      {\"condition\": \"paraphrased\", \"cohens_d\": 0.7071, \"paired_mse_mean\": 0.04621, \"token_divergence_rate\": 0.8298, \"kl_divergence_mean\": 6.4567}\n    ],\n    \"per_task_cohens_d\": {\n      \"wrong\": {\n        \"open_the_middle_drawer_of_the_cabinet\": {\"d\": 0.9332, \"ci_95\": [0.8453, 1.0211], \"mse\": 0.065946},\n        \"open_the_top_drawer_and_put_the_bowl_inside\": {\"d\": 0.7362, \"ci_95\": [0.6483, 0.8240], \"mse\": 0.049243},\n        \"push_the_plate_to_the_front_of_the_stove\": {\"d\": 1.0025, \"ci_95\": [0.9147, 1.0904], \"mse\": 0.070744},\n        \"put_the_bowl_on_the_plate\": {\"d\": 0.9752, \"ci_95\": [0.8873, 1.0630], \"mse\": 0.068348},\n        \"put_the_bowl_on_the_stove\": {\"d\": 1.5050, \"ci_95\": [1.4171, 1.5928], \"mse\": 0.098254},\n        \"put_the_bowl_on_top_of_the_cabinet\": {\"d\": 0.8799, \"ci_95\": [0.7921, 0.9678], \"mse\": 0.061296},\n        \"put_the_cream_cheese_in_the_bowl\": {\"d\": 0.7988, \"ci_95\": [0.7110, 0.8867], \"mse\": 0.054458},\n        \"put_the_wine_bottle_on_the_rack\": {\"d\": 1.1747, \"ci_95\": [1.0868, 1.2625], \"mse\": 0.082012},\n        \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"d\": 0.5361, \"ci_95\": [0.4483, 0.6240], \"mse\": 0.030529},\n        \"turn_on_the_stove\": {\"d\": 0.9449, \"ci_95\": [0.8570, 1.0327], \"mse\": 0.066163}\n      },\n      \"empty\": {\n        \"open_the_middle_drawer_of_the_cabinet\": {\"d\": 1.2452, \"ci_95\": [1.1574, 1.3331], \"mse\": 0.086239},\n        \"open_the_top_drawer_and_put_the_bowl_inside\": {\"d\": 1.0509, \"ci_95\": [0.9630, 1.1388], \"mse\": 0.074423},\n        \"push_the_plate_to_the_front_of_the_stove\": {\"d\": 0.6814, \"ci_95\": [0.5936, 0.7693], \"mse\": 0.044727},\n        \"put_the_bowl_on_the_plate\": {\"d\": 0.8079, \"ci_95\": [0.7200, 0.8957], \"mse\": 0.055558},\n        \"put_the_bowl_on_the_stove\": {\"d\": 0.8536, \"ci_95\": [0.7657, 0.9414], \"mse\": 0.059434},\n        \"put_the_bowl_on_top_of_the_cabinet\": {\"d\": 0.9866, \"ci_95\": [0.8987, 1.0744], \"mse\": 0.069785},\n        \"put_the_cream_cheese_in_the_bowl\": {\"d\": 1.1329, \"ci_95\": [1.0450, 1.2208], \"mse\": 0.079798},\n        \"put_the_wine_bottle_on_the_rack\": {\"d\": 1.1095, \"ci_95\": [1.0216, 1.1973], \"mse\": 0.077958},\n        \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"d\": 1.0700, \"ci_95\": [0.9822, 1.1579], \"mse\": 0.074958},\n        \"turn_on_the_stove\": {\"d\": 0.9555, \"ci_95\": [0.8676, 1.0434], \"mse\": 0.067680}\n      },\n      \"shuffled\": {\n        \"open_the_middle_drawer_of_the_cabinet\": {\"d\": 0.4580, \"ci_95\": [0.3702, 0.5459], \"mse\": 0.023404},\n        \"open_the_top_drawer_and_put_the_bowl_inside\": {\"d\": 0.7054, \"ci_95\": [0.6175, 0.7933], \"mse\": 0.046452},\n        \"push_the_plate_to_the_front_of_the_stove\": {\"d\": 0.7108, \"ci_95\": [0.6230, 0.7987], \"mse\": 0.047365},\n        \"put_the_bowl_on_the_plate\": {\"d\": 0.7267, \"ci_95\": [0.6388, 0.8146], \"mse\": 0.047938},\n        \"put_the_bowl_on_the_stove\": {\"d\": 0.9304, \"ci_95\": [0.8425, 1.0183], \"mse\": 0.065400},\n        \"put_the_bowl_on_top_of_the_cabinet\": {\"d\": 0.8688, \"ci_95\": [0.7809, 0.9567], \"mse\": 0.060770},\n        \"put_the_cream_cheese_in_the_bowl\": {\"d\": 0.8986, \"ci_95\": [0.8107, 0.9864], \"mse\": 0.062622},\n        \"put_the_wine_bottle_on_the_rack\": {\"d\": 0.6743, \"ci_95\": [0.5864, 0.7622], \"mse\": 0.041155},\n        \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"d\": 0.8210, \"ci_95\": [0.7331, 0.9088], \"mse\": 0.055480},\n        \"turn_on_the_stove\": {\"d\": 0.8705, \"ci_95\": [0.7826, 0.9583], \"mse\": 0.061149}\n      },\n      \"paraphrased\": {\n        \"open_the_middle_drawer_of_the_cabinet\": {\"d\": 0.4443, \"ci_95\": [0.3564, 0.5321], \"mse\": 0.022039},\n        \"open_the_top_drawer_and_put_the_bowl_inside\": {\"d\": 0.7131, \"ci_95\": [0.6252, 0.8009], \"mse\": 0.047022},\n        \"push_the_plate_to_the_front_of_the_stove\": {\"d\": 0.9586, \"ci_95\": [0.8707, 1.0465], \"mse\": 0.067855},\n        \"put_the_bowl_on_the_plate\": {\"d\": 0.7589, \"ci_95\": [0.6711, 0.8468], \"mse\": 0.050208},\n        \"put_the_bowl_on_the_stove\": {\"d\": 0.8559, \"ci_95\": [0.7681, 0.9438], \"mse\": 0.059021},\n        \"put_the_bowl_on_top_of_the_cabinet\": {\"d\": 0.8674, \"ci_95\": [0.7796, 0.9553], \"mse\": 0.060360},\n        \"put_the_cream_cheese_in_the_bowl\": {\"d\": 0.9213, \"ci_95\": [0.8334, 1.0092], \"mse\": 0.064504},\n        \"put_the_wine_bottle_on_the_rack\": {\"d\": 0.4264, \"ci_95\": [0.3385, 0.5143], \"mse\": 0.019398},\n        \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"d\": 0.4106, \"ci_95\": [0.3227, 0.4984], \"mse\": 0.018301},\n        \"turn_on_the_stove\": {\"d\": 0.7784, \"ci_95\": [0.6905, 0.8662], \"mse\": 0.053377}\n      }\n    },\n    \"cross_task_summary\": {\n      \"wrong\": {\"cohens_d_mean_std\": \"0.949 +/- 0.260\", \"cohens_d_range\": \"[0.536, 1.505]\", \"cohens_d_cv\": \"0.274\", \"mse_mean_std\": \"0.064699 +/- 0.018264\"},\n      \"empty\": {\"cohens_d_mean_std\": \"0.989 +/- 0.169\", \"cohens_d_range\": \"[0.681, 1.245]\", \"cohens_d_cv\": \"0.171\", \"mse_mean_std\": \"0.069056 +/- 0.012573\"},\n      \"shuffled\": {\"cohens_d_mean_std\": \"0.766 +/- 0.142\", \"cohens_d_range\": \"[0.458, 0.930]\", \"cohens_d_cv\": \"0.185\", \"mse_mean_std\": \"0.051173 +/- 0.012747\"},\n      \"paraphrased\": {\"cohens_d_mean_std\": \"0.713 +/- 0.211\", \"cohens_d_range\": \"[0.411, 0.959]\", \"cohens_d_cv\": \"0.296\", \"mse_mean_std\": \"0.046209 +/- 0.019199\"}\n    }\n  },\n  \"trajectory_level_cohens_d\": {\n    \"method\": \"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\",\n    \"description\": \"Each demo's MSE is the mean of its 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\",\n    \"n_timesteps_per_demo\": 50,\n    \"counterfactual_results\": [\n      {\n        \"condition\": \"counterfactual_empty\",\n        \"token_level_d\": 0.968,\n        \"trajectory_level_d\": 3.4378,\n        \"ci_lower\": 2.9209,\n        \"ci_upper\": 4.4475,\n        \"n_demos\": 30,\n        \"inflation_factor\": 0.282\n      },\n      {\n        \"condition\": \"counterfactual_wrong\",\n        \"token_level_d\": 0.844,\n        \"trajectory_level_d\": 3.7976,\n        \"ci_lower\": 3.1937,\n        \"ci_upper\": 4.9379,\n        \"n_demos\": 30,\n        \"inflation_factor\": 0.222\n      },\n      {\n        \"condition\": \"counterfactual_shuffled\",\n        \"token_level_d\": 0.625,\n        \"trajectory_level_d\": 2.5946,\n        \"ci_lower\": 2.0276,\n        \"ci_upper\": 3.7908,\n        \"n_demos\": 30,\n        \"inflation_factor\": 0.241\n      },\n      {\n        \"condition\": \"counterfactual_paraphrased\",\n        \"token_level_d\": 0.697,\n        \"trajectory_level_d\": 2.1306,\n        \"ci_lower\": 1.7399,\n        \"ci_upper\": 2.8192,\n        \"n_demos\": 30,\n        \"inflation_factor\": 0.327\n      }\n    ],\n    \"inflation_factor_summary\": {\n      \"description\": \"token_level_d / trajectory_level_d (how much token-level d overestimates)\",\n      \"mean\": 0.245,\n      \"range\": [0.184, 0.327]\n    }\n  }\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+两个文件已写入本地。汇总：
+
+## counterfactual_spatial (libero_spatial, 10 tasks × 10 demos × 50 timesteps)
+
+| Condition | Global d | CI 95% | Token Div | KL Div |
+|-----------|----------|--------|-----------|--------|
+| **empty** | **0.942** | [0.914, 0.970] | 0.914 | 9.030 |
+| wrong | 0.851 | [0.824, 0.879] | 0.865 | 6.957 |
+| shuffled | 0.833 | [0.805, 0.861] | 0.877 | 7.759 |
+| paraphrased | 0.806 | [0.778, 0.833] | 0.799 | 5.916 |
+
+Cross-task CV: wrong=0.093 (最稳定), paraphrased=0.128, shuffled=0.166, empty=0.185
+
+## counterfactual_10tasks (10 diverse tasks × 10 demos × 50 timesteps)
+
+| Condition | Global d | Token Div | KL Div | Cross-task CV |
+|-----------|----------|-----------|--------|---------------|
+| **empty** | **0.978** | 0.913 | 8.807 | 0.171 |
+| wrong | 0.924 | 0.908 | 8.383 | 0.274 |
+| shuffled | 0.763 | 0.871 | 7.331 | 0.185 |
+| paraphrased | 0.707 | 0.830 | 6.457 | 0.296 |
+
+## Trajectory-level Cohen's d (demo-level aggregation, 30 demos, bootstrap B=10000)
+
+| Condition | Token-level d | Trajectory-level d | CI 95% | Inflation |
+|-----------|--------------|-------------------|--------|-----------|
+| wrong | 0.844 | **3.798** | [3.194, 4.938] | 0.222 |
+| empty | 0.968 | **3.438** | [2.921, 4.448] | 0.282 |
+| shuffled | 0.625 | **2.595** | [2.028, 3.791] | 0.241 |
+| paraphrased | 0.697 | **2.131** | [1.740, 2.819] | 0.327 |
+
+Token-level d 仅为 trajectory-level d 的 18-33% (mean inflation factor 0.245)。
+
+文件位置：
+- `artifacts/statistical_supplements/counterfactual_spatial.json`
+- `artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "uuid": "6bca4f3d-ccad-4d82-963e-a89646edc4ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0184wYywMYXUNgrvzsLuuYZv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8659,
+      "cache_read_input_tokens": 55743,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8659
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 52_
+
+两个文件已写入本地。汇总：
+
+## counterfactual_spatial (libero_spatial, 10 tasks × 10 demos × 50 timesteps)
+
+| Condition | Global d | CI 95% | Token Div | KL Div |
+|-----------|----------|--------|-----------|--------|
+| **empty** | **0.942** | [0.914, 0.970] | 0.914 | 9.030 |
+| wrong | 0.851 | [0.824, 0.879] | 0.865 | 6.957 |
+| shuffled | 0.833 | [0.805, 0.861] | 0.877 | 7.759 |
+| paraphrased | 0.806 | [0.778, 0.833] | 0.799 | 5.916 |
+
+Cross-task CV: wrong=0.093 (最稳定), paraphrased=0.128, shuffled=0.166, empty=0.185
+
+## counterfactual_10tasks (10 diverse tasks × 10 demos × 50 timesteps)
+
+| Condition | Global d | Token Div | KL Div | Cross-task CV |
+|-----------|----------|-----------|--------|---------------|
+| **empty** | **0.978** | 0.913 | 8.807 | 0.171 |
+| wrong | 0.924 | 0.908 | 8.383 | 0.274 |
+| shuffled | 0.763 | 0.871 | 7.331 | 0.185 |
+| paraphrased | 0.707 | 0.830 | 6.457 | 0.296 |
+
+## Trajectory-level Cohen's d (demo-level aggregation, 30 demos, bootstrap B=10000)
+
+| Condition | Token-level d | Trajectory-level d | CI 95% | Inflation |
+|-----------|--------------|-------------------|--------|-----------|
+| wrong | 0.844 | **3.798** | [3.194, 4.938] | 0.222 |
+| empty | 0.968 | **3.438** | [2.921, 4.448] | 0.282 |
+| shuffled | 0.625 | **2.595** | [2.028, 3.791] | 0.241 |
+| paraphrased | 0.697 | **2.131** | [1.740, 2.819] | 0.327 |
+
+Token-level d 仅为 trajectory-level d 的 18-33% (mean inflation factor 0.245)。
+
+文件位置：
+- `artifacts/statistical_supplements/counterfactual_spatial.json`
+- `artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 309667,
+  "duration_api_ms": 305957,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "7d2b26f9-fef6-49b3-8322-cbff56d4a6a7",
+  "total_cost_usd": 0.9696892499999998,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 52561,
+    "cache_read_input_tokens": 490408,
+    "output_tokens": 15776,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 52561,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 711,
+        "cache_read_input_tokens": 55743,
+        "cache_creation_input_tokens": 8659,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 8659
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1404,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001494,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 15776,
+      "cacheReadInputTokens": 490408,
+      "cacheCreationInputTokens": 52561,
+      "webSearchRequests": 0,
+      "costUSD": 0.96819525,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e8c26529-81f3-46d0-98dc-25a91f6bc8e6"
+}
+```
+
+</details>
+
+---

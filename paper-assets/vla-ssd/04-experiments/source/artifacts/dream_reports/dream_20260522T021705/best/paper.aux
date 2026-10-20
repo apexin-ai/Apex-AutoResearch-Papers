@@ -1,0 +1,123 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023rt2,kim2024openvla}
+\citation{grant2026visual,haon2025lost}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{brohan2023rt2,kim2024openvla}
+\citation{kim2024openvla}
+\citation{grant2026visual}
+\citation{haon2025lost}
+\citation{belinkov2022probing}
+\citation{kriegeskorte2008representational}
+\citation{kornblith2019similarity}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instruction Following in Robotics.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representational Analysis of Transformers.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Token-Level Analysis Framework}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method: Token-Level Analysis Framework}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Factorial Design}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Analysis Methods}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:methods-probes}{{3.2}{2}{Analysis Methods}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{(1) Cross-Instruction Probing.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) Action Probe ($R^2$).}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) Attention Profiling.}{2}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-instruction probe accuracy (\%) at \texttt  {last\_preaction} position (OpenVLA, LIBERO-Goal, 10-way classification). LOOCV: trained 100.00$\pm $0.00 (L8--L31); untrained decays from 96.64$\pm $7.07 to 84.76$\pm $11.59.}}{3}{table.caption.12}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:cross-instruction}{{1}{3}{Cross-instruction probe accuracy (\%) at \texttt {last\_preaction} position (OpenVLA, LIBERO-Goal, 10-way classification). LOOCV: trained 100.00$\pm $0.00 (L8--L31); untrained decays from 96.64$\pm $7.07 to 84.76$\pm $11.59}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{(4) Representational Similarity Analysis (RSA).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(5) Counterfactual Perturbation.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(6) CKA Verification.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Architectures and Datasets}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Token-Level Specialization (Framework Validation)}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp-specialization}{{4.1}{3}{Token-Level Specialization (Framework Validation)}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Image tokens are instruction-invariant.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Three qualitatively different routing profiles.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Six-method systematic validation.}{3}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Six probing methods on two LIBERO benchmarks: consistent ordering trained $\approx $ untrained $\gg $ DINO. Best per-method scores shown.}}{4}{table.caption.14}\protected@file@percent }
+\newlabel{tab:six-methods}{{2}{4}{Six probing methods on two LIBERO benchmarks: consistent ordering trained $\approx $ untrained $\gg $ DINO. Best per-method scores shown}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces R$^2$ exit collapse matrix: trained $\Delta $ (peak $-$ exit) across 3 architectures $\times $ 4 LIBERO suites. \text  {$\mathsurround \z@ \mathchar "458$}: $\Delta > 0.08$; $\triangle $: OFT outlier. Mean untrained $\Delta $ = 0.032.}}{4}{table.caption.15}\protected@file@percent }
+\newlabel{tab:exit-collapse-matrix}{{3}{4}{R$^2$ exit collapse matrix: trained $\Delta $ (peak $-$ exit) across 3 architectures $\times $ 4 LIBERO suites. \checkmark : $\Delta > 0.08$; $\triangle $: OFT outlier. Mean untrained $\Delta $ = 0.032}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Architecture-Independent Routing Reorganization}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp-routing}{{4.2}{4}{Architecture-Independent Routing Reorganization}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}R$^2$ Exit Collapse}{4}{subsubsection.4.2.1}\protected@file@percent }
+\newlabel{sec:exit-collapse}{{4.2.1}{4}{R$^2$ Exit Collapse}{subsubsection.4.2.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{OpenVLA exit collapse detail.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Full-layer R$^2$ scan.}{4}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-benchmark replication.}{4}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OFT outlier.}{4}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Counterfactual Sensitivity}{4}{subsubsection.4.2.2}\protected@file@percent }
+\newlabel{sec:cf}{{4.2.2}{4}{Counterfactual Sensitivity}{subsubsection.4.2.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces OpenVLA R$^2$ exit collapse on Goal and Spatial suites (\texttt  {last\_preaction}).}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:openvla-collapse}{{4}{5}{OpenVLA R$^2$ exit collapse on Goal and Spatial suites (\texttt {last\_preaction})}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Full-layer R$^2$ scan (OpenVLA, LIBERO-Goal). Peak and exit layer R$^2$ values.}}{5}{table.caption.19}\protected@file@percent }
+\newlabel{tab:r2-full}{{5}{5}{Full-layer R$^2$ scan (OpenVLA, LIBERO-Goal). Peak and exit layer R$^2$ values}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Untrained counterfactual comparison.}{5}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}L1 Attention Routing: Base-Model-Dependent}{5}{subsubsection.4.2.3}\protected@file@percent }
+\newlabel{sec:l1-heads}{{4.2.3}{5}{L1 Attention Routing: Base-Model-Dependent}{subsubsection.4.2.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{OpenVLA L1 attention detail.}{5}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Three-Tier Routing Gradient}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:three-tier}{{4.3}{5}{Three-Tier Routing Gradient}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{OpenVLA Goal three-tier detail.}{5}{section*.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-benchmark R$^2$ peak comparison (Goal vs.\ Spatial).}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:cross-benchmark}{{6}{6}{Cross-benchmark R$^2$ peak comparison (Goal vs.\ Spatial)}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Counterfactual sensitivity: OpenVLA trained vs.\ untrained (OXE) on Goal and Spatial (Cohen's $d$ for trained, cosine distance for untrained).}}{6}{table.caption.23}\protected@file@percent }
+\newlabel{tab:cf-trained}{{7}{6}{Counterfactual sensitivity: OpenVLA trained vs.\ untrained (OXE) on Goal and Spatial (Cohen's $d$ for trained, cosine distance for untrained)}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Vision Encoder Geometry}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:encoder-geometry}{{4.4}{6}{Vision Encoder Geometry}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Encoder-to-VLA RSA Comparison}{6}{subsubsection.4.4.1}\protected@file@percent }
+\newlabel{sec:rsa-encoder}{{4.4.1}{6}{Encoder-to-VLA RSA Comparison}{subsubsection.4.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Per-Layer RSA Profile}{6}{subsubsection.4.4.2}\protected@file@percent }
+\newlabel{sec:rsa-profile}{{4.4.2}{6}{Per-Layer RSA Profile}{subsubsection.4.4.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.3}Instruction Invariance of RSA}{6}{subsubsection.4.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.4}Cross-Encoder Comparison}{6}{subsubsection.4.4.4}\protected@file@percent }
+\newlabel{sec:cross-encoder}{{4.4.4}{6}{Cross-Encoder Comparison}{subsubsection.4.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Branch-split decomposition.}{6}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.5}Metric Robustness: RSA vs.\ CKA}{6}{subsubsection.4.4.5}\protected@file@percent }
+\newlabel{sec:metric-robustness}{{4.4.5}{6}{Metric Robustness: RSA vs.\ CKA}{subsubsection.4.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Untrained counterfactual responses (cosine distance). Tier~1 = VLM base; Tier~2 = OXE pretrained. *~denotes reference values from other cells.}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:cf-untrained}{{8}{7}{Untrained counterfactual responses (cosine distance). Tier~1 = VLM base; Tier~2 = OXE pretrained. *~denotes reference values from other cells}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces L1 instruction-dominant heads: trained vs.\ untrained across architectures. L1 routing is base-model-dependent, not training-induced.}}{7}{table.caption.26}\protected@file@percent }
+\newlabel{tab:l1-heads}{{9}{7}{L1 instruction-dominant heads: trained vs.\ untrained across architectures. L1 routing is base-model-dependent, not training-induced}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.6}Weight Analysis and Frozen Encoder Verification}{7}{subsubsection.4.4.6}\protected@file@percent }
+\newlabel{sec:weight-analysis}{{4.4.6}{7}{Weight Analysis and Frozen Encoder Verification}{subsubsection.4.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{What VLA training does and does not do.}{7}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The routing gradient.}{7}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metric dependence of geometric findings.}{7}{section*.40}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{belinkov2022probing}{{1}{}{{}}{{}}}
+\bibcite{brohan2023rt2}{{2}{}{{}}{{}}}
+\bibcite{grant2026visual}{{3}{}{{}}{{}}}
+\bibcite{haon2025lost}{{4}{}{{}}{{}}}
+\bibcite{kim2024openvla}{{5}{}{{}}{{}}}
+\bibcite{kornblith2019similarity}{{6}{}{{}}{{}}}
+\bibcite{kriegeskorte2008representational}{{7}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Three-tier routing gradient. Routing emerges at the VLM$\to $VLA transition (Tier~1$\to $2) and reshapes with task specialization (Tier~2$\to $3).}}{8}{table.caption.28}\protected@file@percent }
+\newlabel{tab:three-tier}{{10}{8}{Three-tier routing gradient. Routing emerges at the VLM$\to $VLA transition (Tier~1$\to $2) and reshapes with task specialization (Tier~2$\to $3)}{table.caption.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Three-tier routing gradient on LIBERO-Goal (OpenVLA).}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:three-tier-goal}{{11}{8}{Three-tier routing gradient on LIBERO-Goal (OpenVLA)}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Encoder-to-VLA RSA comparison. LLM processing degrades geometric alignment from the frozen encoder; training does not recover it (trained $\approx $ untrained). DINOv2 establishes a vision-only floor.}}{9}{table.caption.31}\protected@file@percent }
+\newlabel{tab:rsa-encoder}{{12}{9}{Encoder-to-VLA RSA comparison. LLM processing degrades geometric alignment from the frozen encoder; training does not recover it (trained $\approx $ untrained). DINOv2 establishes a vision-only floor}{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Per-layer RSA profile summary (OpenVLA, LIBERO-Goal, \texttt  {image\_mean}).}}{9}{table.caption.32}\protected@file@percent }
+\newlabel{tab:rsa-profile}{{13}{9}{Per-layer RSA profile summary (OpenVLA, LIBERO-Goal, \texttt {image\_mean})}{table.caption.32}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces 2$\times $2 RSA convergence matrix. All four conditions converge within [0.48, 0.49]; neither training nor instruction presence has a significant effect (bootstrap CI includes 0).}}{9}{table.caption.33}\protected@file@percent }
+\newlabel{tab:2x2-rsa}{{14}{9}{2$\times $2 RSA convergence matrix. All four conditions converge within [0.48, 0.49]; neither training nor instruction presence has a significant effect (bootstrap CI includes 0)}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Cross-encoder comparison (RSA and action-probe R$^2$).}}{9}{table.caption.34}\protected@file@percent }
+\newlabel{tab:cross-encoder}{{15}{9}{Cross-encoder comparison (RSA and action-probe R$^2$)}{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Branch-split RSA decomposition of the fused backbone.}}{9}{table.caption.36}\protected@file@percent }
+\newlabel{tab:branch-split}{{16}{9}{Branch-split RSA decomposition of the fused backbone}{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces RSA vs.\ CKA ordering comparison. Ordering reversal between metrics reflects different aspects of representational structure.}}{9}{table.caption.37}\protected@file@percent }
+\newlabel{tab:rsa-cka}{{17}{9}{RSA vs.\ CKA ordering comparison. Ordering reversal between metrics reflects different aspects of representational structure}{table.caption.37}{}}
+\gdef \@abspage@last{9}

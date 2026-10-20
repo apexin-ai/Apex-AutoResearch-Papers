@@ -1,0 +1,29 @@
+{
+  "exp_id": "phi3v_probe_trained",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:04:38.161Z",
+    "updated_at": "2026-05-19T18:17:05.815Z",
+    "hypothesis": "The C1 readout pattern (last_preaction 100% instruction classification + image_mean at chance) observed in trained OpenVLA also holds in trained TracVLA-Phi3V, indicating this is a general VLA property rather than architecture-specific.",
+    "parent": "phi3v_attention_trained",
+    "conclusion": "success",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": 500,
+      "model_name": "tracevla-phi3v-trained",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/",
+      "log_path": "/tmp/phi3v_cross_inst_probe.log"
+    },
+    "completed_at": "2026-05-19T18:17:05.815Z"
+  },
+  "timestamp": "2026-05-19T18:17:06.039029+00:00",
+  "trigger": "update_registry"
+}

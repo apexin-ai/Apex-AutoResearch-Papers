@@ -1,0 +1,15 @@
+{
+  "exp_id": "lg_gc_trained",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:42:55.296Z",
+    "updated_at": "2026-05-15T17:42:59.529Z",
+    "hypothesis": "Goal classification probe on trained VLA LIBERO-Goal features (33 layers). Gate G1-GC: best-layer acc > 40%. Core evidence for instruction encoding in VLA representations."
+  },
+  "timestamp": "2026-05-15T17:42:59.585013+00:00",
+  "trigger": "update_registry"
+}

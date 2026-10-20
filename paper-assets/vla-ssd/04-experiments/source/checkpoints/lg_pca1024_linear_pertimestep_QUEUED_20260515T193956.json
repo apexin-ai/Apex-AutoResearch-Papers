@@ -1,0 +1,15 @@
+{
+  "exp_id": "lg_pca1024_linear_pertimestep",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:39:51.209Z",
+    "updated_at": "2026-05-15T19:39:56.413Z",
+    "hypothesis": "D018 Exp-2: PCA-1024 + Linear Probe per-timestep (10 bins). Tests whether trained VLA shows stronger goal encoding than untrained at early timesteps (visual ambiguity highest). Success: t=0 bin Δ(trained-untrained) > 15pp."
+  },
+  "timestamp": "2026-05-15T19:39:56.605127+00:00",
+  "trigger": "update_registry"
+}

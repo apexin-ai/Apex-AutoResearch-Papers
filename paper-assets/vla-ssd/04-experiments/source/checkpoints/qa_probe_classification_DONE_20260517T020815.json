@@ -1,0 +1,46 @@
+{
+  "exp_id": "qa_probe_classification",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:57:02.141Z",
+    "updated_at": "2026-05-17T02:08:15.690Z",
+    "hypothesis": "QA Probe: Test whether VLA LLM layers encode high-level task understanding (progress/subtask classification), not just low-level action prediction. If trained deep layers >> DINO/Projector on progress classification, LLM training provides semantic understanding. If DINO matches, vision encoder already encodes this information.",
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate && python /root/vla-ssd/scripts/qa_probe_classification.py --condition all",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "744973",
+      "log_path": "~/runs/vla-ssd/qa_probe_classification.log",
+      "submitted_at": "2026-05-16T22:02:46.068Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/",
+      "data_count": "10 tasks × 50 demos, 4-class progress + binary subtask",
+      "model_name": "openvla-7b (trained + untrained)",
+      "seed": 42,
+      "wall_clock_seconds": 14729.6,
+      "gpu_hours": 4.09
+    },
+    "conclusion": "success",
+    "metrics": {
+      "progress_best_acc": 0.8632,
+      "progress_best_layer": "L20_trained",
+      "subtask_best_acc": 0.9367,
+      "subtask_best_layer": "L16/L20_trained",
+      "dino_progress": 0.8272,
+      "dino_subtask": 0.9209
+    },
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/qa_probe/classification_results.json",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/qa_probe/classification_results.json",
+    "completed_at": "2026-05-17T02:08:15.690Z"
+  },
+  "timestamp": "2026-05-17T02:08:15.837197+00:00",
+  "trigger": "update_registry"
+}

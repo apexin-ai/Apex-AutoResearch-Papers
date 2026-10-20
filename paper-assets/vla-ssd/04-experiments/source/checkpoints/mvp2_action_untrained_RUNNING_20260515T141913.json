@@ -1,0 +1,31 @@
+{
+  "exp_id": "mvp2_action_untrained",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:17:44.922Z",
+    "updated_at": "2026-05-15T14:19:13.386Z",
+    "hypothesis": "Untrained VLA (random LLM + preserved vision) 33-layer action prediction baseline — expected lower R² than trained, establishing Δ for Gate G2",
+    "parent": "mvp2_action_probe",
+    "spec": {
+      "command": "python scripts/train_probes.py --probe_type action_prediction --features_dir .../features/untrained/ --output_dir .../results/untrained/ --data_dir .../data/libero/libero_10/ --gpu 0",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "613477",
+      "log_path": "~/runs/vla-ssd/mvp2_action_untrained.log",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/untrained/ + /root/autodl-tmp/vla-ssd/data/libero/libero_10/",
+      "data_count": "10 tasks x 50 demos, 33 layers x 4096 dim features + 7-dim actions",
+      "model_name": "MLP action probe (4096->512->7), untrained openvla features",
+      "seed": 42,
+      "checkpoint_source": "openvla-untrained-extract",
+      "eval_data": "/root/autodl-tmp/vla-ssd/features/untrained/ (10 tasks x 50 demos H5) + actions from /root/autodl-tmp/vla-ssd/data/libero/libero_10/"
+    }
+  },
+  "timestamp": "2026-05-15T14:19:13.418867+00:00",
+  "trigger": "update_registry"
+}

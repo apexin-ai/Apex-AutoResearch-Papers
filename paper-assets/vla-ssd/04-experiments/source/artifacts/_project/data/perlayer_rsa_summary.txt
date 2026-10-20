@@ -1,0 +1,14 @@
+Per-layer RSA data saved at westd-19183:/root/autodl-tmp/vla-ssd/results/perlayer_rsa/perlayer_rsa_all_conditions.json
+
+Peaks:
+  trained_with_inst: layer 9, RSA=0.4876
+  untrained_with_inst: layer 12, RSA=0.4846
+  trained_no_inst: layer 30, RSA=0.489
+  untrained_no_inst: layer 6, RSA=0.4802
+
+Instruction effect (with_inst - no_inst):
+  Trained model: mean delta=0.0182, range [-0.068, 0.138], 19/32 layers positive
+  Untrained model: mean delta=0.0047, range [-0.014, 0.014], 27/32 layers positive
+
+Phase breakdown (trained delta): early=+0.082, mid=+0.013, late=-0.034
+Phase breakdown (untrained delta): early=-0.001, mid=+0.009, late=+0.005

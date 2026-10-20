@@ -1,0 +1,75 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{kim2024openvla}
+\citation{grant2026}
+\citation{hou2026langgap,fei2025liberoplus}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{kim2024openvla,brohan2023rt2}
+\citation{kriegeskorte2008rsa}
+\citation{kornblith2019cka}
+\citation{hou2026langgap}
+\citation{fei2025liberoplus}
+\citation{fang2025erosion}
+\citation{kim2024openvla}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representational Analysis in Deep Learning.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instruction Following in VLAs.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fine-tuning and Representation Erosion.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Model Architecture and Decomposition}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Representational Similarity Analysis (RSA)}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Centered Kernel Alignment (CKA)}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces RSA alignment ($\rho $) with action structure on LIBERO-Long. The $2{\times }2$ VLA conditions span a range of only 0.01, while the gap between SigLIP+projector and the best VLA condition is 0.127.}}{3}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main_rsa}{{1}{3}{RSA alignment ($\rho $) with action structure on LIBERO-Long. The $2{\times }2$ VLA conditions span a range of only 0.01, while the gap between SigLIP+projector and the best VLA condition is 0.127}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Experimental Design}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$2{\times }2$ Factorial Design.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Random Instruction Control.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Core Results: Vision Encoder Dominance and LLM Degradation}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp_core}{{4.1}{3}{Core Results: Vision Encoder Dominance and LLM Degradation}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Per-Layer RSA Degradation Curve}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp_perlayer}{{4.2}{3}{Per-Layer RSA Degradation Curve}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-layer RSA ($\rho $) for the trained VLA on LIBERO-Long. Degradation is steepest in layers 0--12 and plateaus in deeper layers.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:perlayer}{{2}{4}{Per-layer RSA ($\rho $) for the trained VLA on LIBERO-Long. Degradation is steepest in layers 0--12 and plateaus in deeper layers}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces RSA ($\rho $) under five instruction conditions on LIBERO-Long. All conditions converge within a 0.008-wide band; no pairwise difference is statistically significant.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:random_inst}{{3}{4}{RSA ($\rho $) under five instruction conditions on LIBERO-Long. All conditions converge within a 0.008-wide band; no pairwise difference is statistically significant}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Random Instruction Control}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp_random_inst}{{4.3}{4}{Random Instruction Control}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}CKA Cross-Validation}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp_cka}{{4.4}{4}{CKA Cross-Validation}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CKA vs.\ RSA cross-validation. Both metrics yield identical ordering across model components. Training effect is non-significant under all metrics.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:cka}{{4}{5}{CKA vs.\ RSA cross-validation. Both metrics yield identical ordering across model components. Training effect is non-significant under all metrics}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RSA results on LIBERO-Spatial. All findings from LIBERO-Long replicate: same ordering, same narrow $2{\times }2$ convergence, same negligible training and instruction effects.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:spatial}{{5}{5}{RSA results on LIBERO-Spatial. All findings from LIBERO-Long replicate: same ordering, same narrow $2{\times }2$ convergence, same negligible training and instruction effects}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Benchmark Generalization: LIBERO-Spatial}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp_spatial}{{4.5}{5}{Cross-Benchmark Generalization: LIBERO-Spatial}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{5}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{The Vision Encoder as the Engine of Action Representations.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why Does the LLM Degrade Action Structure?}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pretraining Quality Matters More Than Fine-Tuning.}{5}{section*.16}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{kim2024openvla}{{1}{2024}{{Kim et~al.}}{{}}}
+\bibcite{brohan2023rt2}{{2}{2023}{{Brohan et~al.}}{{}}}
+\bibcite{kriegeskorte2008rsa}{{3}{2008}{{Kriegeskorte et~al.}}{{}}}
+\bibcite{kornblith2019cka}{{4}{2019}{{Kornblith et~al.}}{{}}}
+\bibcite{grant2026}{{5}{2026}{{Grant et~al.}}{{}}}
+\bibcite{hou2026langgap}{{6}{2026}{{Hou et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-benchmark RSA comparison. Ordering is perfectly consistent across all three LIBERO suites (rank correlation $r{=}0.96$).}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:cross_bench}{{6}{6}{Cross-benchmark RSA comparison. Ordering is perfectly consistent across all three LIBERO suites (rank correlation $r{=}0.96$)}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical Implications.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{6}{Conclusion}{section.6}{}}
+\bibcite{fei2025liberoplus}{{7}{2025}{{Fei et~al.}}{{}}}
+\bibcite{fang2025erosion}{{8}{2025}{{Fang et~al.}}{{}}}
+\gdef \@abspage@last{7}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "finetuned_probe_profile",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:29:17.138Z",
+    "updated_at": "2026-05-19T08:05:23.954Z",
+    "hypothesis": "LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.",
+    "spec": {
+      "command": "/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log",
+      "eval_data": "LIBERO-Goal 10 tasks x 50 demos, 10-way cross-instruction LOOCV"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T08:05:24.170660+00:00",
+  "trigger": "update_registry"
+}

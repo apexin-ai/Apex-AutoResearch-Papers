@@ -1,0 +1,15 @@
+{
+  "exp_id": "lg_shuffled_token_control",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:27:18.397Z",
+    "updated_at": "2026-05-15T19:27:27.559Z",
+    "hypothesis": "Control: token-shuffled goal classification on trained VLA features. Shuffling token order destroys positional/sequential info. NOTE: uses bare task name prompt (not formatted prompt like main pipeline) — results not directly comparable."
+  },
+  "timestamp": "2026-05-15T19:27:27.620677+00:00",
+  "trigger": "update_registry"
+}

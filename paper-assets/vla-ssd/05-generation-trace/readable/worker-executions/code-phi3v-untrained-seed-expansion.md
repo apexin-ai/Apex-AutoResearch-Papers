@@ -1,0 +1,3566 @@
+# code phi3v untrained seed expansion
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 76
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/workers/worker_code_phi3v_untrained_seed_expansion_20260520T111957.log`
+- **Structured JSON:** [`bed3fea6ff0468733cab.json`](../../sessions/be/bed3fea6ff0468733cab.json)
+
+## Before a recorded user message
+
+76 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__submit_training_job",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f73369bf-2abf-45da-b68e-02ef5ea0f4de",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779290400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "70835391-d354-49ae-9aaf-3b26dfc13192",
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding the untrained probe code on the server and understanding the existing setup.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "8b6cb27f-88b3-4b91-b90d-76117506b985",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013sVpbAenj81RRMBLt7U1yq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12064,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12064
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+我先查服务器上的 untrained probe 脚本和已有实验配置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "86e286bf-f02c-42db-ba44-7d2cd363a218",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013sVpbAenj81RRMBLt7U1yq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12064,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12064
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MNYMBnL69YPSzuJEWG3jSL`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "33010dcc-39e0-4275-b1dc-27e3a61a2a3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013sVpbAenj81RRMBLt7U1yq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12064,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12064
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T11:20:12.582Z_
+
+<details><summary>↩ Tool result · `toolu_01MNYMBnL69YPSzuJEWG3jSL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_training_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "72f38cc2-2569-4f6f-bdf0-5da51c65652b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the existing phi3v_r2_untrained_probe registry entry and finding the script on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "20578446-a195-4263-b02e-9b779079d3f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAuD3HH7QiyvdwgxwKrguF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2545,
+      "cache_read_input_tokens": 23905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2545
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+先查注册表和服务器上的脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "17d414c9-13bc-4bb5-a99f-5a9fa0aae0b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAuD3HH7QiyvdwgxwKrguF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2545,
+      "cache_read_input_tokens": 23905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2545
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01RiRp68XMRnRHXFAsdGhw5r`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "phi3v_r2_untrained_probe"
+  },
+  "project": "vla-ssd",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "c04b4aac-96e5-444e-863f-61ebd15f212b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAuD3HH7QiyvdwgxwKrguF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2545,
+      "cache_read_input_tokens": 23905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2545
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T11:20:22.777Z_
+
+<details><summary>↩ Tool result · `toolu_01RiRp68XMRnRHXFAsdGhw5r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4778}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "ed12d741-d15f-4b8c-a038-0cd67c54eb9c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4778}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4778}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0187jyMNq1CcJfry5dNeZWJC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/ /root/autodl-tmp/vla-ssd/ -name \"*untrained*probe*\" -name \"*.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "3bd8e34e-5eb3-4107-92d4-98e3c1ed86a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAuD3HH7QiyvdwgxwKrguF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2545,
+      "cache_read_input_tokens": 23905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2545
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T11:20:23.710Z_
+
+<details><summary>↩ Tool result · `toolu_0187jyMNq1CcJfry5dNeZWJC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "db8eaa3e-8ee1-4209-87d8-03736ca6e6fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DzmAywLcLQnQqtpN2z3ep9`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/ /root/autodl-tmp/vla-ssd/ -name \"*r2*probe*\" -o -name \"*probe*r2*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "b54e31cb-959f-4657-a0c2-7857ad346ad6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAuD3HH7QiyvdwgxwKrguF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2545,
+      "cache_read_input_tokens": 23905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2545
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T11:20:24.637Z_
+
+<details><summary>↩ Tool result · `toolu_01DzmAywLcLQnQqtpN2z3ep9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "c7b9974e-5cca-4c45-9382-2a5e9734dc33",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `-o` flag is being interpreted as a shell metacharacter issue. Let me fix the find commands - the `2>/dev/null` redirect is being blocked. Let me remove it and also fix the `-o` issue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "cc884d71-eb08-4a13-bdc7-0dc96be4e1b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgUU1DphrR9jMknRyBzrwa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 26450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+重新搜索，去掉重定向。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "fb3baea1-0bd0-473b-90f1-dad2933b1eb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgUU1DphrR9jMknRyBzrwa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 26450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JXhrh8SB31GhoYEo9zWYfm`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/ -name \"*untrained*probe*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "2fd7e69d-631b-42d9-8c8c-e126c55b0380",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgUU1DphrR9jMknRyBzrwa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 26450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016PDjyCS17RgcGGCgQ4BTF7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/ -name \"*untrained*probe*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "32ab1b34-b855-4129-9809-9fa815f35d0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgUU1DphrR9jMknRyBzrwa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 26450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T11:20:33.274Z_
+
+<details><summary>↩ Tool result · `toolu_01JXhrh8SB31GhoYEo9zWYfm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/__pycache__/phi3v_r2_untrained_probe.cpython-312.pyc\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\n/root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\n/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "7288dddf-86aa-4880-9bc7-7a47f8f01ad3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/vla-ssd/scripts/__pycache__/phi3v_r2_untrained_probe.cpython-312.pyc\\\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\\\n/root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\\\n/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/__pycache__/phi3v_r2_untrained_probe.cpython-312.pyc\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\n/root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\n/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Uac3PQ1FCkwEdU5JxVfDBw`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/scripts/ -name \"*probe*\" -name \"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "e412301d-6f4b-46e1-a068-a387c61c9197",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgUU1DphrR9jMknRyBzrwa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 26450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T11:20:33.795Z_
+
+<details><summary>↩ Tool result · `toolu_016PDjyCS17RgcGGCgQ4BTF7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "b03b92fa-d3e8-4fe5-b195-78a376303e7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_probe_results.json\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01VBGV7dEtJ3siXrSceAU1r5`</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "c17196f8-38ee-45f5-b584-1644c1b4518a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgUU1DphrR9jMknRyBzrwa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 26450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T11:20:34.336Z_
+
+<details><summary>↩ Tool result · `toolu_01Uac3PQ1FCkwEdU5JxVfDBw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/train_probes.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe.py\\n/root/vla-ssd/scripts/analyze_action_probes.py\\n/root/vla-ssd/scripts/plot_action_probes.py\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\n/root/vla-ssd/scripts/action_probe_projector.py\\n/root/vla-ssd/scripts/dino_action_probe.py\\n/root/vla-ssd/scripts/action_probe_v2.py\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\n/root/vla-ssd/scripts/unified_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe_final.py\\n/root/vla-ssd/scripts/patch_mean_action_probe.py\\n/root/vla-ssd/scripts/fulllayer_action_probe.py\\n/root/vla-ssd/scripts/action_probe_libero_spatial.py\\n/root/vla-ssd/scripts/ablations/probe_seed_robustness.py\\n/root/vla-ssd/scripts/qa_probe_classification.py\\n/root/vla-ssd/scripts/instruction_conditional_probe.py\\n/root/vla-ssd/scripts/plot_three_condition_probe.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe.py\\n/root/vla-ssd/scripts/bootstrap_action_probe.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe_control8.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\\n/root/vla-ssd/scripts/llama2base_action_probe.py\\n/root/vla-ssd/scripts/linear_action_probe.py\\n/root/vla-ssd/scripts/linear_probe_last_preaction.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe_v2.py\\n/root/vla-ssd/scripts/libero_finetuned_probe_profile.py\\n/root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\\n/root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\n/root/vla-ssd/scripts/r2_probe_seed_expansion.py\\n/root/vla-ssd/scripts/phi3v_r2_action_probe.py\\n/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "e0026465-5acf-4ead-a202-1c55dfbe62f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/vla-ssd/scripts/train_probes.py\\\\n/root/vla-ssd/scripts/threecond_multiseed_probe.py\\\\n/root/vla-ssd/scripts/analyze_action_probes.py\\\\n/root/vla-ssd/scripts/plot_action_probes.py\\\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\\\n/root/vla-ssd/scripts/action_probe_projector.py\\\\n/root/vla-ssd/scripts/dino_action_probe.py\\\\n/root/vla-ssd/scripts/action_probe_v2.py\\\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\\\n/root/vla-ssd/scripts/unified_action_probe.py\\\\n/root/vla-ssd/scripts/run_clip_action_probe.py\\\\n/root/vla-ssd/scripts/run_clip_action_probe_final.py\\\\n/root/vla-ssd/scripts/patch_mean_action_probe.py\\\\n/root/vla-ssd/scripts/fulllayer_action_probe.py\\\\n/root/vla-ssd/scripts/action_probe_libero_spatial.py\\\\n/root/vla-ssd/scripts/ablations/probe_seed_robustness.py\\\\n/root/vla-ssd/scripts/qa_probe_classification.py\\\\n/root/vla-ssd/scripts/instruction_conditional_probe.py\\\\n/root/vla-ssd/scripts/plot_three_condition_probe.py\\\\n/root/vla-ssd/scripts/l1_ablation_action_probe.py\\\\n/root/vla-ssd/scripts/bootstrap_action_probe.py\\\\n/root/vla-ssd/scripts/l1_ablation_action_probe_control8.py\\\\n/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\\\\n/root/vla-ssd/scripts/llama2base_action_probe.py\\\\n/root/vla-ssd/scripts/linear_action_probe.py\\\\n/root/vla-ssd/scripts/linear_probe_last_preaction.py\\\\n/root/vla-ssd/scripts/threecond_multiseed_probe_v2.py\\\\n/root/vla-ssd/scripts/libero_finetuned_probe_profile.py\\\\n/root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\\\\n/root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\\\n/root/vla-ssd/scripts/r2_probe_seed_expansion.py\\\\n/root/vla-ssd/scripts/phi3v_r2_action_probe.py\\\\n/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/train_probes.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe.py\\n/root/vla-ssd/scripts/analyze_action_probes.py\\n/root/vla-ssd/scripts/plot_action_probes.py\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\n/root/vla-ssd/scripts/action_probe_projector.py\\n/root/vla-ssd/scripts/dino_action_probe.py\\n/root/vla-ssd/scripts/action_probe_v2.py\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\n/root/vla-ssd/scripts/unified_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe_final.py\\n/root/vla-ssd/scripts/patch_mean_action_probe.py\\n/root/vla-ssd/scripts/fulllayer_action_probe.py\\n/root/vla-ssd/scripts/action_probe_libero_spatial.py\\n/root/vla-ssd/scripts/ablations/probe_seed_robustness.py\\n/root/vla-ssd/scripts/qa_probe_classification.py\\n/root/vla-ssd/scripts/instruction_conditional_probe.py\\n/root/vla-ssd/scripts/plot_three_condition_probe.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe.py\\n/root/vla-ssd/scripts/bootstrap_action_probe.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe_control8.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\\n/root/vla-ssd/scripts/llama2base_action_probe.py\\n/root/vla-ssd/scripts/linear_action_probe.py\\n/root/vla-ssd/scripts/linear_probe_last_preaction.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe_v2.py\\n/root/vla-ssd/scripts/libero_finetuned_probe_profile.py\\n/root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\\n/root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\n/root/vla-ssd/scripts/r2_probe_seed_expansion.py\\n/root/vla-ssd/scripts/phi3v_r2_action_probe.py\\n/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T11:20:34.696Z_
+
+<details><summary>↩ Tool result · `toolu_01VBGV7dEtJ3siXrSceAU1r5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_untrained_seed_expansion\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:42:59.261Z\", \"updated_at\": \"2026-05-20T11:19:19.135Z\", \"hypothesis\": \"Expanding Phi3V untrained R² probe from 5 to 15 seeds will tighten confidence intervals on the untrained profile (early peak at L4, monotonic decline), aligning statistical power with the other 3 conditions in the 2×2 matrix (all 15 seeds) and eliminating asymmetric seed count as a reviewer concern.\", \"parent\": \"phi3v_r2_untrained_probe\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T11:19:19.135Z\"}}, \"phi3v_r2_untrained_probe\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:43:51.225Z\", \"updated_at\": \"2026-05-20T10:31:30.792Z\", \"hypothesis\": \"The inverted-U R² profile (peak at mid-layers) observed in trained TracVLA-Phi3V is a product of VLA training. An untrained base Phi-3-mini LLM backbone (with same architecture but no action-prediction training) should show flat/low R² across all layers, confirming the inverted-U is not an architectural artifact.\", \"parent\": \"phi3v_r2_action_probe\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T09:15:28.577Z\", \"finished_at\": \"2026-05-20T10:27:55.064Z\", \"training_hours\": 1.21}, \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/phi3v_r2_untrained_probe.py'\", \"server\": \"westd-19183\", \"gpu\": [\"cuda:0\"], \"pid\": \"441603\", \"log_path\": \"~/runs/vla-ssd/phi3v_r2_untrained_probe.log\", \"submitted_at\": \"2026-05-20T09:20:00.409Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"Phi3V-Untrained-Base (TracVLA-Phi3V arch + Phi-3-mini-4k-instruct LLM weights)\", \"seed\": \"0,1,2,3,4\", \"checkpoint_source\": \"TracVLA: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/ + Base: /root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\", \"eval_data\": \"LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 5 seeds MLP R² probe\", \"output_dir\": \"/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/\", \"feature_dir\": \"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\", \"wall_clock_seconds\": 4290.4, \"gpu_hours\": 1.19}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T10:27:58.475014+00:00\"}]}, \"metrics\": {\"peak_r2\": 0.583, \"peak_r2_std\": 0.016, \"peak_layer\": 4, \"l0_r2\": -0.33, \"l32_r2\": 0.449, \"mean_r2_L1_L32\": 0.49, \"mid_plateau_L10_L17\": 0.536, \"late_layer_mean_L25_L32\": 0.452, \"late_layer_max_std\": 0.122, \"trained_peak_r2\": 0.634, \"trained_peak_layer\": 11, \"trained_untrained_peak_delta\": 0.051, \"peak_shift_layers\": 7, \"profile_shape\": \"early_peak_monotonic_decline\", \"n_layers\": 33, \"n_seeds\": 5, \"total_time_min\": 67.3}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/\", \"log_path\": \"~/runs/vla-ssd/phi3v_r2_untrained_probe.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T10:31:30.792Z\"}, \"phi3v_r2_seed_expansion\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:16:58.882Z\", \"updated_at\": \"2026-05-20T09:45:43.217Z\", \"hypothesis\": \"Expanding TracVLA-Phi3V R2 action probe from 5 to 15 seeds will yield tighter confidence intervals and enable fair statistical comparison with OpenVLA's 15-seed R2 profiles across all 33 layers.\", \"parent\": \"phi3v_r2_action_probe\", \"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-20T09:17:44.047Z\", \"finished_at\": \"2026-05-20T09:37:50.653Z\", \"training_hours\": 0.34}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python /root/vla-ssd/scripts/phi3v_r2_seed_expansion.py\\\"\", \"server\": \"westd-19183\", \"gpu\": [\"cuda:1\"], \"pid\": \"442197\", \"log_path\": \"~/runs/vla-ssd/phi3v_r2_seed_expansion.log\", \"submitted_at\": \"2026-05-20T09:21:20.011Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"TracVLA-Phi3V (trained)\", \"seed\": \"6,7,8,9,10,11,12,13,14,15\", \"output_dir\": \"/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 10 seeds (6-15) MLP R² probe\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json\", \"wall_clock_seconds\": 1463.2, \"gpu_hours\": 0.41}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T09:37:54.109499+00:00\"}]}, \"metrics\": {\"peak_layer\": 11, \"peak_r2\": 0.634, \"peak_r2_std\": 0.009, \"peak_r2_ci95\": [0.629, 0.639], \"l0_r2\": -0.33, \"l32_r2\": 0.551, \"plateau_mean_L10_L17\": 0.631, \"mean_ci95_halfwidth_5seed\": 0.0101, \"mean_ci95_halfwidth_15seed\": 0.0053, \"ci_narrowing_pct\": 47.5, \"n_seeds\": 15, \"n_layers\": 33, \"openvla_peak_r2\": 0.637, \"openvla_peak_layer\": 9, \"cross_arch_peak_delta\": 0.003, \"inverted_u_confirmed\": true, \"total_time_min\": 16.2}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T09:45:43.217Z\"}, \"phi3v_r2_action_probe\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T01:24:49.759Z\", \"updated_at\": \"2026-05-20T03:05:10.844Z\", \"hypothesis\": \"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\", \"parent\": \"r2_probe_seed_expansion\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T01:25:36.493Z\"}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_r2_action_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"TracVLA-Phi3V\", \"seed\": \"0-4\", \"gpu\": \"cuda:0\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"libero_goal 10 tasks x 50 demos\", \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\", \"checkpoint_path\": \"N/A (probe experiment)\", \"output_path\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T03:02:19.207Z\", \"metrics\": {\"peak_r2\": 0.634, \"peak_layer\": 11, \"l0_r2\": -0.329, \"l31_r2\": 0.557, \"seeds\": 5, \"tasks\": 10, \"inverted_u_confirmed\": true, \"cross_arch_peak_delta\": 0.003, \"openvla_peak_r2\": 0.637, \"openvla_peak_layer\": 9}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\"}, \"specificity_random_seed_expansion\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:23:42.838Z\", \"updated_at\": \"2026-05-20T00:27:57.565Z\", \"hypothesis\": \"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.\", \"parent\": \"random_subset_ablation\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py --generate-cache && CUDA_VISIBLE_DEVICES='' python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/libero/libero_goal/\", \"data_count\": \"30 seeds\", \"model_name\": \"OpenVLA (cache generation)\", \"seed\": \"0-29\", \"pid\": 169052, \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\", \"output_cache\": \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\", \"output_results\": \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\", \"checkpoint_source\": \"openvla/openvla-7b (HuggingFace)\", \"eval_data\": \"LIBERO-Goal 10 tasks, L1 attention patterns\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\"}, \"conclusion\": \"success\", \"metrics\": {\"z_score\": -3.11, \"percentile\": 0, \"instruction_increase\": 0.0301, \"random_mean_increase\": 0.0712, \"random_std_increase\": 0.0132, \"baseline_r2\": 0.5243, \"n_seeds\": 30}, \"completed_at\": \"2026-05-20T00:27:57.565Z\"}, \"r2_probe_seed_expansion\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:23:40.605Z\", \"updated_at\": \"2026-05-19T23:40:43.867Z\", \"hypothesis\": \"Expanding R² probe seeds from 3 to 15 will tighten confidence intervals on the per-layer action R² profile, confirming that the inverted-U shape and trained>untrained separation are robust across probe initializations, not artifacts of seed variance.\", \"parent\": \"threecond_multiseed_r2_v2\", \"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T20:26:53.108Z\"}, \"spec\": {\"command\": \"PYTHONUNBUFFERED=1 python /root/vla-ssd/scripts/r2_probe_seed_expansion.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/features/{untrained,llama2base,trained}_libero_goal\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"OpenVLA (untrained / llama2base / trained)\", \"seed\": \"0-14\", \"checkpoint_source\": \"threecond_multiseed_r2_v2 (same features, expanded seeds)\", \"eval_data\": \"libero_goal 10 tasks, features from 3 conditions\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\", \"log_path\": \"/tmp/r2_probe_seed_expansion.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T23:40:33.774Z\", \"metrics\": {\"untrained\": {\"peak_layer\": \"L0\", \"peak_r2\": 0.629, \"avg_r2\": 0.316, \"avg_std\": 0.185, \"profile\": \"steep decline L0→L31, near-zero deep layers, L32 recovery (0.584)\"}, \"llama2base\": {\"peak_layer\": \"L9\", \"peak_r2\": 0.635, \"avg_r2\": 0.604, \"avg_std\": 0.016, \"profile\": \"flat early (0.63), gentle decline to 0.55 at exit\"}, \"trained\": {\"peak_layer\": \"L9\", \"peak_r2\": 0.637, \"avg_r2\": 0.59, \"avg_std\": 0.02, \"profile\": \"subtle inverted-U peaking L8-L9, steeper decline in exit layers vs llama2base\"}, \"ci_narrowing\": \"15 seeds vs 5 seeds: ~42% CI width reduction (SEM ∝ 1/√n)\", \"trained_vs_untrained_gap\": \"avg 0.27 R² across L1-L31\", \"inverted_u_confirmed\": true, \"total_time_min\": 146.9}}, \"phi3v_attention_untrained_10tasks\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:53:51.511Z\", \"updated_at\": \"2026-05-19T22:59:14.287Z\", \"hypothesis\": \"Untrained (base Phi-3-mini) VLA will show uniform attention across layers with no instruction-dominant specialization at L1, contrasting with trained TracVLA-Phi3V which shows strong L1 instruction dominance.\", \"parent\": \"phi3v_attention_untrained\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-19T22:54:39.022Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_attention_untrained_10tasks.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks\", \"model_name\": \"Phi-3-mini-4k-instruct (untrained VLA)\", \"seed\": \"default\", \"pid\": 89850, \"log_path\": \"/tmp/phi3v_untrained_10tasks.log\", \"checkpoint_path\": \"N/A (inference only)\", \"output_path\": \"/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\", \"checkpoint_source\": \"microsoft/Phi-3-mini-4k-instruct (base, untrained)\", \"eval_data\": \"LIBERO-Goal 10 tasks (frame 0 per task)\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T22:59:14.287Z\"}, \"phi3v_attention_trained_10tasks\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:23:38.418Z\", \"updated_at\": \"2026-05-19T20:31:38.368Z\", \"hypothesis\": \"Expanding the attention profile analysis from 5 to 10 LIBERO-Goal tasks will provide more robust per-layer/per-head text attention statistics for TracVLA-Phi3V trained model.\", \"parent\": \"phi3v_attention_trained\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-19T20:26:52.288Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks\", \"model_name\": \"TracVLA-Phi3V\", \"seed\": \"default\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"10 LIBERO-Goal tasks from /root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/tmp/phi3v_attn_10tasks.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T20:31:38.368Z\"}, \"action_trajectory_cpu_analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:35:44.880Z\", \"updated_at\": \"2026-05-19T18:51:23.913Z\", \"hypothesis\": \"Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-to-step action autocorrelation more than control, (2) bootstrap CI on per-head effect size — formal test of whether instruction heads per-head d (0.027) differs significantly from control heads per-head d (0.051).\", \"parent\": \"action_trajectory_control\", \"metrics\": {\"bootstrap_per_head_d\": {\"instruction_24h\": {\"mean\": 0.0271, \"ci_95\": [0.0258, 0.0285]}, \"control_8h\": {\"mean\": 0.0514, \"ci_95\": [0.0478, 0.0551]}, \"difference_ctrl_minus_inst\": {\"mean\": 0.0244, \"ci_95\": [0.0203, 0.0281]}, \"task_paired_t\": {\"t\": 7.356, \"p\": 0.0018}, \"all_5_tasks_ctrl_gt_inst\": true, \"interpretation\": \"Control heads ~1.9x per-head effect; instruction heads achieve larger total via 24-head collective coordination\"}, \"temporal_coherence_proxy\": {\"per_dim_cv_instruction\": 1.3, \"per_dim_cv_control\": 2.74, \"cross_task_I2_instruction\": 0.87, \"cross_task_I2_control\": 0.78, \"interpretation\": \"Instruction ablation produces more consistent (low CV) and more task-dependent (high I²) perturbation, consistent with structured language-dependent computation\"}, \"result_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\"}, \"conclusion\": \"success\", \"notes\": \"Per-head effect formally confirmed: control heads ~1.9x stronger per-head (d=0.051 vs 0.027, p=0.0018). But instruction heads show qualitatively different perturbation: more consistent across dimensions (CV 1.30 vs 2.74) and more task-dependent (I²=0.87 vs 0.78). Instruction heads mediate structured, coordinated computation rather than individual strong effects.\", \"spec\": {\"command\": \"python action_trajectory_cpu_analysis.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/\", \"data_count\": \"5 tasks, existing ablation data\", \"model_name\": \"N/A (CPU reanalysis)\", \"seed\": \"N/A\", \"checkpoint_source\": \"action_trajectory_analysis + action_trajectory_control data\", \"eval_data\": \"existing ablation trajectory data\"}, \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"westd-19183:/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json\", \"completed_at\": \"2026-05-19T18:51:23.913Z\"}, \"phi3v_probe_untrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:04:38.888Z\", \"updated_at\": \"2026-05-19T18:39:33.794Z\", \"hypothesis\": \"Base Phi-3-mini-4k-instruct (untrained VLA) already encodes instruction identity at the last-preaction token position due to pre-existing instruction tuning, but not at image tokens.\", \"parent\": \"phi3v_attention_untrained\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"phi3v-untrained-base-instruct\", \"seed\": 42, \"checkpoint_source\": \"n/a\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_cross_inst.h5\", \"log_path\": \"/tmp/phi3v_untrained_cross_inst.log\"}, \"completed_at\": \"2026-05-19T18:39:27.410Z\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.098, \"last_preaction_L1\": 0.981, \"last_preaction_L2\": 1, \"last_preaction_L31\": 1, \"extraction_time_min\": 3.4, \"total_forwards\": 5000}}, \"phi3v_probe_trained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:04:38.161Z\", \"updated_at\": \"2026-05-19T18:17:07.393Z\", \"hypothesis\": \"The C1 readout pattern (last_preaction 100% instruction classification + image_mean at chance) observed in trained OpenVLA also holds in trained TracVLA-Phi3V, indicating this is a general VLA property rather than architecture-specific.\", \"parent\": \"phi3v_attention_trained\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"tracevla-phi3v-trained\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"log_path\": \"/tmp/phi3v_cross_inst_probe.log\"}, \"completed_at\": \"2026-05-19T18:17:05.815Z\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.102, \"last_preaction_L1\": 0.836, \"last_preaction_L2_to_L31\": 1, \"n_classes\": 10, \"train_samples\": 4000, \"test_samples\": 1000}}, \"phi3v_attention_untrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:46:41.488Z\", \"updated_at\": \"2026-05-19T18:00:43.363Z\", \"hypothesis\": \"Base Phi-3-mini (before VLA training) does NOT show instruction-dominant routing at L1, confirming the pattern is learned during VLA training rather than inherited from the pretrained LLM — paralleling the llama2_base_control result for OpenVLA.\", \"parent\": \"llama2_base_control\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-19T17:47:49.102Z\"}, \"metrics\": {\"L1_instruction_dominant_heads\": 28, \"L1_total_heads\": 32, \"L1_mean_text_attn\": 0.7745, \"L1_mean_image_attn\": 0.2255, \"L0_instruction_dominant_heads\": 3, \"all_layers_avg_dominant_heads\": 27.1, \"note\": \"Base Phi-3-mini-4k-instruct (instruction-tuned) already shows strong text-dominant attention. 28/32 at L1 vs trained TracVLA (compare when available). Unlike OpenVLA untrained=0, Phi-3-instruct has pre-existing instruction routing.\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\", \"log_path\": \"/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-19T18:00:43.363Z\"}, \"phi3v_attention_trained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:46:40.348Z\", \"updated_at\": \"2026-05-19T17:54:01.274Z\", \"hypothesis\": \"TracVLA-Phi3V (trained VLA with Phi-3-mini backbone) exhibits L1 instruction-dominant attention routing pattern similar to OpenVLA-7B, demonstrating that instruction routing is a general VLA property not specific to Llama-2 backbone.\", \"parent\": \"libero_finetuned_attention\", \"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T17:47:48.262Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_attention_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"LIBERO-Goal (5 tasks)\", \"data_count\": \"5 tasks x 1 demo frame\", \"model_name\": \"tracevla-phi3v (trace-ai/tracevla-phi3v)\", \"seed\": \"N/A (deterministic inference)\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"LIBERO-Goal demo frames\"}, \"conclusion\": \"success\", \"metrics\": {\"L1_instruction_dominant\": 32, \"L1_mean_text_attn\": 0.7348, \"L2_instruction_dominant\": 32, \"L2_mean_text_attn\": 0.7807, \"L31_instruction_dominant\": 18, \"L31_mean_text_attn\": 0.6478, \"n_tasks\": 5, \"n_img_tokens\": 313}, \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\", \"completed_at\": \"2026-05-19T17:54:01.274Z\"}, \"phi3v_attention_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:51:12.780Z\", \"updated_at\": \"2026-05-19T17:52:12.025Z\", \"hypothesis\": \"TracVLA-Phi3V exhibits a distinct attention profile compared to OpenVLA, with text vs image attention distribution across 32 layers reflecting architectural differences in how instruction information is processed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_attention_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 5, \"model_name\": \"tracevla-phi3v\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T17:52:10.521Z\", \"metrics\": {\"L1_instruction_dominant\": 32, \"L1_mean_text_attn\": 0.7348, \"L2_instruction_dominant\": 32, \"L2_mean_text_attn\": 0.7807, \"L31_instruction_dominant\": 18, \"L31_mean_text_attn\": 0.6478, \"n_tasks\": 5, \"n_img_tokens\": 313}}, \"official_checkpoint_sr_test\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:40:46.356Z\", \"updated_at\": \"2026-05-19T17:43:03.201Z\", \"hypothesis\": \"Official OpenVLA checkpoint (not fine-tuned) achieves non-zero SR on LIBERO-Goal tasks, confirming the evaluation pipeline is correct and Path B failure is due to fine-tuning degradation rather than pipeline bugs.\", \"parent\": \"closedloop_diagnosis\", \"spec\": {\"command\": \"python eval_libero.py --ckpt official_openvla --tasks 0,3,7 --episodes 5 --max_steps 400\", \"server\": \"westd-19183\", \"data_path\": \"LIBERO-Goal\", \"data_count\": \"15 episodes (3 tasks x 5 seeds)\", \"model_name\": \"openvla-7b (official checkpoint)\", \"seed\": \"multiple\", \"checkpoint_source\": \"openvla/openvla-7b (HuggingFace official)\", \"eval_data\": \"LIBERO-Goal tasks 0,3,7\"}, \"conclusion\": \"negative\", \"metrics\": {\"overall_sr\": \"0/15 (0.00)\", \"task_0_sr\": \"0/5\", \"task_3_sr\": \"0/5\", \"task_7_sr\": \"0/5\", \"max_steps\": 400, \"avg_reward\": 0, \"action_range\": \"[-1,1] reasonable\", \"episode_time\": \"~57s/episode\"}, \"checkpoint_path\": \"N/A (eval only, no checkpoint produced)\", \"log_path\": \"westd-19183:/root/autodl-tmp/vla-ssd/logs/official_checkpoint_sr_test/\", \"completed_at\": \"2026-05-19T17:41:31.508Z\", \"note\": \"Official checkpoint on LIBERO-Goal SR=0/15, confirms model cannot execute tasks — closed-loop path closed per D078.\"}, \"closedloop_diagnosis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:07:32.792Z\", \"updated_at\": \"2026-05-19T17:08:39.446Z\", \"hypothesis\": \"SR=0/3 in behavioral smoketest is caused by pipeline bugs (image preprocessing, action normalization), not model quality. Fixing these bugs will yield non-zero success rate.\", \"conclusion\": \"negative\", \"spec\": {\"command\": \"diagnostic pipeline - 6 bugs found and fixed\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 9, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/vla-ssd/scripts/sr_official_pipeline.py\"}, \"completed_at\": \"2026-05-19T17:08:34.305Z\", \"metrics\": {\"sr_before_fix\": \"0/3\", \"sr_after_fix\": \"0/9\", \"bugs_found\": 6, \"l1_action_error\": \"0.26-0.43\"}}, \"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\", \"eval_data\": \"LIBERO-Goal 10 tasks x 50 demos, 10-way cross-instruction LOOCV\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T08:05:27.391Z\", \"metrics\": {\"probe_acc_L0\": 0.1, \"probe_acc_L1\": 0.997, \"probe_acc_L2_L31\": 1, \"image_mean_control\": 0.1, \"method\": \"PCA256+LogReg_10fold_LOOCV\"}}, \"libero_finetuned_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:22:26.980Z\", \"updated_at\": \"2026-05-19T07:22:26.980Z\", \"parent\": \"libero_finetuned_attention\"}, \"libero_finetuned_attention\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:14:02.907Z\", \"updated_at\": \"2026-05-19T07:18:50.186Z\", \"parent\": \"llama2_base_control\", \"hypothesis\": \"LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction routing is a stable VLA property across training stages.\", \"spec\": {\"command\": \"python scripts/libero_finetuned_attention_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 10, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": null, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log\", \"eval_data\": \"libero_goal_10tasks_frame0\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T07:18:50.186Z\"}, \"behavioral_smoketest_diag\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:05:18.989Z\", \"updated_at\": \"2026-05-19T05:07:31.611Z\", \"parent\": \"behavioral_smoketest\", \"conclusion\": \"killed\", \"notes\": \"D074: C-2 closed-loop path formally abandoned. Diagnostic cancelled before completion.\"}}, \"count\": 20, \"total\": 117, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3457}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "7dfaa12d-7168-4066-bf5d-c94d097c7a00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"phi3v_untrained_seed_expansion\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:42:59.261Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:19.135Z\\\", \\\"hypothesis\\\": \\\"Expanding Phi3V untrained R² probe from 5 to 15 seeds will tighten confidence intervals on the untrained profile (early peak at L4, monotonic decline), aligning statistical power with the other 3 conditions in the 2×2 matrix (all 15 seeds) and eliminating asymmetric seed count as a reviewer concern.\\\", \\\"parent\\\": \\\"phi3v_r2_untrained_probe\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T11:19:19.135Z\\\"}}, \\\"phi3v_r2_untrained_probe\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:43:51.225Z\\\", \\\"updated_at\\\": \\\"2026-05-20T10:31:30.792Z\\\", \\\"hypothesis\\\": \\\"The inverted-U R² profile (peak at mid-layers) observed in trained TracVLA-Phi3V is a product of VLA training. An untrained base Phi-3-mini LLM backbone (with same architecture but no action-prediction training) should show flat/low R² across all layers, confirming the inverted-U is not an architectural artifact.\\\", \\\"parent\\\": \\\"phi3v_r2_action_probe\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T09:15:28.577Z\\\", \\\"finished_at\\\": \\\"2026-05-20T10:27:55.064Z\\\", \\\"training_hours\\\": 1.21}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/phi3v_r2_untrained_probe.py'\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"441603\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/phi3v_r2_untrained_probe.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T09:20:00.409Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": \\\"10 tasks x 50 demos\\\", \\\"model_name\\\": \\\"Phi3V-Untrained-Base (TracVLA-Phi3V arch + Phi-3-mini-4k-instruct LLM weights)\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"checkpoint_source\\\": \\\"TracVLA: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/ + Base: /root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 5 seeds MLP R² probe\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/\\\", \\\"feature_dir\\\": \\\"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\\\", \\\"wall_clock_seconds\\\": 4290.4, \\\"gpu_hours\\\": 1.19}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T10:27:58.475014+00:00\\\"}]}, \\\"metrics\\\": {\\\"peak_r2\\\": 0.583, \\\"peak_r2_std\\\": 0.016, \\\"peak_layer\\\": 4, \\\"l0_r2\\\": -0.33, \\\"l32_r2\\\": 0.449, \\\"mean_r2_L1_L32\\\": 0.49, \\\"mid_plateau_L10_L17\\\": 0.536, \\\"late_layer_mean_L25_L32\\\": 0.452, \\\"late_layer_max_std\\\": 0.122, \\\"trained_peak_r2\\\": 0.634, \\\"trained_peak_layer\\\": 11, \\\"trained_untrained_peak_delta\\\": 0.051, \\\"peak_shift_layers\\\": 7, \\\"profile_shape\\\": \\\"early_peak_monotonic_decline\\\", \\\"n_layers\\\": 33, \\\"n_seeds\\\": 5, \\\"total_time_min\\\": 67.3}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/phi3v_r2_untrained_probe.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T10:31:30.792Z\\\"}, \\\"phi3v_r2_seed_expansion\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:16:58.882Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:45:43.217Z\\\", \\\"hypothesis\\\": \\\"Expanding TracVLA-Phi3V R2 action probe from 5 to 15 seeds will yield tighter confidence intervals and enable fair statistical comparison with OpenVLA's 15-seed R2 profiles across all 33 layers.\\\", \\\"parent\\\": \\\"phi3v_r2_action_probe\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T09:17:44.047Z\\\", \\\"finished_at\\\": \\\"2026-05-20T09:37:50.653Z\\\", \\\"training_hours\\\": 0.34}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python /root/vla-ssd/scripts/phi3v_r2_seed_expansion.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"442197\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/phi3v_r2_seed_expansion.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T09:21:20.011Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": \\\"10 tasks x 50 demos\\\", \\\"model_name\\\": \\\"TracVLA-Phi3V (trained)\\\", \\\"seed\\\": \\\"6,7,8,9,10,11,12,13,14,15\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 10 seeds (6-15) MLP R² probe\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json\\\", \\\"wall_clock_seconds\\\": 1463.2, \\\"gpu_hours\\\": 0.41}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T09:37:54.109499+00:00\\\"}]}, \\\"metrics\\\": {\\\"peak_layer\\\": 11, \\\"peak_r2\\\": 0.634, \\\"peak_r2_std\\\": 0.009, \\\"peak_r2_ci95\\\": [0.629, 0.639], \\\"l0_r2\\\": -0.33, \\\"l32_r2\\\": 0.551, \\\"plateau_mean_L10_L17\\\": 0.631, \\\"mean_ci95_halfwidth_5seed\\\": 0.0101, \\\"mean_ci95_halfwidth_15seed\\\": 0.0053, \\\"ci_narrowing_pct\\\": 47.5, \\\"n_seeds\\\": 15, \\\"n_layers\\\": 33, \\\"openvla_peak_r2\\\": 0.637, \\\"openvla_peak_layer\\\": 9, \\\"cross_arch_peak_delta\\\": 0.003, \\\"inverted_u_confirmed\\\": true, \\\"total_time_min\\\": 16.2}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T09:45:43.217Z\\\"}, \\\"phi3v_r2_action_probe\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T01:24:49.759Z\\\", \\\"updated_at\\\": \\\"2026-05-20T03:05:10.844Z\\\", \\\"hypothesis\\\": \\\"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\\\", \\\"parent\\\": \\\"r2_probe_seed_expansion\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T01:25:36.493Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_r2_action_probe.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": \\\"10 tasks x 50 demos\\\", \\\"model_name\\\": \\\"TracVLA-Phi3V\\\", \\\"seed\\\": \\\"0-4\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\", \\\"eval_data\\\": \\\"libero_goal 10 tasks x 50 demos\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\\\", \\\"checkpoint_path\\\": \\\"N/A (probe experiment)\\\", \\\"output_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\\"}, \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T03:02:19.207Z\\\", \\\"metrics\\\": {\\\"peak_r2\\\": 0.634, \\\"peak_layer\\\": 11, \\\"l0_r2\\\": -0.329, \\\"l31_r2\\\": 0.557, \\\"seeds\\\": 5, \\\"tasks\\\": 10, \\\"inverted_u_confirmed\\\": true, \\\"cross_arch_peak_delta\\\": 0.003, \\\"openvla_peak_r2\\\": 0.637, \\\"openvla_peak_layer\\\": 9}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\\\"}, \\\"specificity_random_seed_expansion\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:42.838Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:27:57.565Z\\\", \\\"hypothesis\\\": \\\"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.\\\", \\\"parent\\\": \\\"random_subset_ablation\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py --generate-cache && CUDA_VISIBLE_DEVICES='' python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero/libero_goal/\\\", \\\"data_count\\\": \\\"30 seeds\\\", \\\"model_name\\\": \\\"OpenVLA (cache generation)\\\", \\\"seed\\\": \\\"0-29\\\", \\\"pid\\\": 169052, \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\\\", \\\"output_cache\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\\", \\\"output_results\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\", \\\"checkpoint_source\\\": \\\"openvla/openvla-7b (HuggingFace)\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks, L1 attention patterns\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"z_score\\\": -3.11, \\\"percentile\\\": 0, \\\"instruction_increase\\\": 0.0301, \\\"random_mean_increase\\\": 0.0712, \\\"random_std_increase\\\": 0.0132, \\\"baseline_r2\\\": 0.5243, \\\"n_seeds\\\": 30}, \\\"completed_at\\\": \\\"2026-05-20T00:27:57.565Z\\\"}, \\\"r2_probe_seed_expansion\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:40.605Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:40:43.867Z\\\", \\\"hypothesis\\\": \\\"Expanding R² probe seeds from 3 to 15 will tighten confidence intervals on the per-layer action R² profile, confirming that the inverted-U shape and trained>untrained separation are robust across probe initializations, not artifacts of seed variance.\\\", \\\"parent\\\": \\\"threecond_multiseed_r2_v2\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-19T20:26:53.108Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"PYTHONUNBUFFERED=1 python /root/vla-ssd/scripts/r2_probe_seed_expansion.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/features/{untrained,llama2base,trained}_libero_goal\\\", \\\"data_count\\\": \\\"10 tasks x 50 demos\\\", \\\"model_name\\\": \\\"OpenVLA (untrained / llama2base / trained)\\\", \\\"seed\\\": \\\"0-14\\\", \\\"checkpoint_source\\\": \\\"threecond_multiseed_r2_v2 (same features, expanded seeds)\\\", \\\"eval_data\\\": \\\"libero_goal 10 tasks, features from 3 conditions\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\\", \\\"log_path\\\": \\\"/tmp/r2_probe_seed_expansion.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T23:40:33.774Z\\\", \\\"metrics\\\": {\\\"untrained\\\": {\\\"peak_layer\\\": \\\"L0\\\", \\\"peak_r2\\\": 0.629, \\\"avg_r2\\\": 0.316, \\\"avg_std\\\": 0.185, \\\"profile\\\": \\\"steep decline L0→L31, near-zero deep layers, L32 recovery (0.584)\\\"}, \\\"llama2base\\\": {\\\"peak_layer\\\": \\\"L9\\\", \\\"peak_r2\\\": 0.635, \\\"avg_r2\\\": 0.604, \\\"avg_std\\\": 0.016, \\\"profile\\\": \\\"flat early (0.63), gentle decline to 0.55 at exit\\\"}, \\\"trained\\\": {\\\"peak_layer\\\": \\\"L9\\\", \\\"peak_r2\\\": 0.637, \\\"avg_r2\\\": 0.59, \\\"avg_std\\\": 0.02, \\\"profile\\\": \\\"subtle inverted-U peaking L8-L9, steeper decline in exit layers vs llama2base\\\"}, \\\"ci_narrowing\\\": \\\"15 seeds vs 5 seeds: ~42% CI width reduction (SEM ∝ 1/√n)\\\", \\\"trained_vs_untrained_gap\\\": \\\"avg 0.27 R² across L1-L31\\\", \\\"inverted_u_confirmed\\\": true, \\\"total_time_min\\\": 146.9}}, \\\"phi3v_attention_untrained_10tasks\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:51.511Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:59:14.287Z\\\", \\\"hypothesis\\\": \\\"Untrained (base Phi-3-mini) VLA will show uniform attention across layers with no instruction-dominant specialization at L1, contrasting with trained TracVLA-Phi3V which shows strong L1 instruction dominance.\\\", \\\"parent\\\": \\\"phi3v_attention_untrained\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-19T22:54:39.022Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_attention_untrained_10tasks.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": \\\"10 tasks\\\", \\\"model_name\\\": \\\"Phi-3-mini-4k-instruct (untrained VLA)\\\", \\\"seed\\\": \\\"default\\\", \\\"pid\\\": 89850, \\\"log_path\\\": \\\"/tmp/phi3v_untrained_10tasks.log\\\", \\\"checkpoint_path\\\": \\\"N/A (inference only)\\\", \\\"output_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\\", \\\"checkpoint_source\\\": \\\"microsoft/Phi-3-mini-4k-instruct (base, untrained)\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks (frame 0 per task)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T22:59:14.287Z\\\"}, \\\"phi3v_attention_trained_10tasks\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:38.418Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:31:38.368Z\\\", \\\"hypothesis\\\": \\\"Expanding the attention profile analysis from 5 to 10 LIBERO-Goal tasks will provide more robust per-layer/per-head text attention statistics for TracVLA-Phi3V trained model.\\\", \\\"parent\\\": \\\"phi3v_attention_trained\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-19T20:26:52.288Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": \\\"10 tasks\\\", \\\"model_name\\\": \\\"TracVLA-Phi3V\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\", \\\"eval_data\\\": \\\"10 LIBERO-Goal tasks from /root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"/tmp/phi3v_attn_10tasks.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T20:31:38.368Z\\\"}, \\\"action_trajectory_cpu_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T13:35:44.880Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:51:23.913Z\\\", \\\"hypothesis\\\": \\\"Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-to-step action autocorrelation more than control, (2) bootstrap CI on per-head effect size — formal test of whether instruction heads per-head d (0.027) differs significantly from control heads per-head d (0.051).\\\", \\\"parent\\\": \\\"action_trajectory_control\\\", \\\"metrics\\\": {\\\"bootstrap_per_head_d\\\": {\\\"instruction_24h\\\": {\\\"mean\\\": 0.0271, \\\"ci_95\\\": [0.0258, 0.0285]}, \\\"control_8h\\\": {\\\"mean\\\": 0.0514, \\\"ci_95\\\": [0.0478, 0.0551]}, \\\"difference_ctrl_minus_inst\\\": {\\\"mean\\\": 0.0244, \\\"ci_95\\\": [0.0203, 0.0281]}, \\\"task_paired_t\\\": {\\\"t\\\": 7.356, \\\"p\\\": 0.0018}, \\\"all_5_tasks_ctrl_gt_inst\\\": true, \\\"interpretation\\\": \\\"Control heads ~1.9x per-head effect; instruction heads achieve larger total via 24-head collective coordination\\\"}, \\\"temporal_coherence_proxy\\\": {\\\"per_dim_cv_instruction\\\": 1.3, \\\"per_dim_cv_control\\\": 2.74, \\\"cross_task_I2_instruction\\\": 0.87, \\\"cross_task_I2_control\\\": 0.78, \\\"interpretation\\\": \\\"Instruction ablation produces more consistent (low CV) and more task-dependent (high I²) perturbation, consistent with structured language-dependent computation\\\"}, \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Per-head effect formally confirmed: control heads ~1.9x stronger per-head (d=0.051 vs 0.027, p=0.0018). But instruction heads show qualitatively different perturbation: more consistent across dimensions (CV 1.30 vs 2.74) and more task-dependent (I²=0.87 vs 0.78). Instruction heads mediate structured, coordinated computation rather than individual strong effects.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python action_trajectory_cpu_analysis.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/\\\", \\\"data_count\\\": \\\"5 tasks, existing ablation data\\\", \\\"model_name\\\": \\\"N/A (CPU reanalysis)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_source\\\": \\\"action_trajectory_analysis + action_trajectory_control data\\\", \\\"eval_data\\\": \\\"existing ablation trajectory data\\\"}, \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"westd-19183:/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json\\\", \\\"completed_at\\\": \\\"2026-05-19T18:51:23.913Z\\\"}, \\\"phi3v_probe_untrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:04:38.888Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:39:33.794Z\\\", \\\"hypothesis\\\": \\\"Base Phi-3-mini-4k-instruct (untrained VLA) already encodes instruction identity at the last-preaction token position due to pre-existing instruction tuning, but not at image tokens.\\\", \\\"parent\\\": \\\"phi3v_attention_untrained\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"phi3v-untrained-base-instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_cross_inst.h5\\\", \\\"log_path\\\": \\\"/tmp/phi3v_untrained_cross_inst.log\\\"}, \\\"completed_at\\\": \\\"2026-05-19T18:39:27.410Z\\\", \\\"metrics\\\": {\\\"image_mean_L1\\\": 0.1, \\\"image_mean_L31\\\": 0.098, \\\"last_preaction_L1\\\": 0.981, \\\"last_preaction_L2\\\": 1, \\\"last_preaction_L31\\\": 1, \\\"extraction_time_min\\\": 3.4, \\\"total_forwards\\\": 5000}}, \\\"phi3v_probe_trained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:04:38.161Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:17:07.393Z\\\", \\\"hypothesis\\\": \\\"The C1 readout pattern (last_preaction 100% instruction classification + image_mean at chance) observed in trained OpenVLA also holds in trained TracVLA-Phi3V, indicating this is a general VLA property rather than architecture-specific.\\\", \\\"parent\\\": \\\"phi3v_attention_trained\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"tracevla-phi3v-trained\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\", \\\"log_path\\\": \\\"/tmp/phi3v_cross_inst_probe.log\\\"}, \\\"completed_at\\\": \\\"2026-05-19T18:17:05.815Z\\\", \\\"metrics\\\": {\\\"image_mean_L1\\\": 0.1, \\\"image_mean_L31\\\": 0.102, \\\"last_preaction_L1\\\": 0.836, \\\"last_preaction_L2_to_L31\\\": 1, \\\"n_classes\\\": 10, \\\"train_samples\\\": 4000, \\\"test_samples\\\": 1000}}, \\\"phi3v_attention_untrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:46:41.488Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:00:43.363Z\\\", \\\"hypothesis\\\": \\\"Base Phi-3-mini (before VLA training) does NOT show instruction-dominant routing at L1, confirming the pattern is learned during VLA training rather than inherited from the pretrained LLM — paralleling the llama2_base_control result for OpenVLA.\\\", \\\"parent\\\": \\\"llama2_base_control\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-19T17:47:49.102Z\\\"}, \\\"metrics\\\": {\\\"L1_instruction_dominant_heads\\\": 28, \\\"L1_total_heads\\\": 32, \\\"L1_mean_text_attn\\\": 0.7745, \\\"L1_mean_image_attn\\\": 0.2255, \\\"L0_instruction_dominant_heads\\\": 3, \\\"all_layers_avg_dominant_heads\\\": 27.1, \\\"note\\\": \\\"Base Phi-3-mini-4k-instruct (instruction-tuned) already shows strong text-dominant attention. 28/32 at L1 vs trained TracVLA (compare when available). Unlike OpenVLA untrained=0, Phi-3-instruct has pre-existing instruction routing.\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\\", \\\"log_path\\\": \\\"/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-19T18:00:43.363Z\\\"}, \\\"phi3v_attention_trained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:46:40.348Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:54:01.274Z\\\", \\\"hypothesis\\\": \\\"TracVLA-Phi3V (trained VLA with Phi-3-mini backbone) exhibits L1 instruction-dominant attention routing pattern similar to OpenVLA-7B, demonstrating that instruction routing is a general VLA property not specific to Llama-2 backbone.\\\", \\\"parent\\\": \\\"libero_finetuned_attention\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-19T17:47:48.262Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_attention_profile.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"LIBERO-Goal (5 tasks)\\\", \\\"data_count\\\": \\\"5 tasks x 1 demo frame\\\", \\\"model_name\\\": \\\"tracevla-phi3v (trace-ai/tracevla-phi3v)\\\", \\\"seed\\\": \\\"N/A (deterministic inference)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\", \\\"eval_data\\\": \\\"LIBERO-Goal demo frames\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"L1_instruction_dominant\\\": 32, \\\"L1_mean_text_attn\\\": 0.7348, \\\"L2_instruction_dominant\\\": 32, \\\"L2_mean_text_attn\\\": 0.7807, \\\"L31_instruction_dominant\\\": 18, \\\"L31_mean_text_attn\\\": 0.6478, \\\"n_tasks\\\": 5, \\\"n_img_tokens\\\": 313}, \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\\", \\\"completed_at\\\": \\\"2026-05-19T17:54:01.274Z\\\"}, \\\"phi3v_attention_profile\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:51:12.780Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:52:12.025Z\\\", \\\"hypothesis\\\": \\\"TracVLA-Phi3V exhibits a distinct attention profile compared to OpenVLA, with text vs image attention distribution across 32 layers reflecting architectural differences in how instruction information is processed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_attention_profile.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": 5, \\\"model_name\\\": \\\"tracevla-phi3v\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T17:52:10.521Z\\\", \\\"metrics\\\": {\\\"L1_instruction_dominant\\\": 32, \\\"L1_mean_text_attn\\\": 0.7348, \\\"L2_instruction_dominant\\\": 32, \\\"L2_mean_text_attn\\\": 0.7807, \\\"L31_instruction_dominant\\\": 18, \\\"L31_mean_text_attn\\\": 0.6478, \\\"n_tasks\\\": 5, \\\"n_img_tokens\\\": 313}}, \\\"official_checkpoint_sr_test\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:40:46.356Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:43:03.201Z\\\", \\\"hypothesis\\\": \\\"Official OpenVLA checkpoint (not fine-tuned) achieves non-zero SR on LIBERO-Goal tasks, confirming the evaluation pipeline is correct and Path B failure is due to fine-tuning degradation rather than pipeline bugs.\\\", \\\"parent\\\": \\\"closedloop_diagnosis\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_libero.py --ckpt official_openvla --tasks 0,3,7 --episodes 5 --max_steps 400\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": \\\"15 episodes (3 tasks x 5 seeds)\\\", \\\"model_name\\\": \\\"openvla-7b (official checkpoint)\\\", \\\"seed\\\": \\\"multiple\\\", \\\"checkpoint_source\\\": \\\"openvla/openvla-7b (HuggingFace official)\\\", \\\"eval_data\\\": \\\"LIBERO-Goal tasks 0,3,7\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"overall_sr\\\": \\\"0/15 (0.00)\\\", \\\"task_0_sr\\\": \\\"0/5\\\", \\\"task_3_sr\\\": \\\"0/5\\\", \\\"task_7_sr\\\": \\\"0/5\\\", \\\"max_steps\\\": 400, \\\"avg_reward\\\": 0, \\\"action_range\\\": \\\"[-1,1] reasonable\\\", \\\"episode_time\\\": \\\"~57s/episode\\\"}, \\\"checkpoint_path\\\": \\\"N/A (eval only, no checkpoint produced)\\\", \\\"log_path\\\": \\\"westd-19183:/root/autodl-tmp/vla-ssd/logs/official_checkpoint_sr_test/\\\", \\\"completed_at\\\": \\\"2026-05-19T17:41:31.508Z\\\", \\\"note\\\": \\\"Official checkpoint on LIBERO-Goal SR=0/15, confirms model cannot execute tasks — closed-loop path closed per D078.\\\"}, \\\"closedloop_diagnosis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:07:32.792Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:08:39.446Z\\\", \\\"hypothesis\\\": \\\"SR=0/3 in behavioral smoketest is caused by pipeline bugs (image preprocessing, action normalization), not model quality. Fixing these bugs will yield non-zero success rate.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"spec\\\": {\\\"command\\\": \\\"diagnostic pipeline - 6 bugs found and fixed\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": 9, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\\\", \\\"log_path\\\": \\\"/root/vla-ssd/scripts/sr_official_pipeline.py\\\"}, \\\"completed_at\\\": \\\"2026-05-19T17:08:34.305Z\\\", \\\"metrics\\\": {\\\"sr_before_fix\\\": \\\"0/3\\\", \\\"sr_after_fix\\\": \\\"0/9\\\", \\\"bugs_found\\\": 6, \\\"l1_action_error\\\": \\\"0.26-0.43\\\"}}, \\\"finetuned_probe_profile\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T07:29:17.138Z\\\", \\\"updated_at\\\": \\\"2026-05-19T08:05:29.436Z\\\", \\\"hypothesis\\\": \\\"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\\\", \\\"spec\\\": {\\\"command\\\": \\\"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks x 50 demos, 10-way cross-instruction LOOCV\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T08:05:27.391Z\\\", \\\"metrics\\\": {\\\"probe_acc_L0\\\": 0.1, \\\"probe_acc_L1\\\": 0.997, \\\"probe_acc_L2_L31\\\": 1, \\\"image_mean_control\\\": 0.1, \\\"method\\\": \\\"PCA256+LogReg_10fold_LOOCV\\\"}}, \\\"libero_finetuned_probe\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T07:22:26.980Z\\\", \\\"updated_at\\\": \\\"2026-05-19T07:22:26.980Z\\\", \\\"parent\\\": \\\"libero_finetuned_attention\\\"}, \\\"libero_finetuned_attention\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T07:14:02.907Z\\\", \\\"updated_at\\\": \\\"2026-05-19T07:18:50.186Z\\\", \\\"parent\\\": \\\"llama2_base_control\\\", \\\"hypothesis\\\": \\\"LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction routing is a stable VLA property across training stages.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/libero_finetuned_attention_profile.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": 10, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": null, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log\\\", \\\"eval_data\\\": \\\"libero_goal_10tasks_frame0\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T07:18:50.186Z\\\"}, \\\"behavioral_smoketest_diag\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:05:18.989Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:07:31.611Z\\\", \\\"parent\\\": \\\"behavioral_smoketest\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D074: C-2 closed-loop path formally abandoned. Diagnostic cancelled before completion.\\\"}}, \\\"count\\\": 20, \\\"total\\\": 117, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3457}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"phi3v_untrained_seed_expansion\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:42:59.261Z\", \"updated_at\": \"2026-05-20T11:19:19.135Z\", \"hypothesis\": \"Expanding Phi3V untrained R² probe from 5 to 15 seeds will tighten confidence intervals on the untrained profile (early peak at L4, monotonic decline), aligning statistical power with the other 3 conditions in the 2×2 matrix (all 15 seeds) and eliminating asymmetric seed count as a reviewer concern.\", \"parent\": \"phi3v_r2_untrained_probe\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T11:19:19.135Z\"}}, \"phi3v_r2_untrained_probe\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:43:51.225Z\", \"updated_at\": \"2026-05-20T10:31:30.792Z\", \"hypothesis\": \"The inverted-U R² profile (peak at mid-layers) observed in trained TracVLA-Phi3V is a product of VLA training. An untrained base Phi-3-mini LLM backbone (with same architecture but no action-prediction training) should show flat/low R² across all layers, confirming the inverted-U is not an architectural artifact.\", \"parent\": \"phi3v_r2_action_probe\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T09:15:28.577Z\", \"finished_at\": \"2026-05-20T10:27:55.064Z\", \"training_hours\": 1.21}, \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/phi3v_r2_untrained_probe.py'\", \"server\": \"westd-19183\", \"gpu\": [\"cuda:0\"], \"pid\": \"441603\", \"log_path\": \"~/runs/vla-ssd/phi3v_r2_untrained_probe.log\", \"submitted_at\": \"2026-05-20T09:20:00.409Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"Phi3V-Untrained-Base (TracVLA-Phi3V arch + Phi-3-mini-4k-instruct LLM weights)\", \"seed\": \"0,1,2,3,4\", \"checkpoint_source\": \"TracVLA: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/ + Base: /root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\", \"eval_data\": \"LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 5 seeds MLP R² probe\", \"output_dir\": \"/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/\", \"feature_dir\": \"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\", \"wall_clock_seconds\": 4290.4, \"gpu_hours\": 1.19}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T10:27:58.475014+00:00\"}]}, \"metrics\": {\"peak_r2\": 0.583, \"peak_r2_std\": 0.016, \"peak_layer\": 4, \"l0_r2\": -0.33, \"l32_r2\": 0.449, \"mean_r2_L1_L32\": 0.49, \"mid_plateau_L10_L17\": 0.536, \"late_layer_mean_L25_L32\": 0.452, \"late_layer_max_std\": 0.122, \"trained_peak_r2\": 0.634, \"trained_peak_layer\": 11, \"trained_untrained_peak_delta\": 0.051, \"peak_shift_layers\": 7, \"profile_shape\": \"early_peak_monotonic_decline\", \"n_layers\": 33, \"n_seeds\": 5, \"total_time_min\": 67.3}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/\", \"log_path\": \"~/runs/vla-ssd/phi3v_r2_untrained_probe.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T10:31:30.792Z\"}, \"phi3v_r2_seed_expansion\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:16:58.882Z\", \"updated_at\": \"2026-05-20T09:45:43.217Z\", \"hypothesis\": \"Expanding TracVLA-Phi3V R2 action probe from 5 to 15 seeds will yield tighter confidence intervals and enable fair statistical comparison with OpenVLA's 15-seed R2 profiles across all 33 layers.\", \"parent\": \"phi3v_r2_action_probe\", \"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-20T09:17:44.047Z\", \"finished_at\": \"2026-05-20T09:37:50.653Z\", \"training_hours\": 0.34}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python /root/vla-ssd/scripts/phi3v_r2_seed_expansion.py\\\"\", \"server\": \"westd-19183\", \"gpu\": [\"cuda:1\"], \"pid\": \"442197\", \"log_path\": \"~/runs/vla-ssd/phi3v_r2_seed_expansion.log\", \"submitted_at\": \"2026-05-20T09:21:20.011Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"TracVLA-Phi3V (trained)\", \"seed\": \"6,7,8,9,10,11,12,13,14,15\", \"output_dir\": \"/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 10 seeds (6-15) MLP R² probe\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json\", \"wall_clock_seconds\": 1463.2, \"gpu_hours\": 0.41}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T09:37:54.109499+00:00\"}]}, \"metrics\": {\"peak_layer\": 11, \"peak_r2\": 0.634, \"peak_r2_std\": 0.009, \"peak_r2_ci95\": [0.629, 0.639], \"l0_r2\": -0.33, \"l32_r2\": 0.551, \"plateau_mean_L10_L17\": 0.631, \"mean_ci95_halfwidth_5seed\": 0.0101, \"mean_ci95_halfwidth_15seed\": 0.0053, \"ci_narrowing_pct\": 47.5, \"n_seeds\": 15, \"n_layers\": 33, \"openvla_peak_r2\": 0.637, \"openvla_peak_layer\": 9, \"cross_arch_peak_delta\": 0.003, \"inverted_u_confirmed\": true, \"total_time_min\": 16.2}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T09:45:43.217Z\"}, \"phi3v_r2_action_probe\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T01:24:49.759Z\", \"updated_at\": \"2026-05-20T03:05:10.844Z\", \"hypothesis\": \"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\", \"parent\": \"r2_probe_seed_expansion\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T01:25:36.493Z\"}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_r2_action_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"TracVLA-Phi3V\", \"seed\": \"0-4\", \"gpu\": \"cuda:0\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"libero_goal 10 tasks x 50 demos\", \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\", \"checkpoint_path\": \"N/A (probe experiment)\", \"output_path\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T03:02:19.207Z\", \"metrics\": {\"peak_r2\": 0.634, \"peak_layer\": 11, \"l0_r2\": -0.329, \"l31_r2\": 0.557, \"seeds\": 5, \"tasks\": 10, \"inverted_u_confirmed\": true, \"cross_arch_peak_delta\": 0.003, \"openvla_peak_r2\": 0.637, \"openvla_peak_layer\": 9}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\"}, \"specificity_random_seed_expansion\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:23:42.838Z\", \"updated_at\": \"2026-05-20T00:27:57.565Z\", \"hypothesis\": \"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.\", \"parent\": \"random_subset_ablation\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py --generate-cache && CUDA_VISIBLE_DEVICES='' python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/libero/libero_goal/\", \"data_count\": \"30 seeds\", \"model_name\": \"OpenVLA (cache generation)\", \"seed\": \"0-29\", \"pid\": 169052, \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\", \"output_cache\": \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\", \"output_results\": \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\", \"checkpoint_source\": \"openvla/openvla-7b (HuggingFace)\", \"eval_data\": \"LIBERO-Goal 10 tasks, L1 attention patterns\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\"}, \"conclusion\": \"success\", \"metrics\": {\"z_score\": -3.11, \"percentile\": 0, \"instruction_increase\": 0.0301, \"random_mean_increase\": 0.0712, \"random_std_increase\": 0.0132, \"baseline_r2\": 0.5243, \"n_seeds\": 30}, \"completed_at\": \"2026-05-20T00:27:57.565Z\"}, \"r2_probe_seed_expansion\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:23:40.605Z\", \"updated_at\": \"2026-05-19T23:40:43.867Z\", \"hypothesis\": \"Expanding R² probe seeds from 3 to 15 will tighten confidence intervals on the per-layer action R² profile, confirming that the inverted-U shape and trained>untrained separation are robust across probe initializations, not artifacts of seed variance.\", \"parent\": \"threecond_multiseed_r2_v2\", \"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T20:26:53.108Z\"}, \"spec\": {\"command\": \"PYTHONUNBUFFERED=1 python /root/vla-ssd/scripts/r2_probe_seed_expansion.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/features/{untrained,llama2base,trained}_libero_goal\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"OpenVLA (untrained / llama2base / trained)\", \"seed\": \"0-14\", \"checkpoint_source\": \"threecond_multiseed_r2_v2 (same features, expanded seeds)\", \"eval_data\": \"libero_goal 10 tasks, features from 3 conditions\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\", \"log_path\": \"/tmp/r2_probe_seed_expansion.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T23:40:33.774Z\", \"metrics\": {\"untrained\": {\"peak_layer\": \"L0\", \"peak_r2\": 0.629, \"avg_r2\": 0.316, \"avg_std\": 0.185, \"profile\": \"steep decline L0→L31, near-zero deep layers, L32 recovery (0.584)\"}, \"llama2base\": {\"peak_layer\": \"L9\", \"peak_r2\": 0.635, \"avg_r2\": 0.604, \"avg_std\": 0.016, \"profile\": \"flat early (0.63), gentle decline to 0.55 at exit\"}, \"trained\": {\"peak_layer\": \"L9\", \"peak_r2\": 0.637, \"avg_r2\": 0.59, \"avg_std\": 0.02, \"profile\": \"subtle inverted-U peaking L8-L9, steeper decline in exit layers vs llama2base\"}, \"ci_narrowing\": \"15 seeds vs 5 seeds: ~42% CI width reduction (SEM ∝ 1/√n)\", \"trained_vs_untrained_gap\": \"avg 0.27 R² across L1-L31\", \"inverted_u_confirmed\": true, \"total_time_min\": 146.9}}, \"phi3v_attention_untrained_10tasks\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:53:51.511Z\", \"updated_at\": \"2026-05-19T22:59:14.287Z\", \"hypothesis\": \"Untrained (base Phi-3-mini) VLA will show uniform attention across layers with no instruction-dominant specialization at L1, contrasting with trained TracVLA-Phi3V which shows strong L1 instruction dominance.\", \"parent\": \"phi3v_attention_untrained\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-19T22:54:39.022Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_attention_untrained_10tasks.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks\", \"model_name\": \"Phi-3-mini-4k-instruct (untrained VLA)\", \"seed\": \"default\", \"pid\": 89850, \"log_path\": \"/tmp/phi3v_untrained_10tasks.log\", \"checkpoint_path\": \"N/A (inference only)\", \"output_path\": \"/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\", \"checkpoint_source\": \"microsoft/Phi-3-mini-4k-instruct (base, untrained)\", \"eval_data\": \"LIBERO-Goal 10 tasks (frame 0 per task)\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T22:59:14.287Z\"}, \"phi3v_attention_trained_10tasks\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:23:38.418Z\", \"updated_at\": \"2026-05-19T20:31:38.368Z\", \"hypothesis\": \"Expanding the attention profile analysis from 5 to 10 LIBERO-Goal tasks will provide more robust per-layer/per-head text attention statistics for TracVLA-Phi3V trained model.\", \"parent\": \"phi3v_attention_trained\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-19T20:26:52.288Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks\", \"model_name\": \"TracVLA-Phi3V\", \"seed\": \"default\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"10 LIBERO-Goal tasks from /root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/tmp/phi3v_attn_10tasks.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T20:31:38.368Z\"}, \"action_trajectory_cpu_analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:35:44.880Z\", \"updated_at\": \"2026-05-19T18:51:23.913Z\", \"hypothesis\": \"Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-to-step action autocorrelation more than control, (2) bootstrap CI on per-head effect size — formal test of whether instruction heads per-head d (0.027) differs significantly from control heads per-head d (0.051).\", \"parent\": \"action_trajectory_control\", \"metrics\": {\"bootstrap_per_head_d\": {\"instruction_24h\": {\"mean\": 0.0271, \"ci_95\": [0.0258, 0.0285]}, \"control_8h\": {\"mean\": 0.0514, \"ci_95\": [0.0478, 0.0551]}, \"difference_ctrl_minus_inst\": {\"mean\": 0.0244, \"ci_95\": [0.0203, 0.0281]}, \"task_paired_t\": {\"t\": 7.356, \"p\": 0.0018}, \"all_5_tasks_ctrl_gt_inst\": true, \"interpretation\": \"Control heads ~1.9x per-head effect; instruction heads achieve larger total via 24-head collective coordination\"}, \"temporal_coherence_proxy\": {\"per_dim_cv_instruction\": 1.3, \"per_dim_cv_control\": 2.74, \"cross_task_I2_instruction\": 0.87, \"cross_task_I2_control\": 0.78, \"interpretation\": \"Instruction ablation produces more consistent (low CV) and more task-dependent (high I²) perturbation, consistent with structured language-dependent computation\"}, \"result_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\"}, \"conclusion\": \"success\", \"notes\": \"Per-head effect formally confirmed: control heads ~1.9x stronger per-head (d=0.051 vs 0.027, p=0.0018). But instruction heads show qualitatively different perturbation: more consistent across dimensions (CV 1.30 vs 2.74) and more task-dependent (I²=0.87 vs 0.78). Instruction heads mediate structured, coordinated computation rather than individual strong effects.\", \"spec\": {\"command\": \"python action_trajectory_cpu_analysis.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/\", \"data_count\": \"5 tasks, existing ablation data\", \"model_name\": \"N/A (CPU reanalysis)\", \"seed\": \"N/A\", \"checkpoint_source\": \"action_trajectory_analysis + action_trajectory_control data\", \"eval_data\": \"existing ablation trajectory data\"}, \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"westd-19183:/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json\", \"completed_at\": \"2026-05-19T18:51:23.913Z\"}, \"phi3v_probe_untrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:04:38.888Z\", \"updated_at\": \"2026-05-19T18:39:33.794Z\", \"hypothesis\": \"Base Phi-3-mini-4k-instruct (untrained VLA) already encodes instruction identity at the last-preaction token position due to pre-existing instruction tuning, but not at image tokens.\", \"parent\": \"phi3v_attention_untrained\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"phi3v-untrained-base-instruct\", \"seed\": 42, \"checkpoint_source\": \"n/a\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_cross_inst.h5\", \"log_path\": \"/tmp/phi3v_untrained_cross_inst.log\"}, \"completed_at\": \"2026-05-19T18:39:27.410Z\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.098, \"last_preaction_L1\": 0.981, \"last_preaction_L2\": 1, \"last_preaction_L31\": 1, \"extraction_time_min\": 3.4, \"total_forwards\": 5000}}, \"phi3v_probe_trained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:04:38.161Z\", \"updated_at\": \"2026-05-19T18:17:07.393Z\", \"hypothesis\": \"The C1 readout pattern (last_preaction 100% instruction classification + image_mean at chance) observed in trained OpenVLA also holds in trained TracVLA-Phi3V, indicating this is a general VLA property rather than architecture-specific.\", \"parent\": \"phi3v_attention_trained\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"tracevla-phi3v-trained\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"log_path\": \"/tmp/phi3v_cross_inst_probe.log\"}, \"completed_at\": \"2026-05-19T18:17:05.815Z\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.102, \"last_preaction_L1\": 0.836, \"last_preaction_L2_to_L31\": 1, \"n_classes\": 10, \"train_samples\": 4000, \"test_samples\": 1000}}, \"phi3v_attention_untrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:46:41.488Z\", \"updated_at\": \"2026-05-19T18:00:43.363Z\", \"hypothesis\": \"Base Phi-3-mini (before VLA training) does NOT show instruction-dominant routing at L1, confirming the pattern is learned during VLA training rather than inherited from the pretrained LLM — paralleling the llama2_base_control result for OpenVLA.\", \"parent\": \"llama2_base_control\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-19T17:47:49.102Z\"}, \"metrics\": {\"L1_instruction_dominant_heads\": 28, \"L1_total_heads\": 32, \"L1_mean_text_attn\": 0.7745, \"L1_mean_image_attn\": 0.2255, \"L0_instruction_dominant_heads\": 3, \"all_layers_avg_dominant_heads\": 27.1, \"note\": \"Base Phi-3-mini-4k-instruct (instruction-tuned) already shows strong text-dominant attention. 28/32 at L1 vs trained TracVLA (compare when available). Unlike OpenVLA untrained=0, Phi-3-instruct has pre-existing instruction routing.\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\", \"log_path\": \"/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-19T18:00:43.363Z\"}, \"phi3v_attention_trained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:46:40.348Z\", \"updated_at\": \"2026-05-19T17:54:01.274Z\", \"hypothesis\": \"TracVLA-Phi3V (trained VLA with Phi-3-mini backbone) exhibits L1 instruction-dominant attention routing pattern similar to OpenVLA-7B, demonstrating that instruction routing is a general VLA property not specific to Llama-2 backbone.\", \"parent\": \"libero_finetuned_attention\", \"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T17:47:48.262Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_attention_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"LIBERO-Goal (5 tasks)\", \"data_count\": \"5 tasks x 1 demo frame\", \"model_name\": \"tracevla-phi3v (trace-ai/tracevla-phi3v)\", \"seed\": \"N/A (deterministic inference)\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"LIBERO-Goal demo frames\"}, \"conclusion\": \"success\", \"metrics\": {\"L1_instruction_dominant\": 32, \"L1_mean_text_attn\": 0.7348, \"L2_instruction_dominant\": 32, \"L2_mean_text_attn\": 0.7807, \"L31_instruction_dominant\": 18, \"L31_mean_text_attn\": 0.6478, \"n_tasks\": 5, \"n_img_tokens\": 313}, \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\", \"completed_at\": \"2026-05-19T17:54:01.274Z\"}, \"phi3v_attention_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:51:12.780Z\", \"updated_at\": \"2026-05-19T17:52:12.025Z\", \"hypothesis\": \"TracVLA-Phi3V exhibits a distinct attention profile compared to OpenVLA, with text vs image attention distribution across 32 layers reflecting architectural differences in how instruction information is processed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_attention_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 5, \"model_name\": \"tracevla-phi3v\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T17:52:10.521Z\", \"metrics\": {\"L1_instruction_dominant\": 32, \"L1_mean_text_attn\": 0.7348, \"L2_instruction_dominant\": 32, \"L2_mean_text_attn\": 0.7807, \"L31_instruction_dominant\": 18, \"L31_mean_text_attn\": 0.6478, \"n_tasks\": 5, \"n_img_tokens\": 313}}, \"official_checkpoint_sr_test\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:40:46.356Z\", \"updated_at\": \"2026-05-19T17:43:03.201Z\", \"hypothesis\": \"Official OpenVLA checkpoint (not fine-tuned) achieves non-zero SR on LIBERO-Goal tasks, confirming the evaluation pipeline is correct and Path B failure is due to fine-tuning degradation rather than pipeline bugs.\", \"parent\": \"closedloop_diagnosis\", \"spec\": {\"command\": \"python eval_libero.py --ckpt official_openvla --tasks 0,3,7 --episodes 5 --max_steps 400\", \"server\": \"westd-19183\", \"data_path\": \"LIBERO-Goal\", \"data_count\": \"15 episodes (3 tasks x 5 seeds)\", \"model_name\": \"openvla-7b (official checkpoint)\", \"seed\": \"multiple\", \"checkpoint_source\": \"openvla/openvla-7b (HuggingFace official)\", \"eval_data\": \"LIBERO-Goal tasks 0,3,7\"}, \"conclusion\": \"negative\", \"metrics\": {\"overall_sr\": \"0/15 (0.00)\", \"task_0_sr\": \"0/5\", \"task_3_sr\": \"0/5\", \"task_7_sr\": \"0/5\", \"max_steps\": 400, \"avg_reward\": 0, \"action_range\": \"[-1,1] reasonable\", \"episode_time\": \"~57s/episode\"}, \"checkpoint_path\": \"N/A (eval only, no checkpoint produced)\", \"log_path\": \"westd-19183:/root/autodl-tmp/vla-ssd/logs/official_checkpoint_sr_test/\", \"completed_at\": \"2026-05-19T17:41:31.508Z\", \"note\": \"Official checkpoint on LIBERO-Goal SR=0/15, confirms model cannot execute tasks — closed-loop path closed per D078.\"}, \"closedloop_diagnosis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:07:32.792Z\", \"updated_at\": \"2026-05-19T17:08:39.446Z\", \"hypothesis\": \"SR=0/3 in behavioral smoketest is caused by pipeline bugs (image preprocessing, action normalization), not model quality. Fixing these bugs will yield non-zero success rate.\", \"conclusion\": \"negative\", \"spec\": {\"command\": \"diagnostic pipeline - 6 bugs found and fixed\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 9, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/vla-ssd/scripts/sr_official_pipeline.py\"}, \"completed_at\": \"2026-05-19T17:08:34.305Z\", \"metrics\": {\"sr_before_fix\": \"0/3\", \"sr_after_fix\": \"0/9\", \"bugs_found\": 6, \"l1_action_error\": \"0.26-0.43\"}}, \"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\", \"eval_data\": \"LIBERO-Goal 10 tasks x 50 demos, 10-way cross-instruction LOOCV\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T08:05:27.391Z\", \"metrics\": {\"probe_acc_L0\": 0.1, \"probe_acc_L1\": 0.997, \"probe_acc_L2_L31\": 1, \"image_mean_control\": 0.1, \"method\": \"PCA256+LogReg_10fold_LOOCV\"}}, \"libero_finetuned_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:22:26.980Z\", \"updated_at\": \"2026-05-19T07:22:26.980Z\", \"parent\": \"libero_finetuned_attention\"}, \"libero_finetuned_attention\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:14:02.907Z\", \"updated_at\": \"2026-05-19T07:18:50.186Z\", \"parent\": \"llama2_base_control\", \"hypothesis\": \"LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction routing is a stable VLA property across training stages.\", \"spec\": {\"command\": \"python scripts/libero_finetuned_attention_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 10, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": null, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log\", \"eval_data\": \"libero_goal_10tasks_frame0\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T07:18:50.186Z\"}, \"behavioral_smoketest_diag\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:05:18.989Z\", \"updated_at\": \"2026-05-19T05:07:31.611Z\", \"parent\": \"behavioral_smoketest\", \"conclusion\": \"killed\", \"notes\": \"D074: C-2 closed-loop path formally abandoned. Diagnostic cancelled before completion.\"}}, \"count\": 20, \"total\": 117, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3457}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I found the original script at `/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py`. I also see there's already a `r2_probe_seed_expansion.py` for the trained model (OpenVLA) and `phi3v_r2_seed_expansion.py` for TracVLA-Phi3V trained. Let me also check what the existing `phi3v_r2_seed_expansion.py` looks like since it's the trained counterpart - it will help me understand the pattern.
+
+
+Looking at the registry, the untrained probe used seeds 0-4 with results in `/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/`, while the trained seed expansion uses seeds 6-15, so I should probably use seeds 5-14 or 6-15 for the untrained expansion to maintain consistency. I notice `phi3v_untrained_seed_expansion` is already allocated in the registry. Now I need to examine both the untrained probe script and the trained seed expansion script to understand the pattern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "4fb8c9f3-d72d-413e-b342-0ce2460f66f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCJgVKqmkDvXNYCboCbZop",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13532,
+      "cache_read_input_tokens": 27203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13532
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+注册表已有 `phi3v_untrained_seed_expansion`（ALLOCATED）。原始 untrained probe 用 seeds 0-4，trained expansion 用 seeds 6-15。现在读脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "b06cc987-b34b-4276-8551-6b8da3fbda77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCJgVKqmkDvXNYCboCbZop",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13532,
+      "cache_read_input_tokens": 27203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13532
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AF6bydcdnJvr3pbMQS3VFu`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/phi3v_r2_untrained_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "d2fab718-e3fe-466b-8f83-cdd6dcc7d9a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCJgVKqmkDvXNYCboCbZop",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13532,
+      "cache_read_input_tokens": 27203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13532
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HhUA2AmbwLU9JP9M5YUCGF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/phi3v_r2_seed_expansion.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "123682e9-c4e0-4403-8df9-77953f23abc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCJgVKqmkDvXNYCboCbZop",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13532,
+      "cache_read_input_tokens": 27203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13532
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T11:20:48.905Z_
+
+<details><summary>↩ Tool result · `toolu_01AF6bydcdnJvr3pbMQS3VFu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phi3V UNTRAINED (base Phi-3 LLM) per-layer action R² probe.\\n\\nSame pipeline as phi3v_r2_action_probe.py, but with base Phi-3-mini weights\\nreplacing the LLM decoder layers (vision encoder + projector kept from TracVLA).\\n\\nPhase 1: Extract last-preaction hidden states from all 33 layers.\\nPhase 2: Train per-layer MLP probes (5 seeds), compute R².\\n\\\"\\\"\\\"\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\n\\nTRACVLA_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nBASE_PHI3_PATHS = [\\n    \\\"/root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/models--microsoft--Phi-3-mini-4k-instruct\\\",\\n]\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nFEATURE_DIR = \\\"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\\\"\\nOUT_JSON = \\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\\"\\n\\nN_LAYERS = 33\\nNUM_DECODER_LAYERS = 32\\nHIDDEN_DIM_MODEL = 3072\\nPROBE_HIDDEN = 256\\nACTION_DIM = 7\\nSEEDS = list(range(5))\\nPROBE_BATCH = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nMAX_DEMOS = 50\\nDEVICE = \\\"cuda:0\\\"\\n\\n\\n# ── Phase 1: Feature Extraction ─────────────────────────────────────────\\n\\ndef task_desc_from_filename(fname):\\n    return Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef find_base_phi3():\\n    for p in BASE_PHI3_PATHS:\\n        if os.path.isdir(p) and os.path.exists(os.path.join(p, \\\"config.json\\\")):\\n            return p\\n    for p in BASE_PHI3_PATHS:\\n        parent = Path(p)\\n        if parent.exists():\\n            for child in parent.rglob(\\\"config.json\\\"):\\n                return str(child.parent)\\n    raise FileNotFoundError(f\\\"Base Phi-3-mini not found in {BASE_PHI3_PATHS}\\\")\\n\\n\\ndef load_untrained_model(device_str):\\n    from transformers import AutoModelForCausalLM, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(\\n        TRACVLA_PATH, trust_remote_code=True, local_files_only=True\\n    )\\n\\n    print(\\\"Loading TracVLA-Phi3V architecture (CPU)...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        TRACVLA_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\",\\n        local_files_only=True,\\n    )\\n\\n    base_path = find_base_phi3()\\n    print(f\\\"Loading base Phi-3-mini from {base_path}...\\\")\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_path,\\n        torch_dtype=torch.bfloat16,\\n        low_cpu_mem_usage=True,\\n    )\\n\\n    print(f\\\"Replacing LLM decoder layer weights ({NUM_DECODER_LAYERS} layers)...\\\")\\n    for i in range(NUM_DECODER_LAYERS):\\n        model.model.layers[i].load_state_dict(base_model.model.layers[i].state_dict())\\n\\n    try:\\n        model.model.embed_tokens.load_state_dict(base_model.model.embed_tokens.state_dict())\\n        model.lm_head.load_state_dict(base_model.lm_head.state_dict())\\n        print(\\\"Replaced embed_tokens + lm_head\\\")\\n    except RuntimeError as e:\\n        print(f\\\"Skipping embed_tokens/lm_head (dim mismatch): {e}\\\")\\n\\n    del base_model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    model = model.to(device_str)\\n    model.eval()\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\n    print(f\\\"Untrained hybrid model on {device_str}: {n_params:.1f}B params\\\")\\n    return model, processor\\n\\n\\n@torch.no_grad()\\ndef extract_one_task(model, processor, hdf5_path, task_desc, device, out_path):\\n    from PIL import Image\\n\\n    prompt = (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {task_desc}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n    f = h5py.File(hdf5_path, \\\"r\\\")\\n    demo_keys = sorted(\\n        [k for k in f[\\\"data\\\"].keys() if k.startswith(\\\"demo_\\\")],\\n        key=lambda x: int(x.split(\\\"_\\\")[-1]),\\n    )[:MAX_DEMOS]\\n\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\n    tmp_path = out_path + \\\".tmp\\\"\\n    out_f = h5py\\n\\n... [截断: 输出过长，省略 5378 字符] ...\\n\\ndevice)\\n\\n    model = ActionMLPProbe().to(device)\\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\\n    criterion = nn.MSELoss()\\n\\n    n = len(X_tr_d)\\n    best_val_loss = float(\\\"inf\\\")\\n    best_state = None\\n    wait = 0\\n\\n    for epoch in range(EPOCHS):\\n        model.train()\\n        perm = torch.randperm(n, device=device)\\n        for start in range(0, n, PROBE_BATCH):\\n            idx = perm[start:start + PROBE_BATCH]\\n            pred = model(X_tr_d[idx])\\n            loss = criterion(pred, y_tr_d[idx])\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            val_pred = model(X_val_d)\\n            val_loss = criterion(val_pred, y_val_d).item()\\n\\n        if val_loss < best_val_loss - 1e-6:\\n            best_val_loss = val_loss\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= PATIENCE:\\n                break\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n\\n    with torch.no_grad():\\n        pred_norm = model(X_val_d).cpu()\\n    pred_orig = (pred_norm * y_std + y_mean).numpy()\\n    y_true = y_val_raw.numpy()\\n\\n    unique_tasks = sorted(set(val_tasks))\\n    per_task_r2 = {}\\n    for t in unique_tasks:\\n        mask = [i for i, vt in enumerate(val_tasks) if vt == t]\\n        yt = y_true[mask]\\n        yp = pred_orig[mask]\\n        ss_r = np.sum((yt - yp) ** 2)\\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\n\\n    return float(np.mean(list(per_task_r2.values())))\\n\\n\\ndef run_probe(device):\\n    results = {\\\"untrained\\\": {}}\\n\\n    for layer in range(N_LAYERS):\\n        t0 = time.time()\\n        task_data = load_features_and_actions(layer)\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n\\n        seed_r2s = []\\n        for seed in SEEDS:\\n            r2 = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, device, seed)\\n            seed_r2s.append(r2)\\n            torch.cuda.empty_cache()\\n\\n        results[\\\"untrained\\\"][f\\\"L{layer}\\\"] = {\\n            \\\"seeds\\\": seed_r2s,\\n            \\\"mean\\\": float(np.mean(seed_r2s)),\\n            \\\"std\\\": float(np.std(seed_r2s)),\\n        }\\n\\n        elapsed = time.time() - t0\\n        print(f\\\"  L{layer}: mean={np.mean(seed_r2s):.4f} +/- {np.std(seed_r2s):.4f} \\\"\\n              f\\\"({[round(v, 4) for v in seed_r2s]}) {elapsed:.1f}s\\\")\\n\\n        del task_data, X_tr, y_tr, X_val, y_val\\n\\n    return results\\n\\n\\ndef main():\\n    device = torch.device(DEVICE)\\n    t_start = time.time()\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Phi3V UNTRAINED (base Phi-3 LLM) Per-Layer Action R² Probe\\\")\\n    print(f\\\"TracVLA arch: {TRACVLA_PATH}\\\")\\n    print(f\\\"Base LLM: Phi-3-mini-4k-instruct\\\")\\n    print(f\\\"Seeds: {SEEDS}\\\")\\n    print(f\\\"Layers: {N_LAYERS} (L0-L32)\\\")\\n    print(f\\\"Device: {device}\\\")\\n    print(f\\\"Feature: last_preaction (last token hidden state)\\\")\\n    print(f\\\"Split: sequential 80/20 (no shuffle)\\\")\\n    print(f\\\"R² space: original (denormalized)\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    print(\\\"\\\\n--- Phase 1: Feature Extraction ---\\\")\\n    run_extraction(DEVICE)\\n\\n    print(\\\"\\\\n--- Phase 2: R² Probe ---\\\")\\n    results = run_probe(device)\\n\\n    base_path = find_base_phi3()\\n    output = {\\n        \\\"model\\\": \\\"Phi3V-Untrained-Base\\\",\\n        \\\"tracvla_checkpoint\\\": TRACVLA_PATH,\\n        \\\"base_llm\\\": base_path,\\n        \\\"conditions\\\": [\\\"untrained\\\"],\\n        \\\"seeds\\\": SEEDS,\\n        \\\"n_layers\\\": N_LAYERS,\\n        \\\"hidden_dim\\\": HIDDEN_DIM_MODEL,\\n        \\\"feature\\\": \\\"last_preaction\\\",\\n        \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n        \\\"r2_space\\\": \\\"original_denormalized\\\",\\n        \\\"results\\\": results,\\n    }\\n    os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)\\n    with open(OUT_JSON, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nJSON saved to {OUT_JSON}\\\")\\n\\n    elapsed = time.time() - t_start\\n    print(f\\\"\\\\nTotal time: {elapsed/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "f8e7b503-40a2-4f4a-9d13-280904f28619",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phi3V UNTRAINED (base Phi-3 LLM) per-layer action R² probe.\\\\n\\\\nSame pipeline as phi3v_r2_action_probe.py, but with base Phi-3-mini weights\\\\nreplacing the LLM decoder layers (vision encoder + projector kept from TracVLA).\\\\n\\\\nPhase 1: Extract last-preaction hidden states from all 33 layers.\\\\nPhase 2: Train per-layer MLP probes (5 seeds), compute R².\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport gc\\\\nimport glob\\\\nimport json\\\\nimport os\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\nTRACVLA_PATH = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\"\\\\nBASE_PHI3_PATHS = [\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/models--microsoft--Phi-3-mini-4k-instruct\\\\\\\",\\\\n]\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\\\\\"\\\\nFEATURE_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\\\\\\\"\\\\nOUT_JSON = \\\\\\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\\\\\\"\\\\n\\\\nN_LAYERS = 33\\\\nNUM_DECODER_LAYERS = 32\\\\nHIDDEN_DIM_MODEL = 3072\\\\nPROBE_HIDDEN = 256\\\\nACTION_DIM = 7\\\\nSEEDS = list(range(5))\\\\nPROBE_BATCH = 256\\\\nLR = 1e-3\\\\nEPOCHS = 50\\\\nPATIENCE = 5\\\\nMAX_DEMOS = 50\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\n\\\\n# ── Phase 1: Feature Extraction ─────────────────────────────────────────\\\\n\\\\ndef task_desc_from_filename(fname):\\\\n    return Path(fname).stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")\\\\n\\\\n\\\\ndef find_base_phi3():\\\\n    for p in BASE_PHI3_PATHS:\\\\n        if os.path.isdir(p) and os.path.exists(os.path.join(p, \\\\\\\"config.json\\\\\\\")):\\\\n            return p\\\\n    for p in BASE_PHI3_PATHS:\\\\n        parent = Path(p)\\\\n        if parent.exists():\\\\n            for child in parent.rglob(\\\\\\\"config.json\\\\\\\"):\\\\n                return str(child.parent)\\\\n    raise FileNotFoundError(f\\\\\\\"Base Phi-3-mini not found in {BASE_PHI3_PATHS}\\\\\\\")\\\\n\\\\n\\\\ndef load_untrained_model(device_str):\\\\n    from transformers import AutoModelForCausalLM, AutoProcessor\\\\n\\\\n    processor = AutoProcessor.from_pretrained(\\\\n        TRACVLA_PATH, trust_remote_code=True, local_files_only=True\\\\n    )\\\\n\\\\n    print(\\\\\\\"Loading TracVLA-Phi3V architecture (CPU)...\\\\\\\")\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        TRACVLA_PATH,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n        local_files_only=True,\\\\n    )\\\\n\\\\n    base_path = find_base_phi3()\\\\n    print(f\\\\\\\"Loading base Phi-3-mini from {base_path}...\\\\\\\")\\\\n    base_model = AutoModelForCausalLM.from_pretrained(\\\\n        base_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        low_cpu_mem_usage=True,\\\\n    )\\\\n\\\\n    print(f\\\\\\\"Replacing LLM decoder layer weights ({NUM_DECODER_LAYERS} layers)...\\\\\\\")\\\\n    for i in range(NUM_DECODER_LAYERS):\\\\n        model.model.layers[i].load_state_dict(base_model.model.layers[i].state_dict())\\\\n\\\\n    try:\\\\n        model.model.embed_tokens.load_state_dict(base_model.model.embed_tokens.state_dict())\\\\n        model.lm_head.load_state_dict(base_model.lm_head.state_dict())\\\\n        print(\\\\\\\"Replaced embed_tokens + lm_head\\\\\\\")\\\\n    except RuntimeError as e:\\\\n        print(f\\\\\\\"Skipping embed_tokens/lm_head (dim mismatch): {e}\\\\\\\")\\\\n\\\\n    del base_model\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    model = model.to(device_str)\\\\n    model.eval()\\\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\\\n    print(f\\\\\\\"Untrained hybrid model on {device_str}: {n_params:.1f}B params\\\\\\\")\\\\n    return model, processor\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef extract_one_task(model, processor, hdf5_path, task_desc, device, out_path):\\\\n    from PIL import Image\\\\n\\\\n    prompt = (\\\\n        f\\\\\\\"<|user|>\\\\\\\\n<|image_1|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"What action should the robot take to {task_desc}?<|end|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"<|assistant|>\\\\\\\\n\\\\\\\"\\\\n    )\\\\n\\\\n    f = h5py.File(hdf5_path, \\\\\\\"r\\\\\\\")\\\\n    demo_keys = sorted(\\\\n        [k for k in f[\\\\\\\"data\\\\\\\"].keys() if k.startswith(\\\\\\\"demo_\\\\\\\")],\\\\n        key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[-1]),\\\\n    )[:MAX_DEMOS]\\\\n\\\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\\\n    tmp_path = out_path + \\\\\\\".tmp\\\\\\\"\\\\n    out_f = h5py\\\\n\\\\n... [截断: 输出过长，省略 5378 字符] ...\\\\n\\\\ndevice)\\\\n\\\\n    model = ActionMLPProbe().to(device)\\\\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\\\\n    criterion = nn.MSELoss()\\\\n\\\\n    n = len(X_tr_d)\\\\n    best_val_loss = float(\\\\\\\"inf\\\\\\\")\\\\n    best_state = None\\\\n    wait = 0\\\\n\\\\n    for epoch in range(EPOCHS):\\\\n        model.train()\\\\n        perm = torch.randperm(n, device=device)\\\\n        for start in range(0, n, PROBE_BATCH):\\\\n            idx = perm[start:start + PROBE_BATCH]\\\\n            pred = model(X_tr_d[idx])\\\\n            loss = criterion(pred, y_tr_d[idx])\\\\n            optimizer.zero_grad()\\\\n            loss.backward()\\\\n            optimizer.step()\\\\n\\\\n        model.eval()\\\\n        with torch.no_grad():\\\\n            val_pred = model(X_val_d)\\\\n            val_loss = criterion(val_pred, y_val_d).item()\\\\n\\\\n        if val_loss < best_val_loss - 1e-6:\\\\n            best_val_loss = val_loss\\\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\\\n            wait = 0\\\\n        else:\\\\n            wait += 1\\\\n            if wait >= PATIENCE:\\\\n                break\\\\n\\\\n    model.load_state_dict(best_state)\\\\n    model.eval()\\\\n\\\\n    with torch.no_grad():\\\\n        pred_norm = model(X_val_d).cpu()\\\\n    pred_orig = (pred_norm * y_std + y_mean).numpy()\\\\n    y_true = y_val_raw.numpy()\\\\n\\\\n    unique_tasks = sorted(set(val_tasks))\\\\n    per_task_r2 = {}\\\\n    for t in unique_tasks:\\\\n        mask = [i for i, vt in enumerate(val_tasks) if vt == t]\\\\n        yt = y_true[mask]\\\\n        yp = pred_orig[mask]\\\\n        ss_r = np.sum((yt - yp) ** 2)\\\\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\\\\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\\\n\\\\n    return float(np.mean(list(per_task_r2.values())))\\\\n\\\\n\\\\ndef run_probe(device):\\\\n    results = {\\\\\\\"untrained\\\\\\\": {}}\\\\n\\\\n    for layer in range(N_LAYERS):\\\\n        t0 = time.time()\\\\n        task_data = load_features_and_actions(layer)\\\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\\\n\\\\n        seed_r2s = []\\\\n        for seed in SEEDS:\\\\n            r2 = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, device, seed)\\\\n            seed_r2s.append(r2)\\\\n            torch.cuda.empty_cache()\\\\n\\\\n        results[\\\\\\\"untrained\\\\\\\"][f\\\\\\\"L{layer}\\\\\\\"] = {\\\\n            \\\\\\\"seeds\\\\\\\": seed_r2s,\\\\n            \\\\\\\"mean\\\\\\\": float(np.mean(seed_r2s)),\\\\n            \\\\\\\"std\\\\\\\": float(np.std(seed_r2s)),\\\\n        }\\\\n\\\\n        elapsed = time.time() - t0\\\\n        print(f\\\\\\\"  L{layer}: mean={np.mean(seed_r2s):.4f} +/- {np.std(seed_r2s):.4f} \\\\\\\"\\\\n              f\\\\\\\"({[round(v, 4) for v in seed_r2s]}) {elapsed:.1f}s\\\\\\\")\\\\n\\\\n        del task_data, X_tr, y_tr, X_val, y_val\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    device = torch.device(DEVICE)\\\\n    t_start = time.time()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Phi3V UNTRAINED (base Phi-3 LLM) Per-Layer Action R² Probe\\\\\\\")\\\\n    print(f\\\\\\\"TracVLA arch: {TRACVLA_PATH}\\\\\\\")\\\\n    print(f\\\\\\\"Base LLM: Phi-3-mini-4k-instruct\\\\\\\")\\\\n    print(f\\\\\\\"Seeds: {SEEDS}\\\\\\\")\\\\n    print(f\\\\\\\"Layers: {N_LAYERS} (L0-L32)\\\\\\\")\\\\n    print(f\\\\\\\"Device: {device}\\\\\\\")\\\\n    print(f\\\\\\\"Feature: last_preaction (last token hidden state)\\\\\\\")\\\\n    print(f\\\\\\\"Split: sequential 80/20 (no shuffle)\\\\\\\")\\\\n    print(f\\\\\\\"R² space: original (denormalized)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n--- Phase 1: Feature Extraction ---\\\\\\\")\\\\n    run_extraction(DEVICE)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n--- Phase 2: R² Probe ---\\\\\\\")\\\\n    results = run_probe(device)\\\\n\\\\n    base_path = find_base_phi3()\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"Phi3V-Untrained-Base\\\\\\\",\\\\n        \\\\\\\"tracvla_checkpoint\\\\\\\": TRACVLA_PATH,\\\\n        \\\\\\\"base_llm\\\\\\\": base_path,\\\\n        \\\\\\\"conditions\\\\\\\": [\\\\\\\"untrained\\\\\\\"],\\\\n        \\\\\\\"seeds\\\\\\\": SEEDS,\\\\n        \\\\\\\"n_layers\\\\\\\": N_LAYERS,\\\\n        \\\\\\\"hidden_dim\\\\\\\": HIDDEN_DIM_MODEL,\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"last_preaction\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": \\\\\\\"sequential_80_20_no_shuffle\\\\\\\",\\\\n        \\\\\\\"r2_space\\\\\\\": \\\\\\\"original_denormalized\\\\\\\",\\\\n        \\\\\\\"results\\\\\\\": results,\\\\n    }\\\\n    os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)\\\\n    with open(OUT_JSON, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nJSON saved to {OUT_JSON}\\\\\\\")\\\\n\\\\n    elapsed = time.time() - t_start\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {elapsed/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phi3V UNTRAINED (base Phi-3 LLM) per-layer action R² probe.\\n\\nSame pipeline as phi3v_r2_action_probe.py, but with base Phi-3-mini weights\\nreplacing the LLM decoder layers (vision encoder + projector kept from TracVLA).\\n\\nPhase 1: Extract last-preaction hidden states from all 33 layers.\\nPhase 2: Train per-layer MLP probes (5 seeds), compute R².\\n\\\"\\\"\\\"\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\n\\nTRACVLA_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nBASE_PHI3_PATHS = [\\n    \\\"/root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/models--microsoft--Phi-3-mini-4k-instruct\\\",\\n]\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nFEATURE_DIR = \\\"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\\\"\\nOUT_JSON = \\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\\"\\n\\nN_LAYERS = 33\\nNUM_DECODER_LAYERS = 32\\nHIDDEN_DIM_MODEL = 3072\\nPROBE_HIDDEN = 256\\nACTION_DIM = 7\\nSEEDS = list(range(5))\\nPROBE_BATCH = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nMAX_DEMOS = 50\\nDEVICE = \\\"cuda:0\\\"\\n\\n\\n# ── Phase 1: Feature Extraction ─────────────────────────────────────────\\n\\ndef task_desc_from_filename(fname):\\n    return Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef find_base_phi3():\\n    for p in BASE_PHI3_PATHS:\\n        if os.path.isdir(p) and os.path.exists(os.path.join(p, \\\"config.json\\\")):\\n            return p\\n    for p in BASE_PHI3_PATHS:\\n        parent = Path(p)\\n        if parent.exists():\\n            for child in parent.rglob(\\\"config.json\\\"):\\n                return str(child.parent)\\n    raise FileNotFoundError(f\\\"Base Phi-3-mini not found in {BASE_PHI3_PATHS}\\\")\\n\\n\\ndef load_untrained_model(device_str):\\n    from transformers import AutoModelForCausalLM, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(\\n        TRACVLA_PATH, trust_remote_code=True, local_files_only=True\\n    )\\n\\n    print(\\\"Loading TracVLA-Phi3V architecture (CPU)...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        TRACVLA_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\",\\n        local_files_only=True,\\n    )\\n\\n    base_path = find_base_phi3()\\n    print(f\\\"Loading base Phi-3-mini from {base_path}...\\\")\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_path,\\n        torch_dtype=torch.bfloat16,\\n        low_cpu_mem_usage=True,\\n    )\\n\\n    print(f\\\"Replacing LLM decoder layer weights ({NUM_DECODER_LAYERS} layers)...\\\")\\n    for i in range(NUM_DECODER_LAYERS):\\n        model.model.layers[i].load_state_dict(base_model.model.layers[i].state_dict())\\n\\n    try:\\n        model.model.embed_tokens.load_state_dict(base_model.model.embed_tokens.state_dict())\\n        model.lm_head.load_state_dict(base_model.lm_head.state_dict())\\n        print(\\\"Replaced embed_tokens + lm_head\\\")\\n    except RuntimeError as e:\\n        print(f\\\"Skipping embed_tokens/lm_head (dim mismatch): {e}\\\")\\n\\n    del base_model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    model = model.to(device_str)\\n    model.eval()\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\n    print(f\\\"Untrained hybrid model on {device_str}: {n_params:.1f}B params\\\")\\n    return model, processor\\n\\n\\n@torch.no_grad()\\ndef extract_one_task(model, processor, hdf5_path, task_desc, device, out_path):\\n    from PIL import Image\\n\\n    prompt = (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {task_desc}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n    f = h5py.File(hdf5_path, \\\"r\\\")\\n    demo_keys = sorted(\\n        [k for k in f[\\\"data\\\"].keys() if k.startswith(\\\"demo_\\\")],\\n        key=lambda x: int(x.split(\\\"_\\\")[-1]),\\n    )[:MAX_DEMOS]\\n\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\n    tmp_path = out_path + \\\".tmp\\\"\\n    out_f = h5py\\n\\n... [截断: 输出过长，省略 5378 字符] ...\\n\\ndevice)\\n\\n    model = ActionMLPProbe().to(device)\\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\\n    criterion = nn.MSELoss()\\n\\n    n = len(X_tr_d)\\n    best_val_loss = float(\\\"inf\\\")\\n    best_state = None\\n    wait = 0\\n\\n    for epoch in range(EPOCHS):\\n        model.train()\\n        perm = torch.randperm(n, device=device)\\n        for start in range(0, n, PROBE_BATCH):\\n            idx = perm[start:start + PROBE_BATCH]\\n            pred = model(X_tr_d[idx])\\n            loss = criterion(pred, y_tr_d[idx])\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            val_pred = model(X_val_d)\\n            val_loss = criterion(val_pred, y_val_d).item()\\n\\n        if val_loss < best_val_loss - 1e-6:\\n            best_val_loss = val_loss\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= PATIENCE:\\n                break\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n\\n    with torch.no_grad():\\n        pred_norm = model(X_val_d).cpu()\\n    pred_orig = (pred_norm * y_std + y_mean).numpy()\\n    y_true = y_val_raw.numpy()\\n\\n    unique_tasks = sorted(set(val_tasks))\\n    per_task_r2 = {}\\n    for t in unique_tasks:\\n        mask = [i for i, vt in enumerate(val_tasks) if vt == t]\\n        yt = y_true[mask]\\n        yp = pred_orig[mask]\\n        ss_r = np.sum((yt - yp) ** 2)\\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\n\\n    return float(np.mean(list(per_task_r2.values())))\\n\\n\\ndef run_probe(device):\\n    results = {\\\"untrained\\\": {}}\\n\\n    for layer in range(N_LAYERS):\\n        t0 = time.time()\\n        task_data = load_features_and_actions(layer)\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n\\n        seed_r2s = []\\n        for seed in SEEDS:\\n            r2 = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, device, seed)\\n            seed_r2s.append(r2)\\n            torch.cuda.empty_cache()\\n\\n        results[\\\"untrained\\\"][f\\\"L{layer}\\\"] = {\\n            \\\"seeds\\\": seed_r2s,\\n            \\\"mean\\\": float(np.mean(seed_r2s)),\\n            \\\"std\\\": float(np.std(seed_r2s)),\\n        }\\n\\n        elapsed = time.time() - t0\\n        print(f\\\"  L{layer}: mean={np.mean(seed_r2s):.4f} +/- {np.std(seed_r2s):.4f} \\\"\\n              f\\\"({[round(v, 4) for v in seed_r2s]}) {elapsed:.1f}s\\\")\\n\\n        del task_data, X_tr, y_tr, X_val, y_val\\n\\n    return results\\n\\n\\ndef main():\\n    device = torch.device(DEVICE)\\n    t_start = time.time()\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Phi3V UNTRAINED (base Phi-3 LLM) Per-Layer Action R² Probe\\\")\\n    print(f\\\"TracVLA arch: {TRACVLA_PATH}\\\")\\n    print(f\\\"Base LLM: Phi-3-mini-4k-instruct\\\")\\n    print(f\\\"Seeds: {SEEDS}\\\")\\n    print(f\\\"Layers: {N_LAYERS} (L0-L32)\\\")\\n    print(f\\\"Device: {device}\\\")\\n    print(f\\\"Feature: last_preaction (last token hidden state)\\\")\\n    print(f\\\"Split: sequential 80/20 (no shuffle)\\\")\\n    print(f\\\"R² space: original (denormalized)\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    print(\\\"\\\\n--- Phase 1: Feature Extraction ---\\\")\\n    run_extraction(DEVICE)\\n\\n    print(\\\"\\\\n--- Phase 2: R² Probe ---\\\")\\n    results = run_probe(device)\\n\\n    base_path = find_base_phi3()\\n    output = {\\n        \\\"model\\\": \\\"Phi3V-Untrained-Base\\\",\\n        \\\"tracvla_checkpoint\\\": TRACVLA_PATH,\\n        \\\"base_llm\\\": base_path,\\n        \\\"conditions\\\": [\\\"untrained\\\"],\\n        \\\"seeds\\\": SEEDS,\\n        \\\"n_layers\\\": N_LAYERS,\\n        \\\"hidden_dim\\\": HIDDEN_DIM_MODEL,\\n        \\\"feature\\\": \\\"last_preaction\\\",\\n        \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n        \\\"r2_space\\\": \\\"original_denormalized\\\",\\n        \\\"results\\\": results,\\n    }\\n    os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)\\n    with open(OUT_JSON, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nJSON saved to {OUT_JSON}\\\")\\n\\n    elapsed = time.time() - t_start\\n    print(f\\\"\\\\nTotal time: {elapsed/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T11:20:49.444Z_
+
+<details><summary>↩ Tool result · `toolu_01HhUA2AmbwLU9JP9M5YUCGF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"TracVLA-Phi3V R2 probe seed expansion: seeds 5-14.\\n\\nExtends phi3v_r2_action_probe.py (seeds 0-4) to 15 total seeds.\\nPhase 2 only — features already extracted in phi3v_trained_libero_goal/.\\n\\\"\\\"\\\"\\nimport glob\\nimport json\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\n\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nFEATURE_DIR = \\\"/root/autodl-tmp/vla-ssd/features/phi3v_trained_libero_goal/\\\"\\nOUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/\\\"\\nOUT_JSON = os.path.join(OUT_DIR, \\\"phi3v_r2_seed_expansion.json\\\")\\n\\nN_LAYERS = 33\\nHIDDEN_DIM_MODEL = 3072\\nPROBE_HIDDEN = 256\\nACTION_DIM = 7\\nSEEDS = list(range(5, 15))\\nPROBE_BATCH = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nDEVICE = \\\"cuda:0\\\"\\n\\n\\nclass ActionMLPProbe(nn.Module):\\n    def __init__(self, in_dim=HIDDEN_DIM_MODEL, out_dim=ACTION_DIM, hidden_dim=PROBE_HIDDEN):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(in_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, out_dim),\\n        )\\n\\n    def forward(self, x):\\n        return self.net(x)\\n\\n\\ndef load_features_and_actions(layer):\\n    task_data = {}\\n    for h5_path in sorted(glob.glob(os.path.join(FEATURE_DIR, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        action_path = os.path.join(DATA_DIR, f\\\"{task}_demo.hdf5\\\")\\n        if not os.path.exists(action_path):\\n            continue\\n        demos = []\\n        with h5py.File(h5_path, \\\"r\\\") as ff, h5py.File(action_path, \\\"r\\\") as fa:\\n            demo_keys = sorted(\\n                [k for k in ff.keys() if k.startswith(\\\"demo_\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[-1]),\\n            )\\n            for k in demo_keys:\\n                idx = int(k.split(\\\"_\\\")[-1])\\n                feat = np.asarray(ff[k][\\\"last_preaction\\\"][:, layer, :], dtype=np.float32)\\n                act = np.asarray(fa[f\\\"data/demo_{idx}/actions\\\"], dtype=np.float32)\\n                demos.append((feat, act))\\n        task_data[task] = demos\\n    return task_data\\n\\n\\ndef build_train_val(task_data):\\n    X_tr_list, y_tr_list = [], []\\n    X_val_list, y_val_list, val_tasks = [], [], []\\n    for task in sorted(task_data.keys()):\\n        demos = task_data[task]\\n        n_train = int(len(demos) * 0.8)\\n        for i, (feat, act) in enumerate(demos):\\n            T = min(feat.shape[0], act.shape[0])\\n            if T < 2:\\n                continue\\n            x = torch.from_numpy(feat[:T - 1])\\n            y = torch.from_numpy(act[1:T])\\n            if i < n_train:\\n                X_tr_list.append(x)\\n                y_tr_list.append(y)\\n            else:\\n                X_val_list.append(x)\\n                y_val_list.append(y)\\n                val_tasks.extend([task] * (T - 1))\\n    return (torch.cat(X_tr_list), torch.cat(y_tr_list),\\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks)\\n\\n\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device, seed):\\n    torch.manual_seed(seed)\\n    np.random.seed(seed)\\n\\n    y_mean = y_tr_raw.mean(dim=0)\\n    y_std = y_tr_raw.std(dim=0).clamp(min=1e-6)\\n    y_tr = (y_tr_raw - y_mean) / y_std\\n    y_val = (y_val_raw - y_mean) / y_std\\n\\n    X_tr_d = X_tr.to(device)\\n    y_tr_d = y_tr.to(device)\\n    X_val_d = X_val.to(device)\\n    y_val_d = y_val.to(device)\\n\\n    model = ActionMLPProbe().to(device)\\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\\n    criterion = nn.MSELoss()\\n\\n    n = len(X_tr_d)\\n    best_val_loss = float(\\\"inf\\\")\\n    best_state = None\\n    wait = 0\\n\\n    for epoch in range(EPOCHS):\\n        model.train()\\n        perm = torch.randperm(n, device=device)\\n        for start in range(0, n, PROBE_BATCH):\\n            idx = perm[start:start + PROBE_BATCH]\\n            pred = model(X_tr_d[idx])\\n            loss = criterion(pred, y_tr_d[idx])\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            val_pred = model(X_val_d)\\n            val_loss = criterion(val_pred, y_val_d).item()\\n\\n        if val_loss < best_val_loss - 1e-6:\\n            best_val_loss = val_loss\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= PATIENCE:\\n                break\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n\\n    with torch.no_grad():\\n        pred_norm = model(X_val_d).cpu()\\n    pred_orig = (pred_norm * y_std + y_mean).numpy()\\n    y_true = y_val_raw.numpy()\\n\\n    unique_tasks = sorted(set(val_tasks))\\n    per_task_r2 = {}\\n    for t in unique_tasks:\\n        mask = [i for i, vt in enumerate(val_tasks) if vt == t]\\n        yt = y_true[mask]\\n        yp = pred_orig[mask]\\n        ss_r = np.sum((yt - yp) ** 2)\\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\n\\n    return float(np.mean(list(per_task_r2.values())))\\n\\n\\ndef main():\\n    device = torch.device(DEVICE)\\n    t_start = time.time()\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"TracVLA-Phi3V R2 Probe — Seed Expansion (5-14)\\\")\\n    print(f\\\"Seeds: {SEEDS}\\\")\\n    print(f\\\"Layers: {N_LAYERS} (L0-L32)\\\")\\n    print(f\\\"Device: {device}\\\")\\n    print(f\\\"Feature: last_preaction\\\")\\n    print(f\\\"Split: sequential 80/20 (no shuffle)\\\")\\n    print(f\\\"R2 space: original (denormalized)\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    results = {\\\"trained\\\": {}}\\n\\n    for layer in range(N_LAYERS):\\n        t0 = time.time()\\n        task_data = load_features_and_actions(layer)\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n\\n        seed_r2s = []\\n        for seed in SEEDS:\\n            r2 = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, device, seed)\\n            seed_r2s.append(r2)\\n            torch.cuda.empty_cache()\\n\\n        results[\\\"trained\\\"][f\\\"L{layer}\\\"] = {\\n            \\\"seeds\\\": seed_r2s,\\n            \\\"mean\\\": float(np.mean(seed_r2s)),\\n            \\\"std\\\": float(np.std(seed_r2s)),\\n        }\\n\\n        elapsed = time.time() - t0\\n        print(f\\\"  L{layer}: mean={np.mean(seed_r2s):.4f} +/- {np.std(seed_r2s):.4f} \\\"\\n              f\\\"({[round(v, 4) for v in seed_r2s]}) {elapsed:.1f}s\\\")\\n\\n        del task_data, X_tr, y_tr, X_val, y_val\\n\\n    output = {\\n        \\\"model\\\": \\\"TracVLA-Phi3V\\\",\\n        \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n        \\\"conditions\\\": [\\\"trained\\\"],\\n        \\\"seeds\\\": SEEDS,\\n        \\\"n_layers\\\": N_LAYERS,\\n        \\\"hidden_dim\\\": HIDDEN_DIM_MODEL,\\n        \\\"feature\\\": \\\"last_preaction\\\",\\n        \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n        \\\"r2_space\\\": \\\"original_denormalized\\\",\\n        \\\"results\\\": results,\\n    }\\n    os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)\\n    with open(OUT_JSON, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nJSON saved to {OUT_JSON}\\\")\\n\\n    elapsed = time.time() - t_start\\n    print(f\\\"\\\\nTotal time: {elapsed/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "5507d618-189f-4786-bcea-3193620859cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"TracVLA-Phi3V R2 probe seed expansion: seeds 5-14.\\\\n\\\\nExtends phi3v_r2_action_probe.py (seeds 0-4) to 15 total seeds.\\\\nPhase 2 only — features already extracted in phi3v_trained_libero_goal/.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport glob\\\\nimport json\\\\nimport os\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\\\\\"\\\\nFEATURE_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/features/phi3v_trained_libero_goal/\\\\\\\"\\\\nOUT_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/\\\\\\\"\\\\nOUT_JSON = os.path.join(OUT_DIR, \\\\\\\"phi3v_r2_seed_expansion.json\\\\\\\")\\\\n\\\\nN_LAYERS = 33\\\\nHIDDEN_DIM_MODEL = 3072\\\\nPROBE_HIDDEN = 256\\\\nACTION_DIM = 7\\\\nSEEDS = list(range(5, 15))\\\\nPROBE_BATCH = 256\\\\nLR = 1e-3\\\\nEPOCHS = 50\\\\nPATIENCE = 5\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\n\\\\nclass ActionMLPProbe(nn.Module):\\\\n    def __init__(self, in_dim=HIDDEN_DIM_MODEL, out_dim=ACTION_DIM, hidden_dim=PROBE_HIDDEN):\\\\n        super().__init__()\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(in_dim, hidden_dim),\\\\n            nn.ReLU(),\\\\n            nn.Linear(hidden_dim, out_dim),\\\\n        )\\\\n\\\\n    def forward(self, x):\\\\n        return self.net(x)\\\\n\\\\n\\\\ndef load_features_and_actions(layer):\\\\n    task_data = {}\\\\n    for h5_path in sorted(glob.glob(os.path.join(FEATURE_DIR, \\\\\\\"*.h5\\\\\\\"))):\\\\n        task = Path(h5_path).stem\\\\n        action_path = os.path.join(DATA_DIR, f\\\\\\\"{task}_demo.hdf5\\\\\\\")\\\\n        if not os.path.exists(action_path):\\\\n            continue\\\\n        demos = []\\\\n        with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as ff, h5py.File(action_path, \\\\\\\"r\\\\\\\") as fa:\\\\n            demo_keys = sorted(\\\\n                [k for k in ff.keys() if k.startswith(\\\\\\\"demo_\\\\\\\")],\\\\n                key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[-1]),\\\\n            )\\\\n            for k in demo_keys:\\\\n                idx = int(k.split(\\\\\\\"_\\\\\\\")[-1])\\\\n                feat = np.asarray(ff[k][\\\\\\\"last_preaction\\\\\\\"][:, layer, :], dtype=np.float32)\\\\n                act = np.asarray(fa[f\\\\\\\"data/demo_{idx}/actions\\\\\\\"], dtype=np.float32)\\\\n                demos.append((feat, act))\\\\n        task_data[task] = demos\\\\n    return task_data\\\\n\\\\n\\\\ndef build_train_val(task_data):\\\\n    X_tr_list, y_tr_list = [], []\\\\n    X_val_list, y_val_list, val_tasks = [], [], []\\\\n    for task in sorted(task_data.keys()):\\\\n        demos = task_data[task]\\\\n        n_train = int(len(demos) * 0.8)\\\\n        for i, (feat, act) in enumerate(demos):\\\\n            T = min(feat.shape[0], act.shape[0])\\\\n            if T < 2:\\\\n                continue\\\\n            x = torch.from_numpy(feat[:T - 1])\\\\n            y = torch.from_numpy(act[1:T])\\\\n            if i < n_train:\\\\n                X_tr_list.append(x)\\\\n                y_tr_list.append(y)\\\\n            else:\\\\n                X_val_list.append(x)\\\\n                y_val_list.append(y)\\\\n                val_tasks.extend([task] * (T - 1))\\\\n    return (torch.cat(X_tr_list), torch.cat(y_tr_list),\\\\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks)\\\\n\\\\n\\\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device, seed):\\\\n    torch.manual_seed(seed)\\\\n    np.random.seed(seed)\\\\n\\\\n    y_mean = y_tr_raw.mean(dim=0)\\\\n    y_std = y_tr_raw.std(dim=0).clamp(min=1e-6)\\\\n    y_tr = (y_tr_raw - y_mean) / y_std\\\\n    y_val = (y_val_raw - y_mean) / y_std\\\\n\\\\n    X_tr_d = X_tr.to(device)\\\\n    y_tr_d = y_tr.to(device)\\\\n    X_val_d = X_val.to(device)\\\\n    y_val_d = y_val.to(device)\\\\n\\\\n    model = ActionMLPProbe().to(device)\\\\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\\\\n    criterion = nn.MSELoss()\\\\n\\\\n    n = len(X_tr_d)\\\\n    best_val_loss = float(\\\\\\\"inf\\\\\\\")\\\\n    best_state = None\\\\n    wait = 0\\\\n\\\\n    for epoch in range(EPOCHS):\\\\n        model.train()\\\\n        perm = torch.randperm(n, device=device)\\\\n        for start in range(0, n, PROBE_BATCH):\\\\n            idx = perm[start:start + PROBE_BATCH]\\\\n            pred = model(X_tr_d[idx])\\\\n            loss = criterion(pred, y_tr_d[idx])\\\\n            optimizer.zero_grad()\\\\n            loss.backward()\\\\n            optimizer.step()\\\\n\\\\n        model.eval()\\\\n        with torch.no_grad():\\\\n            val_pred = model(X_val_d)\\\\n            val_loss = criterion(val_pred, y_val_d).item()\\\\n\\\\n        if val_loss < best_val_loss - 1e-6:\\\\n            best_val_loss = val_loss\\\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\\\n            wait = 0\\\\n        else:\\\\n            wait += 1\\\\n            if wait >= PATIENCE:\\\\n                break\\\\n\\\\n    model.load_state_dict(best_state)\\\\n    model.eval()\\\\n\\\\n    with torch.no_grad():\\\\n        pred_norm = model(X_val_d).cpu()\\\\n    pred_orig = (pred_norm * y_std + y_mean).numpy()\\\\n    y_true = y_val_raw.numpy()\\\\n\\\\n    unique_tasks = sorted(set(val_tasks))\\\\n    per_task_r2 = {}\\\\n    for t in unique_tasks:\\\\n        mask = [i for i, vt in enumerate(val_tasks) if vt == t]\\\\n        yt = y_true[mask]\\\\n        yp = pred_orig[mask]\\\\n        ss_r = np.sum((yt - yp) ** 2)\\\\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\\\\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\\\n\\\\n    return float(np.mean(list(per_task_r2.values())))\\\\n\\\\n\\\\ndef main():\\\\n    device = torch.device(DEVICE)\\\\n    t_start = time.time()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"TracVLA-Phi3V R2 Probe — Seed Expansion (5-14)\\\\\\\")\\\\n    print(f\\\\\\\"Seeds: {SEEDS}\\\\\\\")\\\\n    print(f\\\\\\\"Layers: {N_LAYERS} (L0-L32)\\\\\\\")\\\\n    print(f\\\\\\\"Device: {device}\\\\\\\")\\\\n    print(f\\\\\\\"Feature: last_preaction\\\\\\\")\\\\n    print(f\\\\\\\"Split: sequential 80/20 (no shuffle)\\\\\\\")\\\\n    print(f\\\\\\\"R2 space: original (denormalized)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    results = {\\\\\\\"trained\\\\\\\": {}}\\\\n\\\\n    for layer in range(N_LAYERS):\\\\n        t0 = time.time()\\\\n        task_data = load_features_and_actions(layer)\\\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\\\n\\\\n        seed_r2s = []\\\\n        for seed in SEEDS:\\\\n            r2 = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, device, seed)\\\\n            seed_r2s.append(r2)\\\\n            torch.cuda.empty_cache()\\\\n\\\\n        results[\\\\\\\"trained\\\\\\\"][f\\\\\\\"L{layer}\\\\\\\"] = {\\\\n            \\\\\\\"seeds\\\\\\\": seed_r2s,\\\\n            \\\\\\\"mean\\\\\\\": float(np.mean(seed_r2s)),\\\\n            \\\\\\\"std\\\\\\\": float(np.std(seed_r2s)),\\\\n        }\\\\n\\\\n        elapsed = time.time() - t0\\\\n        print(f\\\\\\\"  L{layer}: mean={np.mean(seed_r2s):.4f} +/- {np.std(seed_r2s):.4f} \\\\\\\"\\\\n              f\\\\\\\"({[round(v, 4) for v in seed_r2s]}) {elapsed:.1f}s\\\\\\\")\\\\n\\\\n        del task_data, X_tr, y_tr, X_val, y_val\\\\n\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"TracVLA-Phi3V\\\\\\\",\\\\n        \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\",\\\\n        \\\\\\\"conditions\\\\\\\": [\\\\\\\"trained\\\\\\\"],\\\\n        \\\\\\\"seeds\\\\\\\": SEEDS,\\\\n        \\\\\\\"n_layers\\\\\\\": N_LAYERS,\\\\n        \\\\\\\"hidden_dim\\\\\\\": HIDDEN_DIM_MODEL,\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"last_preaction\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": \\\\\\\"sequential_80_20_no_shuffle\\\\\\\",\\\\n        \\\\\\\"r2_space\\\\\\\": \\\\\\\"original_denormalized\\\\\\\",\\\\n        \\\\\\\"results\\\\\\\": results,\\\\n    }\\\\n    os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)\\\\n    with open(OUT_JSON, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nJSON saved to {OUT_JSON}\\\\\\\")\\\\n\\\\n    elapsed = time.time() - t_start\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {elapsed/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"TracVLA-Phi3V R2 probe seed expansion: seeds 5-14.\\n\\nExtends phi3v_r2_action_probe.py (seeds 0-4) to 15 total seeds.\\nPhase 2 only — features already extracted in phi3v_trained_libero_goal/.\\n\\\"\\\"\\\"\\nimport glob\\nimport json\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\n\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nFEATURE_DIR = \\\"/root/autodl-tmp/vla-ssd/features/phi3v_trained_libero_goal/\\\"\\nOUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/\\\"\\nOUT_JSON = os.path.join(OUT_DIR, \\\"phi3v_r2_seed_expansion.json\\\")\\n\\nN_LAYERS = 33\\nHIDDEN_DIM_MODEL = 3072\\nPROBE_HIDDEN = 256\\nACTION_DIM = 7\\nSEEDS = list(range(5, 15))\\nPROBE_BATCH = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nDEVICE = \\\"cuda:0\\\"\\n\\n\\nclass ActionMLPProbe(nn.Module):\\n    def __init__(self, in_dim=HIDDEN_DIM_MODEL, out_dim=ACTION_DIM, hidden_dim=PROBE_HIDDEN):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(in_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, out_dim),\\n        )\\n\\n    def forward(self, x):\\n        return self.net(x)\\n\\n\\ndef load_features_and_actions(layer):\\n    task_data = {}\\n    for h5_path in sorted(glob.glob(os.path.join(FEATURE_DIR, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        action_path = os.path.join(DATA_DIR, f\\\"{task}_demo.hdf5\\\")\\n        if not os.path.exists(action_path):\\n            continue\\n        demos = []\\n        with h5py.File(h5_path, \\\"r\\\") as ff, h5py.File(action_path, \\\"r\\\") as fa:\\n            demo_keys = sorted(\\n                [k for k in ff.keys() if k.startswith(\\\"demo_\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[-1]),\\n            )\\n            for k in demo_keys:\\n                idx = int(k.split(\\\"_\\\")[-1])\\n                feat = np.asarray(ff[k][\\\"last_preaction\\\"][:, layer, :], dtype=np.float32)\\n                act = np.asarray(fa[f\\\"data/demo_{idx}/actions\\\"], dtype=np.float32)\\n                demos.append((feat, act))\\n        task_data[task] = demos\\n    return task_data\\n\\n\\ndef build_train_val(task_data):\\n    X_tr_list, y_tr_list = [], []\\n    X_val_list, y_val_list, val_tasks = [], [], []\\n    for task in sorted(task_data.keys()):\\n        demos = task_data[task]\\n        n_train = int(len(demos) * 0.8)\\n        for i, (feat, act) in enumerate(demos):\\n            T = min(feat.shape[0], act.shape[0])\\n            if T < 2:\\n                continue\\n            x = torch.from_numpy(feat[:T - 1])\\n            y = torch.from_numpy(act[1:T])\\n            if i < n_train:\\n                X_tr_list.append(x)\\n                y_tr_list.append(y)\\n            else:\\n                X_val_list.append(x)\\n                y_val_list.append(y)\\n                val_tasks.extend([task] * (T - 1))\\n    return (torch.cat(X_tr_list), torch.cat(y_tr_list),\\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks)\\n\\n\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device, seed):\\n    torch.manual_seed(seed)\\n    np.random.seed(seed)\\n\\n    y_mean = y_tr_raw.mean(dim=0)\\n    y_std = y_tr_raw.std(dim=0).clamp(min=1e-6)\\n    y_tr = (y_tr_raw - y_mean) / y_std\\n    y_val = (y_val_raw - y_mean) / y_std\\n\\n    X_tr_d = X_tr.to(device)\\n    y_tr_d = y_tr.to(device)\\n    X_val_d = X_val.to(device)\\n    y_val_d = y_val.to(device)\\n\\n    model = ActionMLPProbe().to(device)\\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\\n    criterion = nn.MSELoss()\\n\\n    n = len(X_tr_d)\\n    best_val_loss = float(\\\"inf\\\")\\n    best_state = None\\n    wait = 0\\n\\n    for epoch in range(EPOCHS):\\n        model.train()\\n        perm = torch.randperm(n, device=device)\\n        for start in range(0, n, PROBE_BATCH):\\n            idx = perm[start:start + PROBE_BATCH]\\n            pred = model(X_tr_d[idx])\\n            loss = criterion(pred, y_tr_d[idx])\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            val_pred = model(X_val_d)\\n            val_loss = criterion(val_pred, y_val_d).item()\\n\\n        if val_loss < best_val_loss - 1e-6:\\n            best_val_loss = val_loss\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= PATIENCE:\\n                break\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n\\n    with torch.no_grad():\\n        pred_norm = model(X_val_d).cpu()\\n    pred_orig = (pred_norm * y_std + y_mean).numpy()\\n    y_true = y_val_raw.numpy()\\n\\n    unique_tasks = sorted(set(val_tasks))\\n    per_task_r2 = {}\\n    for t in unique_tasks:\\n        mask = [i for i, vt in enumerate(val_tasks) if vt == t]\\n        yt = y_true[mask]\\n        yp = pred_orig[mask]\\n        ss_r = np.sum((yt - yp) ** 2)\\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\n\\n    return float(np.mean(list(per_task_r2.values())))\\n\\n\\ndef main():\\n    device = torch.device(DEVICE)\\n    t_start = time.time()\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"TracVLA-Phi3V R2 Probe — Seed Expansion (5-14)\\\")\\n    print(f\\\"Seeds: {SEEDS}\\\")\\n    print(f\\\"Layers: {N_LAYERS} (L0-L32)\\\")\\n    print(f\\\"Device: {device}\\\")\\n    print(f\\\"Feature: last_preaction\\\")\\n    print(f\\\"Split: sequential 80/20 (no shuffle)\\\")\\n    print(f\\\"R2 space: original (denormalized)\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    results = {\\\"trained\\\": {}}\\n\\n    for layer in range(N_LAYERS):\\n        t0 = time.time()\\n        task_data = load_features_and_actions(layer)\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n\\n        seed_r2s = []\\n        for seed in SEEDS:\\n            r2 = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, device, seed)\\n            seed_r2s.append(r2)\\n            torch.cuda.empty_cache()\\n\\n        results[\\\"trained\\\"][f\\\"L{layer}\\\"] = {\\n            \\\"seeds\\\": seed_r2s,\\n            \\\"mean\\\": float(np.mean(seed_r2s)),\\n            \\\"std\\\": float(np.std(seed_r2s)),\\n        }\\n\\n        elapsed = time.time() - t0\\n        print(f\\\"  L{layer}: mean={np.mean(seed_r2s):.4f} +/- {np.std(seed_r2s):.4f} \\\"\\n              f\\\"({[round(v, 4) for v in seed_r2s]}) {elapsed:.1f}s\\\")\\n\\n        del task_data, X_tr, y_tr, X_val, y_val\\n\\n    output = {\\n        \\\"model\\\": \\\"TracVLA-Phi3V\\\",\\n        \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n        \\\"conditions\\\": [\\\"trained\\\"],\\n        \\\"seeds\\\": SEEDS,\\n        \\\"n_layers\\\": N_LAYERS,\\n        \\\"hidden_dim\\\": HIDDEN_DIM_MODEL,\\n        \\\"feature\\\": \\\"last_preaction\\\",\\n        \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n        \\\"r2_space\\\": \\\"original_denormalized\\\",\\n        \\\"results\\\": results,\\n    }\\n    os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)\\n    with open(OUT_JSON, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nJSON saved to {OUT_JSON}\\\")\\n\\n    elapsed = time.time() - t_start\\n    print(f\\\"\\\\nTotal time: {elapsed/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the structure. The trained seed expansion (`phi3v_r2_seed_expansion.py`) is Phase 2 only - features already exist, just run the probe with new seeds. For the untrained expansion, I need to check if features are already extracted from the original run. If so, I can skip Phase 1 (feature extraction) and just run Phase 2 with new seeds.
+
+Key differences:
+- The untrained probe script has Phase 1 (feature extraction) + Phase 2 (probe training)
+- The trained seed expansion only has Phase 2 (because features were already extracted)
+
+
+- For the untrained expansion, features should already be at `/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/`, so I can reuse them with seeds 5-14 to match the trained expansion pattern.
+
+I'll create a script based on `phi3v_r2_seed_expansion.py` but pointing to the untrained features directory instead.
+
+Writing the expansion script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "1fb98063-0177-4504-b18c-7c4739ac1893",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuA5Lsw4yMkj1ieigULk3F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7485,
+      "cache_read_input_tokens": 40735,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+两个脚本结构清晰。untrained probe 用 seeds 0-4，trained expansion 用 seeds 5-14。我需要创建 untrained seed expansion 脚本（Phase 2 only），使用 seeds 5-14，指向 untrained features 目录。先确认 features 是否存在。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "d949ac57-49ff-4905-a058-b7511a27535c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuA5Lsw4yMkj1ieigULk3F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7485,
+      "cache_read_input_tokens": 40735,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YY4gVRNo55mm3ZCyCiwUPo`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "c4d10e0b-ff8e-4b26-a557-f9945a0e0cfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuA5Lsw4yMkj1ieigULk3F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7485,
+      "cache_read_input_tokens": 40735,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T11:21:03.293Z_
+
+<details><summary>↩ Tool result · `toolu_01YY4gVRNo55mm3ZCyCiwUPo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet.h5\\nopen_the_top_drawer_and_put_the_bowl_inside.h5\\npush_the_plate_to_the_front_of_the_stove.h5\\nput_the_bowl_on_the_plate.h5\\nput_the_bowl_on_the_stove.h5\\nput_the_bowl_on_top_of_the_cabinet.h5\\nput_the_cream_cheese_in_the_bowl.h5\\nput_the_wine_bottle_on_the_rack.h5\\nput_the_wine_bottle_on_top_of_the_cabinet.h5\\nturn_on_the_stove.h5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "5073be77-41e3-4513-9748-20113f91f918",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"open_the_middle_drawer_of_the_cabinet.h5\\\\nopen_the_top_drawer_and_put_the_bowl_inside.h5\\\\npush_the_plate_to_the_front_of_the_stove.h5\\\\nput_the_bowl_on_the_plate.h5\\\\nput_the_bowl_on_the_stove.h5\\\\nput_the_bowl_on_top_of_the_cabinet.h5\\\\nput_the_cream_cheese_in_the_bowl.h5\\\\nput_the_wine_bottle_on_the_rack.h5\\\\nput_the_wine_bottle_on_top_of_the_cabinet.h5\\\\nturn_on_the_stove.h5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet.h5\\nopen_the_top_drawer_and_put_the_bowl_inside.h5\\npush_the_plate_to_the_front_of_the_stove.h5\\nput_the_bowl_on_the_plate.h5\\nput_the_bowl_on_the_stove.h5\\nput_the_bowl_on_top_of_the_cabinet.h5\\nput_the_cream_cheese_in_the_bowl.h5\\nput_the_wine_bottle_on_the_rack.h5\\nput_the_wine_bottle_on_top_of_the_cabinet.h5\\nturn_on_the_stove.h5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Features exist for all 10 tasks. Now I'll create the untrained seed expansion script - basically a copy of `phi3v_r2_seed_expansion.py` but with:
+1. FEATURE_DIR pointing to untrained features
+2. Seeds 5-14
+3. Output to phi3v_untrained_seed_expansion
+4. Condition key "untrained" instead of "trained"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "789d9076-5c34-4fd8-a6a3-0377fb56231b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014NreKmPSMzvNw5HTbTs7fw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 854,
+      "cache_read_input_tokens": 48220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 854
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+10 个 task 的 features 都在。创建 untrained seed expansion 脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "fa6356f2-0c03-424a-8a6b-51b7eb714e64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014NreKmPSMzvNw5HTbTs7fw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 854,
+      "cache_read_input_tokens": 48220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 854
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MAYuFx9opHYuPwNn3qSEXs`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/phi3v_untrained_seed_expansion.py << 'PYEOF'\n\"\"\"Phi3V UNTRAINED R2 probe seed expansion: seeds 5-14.\n\nExtends phi3v_r2_untrained_probe.py (seeds 0-4) to 15 total seeds.\nPhase 2 only — features already extracted in phi3v_untrained_libero_goal/.\n\"\"\"\nimport glob\nimport json\nimport os\nimport time\nfrom pathlib import Path\n\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\n\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\"\nFEATURE_DIR = \"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\"\nOUT_DIR = \"/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion/\"\nOUT_JSON = os.path.join(OUT_DIR, \"phi3v_untrained_seed_expansion.json\")\n\nN_LAYERS = 33\nHIDDEN_DIM_MODEL = 3072\nPROBE_HIDDEN = 256\nACTION_DIM = 7\nSEEDS = list(range(5, 15))\nPROBE_BATCH = 256\nLR = 1e-3\nEPOCHS = 50\nPATIENCE = 5\nDEVICE = \"cuda:0\"\n\n\nclass ActionMLPProbe(nn.Module):\n    def __init__(self, in_dim=HIDDEN_DIM_MODEL, out_dim=ACTION_DIM, hidden_dim=PROBE_HIDDEN):\n        super().__init__()\n        self.net = nn.Sequential(\n            nn.Linear(in_dim, hidden_dim),\n            nn.ReLU(),\n            nn.Linear(hidden_dim, out_dim),\n        )\n\n    def forward(self, x):\n        return self.net(x)\n\n\ndef load_features_and_actions(layer):\n    task_data = {}\n    for h5_path in sorted(glob.glob(os.path.join(FEATURE_DIR, \"*.h5\"))):\n        task = Path(h5_path).stem\n        action_path = os.path.join(DATA_DIR, f\"{task}_demo.hdf5\")\n        if not os.path.exists(action_path):\n            continue\n        demos = []\n        with h5py.File(h5_path, \"r\") as ff, h5py.File(action_path, \"r\") as fa:\n            demo_keys = sorted(\n                [k for k in ff.keys() if k.startswith(\"demo_\")],\n                key=lambda x: int(x.split(\"_\")[-1]),\n            )\n            for k in demo_keys:\n                idx = int(k.split(\"_\")[-1])\n                feat = np.asarray(ff[k][\"last_preaction\"][:, layer, :], dtype=np.float32)\n                act = np.asarray(fa[f\"data/demo_{idx}/actions\"], dtype=np.float32)\n                demos.append((feat, act))\n        task_data[task] = demos\n    return task_data\n\n\ndef build_train_val(task_data):\n    X_tr_list, y_tr_list = [], []\n    X_val_list, y_val_list, val_tasks = [], [], []\n    for task in sorted(task_data.keys()):\n        demos = task_data[task]\n        n_train = int(len(demos) * 0.8)\n        for i, (feat, act) in enumerate(demos):\n            T = min(feat.shape[0], act.shape[0])\n            if T < 2:\n                continue\n            x = torch.from_numpy(feat[:T - 1])\n            y = torch.from_numpy(act[1:T])\n            if i < n_train:\n                X_tr_list.append(x)\n                y_tr_list.append(y)\n            else:\n                X_val_list.append(x)\n                y_val_list.append(y)\n                val_tasks.extend([task] * (T - 1))\n    return (torch.cat(X_tr_list), torch.cat(y_tr_list),\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks)\n\n\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device, seed):\n    torch.manual_seed(seed)\n    np.random.seed(seed)\n\n    y_mean = y_tr_raw.mean(dim=0)\n    y_std = y_tr_raw.std(dim=0).clamp(min=1e-6)\n    y_tr = (y_tr_raw - y_mean) / y_std\n    y_val = (y_val_raw - y_mean) / y_std\n\n    X_tr_d = X_tr.to(device)\n    y_tr_d = y_tr.to(device)\n    X_val_d = X_val.to(device)\n    y_val_d = y_val.to(device)\n\n    model = ActionMLPProbe().to(device)\n    optimizer = torch.optim.Adam(model.parameters(), lr=LR)\n    criterion = nn.MSELoss()\n\n    n = len(X_tr_d)\n    best_val_loss = float(\"inf\")\n    best_state = None\n    wait = 0\n\n    for epoch in range(EPOCHS):\n        model.train()\n        perm = torch.randperm(n, device=device)\n        for start in range(0, n, PROBE_BATCH):\n            idx = perm[start:start + PROBE_BATCH]\n            pred = model(X_tr_d[idx])\n            loss = criterion(pred, y_tr_d[idx])\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n\n        model.eval()\n        with torch.no_grad():\n            val_pred = model(X_val_d)\n            val_loss = criterion(val_pred, y_val_d).item()\n\n        if val_loss < best_val_loss - 1e-6:\n            best_val_loss = val_loss\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\n            wait = 0\n        else:\n            wait += 1\n            if wait >= PATIENCE:\n                break\n\n    model.load_state_dict(best_state)\n    model.eval()\n\n    with torch.no_grad():\n        pred_norm = model(X_val_d).cpu()\n    pred_orig = (pred_norm * y_std + y_mean).numpy()\n    y_true = y_val_raw.numpy()\n\n    unique_tasks = sorted(set(val_tasks))\n    per_task_r2 = {}\n    for t in unique_tasks:\n        mask = [i for i, vt in enumerate(val_tasks) if vt == t]\n        yt = y_true[mask]\n        yp = pred_orig[mask]\n        ss_r = np.sum((yt - yp) ** 2)\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\n\n    return float(np.mean(list(per_task_r2.values())))\n\n\ndef main():\n    device = torch.device(DEVICE)\n    t_start = time.time()\n\n    print(\"=\" * 60)\n    print(\"Phi3V UNTRAINED R2 Probe — Seed Expansion (5-14)\")\n    print(f\"Seeds: {SEEDS}\")\n    print(f\"Layers: {N_LAYERS} (L0-L32)\")\n    print(f\"Device: {device}\")\n    print(f\"Feature: last_preaction\")\n    print(f\"Split: sequential 80/20 (no shuffle)\")\n    print(f\"R2 space: original (denormalized)\")\n    print(\"=\" * 60)\n\n    results = {\"untrained\": {}}\n\n    for layer in range(N_LAYERS):\n        t0 = time.time()\n        task_data = load_features_and_actions(layer)\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\n\n        seed_r2s = []\n        for seed in SEEDS:\n            r2 = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, device, seed)\n            seed_r2s.append(r2)\n            torch.cuda.empty_cache()\n\n        results[\"untrained\"][f\"L{layer}\"] = {\n            \"seeds\": seed_r2s,\n            \"mean\": float(np.mean(seed_r2s)),\n            \"std\": float(np.std(seed_r2s)),\n        }\n\n        elapsed = time.time() - t0\n        print(f\"  L{layer}: mean={np.mean(seed_r2s):.4f} +/- {np.std(seed_r2s):.4f} \"\n              f\"({[round(v, 4) for v in seed_r2s]}) {elapsed:.1f}s\")\n\n        del task_data, X_tr, y_tr, X_val, y_val\n\n    output = {\n        \"model\": \"Phi3V-Untrained-Base\",\n        \"base_llm\": \"/root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\",\n        \"conditions\": [\"untrained\"],\n        \"seeds\": SEEDS,\n        \"n_layers\": N_LAYERS,\n        \"hidden_dim\": HIDDEN_DIM_MODEL,\n        \"feature\": \"last_preaction\",\n        \"split\": \"sequential_80_20_no_shuffle\",\n        \"r2_space\": \"original_denormalized\",\n        \"results\": results,\n    }\n    os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)\n    with open(OUT_JSON, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nJSON saved to {OUT_JSON}\")\n\n    elapsed = time.time() - t_start\n    print(f\"\\nTotal time: {elapsed/60:.1f} min\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "8662ce7a-91e7-4fea-ab3f-a7052646d1da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014NreKmPSMzvNw5HTbTs7fw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 854,
+      "cache_read_input_tokens": 48220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 854
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T11:21:51.262Z_
+
+<details><summary>↩ Tool result · `toolu_01MAYuFx9opHYuPwNn3qSEXs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "fc6cce34-3d11-4828-b72b-0b357f411381",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+脚本创建完成。做 dry-run 验证脚本能启动、features 能加载。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "bf2bcb62-571b-410e-9915-f9a4b61b5cc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VcMwyM3UxKZersZRrSVaq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2971,
+      "cache_read_input_tokens": 49074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2971
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019eu8S5Z7a4YeeownvztTYT`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python -c \\\"\nimport sys\nsys.path.insert(0, 'scripts')\nfrom phi3v_untrained_seed_expansion import load_features_and_actions, build_train_val, SEEDS, FEATURE_DIR, N_LAYERS\nprint(f'SEEDS: {SEEDS}')\nprint(f'FEATURE_DIR: {FEATURE_DIR}')\nprint(f'N_LAYERS: {N_LAYERS}')\ntask_data = load_features_and_actions(0)\nprint(f'Tasks loaded: {len(task_data)}')\nfor t, demos in sorted(task_data.items()):\n    print(f'  {t}: {len(demos)} demos, feat={demos[0][0].shape}, act={demos[0][1].shape}')\nX_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\nprint(f'Train: {X_tr.shape}, Val: {X_val.shape}')\nimport torch\nprint(f'CUDA available: {torch.cuda.is_available()}, device count: {torch.cuda.device_count()}')\nprint('DRY-RUN OK')\n\\\"\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "996e9364-9916-4baa-a586-382deec0f11f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VcMwyM3UxKZersZRrSVaq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2971,
+      "cache_read_input_tokens": 49074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2971
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T11:22:14.399Z_
+
+<details><summary>↩ Tool result · `toolu_019eu8S5Z7a4YeeownvztTYT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SEEDS: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]\\nFEATURE_DIR: /root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\\nN_LAYERS: 33\\nTasks loaded: 10\\n  open_the_middle_drawer_of_the_cabinet: 50 demos, feat=(138, 3072), act=(138, 7)\\n  open_the_top_drawer_and_put_the_bowl_inside: 50 demos, feat=(170, 3072), act=(170, 7)\\n  push_the_plate_to_the_front_of_the_stove: 50 demos, feat=(155, 3072), act=(155, 7)\\n  put_the_bowl_on_the_plate: 50 demos, feat=(90, 3072), act=(90, 7)\\n  put_the_bowl_on_the_stove: 50 demos, feat=(94, 3072), act=(94, 7)\\n  put_the_bowl_on_top_of_the_cabinet: 50 demos, feat=(91, 3072), act=(91, 7)\\n  put_the_cream_cheese_in_the_bowl: 50 demos, feat=(92, 3072), act=(92, 7)\\n  put_the_wine_bottle_on_the_rack: 50 demos, feat=(347, 3072), act=(347, 7)\\n  put_the_wine_bottle_on_top_of_the_cabinet: 50 demos, feat=(93, 3072), act=(93, 7)\\n  turn_on_the_stove: 50 demos, feat=(80, 3072), act=(80, 7)\\nTrain: torch.Size([50480, 3072]), Val: torch.Size([12748, 3072])\\nCUDA available: True, device count: 1\\nDRY-RUN OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "e74f4843-e8d7-4601-b7bb-8eabd53278d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SEEDS: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]\\\\nFEATURE_DIR: /root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\\\\nN_LAYERS: 33\\\\nTasks loaded: 10\\\\n  open_the_middle_drawer_of_the_cabinet: 50 demos, feat=(138, 3072), act=(138, 7)\\\\n  open_the_top_drawer_and_put_the_bowl_inside: 50 demos, feat=(170, 3072), act=(170, 7)\\\\n  push_the_plate_to_the_front_of_the_stove: 50 demos, feat=(155, 3072), act=(155, 7)\\\\n  put_the_bowl_on_the_plate: 50 demos, feat=(90, 3072), act=(90, 7)\\\\n  put_the_bowl_on_the_stove: 50 demos, feat=(94, 3072), act=(94, 7)\\\\n  put_the_bowl_on_top_of_the_cabinet: 50 demos, feat=(91, 3072), act=(91, 7)\\\\n  put_the_cream_cheese_in_the_bowl: 50 demos, feat=(92, 3072), act=(92, 7)\\\\n  put_the_wine_bottle_on_the_rack: 50 demos, feat=(347, 3072), act=(347, 7)\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: 50 demos, feat=(93, 3072), act=(93, 7)\\\\n  turn_on_the_stove: 50 demos, feat=(80, 3072), act=(80, 7)\\\\nTrain: torch.Size([50480, 3072]), Val: torch.Size([12748, 3072])\\\\nCUDA available: True, device count: 1\\\\nDRY-RUN OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SEEDS: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]\\nFEATURE_DIR: /root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\\nN_LAYERS: 33\\nTasks loaded: 10\\n  open_the_middle_drawer_of_the_cabinet: 50 demos, feat=(138, 3072), act=(138, 7)\\n  open_the_top_drawer_and_put_the_bowl_inside: 50 demos, feat=(170, 3072), act=(170, 7)\\n  push_the_plate_to_the_front_of_the_stove: 50 demos, feat=(155, 3072), act=(155, 7)\\n  put_the_bowl_on_the_plate: 50 demos, feat=(90, 3072), act=(90, 7)\\n  put_the_bowl_on_the_stove: 50 demos, feat=(94, 3072), act=(94, 7)\\n  put_the_bowl_on_top_of_the_cabinet: 50 demos, feat=(91, 3072), act=(91, 7)\\n  put_the_cream_cheese_in_the_bowl: 50 demos, feat=(92, 3072), act=(92, 7)\\n  put_the_wine_bottle_on_the_rack: 50 demos, feat=(347, 3072), act=(347, 7)\\n  put_the_wine_bottle_on_top_of_the_cabinet: 50 demos, feat=(93, 3072), act=(93, 7)\\n  turn_on_the_stove: 50 demos, feat=(80, 3072), act=(80, 7)\\nTrain: torch.Size([50480, 3072]), Val: torch.Size([12748, 3072])\\nCUDA available: True, device count: 1\\nDRY-RUN OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Dry-run passes. All 10 tasks loaded, 50 demos each, features are 3072-dim, CUDA available. Now submit the job and write provenance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "318c0547-2fff-4019-b92b-c51bac2b3a50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015R5x88uQ1M4CwFZP4UzSM5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 52045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1046
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+Dry-run 通过。10 tasks × 50 demos，features 3072-dim，CUDA 可用。提交实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "e9cd0f7b-e305-4bbd-a0b4-ee88818ae1a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015R5x88uQ1M4CwFZP4UzSM5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 52045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1046
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_01QbynyQVnfZiqpSFDaUd11E`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "gpu_ids": [
+    "cuda:0"
+  ],
+  "exp_id": "phi3v_untrained_seed_expansion",
+  "project": "vla-ssd",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/phi3v_untrained_seed_expansion.py\"",
+  "timeout_hours": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "206c77a8-95d3-4f34-9b24-3fac8da8a578",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015R5x88uQ1M4CwFZP4UzSM5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 52045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1046
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T11:22:22.861Z_
+
+<details><summary>↩ Tool result · `toolu_01QbynyQVnfZiqpSFDaUd11E`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"452350\", \"log_file\": \"~/runs/vla-ssd/phi3v_untrained_seed_expansion.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-19183\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"phi3v_untrained_seed_expansion\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "d5416167-bdc0-4a9b-aedd-92c4cf73ea59",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"452350\\\", \\\"log_file\\\": \\\"~/runs/vla-ssd/phi3v_untrained_seed_expansion.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-19183\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"phi3v_untrained_seed_expansion\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"452350\", \"log_file\": \"~/runs/vla-ssd/phi3v_untrained_seed_expansion.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-19183\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"phi3v_untrained_seed_expansion\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+已提交，PID 452350。写入 provenance。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "05563268-6b4a-4849-ba31-b23ef08ac83e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JECMnrX3BAGvHfCqRpHVCq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 596,
+      "cache_read_input_tokens": 53091,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 596
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017Qh9PeDoGBiQSEk8TnS9hv`</summary>
+
+```json
+{
+  "exp_id": "phi3v_untrained_seed_expansion",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/phi3v_untrained_seed_expansion.py\"",
+    "server": "westd-19183",
+    "gpu": [
+      "cuda:0"
+    ],
+    "pid": "452350",
+    "log_path": "~/runs/vla-ssd/phi3v_untrained_seed_expansion.log",
+    "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+    "data_count": "10 tasks x 50 demos",
+    "model_name": "Phi3V-Untrained-Base (TracVLA-Phi3V arch + Phi-3-mini-4k-instruct LLM weights)",
+    "seed": "5,6,7,8,9,10,11,12,13,14",
+    "output_dir": "/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion/",
+    "checkpoint_source": "TracVLA: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/ + Base: /root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct",
+    "eval_data": "LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 10 seeds (5-14) MLP R² probe",
+    "feature_dir": "/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "5219d0e8-8d1b-4b01-9f71-f4cc0d43f08b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JECMnrX3BAGvHfCqRpHVCq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 596,
+      "cache_read_input_tokens": 53091,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 596
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T11:22:36.259Z_
+
+<details><summary>↩ Tool result · `toolu_017Qh9PeDoGBiQSEk8TnS9hv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"phi3v_untrained_seed_expansion\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:42:59.261Z\", \"updated_at\": \"2026-05-20T11:22:35.453Z\", \"hypothesis\": \"Expanding Phi3V untrained R² probe from 5 to 15 seeds will tighten confidence intervals on the untrained profile (early peak at L4, monotonic decline), aligning statistical power with the other 3 conditions in the 2×2 matrix (all 15 seeds) and eliminating asymmetric seed count as a reviewer concern.\", \"parent\": \"phi3v_r2_untrained_probe\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T11:19:19.135Z\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/phi3v_untrained_seed_expansion.py\\\"\", \"server\": \"westd-19183\", \"gpu\": [\"cuda:0\"], \"pid\": \"452350\", \"log_path\": \"~/runs/vla-ssd/phi3v_untrained_seed_expansion.log\", \"submitted_at\": \"2026-05-20T11:22:22.328Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"Phi3V-Untrained-Base (TracVLA-Phi3V arch + Phi-3-mini-4k-instruct LLM weights)\", \"seed\": \"5,6,7,8,9,10,11,12,13,14\", \"output_dir\": \"/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion/\", \"checkpoint_source\": \"TracVLA: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/ + Base: /root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\", \"eval_data\": \"LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 10 seeds (5-14) MLP R² probe\", \"feature_dir\": \"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1653}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "c283c51b-46ea-4ecb-8d24-288e99044aef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_untrained_seed_expansion\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:42:59.261Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:22:35.453Z\\\", \\\"hypothesis\\\": \\\"Expanding Phi3V untrained R² probe from 5 to 15 seeds will tighten confidence intervals on the untrained profile (early peak at L4, monotonic decline), aligning statistical power with the other 3 conditions in the 2×2 matrix (all 15 seeds) and eliminating asymmetric seed count as a reviewer concern.\\\", \\\"parent\\\": \\\"phi3v_r2_untrained_probe\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T11:19:19.135Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/phi3v_untrained_seed_expansion.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"452350\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/phi3v_untrained_seed_expansion.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T11:22:22.328Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": \\\"10 tasks x 50 demos\\\", \\\"model_name\\\": \\\"Phi3V-Untrained-Base (TracVLA-Phi3V arch + Phi-3-mini-4k-instruct LLM weights)\\\", \\\"seed\\\": \\\"5,6,7,8,9,10,11,12,13,14\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion/\\\", \\\"checkpoint_source\\\": \\\"TracVLA: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/ + Base: /root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 10 seeds (5-14) MLP R² probe\\\", \\\"feature_dir\\\": \\\"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1653}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"phi3v_untrained_seed_expansion\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:42:59.261Z\", \"updated_at\": \"2026-05-20T11:22:35.453Z\", \"hypothesis\": \"Expanding Phi3V untrained R² probe from 5 to 15 seeds will tighten confidence intervals on the untrained profile (early peak at L4, monotonic decline), aligning statistical power with the other 3 conditions in the 2×2 matrix (all 15 seeds) and eliminating asymmetric seed count as a reviewer concern.\", \"parent\": \"phi3v_r2_untrained_probe\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T11:19:19.135Z\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/phi3v_untrained_seed_expansion.py\\\"\", \"server\": \"westd-19183\", \"gpu\": [\"cuda:0\"], \"pid\": \"452350\", \"log_path\": \"~/runs/vla-ssd/phi3v_untrained_seed_expansion.log\", \"submitted_at\": \"2026-05-20T11:22:22.328Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"Phi3V-Untrained-Base (TracVLA-Phi3V arch + Phi-3-mini-4k-instruct LLM weights)\", \"seed\": \"5,6,7,8,9,10,11,12,13,14\", \"output_dir\": \"/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion/\", \"checkpoint_source\": \"TracVLA: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/ + Base: /root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\", \"eval_data\": \"LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 10 seeds (5-14) MLP R² probe\", \"feature_dir\": \"/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1653}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+快速确认实验已开始运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "9d6a6572-fd88-4843-ad65-ea707b69d2bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AzAWHPZ3j2XM3wu56eLgTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1429,
+      "cache_read_input_tokens": 53687,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1429
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0173UKAz7v3ciKUYkHfY6sy6`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /root/runs/vla-ssd/phi3v_untrained_seed_expansion.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "3b638a2f-15ab-43ef-9fd8-516f92389fe6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AzAWHPZ3j2XM3wu56eLgTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1429,
+      "cache_read_input_tokens": 53687,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1429
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T11:22:41.129Z_
+
+<details><summary>↩ Tool result · `toolu_0173UKAz7v3ciKUYkHfY6sy6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "e1f5a53b-6323-40ec-9869-0f5723c8e47e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NMQbGQZS2jkB14BNEvspb5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 ~/runs/vla-ssd/phi3v_untrained_seed_expansion.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "6cd1f1a7-694e-44ab-afd7-42bd7efcc75e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QAD8jjXqRcA71ZWLWSLgvo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 197,
+      "cache_read_input_tokens": 55116,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 197
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T11:22:44.197Z_
+
+<details><summary>↩ Tool result · `toolu_01NMQbGQZS2jkB14BNEvspb5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "4499deb6-c348-41c1-ae4f-220ed7d2b74a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Log is empty, might be buffered. Let me check if the tmux session is running.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "f091cdaa-9678-48f3-b2a6-51652fe3b0eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHMGUegVKpV1SzagA8sfyS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 182,
+      "cache_read_input_tokens": 55313,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 182
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MFj6RsfLB1Jud2RZ9yoJYN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 452350 -o pid,comm,etime"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "9c4dad77-a128-49ce-ba14-52714a63c796",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHMGUegVKpV1SzagA8sfyS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 182,
+      "cache_read_input_tokens": 55313,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 182
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-20T11:22:48.377Z_
+
+<details><summary>↩ Tool result · `toolu_01MFj6RsfLB1Jud2RZ9yoJYN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID COMMAND             ELAPSED\\n452350 bash                  00:26\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "79efca8b-f167-40d9-9f16-b9004697dc66",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID COMMAND             ELAPSED\\\\n452350 bash                  00:26\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID COMMAND             ELAPSED\\n452350 bash                  00:26\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+进程在跑（bash PID 452350, 26s elapsed），日志可能还在 Python 启动/import 阶段缓冲。再等几秒看日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "5ce86b01-f472-45fb-9ea3-4f34ed5f516d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ZNzwiXveecWJKcjLaPRqm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 228,
+      "cache_read_input_tokens": 55495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 228
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011bTXe9FHNiC5BfR1ADPXWi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -30 ~/runs/vla-ssd/phi3v_untrained_seed_expansion.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "fe3f9946-78c0-42a1-900e-a25da1b9def9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ZNzwiXveecWJKcjLaPRqm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 228,
+      "cache_read_input_tokens": 55495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 228
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T11:22:54.006Z_
+
+<details><summary>↩ Tool result · `toolu_011bTXe9FHNiC5BfR1ADPXWi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "befeb340-1978-44cd-8c6a-6bb64d3c14d6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016qNqopLHtyD5SPvDaT1MMQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find ~/runs/vla-ssd/ -name \"*untrained_seed*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "300a4070-302e-4d35-b344-8f992cc3ecad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H8VUSfWbCLnTVtGuSho5M2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 232,
+      "cache_read_input_tokens": 55723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 232
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T11:22:57.979Z_
+
+<details><summary>↩ Tool result · `toolu_016qNqopLHtyD5SPvDaT1MMQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/vla-ssd/phi3v_untrained_seed_expansion.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "d99ad4bc-f2a7-4930-bcca-ee02c5715d42",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/vla-ssd/phi3v_untrained_seed_expansion.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/vla-ssd/phi3v_untrained_seed_expansion.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0127VZhWdzDJ5DejcS3i5nQF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "stat ~/runs/vla-ssd/phi3v_untrained_seed_expansion.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "a509d5e1-244c-4fe0-8bb3-027151249b7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MvHCbcRZAKUmzAtFxKXAeh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 201,
+      "cache_read_input_tokens": 55955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 201
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T11:23:01.000Z_
+
+<details><summary>↩ Tool result · `toolu_0127VZhWdzDJ5DejcS3i5nQF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/runs/vla-ssd/phi3v_untrained_seed_expansion.log\\n  Size: 0         \\tBlocks: 0          IO Block: 4096   regular empty file\\nDevice: 39h/57d\\tInode: 25811411970  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-20 19:22:41.083434052 +0800\\nModify: 2026-05-20 19:22:22.027710297 +0800\\nChange: 2026-05-20 19:22:22.027710297 +0800\\n Birth: 2026-05-20 19:22:22.027710297 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "ddb1e1f7-2a9b-4e75-ac74-b465967262c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/vla-ssd/phi3v_untrained_seed_expansion.log\\\\n  Size: 0         \\\\tBlocks: 0          IO Block: 4096   regular empty file\\\\nDevice: 39h/57d\\\\tInode: 25811411970  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-20 19:22:41.083434052 +0800\\\\nModify: 2026-05-20 19:22:22.027710297 +0800\\\\nChange: 2026-05-20 19:22:22.027710297 +0800\\\\n Birth: 2026-05-20 19:22:22.027710297 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  File: /root/runs/vla-ssd/phi3v_untrained_seed_expansion.log\\n  Size: 0         \\tBlocks: 0          IO Block: 4096   regular empty file\\nDevice: 39h/57d\\tInode: 25811411970  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-20 19:22:41.083434052 +0800\\nModify: 2026-05-20 19:22:22.027710297 +0800\\nChange: 2026-05-20 19:22:22.027710297 +0800\\n Birth: 2026-05-20 19:22:22.027710297 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log file exists but is still empty - Python is probably still importing (torch, h5py etc. can take 10-20 seconds). The process is alive. Let me check once more after a brief wait, or check if the Python child process is running.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "0dee8588-82a5-4435-a4e9-beeca1bd2178",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmdHYBE6Z1HHChGxM44Qdp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 504,
+      "cache_read_input_tokens": 56156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 504
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+Python 正在 import 阶段，日志还没输出。检查子进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "083876bc-4773-4522-aac1-31d4fb06620b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmdHYBE6Z1HHChGxM44Qdp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 504,
+      "cache_read_input_tokens": 56156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 504
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hhiq2qCSuL1BN4PYpkwiL3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps --ppid 452350 -o pid,comm,etime"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "410881aa-601f-476e-8e7e-6ecba1fc6b1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmdHYBE6Z1HHChGxM44Qdp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 504,
+      "cache_read_input_tokens": 56156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 504
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T11:23:06.532Z_
+
+<details><summary>↩ Tool result · `toolu_01Hhiq2qCSuL1BN4PYpkwiL3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID COMMAND             ELAPSED\\n452354 timeout               00:44\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "7c8b360a-bd4a-4f99-a62e-98eb0c9fb016",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID COMMAND             ELAPSED\\\\n452354 timeout               00:44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID COMMAND             ELAPSED\\n452354 timeout               00:44\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PPM83quhLPnaVmSbZTrp9D`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps --ppid 452354 -o pid,comm,etime"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "2966f7a3-8cc4-4bb4-8db0-234814bcaec4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPJJutevzAbyX2zjZDGSRk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 289,
+      "cache_read_input_tokens": 56660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 289
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T11:23:09.657Z_
+
+<details><summary>↩ Tool result · `toolu_01PPM83quhLPnaVmSbZTrp9D`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID COMMAND             ELAPSED\\n452355 python                00:47\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "8ef2ff3c-5bc7-4d70-8181-e90dbc549e0b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID COMMAND             ELAPSED\\\\n452355 python                00:47\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID COMMAND             ELAPSED\\n452355 python                00:47\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+Python 进程在跑。脚本没加 `PYTHONUNBUFFERED=1`，stdout 被缓冲了。让我查看 tmux capture 来确认输出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "fef9da3e-d95a-4a70-975e-cf52502b5d5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017A6GfzC1q16UN95LrPDjvK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 193,
+      "cache_read_input_tokens": 56949,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 193
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Q512sYL58iNVSe8JEsK6y`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -c \".\" ~/runs/vla-ssd/phi3v_untrained_seed_expansion.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "b7ebecb2-90cd-480a-8278-fb206ef5a927",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017A6GfzC1q16UN95LrPDjvK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 193,
+      "cache_read_input_tokens": 56949,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 193
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-20T11:23:14.276Z_
+
+<details><summary>↩ Tool result · `toolu_017Q512sYL58iNVSe8JEsK6y`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "ac7bc959-44f0-4e60-89dd-c62ad5d90fc7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log file is still empty because the script doesn't use PYTHONUNBUFFERED. But the Python process (PID 452354 -> 452355) is running for 47 seconds now. This is a Phase-2-only script (no model loading needed), so it should start outputting results soon for L0 since the probe training takes ~30s per layer (based on the trained expansion which took 16 min for 33 layers).
+
+Wait, actually the trained seed expansion (`phi3v_r2_seed_expansion`) also didn't use PYTHONUNBUFFERED=1 and it had logs. 
+
+So the issue might be that submit_training_job wraps the command with `script` to capture output to the log file, but Python's stdout buffering still prevents immediate flushing even when piped. Looking at how the trained expansion was actually invoked—it sources the conda environment and runs the Python script directly—I'm realizing the buffering behavior might be different depending on how the process is spawned.
+
+Since the process is currently running and should take 30-60 minutes total, the log will eventually populate once the buffer fills or Python starts writing. The setup looks correct, so I'll wait for the output to appear as the job progresses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "b0ce4f96-b7d2-4fee-8c1b-3a9106366391",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mx7okq6gW657HRJWt86S6M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 242,
+      "cache_read_input_tokens": 57142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 242
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+实验已成功提交并运行中：
+
+- **脚本**: `/root/vla-ssd/scripts/phi3v_untrained_seed_expansion.py` — Phase 2 only (probe training)，复用已有 features
+- **Seeds**: 5-14（与原始 0-4 不重叠，合计 15 seeds）
+- **PID**: 452350 → python 452355
+- **GPU**: cuda:0, westd-19183
+- **日志**: `~/runs/vla-ssd/phi3v_untrained_seed_expansion.log`（stdout 缓冲中，输出会延迟出现）
+- **输出**: `/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion/phi3v_untrained_seed_expansion.json`
+- **预计耗时**: ~20-30 min（参考 trained expansion 16 min / 10 seeds）
+- **Registry**: RUNNING，provenance 已写入
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "uuid": "71a4fa2f-5281-4f04-9e7f-195108fd7ecb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mx7okq6gW657HRJWt86S6M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 242,
+      "cache_read_input_tokens": 57142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 242
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 76_
+
+实验已成功提交并运行中：
+
+- **脚本**: `/root/vla-ssd/scripts/phi3v_untrained_seed_expansion.py` — Phase 2 only (probe training)，复用已有 features
+- **Seeds**: 5-14（与原始 0-4 不重叠，合计 15 seeds）
+- **PID**: 452350 → python 452355
+- **GPU**: cuda:0, westd-19183
+- **日志**: `~/runs/vla-ssd/phi3v_untrained_seed_expansion.log`（stdout 缓冲中，输出会延迟出现）
+- **输出**: `/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion/phi3v_untrained_seed_expansion.json`
+- **预计耗时**: ~20-30 min（参考 trained expansion 16 min / 10 seeds）
+- **Registry**: RUNNING，provenance 已写入
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 206306,
+  "duration_api_ms": 185630,
+  "num_turns": 25,
+  "stop_reason": "end_turn",
+  "session_id": "6b47553e-cdd2-453e-b7a2-a8a002966be3",
+  "total_cost_usd": 0.94156475,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 45543,
+    "cache_read_input_tokens": 890760,
+    "output_tokens": 8382,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 45543,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 686,
+        "cache_read_input_tokens": 57142,
+        "cache_creation_input_tokens": 242,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 242
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1771,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001876,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 8382,
+      "cacheReadInputTokens": 890760,
+      "cacheCreationInputTokens": 45543,
+      "webSearchRequests": 0,
+      "costUSD": 0.93968875,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "ba9207d3-1790-4bf2-b9b6-5758d7fc259b"
+}
+```
+
+</details>
+
+---

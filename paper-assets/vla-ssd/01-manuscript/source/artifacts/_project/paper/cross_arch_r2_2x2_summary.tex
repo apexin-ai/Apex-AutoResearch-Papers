@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{$R^2$ profile summary across architectures and training conditions.}
+\label{tab:2x2_r2_summary}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{OpenVLA (Llama-2-7B)} & \multicolumn{2}{c}{TracVLA (Phi-3-mini)} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Untrained & Trained & Untrained & Trained \\
+\midrule
+Peak Layer       & L0          & L9          & L6          & L11         \\
+Peak $R^2$       & 0.629       & 0.637       & 0.578       & 0.634       \\
+Profile Shape    & Collapse    & Flat plateau & Ramp $\to$ decline & Ramp $\to$ plateau \\
+Late-layer std   & 0.277       & 0.040       & 0.172       & 0.011       \\
+$\Delta_{\text{train}}$ (peak) & \multicolumn{2}{c}{$+0.008$ (L0$\to$L9)} & \multicolumn{2}{c}{$+0.056$ (L6$\to$L11)} \\
+$\Delta_{\text{train}}$ (L15--L25 avg) & \multicolumn{2}{c}{$+0.313$} & \multicolumn{2}{c}{$+0.137$} \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,3563 @@
+# prep checkpoint audit and scripts
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 125
+- **Recorded user turns:** 0
+- **Tool calls:** 62
+- **Original source:** `logs/chats/worker_prep_checkpoint_audit_and_scripts_20260521T155659.jsonl`
+- **Structured JSON:** [`0da89f28555c937d3fe7.json`](../../sessions/0d/0da89f28555c937d3fe7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+125 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T16:01:05.467764+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T16:01:05.468281+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T16:01:05.468573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/checkpoints/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls -la /root/autodl-tmp/vla-ssd/checkpoints/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T16:01:05.468795+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/checkpoints/ -maxdepth 2 -name \"config.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/autodl-tmp/vla-ssd/checkpoints/ -maxdepth 2 -name \"config.json\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T16:01:05.469028+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "du -sh /root/autodl-tmp/vla-ssd/checkpoints/*/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "du -sh /root/autodl-tmp/vla-ssd/checkpoints/*/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T16:01:05.469276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 44\\ndrwxr-xr-x 16 root root 4096 May 21 12:26 .\\ndrwxr-xr-x  8 root root 4096 May 21 10:07 ..\\ndrwxr-xr-x  3 root root   29 May 15 14:14 ._____temp\\ndrwxr-xr-x  2 root root   42 May 15 14:14 .lock\\ndrwxr-xr-x  2 root root  145 May 15 13:09 dinov2-large\\ndrwxr-xr-x  3 root root 4096 May 21 11:33 nora-libero-goal\\ndrwxr-xr-x  3 root root 4096 May 21 12:40 nora-libero-spatial\\ndrwxr-xr-x  4 root root 4096 May 21 17:00 openvla-7b\\ndrwxr-xr-x  2 root root 4096 May 19 13:08 openvla-7b-finetuned-libero-goal\\ndrwxr-xr-x  3 root root 4096 May 21 09:13 openvla-7b-finetuned-libero-object\\ndrwxr-xr-x  4 root root 4096 May 21 23:35 openvla-7b-oft-finetuned-libero-10\\ndrwxr-xr-x  4 root root   98 May 20 00:45 openvla-phi3v\\ndrwxr-xr-x  3 root root 4096 May 21 12:40 phi3v-base\\ndrwxr-xr-x  5 root root   73 May 21 10:08 phi3v-base-ms\\ndrwxr-xr-x  2 root root 4096 May 21 09:11 qwen25-vl-3b-base\\ndrwxr-xr-x  3 root root 4096 May 20 01:16 tracevla-phi3v\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T16:01:05.469510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T16:01:05.469765+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.2G\\t/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/\\n7.1G\\t/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\n7.1G\\t/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\n14G\\t/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\\n15G\\t/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object/\\n15G\\t/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/\\n15G\\t/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/\\n24K\\t/root/autodl-tmp/vla-ssd/checkpoints/openvla-phi3v/\\n7.8G\\t/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base-ms/\\n7.8G\\t/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\n7.1G\\t/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\n7.8G\\t/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T16:01:05.470045+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json, os, glob\nfor f in sorted(glob.glob('/root/autodl-tmp/vla-ssd/checkpoints/*/config.json')):\n    d = json.load(open(f))\n    name = f.split('/')[-2]\n    mt = d.get('model_type', '?')\n    arch = d.get('architectures', '?')\n    print(f'{name}: model_type={mt}, architectures={arch}')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"\nimport json, os, glob\nfor f in sorted(glob.glob('/root/autodl-tmp/vla-ssd/checkpoints/*/config.json')):\n    d = json.load(open(f))\n    name = f.split('/')[-2]\n    mt = d.get('model_type', '?')\n    arch = d.get('architectures', '?')\n    print(f'{name}: model_type={mt}, architectures={arch}')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T16:01:05.470264+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T16:01:05.470466+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -h \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/config.json /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/config.json /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -h \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/config.json /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/config.json /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T16:01:05.470668+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T16:01:05.470867+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -h \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object/config.json /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -h \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object/config.json /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T16:01:05.471097+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T16:01:05.471313+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -h \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/config.json /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/config.json /root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -h \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/config.json /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/config.json /root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T16:01:05.471518+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T16:01:05.471761+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T16:01:05.471982+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T16:01:05.472189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T16:01:05.472388+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T16:01:05.472577+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T16:01:05.472773+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T16:01:05.473002+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T16:01:05.473217+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T16:01:05.473412+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T16:01:05.473600+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T16:01:05.473788+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T16:01:05.474009+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T16:01:05.474216+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T16:01:05.474578+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T16:01:05.474789+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T16:01:05.475012+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T16:01:05.475231+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T16:01:05.475430+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T16:01:05.475640+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep \"model_type\\|architectures\" /root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T16:01:05.475842+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T16:01:05.476092+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T16:01:05.476309+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"dinov2\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T16:01:05.476509+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-21T16:01:05.476708+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T16:01:05.476915+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"qwen2_5_vl\\\",\\n    \\\"model_type\\\": \\\"qwen2_5_vl\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T16:01:05.477169+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"qwen2_5_vl\\\",\\n    \\\"model_type\\\": \\\"qwen2_5_vl\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T16:01:05.477371+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T16:01:05.477584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"openvla\\\",\\n    \\\"model_type\\\": \\\"llama\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T16:01:05.477783+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-21T16:01:05.478005+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T16:01:05.478227+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"openvla\\\",\\n    \\\"model_type\\\": \\\"llama\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T16:01:05.478439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"openvla\\\",\\n    \\\"model_type\\\": \\\"llama\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T16:01:05.478637+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T16:01:05.478860+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"openvla\\\",\\n    \\\"model_type\\\": \\\"llama\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-21T16:01:05.479090+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-21T16:01:05.479293+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T16:01:05.479499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"phi3_v\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-21T16:01:05.479714+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -e model_type -e architectures /root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T16:01:05.479937+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"phi3_v\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T16:01:05.480156+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n  \\\"model_type\\\": \\\"qwen2_5_vl\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-21T16:01:05.480382+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -A1 architectures /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -A1 architectures /root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T16:01:05.480588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n    \\\"Qwen2_5_VLForConditionalGeneration\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-21T16:01:05.480802+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -A1 architectures /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -A1 architectures /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-21T16:01:05.481023+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -A1 architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -A1 architectures /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T16:01:05.481219+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n    \\\"Phi3VForCausalLM\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T16:01:05.481428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"architectures\\\": [\\n    \\\"OpenVLAForActionPrediction\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-21T16:01:05.481625+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/checkpoints/openvla-phi3v/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls -la /root/autodl-tmp/vla-ssd/checkpoints/openvla-phi3v/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-21T16:01:05.481822+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-21T16:01:05.482054+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  4 root root   98 May 20 00:45 .\\ndrwxr-xr-x 16 root root 4096 May 21 12:26 ..\\ndrwxr-xr-x  3 root root   33 May 20 00:44 .cache\\ndrwxr-xr-x  2 root root   10 May 20 00:44 .ipynb_checkpoints\\n-rw-r--r--  1 root root 1127 May 20 00:45 LICENSE\\n-rw-r--r--  1 root root 3610 May 20 00:45 README.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T16:01:05.482261+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"libero_10\\nlibero_90\\nlibero_goal\\nlibero_object\\nlibero_spatial\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-21T16:01:05.482483+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T16:01:05.482947+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on
+…[truncated 7160 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-21T16:01:05.483215+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-21T16:01:05.483426+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-21T16:01:05.483714+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ablations\\naction_baselines.json\\naction_metrics_extended.json\\naction_probe\\naction_trajectory_L13_ablation.json\\naction_trajectory_L13_ablation.log\\naction_trajectory_L8_ablation.json\\naction_trajectory_L8_ablation.log\\naction_trajectory_analysis.json\\naction_trajectory_analysis.log\\naction_trajectory_control.json\\naction_trajectory_control.log\\naction_trajectory_cpu_analysis.json\\naction_trajectory_extended_analysis.json\\nanalysis\\narchitecture_audit\\nattention\\nattention_decomposition.json\\nattention_normalization_entropy.json\\nbootstrap_ci_values.json\\ncka\\ncounterfactual_10tasks\\ncounterfactual_10tasks.log\\ncounterfactual_combined.json\\ncounterfactual_correct.json\\ncounterfactual_empty.json\\ncounterfactual_instruction.log\\ncounterfactual_paraphrased.json\\ncounterfactual_shuffled.json\\ncounterfactual_spatial\\ncounterfactual_spatial.log\\ncounterfactual_token_overlap.json\\ncounterfactual_wrong.json\\ncross_instruction\\ncross_instruction_dense\\ncross_instruction_finetuned\\ncross_instruction_spatial\\ndemo_sensitivity_25\\ndinov2\\ndinov2_libero_goal\\ndinov2_libero_goal_frame0\\ndinov2_libero_goal_linear\\ndinov2_libero_goal_pca1024\\ndinov2_shuffle\\ndose_response_cuda0.log\\ndose_response_cuda1.log\\ndose_response_curve_combined.json\\ndose_response_top12.json\\ndose_response_top16.json\\ndose_response_top20.json\\ndose_response_top24.json\\ndose_response_top28.json\\ndose_response_top32.json\\ndose_response_top4.json\\ndose_response_top8.json\\nfig_dose_response_curve.pdf\\nfig_dose_response_curve.png\\nfig_dose_response_draft.pdf\\nfig_dose_response_draft.png\\nfigure_data\\nfigures\\nfinetuned_probe_profile.log\\nfunctional_validation\\ngroundtruth_action_error.json\\ngroundtruth_action_error.log\\nl1_head_ablation\\nlibero_closedloop_probe\\nlibero_finetuned_attention.log\\nlibero_finetuned_attention_profile.json\\nlibero_finetuned_probe_profile.json\\nlibero_long\\nli
+…[truncated 1635 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-21T16:01:05.483991+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"attention_normalization_entropy.py\\nlibero_long_full_pipeline.py\\nlibero_object_full_pipeline.py\\nlibero_object_untrained_full_pipeline.py\\nnora_goal_full_pipeline.py\\nnora_goal_full_pipeline.py.bak\\nnora_goal_untrained_counterfactual_only.py\\nnora_spatial_full_pipeline.py\\ntracvla_object_full_pipeline.py\\ntracvla_spatial_full_pipeline.py\\ntracvla_spatial_probing_only.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-21T16:01:05.484268+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -30 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -30 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T16:01:05.484500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-21T16:01:05.484727+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/tracvla_spatial/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls -la /root/autodl-tmp/vla-ssd/results/tracvla_spatial/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-21T16:01:05.484945+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/tracvla_object/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls -la /root/autodl-tmp/vla-ssd/results/tracvla_object/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-21T16:01:05.485158+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  4 root root   50 May 21 23:44 .\\ndrwxr-xr-x 54 root root 8192 May 21 23:28 ..\\ndrwxr-xr-x  2 root root  170 May 21 10:04 trained\\ndrwxr-xr-x  2 root root   10 May 21 23:44 untrained\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-21T16:01:05.485371+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  4 root root   50 May 21 23:28 .\\ndrwxr-xr-x 54 root root 8192 May 21 23:28 ..\\ndrwxr-xr-x  2 root root  170 May 21 21:07 trained\\ndrwxr-xr-x  2 root root  130 May 21 23:43 untrained\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-21T16:01:05.485573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/libero_long/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/results/libero_long/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-21T16:01:05.485772+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_10/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_10/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-21T16:01:05.485996+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\nl1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T16:01:05.486219+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_demo.hdf5\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_demo.hdf5\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_demo.hdf5\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove_demo.hdf5\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_demo.hdf5\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_demo.hdf5\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_demo.hdf5\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_demo.hdf5\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_demo.hdf5\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-21T16:01:05.486486+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-21T16:01:05.486705+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-21T16:01:05.486916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncounterfactual_combined.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-21T16:01:05.487148+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-21T16:01:05.487348+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/tracvla_object/trained/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/results/tracvla_object/trained/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-21T16:01:05.487564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncounterfactual_combined.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-21T16:01:05.487772+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-21T16:01:05.487993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-21T16:01:05.488214+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -maxdepth 2 -type d -name \"tracvla*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/autodl-tmp/vla-ssd/results/ -maxdepth 2 -type d -name \"tracvla*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-21T16:01:05.488425+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\n/root/autodl-tmp/vla-ssd/results/tracvla_object\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-21T16:01:05.488627+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-21T16:01:05.488840+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-21T16:01:05.489156+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"TASKS\\|INSTRUCTIONS\\|PARAPHRASES\\|DATA\\|RESULTS\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"TASKS\\|INSTRUCTIONS\\|PARAPHRASES\\|DATA\\|RESULTS\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-21T16:01:05.489369+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-21T16:01:05.489567+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -120 /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -120 /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-21T16:01:05.489864+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Object Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_object\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\",\\n    \\\"pick_up_the_
+…[truncated 2591 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-21T16:01:05.490175+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"TASKS\\|PARAPHRASES\\|DATA\\|RESULTS\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"TASKS\\|PARAPHRASES\\|DATA\\|RESULTS\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-21T16:01:05.490388+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-21T16:01:05.490586+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n -e TASKS -e PARAPHRASES -e \"^DATA\" -e \"^RESULTS\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n -e TASKS -e PARAPHRASES -e \"^DATA\" -e \"^RESULTS\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-21T16:01:05.490807+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"30:DATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\n31:RESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\"\\n35:TASKS = [\\n59:PARAPHRASES = [\\n153:        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n154:        log(f\\\"  Task {ti}/{n_tasks}: {TASKS[ti]}\\\")\\n296:        return INSTRUCTIONS[(task_idx + 1) % len(TASKS)]\\n304:        return PARAPHRASES[task_idx]\\n319:            \\\"task_names\\\": TASKS[:n_tasks],\\n334:            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n410:            cond_res[\\\"per_task\\\"][TASKS[ti]] = entry\\n548:        nt = 2 if args.dry_run else len(TASKS)\\n573:        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-21T16:01:05.491051+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -n '35,75p' /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sed -n '35,75p' /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-21T16:01:05.491257+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-21T16:01:05.491451+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -80 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -80 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-21T16:01:05.491805+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM = \\\"libero_10\\\"\\n\\nTASKS = [\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\",\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\",\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\",\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\",\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\",\\n    \\\"LIVI
+…[truncated 2158 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-21T16:01:05.492123+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -90 /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -90 /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-21T16:01:05.492429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nNORA LIBERO-Goal Full Analysis Pipeline\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased)\\n\\nRuns both trained (NORA) and untrained (Qwen2.5-VL-3B base) sequentially.\\nNORA uses FAST+ action tokenizer, so counterfactual uses representation-based\\ncosine distance instead of action MSE.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForImageTextToText, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/nora_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\n\\n# --- Architecture (Qwen2.5-VL-3B) ---\\nN_LAYERS = 36\\nN_HEADS = 16\\nHIDDEN = 2048\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"
+…[truncated 1436 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-21T16:01:05.492734+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/autodl-tmp/vla-ssd/scripts && cp tracvla_spatial_full_pipeline.py tracvla_long_full_pipeline.py && cp tracvla_spatial_full_pipeline.py tracvla_goal_full_pipeline.py && echo \"COPIED\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/autodl-tmp/vla-ssd/scripts && cp tracvla_spatial_full_pipeline.py tracvla_long_full_pipeline.py && cp tracvla_spatial_full_pipeline.py tracvla_goal_full_pipeline.py && echo \"COPIED\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-21T16:01:05.492967+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"COPIED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-21T16:01:05.493208+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /tmp/patch_long.py << 'PYEOF'\nimport re\n\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\", \"r\") as f:\n    content = f.read()\n\n# 1. Header docstring\ncontent = content.replace(\n    \"LIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\",\n    \"LIBERO-Long Full Analysis Pipeline for TracVLA-Phi3V\"\n)\n\n# 2. Data path\ncontent = content.replace(\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\"',\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_10\"'\n)\n\n# 3. Results path\ncontent = content.replace(\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\"',\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_long\"'\n)\n\n# 4. Replace TASKS list\nold_tasks = '''TASKS = [\n    \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\",\n]'''\n\nnew_tasks = '''TASKS = [\n    \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\",\n    \"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\",\n    \"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\",\n    \"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\",\n    \"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\",\n    \"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\",\n    \"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\",\n    \"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\",\n]'''\n\ncontent = content.replace(old_tasks, new_tasks)\n\n# 5. Replace INSTRUCTIONS (long tasks have scene prefix that must be stripped)\nold_instr = 'INSTRUCTIONS = [t.replace(\"_\", \" \") for t in TASKS]'\nnew_instr = '''INSTRUCTIONS = [\n    \"turn on the stove and put the moka pot on it\",\n    \"put the black bowl in the bottom drawer of the cabinet and close it\",\n    \"put the yellow and white mug in the microwave and close it\",\n    \"put both moka pots on the stove\",\n    \"put both the alphabet soup and the cream cheese box in the basket\",\n    \"put both the alphabet soup and the tomato sauce in the basket\",\n    \"put both the cream cheese box and the butter in the basket\",\n    \"put the white mug on the left plate and put the yellow and white mug on the right plate\",\n    \"put the white mug on the plate and put the chocolate pudding to the right of the plate\",\n    \"pick up the book and place it in the back compartment of the caddy\",\n]'''\ncontent = content.replace(old_instr, new_instr)\n\n# 6. Replace PARAPHRASES\nold_para = '''PARAPHRASES = [\n    \"grab the black bowl between the plate and ramekin and put it on the plate\",\n    \"grab the black bowl on the ramekin and put it on the plate\",\n    \"grab the black bowl on the cookie box and put it on the plate\",\n    \"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\",\n    \"grab the black bowl from the center of the table and put it on the plate\",\n    \"grab the black bowl next to the cookie box and put it on the plate\",\n    \"grab the black bowl on the stove and put it on the plate\",\n    \"grab the black bowl on the wooden cabinet and put it on the plate\",\n    \"grab the black bowl next to the plate and put it on the plate\",\n    \"grab the black bowl next to the ramekin and put it on the plate\",\n]'''\n\nnew_para = '''PARAPHRASES = [\n    \"switch on the stove and place the moka pot on it\",\n    \"place the black bowl in the bottom drawer of the cabinet and shut it\",\n    \"place the yellow and white mug in the microwave and shut it\",\n    \"put both of the moka pots on the stove\",\n    \"place the alphabet soup and cream cheese box into the basket\",\n    \"place the alphabet soup and tomato sauce into the basket\",\n    \"place the cream cheese box and butter into the basket\",\n    \"place the white mug on the left plate and the yellow white mug on the right plate\",\n    \"place the white mug on the plate and the chocolate pudding to the right of the plate\",\n    \"grab the book and put it in the back section of the caddy\",\n]'''\n\ncontent = content.replace(old_para, new_para)\n\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"tracvla_long patched OK\")\nPYEOF\npython3 /tmp/patch_long.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /tmp/patch_long.py << 'PYEOF'\nimport re\n\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\", \"r\") as f:\n    content = f.read()\n\n# 1. Header docstring\ncontent = content.replace(\n    \"LIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\",\n    \"LIBERO-Long Full Analysis Pipeline for TracVLA-Phi3V\"\n)\n\n# 2. Data path\ncontent = content.replace(\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\"',\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_10\"'\n)\n\n# 3. Results path\ncontent = content.replace(\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\"',\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_long\"'\n)\n\n# 4. Replace TASKS list\nold_tasks = '''TASKS = [\n    \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\",\n]'''\n\nnew_tasks = '''TASKS = [\n    \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\",\n    \"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\",\n    \"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\",\n    \"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\",\n    \"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\",\n    \"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\",\n    \"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\",\n    \"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\",\n]'''\n\ncontent = content.replace(old_tasks, new_tasks)\n\n# 5. Replace INSTRUCTIONS (long tasks have scene prefix that must be stripped)\nold_instr = 'INSTRUCTIONS = [t.replace(\"_\", \" \") for t in TASKS]'\nnew_instr = '''INSTRUCTIONS = [\n    \"turn on the stove and put the moka pot on it\",\n    \"put the black bowl in the bottom drawer of the cabinet and close it\",\n    \"put the yellow and white mug in the microwave and close it\",\n    \"put both moka pots on the stove\",\n    \"put both the alphabet soup and the cream cheese box in the basket\",\n    \"put both the alphabet soup and the tomato sauce in the basket\",\n    \"put both the cream cheese box and the butter in the basket\",\n    \"put the white mug on the left plate and put the yellow and white mug on the right plate\",\n    \"put the white mug on the plate and put the chocolate pudding to the right of the plate\",\n    \"pick up the book and place it in the back compartment of the caddy\",\n]'''\ncontent = content.replace(old_instr, new_instr)\n\n# 6. Replace PARAPHRASES\nold_para = '''PARAPHRASES = [\n    \"grab the black bowl between the plate and ramekin and put it on the plate\",\n    \"grab the black bowl on the ramekin and put it on the plate\",\n    \"grab the black bowl on the cookie box and put it on the plate\",\n    \"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\",\n    \"grab the black bowl from the center of the table and put it on the plate\",\n    \"grab the black bowl next to the cookie box and put it on the plate\",\n    \"grab the black bowl on the stove and put it on the plate\",\n    \"grab the black bowl on the wooden cabinet and put it on the plate\",\n    \"grab the black bowl next to the plate and put it on the plate\",\n    \"grab the black bowl next to the ramekin and put it on the plate\",\n]'''\n\nnew_para = '''PARAPHRASES = [\n    \"switch on the stove and place the moka pot on it\",\n    \"place the black bowl in the bottom drawer of the cabinet and shut it\",\n    \"place the yellow and white mug in the microwave and shut it\",\n    \"put both of the moka pots on the stove\",\n    \"place the alphabet soup and cream cheese box into the basket\",\n    \"place the alphabet soup and tomato sauce into the basket\",\n    \"place the cream cheese box and butter into the basket\",\n    \"place the white mug on the left plate and the yellow white mug on the right plate\",\n    \"place the white mug on the plate and the chocolate pudding to the right of the plate\",\n    \"grab the book and put it in the back section of the caddy\",\n]'''\n\ncontent = content.replace(old_para, new_para)\n\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"tracvla_long patched OK\")\nPYEOF\npython3 /tmp/patch_long.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-21T16:01:05.493625+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/patch_long.py << \\\\'PYEOF\\\\'\\\\nimport re\\\\n\\\\nwith open(\\\"/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\\", \\\"r\\\") as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Header docstring\\\\ncontent = content.replace(\\\\n    \\\"LIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\\\",\\\\n    \\\"LIBERO-Long Full Analysis Pipeline for TracVLA-Phi3V\\\"\\\\n)\\\\n\\\\n# 2. Data path\\\\ncontent = content.replace(\\\\n    \\\\'DATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\"\\\\',\\\\n    \\\\'DATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\\\'\\\\n)\\\\n\\\\n# 3. Results path\\\\ncontent = content.replace(\\\\n    \\\\'RESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\\"\\\\',\\\\n    \\\\'RESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_long\\\"\\\\'\\\\n)\\\\n\\\\n# 4. Replace TASKS list\\\\nold_tasks = \\\\'\\\\'\\\\'TASKS = [\\\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\\\n]\\\\'\\\\'\\\\'\\\\n\\\\nnew_tasks = \\\\'\\\\'\\\\'TASKS
+…[truncated 4381 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-21T16:01:05.493936+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/miniconda3/bin/python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/miniconda3/bin/python3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-21T16:01:05.494166+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-21T16:01:05.494412+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /tmp/patch_scripts.py << 'PYEOF'\nimport os\n\n# Read the spatial template\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\", \"r\") as f:\n    spatial = f.read()\n\n# ============ PATCH LONG ============\nlong_content = spatial\n\nlong_content = long_content.replace(\n    \"LIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\",\n    \"LIBERO-Long Full Analysis Pipeline for TracVLA-Phi3V\"\n)\nlong_content = long_content.replace(\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\"',\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_10\"'\n)\nlong_content = long_content.replace(\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\"',\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_long\"'\n)\n\n# Replace TASKS block\nold_tasks_spatial = '''TASKS = [\n    \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\",\n]\nINSTRUCTIONS = [t.replace(\"_\", \" \") for t in TASKS]\nPARAPHRASES = [\n    \"grab the black bowl between the plate and ramekin and put it on the plate\",\n    \"grab the black bowl on the ramekin and put it on the plate\",\n    \"grab the black bowl on the cookie box and put it on the plate\",\n    \"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\",\n    \"grab the black bowl from the center of the table and put it on the plate\",\n    \"grab the black bowl next to the cookie box and put it on the plate\",\n    \"grab the black bowl on the stove and put it on the plate\",\n    \"grab the black bowl on the wooden cabinet and put it on the plate\",\n    \"grab the black bowl next to the plate and put it on the plate\",\n    \"grab the black bowl next to the ramekin and put it on the plate\",\n]'''\n\nnew_tasks_long = '''TASKS = [\n    \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\",\n    \"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\",\n    \"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\",\n    \"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\",\n    \"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\",\n    \"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\",\n    \"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\",\n    \"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\",\n]\nINSTRUCTIONS = [\n    \"turn on the stove and put the moka pot on it\",\n    \"put the black bowl in the bottom drawer of the cabinet and close it\",\n    \"put the yellow and white mug in the microwave and close it\",\n    \"put both moka pots on the stove\",\n    \"put both the alphabet soup and the cream cheese box in the basket\",\n    \"put both the alphabet soup and the tomato sauce in the basket\",\n    \"put both the cream cheese box and the butter in the basket\",\n    \"put the white mug on the left plate and put the yellow and white mug on the right plate\",\n    \"put the white mug on the plate and put the chocolate pudding to the right of the plate\",\n    \"pick up the book and place it in the back compartment of the caddy\",\n]\nPARAPHRASES = [\n    \"switch on the stove and place the moka pot on it\",\n    \"place the black bowl in the bottom drawer of the cabinet and shut it\",\n    \"place the yellow and white mug in the microwave and shut it\",\n    \"put both of the moka pots on the stove\",\n    \"place the alphabet soup and cream cheese box into the basket\",\n    \"place the alphabet soup and tomato sauce into the basket\",\n    \"place the cream cheese box and butter into the basket\",\n    \"place the white mug on the left plate and the yellow white mug on the right plate\",\n    \"place the white mug on the plate and the chocolate pudding to the right of the plate\",\n    \"grab the book and put it in the back section of the caddy\",\n]'''\n\nlong_content = long_content.replace(old_tasks_spatial, new_tasks_long)\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\", \"w\") as f:\n    f.write(long_content)\nprint(\"tracvla_long_full_pipeline.py DONE\")\n\n# ============ PATCH GOAL ============\ngoal_content = spatial\n\ngoal_content = goal_content.replace(\n    \"LIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\",\n    \"LIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\"\n)\ngoal_content = goal_content.replace(\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\"',\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"'\n)\ngoal_content = goal_content.replace(\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\"',\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_goal\"'\n)\n\nnew_tasks_goal = '''TASKS = [\n    \"open_the_middle_drawer_of_the_cabinet\",\n    \"open_the_top_drawer_and_put_the_bowl_inside\",\n    \"push_the_plate_to_the_front_of_the_stove\",\n    \"put_the_bowl_on_the_plate\",\n    \"put_the_bowl_on_the_stove\",\n    \"put_the_bowl_on_top_of_the_cabinet\",\n    \"put_the_cream_cheese_in_the_bowl\",\n    \"put_the_wine_bottle_on_the_rack\",\n    \"put_the_wine_bottle_on_top_of_the_cabinet\",\n    \"turn_on_the_stove\",\n]\nINSTRUCTIONS = [t.replace(\"_\", \" \") for t in TASKS]\nPARAPHRASES = [\n    \"open the cabinet's middle drawer\",\n    \"open the top drawer and place the bowl in it\",\n    \"slide the plate to the stove's front\",\n    \"place the bowl onto the plate\",\n    \"place the bowl onto the stove\",\n    \"place the bowl on the cabinet top\",\n    \"put cream cheese into the bowl\",\n    \"place the wine bottle on the rack\",\n    \"place the wine bottle on the cabinet top\",\n    \"switch on the stove\",\n]'''\n\ngoal_content = goal_content.replace(old_tasks_spatial, new_tasks_goal)\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\", \"w\") as f:\n    f.write(goal_content)\nprint(\"tracvla_goal_full_pipeline.py DONE\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/patch_scripts.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /tmp/patch_scripts.py << 'PYEOF'\nimport os\n\n# Read the spatial template\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\", \"r\") as f:\n    spatial = f.read()\n\n# ============ PATCH LONG ============\nlong_content = spatial\n\nlong_content = long_content.replace(\n    \"LIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\",\n    \"LIBERO-Long Full Analysis Pipeline for TracVLA-Phi3V\"\n)\nlong_content = long_content.replace(\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\"',\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_10\"'\n)\nlong_content = long_content.replace(\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\"',\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_long\"'\n)\n\n# Replace TASKS block\nold_tasks_spatial = '''TASKS = [\n    \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\",\n    \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\",\n]\nINSTRUCTIONS = [t.replace(\"_\", \" \") for t in TASKS]\nPARAPHRASES = [\n    \"grab the black bowl between the plate and ramekin and put it on the plate\",\n    \"grab the black bowl on the ramekin and put it on the plate\",\n    \"grab the black bowl on the cookie box and put it on the plate\",\n    \"grab the black bowl in the top drawer of the wooden cabinet and put it on the plate\",\n    \"grab the black bowl from the center of the table and put it on the plate\",\n    \"grab the black bowl next to the cookie box and put it on the plate\",\n    \"grab the black bowl on the stove and put it on the plate\",\n    \"grab the black bowl on the wooden cabinet and put it on the plate\",\n    \"grab the black bowl next to the plate and put it on the plate\",\n    \"grab the black bowl next to the ramekin and put it on the plate\",\n]'''\n\nnew_tasks_long = '''TASKS = [\n    \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\",\n    \"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\",\n    \"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\",\n    \"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\",\n    \"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\",\n    \"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\",\n    \"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\",\n    \"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\",\n    \"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\",\n]\nINSTRUCTIONS = [\n    \"turn on the stove and put the moka pot on it\",\n    \"put the black bowl in the bottom drawer of the cabinet and close it\",\n    \"put the yellow and white mug in the microwave and close it\",\n    \"put both moka pots on the stove\",\n    \"put both the alphabet soup and the cream cheese box in the basket\",\n    \"put both the alphabet soup and the tomato sauce in the basket\",\n    \"put both the cream cheese box and the butter in the basket\",\n    \"put the white mug on the left plate and put the yellow and white mug on the right plate\",\n    \"put the white mug on the plate and put the chocolate pudding to the right of the plate\",\n    \"pick up the book and place it in the back compartment of the caddy\",\n]\nPARAPHRASES = [\n    \"switch on the stove and place the moka pot on it\",\n    \"place the black bowl in the bottom drawer of the cabinet and shut it\",\n    \"place the yellow and white mug in the microwave and shut it\",\n    \"put both of the moka pots on the stove\",\n    \"place the alphabet soup and cream cheese box into the basket\",\n    \"place the alphabet soup and tomato sauce into the basket\",\n    \"place the cream cheese box and butter into the basket\",\n    \"place the white mug on the left plate and the yellow white mug on the right plate\",\n    \"place the white mug on the plate and the chocolate pudding to the right of the plate\",\n    \"grab the book and put it in the back section of the caddy\",\n]'''\n\nlong_content = long_content.replace(old_tasks_spatial, new_tasks_long)\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\", \"w\") as f:\n    f.write(long_content)\nprint(\"tracvla_long_full_pipeline.py DONE\")\n\n# ============ PATCH GOAL ============\ngoal_content = spatial\n\ngoal_content = goal_content.replace(\n    \"LIBERO-Spatial Full Analysis Pipeline for TracVLA-Phi3V\",\n    \"LIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\"\n)\ngoal_content = goal_content.replace(\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\"',\n    'DATA = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"'\n)\ngoal_content = goal_content.replace(\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\"',\n    'RESULTS_BASE = \"/root/autodl-tmp/vla-ssd/results/tracvla_goal\"'\n)\n\nnew_tasks_goal = '''TASKS = [\n    \"open_the_middle_drawer_of_the_cabinet\",\n    \"open_the_top_drawer_and_put_the_bowl_inside\",\n    \"push_the_plate_to_the_front_of_the_stove\",\n    \"put_the_bowl_on_the_plate\",\n    \"put_the_bowl_on_the_stove\",\n    \"put_the_bowl_on_top_of_the_cabinet\",\n    \"put_the_cream_cheese_in_the_bowl\",\n    \"put_the_wine_bottle_on_the_rack\",\n    \"put_the_wine_bottle_on_top_of_the_cabinet\",\n    \"turn_on_the_stove\",\n]\nINSTRUCTIONS = [t.replace(\"_\", \" \") for t in TASKS]\nPARAPHRASES = [\n    \"open the cabinet's middle drawer\",\n    \"open the top drawer and place the bowl in it\",\n    \"slide the plate to the stove's front\",\n    \"place the bowl onto the plate\",\n    \"place the bowl onto the stove\",\n    \"place the bowl on the cabinet top\",\n    \"put cream cheese into the bowl\",\n    \"place the wine bottle on the rack\",\n    \"place the wine bottle on the cabinet top\",\n    \"switch on the stove\",\n]'''\n\ngoal_content = goal_content.replace(old_tasks_spatial, new_tasks_goal)\nwith open(\"/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\", \"w\") as f:\n    f.write(goal_content)\nprint(\"tracvla_goal_full_pipeline.py DONE\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/patch_scripts.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-21T16:01:05.494709+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"tracvla_long_full_pipeline.py DONE\\ntracvla_goal_full_pipeline.py DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-21T16:01:05.494967+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -5 /root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -5 /root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-21T16:01:05.495191+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-21T16:01:05.495403+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n -e \"^DATA\" -e \"^RESULTS\" -e \"TASKS = \" -e \"INSTRUCTIONS = \" -e \"PARAPHRASES = \" /root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n -e \"^DATA\" -e \"^RESULTS\" -e \"TASKS = \" -e \"INSTRUCTIONS = \" -e \"PARAPHRASES = \" /root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-21T16:01:05.495633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"34:DATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\n35:RESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_long\\\"\\n50:TASKS = [\\n62:INSTRUCTIONS = [\\n74:PARAPHRASES = [\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-21T16:01:05.495840+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -5 /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -5 /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-21T16:01:05.496077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-21T16:01:05.496288+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n -e \"^DATA\" -e \"^RESULTS\" -e \"TASKS = \" -e \"INSTRUCTIONS = \" -e \"PARAPHRASES = \" /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n -e \"^DATA\" -e \"^RESULTS\" -e \"TASKS = \" -e \"INSTRUCTIONS = \" -e \"PARAPHRASES = \" /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-21T16:01:05.496506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"34:DATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\n35:RESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal\\\"\\n50:TASKS = [\\n62:INSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\n63:PARAPHRASES = [\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 125 · 2026-05-21T16:01:05.496799+00:00_
+
+两个脚本都已正确生成。以下是三个任务的汇总产出。
+
+---
+
+## 产出 1: Checkpoint 清单
+
+| Checkpoint | model_type | Architecture | 大小 | 用途 |
+|---|---|---|---|---|
+| `dinov2-large` | dinov2 | Dinov2Model | 1.2G | 视觉编码器 |
+| **`nora-libero-goal`** | qwen2_5_vl | Qwen2_5_VLForConditionalGeneration | 7.1G | NORA fine-tuned — **Goal** |
+| **`nora-libero-spatial`** | qwen2_5_vl | Qwen2_5_VLForConditionalGeneration | 7.1G | NORA fine-tuned — **Spatial** |
+| `qwen25-vl-3b-base` | qwen2_5_vl | Qwen2_5_VLForConditionalGeneration | 7.1G | NORA untrained base |
+| `openvla-7b` | openvla (llama) | OpenVLAForActionPrediction | 15G | OpenVLA base (untrained) |
+| **`openvla-7b-finetuned-libero-goal`** | openvla | OpenVLAForActionPrediction | 14G | OpenVLA fine-tuned — **Goal** |
+| **`openvla-7b-finetuned-libero-object`** | openvla | OpenVLAForActionPrediction | 15G | OpenVLA fine-tuned — **Object** |
+| **`openvla-7b-oft-finetuned-libero-10`** | openvla | OpenVLAForActionPrediction | 15G | OpenVLA fine-tuned — **Long** (libero_10) |
+| **`tracevla-phi3v`** | phi3_v | Phi3VForCausalLM | 7.8G | TracVLA trained（**单一 checkpoint，所有 suite 共用**） |
+| `phi3v-base` | phi3_v | Phi3VForCausalLM | 7.8G | TracVLA untrained base |
+| `phi3v-base-ms` | — (无config) | — | 7.8G | phi3v-base 的 ModelScope 副本 |
+| `openvla-phi3v` | — (空目录) | — | 24K | 占位符（仅 README/LICENSE） |
+
+**NORA**: 只有 Goal + Spatial（**无 Object、无 Long**）。每 suite 一个 checkpoint。
+
+**TracVLA**: 只有一个 checkpoint `tracevla-phi3v`，所有 suite 共用。untrained base = `phi3v-base`。
+
+**OpenVLA**: Goal + Object + Long 各一个 fine-tuned checkpoint（**无 Spatial**）。
+
+## 产出 2: TraceVLA Long 脚本
+
+`/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py` — 已创建，未提交运行。
+
+- DATA → `libero_10`
+- RESULTS → `tracvla_long`
+- TASKS/INSTRUCTIONS/PARAPHRASES 均已替换为 Long 的 10 个任务
+- Checkpoints 不变（trained=tracevla-phi3v, untrained=phi3v-base）
+
+## 产出 3: TraceVLA Goal untrained 状态
+
+- `results/tracvla_goal/` — **不存在**（无 trained 也无 untrained 结果）
+- 之前无 `tracvla_goal_full_pipeline.py` 脚本
+
+**现已创建** `/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py`，未提交运行。
+
+- DATA → `libero_goal`
+- RESULTS → `tracvla_goal`
+- TASKS/PARAPHRASES 使用 Goal 的 10 个任务（与 nora_goal 脚本一致）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_prep_checkpoint_audit_and_scripts_20260521T155659"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,28 @@
+{
+  "exp_id": "openvla_spatial_standardized_v1",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:02:09.424Z",
+    "updated_at": "2026-05-22T01:37:50.754Z",
+    "hypothesis": "OpenVLA (Llama-2-7B backbone) on LIBERO-Spatial standardized 5-phase pipeline (R² probing, L1 attention, cross-instruction classification, RSA, counterfactual). Both trained and untrained conditions. Filling missing R² exit, L1 attention, and untrained CF data for Spatial cell. Expect similar patterns to Goal/Object: R² exit collapse in trained, instruction-dominant L1 heads.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/vla-ssd/scripts/run_spatial_pipeline.sh\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "594575",
+      "log_path": "~/runs/vla-ssd/openvla_spatial_standardized_v1.log",
+      "submitted_at": "2026-05-22T01:37:38.234Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T01:37:51.059451+00:00",
+  "trigger": "update_registry"
+}

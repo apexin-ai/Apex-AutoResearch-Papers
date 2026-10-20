@@ -1,0 +1,14 @@
+{
+  "exp_id": "threecond_multiseed_r2_v2",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:04:22.860Z",
+    "updated_at": "2026-05-18T08:04:22.860Z"
+  },
+  "timestamp": "2026-05-18T08:04:23.022444+00:00",
+  "trigger": "update_registry"
+}

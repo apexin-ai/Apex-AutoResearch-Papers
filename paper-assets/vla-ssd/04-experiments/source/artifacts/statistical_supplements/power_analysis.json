@@ -1,0 +1,28 @@
+{
+  "test": "Statistical power analysis",
+  "min_detectable_d_n10": 0.996,
+  "rsa_analysis": {
+    "sd_within_task": 0.030227,
+    "mean_diff_trained_vs_untrained": 0.016508,
+    "n_tasks": 10,
+    "delta_0017_cohens_d": 0.5624,
+    "power_rsa_delta_0017": 0.356,
+    "min_detectable_delta_rsa_n10": 0.0301
+  },
+  "r2_analysis": {
+    "sd_within_task": 0.02576,
+    "mean_diff_ablated_vs_baseline": 0.03007,
+    "n_tasks": 10,
+    "delta_0069_cohens_d": 2.6785,
+    "power_r2_delta_0069": 1.0,
+    "min_detectable_delta_r2_n10": 0.0257
+  },
+  "n_eff": 10,
+  "alpha": 0.05,
+  "target_power": 0.8,
+  "metadata": {
+    "rsa_source": "/root/autodl-tmp/vla-ssd/results/rsa/rsa_definitive.json",
+    "r2_source": "/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json",
+    "computed_at": "2026-05-21T01:50:04.403380"
+  }
+}

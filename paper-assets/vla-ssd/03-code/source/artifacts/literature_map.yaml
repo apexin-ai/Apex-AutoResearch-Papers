@@ -1,0 +1,226 @@
+# VLA-SSD Literature Map
+# Updated: 2026-05-15
+# Novelty assessment: per-timestep goal classification as trained/untrained discriminator is NOVEL.
+# No existing work combines (1) temporal probing at individual timesteps, (2) goal classification,
+# and (3) comparison between trained VLA vs random projection/DINO baselines.
+
+papers:
+
+  # ============================================================
+  # CATEGORY 1: Probe Methodology — trivial separation & solutions
+  # ============================================================
+
+  - id: hewitt_liang_2019_control_tasks
+    title: "Designing and Interpreting Probes with Control Tasks"
+    authors: "John Hewitt, Percy Liang"
+    venue: "EMNLP 2019"
+    year: 2019
+    arxiv: "arXiv:1909.03368"
+    category: probe-methodology
+    role: method-component
+    key_finding: "提出 control task + selectivity 指标：probe 准确率必须对比 random label 基线，否则高准确率可能反映 probe 自身容量而非表征质量"
+    relevance: "直接解释我们的 random LLM projection 也能 100% GC 的现象——4096-dim 上 MLP probe 的 selectivity 很低。我们的 per-timestep 分析本质上是更精细的 selectivity 测试"
+
+  - id: voita_titov_2020_mdl_probing
+    title: "Information-Theoretic Probing with Minimum Description Length"
+    authors: "Elena Voita, Ivan Titov"
+    venue: "EMNLP 2020"
+    year: 2020
+    arxiv: "arXiv:2003.12298"
+    category: probe-methodology
+    role: method-component
+    key_finding: "用 MDL（最小描述长度）替代 accuracy 评估 probe：描述长度 = 质量 + 达到该质量所需的'努力'，能区分 pretrained vs random 而 accuracy 无法区分"
+    relevance: "提供理论框架解释为什么全轨迹 GC accuracy 不是好指标。MDL probing 是我们方法的互补替代方案"
+
+  - id: pimentel_2020_pareto_probing
+    title: "Pareto Probing: Trading Off Accuracy for Complexity"
+    authors: "Tiago Pimentel, Naomi Saphra, Adina Williams, Ryan Cotterell"
+    venue: "EMNLP 2020"
+    year: 2020
+    arxiv: "arXiv:2010.02180"
+    category: probe-methodology
+    role: method-component
+    key_finding: "Pareto hypervolume 度量 accuracy-complexity tradeoff；揭示 non-contextual fastText 在某些任务上编码比 BERT 更多信息，常用排名不可靠"
+    relevance: "支持我们的论点：高 accuracy 不等于好表征。与 MDL probing 互补的另一种复杂度-质量 tradeoff 框架"
+
+  - id: belinkov_2022_probing_survey
+    title: "Probing Classifiers: Promises, Shortcomings, and Advances"
+    authors: "Yonatan Belinkov"
+    venue: "Computational Linguistics 48(1)"
+    year: 2022
+    arxiv: "arXiv:2102.12452"
+    category: probe-methodology
+    role: background
+    key_finding: "系统综述 probing classifier 的方法论局限性：高维空间中 probe 容易 trivially solve、需要 control baselines、selectivity 和 complexity 控制"
+    relevance: "为我们的 probe 设计提供方法论指导，是引用 Hewitt/Voita/Pimentel 工作的统一参考"
+
+  - id: gorban_tyukin_2018_blessing_dimensionality
+    title: "Blessing of Dimensionality: Mathematical Foundations of the Statistical Physics of Data"
+    authors: "Alexander N. Gorban, Ivan Y. Tyukin"
+    venue: "Philosophical Transactions of the Royal Society A 376(2118)"
+    year: 2018
+    arxiv: null
+    category: probe-methodology
+    role: background
+    key_finding: "高维空间中随机点集可以被超平面以高概率线性分离，即使点数量关于维度是指数级的（stochastic separation theorems）"
+    relevance: "数学解释为什么 4096-dim 空间中 10-class 分类 trivially 100%——维度远大于类别数时分离几乎必然"
+
+  - id: grechuk_gorban_tyukin_2021_separation_optimal
+    title: "General Stochastic Separation Theorems with Optimal Bounds"
+    authors: "Bogdan Grechuk, Alexander N. Gorban, Ivan Y. Tyukin"
+    venue: "Neural Networks 138"
+    year: 2021
+    arxiv: "arXiv:2010.05241"
+    category: probe-methodology
+    role: background
+    key_finding: "为 stochastic separation 提供最优概率估计：log-concave 分布、凸组合分布、乘积分布均满足 Fisher 可分性"
+    relevance: "为 Gorban 2018 的定性结论提供定量界，可用于估计 4096-dim 10-class 问题的 trivial separation 概率"
+
+  - id: prabhu_2024_randumb
+    title: "RanDumb: Random Representations Outperform Online Continually Learned Representations"
+    authors: "Ameya Prabhu, Shiven Sinha, Ponnurangam Kumaraguru, Philip H.S. Torr, Ozan Sener, Puneet K. Dokania"
+    venue: "NeurIPS 2024"
+    year: 2024
+    arxiv: "arXiv:2402.08823"
+    category: probe-methodology
+    role: background
+    key_finding: "固定随机投影 + linear classifier 在所有 online continual learning benchmark 上超过 SOTA 学到的表征"
+    relevance: "与我们发现的 random LLM projection 达到 100% GC 相呼应——random high-dim features 本身就是强 baseline"
+
+  # ============================================================
+  # CATEGORY 2: VLA Representation Probing & Temporal Analysis
+  # ============================================================
+
+  - id: grant_2026_not_all_features
+    title: "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models"
+    authors: "Bryce Grant, Xijia Zhao, Peng Wang"
+    venue: "Multimodal Intelligence Workshop @ ICLR 2026"
+    year: 2026
+    arxiv: "arXiv:2603.19233"
+    category: temporal-analysis
+    role: direct-competitor
+    key_finding: "视觉通路主导 action generation；language sensitivity 取决于 task structure 而非模型设计；cross-task injection 99.8% 对齐 source trajectory"
+    relevance: "最接近的直接竞争者。他们的 task-structure-determines-language-sensitivity 结论与我们的 LIBERO-10 vs LIBERO-Goal 发现一致。但他们用 activation injection + SAE，没做 per-timestep goal classification probe"
+
+  - id: lu_2025_probing_vla_symbolic
+    title: "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture"
+    authors: "Hong Lu, Hengxu Li, Prithviraj Singh Shahani, Stephanie Herbers, Matthias Scheutz"
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "arXiv:2502.04558"
+    category: temporal-analysis
+    role: direct-competitor
+    key_finding: "OpenVLA Llama backbone 各层对 object state 和 action state 的 probe accuracy 均 >0.90；符号状态编码并非按 early=object/late=action 分层"
+    relevance: "在 LIBERO 上做 OpenVLA probing 的先驱工作，但只做 layer-wise 分析，没做 temporal (per-timestep) 分析，也没有 trained vs untrained 对比"
+
+  - id: buurmeijer_2026_observing_controlling
+    title: "Observing and Controlling Features in Vision-Language-Action Models"
+    authors: "Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, Marco Pavone"
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "arXiv:2603.05487"
+    category: temporal-analysis
+    role: direct-competitor
+    key_finding: "VLA 表征中 behaviorally relevant features 是 linearly encoded 的，可用 linear observer 提取，用 minimal linear intervention 控制 VLA 输出"
+    relevance: "证明 VLA 内部有 linearly decodable 结构。他们关注 controllability（intervene to steer），我们关注 discriminability（trained vs untrained）——互补视角"
+
+  - id: luo_2026_look_before_acting
+    title: "Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models"
+    authors: "Yulin Luo, Hao Chen, Zhuangzhe Wu, Bowen Sui, Jiaming Liu, et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "arXiv:2603.15618"
+    category: temporal-analysis
+    role: background
+    key_finding: "VLA 深层 visual token sensitivity 逐渐降低；注入多层级 visual features 到深层 + 视觉 token pruning 可提升 9% 性能"
+    relevance: "揭示 VLA 内部视觉信息在深层衰减的现象，与我们分析 vision vs language 贡献相关"
+
+  - id: jiang_2025_mcr
+    title: "Robots Pre-train Robots: Manipulation-Centric Robotic Representation from Large-Scale Robot Datasets"
+    authors: "Guangqi Jiang, Yifei Sun, Tao Huang, Huanyu Li, Yongyuan Liang, Huazhe Xu"
+    venue: "ICLR 2025"
+    year: 2025
+    arxiv: null
+    category: temporal-analysis
+    role: background
+    key_finding: "提出 manipulation centricity 指标评估表征质量，发现编码 action + proprioception 的表征比纯视觉表征更适合下游 manipulation"
+    relevance: "用 probe 分析评估不同表征的 manipulation 相关性，方法论可参考；但关注 pre-training 而非 instruction encoding"
+
+  # ============================================================
+  # CATEGORY 3: Instruction Encoding & Language Sensitivity in VLA
+  # ============================================================
+
+  - id: fei_2025_libero_plus
+    title: "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models"
+    authors: "Senyu Fei, Siyin Wang, Junhao Shi, Zihao Dai, Jikun Cai, et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "arXiv:2510.13626"
+    category: instruction-encoding
+    role: evaluation
+    key_finding: "VLA 模型在 7 维扰动下性能从 95% 降至 <30%；模型对 language variation 不敏感，进一步实验表明模型完全忽略 language instructions"
+    relevance: "直接支持我们的动机——VLA 的 language 通道可能没有被有效利用。我们的 per-timestep probing 提供了表征层面的解释"
+
+  - id: zhang_2026_vlm4vla
+    title: "VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models"
+    authors: "Jianke Zhang, Xiaoyu Chen, Qiuyue Wang, Mingsheng Li, Yanjiang Guo, et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "arXiv:2601.03309"
+    category: instruction-encoding
+    role: evaluation
+    key_finding: "VLM 的 visual module 而非 language component 是 VLA 性能瓶颈；向 vision encoder 注入 control-relevant supervision 带来一致增益"
+    relevance: "vision 主导 vs language 次要的结论与 Grant 2026 一致。但他们没有区分 task structure 的影响——我们的 LIBERO-10 vs LIBERO-Goal 对比填补了这个空白"
+
+  - id: fang_2026_vision_overrides_language
+    title: "When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs"
+    authors: "Yu Fang, Yuchun Feng, Dong Jing, Jiaqi Liu, Yue Yang, Zhenyu Wei, Daniel Szafir, Mingyu Ding"
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "arXiv:2602.17659"
+    category: instruction-encoding
+    role: evaluation
+    key_finding: "VLA 存在 counterfactual failure：在 LIBERO-CF benchmark 上模型按视觉 shortcut 执行训练过的行为，而非遵循新 instruction"
+    relevance: "从行为层面验证了 vision dominance 问题；我们从表征层面（probe 分析）提供补充证据"
+
+  - id: zhan_2026_stable_language_guidance
+    title: "Stable Language Guidance for Vision-Language-Action Models"
+    authors: "Zhihao Zhan, Yuhao Chen, Jiaying Zhou, Qinhan Lyu, Hao Liu, Keze Wang, Liang Lin, Guangrun Wang"
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "arXiv:2601.04052"
+    category: instruction-encoding
+    role: evaluation
+    key_finding: "VLA 存在 modality collapse：强 visual prior 压倒 sparse linguistic signal，导致模型对特定措辞过拟合而忽略语义意图"
+    relevance: "modality collapse 概念直接相关——我们的 probing 结果可以从表征角度解释这个现象"
+
+  - id: zhang_2026_restoring_linguistic_grounding
+    title: "Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration"
+    authors: "Ninghao Zhang, Bin Zhu, Shijie Zhou, Jingjing Chen"
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "arXiv:2603.06001"
+    category: instruction-encoding
+    role: evaluation
+    key_finding: "VLA 存在 linguistic blindness：即使 instruction 与场景矛盾也执行视觉上合理的动作。IGAR 方法在推理时调整 attention 权重恢复 language grounding"
+    relevance: "linguistic blindness 是我们要回答的核心问题之一。我们的 t=0 probing 结果说明训练确实编码了 instruction，只是全轨迹 probe 检测不到差异"
+
+# ============================================================
+# NOVELTY ASSESSMENT SUMMARY
+# ============================================================
+#
+# 已有工作的空白（我们的贡献点）：
+#
+# 1. Per-timestep goal classification: 没有人做过。Lu 2025 做 layer-wise probing，
+#    Grant 2026 做 activation injection，Buurmeijer 2026 做 linear observability
+#    ——都没有 temporal resolution 的 goal classification。
+#
+# 2. Trained vs untrained/random 对比: Hewitt 2019 和 Voita 2020 在 NLP 中提出，
+#    但没有人在 VLA 领域做过 trained vs random-projection 的 probe 对比。
+#
+# 3. Task structure 作为 moderator: Grant 2026 提到 task structure 影响 language
+#    sensitivity，但没有用 probe accuracy 量化。我们用 LIBERO-10 (vision-sufficient)
+#    vs LIBERO-Goal (vision-ambiguous) 的 per-timestep 对比直接量化了这个效应。
+#
+# 4. t=0 instruction encoding 信号: 我们发现 t=0 时 trained VLA 100% vs DINO 43.3%
+#    (+56.7pp)——这个 early-frame gap 是全新发现，没有先例。

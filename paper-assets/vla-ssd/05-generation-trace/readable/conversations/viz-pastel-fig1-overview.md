@@ -1,0 +1,757 @@
+# viz pastel fig1 overview
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/chats/worker_viz_pastel_fig1_overview_20260524T055438.jsonl`
+- **Structured JSON:** [`4c33edb37ce8482fd9ac.json`](../../sessions/4c/4c33edb37ce8482fd9ac.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+23 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-24T05:57:34.248289+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-24T05:57:34.248726+00:00_
+
+1	import matplotlib
+2	matplotlib.use('Agg')
+3	import matplotlib.pyplot as plt
+4	import matplotlib.patches as mpatches
+5	import matplotlib.patheffects as pe
+6	import numpy as np
+7	
+8	plt.rcParams.update({
+9	    'font.family': 'DejaVu Sans',
+10	    'font.size': 10,
+11	    'figure.dpi': 300,
+12	    'savefig.dpi': 300,
+13	    'savefig.bbox': 'tight',
+14	    'savefig.pad_inches': 0.08,
+15	    'pdf.fonttype': 42,
+16	    'ps.fonttype': 42,
+17	})
+18	
+19	# ─── Semantic color palette ──────────────────────────────────
+20	TEAL    = '#0072B2'
+21	AMBER   = '#E69F00'
+22	CORAL   = '#D55E00'
+23	GREEN   = '#009E73'
+24	PURPLE  = '#AA44AA'
+25	
+26	TEAL_L  = '#EAF4FB'
+27	AMBER_L = '#FFF8E1'
+28	CORAL_L = '#FDE8E4'
+29	GREEN_L = '#E8F8F0'
+30	
+31	TXT     = '#2B2B2B'
+32	TXT2    = '#666666'
+33	TXT3    = '#999999'
+34	LN      = '#888888'
+35	
+36	# ─── Figure ──────────────────────────────────────────────────
+37	fig = plt.figure(figsize=(14, 4.2), facecolor='white')
+38	
+39	ax_a = fig.add_axes([0.01, 0.04, 0.26, 0.88])
+40	ax_b = fig.add_axes([0.30, 0.04, 0.38, 0.88])
+41	ax_c = fig.add_axes([0.72, 0.04, 0.27, 0.88])
+42	
+43	for ax in [ax_a, ax_b, ax_c]:
+44	    ax.axis('off')
+45	
+46	# ─── Helpers ─────────────────────────────────────────────────
+47	def rbox(ax, cx, cy, w, h, label='', fc='white', ec='#CCC',
+48	         fontsize=9, fontweight='normal', tc=TXT,
+49	         lw=0.7, ls='-', zorder=3, fontstyle='normal',
+50	         shadow=False, radius=0.12, label_lines=None):
+51	    if shadow:
+52	        for dx, dy, sa in [(0.12, -0.12, 0.15), (0.06, -0.06, 0.10)]:
+53	            sp = mpatches.FancyBboxPatch(
+54	                (cx - w/2 + dx, cy - h/2 + dy), w, h,
+55	                boxstyle=f'round,pad={radius}',
+56	                facecolor='#B0B0B0', edgecolor='none', linewidth=0,
+57	                alpha=sa, zorder=zorder - 1)
+58	            ax.add_patch(sp)
+59	    b = mpatches.FancyBboxPatch(
+60	        (cx - w/2, cy - h/2), w, h,
+61	        boxstyle=f'round,pad={radius}',
+62	        facecolor=fc,
+…[truncated 12014 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-24T05:57:34.249032+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py",
+  "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport os, shutil\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\n# ─── Pastel color palette ───────────────────────────────────\nPASTEL = {\n    'blue':   '#92C5DE',\n    'gold':   '#FDB863',\n    'orange': '#F4A582',\n    'green':  '#A6DBA0',\n    'pink':   '#E7B8D4',\n    'cyan':   '#B2E2E2',\n}\nEDGE = {\n    'blue':   '#4393C3',\n    'gold':   '#E08214',\n    'orange': '#D6604D',\n    'green':  '#5AAE61',\n    'pink':   '#C2669A',\n    'cyan':   '#5AB4AC',\n}\n\nPASTEL_BLUE_L  = '#DBE9F4'\nPASTEL_GOLD_L  = '#FEF0D9'\nPASTEL_ORANGE_L = '#FDEAE3'\nPASTEL_GREEN_L = '#E3F5E1'\n\nTXT     = '#2B2B2B'\nTXT2    = '#666666'\nTXT3    = '#999999'\nLN      = '#888888'\n\n# ─── Figure (compact) ──────────────────────────────────────\nfig = plt.figure(figsize=(10, 3.2), facecolor='white')\n\nax_a = fig.add_axes([0.01, 0.04, 0.28, 0.88])\nax_b = fig.add_axes([0.31, 0.04, 0.38, 0.88])\nax_c = fig.add_axes([0.71, 0.04, 0.28, 0.88])\n\nfor ax in [ax_a, ax_b, ax_c]:\n    ax.axis('off')\n\n# ─── Helpers ─────────────────────────────────────────────────\ndef rbox(ax, cx, cy, w, h, label='', fc='white', ec='#CCC',\n         fontsize=9, fontweight='normal', tc=TXT,\n         lw=0.7, ls='-', zorder=3, fontstyle='normal',\n         shadow=False, radius=0.12, label_lines=None):\n    if shadow:\n        for dx, dy, sa in [(0.12, -0.12, 0.15), (0.06, -0.06, 0.10)]:\n            sp = mpatches.FancyBboxPatch(\n                (cx - w/2 + dx, cy - h/2 + dy), w, h,\n                boxstyle=f'round,pad={radius}',\n                facecolor='#B0B0B0', edgecolor='none', linewidth=0,\n                alpha=sa, zorder=zorder - 1)\n            ax.add_patch(sp)\n    b = mpatches.FancyBboxPatch(\n        (cx - w/2, cy - h/2), w, h,\n        boxstyle=f'round,pad={radius}',\n        facecolor=fc, edgecolor=ec, linewidth=lw,\n        linestyle=ls, zorder=zorder)\n    ax.add_patch(b)\n    if label:\n        ax.text(cx, cy, label, ha='center', va='center',\n                fontsize=fontsize, color=tc, fontweight=fontweight,\n                fontstyle=fontstyle, zorder=zorder + 1)\n\ndef farrow(ax, x1, y1, x2, y2, color=LN, lw=0.8, ms=10,\n           style='->', conn=None, ls='-'):\n    props = dict(arrowstyle=style, color=color, lw=lw, mutation_scale=ms,\n                 linestyle=ls)\n    if conn:\n        props['connectionstyle'] = conn\n    ax.annotate('', xy=(x2, y2), xytext=(x1, y1), arrowprops=props)\n\ndef num_circle(ax, x, y, num, color, ec_color=None, size=0.35):\n    if ec_color is None:\n        ec_color = 'white'\n    circle = mpatches.Circle((x, y), size, facecolor=color,\n                              edgecolor=ec_color, linewidth=0.8, zorder=6)\n    ax.add_patch(circle)\n    ax.text(x, y, str(num), ha='center', va='center',\n            fontsize=7.5, color='white', fontweight='bold', zorder=7)\n\ndef section_title(ax, x, y, panel_label, subtitle):\n    ax.text(x, y, panel_label, fontsize=12, fontweight='bold', va='top',\n            color=TXT)\n    ax.text(x + 1.5, y - 0.1, subtitle, fontsize=8.5, va='top', color=TXT2)\n\n# ═══════════════════════════════════════════════════════════════\n# PANEL (a): VLA sequence structure\n# ═══════════════════════════════════════════════════════════════\nax_a.set_xlim(-2, 11)\nax_a.set_ylim(-0.5, 10.5)\n\nsection_title(ax_a, -1.5, 10.2, '(a)', 'VLA sequence structure')\n\nCX = 4.5\nBW = 7.0\nBH = 1.3\n\n# Image tokens — pastel blue\ny_img = 8.2\nrbox(ax_a, CX, y_img, BW, BH, fc=PASTEL_BLUE_L, ec=EDGE['blue'], ls='--', lw=0.6,\n     radius=0.15)\nax_a.text(CX - 1.5, y_img + 0.1, 'Image tokens', fontsize=9,\n          ha='center', va='center', color=TXT, fontweight='medium', zorder=4)\nfor k in range(4):\n    px = CX + 0.6 + k * 0.85\n    ax_a.add_patch(mpatches.FancyBboxPatch(\n        (px - 0.25, y_img - 0.25), 0.5, 0.5,\n        boxstyle='round,pad=0.05', facecolor=PASTEL['blue'], alpha=0.5,\n        edgecolor=EDGE['blue'], linewidth=0.4, zorder=4))\n\n# Instruction tokens — pastel gold\ny_ins = 5.6\nrbox(ax_a, CX, y_ins, BW, BH, fc=PASTEL_GOLD_L, ec=EDGE['gold'], ls='--', lw=0.6,\n     radius=0.15)\nax_a.text(CX, y_ins + 0.28, 'Instruction tokens', fontsize=9,\n          ha='center', va='center', color=TXT, fontweight='medium', zorder=4)\nax_a.text(CX, y_ins - 0.28, 'pick up the red block', fontsize=7.5,\n          ha='center', va='center', color=TXT3, fontstyle='italic', zorder=4)\n\n# Readout (R) — pastel orange; Action (Act) — pastel green\ny_bot = 3.0\nrbox(ax_a, CX - 1.8, y_bot, 2.2, 1.0, 'R', PASTEL['orange'], EDGE['orange'],\n     fontsize=12, fontweight='bold', tc='white', lw=0.8, shadow=True,\n     radius=0.14)\nrbox(ax_a, CX + 1.8, y_bot, 2.2, 1.0, 'Act', PASTEL['green'], EDGE['green'],\n     fontsize=11, fontweight='bold', tc='white', lw=0.8, shadow=True,\n     radius=0.14)\n\n# Vertical arrows\nfarrow(ax_a, CX, y_img - BH/2, CX, y_ins + BH/2,\n       color=TXT3, lw=0.9, style='-|>', ms=9)\nfarrow(ax_a, CX - 1.0, y_ins - BH/2, CX - 1.8, y_bot + 0.55,\n       color=TXT3, lw=0.9, style='-|>', ms=9)\nfarrow(ax_a, CX + 1.0, y_ins - BH/2, CX + 1.8, y_bot + 0.55,\n       color=TXT3, lw=0.9, style='-|>', ms=9)\n\n# Red X — causal mask constraint\nmid_y = (y_img + y_ins) / 2\nxx = 9.2\nd = 0.25\nax_a.plot([xx - d, xx + d], [mid_y - d, mid_y + d],\n          color='#CC0000', lw=2.0, zorder=5, solid_capstyle='round')\nax_a.plot([xx - d, xx + d], [mid_y + d, mid_y - d],\n          color='#CC0000', lw=2.0, zorder=5, solid_capstyle='round')\nax_a.text(xx, mid_y - 0.55, 'cannot attend\\nto instruction', fontsize=6.5,\n          ha='center', va='top', color='#CC0000', linespacing=1.3)\n\n# Arc arrow: image → readout\nfarrow(ax_a, CX - BW/2 - 0.2, y_img,\n       CX - 1.8 - 1.1, y_bot + 0.2,\n       color=EDGE['blue'], lw=1.0, conn='arc3,rad=0.45', style='-|>', ms=10)\nax_a.text(-0.8, (y_img + y_bot) / 2 - 0.3, 'attends to\\nall context',\n          fontsize=7, ha='center', va='center', color=EDGE['blue'],\n          fontstyle='italic', linespacing=1.3)\n\n# Position labels\nax_a.text(CX, y_img - BH/2 - 0.15, 'image_mean', fontsize=7,\n          ha='center', va='top', color=TXT2, fontstyle='italic')\nax_a.text(CX - 1.8, y_bot - 0.6, 'readout', fontsize=7,\n          ha='center', va='top', color=TXT2, fontstyle='italic')\n\n# ═══════════════════════════════════════════════════════════════\n# PANEL (b): Three analysis methods\n# ═══════════════════════════════════════════════════════════════\nax_b.set_xlim(-0.5, 14)\nax_b.set_ylim(-0.5, 10.5)\n\nsection_title(ax_b, -0.3, 10.2, '(b)', 'Three analysis methods')\n\n# ── Method 1: Layer-wise action probes ────────────────────────\nnum_circle(ax_b, -0.1, 8.95, '1', EDGE['blue'])\nax_b.text(0.5, 9.0, 'Layer-wise action probes', fontsize=9,\n          fontweight='bold', color=TXT)\n\nm1y = 8.0\nfor i, lbl in enumerate(['L1', 'L2', 'L3']):\n    rbox(ax_b, 0.7 + i * 1.1, m1y, 0.8, 0.6, lbl, PASTEL_BLUE_L, EDGE['blue'],\n         fontsize=8, radius=0.08)\n\nfarrow(ax_b, 3.2, m1y, 4.0, m1y, color=TXT3, style='-|>', ms=8)\nrbox(ax_b, 4.8, m1y, 1.5, 0.6, 'Probe', '#F5F5F5', '#BBBBBB',\n     fontsize=8, radius=0.08)\nfarrow(ax_b, 5.55, m1y, 6.3, m1y, color=TXT3, style='-|>', ms=8)\nrbox(ax_b, 7.5, m1y, 2.2, 0.6, '7-DoF action', PASTEL_ORANGE_L, EDGE['orange'],\n     fontsize=8, radius=0.08)\n\n# R² badge\nrbox(ax_b, 9.0, m1y + 0.50, 0.6, 0.45, 'R²', PASTEL_ORANGE_L, EDGE['orange'],\n     fontsize=7.5, fontweight='bold', tc=EDGE['orange'], radius=0.1)\n\n# ── Method 2: Counterfactual perturbation ─────────────────────\nnum_circle(ax_b, -0.1, 6.15, '2', EDGE['blue'])\nax_b.text(0.5, 6.2, 'Counterfactual perturbation', fontsize=9,\n          fontweight='bold', color=TXT)\n\nm2y = 5.3\ncapsules = [\n    ('✓ correct instr.', PASTEL_GREEN_L, EDGE['green'],  2.5),\n    ('∅ empty',          '#F0F0F0',      '#888888',       1.5),\n    ('✗ wrong',          '#FFEEEE',      '#CC0000',       1.5),\n    ('◇ shuffle',        PASTEL_GOLD_L,  EDGE['gold'],    1.7),\n    ('~ paraph.',        '#F3E0ED',      EDGE['pink'],    1.7),\n]\nx_pos = 0.2\nfor label, fc, ec, w in capsules:\n    cx = x_pos + w / 2\n    rbox(ax_b, cx, m2y, w, 0.6, label, fc, ec,\n         fontsize=6.5, fontweight='bold', tc=ec, radius=0.1)\n    x_pos += w + 0.25\n\nfarrow(ax_b, x_pos + 0.3, m2y, x_pos + 1.1, m2y,\n       color=TXT3, style='-|>', ms=8)\nax_b.text(x_pos + 1.3, m2y, 'Δaction', fontsize=7.5,\n          ha='left', va='center', color=TXT, fontweight='medium')\n\n# ── Method 3: L1 attention profiling ──────────────────────────\nnum_circle(ax_b, -0.1, 3.25, '3', EDGE['gold'])\nax_b.text(0.5, 3.3, 'L1 attention profiling', fontsize=9,\n          fontweight='bold', color=TXT)\n\nhm_x0, hm_y0 = 0.5, 0.3\ncell = 0.65\n\nattn = np.array([\n    [0.1, 0.1, 0.7, 0.1],\n    [0.2, 0.2, 0.6, 0.0],\n    [0.3, 0.7, 0.0, 0.0],\n    [0.8, 0.0, 0.0, 0.0],\n])\nrow_labels = ['ro', 'inst', 'img', 'img']\n\nfor r in range(4):\n    ax_b.text(hm_x0 - 0.15, hm_y0 + r * cell + cell / 2,\n              row_labels[r], fontsize=6.5, ha='right', va='center',\n              color=TXT2, fontstyle='italic')\n    for c in range(4):\n        v = attn[r, c]\n        if v < 0.01:\n            fc = '#F5F5F5'\n        else:\n            fc = plt.cm.Blues(v * 0.65 + 0.18)\n        rect = mpatches.FancyBboxPatch(\n            (hm_x0 + c * cell + 0.02, hm_y0 + r * cell + 0.02),\n            cell - 0.04, cell - 0.04,\n            boxstyle='round,pad=0.02',\n            facecolor=fc, edgecolor='white', linewidth=0.6, zorder=3)\n        ax_b.add_patch(rect)\n\n# Highlight readout→instruction cell\nrect_h = mpatches.FancyBboxPatch(\n    (hm_x0 + 2 * cell + 0.02, hm_y0 + 0.02),\n    cell - 0.04, cell - 0.04,\n    boxstyle='round,pad=0.02',\n    facecolor='none', edgecolor=EDGE['blue'], linewidth=1.5, zorder=5)\nax_b.add_patch(rect_h)\n\n# Arrow from heatmap\nhm_right = hm_x0 + 4 * cell + 0.3\nhm_mid_y = hm_y0 + 2 * cell\nfarrow(ax_b, hm_right, hm_mid_y, hm_right + 1.2, hm_mid_y,\n       color=TXT3, style='-|>', ms=8)\n\ntx = hm_right + 1.5\nax_b.plot([tx - 0.5, tx - 0.15], [hm_mid_y + 0.45, hm_mid_y + 0.45],\n          color=PASTEL['blue'], lw=2.5, solid_capstyle='round', zorder=4)\nax_b.plot([tx - 0.5, tx - 0.15], [hm_mid_y - 0.45, hm_mid_y - 0.45],\n          color=PASTEL['orange'], lw=2.5, solid_capstyle='round', zorder=4)\nax_b.text(tx, hm_mid_y + 0.45, 'readout → instruction', fontsize=8,\n          ha='left', va='center', color=EDGE['blue'], fontweight='bold')\nax_b.text(tx, hm_mid_y - 0.45, 'readout → image', fontsize=8,\n          ha='left', va='center', color=EDGE['orange'], fontweight='bold')\n\nbr_x = tx + 4.5\nax_b.plot([br_x, br_x], [hm_mid_y - 0.65, hm_mid_y + 0.65],\n          color=TXT3, lw=0.6, zorder=3)\nax_b.plot([br_x - 0.15, br_x], [hm_mid_y - 0.65, hm_mid_y - 0.65],\n          color=TXT3, lw=0.6, zorder=3)\nax_b.plot([br_x - 0.15, br_x], [hm_mid_y + 0.65, hm_mid_y + 0.65],\n          color=TXT3, lw=0.6, zorder=3)\nax_b.text(br_x + 0.25, hm_mid_y, 'attention\\nratio', fontsize=6.5,\n          ha='left', va='center', color=TXT2, linespacing=1.3)\n\n# ═══════════════════════════════════════════════════════════════\n# PANEL (c): Finding classification\n# ═══════════════════════════════════════════════════════════════\nax_c.set_xlim(-0.5, 11)\nax_c.set_ylim(-0.5, 10.5)\n\nsection_title(ax_c, -0.3, 10.2, '(c)', 'Finding classification')\n\nrows_c = [\n    ('1', 'Exit collapse\\n(ΔR² > 0.10)',  PASTEL_BLUE_L, EDGE['blue'],   'Training-\\nassociated'),\n    ('2', 'CF sensitivity\\n(d ≥ 0.45)',    PASTEL_BLUE_L, EDGE['blue'],   'Action-\\nlinked'),\n    ('3', 'L1 instruction\\nattention',     PASTEL_GOLD_L, EDGE['gold'],   'Inherited\\nprior'),\n]\nrow_ys = [7.8, 5.3, 2.8]\n\n# Badge colors per row: Training-associated=orange, Action-linked=blue, Inherited prior=gold\nbadge_colors = [\n    (PASTEL['orange'], EDGE['orange']),\n    (PASTEL['blue'],   EDGE['blue']),\n    (PASTEL['gold'],   EDGE['gold']),\n]\n\nfor idx, ((num, finding, box_fc, box_ec, badge_lbl), ry) in enumerate(zip(rows_c, row_ys)):\n    circ_color = EDGE['blue'] if box_ec == EDGE['blue'] else EDGE['gold']\n    num_circle(ax_c, 0.0, ry, num, circ_color)\n\n    box_cx = 2.8\n    box_w = 4.0\n    box_h = 1.3\n    rbox(ax_c, box_cx, ry, box_w, box_h, finding, fc='white', ec='#CCCCCC',\n         fontsize=8.5, lw=0.6, shadow=True, radius=0.14)\n    accent = mpatches.FancyBboxPatch(\n        (box_cx - box_w/2 - 0.14, ry - box_h/2 + 0.08),\n        0.12, box_h - 0.16,\n        boxstyle='round,pad=0.03',\n        facecolor=box_ec, edgecolor='none', zorder=4, alpha=0.8)\n    ax_c.add_patch(accent)\n\n    farrow(ax_c, box_cx + box_w/2 + 0.2, ry, 6.7, ry,\n           color=TXT3, lw=0.7, style='-|>', ms=8, ls='--')\n\n    b_fc, b_ec = badge_colors[idx]\n    rbox(ax_c, 8.5, ry, 3.2, 1.1, badge_lbl, fc=b_fc, ec=b_ec,\n         fontsize=8.5, fontweight='bold', tc=b_ec, lw=0.8,\n         shadow=True, radius=0.14)\n\n# ── Panel separators ─────────────────────────────────────────\nfor sep_x in [0.30, 0.70]:\n    line = plt.Line2D([sep_x, sep_x], [0.08, 0.92],\n                      transform=fig.transFigure, color='#E0E0E0',\n                      linewidth=0.6, zorder=0)\n    fig.add_artist(line)\n\n# ═══════════════════════════════════════════════════════════════\n# Save\n# ═══════════════════════════════════════════════════════════════\nbase = '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd'\nout_paper = f'{base}/docs/paper/figures/fig_overview'\nout_artifact = f'{base}/artifacts/figures/paper/fig_overview'\n\nos.makedirs(os.path.dirname(out_paper), exist_ok=True)\nos.makedirs(os.path.dirname(out_artifact), exist_ok=True)\n\nplt.savefig(f'{out_paper}.png', dpi=300)\nplt.savefig(f'{out_paper}.pdf', dpi=300)\n\nshutil.copy2(f'{out_paper}.png', f'{out_artifact}.png')\nshutil.copy2(f'{out_paper}.pdf', f'{out_artifact}.pdf')\n\nplt.close()\nprint(f'Saved: {out_paper}.{{png,pdf}} + copied to artifacts/')\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py",
+    "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport os, shutil\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\n# ─── Pastel color palette ───────────────────────────────────\nPASTEL = {\n    'blue':   '#92C5DE',\n    'gold':   '#FDB863',\n    'orange': '#F4A582',\n    'green':  '#A6DBA0',\n    'pink':   '#E7B8D4',\n    'cyan':   '#B2E2E2',\n}\nEDGE = {\n    'blue':   '#4393C3',\n    'gold':   '#E08214',\n    'orange': '#D6604D',\n    'green':  '#5AAE61',\n    'pink':   '#C2669A',\n    'cyan':   '#5AB4AC',\n}\n\nPASTEL_BLUE_L  = '#DBE9F4'\nPASTEL_GOLD_L  = '#FEF0D9'\nPASTEL_ORANGE_L = '#FDEAE3'\nPASTEL_GREEN_L = '#E3F5E1'\n\nTXT     = '#2B2B2B'\nTXT2    = '#666666'\nTXT3    = '#999999'\nLN      = '#888888'\n\n# ─── Figure (compact) ──────────────────────────────────────\nfig = plt.figure(figsize=(10, 3.2), facecolor='white')\n\nax_a = fig.add_axes([0.01, 0.04, 0.28, 0.88])\nax_b = fig.add_axes([0.31, 0.04, 0.38, 0.88])\nax_c = fig.add_axes([0.71, 0.04, 0.28, 0.88])\n\nfor ax in [ax_a, ax_b, ax_c]:\n    ax.axis('off')\n\n# ─── Helpers ─────────────────────────────────────────────────\ndef rbox(ax, cx, cy, w, h, label='', fc='white', ec='#CCC',\n         fontsize=9, fontweight='normal', tc=TXT,\n         lw=0.7, ls='-', zorder=3, fontstyle='normal',\n         shadow=False, radius=0.12, label_lines=None):\n    if shadow:\n        for dx, dy, sa in [(0.12, -0.12, 0.15), (0.06, -0.06, 0.10)]:\n            sp = mpatches.FancyBboxPatch(\n                (cx - w/2 + dx, cy - h/2 + dy), w, h,\n                boxstyle=f'round,pad={radius}',\n                facecolor='#B0B0B0', edgecolor='none', linewidth=0,\n                alpha=sa, zorder=zorder - 1)\n            ax.add_patch(sp)\n    b = mpatches.FancyBboxPatch(\n        (cx - w/2, cy - h/2), w, h,\n        boxstyle=f'round,pad={radius}',\n        facecolor=fc, edgecolor=ec, linewidth=lw,\n        linestyle=ls, zorder=zorder)\n    ax.add_patch(b)\n    if label:\n        ax.text(cx, cy, label, ha='center', va='center',\n                fontsize=fontsize, color=tc, fontweight=fontweight,\n                fontstyle=fontstyle, zorder=zorder + 1)\n\ndef farrow(ax, x1, y1, x2, y2, color=LN, lw=0.8, ms=10,\n           style='->', conn=None, ls='-'):\n    props = dict(arrowstyle=style, color=color, lw=lw, mutation_scale=ms,\n                 linestyle=ls)\n    if conn:\n        props['connectionstyle'] = conn\n    ax.annotate('', xy=(x2, y2), xytext=(x1, y1), arrowprops=props)\n\ndef num_circle(ax, x, y, num, color, ec_color=None, size=0.35):\n    if ec_color is None:\n        ec_color = 'white'\n    circle = mpatches.Circle((x, y), size, facecolor=color,\n                              edgecolor=ec_color, linewidth=0.8, zorder=6)\n    ax.add_patch(circle)\n    ax.text(x, y, str(num), ha='center', va='center',\n            fontsize=7.5, color='white', fontweight='bold', zorder=7)\n\ndef section_title(ax, x, y, panel_label, subtitle):\n    ax.text(x, y, panel_label, fontsize=12, fontweight='bold', va='top',\n            color=TXT)\n    ax.text(x + 1.5, y - 0.1, subtitle, fontsize=8.5, va='top', color=TXT2)\n\n# ═══════════════════════════════════════════════════════════════\n# PANEL (a): VLA sequence structure\n# ═══════════════════════════════════════════════════════════════\nax_a.set_xlim(-2, 11)\nax_a.set_ylim(-0.5, 10.5)\n\nsection_title(ax_a, -1.5, 10.2, '(a)', 'VLA sequence structure')\n\nCX = 4.5\nBW = 7.0\nBH = 1.3\n\n# Image tokens — pastel blue\ny_img = 8.2\nrbox(ax_a, CX, y_img, BW, BH, fc=PASTEL_BLUE_L, ec=EDGE['blue'], ls='--', lw=0.6,\n     radius=0.15)\nax_a.text(CX - 1.5, y_img + 0.1, 'Image tokens', fontsize=9,\n          ha='center', va='center', color=TXT, fontweight='medium', zorder=4)\nfor k in range(4):\n    px = CX + 0.6 + k * 0.85\n    ax_a.add_patch(mpatches.FancyBboxPatch(\n        (px - 0.25, y_img - 0.25), 0.5, 0.5,\n        boxstyle='round,pad=0.05', facecolor=PASTEL['blue'], alpha=0.5,\n        edgecolor=EDGE['blue'], linewidth=0.4, zorder=4))\n\n# Instruction tokens — pastel gold\ny_ins = 5.6\nrbox(ax_a, CX, y_ins, BW, BH, fc=PASTEL_GOLD_L, ec=EDGE['gold'], ls='--', lw=0.6,\n     radius=0.15)\nax_a.text(CX, y_ins + 0.28, 'Instruction tokens', fontsize=9,\n          ha='center', va='center', color=TXT, fontweight='medium', zorder=4)\nax_a.text(CX, y_ins - 0.28, 'pick up the red block', fontsize=7.5,\n          ha='center', va='center', color=TXT3, fontstyle='italic', zorder=4)\n\n# Readout (R) — pastel orange; Action (Act) — pastel green\ny_bot = 3.0\nrbox(ax_a, CX - 1.8, y_bot, 2.2, 1.0, 'R', PASTEL['orange'], EDGE['orange'],\n     fontsize=12, fontweight='bold', tc='white', lw=0.8, shadow=True,\n     radius=0.14)\nrbox(ax_a, CX + 1.8, y_bot, 2.2, 1.0, 'Act', PASTEL['green'], EDGE['green'],\n     fontsize=11, fontweight='bold', tc='white', lw=0.8, shadow=True,\n     radius=0.14)\n\n# Vertical arrows\nfarrow(ax_a, CX, y_img - BH/2, CX, y_ins + BH/2,\n       color=TXT3, lw=0.9, style='-|>', ms=9)\nfarrow(ax_a, CX - 1.0, y_ins - BH/2, CX - 1.8, y_bot + 0.55,\n       color=TXT3, lw=0.9, style='-|>', ms=9)\nfarrow(ax_a, CX + 1.0, y_ins - BH/2, CX + 1.8, y_bot + 0.55,\n       color=TXT3, lw=0.9, style='-|>', ms=9)\n\n# Red X — causal mask constraint\nmid_y = (y_img + y_ins) / 2\nxx = 9.2\nd = 0.25\nax_a.plot([xx - d, xx + d], [mid_y - d, mid_y + d],\n          color='#CC0000', lw=2.0, zorder=5, solid_capstyle='round')\nax_a.plot([xx - d, xx + d], [mid_y + d, mid_y - d],\n          color='#CC0000', lw=2.0, zorder=5, solid_capstyle='round')\nax_a.text(xx, mid_y - 0.55, 'cannot attend\\nto instruction', fontsize=6.5,\n          ha='center', va='top', color='#CC0000', linespacing=1.3)\n\n# Arc arrow: image → readout\nfarrow(ax_a, CX - BW/2 - 0.2, y_img,\n       CX - 1.8 - 1.1, y_bot + 0.2,\n       color=EDGE['blue'], lw=1.0, conn='arc3,rad=0.45', style='-|>', ms=10)\nax_a.text(-0.8, (y_img + y_bot) / 2 - 0.3, 'attends to\\nall context',\n          fontsize=7, ha='center', va='center', color=EDGE['blue'],\n          fontstyle='italic', linespacing=1.3)\n\n# Position labels\nax_a.text(CX, y_img - BH/2 - 0.15, 'image_mean', fontsize=7,\n          ha='center', va='top', color=TXT2, fontstyle='italic')\nax_a.text(CX - 1.8, y_bot - 0.6, 'readout', fontsize=7,\n          ha='center', va='top', color=TXT2, fontstyle='italic')\n\n# ═══════════════════════════════════════════════════════════════\n# PANEL (b): Three analysis methods\n# ═══════════════════════════════════════════════════════════════\nax_b.set_xlim(-0.5, 14)\nax_b.set_ylim(-0.5, 10.5)\n\nsection_title(ax_b, -0.3, 10.2, '(b)', 'Three analysis methods')\n\n# ── Method 1: Layer-wise action probes ────────────────────────\nnum_circle(ax_b, -0.1, 8.95, '1', EDGE['blue'])\nax_b.text(0.5, 9.0, 'Layer-wise action probes', fontsize=9,\n          fontweight='bold', color=TXT)\n\nm1y = 8.0\nfor i, lbl in enumerate(['L1', 'L2', 'L3']):\n    rbox(ax_b, 0.7 + i * 1.1, m1y, 0.8, 0.6, lbl, PASTEL_BLUE_L, EDGE['blue'],\n         fontsize=8, radius=0.08)\n\nfarrow(ax_b, 3.2, m1y, 4.0, m1y, color=TXT3, style='-|>', ms=8)\nrbox(ax_b, 4.8, m1y, 1.5, 0.6, 'Probe', '#F5F5F5', '#BBBBBB',\n     fontsize=8, radius=0.08)\nfarrow(ax_b, 5.55, m1y, 6.3, m1y, color=TXT3, style='-|>', ms=8)\nrbox(ax_b, 7.5, m1y, 2.2, 0.6, '7-DoF action', PASTEL_ORANGE_L, EDGE['orange'],\n     fontsize=8, radius=0.08)\n\n# R² badge\nrbox(ax_b, 9.0, m1y + 0.50, 0.6, 0.45, 'R²', PASTEL_ORANGE_L, EDGE['orange'],\n     fontsize=7.5, fontweight='bold', tc=EDGE['orange'], radius=0.1)\n\n# ── Method 2: Counterfactual perturbation ─────────────────────\nnum_circle(ax_b, -0.1, 6.15, '2', EDGE['blue'])\nax_b.text(0.5, 6.2, 'Counterfactual perturbation', fontsize=9,\n          fontweight='bold', color=TXT)\n\nm2y = 5.3\ncapsules = [\n    ('✓ correct instr.', PASTEL_GREEN_L, EDGE['green'],  2.5),\n    ('∅ empty',          '#F0F0F0',      '#888888',       1.5),\n    ('✗ wrong',          '#FFEEEE',      '#CC0000',       1.5),\n    ('◇ shuffle',        PASTEL_GOLD_L,  EDGE['gold'],    1.7),\n    ('~ paraph.',        '#F3E0ED',      EDGE['pink'],    1.7),\n]\nx_pos = 0.2\nfor label, fc, ec, w in capsules:\n    cx = x_pos + w / 2\n    rbox(ax_b, cx, m2y, w, 0.6, label, fc, ec,\n         fontsize=6.5, fontweight='bold', tc=ec, radius=0.1)\n    x_pos += w + 0.25\n\nfarrow(ax_b, x_pos + 0.3, m2y, x_pos + 1.1, m2y,\n       color=TXT3, style='-|>', ms=8)\nax_b.text(x_pos + 1.3, m2y, 'Δaction', fontsize=7.5,\n          ha='left', va='center', color=TXT, fontweight='medium')\n\n# ── Method 3: L1 attention profiling ──────────────────────────\nnum_circle(ax_b, -0.1, 3.25, '3', EDGE['gold'])\nax_b.text(0.5, 3.3, 'L1 attention profiling', fontsize=9,\n          fontweight='bold', color=TXT)\n\nhm_x0, hm_y0 = 0.5, 0.3\ncell = 0.65\n\nattn = np.array([\n    [0.1, 0.1, 0.7, 0.1],\n    [0.2, 0.2, 0.6, 0.0],\n    [0.3, 0.7, 0.0, 0.0],\n    [0.8, 0.0, 0.0, 0.0],\n])\nrow_labels = ['ro', 'inst', 'img', 'img']\n\nfor r in range(4):\n    ax_b.text(hm_x0 - 0.15, hm_y0 + r * cell + cell / 2,\n              row_labels[r], fontsize=6.5, ha='right', va='center',\n              color=TXT2, fontstyle='italic')\n    for c in range(4):\n        v = attn[r, c]\n        if v < 0.01:\n            fc = '#F5F5F5'\n        else:\n            fc = plt.cm.Blues(v * 0.65 + 0.18)\n        rect = mpatches.FancyBboxPatch(\n            (hm_x0 + c * cell + 0.02, hm_y0 + r * cell + 0.02),\n            cell - 0.04, cell - 0.04,\n            boxstyle='round,pad=0.02',\n            facecolor=fc, edgecolor='white', linewidth=0.6, zorder=3)\n        ax_b.add_patch(rect)\n\n# Highlight readout→instruction cell\nrect_h = mpatches.FancyBboxPatch(\n    (hm_x0 + 2 * cell + 0.02, hm_y0 + 0.02),\n    cell - 0.04, cell - 0.04,\n    boxstyle='round,pad=0.02',\n    facecolor='none', edgecolor=EDGE['blue'], linewidth=1.5, zorder=5)\nax_b.add_patch(rect_h)\n\n# Arrow from heatmap\nhm_right = hm_x0 + 4 * cell + 0.3\nhm_mid_y = hm_y0 + 2 * cell\nfarrow(ax_b, hm_right, hm_mid_y, hm_right + 1.2, hm_mid_y,\n       color=TXT3, style='-|>', ms=8)\n\ntx = hm_right + 1.5\nax_b.plot([tx - 0.5, tx - 0.15], [hm_mid_y + 0.45, hm_mid_y + 0.45],\n          color=PASTEL['blue'], lw=2.5, solid_capstyle='round', zorder=4)\nax_b.plot([tx - 0.5, tx - 0.15], [hm_mid_y - 0.45, hm_mid_y - 0.45],\n          color=PASTEL['orange'], lw=2.5, solid_capstyle='round', zorder=4)\nax_b.text(tx, hm_mid_y + 0.45, 'readout → instruction', fontsize=8,\n          ha='left', va='center', color=EDGE['blue'], fontweight='bold')\nax_b.text(tx, hm_mid_y - 0.45, 'readout → image', fontsize=8,\n          ha='left', va='center', color=EDGE['orange'], fontweight='bold')\n\nbr_x = tx + 4.5\nax_b.plot([br_x, br_x], [hm_mid_y - 0.65, hm_mid_y + 0.65],\n          color=TXT3, lw=0.6, zorder=3)\nax_b.plot([br_x - 0.15, br_x], [hm_mid_y - 0.65, hm_mid_y - 0.65],\n          color=TXT3, lw=0.6, zorder=3)\nax_b.plot([br_x - 0.15, br_x], [hm_mid_y + 0.65, hm_mid_y + 0.65],\n          color=TXT3, lw=0.6, zorder=3)\nax_b.text(br_x + 0.25, hm_mid_y, 'attention\\nratio', fontsize=6.5,\n          ha='left', va='center', color=TXT2, linespacing=1.3)\n\n# ═══════════════════════════════════════════════════════════════\n# PANEL (c): Finding classification\n# ═══════════════════════════════════════════════════════════════\nax_c.set_xlim(-0.5, 11)\nax_c.set_ylim(-0.5, 10.5)\n\nsection_title(ax_c, -0.3, 10.2, '(c)', 'Finding classification')\n\nrows_c = [\n    ('1', 'Exit collapse\\n(ΔR² > 0.10)',  PASTEL_BLUE_L, EDGE['blue'],   'Training-\\nassociated'),\n    ('2', 'CF sensitivity\\n(d ≥ 0.45)',    PASTEL_BLUE_L, EDGE['blue'],   'Action-\\nlinked'),\n    ('3', 'L1 instruction\\nattention',     PASTEL_GOLD_L, EDGE['gold'],   'Inherited\\nprior'),\n]\nrow_ys = [7.8, 5.3, 2.8]\n\n# Badge colors per row: Training-associated=orange, Action-linked=blue, Inherited prior=gold\nbadge_colors = [\n    (PASTEL['orange'], EDGE['orange']),\n    (PASTEL['blue'],   EDGE['blue']),\n    (PASTEL['gold'],   EDGE['gold']),\n]\n\nfor idx, ((num, finding, box_fc, box_ec, badge_lbl), ry) in enumerate(zip(rows_c, row_ys)):\n    circ_color = EDGE['blue'] if box_ec == EDGE['blue'] else EDGE['gold']\n    num_circle(ax_c, 0.0, ry, num, circ_color)\n\n    box_cx = 2.8\n    box_w = 4.0\n    box_h = 1.3\n    rbox(ax_c, box_cx, ry, box_w, box_h, finding, fc='white', ec='#CCCCCC',\n         fontsize=8.5, lw=0.6, shadow=True, radius=0.14)\n    accent = mpatches.FancyBboxPatch(\n        (box_cx - box_w/2 - 0.14, ry - box_h/2 + 0.08),\n        0.12, box_h - 0.16,\n        boxstyle='round,pad=0.03',\n        facecolor=box_ec, edgecolor='none', zorder=4, alpha=0.8)\n    ax_c.add_patch(accent)\n\n    farrow(ax_c, box_cx + box_w/2 + 0.2, ry, 6.7, ry,\n           color=TXT3, lw=0.7, style='-|>', ms=8, ls='--')\n\n    b_fc, b_ec = badge_colors[idx]\n    rbox(ax_c, 8.5, ry, 3.2, 1.1, badge_lbl, fc=b_fc, ec=b_ec,\n         fontsize=8.5, fontweight='bold', tc=b_ec, lw=0.8,\n         shadow=True, radius=0.14)\n\n# ── Panel separators ─────────────────────────────────────────\nfor sep_x in [0.30, 0.70]:\n    line = plt.Line2D([sep_x, sep_x], [0.08, 0.92],\n                      transform=fig.transFigure, color='#E0E0E0',\n                      linewidth=0.6, zorder=0)\n    fig.add_artist(line)\n\n# ═══════════════════════════════════════════════════════════════\n# Save\n# ═══════════════════════════════════════════════════════════════\nbase = '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd'\nout_paper = f'{base}/docs/paper/figures/fig_overview'\nout_artifact = f'{base}/artifacts/figures/paper/fig_overview'\n\nos.makedirs(os.path.dirname(out_paper), exist_ok=True)\nos.makedirs(os.path.dirname(out_artifact), exist_ok=True)\n\nplt.savefig(f'{out_paper}.png', dpi=300)\nplt.savefig(f'{out_paper}.pdf', dpi=300)\n\nshutil.copy2(f'{out_paper}.png', f'{out_artifact}.png')\nshutil.copy2(f'{out_paper}.pdf', f'{out_artifact}.pdf')\n\nplt.close()\nprint(f'Saved: {out_paper}.{{png,pdf}} + copied to artifacts/')\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-24T05:57:34.249533+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-24T05:57:34.249737+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python scripts/plot_overview.py",
+  "description": "Generate fig_overview with pastel palette"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python scripts/plot_overview.py",
+    "description": "Generate fig_overview with pastel palette"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T05:57:34.249877+00:00_
+
+Exit code 127
+/bin/bash: line 1: python: command not found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-24T05:57:34.250029+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 scripts/plot_overview.py",
+  "description": "Generate fig_overview with pastel palette"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 scripts/plot_overview.py",
+    "description": "Generate fig_overview with pastel palette"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T05:57:34.250161+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py", line 367, in &lt;module>
+    shutil.copy2(f'{out_paper}.png', f'{out_artifact}.png')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/shutil.py", line 529, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/shutil.py", line 293, in copyfile
+    raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+shutil.SameFileError: '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_overview.png' and '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_overview.png' are the same file
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-24T05:57:34.250297+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/ /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/ 2>&1 | head -20",
+  "description": "Check if directories are symlinked"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/ /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/ 2>&1 | head -20",
+    "description": "Check if directories are symlinked"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T05:57:34.250428+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/:
+total 3556
+drwxr-xr-x 3 ubuntu ubuntu   4096 May 24 04:34 .
+drwxr-xr-x 3 ubuntu ubuntu   4096 May 23 17:35 ..
+drwxr-xr-x 2 ubuntu ubuntu   4096 May 20 13:06 _pdf_images
+-rw-r--r-- 1 ubuntu ubuntu  22396 May 16 04:43 fig2.pdf
+-rw-r--r-- 1 ubuntu ubuntu 161934 May 16 04:43 fig2.png
+-rw-r--r-- 1 ubuntu ubuntu  22965 May 23 20:03 fig2_cross_instruction_heatmap.pdf
+-rw-r--r-- 1 ubuntu ubuntu  27812 May 16 04:43 fig3.pdf
+-rw-r--r-- 1 ubuntu ubuntu 164922 May 16 04:43 fig3.png
+-rw-r--r-- 1 ubuntu ubuntu  20963 May 16 05:00 fig4.pdf
+-rw-r--r-- 1 ubuntu ubuntu 150320 May 16 05:00 fig4.png
+-rw-r--r-- 1 ubuntu ubuntu  33168 May 16 04:44 fig5.pdf
+-rw-r--r-- 1 ubuntu ubuntu 194108 May 16 04:44 fig5.png
+-rw-r--r-- 1 ubuntu ubuntu  35223 May 16 04:43 fig6.pdf
+-rw-r--r-- 1 ubuntu ubuntu 185785 May 16 04:43 fig6.png
+-rw-r--r-- 1 ubuntu ubuntu  28225 May 16 08:16 fig7.pdf
+-rw-r--r-- 1 ubuntu ubuntu  20989 May 17 02:13 fig8_attention.pdf
+-rw-r--r-- 1 ubuntu ubuntu  90867 May 17 01:21 fig8a_trained_summary.pdf
+-rw-r--r-- 1 ubuntu ubuntu  94109 May 17 01:21 fig8a_trained_task0.pdf
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-24T05:57:34.250558+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "readlink -f /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/ && readlink -f /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/",
+  "description": "Check real paths"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "readlink -f /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/ && readlink -f /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/",
+    "description": "Check real paths"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T05:57:34.250679+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper
+/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-24T05:57:34.250813+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py",
+  "old_string": "os.makedirs(os.path.dirname(out_paper), exist_ok=True)\nos.makedirs(os.path.dirname(out_artifact), exist_ok=True)\n\nplt.savefig(f'{out_paper}.png', dpi=300)\nplt.savefig(f'{out_paper}.pdf', dpi=300)\n\nshutil.copy2(f'{out_paper}.png', f'{out_artifact}.png')\nshutil.copy2(f'{out_paper}.pdf', f'{out_artifact}.pdf')\n\nplt.close()\nprint(f'Saved: {out_paper}.{{png,pdf}} + copied to artifacts/')",
+  "new_string": "os.makedirs(os.path.dirname(out_paper), exist_ok=True)\nos.makedirs(os.path.dirname(out_artifact), exist_ok=True)\n\nplt.savefig(f'{out_paper}.png', dpi=300)\nplt.savefig(f'{out_paper}.pdf', dpi=300)\n\n# Copy to artifacts if not the same directory (may be symlinked)\nif os.path.realpath(os.path.dirname(out_paper)) != os.path.realpath(os.path.dirname(out_artifact)):\n    shutil.copy2(f'{out_paper}.png', f'{out_artifact}.png')\n    shutil.copy2(f'{out_paper}.pdf', f'{out_artifact}.pdf')\n\nplt.close()\nprint(f'Saved: {out_paper}.{{png,pdf}}')"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py",
+    "old_string": "os.makedirs(os.path.dirname(out_paper), exist_ok=True)\nos.makedirs(os.path.dirname(out_artifact), exist_ok=True)\n\nplt.savefig(f'{out_paper}.png', dpi=300)\nplt.savefig(f'{out_paper}.pdf', dpi=300)\n\nshutil.copy2(f'{out_paper}.png', f'{out_artifact}.png')\nshutil.copy2(f'{out_paper}.pdf', f'{out_artifact}.pdf')\n\nplt.close()\nprint(f'Saved: {out_paper}.{{png,pdf}} + copied to artifacts/')",
+    "new_string": "os.makedirs(os.path.dirname(out_paper), exist_ok=True)\nos.makedirs(os.path.dirname(out_artifact), exist_ok=True)\n\nplt.savefig(f'{out_paper}.png', dpi=300)\nplt.savefig(f'{out_paper}.pdf', dpi=300)\n\n# Copy to artifacts if not the same directory (may be symlinked)\nif os.path.realpath(os.path.dirname(out_paper)) != os.path.realpath(os.path.dirname(out_artifact)):\n    shutil.copy2(f'{out_paper}.png', f'{out_artifact}.png')\n    shutil.copy2(f'{out_paper}.pdf', f'{out_artifact}.pdf')\n\nplt.close()\nprint(f'Saved: {out_paper}.{{png,pdf}}')"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T05:57:34.251020+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-24T05:57:34.251159+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py",
+  "description": "Generate fig_overview with pastel palette"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_overview.py",
+    "description": "Generate fig_overview with pastel palette"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T05:57:34.251280+00:00_
+
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_overview.{png,pdf}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-24T05:57:34.251410+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_overview.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_overview.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T05:57:34.252174+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-24T05:57:34.252365+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T05:57:34.252499+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-24T05:57:34.252624+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "fig_overview",
+  "type": "chart",
+  "description": "Overview figure (pastel palette, compact 10x3.2 layout): Panel (a) VLA sequence structure, (b) Three analysis methods, (c) Finding classification",
+  "project": "vla-ssd",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_overview.png",
+  "tags": "['paper', 'figure', 'overview']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "fig_overview",
+    "type": "chart",
+    "description": "Overview figure (pastel palette, compact 10x3.2 layout): Panel (a) VLA sequence structure, (b) Three analysis methods, (c) Finding classification",
+    "project": "vla-ssd",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_overview.png",
+    "tags": "['paper', 'figure', 'overview']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T05:57:34.252770+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_8af3ac\", \"name\": \"fig_overview\", \"type\": \"chart\", \"description\": \"Overview figure (pastel palette, compact 10x3.2 layout): Panel (a) VLA sequence structure, (b) Three analysis methods, (c) Finding classification\", \"path\": \"projects/vla-ssd/artifacts/_project/chart/fig_overview_8af3ac.png\", \"url\": null, \"project\": \"vla-ssd\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-24T05:57:28.906691+00:00\", \"tags\": [\"paper\", \"figure\", \"overview\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-24T05:57:34.252953+00:00_
+
+完成。浅色 pastel 配色已应用，布局从 14×4.2 压缩至 10×3.2，三 panel 紧凑排布。输出 PDF/PNG 均在 `docs/paper/figures/fig_overview.*`（与 `artifacts/figures/paper/` 同路径）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_viz_pastel_fig1_overview_20260524T055438"
+}
+```
+
+</details>
+
+---

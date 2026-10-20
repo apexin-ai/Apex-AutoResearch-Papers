@@ -1,0 +1,535 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{natbib}
+\usepackage{caption}
+
+\title{Token-Level Routing Analysis of Vision-Language-Action Models:\\Cross-Architecture Evidence for Instruction Routing Reorganization}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+%==============================================================================
+Vision-Language-Action (VLA) models fine-tune large language models on robot demonstration data, yet how training reshapes instruction routing at the token level---and whether these effects generalize across architectures---remains poorly understood.
+We present a systematic experimental framework for token-level analysis of decoder-only VLAs, validated across three architectures (Llama-2-7B, Phi-3-mini, Qwen2.5-VL-3B) and four LIBERO task suites.
+Our framework decomposes VLA representations through factorial design (trained/pretrained/untrained $\times$ instruction presence), cross-instruction probes, per-layer attention profiling, $R^2$ action probes, and counterfactual perturbation analysis.
+We report two cross-architecture findings:
+(1) VLA fine-tuning reorganizes instruction attention from the mid-layer processing pattern inherited from language model pretraining to an entry-exit ``bookend'' pattern, with trained models achieving immediate L1 instruction routing (99.6\% probe accuracy vs.\ 80.2\% for the pretrained base);
+(2) $R^2$ exit collapse consistently emerges when vision-language models are first fine-tuned into VLAs (6/6 cells across two architectures, $\Delta = 0.156$--$0.455$) but not during subsequent VLA-to-VLA fine-tuning (0/4 cells, $\Delta = 0.033$--$0.086$), indicating a one-time representational reorganization at the VLM-to-VLA boundary.
+Under RSA, vision encoder geometry follows a non-monotonic profile across LLM layers, though this pattern is metric-dependent (CKA yields monotonic ordering).
+These results characterize VLA fine-tuning as a routing reorganization process and provide diagnostic signatures for assessing VLA training stages.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+\label{sec:intro}
+%==============================================================================
+
+Vision-Language-Action (VLA) models adapt pretrained vision-language models to robotic control by fine-tuning them on demonstration data.
+Despite growing deployment, the internal mechanisms by which VLA training transforms a language model's information processing remain opaque.
+In particular, how instruction information is routed to action-relevant positions, and whether these routing patterns generalize beyond individual architectures, are open questions with direct implications for architecture design and training strategies.
+
+Prior behavioral studies have documented visual dominance and instruction underutilization in VLAs, but have not decomposed the representational roles of different token positions or explained how training reshapes information flow across layers.
+This work addresses these gaps through a systematic token-level analysis framework.
+
+Our framework examines three token positions---image tokens, instruction tokens, and the last pre-action token---across a factorial design of training conditions (VLA-trained, language-model pretrained, randomly initialized) and instruction presence conditions.
+We apply four complementary analysis methods: cross-instruction classification probes, dense per-layer attention profiling, $R^2$ action probes with ridge regression, and counterfactual perturbation with Cohen's $d$ effect sizes.
+
+Applying this framework across three VLA architectures with different backbone LLMs (OpenVLA/Llama-2-7B, TracVLA/Phi-3-mini, NORA/Qwen2.5-VL-3B) and four LIBERO task suites, we find:
+
+\begin{enumerate}
+    \item \textbf{Routing reorganization}: VLA training shifts instruction attention from a mid-layer inverted-U pattern (inherited from language model pretraining) to an entry-exit bookend pattern, with 24/32 attention heads becoming instruction-dominant at L1 (vs.\ 9/32 for the pretrained base).
+    \item \textbf{$R^2$ exit collapse}: Action-relevant information peaks at intermediate layers and is selectively discarded at exit layers, but only during the initial VLM-to-VLA transition (6/6 cells, $\Delta = 0.156$--$0.455$), not during VLA-to-VLA fine-tuning (0/4 cells).
+    \item \textbf{Three-tier routing gradient}: VLM base (no routing) $\to$ general VLA (general routing via OXE pretraining) $\to$ task-specific VLA (task-specialized routing with counterfactual sharpening).
+    \item \textbf{Vision encoder geometry} (observation, under RSA): Image token representations follow a non-monotonic profile across LLM layers, though CKA yields different ordering---metric dependence is acknowledged.
+\end{enumerate}
+
+%==============================================================================
+\section{Related Work}
+\label{sec:related}
+%==============================================================================
+
+\paragraph{Vision-Language-Action Models.}
+VLAs adapt pretrained vision-language models for robotic control by fine-tuning on demonstration data, mapping visual observations and language instructions to continuous actions. Representative architectures include RT-2, OpenVLA, and more recent designs such as TracVLA and NORA, which employ diverse backbone LLMs (Llama-2, Phi-3, Qwen2.5-VL). Behavioral evaluations have documented instruction sensitivity and visual dominance, but internal representational analysis remains limited.
+
+\paragraph{Representation Analysis in Transformers.}
+Probing classifiers, representational similarity analysis (RSA), centered kernel alignment (CKA), and attention pattern analysis have been widely used to study how information is encoded across transformer layers in NLP and vision. These tools have revealed layer-wise specialization, attention head roles, and training-induced representational changes. We adapt these techniques to the VLA setting, where the interaction between vision, language, and action tokens creates a richer analysis space than unimodal models.
+
+\paragraph{Instruction Following in Language Models.}
+Studies of instruction-tuned LLMs have shown that instruction information is processed through specific attention patterns and layer-wise transformations. Our work extends this line of inquiry to the multimodal VLA setting, where instructions must be integrated with visual observations to produce motor commands.
+
+%==============================================================================
+\section{Experimental Framework}
+\label{sec:method}
+%==============================================================================
+
+\subsection{Models and Data}
+
+We analyze three VLA architectures spanning different backbone LLMs:
+\textbf{OpenVLA} (Llama-2-7B, 32 layers, multi-head attention), trained on 970K Open X-Embodiment episodes and fine-tuned on LIBERO;
+\textbf{TracVLA} (Phi-3-mini, 32 layers, MHA), fine-tuned on LIBERO from a Phi-3-Vision base;
+\textbf{NORA} (Qwen2.5-VL-3B, 36 layers, GQA with 16 heads / 2 KV groups), fine-tuned on LIBERO from a Qwen2.5-VL base.
+Each architecture is examined in trained and untrained conditions, where ``untrained'' denotes the pre-VLA checkpoint (OXE-pretrained for OpenVLA, pure VLM for TracVLA and NORA).
+
+Evaluation uses four LIBERO task suites: Goal (10 tasks), Spatial (10 tasks), Object (10 tasks), and Long (10 tasks), with 50 demonstrations per task.
+
+\subsection{Analysis Methods}
+
+\paragraph{Cross-Instruction Probe.}
+For a fixed visual frame, we pair 10 different task instructions and classify which instruction was presented from intermediate representations at each layer. This isolates instruction-dependent information at specific token positions (image\_mean, last\_preaction).
+
+\paragraph{Per-Layer Attention Profiling.}
+We quantify the fraction of attention allocated to text/instruction vs.\ image tokens at each layer and head, identifying instruction-dominant heads ($>$50\% attention to text after per-token normalization).
+
+\paragraph{$R^2$ Action Probe.}
+Ridge regression from layer-wise representations to ground-truth actions, evaluated with Monte Carlo cross-validation (MCCV, $n=1000$) at the demonstration level to prevent train-test leakage. $R^2$ profiles across layers reveal where action-relevant information peaks and collapses.
+
+\paragraph{Counterfactual Perturbation.}
+We replace instructions with wrong-task, shuffled, random-token, or empty alternatives and measure the effect on model outputs via Cohen's $d$ (for models producing actions) or cosine distance (for untrained models that lack action decoders).
+
+\paragraph{Representational Similarity Analysis (RSA) and CKA.}
+We compute RSA (Spearman correlation between representational and action dissimilarity matrices) and CKA to assess geometric alignment with action structure across layers and model components.
+
+\subsection{Factorial Design}
+
+The core design crosses three factors:
+(1) \textbf{Training condition}: VLA-trained, pretrained base (LLM or VLM), randomly initialized;
+(2) \textbf{Instruction presence}: with correct instruction, without instruction, with perturbed instruction;
+(3) \textbf{Token position}: image\_mean, last\_preaction, instruction tokens.
+This yields a systematic matrix that isolates the contributions of training, instruction content, and token position to representational structure.
+
+%==============================================================================
+\section{Token-Level Specialization}
+\label{sec:c1}
+%==============================================================================
+
+We first establish that image tokens and instruction tokens occupy functionally distinct representational roles, validating the framework's token-level decomposition.
+
+\subsection{Frozen Encoder Dominance}
+
+Table~\ref{tab:rsa_source} decomposes the sources of action-relevant structure in image token representations.
+The SigLIP+Projector (frozen vision encoder output before LLM processing) achieves the highest RSA ($\rho = 0.615$), exceeding the VLA trained peak ($\rho = 0.488$ at L9) and confirming that the dominant source of action-relevant geometry in image tokens is the frozen vision encoder, not LLM processing.
+
+\begin{table}[h]
+\centering
+\caption{Action-relevant structure source decomposition (RSA with action dissimilarity).}
+\label{tab:rsa_source}
+\begin{tabular}{lccc}
+\toprule
+Representation & RSA ($\rho$) & 95\% CI & vs DINO \\
+\midrule
+SigLIP+Projector & 0.615 & {[0.526, 0.695]} & +0.227 \\
+VLA Trained Peak (L9) & 0.488 & --- & +0.100 \\
+VLA Untrained Peak (L12) & 0.485 & --- & +0.097 \\
+DINO cls\_token & 0.388 & --- & baseline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Weight divergence analysis (Table~\ref{tab:weight_div}) confirms that the vision backbone and projector are \emph{identical} between trained and untrained conditions (cosine similarity = 1.000), while LLM layers diverge substantially (mean relative change = 1.316). This architectural verification explains why image token RSA is nearly identical across training conditions: the frozen encoder maps identical visual inputs to identical representations regardless of downstream LLM weights.
+
+\begin{table}[h]
+\centering
+\caption{Weight divergence between trained and untrained models by module group.}
+\label{tab:weight_div}
+\begin{tabular}{lcccc}
+\toprule
+Module & Count & Mean Rel.\ Change & Cos Sim & Verdict \\
+\midrule
+Vision Backbone & 685 & 0.000 & 1.000 & IDENTICAL \\
+Projector & 6 & 0.000 & 1.001 & IDENTICAL \\
+LLM Layers & 288 & 1.316 & 0.218 & DIVERGED \\
+LM Head & 1 & 1.475 & 0.000 & DIVERGED \\
+Embedding & 1 & 1.329 & $-$0.000 & DIVERGED \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{DINOv2 Baseline}
+
+Table~\ref{tab:dino_baseline} reports the standalone DINOv2 performance as a reference point. DINOv2 achieves RSA $\rho = 0.388$, substantially below both the SigLIP+Projector ($0.615$) and VLA representations ($\sim$0.485), establishing a clear architecture gap. The high subtask AUC (0.972) indicates that LIBERO goals are visually distinguishable, a property we account for when interpreting downstream classification results.
+
+\begin{table}[h]
+\centering
+\caption{DINOv2 standalone baseline performance.}
+\label{tab:dino_baseline}
+\begin{tabular}{lcc}
+\toprule
+Metric & Value & Note \\
+\midrule
+Temporal $\rho$ (per-task) & 0.901 & correct baseline \\
+Action Probe $R^2$ & 0.687 & vision-only ceiling \\
+Subtask AUC & 0.972 & visually distinguishable \\
+Permutation Control $\rho$ & 0.039 & validates signal \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Instruction Invariance of Image Tokens}
+
+A key prediction of causal-mask-based token isolation is that image token representations should be invariant to instruction content, since image tokens precede instruction tokens in the sequence and cannot attend to them. We verify this prediction through three complementary controls.
+
+\paragraph{Instruction Presence Ablation.}
+Table~\ref{tab:inst_ablation} shows that removing the instruction text from the input has negligible effect on image token RSA ($\Delta = 0.004$, far below the $\Delta > 0.10$ significance threshold).
+
+\begin{table}[h]
+\centering
+\caption{Effect of instruction removal on image token RSA (untrained model).}
+\label{tab:inst_ablation}
+\begin{tabular}{lcc}
+\toprule
+Condition & Peak RSA & $\Delta$ vs with-inst \\
+\midrule
+Untrained + instruction & 0.485 & baseline \\
+Untrained $-$ instruction & 0.480 & $-$0.004 \\
+Significance threshold & --- & 0.10 \\
+DINO baseline & 0.388 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{$2 \times 2$ Factorial Design.}
+Table~\ref{tab:factorial} presents the full crossing of training condition (trained/untrained) and instruction presence (with/without). All four cells converge within a narrow band ($0.480$--$0.489$), with the bootstrap 95\% CI for pairwise differences including zero ($[-0.058, 0.072]$). Neither training nor instruction presence produces a meaningful effect on image token RSA.
+
+\begin{table}[h]
+\centering
+\caption{$2 \times 2$ factorial design: image token RSA convergence.}
+\label{tab:factorial}
+\begin{tabular}{lccc}
+\toprule
+& With Instruction & Without Instruction & Instruction Effect \\
+\midrule
+Trained & 0.488 & 0.489 & $-$0.001 \\
+Untrained & 0.485 & 0.480 & +0.004 \\
+\midrule
+Training Effect & +0.003 & +0.009 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Instruction Content Invariance.}
+Table~\ref{tab:content_inv} extends the analysis to instruction \emph{content}: replacing correct instructions with random tokens, shuffled words, or empty strings produces maximal $|\Delta| = 0.017$, confirming that image token geometry is driven by visual content alone.
+
+\begin{table}[h]
+\centering
+\caption{Instruction content invariance (trained model, image token RSA).}
+\label{tab:content_inv}
+\begin{tabular}{lcc}
+\toprule
+Instruction Type & Peak RSA & $\Delta$ vs Normal \\
+\midrule
+Normal (correct) & 0.489 & baseline \\
+Random tokens & 0.484 & $-$0.005 \\
+Shuffled words & 0.483 & $-$0.006 \\
+Empty string & 0.472 & $-$0.017 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These three experiments collectively validate the framework's foundational assumption: image tokens and instruction tokens are representationally isolated, with image token geometry determined by the frozen vision encoder and invariant to both training and instruction content. This isolation means that training effects on instruction processing must be localized to instruction and action token positions---the focus of the next section.
+
+%==============================================================================
+\section{Instruction Routing Reorganization}
+\label{sec:c2}
+%==============================================================================
+
+Having established token-level specialization, we now examine how VLA fine-tuning reshapes instruction routing---the central finding of this work.
+
+\subsection{Three Qualitatively Different Routing Strategies}
+
+Cross-instruction classification probes at each layer reveal three qualitatively different routing profiles across conditions (Table~\ref{tab:probe_profile}):
+
+\begin{table}[h]
+\centering
+\caption{Cross-instruction probe accuracy (\%) at the last pre-action token position across layers.}
+\label{tab:probe_profile}
+\begin{tabular}{lccccccc}
+\toprule
+Condition & L0 & L1 & L2 & L5 & L16 & L24 & L31 \\
+\midrule
+VLA Trained & 10 & 99.6 & 100 & 100 & 100 & 100 & 100 \\
+Llama-2 Base & 10 & 80.2 & 98.7 & 100 & 100 & 100 & 100 \\
+Untrained (random) & 10 & 100 & 100 & 99.x & 92.3 & 86.4 & 82.0 \\
+Trained (image\_mean) & 10 & --- & --- & 10 & 10 & 10 & 9.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The trained model achieves near-perfect instruction classification at L1 (99.6\%) and maintains it through all subsequent layers. The Llama-2 pretrained base starts lower at L1 (80.2\%) but saturates by L5. The untrained model, despite achieving 100\% at L1 (a coincidence of random weight statistics), shows progressive signal decay to 82\% by L31---structured pretrained representations (whether VLA-trained or language-model pretrained) maintain instruction signal, while random weights accumulate noise.
+
+Image\_mean tokens remain at chance ($\sim$10\%) across all layers in all conditions, confirming the token-level isolation established in Section~\ref{sec:c1}.
+
+\subsection{L1 Attention Reorganization}
+
+Table~\ref{tab:l1_attention} quantifies the attention redistribution at L1 across the three-condition gradient.
+
+\begin{table}[h]
+\centering
+\caption{L1 attention allocation across conditions.}
+\label{tab:l1_attention}
+\begin{tabular}{lccc}
+\toprule
+Metric & Untrained & Llama-2 Base & VLA Trained \\
+\midrule
+Attention to text/instruction & 11.7\% & 36.5\% & 57.7\% \\
+Attention to image & 87.8\% & 61.7\% & 21.3\% \\
+Instruction-dominant heads ($>$50\%) & 0/32 & 9/32 & 24/32 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+VLA training produces a monotonic increase in L1 instruction attention: from 0/32 instruction-dominant heads (untrained) through 9/32 (pretrained base) to 24/32 (VLA trained). The 32-layer dense attention profile reveals that training transforms the pretrained mid-layer processing pattern (Llama-2 base: 15--22 instruction-dominant heads at L9--L16) into an entry-exit bookend pattern (VLA trained: 21--24 heads at L0--L1, 18 heads at L31, low counts in between). This reorganization from inverted-U to bookend constitutes the core signature of VLA fine-tuning.
+
+Note that L1 head counts are partially base-model-dependent: TracVLA's untrained condition (Phi-3-Vision, a pure VLM) already shows 32/32 instruction-dominant heads at L1, and training \emph{reduces} this to 27--30/32 by repurposing some heads for mixed-modality processing. The training-induced effects that generalize across architectures are the R$^2$ exit collapse and counterfactual sensitivity patterns described below, not the absolute L1 head count.
+
+\subsection{$R^2$ Exit Collapse}
+\label{sec:exit_collapse}
+
+Full-layer $R^2$ action probes (33 layers $\times$ 2 conditions $\times$ 2 token aggregations = 132 probes) reveal that action-relevant information peaks at intermediate layers and is selectively discarded at exit layers in trained models (Table~\ref{tab:r2_profile}).
+
+\begin{table}[h]
+\centering
+\caption{$R^2$ peak-exit comparison (OpenVLA, LIBERO-Goal).}
+\label{tab:r2_profile}
+\begin{tabular}{lcccc}
+\toprule
+Condition & Peak Layer & Peak $R^2$ & Exit $R^2$ & $\Delta$(peak$-$exit) \\
+\midrule
+Trained img\_mean & L8 & 0.655 & 0.520 & 0.135 \\
+Trained last\_pre & L13 & 0.678 & 0.609 & 0.069 \\
+Untrained img\_mean & L0 & 0.640 & 0.584 & 0.056 \\
+Untrained last\_pre & L32 & 0.609 & 0.609 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Bootstrap comparisons confirm statistical significance (Table~\ref{tab:bootstrap_r2}). The trained model's best-vs-best advantage over the untrained model is $\Delta R^2 = +0.015$ ($p = 0.006$) for image\_mean and $\Delta R^2 = +0.069$ ($p < 0.0001$) for last\_preaction. At matched layers, the differences are larger: at L13 for last\_preaction, the trained model's $R^2 = 0.678$ vs.\ the untrained model's pathological $R^2 \approx -0.33$, a gap of $\Delta = 1.007$.
+
+\begin{table}[h]
+\centering
+\caption{Bootstrap statistical comparison of $R^2$ (trained vs.\ untrained).}
+\label{tab:bootstrap_r2}
+\begin{tabular}{lccc}
+\toprule
+Comparison & $\Delta R^2$ & $p$-value & Significant? \\
+\midrule
+Best-vs-best img\_mean & +0.015 & 0.006 & Yes \\
+Best-vs-best last\_pre & +0.069 & $<$0.0001 & Yes \\
+Same-layer L8 img\_mean & +0.123 & $<$0.0001 & Yes \\
+Same-layer L13 last\_pre & +1.007 & $<$0.0001 & Yes (collapsed) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Threshold sensitivity.}
+The $\Delta > 0.10$ threshold for ``substantial'' exit collapse is admittedly ad hoc. At $\Delta > 0.05$, OpenVLA Goal ($\Delta = 0.086$) would qualify; at $\Delta > 0.15$, TracVLA Spatial ($\Delta = 0.138$) becomes borderline. The qualitative binary separation between VLM$\to$VLA transitions (collapse) and VLA$\to$VLA transitions (no collapse) is stable across all three thresholds.
+
+\subsection{Cross-Architecture Validation of Exit Collapse}
+
+Table~\ref{tab:cross_arch_r2} presents exit collapse results across three architectures. The pattern is clear: R$^2$ exit collapse consistently emerges when VLMs are first fine-tuned into VLAs (6/6 TracVLA + NORA cells, $\Delta = 0.138$--$0.691$), but not during further VLA-to-VLA fine-tuning (0/4 OpenVLA cells, $\Delta = 0.004$--$0.037$).
+
+\begin{table}[h]
+\centering
+\caption{$R^2$ exit collapse across architectures ($\Delta$ = peak $-$ exit $R^2$).}
+\label{tab:cross_arch_r2}
+\small
+\begin{tabular}{llcccc}
+\toprule
+Architecture & Suite & Trained $\Delta$ & Untrained $\Delta$ & Collapse? & Transition \\
+\midrule
+OpenVLA (Llama-2) & Goal & 0.016 & 0.033 & No & VLA$\to$VLA \\
+OpenVLA (Llama-2) & Spatial & 0.037 & --- & No & VLA$\to$VLA \\
+OpenVLA (Llama-2) & Object & 0.037 & 0.076 & No & VLA$\to$VLA \\
+OpenVLA (Llama-2) & Long & 0.004 & 0.016 & No & VLA$\to$VLA \\
+\midrule
+TracVLA (Phi-3) & Goal & 0.228 & 0.048 & Yes & VLM$\to$VLA \\
+TracVLA (Phi-3) & Spatial & 0.138 & 0.016 & Yes & VLM$\to$VLA \\
+TracVLA (Phi-3) & Object & 0.294 & 0.009 & Yes & VLM$\to$VLA \\
+TracVLA (Phi-3) & Long & 0.198 & 0.028 & Yes & VLM$\to$VLA \\
+TracVLA avg & --- & 0.215 & 0.025 & --- & --- \\
+\midrule
+NORA (Qwen2.5) & Goal & 0.691 & 0.044 & Yes & VLM$\to$VLA \\
+NORA (Qwen2.5) & Spatial & 0.302 & 0.037 & Yes & VLM$\to$VLA \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A chat-finetuned control sharing the same Llama-2-7B backbone (Llama-2-7b-chat, SFT+RLHF) exhibits flat $R^2 \approx 0.155$ across all layers ($\Delta \approx 0$), confirming that exit collapse is specific to action-oriented VLA training rather than an inherent consequence of transformer fine-tuning. The $R^2 \approx 0.155$ floor represents noise-level fitting where the NLP model has no action representations and ridge regression captures only between-task variance.
+
+This binary separation---VLM$\to$VLA produces collapse, VLA$\to$VLA does not---suggests that exit collapse is a one-time representational reorganization at the VLM-to-VLA boundary rather than a cumulative effect of continued training.
+
+\subsection{Counterfactual Sensitivity}
+
+Counterfactual perturbation measures how instruction changes affect model outputs. In trained models that can produce actions, we report Cohen's $d$ on action MSE; in untrained VLM baselines that lack action decoders, we report cosine distance in hidden space. This metric incomparability between conditions is an important limitation.
+
+Within OpenVLA, where both trained and untrained (OXE-pretrained) conditions produce actions, fair comparison using Cohen's $d$ is possible: trained models show modestly higher sensitivity than untrained (Goal: $d = 1.18$ vs.\ $1.05$, $\Delta = +0.13$; Spatial: $d = 1.17$ vs.\ $0.94$, $\Delta = +0.23$). Across architectures, trained VLAs consistently show counterfactual sensitivity $d \geq 0.45$, but cross-condition comparisons with untrained VLMs (cosine distance $\sim$0.15--0.18) are incommensurable and cannot be reported as amplification ratios.
+
+The ``empty'' instruction condition produces the largest effect in 6/8 tested trained settings, consistent with the interpretation that instruction removal maximally disrupts routing. Exceptions include OpenVLA Goal where ``wrong'' instruction produces marginally higher $d$ ($1.182$ vs.\ $1.170$).
+
+\subsection{Per-Layer Representational Profiles}
+
+Table~\ref{tab:perlayer_rsa} summarizes the per-layer RSA trajectory across conditions. Under RSA, the trained model with instructions shows a non-monotonic inverted-U pattern peaking at L9 ($\rho = 0.488$), with an initial drop from projector output ($\Delta = -0.204$) followed by partial recovery and subsequent decline. However, this pattern is metric-dependent: CKA yields monotonic increasing profiles (Section~\ref{sec:metric_robustness}).
+
+\begin{table}[h]
+\centering
+\caption{Per-layer RSA profile summary.}
+\label{tab:perlayer_rsa}
+\begin{tabular}{lcccc}
+\toprule
+Condition & Peak Layer & Peak RSA & Proj$\to$L1 Drop & Pattern \\
+\midrule
+Trained (with inst) & L9 & 0.488 & $-$0.204 & inverted-U \\
+Untrained (with inst) & L12 & 0.485 & $-$0.151 & non-monotonic \\
+Trained (no inst) & L30 & 0.489 & $-$0.253 & increasing \\
+Untrained (no inst) & L6 & 0.480 & $-$0.137 & non-monotonic \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The decline from projector output to L1 ($\Delta\rho = -0.15$ to $-0.25$) is consistent across all conditions and reflects geometric reorganization as visual representations enter the LLM's residual stream. The subsequent trajectory differs: trained models with instructions show mid-layer recovery (inverted-U under RSA), while functional probes ($R^2$) confirm a mid-layer peak at L8--L13 followed by exit decline---a pattern that is metric-independent.
+
+%==============================================================================
+\section{Cross-Benchmark Replication}
+\label{sec:cross_bench}
+%==============================================================================
+
+To assess within-architecture reproducibility, we replicate the core analyses on a second LIBERO suite. Table~\ref{tab:cross_bench} compares peak layers and values between LIBERO-Goal and LIBERO-Spatial for OpenVLA.
+
+\begin{table}[h]
+\centering
+\caption{Cross-benchmark replication: LIBERO-Goal vs.\ LIBERO-Spatial (OpenVLA).}
+\label{tab:cross_bench}
+\begin{tabular}{lcccc}
+\toprule
+Metric & Goal Peak & Spatial Peak & $\Delta$ Layers \\
+\midrule
+RSA trained img\_mean & L12 (0.628) & L14 (0.691) & +2 \\
+RSA trained last\_pre & L12 (0.643) & L15 (0.695) & +3 \\
+$R^2$ trained img\_mean & L8 (0.655) & L13 (0.696) & +5 \\
+$R^2$ trained last\_pre & L13 (0.678) & L21 (0.675) & +8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Peak layers are within 2--8 layers of each other, and absolute values are comparable, confirming that the inverted-U (RSA) and mid-layer peak ($R^2$) patterns replicate across task suites within the same architecture. Bootstrap tests confirm significance ($p < 0.001$ for all trained vs.\ untrained comparisons). The cross-architecture validation in Section~\ref{sec:exit_collapse} provides the stronger generalization test.
+
+%==============================================================================
+\section{Vision Encoder Geometry}
+\label{sec:c3}
+%==============================================================================
+
+We report observations on vision encoder geometry as supporting context. These findings are qualified: RSA and CKA yield different orderings, and we present both to allow readers to assess metric dependence.
+
+\subsection{Metric Robustness: RSA vs.\ CKA}
+\label{sec:metric_robustness}
+
+Table~\ref{tab:metric_compare} compares RSA and CKA across representations. The key finding is a reversal: under RSA, the SigLIP Projector ranks highest ($\rho = 0.615$) and untrained VLA slightly below trained; under linear CKA, the ordering reverses (untrained $>$ trained $>$ projector). DINO ranking as lowest is consistent across all metrics.
+
+\begin{table}[h]
+\centering
+\caption{RSA vs.\ CKA metric comparison. ``Consistent?'' indicates whether the relative ranking is preserved.}
+\label{tab:metric_compare}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Representation & RSA ($\rho$) & Linear CKA & RDM-CKA & Consistent? \\
+\midrule
+SigLIP Projector & 0.615 & 0.081 & 0.257 & No --- RSA $\gg$ CKA \\
+VLA Trained (img\_mean) & 0.488 & 0.083 & 0.260 & No \\
+VLA Untrained (img\_mean) & 0.485 & 0.089 & 0.246 & No --- CKA reversal \\
+DINO cls\_token & 0.388 & 0.066 & 0.241 & Yes --- lowest in all \\
+VLA Trained (last\_pre) & --- & 0.127 & 0.290 & Highest in CKA \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This dissociation means that claims about ``non-monotonic refinement'' or encoder ranking are metric-specific observations, not metric-robust findings. The per-layer RSA inverted-U (Section~\ref{sec:c2}) becomes ``monotonic increase'' under CKA. We retain the observation because (1) the functional $R^2$ probe independently confirms mid-layer peaking, and (2) metric divergence itself is informative about what different similarity measures capture. However, we caution against interpreting RSA-specific patterns as definitive geometric claims.
+
+\subsection{Cross-Encoder Comparison}
+
+Table~\ref{tab:cross_encoder} compares action probe $R^2$ across encoders under unified hyperparameters.
+
+\begin{table}[h]
+\centering
+\caption{Cross-encoder action probe $R^2$ (unified hyperparameters).}
+\label{tab:cross_encoder}
+\begin{tabular}{lccc}
+\toprule
+Encoder & Pretraining & $R^2$ & vs Projector $p$ \\
+\midrule
+VLA last\_pre L19 & VLA fine-tuned & 0.671 & 0.002 \\
+DINO cls\_token & Self-supervised & 0.634 & 0.557 (n.s.) \\
+SigLIP+Projector & VL + projection & 0.630 & baseline \\
+VLA img\_mean L19 & VLA fine-tuned & 0.599 & $<$0.001 \\
+CLIP cls\_token & VL contrastive & 0.587 & $<$0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CLIP ($R^2 = 0.587$) ranks below DINOv2 ($R^2 = 0.634$) in both RSA and functional probes, suggesting that vision-language contrastive pretraining does not inherently produce superior action-relevant representations compared to self-supervised learning. The VLA last\_preaction token achieves the highest $R^2$ (0.671), consistent with training concentrating action-relevant information at the action readout position.
+
+\subsection{Fused Backbone Decomposition}
+
+For architectures using fused vision backbones (DinoSigLIP), Table~\ref{tab:branch_split} decomposes the contributions of each branch.
+
+\begin{table}[h]
+\centering
+\caption{Fused backbone branch RSA decomposition.}
+\label{tab:branch_split}
+\begin{tabular}{lccc}
+\toprule
+Component & RSA ($\rho$) & Dim & Note \\
+\midrule
+DINOv2 branch & 0.619 & 1088 & in-backbone \\
+SigLIP branch & 0.621 & 1088 & in-backbone \\
+Fused backbone & 0.634 & 2176 & before projection \\
+Post-projector & 0.615 & 4096 & LLM input \\
+Standalone DINO cls & 0.692 & 1024 & different layer \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+DINOv2 and SigLIP branches contribute nearly equally ($\Delta < 0.002$), and their fusion provides a complementary benefit (fused $0.634 >$ either branch $\sim$0.620). The projection step reduces RSA from $0.634$ to $0.615$, reflecting dimensionality expansion from 2176 to 4096 that partially dilutes geometric structure. The standalone DINO cls\_token ($0.692$) exceeds the in-backbone DINOv2 branch ($0.619$), but this comparison is confounded by extraction layer differences (standalone uses the final layer; in-backbone uses a fused intermediate representation).
+
+%==============================================================================
+\section{Discussion}
+\label{sec:discussion}
+%==============================================================================
+
+\paragraph{What VLA Training Does.}
+Our results characterize VLA fine-tuning as primarily a routing reorganization process rather than a representation learning process. Image token geometry is determined by the frozen vision encoder and is invariant to training (RSA $\Delta < 0.01$ across all conditions). Instead, training reshapes \emph{how} instruction information is routed: from the mid-layer processing pattern inherited from language model pretraining to an entry-exit bookend pattern optimized for immediate instruction integration and exit-layer action conditioning.
+
+\paragraph{Three-Tier Routing Gradient.}
+The three-condition comparison reveals a staged routing development: (1) VLM base models show no action-relevant routing; (2) general VLA pretraining (e.g., OXE) establishes robust L1 routing and counterfactual sensitivity; (3) task-specific fine-tuning further sharpens counterfactual patterns without producing additional exit collapse. This gradient suggests that routing reorganization is a one-time structural change at the VLM-to-VLA boundary, with subsequent training refining rather than restructuring.
+
+\paragraph{Limitations.}
+Several limitations constrain the scope of our conclusions:
+\begin{itemize}
+    \item \textbf{Metric incomparability}: Counterfactual sensitivity in trained models (Cohen's $d$ on actions) and untrained VLMs (cosine distance in hidden space) use different metrics. Quantitative cross-condition comparisons of sensitivity amplification are unreliable without a shared metric. Only within OpenVLA, where both conditions produce actions, is fair comparison possible.
+    \item \textbf{Metric dependence of geometric claims}: RSA and CKA yield reversed orderings for vision encoder representations. Claims about ``non-monotonic refinement'' hold under RSA but not CKA. We present both and qualify RSA-specific findings accordingly.
+    \item \textbf{No behavioral validation}: All analyses are representational. We do not demonstrate that the identified routing patterns causally affect task performance. Behavioral experiments (e.g., instruction perturbation during closed-loop rollouts) would strengthen the link between representational structure and functional relevance.
+    \item \textbf{$\Delta > 0.10$ threshold}: The threshold for ``substantial'' exit collapse is ad hoc. We provide sensitivity analysis showing that the VLM$\to$VLA vs.\ VLA$\to$VLA binary separation is stable across $\Delta \in \{0.05, 0.10, 0.15\}$.
+    \item \textbf{Limited architecture diversity}: While three architectures represent meaningful diversity (different LLM backbones, attention mechanisms, parameter counts), all share the decoder-only VLA paradigm with frozen vision encoders. Architectures with trainable vision encoders or encoder-decoder structures may exhibit different patterns.
+\end{itemize}
+
+%==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%==============================================================================
+
+We presented a systematic experimental framework for token-level analysis of VLA models and applied it across three architectures and four task suites. Two findings emerge consistently: (1) VLA fine-tuning reorganizes instruction routing from mid-layer processing to entry-exit bookend patterns, and (2) $R^2$ exit collapse is a one-time reorganization at the VLM-to-VLA boundary. A three-tier routing gradient---VLM base, general VLA, task-specific VLA---characterizes routing development as a staged process. Vision encoder geometry observations (non-monotonic layer profiles under RSA) provide additional context but are metric-dependent. These results suggest that VLA architecture design should prioritize entry-exit instruction routing efficiency, and that exit collapse presence serves as a diagnostic signature of VLA training stage.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

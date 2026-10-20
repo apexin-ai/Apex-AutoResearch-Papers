@@ -1,0 +1,13 @@
+{
+  "chance": 0.5,
+  "L0_image_mean": 1.0,
+  "L0_last_preaction": 0.0,
+  "L8_image_mean": 1.0,
+  "L8_last_preaction": 1.0,
+  "L16_image_mean": 1.0,
+  "L16_last_preaction": 1.0,
+  "L24_image_mean": 1.0,
+  "L24_last_preaction": 1.0,
+  "L31_image_mean": 1.0,
+  "L31_last_preaction": 1.0
+}

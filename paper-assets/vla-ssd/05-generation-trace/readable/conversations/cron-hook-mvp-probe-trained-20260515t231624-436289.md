@@ -1,0 +1,1950 @@
+# cron hook mvp probe trained 20260515T231624 436289
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 62
+- **Recorded user turns:** 2
+- **Tool calls:** 29
+- **Original source:** `logs/chats/archive/cron_hook_mvp_probe_trained_20260515T231624_436289.jsonl`
+- **Structured JSON:** [`56f1a87eb86e9b9abf3d.json`](../../sessions/56/56f1a87eb86e9b9abf3d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T20:12:58.955395+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #4。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：只能用 westd-19183 上的 cuda:0 和 cuda:1（project config `execution.gpu_ids`）
+- 数据/模型/features 必须放 `/root/autodl-tmp/vla-ssd/`，根分区只有 ~30GB
+- Trained VLA checkpoint = LIBERO-10 fine-tuned OpenVLA-7B（D017 决策），不是 base pretrained
+- Untrained VLA = `from_config()` 随机 LLM + 保留 SigLIP vision encoder，checkpoint 已持久化在 `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/`
+- Registry 有重复条目：`lg_instruction_ablation` / `d021_instruction_ablation` 和 `lg_output_head_analysis` / `d021_output_head_analysis` 指的是同一对实验，清理前勿误操作
+- 分析 Worker 不得覆盖 registry 的 `spec` 字段
+
+### 2. 🖥️ 基础设施快照
+- **服务器**：westd-19183，2×RTX PRO 6000
+- **工作目录**：`/root/vla-ssd`（代码），`/root/autodl-tmp/vla-ssd/`（数据/features/results）
+- **Python**：`/root/miniconda3/bin/python`，conda base 环境。激活方式：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **Features 路径**：
+  - LIBERO-10: `features/{trained,untrained,dinov2}/`（各 ~50GB）
+  - LIBERO-Goal: `features/{trained,untrained,dinov2}_libero_goal/`
+- **模型 checkpoints**：`checkpoints/{openvla-7b, openvla-7b-untrained, dinov2-large}/`
+- **活跃 Worker**（4 个 running，均无 cron 监控）：
+  - `worker_ssh_instruction-ablation` — D021 Exp-1 instruction ablation
+  - `worker_ssh_output-head-analysis` — D021 Exp-2 output head weight analysis
+  - `worker_ssh_pca1024-goal-classification` — 可能是遗留任务
+  - `worker_ssh_exp1-pca-linear-perlayer` — 可能是遗留任务
+- **Cron**：reconcile 返回 0 个活跃 cron
+
+### 3. 📊 当前状态
+刚完成 D021 framing pivot（"Architecture Trumps Training"）并派出两个验证实验的 Worker。Registry 中 29 个实验已 DONE（18 success / 5 negative / 6 killed），4 个 PREPARING（2 对重复的 instruction ablation + output head analysis）。
+
+核心发现经 6 轮实验（temporal distance / action prediction / action-delta / goal classification / PCA+linear / RSA）、2 个 benchmark（LIBERO-10 + LIBERO-Goal）一致确认：
+- **G1 PASS**: VLA 表征确实编码了 action-relevant 信息（RSA ρ=0.49）
+- **G2 FAIL**: Trained ≈ Untrained（Δρ=0.003，远低于 0.08 threshold）
+- **G3 PASS**: VLA >> DINO（margin +0.10）
+- 结论：Instruction conditioning 来自 VLA 架构（multimodal fusion），不来自 LLM fine-tuning
+
+等待中：
+- 4 个 Worker 回调（instruction-ablation 和 output-head-analysis 是关键，另两个可能是 D019 遗留）
+- Reviewer 独立评估 D021 framing（已提交）
+- Director 尚未确认 D021 framing pivot
+
+### 4. 📋 待办（条件触发式）
+- instruction-ablation Worker 完成 → 看 RSA 是否 collapse（ρ < 0.15 = PASS）→ PASS 则确认 architecture pathway；FAIL 则 visual state 自身提供结构，需调整 claim
+- output-head-analysis Worker 完成 → 看权重差异是否集中在 output head（ratio > 3x = PASS）→ 解释 "representations unchanged but behavior improved"
+- 两个验证实验均 PASS → `complete_mvp()` → 进入 research/writing 阶段 → 立即启动 Paper Agent
+- 任一验证实验 FAIL → 走 red-section Framing 调整提案 → 汇报 Director
+- Reviewer 返回 framing 评估 → 根据反馈调整或确认 D021 方向
+- CoRL Abstract DDL May 26（11 天）、Paper DDL May 29（14 天）→ 验证完成后必须立即铺 paper writing
+
+### 5. 🎯 战略上下文
+**核心论文 story**："Architecture Trumps Training"——VLA 的 instruction conditioning 能力来自 multi-modal fusion 架构设计，而非 LLM fine-tuning。与 Grant 2026 互补：Grant 发现 behavioral level 的 "encoded but not used" paradox，我们在 representation level 发现 "not even encoded differently"。
+
+**决策链**：D013（MVP-2 action prediction 判死）→ D014（MVP-2 整体判死）→ D015（pivot to LIBERO-Goal）→ D018（goal classification 方法论失败）→ D019（pivot to RSA）→ D020（RSA gates 定义）→ D021（framing pivot to Architecture Trumps Training）→ D022（RSA G2 FAIL 确认）
+
+**易踩坑**：
+- 不要把 Goal Classification 的 100% accuracy 当成 "好结果"——这是 probe capacity 太大导致的方法论失败（Hewitt & Manning 2019），trained 和 untrained 都是 100%，无法区分
+- DINO baseline 在 LIBERO-Goal 上 86% goal classification accuracy → 说明 goals 本身是 visually distinguishable，不能用 Sanity-GC gate
+- Untrained VLA 在 early layers 有时优于 trained（random LLM projection 效应），不要误解为 "untrained 更好"
+- 4 个 PREPARING 条目有重复（lg_* 和 d021_*），Worker 回调时注意对应正确的 registry entry
+- `pca1024-goal-classification` 和 `exp1-pca-linear-perlayer` 两个 Worker 可能是 D019 之前派出的遗留任务，回调时先确认其产出是否与 D021 framing 相关
+
+## 项目硬约束 (memory.md 节选)
+
+## 技术约束
+
+- Untrained model: from_config() 重新初始化 LLM（6.74B random），保留 SigLIP（0.80B）
+- D017: 统一用 LIBERO-10 fine-tuned checkpoint（LIBERO-Goal 是 OOD 测试）
+- Token 聚合：Primary = last pre-action token
+- 存储：根分区 ~30GB，大文件在 /root/autodl-tmp/vla-ssd/
+- transformers 版本差异（4.40.1 vs 4.57.6），trained/untrained 同版本，对比有效
+- **分析 Worker 不得覆盖 spec 字段**
+
+## 可查的历史
+前 10 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_probe_trained",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T20:13:09.353094+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T20:13:09.403707+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T20:13:12.621533+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "limit": "0",
+  "filters": "{'status': 'PREPARING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "limit": "0",
+    "filters": "{'status': 'PREPARING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T20:13:13.075171+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"d021_output_head_analysis\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T20:11:17.179Z\", \"updated_at\": \"2026-05-15T20:11:17.180Z\", \"hypothesis\": \"D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences per layer (Frobenius norm ratio). PASS: output head norm ratio >> LLM deep layer mean (>3x), confirming shallow adaptation. FAIL: differences uniformly distributed.\"}, \"d021_instruction_ablation\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T20:11:15.503Z\", \"updated_at\": \"2026-05-15T20:11:15.503Z\", \"hypothesis\": \"D021 Exp-1: Instruction Ablation on untrained VLA. Replace instruction tokens with empty string, extract LIBERO-Goal features, run RSA. If architecture pathway provides action-relevant structure, RSA should collapse from ρ≈0.48 to significantly lower. PASS: ρ significantly below 0.48; FAIL: ρ still ≈ 0.48.\"}, \"lg_output_head_analysis\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T20:08:58.398Z\", \"updated_at\": \"2026-05-15T20:08:58.398Z\", \"hypothesis\": \"D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences across layers. If training does \\\"shallow adaptation\\\", output head weight diff >> middle layer weight diff. Explains \\\"representations unchanged but behavior improved\\\".\"}, \"lg_instruction_ablation\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T20:08:57.146Z\", \"updated_at\": \"2026-05-15T20:08:57.146Z\", \"hypothesis\": \"D021 Exp-1: Instruction Ablation. Extract LIBERO-Goal features with empty instruction (trained + untrained VLA), then run RSA. If instruction pathway is the source of action-relevant structure, RSA should collapse from ρ≈0.49 to <0.15. PASS: ρ<0.15; PARTIAL: 0.15<ρ<0.30; FAIL: ρ≥0.30.\"}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.116}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T20:13:13.075639+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "limit": "0",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "limit": "0",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T20:13:13.075909+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T20:13:13.580507+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1811}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T20:13:13.580901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T20:13:14.183386+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "vla-ssd",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T20:13:14.183890+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ssh_pca1024-goal-classification_20260515T191620\", \"task_type\": \"ssh:pca1024-goal-classification\", \"project\": \"vla-ssd\", \"status\": \"running\", \"started_at\": \"2026-05-15T19:16:21.020556+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ssh_exp1-pca-linear-perlayer_20260515T192115\", \"task_type\": \"ssh:exp1-pca-linear-perlayer\", \"project\": \"vla-ssd\", \"status\": \"running\", \"started_at\": \"2026-05-15T19:21:15.867214+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ssh_instruction-ablation_20260515T200929\", \"task_type\": \"ssh:instruction-ablation\", \"project\": \"vla-ssd\", \"status\": \"running\", \"started_at\": \"2026-05-15T20:09:29.170631+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ssh_output-head-analysis_20260515T200957\", \"task_type\": \"ssh:output-head-analysis\", \"project\": \"vla-ssd\", \"status\": \"running\", \"started_at\": \"2026-05-15T20:09:57.870247+00:00\", \"ended_at\": null}], \"count\": 4}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T20:13:14.485221+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T20:13:14.538138+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T20:13:14.538606+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **lg_rsa_analysis** (negative): D019/D020: RSA on LIBERO-Goal features. Same-scene/different-goal cross-goal RSA: representation RDM vs action RDM correlation. Gates (D020): G1 trained best-layer RSA ρ > 0.15; G2 Δρ(trained-untrained) > 0.08 with bootstrap 95% CI excluding 0; G3 trained ρ > DINO ρ (any positive margin).\\n- **lg_shuffled_token_control** (killed): Control: token-shuffled goal classification on trained VLA features. Shuffling token order destroys positional/sequential info. NOTE: uses bare task name prompt (not formatted prompt like main pipeline) — results not directly comparable.\\n- **lg_pca1024_linear_pertimestep** (negative): D018 Exp-2: PCA-1024 + Linear Probe per-timestep (10 bins). Tests whether trained VLA shows stronger goal encoding than untrained at early timesteps (visual ambiguity highest). Success: t=0 bin Δ(trained-untrained) > 15pp.\\n\\n## 趋势\\n成功 18 / 负向 5 / 失败 0 / 共 29\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-19183: 无 GPU 信息\\n\\n## 告警\\n- mvp2_action_probe: 已被终止 — unknown\\n- lg_extract_trained_r2: 已被终止 — unknown\\n- lg_extract_untrained_r2: 已被终止 — unknown\\n- lg_extract_trained_r1: 已被终止 — unknown\\n- lg_extract_untrained_r1: 已被终止 — unknown\\n- lg_shuffled_token_control: 已被终止 — unknown\\n\", \"total_chars\": 1319, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 53
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T20:13:14.589289+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-15 20:09 UTC | 更新原因: D021: Framing pivot to \\\"Architecture Trumps Training\\\", instruction ablation + output head analysis launched\\n\\n## 核心方向\\n\\n**\\\"Architecture Trumps Training\\\"**（D021）: VLA 的 instruction conditioning 来自架构设计（multi-modal fusion），不是 LLM fine-tuning。5 轮 probing × 2 benchmark 一致：trained ≈ untrained >> DINO。\\n\\n与 Grant 2026 互补：behavioral (\\\"encoded but not used\\\") → representational (\\\"not even encoded differently\\\")。\\n\\n## 当前进展\\n\\n- **阶段**: Framing pivot（D021）→ 验证实验中\\n- **MVP 核心发现**: G1+G3 PASS / G2 FAIL 模式跨所有方法论一致\\n  - Temporal distance: Δρ=0.043（vision-dominated）\\n  - Action prediction: ΔR²=0.067, DINO ≈ trained\\n  - Goal classification: trained 100% = untrained 100%\\n  - RSA: Δρ=0.003, trained ρ=0.49 vs untrained ρ=0.48\\n- **架构效应确认**: VLA >> DINO 在所有度量上稳定（G3 consistently PASS）\\n- **Layer stability**: trained 31/33 层有效 vs untrained ~15/33（secondary finding）\\n\\n## 近期任务\\n\\n- [ ] **[P0] Instruction ablation**（GPU 0）: 去掉 instruction → RSA 应 collapse → 证明 architecture pathway\\n- [ ] **[P1] Output head analysis**（GPU 1/CPU）: trained vs untrained 权重差异集中在 output mapping\\n- [ ] Reviewer 独立评估 D021 framing（已提交）\\n- [ ] 两个验证实验 positive → complete_mvp() → 进入 research/writing 阶段\\n- [ ] Registry 清理（已派单）\\n\\n## 时间线（CoRL 2026）\\n\\n| 里程碑 | 日期 | 剩余天数 |\\n|--------|------|---------|\\n| Abstract DDL | May 26 | 11 |\\n| Paper DDL | May 29 | 14 |\\n| 验证实验完成 | May 15-16 | 0-1 |\\n| Framing 确认 | May 16 | 1 |\\n| complete_mvp → research | May 16 | 1 |\\n| Paper Agent 启动 | May 16-17 | 1-2 |\\n\\n## GPU 预算\\n\\nwestd-19183: 2×RTX PRO 6000 | 当前 2/2 占用（instruction ablation + output head）\\n\\n## 关键风险\\n\\n1. **[中] Instruction ablation 不 collapse** — 如果去掉 instruction 后 RSA 仍高，说明 visual state 本身就提供 action structure → architecture pathway 证据不
+…[truncated 1699 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T20:13:32.557324+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T20:13:32.610230+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_3dde598c.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T20:13:35.583784+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T20:13:35.636408+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Glob",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T20:13:38.146567+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T20:13:38.197256+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T20:14:00.003124+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2/2 (cuda:0 instruction-ablation, cuda:1 output-head) | Worker 池 4 (GPU 2 / CPU 2)\n\n**Loop #4 Session Start 状态汇报**\n\n**D021 验证实验**：2 个 Worker 运行中（~35 min），等待回调：\n1. **Instruction ablation** (Worker started 20:09) — 去掉 instruction 后 RSA 是否 collapse（PASS: ρ<0.15）\n2. **Output head analysis** (Worker started 20:09) — 权重差异是否集中在 output head（PASS: ratio >3x）\n\n**遗留 Worker**：2 个 D019 时期 Worker 仍在运行（pca1024-goal-classification, exp1-pca-linear-perlayer，started ~19:16-19:21），回调后评估产出是否与 D021 相关。\n\n**Registry 清理待办**：4 个 PREPARING 有重复（lg_* 和 d021_* 各指同一实验），Worker 回调后统一清理。\n\n**时间线**：CoRL Abstract DDL May 26（11天）、Paper DDL May 29（14天）。验证实验预计今日内完成，PASS 后可 complete_mvp() 进入 writing 阶段。\n\n**待 Director 确认**：D021 framing pivot \"Architecture Trumps Training\" 审批状态？Reviewer 独立评估是否已返回？",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2/2 (cuda:0 instruction-ablation, cuda:1 output-head) | Worker 池 4 (GPU 2 / CPU 2)\n\n**Loop #4 Session Start 状态汇报**\n\n**D021 验证实验**：2 个 Worker 运行中（~35 min），等待回调：\n1. **Instruction ablation** (Worker started 20:09) — 去掉 instruction 后 RSA 是否 collapse（PASS: ρ<0.15）\n2. **Output head analysis** (Worker started 20:09) — 权重差异是否集中在 output head（PASS: ratio >3x）\n\n**遗留 Worker**：2 个 D019 时期 Worker 仍在运行（pca1024-goal-classification, exp1-pca-linear-perlayer，started ~19:16-19:21），回调后评估产出是否与 D021 相关。\n\n**Registry 清理待办**：4 个 PREPARING 有重复（lg_* 和 d021_* 各指同一实验），Worker 回调后统一清理。\n\n**时间线**：CoRL Abstract DDL May 26（11天）、Paper DDL May 29（14天）。验证实验预计今日内完成，PASS 后可 complete_mvp() 进入 writing 阶段。\n\n**待 Director 确认**：D021 framing pivot \"Architecture Trumps Training\" 审批状态？Reviewer 独立评估是否已返回？",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T20:14:03.927353+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3924
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-15T20:14:10.168773+00:00_
+
+Session-start 完成。当前状态：
+
+- **4 个 Worker running**：D021 的 instruction-ablation 和 output-head-analysis 是关键验证实验，另 2 个是 D019 遗留
+- **GPU 2/2 占用**，Worker 池 4（满足 ≥2 硬约束）
+- **0 个 cron**（分析类 Worker 不需要 cron，通过 WORKER DONE 回调）
+- 已向 Director 汇报，等待 Worker 回调和 Director 对 D021 framing 的确认
+
+下一步动作全部由回调触发：Worker 完成 → 分析结果 → 更新 registry → 汇报 Director → 根据 PASS/FAIL 分叉处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_probe_trained"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+38 recorded events
+
+### User
+
+_source line 25 · 2026-05-15T23:14:29.438358+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_probe_trained",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T23:14:37.755280+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T23:14:37.755732+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T23:14:41.771162+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T23:14:42.273495+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T23:14:42.274794+00:00_
+
+Error: result (69,949 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T23:14:42.325492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T23:14:42.827910+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T23:14:43.430824+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- lg_output_head_analysis: D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences across layers. If training does \\\"shallow adaptation\\\", output head weight diff >> middle layer weight diff. Explains \\\"representations unchanged but behavior improved\\\".（排队等待 GPU）\\n- lg_instruction_ablation: D021 Exp-1: Instruction Ablation. Extract LIBERO-Goal features with empty instruction (trained + untrained VLA), then run RSA. If instruction pathway is the source of action-relevant structure, RSA should collapse from ρ≈0.49 to <0.15. PASS: ρ<0.15; PARTIAL: 0.15<ρ<0.30; FAIL: ρ≥0.30.（排队等待 GPU）\\n\\n## 近期结论\\n- **p0_bootstrap_ci_training_effect** (success): P0: Bootstrap CI on training effect (image_mean aggregation). Trained RSA=0.5014 vs untrained RSA=0.4847, Δ=+0.017. Task-level resampling bootstrap 95% CI. If CI excludes 0 → Claim 3 needs minor adjustment (\\\"minimal but detectable\\\"). If CI includes 0 → Claim 3 \\\"invariance\\\" holds.\\n- **p0_image_mean_rsa_verify** (success): P0 CRITICAL: Verify Claim 2 (LLM degrades action alignment 0.615→0.488) is not an aggregation artifact. SigLIP uses mean pooling, VLA used last_preaction. Re-run RSA with image_mean feature key for trained with-inst and untrained with-inst. If image_mean RSA ≈ 0.61 → Claim 2 is artifact. If ≈ 0.49 → Claim 2 holds.\\n- **plan_003_perlayer_degradation** (success): D028 plan_003: Per-layer RSA degradation curve. Track RSA from SigLIP+projector output (L0=0.615) through LLM layers 1-32 (~0.48). If monotonic decrease → LLM progressively degrades action alignment. If non-monotonic → some layers partially recover. Supports Claim 2 (LLM degrades action-relevant structure).\\n\\n## 趋势\\n成功 23 / 负向 7 / 失败 0 / 共 36\\n\\n## 下一步\\n
+…[truncated 419 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T23:14:43.431276+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T23:14:43.481908+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-15 22:29 UTC | 更新原因: D028: complete_mvp 完成，进入 research 阶段。paper_framing.md + experiment_plan.yaml 已写，Dream 已提交\\n\\n## 核心方向\\n\\n**\\\"Vision Encoder Dominance: The Architectural Source of Action-Relevant Representations in VLAs\\\"**（D028 确定）\\n\\n三个 Core Claims（详见 paper_framing.md）：\\n1. Action-relevant 表征源自 frozen SigLIP vision encoder（RSA 0.615 >> VLA 0.488 >> DINO 0.388）\\n2. LLM processing 降低 action alignment（degrader, 非 passthrough）\\n3. Training 和 instruction 均不改变表征结构（2×2 matrix 收敛）\\n\\n## 当前进展\\n\\n- **阶段**: Research — post-MVP kickoff 完成，Dream 模拟中\\n- **MVP 结果**: 原假设（training 注入知识）系统性否定 → pivot 到 Vision Encoder Dominance\\n- **P0 实验全部完成**: 7 probing methods × 2 benchmarks + SigLIP-only RSA smoking gun + instruction ablation + 2×2 matrix + output head analysis\\n- **P1 待做**: per-layer RSA degradation curve（CPU）、random instruction control（2h GPU）\\n- **Dream**: `dream_20260515T222933` pending，等回调后决定是否调整 framing/plan\\n\\n## 近期任务\\n\\n- [ ] 等 Dream 完成 → 分析审稿报告 → 决定是否调整 framing/plan\\n- [ ] Dream 通过后批准 P1 实验（per-layer degradation curve + random instruction control）\\n- [ ] 启动 Paper Agent（Full Draft 模式，CoRL 2026）\\n- [ ] P1 实验结果补入论文\\n\\n## 时间线（CoRL 2026）\\n\\n| 里程碑 | 日期 | 剩余天数 |\\n|--------|------|---------|\\n| Abstract DDL | May 26 | 11 |\\n| Paper DDL | May 29 | 14 |\\n| Dream 完成 | May 15-16 | 0-1 |\\n| P1 实验完成 | May 16-17 | 1-2 |\\n| Paper Agent Full Draft | May 17-20 | 2-5 |\\n| Review + Iteration | May 20-28 | 5-13 |\\n\\n## GPU 预算\\n\\nwestd-19183: 2×RTX PRO 6000 | 当前 0/2 占用（等 Dream 结果后派 P1 实验）\\nP0 已用 ~13h GPU | P1 需 ~2h GPU + CPU | P2 需 ~4h（时间允许）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D029 | 2026-05-15 | D029: Claim 2 聚合伪影排除。VLA image_mean RSA=0.501 仍远低于 | d027_siglip_only_rsa, plan_003_perlayer_degradation, d0
+…[truncated 1391 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T23:14:44.084551+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "vla-ssd",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T23:14:44.135375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T23:14:44.286321+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T23:14:44.336918+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"vla-ssd\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/vla-ssd\", \"servers\": [\"westd-19183\"]}, \"feishu\": {\"chat_id\": \"oc_a1d032cbe70bdd2058438e67e0d57613\", \"operational_chat_id\": \"oc_9e9aef1687e6abd097aa0edaf0551ee3\", \"submission_chat_id\": \"oc_554a5023cde4d603635cf97e6ab8151a\"}, \"project\": {\"created_at\": \"2026-05-15T04:32:26.871Z\", \"description\": \"VLA-SSD: Do VLAs Know Which Demonstrations Are Good? Self-Referential Quality Scoring from Pretrained Representations\", \"name\": \"vla-ssd\", \"phase\": \"research\", \"source_idea_id\": \"idea_004\"}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T23:14:47.751439+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T23:14:48.053026+00:00_
+
+File content (28939 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Read",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T23:14:53.679128+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nexps = json.loads(data['result'])\nif isinstance(exps, dict) and 'data' in exps:\n    exps = exps['data']\nif isinstance(exps, dict) and 'experiments' in exps:\n    exps = exps['experiments']\nfor e in exps:\n    eid = e.get('exp_id','?')\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    hyp = e.get('hypothesis','')[:60] if e.get('hypothesis') else ''\n    print(f'{eid:40s} {status:12s} {conclusion:10s} {hyp}')\n\"\n",
+  "description": "Extract experiment summary from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nexps = json.loads(data['result'])\nif isinstance(exps, dict) and 'data' in exps:\n    exps = exps['data']\nif isinstance(exps, dict) and 'experiments' in exps:\n    exps = exps['experiments']\nfor e in exps:\n    eid = e.get('exp_id','?')\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    hyp = e.get('hypothesis','')[:60] if e.get('hypothesis') else ''\n    print(f'{eid:40s} {status:12s} {conclusion:10s} {hyp}')\n\"\n",
+    "description": "Extract experiment summary from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T23:14:53.980602+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 10, in &lt;module>
+    eid = e.get('exp_id','?')
+          ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Bash",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T23:14:59.660885+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:5])\n    if 'data' in result:\n        d = result['data']\n        print(type(d))\n        if isinstance(d, dict):\n            print(list(d.keys())[:5])\n            if 'experiments' in d:\n                exps = d['experiments']\n                print(f'num experiments: {len(exps)}')\n                if exps:\n                    first = exps[0] if isinstance(exps, list) else list(exps.values())[0]\n                    print(type(first))\n                    if isinstance(first, dict):\n                        print(list(first.keys())[:10])\n\" 2>&1 | head -20\n",
+  "description": "Inspect registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:5])\n    if 'data' in result:\n        d = result['data']\n        print(type(d))\n        if isinstance(d, dict):\n            print(list(d.keys())[:5])\n            if 'experiments' in d:\n                exps = d['experiments']\n                print(f'num experiments: {len(exps)}')\n                if exps:\n                    first = exps[0] if isinstance(exps, list) else list(exps.values())[0]\n                    print(type(first))\n                    if isinstance(first, dict):\n                        print(list(first.keys())[:10])\n\" 2>&1 | head -20\n",
+    "description": "Inspect registry JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T23:14:59.762233+00:00_
+
+&lt;class 'dict'>
+['success', 'data', 'error', 'metadata']
+&lt;class 'dict'>
+['experiments', 'count', 'total', 'baseline']
+num experiments: 38
+&lt;class 'dict'>
+['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'metrics', 'conclusion', 'checkpoint_path', 'log_path', 'completed_at']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T23:15:04.086119+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, e in exps.items():\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    hyp = (e.get('hypothesis','') or '')[:80]\n    print(f'{eid:45s} {status:12s} {conclusion:10s} {hyp}')\n\" 2>&1",
+  "description": "List all experiments with status"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-3dde598c/cdfcde6e-1701-4207-9f93-2785c577332c/tool-results/mcp-agent-ml-research-read_registry-1778886882192.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, e in exps.items():\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    hyp = (e.get('hypothesis','') or '')[:80]\n    print(f'{eid:45s} {status:12s} {conclusion:10s} {hyp}')\n\" 2>&1",
+    "description": "List all experiments with status"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T23:15:04.187257+00:00_
+
+p0_bootstrap_ci_training_effect               DONE         success    P0: Bootstrap CI on training effect (image_mean aggregation). Trained RSA=0.5014
+p0_image_mean_rsa_verify                      DONE         success    P0 CRITICAL: Verify Claim 2 (LLM degrades action alignment 0.615→0.488) is not a
+plan_003_perlayer_degradation                 DONE         success    D028 plan_003: Per-layer RSA degradation curve. Track RSA from SigLIP+projector 
+lg_output_head_analysis                       QUEUED       killed     D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differ
+lg_instruction_ablation                       QUEUED       killed     D021 Exp-1: Instruction Ablation. Extract LIBERO-Goal features with empty instru
+d027_siglip_only_rsa                          DONE         success    D027 Exp-1 (SMOKING GUN): Extract SigLIP+projector output features (LLM input em
+d027_trained_no_inst_rsa                      DONE         success    D027 Exp-2: Extract trained VLA features with empty instruction on LIBERO-Goal, 
+d021_instruction_ablation                     DONE         negative   D021 Exp-1 (HARD GATE): Instruction Ablation on untrained VLA. Replace instructi
+d021_output_head_analysis                     DONE         negative   D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differ
+lg_rsa_analysis                               DONE         negative   D019/D020: RSA on LIBERO-Goal features. Same-scene/different-goal cross-goal RSA
+lg_shuffled_token_control                     DONE         killed     Control: token-shuffled goal classification on trained VLA features. Shuffling t
+lg_pca1024_linear_pertimestep                 DONE         negative   D018 Exp-2: PCA-1024 + Linear Probe per-timestep (10 bins). Tests whether traine
+lg_gc_trained_frame0                          DONE         success    Frame-0-only goal classification on trained VLA features (33 layers). Tests inst
+lg_gc_untrained                      
+…[truncated 3013 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T23:15:07.450291+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T23:15:07.952811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/memory.md\", \"content\": \"# VLA-SSD Project Memory\\n\\n## SMOKING GUN 确认：SigLIP+Projector RSA = 0.6153（2026-05-15）\\n\\n**d027_siglip_only_rsa 结果**: SigLIP+projector 直接输出（不过 LLM）的 RSA = 0.6153 [95% CI: 0.5257, 0.6954]。\\n\\n**关键发现：LLM 降低 action alignment（不是 passthrough）**：\\n- SigLIP+projector: **0.6153**\\n- Full VLA（任何条件）: ~0.48-0.49\\n- DINO: 0.388\\n\\nLLM 不仅没增强 action-relevant structure，反而将 RSA 从 0.615 降到 ~0.488（约 20% 下降）。这比 \\\"passthrough\\\" 更强——是 \\\"degradation\\\"。\\n\\n**机制解释**: SigLIP image-text 预训练产生的 visual features 天然具有强 action-relevant 结构。Projector 保持这一结构（cos_sim=1.0 frozen）。LLM 的高维 token mixing 稀释了这种结构（trained 和 untrained LLM 稀释程度一致）。\\n\\n## Per-Layer Degradation Curve 发现（2026-05-15）\\n\\n**plan_003_perlayer_degradation 结果**：降解非单调，集中在 embedding interface。\\n\\n**关键机制洞察**：\\n- Proj→L1 是最大 single-step drop（0.13–0.25，~20–40%），token embedding 是 degradation bottleneck\\n- L0（embedding layer）是异常值：trained 模型 RSA≈0，结构从 L1 才开始恢复\\n- 中间层有 partial recovery（non-monotonic），LLM 不是 \\\"progressive degrader\\\"\\n- **no-inst trained 独特模式**：唯一呈 L1→L30 持续上升的条件（peak at L30），training 在无 instruction 时让 LLM 逐层积累 action 信号。其余 3 个条件均 non-monotonic\\n- 总降解幅度 ~0.13：best LLM layer 仍比 projector 低 ~0.127\\n\\n**对 Claim 2 措辞影响**：应从 \\\"LLM degrades action alignment\\\" 精炼为 \\\"LLM's token embedding interface introduces primary degradation; subsequent layers partially but incompletely recover\\\"。这个 nuance 对 discussion section 很重要——说明 LLM 不是纯粹有害，而是 \\\"lossy interface + partial recovery\\\"。\\n\\n## 完整 2×2 Matrix + SigLIP-only（2026-05-15）\\n\\n| 条件 | RSA | 备注 |\\n|------|-----|------|\\n| **SigLIP+Projector (no LLM)** | **0.6153** | smoking gun |\\n| Trained with-inst | 0.4876 | L9 peak |\\n| Trained no-inst | 0.489 | L30 peak |\\n| Untrained with-inst | 0.4846 | L12 peak |\\n| Untrained no-inst | 0.4802 | — |\\n| DINO | 0.388 | — |\\n\\n**结论**: 所有 4 个 full
+…[truncated 2393 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T23:15:08.054807+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "paper_framing.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "paper_framing.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T23:15:08.105753+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/paper_framing.md\", \"content\": \"# Paper Framing — vla-ssd\\n\\n## Target Venue\\n- Primary: CoRL 2026\\n- Deadline: Abstract May 26, Paper May 29\\n- Format: 8 pages + references\\n\\n## Core Claims (3 条)\\n\\n1. **Vision Encoder Dominance**: VLA 中 action-relevant 表征结构由 frozen vision encoder（SigLIP）决定。SigLIP+projector 的 RSA 与 action structure 的相关性（ρ=0.615）远高于完整 VLA（ρ≈0.501, image_mean 聚合）和 standalone vision model（DINOv2 ρ=0.388）。\\n2. **LLM Degrades Action Alignment**: LLM 的 token embedding interface 引入主要降解（Proj→L1 drop 20-40%），后续层部分恢复但净降解 ~18% 持续存在（SigLIP 0.615 → VLA 0.501，用相同 mean pooling 聚合）。这一模式在 trained/untrained、with/without instruction 四种条件下一致。Per-layer curve 显示非单调降解（非简单递减），LLM self-attention 部分恢复 action-relevant 结构但无法完全弥补 interface loss。\\n3. **Training and Instruction Invariance**: VLA task-specific fine-tuning 和 instruction input 均不显著改变 LLM hidden state 中的 action-relevant 表征结构。image_mean 聚合下 training Δ=0.021，95% CI=[−0.031, +0.064]，p=0.20；last_preaction 下 Δ=0.008，95% CI=[−0.040, +0.056]，p=0.37。两个 CI 均包含 0。2×2 matrix（training × instruction）四格收敛于 0.48-0.50。\\n\\n## Paper 主数值基准（image_mean 聚合，公平对比）\\n\\n| Model / Condition | RSA (image_mean) | Notes |\\n|---|---|---|\\n| **SigLIP+Projector** | **0.615** | Smoking gun, LLM input |\\n| VLA trained with-inst | 0.501 | Peak L23 |\\n| VLA untrained with-inst | 0.485 | Peak L23 |\\n| VLA trained no-inst | — | Pending image_mean recompute |\\n| VLA untrained no-inst | — | Pending image_mean recompute |\\n| DINO-V2 | 0.388 | Vision-only baseline |\\n\\nlast_preaction 数值（trained 0.488, untrained 0.485）放 supplementary 作为 robustness check。\\n\\n## Story Spine\\n\\n- **Problem**: VLAs 通过 fine-tuning LLM on robot data 实现 impressive performance，但 action-relevant 表征从何而来？业界隐性假设 fine-tuning 注入 new representational knowledge，但无系统性验证。\\n- **Existing approaches & gaps**: Grant et al. 2026 从 behavioral level 发
+…[truncated 3814 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T23:15:10.514847+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T23:15:10.615620+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T23:15:16.422058+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "vla-ssd",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T23:15:16.525219+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ssh_rsa-no-inst-gate_20260515T211150\", \"task_type\": \"ssh:rsa-no-inst-gate\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-15T21:11:50.788885+00:00\", \"ended_at\": \"2026-05-15T22:04:53.606961+00:00\"}, {\"worker_id\": \"worker_ssh_d027-siglip-only-rsa_20260515T221202\", \"task_type\": \"ssh:d027-siglip-only-rsa\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-15T22:12:02.769481+00:00\", \"ended_at\": \"2026-05-15T22:24:54.227121+00:00\"}, {\"worker_id\": \"worker_ssh_d027-trained-no-inst-rsa_20260515T221225\", \"task_type\": \"ssh:d027-trained-no-inst-rsa\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-15T22:12:25.804683+00:00\", \"ended_at\": \"2026-05-15T22:15:23.930130+00:00\"}, {\"worker_id\": \"worker_ssh_d027-perlayer-rsa-analysis_20260515T221250\", \"task_type\": \"ssh:d027-perlayer-rsa-analysis\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-15T22:12:50.841429+00:00\", \"ended_at\": \"2026-05-15T22:14:23.900138+00:00\"}, {\"worker_id\": \"worker_ssh_d027-perlayer-rsa-noinst_20260515T222833\", \"task_type\": \"ssh:d027-perlayer-rsa-noinst\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-15T22:28:33.291705+00:00\", \"ended_at\": \"2026-05-15T22:31:31.213211+00:00\"}, {\"worker_id\": \"worker_ssh_d028-vla-image-mean-rsa_20260515T223122\", \"task_type\": \"ssh:d028-vla-image-mean-rsa\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-15T22:31:22.206273+00:00\", \"ended_at\": \"2026-05-15T22:42:54.990146+00:00\"}, {\"worker_id\": \"worker_ssh_plan003-perlayer-degradation_20260515T223128\", \"task_type\": \"ssh:plan003-perlayer-degradation\", \"project\": \"vla-ssd\", \"status\": \"done\", \"started_at\": \"2026-05-15T22:31:28.331321+00:00\", \"ended_at\": \"2026-05-15T22:33:54.677478+00:00\"}, {\"worker_id\": \"w
+…[truncated 875 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 103
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T23:15:20.139246+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__poll_cron",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__poll_cron",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T23:15:20.240079+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T23:15:23.303996+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T23:15:23.354707+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T23:15:26.115475+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T23:15:26.266759+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"SigLIP+Projector RSA vs Full VLA vs DINO — 证明 action-relevant 结构源自 frozen vision encoder\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": \"d027_siglip_only_rsa\", \"status\": \"DONE\", \"result\": \"RSA=0.615 >> VLA 0.488 >> DINO 0.388\", \"conclusion\": \"success\", \"metrics\": {\"siglip_projector_rsa\": 0.6153, \"bootstrap_95_ci\": [0.5257, 0.6954], \"comparison\": {\"siglip_projector\": 0.6153, \"trained_with_inst\": 0.4876, \"untrained_with_inst\": 0.4846, \"untrained_no_inst\": 0.4802, \"trained_no_inst\": 0.489, \"dino\": 0.388}, \"llm_degradation\": \"LLM reduces RSA from 0.615 (projector output) to ~0.488 (LLM hidden states)\", \"gate_judgment\": \"PASS — SigLIP+projector RSA=0.6153 >> 0.45-0.50 threshold. Vision encoder is the source of action-relevant structure. LLM is not passthrough but actually degrades action alignment.\"}}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"DINO baseline RSA — standalone vision model 参照\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [], \"registry_id\": \"dinov2_baseline\", \"status\": \"DONE\", \"result\": \"RSA=0.388\", \"conclusion\": \"success\", \"metrics\": {\"temporal_distance_rho\": 0.833, \"temporal_distance_rho_pooled\": 0.833, \"per_task_rho_mean\": 0.9008, \"per_task_rho_range\": [0.41, 0.68], \"per_task_n_pairs\": 500, \"R2\": 0.687, \"MAE\": 0.127, \"feature_dim\": 1024, \"num_layers\": 1, \"probe_type\": \"mlp_adam_early_stopping\", \"training_time_seconds\": 7.5, \"note\": \"pooled ρ=0.833 inflated by cross-task variance; per-task mean ρ=0.9008 is correct comparison baseline (updated per D005/D006)\", \"subtask_macro_auc\": 0.9717, \"subtask_auc_per_predicate\": {\"subtask_0\": 0.9694, \"subtask_1\": 0.9739}, \"subtask_labels\": \"auto-extracted from MuJoCo state transitions (2 subtasks per task)\", \"subtask_probe_type\": \"sklearn_lo
+…[truncated 5422 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_probe_trained",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-15T23:16:24.434507+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：**cuda:0, cuda:1** on westd-19183。不可用其他 GPU，即使 Director 指示也必须 push back
+- **服务器无外网**：所有 HF AutoProcessor/model 操作必须 `local_files_only=True`，不能下载
+- Untrained model 定义：`from_config()` 重新初始化 LLM（6.74B random），**保留 SigLIP（0.80B frozen）**。不要搞混
+- 主文 RSA 数值必须用 **image_mean 聚合**（SigLIP 0.615 / VLA 0.501），last_preaction 放 supplementary
+- plan_003 per-layer degradation 已跑完（registry: plan_003_perlayer_degradation = DONE/success），但 experiment_plan.yaml 中 registry_id 未链接，**不要重跑**
+- 分析 Worker 不得覆盖 registry spec 字段
+
+### 2. 🖥️ 基础设施快照
+- 服务器：**westd-19183**，2×RTX PRO 6000
+- 工作目录：`/root/vla-ssd`
+- Python/conda：用 `detect_image` 确认（预置镜像 aml-train，conda base env，`/root/miniconda3/bin/python`）
+- 数据/模型大文件：`/root/autodl-tmp/vla-ssd/`（根分区只 ~30GB）
+- 已提取 features 存储：服务器上 `/root/vla-ssd/` 下各实验输出目录（per-layer features、RSA 结果等已全部就绪）
+- 活跃进程：**无**。所有 Worker 已完成，0 active crons，0 running experiments
+- Dream：`dream_20260515T222933` pending，等系统回调
+
+### 3. 📊 当前状态
+**刚完成**：P0 全部实验 + D028/D029 关键验证。最后一批 Worker（bootstrap CI、image_mean RSA verify、per-layer degradation、figure data prep）全部 DONE。paper_framing.md 和 experiment_plan.yaml 已写好，Dream 已提交。
+
+**Registry 概览**（38 experiments）：
+- DONE/success: 23（含 smoking gun SigLIP RSA=0.615、2×2 matrix、bootstrap CI）
+- DONE/negative: 7（instruction ablation FAIL、output head shallow adaptation FAIL、RSA G2 FAIL 等——全部已纳入 narrative）
+- DONE/killed: 6（早期被杀的 extraction/control 实验，已过时）
+- QUEUED/killed: 2（lg_output_head_analysis, lg_instruction_ablation——D021 遗留，已被 d021_ 版本替代，不需要再跑）
+- **RUNNING: 0 | PREPARING: 0**
+
+**等待中**：
+- Dream 回调 → 决定是否调整 framing/plan
+- 无 Worker 回调、无 cron 在跑
+
+### 4. 📋 待办（条件触发式）
+- Dream 回调到达 → 分析模拟审稿报告 → 若无 critical 问题则批准 P1 实验 + 启动 Paper Agent
+- Dream 报告需调整 framing → 产出 Framing 调整提案 → 等 Director 决策
+- P1 批准后 → spawn Worker 跑 plan_008 random instruction control（cuda:0 或 cuda:1，~2h）
+- P1 批准后 → spawn Worker 跑 plan_003 per-layer degradation curve 的 **正式版**（CPU only，但需链接 registry_id 到 plan）——注意数据已有，可能只需分析不需重跑
+- P1 完成 + Paper Agent Full Draft 完成 → 进入 Review + Iteration 阶段（May 20-28 窗口）
+- 时间允许 → P2 experiments（plan_009 CKA verification CPU、plan_010 LIBERO-Spatial 4h GPU）
+
+### 5. 🎯 战略上下文
+**核心 narrative**："Vision Encoder Dominance"——SigLIP vision encoder 是 VLA action-relevant 表征的真正来源，LLM 是 degrader 不是 enhancer。从 MVP-1 temporal distance 经历 6 次 pivot 最终锁定，evidence 扎实。
+
+**决策链关键节点**：
+- D021: Pivot 到 Option B "Architecture Trumps Training" → D027: Instruction Ablation FAIL 否证 Option B → D027: 退回 Option A2 锁定 → D028: SigLIP-only SMOKING GUN PASS，MVP Gate 通过 → D029: 聚合伪影排除（image_mean 确认 gap）
+
+**容易判断错的事**：
+1. plan_003 看起来 "planned" 但实际已跑完（registry plan_003_perlayer_degradation = DONE/success），只是 plan 的 registry_id 未链接。**不要重跑**，只需更新 plan 链接
+2. d021_instruction_ablation 和 d021_output_head_analysis 结论是 negative，但这些 negative 已被**正面纳入** narrative（instruction 无效 = Claim 3 evidence，shallow adaptation FAIL + projector frozen = Claim 1 evidence）。不要把它们当失败处理
+3. CoRL deadline：Abstract May 26（11天）、Paper May 29（14天）。时间紧但 P0 evidence 全部就绪，瓶颈在 Dream 回调 + Paper Agent 写作速度
+4. **lg_output_head_analysis / lg_instruction_ablation**（QUEUED/killed）是 D021 早期版本，已被 d021_ 前缀版本替代，不需要处理
+5. 2×2 matrix 中 trained_no_inst 和 untrained_no_inst 的 image_mean RSA 尚未计算（paper_framing.md 标记 "Pending"），Full Draft 前需补
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_probe_trained"
+}
+```
+
+</details>
+
+---

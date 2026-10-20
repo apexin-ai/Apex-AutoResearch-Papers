@@ -1,0 +1,7 @@
+See server file: /root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json
+
+Summary:
+- DINO cls_token action: mean_R2=0.7116, overall_R2=0.7188, grip_acc=0.9259
+- DINO patch_mean action: mean_R2=0.7082, overall_R2=0.7166, grip_acc=0.9205
+- DINO cls_token action-delta: mean_R2=0.1001, overall_R2=0.0969
+- Bootstrap DINO vs projector: delta=+0.0054, 95% CI=[-0.0083, 0.0192], p=0.2188

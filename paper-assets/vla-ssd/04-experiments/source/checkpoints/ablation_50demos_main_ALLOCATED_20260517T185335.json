@@ -1,0 +1,15 @@
+{
+  "exp_id": "ablation_50demos_main",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:53:20.415Z",
+    "updated_at": "2026-05-17T18:53:35.697Z",
+    "hypothesis": "50-demo full-data ablation: L1 instruction-dominant heads capacity trade-off (R² increase under ablation) persists with adequate probe training data, eliminating underfitting confound from 5-demo version."
+  },
+  "timestamp": "2026-05-17T18:53:35.854416+00:00",
+  "trigger": "update_registry"
+}

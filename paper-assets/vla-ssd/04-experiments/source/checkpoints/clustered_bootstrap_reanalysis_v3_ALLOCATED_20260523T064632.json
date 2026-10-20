@@ -1,0 +1,16 @@
+{
+  "exp_id": "clustered_bootstrap_reanalysis_v3",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:46:06.392Z",
+    "updated_at": "2026-05-23T06:46:31.892Z",
+    "hypothesis": "Monte Carlo Cross-Validation (without-replacement permutation 80/20 demo split × 1000 iterations) fixes v2's train-test demo overlap artifact. Expect bootstrap CIs to center around canonical deltas, confirming VLM→VLA exit collapse significance (TracVLA 4/4, NORA 2/2) while OpenVLA and untrained conditions remain non-significant.",
+    "parent": "clustered_bootstrap_reanalysis_v2"
+  },
+  "timestamp": "2026-05-23T06:46:32.205608+00:00",
+  "trigger": "update_registry"
+}

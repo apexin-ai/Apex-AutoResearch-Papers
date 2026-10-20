@@ -1,0 +1,2026 @@
+# debug behavioral smoketest check
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_debug_behavioral_smoketest_check_20260519T042250.log`
+- **Structured JSON:** [`8568f89dbeffc06bf8a7.json`](../../sessions/85/8568f89dbeffc06bf8a7.json)
+
+## Before a recorded user message
+
+42 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8715f2b3-b2a1-45bb-961b-eca8e40c27fc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779178800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a9b052ad-708b-44ce-80e7-c4a1812d5276",
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the experiment results for behavioral_smoketest. I'll start by loading the necessary tool schemas and then SSH to the server to check logs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "a962ce1a-7572-40c4-8383-271ffa098812",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BuL3bFL2qzC4Da7BJod4jz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12694,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12694
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0152Cg2tdVYcenLbfapCTzLA`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "ea2b1d18-3a44-4a04-9175-ce7e7b854f51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BuL3bFL2qzC4Da7BJod4jz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12694,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12694
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T04:23:04.569Z_
+
+<details><summary>↩ Tool result · `toolu_0152Cg2tdVYcenLbfapCTzLA`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "64aa4688-c0dc-4eb2-a14e-77619fe8cd35",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__kill_job"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the experiment logs and registry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "7e4cad37-fb05-459f-ad2a-ae689ba75f16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NCmCwC1wYVUpPHfQ1boz1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015D6nWXWcqcYb1StnXNUqpv`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -100 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "a8e10f33-e8b1-4193-8681-c7d5286d4ea5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NCmCwC1wYVUpPHfQ1boz1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011dMoPT8RKjsMc17gQsT4jh`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/behavioral_smoketest*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "fcb3e025-f999-4cc7-9f4e-75b399db34ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NCmCwC1wYVUpPHfQ1boz1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T04:23:09.192Z_
+
+<details><summary>↩ Tool result · `toolu_015D6nWXWcqcYb1StnXNUqpv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/scipy/__init__.py:132: UserWarning: A NumPy version >=1.21.6 and <1.28.0 is required for this version of SciPy (detected version 2.0.2)\\n  warnings.warn(f\\\"A NumPy version >={np_minversion} and <{np_maxversion}\\\"\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n============================================================\\nBEHAVIORAL SMOKE TEST\\n  Task ID: 0, Episodes: 3, Max Steps: 400\\n============================================================\\n\\nLoading model...\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.40.2` and `tokenizers==0.19.1`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.74s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.55s/it]\\rLoading checkpoint shards:  75%|██��████▌  | 3/4 [00:04<00:01,  1.48s/it]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.05it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.17s/it]\\nModel loaded.\\n\\n--- Phase 1: Baseline ---\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 0: fail | R=0.000 | steps=400 | 66.2s\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 1: fail | R=0.000 | steps=400 | 65.1s\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 2: fail | R=0.000 | steps=400 | 64.9s\\n  >> baseline SR=0.00, avg_reward=0.000\\n\\nBaseline SR=0. Stopping (no point running ablation).\\n\\nResults saved to /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n{\\n  \\\"baseline_sr\\\": 0.0,\\n  \\\"conclusion\\\": \\\"baseline_zero\\\"\\n}\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "475d26a7-4ee9-4ad3-b944-f624d7dbc5cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/scipy/__init__.py:132: UserWarning: A NumPy version >=1.21.6 and <1.28.0 is required for this version of SciPy (detected version 2.0.2)\\\\n  warnings.warn(f\\\\\\\"A NumPy version >={np_minversion} and <{np_maxversion}\\\\\\\"\\\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\\n============================================================\\\\nBEHAVIORAL SMOKE TEST\\\\n  Task ID: 0, Episodes: 3, Max Steps: 400\\\\n============================================================\\\\n\\\\nLoading model...\\\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\\\n&lt;frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.40.2` and `tokenizers==0.19.1`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.74s/it]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.55s/it]\\\\rLoading checkpoint shards:  75%|██��████▌  | 3/4 [00:04<00:01,  1.48s/it]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.05it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.17s/it]\\\\nModel loaded.\\\\n\\\\n--- Phase 1: Baseline ---\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n  [baseline] ep 0: fail | R=0.000 | steps=400 | 66.2s\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n  [baseline] ep 1: fail | R=0.000 | steps=400 | 65.1s\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n  [baseline] ep 2: fail | R=0.000 | steps=400 | 64.9s\\\\n  >> baseline SR=0.00, avg_reward=0.000\\\\n\\\\nBaseline SR=0. Stopping (no point running ablation).\\\\n\\\\nResults saved to /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\\\n{\\\\n  \\\\\\\"baseline_sr\\\\\\\": 0.0,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"baseline_zero\\\\\\\"\\\\n}\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/scipy/__init__.py:132: UserWarning: A NumPy version >=1.21.6 and <1.28.0 is required for this version of SciPy (detected version 2.0.2)\\n  warnings.warn(f\\\"A NumPy version >={np_minversion} and <{np_maxversion}\\\"\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n============================================================\\nBEHAVIORAL SMOKE TEST\\n  Task ID: 0, Episodes: 3, Max Steps: 400\\n============================================================\\n\\nLoading model...\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.40.2` and `tokenizers==0.19.1`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.74s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.55s/it]\\rLoading checkpoint shards:  75%|██��████▌  | 3/4 [00:04<00:01,  1.48s/it]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.05it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.17s/it]\\nModel loaded.\\n\\n--- Phase 1: Baseline ---\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 0: fail | R=0.000 | steps=400 | 66.2s\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 1: fail | R=0.000 | steps=400 | 65.1s\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 2: fail | R=0.000 | steps=400 | 64.9s\\n  >> baseline SR=0.00, avg_reward=0.000\\n\\nBaseline SR=0. Stopping (no point running ablation).\\n\\nResults saved to /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n{\\n  \\\"baseline_sr\\\": 0.0,\\n  \\\"conclusion\\\": \\\"baseline_zero\\\"\\n}\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01257cEVEZuQgmuSWRxev6eH`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/runs/vla-ssd/behavioral_smoketest*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "a851c56f-d4a6-4349-a031-b3585ea19b8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NCmCwC1wYVUpPHfQ1boz1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T04:23:09.728Z_
+
+<details><summary>↩ Tool result · `toolu_011dMoPT8RKjsMc17gQsT4jh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  747 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n-rw-r--r-- 1 root root 2915 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "2c5bb2d7-1bd4-45b9-a458-bf87df2334f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  747 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\\\n-rw-r--r-- 1 root root 2915 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  747 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n-rw-r--r-- 1 root root 2915 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T04:23:10.263Z_
+
+<details><summary>↩ Tool result · `toolu_01257cEVEZuQgmuSWRxev6eH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/runs/vla-ssd/behavioral_smoketest*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "312e8778-2fe8-4945-81da-fd71e99b928b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/runs/vla-ssd/behavioral_smoketest*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/runs/vla-ssd/behavioral_smoketest*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mn38PSZNDyoHiyY6heF3z4`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tmux list-sessions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "cb7e5705-78fa-41b8-92b6-1d2908114dff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NCmCwC1wYVUpPHfQ1boz1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T04:23:10.310Z_
+
+<details><summary>↩ Tool result · `toolu_01Mn38PSZNDyoHiyY6heF3z4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "4ee65724-7b01-4545-b1b2-5ebba4afeac7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01YBZANuRCDFYpPeLsVLwF6z`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "behavioral_smoketest"
+  },
+  "project": "vla-ssd",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "6af0e604-4f17-494c-883c-a82bef15e7cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NCmCwC1wYVUpPHfQ1boz1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T04:23:10.914Z_
+
+<details><summary>↩ Tool result · `toolu_01YBZANuRCDFYpPeLsVLwF6z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2773}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "379f95bb-60b2-4bfd-8b29-35501bb1f469",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2773}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2773}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment results are clear:
+
+1. Baseline SR = 0.00 across all 3 episodes (all failed, reward=0.000, max steps=400)
+2. The script detected baseline_zero and stopped early ("no point running ablation")
+3. Results saved to behavioral_smoketest.json with conclusion "baseline_zero"
+
+The registry returned 0 experiments, so either the exp_id filter doesn't work that way or the experiment wasn't registered. Let me check the registry without filters to find it.
+
+Actually, let me just read the registry for the project to see if there's a behavioral_smoketest entry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "5ea1dd6c-9b6d-4f54-b3f2-3dd05c17a7b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GWxRKA26aCckp8PhiHtDje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2258,
+      "cache_read_input_tokens": 26084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2258
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01B5WqEisD9XG7yTeozh32FH`</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "fields": [
+    "*"
+  ],
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "62c92a77-670b-4cc7-970f-0e7c6551c0be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GWxRKA26aCckp8PhiHtDje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2258,
+      "cache_read_input_tokens": 26084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2258
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T04:23:17.815Z_
+
+<details><summary>↩ Tool result · `toolu_01B5WqEisD9XG7yTeozh32FH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"matched_ablation_controls\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:06.797Z\", \"updated_at\": \"2026-05-19T04:08:37.488Z\", \"parent\": \"specificity_control_action\", \"hypothesis\": \"Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\", \"data_count\": \"3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total\", \"model_name\": \"openvla-7b\", \"seed\": \"42,123,456,789,1024 (random-24); deterministic (image-dominant-24)\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"LIBERO libero_goal 3 tasks, 10 demos each, 50 timesteps\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log\", \"checkpoint_path\": \"N/A (inference-only)\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T04:08:36.005Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T04:08:37.488Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T04:08:40.400918+00:00\"}]}}, \"behavioral_smoketest\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T03:56:58.272Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}}, \"task_routing_loo_sensitivity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:59:31.610Z\", \"updated_at\": \"2026-05-19T02:46:40.353Z\", \"parent\": \"task_complexity_routing\", \"hypothesis\": \"Task complexity grouping is robust: no single task removal or reassignment reverses the statistical significance of the complex vs simple routing dependence difference.\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/task_routing_loo_sensitivity.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/loo_sensitivity.py\", \"metrics\": {\"original_p\": 0.0333, \"loo_fragile_count\": \"6/10\", \"loo_max_p\": 0.0833, \"swap_flipped_count\": \"6/10\", \"median_split_p\": 0.004, \"kmeans_p\": 0.0048, \"instruction_overlap_p\": 0.0333}, \"spec\": {\"command\": \"python3 loo_sensitivity.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/task_complexity_routing.json\", \"data_count\": 10, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_source\": \"task_complexity_routing\", \"eval_data\": \"task_complexity_routing.json\"}, \"completed_at\": \"2026-05-19T02:46:40.353Z\"}, \"attention_normalization_entropy\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:59:32.417Z\", \"updated_at\": \"2026-05-19T02:46:20.576Z\", \"parent\": \"attention_decomposition\", \"hypothesis\": \"Per-token normalized attention still shows instruction-dominant heads allocate disproportionately more attention per text token than control heads, even after controlling for token count asymmetry (256 image vs ~22 text tokens).\", \"metrics\": {\"token_asymmetry\": 11.5, \"trained_instr_dom_per_token_ratio\": 38.2, \"trained_control_per_token_ratio\": 19.1, \"untrained_instr_dom_per_token_ratio\": 1.5, \"untrained_control_per_token_ratio\": 1.6, \"training_amplification\": 25.5, \"entropy_instr_dom_2cat\": 0.465, \"entropy_control_2cat\": 0.569, \"entropy_instr_dom_3cat_normalized\": 0.803, \"entropy_control_3cat_normalized\": 0.956}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\", \"completed_at\": \"2026-05-19T02:46:20.576Z\"}, \"trajectory_level_cohens_d\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:31:51.743Z\", \"updated_at\": \"2026-05-19T02:42:00.523Z\", \"parent\": \"action_trajectory_control\", \"hypothesis\": \"Token-level Cohen's d may misestimate effect size due to within-trajectory autocorrelation; trajectory-level aggregation (mean MSE per demo) provides statistically independent units for correct effect size estimation.\", \"spec\": {\"command\": \"python scripts/trajectory_level_cohens_d.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\", \"data_count\": \"14 conditions, 30-50 demos each\", \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"libero_goal 5 tasks\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.log\", \"metrics\": {\"head_ablation_top24\": {\"token_d\": 0.651, \"traj_d\": 2.943, \"ci\": [2.469, 3.707], \"n\": 50, \"inflation\": 0.221}, \"specificity_bottom24\": {\"token_d\": 0.565, \"traj_d\": 2.347, \"ci\": [1.854, 3.221], \"n\": 30, \"inflation\": 0.241}, \"dose_response_top4\": {\"token_d\": 0.482, \"traj_d\": 2.623, \"ci\": [2.106, 3.575], \"n\": 30, \"inflation\": 0.184}, \"dose_response_top8\": {\"token_d\": 0.508, \"traj_d\": 2.186, \"ci\": [1.764, 2.931], \"n\": 30, \"inflation\": 0.232}, \"dose_response_top12\": {\"token_d\": 0.56, \"traj_d\": 2.286, \"ci\": [1.876, 3.043], \"n\": 30, \"inflation\": 0.245}, \"dose_response_top16\": {\"token_d\": 0.592, \"traj_d\": 2.4, \"ci\": [1.895, 3.327], \"n\": 30, \"inflation\": 0.247}, \"dose_response_top20\": {\"token_d\": 0.617, \"traj_d\": 2.529, \"ci\": [1.96, 3.639], \"n\": 30, \"inflation\": 0.244}, \"dose_response_top24\": {\"token_d\": 0.637, \"traj_d\": 2.601, \"ci\": [2.127, 3.444], \"n\": 30, \"inflation\": 0.245}, \"dose_response_top28\": {\"token_d\": 0.654, \"traj_d\": 2.47, \"ci\": [2.027, 3.268], \"n\": 30, \"inflation\": 0.265}, \"dose_response_top32\": {\"token_d\": 0.639, \"traj_d\": 2.695, \"ci\": [2.226, 3.559], \"n\": 30, \"inflation\": 0.237}, \"counterfactual_shuffled\": {\"token_d\": 0.625, \"traj_d\": 2.595, \"ci\": [2.028, 3.791], \"n\": 30, \"inflation\": 0.241}, \"counterfactual_paraphrased\": {\"token_d\": 0.697, \"traj_d\": 2.131, \"ci\": [1.74, 2.819], \"n\": 30, \"inflation\": 0.327}, \"counterfactual_wrong\": {\"token_d\": 0.844, \"traj_d\": 3.798, \"ci\": [3.194, 4.938], \"n\": 30, \"inflation\": 0.222}, \"counterfactual_empty\": {\"token_d\": 0.968, \"traj_d\": 3.438, \"ci\": [2.921, 4.448], \"n\": 30, \"inflation\": 0.282}, \"inflation_factor_mean\": 0.245, \"inflation_factor_range\": [0.184, 0.327]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T02:37:35.474Z\"}, \"groundtruth_action_error\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:59:30.694Z\", \"updated_at\": \"2026-05-19T02:33:04.532Z\", \"parent\": \"action_trajectory_control\", \"hypothesis\": \"Ablating instruction-dominant heads (top-24 by L1 instruction attention) increases error relative to LIBERO ground-truth actions, indicating these heads contribute to action quality via instruction grounding. Control: ablating bottom-24 non-instruction heads should show equal or smaller GT error increase.\", \"spec\": {\"command\": \"python -u scripts/groundtruth_action_error.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 4500, \"model_name\": \"openvla-7b\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/groundtruth_action_error.log\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-19T02:33:01.972Z\", \"metrics\": {\"original_mse\": 0.498, \"original_mae\": 0.3935, \"top24_mse\": 0.4969, \"top24_mae\": 0.3933, \"bottom24_mse\": 0.5061, \"bottom24_mae\": 0.3963, \"delta_mse_top24\": -0.0011, \"delta_mse_bottom24\": 0.0082, \"wilcoxon_p_top24_mse\": 0.519, \"wilcoxon_p_top24_mae\": 0.943, \"n_samples\": 1500, \"n_tasks\": 3}}, \"counterfactual_token_overlap\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:14:54.973Z\", \"updated_at\": \"2026-05-19T01:20:12.794Z\", \"hypothesis\": \"The paraphrased > shuffled Cohen's d ordering is explained by token-level identity changes (token novelty), not semantic distance alone. If token novelty (1 - Jaccard similarity) rank-correlates perfectly with Cohen's d across perturbation types, then the model's sensitivity to instruction perturbation is primarily driven by token identity rather than semantic content.\", \"parent\": \"counterfactual_instruction\", \"spec\": {\"command\": \"python scripts/token_overlap_analysis.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\", \"data_count\": 3, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_source\": \"counterfactual_instruction\", \"eval_data\": \"counterfactual_combined.json\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/counterfactual_token_overlap.json\", \"log_path\": \"/root/vla-ssd/scripts/token_overlap_analysis.py\", \"metrics\": {\"summary\": {\"empty\": {\"mean_jaccard\": 0, \"token_novelty\": 1, \"cohens_d\": 0.9677}, \"wrong\": {\"mean_jaccard\": 0.1735, \"token_novelty\": 0.8265, \"cohens_d\": 0.8438}, \"paraphrased\": {\"mean_jaccard\": 0.5333, \"token_novelty\": 0.4667, \"cohens_d\": 0.6971}, \"shuffled\": {\"mean_jaccard\": 1, \"token_novelty\": 0, \"cohens_d\": 0.6246}}, \"correlation\": {\"spearman_r\": 1, \"pearson_r\": 0.9566}, \"tokenizer\": \"llama2_bpe\", \"n_tasks\": 3}, \"notes\": \"Token novelty (1-Jaccard) perfectly rank-correlates with Cohen's d (Spearman r=1.0, Pearson r=0.957). Shuffled preserves all tokens (Jaccard=1.0) but still shifts actions (d=0.625), confirming word order sensitivity. Paraphrased introduces ~47% novel tokens, explaining its higher d (0.697) vs shuffled. The paraphrased > shuffled ordering is a compound effect of token identity change + word order change, supporting the reviewer's token-level identity sensitivity hypothesis.\", \"completed_at\": \"2026-05-19T01:20:12.794Z\"}, \"task_complexity_routing\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:11:23.792Z\", \"updated_at\": \"2026-05-18T21:18:59.816Z\", \"hypothesis\": \"Instruction-discriminative tasks (paired tasks sharing same manipulated object but different goal destinations) show larger L1 ablation effects than visually unambiguous tasks, because instruction routing heads at L1 encode goal-relevant information that differentially affects tasks requiring instruction-based disambiguation.\", \"parent\": \"attention_decomposition\", \"spec\": {\"command\": \"python task_complexity_analysis.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\", \"data_count\": 10, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_source\": \"per_task_r2_distribution.json\", \"eval_data\": \"LIBERO-Goal 10 tasks\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/task_complexity_routing.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/task_complexity_analysis.py\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T21:18:54.643Z\", \"metrics\": {\"complex_mean_abs_delta_r2\": 0.1405, \"complex_median\": 0.1292, \"simple_mean_abs_delta_r2\": 0.0565, \"simple_median\": 0.0299, \"mann_whitney_U\": 21, \"p_value\": 0.0333, \"effect_ratio\": 2.49, \"n_complex\": 6, \"n_simple\": 4}, \"notes\": \"Instruction-discriminative tasks show 2.49x larger ablation effect than visually unambiguous tasks (U=21, p=0.033). Notable outlier: \\\"cream cheese in bowl\\\" (simple group) has high |dR2|=0.159, possibly due to bowl appearing as target in multiple other tasks.\"}, \"llama2_base_control\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:08:39.367Z\", \"updated_at\": \"2026-05-18T19:54:58.224Z\", \"hypothesis\": \"Instruction routing (25/32 heads attending to instruction tokens) is primarily learned through VLA fine-tuning, not inherited from language pretraining. Llama-2-7B base (no VLA training) injected into OpenVLA should show intermediate attention patterns between untrained-VLA (0/32 heads) and trained-VLA (25/32 heads), proving VLA training amplifies routing beyond pretraining baseline.\", \"parent\": \"cross_inst_extract_trained\", \"spec\": {\"command\": \"python create_llama2_base_openvla.py + cross_instruction_extract_dense.py --condition llama2base + l1_attention_visualization.py --condition llama2base\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/cross_instruction/\", \"data_count\": 500, \"model_name\": \"openvla-7b-llama2base (Llama-2-7B base weights injected into OpenVLA)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-llama2base/\", \"eval_data\": \"LIBERO cross-instruction 10 tasks × 50 demos (same as cross_inst_extract_trained)\"}, \"metrics\": {\"l1_heads_gt50pct\": {\"trained\": 25, \"untrained\": 0, \"llama2base\": 9}, \"l1_mean_text_attn\": {\"trained\": 0.577, \"untrained\": 0.117, \"llama2base\": 0.365}, \"l1_mean_image_attn\": {\"trained\": 0.213, \"untrained\": 0.878, \"llama2base\": 0.617}, \"dense_probe_L1_acc\": {\"trained\": 0.996, \"untrained\": 1, \"llama2base\": 0.802}, \"dense_probe_L2_acc\": {\"trained\": 1, \"untrained\": 1, \"llama2base\": 0.987}, \"dense_probe_L8_acc\": {\"trained\": 1, \"untrained\": 0.986, \"llama2base\": 0.999}, \"dense_probe_L16_acc\": {\"trained\": 1, \"untrained\": 0.92, \"llama2base\": 1}, \"dense_probe_L31_acc\": {\"trained\": 1, \"untrained\": 0.82, \"llama2base\": 1}, \"llama2base_instruction_heads\": [0, 15, 16, 17, 18, 23, 25, 26, 27], \"full_profile\": \"llama2base saturates at L5 (99.8-100%), NO deep-layer degradation unlike untrained (82% at L31)\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-llama2base/\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_llama2_base_probe_continue_20260517T054618.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T06:09:38.453Z\", \"notes\": \"Llama2-base control condition for three-condition comparison. l1_heads_gt50pct.trained=25 是均值计数法，实际 head_5(50.80%)/head_28(50.76%) 在 50% 边界振荡（per-sample 不一致），实验执行统一用 24（threshold_sensitivity.json 基准，排除边界振荡 head）。\"}, \"specificity_control_action\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T18:28:45.197Z\", \"updated_at\": \"2026-05-18T18:45:03.767Z\", \"hypothesis\": \"Bottom-24 non-instruction heads should cause significantly less action shift (d << 0.65) than top-24 instruction-dominant heads when ablated, confirming that instruction-action coupling is specific to identified heads rather than a general property of any 24 heads.\", \"parent\": \"action_trajectory_control\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate base && cd /root/vla-ssd && MUJOCO_GL=egl python -u scripts/specificity_control_action.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\", \"data_count\": 1500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"libero_goal 3 tasks x 10 demos x 50 timesteps\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/specificity_control_action.log\"}, \"conclusion\": \"negative\", \"notes\": \"Bottom-24 d=0.565 vs Top-24 d=0.65 (ratio 1.15). Specificity NOT confirmed: ablating non-instruction heads causes nearly as much action shift as instruction heads. Per-task: cabinet d=0.405, bowl d=0.628, plate d=0.659. Only cabinet shows clear specificity gap. Control-8 d=0.41 for reference. Paired MSE=0.034 (p=1.86e-92), token_div=0.598, KL=4.166.\", \"metrics\": {\"cohens_d\": 0.565, \"paired_mse\": 0.034, \"token_divergence\": 0.598, \"kl_divergence\": 4.166, \"top24_d\": 0.65, \"bottom24_d\": 0.565, \"ratio\": 1.15, \"per_task_d\": {\"cabinet\": 0.405, \"bowl\": 0.628, \"plate\": 0.659}}, \"completed_at\": \"2026-05-18T18:45:03.767Z\"}}, \"count\": 10, \"total\": 98, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3075}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "8641eff1-ab25-48ab-acec-73d383adaac6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"matched_ablation_controls\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T03:26:06.797Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:08:37.488Z\\\", \\\"parent\\\": \\\"specificity_control_action\\\", \\\"hypothesis\\\": \\\"Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\", \\\"data_count\\\": \\\"3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total\\\", \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": \\\"42,123,456,789,1024 (random-24); deterministic (image-dominant-24)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\", \\\"eval_data\\\": \\\"LIBERO libero_goal 3 tasks, 10 demos each, 50 timesteps\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T04:08:36.005Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-19T04:08:37.488Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T04:08:40.400918+00:00\\\"}]}}, \\\"behavioral_smoketest\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T03:26:07.290Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:56:58.272Z\\\", \\\"parent\\\": \\\"behavioral_pilot_w4\\\", \\\"hypothesis\\\": \\\"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\\\", \\\"spec\\\": {\\\"command\\\": \\\"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/LIBERO\\\", \\\"data_count\\\": \\\"1 task x 3 ep\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"eval_data\\\": \\\"LIBERO-Goal task_id=0, 3 episodes\\\"}}, \\\"task_routing_loo_sensitivity\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:59:31.610Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:46:40.353Z\\\", \\\"parent\\\": \\\"task_complexity_routing\\\", \\\"hypothesis\\\": \\\"Task complexity grouping is robust: no single task removal or reassignment reverses the statistical significance of the complex vs simple routing dependence difference.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/task_routing_loo_sensitivity.json\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/loo_sensitivity.py\\\", \\\"metrics\\\": {\\\"original_p\\\": 0.0333, \\\"loo_fragile_count\\\": \\\"6/10\\\", \\\"loo_max_p\\\": 0.0833, \\\"swap_flipped_count\\\": \\\"6/10\\\", \\\"median_split_p\\\": 0.004, \\\"kmeans_p\\\": 0.0048, \\\"instruction_overlap_p\\\": 0.0333}, \\\"spec\\\": {\\\"command\\\": \\\"python3 loo_sensitivity.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/task_complexity_routing.json\\\", \\\"data_count\\\": 10, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"task_complexity_routing\\\", \\\"eval_data\\\": \\\"task_complexity_routing.json\\\"}, \\\"completed_at\\\": \\\"2026-05-19T02:46:40.353Z\\\"}, \\\"attention_normalization_entropy\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:59:32.417Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:46:20.576Z\\\", \\\"parent\\\": \\\"attention_decomposition\\\", \\\"hypothesis\\\": \\\"Per-token normalized attention still shows instruction-dominant heads allocate disproportionately more attention per text token than control heads, even after controlling for token count asymmetry (256 image vs ~22 text tokens).\\\", \\\"metrics\\\": {\\\"token_asymmetry\\\": 11.5, \\\"trained_instr_dom_per_token_ratio\\\": 38.2, \\\"trained_control_per_token_ratio\\\": 19.1, \\\"untrained_instr_dom_per_token_ratio\\\": 1.5, \\\"untrained_control_per_token_ratio\\\": 1.6, \\\"training_amplification\\\": 25.5, \\\"entropy_instr_dom_2cat\\\": 0.465, \\\"entropy_control_2cat\\\": 0.569, \\\"entropy_instr_dom_3cat_normalized\\\": 0.803, \\\"entropy_control_3cat_normalized\\\": 0.956}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\\", \\\"completed_at\\\": \\\"2026-05-19T02:46:20.576Z\\\"}, \\\"trajectory_level_cohens_d\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:31:51.743Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:42:00.523Z\\\", \\\"parent\\\": \\\"action_trajectory_control\\\", \\\"hypothesis\\\": \\\"Token-level Cohen's d may misestimate effect size due to within-trajectory autocorrelation; trajectory-level aggregation (mean MSE per demo) provides statistically independent units for correct effect size estimation.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/trajectory_level_cohens_d.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\", \\\"data_count\\\": \\\"14 conditions, 30-50 demos each\\\", \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\", \\\"eval_data\\\": \\\"libero_goal 5 tasks\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.log\\\", \\\"metrics\\\": {\\\"head_ablation_top24\\\": {\\\"token_d\\\": 0.651, \\\"traj_d\\\": 2.943, \\\"ci\\\": [2.469, 3.707], \\\"n\\\": 50, \\\"inflation\\\": 0.221}, \\\"specificity_bottom24\\\": {\\\"token_d\\\": 0.565, \\\"traj_d\\\": 2.347, \\\"ci\\\": [1.854, 3.221], \\\"n\\\": 30, \\\"inflation\\\": 0.241}, \\\"dose_response_top4\\\": {\\\"token_d\\\": 0.482, \\\"traj_d\\\": 2.623, \\\"ci\\\": [2.106, 3.575], \\\"n\\\": 30, \\\"inflation\\\": 0.184}, \\\"dose_response_top8\\\": {\\\"token_d\\\": 0.508, \\\"traj_d\\\": 2.186, \\\"ci\\\": [1.764, 2.931], \\\"n\\\": 30, \\\"inflation\\\": 0.232}, \\\"dose_response_top12\\\": {\\\"token_d\\\": 0.56, \\\"traj_d\\\": 2.286, \\\"ci\\\": [1.876, 3.043], \\\"n\\\": 30, \\\"inflation\\\": 0.245}, \\\"dose_response_top16\\\": {\\\"token_d\\\": 0.592, \\\"traj_d\\\": 2.4, \\\"ci\\\": [1.895, 3.327], \\\"n\\\": 30, \\\"inflation\\\": 0.247}, \\\"dose_response_top20\\\": {\\\"token_d\\\": 0.617, \\\"traj_d\\\": 2.529, \\\"ci\\\": [1.96, 3.639], \\\"n\\\": 30, \\\"inflation\\\": 0.244}, \\\"dose_response_top24\\\": {\\\"token_d\\\": 0.637, \\\"traj_d\\\": 2.601, \\\"ci\\\": [2.127, 3.444], \\\"n\\\": 30, \\\"inflation\\\": 0.245}, \\\"dose_response_top28\\\": {\\\"token_d\\\": 0.654, \\\"traj_d\\\": 2.47, \\\"ci\\\": [2.027, 3.268], \\\"n\\\": 30, \\\"inflation\\\": 0.265}, \\\"dose_response_top32\\\": {\\\"token_d\\\": 0.639, \\\"traj_d\\\": 2.695, \\\"ci\\\": [2.226, 3.559], \\\"n\\\": 30, \\\"inflation\\\": 0.237}, \\\"counterfactual_shuffled\\\": {\\\"token_d\\\": 0.625, \\\"traj_d\\\": 2.595, \\\"ci\\\": [2.028, 3.791], \\\"n\\\": 30, \\\"inflation\\\": 0.241}, \\\"counterfactual_paraphrased\\\": {\\\"token_d\\\": 0.697, \\\"traj_d\\\": 2.131, \\\"ci\\\": [1.74, 2.819], \\\"n\\\": 30, \\\"inflation\\\": 0.327}, \\\"counterfactual_wrong\\\": {\\\"token_d\\\": 0.844, \\\"traj_d\\\": 3.798, \\\"ci\\\": [3.194, 4.938], \\\"n\\\": 30, \\\"inflation\\\": 0.222}, \\\"counterfactual_empty\\\": {\\\"token_d\\\": 0.968, \\\"traj_d\\\": 3.438, \\\"ci\\\": [2.921, 4.448], \\\"n\\\": 30, \\\"inflation\\\": 0.282}, \\\"inflation_factor_mean\\\": 0.245, \\\"inflation_factor_range\\\": [0.184, 0.327]}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T02:37:35.474Z\\\"}, \\\"groundtruth_action_error\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:59:30.694Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:33:04.532Z\\\", \\\"parent\\\": \\\"action_trajectory_control\\\", \\\"hypothesis\\\": \\\"Ablating instruction-dominant heads (top-24 by L1 instruction attention) increases error relative to LIBERO ground-truth actions, indicating these heads contribute to action quality via instruction grounding. Control: ablating bottom-24 non-instruction heads should show equal or smaller GT error increase.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u scripts/groundtruth_action_error.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": 4500, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/groundtruth_action_error.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-19T02:33:01.972Z\\\", \\\"metrics\\\": {\\\"original_mse\\\": 0.498, \\\"original_mae\\\": 0.3935, \\\"top24_mse\\\": 0.4969, \\\"top24_mae\\\": 0.3933, \\\"bottom24_mse\\\": 0.5061, \\\"bottom24_mae\\\": 0.3963, \\\"delta_mse_top24\\\": -0.0011, \\\"delta_mse_bottom24\\\": 0.0082, \\\"wilcoxon_p_top24_mse\\\": 0.519, \\\"wilcoxon_p_top24_mae\\\": 0.943, \\\"n_samples\\\": 1500, \\\"n_tasks\\\": 3}}, \\\"counterfactual_token_overlap\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:14:54.973Z\\\", \\\"updated_at\\\": \\\"2026-05-19T01:20:12.794Z\\\", \\\"hypothesis\\\": \\\"The paraphrased > shuffled Cohen's d ordering is explained by token-level identity changes (token novelty), not semantic distance alone. If token novelty (1 - Jaccard similarity) rank-correlates perfectly with Cohen's d across perturbation types, then the model's sensitivity to instruction perturbation is primarily driven by token identity rather than semantic content.\\\", \\\"parent\\\": \\\"counterfactual_instruction\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/token_overlap_analysis.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\\\", \\\"data_count\\\": 3, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"counterfactual_instruction\\\", \\\"eval_data\\\": \\\"counterfactual_combined.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/counterfactual_token_overlap.json\\\", \\\"log_path\\\": \\\"/root/vla-ssd/scripts/token_overlap_analysis.py\\\", \\\"metrics\\\": {\\\"summary\\\": {\\\"empty\\\": {\\\"mean_jaccard\\\": 0, \\\"token_novelty\\\": 1, \\\"cohens_d\\\": 0.9677}, \\\"wrong\\\": {\\\"mean_jaccard\\\": 0.1735, \\\"token_novelty\\\": 0.8265, \\\"cohens_d\\\": 0.8438}, \\\"paraphrased\\\": {\\\"mean_jaccard\\\": 0.5333, \\\"token_novelty\\\": 0.4667, \\\"cohens_d\\\": 0.6971}, \\\"shuffled\\\": {\\\"mean_jaccard\\\": 1, \\\"token_novelty\\\": 0, \\\"cohens_d\\\": 0.6246}}, \\\"correlation\\\": {\\\"spearman_r\\\": 1, \\\"pearson_r\\\": 0.9566}, \\\"tokenizer\\\": \\\"llama2_bpe\\\", \\\"n_tasks\\\": 3}, \\\"notes\\\": \\\"Token novelty (1-Jaccard) perfectly rank-correlates with Cohen's d (Spearman r=1.0, Pearson r=0.957). Shuffled preserves all tokens (Jaccard=1.0) but still shifts actions (d=0.625), confirming word order sensitivity. Paraphrased introduces ~47% novel tokens, explaining its higher d (0.697) vs shuffled. The paraphrased > shuffled ordering is a compound effect of token identity change + word order change, supporting the reviewer's token-level identity sensitivity hypothesis.\\\", \\\"completed_at\\\": \\\"2026-05-19T01:20:12.794Z\\\"}, \\\"task_complexity_routing\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T21:11:23.792Z\\\", \\\"updated_at\\\": \\\"2026-05-18T21:18:59.816Z\\\", \\\"hypothesis\\\": \\\"Instruction-discriminative tasks (paired tasks sharing same manipulated object but different goal destinations) show larger L1 ablation effects than visually unambiguous tasks, because instruction routing heads at L1 encode goal-relevant information that differentially affects tasks requiring instruction-based disambiguation.\\\", \\\"parent\\\": \\\"attention_decomposition\\\", \\\"spec\\\": {\\\"command\\\": \\\"python task_complexity_analysis.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\\", \\\"data_count\\\": 10, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"per_task_r2_distribution.json\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/task_complexity_routing.json\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/task_complexity_analysis.py\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T21:18:54.643Z\\\", \\\"metrics\\\": {\\\"complex_mean_abs_delta_r2\\\": 0.1405, \\\"complex_median\\\": 0.1292, \\\"simple_mean_abs_delta_r2\\\": 0.0565, \\\"simple_median\\\": 0.0299, \\\"mann_whitney_U\\\": 21, \\\"p_value\\\": 0.0333, \\\"effect_ratio\\\": 2.49, \\\"n_complex\\\": 6, \\\"n_simple\\\": 4}, \\\"notes\\\": \\\"Instruction-discriminative tasks show 2.49x larger ablation effect than visually unambiguous tasks (U=21, p=0.033). Notable outlier: \\\\\\\"cream cheese in bowl\\\\\\\" (simple group) has high |dR2|=0.159, possibly due to bowl appearing as target in multiple other tasks.\\\"}, \\\"llama2_base_control\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:08:39.367Z\\\", \\\"updated_at\\\": \\\"2026-05-18T19:54:58.224Z\\\", \\\"hypothesis\\\": \\\"Instruction routing (25/32 heads attending to instruction tokens) is primarily learned through VLA fine-tuning, not inherited from language pretraining. Llama-2-7B base (no VLA training) injected into OpenVLA should show intermediate attention patterns between untrained-VLA (0/32 heads) and trained-VLA (25/32 heads), proving VLA training amplifies routing beyond pretraining baseline.\\\", \\\"parent\\\": \\\"cross_inst_extract_trained\\\", \\\"spec\\\": {\\\"command\\\": \\\"python create_llama2_base_openvla.py + cross_instruction_extract_dense.py --condition llama2base + l1_attention_visualization.py --condition llama2base\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/cross_instruction/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b-llama2base (Llama-2-7B base weights injected into OpenVLA)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-llama2base/\\\", \\\"eval_data\\\": \\\"LIBERO cross-instruction 10 tasks × 50 demos (same as cross_inst_extract_trained)\\\"}, \\\"metrics\\\": {\\\"l1_heads_gt50pct\\\": {\\\"trained\\\": 25, \\\"untrained\\\": 0, \\\"llama2base\\\": 9}, \\\"l1_mean_text_attn\\\": {\\\"trained\\\": 0.577, \\\"untrained\\\": 0.117, \\\"llama2base\\\": 0.365}, \\\"l1_mean_image_attn\\\": {\\\"trained\\\": 0.213, \\\"untrained\\\": 0.878, \\\"llama2base\\\": 0.617}, \\\"dense_probe_L1_acc\\\": {\\\"trained\\\": 0.996, \\\"untrained\\\": 1, \\\"llama2base\\\": 0.802}, \\\"dense_probe_L2_acc\\\": {\\\"trained\\\": 1, \\\"untrained\\\": 1, \\\"llama2base\\\": 0.987}, \\\"dense_probe_L8_acc\\\": {\\\"trained\\\": 1, \\\"untrained\\\": 0.986, \\\"llama2base\\\": 0.999}, \\\"dense_probe_L16_acc\\\": {\\\"trained\\\": 1, \\\"untrained\\\": 0.92, \\\"llama2base\\\": 1}, \\\"dense_probe_L31_acc\\\": {\\\"trained\\\": 1, \\\"untrained\\\": 0.82, \\\"llama2base\\\": 1}, \\\"llama2base_instruction_heads\\\": [0, 15, 16, 17, 18, 23, 25, 26, 27], \\\"full_profile\\\": \\\"llama2base saturates at L5 (99.8-100%), NO deep-layer degradation unlike untrained (82% at L31)\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-llama2base/\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_llama2_base_probe_continue_20260517T054618.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-17T06:09:38.453Z\\\", \\\"notes\\\": \\\"Llama2-base control condition for three-condition comparison. l1_heads_gt50pct.trained=25 是均值计数法，实际 head_5(50.80%)/head_28(50.76%) 在 50% 边界振荡（per-sample 不一致），实验执行统一用 24（threshold_sensitivity.json 基准，排除边界振荡 head）。\\\"}, \\\"specificity_control_action\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:28:45.197Z\\\", \\\"updated_at\\\": \\\"2026-05-18T18:45:03.767Z\\\", \\\"hypothesis\\\": \\\"Bottom-24 non-instruction heads should cause significantly less action shift (d << 0.65) than top-24 instruction-dominant heads when ablated, confirming that instruction-action coupling is specific to identified heads rather than a general property of any 24 heads.\\\", \\\"parent\\\": \\\"action_trajectory_control\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/bin/activate base && cd /root/vla-ssd && MUJOCO_GL=egl python -u scripts/specificity_control_action.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\", \\\"data_count\\\": 1500, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\", \\\"eval_data\\\": \\\"libero_goal 3 tasks x 10 demos x 50 timesteps\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/specificity_control_action.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Bottom-24 d=0.565 vs Top-24 d=0.65 (ratio 1.15). Specificity NOT confirmed: ablating non-instruction heads causes nearly as much action shift as instruction heads. Per-task: cabinet d=0.405, bowl d=0.628, plate d=0.659. Only cabinet shows clear specificity gap. Control-8 d=0.41 for reference. Paired MSE=0.034 (p=1.86e-92), token_div=0.598, KL=4.166.\\\", \\\"metrics\\\": {\\\"cohens_d\\\": 0.565, \\\"paired_mse\\\": 0.034, \\\"token_divergence\\\": 0.598, \\\"kl_divergence\\\": 4.166, \\\"top24_d\\\": 0.65, \\\"bottom24_d\\\": 0.565, \\\"ratio\\\": 1.15, \\\"per_task_d\\\": {\\\"cabinet\\\": 0.405, \\\"bowl\\\": 0.628, \\\"plate\\\": 0.659}}, \\\"completed_at\\\": \\\"2026-05-18T18:45:03.767Z\\\"}}, \\\"count\\\": 10, \\\"total\\\": 98, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3075}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"matched_ablation_controls\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:06.797Z\", \"updated_at\": \"2026-05-19T04:08:37.488Z\", \"parent\": \"specificity_control_action\", \"hypothesis\": \"Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\", \"data_count\": \"3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total\", \"model_name\": \"openvla-7b\", \"seed\": \"42,123,456,789,1024 (random-24); deterministic (image-dominant-24)\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"LIBERO libero_goal 3 tasks, 10 demos each, 50 timesteps\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log\", \"checkpoint_path\": \"N/A (inference-only)\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T04:08:36.005Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T04:08:37.488Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T04:08:40.400918+00:00\"}]}}, \"behavioral_smoketest\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T03:56:58.272Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}}, \"task_routing_loo_sensitivity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:59:31.610Z\", \"updated_at\": \"2026-05-19T02:46:40.353Z\", \"parent\": \"task_complexity_routing\", \"hypothesis\": \"Task complexity grouping is robust: no single task removal or reassignment reverses the statistical significance of the complex vs simple routing dependence difference.\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/task_routing_loo_sensitivity.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/loo_sensitivity.py\", \"metrics\": {\"original_p\": 0.0333, \"loo_fragile_count\": \"6/10\", \"loo_max_p\": 0.0833, \"swap_flipped_count\": \"6/10\", \"median_split_p\": 0.004, \"kmeans_p\": 0.0048, \"instruction_overlap_p\": 0.0333}, \"spec\": {\"command\": \"python3 loo_sensitivity.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/task_complexity_routing.json\", \"data_count\": 10, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_source\": \"task_complexity_routing\", \"eval_data\": \"task_complexity_routing.json\"}, \"completed_at\": \"2026-05-19T02:46:40.353Z\"}, \"attention_normalization_entropy\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:59:32.417Z\", \"updated_at\": \"2026-05-19T02:46:20.576Z\", \"parent\": \"attention_decomposition\", \"hypothesis\": \"Per-token normalized attention still shows instruction-dominant heads allocate disproportionately more attention per text token than control heads, even after controlling for token count asymmetry (256 image vs ~22 text tokens).\", \"metrics\": {\"token_asymmetry\": 11.5, \"trained_instr_dom_per_token_ratio\": 38.2, \"trained_control_per_token_ratio\": 19.1, \"untrained_instr_dom_per_token_ratio\": 1.5, \"untrained_control_per_token_ratio\": 1.6, \"training_amplification\": 25.5, \"entropy_instr_dom_2cat\": 0.465, \"entropy_control_2cat\": 0.569, \"entropy_instr_dom_3cat_normalized\": 0.803, \"entropy_control_3cat_normalized\": 0.956}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\", \"completed_at\": \"2026-05-19T02:46:20.576Z\"}, \"trajectory_level_cohens_d\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:31:51.743Z\", \"updated_at\": \"2026-05-19T02:42:00.523Z\", \"parent\": \"action_trajectory_control\", \"hypothesis\": \"Token-level Cohen's d may misestimate effect size due to within-trajectory autocorrelation; trajectory-level aggregation (mean MSE per demo) provides statistically independent units for correct effect size estimation.\", \"spec\": {\"command\": \"python scripts/trajectory_level_cohens_d.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\", \"data_count\": \"14 conditions, 30-50 demos each\", \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"libero_goal 5 tasks\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.log\", \"metrics\": {\"head_ablation_top24\": {\"token_d\": 0.651, \"traj_d\": 2.943, \"ci\": [2.469, 3.707], \"n\": 50, \"inflation\": 0.221}, \"specificity_bottom24\": {\"token_d\": 0.565, \"traj_d\": 2.347, \"ci\": [1.854, 3.221], \"n\": 30, \"inflation\": 0.241}, \"dose_response_top4\": {\"token_d\": 0.482, \"traj_d\": 2.623, \"ci\": [2.106, 3.575], \"n\": 30, \"inflation\": 0.184}, \"dose_response_top8\": {\"token_d\": 0.508, \"traj_d\": 2.186, \"ci\": [1.764, 2.931], \"n\": 30, \"inflation\": 0.232}, \"dose_response_top12\": {\"token_d\": 0.56, \"traj_d\": 2.286, \"ci\": [1.876, 3.043], \"n\": 30, \"inflation\": 0.245}, \"dose_response_top16\": {\"token_d\": 0.592, \"traj_d\": 2.4, \"ci\": [1.895, 3.327], \"n\": 30, \"inflation\": 0.247}, \"dose_response_top20\": {\"token_d\": 0.617, \"traj_d\": 2.529, \"ci\": [1.96, 3.639], \"n\": 30, \"inflation\": 0.244}, \"dose_response_top24\": {\"token_d\": 0.637, \"traj_d\": 2.601, \"ci\": [2.127, 3.444], \"n\": 30, \"inflation\": 0.245}, \"dose_response_top28\": {\"token_d\": 0.654, \"traj_d\": 2.47, \"ci\": [2.027, 3.268], \"n\": 30, \"inflation\": 0.265}, \"dose_response_top32\": {\"token_d\": 0.639, \"traj_d\": 2.695, \"ci\": [2.226, 3.559], \"n\": 30, \"inflation\": 0.237}, \"counterfactual_shuffled\": {\"token_d\": 0.625, \"traj_d\": 2.595, \"ci\": [2.028, 3.791], \"n\": 30, \"inflation\": 0.241}, \"counterfactual_paraphrased\": {\"token_d\": 0.697, \"traj_d\": 2.131, \"ci\": [1.74, 2.819], \"n\": 30, \"inflation\": 0.327}, \"counterfactual_wrong\": {\"token_d\": 0.844, \"traj_d\": 3.798, \"ci\": [3.194, 4.938], \"n\": 30, \"inflation\": 0.222}, \"counterfactual_empty\": {\"token_d\": 0.968, \"traj_d\": 3.438, \"ci\": [2.921, 4.448], \"n\": 30, \"inflation\": 0.282}, \"inflation_factor_mean\": 0.245, \"inflation_factor_range\": [0.184, 0.327]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T02:37:35.474Z\"}, \"groundtruth_action_error\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:59:30.694Z\", \"updated_at\": \"2026-05-19T02:33:04.532Z\", \"parent\": \"action_trajectory_control\", \"hypothesis\": \"Ablating instruction-dominant heads (top-24 by L1 instruction attention) increases error relative to LIBERO ground-truth actions, indicating these heads contribute to action quality via instruction grounding. Control: ablating bottom-24 non-instruction heads should show equal or smaller GT error increase.\", \"spec\": {\"command\": \"python -u scripts/groundtruth_action_error.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 4500, \"model_name\": \"openvla-7b\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/groundtruth_action_error.log\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-19T02:33:01.972Z\", \"metrics\": {\"original_mse\": 0.498, \"original_mae\": 0.3935, \"top24_mse\": 0.4969, \"top24_mae\": 0.3933, \"bottom24_mse\": 0.5061, \"bottom24_mae\": 0.3963, \"delta_mse_top24\": -0.0011, \"delta_mse_bottom24\": 0.0082, \"wilcoxon_p_top24_mse\": 0.519, \"wilcoxon_p_top24_mae\": 0.943, \"n_samples\": 1500, \"n_tasks\": 3}}, \"counterfactual_token_overlap\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:14:54.973Z\", \"updated_at\": \"2026-05-19T01:20:12.794Z\", \"hypothesis\": \"The paraphrased > shuffled Cohen's d ordering is explained by token-level identity changes (token novelty), not semantic distance alone. If token novelty (1 - Jaccard similarity) rank-correlates perfectly with Cohen's d across perturbation types, then the model's sensitivity to instruction perturbation is primarily driven by token identity rather than semantic content.\", \"parent\": \"counterfactual_instruction\", \"spec\": {\"command\": \"python scripts/token_overlap_analysis.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\", \"data_count\": 3, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_source\": \"counterfactual_instruction\", \"eval_data\": \"counterfactual_combined.json\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/counterfactual_token_overlap.json\", \"log_path\": \"/root/vla-ssd/scripts/token_overlap_analysis.py\", \"metrics\": {\"summary\": {\"empty\": {\"mean_jaccard\": 0, \"token_novelty\": 1, \"cohens_d\": 0.9677}, \"wrong\": {\"mean_jaccard\": 0.1735, \"token_novelty\": 0.8265, \"cohens_d\": 0.8438}, \"paraphrased\": {\"mean_jaccard\": 0.5333, \"token_novelty\": 0.4667, \"cohens_d\": 0.6971}, \"shuffled\": {\"mean_jaccard\": 1, \"token_novelty\": 0, \"cohens_d\": 0.6246}}, \"correlation\": {\"spearman_r\": 1, \"pearson_r\": 0.9566}, \"tokenizer\": \"llama2_bpe\", \"n_tasks\": 3}, \"notes\": \"Token novelty (1-Jaccard) perfectly rank-correlates with Cohen's d (Spearman r=1.0, Pearson r=0.957). Shuffled preserves all tokens (Jaccard=1.0) but still shifts actions (d=0.625), confirming word order sensitivity. Paraphrased introduces ~47% novel tokens, explaining its higher d (0.697) vs shuffled. The paraphrased > shuffled ordering is a compound effect of token identity change + word order change, supporting the reviewer's token-level identity sensitivity hypothesis.\", \"completed_at\": \"2026-05-19T01:20:12.794Z\"}, \"task_complexity_routing\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:11:23.792Z\", \"updated_at\": \"2026-05-18T21:18:59.816Z\", \"hypothesis\": \"Instruction-discriminative tasks (paired tasks sharing same manipulated object but different goal destinations) show larger L1 ablation effects than visually unambiguous tasks, because instruction routing heads at L1 encode goal-relevant information that differentially affects tasks requiring instruction-based disambiguation.\", \"parent\": \"attention_decomposition\", \"spec\": {\"command\": \"python task_complexity_analysis.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\", \"data_count\": 10, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_source\": \"per_task_r2_distribution.json\", \"eval_data\": \"LIBERO-Goal 10 tasks\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/task_complexity_routing.json\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/task_complexity_analysis.py\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T21:18:54.643Z\", \"metrics\": {\"complex_mean_abs_delta_r2\": 0.1405, \"complex_median\": 0.1292, \"simple_mean_abs_delta_r2\": 0.0565, \"simple_median\": 0.0299, \"mann_whitney_U\": 21, \"p_value\": 0.0333, \"effect_ratio\": 2.49, \"n_complex\": 6, \"n_simple\": 4}, \"notes\": \"Instruction-discriminative tasks show 2.49x larger ablation effect than visually unambiguous tasks (U=21, p=0.033). Notable outlier: \\\"cream cheese in bowl\\\" (simple group) has high |dR2|=0.159, possibly due to bowl appearing as target in multiple other tasks.\"}, \"llama2_base_control\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:08:39.367Z\", \"updated_at\": \"2026-05-18T19:54:58.224Z\", \"hypothesis\": \"Instruction routing (25/32 heads attending to instruction tokens) is primarily learned through VLA fine-tuning, not inherited from language pretraining. Llama-2-7B base (no VLA training) injected into OpenVLA should show intermediate attention patterns between untrained-VLA (0/32 heads) and trained-VLA (25/32 heads), proving VLA training amplifies routing beyond pretraining baseline.\", \"parent\": \"cross_inst_extract_trained\", \"spec\": {\"command\": \"python create_llama2_base_openvla.py + cross_instruction_extract_dense.py --condition llama2base + l1_attention_visualization.py --condition llama2base\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/cross_instruction/\", \"data_count\": 500, \"model_name\": \"openvla-7b-llama2base (Llama-2-7B base weights injected into OpenVLA)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-llama2base/\", \"eval_data\": \"LIBERO cross-instruction 10 tasks × 50 demos (same as cross_inst_extract_trained)\"}, \"metrics\": {\"l1_heads_gt50pct\": {\"trained\": 25, \"untrained\": 0, \"llama2base\": 9}, \"l1_mean_text_attn\": {\"trained\": 0.577, \"untrained\": 0.117, \"llama2base\": 0.365}, \"l1_mean_image_attn\": {\"trained\": 0.213, \"untrained\": 0.878, \"llama2base\": 0.617}, \"dense_probe_L1_acc\": {\"trained\": 0.996, \"untrained\": 1, \"llama2base\": 0.802}, \"dense_probe_L2_acc\": {\"trained\": 1, \"untrained\": 1, \"llama2base\": 0.987}, \"dense_probe_L8_acc\": {\"trained\": 1, \"untrained\": 0.986, \"llama2base\": 0.999}, \"dense_probe_L16_acc\": {\"trained\": 1, \"untrained\": 0.92, \"llama2base\": 1}, \"dense_probe_L31_acc\": {\"trained\": 1, \"untrained\": 0.82, \"llama2base\": 1}, \"llama2base_instruction_heads\": [0, 15, 16, 17, 18, 23, 25, 26, 27], \"full_profile\": \"llama2base saturates at L5 (99.8-100%), NO deep-layer degradation unlike untrained (82% at L31)\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-llama2base/\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_llama2_base_probe_continue_20260517T054618.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T06:09:38.453Z\", \"notes\": \"Llama2-base control condition for three-condition comparison. l1_heads_gt50pct.trained=25 是均值计数法，实际 head_5(50.80%)/head_28(50.76%) 在 50% 边界振荡（per-sample 不一致），实验执行统一用 24（threshold_sensitivity.json 基准，排除边界振荡 head）。\"}, \"specificity_control_action\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T18:28:45.197Z\", \"updated_at\": \"2026-05-18T18:45:03.767Z\", \"hypothesis\": \"Bottom-24 non-instruction heads should cause significantly less action shift (d << 0.65) than top-24 instruction-dominant heads when ablated, confirming that instruction-action coupling is specific to identified heads rather than a general property of any 24 heads.\", \"parent\": \"action_trajectory_control\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate base && cd /root/vla-ssd && MUJOCO_GL=egl python -u scripts/specificity_control_action.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\", \"data_count\": 1500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"libero_goal 3 tasks x 10 demos x 50 timesteps\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/specificity_control_action.log\"}, \"conclusion\": \"negative\", \"notes\": \"Bottom-24 d=0.565 vs Top-24 d=0.65 (ratio 1.15). Specificity NOT confirmed: ablating non-instruction heads causes nearly as much action shift as instruction heads. Per-task: cabinet d=0.405, bowl d=0.628, plate d=0.659. Only cabinet shows clear specificity gap. Control-8 d=0.41 for reference. Paired MSE=0.034 (p=1.86e-92), token_div=0.598, KL=4.166.\", \"metrics\": {\"cohens_d\": 0.565, \"paired_mse\": 0.034, \"token_divergence\": 0.598, \"kl_divergence\": 4.166, \"top24_d\": 0.65, \"bottom24_d\": 0.565, \"ratio\": 1.15, \"per_task_d\": {\"cabinet\": 0.405, \"bowl\": 0.628, \"plate\": 0.659}}, \"completed_at\": \"2026-05-18T18:45:03.767Z\"}}, \"count\": 10, \"total\": 98, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3075}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TYkBN9G3QFKkVwFNEm1UXT`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "8bad5998-b5fd-4ce3-9404-6d6a2af2ce19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GWxRKA26aCckp8PhiHtDje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2258,
+      "cache_read_input_tokens": 26084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2258
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T04:23:18.470Z_
+
+<details><summary>↩ Tool result · `toolu_01TYkBN9G3QFKkVwFNEm1UXT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"checkpoint\\\": \\\"openvla-7b-finetuned-libero-goal\\\",\\n    \\\"unnorm_key\\\": \\\"libero_goal\\\",\\n    \\\"task_id\\\": 0,\\n    \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"task_lang\\\": \\\"open the middle drawer of the cabinet\\\",\\n    \\\"n_episodes\\\": 3,\\n    \\\"max_steps\\\": 400,\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\n  },\\n  \\\"baseline\\\": {\\n    \\\"episodes\\\": [\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      },\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      },\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      }\\n    ],\\n    \\\"sr\\\": 0.0\\n  },\\n  \\\"ablated\\\": null,\\n  \\\"conclusion\\\": \\\"baseline_zero\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "fd32dd41-103a-4ea9-8c55-021af1957788",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"openvla-7b-finetuned-libero-goal\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n    \\\\\\\"task_id\\\\\\\": 0,\\\\n    \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"task_lang\\\\\\\": \\\\\\\"open the middle drawer of the cabinet\\\\\\\",\\\\n    \\\\\\\"n_episodes\\\\\\\": 3,\\\\n    \\\\\\\"max_steps\\\\\\\": 400,\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\"\\\\n  },\\\\n  \\\\\\\"baseline\\\\\\\": {\\\\n    \\\\\\\"episodes\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"success\\\\\\\": false,\\\\n        \\\\\\\"reward\\\\\\\": 0.0,\\\\n        \\\\\\\"steps\\\\\\\": 400\\\\n      },\\\\n      {\\\\n        \\\\\\\"success\\\\\\\": false,\\\\n        \\\\\\\"reward\\\\\\\": 0.0,\\\\n        \\\\\\\"steps\\\\\\\": 400\\\\n      },\\\\n      {\\\\n        \\\\\\\"success\\\\\\\": false,\\\\n        \\\\\\\"reward\\\\\\\": 0.0,\\\\n        \\\\\\\"steps\\\\\\\": 400\\\\n      }\\\\n    ],\\\\n    \\\\\\\"sr\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"ablated\\\\\\\": null,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"baseline_zero\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"checkpoint\\\": \\\"openvla-7b-finetuned-libero-goal\\\",\\n    \\\"unnorm_key\\\": \\\"libero_goal\\\",\\n    \\\"task_id\\\": 0,\\n    \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"task_lang\\\": \\\"open the middle drawer of the cabinet\\\",\\n    \\\"n_episodes\\\": 3,\\n    \\\"max_steps\\\": 400,\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\n  },\\n  \\\"baseline\\\": {\\n    \\\"episodes\\\": [\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      },\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      },\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      }\\n    ],\\n    \\\"sr\\\": 0.0\\n  },\\n  \\\"ablated\\\": null,\\n  \\\"conclusion\\\": \\\"baseline_zero\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Clear results. The behavioral_smoketest experiment:
+
+- Baseline (finetuned OpenVLA on LIBERO-Goal, task_id=0 "open the middle drawer of the cabinet") achieved SR=0.00 across all 3 episodes
+- All episodes ran to max 400 steps with reward=0.0
+- Script correctly stopped early since baseline SR=0 (no point running ablation comparison)
+- Conclusion: "baseline_zero"
+
+Now I need to:
+1. Update registry: conclusion=negative, status=DONE, notes, log_path
+
+
+2. Delete the cron monitoring job. Let me load the CronDelete utility first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "9a27aea6-6d33-43a1-9c4c-ad2726e86d8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015HMD7ygAyC6S8VTDbkzars",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7858,
+      "cache_read_input_tokens": 28342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7858
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HbBsRX4Jv6m45Y4b3V5Qsh`</summary>
+
+```json
+{
+  "query": "select:CronDelete,CronList",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "c3b9b2a6-523f-4b5f-80f9-b892369df0c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015HMD7ygAyC6S8VTDbkzars",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7858,
+      "cache_read_input_tokens": 28342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7858
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T04:23:26.190Z_
+
+<details><summary>↩ Tool result · `toolu_01HbBsRX4Jv6m45Y4b3V5Qsh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronList"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "85ef85b3-bac3-4cf8-afdd-1ed7da004fc3",
+  "tool_use_result": {
+    "matches": [
+      "CronDelete",
+      "CronList"
+    ],
+    "query": "select:CronDelete,CronList",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — CronList · `toolu_01GPRniFaXBwa3dnAQso1Uom`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "81c3d3c5-e66e-47f5-9b02-56cf2ba07407",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016AJYf4KmdK3PrvLTvsabkK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 456,
+      "cache_read_input_tokens": 36200,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 456
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T04:23:28.276Z_
+
+<details><summary>↩ Tool result · `toolu_01GPRniFaXBwa3dnAQso1Uom`</summary>
+
+```text
+No scheduled jobs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "c3d05c5d-3798-4e54-95a7-772103bd5b13",
+  "tool_use_result": {
+    "jobs": []
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+No cron jobs to delete. Now updating the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "3ac96194-cd52-4c7d-86b5-4a114f81d8f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fwhc15UWsHPm8Stxx7vMF7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 158,
+      "cache_read_input_tokens": 36656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 158
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BbBAnztR1fdMES8BoMq3fT`</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "37ff3ab4-7ce2-4cde-8e4d-a3901cf9bbcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fwhc15UWsHPm8Stxx7vMF7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 158,
+      "cache_read_input_tokens": 36656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 158
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T04:23:33.263Z_
+
+<details><summary>↩ Tool result · `toolu_01BbBAnztR1fdMES8BoMq3fT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:33.031Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5295}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "afbe6e2e-78fe-4265-8938-d95c5b92db7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"behavioral_smoketest\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T03:26:07.290Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:23:33.031Z\\\", \\\"parent\\\": \\\"behavioral_pilot_w4\\\", \\\"hypothesis\\\": \\\"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\\\", \\\"spec\\\": {\\\"command\\\": \\\"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/LIBERO\\\", \\\"data_count\\\": \\\"1 task x 3 ep\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"eval_data\\\": \\\"LIBERO-Goal task_id=0, 3 episodes\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5295}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:33.031Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5295}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AzWVaiETnGZyge8GAFadAt`</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "log_path",
+  "value": "/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "cbf3927f-e061-4ff7-9424-aadf7bc4f194",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fwhc15UWsHPm8Stxx7vMF7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 158,
+      "cache_read_input_tokens": 36656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 158
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T04:23:34.098Z_
+
+<details><summary>↩ Tool result · `toolu_01AzWVaiETnGZyge8GAFadAt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:33.899Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4708}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "cddc92ae-c7bd-4c2f-b4aa-1dce2fa18d6c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"behavioral_smoketest\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T03:26:07.290Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:23:33.899Z\\\", \\\"parent\\\": \\\"behavioral_pilot_w4\\\", \\\"hypothesis\\\": \\\"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\\\", \\\"spec\\\": {\\\"command\\\": \\\"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/LIBERO\\\", \\\"data_count\\\": \\\"1 task x 3 ep\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"eval_data\\\": \\\"LIBERO-Goal task_id=0, 3 episodes\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4708}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:33.899Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4708}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WuFhWbf9r4zrqrEr62okNX`</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "625dbee9-0424-41da-9fd1-d5b7e57dca64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fwhc15UWsHPm8Stxx7vMF7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 158,
+      "cache_read_input_tokens": 36656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 158
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T04:23:34.799Z_
+
+<details><summary>↩ Tool result · `toolu_01WuFhWbf9r4zrqrEr62okNX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:34.604Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4659}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "704745d5-5754-4057-afb0-7e4309950478",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"behavioral_smoketest\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T03:26:07.290Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:23:34.604Z\\\", \\\"parent\\\": \\\"behavioral_pilot_w4\\\", \\\"hypothesis\\\": \\\"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\\\", \\\"spec\\\": {\\\"command\\\": \\\"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/LIBERO\\\", \\\"data_count\\\": \\\"1 task x 3 ep\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"eval_data\\\": \\\"LIBERO-Goal task_id=0, 3 episodes\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4659}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:34.604Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4659}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019tF9BW33DRD67vrDQpkaDy`</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "status",
+  "value": "DONE",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "6aa42f2d-4301-43ba-ac62-6300714a70b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PajPbbPBJmUikcVmeXTbgk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1866,
+      "cache_read_input_tokens": 36814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1866
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T04:23:39.314Z_
+
+<details><summary>↩ Tool result · `toolu_019tF9BW33DRD67vrDQpkaDy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:38.652Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"completed_at\": \"2026-05-19T04:23:38.652Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9587}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "35ecc577-a50d-4e38-b92f-f92bbda70274",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"behavioral_smoketest\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T03:26:07.290Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:23:38.652Z\\\", \\\"parent\\\": \\\"behavioral_pilot_w4\\\", \\\"hypothesis\\\": \\\"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\\\", \\\"spec\\\": {\\\"command\\\": \\\"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/LIBERO\\\", \\\"data_count\\\": \\\"1 task x 3 ep\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"eval_data\\\": \\\"LIBERO-Goal task_id=0, 3 episodes\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"completed_at\\\": \\\"2026-05-19T04:23:38.652Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9587}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:38.652Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"completed_at\": \"2026-05-19T04:23:38.652Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9587}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018NAaD5gqFep8gaXrWT7s1w`</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "notes",
+  "value": "Baseline SR=0/3 on task_id=0 (open_the_middle_drawer_of_the_cabinet), all episodes ran to max 400 steps with reward=0.0. Script stopped early (no point running ablation with zero baseline). The finetuned checkpoint does not achieve non-zero success on this task in closed-loop rollout. Possible causes: checkpoint quality, unnormalization key mismatch, or task difficulty.",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "394d66ed-0e91-478a-95fd-8772dc6ee6ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PajPbbPBJmUikcVmeXTbgk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1866,
+      "cache_read_input_tokens": 36814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1866
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T04:23:41.655Z_
+
+<details><summary>↩ Tool result · `toolu_018NAaD5gqFep8gaXrWT7s1w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:41.460Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"completed_at\": \"2026-05-19T04:23:38.652Z\", \"notes\": \"Baseline SR=0/3 on task_id=0 (open_the_middle_drawer_of_the_cabinet), all episodes ran to max 400 steps with reward=0.0. Script stopped early (no point running ablation with zero baseline). The finetuned checkpoint does not achieve non-zero success on this task in closed-loop rollout. Possible causes: checkpoint quality, unnormalization key mismatch, or task difficulty.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4914}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "39f0f677-5ee4-444c-b349-db435ac6b40b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"behavioral_smoketest\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T03:26:07.290Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:23:41.460Z\\\", \\\"parent\\\": \\\"behavioral_pilot_w4\\\", \\\"hypothesis\\\": \\\"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\\\", \\\"spec\\\": {\\\"command\\\": \\\"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/LIBERO\\\", \\\"data_count\\\": \\\"1 task x 3 ep\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"eval_data\\\": \\\"LIBERO-Goal task_id=0, 3 episodes\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"completed_at\\\": \\\"2026-05-19T04:23:38.652Z\\\", \\\"notes\\\": \\\"Baseline SR=0/3 on task_id=0 (open_the_middle_drawer_of_the_cabinet), all episodes ran to max 400 steps with reward=0.0. Script stopped early (no point running ablation with zero baseline). The finetuned checkpoint does not achieve non-zero success on this task in closed-loop rollout. Possible causes: checkpoint quality, unnormalization key mismatch, or task difficulty.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4914}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:41.460Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"completed_at\": \"2026-05-19T04:23:38.652Z\", \"notes\": \"Baseline SR=0/3 on task_id=0 (open_the_middle_drawer_of_the_cabinet), all episodes ran to max 400 steps with reward=0.0. Script stopped early (no point running ablation with zero baseline). The finetuned checkpoint does not achieve non-zero success on this task in closed-loop rollout. Possible causes: checkpoint quality, unnormalization key mismatch, or task difficulty.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4914}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018Z1v1r9RNuXeENUs7ZB5Z2`</summary>
+
+```json
+{
+  "exp_id": "behavioral_smoketest",
+  "field": "metrics",
+  "value": {
+    "baseline_sr": 0,
+    "baseline_episodes": 3,
+    "baseline_avg_reward": 0,
+    "max_steps": 400,
+    "task": "open_the_middle_drawer_of_the_cabinet",
+    "ablated": null
+  },
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "0005604a-38ed-464c-81d2-fb1e125cc5bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PajPbbPBJmUikcVmeXTbgk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1866,
+      "cache_read_input_tokens": 36814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1866
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T04:23:43.087Z_
+
+<details><summary>↩ Tool result · `toolu_018Z1v1r9RNuXeENUs7ZB5Z2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:42.887Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"completed_at\": \"2026-05-19T04:23:38.652Z\", \"notes\": \"Baseline SR=0/3 on task_id=0 (open_the_middle_drawer_of_the_cabinet), all episodes ran to max 400 steps with reward=0.0. Script stopped early (no point running ablation with zero baseline). The finetuned checkpoint does not achieve non-zero success on this task in closed-loop rollout. Possible causes: checkpoint quality, unnormalization key mismatch, or task difficulty.\", \"metrics\": {\"baseline_sr\": 0, \"baseline_episodes\": 3, \"baseline_avg_reward\": 0, \"max_steps\": 400, \"task\": \"open_the_middle_drawer_of_the_cabinet\", \"ablated\": null}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4774}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "f5d227b8-dc7e-4fbb-adbb-2f4c0e408312",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"behavioral_smoketest\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T03:26:07.290Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:23:42.887Z\\\", \\\"parent\\\": \\\"behavioral_pilot_w4\\\", \\\"hypothesis\\\": \\\"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\\\", \\\"spec\\\": {\\\"command\\\": \\\"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/LIBERO\\\", \\\"data_count\\\": \\\"1 task x 3 ep\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"eval_data\\\": \\\"LIBERO-Goal task_id=0, 3 episodes\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"completed_at\\\": \\\"2026-05-19T04:23:38.652Z\\\", \\\"notes\\\": \\\"Baseline SR=0/3 on task_id=0 (open_the_middle_drawer_of_the_cabinet), all episodes ran to max 400 steps with reward=0.0. Script stopped early (no point running ablation with zero baseline). The finetuned checkpoint does not achieve non-zero success on this task in closed-loop rollout. Possible causes: checkpoint quality, unnormalization key mismatch, or task difficulty.\\\", \\\"metrics\\\": {\\\"baseline_sr\\\": 0, \\\"baseline_episodes\\\": 3, \\\"baseline_avg_reward\\\": 0, \\\"max_steps\\\": 400, \\\"task\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\", \\\"ablated\\\": null}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4774}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"behavioral_smoketest\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T04:23:42.887Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\", \"spec\": {\"command\": \"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/LIBERO\", \"data_count\": \"1 task x 3 ep\", \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"LIBERO-Goal task_id=0, 3 episodes\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"completed_at\": \"2026-05-19T04:23:38.652Z\", \"notes\": \"Baseline SR=0/3 on task_id=0 (open_the_middle_drawer_of_the_cabinet), all episodes ran to max 400 steps with reward=0.0. Script stopped early (no point running ablation with zero baseline). The finetuned checkpoint does not achieve non-zero success on this task in closed-loop rollout. Possible causes: checkpoint quality, unnormalization key mismatch, or task difficulty.\", \"metrics\": {\"baseline_sr\": 0, \"baseline_episodes\": 3, \"baseline_avg_reward\": 0, \"max_steps\": 400, \"task\": \"open_the_middle_drawer_of_the_cabinet\", \"ablated\": null}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4774}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Registry 已更新。
+
+## behavioral_smoketest 结果：**negative (baseline_zero)**
+
+**关键日志：**
+- Task: `open_the_middle_drawer_of_the_cabinet` (task_id=0)
+- Checkpoint: `openvla-7b-finetuned-libero-goal`
+- 3 episodes 全部失败，reward=0.0，均跑满 400 步
+- Baseline SR=0.00，脚本提前终止（"no point running ablation"）
+- 未执行 ablation 对比
+
+**结论：** Finetuned OpenVLA 在此任务上 closed-loop rollout 完全不工作，无法产生 behavioral evidence。可能原因：checkpoint 微调不足、unnormalization key 不匹配、或需要更多 episodes/不同 task 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "uuid": "fe0fc8fb-6c39-4eb9-9242-7297c34113a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCDYJLJGLnzibxneH7M8Gf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2456,
+      "cache_read_input_tokens": 38680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2456
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 42_
+
+Registry 已更新。
+
+## behavioral_smoketest 结果：**negative (baseline_zero)**
+
+**关键日志：**
+- Task: `open_the_middle_drawer_of_the_cabinet` (task_id=0)
+- Checkpoint: `openvla-7b-finetuned-libero-goal`
+- 3 episodes 全部失败，reward=0.0，均跑满 400 步
+- Baseline SR=0.00，脚本提前终止（"no point running ablation"）
+- 未执行 ablation 对比
+
+**结论：** Finetuned OpenVLA 在此任务上 closed-loop rollout 完全不工作，无法产生 behavioral evidence。可能原因：checkpoint 微调不足、unnormalization key 不匹配、或需要更多 episodes/不同 task 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 53939,
+  "duration_api_ms": 54095,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "d8948b73-6169-47d4-888a-f12500ea08c3",
+  "total_cost_usd": 0.36447775000000004,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 29295,
+    "cache_read_input_tokens": 239152,
+    "output_tokens": 2416,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 29295,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 227,
+        "cache_read_input_tokens": 38680,
+        "cache_creation_input_tokens": 2456,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2456
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1263,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001338,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 2416,
+      "cacheReadInputTokens": 239152,
+      "cacheCreationInputTokens": 29295,
+      "webSearchRequests": 0,
+      "costUSD": 0.36313975,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "013b9c68-0ddd-45b6-bb5f-1d6804421697"
+}
+```
+
+</details>
+
+---

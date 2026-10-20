@@ -1,0 +1,389 @@
+{
+  "cross_layer_analysis": {
+    "description": "Kendall's W across 33 LLM layers (items) rated by 3 training conditions (raters). Tests whether conditions agree on which layers encode action information.",
+    "W": 0.7186,
+    "chi2": 68.9857,
+    "df": 32,
+    "p_value": 0.000168,
+    "k_conditions": 3,
+    "n_layers": 33,
+    "interpretation": "high",
+    "conditions": [
+      "untrained",
+      "llama2base",
+      "trained"
+    ],
+    "per_condition_ranks": {
+      "untrained": {
+        "L0": 33.0,
+        "L1": 30.0,
+        "L2": 24.0,
+        "L3": 27.0,
+        "L4": 31.0,
+        "L5": 29.0,
+        "L6": 25.0,
+        "L7": 22.0,
+        "L8": 26.0,
+        "L9": 28.0,
+        "L10": 1.0,
+        "L11": 2.0,
+        "L12": 23.0,
+        "L13": 6.0,
+        "L14": 5.0,
+        "L15": 18.0,
+        "L16": 8.0,
+        "L17": 12.0,
+        "L18": 17.0,
+        "L19": 15.0,
+        "L20": 16.0,
+        "L21": 13.0,
+        "L22": 11.0,
+        "L23": 20.0,
+        "L24": 14.0,
+        "L25": 19.0,
+        "L26": 9.0,
+        "L27": 21.0,
+        "L28": 3.0,
+        "L29": 7.0,
+        "L30": 10.0,
+        "L31": 4.0,
+        "L32": 32.0
+      },
+      "llama2base": {
+        "L0": 30.0,
+        "L1": 28.0,
+        "L2": 18.0,
+        "L3": 32.0,
+        "L4": 33.0,
+        "L5": 26.0,
+        "L6": 31.0,
+        "L7": 27.0,
+        "L8": 25.0,
+        "L9": 29.0,
+        "L10": 23.0,
+        "L11": 21.0,
+        "L12": 24.0,
+        "L13": 14.0,
+        "L14": 22.0,
+        "L15": 19.0,
+        "L16": 20.0,
+        "L17": 17.0,
+        "L18": 15.0,
+        "L19": 12.0,
+        "L20": 2.0,
+        "L21": 16.0,
+        "L22": 11.0,
+        "L23": 13.0,
+        "L24": 9.0,
+        "L25": 3.0,
+        "L26": 6.0,
+        "L27": 7.0,
+        "L28": 5.0,
+        "L29": 10.0,
+        "L30": 4.0,
+        "L31": 8.0,
+        "L32": 1.0
+      },
+      "trained": {
+        "L0": 24.0,
+        "L1": 21.0,
+        "L2": 18.0,
+        "L3": 32.0,
+        "L4": 28.5,
+        "L5": 28.5,
+        "L6": 30.0,
+        "L7": 27.0,
+        "L8": 33.0,
+        "L9": 31.0,
+        "L10": 25.0,
+        "L11": 26.0,
+        "L12": 15.0,
+        "L13": 20.0,
+        "L14": 17.0,
+        "L15": 19.0,
+        "L16": 16.0,
+        "L17": 22.0,
+        "L18": 23.0,
+        "L19": 14.0,
+        "L20": 12.0,
+        "L21": 11.0,
+        "L22": 13.0,
+        "L23": 4.0,
+        "L24": 10.0,
+        "L25": 9.0,
+        "L26": 5.0,
+        "L27": 3.0,
+        "L28": 2.0,
+        "L29": 7.0,
+        "L30": 6.0,
+        "L31": 1.0,
+        "L32": 8.0
+      }
+    },
+    "rank_sums": {
+      "L0": 87.0,
+      "L1": 79.0,
+      "L2": 60.0,
+      "L3": 91.0,
+      "L4": 92.5,
+      "L5": 83.5,
+      "L6": 86.0,
+      "L7": 76.0,
+      "L8": 84.0,
+      "L9": 88.0,
+      "L10": 49.0,
+      "L11": 49.0,
+      "L12": 62.0,
+      "L13": 40.0,
+      "L14": 44.0,
+      "L15": 56.0,
+      "L16": 44.0,
+      "L17": 51.0,
+      "L18": 55.0,
+      "L19": 41.0,
+      "L20": 30.0,
+      "L21": 40.0,
+      "L22": 35.0,
+      "L23": 37.0,
+      "L24": 33.0,
+      "L25": 31.0,
+      "L26": 20.0,
+      "L27": 31.0,
+      "L28": 10.0,
+      "L29": 24.0,
+      "L30": 20.0,
+      "L31": 13.0,
+      "L32": 41.0
+    },
+    "data_source": "three_condition_comparison.json (mean_R2 per layer, image_mean readout)"
+  },
+  "cross_task_L0": {
+    "description": "Kendall's W across 10 tasks (items) rated by 3 conditions (raters) at L0. Trivially W=1.0 because all conditions share identical SigLIP vision features at L0.",
+    "W": 1.0,
+    "chi2": 27.0,
+    "df": 9,
+    "p_value": 0.001481,
+    "k_conditions": 3,
+    "n_tasks": 10,
+    "task_rankings_L0": {
+      "open_the_middle_drawer_of_the_cabinet": {
+        "R2": 0.5246,
+        "rank": 1.0
+      },
+      "open_the_top_drawer_and_put_the_bowl_inside": {
+        "R2": 0.7481,
+        "rank": 9.0
+      },
+      "push_the_plate_to_the_front_of_the_stove": {
+        "R2": 0.5987,
+        "rank": 4.0
+      },
+      "put_the_bowl_on_the_plate": {
+        "R2": 0.5899,
+        "rank": 3.0
+      },
+      "put_the_bowl_on_the_stove": {
+        "R2": 0.6837,
+        "rank": 8.0
+      },
+      "put_the_bowl_on_top_of_the_cabinet": {
+        "R2": 0.6482,
+        "rank": 6.0
+      },
+      "put_the_cream_cheese_in_the_bowl": {
+        "R2": 0.6427,
+        "rank": 5.0
+      },
+      "put_the_wine_bottle_on_the_rack": {
+        "R2": 0.5441,
+        "rank": 2.0
+      },
+      "put_the_wine_bottle_on_top_of_the_cabinet": {
+        "R2": 0.6586,
+        "rank": 7.0
+      },
+      "turn_on_the_stove": {
+        "R2": 0.7648,
+        "rank": 10.0
+      }
+    },
+    "note": "All conditions identical at L0 \u2014 not informative. Per-task R\u00b2 at peak layers (trained L8, llama2base L4, untrained L0) requires server access."
+  },
+  "per_layer_mean_r2": {
+    "0": {
+      "untrained": 0.6403,
+      "llama2base": 0.6403,
+      "trained": 0.6403
+    },
+    "1": {
+      "untrained": 0.5546,
+      "llama2base": 0.6366,
+      "trained": 0.6331
+    },
+    "2": {
+      "untrained": 0.5219,
+      "llama2base": 0.6124,
+      "trained": 0.6278
+    },
+    "3": {
+      "untrained": 0.5338,
+      "llama2base": 0.6446,
+      "trained": 0.6519
+    },
+    "4": {
+      "untrained": 0.5606,
+      "llama2base": 0.6447,
+      "trained": 0.6468
+    },
+    "5": {
+      "untrained": 0.5383,
+      "llama2base": 0.6326,
+      "trained": 0.6468
+    },
+    "6": {
+      "untrained": 0.5313,
+      "llama2base": 0.6413,
+      "trained": 0.6494
+    },
+    "7": {
+      "untrained": 0.5176,
+      "llama2base": 0.6335,
+      "trained": 0.6447
+    },
+    "8": {
+      "untrained": 0.5323,
+      "llama2base": 0.6307,
+      "trained": 0.6553
+    },
+    "9": {
+      "untrained": 0.535,
+      "llama2base": 0.6371,
+      "trained": 0.6511
+    },
+    "10": {
+      "untrained": -0.3293,
+      "llama2base": 0.6233,
+      "trained": 0.6427
+    },
+    "11": {
+      "untrained": -0.2806,
+      "llama2base": 0.6184,
+      "trained": 0.6436
+    },
+    "12": {
+      "untrained": 0.5198,
+      "llama2base": 0.6268,
+      "trained": 0.6086
+    },
+    "13": {
+      "untrained": 0.441,
+      "llama2base": 0.6047,
+      "trained": 0.6296
+    },
+    "14": {
+      "untrained": 0.4184,
+      "llama2base": 0.619,
+      "trained": 0.6208
+    },
+    "15": {
+      "untrained": 0.5041,
+      "llama2base": 0.6127,
+      "trained": 0.628
+    },
+    "16": {
+      "untrained": 0.4567,
+      "llama2base": 0.6136,
+      "trained": 0.6188
+    },
+    "17": {
+      "untrained": 0.4704,
+      "llama2base": 0.6103,
+      "trained": 0.6345
+    },
+    "18": {
+      "untrained": 0.4924,
+      "llama2base": 0.6088,
+      "trained": 0.6348
+    },
+    "19": {
+      "untrained": 0.4901,
+      "llama2base": 0.5824,
+      "trained": 0.5986
+    },
+    "20": {
+      "untrained": 0.4918,
+      "llama2base": 0.5395,
+      "trained": 0.5788
+    },
+    "21": {
+      "untrained": 0.4839,
+      "llama2base": 0.6089,
+      "trained": 0.5736
+    },
+    "22": {
+      "untrained": 0.4696,
+      "llama2base": 0.5817,
+      "trained": 0.5831
+    },
+    "23": {
+      "untrained": 0.5156,
+      "llama2base": 0.5846,
+      "trained": 0.4363
+    },
+    "24": {
+      "untrained": 0.4894,
+      "llama2base": 0.571,
+      "trained": 0.5537
+    },
+    "25": {
+      "untrained": 0.5085,
+      "llama2base": 0.5535,
+      "trained": 0.5477
+    },
+    "26": {
+      "untrained": 0.4584,
+      "llama2base": 0.5687,
+      "trained": 0.5057
+    },
+    "27": {
+      "untrained": 0.5174,
+      "llama2base": 0.5707,
+      "trained": 0.4261
+    },
+    "28": {
+      "untrained": 0.3633,
+      "llama2base": 0.5645,
+      "trained": 0.4184
+    },
+    "29": {
+      "untrained": 0.4445,
+      "llama2base": 0.5727,
+      "trained": 0.5286
+    },
+    "30": {
+      "untrained": 0.4621,
+      "llama2base": 0.5593,
+      "trained": 0.5233
+    },
+    "31": {
+      "untrained": 0.3878,
+      "llama2base": 0.5709,
+      "trained": 0.3803
+    },
+    "32": {
+      "untrained": 0.5785,
+      "llama2base": 0.5255,
+      "trained": 0.539
+    }
+  },
+  "metadata": {
+    "readout": "image_mean",
+    "probe": "MLP(4096,256,7), 50ep, patience=5, seed=42",
+    "peak_layers": {
+      "trained": 8,
+      "llama2base": 4,
+      "untrained": 0
+    },
+    "data_limitation": "Per-task R\u00b2 at peak layers only available on remote server (westd-19183). Cross-task analysis at peak layers requires: python -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json')); lb=json.load(open('/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json')); print(json.dumps({'trained_L8': d['trained']['image_mean']['layer_8']['per_task_R2'], 'untrained_L0': d['untrained']['image_mean']['layer_0']['per_task_R2'], 'llama2base_L4': lb['llama2base_image_mean']['layer_4']['per_task_R2']}))\""
+  }
+}

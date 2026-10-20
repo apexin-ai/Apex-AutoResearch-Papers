@@ -1,0 +1,132 @@
+{
+  "exp_id": "tracvla_long_v1",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:39:01.752Z",
+    "updated_at": "2026-05-21T20:36:59.806Z",
+    "hypothesis": "The convergent entry-exit routing architecture (inverted-U R² profile, L1 instruction-dominance with consistent mixed heads h13/h22, counterfactual sensitivity) observed in TraceVLA on Spatial/Object generalizes to LIBERO-Long (multi-step tasks). Tests cross-suite consistency for second architecture family. Both trained and untrained conditions.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_long_full_pipeline.py --conditions trained untrained\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "568677",
+      "log_path": "~/runs/vla-ssd/tracvla_long_v1.log",
+      "submitted_at": "2026-05-21T16:39:14.839Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_10/",
+      "data_count": 500,
+      "model_name": "tracevla-phi3v / phi3v-base",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/outputs/tracvla_long_v1/",
+      "wall_clock_seconds": 14265.0,
+      "gpu_hours": 3.96
+    },
+    "metrics": {
+      "trained": {
+        "r2_probing": {
+          "image_mean": {
+            "L0": 0.795,
+            "L7": 0.812,
+            "L11": 0.816,
+            "L16": 0.826,
+            "L18": 0.825,
+            "L23": 0.821,
+            "L27": 0.816,
+            "L30": 0.799,
+            "L31": 0.79,
+            "PEAK": "0.826 @ L16"
+          },
+          "last_preaction": {
+            "L0": 0.616,
+            "L7": 0.805,
+            "L11": 0.817,
+            "L16": 0.808,
+            "L18": 0.809,
+            "L23": 0.762,
+            "L27": 0.651,
+            "L30": 0.434,
+            "L31": 0.619,
+            "PEAK": "0.817 @ L11"
+          }
+        },
+        "l1_attention": {
+          "instruction_dominant": 30,
+          "total_heads": 32,
+          "mixed_heads": [
+            "h13",
+            "h22"
+          ]
+        },
+        "cross_instruction": {
+          "image_mean_all_layers": 1,
+          "last_preaction_L0": 0.983,
+          "last_preaction_L1_plus": 1
+        },
+        "counterfactual": {
+          "empty_d": 1.473,
+          "wrong_d": 1.418,
+          "shuffled_d": 1.391,
+          "paraphrased_d": 1.161
+        }
+      },
+      "untrained": {
+        "r2_probing": {
+          "image_mean": {
+            "L0": 0.768,
+            "L8": 0.791,
+            "L16": 0.79,
+            "L20": 0.801,
+            "L28": 0.779,
+            "L30": 0.775,
+            "L31": 0.759,
+            "profile": "flat, no collapse"
+          },
+          "last_preaction": {
+            "L0": 0.564,
+            "L4": 0.685,
+            "L8": 0.7,
+            "L11": 0.716,
+            "L16": 0.746,
+            "L20": 0.723,
+            "L24": 0.722,
+            "L28": 0.717,
+            "L30": 0.707,
+            "L31": 0.717,
+            "profile": "flat plateau ~0.71-0.72, no inverted-U"
+          }
+        },
+        "l1_attention": {
+          "instruction_dominant": 32,
+          "total_heads": 32,
+          "mixed_heads": []
+        },
+        "classification_phase": "RUNNING (L24/31)",
+        "counterfactual_phase": "NOT_STARTED"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T20:34:01.269Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T20:34:05.201836+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T20:36:59.806Z"
+  },
+  "timestamp": "2026-05-21T20:37:00.183459+00:00",
+  "trigger": "update_registry"
+}

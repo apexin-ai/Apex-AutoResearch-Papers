@@ -1,0 +1,12 @@
+Model: openvla-7b (untrained, v2)
+Dataset: libero_goal
+Samples: 5000 (50 demos x 10 tasks x 10 frames)
+Transformers: 4.40.1
+Fixes: no_double_norm, clone_hidden_states, correct_transformers
+
+Peak R2: -3.5474 at layer 32 (exit)
+Exit R2: -3.5474
+Exit MSE: 0.8694
+
+All 33 layers R2 negative (-5.61 to -3.55)
+Remote path: /root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/untrained_v2_action_head_r2.json

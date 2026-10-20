@@ -1,0 +1,54 @@
+{
+  "exp_id": "p0_functional_probe_v2",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:47:31.973Z",
+    "updated_at": "2026-05-15T23:52:37.355Z",
+    "hypothesis": "V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.",
+    "metrics": {
+      "bootstrap_proj_vs_image_mean_L19": {
+        "proj_mean_R2": 0.7063,
+        "image_mean_L19_mean_R2": 0.6832,
+        "delta": 0.0231,
+        "ci_95": [
+          0.0105,
+          0.0367
+        ],
+        "p_value": 0.001,
+        "gate": "PASS — CI lower bound > 0"
+      },
+      "dino_action": {
+        "mean_R2": 0.7116,
+        "feature_key": "cls_token"
+      },
+      "dino_action_delta": {
+        "mean_R2": 0.1
+      },
+      "bootstrap_dino_vs_proj": {
+        "delta": 0.005,
+        "ci_95": [
+          -0.008,
+          0.019
+        ],
+        "p_value": 0.22,
+        "significant": false
+      },
+      "three_way_ordering": "DINO (0.712) ≈ Projector (0.706) > LLM image_mean (0.683)",
+      "untrained_L10_L11_diagnosis": {
+        "verdict": "pathological_random_init",
+        "detail": "Feature stats normal (no NaN/Inf/zeros, std~5), but probe R² drops L9=0.632→L10=0.029. Random LLM weights create non-decodable representations at these layers."
+      },
+      "result_path": "/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (probe task)",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json",
+    "completed_at": "2026-05-15T23:52:03.717Z"
+  },
+  "timestamp": "2026-05-15T23:52:37.440701+00:00",
+  "trigger": "update_registry"
+}

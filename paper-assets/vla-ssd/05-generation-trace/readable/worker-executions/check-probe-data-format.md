@@ -1,0 +1,3431 @@
+# check probe data format
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 74
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_check_probe_data_format_20260522T140423.log`
+- **Structured JSON:** [`8c68c471410db6755edb.json`](../../sessions/8c/8c68c471410db6755edb.json)
+
+## Before a recorded user message
+
+74 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "30e5ab79-bf66-4df1-9df2-2cb5472585b0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779463200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "13c7fa76-3cc1-43d0-bdb0-082ceea5ca1d",
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the R² probing data format on the server westd-19183 to determine if clustered bootstrap reanalysis is feasible. Let me run the checks using ssh_read_only.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "25c08d3a-06cc-41a1-943f-350177b71d48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018X2M17CXZs3x9B2FEi5r9s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12209,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12209
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+检查 R² probing 数据格式和结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "cd9af928-f176-4f37-9389-6e1d130630ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018X2M17CXZs3x9B2FEi5r9s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12209,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12209
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MMhHaQd79fivuyUDV1Q342`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "4f409ed3-c9d3-4250-9f83-a9176867f067",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018X2M17CXZs3x9B2FEi5r9s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12209,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12209
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T14:04:37.549Z_
+
+<details><summary>↩ Tool result · `toolu_01MMhHaQd79fivuyUDV1Q342`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "e2048fa7-ca58-4e17-b8c4-d1f8fbef1005",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011fAD2uAWprLV8CfqkN4gby`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/libero_goal/action_r2_probing.json')); print(type(d)); print(list(d.keys())[:10]); print(json.dumps({k: (type(v).__name__ if not isinstance(v, dict) else {kk: type(vv).__name__ for kk, vv in list(v.items())[:5]}) for k, v in list(d.items())[:5]}, indent=2))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "8f498176-7fa5-4b8f-9f5b-f44104ecbd76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJTDgTQVW6mKaLjarETUY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 24050,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 706
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T14:04:41.765Z_
+
+<details><summary>↩ Tool result · `toolu_011fAD2uAWprLV8CfqkN4gby`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "9c855718-b5e3-4dbe-b193-b32639e17e51",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018s8HYujiHUtUbNGe9dnFj5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json')); print(type(d)); print(list(d.keys())[:10]); print(json.dumps({k: (type(v).__name__ if not isinstance(v, dict) else {kk: type(vv).__name__ for kk, vv in list(v.items())[:5]}) for k, v in list(d.items())[:5]}, indent=2))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "8a72f545-4b37-4625-842d-aed45eaffa48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJTDgTQVW6mKaLjarETUY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 24050,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 706
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T14:04:43.696Z_
+
+<details><summary>↩ Tool result · `toolu_018s8HYujiHUtUbNGe9dnFj5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "9024be64-feb7-43b2-8c57-2305f0cecdff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012yXNc1yet4H6jCudQqsD5w`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/nora_goal/trained/action_r2_probing.json')); print(type(d)); print(list(d.keys())[:10]); print(json.dumps({k: (type(v).__name__ if not isinstance(v, dict) else {kk: type(vv).__name__ for kk, vv in list(v.items())[:5]}) for k, v in list(d.items())[:5]}, indent=2))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "88e83473-65e0-45a9-978f-58ec785b7f3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJTDgTQVW6mKaLjarETUY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 24050,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 706
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T14:04:45.016Z_
+
+<details><summary>↩ Tool result · `toolu_012yXNc1yet4H6jCudQqsD5w`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "55725d50-ec1c-4396-bf16-4b2085eec943",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018c1djQKVmzspzZ1yPYkY6U`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"r2_score\\|json.dump\\|save\\|per_demo\\|per_task\\|bootstrap\" /root/autodl-tmp/vla-ssd/scripts/libero_eval_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "73bc2226-de00-4b40-9c47-65b95c77cd77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJTDgTQVW6mKaLjarETUY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 24050,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 706
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T14:04:45.898Z_
+
+<details><summary>↩ Tool result · `toolu_018c1djQKVmzspzZ1yPYkY6U`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "1b402c0a-1cba-44d6-a31b-21d19906ba6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VnGEDq756Mu2hNGKqzCtWd`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*probe*\" -o -name \"*per_demo*\" -o -name \"*per_task*\" -o -name \"*raw*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "c123206d-39ff-4859-8a22-5153198644ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJTDgTQVW6mKaLjarETUY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 24050,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 706
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WjJa1mn6qyivvb4uKhapNa`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.npy\" -o -name \"*.pt\" -o -name \"*hidden*\" -o -name \"*features*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "cc56629b-52ed-44e8-8ea5-06b7d05a6b95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJTDgTQVW6mKaLjarETUY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 24050,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 706
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T14:04:47.946Z_
+
+<details><summary>↩ Tool result · `toolu_01VnGEDq756Mu2hNGKqzCtWd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/analysis/action_probe_analysis_action_prediction.json\\n/root/autodl-tmp/vla-ssd/results/figures/fig_linear_vs_mlp_probe.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_linear_vs_mlp_probe.png\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/patch_mean_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.pdf\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.png\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/ablations/probe_seed_robustness.json\\n/root/autodl-tmp/vla-ssd/results/qa_probe\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/control_probes.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_trained_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_log.txt\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\n/root/autodl-tmp/vla-ssd/results/action_probe\\n/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/llama2base_action_probe\\n/root/autodl-tmp/vla-ssd/results/linear_probe.log\\n/root/autodl-tmp/vla-ssd/results/linear_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/linear_probe_last_preaction.json\\n/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\n/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_probe_profile.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\n/root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json\\n/root/autodl-tmp/vla-ssd/results/libero_closedloop_probe\\n/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "d06dcf61-6531-42c1-bfff-0e42babcfb6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/analysis/action_probe_analysis_action_prediction.json\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig_linear_vs_mlp_probe.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig_linear_vs_mlp_probe.png\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/patch_mean_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.pdf\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.png\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/ablations/probe_seed_robustness.json\\\\n/root/autodl-tmp/vla-ssd/results/qa_probe\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/control_probes.json\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_trained_probe_results.json\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_probe_results.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_log.txt\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\\n/root/autodl-tmp/vla-ssd/results/action_probe\\\\n/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/llama2base_action_probe\\\\n/root/autodl-tmp/vla-ssd/results/linear_probe.log\\\\n/root/autodl-tmp/vla-ssd/results/linear_probe_results.json\\\\n/root/autodl-tmp/vla-ssd/results/linear_probe_last_preaction.json\\\\n/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\\\n/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\\\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_probe_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_closedloop_probe\\\\n/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/analysis/action_probe_analysis_action_prediction.json\\n/root/autodl-tmp/vla-ssd/results/figures/fig_linear_vs_mlp_probe.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_linear_vs_mlp_probe.png\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/patch_mean_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.pdf\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.png\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/ablations/probe_seed_robustness.json\\n/root/autodl-tmp/vla-ssd/results/qa_probe\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/control_probes.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_trained_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_log.txt\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\n/root/autodl-tmp/vla-ssd/results/action_probe\\n/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/llama2base_action_probe\\n/root/autodl-tmp/vla-ssd/results/linear_probe.log\\n/root/autodl-tmp/vla-ssd/results/linear_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/linear_probe_last_preaction.json\\n/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\n/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_probe_profile.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\n/root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json\\n/root/autodl-tmp/vla-ssd/results/libero_closedloop_probe\\n/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T14:04:48.470Z_
+
+<details><summary>↩ Tool result · `toolu_01WjJa1mn6qyivvb4uKhapNa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "e78d8cbe-1f7f-48ad-96a5-26df487bb966",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+shell metachar 限制，调整命令格式。先读取关键 JSON 文件和 probing 脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "eb7e8c6b-4fc3-42ea-91f3-ee6ba3917ba3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fbo3CWiBs2e3s9EztJgS2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2949,
+      "cache_read_input_tokens": 24756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2949
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WVEu9ry2TAGLUYN3GpvesR`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/libero_goal/action_r2_probing.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "f877d181-ba74-414e-98c5-cdb4d48a2f04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fbo3CWiBs2e3s9EztJgS2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2949,
+      "cache_read_input_tokens": 24756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2949
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T14:04:52.934Z_
+
+<details><summary>↩ Tool result · `toolu_01WVEu9ry2TAGLUYN3GpvesR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.8733,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8733\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.6387,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6387\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.874,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.874\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.7444,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7444\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.875,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.875\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.7766,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7766\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.8788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8788\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.7947,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7947\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.8814,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8814\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.818,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.818\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.883,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.883\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.8364,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8364\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.883,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.883\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.8436,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8436\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.8844,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8844\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.841,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.841\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.8841,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8841\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.853\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.8825,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8825\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.8667,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8667\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.8815,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8815\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.8693,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8693\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.8856,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8856\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.8628,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8628\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.8855,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8855\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.8645,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8645\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.8838,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8838\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.8685,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8685\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.8783,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8783\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.8615,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8615\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.8783,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8783\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.858,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.858\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.8787,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8787\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.8622,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8622\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.8794,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8794\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.8616,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8616\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.8798,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8798\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.8594,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8594\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.8808,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8808\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.8618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8618\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.8818,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8818\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.8601,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8601\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.8813,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8813\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.8537,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8537\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.882,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.882\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.854,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.854\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.8811,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8811\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.8525,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8525\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.8805,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8805\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.8555,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8555\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.8806,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8806\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.8557,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8557\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.8822,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8822\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.8559,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8559\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.8822,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8822\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.8559,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8559\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.8792,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8792\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.859,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.859\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.8723,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8723\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.8578,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8578\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.8643,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8643\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.8536,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8536\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.87,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.87\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.8532,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8532\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "5d9de569-39a0-4a89-bef4-db3561e239b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"L0_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8733,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8733\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L0_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6387,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6387\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.874,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.874\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7444,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7444\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.875,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.875\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7766,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7766\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8788,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8788\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7947,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7947\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8814,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8814\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.818,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.818\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.883,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.883\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8364,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8364\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.883,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.883\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8436,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8436\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8844,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8844\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.841,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.841\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8841,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8841\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.853,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.853\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8825,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8825\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8667,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8667\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8815,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8815\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8693,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8693\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8856,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8856\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8628,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8628\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8855,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8855\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8645,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8645\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8838,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8838\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8685,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8685\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8783,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8783\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8615,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8615\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8783,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8783\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.858,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.858\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8787,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8787\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8622,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8622\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8794,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8794\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8616,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8616\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8798,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8798\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8594,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8594\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8808,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8808\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8618,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8618\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8818,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8818\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8601,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8601\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8813,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8813\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8537,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8537\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.882,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.882\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.854,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.854\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8811,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8811\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8525,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8525\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8805,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8805\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8555,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8555\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8806,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8806\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8557,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8557\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8822,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8822\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8559,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8559\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8822,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8822\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8559,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8559\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8792,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8792\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.859,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.859\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8723,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8723\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8578,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8578\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8643,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8643\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8536,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8536\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.87,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.87\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8532,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8532\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.8733,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8733\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.6387,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6387\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.874,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.874\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.7444,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7444\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.875,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.875\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.7766,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7766\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.8788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8788\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.7947,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7947\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.8814,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8814\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.818,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.818\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.883,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.883\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.8364,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8364\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.883,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.883\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.8436,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8436\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.8844,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8844\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.841,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.841\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.8841,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8841\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.853\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.8825,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8825\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.8667,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8667\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.8815,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8815\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.8693,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8693\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.8856,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8856\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.8628,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8628\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.8855,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8855\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.8645,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8645\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.8838,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8838\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.8685,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8685\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.8783,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8783\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.8615,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8615\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.8783,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8783\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.858,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.858\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.8787,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8787\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.8622,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8622\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.8794,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8794\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.8616,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8616\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.8798,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8798\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.8594,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8594\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.8808,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8808\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.8618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8618\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.8818,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8818\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.8601,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8601\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.8813,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8813\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.8537,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8537\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.882,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.882\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.854,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.854\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.8811,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8811\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.8525,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8525\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.8805,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8805\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.8555,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8555\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.8806,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8806\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.8557,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8557\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.8822,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8822\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.8559,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8559\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.8822,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8822\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.8559,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8559\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.8792,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8792\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.859,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.859\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.8723,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8723\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.8578,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8578\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.8643,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8643\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.8536,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8536\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.87,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.87\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.8532,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8532\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012yx6U2tYp66L61T8oiRXrV`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "792de072-454b-4045-948e-3e8834916d84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fbo3CWiBs2e3s9EztJgS2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2949,
+      "cache_read_input_tokens": 24756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2949
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T14:04:53.904Z_
+
+<details><summary>↩ Tool result · `toolu_012yx6U2tYp66L61T8oiRXrV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"per_task_r2_distribution\\\",\\n  \\\"tasks\\\": [\\n    \\\"open the middle drawer of the cabinet\\\",\\n    \\\"open the top drawer and put the bowl inside\\\",\\n    \\\"push the plate to the front of the stove\\\",\\n    \\\"put the bowl on the plate\\\",\\n    \\\"put the bowl on the stove\\\",\\n    \\\"put the bowl on top of the cabinet\\\",\\n    \\\"put the cream cheese in the bowl\\\",\\n    \\\"put the wine bottle on the rack\\\",\\n    \\\"put the wine bottle on top of the cabinet\\\",\\n    \\\"turn on the stove\\\"\\n  ],\\n  \\\"n_tasks\\\": 10,\\n  \\\"mlp_probe_5demo\\\": {\\n    \\\"description\\\": \\\"MLP(4096,256,7) probe, 5 demos/task, per-task R2 distribution\\\",\\n    \\\"conditions\\\": {\\n      \\\"baseline\\\": {\\n        \\\"L1\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.1971,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.2649,\\n            \\\"push the plate to the front of the stove\\\": 0.1901,\\n            \\\"put the bowl on the plate\\\": 0.3754,\\n            \\\"put the bowl on the stove\\\": 0.2352,\\n            \\\"put the bowl on top of the cabinet\\\": 0.2561,\\n            \\\"put the cream cheese in the bowl\\\": 0.186,\\n            \\\"put the wine bottle on the rack\\\": 0.1894,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.2789,\\n            \\\"turn on the stove\\\": 0.3854\\n          },\\n          \\\"mean\\\": 0.2559,\\n          \\\"std\\\": 0.0701,\\n          \\\"min\\\": 0.186,\\n          \\\"max\\\": 0.3854,\\n          \\\"range\\\": 0.1994\\n        },\\n        \\\"L8\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.4532,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.3757,\\n            \\\"push the plate to the front of the stove\\\": 0.3358,\\n            \\\"put the bowl on the plate\\\": 0.4371,\\n            \\\"put the bowl on the stove\\\": 0.396,\\n            \\\"put the bowl on top of the cabinet\\\": 0.4519,\\n            \\\"put the cream cheese in the bowl\\\": 0.3797,\\n            \\\"put the wine bottle on the rack\\\": 0.3917,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.4624,\\n            \\\"turn on the stove\\\": 0.7171\\n          },\\n          \\\"mean\\\": 0.4401,\\n          \\\"std\\\": 0.1003,\\n          \\\"min\\\": 0.3358,\\n          \\\"max\\\": 0.7171,\\n          \\\"range\\\": 0.3813\\n        },\\n        \\\"L13\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.5686,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.5466,\\n            \\\"push the plate to the front of the stove\\\": 0.4092,\\n            \\\"put the bowl on the plate\\\": 0.3887,\\n            \\\"put the bowl on the stove\\\": 0.5352,\\n            \\\"put the bowl on top of the cabinet\\\": 0.6587,\\n            \\\"put the cream cheese in the bowl\\\": 0.5835,\\n            \\\"put the wine bottle on the rack\\\": 0.4304,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.3856,\\n            \\\"turn on the stove\\\": 0.7336\\n          },\\n          \\\"mean\\\": 0.524,\\n          \\\"std\\\": 0.113,\\n          \\\"min\\\": 0.3856,\\n          \\\"max\\\": 0.7336,\\n          \\\"range\\\": 0.348\\n        }\\n      },\\n      \\\"ablate_all24\\\": {\\n        \\\"L1\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.2211,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.3403,\\n            \\\"push the plate to the front of the stove\\\": 0.1968,\\n            \\\"put the bowl on the plate\\\": 0.474,\\n            \\\"put the bowl on the stove\\\": 0.395,\\n            \\\"put the bowl on top of the cabinet\\\": 0.4567,\\n            \\\"put the cream cheese in the bowl\\\": 0.3454,\\n            \\\"put the wine bottle on the rack\\\": 0.424,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.3529,\\n            \\\"turn on the stove\\\": 0.4213\\n          },\\n          \\\"mean\\\": 0.3628,\\n          \\\"std\\\": 0.0883,\\n          \\\"min\\\": 0.1968,\\n          \\\"max\\\": 0.474,\\n          \\\"range\\\": 0.2772\\n        },\\n        \\\"L8\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.3808,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.388,\\n            \\\"push the plate to the front of the stove\\\": 0.3505,\\n            \\\"put the bowl on the plate\\\": 0.4295,\\n            \\\"put the bowl on the s\\n\\n... [截断: 输出过长，省略 12479 字符] ...\\n\\nmin\\\": 0.3051,\\n        \\\"max\\\": 0.7094,\\n        \\\"range\\\": 0.4044,\\n        \\\"cv\\\": 0.2004\\n      },\\n      \\\"L9\\\": {\\n        \\\"mean\\\": 0.5596,\\n        \\\"std\\\": 0.1094,\\n        \\\"min\\\": 0.3064,\\n        \\\"max\\\": 0.7031,\\n        \\\"range\\\": 0.3967,\\n        \\\"cv\\\": 0.1955\\n      },\\n      \\\"L10\\\": {\\n        \\\"mean\\\": 0.5546,\\n        \\\"std\\\": 0.1112,\\n        \\\"min\\\": 0.2983,\\n        \\\"max\\\": 0.6995,\\n        \\\"range\\\": 0.4013,\\n        \\\"cv\\\": 0.2004\\n      },\\n      \\\"L11\\\": {\\n        \\\"mean\\\": 0.5437,\\n        \\\"std\\\": 0.1053,\\n        \\\"min\\\": 0.3174,\\n        \\\"max\\\": 0.6863,\\n        \\\"range\\\": 0.3688,\\n        \\\"cv\\\": 0.1937\\n      },\\n      \\\"L12\\\": {\\n        \\\"mean\\\": 0.5607,\\n        \\\"std\\\": 0.0986,\\n        \\\"min\\\": 0.3305,\\n        \\\"max\\\": 0.683,\\n        \\\"range\\\": 0.3526,\\n        \\\"cv\\\": 0.1759\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean\\\": 0.562,\\n        \\\"std\\\": 0.098,\\n        \\\"min\\\": 0.3328,\\n        \\\"max\\\": 0.6874,\\n        \\\"range\\\": 0.3546,\\n        \\\"cv\\\": 0.1743\\n      },\\n      \\\"L14\\\": {\\n        \\\"mean\\\": 0.5655,\\n        \\\"std\\\": 0.1047,\\n        \\\"min\\\": 0.3222,\\n        \\\"max\\\": 0.7068,\\n        \\\"range\\\": 0.3846,\\n        \\\"cv\\\": 0.1852\\n      },\\n      \\\"L15\\\": {\\n        \\\"mean\\\": 0.5608,\\n        \\\"std\\\": 0.103,\\n        \\\"min\\\": 0.3226,\\n        \\\"max\\\": 0.6962,\\n        \\\"range\\\": 0.3736,\\n        \\\"cv\\\": 0.1837\\n      },\\n      \\\"L16\\\": {\\n        \\\"mean\\\": 0.5487,\\n        \\\"std\\\": 0.1117,\\n        \\\"min\\\": 0.2769,\\n        \\\"max\\\": 0.6931,\\n        \\\"range\\\": 0.4163,\\n        \\\"cv\\\": 0.2036\\n      },\\n      \\\"L17\\\": {\\n        \\\"mean\\\": 0.5456,\\n        \\\"std\\\": 0.1069,\\n        \\\"min\\\": 0.3173,\\n        \\\"max\\\": 0.6898,\\n        \\\"range\\\": 0.3724,\\n        \\\"cv\\\": 0.1959\\n      },\\n      \\\"L18\\\": {\\n        \\\"mean\\\": 0.5437,\\n        \\\"std\\\": 0.1107,\\n        \\\"min\\\": 0.3023,\\n        \\\"max\\\": 0.6938,\\n        \\\"range\\\": 0.3915,\\n        \\\"cv\\\": 0.2036\\n      },\\n      \\\"L19\\\": {\\n        \\\"mean\\\": 0.5432,\\n        \\\"std\\\": 0.1066,\\n        \\\"min\\\": 0.3112,\\n        \\\"max\\\": 0.6944,\\n        \\\"range\\\": 0.3832,\\n        \\\"cv\\\": 0.1962\\n      },\\n      \\\"L20\\\": {\\n        \\\"mean\\\": 0.5558,\\n        \\\"std\\\": 0.1007,\\n        \\\"min\\\": 0.3353,\\n        \\\"max\\\": 0.6915,\\n        \\\"range\\\": 0.3563,\\n        \\\"cv\\\": 0.1812\\n      },\\n      \\\"L21\\\": {\\n        \\\"mean\\\": 0.5491,\\n        \\\"std\\\": 0.1083,\\n        \\\"min\\\": 0.3019,\\n        \\\"max\\\": 0.6887,\\n        \\\"range\\\": 0.3868,\\n        \\\"cv\\\": 0.1972\\n      },\\n      \\\"L22\\\": {\\n        \\\"mean\\\": 0.5466,\\n        \\\"std\\\": 0.1048,\\n        \\\"min\\\": 0.3103,\\n        \\\"max\\\": 0.6808,\\n        \\\"range\\\": 0.3704,\\n        \\\"cv\\\": 0.1918\\n      },\\n      \\\"L23\\\": {\\n        \\\"mean\\\": 0.5436,\\n        \\\"std\\\": 0.1088,\\n        \\\"min\\\": 0.3013,\\n        \\\"max\\\": 0.6896,\\n        \\\"range\\\": 0.3882,\\n        \\\"cv\\\": 0.2001\\n      },\\n      \\\"L24\\\": {\\n        \\\"mean\\\": 0.5362,\\n        \\\"std\\\": 0.1112,\\n        \\\"min\\\": 0.2948,\\n        \\\"max\\\": 0.6816,\\n        \\\"range\\\": 0.3868,\\n        \\\"cv\\\": 0.2074\\n      },\\n      \\\"L25\\\": {\\n        \\\"mean\\\": 0.5308,\\n        \\\"std\\\": 0.1114,\\n        \\\"min\\\": 0.304,\\n        \\\"max\\\": 0.6785,\\n        \\\"range\\\": 0.3746,\\n        \\\"cv\\\": 0.2098\\n      },\\n      \\\"L26\\\": {\\n        \\\"mean\\\": 0.5138,\\n        \\\"std\\\": 0.1233,\\n        \\\"min\\\": 0.2452,\\n        \\\"max\\\": 0.6601,\\n        \\\"range\\\": 0.4149,\\n        \\\"cv\\\": 0.24\\n      },\\n      \\\"L27\\\": {\\n        \\\"mean\\\": 0.5144,\\n        \\\"std\\\": 0.1198,\\n        \\\"min\\\": 0.2544,\\n        \\\"max\\\": 0.6607,\\n        \\\"range\\\": 0.4063,\\n        \\\"cv\\\": 0.2328\\n      },\\n      \\\"L28\\\": {\\n        \\\"mean\\\": 0.5057,\\n        \\\"std\\\": 0.1219,\\n        \\\"min\\\": 0.231,\\n        \\\"max\\\": 0.6573,\\n        \\\"range\\\": 0.4263,\\n        \\\"cv\\\": 0.241\\n      },\\n      \\\"L29\\\": {\\n        \\\"mean\\\": 0.5224,\\n        \\\"std\\\": 0.1466,\\n        \\\"min\\\": 0.1606,\\n        \\\"max\\\": 0.6754,\\n        \\\"range\\\": 0.5148,\\n        \\\"cv\\\": 0.2807\\n      },\\n      \\\"L30\\\": {\\n        \\\"mean\\\": 0.4785,\\n        \\\"std\\\": 0.1541,\\n        \\\"min\\\": 0.149,\\n        \\\"max\\\": 0.644,\\n        \\\"range\\\": 0.495,\\n        \\\"cv\\\": 0.3221\\n      },\\n      \\\"L31\\\": {\\n        \\\"mean\\\": 0.4702,\\n        \\\"std\\\": 0.1306,\\n        \\\"min\\\": 0.1724,\\n        \\\"max\\\": 0.6327,\\n        \\\"range\\\": 0.4603,\\n        \\\"cv\\\": 0.2778\\n      },\\n      \\\"L32\\\": {\\n        \\\"mean\\\": 0.4811,\\n        \\\"std\\\": 0.1432,\\n        \\\"min\\\": 0.1328,\\n        \\\"max\\\": 0.6418,\\n        \\\"range\\\": 0.509,\\n        \\\"cv\\\": 0.2977\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "fa433aa4-c4f8-4f22-aa02-83b0c0316124",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"per_task_r2_distribution\\\\\\\",\\\\n  \\\\\\\"tasks\\\\\\\": [\\\\n    \\\\\\\"open the middle drawer of the cabinet\\\\\\\",\\\\n    \\\\\\\"open the top drawer and put the bowl inside\\\\\\\",\\\\n    \\\\\\\"push the plate to the front of the stove\\\\\\\",\\\\n    \\\\\\\"put the bowl on the plate\\\\\\\",\\\\n    \\\\\\\"put the bowl on the stove\\\\\\\",\\\\n    \\\\\\\"put the bowl on top of the cabinet\\\\\\\",\\\\n    \\\\\\\"put the cream cheese in the bowl\\\\\\\",\\\\n    \\\\\\\"put the wine bottle on the rack\\\\\\\",\\\\n    \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\",\\\\n    \\\\\\\"turn on the stove\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_tasks\\\\\\\": 10,\\\\n  \\\\\\\"mlp_probe_5demo\\\\\\\": {\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"MLP(4096,256,7) probe, 5 demos/task, per-task R2 distribution\\\\\\\",\\\\n    \\\\\\\"conditions\\\\\\\": {\\\\n      \\\\\\\"baseline\\\\\\\": {\\\\n        \\\\\\\"L1\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.1971,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.2649,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.1901,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.3754,\\\\n            \\\\\\\"put the bowl on the stove\\\\\\\": 0.2352,\\\\n            \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.2561,\\\\n            \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.186,\\\\n            \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.1894,\\\\n            \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.2789,\\\\n            \\\\\\\"turn on the stove\\\\\\\": 0.3854\\\\n          },\\\\n          \\\\\\\"mean\\\\\\\": 0.2559,\\\\n          \\\\\\\"std\\\\\\\": 0.0701,\\\\n          \\\\\\\"min\\\\\\\": 0.186,\\\\n          \\\\\\\"max\\\\\\\": 0.3854,\\\\n          \\\\\\\"range\\\\\\\": 0.1994\\\\n        },\\\\n        \\\\\\\"L8\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.4532,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.3757,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.3358,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.4371,\\\\n            \\\\\\\"put the bowl on the stove\\\\\\\": 0.396,\\\\n            \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.4519,\\\\n            \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.3797,\\\\n            \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.3917,\\\\n            \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.4624,\\\\n            \\\\\\\"turn on the stove\\\\\\\": 0.7171\\\\n          },\\\\n          \\\\\\\"mean\\\\\\\": 0.4401,\\\\n          \\\\\\\"std\\\\\\\": 0.1003,\\\\n          \\\\\\\"min\\\\\\\": 0.3358,\\\\n          \\\\\\\"max\\\\\\\": 0.7171,\\\\n          \\\\\\\"range\\\\\\\": 0.3813\\\\n        },\\\\n        \\\\\\\"L13\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.5686,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.5466,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.4092,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.3887,\\\\n            \\\\\\\"put the bowl on the stove\\\\\\\": 0.5352,\\\\n            \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6587,\\\\n            \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.5835,\\\\n            \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.4304,\\\\n            \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.3856,\\\\n            \\\\\\\"turn on the stove\\\\\\\": 0.7336\\\\n          },\\\\n          \\\\\\\"mean\\\\\\\": 0.524,\\\\n          \\\\\\\"std\\\\\\\": 0.113,\\\\n          \\\\\\\"min\\\\\\\": 0.3856,\\\\n          \\\\\\\"max\\\\\\\": 0.7336,\\\\n          \\\\\\\"range\\\\\\\": 0.348\\\\n        }\\\\n      },\\\\n      \\\\\\\"ablate_all24\\\\\\\": {\\\\n        \\\\\\\"L1\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.2211,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.3403,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.1968,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.474,\\\\n            \\\\\\\"put the bowl on the stove\\\\\\\": 0.395,\\\\n            \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.4567,\\\\n            \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.3454,\\\\n            \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.424,\\\\n            \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.3529,\\\\n            \\\\\\\"turn on the stove\\\\\\\": 0.4213\\\\n          },\\\\n          \\\\\\\"mean\\\\\\\": 0.3628,\\\\n          \\\\\\\"std\\\\\\\": 0.0883,\\\\n          \\\\\\\"min\\\\\\\": 0.1968,\\\\n          \\\\\\\"max\\\\\\\": 0.474,\\\\n          \\\\\\\"range\\\\\\\": 0.2772\\\\n        },\\\\n        \\\\\\\"L8\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.3808,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.388,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.3505,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.4295,\\\\n            \\\\\\\"put the bowl on the s\\\\n\\\\n... [截断: 输出过长，省略 12479 字符] ...\\\\n\\\\nmin\\\\\\\": 0.3051,\\\\n        \\\\\\\"max\\\\\\\": 0.7094,\\\\n        \\\\\\\"range\\\\\\\": 0.4044,\\\\n        \\\\\\\"cv\\\\\\\": 0.2004\\\\n      },\\\\n      \\\\\\\"L9\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5596,\\\\n        \\\\\\\"std\\\\\\\": 0.1094,\\\\n        \\\\\\\"min\\\\\\\": 0.3064,\\\\n        \\\\\\\"max\\\\\\\": 0.7031,\\\\n        \\\\\\\"range\\\\\\\": 0.3967,\\\\n        \\\\\\\"cv\\\\\\\": 0.1955\\\\n      },\\\\n      \\\\\\\"L10\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5546,\\\\n        \\\\\\\"std\\\\\\\": 0.1112,\\\\n        \\\\\\\"min\\\\\\\": 0.2983,\\\\n        \\\\\\\"max\\\\\\\": 0.6995,\\\\n        \\\\\\\"range\\\\\\\": 0.4013,\\\\n        \\\\\\\"cv\\\\\\\": 0.2004\\\\n      },\\\\n      \\\\\\\"L11\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5437,\\\\n        \\\\\\\"std\\\\\\\": 0.1053,\\\\n        \\\\\\\"min\\\\\\\": 0.3174,\\\\n        \\\\\\\"max\\\\\\\": 0.6863,\\\\n        \\\\\\\"range\\\\\\\": 0.3688,\\\\n        \\\\\\\"cv\\\\\\\": 0.1937\\\\n      },\\\\n      \\\\\\\"L12\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5607,\\\\n        \\\\\\\"std\\\\\\\": 0.0986,\\\\n        \\\\\\\"min\\\\\\\": 0.3305,\\\\n        \\\\\\\"max\\\\\\\": 0.683,\\\\n        \\\\\\\"range\\\\\\\": 0.3526,\\\\n        \\\\\\\"cv\\\\\\\": 0.1759\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.562,\\\\n        \\\\\\\"std\\\\\\\": 0.098,\\\\n        \\\\\\\"min\\\\\\\": 0.3328,\\\\n        \\\\\\\"max\\\\\\\": 0.6874,\\\\n        \\\\\\\"range\\\\\\\": 0.3546,\\\\n        \\\\\\\"cv\\\\\\\": 0.1743\\\\n      },\\\\n      \\\\\\\"L14\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5655,\\\\n        \\\\\\\"std\\\\\\\": 0.1047,\\\\n        \\\\\\\"min\\\\\\\": 0.3222,\\\\n        \\\\\\\"max\\\\\\\": 0.7068,\\\\n        \\\\\\\"range\\\\\\\": 0.3846,\\\\n        \\\\\\\"cv\\\\\\\": 0.1852\\\\n      },\\\\n      \\\\\\\"L15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5608,\\\\n        \\\\\\\"std\\\\\\\": 0.103,\\\\n        \\\\\\\"min\\\\\\\": 0.3226,\\\\n        \\\\\\\"max\\\\\\\": 0.6962,\\\\n        \\\\\\\"range\\\\\\\": 0.3736,\\\\n        \\\\\\\"cv\\\\\\\": 0.1837\\\\n      },\\\\n      \\\\\\\"L16\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5487,\\\\n        \\\\\\\"std\\\\\\\": 0.1117,\\\\n        \\\\\\\"min\\\\\\\": 0.2769,\\\\n        \\\\\\\"max\\\\\\\": 0.6931,\\\\n        \\\\\\\"range\\\\\\\": 0.4163,\\\\n        \\\\\\\"cv\\\\\\\": 0.2036\\\\n      },\\\\n      \\\\\\\"L17\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5456,\\\\n        \\\\\\\"std\\\\\\\": 0.1069,\\\\n        \\\\\\\"min\\\\\\\": 0.3173,\\\\n        \\\\\\\"max\\\\\\\": 0.6898,\\\\n        \\\\\\\"range\\\\\\\": 0.3724,\\\\n        \\\\\\\"cv\\\\\\\": 0.1959\\\\n      },\\\\n      \\\\\\\"L18\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5437,\\\\n        \\\\\\\"std\\\\\\\": 0.1107,\\\\n        \\\\\\\"min\\\\\\\": 0.3023,\\\\n        \\\\\\\"max\\\\\\\": 0.6938,\\\\n        \\\\\\\"range\\\\\\\": 0.3915,\\\\n        \\\\\\\"cv\\\\\\\": 0.2036\\\\n      },\\\\n      \\\\\\\"L19\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5432,\\\\n        \\\\\\\"std\\\\\\\": 0.1066,\\\\n        \\\\\\\"min\\\\\\\": 0.3112,\\\\n        \\\\\\\"max\\\\\\\": 0.6944,\\\\n        \\\\\\\"range\\\\\\\": 0.3832,\\\\n        \\\\\\\"cv\\\\\\\": 0.1962\\\\n      },\\\\n      \\\\\\\"L20\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5558,\\\\n        \\\\\\\"std\\\\\\\": 0.1007,\\\\n        \\\\\\\"min\\\\\\\": 0.3353,\\\\n        \\\\\\\"max\\\\\\\": 0.6915,\\\\n        \\\\\\\"range\\\\\\\": 0.3563,\\\\n        \\\\\\\"cv\\\\\\\": 0.1812\\\\n      },\\\\n      \\\\\\\"L21\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5491,\\\\n        \\\\\\\"std\\\\\\\": 0.1083,\\\\n        \\\\\\\"min\\\\\\\": 0.3019,\\\\n        \\\\\\\"max\\\\\\\": 0.6887,\\\\n        \\\\\\\"range\\\\\\\": 0.3868,\\\\n        \\\\\\\"cv\\\\\\\": 0.1972\\\\n      },\\\\n      \\\\\\\"L22\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5466,\\\\n        \\\\\\\"std\\\\\\\": 0.1048,\\\\n        \\\\\\\"min\\\\\\\": 0.3103,\\\\n        \\\\\\\"max\\\\\\\": 0.6808,\\\\n        \\\\\\\"range\\\\\\\": 0.3704,\\\\n        \\\\\\\"cv\\\\\\\": 0.1918\\\\n      },\\\\n      \\\\\\\"L23\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5436,\\\\n        \\\\\\\"std\\\\\\\": 0.1088,\\\\n        \\\\\\\"min\\\\\\\": 0.3013,\\\\n        \\\\\\\"max\\\\\\\": 0.6896,\\\\n        \\\\\\\"range\\\\\\\": 0.3882,\\\\n        \\\\\\\"cv\\\\\\\": 0.2001\\\\n      },\\\\n      \\\\\\\"L24\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5362,\\\\n        \\\\\\\"std\\\\\\\": 0.1112,\\\\n        \\\\\\\"min\\\\\\\": 0.2948,\\\\n        \\\\\\\"max\\\\\\\": 0.6816,\\\\n        \\\\\\\"range\\\\\\\": 0.3868,\\\\n        \\\\\\\"cv\\\\\\\": 0.2074\\\\n      },\\\\n      \\\\\\\"L25\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5308,\\\\n        \\\\\\\"std\\\\\\\": 0.1114,\\\\n        \\\\\\\"min\\\\\\\": 0.304,\\\\n        \\\\\\\"max\\\\\\\": 0.6785,\\\\n        \\\\\\\"range\\\\\\\": 0.3746,\\\\n        \\\\\\\"cv\\\\\\\": 0.2098\\\\n      },\\\\n      \\\\\\\"L26\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5138,\\\\n        \\\\\\\"std\\\\\\\": 0.1233,\\\\n        \\\\\\\"min\\\\\\\": 0.2452,\\\\n        \\\\\\\"max\\\\\\\": 0.6601,\\\\n        \\\\\\\"range\\\\\\\": 0.4149,\\\\n        \\\\\\\"cv\\\\\\\": 0.24\\\\n      },\\\\n      \\\\\\\"L27\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5144,\\\\n        \\\\\\\"std\\\\\\\": 0.1198,\\\\n        \\\\\\\"min\\\\\\\": 0.2544,\\\\n        \\\\\\\"max\\\\\\\": 0.6607,\\\\n        \\\\\\\"range\\\\\\\": 0.4063,\\\\n        \\\\\\\"cv\\\\\\\": 0.2328\\\\n      },\\\\n      \\\\\\\"L28\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5057,\\\\n        \\\\\\\"std\\\\\\\": 0.1219,\\\\n        \\\\\\\"min\\\\\\\": 0.231,\\\\n        \\\\\\\"max\\\\\\\": 0.6573,\\\\n        \\\\\\\"range\\\\\\\": 0.4263,\\\\n        \\\\\\\"cv\\\\\\\": 0.241\\\\n      },\\\\n      \\\\\\\"L29\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5224,\\\\n        \\\\\\\"std\\\\\\\": 0.1466,\\\\n        \\\\\\\"min\\\\\\\": 0.1606,\\\\n        \\\\\\\"max\\\\\\\": 0.6754,\\\\n        \\\\\\\"range\\\\\\\": 0.5148,\\\\n        \\\\\\\"cv\\\\\\\": 0.2807\\\\n      },\\\\n      \\\\\\\"L30\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4785,\\\\n        \\\\\\\"std\\\\\\\": 0.1541,\\\\n        \\\\\\\"min\\\\\\\": 0.149,\\\\n        \\\\\\\"max\\\\\\\": 0.644,\\\\n        \\\\\\\"range\\\\\\\": 0.495,\\\\n        \\\\\\\"cv\\\\\\\": 0.3221\\\\n      },\\\\n      \\\\\\\"L31\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4702,\\\\n        \\\\\\\"std\\\\\\\": 0.1306,\\\\n        \\\\\\\"min\\\\\\\": 0.1724,\\\\n        \\\\\\\"max\\\\\\\": 0.6327,\\\\n        \\\\\\\"range\\\\\\\": 0.4603,\\\\n        \\\\\\\"cv\\\\\\\": 0.2778\\\\n      },\\\\n      \\\\\\\"L32\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4811,\\\\n        \\\\\\\"std\\\\\\\": 0.1432,\\\\n        \\\\\\\"min\\\\\\\": 0.1328,\\\\n        \\\\\\\"max\\\\\\\": 0.6418,\\\\n        \\\\\\\"range\\\\\\\": 0.509,\\\\n        \\\\\\\"cv\\\\\\\": 0.2977\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"per_task_r2_distribution\\\",\\n  \\\"tasks\\\": [\\n    \\\"open the middle drawer of the cabinet\\\",\\n    \\\"open the top drawer and put the bowl inside\\\",\\n    \\\"push the plate to the front of the stove\\\",\\n    \\\"put the bowl on the plate\\\",\\n    \\\"put the bowl on the stove\\\",\\n    \\\"put the bowl on top of the cabinet\\\",\\n    \\\"put the cream cheese in the bowl\\\",\\n    \\\"put the wine bottle on the rack\\\",\\n    \\\"put the wine bottle on top of the cabinet\\\",\\n    \\\"turn on the stove\\\"\\n  ],\\n  \\\"n_tasks\\\": 10,\\n  \\\"mlp_probe_5demo\\\": {\\n    \\\"description\\\": \\\"MLP(4096,256,7) probe, 5 demos/task, per-task R2 distribution\\\",\\n    \\\"conditions\\\": {\\n      \\\"baseline\\\": {\\n        \\\"L1\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.1971,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.2649,\\n            \\\"push the plate to the front of the stove\\\": 0.1901,\\n            \\\"put the bowl on the plate\\\": 0.3754,\\n            \\\"put the bowl on the stove\\\": 0.2352,\\n            \\\"put the bowl on top of the cabinet\\\": 0.2561,\\n            \\\"put the cream cheese in the bowl\\\": 0.186,\\n            \\\"put the wine bottle on the rack\\\": 0.1894,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.2789,\\n            \\\"turn on the stove\\\": 0.3854\\n          },\\n          \\\"mean\\\": 0.2559,\\n          \\\"std\\\": 0.0701,\\n          \\\"min\\\": 0.186,\\n          \\\"max\\\": 0.3854,\\n          \\\"range\\\": 0.1994\\n        },\\n        \\\"L8\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.4532,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.3757,\\n            \\\"push the plate to the front of the stove\\\": 0.3358,\\n            \\\"put the bowl on the plate\\\": 0.4371,\\n            \\\"put the bowl on the stove\\\": 0.396,\\n            \\\"put the bowl on top of the cabinet\\\": 0.4519,\\n            \\\"put the cream cheese in the bowl\\\": 0.3797,\\n            \\\"put the wine bottle on the rack\\\": 0.3917,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.4624,\\n            \\\"turn on the stove\\\": 0.7171\\n          },\\n          \\\"mean\\\": 0.4401,\\n          \\\"std\\\": 0.1003,\\n          \\\"min\\\": 0.3358,\\n          \\\"max\\\": 0.7171,\\n          \\\"range\\\": 0.3813\\n        },\\n        \\\"L13\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.5686,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.5466,\\n            \\\"push the plate to the front of the stove\\\": 0.4092,\\n            \\\"put the bowl on the plate\\\": 0.3887,\\n            \\\"put the bowl on the stove\\\": 0.5352,\\n            \\\"put the bowl on top of the cabinet\\\": 0.6587,\\n            \\\"put the cream cheese in the bowl\\\": 0.5835,\\n            \\\"put the wine bottle on the rack\\\": 0.4304,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.3856,\\n            \\\"turn on the stove\\\": 0.7336\\n          },\\n          \\\"mean\\\": 0.524,\\n          \\\"std\\\": 0.113,\\n          \\\"min\\\": 0.3856,\\n          \\\"max\\\": 0.7336,\\n          \\\"range\\\": 0.348\\n        }\\n      },\\n      \\\"ablate_all24\\\": {\\n        \\\"L1\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.2211,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.3403,\\n            \\\"push the plate to the front of the stove\\\": 0.1968,\\n            \\\"put the bowl on the plate\\\": 0.474,\\n            \\\"put the bowl on the stove\\\": 0.395,\\n            \\\"put the bowl on top of the cabinet\\\": 0.4567,\\n            \\\"put the cream cheese in the bowl\\\": 0.3454,\\n            \\\"put the wine bottle on the rack\\\": 0.424,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.3529,\\n            \\\"turn on the stove\\\": 0.4213\\n          },\\n          \\\"mean\\\": 0.3628,\\n          \\\"std\\\": 0.0883,\\n          \\\"min\\\": 0.1968,\\n          \\\"max\\\": 0.474,\\n          \\\"range\\\": 0.2772\\n        },\\n        \\\"L8\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.3808,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.388,\\n            \\\"push the plate to the front of the stove\\\": 0.3505,\\n            \\\"put the bowl on the plate\\\": 0.4295,\\n            \\\"put the bowl on the s\\n\\n... [截断: 输出过长，省略 12479 字符] ...\\n\\nmin\\\": 0.3051,\\n        \\\"max\\\": 0.7094,\\n        \\\"range\\\": 0.4044,\\n        \\\"cv\\\": 0.2004\\n      },\\n      \\\"L9\\\": {\\n        \\\"mean\\\": 0.5596,\\n        \\\"std\\\": 0.1094,\\n        \\\"min\\\": 0.3064,\\n        \\\"max\\\": 0.7031,\\n        \\\"range\\\": 0.3967,\\n        \\\"cv\\\": 0.1955\\n      },\\n      \\\"L10\\\": {\\n        \\\"mean\\\": 0.5546,\\n        \\\"std\\\": 0.1112,\\n        \\\"min\\\": 0.2983,\\n        \\\"max\\\": 0.6995,\\n        \\\"range\\\": 0.4013,\\n        \\\"cv\\\": 0.2004\\n      },\\n      \\\"L11\\\": {\\n        \\\"mean\\\": 0.5437,\\n        \\\"std\\\": 0.1053,\\n        \\\"min\\\": 0.3174,\\n        \\\"max\\\": 0.6863,\\n        \\\"range\\\": 0.3688,\\n        \\\"cv\\\": 0.1937\\n      },\\n      \\\"L12\\\": {\\n        \\\"mean\\\": 0.5607,\\n        \\\"std\\\": 0.0986,\\n        \\\"min\\\": 0.3305,\\n        \\\"max\\\": 0.683,\\n        \\\"range\\\": 0.3526,\\n        \\\"cv\\\": 0.1759\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean\\\": 0.562,\\n        \\\"std\\\": 0.098,\\n        \\\"min\\\": 0.3328,\\n        \\\"max\\\": 0.6874,\\n        \\\"range\\\": 0.3546,\\n        \\\"cv\\\": 0.1743\\n      },\\n      \\\"L14\\\": {\\n        \\\"mean\\\": 0.5655,\\n        \\\"std\\\": 0.1047,\\n        \\\"min\\\": 0.3222,\\n        \\\"max\\\": 0.7068,\\n        \\\"range\\\": 0.3846,\\n        \\\"cv\\\": 0.1852\\n      },\\n      \\\"L15\\\": {\\n        \\\"mean\\\": 0.5608,\\n        \\\"std\\\": 0.103,\\n        \\\"min\\\": 0.3226,\\n        \\\"max\\\": 0.6962,\\n        \\\"range\\\": 0.3736,\\n        \\\"cv\\\": 0.1837\\n      },\\n      \\\"L16\\\": {\\n        \\\"mean\\\": 0.5487,\\n        \\\"std\\\": 0.1117,\\n        \\\"min\\\": 0.2769,\\n        \\\"max\\\": 0.6931,\\n        \\\"range\\\": 0.4163,\\n        \\\"cv\\\": 0.2036\\n      },\\n      \\\"L17\\\": {\\n        \\\"mean\\\": 0.5456,\\n        \\\"std\\\": 0.1069,\\n        \\\"min\\\": 0.3173,\\n        \\\"max\\\": 0.6898,\\n        \\\"range\\\": 0.3724,\\n        \\\"cv\\\": 0.1959\\n      },\\n      \\\"L18\\\": {\\n        \\\"mean\\\": 0.5437,\\n        \\\"std\\\": 0.1107,\\n        \\\"min\\\": 0.3023,\\n        \\\"max\\\": 0.6938,\\n        \\\"range\\\": 0.3915,\\n        \\\"cv\\\": 0.2036\\n      },\\n      \\\"L19\\\": {\\n        \\\"mean\\\": 0.5432,\\n        \\\"std\\\": 0.1066,\\n        \\\"min\\\": 0.3112,\\n        \\\"max\\\": 0.6944,\\n        \\\"range\\\": 0.3832,\\n        \\\"cv\\\": 0.1962\\n      },\\n      \\\"L20\\\": {\\n        \\\"mean\\\": 0.5558,\\n        \\\"std\\\": 0.1007,\\n        \\\"min\\\": 0.3353,\\n        \\\"max\\\": 0.6915,\\n        \\\"range\\\": 0.3563,\\n        \\\"cv\\\": 0.1812\\n      },\\n      \\\"L21\\\": {\\n        \\\"mean\\\": 0.5491,\\n        \\\"std\\\": 0.1083,\\n        \\\"min\\\": 0.3019,\\n        \\\"max\\\": 0.6887,\\n        \\\"range\\\": 0.3868,\\n        \\\"cv\\\": 0.1972\\n      },\\n      \\\"L22\\\": {\\n        \\\"mean\\\": 0.5466,\\n        \\\"std\\\": 0.1048,\\n        \\\"min\\\": 0.3103,\\n        \\\"max\\\": 0.6808,\\n        \\\"range\\\": 0.3704,\\n        \\\"cv\\\": 0.1918\\n      },\\n      \\\"L23\\\": {\\n        \\\"mean\\\": 0.5436,\\n        \\\"std\\\": 0.1088,\\n        \\\"min\\\": 0.3013,\\n        \\\"max\\\": 0.6896,\\n        \\\"range\\\": 0.3882,\\n        \\\"cv\\\": 0.2001\\n      },\\n      \\\"L24\\\": {\\n        \\\"mean\\\": 0.5362,\\n        \\\"std\\\": 0.1112,\\n        \\\"min\\\": 0.2948,\\n        \\\"max\\\": 0.6816,\\n        \\\"range\\\": 0.3868,\\n        \\\"cv\\\": 0.2074\\n      },\\n      \\\"L25\\\": {\\n        \\\"mean\\\": 0.5308,\\n        \\\"std\\\": 0.1114,\\n        \\\"min\\\": 0.304,\\n        \\\"max\\\": 0.6785,\\n        \\\"range\\\": 0.3746,\\n        \\\"cv\\\": 0.2098\\n      },\\n      \\\"L26\\\": {\\n        \\\"mean\\\": 0.5138,\\n        \\\"std\\\": 0.1233,\\n        \\\"min\\\": 0.2452,\\n        \\\"max\\\": 0.6601,\\n        \\\"range\\\": 0.4149,\\n        \\\"cv\\\": 0.24\\n      },\\n      \\\"L27\\\": {\\n        \\\"mean\\\": 0.5144,\\n        \\\"std\\\": 0.1198,\\n        \\\"min\\\": 0.2544,\\n        \\\"max\\\": 0.6607,\\n        \\\"range\\\": 0.4063,\\n        \\\"cv\\\": 0.2328\\n      },\\n      \\\"L28\\\": {\\n        \\\"mean\\\": 0.5057,\\n        \\\"std\\\": 0.1219,\\n        \\\"min\\\": 0.231,\\n        \\\"max\\\": 0.6573,\\n        \\\"range\\\": 0.4263,\\n        \\\"cv\\\": 0.241\\n      },\\n      \\\"L29\\\": {\\n        \\\"mean\\\": 0.5224,\\n        \\\"std\\\": 0.1466,\\n        \\\"min\\\": 0.1606,\\n        \\\"max\\\": 0.6754,\\n        \\\"range\\\": 0.5148,\\n        \\\"cv\\\": 0.2807\\n      },\\n      \\\"L30\\\": {\\n        \\\"mean\\\": 0.4785,\\n        \\\"std\\\": 0.1541,\\n        \\\"min\\\": 0.149,\\n        \\\"max\\\": 0.644,\\n        \\\"range\\\": 0.495,\\n        \\\"cv\\\": 0.3221\\n      },\\n      \\\"L31\\\": {\\n        \\\"mean\\\": 0.4702,\\n        \\\"std\\\": 0.1306,\\n        \\\"min\\\": 0.1724,\\n        \\\"max\\\": 0.6327,\\n        \\\"range\\\": 0.4603,\\n        \\\"cv\\\": 0.2778\\n      },\\n      \\\"L32\\\": {\\n        \\\"mean\\\": 0.4811,\\n        \\\"std\\\": 0.1432,\\n        \\\"min\\\": 0.1328,\\n        \\\"max\\\": 0.6418,\\n        \\\"range\\\": 0.509,\\n        \\\"cv\\\": 0.2977\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WTQJT2t4pmEP2WcJyALkUY`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "739dee4e-96d0-4c25-81be-31976d5daa6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fbo3CWiBs2e3s9EztJgS2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2949,
+      "cache_read_input_tokens": 24756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2949
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T14:04:54.443Z_
+
+<details><summary>↩ Tool result · `toolu_01WTQJT2t4pmEP2WcJyALkUY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"tasks\\\": [\\n    {\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.562126,\\n      \\\"top24_ablated_mse\\\": 0.54741,\\n      \\\"bottom24_ablated_mse\\\": 0.560036,\\n      \\\"delta_mse_top24\\\": -0.014716,\\n      \\\"delta_mse_bottom24\\\": -0.00209,\\n      \\\"delta_pct_top24\\\": -2.62,\\n      \\\"delta_pct_bottom24\\\": -0.37,\\n      \\\"wilcoxon_p_top24\\\": 0.351,\\n      \\\"wilcoxon_p_bottom24\\\": 0.7697\\n    },\\n    {\\n      \\\"task_name\\\": \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.548375,\\n      \\\"top24_ablated_mse\\\": 0.55811,\\n      \\\"bottom24_ablated_mse\\\": 0.557744,\\n      \\\"delta_mse_top24\\\": 0.009735,\\n      \\\"delta_mse_bottom24\\\": 0.009369,\\n      \\\"delta_pct_top24\\\": 1.78,\\n      \\\"delta_pct_bottom24\\\": 1.71,\\n      \\\"wilcoxon_p_top24\\\": 0.2735,\\n      \\\"wilcoxon_p_bottom24\\\": 0.887\\n    },\\n    {\\n      \\\"task_name\\\": \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.38335,\\n      \\\"top24_ablated_mse\\\": 0.385142,\\n      \\\"bottom24_ablated_mse\\\": 0.400603,\\n      \\\"delta_mse_top24\\\": 0.001792,\\n      \\\"delta_mse_bottom24\\\": 0.017253,\\n      \\\"delta_pct_top24\\\": 0.47,\\n      \\\"delta_pct_bottom24\\\": 4.5,\\n      \\\"wilcoxon_p_top24\\\": 0.4474,\\n      \\\"wilcoxon_p_bottom24\\\": 0.029\\n    }\\n  ],\\n  \\\"cancellation_analysis\\\": {\\n    \\\"top24\\\": {\\n      \\\"has_sign_mixing\\\": true,\\n      \\\"task_delta_signs\\\": [\\n        \\\"-\\\",\\n        \\\"+\\\",\\n        \\\"~0\\\"\\n      ],\\n      \\\"overall_delta\\\": -0.001063,\\n      \\\"any_task_significant\\\": false,\\n      \\\"pattern\\\": \\\"Weak sign mixing: drawer -0.015, bowl +0.010, plate +0.002. All per-task p > 0.27. Magnitudes 0.3-2.6% of baseline. Not meaningful cancellation.\\\"\\n    },\\n    \\\"bottom24\\\": {\\n      \\\"has_sign_mixing\\\": false,\\n      \\\"task_delta_signs\\\": [\\n        \\\"~0\\\",\\n        \\\"+\\\",\\n        \\\"+\\\"\\n      ],\\n      \\\"overall_delta\\\": 0.008177,\\n      \\\"any_task_significant\\\": true,\\n      \\\"pattern\\\": \\\"Mostly one-directional: drawer ~0 (-0.002), bowl +0.009 (p=0.89), plate +0.017 (p=0.029, only significant). No cancellation.\\\"\\n    },\\n    \\\"conclusion\\\": \\\"No meaningful task-level cancellation. Top-24 has weak sign mixing but all deltas non-significant. Bottom-24 is consistently non-negative. Near-zero overall delta reflects genuinely small per-task effects, not opposing large effects.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "aa579295-e925-4a00-8f8b-51c2346db67c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"tasks\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 500,\\\\n      \\\\\\\"original_mse\\\\\\\": 0.562126,\\\\n      \\\\\\\"top24_ablated_mse\\\\\\\": 0.54741,\\\\n      \\\\\\\"bottom24_ablated_mse\\\\\\\": 0.560036,\\\\n      \\\\\\\"delta_mse_top24\\\\\\\": -0.014716,\\\\n      \\\\\\\"delta_mse_bottom24\\\\\\\": -0.00209,\\\\n      \\\\\\\"delta_pct_top24\\\\\\\": -2.62,\\\\n      \\\\\\\"delta_pct_bottom24\\\\\\\": -0.37,\\\\n      \\\\\\\"wilcoxon_p_top24\\\\\\\": 0.351,\\\\n      \\\\\\\"wilcoxon_p_bottom24\\\\\\\": 0.7697\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 500,\\\\n      \\\\\\\"original_mse\\\\\\\": 0.548375,\\\\n      \\\\\\\"top24_ablated_mse\\\\\\\": 0.55811,\\\\n      \\\\\\\"bottom24_ablated_mse\\\\\\\": 0.557744,\\\\n      \\\\\\\"delta_mse_top24\\\\\\\": 0.009735,\\\\n      \\\\\\\"delta_mse_bottom24\\\\\\\": 0.009369,\\\\n      \\\\\\\"delta_pct_top24\\\\\\\": 1.78,\\\\n      \\\\\\\"delta_pct_bottom24\\\\\\\": 1.71,\\\\n      \\\\\\\"wilcoxon_p_top24\\\\\\\": 0.2735,\\\\n      \\\\\\\"wilcoxon_p_bottom24\\\\\\\": 0.887\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 500,\\\\n      \\\\\\\"original_mse\\\\\\\": 0.38335,\\\\n      \\\\\\\"top24_ablated_mse\\\\\\\": 0.385142,\\\\n      \\\\\\\"bottom24_ablated_mse\\\\\\\": 0.400603,\\\\n      \\\\\\\"delta_mse_top24\\\\\\\": 0.001792,\\\\n      \\\\\\\"delta_mse_bottom24\\\\\\\": 0.017253,\\\\n      \\\\\\\"delta_pct_top24\\\\\\\": 0.47,\\\\n      \\\\\\\"delta_pct_bottom24\\\\\\\": 4.5,\\\\n      \\\\\\\"wilcoxon_p_top24\\\\\\\": 0.4474,\\\\n      \\\\\\\"wilcoxon_p_bottom24\\\\\\\": 0.029\\\\n    }\\\\n  ],\\\\n  \\\\\\\"cancellation_analysis\\\\\\\": {\\\\n    \\\\\\\"top24\\\\\\\": {\\\\n      \\\\\\\"has_sign_mixing\\\\\\\": true,\\\\n      \\\\\\\"task_delta_signs\\\\\\\": [\\\\n        \\\\\\\"-\\\\\\\",\\\\n        \\\\\\\"+\\\\\\\",\\\\n        \\\\\\\"~0\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"overall_delta\\\\\\\": -0.001063,\\\\n      \\\\\\\"any_task_significant\\\\\\\": false,\\\\n      \\\\\\\"pattern\\\\\\\": \\\\\\\"Weak sign mixing: drawer -0.015, bowl +0.010, plate +0.002. All per-task p > 0.27. Magnitudes 0.3-2.6% of baseline. Not meaningful cancellation.\\\\\\\"\\\\n    },\\\\n    \\\\\\\"bottom24\\\\\\\": {\\\\n      \\\\\\\"has_sign_mixing\\\\\\\": false,\\\\n      \\\\\\\"task_delta_signs\\\\\\\": [\\\\n        \\\\\\\"~0\\\\\\\",\\\\n        \\\\\\\"+\\\\\\\",\\\\n        \\\\\\\"+\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"overall_delta\\\\\\\": 0.008177,\\\\n      \\\\\\\"any_task_significant\\\\\\\": true,\\\\n      \\\\\\\"pattern\\\\\\\": \\\\\\\"Mostly one-directional: drawer ~0 (-0.002), bowl +0.009 (p=0.89), plate +0.017 (p=0.029, only significant). No cancellation.\\\\\\\"\\\\n    },\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"No meaningful task-level cancellation. Top-24 has weak sign mixing but all deltas non-significant. Bottom-24 is consistently non-negative. Near-zero overall delta reflects genuinely small per-task effects, not opposing large effects.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"tasks\\\": [\\n    {\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.562126,\\n      \\\"top24_ablated_mse\\\": 0.54741,\\n      \\\"bottom24_ablated_mse\\\": 0.560036,\\n      \\\"delta_mse_top24\\\": -0.014716,\\n      \\\"delta_mse_bottom24\\\": -0.00209,\\n      \\\"delta_pct_top24\\\": -2.62,\\n      \\\"delta_pct_bottom24\\\": -0.37,\\n      \\\"wilcoxon_p_top24\\\": 0.351,\\n      \\\"wilcoxon_p_bottom24\\\": 0.7697\\n    },\\n    {\\n      \\\"task_name\\\": \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.548375,\\n      \\\"top24_ablated_mse\\\": 0.55811,\\n      \\\"bottom24_ablated_mse\\\": 0.557744,\\n      \\\"delta_mse_top24\\\": 0.009735,\\n      \\\"delta_mse_bottom24\\\": 0.009369,\\n      \\\"delta_pct_top24\\\": 1.78,\\n      \\\"delta_pct_bottom24\\\": 1.71,\\n      \\\"wilcoxon_p_top24\\\": 0.2735,\\n      \\\"wilcoxon_p_bottom24\\\": 0.887\\n    },\\n    {\\n      \\\"task_name\\\": \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.38335,\\n      \\\"top24_ablated_mse\\\": 0.385142,\\n      \\\"bottom24_ablated_mse\\\": 0.400603,\\n      \\\"delta_mse_top24\\\": 0.001792,\\n      \\\"delta_mse_bottom24\\\": 0.017253,\\n      \\\"delta_pct_top24\\\": 0.47,\\n      \\\"delta_pct_bottom24\\\": 4.5,\\n      \\\"wilcoxon_p_top24\\\": 0.4474,\\n      \\\"wilcoxon_p_bottom24\\\": 0.029\\n    }\\n  ],\\n  \\\"cancellation_analysis\\\": {\\n    \\\"top24\\\": {\\n      \\\"has_sign_mixing\\\": true,\\n      \\\"task_delta_signs\\\": [\\n        \\\"-\\\",\\n        \\\"+\\\",\\n        \\\"~0\\\"\\n      ],\\n      \\\"overall_delta\\\": -0.001063,\\n      \\\"any_task_significant\\\": false,\\n      \\\"pattern\\\": \\\"Weak sign mixing: drawer -0.015, bowl +0.010, plate +0.002. All per-task p > 0.27. Magnitudes 0.3-2.6% of baseline. Not meaningful cancellation.\\\"\\n    },\\n    \\\"bottom24\\\": {\\n      \\\"has_sign_mixing\\\": false,\\n      \\\"task_delta_signs\\\": [\\n        \\\"~0\\\",\\n        \\\"+\\\",\\n        \\\"+\\\"\\n      ],\\n      \\\"overall_delta\\\": 0.008177,\\n      \\\"any_task_significant\\\": true,\\n      \\\"pattern\\\": \\\"Mostly one-directional: drawer ~0 (-0.002), bowl +0.009 (p=0.89), plate +0.017 (p=0.029, only significant). No cancellation.\\\"\\n    },\\n    \\\"conclusion\\\": \\\"No meaningful task-level cancellation. Top-24 has weak sign mixing but all deltas non-significant. Bottom-24 is consistently non-negative. Near-zero overall delta reflects genuinely small per-task effects, not opposing large effects.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016wKw6v8SLWJxBhjrs9QWsn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "979ff1b4-22a9-40f1-9431-069c58cdb0b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fbo3CWiBs2e3s9EztJgS2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2949,
+      "cache_read_input_tokens": 24756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2949
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hcxgy94cJ3hLRSYhmdJUzH`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "ff858c2b-1271-446c-a387-bcffc85c094a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fbo3CWiBs2e3s9EztJgS2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2949,
+      "cache_read_input_tokens": 24756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2949
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T14:04:55.305Z_
+
+<details><summary>↩ Tool result · `toolu_016wKw6v8SLWJxBhjrs9QWsn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\"\\n  },\\n  \\\"projector\\\": {\\n    \\\"mean_R2\\\": 0.6298085182905198,\\n    \\\"overall_R2\\\": 0.6991766095161438,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6506892442703247,\\n      \\\"dy\\\": 0.7160145938396454,\\n      \\\"dz\\\": 0.6620165109634399,\\n      \\\"drx\\\": 0.549751490354538,\\n      \\\"dry\\\": 0.3786472678184509,\\n      \\\"drz\\\": 0.7263338565826416,\\n      \\\"gripper\\\": 0.7167081236839294\\n    },\\n    \\\"gripper_acc\\\": 0.9221054283024788,\\n    \\\"epochs_trained\\\": 22,\\n    \\\"val_loss\\\": 0.3606724441051483\\n  },\\n  \\\"dino_cls\\\": {\\n    \\\"mean_R2\\\": 0.6342984035611152,\\n    \\\"overall_R2\\\": 0.7012259066104889,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6640855669975281,\\n      \\\"dy\\\": 0.6851263046264648,\\n      \\\"dz\\\": 0.6625147461891174,\\n      \\\"drx\\\": 0.5797748863697052,\\n      \\\"dry\\\": 0.3829028606414795,\\n      \\\"drz\\\": 0.7384836375713348,\\n      \\\"gripper\\\": 0.7214260399341583\\n    },\\n    \\\"gripper_acc\\\": 0.9258707248195795,\\n    \\\"epochs_trained\\\": 17,\\n    \\\"val_loss\\\": 0.35598811507225037\\n  },\\n  \\\"clip_cls\\\": {\\n    \\\"mean_R2\\\": 0.5865547895431519,\\n    \\\"overall_R2\\\": 0.6602204144001007,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.41159433126449585,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6684410572052002,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5893205404281616,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5487157106399536,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6501100063323975,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6248729825019836,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6032691895961761,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.48588043451309204,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5819304883480072,\\n      \\\"turn_on_the_stove\\\": 0.7014131546020508\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6521816849708557,\\n      \\\"dy\\\": 0.6515396535396576,\\n      \\\"dz\\\": 0.5995787978172302,\\n      \\\"drx\\\": 0.4989588260650635,\\n      \\\"dry\\\": 0.36573320627212524,\\n      \\\"drz\\\": 0.6895537972450256,\\n      \\\"gripper\\\": 0.6803024709224701\\n    },\\n    \\\"gripper_acc\\\": 0.9072011295889552,\\n    \\\"epochs_trained\\\": 21,\\n    \\\"val_loss\\\": 0.3972415030002594\\n  },\\n  \\\"vla_image_mean_L19\\\": {\\n    \\\"mean_R2\\\": 0.598588165640831,\\n    \\\"overall_R2\\\": 0.6770166754722595,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4003335237503052,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7283858358860016,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5829597115516663,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5454415380954742,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6689810454845428,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6383338272571564,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5501567423343658,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5397705733776093,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5990277230739594,\\n      \\\"turn_on_the_stove\\\": 0.732491135597229\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6306567490100861,\\n      \\\"dy\\\": 0.6769898533821106,\\n      \\\"dz\\\": 0.629553884267807,\\n      \\\"drx\\\": 0.5495882034301758,\\n      \\\"dry\\\": 0.38391029834747314,\\n      \\\"drz\\\": 0.7279437780380249,\\n      \\\"gripper\\\": 0.6985472440719604\\n    },\\n    \\\"gripper_acc\\\": 0.9181832444304989,\\n    \\\"epochs_trained\\\": 26,\\n    \\\"val_loss\\\": 0.37492164969444275\\n  },\\n  \\\"vla_last_preaction_L19\\\": {\\n    \\\"mean_R2\\\": 0.6711319893598556,\\n    \\\"overall_R2\\\": 0.7233986854553223,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.6014720797538757,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7516207098960876,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.7096197605133057,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6417562663555145,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7298527657985687,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6630740761756897,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6076358258724213,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.577876627445221,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.627865731716156,\\n      \\\"turn_on_the_stove\\\": 0.8005460500717163\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.7355284988880157,\\n      \\\"dy\\\": 0.7502064555883408,\\n      \\\"dz\\\": 0.6814955770969391,\\n      \\\"drx\\\": 0.5960763096809387,\\n      \\\"dry\\\": 0.42453593015670776,\\n      \\\"drz\\\": 0.7456617653369904,\\n      \\\"gripper\\\": 0.7306763231754303\\n    },\\n    \\\"gripper_acc\\\": 0.9184185754628177,\\n    \\\"epochs_trained\\\": 9,\\n    \\\"val_loss\\\": 0.32443761825561523\\n  },\\n  \\\"bootstrap_pairwise\\\": {\\n    \\\"projector_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.004489885270595462,\\n      \\\"ci_95\\\": [\\n        -0.019630291834473675,\\n        0.010527572035789579\\n      ],\\n      \\\"p_value\\\": 0.557\\n    },\\n    \\\"projector_vs_clip_cls\\\": {\\n      \\\"delta\\\": 0.04325372874736788,\\n      \\\"ci_95\\\": [\\n        0.027332877293229127,\\n        0.059175393506884576\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"clip_cls_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.04774361401796334,\\n      \\\"ci_95\\\": [\\n        -0.06381510496139531,\\n        -0.029304770007729627\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_image_mean_L19\\\": {\\n      \\\"delta\\\": 0.03122035264968881,\\n      \\\"ci_95\\\": [\\n        0.013293082863092423,\\n        0.05182204544544222\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_last_preaction_L19\\\": {\\n      \\\"delta\\\": -0.04132347106933587,\\n      \\\"ci_95\\\": [\\n        -0.0696891056001187,\\n        -0.01466156482696543\\n      ],\\n      \\\"p_value\\\": 0.0016\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "f419202b-2d23-4a89-91a0-092a468c2857",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"lr\\\\\\\": 0.001,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"hidden\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\"\\\\n  },\\\\n  \\\\\\\"projector\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6298085182905198,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6991766095161438,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.49730074405670166,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7499217689037323,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5860892236232758,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5864041447639465,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6738172769546509,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6633979082107544,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6218974888324738,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5312090218067169,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6380730867385864,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7499745190143585\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6506892442703247,\\\\n      \\\\\\\"dy\\\\\\\": 0.7160145938396454,\\\\n      \\\\\\\"dz\\\\\\\": 0.6620165109634399,\\\\n      \\\\\\\"drx\\\\\\\": 0.549751490354538,\\\\n      \\\\\\\"dry\\\\\\\": 0.3786472678184509,\\\\n      \\\\\\\"drz\\\\\\\": 0.7263338565826416,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7167081236839294\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9221054283024788,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 22,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.3606724441051483\\\\n  },\\\\n  \\\\\\\"dino_cls\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6342984035611152,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.7012259066104889,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4813086986541748,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.713790625333786,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5821199119091034,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6170255541801453,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7149612605571747,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6578902006149292,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6068297922611237,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5611678063869476,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6304799914360046,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7774101942777634\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6640855669975281,\\\\n      \\\\\\\"dy\\\\\\\": 0.6851263046264648,\\\\n      \\\\\\\"dz\\\\\\\": 0.6625147461891174,\\\\n      \\\\\\\"drx\\\\\\\": 0.5797748863697052,\\\\n      \\\\\\\"dry\\\\\\\": 0.3829028606414795,\\\\n      \\\\\\\"drz\\\\\\\": 0.7384836375713348,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7214260399341583\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9258707248195795,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 17,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.35598811507225037\\\\n  },\\\\n  \\\\\\\"clip_cls\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.5865547895431519,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6602204144001007,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.41159433126449585,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.6684410572052002,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5893205404281616,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5487157106399536,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6501100063323975,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6248729825019836,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6032691895961761,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.48588043451309204,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5819304883480072,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7014131546020508\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6521816849708557,\\\\n      \\\\\\\"dy\\\\\\\": 0.6515396535396576,\\\\n      \\\\\\\"dz\\\\\\\": 0.5995787978172302,\\\\n      \\\\\\\"drx\\\\\\\": 0.4989588260650635,\\\\n      \\\\\\\"dry\\\\\\\": 0.36573320627212524,\\\\n      \\\\\\\"drz\\\\\\\": 0.6895537972450256,\\\\n      \\\\\\\"gripper\\\\\\\": 0.6803024709224701\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9072011295889552,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 21,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.3972415030002594\\\\n  },\\\\n  \\\\\\\"vla_image_mean_L19\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.598588165640831,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6770166754722595,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4003335237503052,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7283858358860016,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5829597115516663,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5454415380954742,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6689810454845428,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6383338272571564,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.5501567423343658,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5397705733776093,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5990277230739594,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.732491135597229\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6306567490100861,\\\\n      \\\\\\\"dy\\\\\\\": 0.6769898533821106,\\\\n      \\\\\\\"dz\\\\\\\": 0.629553884267807,\\\\n      \\\\\\\"drx\\\\\\\": 0.5495882034301758,\\\\n      \\\\\\\"dry\\\\\\\": 0.38391029834747314,\\\\n      \\\\\\\"drz\\\\\\\": 0.7279437780380249,\\\\n      \\\\\\\"gripper\\\\\\\": 0.6985472440719604\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9181832444304989,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 26,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.37492164969444275\\\\n  },\\\\n  \\\\\\\"vla_last_preaction_L19\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6711319893598556,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.7233986854553223,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.6014720797538757,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7516207098960876,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.7096197605133057,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6417562663555145,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7298527657985687,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6630740761756897,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6076358258724213,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.577876627445221,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.627865731716156,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.8005460500717163\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.7355284988880157,\\\\n      \\\\\\\"dy\\\\\\\": 0.7502064555883408,\\\\n      \\\\\\\"dz\\\\\\\": 0.6814955770969391,\\\\n      \\\\\\\"drx\\\\\\\": 0.5960763096809387,\\\\n      \\\\\\\"dry\\\\\\\": 0.42453593015670776,\\\\n      \\\\\\\"drz\\\\\\\": 0.7456617653369904,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7306763231754303\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9184185754628177,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 9,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.32443761825561523\\\\n  },\\\\n  \\\\\\\"bootstrap_pairwise\\\\\\\": {\\\\n    \\\\\\\"projector_vs_dino_cls\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.004489885270595462,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.019630291834473675,\\\\n        0.010527572035789579\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.557\\\\n    },\\\\n    \\\\\\\"projector_vs_clip_cls\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.04325372874736788,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.027332877293229127,\\\\n        0.059175393506884576\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"clip_cls_vs_dino_cls\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.04774361401796334,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.06381510496139531,\\\\n        -0.029304770007729627\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"projector_vs_vla_image_mean_L19\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.03122035264968881,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.013293082863092423,\\\\n        0.05182204544544222\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"projector_vs_vla_last_preaction_L19\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.04132347106933587,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.0696891056001187,\\\\n        -0.01466156482696543\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0016\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\"\\n  },\\n  \\\"projector\\\": {\\n    \\\"mean_R2\\\": 0.6298085182905198,\\n    \\\"overall_R2\\\": 0.6991766095161438,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6506892442703247,\\n      \\\"dy\\\": 0.7160145938396454,\\n      \\\"dz\\\": 0.6620165109634399,\\n      \\\"drx\\\": 0.549751490354538,\\n      \\\"dry\\\": 0.3786472678184509,\\n      \\\"drz\\\": 0.7263338565826416,\\n      \\\"gripper\\\": 0.7167081236839294\\n    },\\n    \\\"gripper_acc\\\": 0.9221054283024788,\\n    \\\"epochs_trained\\\": 22,\\n    \\\"val_loss\\\": 0.3606724441051483\\n  },\\n  \\\"dino_cls\\\": {\\n    \\\"mean_R2\\\": 0.6342984035611152,\\n    \\\"overall_R2\\\": 0.7012259066104889,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6640855669975281,\\n      \\\"dy\\\": 0.6851263046264648,\\n      \\\"dz\\\": 0.6625147461891174,\\n      \\\"drx\\\": 0.5797748863697052,\\n      \\\"dry\\\": 0.3829028606414795,\\n      \\\"drz\\\": 0.7384836375713348,\\n      \\\"gripper\\\": 0.7214260399341583\\n    },\\n    \\\"gripper_acc\\\": 0.9258707248195795,\\n    \\\"epochs_trained\\\": 17,\\n    \\\"val_loss\\\": 0.35598811507225037\\n  },\\n  \\\"clip_cls\\\": {\\n    \\\"mean_R2\\\": 0.5865547895431519,\\n    \\\"overall_R2\\\": 0.6602204144001007,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.41159433126449585,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6684410572052002,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5893205404281616,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5487157106399536,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6501100063323975,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6248729825019836,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6032691895961761,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.48588043451309204,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5819304883480072,\\n      \\\"turn_on_the_stove\\\": 0.7014131546020508\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6521816849708557,\\n      \\\"dy\\\": 0.6515396535396576,\\n      \\\"dz\\\": 0.5995787978172302,\\n      \\\"drx\\\": 0.4989588260650635,\\n      \\\"dry\\\": 0.36573320627212524,\\n      \\\"drz\\\": 0.6895537972450256,\\n      \\\"gripper\\\": 0.6803024709224701\\n    },\\n    \\\"gripper_acc\\\": 0.9072011295889552,\\n    \\\"epochs_trained\\\": 21,\\n    \\\"val_loss\\\": 0.3972415030002594\\n  },\\n  \\\"vla_image_mean_L19\\\": {\\n    \\\"mean_R2\\\": 0.598588165640831,\\n    \\\"overall_R2\\\": 0.6770166754722595,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4003335237503052,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7283858358860016,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5829597115516663,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5454415380954742,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6689810454845428,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6383338272571564,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5501567423343658,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5397705733776093,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5990277230739594,\\n      \\\"turn_on_the_stove\\\": 0.732491135597229\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6306567490100861,\\n      \\\"dy\\\": 0.6769898533821106,\\n      \\\"dz\\\": 0.629553884267807,\\n      \\\"drx\\\": 0.5495882034301758,\\n      \\\"dry\\\": 0.38391029834747314,\\n      \\\"drz\\\": 0.7279437780380249,\\n      \\\"gripper\\\": 0.6985472440719604\\n    },\\n    \\\"gripper_acc\\\": 0.9181832444304989,\\n    \\\"epochs_trained\\\": 26,\\n    \\\"val_loss\\\": 0.37492164969444275\\n  },\\n  \\\"vla_last_preaction_L19\\\": {\\n    \\\"mean_R2\\\": 0.6711319893598556,\\n    \\\"overall_R2\\\": 0.7233986854553223,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.6014720797538757,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7516207098960876,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.7096197605133057,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6417562663555145,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7298527657985687,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6630740761756897,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6076358258724213,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.577876627445221,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.627865731716156,\\n      \\\"turn_on_the_stove\\\": 0.8005460500717163\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.7355284988880157,\\n      \\\"dy\\\": 0.7502064555883408,\\n      \\\"dz\\\": 0.6814955770969391,\\n      \\\"drx\\\": 0.5960763096809387,\\n      \\\"dry\\\": 0.42453593015670776,\\n      \\\"drz\\\": 0.7456617653369904,\\n      \\\"gripper\\\": 0.7306763231754303\\n    },\\n    \\\"gripper_acc\\\": 0.9184185754628177,\\n    \\\"epochs_trained\\\": 9,\\n    \\\"val_loss\\\": 0.32443761825561523\\n  },\\n  \\\"bootstrap_pairwise\\\": {\\n    \\\"projector_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.004489885270595462,\\n      \\\"ci_95\\\": [\\n        -0.019630291834473675,\\n        0.010527572035789579\\n      ],\\n      \\\"p_value\\\": 0.557\\n    },\\n    \\\"projector_vs_clip_cls\\\": {\\n      \\\"delta\\\": 0.04325372874736788,\\n      \\\"ci_95\\\": [\\n        0.027332877293229127,\\n        0.059175393506884576\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"clip_cls_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.04774361401796334,\\n      \\\"ci_95\\\": [\\n        -0.06381510496139531,\\n        -0.029304770007729627\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_image_mean_L19\\\": {\\n      \\\"delta\\\": 0.03122035264968881,\\n      \\\"ci_95\\\": [\\n        0.013293082863092423,\\n        0.05182204544544222\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_last_preaction_L19\\\": {\\n      \\\"delta\\\": -0.04132347106933587,\\n      \\\"ci_95\\\": [\\n        -0.0696891056001187,\\n        -0.01466156482696543\\n      ],\\n      \\\"p_value\\\": 0.0016\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NsfMV4HiQMRyGkCc7oALTv`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "aeb31d49-7e00-4939-a0f9-21e499ea1795",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fbo3CWiBs2e3s9EztJgS2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2949,
+      "cache_read_input_tokens": 24756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2949
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T14:04:55.971Z_
+
+<details><summary>↩ Tool result · `toolu_01Hcxgy94cJ3hLRSYhmdJUzH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conditions\\\": [\\n    \\\"untrained\\\",\\n    \\\"llama2base\\\",\\n    \\\"trained\\\"\\n  ],\\n  \\\"seeds\\\": [\\n    0,\\n    1,\\n    2,\\n    3,\\n    4,\\n    5,\\n    6,\\n    7,\\n    8,\\n    9,\\n    10,\\n    11,\\n    12,\\n    13,\\n    14\\n  ],\\n  \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n  \\\"r2_space\\\": \\\"original_denormalized\\\",\\n  \\\"results\\\": {\\n    \\\"untrained\\\": {\\n      \\\"L0\\\": {\\n        \\\"seeds\\\": [\\n          0.6456495076417923,\\n          0.5978063106536865,\\n          0.6397484868764878,\\n          0.6459006950259208,\\n          0.6133959382772446,\\n          0.5944373175501824,\\n          0.6330083817243576,\\n          0.6421630278229713,\\n          0.6296697810292244,\\n          0.6322719916701317,\\n          0.6258023172616959,\\n          0.6374978065490723,\\n          0.6194581598043442,\\n          0.6417109251022339,\\n          0.6421523675322532\\n        ],\\n        \\\"mean\\\": 0.6293782009681067,\\n        \\\"std\\\": 0.01590777587362603\\n      },\\n      \\\"L1\\\": {\\n        \\\"seeds\\\": [\\n          0.5314562350511551,\\n          0.5447357684373856,\\n          0.5727765947580338,\\n          0.5497325986623764,\\n          0.539964035153389,\\n          0.5787958920001983,\\n          0.5384945720434189,\\n          0.4973878085613251,\\n          0.5480267345905304,\\n          0.5075169891119004,\\n          0.5631389141082763,\\n          0.5331172108650207,\\n          0.5046919494867325,\\n          0.5306813806295395,\\n          0.545267254114151\\n        ],\\n        \\\"mean\\\": 0.5390522625048957,\\n        \\\"std\\\": 0.022565109247695496\\n      },\\n      \\\"L2\\\": {\\n        \\\"seeds\\\": [\\n          0.5581348389387131,\\n          0.5468221604824066,\\n          0.51600162088871,\\n          0.48725364208221433,\\n          0.5277142822742462,\\n          0.5210624992847442,\\n          0.5132066696882248,\\n          0.5256205797195435,\\n          0.5604791969060898,\\n          0.49086240530014036,\\n          0.559195926785469,\\n          0.5352099150419235,\\n          0.527821934223175,\\n          0.5184603035449982,\\n          0.3617728531360626\\n        ],\\n        \\\"mean\\\": 0.5166412552197773,\\n        \\\"std\\\": 0.04660885277974929\\n      },\\n      \\\"L3\\\": {\\n        \\\"seeds\\\": [\\n          0.5524985909461975,\\n          0.5350410789251328,\\n          0.5510434657335281,\\n          0.5106675833463669,\\n          0.5453551322221756,\\n          0.5266274154186249,\\n          0.5147567808628082,\\n          0.48361391127109526,\\n          0.5562590420246124,\\n          0.5276565015316009,\\n          0.5447760850191117,\\n          -0.3280607104301453,\\n          0.4684071034193039,\\n          0.3266317516565323,\\n          0.41055955588817594\\n        ],\\n        \\\"mean\\\": 0.44838888585567466,\\n        \\\"std\\\": 0.21612860873795176\\n      },\\n      \\\"L4\\\": {\\n        \\\"seeds\\\": [\\n          0.541847288608551,\\n          0.43895032107830045,\\n          0.5054023921489715,\\n          0.523080027103424,\\n          0.5377601563930512,\\n          0.535122674703598,\\n          0.5293149888515473,\\n          0.5108582466840744,\\n          0.5386962562799453,\\n          0.3286745995283127,\\n          0.5280363857746124,\\n          0.4327568233013153,\\n          0.5027350962162018,\\n          0.4577772468328476,\\n          0.5268222987651825\\n        ],\\n        \\\"mean\\\": 0.4958556534846624,\\n        \\\"std\\\": 0.05661940432833058\\n      },\\n      \\\"L5\\\": {\\n        \\\"seeds\\\": [\\n          0.5700991094112396,\\n          0.5402346640825272,\\n          0.5414407849311829,\\n          0.47659210562705995,\\n          0.506783977150917,\\n          0.40192038714885714,\\n          0.49827160835266116,\\n          0.5419180601835251,\\n          0.5319308638572693,\\n          0.5491852343082428,\\n          0.5214511275291442,\\n          0.4448683887720108,\\n          0.4901213437318802,\\n          0.3465738773345947,\\n          0.16726531386375426\\n        ],\\n        \\\"mean\\\": 0.47524378975232445,\\n        \\\"std\\\": 0.10076991062980963\\n      },\\n      \\\"L6\\\": {\\n        \\\"seeds\\\": [\\n          0.4772081136703491,\\n          0.5202122002840042,\\n          0.5138075649738312,\\n          0.3038535207509995,\\n          0.5227883070707321,\\n          0.16356320977210997,\\n          0.18893256187438964\\n\\n... [截断: 输出过长，省略 49304 字符] ...\\n\\neds\\\": [\\n          0.5646873265504837,\\n          0.5371685743331909,\\n          0.5543272197246552,\\n          0.5785093367099762,\\n          0.5707139939069747,\\n          0.5284408748149871,\\n          0.5562624335289001,\\n          0.5317879736423492,\\n          0.5504992872476577,\\n          0.5365265250205994,\\n          0.5538615256547927,\\n          0.5377772957086563,\\n          0.5130615293979645,\\n          0.5447807639837265,\\n          0.3737155169248581\\n        ],\\n        \\\"mean\\\": 0.5354746784766514,\\n        \\\"std\\\": 0.046278761709299746\\n      },\\n      \\\"L27\\\": {\\n        \\\"seeds\\\": [\\n          0.5657036781311036,\\n          0.5677288502454758,\\n          0.5387623757123947,\\n          0.4803360730409622,\\n          0.57254878282547,\\n          0.5032026320695877,\\n          0.5420282065868378,\\n          0.5412502765655518,\\n          0.5742572039365769,\\n          0.5538505405187607,\\n          0.5592121809720993,\\n          0.5589964479207993,\\n          0.5527420461177825,\\n          0.5850563824176789,\\n          0.5797855347394943\\n        ],\\n        \\\"mean\\\": 0.5516974141200385,\\n        \\\"std\\\": 0.027359679021464765\\n      },\\n      \\\"L28\\\": {\\n        \\\"seeds\\\": [\\n          0.5183763563632965,\\n          0.5211188912391662,\\n          0.5533019125461578,\\n          0.5433087408542633,\\n          0.5807910799980164,\\n          0.5487001419067383,\\n          0.5333338737487793,\\n          0.5631546884775162,\\n          0.5641294807195664,\\n          0.5424844056367875,\\n          0.4422056406736374,\\n          0.5295805126428604,\\n          0.5838705778121949,\\n          0.5778589397668839,\\n          0.5578750520944595\\n        ],\\n        \\\"mean\\\": 0.5440060196320216,\\n        \\\"std\\\": 0.03369428877394615\\n      },\\n      \\\"L29\\\": {\\n        \\\"seeds\\\": [\\n          0.521354803442955,\\n          0.5207366734743119,\\n          0.5434339612722396,\\n          0.5396472930908203,\\n          0.5701878845691681,\\n          0.5427794516086578,\\n          0.4238207548856735,\\n          0.5434453070163727,\\n          0.5706760138273239,\\n          0.5107580810785294,\\n          0.5234658479690552,\\n          0.5517539381980896,\\n          0.5172154039144516,\\n          0.5545511245727539,\\n          0.5193780541419983\\n        ],\\n        \\\"mean\\\": 0.5302136395374933,\\n        \\\"std\\\": 0.033750399780437416\\n      },\\n      \\\"L30\\\": {\\n        \\\"seeds\\\": [\\n          0.5316682308912277,\\n          0.4700192093849182,\\n          0.5185229450464248,\\n          0.48717271983623506,\\n          0.5229840964078903,\\n          0.5156824439764023,\\n          0.4297660768032074,\\n          0.5303710371255874,\\n          0.5178130954504013,\\n          0.5153989195823669,\\n          0.5327338129281998,\\n          0.513350197672844,\\n          0.5013067930936813,\\n          0.5537206590175628,\\n          0.5256209552288056\\n        ],\\n        \\\"mean\\\": 0.5110754128297169,\\n        \\\"std\\\": 0.028921753017828702\\n      },\\n      \\\"L31\\\": {\\n        \\\"seeds\\\": [\\n          0.4004045486450195,\\n          0.5207190990447998,\\n          0.4998741090297699,\\n          0.5369580775499344,\\n          0.4119430810213089,\\n          0.5214867800474167,\\n          0.37813751995563505,\\n          0.5048615545034408,\\n          0.5481108814477921,\\n          0.4176926285028458,\\n          0.5252994775772095,\\n          0.5169334977865219,\\n          0.49431127607822417,\\n          0.500511160492897,\\n          0.5362138211727142\\n        ],\\n        \\\"mean\\\": 0.48756383419036864,\\n        \\\"std\\\": 0.05406441184964477\\n      },\\n      \\\"L32\\\": {\\n        \\\"seeds\\\": [\\n          0.5464633464813232,\\n          0.5462169080972672,\\n          0.5433270782232285,\\n          0.53032246530056,\\n          0.5327671647071839,\\n          0.5775899827480316,\\n          0.5322568476200104,\\n          0.5231444776058197,\\n          0.531786385178566,\\n          0.5340774476528167,\\n          0.5222015351057052,\\n          0.5195572197437286,\\n          0.5390807598829269,\\n          0.513902148604393,\\n          0.5321987748146058\\n        ],\\n        \\\"mean\\\": 0.5349928361177445,\\n        \\\"std\\\": 0.0146024975004439\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "ce8cd0d9-1a88-49aa-8ee3-e47093ea0728",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"conditions\\\\\\\": [\\\\n    \\\\\\\"untrained\\\\\\\",\\\\n    \\\\\\\"llama2base\\\\\\\",\\\\n    \\\\\\\"trained\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    0,\\\\n    1,\\\\n    2,\\\\n    3,\\\\n    4,\\\\n    5,\\\\n    6,\\\\n    7,\\\\n    8,\\\\n    9,\\\\n    10,\\\\n    11,\\\\n    12,\\\\n    13,\\\\n    14\\\\n  ],\\\\n  \\\\\\\"split\\\\\\\": \\\\\\\"sequential_80_20_no_shuffle\\\\\\\",\\\\n  \\\\\\\"r2_space\\\\\\\": \\\\\\\"original_denormalized\\\\\\\",\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"untrained\\\\\\\": {\\\\n      \\\\\\\"L0\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.6456495076417923,\\\\n          0.5978063106536865,\\\\n          0.6397484868764878,\\\\n          0.6459006950259208,\\\\n          0.6133959382772446,\\\\n          0.5944373175501824,\\\\n          0.6330083817243576,\\\\n          0.6421630278229713,\\\\n          0.6296697810292244,\\\\n          0.6322719916701317,\\\\n          0.6258023172616959,\\\\n          0.6374978065490723,\\\\n          0.6194581598043442,\\\\n          0.6417109251022339,\\\\n          0.6421523675322532\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.6293782009681067,\\\\n        \\\\\\\"std\\\\\\\": 0.01590777587362603\\\\n      },\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5314562350511551,\\\\n          0.5447357684373856,\\\\n          0.5727765947580338,\\\\n          0.5497325986623764,\\\\n          0.539964035153389,\\\\n          0.5787958920001983,\\\\n          0.5384945720434189,\\\\n          0.4973878085613251,\\\\n          0.5480267345905304,\\\\n          0.5075169891119004,\\\\n          0.5631389141082763,\\\\n          0.5331172108650207,\\\\n          0.5046919494867325,\\\\n          0.5306813806295395,\\\\n          0.545267254114151\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5390522625048957,\\\\n        \\\\\\\"std\\\\\\\": 0.022565109247695496\\\\n      },\\\\n      \\\\\\\"L2\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5581348389387131,\\\\n          0.5468221604824066,\\\\n          0.51600162088871,\\\\n          0.48725364208221433,\\\\n          0.5277142822742462,\\\\n          0.5210624992847442,\\\\n          0.5132066696882248,\\\\n          0.5256205797195435,\\\\n          0.5604791969060898,\\\\n          0.49086240530014036,\\\\n          0.559195926785469,\\\\n          0.5352099150419235,\\\\n          0.527821934223175,\\\\n          0.5184603035449982,\\\\n          0.3617728531360626\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5166412552197773,\\\\n        \\\\\\\"std\\\\\\\": 0.04660885277974929\\\\n      },\\\\n      \\\\\\\"L3\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5524985909461975,\\\\n          0.5350410789251328,\\\\n          0.5510434657335281,\\\\n          0.5106675833463669,\\\\n          0.5453551322221756,\\\\n          0.5266274154186249,\\\\n          0.5147567808628082,\\\\n          0.48361391127109526,\\\\n          0.5562590420246124,\\\\n          0.5276565015316009,\\\\n          0.5447760850191117,\\\\n          -0.3280607104301453,\\\\n          0.4684071034193039,\\\\n          0.3266317516565323,\\\\n          0.41055955588817594\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.44838888585567466,\\\\n        \\\\\\\"std\\\\\\\": 0.21612860873795176\\\\n      },\\\\n      \\\\\\\"L4\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.541847288608551,\\\\n          0.43895032107830045,\\\\n          0.5054023921489715,\\\\n          0.523080027103424,\\\\n          0.5377601563930512,\\\\n          0.535122674703598,\\\\n          0.5293149888515473,\\\\n          0.5108582466840744,\\\\n          0.5386962562799453,\\\\n          0.3286745995283127,\\\\n          0.5280363857746124,\\\\n          0.4327568233013153,\\\\n          0.5027350962162018,\\\\n          0.4577772468328476,\\\\n          0.5268222987651825\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.4958556534846624,\\\\n        \\\\\\\"std\\\\\\\": 0.05661940432833058\\\\n      },\\\\n      \\\\\\\"L5\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5700991094112396,\\\\n          0.5402346640825272,\\\\n          0.5414407849311829,\\\\n          0.47659210562705995,\\\\n          0.506783977150917,\\\\n          0.40192038714885714,\\\\n          0.49827160835266116,\\\\n          0.5419180601835251,\\\\n          0.5319308638572693,\\\\n          0.5491852343082428,\\\\n          0.5214511275291442,\\\\n          0.4448683887720108,\\\\n          0.4901213437318802,\\\\n          0.3465738773345947,\\\\n          0.16726531386375426\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.47524378975232445,\\\\n        \\\\\\\"std\\\\\\\": 0.10076991062980963\\\\n      },\\\\n      \\\\\\\"L6\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.4772081136703491,\\\\n          0.5202122002840042,\\\\n          0.5138075649738312,\\\\n          0.3038535207509995,\\\\n          0.5227883070707321,\\\\n          0.16356320977210997,\\\\n          0.18893256187438964\\\\n\\\\n... [截断: 输出过长，省略 49304 字符] ...\\\\n\\\\neds\\\\\\\": [\\\\n          0.5646873265504837,\\\\n          0.5371685743331909,\\\\n          0.5543272197246552,\\\\n          0.5785093367099762,\\\\n          0.5707139939069747,\\\\n          0.5284408748149871,\\\\n          0.5562624335289001,\\\\n          0.5317879736423492,\\\\n          0.5504992872476577,\\\\n          0.5365265250205994,\\\\n          0.5538615256547927,\\\\n          0.5377772957086563,\\\\n          0.5130615293979645,\\\\n          0.5447807639837265,\\\\n          0.3737155169248581\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5354746784766514,\\\\n        \\\\\\\"std\\\\\\\": 0.046278761709299746\\\\n      },\\\\n      \\\\\\\"L27\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5657036781311036,\\\\n          0.5677288502454758,\\\\n          0.5387623757123947,\\\\n          0.4803360730409622,\\\\n          0.57254878282547,\\\\n          0.5032026320695877,\\\\n          0.5420282065868378,\\\\n          0.5412502765655518,\\\\n          0.5742572039365769,\\\\n          0.5538505405187607,\\\\n          0.5592121809720993,\\\\n          0.5589964479207993,\\\\n          0.5527420461177825,\\\\n          0.5850563824176789,\\\\n          0.5797855347394943\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5516974141200385,\\\\n        \\\\\\\"std\\\\\\\": 0.027359679021464765\\\\n      },\\\\n      \\\\\\\"L28\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5183763563632965,\\\\n          0.5211188912391662,\\\\n          0.5533019125461578,\\\\n          0.5433087408542633,\\\\n          0.5807910799980164,\\\\n          0.5487001419067383,\\\\n          0.5333338737487793,\\\\n          0.5631546884775162,\\\\n          0.5641294807195664,\\\\n          0.5424844056367875,\\\\n          0.4422056406736374,\\\\n          0.5295805126428604,\\\\n          0.5838705778121949,\\\\n          0.5778589397668839,\\\\n          0.5578750520944595\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5440060196320216,\\\\n        \\\\\\\"std\\\\\\\": 0.03369428877394615\\\\n      },\\\\n      \\\\\\\"L29\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.521354803442955,\\\\n          0.5207366734743119,\\\\n          0.5434339612722396,\\\\n          0.5396472930908203,\\\\n          0.5701878845691681,\\\\n          0.5427794516086578,\\\\n          0.4238207548856735,\\\\n          0.5434453070163727,\\\\n          0.5706760138273239,\\\\n          0.5107580810785294,\\\\n          0.5234658479690552,\\\\n          0.5517539381980896,\\\\n          0.5172154039144516,\\\\n          0.5545511245727539,\\\\n          0.5193780541419983\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5302136395374933,\\\\n        \\\\\\\"std\\\\\\\": 0.033750399780437416\\\\n      },\\\\n      \\\\\\\"L30\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5316682308912277,\\\\n          0.4700192093849182,\\\\n          0.5185229450464248,\\\\n          0.48717271983623506,\\\\n          0.5229840964078903,\\\\n          0.5156824439764023,\\\\n          0.4297660768032074,\\\\n          0.5303710371255874,\\\\n          0.5178130954504013,\\\\n          0.5153989195823669,\\\\n          0.5327338129281998,\\\\n          0.513350197672844,\\\\n          0.5013067930936813,\\\\n          0.5537206590175628,\\\\n          0.5256209552288056\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5110754128297169,\\\\n        \\\\\\\"std\\\\\\\": 0.028921753017828702\\\\n      },\\\\n      \\\\\\\"L31\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.4004045486450195,\\\\n          0.5207190990447998,\\\\n          0.4998741090297699,\\\\n          0.5369580775499344,\\\\n          0.4119430810213089,\\\\n          0.5214867800474167,\\\\n          0.37813751995563505,\\\\n          0.5048615545034408,\\\\n          0.5481108814477921,\\\\n          0.4176926285028458,\\\\n          0.5252994775772095,\\\\n          0.5169334977865219,\\\\n          0.49431127607822417,\\\\n          0.500511160492897,\\\\n          0.5362138211727142\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.48756383419036864,\\\\n        \\\\\\\"std\\\\\\\": 0.05406441184964477\\\\n      },\\\\n      \\\\\\\"L32\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5464633464813232,\\\\n          0.5462169080972672,\\\\n          0.5433270782232285,\\\\n          0.53032246530056,\\\\n          0.5327671647071839,\\\\n          0.5775899827480316,\\\\n          0.5322568476200104,\\\\n          0.5231444776058197,\\\\n          0.531786385178566,\\\\n          0.5340774476528167,\\\\n          0.5222015351057052,\\\\n          0.5195572197437286,\\\\n          0.5390807598829269,\\\\n          0.513902148604393,\\\\n          0.5321987748146058\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5349928361177445,\\\\n        \\\\\\\"std\\\\\\\": 0.0146024975004439\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conditions\\\": [\\n    \\\"untrained\\\",\\n    \\\"llama2base\\\",\\n    \\\"trained\\\"\\n  ],\\n  \\\"seeds\\\": [\\n    0,\\n    1,\\n    2,\\n    3,\\n    4,\\n    5,\\n    6,\\n    7,\\n    8,\\n    9,\\n    10,\\n    11,\\n    12,\\n    13,\\n    14\\n  ],\\n  \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n  \\\"r2_space\\\": \\\"original_denormalized\\\",\\n  \\\"results\\\": {\\n    \\\"untrained\\\": {\\n      \\\"L0\\\": {\\n        \\\"seeds\\\": [\\n          0.6456495076417923,\\n          0.5978063106536865,\\n          0.6397484868764878,\\n          0.6459006950259208,\\n          0.6133959382772446,\\n          0.5944373175501824,\\n          0.6330083817243576,\\n          0.6421630278229713,\\n          0.6296697810292244,\\n          0.6322719916701317,\\n          0.6258023172616959,\\n          0.6374978065490723,\\n          0.6194581598043442,\\n          0.6417109251022339,\\n          0.6421523675322532\\n        ],\\n        \\\"mean\\\": 0.6293782009681067,\\n        \\\"std\\\": 0.01590777587362603\\n      },\\n      \\\"L1\\\": {\\n        \\\"seeds\\\": [\\n          0.5314562350511551,\\n          0.5447357684373856,\\n          0.5727765947580338,\\n          0.5497325986623764,\\n          0.539964035153389,\\n          0.5787958920001983,\\n          0.5384945720434189,\\n          0.4973878085613251,\\n          0.5480267345905304,\\n          0.5075169891119004,\\n          0.5631389141082763,\\n          0.5331172108650207,\\n          0.5046919494867325,\\n          0.5306813806295395,\\n          0.545267254114151\\n        ],\\n        \\\"mean\\\": 0.5390522625048957,\\n        \\\"std\\\": 0.022565109247695496\\n      },\\n      \\\"L2\\\": {\\n        \\\"seeds\\\": [\\n          0.5581348389387131,\\n          0.5468221604824066,\\n          0.51600162088871,\\n          0.48725364208221433,\\n          0.5277142822742462,\\n          0.5210624992847442,\\n          0.5132066696882248,\\n          0.5256205797195435,\\n          0.5604791969060898,\\n          0.49086240530014036,\\n          0.559195926785469,\\n          0.5352099150419235,\\n          0.527821934223175,\\n          0.5184603035449982,\\n          0.3617728531360626\\n        ],\\n        \\\"mean\\\": 0.5166412552197773,\\n        \\\"std\\\": 0.04660885277974929\\n      },\\n      \\\"L3\\\": {\\n        \\\"seeds\\\": [\\n          0.5524985909461975,\\n          0.5350410789251328,\\n          0.5510434657335281,\\n          0.5106675833463669,\\n          0.5453551322221756,\\n          0.5266274154186249,\\n          0.5147567808628082,\\n          0.48361391127109526,\\n          0.5562590420246124,\\n          0.5276565015316009,\\n          0.5447760850191117,\\n          -0.3280607104301453,\\n          0.4684071034193039,\\n          0.3266317516565323,\\n          0.41055955588817594\\n        ],\\n        \\\"mean\\\": 0.44838888585567466,\\n        \\\"std\\\": 0.21612860873795176\\n      },\\n      \\\"L4\\\": {\\n        \\\"seeds\\\": [\\n          0.541847288608551,\\n          0.43895032107830045,\\n          0.5054023921489715,\\n          0.523080027103424,\\n          0.5377601563930512,\\n          0.535122674703598,\\n          0.5293149888515473,\\n          0.5108582466840744,\\n          0.5386962562799453,\\n          0.3286745995283127,\\n          0.5280363857746124,\\n          0.4327568233013153,\\n          0.5027350962162018,\\n          0.4577772468328476,\\n          0.5268222987651825\\n        ],\\n        \\\"mean\\\": 0.4958556534846624,\\n        \\\"std\\\": 0.05661940432833058\\n      },\\n      \\\"L5\\\": {\\n        \\\"seeds\\\": [\\n          0.5700991094112396,\\n          0.5402346640825272,\\n          0.5414407849311829,\\n          0.47659210562705995,\\n          0.506783977150917,\\n          0.40192038714885714,\\n          0.49827160835266116,\\n          0.5419180601835251,\\n          0.5319308638572693,\\n          0.5491852343082428,\\n          0.5214511275291442,\\n          0.4448683887720108,\\n          0.4901213437318802,\\n          0.3465738773345947,\\n          0.16726531386375426\\n        ],\\n        \\\"mean\\\": 0.47524378975232445,\\n        \\\"std\\\": 0.10076991062980963\\n      },\\n      \\\"L6\\\": {\\n        \\\"seeds\\\": [\\n          0.4772081136703491,\\n          0.5202122002840042,\\n          0.5138075649738312,\\n          0.3038535207509995,\\n          0.5227883070707321,\\n          0.16356320977210997,\\n          0.18893256187438964\\n\\n... [截断: 输出过长，省略 49304 字符] ...\\n\\neds\\\": [\\n          0.5646873265504837,\\n          0.5371685743331909,\\n          0.5543272197246552,\\n          0.5785093367099762,\\n          0.5707139939069747,\\n          0.5284408748149871,\\n          0.5562624335289001,\\n          0.5317879736423492,\\n          0.5504992872476577,\\n          0.5365265250205994,\\n          0.5538615256547927,\\n          0.5377772957086563,\\n          0.5130615293979645,\\n          0.5447807639837265,\\n          0.3737155169248581\\n        ],\\n        \\\"mean\\\": 0.5354746784766514,\\n        \\\"std\\\": 0.046278761709299746\\n      },\\n      \\\"L27\\\": {\\n        \\\"seeds\\\": [\\n          0.5657036781311036,\\n          0.5677288502454758,\\n          0.5387623757123947,\\n          0.4803360730409622,\\n          0.57254878282547,\\n          0.5032026320695877,\\n          0.5420282065868378,\\n          0.5412502765655518,\\n          0.5742572039365769,\\n          0.5538505405187607,\\n          0.5592121809720993,\\n          0.5589964479207993,\\n          0.5527420461177825,\\n          0.5850563824176789,\\n          0.5797855347394943\\n        ],\\n        \\\"mean\\\": 0.5516974141200385,\\n        \\\"std\\\": 0.027359679021464765\\n      },\\n      \\\"L28\\\": {\\n        \\\"seeds\\\": [\\n          0.5183763563632965,\\n          0.5211188912391662,\\n          0.5533019125461578,\\n          0.5433087408542633,\\n          0.5807910799980164,\\n          0.5487001419067383,\\n          0.5333338737487793,\\n          0.5631546884775162,\\n          0.5641294807195664,\\n          0.5424844056367875,\\n          0.4422056406736374,\\n          0.5295805126428604,\\n          0.5838705778121949,\\n          0.5778589397668839,\\n          0.5578750520944595\\n        ],\\n        \\\"mean\\\": 0.5440060196320216,\\n        \\\"std\\\": 0.03369428877394615\\n      },\\n      \\\"L29\\\": {\\n        \\\"seeds\\\": [\\n          0.521354803442955,\\n          0.5207366734743119,\\n          0.5434339612722396,\\n          0.5396472930908203,\\n          0.5701878845691681,\\n          0.5427794516086578,\\n          0.4238207548856735,\\n          0.5434453070163727,\\n          0.5706760138273239,\\n          0.5107580810785294,\\n          0.5234658479690552,\\n          0.5517539381980896,\\n          0.5172154039144516,\\n          0.5545511245727539,\\n          0.5193780541419983\\n        ],\\n        \\\"mean\\\": 0.5302136395374933,\\n        \\\"std\\\": 0.033750399780437416\\n      },\\n      \\\"L30\\\": {\\n        \\\"seeds\\\": [\\n          0.5316682308912277,\\n          0.4700192093849182,\\n          0.5185229450464248,\\n          0.48717271983623506,\\n          0.5229840964078903,\\n          0.5156824439764023,\\n          0.4297660768032074,\\n          0.5303710371255874,\\n          0.5178130954504013,\\n          0.5153989195823669,\\n          0.5327338129281998,\\n          0.513350197672844,\\n          0.5013067930936813,\\n          0.5537206590175628,\\n          0.5256209552288056\\n        ],\\n        \\\"mean\\\": 0.5110754128297169,\\n        \\\"std\\\": 0.028921753017828702\\n      },\\n      \\\"L31\\\": {\\n        \\\"seeds\\\": [\\n          0.4004045486450195,\\n          0.5207190990447998,\\n          0.4998741090297699,\\n          0.5369580775499344,\\n          0.4119430810213089,\\n          0.5214867800474167,\\n          0.37813751995563505,\\n          0.5048615545034408,\\n          0.5481108814477921,\\n          0.4176926285028458,\\n          0.5252994775772095,\\n          0.5169334977865219,\\n          0.49431127607822417,\\n          0.500511160492897,\\n          0.5362138211727142\\n        ],\\n        \\\"mean\\\": 0.48756383419036864,\\n        \\\"std\\\": 0.05406441184964477\\n      },\\n      \\\"L32\\\": {\\n        \\\"seeds\\\": [\\n          0.5464633464813232,\\n          0.5462169080972672,\\n          0.5433270782232285,\\n          0.53032246530056,\\n          0.5327671647071839,\\n          0.5775899827480316,\\n          0.5322568476200104,\\n          0.5231444776058197,\\n          0.531786385178566,\\n          0.5340774476528167,\\n          0.5222015351057052,\\n          0.5195572197437286,\\n          0.5390807598829269,\\n          0.513902148604393,\\n          0.5321987748146058\\n        ],\\n        \\\"mean\\\": 0.5349928361177445,\\n        \\\"std\\\": 0.0146024975004439\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T14:04:56.521Z_
+
+<details><summary>↩ Tool result · `toolu_01NsfMV4HiQMRyGkCc7oALTv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncounterfactual_combined.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\nrsa_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "7f645991-262d-43d4-a3cf-6a3c085f12b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"action_r2_probing.json\\\\ncounterfactual_combined.json\\\\ncross_instruction_classification.json\\\\nl1_attention_profile.json\\\\nrsa_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncounterfactual_combined.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\nrsa_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me also check the probing script and whether there's any TracVLA/NORA data in the expected paths.
+
+Key findings so far:
+
+1. **`action_r2_probing.json` (libero_goal)**: Aggregate R² per layer per position type (e.g., `L0_image_mean`, `L0_last_preaction`). Each has `mean`, `std`, `values` (a list with usually 1 element). This is **aggregate** - one Ridge regression on all pooled samples, not per-demo.
+
+
+2. **`per_task_r2_distribution.json`** and **`per_task_mse_breakdown.json`** both aggregate across demos within each task rather than tracking individual demonstrations. The `unified_action_probe.json` file is more granular — it splits train/test by demo index per task and provides per-task R² scores for different sources.
+
+3. **`r2_probe_15seeds.json`** captures robustness across 15 random seeds at different layers, but this is still aggregated across demos, not per-demo. There are no saved hidden state files that would let me extract per-demo representations, and critically, there's no per-demo R² data anywhere in the outputs.
+
+4. Now I need to check the TracVLA and NORA dataset paths and examine the probing script itself to understand how the data flows.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "7f6c88ec-039d-4462-9c9a-3b50098f121e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pWUMB1heHQb9ZLVAb3J9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19245,
+      "cache_read_input_tokens": 27705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19245
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+继续检查 TracVLA/NORA 路径和 probing 脚本源码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "2870e6fb-ff12-474e-b5fa-0e83adc2cbec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pWUMB1heHQb9ZLVAb3J9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19245,
+      "cache_read_input_tokens": 27705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19245
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019sUruY2Xeorg9mTnjGwosV`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "714f939b-ec96-41c3-aa11-e6200e708788",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pWUMB1heHQb9ZLVAb3J9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19245,
+      "cache_read_input_tokens": 27705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19245
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T14:05:14.573Z_
+
+<details><summary>↩ Tool result · `toolu_019sUruY2Xeorg9mTnjGwosV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncounterfactual_combined.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "bcc8eeb9-ea8f-4a02-bbdc-27b7f1883ab2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"action_r2_probing.json\\\\ncounterfactual_combined.json\\\\ncross_instruction_classification.json\\\\nl1_attention_profile.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncounterfactual_combined.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017FFRo6qXLej9QRV9WaMwAb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/nora_goal/trained/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "2c00833b-956f-44d9-8b5b-57fd8b599d11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pWUMB1heHQb9ZLVAb3J9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19245,
+      "cache_read_input_tokens": 27705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19245
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T14:05:15.184Z_
+
+<details><summary>↩ Tool result · `toolu_017FFRo6qXLej9QRV9WaMwAb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncounterfactual_combined.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "6a868529-df83-4bb0-9fbf-1ce79f93755a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"action_r2_probing.json\\\\ncounterfactual_combined.json\\\\ncross_instruction_classification.json\\\\nl1_attention_profile.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncounterfactual_combined.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B14tKUGjh4XHqoLodLrDes`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts/ -name \"*probe*\" -o -name \"*r2*\" -o -name \"*probing*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "597567af-73b1-492e-8981-261de3071f25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pWUMB1heHQb9ZLVAb3J9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19245,
+      "cache_read_input_tokens": 27705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19245
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AvJZau2QPhgNuptjDc9r9u`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "cf202e4d-c703-46e2-abfe-d95346ac0d9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pWUMB1heHQb9ZLVAb3J9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19245,
+      "cache_read_input_tokens": 27705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19245
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T14:05:16.458Z_
+
+<details><summary>↩ Tool result · `toolu_01B14tKUGjh4XHqoLodLrDes`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\n/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "7067bd10-522a-40c6-9a2d-a04b7369d27f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\n/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T14:05:16.987Z_
+
+<details><summary>↩ Tool result · `toolu_01AvJZau2QPhgNuptjDc9r9u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\"\\n  },\\n  \\\"projector\\\": {\\n    \\\"mean_R2\\\": 0.6298085182905198,\\n    \\\"overall_R2\\\": 0.6991766095161438,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6506892442703247,\\n      \\\"dy\\\": 0.7160145938396454,\\n      \\\"dz\\\": 0.6620165109634399,\\n      \\\"drx\\\": 0.549751490354538,\\n      \\\"dry\\\": 0.3786472678184509,\\n      \\\"drz\\\": 0.7263338565826416,\\n      \\\"gripper\\\": 0.7167081236839294\\n    },\\n    \\\"gripper_acc\\\": 0.9221054283024788,\\n    \\\"epochs_trained\\\": 22,\\n    \\\"val_loss\\\": 0.3606724441051483\\n  },\\n  \\\"dino_cls\\\": {\\n    \\\"mean_R2\\\": 0.6342984035611152,\\n    \\\"overall_R2\\\": 0.7012259066104889,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6640855669975281,\\n      \\\"dy\\\": 0.6851263046264648,\\n      \\\"dz\\\": 0.6625147461891174,\\n      \\\"drx\\\": 0.5797748863697052,\\n      \\\"dry\\\": 0.3829028606414795,\\n      \\\"drz\\\": 0.7384836375713348,\\n      \\\"gripper\\\": 0.7214260399341583\\n    },\\n    \\\"gripper_acc\\\": 0.9258707248195795,\\n    \\\"epochs_trained\\\": 17,\\n    \\\"val_loss\\\": 0.35598811507225037\\n  },\\n  \\\"clip_cls\\\": {\\n    \\\"mean_R2\\\": 0.5865547895431519,\\n    \\\"overall_R2\\\": 0.6602204144001007,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.41159433126449585,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6684410572052002,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5893205404281616,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5487157106399536,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6501100063323975,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6248729825019836,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6032691895961761,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.48588043451309204,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5819304883480072,\\n      \\\"turn_on_the_stove\\\": 0.7014131546020508\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6521816849708557,\\n      \\\"dy\\\": 0.6515396535396576,\\n      \\\"dz\\\": 0.5995787978172302,\\n      \\\"drx\\\": 0.4989588260650635,\\n      \\\"dry\\\": 0.36573320627212524,\\n      \\\"drz\\\": 0.6895537972450256,\\n      \\\"gripper\\\": 0.6803024709224701\\n    },\\n    \\\"gripper_acc\\\": 0.9072011295889552,\\n    \\\"epochs_trained\\\": 21,\\n    \\\"val_loss\\\": 0.3972415030002594\\n  },\\n  \\\"vla_image_mean_L19\\\": {\\n    \\\"mean_R2\\\": 0.598588165640831,\\n    \\\"overall_R2\\\": 0.6770166754722595,\\n    \\\"per_task_R2\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "e15e0e68-f634-42c7-a716-c971516d906f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"lr\\\\\\\": 0.001,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"hidden\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\"\\\\n  },\\\\n  \\\\\\\"projector\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6298085182905198,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6991766095161438,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.49730074405670166,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7499217689037323,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5860892236232758,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5864041447639465,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6738172769546509,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6633979082107544,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6218974888324738,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5312090218067169,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6380730867385864,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7499745190143585\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6506892442703247,\\\\n      \\\\\\\"dy\\\\\\\": 0.7160145938396454,\\\\n      \\\\\\\"dz\\\\\\\": 0.6620165109634399,\\\\n      \\\\\\\"drx\\\\\\\": 0.549751490354538,\\\\n      \\\\\\\"dry\\\\\\\": 0.3786472678184509,\\\\n      \\\\\\\"drz\\\\\\\": 0.7263338565826416,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7167081236839294\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9221054283024788,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 22,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.3606724441051483\\\\n  },\\\\n  \\\\\\\"dino_cls\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6342984035611152,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.7012259066104889,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4813086986541748,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.713790625333786,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5821199119091034,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6170255541801453,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7149612605571747,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6578902006149292,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6068297922611237,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5611678063869476,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6304799914360046,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7774101942777634\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6640855669975281,\\\\n      \\\\\\\"dy\\\\\\\": 0.6851263046264648,\\\\n      \\\\\\\"dz\\\\\\\": 0.6625147461891174,\\\\n      \\\\\\\"drx\\\\\\\": 0.5797748863697052,\\\\n      \\\\\\\"dry\\\\\\\": 0.3829028606414795,\\\\n      \\\\\\\"drz\\\\\\\": 0.7384836375713348,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7214260399341583\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9258707248195795,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 17,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.35598811507225037\\\\n  },\\\\n  \\\\\\\"clip_cls\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.5865547895431519,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6602204144001007,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.41159433126449585,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.6684410572052002,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5893205404281616,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5487157106399536,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6501100063323975,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6248729825019836,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6032691895961761,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.48588043451309204,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5819304883480072,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7014131546020508\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6521816849708557,\\\\n      \\\\\\\"dy\\\\\\\": 0.6515396535396576,\\\\n      \\\\\\\"dz\\\\\\\": 0.5995787978172302,\\\\n      \\\\\\\"drx\\\\\\\": 0.4989588260650635,\\\\n      \\\\\\\"dry\\\\\\\": 0.36573320627212524,\\\\n      \\\\\\\"drz\\\\\\\": 0.6895537972450256,\\\\n      \\\\\\\"gripper\\\\\\\": 0.6803024709224701\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9072011295889552,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 21,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.3972415030002594\\\\n  },\\\\n  \\\\\\\"vla_image_mean_L19\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.598588165640831,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6770166754722595,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\"\\n  },\\n  \\\"projector\\\": {\\n    \\\"mean_R2\\\": 0.6298085182905198,\\n    \\\"overall_R2\\\": 0.6991766095161438,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6506892442703247,\\n      \\\"dy\\\": 0.7160145938396454,\\n      \\\"dz\\\": 0.6620165109634399,\\n      \\\"drx\\\": 0.549751490354538,\\n      \\\"dry\\\": 0.3786472678184509,\\n      \\\"drz\\\": 0.7263338565826416,\\n      \\\"gripper\\\": 0.7167081236839294\\n    },\\n    \\\"gripper_acc\\\": 0.9221054283024788,\\n    \\\"epochs_trained\\\": 22,\\n    \\\"val_loss\\\": 0.3606724441051483\\n  },\\n  \\\"dino_cls\\\": {\\n    \\\"mean_R2\\\": 0.6342984035611152,\\n    \\\"overall_R2\\\": 0.7012259066104889,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6640855669975281,\\n      \\\"dy\\\": 0.6851263046264648,\\n      \\\"dz\\\": 0.6625147461891174,\\n      \\\"drx\\\": 0.5797748863697052,\\n      \\\"dry\\\": 0.3829028606414795,\\n      \\\"drz\\\": 0.7384836375713348,\\n      \\\"gripper\\\": 0.7214260399341583\\n    },\\n    \\\"gripper_acc\\\": 0.9258707248195795,\\n    \\\"epochs_trained\\\": 17,\\n    \\\"val_loss\\\": 0.35598811507225037\\n  },\\n  \\\"clip_cls\\\": {\\n    \\\"mean_R2\\\": 0.5865547895431519,\\n    \\\"overall_R2\\\": 0.6602204144001007,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.41159433126449585,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6684410572052002,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5893205404281616,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5487157106399536,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6501100063323975,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6248729825019836,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6032691895961761,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.48588043451309204,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5819304883480072,\\n      \\\"turn_on_the_stove\\\": 0.7014131546020508\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6521816849708557,\\n      \\\"dy\\\": 0.6515396535396576,\\n      \\\"dz\\\": 0.5995787978172302,\\n      \\\"drx\\\": 0.4989588260650635,\\n      \\\"dry\\\": 0.36573320627212524,\\n      \\\"drz\\\": 0.6895537972450256,\\n      \\\"gripper\\\": 0.6803024709224701\\n    },\\n    \\\"gripper_acc\\\": 0.9072011295889552,\\n    \\\"epochs_trained\\\": 21,\\n    \\\"val_loss\\\": 0.3972415030002594\\n  },\\n  \\\"vla_image_mean_L19\\\": {\\n    \\\"mean_R2\\\": 0.598588165640831,\\n    \\\"overall_R2\\\": 0.6770166754722595,\\n    \\\"per_task_R2\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me look at the probing script source code to understand the train/test split mechanism and whether per-demo data was computed but not saved.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "cfa22411-05a6-4817-b35a-1187e37c2a1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118p1p7gSpuJ2WvrgDDRP5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 46950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+查看 probing 脚本源码了解 split 方式和数据流。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "48d98d17-c130-4aa9-b19a-0e4f7762e8ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118p1p7gSpuJ2WvrgDDRP5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 46950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VGxBbUF6Jt9nsDsZiGckgo`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "979fe4eb-d097-4191-8e1d-78c2c8df05f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118p1p7gSpuJ2WvrgDDRP5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 46950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T14:05:22.295Z_
+
+<details><summary>↩ Tool result · `toolu_01VGxBbUF6Jt9nsDsZiGckgo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nTraceVLA-Spatial R² probing-only补跑脚本\\n\\n只跑 Phase 1 (feature extraction) + Phase 2 (R² probing)。\\n跳过 L1 attention / cross-instruction classification / counterfactual。\\n输出: RESULTS_DIR/{condition}/action_r2_probing.json\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, time\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"microsoft/Phi-3-vision-128k-instruct\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\\"\\nDEVICE = \\\"cuda:0\\\"\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nHIDDEN = 3072\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef find_token_regions(input_ids):\\n    ids = input_ids[0].cpu().numpy()\\n    img_positions = np.where(ids < 0)[0]\\n    if len(img_positions) > 0:\\n        img_s = int(img_positions[0])\\n        img_e = int(img_positions[-1]) + 1\\n    else:\\n        img_s = img_e = 1\\n    return {\\\"bos\\\": (0, img_s), \\\"image\\\": (img_s, img_e), \\\"text\\\": (img_e, len(ids))}\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: representation extraction (probing only)\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n\\n    idx = 0\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{n_tasks}: {TASKS[ti][:60]}...\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo = f\\\"data/demo_{di}\\\"\\n                n_avail = hf[demo][\\\"actions\\\"].shape[0]\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\n                    original_ids = inputs[\\\"input_ids\\\"].clone()\\n                    with torch.no_grad():\\n                        out = model(\\n                            **inputs,\\n                          \\n\\n... [截断: 输出过长，省略 891 字符] ...\\n\\nx} samples\\\")\\n    return reps, actions_arr[:idx]\\n\\n\\ndef run_probing(reps, actions, n_seeds):\\n    log(\\\"Phase 2: action R2 probing (Ridge)\\\")\\n    results = {}\\n    n = len(actions)\\n    nt = int(n * 0.8)\\n    perm = np.random.RandomState(42).permutation(n)\\n    for l in range(N_LAYERS):\\n        for pos in (\\\"image_mean\\\", \\\"last_preaction\\\"):\\n            X, y = reps[l][pos], actions\\n            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n\\n            probe = RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\\n            probe.fit(Xtr, ytr)\\n            pred = probe.predict(Xv)\\n            ss_res = np.sum((yv - pred) ** 2)\\n            ss_tot = np.sum((yv - yv.mean(0)) ** 2)\\n            r2 = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\n\\n            results[f\\\"L{l}_{pos}\\\"] = {\\n                \\\"mean\\\": round(r2, 4),\\n                \\\"std\\\": 0.0,\\n                \\\"values\\\": [round(r2, 4)],\\n            }\\n        if l % 8 == 0:\\n            log(\\n                f\\\"  L{l}: img_mean R2={results[f'L{l}_image_mean']['mean']:.4f}  \\\"\\n                f\\\"last_pre R2={results[f'L{l}_last_preaction']['mean']:.4f}\\\"\\n            )\\n    return results\\n\\n\\ndef load_model(ckpt_path, condition):\\n    log(f\\\"Loading {condition} model from {ckpt_path} ...\\\")\\n    t0 = time.time()\\n    model = AutoModelForCausalLM.from_pretrained(\\n        ckpt_path,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=\\\"eager\\\",\\n    ).to(DEVICE).eval()\\n    processor = AutoProcessor.from_pretrained(\\n        ckpt_path, trust_remote_code=True, num_crops=1\\n    )\\n    log(f\\\"  Model loaded in {time.time()-t0:.1f}s\\\")\\n    return model, processor\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser(description=\\\"TraceVLA-Spatial R² probing only\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    args = p.parse_args()\\n\\n    conditions = args.conditions\\n    log(f\\\"Probing-only pipeline, conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\"config.json\\\")):\\n                ckpt = UNTRAINED_CACHE\\n            else:\\n                ckpt = UNTRAINED_CKPT\\n                log(f\\\"  Will download untrained model from {ckpt}\\\")\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n        os.makedirs(results_dir, exist_ok=True)\\n\\n        nt = 2 if args.dry_run else len(TASKS)\\n        nd = 1 if args.dry_run else N_DEMOS\\n        ns = 2 if args.dry_run else N_TIMESTEPS\\n        nps = 2 if args.dry_run else N_PROBE_SEEDS\\n\\n        log(f\\\"=== {condition.upper()} probing ===\\\")\\n        log(f\\\"Config: tasks={nt} demos={nd} timesteps={ns} seeds={nps} dry_run={args.dry_run}\\\")\\n        log(f\\\"Output: {results_dir}\\\")\\n\\n        try:\\n            model, processor = load_model(ckpt, condition)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            continue\\n\\n        t1 = time.time()\\n        reps, actions = extract_features(model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        out_path = os.path.join(results_dir, \\\"action_r2_probing.json\\\")\\n        with open(out_path, \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> {out_path}\\\")\\n\\n        del reps, actions\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t1)/60:.1f} min\\\")\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "68be1ba8-1c8f-4948-a0b8-11dc0d56316f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nTraceVLA-Spatial R² probing-only补跑脚本\\\\n\\\\n只跑 Phase 1 (feature extraction) + Phase 2 (R² probing)。\\\\n跳过 L1 attention / cross-instruction classification / counterfactual。\\\\n输出: RESULTS_DIR/{condition}/action_r2_probing.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, time\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\\\n\\\\n# --- Checkpoints ---\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"microsoft/Phi-3-vision-128k-instruct\\\\\\\"\\\\nUNTRAINED_CACHE = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\n\\\\n# --- Data ---\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\n# --- Architecture ---\\\\nN_LAYERS = 32\\\\nHIDDEN = 3072\\\\n\\\\n# --- Data config ---\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\",\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return (\\\\n        f\\\\\\\"<|user|>\\\\\\\\n<|image_1|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"What action should the robot take to {instruction}?<|end|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"<|assistant|>\\\\\\\\n\\\\\\\"\\\\n    )\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    prompt = make_prompt(instruction)\\\\n    inputs = processor(prompt, [image], return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n    if \\\\\\\"pixel_values\\\\\\\" in inputs:\\\\n        inputs[\\\\\\\"pixel_values\\\\\\\"] = inputs[\\\\\\\"pixel_values\\\\\\\"].to(torch.bfloat16)\\\\n    return inputs\\\\n\\\\n\\\\ndef find_token_regions(input_ids):\\\\n    ids = input_ids[0].cpu().numpy()\\\\n    img_positions = np.where(ids < 0)[0]\\\\n    if len(img_positions) > 0:\\\\n        img_s = int(img_positions[0])\\\\n        img_e = int(img_positions[-1]) + 1\\\\n    else:\\\\n        img_s = img_e = 1\\\\n    return {\\\\\\\"bos\\\\\\\": (0, img_s), \\\\\\\"image\\\\\\\": (img_s, img_e), \\\\\\\"text\\\\\\\": (img_e, len(ids))}\\\\n\\\\n\\\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Phase 1: representation extraction (probing only)\\\\\\\")\\\\n    total = n_tasks * n_demos * n_timesteps\\\\n\\\\n    reps = {\\\\n        l: {\\\\n            \\\\\\\"image_mean\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n            \\\\\\\"last_preaction\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n        }\\\\n        for l in range(N_LAYERS)\\\\n    }\\\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\\\n\\\\n    idx = 0\\\\n    for ti in range(n_tasks):\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n        log(f\\\\\\\"  Task {ti}/{n_tasks}: {TASKS[ti][:60]}...\\\\\\\")\\\\n\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            for di in range(n_demos):\\\\n                demo = f\\\\\\\"data/demo_{di}\\\\\\\"\\\\n                n_avail = hf[demo][\\\\\\\"actions\\\\\\\"].shape[0]\\\\n                for t in range(min(n_timesteps, n_avail)):\\\\n                    img = Image.fromarray(hf[f\\\\\\\"{demo}/obs/agentview_rgb\\\\\\\"][t])\\\\n                    act = np.array(hf[f\\\\\\\"{demo}/actions\\\\\\\"][t], dtype=np.float32)\\\\n\\\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\\\n                    original_ids = inputs[\\\\\\\"input_ids\\\\\\\"].clone()\\\\n                    with torch.no_grad():\\\\n                        out = model(\\\\n                            **inputs,\\\\n                          \\\\n\\\\n... [截断: 输出过长，省略 891 字符] ...\\\\n\\\\nx} samples\\\\\\\")\\\\n    return reps, actions_arr[:idx]\\\\n\\\\n\\\\ndef run_probing(reps, actions, n_seeds):\\\\n    log(\\\\\\\"Phase 2: action R2 probing (Ridge)\\\\\\\")\\\\n    results = {}\\\\n    n = len(actions)\\\\n    nt = int(n * 0.8)\\\\n    perm = np.random.RandomState(42).permutation(n)\\\\n    for l in range(N_LAYERS):\\\\n        for pos in (\\\\\\\"image_mean\\\\\\\", \\\\\\\"last_preaction\\\\\\\"):\\\\n            X, y = reps[l][pos], actions\\\\n            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\\\n            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\\\n\\\\n            probe = RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\\\\n            probe.fit(Xtr, ytr)\\\\n            pred = probe.predict(Xv)\\\\n            ss_res = np.sum((yv - pred) ** 2)\\\\n            ss_tot = np.sum((yv - yv.mean(0)) ** 2)\\\\n            r2 = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\\\n\\\\n            results[f\\\\\\\"L{l}_{pos}\\\\\\\"] = {\\\\n                \\\\\\\"mean\\\\\\\": round(r2, 4),\\\\n                \\\\\\\"std\\\\\\\": 0.0,\\\\n                \\\\\\\"values\\\\\\\": [round(r2, 4)],\\\\n            }\\\\n        if l % 8 == 0:\\\\n            log(\\\\n                f\\\\\\\"  L{l}: img_mean R2={results[f'L{l}_image_mean']['mean']:.4f}  \\\\\\\"\\\\n                f\\\\\\\"last_pre R2={results[f'L{l}_last_preaction']['mean']:.4f}\\\\\\\"\\\\n            )\\\\n    return results\\\\n\\\\n\\\\ndef load_model(ckpt_path, condition):\\\\n    log(f\\\\\\\"Loading {condition} model from {ckpt_path} ...\\\\\\\")\\\\n    t0 = time.time()\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        ckpt_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n    ).to(DEVICE).eval()\\\\n    processor = AutoProcessor.from_pretrained(\\\\n        ckpt_path, trust_remote_code=True, num_crops=1\\\\n    )\\\\n    log(f\\\\\\\"  Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n    return model, processor\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"TraceVLA-Spatial R² probing only\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\n        \\\\\\\"--conditions\\\\\\\", nargs=\\\\\\\"+\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n        default=[\\\\\\\"trained\\\\\\\"],\\\\n        help=\\\\\\\"Conditions to run (trained untrained)\\\\\\\",\\\\n    )\\\\n    args = p.parse_args()\\\\n\\\\n    conditions = args.conditions\\\\n    log(f\\\\\\\"Probing-only pipeline, conditions: {conditions}\\\\\\\")\\\\n\\\\n    t_start = time.time()\\\\n\\\\n    for condition in conditions:\\\\n        if condition == \\\\\\\"trained\\\\\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n        elif condition == \\\\\\\"untrained\\\\\\\":\\\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\\\\\"config.json\\\\\\\")):\\\\n                ckpt = UNTRAINED_CACHE\\\\n            else:\\\\n                ckpt = UNTRAINED_CKPT\\\\n                log(f\\\\\\\"  Will download untrained model from {ckpt}\\\\\\\")\\\\n        else:\\\\n            log(f\\\\\\\"  Unknown condition: {condition}, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\\\n        os.makedirs(results_dir, exist_ok=True)\\\\n\\\\n        nt = 2 if args.dry_run else len(TASKS)\\\\n        nd = 1 if args.dry_run else N_DEMOS\\\\n        ns = 2 if args.dry_run else N_TIMESTEPS\\\\n        nps = 2 if args.dry_run else N_PROBE_SEEDS\\\\n\\\\n        log(f\\\\\\\"=== {condition.upper()} probing ===\\\\\\\")\\\\n        log(f\\\\\\\"Config: tasks={nt} demos={nd} timesteps={ns} seeds={nps} dry_run={args.dry_run}\\\\\\\")\\\\n        log(f\\\\\\\"Output: {results_dir}\\\\\\\")\\\\n\\\\n        try:\\\\n            model, processor = load_model(ckpt, condition)\\\\n        except Exception as e:\\\\n            log(f\\\\\\\"  ERROR loading {condition} model: {e}\\\\\\\")\\\\n            continue\\\\n\\\\n        t1 = time.time()\\\\n        reps, actions = extract_features(model, processor, nt, nd, ns)\\\\n        log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        t2 = time.time()\\\\n        probe_res = run_probing(reps, actions, nps)\\\\n        out_path = os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\")\\\\n        with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(probe_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> {out_path}\\\\\\\")\\\\n\\\\n        del reps, actions\\\\n\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-t1)/60:.1f} min\\\\\\\")\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nTraceVLA-Spatial R² probing-only补跑脚本\\n\\n只跑 Phase 1 (feature extraction) + Phase 2 (R² probing)。\\n跳过 L1 attention / cross-instruction classification / counterfactual。\\n输出: RESULTS_DIR/{condition}/action_r2_probing.json\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, time\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"microsoft/Phi-3-vision-128k-instruct\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\\"\\nDEVICE = \\\"cuda:0\\\"\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nHIDDEN = 3072\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef find_token_regions(input_ids):\\n    ids = input_ids[0].cpu().numpy()\\n    img_positions = np.where(ids < 0)[0]\\n    if len(img_positions) > 0:\\n        img_s = int(img_positions[0])\\n        img_e = int(img_positions[-1]) + 1\\n    else:\\n        img_s = img_e = 1\\n    return {\\\"bos\\\": (0, img_s), \\\"image\\\": (img_s, img_e), \\\"text\\\": (img_e, len(ids))}\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: representation extraction (probing only)\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n\\n    idx = 0\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        log(f\\\"  Task {ti}/{n_tasks}: {TASKS[ti][:60]}...\\\")\\n\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            for di in range(n_demos):\\n                demo = f\\\"data/demo_{di}\\\"\\n                n_avail = hf[demo][\\\"actions\\\"].shape[0]\\n                for t in range(min(n_timesteps, n_avail)):\\n                    img = Image.fromarray(hf[f\\\"{demo}/obs/agentview_rgb\\\"][t])\\n                    act = np.array(hf[f\\\"{demo}/actions\\\"][t], dtype=np.float32)\\n\\n                    inputs = prepare_inputs(processor, INSTRUCTIONS[ti], img)\\n                    original_ids = inputs[\\\"input_ids\\\"].clone()\\n                    with torch.no_grad():\\n                        out = model(\\n                            **inputs,\\n                          \\n\\n... [截断: 输出过长，省略 891 字符] ...\\n\\nx} samples\\\")\\n    return reps, actions_arr[:idx]\\n\\n\\ndef run_probing(reps, actions, n_seeds):\\n    log(\\\"Phase 2: action R2 probing (Ridge)\\\")\\n    results = {}\\n    n = len(actions)\\n    nt = int(n * 0.8)\\n    perm = np.random.RandomState(42).permutation(n)\\n    for l in range(N_LAYERS):\\n        for pos in (\\\"image_mean\\\", \\\"last_preaction\\\"):\\n            X, y = reps[l][pos], actions\\n            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n\\n            probe = RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\\n            probe.fit(Xtr, ytr)\\n            pred = probe.predict(Xv)\\n            ss_res = np.sum((yv - pred) ** 2)\\n            ss_tot = np.sum((yv - yv.mean(0)) ** 2)\\n            r2 = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\n\\n            results[f\\\"L{l}_{pos}\\\"] = {\\n                \\\"mean\\\": round(r2, 4),\\n                \\\"std\\\": 0.0,\\n                \\\"values\\\": [round(r2, 4)],\\n            }\\n        if l % 8 == 0:\\n            log(\\n                f\\\"  L{l}: img_mean R2={results[f'L{l}_image_mean']['mean']:.4f}  \\\"\\n                f\\\"last_pre R2={results[f'L{l}_last_preaction']['mean']:.4f}\\\"\\n            )\\n    return results\\n\\n\\ndef load_model(ckpt_path, condition):\\n    log(f\\\"Loading {condition} model from {ckpt_path} ...\\\")\\n    t0 = time.time()\\n    model = AutoModelForCausalLM.from_pretrained(\\n        ckpt_path,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=\\\"eager\\\",\\n    ).to(DEVICE).eval()\\n    processor = AutoProcessor.from_pretrained(\\n        ckpt_path, trust_remote_code=True, num_crops=1\\n    )\\n    log(f\\\"  Model loaded in {time.time()-t0:.1f}s\\\")\\n    return model, processor\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser(description=\\\"TraceVLA-Spatial R² probing only\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\n        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n        default=[\\\"trained\\\"],\\n        help=\\\"Conditions to run (trained untrained)\\\",\\n    )\\n    args = p.parse_args()\\n\\n    conditions = args.conditions\\n    log(f\\\"Probing-only pipeline, conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n        elif condition == \\\"untrained\\\":\\n            if os.path.exists(os.path.join(UNTRAINED_CACHE, \\\"config.json\\\")):\\n                ckpt = UNTRAINED_CACHE\\n            else:\\n                ckpt = UNTRAINED_CKPT\\n                log(f\\\"  Will download untrained model from {ckpt}\\\")\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        results_dir = os.path.join(RESULTS_BASE, condition)\\n        os.makedirs(results_dir, exist_ok=True)\\n\\n        nt = 2 if args.dry_run else len(TASKS)\\n        nd = 1 if args.dry_run else N_DEMOS\\n        ns = 2 if args.dry_run else N_TIMESTEPS\\n        nps = 2 if args.dry_run else N_PROBE_SEEDS\\n\\n        log(f\\\"=== {condition.upper()} probing ===\\\")\\n        log(f\\\"Config: tasks={nt} demos={nd} timesteps={ns} seeds={nps} dry_run={args.dry_run}\\\")\\n        log(f\\\"Output: {results_dir}\\\")\\n\\n        try:\\n            model, processor = load_model(ckpt, condition)\\n        except Exception as e:\\n            log(f\\\"  ERROR loading {condition} model: {e}\\\")\\n            continue\\n\\n        t1 = time.time()\\n        reps, actions = extract_features(model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n        t2 = time.time()\\n        probe_res = run_probing(reps, actions, nps)\\n        out_path = os.path.join(results_dir, \\\"action_r2_probing.json\\\")\\n        with open(out_path, \\\"w\\\") as f:\\n            json.dump(probe_res, f, indent=2)\\n        log(f\\\"Phase 2: {time.time()-t2:.1f}s -> {out_path}\\\")\\n\\n        del reps, actions\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t1)/60:.1f} min\\\")\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HZhUk1p8JuQCFJL6qUTgtv`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "51cf3c4c-0457-4130-8bd5-9bf73ef63a71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118p1p7gSpuJ2WvrgDDRP5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 46950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T14:05:22.829Z_
+
+<details><summary>↩ Tool result · `toolu_01HZhUk1p8JuQCFJL6qUTgtv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nNLP Fine-tuning Control: Llama-2-7b-chat R2 probing on LIBERO-Goal actions.\\n\\nControl experiment to verify R2 exit collapse is VLA-specific.\\nText-only model: hidden states are constant per task (no image input).\\nEach task instruction -> one forward pass -> hidden states replicated for all timesteps.\\nR2 measures: can per-layer task representations predict action vectors?\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, time\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nMODEL_ID = \\\"/root/autodl-tmp/models/Llama-2-7b-chat-hf\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe\\\"\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"open the middle drawer of the cabinet\\\",\\n    \\\"open the top drawer and put the bowl inside\\\",\\n    \\\"push the plate to the front of the stove\\\",\\n    \\\"put the bowl on the plate\\\",\\n    \\\"put the bowl on the stove\\\",\\n    \\\"put the bowl on top of the cabinet\\\",\\n    \\\"put the cream cheese in the bowl\\\",\\n    \\\"put the wine bottle on the rack\\\",\\n    \\\"put the wine bottle on top of the cabinet\\\",\\n    \\\"turn on the stove\\\",\\n]\\n\\nN_LAYERS = 32\\nHIDDEN = 4096\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef extract_features_and_actions(model, tokenizer, device, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: extracting hidden states + actions\\\")\\n\\n    task_hidden = {}\\n    for ti in range(n_tasks):\\n        prompt = make_prompt(INSTRUCTIONS[ti])\\n        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(device)\\n        if ti == 0:\\n            log(f\\\"  Prompt example: '{prompt}'\\\")\\n            log(f\\\"  Token count: {inputs['input_ids'].shape[1]}\\\")\\n\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True)\\n\\n        task_hidden[ti] = {}\\n        for l in range(N_LAYERS):\\n            hs = out.hidden_states[l + 1][0]\\n            task_hidden[ti][l] = hs[-1].float().cpu().numpy()\\n\\n        del out\\n        torch.cuda.empty_cache()\\n        log(f\\\"  Task {ti+1}/{n_tasks}: {TASKS[ti]}\\\")\\n\\n    total_est = n_tasks * n_demos * n_timesteps\\n    reps = {l: np.zeros((total_est, HIDDEN), dtype=np.float32) for l in range(N_LAYERS)}\\n    actions_arr = np.zeros((total_est, 7), dtype=np.float32)\\n    task_labels = np.zeros(total_est, dtype=np.int32)\\n    idx = 0\\n\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            demo_keys = sorted(hf[\\\"data\\\"].keys(), key=lambda x: int(x.split(\\\"_\\\")[1]))\\n            for di in range(min(n_demos, len(demo_keys))):\\n                acts = hf[f\\\"data/{demo_keys[di]}/actions\\\"][:]\\n                max_t = min(n_timesteps, len(acts))\\n                for t in range(max_t):\\n                    for l in range(N_LAYERS):\\n                        reps[l][idx] = task_hidden[ti][l]\\n                    actions_arr[idx] = acts[t]\\n                    task_labels[idx] = ti\\n                    idx += 1\\n\\n    log(f\\\"Phase 1 done: {idx} samples ({n_tasks} unique hidden states)\\\")\\n    for l in range(N_LAYERS):\\n        reps[l] = reps[l][:idx]\\n    return reps, actions_arr[:idx], task_labels[:idx]\\n\\n\\ndef run_probing(reps, actions):\\n    log(\\\"Phase 2: action R2 probing (Ridge)\\\")\\n    results = {}\\n    n = len(actions)\\n    nt = int(n * 0.8)\\n    perm = np.random.RandomState(42).permutation(n)\\n\\n    for l in range(N_LAYERS):\\n        X, y = reps[l], actions\\n        Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n        Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n\\n        probe = RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\\n        probe.fit(Xtr, ytr)\\n        pred = probe.predict(Xv)\\n        ss_res = np.sum((yv - pred) ** 2)\\n        ss_tot = np.sum((yv - yv.mean(0)) ** 2)\\n        r2 = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\n\\n        results[f\\\"L{l}_last_token\\\"] = {\\n            \\\"mean\\\": round(r2, 4),\\n            \\\"std\\\": 0.0,\\n            \\\"values\\\": [round(r2, 4)],\\n        }\\n        if l % 4 == 0:\\n            log(f\\\"  L{l}: R2={r2:.4f}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    args = p.parse_args()\\n\\n    device = f\\\"cuda:{args.gpu}\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\n\\n    n_tasks = 2 if args.dry_run else len(TASKS)\\n    n_demos = 2 if args.dry_run else N_DEMOS\\n    n_timesteps = 5 if args.dry_run else N_TIMESTEPS\\n\\n    log(\\\"NLP Control R2 Probing: Llama-2-7b-chat\\\")\\n    log(f\\\"Device: {device}\\\")\\n    log(f\\\"Config: tasks={n_tasks} demos={n_demos} timesteps={n_timesteps}\\\")\\n    log(f\\\"Model: {MODEL_ID}\\\")\\n    log(f\\\"Output: {RESULTS_DIR}\\\")\\n\\n    t0 = time.time()\\n    log(\\\"Loading model...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_ID, torch_dtype=torch.bfloat16, device_map=device,\\n    )\\n    model.eval()\\n    log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n    log(f\\\"  Parameters: {sum(p.numel() for p in model.parameters())/1e9:.1f}B\\\")\\n\\n    t1 = time.time()\\n    reps, actions, labels = extract_features_and_actions(\\n        model, tokenizer, device, n_tasks, n_demos, n_timesteps\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    del model\\n    torch.cuda.empty_cache()\\n\\n    t2 = time.time()\\n    probe_res = run_probing(reps, actions)\\n    with open(os.path.join(RESULTS_DIR, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n        json.dump(probe_res, f, indent=2)\\n    log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    r2_values = [probe_res[f\\\"L{l}_last_token\\\"][\\\"mean\\\"] for l in range(N_LAYERS)]\\n    summary = {\\n        \\\"model\\\": \\\"Llama-2-7b-chat-hf\\\",\\n        \\\"model_path\\\": MODEL_ID,\\n        \\\"readout\\\": \\\"last_token\\\",\\n        \\\"n_samples\\\": len(actions),\\n        \\\"n_unique_hidden_states\\\": n_tasks,\\n        \\\"note\\\": \\\"text-only model: hidden states constant per task, actions vary across timesteps\\\",\\n        \\\"per_layer_r2\\\": {f\\\"L{l}\\\": r2_values[l] for l in range(N_LAYERS)},\\n        \\\"peak_layer\\\": int(np.argmax(r2_values)),\\n        \\\"peak_r2\\\": float(np.max(r2_values)),\\n        \\\"exit_r2\\\": r2_values[-1],\\n        \\\"exit_collapse\\\": round(float(np.max(r2_values)) - r2_values[-1], 4),\\n        \\\"mean_r2\\\": round(float(np.mean(r2_values)), 4),\\n    }\\n    with open(os.path.join(RESULTS_DIR, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    log(\\\"Summary saved -> summary.json\\\")\\n    log(f\\\"  Peak: L{summary['peak_layer']} R2={summary['peak_r2']:.4f}\\\")\\n    log(f\\\"  Exit: L31 R2={summary['exit_r2']:.4f}\\\")\\n    log(f\\\"  Exit collapse: {summary['exit_collapse']:.4f}\\\")\\n    log(f\\\"  Mean R2: {summary['mean_r2']:.4f}\\\")\\n\\n    log(f\\\"Total: {(time.time()-t0)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "db2154a8-e3a4-4620-aed1-0bb5a01a970d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nNLP Fine-tuning Control: Llama-2-7b-chat R2 probing on LIBERO-Goal actions.\\\\n\\\\nControl experiment to verify R2 exit collapse is VLA-specific.\\\\nText-only model: hidden states are constant per task (no image input).\\\\nEach task instruction -> one forward pass -> hidden states replicated for all timesteps.\\\\nR2 measures: can per-layer task representations predict action vectors?\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, time\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nMODEL_ID = \\\\\\\"/root/autodl-tmp/models/Llama-2-7b-chat-hf\\\\\\\"\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nRESULTS_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe\\\\\\\"\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [\\\\n    \\\\\\\"open the middle drawer of the cabinet\\\\\\\",\\\\n    \\\\\\\"open the top drawer and put the bowl inside\\\\\\\",\\\\n    \\\\\\\"push the plate to the front of the stove\\\\\\\",\\\\n    \\\\\\\"put the bowl on the plate\\\\\\\",\\\\n    \\\\\\\"put the bowl on the stove\\\\\\\",\\\\n    \\\\\\\"put the bowl on top of the cabinet\\\\\\\",\\\\n    \\\\\\\"put the cream cheese in the bowl\\\\\\\",\\\\n    \\\\\\\"put the wine bottle on the rack\\\\\\\",\\\\n    \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\",\\\\n    \\\\\\\"turn on the stove\\\\\\\",\\\\n]\\\\n\\\\nN_LAYERS = 32\\\\nHIDDEN = 4096\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return f\\\\\\\"In: What action should the robot take to {instruction}?\\\\\\\\nOut:\\\\\\\"\\\\n\\\\n\\\\ndef extract_features_and_actions(model, tokenizer, device, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Phase 1: extracting hidden states + actions\\\\\\\")\\\\n\\\\n    task_hidden = {}\\\\n    for ti in range(n_tasks):\\\\n        prompt = make_prompt(INSTRUCTIONS[ti])\\\\n        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(device)\\\\n        if ti == 0:\\\\n            log(f\\\\\\\"  Prompt example: '{prompt}'\\\\\\\")\\\\n            log(f\\\\\\\"  Token count: {inputs['input_ids'].shape[1]}\\\\\\\")\\\\n\\\\n        with torch.no_grad():\\\\n            out = model(**inputs, output_hidden_states=True)\\\\n\\\\n        task_hidden[ti] = {}\\\\n        for l in range(N_LAYERS):\\\\n            hs = out.hidden_states[l + 1][0]\\\\n            task_hidden[ti][l] = hs[-1].float().cpu().numpy()\\\\n\\\\n        del out\\\\n        torch.cuda.empty_cache()\\\\n        log(f\\\\\\\"  Task {ti+1}/{n_tasks}: {TASKS[ti]}\\\\\\\")\\\\n\\\\n    total_est = n_tasks * n_demos * n_timesteps\\\\n    reps = {l: np.zeros((total_est, HIDDEN), dtype=np.float32) for l in range(N_LAYERS)}\\\\n    actions_arr = np.zeros((total_est, 7), dtype=np.float32)\\\\n    task_labels = np.zeros(total_est, dtype=np.int32)\\\\n    idx = 0\\\\n\\\\n    for ti in range(n_tasks):\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            demo_keys = sorted(hf[\\\\\\\"data\\\\\\\"].keys(), key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[1]))\\\\n            for di in range(min(n_demos, len(demo_keys))):\\\\n                acts = hf[f\\\\\\\"data/{demo_keys[di]}/actions\\\\\\\"][:]\\\\n                max_t = min(n_timesteps, len(acts))\\\\n                for t in range(max_t):\\\\n                    for l in range(N_LAYERS):\\\\n                        reps[l][idx] = task_hidden[ti][l]\\\\n                    actions_arr[idx] = acts[t]\\\\n                    task_labels[idx] = ti\\\\n                    idx += 1\\\\n\\\\n    log(f\\\\\\\"Phase 1 done: {idx} samples ({n_tasks} unique hidden states)\\\\\\\")\\\\n    for l in range(N_LAYERS):\\\\n        reps[l] = reps[l][:idx]\\\\n    return reps, actions_arr[:idx], task_labels[:idx]\\\\n\\\\n\\\\ndef run_probing(reps, actions):\\\\n    log(\\\\\\\"Phase 2: action R2 probing (Ridge)\\\\\\\")\\\\n    results = {}\\\\n    n = len(actions)\\\\n    nt = int(n * 0.8)\\\\n    perm = np.random.RandomState(42).permutation(n)\\\\n\\\\n    for l in range(N_LAYERS):\\\\n        X, y = reps[l], actions\\\\n        Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\\\n        Xv, yv = X[perm[nt:]], y[perm[nt:]]\\\\n\\\\n        probe = RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\\\\n        probe.fit(Xtr, ytr)\\\\n        pred = probe.predict(Xv)\\\\n        ss_res = np.sum((yv - pred) ** 2)\\\\n        ss_tot = np.sum((yv - yv.mean(0)) ** 2)\\\\n        r2 = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\\\n\\\\n        results[f\\\\\\\"L{l}_last_token\\\\\\\"] = {\\\\n            \\\\\\\"mean\\\\\\\": round(r2, 4),\\\\n            \\\\\\\"std\\\\\\\": 0.0,\\\\n            \\\\\\\"values\\\\\\\": [round(r2, 4)],\\\\n        }\\\\n        if l % 4 == 0:\\\\n            log(f\\\\\\\"  L{l}: R2={r2:.4f}\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    device = f\\\\\\\"cuda:{args.gpu}\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\\\n\\\\n    n_tasks = 2 if args.dry_run else len(TASKS)\\\\n    n_demos = 2 if args.dry_run else N_DEMOS\\\\n    n_timesteps = 5 if args.dry_run else N_TIMESTEPS\\\\n\\\\n    log(\\\\\\\"NLP Control R2 Probing: Llama-2-7b-chat\\\\\\\")\\\\n    log(f\\\\\\\"Device: {device}\\\\\\\")\\\\n    log(f\\\\\\\"Config: tasks={n_tasks} demos={n_demos} timesteps={n_timesteps}\\\\\\\")\\\\n    log(f\\\\\\\"Model: {MODEL_ID}\\\\\\\")\\\\n    log(f\\\\\\\"Output: {RESULTS_DIR}\\\\\\\")\\\\n\\\\n    t0 = time.time()\\\\n    log(\\\\\\\"Loading model...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        MODEL_ID, torch_dtype=torch.bfloat16, device_map=device,\\\\n    )\\\\n    model.eval()\\\\n    log(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n    log(f\\\\\\\"  Parameters: {sum(p.numel() for p in model.parameters())/1e9:.1f}B\\\\\\\")\\\\n\\\\n    t1 = time.time()\\\\n    reps, actions, labels = extract_features_and_actions(\\\\n        model, tokenizer, device, n_tasks, n_demos, n_timesteps\\\\n    )\\\\n    log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n    del model\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    t2 = time.time()\\\\n    probe_res = run_probing(reps, actions)\\\\n    with open(os.path.join(RESULTS_DIR, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(probe_res, f, indent=2)\\\\n    log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n    r2_values = [probe_res[f\\\\\\\"L{l}_last_token\\\\\\\"][\\\\\\\"mean\\\\\\\"] for l in range(N_LAYERS)]\\\\n    summary = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"Llama-2-7b-chat-hf\\\\\\\",\\\\n        \\\\\\\"model_path\\\\\\\": MODEL_ID,\\\\n        \\\\\\\"readout\\\\\\\": \\\\\\\"last_token\\\\\\\",\\\\n        \\\\\\\"n_samples\\\\\\\": len(actions),\\\\n        \\\\\\\"n_unique_hidden_states\\\\\\\": n_tasks,\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"text-only model: hidden states constant per task, actions vary across timesteps\\\\\\\",\\\\n        \\\\\\\"per_layer_r2\\\\\\\": {f\\\\\\\"L{l}\\\\\\\": r2_values[l] for l in range(N_LAYERS)},\\\\n        \\\\\\\"peak_layer\\\\\\\": int(np.argmax(r2_values)),\\\\n        \\\\\\\"peak_r2\\\\\\\": float(np.max(r2_values)),\\\\n        \\\\\\\"exit_r2\\\\\\\": r2_values[-1],\\\\n        \\\\\\\"exit_collapse\\\\\\\": round(float(np.max(r2_values)) - r2_values[-1], 4),\\\\n        \\\\\\\"mean_r2\\\\\\\": round(float(np.mean(r2_values)), 4),\\\\n    }\\\\n    with open(os.path.join(RESULTS_DIR, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    log(\\\\\\\"Summary saved -> summary.json\\\\\\\")\\\\n    log(f\\\\\\\"  Peak: L{summary['peak_layer']} R2={summary['peak_r2']:.4f}\\\\\\\")\\\\n    log(f\\\\\\\"  Exit: L31 R2={summary['exit_r2']:.4f}\\\\\\\")\\\\n    log(f\\\\\\\"  Exit collapse: {summary['exit_collapse']:.4f}\\\\\\\")\\\\n    log(f\\\\\\\"  Mean R2: {summary['mean_r2']:.4f}\\\\\\\")\\\\n\\\\n    log(f\\\\\\\"Total: {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nNLP Fine-tuning Control: Llama-2-7b-chat R2 probing on LIBERO-Goal actions.\\n\\nControl experiment to verify R2 exit collapse is VLA-specific.\\nText-only model: hidden states are constant per task (no image input).\\nEach task instruction -> one forward pass -> hidden states replicated for all timesteps.\\nR2 measures: can per-layer task representations predict action vectors?\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, time\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nMODEL_ID = \\\"/root/autodl-tmp/models/Llama-2-7b-chat-hf\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe\\\"\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"open the middle drawer of the cabinet\\\",\\n    \\\"open the top drawer and put the bowl inside\\\",\\n    \\\"push the plate to the front of the stove\\\",\\n    \\\"put the bowl on the plate\\\",\\n    \\\"put the bowl on the stove\\\",\\n    \\\"put the bowl on top of the cabinet\\\",\\n    \\\"put the cream cheese in the bowl\\\",\\n    \\\"put the wine bottle on the rack\\\",\\n    \\\"put the wine bottle on top of the cabinet\\\",\\n    \\\"turn on the stove\\\",\\n]\\n\\nN_LAYERS = 32\\nHIDDEN = 4096\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef extract_features_and_actions(model, tokenizer, device, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: extracting hidden states + actions\\\")\\n\\n    task_hidden = {}\\n    for ti in range(n_tasks):\\n        prompt = make_prompt(INSTRUCTIONS[ti])\\n        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(device)\\n        if ti == 0:\\n            log(f\\\"  Prompt example: '{prompt}'\\\")\\n            log(f\\\"  Token count: {inputs['input_ids'].shape[1]}\\\")\\n\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True)\\n\\n        task_hidden[ti] = {}\\n        for l in range(N_LAYERS):\\n            hs = out.hidden_states[l + 1][0]\\n            task_hidden[ti][l] = hs[-1].float().cpu().numpy()\\n\\n        del out\\n        torch.cuda.empty_cache()\\n        log(f\\\"  Task {ti+1}/{n_tasks}: {TASKS[ti]}\\\")\\n\\n    total_est = n_tasks * n_demos * n_timesteps\\n    reps = {l: np.zeros((total_est, HIDDEN), dtype=np.float32) for l in range(N_LAYERS)}\\n    actions_arr = np.zeros((total_est, 7), dtype=np.float32)\\n    task_labels = np.zeros(total_est, dtype=np.int32)\\n    idx = 0\\n\\n    for ti in range(n_tasks):\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            demo_keys = sorted(hf[\\\"data\\\"].keys(), key=lambda x: int(x.split(\\\"_\\\")[1]))\\n            for di in range(min(n_demos, len(demo_keys))):\\n                acts = hf[f\\\"data/{demo_keys[di]}/actions\\\"][:]\\n                max_t = min(n_timesteps, len(acts))\\n                for t in range(max_t):\\n                    for l in range(N_LAYERS):\\n                        reps[l][idx] = task_hidden[ti][l]\\n                    actions_arr[idx] = acts[t]\\n                    task_labels[idx] = ti\\n                    idx += 1\\n\\n    log(f\\\"Phase 1 done: {idx} samples ({n_tasks} unique hidden states)\\\")\\n    for l in range(N_LAYERS):\\n        reps[l] = reps[l][:idx]\\n    return reps, actions_arr[:idx], task_labels[:idx]\\n\\n\\ndef run_probing(reps, actions):\\n    log(\\\"Phase 2: action R2 probing (Ridge)\\\")\\n    results = {}\\n    n = len(actions)\\n    nt = int(n * 0.8)\\n    perm = np.random.RandomState(42).permutation(n)\\n\\n    for l in range(N_LAYERS):\\n        X, y = reps[l], actions\\n        Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n        Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n\\n        probe = RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\\n        probe.fit(Xtr, ytr)\\n        pred = probe.predict(Xv)\\n        ss_res = np.sum((yv - pred) ** 2)\\n        ss_tot = np.sum((yv - yv.mean(0)) ** 2)\\n        r2 = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\n\\n        results[f\\\"L{l}_last_token\\\"] = {\\n            \\\"mean\\\": round(r2, 4),\\n            \\\"std\\\": 0.0,\\n            \\\"values\\\": [round(r2, 4)],\\n        }\\n        if l % 4 == 0:\\n            log(f\\\"  L{l}: R2={r2:.4f}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    args = p.parse_args()\\n\\n    device = f\\\"cuda:{args.gpu}\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\n\\n    n_tasks = 2 if args.dry_run else len(TASKS)\\n    n_demos = 2 if args.dry_run else N_DEMOS\\n    n_timesteps = 5 if args.dry_run else N_TIMESTEPS\\n\\n    log(\\\"NLP Control R2 Probing: Llama-2-7b-chat\\\")\\n    log(f\\\"Device: {device}\\\")\\n    log(f\\\"Config: tasks={n_tasks} demos={n_demos} timesteps={n_timesteps}\\\")\\n    log(f\\\"Model: {MODEL_ID}\\\")\\n    log(f\\\"Output: {RESULTS_DIR}\\\")\\n\\n    t0 = time.time()\\n    log(\\\"Loading model...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_ID, torch_dtype=torch.bfloat16, device_map=device,\\n    )\\n    model.eval()\\n    log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n    log(f\\\"  Parameters: {sum(p.numel() for p in model.parameters())/1e9:.1f}B\\\")\\n\\n    t1 = time.time()\\n    reps, actions, labels = extract_features_and_actions(\\n        model, tokenizer, device, n_tasks, n_demos, n_timesteps\\n    )\\n    log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n    del model\\n    torch.cuda.empty_cache()\\n\\n    t2 = time.time()\\n    probe_res = run_probing(reps, actions)\\n    with open(os.path.join(RESULTS_DIR, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n        json.dump(probe_res, f, indent=2)\\n    log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n    r2_values = [probe_res[f\\\"L{l}_last_token\\\"][\\\"mean\\\"] for l in range(N_LAYERS)]\\n    summary = {\\n        \\\"model\\\": \\\"Llama-2-7b-chat-hf\\\",\\n        \\\"model_path\\\": MODEL_ID,\\n        \\\"readout\\\": \\\"last_token\\\",\\n        \\\"n_samples\\\": len(actions),\\n        \\\"n_unique_hidden_states\\\": n_tasks,\\n        \\\"note\\\": \\\"text-only model: hidden states constant per task, actions vary across timesteps\\\",\\n        \\\"per_layer_r2\\\": {f\\\"L{l}\\\": r2_values[l] for l in range(N_LAYERS)},\\n        \\\"peak_layer\\\": int(np.argmax(r2_values)),\\n        \\\"peak_r2\\\": float(np.max(r2_values)),\\n        \\\"exit_r2\\\": r2_values[-1],\\n        \\\"exit_collapse\\\": round(float(np.max(r2_values)) - r2_values[-1], 4),\\n        \\\"mean_r2\\\": round(float(np.mean(r2_values)), 4),\\n    }\\n    with open(os.path.join(RESULTS_DIR, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    log(\\\"Summary saved -> summary.json\\\")\\n    log(f\\\"  Peak: L{summary['peak_layer']} R2={summary['peak_r2']:.4f}\\\")\\n    log(f\\\"  Exit: L31 R2={summary['exit_r2']:.4f}\\\")\\n    log(f\\\"  Exit collapse: {summary['exit_collapse']:.4f}\\\")\\n    log(f\\\"  Mean R2: {summary['mean_r2']:.4f}\\\")\\n\\n    log(f\\\"Total: {(time.time()-t0)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HgCL9WZF2Nh58oKBrHJaLq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts/ -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "e446461b-2b0a-449a-8d04-f5eb5aa34794",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118p1p7gSpuJ2WvrgDDRP5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 46950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T14:05:23.430Z_
+
+<details><summary>↩ Tool result · `toolu_01HgCL9WZF2Nh58oKBrHJaLq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py\\n/root/autodl-tmp/vla-ssd/scripts/spatial_resume_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/spatial_untrained_only.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "e44ec971-f74c-4bfc-a697-13afee44835b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py\\\\n/root/autodl-tmp/vla-ssd/scripts/spatial_resume_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/spatial_untrained_only.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py\\n/root/autodl-tmp/vla-ssd/scripts/spatial_resume_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/spatial_untrained_only.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the main pipeline script to understand the probing flow for the primary experiments (libero_goal_full_pipeline.py).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "65885d4e-e5a9-4e59-b22c-d24bcb82078b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H8Hnp9372VaqMvJfwfYpu5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8086,
+      "cache_read_input_tokens": 50576,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8086
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+查看主 pipeline 中的 probing 部分，确认 split 方式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "060b40d6-067e-4c61-9f67-f86046f27f3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H8Hnp9372VaqMvJfwfYpu5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8086,
+      "cache_read_input_tokens": 50576,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8086
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X1w5Y9wjDqMAdEmSVCLWuU`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"run_probing\\|r2_score\\|split\\|perm\\|RidgeCV\\|demo\\|per_demo\\|bootstrap\\|save\\|features\\|\\.npy\\|np\\.save\\|torch\\.save\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "ca139710-8fda-4857-9872-b748dd28184d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H8Hnp9372VaqMvJfwfYpu5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8086,
+      "cache_read_input_tokens": 50576,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8086
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T14:05:29.639Z_
+
+<details><summary>↩ Tool result · `toolu_01X1w5Y9wjDqMAdEmSVCLWuU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "d4c24657-ef0a-4567-9fc4-8ea9d8e0960b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SxRHAp5VfDfFrwKkNjnUX6`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "4b0c9f5f-287d-4781-a823-dc4c56842499",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H8Hnp9372VaqMvJfwfYpu5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8086,
+      "cache_read_input_tokens": 50576,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8086
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LuZg8NvwgMfoVCEkRQeGzk`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/nora_goal/trained/action_r2_probing.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "fddd7446-fc27-403a-b323-ad2a05e3c7f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H8Hnp9372VaqMvJfwfYpu5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8086,
+      "cache_read_input_tokens": 50576,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8086
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-22T14:05:31.083Z_
+
+<details><summary>↩ Tool result · `toolu_01SxRHAp5VfDfFrwKkNjnUX6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.8027,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8027\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.6122,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6122\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.8035,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8035\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.7008,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7008\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.8052,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8052\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.7346,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7346\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.808,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.808\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.7682,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7682\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.8099,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8099\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.7949,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7949\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.8159,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8159\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.7934,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7934\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.819,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.819\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.8003,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8003\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.8278,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8278\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.7788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7788\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.8294,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8294\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.7827,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7827\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.8291,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8291\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.781,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.781\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.8268,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8268\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.788\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.8235,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8235\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.7858,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7858\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.8162,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8162\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.7843,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7843\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.8202,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8202\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.7786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7786\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.8222,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8222\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.7912,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7912\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.8218,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8218\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.7853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7853\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.8274,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8274\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.7879,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7879\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.8314,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8314\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.791,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.791\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.8358,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8358\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.8024,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8024\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.8373,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8373\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.79,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.79\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.8389,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8389\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.7838,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7838\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.839,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.839\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.7766,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7766\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.838,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.838\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.7703,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7703\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.8416,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8416\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.7499,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7499\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.8385,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8385\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.7411,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7411\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.8298,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8298\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.7304,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7304\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.8215,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8215\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.7062,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7062\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.8164,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8164\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.653,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.653\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.8173,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8173\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6046,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6046\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.8208,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8208\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.5015,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5015\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.8118,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8118\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.3072,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.3072\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.8048,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8048\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.5741,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5741\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "60f86a82-289f-4d06-8b94-01e69181630d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"L0_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8027,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8027\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L0_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6122,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6122\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8035,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8035\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7008,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7008\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8052,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8052\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7346,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7346\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.808,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.808\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7682,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7682\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8099,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8099\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7949,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7949\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8159,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8159\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7934,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7934\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.819,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.819\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8003,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8003\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8278,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8278\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7788,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7788\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8294,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8294\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7827,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7827\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8291,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8291\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.781,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.781\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8268,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8268\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.788,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.788\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8235,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8235\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7858,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7858\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8162,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8162\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7843,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7843\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8202,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8202\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7786,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7786\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8222,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8222\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7912,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7912\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8218,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8218\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7853,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7853\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8274,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8274\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7879,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7879\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8314,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8314\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.791,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.791\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8358,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8358\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8024,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8024\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8373,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8373\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.79,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.79\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8389,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8389\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7838,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7838\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.839,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.839\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7766,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7766\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.838,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.838\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7703,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7703\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8416,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8416\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7499,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7499\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8385,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8385\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7411,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7411\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8298,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8298\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7304,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7304\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8215,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8215\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7062,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7062\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8164,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8164\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.653,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.653\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8173,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8173\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6046,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6046\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8208,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8208\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5015,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5015\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8118,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8118\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.3072,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.3072\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.8048,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.8048\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5741,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5741\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.8027,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8027\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.6122,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6122\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.8035,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8035\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.7008,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7008\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.8052,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8052\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.7346,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7346\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.808,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.808\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.7682,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7682\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.8099,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8099\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.7949,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7949\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.8159,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8159\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.7934,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7934\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.819,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.819\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.8003,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8003\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.8278,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8278\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.7788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7788\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.8294,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8294\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.7827,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7827\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.8291,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8291\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.781,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.781\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.8268,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8268\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.788\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.8235,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8235\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.7858,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7858\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.8162,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8162\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.7843,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7843\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.8202,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8202\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.7786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7786\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.8222,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8222\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.7912,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7912\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.8218,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8218\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.7853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7853\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.8274,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8274\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.7879,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7879\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.8314,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8314\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.791,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.791\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.8358,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8358\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.8024,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8024\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.8373,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8373\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.79,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.79\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.8389,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8389\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.7838,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7838\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.839,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.839\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.7766,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7766\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.838,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.838\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.7703,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7703\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.8416,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8416\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.7499,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7499\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.8385,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8385\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.7411,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7411\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.8298,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8298\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.7304,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7304\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.8215,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8215\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.7062,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7062\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.8164,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8164\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.653,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.653\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.8173,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8173\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6046,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6046\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.8208,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8208\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.5015,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5015\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.8118,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8118\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.3072,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.3072\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.8048,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.8048\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.5741,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5741\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T14:05:31.626Z_
+
+<details><summary>↩ Tool result · `toolu_01LuZg8NvwgMfoVCEkRQeGzk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.686,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.686\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.6392,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6392\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.6873,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6873\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.6562,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6562\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.6878,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6878\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.657,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.657\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.6874,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6874\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.6587,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6587\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.688,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.688\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.6882,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6882\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.6667,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6667\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.6885,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6885\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.6498,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6498\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.6873,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6873\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6867,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6867\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.6898,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6898\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.6847,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6847\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.6908,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6908\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6875,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6875\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.6968,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6968\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.6815,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6815\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.6964,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6964\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.6865,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6865\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.6913,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6913\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6868,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6868\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.6897,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6897\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.6786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6786\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.6895,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6895\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.6786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6786\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.6879,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6879\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6715,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6715\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.6853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6853\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.673,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.673\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.6788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6788\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.662,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.662\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.679,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.679\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.6601,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6601\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.6798,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6798\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.657,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.657\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.6787,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6787\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6567,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6567\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.6766,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6766\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.6556,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6556\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6772,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6772\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.6458,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6458\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.67,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.67\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.6471,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6471\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.6687,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6687\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.6509,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6509\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6687,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6687\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.651,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.651\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.6456,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6456\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.6456,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6456\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6455,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6455\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6497,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6497\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.64,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.64\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6333,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6333\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6333,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6333\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.6233,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6233\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.5994,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5994\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.6233,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6233\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.5994,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5994\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.6234,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6234\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.5992,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5992\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": -0.0039,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      -0.0039\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": -0.0039,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      -0.0039\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "7d2a7120-11e0-4e40-8f81-8963c3c2c91d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"L0_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.686,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.686\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L0_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6392,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6392\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6873,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6873\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6562,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6562\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6878,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6878\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.657,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.657\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6874,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6874\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6587,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6587\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.688,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.688\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6675,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6675\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6882,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6882\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6667,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6667\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6885,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6885\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6498,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6498\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6873,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6873\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6867,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6867\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6898,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6898\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6847,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6847\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6908,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6908\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6875,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6875\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6968,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6968\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6815,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6815\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6964,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6964\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6865,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6865\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6913,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6913\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6868,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6868\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6897,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6897\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6786,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6786\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6895,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6895\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6786,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6786\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6879,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6879\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6715,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6715\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6853,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6853\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.673,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.673\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6788,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6788\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.662,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.662\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.679,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.679\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6601,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6601\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6798,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6798\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.657,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.657\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6787,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6787\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6567,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6567\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6766,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6766\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6556,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6556\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6772,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6772\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6458,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6458\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.67,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.67\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6471,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6471\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6687,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6687\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6509,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6509\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6687,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6687\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.651,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.651\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6675,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6675\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6456,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6456\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6675,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6675\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6456,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6456\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6675,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6675\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6455,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6455\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6497,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6497\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.64,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.64\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6333,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6333\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.618,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.618\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6333,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6333\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.618,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.618\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6233,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6233\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5994,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5994\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6233,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6233\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5994,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5994\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6234,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6234\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5992,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5992\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -0.0039,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      -0.0039\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -0.0039,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      -0.0039\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.686,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.686\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.6392,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6392\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.6873,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6873\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.6562,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6562\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.6878,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6878\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.657,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.657\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.6874,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6874\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.6587,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6587\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.688,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.688\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.6882,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6882\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.6667,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6667\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.6885,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6885\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.6498,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6498\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.6873,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6873\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6867,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6867\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.6898,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6898\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.6847,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6847\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.6908,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6908\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6875,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6875\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.6968,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6968\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.6815,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6815\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.6964,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6964\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.6865,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6865\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.6913,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6913\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6868,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6868\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.6897,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6897\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.6786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6786\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.6895,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6895\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.6786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6786\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.6879,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6879\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6715,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6715\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.6853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6853\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.673,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.673\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.6788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6788\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.662,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.662\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.679,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.679\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.6601,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6601\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.6798,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6798\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.657,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.657\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.6787,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6787\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6567,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6567\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.6766,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6766\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.6556,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6556\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6772,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6772\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.6458,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6458\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.67,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.67\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.6471,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6471\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.6687,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6687\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.6509,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6509\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6687,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6687\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.651,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.651\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.6456,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6456\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.6456,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6456\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6455,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6455\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6497,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6497\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.64,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.64\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6333,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6333\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6333,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6333\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.6233,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6233\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.5994,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5994\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.6233,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6233\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.5994,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5994\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.6234,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6234\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.5992,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5992\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": -0.0039,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      -0.0039\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": -0.0039,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      -0.0039\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture. Let me also check the libero_goal_full_pipeline.py to see its probing function specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "07d6a851-f887-4c87-8249-fac3c47cf8df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJcPwiaU4Y46uG2qefZbGr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10829,
+      "cache_read_input_tokens": 58662,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10829
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+最后确认主 pipeline 的 probing 函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "b617bc5b-7b57-470b-ad76-4f5b0c1bd962",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJcPwiaU4Y46uG2qefZbGr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10829,
+      "cache_read_input_tokens": 58662,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10829
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018jzjU93SSyZpUuquUGsT7p`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def run_probing\\|perm\\|Ridge\\|split\\|np.save\\|torch.save\\|per_demo\\|demo_id\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "a74c7116-f05a-4dfd-a033-98197ca80886",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJcPwiaU4Y46uG2qefZbGr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10829,
+      "cache_read_input_tokens": 58662,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10829
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T14:05:38.318Z_
+
+<details><summary>↩ Tool result · `toolu_018jzjU93SSyZpUuquUGsT7p`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "ad6cd6a8-dfcc-4fd6-bc11-ae51dd82e989",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019AHAsUW1dAfdBmfjDFzmGF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def run_probing\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "ea58082f-1e1f-4772-bb99-f1a95dad79ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CbJxoa29YkPuH1NEgehwz9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 305,
+      "cache_read_input_tokens": 69491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 305
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T14:05:42.250Z_
+
+<details><summary>↩ Tool result · `toolu_019AHAsUW1dAfdBmfjDFzmGF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"209:def run_probing(reps, actions, n_seeds):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "96dea01b-af92-4da1-8dd4-0b300fa78d92",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"209:def run_probing(reps, actions, n_seeds):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"209:def run_probing(reps, actions, n_seeds):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KS1hGiuh3T3mMF1HnPK1gt`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"perm\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "8b64ef7b-79d4-4c76-a285-09bb1f80e52f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CbJxoa29YkPuH1NEgehwz9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 305,
+      "cache_read_input_tokens": 69491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 305
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T14:05:42.880Z_
+
+<details><summary>↩ Tool result · `toolu_01KS1hGiuh3T3mMF1HnPK1gt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"214:    perm = np.random.RandomState(42).permutation(n)\\n218:            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n219:            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n283:            perm = np.random.RandomState(42).permutation(n)\\n284:            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n285:            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "4837d046-5b6b-4d2b-97e5-9aa5fc8367a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"214:    perm = np.random.RandomState(42).permutation(n)\\\\n218:            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\\\n219:            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\\\n283:            perm = np.random.RandomState(42).permutation(n)\\\\n284:            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\\\n285:            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"214:    perm = np.random.RandomState(42).permutation(n)\\n218:            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n219:            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n283:            perm = np.random.RandomState(42).permutation(n)\\n284:            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n285:            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PMunPxHCUdREmxso2dfpQ3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"np.save\\|torch.save\\|per_demo\\|demo_id\\|demo_idx\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "67920a50-7e5b-41f6-94b0-c306aacd63fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CbJxoa29YkPuH1NEgehwz9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 305,
+      "cache_read_input_tokens": 69491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 305
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T14:05:43.542Z_
+
+<details><summary>↩ Tool result · `toolu_01PMunPxHCUdREmxso2dfpQ3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "84bcc8b7-b494-43d7-a4de-14d538240b16",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BZzJgiV3mxTP4yyqJZHtLG`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"np.save\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "13213112-3b27-43a6-af8f-b3970db83c06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDn3HVn5Bfc7LyTc5FSq2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 69796,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TJcevhXHu3EFKkdAVTZBTr`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"per_demo\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "1170e5a7-8c40-4af8-9b9c-1dab6ec9eb2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDn3HVn5Bfc7LyTc5FSq2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 69796,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-22T14:05:47.533Z_
+
+<details><summary>↩ Tool result · `toolu_01BZzJgiV3mxTP4yyqJZHtLG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "f6f9fd88-762f-4a79-a7e7-9cfdfdc26c91",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T14:05:48.063Z_
+
+<details><summary>↩ Tool result · `toolu_01TJcevhXHu3EFKkdAVTZBTr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"318:            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "727b7445-0ea2-4acc-afc2-88282380aa21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"318:            \\\\\\\"n_timesteps_per_demo\\\\\\\": n_timesteps,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"318:            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+数据全部查完，结论如下：
+
+---
+
+## 结论
+
+### Q1: 现有 R² JSON 是 per-demo 还是 aggregate？
+
+**全部是 aggregate。** 所有 `action_r2_probing.json`（OpenVLA/TracVLA/NORA 三种架构）格式一致：
+
+```json
+"L0_image_mean": {"mean": 0.8733, "std": 0.0, "values": [0.8733]}
+```
+
+每个 layer×position 只有一个标量 R²，是把所有 demo 的所有 timestep 池化后（10 tasks × 10 demos × 50 timesteps = 5000 samples），做一次 80/20 random split 的 RidgeCV 拟合结果。**没有 per-demo R² 值。**
+
+### Q2: hidden state features 是否保存了？
+
+**没有。** 整个 `results/` 目录下只有一个 `.pt` 文件（`l1_attention_cache.pt`，是 head ablation 用的），没有任何 `.npy` 文件。probing 脚本在内存中提取 features、跑完 Ridge 后就 `del reps, actions` 了，没有持久化。
+
+### Q3: train/test split 方式？
+
+**random permutation，非 per-demo split。** 源码（`tracvla_spatial_probing_only.py` line 和 `libero_goal_full_pipeline.py` line 214）：
+```python
+perm = np.random.RandomState(42).permutation(n)
+Xtr, ytr = X[perm[:nt]], y[perm[:nt]]  # 80%
+Xv, yv = X[perm[nt:]], y[perm[nt:]]    # 20%
+```
+这是 sample-level random split——同一个 demo 的不同 timestep 会分散到 train 和 test 中，导致 **temporal leakage**（同 demo 相邻帧的 hidden state 高度相关）。
+
+### 唯一的例外
+
+`unified_action_probe.json` 记录了 `split: "80/20_per_task_by_demo_index"`，并有 per-task R²（10 个 task 各一个值）和 bootstrap pairwise CI。但这是 task-level bootstrap（n=10 tasks），不是 demo-level clustered bootstrap。
+
+---
+
+## 对 clustered bootstrap 的影响
+
+**不能直接重分析，必须重跑 probing。** 需要：
+
+1. **重新提取 hidden states** 并保存（按 demo 索引），因为没有缓存的特征文件
+2. **改 split 策略**为 leave-demos-out（按 demo 聚类），消除 temporal leakage
+3. **在 bootstrap 中按 demo resample**，计算每个 bootstrap 样本的 R²，得到 R² Δ 的 95% CI
+
+每个 architecture × condition（trained/untrained）需要一次完整的模型推理 pass（~30-60 min per condition on single GPU），总计约 6 个 condition（OpenVLA trained/untrained, TracVLA trained/untrained, NORA trained/untrained）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "uuid": "8cc5cec6-d957-4c2f-87c9-f60133d6d106",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Jt82JGUTbCLcjwpforou3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 455,
+      "cache_read_input_tokens": 70640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 455
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 74_
+
+数据全部查完，结论如下：
+
+---
+
+## 结论
+
+### Q1: 现有 R² JSON 是 per-demo 还是 aggregate？
+
+**全部是 aggregate。** 所有 `action_r2_probing.json`（OpenVLA/TracVLA/NORA 三种架构）格式一致：
+
+```json
+"L0_image_mean": {"mean": 0.8733, "std": 0.0, "values": [0.8733]}
+```
+
+每个 layer×position 只有一个标量 R²，是把所有 demo 的所有 timestep 池化后（10 tasks × 10 demos × 50 timesteps = 5000 samples），做一次 80/20 random split 的 RidgeCV 拟合结果。**没有 per-demo R² 值。**
+
+### Q2: hidden state features 是否保存了？
+
+**没有。** 整个 `results/` 目录下只有一个 `.pt` 文件（`l1_attention_cache.pt`，是 head ablation 用的），没有任何 `.npy` 文件。probing 脚本在内存中提取 features、跑完 Ridge 后就 `del reps, actions` 了，没有持久化。
+
+### Q3: train/test split 方式？
+
+**random permutation，非 per-demo split。** 源码（`tracvla_spatial_probing_only.py` line 和 `libero_goal_full_pipeline.py` line 214）：
+```python
+perm = np.random.RandomState(42).permutation(n)
+Xtr, ytr = X[perm[:nt]], y[perm[:nt]]  # 80%
+Xv, yv = X[perm[nt:]], y[perm[nt:]]    # 20%
+```
+这是 sample-level random split——同一个 demo 的不同 timestep 会分散到 train 和 test 中，导致 **temporal leakage**（同 demo 相邻帧的 hidden state 高度相关）。
+
+### 唯一的例外
+
+`unified_action_probe.json` 记录了 `split: "80/20_per_task_by_demo_index"`，并有 per-task R²（10 个 task 各一个值）和 bootstrap pairwise CI。但这是 task-level bootstrap（n=10 tasks），不是 demo-level clustered bootstrap。
+
+---
+
+## 对 clustered bootstrap 的影响
+
+**不能直接重分析，必须重跑 probing。** 需要：
+
+1. **重新提取 hidden states** 并保存（按 demo 索引），因为没有缓存的特征文件
+2. **改 split 策略**为 leave-demos-out（按 demo 聚类），消除 temporal leakage
+3. **在 bootstrap 中按 demo resample**，计算每个 bootstrap 样本的 R²，得到 R² Δ 的 95% CI
+
+每个 architecture × condition（trained/untrained）需要一次完整的模型推理 pass（~30-60 min per condition on single GPU），总计约 6 个 condition（OpenVLA trained/untrained, TracVLA trained/untrained, NORA trained/untrained）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 98428,
+  "duration_api_ms": 96661,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "c53d0ae4-db40-438a-b20b-90b9268e2bc7",
+  "total_cost_usd": 0.7297210000000001,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 59254,
+    "cache_read_input_tokens": 454467,
+    "output_tokens": 5200,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 59254,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 882,
+        "cache_read_input_tokens": 70640,
+        "cache_creation_input_tokens": 455,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 455
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1970,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00208,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 5200,
+      "cacheReadInputTokens": 454467,
+      "cacheCreationInputTokens": 59254,
+      "webSearchRequests": 0,
+      "costUSD": 0.727641,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "beef6f41-3ba1-4086-ae18-4b6c8718d137"
+}
+```
+
+</details>
+
+---

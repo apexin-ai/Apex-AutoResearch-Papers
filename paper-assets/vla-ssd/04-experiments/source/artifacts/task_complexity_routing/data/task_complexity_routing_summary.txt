@@ -1,0 +1,1 @@
+See remote path: /root/autodl-tmp/vla-ssd/results/task_complexity_routing.json on westd-19183. Key results: complex_mean=0.1405, simple_mean=0.0565, U=21, p=0.033, effect_ratio=2.49x

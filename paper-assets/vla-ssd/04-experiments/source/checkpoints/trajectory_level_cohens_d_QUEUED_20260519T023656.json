@@ -1,0 +1,16 @@
+{
+  "exp_id": "trajectory_level_cohens_d",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:31:51.743Z",
+    "updated_at": "2026-05-19T02:36:56.012Z",
+    "parent": "action_trajectory_control",
+    "hypothesis": "Token-level Cohen's d values may misestimate effect size due to within-trajectory autocorrelation; trajectory-level (demo-level) aggregation provides estimates with correct independence assumption by averaging each demo's 50 timestep MSEs into a single value."
+  },
+  "timestamp": "2026-05-19T02:36:56.230175+00:00",
+  "trigger": "update_registry"
+}

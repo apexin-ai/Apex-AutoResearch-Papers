@@ -1,0 +1,413 @@
+\begin{thebibliography}{54}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Brohan et~al.(2023)Brohan, Brown, Carbajal, Chebotar, Chen,
+  Choromanski, Ding, Driess, Dubey, Finn, et~al.]{brohan2023_rt2}
+A.~Brohan, N.~Brown, J.~Carbajal, Y.~Chebotar, X.~Chen, K.~Choromanski,
+  T.~Ding, D.~Driess, A.~Dubey, C.~Finn, et~al.
+\newblock {RT-2}: Vision-language-action models transfer web knowledge to
+  robotic control.
+\newblock In \emph{Conference on Robot Learning (CoRL)}, volume 229 of
+  \emph{PMLR}, 2023.
+
+\bibitem[Kim et~al.(2024)Kim, Pertsch, Karamcheti, Xiao, Balakrishna, Nair,
+  Rafailov, Foster, Lam, Sanketi, Lu, Kollar, Burchfiel, Tedrake, Sadigh,
+  Levine, Liang, and Finn]{kim2024_openvla}
+M.~J. Kim, K.~Pertsch, S.~Karamcheti, T.~Xiao, A.~Balakrishna, S.~Nair,
+  R.~Rafailov, E.~Foster, G.~Lam, P.~Sanketi, Q.~Lu, T.~Kollar, B.~Burchfiel,
+  R.~Tedrake, D.~Sadigh, S.~Levine, P.~Liang, and C.~Finn.
+\newblock {OpenVLA}: An open-source vision-language-action model.
+\newblock In \emph{Conference on Robot Learning (CoRL)}, volume 270 of
+  \emph{PMLR}, pages 2679--2713, 2024.
+
+\bibitem[Wang et~al.(2025)Wang, Wang, Suzuki, and Kobayashi]{wang2025seeing}
+W.-Y. Wang, Z.~Wang, H.~Suzuki, and Y.~Kobayashi.
+\newblock Seeing is understanding: Unlocking causal attention into
+  modality-mutual attention for multimodal {LLMs}.
+\newblock \emph{arXiv preprint arXiv:2503.02597}, 2025.
+
+\bibitem[Pei et~al.(2025)Pei, Huang, Ma, and Xu]{pei2025rethinking}
+X.~Pei, T.~Huang, Y.~Ma, and C.~Xu.
+\newblock Rethinking causal mask attention for vision-language inference.
+\newblock \emph{arXiv preprint arXiv:2505.18605}, 2025.
+
+\bibitem[Grant et~al.(2026)Grant, Zhao, and Wang]{grant2026}
+B.~Grant, X.~Zhao, and P.~Wang.
+\newblock Not all features are created equal: A mechanistic study of
+  vision-language-action models.
+\newblock \emph{arXiv preprint arXiv:2603.19233}, 2026.
+
+\bibitem[H{\"a}on et~al.(2025)H{\"a}on, Stocking, Chuang, and Tomlin]{haon2025}
+B.~H{\"a}on, K.~C. Stocking, I.~Chuang, and C.~J. Tomlin.
+\newblock Mechanistic interpretability for steering vision-language-action
+  models.
+\newblock In \emph{Conference on Robot Learning (CoRL)}, volume 305 of
+  \emph{PMLR}, pages 2743--2762, 2025.
+
+\bibitem[Zheng et~al.(2025)Zheng, Liang, Huang, Gao, Daum{\'e}~III, Kolobov,
+  Huang, and Yang]{zheng2024tracevla}
+R.~Zheng, Y.~Liang, S.~Huang, J.~Gao, H.~Daum{\'e}~III, A.~Kolobov, F.~Huang,
+  and J.~Yang.
+\newblock {TraceVLA}: Visual trace prompting enhances spatial-temporal
+  awareness for generalist robotic policies.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2025.
+
+\bibitem[Hung et~al.(2025)Hung, Sun, Hong, Zadeh, Li, Tan, Majumder, and
+  Poria]{hung2025nora}
+C.-Y. Hung, Q.~Sun, P.~Hong, A.~Zadeh, C.~Li, U.-X. Tan, N.~Majumder, and
+  S.~Poria.
+\newblock {NORA}: A small open-sourced generalist vision language action model
+  for embodied tasks.
+\newblock \emph{arXiv preprint arXiv:2504.19854}, 2025.
+
+\bibitem[Liu et~al.(2023)Liu, Zhu, Gao, Feng, Liu, Zhu, and
+  Stone]{liu2023_libero}
+B.~Liu, Y.~Zhu, C.~Gao, Y.~Feng, Q.~Liu, Y.~Zhu, and P.~Stone.
+\newblock {LIBERO}: Benchmarking knowledge transfer for lifelong robot
+  learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+
+\bibitem[Padalkar et~al.(2024)Padalkar, Poolber, Bewley,
+  et~al.]{padalkar2023_oxe}
+A.~Padalkar, A.~Poolber, A.~Bewley, et~al.
+\newblock Open {X-Embodiment}: Robotic learning datasets and {RT-X} models.
+\newblock In \emph{IEEE International Conference on Robotics and Automation
+  (ICRA)}, 2024.
+
+\bibitem[Fang et~al.(2026)Fang, Li, Li, Zhang, Guo, and Zhang]{fang2026when}
+K.~Fang, T.~Li, Z.~Li, H.~Zhang, Y.~Guo, and L.~Zhang.
+\newblock When vision overrides language: Evaluating and mitigating
+  counterfactual failures in {VLAs}.
+\newblock \emph{arXiv preprint arXiv:2602.17659}, 2026.
+
+\bibitem[Swann et~al.(2026)Swann, McGranahan, Buurmeijer, Kennedy, and
+  Schwager]{swann2026}
+A.~Swann, L.~McGranahan, H.~Buurmeijer, M.~Kennedy, and M.~Schwager.
+\newblock Sparse autoencoders reveal interpretable and steerable features in
+  {VLA} models.
+\newblock \emph{arXiv preprint arXiv:2603.19183}, 2026.
+
+\bibitem[Karamcheti et~al.(2024)Karamcheti, Nair, Balakrishna, Liang, Kollar,
+  and Sadigh]{karamcheti2024}
+S.~Karamcheti, S.~Nair, A.~Balakrishna, P.~Liang, T.~Kollar, and D.~Sadigh.
+\newblock Prismatic {VLMs}: Investigating the design space of
+  visually-conditioned language models.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, volume
+  235 of \emph{PMLR}, pages 23123--23144, 2024.
+
+\bibitem[Black et~al.(2025)Black, Brown, Driess, Esmail, Equi, Finn, Fusai,
+  Groom, Hausman, Ichter, Jakubczak, Jones, Ke, Levine, Li-Bell, Mothukuri,
+  Nair, Pertsch, Shi, Tanner, Vuong, Walling, Wang, and
+  Zhilinsky]{black2024_pi0}
+K.~Black, N.~Brown, D.~Driess, A.~Esmail, M.~Equi, C.~Finn, N.~Fusai, L.~Groom,
+  K.~Hausman, B.~Ichter, S.~Jakubczak, T.~Jones, L.~Ke, S.~Levine, A.~Li-Bell,
+  M.~Mothukuri, S.~Nair, K.~Pertsch, L.~X. Shi, J.~Tanner, Q.~Vuong,
+  A.~Walling, H.~Wang, and U.~Zhilinsky.
+\newblock $\pi_0$: A vision-language-action flow model for general robot
+  control.
+\newblock In \emph{Robotics: Science and Systems}, 2025.
+
+\bibitem[Xiao et~al.(2026)Xiao, Li, Gao, Ye, Jin, Qian, Zhang, Wu, and
+  Yu]{xiao2025ava}
+L.~Xiao, J.~Li, J.~Gao, F.~Ye, Y.~Jin, J.~Qian, J.~Zhang, Y.~Wu, and X.~Yu.
+\newblock {AVA-VLA}: Improving vision-language-action models with active visual
+  attention.
+\newblock In \emph{IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, 2026.
+
+\bibitem[Wei et~al.(2022)Wei, Bosma, Zhao, Guu, Yu, Lester, Du, Dai, and
+  Le]{wei2022finetuned}
+J.~Wei, M.~Bosma, V.~Zhao, K.~Guu, A.~W. Yu, B.~Lester, N.~Du, A.~M. Dai, and
+  Q.~V. Le.
+\newblock Finetuned language models are zero-shot learners.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2022.
+
+\bibitem[Ouyang et~al.(2022)Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin,
+  Zhang, Agarwal, Slama, Ray, et~al.]{ouyang2022training}
+L.~Ouyang, J.~Wu, X.~Jiang, D.~Almeida, C.~Wainwright, P.~Mishkin, C.~Zhang,
+  S.~Agarwal, K.~Slama, A.~Ray, et~al.
+\newblock Training language models to follow instructions with human feedback.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2022.
+
+\bibitem[Aghajanyan et~al.(2021)Aghajanyan, Gupta, and
+  Zettlemoyer]{aghajanyan2021intrinsic}
+A.~Aghajanyan, S.~Gupta, and L.~Zettlemoyer.
+\newblock Intrinsic dimensionality explains the effectiveness of language model
+  fine-tuning.
+\newblock In \emph{Annual Meeting of the Association for Computational
+  Linguistics (ACL)}, pages 7319--7328, 2021.
+
+\bibitem[Kumar et~al.(2022)Kumar, Raghunathan, Jones, Ma, and
+  Liang]{kumar2022finetuning}
+A.~Kumar, A.~Raghunathan, R.~Jones, T.~Ma, and P.~Liang.
+\newblock Fine-tuning can distort pretrained features and underperform
+  out-of-distribution.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2022.
+
+\bibitem[Grover et~al.(2025)Grover, Gopalkrishnan, Ai, Christensen, Su, and
+  Li]{grover2025preserving}
+S.~Grover, A.~Gopalkrishnan, B.~Ai, H.~I. Christensen, H.~Su, and X.~Li.
+\newblock Enhancing generalization in vision-language-action models by
+  preserving pretrained representations.
+\newblock \emph{arXiv preprint arXiv:2509.11417}, 2025.
+
+\bibitem[Hancock et~al.(2025)Hancock, Wu, Zha, Russakovsky, and
+  Majumdar]{hancock2025actions}
+A.~J. Hancock, X.~Wu, L.~Zha, O.~Russakovsky, and A.~Majumdar.
+\newblock Actions as language: Fine-tuning {VLMs} into {VLAs} without
+  catastrophic forgetting.
+\newblock \emph{arXiv preprint arXiv:2509.22195}, 2025.
+
+\bibitem[Elhage et~al.(2021)Elhage, Nanda, Olsson, Henighan, Joseph, Mann,
+  Askell, Bai, Chen, Conerly, DasSarma, Drain, Ganguli, Hatfield-Dodds,
+  Hernandez, Jones, Kernion, Lovitt, Ndousse, Amodei, Brown, Clark, Kaplan,
+  McCandlish, and Olah]{elhage2021}
+N.~Elhage, N.~Nanda, C.~Olsson, T.~Henighan, N.~Joseph, B.~Mann, A.~Askell,
+  Y.~Bai, A.~Chen, T.~Conerly, N.~DasSarma, D.~Drain, D.~Ganguli,
+  Z.~Hatfield-Dodds, D.~Hernandez, A.~Jones, J.~Kernion, L.~Lovitt, K.~Ndousse,
+  D.~Amodei, T.~Brown, J.~Clark, J.~Kaplan, S.~McCandlish, and C.~Olah.
+\newblock A mathematical framework for transformer circuits.
+\newblock \emph{Transformer Circuits Thread}, 2021.
+\newblock URL \url{https://transformer-circuits.pub/2021/framework/index.html}.
+
+\bibitem[Olsson et~al.(2022)Olsson, Elhage, Nanda, Joseph, DasSarma, Henighan,
+  Mann, Askell, Bai, Chen, Conerly, Drain, Ganguli, Hatfield-Dodds, Hernandez,
+  Johnston, Jones, Kernion, Lovitt, Ndousse, Amodei, Brown, Clark, Kaplan,
+  McCandlish, and Olah]{olsson2022}
+C.~Olsson, N.~Elhage, N.~Nanda, N.~Joseph, N.~DasSarma, T.~Henighan, B.~Mann,
+  A.~Askell, Y.~Bai, A.~Chen, T.~Conerly, D.~Drain, D.~Ganguli,
+  Z.~Hatfield-Dodds, D.~Hernandez, S.~Johnston, A.~Jones, J.~Kernion,
+  L.~Lovitt, K.~Ndousse, D.~Amodei, T.~Brown, J.~Clark, J.~Kaplan,
+  S.~McCandlish, and C.~Olah.
+\newblock In-context learning and induction heads.
+\newblock \emph{arXiv preprint arXiv:2209.11895}, 2022.
+
+\bibitem[Wang et~al.(2023)Wang, Variengien, Conmy, Shlegeris, and
+  Steinhardt]{wang2023_ioi}
+K.~Wang, A.~Variengien, A.~Conmy, B.~Shlegeris, and J.~Steinhardt.
+\newblock Interpretability in the wild: a circuit for indirect object
+  identification in {GPT-2} small.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2023.
+
+\bibitem[Conmy et~al.(2023)Conmy, Mavor-Parker, Lynch, Heimersheim, and
+  Garriga-Alonso]{conmy2023}
+A.~Conmy, A.~N. Mavor-Parker, A.~Lynch, S.~Heimersheim, and A.~Garriga-Alonso.
+\newblock Towards automated circuit discovery for mechanistic interpretability.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+
+\bibitem[Meng et~al.(2022)Meng, Bau, Andonian, and Belinkov]{meng2022_rome}
+K.~Meng, D.~Bau, A.~Andonian, and Y.~Belinkov.
+\newblock Locating and editing factual associations in {GPT}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2022.
+
+\bibitem[Clark et~al.(2019)Clark, Khandelwal, Levy, and Manning]{clark2019}
+K.~Clark, U.~Khandelwal, O.~Levy, and C.~D. Manning.
+\newblock What does {BERT} look at? {An} analysis of {BERT}'s attention.
+\newblock In \emph{Workshop on Analyzing and Interpreting Neural Networks for
+  NLP (BlackboxNLP)}, pages 276--286, 2019.
+
+\bibitem[Michel et~al.(2019)Michel, Levy, and Neubig]{michel2019sixteen}
+P.~Michel, O.~Levy, and G.~Neubig.
+\newblock Are sixteen heads really better than one?
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, volume~32, 2019.
+
+\bibitem[Fan et~al.(2026)Fan, Tong, Zhao, and Shen]{fan2026visual}
+Y.~Fan, J.~Tong, A.~Zhao, and X.~Shen.
+\newblock What do visual tokens really encode? {U}ncovering sparsity and
+  redundancy in multimodal large language models.
+\newblock In \emph{IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, 2026.
+
+\bibitem[Neo et~al.(2025)Neo, Ong, Torr, Geva, Krueger, and
+  Barez]{neo2025interpreting}
+C.~Neo, L.~Ong, P.~Torr, M.~Geva, D.~Krueger, and F.~Barez.
+\newblock Towards interpreting visual information processing in vision-language
+  models.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2025.
+
+\bibitem[Long et~al.(2026)Long, Oh, Park, and Li]{long2026understanding}
+L.~Long, C.~Oh, S.~Park, and S.~Li.
+\newblock Understanding language prior of {LVLMs} by contrasting
+  chain-of-embedding.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2026.
+
+\bibitem[Zhang et~al.(2026)Zhang, Xu, Bai, Chen, Zhang, Xiang, and
+  Zhang]{zhang2026instruction}
+Z.~Zhang, J.~Xu, C.~Bai, M.~Chen, X.~Zhang, T.~Xiang, and Y.~Zhang.
+\newblock Instruction anchors: Dissecting the causal dynamics of modality
+  arbitration.
+\newblock \emph{arXiv preprint arXiv:2602.03677}, 2026.
+
+\bibitem[Hou and Zhao(2026)]{hou2026}
+Y.~Hou and L.~Zhao.
+\newblock {LangGap}: Diagnosing and closing the language gap in
+  vision-language-action models.
+\newblock \emph{arXiv preprint arXiv:2603.00592}, 2026.
+
+\bibitem[Fei et~al.(2025)Fei, Wang, Shi, Dai, Cai, Qian, Ji, He, Zhang, Fei,
+  Fu, Gong, and Qiu]{fei2025}
+S.~Fei, S.~Wang, J.~Shi, Z.~Dai, J.~Cai, P.~Qian, L.~Ji, X.~He, S.~Zhang,
+  Z.~Fei, J.~Fu, J.~Gong, and X.~Qiu.
+\newblock {LIBERO-Plus}: In-depth robustness analysis of vision-language-action
+  models.
+\newblock \emph{arXiv preprint arXiv:2510.13626}, 2025.
+
+\bibitem[Buurmeijer et~al.(2026)Buurmeijer, Amo~Alonso, Swann, and
+  Pavone]{buurmeijer2026}
+H.~Buurmeijer, C.~Amo~Alonso, A.~Swann, and M.~Pavone.
+\newblock Observing and controlling features in vision-language-action models.
+\newblock \emph{arXiv preprint arXiv:2603.05487}, 2026.
+
+\bibitem[Lu et~al.(2025)Lu, Li, Shahani, Herbers, and Scheutz]{lu2025}
+H.~Lu, H.~Li, P.~S. Shahani, S.~Herbers, and M.~Scheutz.
+\newblock Probing a vision-language-action model for symbolic states and
+  integration into a cognitive architecture.
+\newblock In \emph{IEEE International Conference on Autonomous and Distributed
+  Systems (ICAD)}, 2025.
+
+\bibitem[Molinari et~al.(2025)Molinari, Nevali, Navani, and
+  Younis]{molinari2025}
+M.~Molinari, L.~Nevali, S.~Navani, and O.~G. Younis.
+\newblock Emergent world representations in {OpenVLA}.
+\newblock \emph{arXiv preprint arXiv:2509.24559}, 2025.
+
+\bibitem[Fang et~al.(2025)Fang, Liu, Liu, Chen, Zeng, Huang, Chen, Chen, Zhang,
+  and Zhao]{fang2025}
+Z.~Fang, Z.~Liu, J.~Liu, H.~Chen, Y.~Zeng, S.~Huang, Z.~Chen, L.~Chen,
+  S.~Zhang, and F.~Zhao.
+\newblock {DualVLA}: Building a generalizable embodied agent via partial
+  decoupling of reasoning and action.
+\newblock \emph{arXiv preprint arXiv:2511.22134}, 2025.
+
+\bibitem[Mitra et~al.(2025)Mitra, Luo, Saravanan, Niu, Pai, Thomason, Darrell,
+  Anwar, Ramanan, and Herzig]{mitra2025mechanistic}
+A.~Mitra, S.~Luo, D.~Saravanan, S.~Niu, D.~Pai, J.~Thomason, T.~Darrell,
+  M.~Anwar, D.~Ramanan, and R.~Herzig.
+\newblock Mechanistic finetuning of vision-language-action models via few-shot
+  demonstrations.
+\newblock \emph{arXiv preprint arXiv:2511.22697}, 2025.
+
+\bibitem[Liu et~al.(2026)Liu, Kim, Liu, Liu, and Zhu]{liu2026forgetting}
+H.~Liu, C.~Kim, B.~Liu, M.~Liu, and Y.~Zhu.
+\newblock Pretrained vision-language-action models are surprisingly resistant
+  to forgetting in continual learning.
+\newblock \emph{arXiv preprint arXiv:2603.03818}, 2026.
+
+\bibitem[Kachaev et~al.(2025)Kachaev, Lyzhov, Konovalov, and
+  Panov]{kachaev2025dont}
+N.~Kachaev, A.~Lyzhov, V.~Konovalov, and A.~Panov.
+\newblock Don't blind your {VLA}: Aligning visual representations for {OOD}
+  generalization.
+\newblock \emph{arXiv preprint arXiv:2510.25616}, 2025.
+
+\bibitem[Lian et~al.(2026)Lian, Yu, Lin, Yang, Shen, Wu, Miao, Huang, and
+  Chen]{lian2026bayesianvla}
+S.~Lian, B.~Yu, X.~Lin, L.~T. Yang, Z.~Shen, C.~Wu, Y.~Miao, C.~Huang, and
+  K.~Chen.
+\newblock {LangForce}: {B}ayesian decomposition of vision language action
+  models via latent action queries.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2026.
+
+\bibitem[Kriegeskorte et~al.(2008)Kriegeskorte, Mur, and
+  Bandettini]{kriegeskorte2008}
+N.~Kriegeskorte, M.~Mur, and P.~Bandettini.
+\newblock Representational similarity analysis -- connecting the branches of
+  systems neuroscience.
+\newblock \emph{Frontiers in Systems Neuroscience}, 2:\penalty0 4, 2008.
+
+\bibitem[Kornblith et~al.(2019)Kornblith, Norouzi, Lee, and
+  Hinton]{kornblith2019}
+S.~Kornblith, M.~Norouzi, H.~Lee, and G.~Hinton.
+\newblock Similarity of neural network representations revisited.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2019.
+
+\bibitem[Alain and Bengio(2017)]{alain2017}
+G.~Alain and Y.~Bengio.
+\newblock Understanding intermediate layers using linear classifier probes.
+\newblock In \emph{International Conference on Learning Representations (ICLR),
+  Workshop Track}, 2017.
+
+\bibitem[Belinkov(2022)]{belinkov2022}
+Y.~Belinkov.
+\newblock Probing classifiers: Promises, shortcomings, and advances.
+\newblock \emph{Computational Linguistics}, 48\penalty0 (1):\penalty0 207--219,
+  2022.
+
+\bibitem[Touvron et~al.(2023)Touvron, Martin, Stone, Albert, Almahairi, Babaei,
+  Bashlykov, Batra, Bhargava, Bhosale, et~al.]{touvron2023_llama2}
+H.~Touvron, L.~Martin, K.~Stone, P.~Albert, A.~Almahairi, Y.~Babaei,
+  N.~Bashlykov, S.~Batra, P.~Bhargava, S.~Bhosale, et~al.
+\newblock {Llama} 2: Open foundation and fine-tuned chat models.
+\newblock \emph{arXiv preprint arXiv:2307.09288}, 2023.
+
+\bibitem[Abdin et~al.(2024)Abdin, Jacobs, Amin, Aneja, Awadalla, Awadalla,
+  Bach, Bahree, Bakber, Beez, et~al.]{abdin2024phi3}
+M.~Abdin, S.~A. Jacobs, A.~A. Amin, J.~Aneja, A.~Awadalla, H.~Awadalla,
+  N.~Bach, A.~Bahree, A.~Bakber, H.~Beez, et~al.
+\newblock Phi-3 technical report: A highly capable language model locally on
+  your phone.
+\newblock \emph{arXiv preprint arXiv:2404.14219}, 2024.
+
+\bibitem[Oquab et~al.(2024)Oquab, Darcet, Moutakanni, Vo, Szafraniec, Khalidov,
+  Fernandez, Haziza, Massa, El-Nouby, et~al.]{oquab2024_dinov2}
+M.~Oquab, T.~Darcet, T.~Moutakanni, H.~Vo, M.~Szafraniec, V.~Khalidov,
+  P.~Fernandez, D.~Haziza, F.~Massa, A.~El-Nouby, et~al.
+\newblock {DINOv2}: Learning robust visual features without supervision.
+\newblock \emph{Transactions on Machine Learning Research (TMLR)}, 2024.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, Ramesh, Goh, Agarwal,
+  Sastry, Askell, Mishkin, Clark, et~al.]{radford2021_clip}
+A.~Radford, J.~W. Kim, C.~Hallacy, A.~Ramesh, G.~Goh, S.~Agarwal, G.~Sastry,
+  A.~Askell, P.~Mishkin, J.~Clark, et~al.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2021.
+
+\bibitem[Ghosh et~al.(2024)Ghosh, Walke, Pertsch, Black, Mees, Dasari, Hejna,
+  Kreiman, Xu, You, Wu, Finn, Kumar, Hausman, and Levine]{ghosh2024_octo}
+D.~Ghosh, H.~Walke, K.~Pertsch, K.~Black, O.~Mees, S.~Dasari, J.~Hejna,
+  T.~Kreiman, C.~Xu, J.~You, J.~Wu, C.~Finn, A.~Kumar, K.~Hausman, and
+  S.~Levine.
+\newblock Octo: An open-source generalist robot policy.
+\newblock In \emph{Robotics: Science and Systems}, 2024.
+
+\bibitem[Nili et~al.(2014)Nili, Wingfield, Walther, Su, Marslen-Wilson, and
+  Kriegeskorte]{nili2014toolbox}
+H.~Nili, C.~Wingfield, A.~Walther, L.~Su, W.~Marslen-Wilson, and
+  N.~Kriegeskorte.
+\newblock A toolbox for representational similarity analysis.
+\newblock \emph{PLoS Computational Biology}, 10\penalty0 (4):\penalty0
+  e1003553, 2014.
+\newblock \doi{10.1371/journal.pcbi.1003553}.
+
+\bibitem[Lakens(2017)]{lakens2017equivalence}
+D.~Lakens.
+\newblock Equivalence tests: A practical primer for $t$ tests, correlations,
+  and meta-analyses.
+\newblock \emph{Social Psychological and Personality Science}, 8\penalty0
+  (4):\penalty0 355--362, 2017.
+\newblock \doi{10.1177/1948550617697177}.
+
+\bibitem[Hewitt and Liang(2019)]{hewitt2019control}
+J.~Hewitt and P.~Liang.
+\newblock Designing and interpreting probes with control tasks.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing (EMNLP)}, pages 2733--2743, 2019.
+\newblock \doi{10.18653/v1/D19-1275}.
+
+\end{thebibliography}

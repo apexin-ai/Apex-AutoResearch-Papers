@@ -1,0 +1,1678 @@
+tier: worst
+narrative_guidance: 'Reviewers 认为 exit collapse 是 trivially expected（VLM→VLA 当然改变表征），CF
+  无 behavioral grounding 缺乏 functional significance，
+
+  论文被视为 descriptive analysis without actionable insight。D100 NLP control（Llama-2-chat
+  ΔR²=0.000）虽然排除了 generic fine-tuning
+
+  confound，但 worst-tier reviewer 将此重新解读为："好，exit collapse 不是 generic fine-tuning 的——但它仍然是
+  trivially expected
+
+  的 VLM→VLA transition effect。当你把 language model 改造成 action model，出口层表征当然会重组——这不需要你的
+  framework 来''发现''。"
+
+  D102 的 VLM→VLA vs VLA→VLA 二元分离被反过来论证："你自己证明了 exit collapse 是 one-time transition
+  artifact，不是 ongoing
+
+  routing mechanism。它在 VLA→VLA finetuning 时消失（0/4），说明它不是 functional routing signature
+  而是 initial adaptation shock。
+
+  这反而削弱了 exit collapse 作为 ''diagnostic tool'' 的价值——它只能告诉你 ''这个模型曾经从 VLM 变成 VLA''，这在实践中谁不知道？"
+
+  Reframe 方向：从 "discovering routing mechanisms" 转为 "diagnostic methodology for VLA
+  development"。核心 pitch 变为：
+
+  本文提供第一个系统化的 VLA representational profiling toolkit，跨 3 架构验证。但 worst-tier 下即使此 reframe
+  也被质疑：
+
+  "一个 diagnostic framework 如果主要发现是 trivially expected（exit collapse）和 functionally
+  unvalidated（CF sensitivity），
+
+  那 framework 的 utility 在哪里？你需要 demonstrate 这个 framework 能发现 non-obvious actionable
+  insights。"
+
+  '
+imagined_experiments:
+- name: SigLIP+Projector RSA vs Full VLA vs DINO
+  plan_id: plan_001
+  description: SigLIP+Projector RSA 对比 Full VLA 和 DINO，证明 action-relevant 结构源自 frozen
+    vision encoder
+  expected_results:
+    siglip_projector_rsa: 0.615
+    trained_with_inst_rsa: 0.488
+    untrained_with_inst_rsa: 0.485
+    dino_rsa: 0.388
+    llm_degradation_delta: 0.127
+  result_rationale: '数据已完成不变。在 worst 档下，此实验仅覆盖 OpenVLA 的 DinoSigLIP encoder。Reviewer
+    攻击路线：
+
+    "SigLIP+Projector RSA=0.615 是 OpenVLA-specific frozen encoder 的观察。TracVLA 用 Phi-3-Vision
+    encoder，
+
+    NORA 用 InternViT——你们没测这些 encoder 的 RSA。单架构 encoder analysis 无法 claim architecture-independent。"
+
+    LLM degradation（0.615→0.488）本身被视为 "trivially expected—— LLM 的 intermediate processing
+    当然会
+
+    改变 representation geometry，这不是 finding 而是 definition。" 在 diagnostic framework
+    reframe 下，
+
+    此实验降为 "framework 在 OpenVLA 上的 case study"——不再是 core contribution。更致命的是，Reviewer
+    会用
+
+    这个实验反过来攻击论文 motivation："如果 frozen encoder 已经提供了最好的 action-relevant structure（RSA=0.615），
+
+    而 LLM processing 只是 degrade 它（到 0.488），那为什么要研究 LLM 内部的 instruction routing？问题不在
+    routing
+
+    而在 LLM 设计本身——你应该研究如何让 LLM 不 degrade encoder output。"
+
+    '
+  tables:
+  - title: SigLIP RSA Scope Limitation (Worst-Tier)
+    columns:
+    - Source
+    - RSA
+    - Architecture Coverage
+    - Worst Interpretation
+    rows:
+    - - SigLIP+Proj
+      - '0.615'
+      - OpenVLA only
+      - Cannot generalize to other VLA encoders
+    - - VLA trained
+      - '0.488'
+      - OpenVLA only
+      - Llama-2-specific LLM degradation
+    - - VLA untrained
+      - '0.485'
+      - OpenVLA only
+      - Random-init Llama-2 specific
+    - - DINO
+      - '0.388'
+      - Standalone
+      - Reference baseline, unaffected
+  figures_description:
+  - Bar chart 标注 'OpenVLA only' 在每个 bar 上方，突显 single-arch limitation
+  analysis: 'Framework reframe 下此实验从 C1 core evidence 降为 Section 4.1 case study。价值在于
+    demonstrate
+
+    framework 的 encoder-LLM decomposition 能力，而非 claim 本身。Reviewer 不会因此给分但也不会因此扣分——
+
+    neutral contribution in worst tier。但 LLM degradation finding 可能被用来攻击论文 motivation
+    本身。
+
+    '
+- name: DINO baseline RSA
+  plan_id: plan_002
+  description: Standalone vision model 参照基线
+  expected_results:
+    dino_rsa: 0.388
+    dino_action_R2: 0.687
+    dino_subtask_auc: 0.972
+  result_rationale: '数据不变。Worst 档下 DINO 的角色被 weaponize：R²=0.687 对比 VLA 训练后的 exit R²
+    drop。Reviewer：
+
+    "DINO（self-supervised, 无 language, 无 action training）的 action probe R²=0.687 已经很高，
+
+    说明 action prediction 主要是 visual task。你们声称的 VLA 训练重组 instruction routing，但如果一个
+
+    纯视觉模型无需任何 instruction 就能达到 R²=0.687，instruction routing 的 practical value 是什么？
+
+    这反而证明了 Grant et al. 2026 的 visual dominance finding——instructions 在 VLA 中可能根本不重要。"
+
+    DINO subtask AUC=0.972 进一步强化这个论点——task progress 几乎完全可从 visual features 预测，
+
+    无需 instruction information。这直接攻击论文研究 instruction routing 的 premise。
+
+    '
+  tables: []
+  figures_description:
+  - DINO R²=0.687 标注在所有 cross-arch R² exit collapse 图上作为 'no-language baseline'
+  analysis: 'Worst tier 下 DINO baseline 被用来论证整篇论文的 premise 可疑：如果 vision alone 足够好，
+
+    instruction routing research 的 practical relevance 被严重削弱。Framework reframe 可以
+
+    acknowledge 但无法完全化解这个攻击。
+
+    '
+- name: Per-layer RSA degradation curve
+  plan_id: plan_003
+  description: 追踪 RSA 从 projector output 到 LLM 各层的变换轨迹
+  expected_results:
+    proj_rsa: 0.615
+    trained_peak_rsa: 0.488
+    trained_peak_layer: 9
+    untrained_peak_rsa: 0.485
+    untrained_peak_layer: 12
+    proj_to_l1_drop: 0.13
+    inverted_u_trained: true
+    inverted_u_untrained: true
+    rise_phase_delta: 0.016
+  result_rationale: '数据不变。Worst 档下 inverted-U 只在 OpenVLA (Llama-2) 上验证过，TracVLA/NORA
+    的 RSA per-layer
+
+    curve 从未做过。CKA 在 plan_009 中反转了 RSA ordering（untrained > trained），使 RSA metric
+    的
+
+    authority 受损。Rise phase Δρ=0.016 极小（CI 可能 includes 0），reviewer 会指出：
+
+    "你声称 training shifts RSA peak from L0 to L12，但 rise phase 只有 0.016 ρ——这在 noise
+    level 内。
+
+    如果 CKA 不支持 inverted-U，你不能 claim 这是 robust pattern——这是 metric-specific artifact。"
+
+    在 CoRL（robotics venue），per-layer RSA curve 被视为 "interesting visualization but
+    not
+
+    contribution"——reviewer 期望功能性验证而非几何观察。
+
+    '
+  tables:
+  - title: RSA Inverted-U Architecture Coverage
+    columns:
+    - Architecture
+    - RSA Per-Layer Done?
+    - Pattern
+    - Worst Interpretation
+    rows:
+    - - OpenVLA (Llama-2-7B)
+      - 'Yes'
+      - Inverted-U
+      - Only confirmed case, CKA reversal undermines
+    - - TracVLA (Phi-3-mini)
+      - 'No'
+      - Unknown
+      - Cannot claim generalization
+    - - NORA (Qwen2.5-VL-3B)
+      - 'No'
+      - Unknown
+      - Cannot claim generalization
+  figures_description:
+  - 'Per-layer RSA curve 只有 OpenVLA 一条线，旁注 ''CKA reversal: untrained > trained'''
+  analysis: 'Inverted-U 成为 C3 observation 的核心证据但被 metric-dependence 严重削弱。
+
+    Framework reframe 下可保留为 "framework reveals metric-dependent patterns"
+
+    但这同时 undermine 了 framework 发现的 authority——如果换个 metric 结论就变，framework 的可靠性如何？
+
+    '
+- name: Output head analysis
+  plan_id: plan_004
+  description: SigLIP+projector frozen 确认, LLM 权重变化不传导到表征
+  expected_results:
+    vision_projector_cos_sim: 1.0
+    llm_rel_change_mean: 1.316
+    llm_rel_change_range:
+    - 1.22
+    - 1.37
+    head_vs_llm_ratio: 1.12
+    shallow_adaptation_gate: FAIL
+  result_rationale: '数据不变。Worst 档下此实验被视为 trivial verification："OpenVLA 代码 freeze 了
+    vision encoder，
+
+    你只是验证了代码做了它该做的事。cos_sim=1.0 不是 finding，是 implementation check。"
+
+    LLM 权重均匀分布（1.22-1.37）也不 surprising——"random init vs pretrained 的差异当然大且均匀，
+
+    这是 comparing random weights to structured weights，不是 analyzing fine-tuning effects。
+
+    你的 caveat 自己也说了：comparison is pretrained Llama + fine-tune vs random init，
+
+    所以 differences dominated by pretrained vs random，not by VLA training."
+
+    在 8-page limit 下，worst tier 建议此实验压缩为半段或移到 appendix。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '贡献接近零。Framework reframe 下可作为 "component attribution capability" 的 one-sentence
+
+    mention。不值得独立分析。
+
+    '
+- name: 6 probing methods × 2 benchmarks 系统验证
+  plan_id: plan_005
+  description: 系统性验证 trained ≈ untrained 表征结构
+  expected_results:
+    trained_untrained_rsa_delta: 0.003
+    trained_untrained_r2_delta: 0.015
+    cka_ordering_reversal: true
+    all_methods_show_vla_gt_dino: true
+  result_rationale: 'Orphaned 但子实验（RSA, R², CKA, action probe, delta probe, classification）均已完成。
+
+    Worst 档下 trained ≈ untrained 被视为 "trivially expected under frozen encoder"。
+
+    Reviewer："frozen SigLIP+projector 输出相同 L0 features，LLM fine-tuning 只改变 weights
+
+    而非 input distribution——所以 intermediate layer representations naturally similar。
+
+    你用 6 种方法验证一个 structurally guaranteed result，这不是 thoroughness 而是 over-verification。"
+
+    CKA ordering reversal 进一步削弱 multi-method consistency narrative——6 methods 中 CKA
+
+    反转了 RSA，说明 "consistency" 是 cherry-picked（只 consistent 在某些 metrics 下）。
+
+    Worst reviewer 总结："这些实验证明了 VLA > DINO 但 trained ≈ untrained——
+
+    前者 expected（LLM 有 4096d features vs DINO 1024d），后者 也 expected（same encoder）。"
+
+    '
+  tables:
+  - title: 6 Methods Under Worst-Tier Reinterpretation
+    columns:
+    - Method
+    - Trained-Untrained Δ
+    - Worst Reviewer Reading
+    rows:
+    - - RSA (geometric)
+      - '0.003'
+      - 'Expected: frozen encoder dominates'
+    - - R² action probe
+      - '+0.015'
+      - 'Marginal: within noise'
+    - - CKA (global)
+      - '-0.006'
+      - 'REVERSAL: undermines RSA narrative'
+    - - Action probe (MLP)
+      - '+0.045'
+      - Small routing effect, not surprising
+    - - Delta probe
+      - '+0.011'
+      - Same encoder → similar structure
+    - - Classification
+      - '+0.001'
+      - Trivially easy for both conditions
+  figures_description:
+  - 6-method consistency radar chart 标注 'CKA reversal' 打破 perfect consistency 叙事
+  analysis: '6 methods consistency 从 "strong evidence for trained ≈ untrained" 降为
+
+    "thorough but unsurprising verification of a structurally predicted outcome"。
+
+    CKA reversal 使 "all methods consistent" claim 不成立。Framework reframe 下
+
+    唯一残余价值：demonstrate framework 的 multi-method coverage capability。
+
+    '
+- name: Instruction ablation
+  plan_id: plan_006
+  description: 去掉 instruction text 测 RSA 变化
+  expected_results:
+    delta_with_vs_no_inst: 0.004
+    gate_judgment: FAIL — instruction 无影响 on RSA
+  result_rationale: '数据不变。Worst 档下被视为 tautological sanity check：image token RSA 在
+    causal mask 下
+
+    不受 instruction tokens 影响是 structural guarantee，不是 empirical finding。
+
+    Reviewer："你在 C1 里承认 causal mask 使 image tokens 看不到 instructions，
+
+    然后在 plan_006 里''发现'' image RSA 不受 instructions 影响——这是验证了你自己的前提假设。
+
+    Δ=0.004 是 noise，不是 small effect——effect 在结构上不可能存在。
+
+    这 0.5 页可以省掉或用一句话带过。"
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Worst tier 下从 C3 evidence 降为 "confirms structural prediction, not finding"。
+
+    Framework reframe 下可作为 "sanity check" 一句带过，不占独立段落。
+
+    '
+- name: 2×2 matrix (training × instruction)
+  plan_id: plan_007
+  description: 四条件全收敛验证
+  expected_results:
+    trained_with_inst: 0.488
+    trained_no_inst: 0.489
+    untrained_with_inst: 0.485
+    untrained_no_inst: 0.48
+    bootstrap_ci_includes_0: true
+    training_effect: 0.003
+    instruction_effect: 0.004
+  result_rationale: '数据不变。Worst 档下 2×2 null result 被视为 "expected outcome of frozen
+    encoder + causal mask"。
+
+    Reviewer："你的 2×2 factorial design 是好的 experimental methodology，但它发现了 predicted
+    null——
+
+    both factors (training, instruction) have no effect on image token RSA 因为 (1)
+    encoder frozen,
+
+    (2) causal mask blocks instruction→image. 好的 experimental design + expected null
+    result
+
+    = methodology paper contribution, not empirical contribution。如果这是 methodology
+    paper
+
+    那 ok，但你 pitch 的是 empirical findings about VLA routing。"
+
+    四条件收敛到 0.48-0.49 band 进一步证实 RSA 对 image tokens 是 ceiling+floor bounded by encoder
+    quality。
+
+    '
+  tables:
+  - title: 2×2 Matrix as Expected Null (Worst-Tier)
+    columns:
+    - Condition
+    - RSA
+    - Reviewer Verdict
+    rows:
+    - - Trained + Inst
+      - '0.488'
+      - 'Expected: frozen encoder dominates'
+    - - Trained - Inst
+      - '0.489'
+      - 'Expected: causal mask blocks'
+    - - Untrained + Inst
+      - '0.485'
+      - 'Expected: same encoder'
+    - - Untrained - Inst
+      - '0.480'
+      - 'Expected: both factors null'
+  figures_description:
+  - 2×2 heatmap 标注 'Predicted null under frozen encoder hypothesis'
+  analysis: 'Framework reframe 下 2×2 matrix 的价值从 "finding" 转为 "exemplar of factorial
+
+    design capability"——可复用性贡献，但在 CoRL 不计高分。
+
+    '
+- name: Random instruction control
+  plan_id: plan_008
+  description: 随机/无意义 instruction 替代验证 RSA 不受 instruction content 影响
+  expected_results:
+    normal_rsa: 0.489
+    random_rsa: 0.484
+    shuffled_rsa: 0.483
+    empty_rsa: 0.472
+    max_absolute_delta: 0.017
+    instruction_invariant: true
+  result_rationale: '数据不变。与 plan_006/007 同一逻辑链——causal mask 使 image token RSA 对 instruction
+    content
+
+    天然不变。Worst reviewer："你用了三个 experiments（006/007/008）验证同一个 structurally guaranteed
+
+    null result。Normal/random/shuffled/empty 全在 ±0.02 内不是 finding，是 noise around a
+
+    guaranteed null。这占了论文篇幅但不增加 contribution。在 8 页限制下，三个实验应压缩为 1 段 sanity check。"
+
+    更刻薄的 reviewer："spending 3 experiments on ''image tokens don''t see instruction
+    tokens''
+
+    suggests the authors don''t fully understand their own architecture''s causal
+    mask structure."
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '006/007/008 三合一压缩为半段。Framework reframe 下仅作为 "invariance verification"
+
+    methodology demo。在 worst tier 下浪费篇幅的风险 > 贡献。
+
+    '
+- name: CKA verification
+  plan_id: plan_009
+  description: CKA 指标验证 RSA 发现的 metric robustness
+  expected_results:
+    linear_cka_ordering: untrained > trained > projector > DINO
+    rsa_ordering: projector > trained > untrained > DINO
+    ordering_reversal: true
+    last_preaction_cka: 0.127
+  result_rationale: '数据不变。CKA-RSA dissociation 在 worst 档下变得 doubly 致命。
+
+    第一层攻击（保持不变）："如果 CKA 说 untrained > trained 而 RSA 说 trained > untrained，
+
+    那哪个 metric 才反映 ''action-relevant information''？你选了 RSA 来讲 story，但另一个
+
+    equally principled metric 给出相反结论。这不是 metric dissociation finding——
+
+    这是 your conclusions are metric-dependent 的 admission。"
+
+    第二层攻击（D095 升级后更致命）："你们现在 claim R² exit collapse 是跨架构一致的
+
+    VLM→VLA signature。但 R² 本身是 functional metric（probe-based），RSA 是 geometric metric，
+
+    CKA 是 kernel-based metric。如果不同 metrics 给不同结论，你凭什么用 R² 的 exit collapse
+
+    而不是 CKA 的 no-collapse 来 claim ''architecture-independent signature''？
+
+    你的 framework 应该 reconcile 这些 metrics 而不是 pick 对你有利的那个。"
+
+    '
+  tables:
+  - title: Metric Ordering Reversal (Worst-Tier Authority Crisis)
+    columns:
+    - Metric
+    - Ordering
+    - Implication
+    rows:
+    - - RSA (geometric)
+      - SigLIP > T > U > DINO
+      - Training degrades geometry
+    - - CKA (global)
+      - U > T > SigLIP > DINO
+      - Training preserves/improves structure
+    - - R² (functional)
+      - T_lastpre > DINO ≈ Proj > T_img > U
+      - Training enables routing
+    - - Reviewer question
+      - —
+      - Framework credibility if metrics disagree?
+  figures_description:
+  - Triple ordering diagram 标注 contradiction arrows between RSA and CKA
+  analysis: 'CKA dissociation 在 worst tier 下是 double-edged：可以包装为 "why we need multi-metric
+
+    framework" 但同时 undermines 所有 single-metric conclusions。Exit collapse 只在 R²
+
+    下明显——如果 CKA 下不 collapse，reviewer 要求 "architecture-independent" 必须
+
+    "metric-independent"，否则 claim 降级。
+
+    '
+- name: LIBERO-Spatial cross-benchmark 扩展
+  plan_id: plan_010
+  description: 第三个 benchmark（LIBERO-Spatial）交叉验证
+  expected_results:
+    trained_image_mean_peak_R2: 0.696
+    trained_image_mean_peak_layer: 13
+    trained_last_preaction_peak_R2: 0.675
+    trained_last_preaction_peak_layer: 21
+    untrained_image_mean_peak_R2: 0.673
+    untrained_last_preaction_peak_R2: 0.635
+    trained_vs_untrained_delta_imgmean: 0.023
+    trained_vs_untrained_delta_lastpre: 0.04
+    bootstrap_p: 0.001
+  result_rationale: '数据已完成。Worst 档下此实验是 within-architecture cross-benchmark（仍是 OpenVLA），
+
+    不解决 RC4 的 cross-architecture concern。Reviewer："从 LIBERO-Goal 换到 LIBERO-Spatial
+
+    只是换了 task suite 不是换了 VLA 架构——这不回答 ''does it generalize across architectures''。"
+
+    Spatial 的 trained-untrained delta（best-vs-best）=0.023（imgmean）/ 0.040（lastpre）
+
+    小于 Goal 的 0.015/0.069。退一步看，R² exit collapse 在 D102 更新后被重新定义为
+
+    VLM→VLA transition effect——但 LIBERO-Spatial 和 Goal 都用同一个 OpenVLA checkpoint（已是
+    VLA），
+
+    所以 trained vs untrained（OXE vs LIBERO-finetuned）的 delta 本就该小（VLA→VLA transition）。
+
+    这与 D102 结论一致但在 worst tier 下被解读为 "further fine-tuning doesn''t change much
+
+    = fine-tuning doesn''t matter much = your study of fine-tuning effects is studying
+    something trivial。"
+
+    '
+  tables:
+  - title: Cross-Benchmark Comparison (OpenVLA Only)
+    columns:
+    - Benchmark
+    - Delta (imgmean best-vs-best)
+    - Delta (lastpre best-vs-best)
+    - Worst Reading
+    rows:
+    - - LIBERO-Goal
+      - '0.015'
+      - '0.069'
+      - Moderate; only architecture tested
+    - - LIBERO-Spatial
+      - '0.023'
+      - '0.040'
+      - Small; confirms VLA→VLA transition minimal
+    - - Implication
+      - —
+      - —
+      - Within-arch replication, not cross-arch validation
+  figures_description:
+  - Side-by-side R² curves for Goal vs Spatial 标注 both are OpenVLA
+  analysis: 'Cross-benchmark replication 有价值但不解决 cross-architecture gap。D102 framing
+    下
+
+    small delta 是 expected（VLA→VLA），但 reviewer 会用此攻击："如果进一步 finetuning
+
+    不 substantially change representations，studying finetuning effects 的意义何在？"
+
+    '
+- name: Full-layer R² scan
+  plan_id: plan_011
+  description: 33 layers × 2 conditions × 2 aggregations = 132 probes 的 R² 全层扫描
+  expected_results:
+    trained_image_mean_peak:
+      layer: 8
+      R2: 0.655
+    trained_last_preaction_peak:
+      layer: 13
+      R2: 0.678
+    untrained_image_mean_peak:
+      layer: 0
+      R2: 0.64
+    untrained_last_preaction_peak:
+      layer: 32
+      R2: 0.609
+    trained_exit_R2_lastpre: 0.422
+    untrained_exit_R2_lastpre: 0.545
+    exit_collapse_delta_lastpre: 0.256
+    best_vs_best_lastpre_delta: 0.069
+    best_vs_best_lastpre_p: 0.0001
+  result_rationale: '数据不变（OpenVLA 单架构）。这是 R² exit collapse 的源头实验。D100 NLP control
+    已排除
+
+    generic fine-tuning confound（Llama-2-chat ΔR²=0.000），D102 将其定义为 VLM→VLA transition
+    effect。
+
+    但 worst-tier reviewer 反转 D100/D102：
+
+    "D100 证明 NLP finetuning 不产生 exit collapse——好。但这只说明 exit collapse 需要 action training，
+
+    不说明它有 functional significance。VLM→VLA transition 当然改变 exit layer——action head
+    需要从
+
+    exit layer decode 7-DOF actions，这不是 routing ''discovery'' 而是 ''the model learned
+    to produce actions
+
+    and the last layer reflects that''。你的 R² probe 测量的是 Ridge regression 从 hidden
+    states 预测 actions
+
+    的能力——exit layer R² 下降只是说明 action-relevant information 被 ''consumed'' by action
+    decoding，
+
+    不是被 ''discarded'' by routing mechanism。这是 trivially expected under any encoder-decoder
+    framework。"
+
+    Worst reviewer 要求 behavioral evidence：如果 exit collapse 是 functional routing，
+
+    ablating exit-layer representations 应该 disproportionately affect task performance——但这从未被测试。
+
+    '
+  tables:
+  - title: R² Exit Collapse with D100/D102 Context (Worst-Tier)
+    columns:
+    - Condition
+    - Peak R²
+    - Exit R²
+    - Δ
+    - Worst Interpretation
+    rows:
+    - - VLA trained
+      - 0.678 (L13)
+      - 0.422 (L32)
+      - '0.256'
+      - Action head 'consumes' info — trivially expected
+    - - OXE untrained
+      - 0.609 (L32)
+      - 0.609 (L32)
+      - '0.000'
+      - No exit collapse — consistent with VLA→VLA null
+    - - Llama-2-chat (D100)
+      - 0.156 (all)
+      - 0.156 (all)
+      - '0.000'
+      - 'NLP: flat noise floor, no action info anywhere'
+    - - Random init
+      - 0.640 (L0)
+      - ~0 (L10-L13)
+      - pathological
+      - Not valid control — random weights meaningless
+  figures_description:
+  - Per-layer R² curves with NLP control flat line at 0.155, annotated 'trivially
+    expected action consumption'
+  analysis: 'D100 NLP control 排除了 generic fine-tuning confound，这是论文的防御性胜利。但 worst
+    reviewer
+
+    的 next-level 攻击——exit collapse 是 "action consumption" 而非 "routing mechanism"——
+
+    仍然 stands without behavioral validation。Framework reframe 可以 acknowledge 这个区分
+
+    并 position exit collapse 为 "diagnostic indicator of action training stage" 而非
+    "mechanistic finding"。
+
+    '
+- name: CLIP-ViT pretraining control
+  plan_id: plan_012
+  description: CLIP ViT-L 替代 SigLIP 区分 VL pretraining vs encoder quality
+  expected_results:
+    clip_rsa: 0.557
+    clip_R2: 0.587
+    dino_cls_rsa: 0.692
+    dino_cls_R2: 0.634
+    projector_R2: 0.63
+    vl_pretraining_not_superior: true
+  result_rationale: '数据已完成：CLIP < DINO in both RSA and R²。VL pretraining 不优于 self-supervised。
+
+    Worst 档延伸攻击："CLIP < DINO 说明 language-supervised pretraining 不帮助 action representation。
+
+    那为什么 VLA 要用 language-supervised encoder（SigLIP）而非 self-supervised（DINO）？更关键的是：
+
+    如果最好的 action-relevant encoder 不需要 language，你们花整篇论文研究 instruction routing
+
+    的 practical relevance 在哪里？Instructions 在 VLA 中可能是 overhead 而非 feature。
+
+    你们应该研究为什么 VLA 不用 DINO 作为 encoder，而非研究 instruction 如何 route through LLM。"
+
+    这直接挑战论文 premise 而非 findings——worst tier 下论文可能被判 "interesting but
+
+    fundamentally misdirected"。
+
+    '
+  tables:
+  - title: Encoder Quality vs Language Supervision
+    columns:
+    - Encoder
+    - RSA
+    - R²
+    - Has Language?
+    - Worst Implication
+    rows:
+    - - DINO cls
+      - '0.692'
+      - '0.634'
+      - 'No'
+      - Best in both — language supervision unnecessary
+    - - SigLIP+Proj
+      - '0.615'
+      - '0.630'
+      - 'Yes'
+      - VL pretraining inferior to DINO
+    - - CLIP ViT-L
+      - '0.557'
+      - '0.587'
+      - 'Yes'
+      - Worst VL encoder
+    - - Implication
+      - —
+      - —
+      - —
+      - Language supervision may hurt encoder quality
+  figures_description:
+  - DINO vs VL encoders scatter plot — DINO dominates upper-right corner
+  analysis: 'CLIP control 结果在 worst tier 下不仅否定 VL pretraining superiority，更挑战整篇论文的
+
+    motivation。Framework reframe 可以 spin 为 "framework reveals that language supervision
+
+    and action quality are decoupled" 但这是 defensive 而非 proactive contribution。
+
+    '
+- name: Branch-split RSA
+  plan_id: plan_013
+  description: DinoSigLIP fused backbone 中 DINOv2 vs SigLIP branch 分离
+  expected_results:
+    dinov2_branch_rsa: 0.619
+    siglip_branch_rsa: 0.621
+    fused_rsa: 0.634
+    post_projector_rsa: 0.615
+  result_rationale: '数据不变。DINOv2 ≈ SigLIP in fused backbone（Δ<0.002）。Worst 档下此实验只适用于
+
+    OpenVLA 的 DinoSigLIP 架构。TracVLA 和 NORA 用完全不同的 vision encoders，
+
+    branch-split 不可迁移。Reviewer："这是 architecture-specific implementation detail，
+
+    不是 generalizable finding。在 8-page 限制下应移到 appendix。"
+
+    在 diagnostic framework reframe 下可保留为 "framework 能做 sub-encoder analysis" demo，
+
+    但 0.5 段就够了。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Architecture-specific detail，appendix material。Framework demo 价值存在但不值得
+    main text 篇幅。
+
+    '
+- name: Cross-Architecture R² Exit Collapse Matrix (D096/D099/D102)
+  plan_id: cross_arch_r2_matrix
+  description: 3 架构 × 4 suite 的 R² exit collapse — D102 VLM→VLA vs VLA→VLA 二元分离
+  expected_results:
+    total_cells: 10
+    vlm_to_vla_cells: 6
+    vlm_to_vla_all_substantial: true
+    vlm_to_vla_delta_range:
+    - 0.156
+    - 0.455
+    vla_to_vla_cells: 4
+    vla_to_vla_none_substantial: true
+    vla_to_vla_delta_range:
+    - 0.033
+    - 0.086
+    nlp_control_delta: 0.0
+    binary_separation: VLM→VLA 6/6 vs VLA→VLA 0/4
+    tracvla_goal_delta: 0.228
+    tracvla_spatial_delta: 0.138
+    tracvla_object_delta: 0.294
+    tracvla_long_delta: 0.198
+    nora_goal_delta: 0.691
+    nora_spatial_delta: 0.302
+    openvla_goal_delta: 0.086
+    openvla_spatial_delta: 0.037
+    openvla_object_delta: 0.037
+    openvla_long_delta: 0.033
+  result_rationale: "D102 更新后数据清晰：VLM→VLA transition 6/6 一致（Δ=0.156-0.455），VLA→VLA\
+    \ 0/4 超过 Δ>0.10\n阈值（Δ=0.033-0.086）。v3 MCCV 修正了 train-test leakage。D100 NLP control\
+    \ ΔR²=0.000\n排除了 generic fine-tuning confound。\n\n但 worst-tier reviewer 用 D102\
+    \ 的 clean binary 反过来攻击：\n\"你们自己证明了 exit collapse 是 one-time VLM→VLA transition\
+    \ artifact。这很好，但：\n(1) 这不是 mechanism discovery——当你把 language model 变成 action model，出口层表征\n\
+    当然会重组。任何 domain adaptation（NLP→vision, text→audio）都可能产生类似 transition effects。\n\
+    你排除了 NLP finetuning，但没排除其他 domain adaptation scenarios（e.g., LLM→code generation）。\n\
+    (2) 作为 diagnostic tool 的价值有限：exit collapse 只告诉你 'this model was once a VLM\nthat\
+    \ got converted to VLA'——但在实践中你已经知道这一点（你知道模型的 training pipeline）。\n什么时候 practitioner\
+    \ 需要一个 tool 来判断 '我的模型是不是 VLA'？\n(3) VLA→VLA finetuning 无 exit collapse（0/4）说明它不是\
+    \ ongoing routing optimization 的\nindicator——它只是 initial adaptation 的 one-time\
+    \ marker。一个只出现一次的 diagnostic \n不能用于 iterative VLA development。\n(4) Magnitude\
+    \ 仍然高度 variable（0.156-0.691, 4.4x range even within VLM→VLA cells），\nNORA 的 0.691\
+    \ 是 outlier（3x median）。Architecture-independent 的 direction 但\narchitecture-dependent\
+    \ 的 magnitude——这降低了作为 quantitative diagnostic 的 precision。\"\n\nD100 NLP control\
+    \ 是 good defense 但不足以救 worst tier——因为 reviewer 的攻击不是\n\"exit collapse is generic\
+    \ fine-tuning\" 而是 \"exit collapse is trivially expected VLM→VLA transition\"\
+    。\n"
+  tables:
+  - title: 'R² Exit Collapse: D102 Binary Separation (Worst-Tier Reinterpretation)'
+    columns:
+    - Transition Type
+    - Architecture
+    - Suite
+    - Δ (peak-exit)
+    - Worst Reading
+    rows:
+    - - VLM→VLA
+      - TracVLA (Phi-3→VLA)
+      - Goal
+      - '0.228'
+      - 'Expected: domain adaptation reorganization'
+    - - VLM→VLA
+      - TracVLA
+      - Spatial
+      - '0.138'
+      - 'Expected: same mechanism'
+    - - VLM→VLA
+      - TracVLA
+      - Object
+      - '0.294'
+      - 'Expected: same mechanism'
+    - - VLM→VLA
+      - TracVLA
+      - Long
+      - '0.198'
+      - 'Expected: same mechanism'
+    - - VLM→VLA
+      - NORA (Qwen2.5→VLA)
+      - Goal
+      - '0.691'
+      - 'Outlier: 3x median, architecture-specific'
+    - - VLM→VLA
+      - NORA
+      - Spatial
+      - '0.302'
+      - 'Expected: consistent with NORA pattern'
+    - - VLA→VLA
+      - OpenVLA (OXE→LIBERO)
+      - Goal
+      - '0.086'
+      - 'Below threshold: no new collapse'
+    - - VLA→VLA
+      - OpenVLA
+      - Spatial
+      - '0.037'
+      - 'Below threshold: confirms one-time effect'
+    - - VLA→VLA
+      - OpenVLA
+      - Object
+      - '0.037'
+      - 'Below threshold: confirms one-time effect'
+    - - VLA→VLA
+      - OpenVLA
+      - Long
+      - '0.033'
+      - 'Below threshold: confirms one-time effect'
+  - title: Exit Collapse Diagnostic Value Assessment
+    columns:
+    - Question
+    - Answer
+    - Practical Value
+    rows:
+    - - Does model show VLM→VLA transition?
+      - Yes, 6/6 cells
+      - 'Low: practitioner already knows training history'
+    - - Can it track ongoing optimization?
+      - No, 0/4 VLA→VLA cells
+      - 'Zero: one-time marker only'
+    - - Is magnitude calibrated?
+      - No, 4.4x range within VLM→VLA
+      - 'Low: cannot compare across architectures'
+    - - Does NLP control exclude confound?
+      - Yes, D100 ΔR²=0.000
+      - Defensive win but doesn't add value
+  figures_description:
+  - Heatmap split into VLM→VLA (warm) vs VLA→VLA (cold) blocks — clean separation
+    but 'trivially expected' annotation
+  - NORA Goal outlier at 0.691 circled with '3x median' annotation
+  analysis: 'D102 binary separation 是 scientifically clean 但 worst-tier reviewer 把
+    clean result
+
+    重新定义为 trivial result。NLP control 是 necessary defense 但不 sufficient to elevate
+
+    contribution。Framework reframe：exit collapse 降为 "one-time transition marker detected
+
+    by framework" 而非 "architecture-independent routing signature"。价值在 framework 能
+
+    systematically detect transition effects 而非 the specific effect detected。
+
+    '
+- name: Cross-Architecture L1 Attention (D090 Base-Model vs Training)
+  plan_id: cross_arch_l1_attention
+  description: 3 架构 L1 instruction-dominant heads — D090 证明 base-model-dependent
+  expected_results:
+    openvla_trained: 23
+    openvla_oxe_untrained: 26
+    tracvla_trained:
+    - 27
+    - 30
+    tracvla_untrained_vlm: 32
+    nora_trained:
+    - 12
+    - 13
+    nora_untrained_vlm:
+    - 13
+    - 14
+    training_effect_on_l1: none or negative
+  result_rationale: 'D090 发现 L1 head count 是 base-model-dependent。Worst tier 核心攻击：
+
+    "L1 routing gradient（0→9→24 heads）是论文最 visually striking 的结果，但你们自己证明了
+
+    它不是训练学到的。TracVLA untrained（纯 VLM）已 32/32，训练反而减少到 27-30（repurposing）。
+
+    NORA untrained 已 13-14/16，训练无变化。OpenVLA 的 0→24 gradient 只是 random init vs
+
+    pretrained 的差异——任何 pretrained LLM 都有 instruction attention heads，不需要 VLA training。
+
+
+    这意味着论文最核心的 visual result（Figure X 的 attention head gradient）不能 claim
+
+    是 VLA training 的贡献。读者看到这个图会以为训练创造了 routing——但实际上 routing 来自
+
+    language pretraining。这是 misleading framing，即使你在正文中有 caveat。"
+
+
+    D090 后 remaining training-induced effects 只剩 exit collapse 和 CF sensitivity。
+
+    Reviewer 总结："After D090, VLA training''s unique contribution is one transition
+    artifact
+
+    (exit collapse) and one baseline-confounded sensitivity measure (CF). This is
+    too thin
+
+    for a full paper at a top robotics venue."
+
+    '
+  tables:
+  - title: 'L1 Heads: Training Contributes Nothing (D090 Worst Reading)'
+    columns:
+    - Architecture
+    - Base Model
+    - Trained
+    - Untrained
+    - Training Δ
+    rows:
+    - - OpenVLA
+      - Llama-2-7B
+      - 24/32
+      - 0/32 (random init)
+      - 'Artifact: random has no LM'
+    - - OpenVLA
+      - OXE-pretrained
+      - 24/32
+      - 25/32 (OXE)
+      - '-1: OXE already saturated'
+    - - TracVLA
+      - Phi-3-mini
+      - 27-30/32
+      - 32/32 (VLM base)
+      - '-2 to -5: training REDUCES'
+    - - NORA
+      - Qwen2.5-VL-3B
+      - 12-13/16
+      - 13-14/16
+      - '-1: no training effect'
+  - title: Contribution Audit After D090
+    columns:
+    - Originally Claimed
+    - Post-D090 Status
+    - Remaining Value
+    rows:
+    - - L1 routing gradient (0→9→24)
+      - 'REMOVED: base-model artifact'
+      - Zero
+    - - Bookend attention pattern
+      - 'WEAKENED: entry from base model'
+      - Exit engagement only
+    - - R² exit collapse
+      - 'Retained: training-induced'
+      - Thin — one-time transition
+    - - CF sensitivity
+      - 'Retained: training-induced'
+      - Thin — unfair baselines
+    - - Experimental framework
+      - Intact
+      - Main surviving contribution
+  figures_description:
+  - Before/After D090 contribution diagram — L1 routing crossed out, remaining pillars
+    marked 'questionable'
+  analysis: 'D090 是论文最大的 self-inflicted wound。Framework reframe 试图把 D090 从 weakness
+    转为
+
+    "framework''s key capability: distinguishing training-induced from pre-existing"——
+
+    但 reviewer 可能看穿这个 rhetorical move。核心问题：能区分 training vs pretraining
+
+    effects 是 methodology 贡献，但 CoRL 评审 findings 而非 methods。
+
+    '
+- name: Cross-Architecture Counterfactual Sensitivity
+  plan_id: cross_arch_cf
+  description: 3 架构 CF sensitivity — trained vs untrained 对比
+  expected_results:
+    openvla_goal_trained_d: 1.182
+    openvla_goal_untrained_d: 1.048
+    openvla_spatial_trained_d: 1.173
+    openvla_spatial_untrained_d: 0.936
+    tracvla_goal_trained_d: 1.524
+    tracvla_goal_untrained_cos: 0.153
+    nora_goal_trained_cos: 1.0
+    nora_goal_untrained_cos: 0.081
+    incommensurable_pairs: 5
+    fair_comparison_pairs: 2
+    openvla_goal_fair_delta: 0.134
+    openvla_spatial_fair_delta: 0.237
+  result_rationale: 'D097/D099 修正后，CF sensitivity 的 cross-architecture 对比面临 incommensurability
+    问题：
+
+    TracVLA/NORA untrained 无法生成 actions（cosine in hidden space），trained 用 Cohen''s
+    d
+
+    in action space——两个 metrics 不可直接比较。只有 OpenVLA 的 trained + untrained 都能生成
+
+    actions，可用同一 metric 比较。
+
+
+    Worst-tier reviewer 攻击：
+
+    "CF sensitivity 是你们仅存的两个 training-induced effects 之一（D090 后），但：
+
+    (1) 你们自己承认 5/7 cross-architecture comparisons 使用 incommensurable metrics（Cohen''s
+    d
+
+    vs cosine distance）。你不能 claim ''training amplifies CF sensitivity'' 如果 trained
+    和
+
+    untrained 用不同 metrics 测量——这不是 methodological nuance，这是 fundamental flaw。
+
+    (2) 唯一公平对比（OpenVLA Goal/Spatial）显示 Δ=+0.13/+0.24，即 trained 比 untrained
+
+    高 12%/25%。但 OpenVLA untrained 是 OXE-pretrained VLA（已有 strong CF d=1.048），
+
+    所以 ''training amplification'' 是 VLA→VLA marginal improvement 而非 VLM→VLA dramatic
+    change。
+
+    (3) ''Empty instruction produces largest deviation'' 在 6/8 settings——这不需要 VLA-specific
+
+    routing 来解释。任何 conditioned generative model 在 input 被完全移除时 output 会 change most。
+
+    这是 conditioning 的 definition 而非 routing mechanism。
+
+    (4) CF sensitivity 没有 behavioral grounding：output changes（d=0.65-1.5）是否
+
+    导致 task failure？如果 perturbed instructions 产生 different but equally valid actions，
+
+    CF sensitivity 不是 routing evidence 而是 representational noise。
+
+    缺少 behavioral validation（closed-loop success rate under perturbation）是 near-fatal
+
+    for CoRL submission。"
+
+    '
+  tables:
+  - title: 'CF Sensitivity: Incommensurability Problem'
+    columns:
+    - Architecture
+    - Suite
+    - Trained Metric
+    - Untrained Metric
+    - Comparable?
+    - Fair Δ
+    rows:
+    - - OpenVLA
+      - Goal
+      - d=1.182
+      - d=1.048
+      - 'Yes'
+      - +0.134 (12%)
+    - - OpenVLA
+      - Spatial
+      - d=1.173
+      - d=0.936
+      - 'Yes'
+      - +0.237 (25%)
+    - - TracVLA
+      - Goal
+      - d=1.524
+      - cos=0.153
+      - 'No'
+      - Incommensurable
+    - - TracVLA
+      - Spatial
+      - d=1.333
+      - cos=0.180
+      - 'No'
+      - Incommensurable
+    - - TracVLA
+      - Object
+      - d=1.212
+      - cos=0.185
+      - 'No'
+      - Incommensurable
+    - - TracVLA
+      - Long
+      - d=1.473
+      - cos=0.173
+      - 'No'
+      - Incommensurable
+    - - NORA
+      - Goal
+      - cos=1.0 (sat.)
+      - cos=0.081
+      - Partially
+      - Saturated — ceiling artifact?
+  - title: 'CF Sensitivity: Missing Behavioral Validation'
+    columns:
+    - What CF Shows
+    - What Reviewer Wants
+    - Gap
+    rows:
+    - - Output direction changes (d>0.5)
+      - Task success rate drops
+      - No closed-loop data
+    - - Empty > wrong > shuffled > para
+      - Perturbation severity → failure rate correlation
+      - No behavioral grounding
+    - - ΔMSE≈0 vs ground-truth
+      - Action quality under perturbation
+      - MSE≈0 suggests no quality impact
+  figures_description:
+  - Paired bars with 5/7 pairs marked 'INCOMMENSURABLE' in red
+  - ΔMSE≈0 annotated as 'CF changes direction but not quality — no functional consequence'
+  analysis: 'CF sensitivity 在 worst tier 下被 double-attacked: incommensurable metrics
+    + no behavioral
+
+    grounding。ΔMSE≈0 (ground-truth error unchanged under ablation) is particularly
+    damaging——
+
+    it suggests CF perturbation changes output direction without degrading quality，
+
+    supporting "information-computation dissociation" (Hewitt & Liang 2019) interpretation
+
+    that routing modulates output but doesn''t encode task-critical information。
+
+    Framework reframe：CF analysis 降为 "framework''s perturbation analysis capability"，
+
+    behavioral validation 列为 "critical future work"。
+
+    '
+- name: Three-Tier Routing Gradient (D094)
+  plan_id: three_tier_gradient
+  description: VLM base → OXE-pretrained VLA → task-finetuned VLA 三层级路由梯度
+  expected_results:
+    tier1_models:
+    - Phi-3-Vision
+    - Qwen2.5-VL
+    - random init Llama-2
+    tier1_l1_heads:
+    - 32
+    - 14
+    - 0
+    tier1_cf_max_cos: 0.19
+    tier1_exit_collapse: false
+    tier2_model: openvla-7b (OXE)
+    tier2_l1_heads: 25
+    tier2_cf_d: 1.048
+    tier2_exit_collapse: false
+    tier3_l1_heads:
+    - 24
+    - 30
+    - 13
+    tier3_exit_collapse_vlm_origin: true
+    tier3_exit_collapse_vla_origin: false
+    tier2_n_datapoints: 1
+  result_rationale: '三层级梯度被 worst reviewer 驳为 post-hoc narrative with N=1 at Tier-2。
+
+
+    攻击 1 — 统计力不足："Tier-2 只有一个数据点（openvla-7b OXE pretrained）。要建立 gradient
+
+    你需要 at minimum 3 个独立的 OXE-pretrained 或 general-pretrained VLA checkpoints 来
+
+    验证 Tier-2 不是 openvla-7b specific。Three points don''t make a gradient if the middle
+
+    one is N=1——那是 step function with one interpolation point。"
+
+
+    攻击 2 — L1 heads 在 tiers 间不单调："Tier-1 Phi-3-Vision = 32/32, Tier-2 OXE = 25/32,
+
+    Tier-3 TracVLA = 27-30/32。Tier-1 > Tier-2 ≈ Tier-3——这不是 gradient，这是 ''base model
+
+    already saturated then training reduces some heads''。L1 head count 不支持 gradient
+    narrative。"
+
+
+    攻击 3 — Exit collapse 不支持 gradient："Tier-2 无 exit collapse, Tier-3 有 exit collapse
+
+    只在 VLM→VLA origin models——这是 binary transition 不是 gradient。如果 Tier-3 只在
+
+    VLM-origin 有 collapse 而 VLA-origin 没有，那 ''gradient'' 应该有 collapse 强度在 Tier-2→Tier-3
+
+    increasing——但 Tier-2 = 0, Tier-3 (VLA origin) = 0。只有 Tier-3 (VLM origin) 有 collapse。
+
+    这是 binary (VLM→VLA collapse exists / doesn''t) 不是 three-tier gradient。"
+
+
+    攻击 4 — libero_finetuned attention data 反驳 gradient："L31 exit engagement 从 bridge-VLA
+
+    (18 heads) 到 libero-finetuned (0 heads)——further specialization REDUCES exit routing。
+
+    Gradient predicts ''more training = more routing'' 但 data shows opposite at exit
+    layer。"
+
+    '
+  tables:
+  - title: 'Three-Tier Gradient: N=1 at Tier-2'
+    columns:
+    - Tier
+    - N Models
+    - Key Metrics
+    - Worst Reading
+    rows:
+    - - Tier 1 (VLM)
+      - 3+
+      - 'L1: 0-32; CF<0.2; no collapse'
+      - Adequate N but heterogeneous (0 vs 32 heads)
+    - - Tier 2 (General VLA)
+      - 1 ONLY
+      - 'L1: 25; CF d=1.05; no collapse'
+      - N=1 — cannot establish gradient
+    - - Tier 3 (Task VLA)
+      - ~10 cells
+      - 'L1: 13-30; CF d>0.45; collapse if VLM-origin'
+      - Adequate N but split by origin
+  figures_description:
+  - Gradient diagram with Tier-2 marked 'N=1' and dashed connections
+  - 'L1 head count across tiers showing non-monotonic pattern (Phi-3: 32→25→30)'
+  analysis: 'Three-tier gradient 必须移除或降为 "preliminary observation with N=1 at intermediate
+    tier"。
+
+    Framework reframe：不 claim gradient，改为 "framework enables stage-wise comparison"——
+
+    contribute methodology for comparing training stages, not the gradient finding
+    itself.
+
+    '
+- name: NLP Finetuning Control (D100)
+  plan_id: nlp_finetuning_control
+  description: Llama-2-7b-chat R² profile 排除 generic fine-tuning confound
+  expected_results:
+    peak_r2: 0.1555
+    exit_r2: 0.1555
+    delta_r2: 0.0
+    profile_shape: flat constant across all 32 layers
+    r2_range:
+    - 0.1547
+    - 0.1555
+    phi3_nlp_delta: 0.0
+    qwen_nlp_delta: 0.0
+  result_rationale: "D100 结果 clean：三个 NLP-finetuned LLM（Llama-2-chat, Phi-3-instruct,\
+    \ Qwen2.5-instruct）\n均 ΔR²=0.000，flat R²≈0.155 noise floor。这排除了 \"exit collapse\
+    \ is generic fine-tuning artifact\"。\n\n但 worst-tier reviewer 不被 impressed：\n\"\
+    D100 是 good negative control，我们接受 exit collapse 不是 generic fine-tuning。\n但这不能\
+    \ elevate exit collapse 为 interesting finding——它只从 'might be generic artifact'\n\
+    升级为 'VLA-specific but trivially expected'。当你训练一个 language model 来 predict\n7-DOF\
+    \ robot actions，exit layer 表征当然会被 action training reshape。\nR²≈0.155 in NLP models\
+    \ 只是说明 NLP models 没有 action-relevant information 在任何层\n（Ridge 只拟合 between-task\
+    \ variance）——当然不会有 exit collapse。\n你排除了一个 straw-man confound 但没有建立 positive value。\n\
+    A good control experiment answers 'is this finding real?' — yours answers 'is\
+    \ this finding\neven more trivially explainable than I thought?'  答案是 No，但 the\
+    \ finding is still trivial。\"\n\nR²=0.155 本身是 between-task variance baseline（10\
+    \ tasks → Ridge 可拟合 task identity → \n0.155 R² from 10-way between-task variance\
+    \ alone）——这是 expected 而非 surprising。\n"
+  tables:
+  - title: NLP Finetuning Control Results
+    columns:
+    - Model
+    - Backbone
+    - ΔR²
+    - Profile
+    - Worst Reading
+    rows:
+    - - Llama-2-7b-chat
+      - Llama-2-7B
+      - '0.000'
+      - Flat 0.155
+      - 'Expected: no action info anywhere'
+    - - Phi-3-mini-instruct
+      - Phi-3-mini
+      - '0.000'
+      - Flat 0.155
+      - 'Expected: same noise floor'
+    - - Qwen2.5-3B-instruct
+      - Qwen2.5-3B
+      - '0.000'
+      - Flat 0.155
+      - 'Expected: same noise floor'
+    - - VLM→VLA (TracVLA)
+      - Phi-3-mini
+      - 0.156-0.294
+      - Exit collapse
+      - VLA-specific but trivially expected
+    - - VLA→VLA (OpenVLA)
+      - Llama-2-7B
+      - 0.033-0.086
+      - Mild decline
+      - No new collapse in VLA→VLA
+  figures_description:
+  - Per-layer R² with NLP controls as flat lines at 0.155 — 'straw-man excluded' annotation
+  analysis: 'D100 是 necessary but not sufficient defense。Worst reviewer accepts the
+    control
+
+    but doesn''t give credit for it — "excluding an obvious confound is minimum bar,
+
+    not contribution." Framework reframe 可以 cite D100 作为 "framework enables
+
+    cross-domain comparison" demo，但 reviewer 的 next-level attack（trivially expected）
+
+    仍 stands。
+
+    '
+- name: Cross-Instruction Classification (C1 Framework)
+  plan_id: cross_instruction_classification
+  description: 10-way instruction classification 跨层 × 跨条件 — C1 框架核心实验
+  expected_results:
+    trained_L1_acc: 0.996
+    trained_L2_to_L31: 1.0
+    llama2base_L1_acc: 0.802
+    llama2base_L5_plus: 1.0
+    untrained_L1_acc: 1.0
+    untrained_L31_acc: 0.82
+    image_mean_all_layers: 0.1
+    loocv_trained: 100.00±0.00
+    loocv_untrained: 84.76±11.59
+  result_rationale: '数据完整。Worst 档下 C1 被彻底降级：
+
+    "10-way classification on 4096-dim features 是 trivially easy。Untrained (random
+    init)
+
+    L1 也达到 100%——random projection 就能分离 10 个 class。你的 LOOCV 只在 untrained deep layers
+
+    下降到 85%——这不是 ''training improves routing'' 而是 ''random weights corrupt signal
+    in deep layers''。
+
+
+    Image mean = 10% at all layers 是 causal mask guarantee 不是 finding。你自己承认了。
+
+
+    三条件对比（trained flat 100%, llama2base saturates L5, untrained decays to 82%）的
+
+    interpretation 也被质疑：''trained L1=99.6% vs llama2base L1=80.2%'' 看起来像 ''training
+
+    creates immediate routing''，但 D090 证明 L1 heads 来自 base model 而非 training。
+
+    那 99.6% vs 80.2% 的差异可能只反映 VLA fine-tuning 后 feature quality 提升（action-relevant
+
+    features are more linearly separable）而非 routing reorganization。
+
+
+    贡献在 methodology（factorial design + 4 methods）而非 findings。但 methodology 贡献在
+
+    CoRL 通常只值 weak accept——CoRL 偏好 systems + behavioral results。"
+
+    '
+  tables:
+  - title: 'Cross-Instruction Classification: Trivially Easy?'
+    columns:
+    - Condition
+    - L1 Acc
+    - L31 Acc
+    - Worst Reading
+    rows:
+    - - Trained
+      - 99.6%
+      - 100%
+      - Flat 100% = ceiling effect, no gradient to analyze
+    - - Llama-2 base
+      - 80.2%
+      - 100%
+      - LM pretraining provides separability, not VLA training
+    - - Untrained (random)
+      - 100%
+      - 82%
+      - Even random features separate 10 classes at L1
+    - - Image mean
+      - 10%
+      - 10%
+      - Causal mask guarantee, not finding
+  figures_description:
+  - Three-condition probe curves annotated with 'trivially easy' at ceiling regions
+  analysis: 'C1 的 experimental framework 是 reframe 后的 primary contribution。但 cross-instruction
+
+    classification 作为 framework demo 的问题：10-way on 4096d 太 easy，不 demonstrate
+
+    framework 在 harder settings 下的 value。需要更 challenging classification tasks
+
+    或 fine-grained metrics 来 justify framework utility。
+
+    '
+- name: Head Ablation and Specificity Controls
+  plan_id: head_ablation_suite
+  description: L1 attention head ablation 实验套件 — 验证 instruction-dominant heads 的功能特异性
+  expected_results:
+    baseline_r2_L13: 0.676
+    ablate_24_instr_r2_L13: 0.676
+    ablate_24_random_r2_L13: 0.664
+    random_24_z_score: -2.73
+    specificity_ratio: 1.08
+    instruction_d: 0.651
+    random_24_d: 0.601
+    image_24_d: 0.58
+    gt_error_delta_mse: -0.001
+  result_rationale: '数据已完成。Worst 档下 ablation 结果被严厉解读：
+
+
+    (1) Specificity ratio = 1.08x 极弱："instruction-dominant 24 heads 的 per-head effect
+
+    不比 random 24 heads 大多少（z=-2.73 但 effect size tiny）。任何 24/32 heads ablation
+
+    产生 similar or larger R² increase（random 24 mean delta = 0.077 > instruction 24
+    delta = 0.042）。
+
+    Instruction-dominant heads 不是 special——they''re 75% of all heads，removing ANY
+    75%
+
+    of heads produces similar effects。"
+
+
+    (2) ΔMSE≈0 vs ground-truth 是 worst tier 最致命的 finding："你 ablate 24 instruction-dominant
+
+    heads，action outputs change direction (d=0.65) 但 ground-truth error 不变（ΔMSE=-0.001,
+    p=0.52）。
+
+    这意味着 instruction routing 对 action quality 无影响——perturbation 改变 output 方向
+
+    但不改变 output 质量。这直接证明 CF sensitivity 缺乏 functional significance。
+
+    如果移除 75% 的 ''instruction routing heads'' 对 action quality 无影响，
+
+    那 instruction routing 在 action generation 中可能是 redundant mechanism。"
+
+
+    (3) Information-computation dissociation 解读在 worst tier 下被反转：论文 cite Hewitt &
+    Liang 2019
+
+    作为 "ΔMSE≈0 is expected under dissociation"，但 reviewer 说：
+
+    "Hewitt & Liang 的 point 是 probe results don''t prove representation is functionally
+    used。
+
+    你在用他们的 framework 来 excuse 你的 negative result。ΔMSE≈0 doesn''t support ''routing
+
+    modulates without degrading''——it supports ''routing doesn''t matter for output
+    quality''。"
+
+    '
+  tables:
+  - title: 'Head Ablation: No Functional Specificity'
+    columns:
+    - Ablation Group
+    - 24h d
+    - Per-head d
+    - GT ΔMSE
+    - Worst Reading
+    rows:
+    - - Instr-dominant 24
+      - '0.651'
+      - '0.027'
+      - -0.001 (p=0.52)
+      - Changes direction, not quality
+    - - Random 24 (avg)
+      - '0.601'
+      - '0.025'
+      - similar
+      - Any 24 heads produce similar effect
+    - - Image-dominant 24
+      - '0.580'
+      - '0.024'
+      - similar
+      - No group specificity
+    - - Control 8 (random)
+      - '0.410'
+      - '0.051'
+      - similar
+      - Per-head effect LARGER in control
+  figures_description:
+  - ΔMSE≈0 highlighted as 'no functional consequence of instruction routing ablation'
+  analysis: 'Head ablation suite is worst tier''s most damaging evidence against CF
+    sensitivity as
+
+    functional routing. ΔMSE≈0 + specificity ratio 1.08x together argue that instruction
+
+    routing (as measured by attention head dominance) has no disproportionate functional
+    role.
+
+    Framework reframe 很难 rescue this——the framework''s own ablation tool reveals that
+
+    the effect it detected (instruction routing) is not functionally specific.
+
+    '
+- name: Counterfactual Token Overlap and Trajectory-Level Analysis
+  plan_id: cf_detailed_analysis
+  description: CF perturbation 的 token overlap, trajectory-level d, 和 ΔMSE 扩展分析
+  expected_results:
+    token_overlap_spearman: 1.0
+    empty_d_token: 0.968
+    empty_d_trajectory: 3.438
+    wrong_d_token: 0.844
+    wrong_d_trajectory: 3.798
+    shuffled_d_token: 0.625
+    shuffled_d_trajectory: 2.595
+    para_d_token: 0.697
+    para_d_trajectory: 2.131
+    inflation_factor_mean: 0.245
+    gt_mse_original: 0.498
+    gt_mse_top24_ablated: 0.497
+    gt_mse_delta: -0.001
+  result_rationale: '数据已完成。Worst 档下 token overlap analysis 被反过来用：
+
+
+    "Spearman ρ=1.0 between token novelty and Cohen''s d 说明 CF sensitivity 完全由
+
+    lexical/positional distance 驱动，不是 semantic distance。Empty（最大 token novelty）→
+
+    largest d，shuffled（same tokens, different order）→ moderate d，paraphrased（high
+    overlap）→
+
+    smallest d。这不是 ''the model understands instruction semantics''——这是 ''the model
+    responds
+
+    to surface-level token changes''。任何 autoregressive language model 都会如此。"
+
+
+    Trajectory-level d（2.1-3.8）远大于 token-level d（0.6-0.97）——inflation factor ~4x。
+
+    Worst reviewer："trajectory-level inflation 说明 per-timestep effects 累积——这不是
+
+    ''stronger evidence of routing'' 而是 ''autocorrelation amplification''。每个 timestep
+
+    的小 perturbation 通过 temporal autocorrelation 累积成大 trajectory difference，
+
+    这是 dynamical systems 的 trivial property 不是 routing evidence。"
+
+
+    GT MSE unchanged（0.498 vs 0.497）再次确认 CF perturbation 不影响 action quality。
+
+    '
+  tables:
+  - title: 'Token Overlap → Cohen''s d: Surface-Level Sensitivity'
+    columns:
+    - Perturbation
+    - Token Novelty
+    - Token d
+    - Traj d
+    - Worst Reading
+    rows:
+    - - empty
+      - '1.0'
+      - '0.968'
+      - '3.438'
+      - 'Max novelty → max effect: lexical, not semantic'
+    - - wrong
+      - '0.83'
+      - '0.844'
+      - '3.798'
+      - High novelty → high effect
+    - - paraphrased
+      - '0.47'
+      - '0.697'
+      - '2.131'
+      - Low novelty → low effect
+    - - shuffled
+      - '0.0'
+      - '0.625'
+      - '2.595'
+      - Zero novelty but positional change → moderate
+  figures_description:
+  - Token novelty vs d scatter with ρ=1.0 line — annotated 'surface-level sensitivity,
+    not semantic routing'
+  analysis: 'ρ=1.0 token-novelty/d correlation is worst-tier''s strongest argument
+    that CF sensitivity
+
+    measures lexical sensitivity rather than semantic routing. Framework reframe has
+    no good
+
+    counter — the framework''s own analysis reveals CF is surface-level. Could argue
+    "shuffled
+
+    same tokens different order still produces d=0.63" as evidence of positional sensitivity
+
+    beyond pure lexical, but this is weak defense.
+
+    '
+- name: 'D090 Synthesis: What VLA Training Actually Contributes'
+  plan_id: d090_contribution_synthesis
+  description: 综合评估：D090 后论文的 residual contribution
+  expected_results:
+    training_induced_effects:
+    - R² exit collapse (VLM→VLA only)
+    - CF sensitivity (unfair baselines)
+    base_model_effects:
+    - L1 head count
+    - deep-layer probe stability
+    removed_contributions:
+    - L1 routing gradient
+    - attention bookend pattern (entry component)
+    remaining_unique: 1-2 effects, both with caveats
+    reviewer_avg_score:
+    - 4.0
+    - 5.5
+    strong_reject_count:
+    - 1
+    - 2
+    accept_probability:
+    - 0.05
+    - 0.2
+    claims_surviving:
+    - 0.5
+    - 1.5
+  result_rationale: "D090 后 contribution audit 在 worst tier 下：\n\nTraining-induced（retained\
+    \ but weakened）:\n- R² exit collapse：6/6 VLM→VLA, 0/4 VLA→VLA — clean binary。D100\
+    \ 排除 NLP confound。\n  但 worst reviewer 视为 \"trivially expected transition artifact\"\
+    。\n- CF sensitivity：d≥0.45 in all trained settings。但 incommensurable baselines（5/7\
+    \ pairs），\n  ρ=1.0 token-novelty correlation（surface-level），ΔMSE≈0（no functional\
+    \ consequence）。\n\nBase-model-dependent（removed from contribution）:\n- L1 head\
+    \ count：Phi-3 32/32 untrained, NORA 13/16 untrained — not training-induced。\n\
+    - Deep-layer stability：Llama-2 base also stable（100% L5+）— from LM pretraining。\n\
+    \nReviewer score prediction:\n- R1（expects behavioral results）：4/10 — \"descriptive\
+    \ analysis without actionable insight,\n  CoRL expects at minimum open-loop policy\
+    \ evaluation.\"\n- R2（appreciates methodology）：6/10 — \"framework is solid and\
+    \ systematic, cross-architecture\n  validation is thorough engineering. But findings\
+    \ are thin after D090 self-critique.\"\n- R3（generalizability focus）：4/10 — \"\
+    exit collapse magnitude 4.4x range within VLM→VLA,\n  CF baselines incommensurable.\
+    \ Claims are over-qualified to the point of being unfalsifiable.\"\nMean: 4.67.\
+    \ Strong reject: 0-1. Accept probability: 0.10-0.20.\n\nReframe 能做的最大提升：如果 C1\
+    \ framework 成功 pitch 为 primary contribution（\"first\nsystematic VLA profiling\
+    \ toolkit\"），R2 可能升到 7，但 R1/R3 不变——\n结果 mean 5.0，borderline reject。需要 AC 同情才有机会。\n"
+  tables:
+  - title: Worst-Tier Score Prediction
+    columns:
+    - Reviewer
+    - Score
+    - Primary Concern
+    - Verdict
+    rows:
+    - - R1 (behavioral)
+      - '4'
+      - No closed-loop validation; CoRL is robotics venue
+      - Reject
+    - - R2 (methodology)
+      - '6'
+      - Framework solid; findings thin but honest
+      - Weak Accept
+    - - R3 (generalizability)
+      - '4'
+      - Magnitude variance; incommensurable baselines; over-qualified claims
+      - Reject
+    - - Mean
+      - '4.67'
+      - 2 reject + 1 weak accept
+      - Likely Reject
+  - title: Reframe Impact on Scores
+    columns:
+    - Reframe Element
+    - Score Impact
+    - Which Reviewer
+    rows:
+    - - C1 framework as primary contribution
+      - +1 for R2 only
+      - 'R2: 6→7'
+    - - D090 as framework capability demo
+      - +0.5 for R2
+      - R2 already sympathetic
+    - - Exit collapse as diagnostic
+      - 0 for R1/R3
+      - Doesn't address behavioral gap
+    - - Roadmap for closed-loop future work
+      - +0.5 for R1 maybe
+      - R1 may soften to 4.5
+    - - Net after reframe
+      - Mean ~5.0
+      - Still borderline reject
+  figures_description:
+  - 'Contribution pyramid after D090: framework base (solid), exit collapse (thin),
+    CF (thin), L1 routing (crossed out)'
+  analysis: 'Worst tier 核心判定：论文 honest analysis (D090) + thorough controls (D100)
+    是 scientifically
+
+    commendable 但 strategically devastating。每个 defense 实验排除了一个 confound 但同时削弱了
+
+    contribution scope。D090 证明 L1 routing 不是训练效果；D100 证明 exit collapse 不是 generic
+
+    finetuning 但仍被视为 trivial；ΔMSE≈0 证明 ablation 不影响 quality 但被解读为 "routing
+
+    doesn''t functionally matter"。
+
+
+    Reframe 路径：diagnostic framework + honest empirical characterization。Accept probability
+
+    0.05-0.20 range。需要 AC 认可 methodology contribution 的 standalone value 才有机会。
+
+    关键 rebuttal material：(1) representation engineering literature 论证 representational
+
+    analysis 的独立价值，(2) exit collapse as VLM→VLA binary diagnostic 的 concrete use case
+
+    （判断 pretraining checkpoint 是否完成 VLA transition），(3) framework reusability 的
+
+    具体 demonstration（how others can apply it to new VLAs）。'

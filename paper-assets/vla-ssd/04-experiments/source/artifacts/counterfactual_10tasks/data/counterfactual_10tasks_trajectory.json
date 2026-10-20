@@ -1,0 +1,137 @@
+{
+  "source": "counterfactual_10tasks_combined.json + trajectory_level_cohens_d.json",
+  "counterfactual_10tasks": {
+    "config": {
+      "experiment": "counterfactual_instruction_10tasks",
+      "conditions": ["wrong", "empty", "shuffled", "paraphrased"],
+      "n_tasks": 10,
+      "n_demos_per_task": 10,
+      "n_timesteps_per_demo": 50,
+      "model": "openvla-7b",
+      "unnorm_key": "bridge_orig",
+      "seed": 42,
+      "task_names": [
+        "open_the_middle_drawer_of_the_cabinet",
+        "open_the_top_drawer_and_put_the_bowl_inside",
+        "push_the_plate_to_the_front_of_the_stove",
+        "put_the_bowl_on_the_plate",
+        "put_the_bowl_on_the_stove",
+        "put_the_bowl_on_top_of_the_cabinet",
+        "put_the_cream_cheese_in_the_bowl",
+        "put_the_wine_bottle_on_the_rack",
+        "put_the_wine_bottle_on_top_of_the_cabinet",
+        "turn_on_the_stove"
+      ]
+    },
+    "ranking_by_cohens_d": [
+      {"condition": "empty", "cohens_d": 0.9780, "paired_mse_mean": 0.06906, "token_divergence_rate": 0.9128, "kl_divergence_mean": 8.8070},
+      {"condition": "wrong", "cohens_d": 0.9237, "paired_mse_mean": 0.06470, "token_divergence_rate": 0.9077, "kl_divergence_mean": 8.3828},
+      {"condition": "shuffled", "cohens_d": 0.7625, "paired_mse_mean": 0.05117, "token_divergence_rate": 0.8711, "kl_divergence_mean": 7.3309},
+      {"condition": "paraphrased", "cohens_d": 0.7071, "paired_mse_mean": 0.04621, "token_divergence_rate": 0.8298, "kl_divergence_mean": 6.4567}
+    ],
+    "per_task_cohens_d": {
+      "wrong": {
+        "open_the_middle_drawer_of_the_cabinet": {"d": 0.9332, "ci_95": [0.8453, 1.0211], "mse": 0.065946},
+        "open_the_top_drawer_and_put_the_bowl_inside": {"d": 0.7362, "ci_95": [0.6483, 0.8240], "mse": 0.049243},
+        "push_the_plate_to_the_front_of_the_stove": {"d": 1.0025, "ci_95": [0.9147, 1.0904], "mse": 0.070744},
+        "put_the_bowl_on_the_plate": {"d": 0.9752, "ci_95": [0.8873, 1.0630], "mse": 0.068348},
+        "put_the_bowl_on_the_stove": {"d": 1.5050, "ci_95": [1.4171, 1.5928], "mse": 0.098254},
+        "put_the_bowl_on_top_of_the_cabinet": {"d": 0.8799, "ci_95": [0.7921, 0.9678], "mse": 0.061296},
+        "put_the_cream_cheese_in_the_bowl": {"d": 0.7988, "ci_95": [0.7110, 0.8867], "mse": 0.054458},
+        "put_the_wine_bottle_on_the_rack": {"d": 1.1747, "ci_95": [1.0868, 1.2625], "mse": 0.082012},
+        "put_the_wine_bottle_on_top_of_the_cabinet": {"d": 0.5361, "ci_95": [0.4483, 0.6240], "mse": 0.030529},
+        "turn_on_the_stove": {"d": 0.9449, "ci_95": [0.8570, 1.0327], "mse": 0.066163}
+      },
+      "empty": {
+        "open_the_middle_drawer_of_the_cabinet": {"d": 1.2452, "ci_95": [1.1574, 1.3331], "mse": 0.086239},
+        "open_the_top_drawer_and_put_the_bowl_inside": {"d": 1.0509, "ci_95": [0.9630, 1.1388], "mse": 0.074423},
+        "push_the_plate_to_the_front_of_the_stove": {"d": 0.6814, "ci_95": [0.5936, 0.7693], "mse": 0.044727},
+        "put_the_bowl_on_the_plate": {"d": 0.8079, "ci_95": [0.7200, 0.8957], "mse": 0.055558},
+        "put_the_bowl_on_the_stove": {"d": 0.8536, "ci_95": [0.7657, 0.9414], "mse": 0.059434},
+        "put_the_bowl_on_top_of_the_cabinet": {"d": 0.9866, "ci_95": [0.8987, 1.0744], "mse": 0.069785},
+        "put_the_cream_cheese_in_the_bowl": {"d": 1.1329, "ci_95": [1.0450, 1.2208], "mse": 0.079798},
+        "put_the_wine_bottle_on_the_rack": {"d": 1.1095, "ci_95": [1.0216, 1.1973], "mse": 0.077958},
+        "put_the_wine_bottle_on_top_of_the_cabinet": {"d": 1.0700, "ci_95": [0.9822, 1.1579], "mse": 0.074958},
+        "turn_on_the_stove": {"d": 0.9555, "ci_95": [0.8676, 1.0434], "mse": 0.067680}
+      },
+      "shuffled": {
+        "open_the_middle_drawer_of_the_cabinet": {"d": 0.4580, "ci_95": [0.3702, 0.5459], "mse": 0.023404},
+        "open_the_top_drawer_and_put_the_bowl_inside": {"d": 0.7054, "ci_95": [0.6175, 0.7933], "mse": 0.046452},
+        "push_the_plate_to_the_front_of_the_stove": {"d": 0.7108, "ci_95": [0.6230, 0.7987], "mse": 0.047365},
+        "put_the_bowl_on_the_plate": {"d": 0.7267, "ci_95": [0.6388, 0.8146], "mse": 0.047938},
+        "put_the_bowl_on_the_stove": {"d": 0.9304, "ci_95": [0.8425, 1.0183], "mse": 0.065400},
+        "put_the_bowl_on_top_of_the_cabinet": {"d": 0.8688, "ci_95": [0.7809, 0.9567], "mse": 0.060770},
+        "put_the_cream_cheese_in_the_bowl": {"d": 0.8986, "ci_95": [0.8107, 0.9864], "mse": 0.062622},
+        "put_the_wine_bottle_on_the_rack": {"d": 0.6743, "ci_95": [0.5864, 0.7622], "mse": 0.041155},
+        "put_the_wine_bottle_on_top_of_the_cabinet": {"d": 0.8210, "ci_95": [0.7331, 0.9088], "mse": 0.055480},
+        "turn_on_the_stove": {"d": 0.8705, "ci_95": [0.7826, 0.9583], "mse": 0.061149}
+      },
+      "paraphrased": {
+        "open_the_middle_drawer_of_the_cabinet": {"d": 0.4443, "ci_95": [0.3564, 0.5321], "mse": 0.022039},
+        "open_the_top_drawer_and_put_the_bowl_inside": {"d": 0.7131, "ci_95": [0.6252, 0.8009], "mse": 0.047022},
+        "push_the_plate_to_the_front_of_the_stove": {"d": 0.9586, "ci_95": [0.8707, 1.0465], "mse": 0.067855},
+        "put_the_bowl_on_the_plate": {"d": 0.7589, "ci_95": [0.6711, 0.8468], "mse": 0.050208},
+        "put_the_bowl_on_the_stove": {"d": 0.8559, "ci_95": [0.7681, 0.9438], "mse": 0.059021},
+        "put_the_bowl_on_top_of_the_cabinet": {"d": 0.8674, "ci_95": [0.7796, 0.9553], "mse": 0.060360},
+        "put_the_cream_cheese_in_the_bowl": {"d": 0.9213, "ci_95": [0.8334, 1.0092], "mse": 0.064504},
+        "put_the_wine_bottle_on_the_rack": {"d": 0.4264, "ci_95": [0.3385, 0.5143], "mse": 0.019398},
+        "put_the_wine_bottle_on_top_of_the_cabinet": {"d": 0.4106, "ci_95": [0.3227, 0.4984], "mse": 0.018301},
+        "turn_on_the_stove": {"d": 0.7784, "ci_95": [0.6905, 0.8662], "mse": 0.053377}
+      }
+    },
+    "cross_task_summary": {
+      "wrong": {"cohens_d_mean_std": "0.949 +/- 0.260", "cohens_d_range": "[0.536, 1.505]", "cohens_d_cv": "0.274", "mse_mean_std": "0.064699 +/- 0.018264"},
+      "empty": {"cohens_d_mean_std": "0.989 +/- 0.169", "cohens_d_range": "[0.681, 1.245]", "cohens_d_cv": "0.171", "mse_mean_std": "0.069056 +/- 0.012573"},
+      "shuffled": {"cohens_d_mean_std": "0.766 +/- 0.142", "cohens_d_range": "[0.458, 0.930]", "cohens_d_cv": "0.185", "mse_mean_std": "0.051173 +/- 0.012747"},
+      "paraphrased": {"cohens_d_mean_std": "0.713 +/- 0.211", "cohens_d_range": "[0.411, 0.959]", "cohens_d_cv": "0.296", "mse_mean_std": "0.046209 +/- 0.019199"}
+    }
+  },
+  "trajectory_level_cohens_d": {
+    "method": "demo-level aggregation, paired Cohen's d, bootstrap CI B=10000",
+    "description": "Each demo's MSE is the mean of its 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.",
+    "n_timesteps_per_demo": 50,
+    "counterfactual_results": [
+      {
+        "condition": "counterfactual_empty",
+        "token_level_d": 0.968,
+        "trajectory_level_d": 3.4378,
+        "ci_lower": 2.9209,
+        "ci_upper": 4.4475,
+        "n_demos": 30,
+        "inflation_factor": 0.282
+      },
+      {
+        "condition": "counterfactual_wrong",
+        "token_level_d": 0.844,
+        "trajectory_level_d": 3.7976,
+        "ci_lower": 3.1937,
+        "ci_upper": 4.9379,
+        "n_demos": 30,
+        "inflation_factor": 0.222
+      },
+      {
+        "condition": "counterfactual_shuffled",
+        "token_level_d": 0.625,
+        "trajectory_level_d": 2.5946,
+        "ci_lower": 2.0276,
+        "ci_upper": 3.7908,
+        "n_demos": 30,
+        "inflation_factor": 0.241
+      },
+      {
+        "condition": "counterfactual_paraphrased",
+        "token_level_d": 0.697,
+        "trajectory_level_d": 2.1306,
+        "ci_lower": 1.7399,
+        "ci_upper": 2.8192,
+        "n_demos": 30,
+        "inflation_factor": 0.327
+      }
+    ],
+    "inflation_factor_summary": {
+      "description": "token_level_d / trajectory_level_d (how much token-level d overestimates)",
+      "mean": 0.245,
+      "range": [0.184, 0.327]
+    }
+  }
+}

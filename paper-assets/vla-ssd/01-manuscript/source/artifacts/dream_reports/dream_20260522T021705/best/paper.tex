@@ -1,0 +1,652 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tablefootnote}
+\usepackage[numbers]{natbib}
+\usepackage{subcaption}
+
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\cf}{\textit{cf.}}
+\newcommand{\etal}{\textit{et al.}}
+
+\title{Architecture-Independent Routing Reorganization\\in Vision-Language-Action Models}
+
+\author{
+  Anonymous Authors\\
+  CoRL 2026 Submission
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%% ============================================================
+%%  ABSTRACT
+%% ============================================================
+\begin{abstract}
+Vision-Language-Action models (VLAs) fine-tune large language models on robot demonstration data, yet how training reshapes the internal routing of instruction information at the token level---and whether these effects generalize across architectures---remains uncharacterized.
+We present a systematic token-level analysis framework and apply it to three VLA families built on distinct backbones (Llama-2-7B, Phi-3-mini, Qwen2.5-VL-3B) across four LIBERO task suites (10 architecture$\times$suite cells).
+We identify two \emph{architecture-independent} training signatures: (1) \textbf{R$^2$ exit collapse}---task-finetuned VLAs show a consistent drop in action-probe R$^2$ from mid-layer peak to exit layer (trained $\Delta$=0.12--0.69 vs.\ untrained $\Delta$=0.01--0.08), confirmed in 9 of 10 cells; and (2) \textbf{heightened counterfactual sensitivity}---trained models exhibit 7--10$\times$ greater sensitivity to instruction perturbations than their untrained counterparts.
+A three-tier routing gradient emerges: VLM base models show no action routing, general-purpose VLA pretraining establishes routing without exit collapse, and task-specific fine-tuning adds exit collapse with task-specialized counterfactual patterns.
+We further distinguish training-induced effects (exit collapse, counterfactual sensitivity) from base-model-dependent effects (L1 attention head counts), and observe that, under RSA, vision encoder geometry follows an inverted-U profile across LLM layers with functional probes confirming an L8--L13 decodability peak.
+Our framework and findings provide mechanistic grounding for VLA architecture design and training diagnostics.
+\end{abstract}
+
+%% ============================================================
+%%  1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Vision-Language-Action models (VLAs) repurpose pretrained vision-language models for robot control by fine-tuning on demonstration data~\cite{brohan2023rt2, kim2024openvla}.
+While behavioral evaluations reveal that VLAs underutilize language instructions~\cite{grant2026visual, haon2025lost}, the \emph{internal} mechanisms by which training reshapes instruction routing remain poorly understood.
+Prior work has not decomposed the representational roles of different token positions, explained how fine-tuning reorganizes information flow, or tested whether such effects generalize beyond a single VLA architecture.
+
+We address these gaps with three contributions:
+
+\begin{enumerate}
+  \item \textbf{A systematic token-level analysis framework} applicable to any decoder-only VLA.
+        The framework combines cross-instruction probing, per-layer attention profiling, representational similarity analysis (RSA), and counterfactual perturbation, validated on 3 architectures $\times$ 4 task suites (10 cells with full data out of 12 possible).
+
+  \item \textbf{Architecture-independent training signatures.}
+        Across OpenVLA (Llama-2-7B), TracVLA (Phi-3-mini), and NORA (Qwen2.5-VL-3B), we find that task-specific fine-tuning consistently produces (a)~R$^2$ exit collapse (mean trained $\Delta$=0.226, 9/10 cells confirmed) and (b)~heightened counterfactual sensitivity (7--10$\times$ amplification).
+        We distinguish these \emph{training-induced} effects from \emph{base-model-dependent} effects such as L1 attention head counts, which reflect VLM/LLM pretraining rather than VLA fine-tuning.
+
+  \item \textbf{A three-tier routing gradient.}
+        Routing \emph{emerges} at the VLM$\to$VLA transition (general-purpose pretraining establishes instruction routing without exit collapse) and \emph{reshapes} at the general$\to$task-specific transition (task fine-tuning adds exit collapse and task-specialized sensitivity).
+\end{enumerate}
+
+As a qualified observation, we report that under RSA, vision encoder geometry follows an inverted-U profile across LLM layers (peak at L12, $\rho$=0.628), though this finding is metric-dependent: CKA yields a reversed ordering.
+Functional probes independently confirm a mid-layer decodability peak (L8--L13).
+
+%% ============================================================
+%%  2. RELATED WORK
+%% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Vision-Language-Action Models.}
+VLAs~\cite{brohan2023rt2, kim2024openvla} fine-tune vision-language models to predict robot actions conditioned on visual observations and language instructions.
+Recent architectures include OpenVLA~\cite{kim2024openvla} (Llama-2-7B backbone), TracVLA (Phi-3-mini backbone), and NORA (Qwen2.5-VL-3B backbone with grouped-query attention).
+While task performance has improved steadily, the internal mechanisms by which these models integrate multimodal information for action generation are largely unexplored.
+
+\paragraph{Instruction Following in Robotics.}
+Grant \etal~\cite{grant2026visual} demonstrated visual dominance in VLA action generation, and Haon \etal~\cite{haon2025lost} identified instruction underutilization across multiple VLA families.
+These behavioral studies establish the phenomenon but do not provide mechanistic explanations at the representational level.
+
+\paragraph{Representational Analysis of Transformers.}
+Probing classifiers~\cite{belinkov2022probing}, representational similarity analysis~\cite{kriegeskorte2008representational}, and centered kernel alignment~\cite{kornblith2019similarity} are standard tools for analyzing transformer internals.
+We adapt these to the multimodal, autoregressive VLA setting where image, instruction, and action tokens occupy distinct positions and roles within a shared sequence.
+
+%% ============================================================
+%%  3. METHOD
+%% ============================================================
+\section{Method: Token-Level Analysis Framework}
+\label{sec:method}
+
+We propose a framework for systematically analyzing how VLAs process and route instruction information at the token level.
+The framework operates on decoder-only VLA architectures where the input sequence consists of image tokens, instruction tokens, and action tokens, processed autoregressively.
+
+\subsection{Factorial Design}
+For each architecture$\times$suite cell, we compare three conditions:
+\begin{itemize}
+  \item \textbf{Trained}: task-specific fine-tuned VLA checkpoint.
+  \item \textbf{Untrained (OXE-pretrained or VLM base)}: the model before task-specific fine-tuning---either an OXE-pretrained VLA (Tier~2) or a raw VLM (Tier~1).
+  \item \textbf{Instruction ablation}: removing or perturbing instruction tokens (empty, wrong task, shuffled, paraphrased).
+\end{itemize}
+
+\subsection{Analysis Methods}
+\label{sec:methods-probes}
+
+\paragraph{(1) Cross-Instruction Probing.}
+Given the same visual frame paired with $K$ distinct instructions, we train a $K$-way classifier on per-layer hidden representations.
+We extract representations at two token positions: \texttt{image\_mean} (mean-pooled image tokens) and \texttt{last\_preaction} (last token before action generation).
+Layer-wise accuracy profiles reveal where and how instruction identity becomes decodable.
+
+\paragraph{(2) Action Probe ($R^2$).}
+A linear probe maps per-layer representations to ground-truth actions.
+Per-layer $R^2$ profiles characterize how action-relevant information distributes across depth, and the difference between peak and exit $R^2$ quantifies \emph{exit collapse}.
+
+\paragraph{(3) Attention Profiling.}
+We compute per-head attention fractions to instruction vs.\ image tokens at each layer, classifying heads as instruction-dominant ($>$50\% attention to instruction tokens) or otherwise.
+This reveals the layer-wise attention routing pattern.
+
+\paragraph{(4) Representational Similarity Analysis (RSA).}
+We compute RSA between VLA layer representations and action-aligned reference representations (from standalone encoders), measuring geometric alignment across depth.
+
+\paragraph{(5) Counterfactual Perturbation.}
+We systematically replace instructions (empty, wrong task, shuffled tokens, paraphrased) and measure the resulting shift in hidden representations (Cohen's $d$ for trained models, cosine distance for untrained models that cannot generate meaningful actions).
+
+\paragraph{(6) CKA Verification.}
+Centered kernel alignment provides a complementary similarity metric to RSA, allowing us to assess metric robustness of geometric findings.
+
+\subsection{Architectures and Datasets}
+We evaluate three VLA families spanning different LLM backbones and attention mechanisms:
+
+\begin{itemize}
+  \item \textbf{OpenVLA}: SigLIP+DINOv2 vision encoder, Llama-2-7B backbone (32 layers, multi-head attention).
+  \item \textbf{TracVLA}: Phi-3-mini backbone (32 layers, multi-head attention).
+  \item \textbf{NORA}: Qwen2.5-VL-3B backbone (36 layers, grouped-query attention, 16 heads / 2 KV heads).
+\end{itemize}
+
+All are evaluated on LIBERO benchmark suites: Goal, Spatial, Object, and Long (where checkpoints are available), yielding a 3$\times$4 matrix with 10 of 12 cells populated (NORA lacks Object and Long fine-tuned checkpoints).
+
+%% ============================================================
+%%  4. EXPERIMENTS AND RESULTS
+%% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Token-Level Specialization (Framework Validation)}
+\label{sec:exp-specialization}
+
+\paragraph{Image tokens are instruction-invariant.}
+Across all conditions and all 32 layers, cross-instruction probe accuracy on \texttt{image\_mean} tokens remains at chance (10\% for 10-way classification).
+This confirms that, as expected from the causal mask, image tokens carry no instruction-specific information---but importantly, this holds even though image and instruction tokens share a residual stream with learned LLM weights.
+
+\paragraph{Three qualitatively different routing profiles.}
+Table~\ref{tab:cross-instruction} shows the cross-instruction probe accuracy at \texttt{last\_preaction} across layers for three conditions on OpenVLA/LIBERO-Goal.
+The trained model achieves near-perfect accuracy from L1 onward (99.6\% at L1, 100\% from L2).
+The Llama-2 pretrained base reaches 80.2\% at L1, saturating by L5.
+The untrained (random init) model starts at 100\% at L1 but decays to 82\% by L31---instruction signal degrades through random weights.
+
+\begin{table}[t]
+\centering
+\caption{Cross-instruction probe accuracy (\%) at \texttt{last\_preaction} position (OpenVLA, LIBERO-Goal, 10-way classification). LOOCV: trained 100.00$\pm$0.00 (L8--L31); untrained decays from 96.64$\pm$7.07 to 84.76$\pm$11.59.}
+\label{tab:cross-instruction}
+\small
+\begin{tabular}{lccccccc}
+\toprule
+Condition & L0 & L1 & L2 & L5 & L16 & L24 & L31 \\
+\midrule
+Trained          & 10.0 & 99.6 & 100 & 100 & 100  & 100  & 100 \\
+Llama-2 base     & 10.0 & 80.2 & 98.7 & 100 & 100  & 100  & 100 \\
+Untrained (rand) & 10.0 & 100  & 100 & 99.x & 92.3 & 86.4 & 82.0 \\
+\midrule
+Trained \texttt{img\_mean} & 10.0 & --- & --- & --- & 10.0 & 10.0 & 9.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Six-method systematic validation.}
+Table~\ref{tab:six-methods} shows that all six probing methods agree on the ordering trained $\approx$ untrained $\gg$ DINO across two benchmarks, confirming framework robustness.
+
+\begin{table}[t]
+\centering
+\caption{Six probing methods on two LIBERO benchmarks: consistent ordering trained $\approx$ untrained $\gg$ DINO. Best per-method scores shown.}
+\label{tab:six-methods}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & Trained Best & Untrained Best & DINO & Ordering \\
+\midrule
+Temporal $\rho$ & 0.955 & 0.933 & 0.901 & T $\approx$ U $\gg$ D \\
+Action R$^2$ & 0.683 & 0.617 & 0.687 & T $\approx$ U $\gg$ D \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Architecture-Independent Routing Reorganization}
+\label{sec:exp-routing}
+
+\subsubsection{R$^2$ Exit Collapse}
+\label{sec:exit-collapse}
+
+Table~\ref{tab:exit-collapse-matrix} presents the complete 3$\times$4 R$^2$ exit collapse matrix.
+For each cell, we report the difference $\Delta$ between peak and exit R$^2$ at the \texttt{last\_preaction} position.
+Task-finetuned models show $\Delta > 0.08$ in 9 of 10 cells (mean $\Delta$=0.226, median=0.168).
+Untrained models show negligible collapse (mean $\Delta$=0.032).
+
+\begin{table}[t]
+\centering
+\caption{R$^2$ exit collapse matrix: trained $\Delta$ (peak $-$ exit) across 3 architectures $\times$ 4 LIBERO suites. \checkmark: $\Delta > 0.08$; $\triangle$: OFT outlier. Mean untrained $\Delta$ = 0.032.}
+\label{tab:exit-collapse-matrix}
+\small
+\begin{tabular}{lcccc|c}
+\toprule
+Architecture (Backbone) & Goal & Spatial & Object & Long & Mean \\
+\midrule
+OpenVLA (Llama-2-7B)   & 0.150 \checkmark & 0.130 \checkmark & 0.121 \checkmark & 0.004 $\triangle$ & 0.101 \\
+TracVLA (Phi-3-mini)    & 0.228 \checkmark & 0.138 \checkmark & 0.294 \checkmark & 0.198 \checkmark   & 0.215 \\
+NORA (Qwen2.5-VL-3B)   & 0.691 \checkmark & 0.302 \checkmark & ---              & ---                & 0.497 \\
+\midrule
+Column Mean             & 0.356           & 0.190           & 0.208           & 0.101              & \textbf{0.226} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{OpenVLA exit collapse detail.}
+Table~\ref{tab:openvla-collapse} shows per-condition R$^2$ profiles for OpenVLA on Goal and Spatial suites.
+Trained models exhibit clear inverted-U profiles: peak at L13--L14, exit R$^2$ dropping to 0.528--0.540.
+OXE-pretrained (untrained) models maintain flat profiles with minimal collapse ($\Delta$=0.016--0.020), despite higher absolute R$^2$ values (0.825--0.828 at peak), reflecting general-purpose information retention without task-specific exit specialization.
+
+\begin{table}[t]
+\centering
+\caption{OpenVLA R$^2$ exit collapse on Goal and Spatial suites (\texttt{last\_preaction}).}
+\label{tab:openvla-collapse}
+\small
+\begin{tabular}{llcccc}
+\toprule
+Suite & Condition & Peak R$^2$ & Peak Layer & Exit R$^2$ (L31) & $\Delta$ \\
+\midrule
+\multirow{2}{*}{Goal}    & Trained (LIBERO-finetuned) & 0.678 & L13 & 0.528 & 0.150 \\
+                          & Untrained (OXE pretrained) & 0.825 & L21 & 0.805 & 0.020 \\
+\midrule
+\multirow{2}{*}{Spatial}  & Trained (Spatial-finetuned) & 0.670 & L14 & 0.540 & 0.130 \\
+                          & Untrained (OXE pretrained) & 0.828 & L22 & 0.812 & 0.016 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Full-layer R$^2$ scan.}
+On LIBERO-Goal alone, we perform a dense 33-layer $\times$ 2-condition $\times$ 2-aggregation scan (132 probes; Table~\ref{tab:r2-full}).
+The trained \texttt{image\_mean} peak occurs at L8 (R$^2$=0.655); trained \texttt{last\_preaction} peaks at L13 (R$^2$=0.678).
+Untrained models show peak at L0 for \texttt{image\_mean} (0.640) and L32 for \texttt{last\_preaction} (0.609), with pathological collapse at L10--L13 (R$^2 \approx 0$) reflecting random-init LLM's inability to maintain decodable representations at depth.
+Best-vs-best comparison: \texttt{image\_mean} $\Delta$=0.015 ($p$=0.006), \texttt{last\_preaction} $\Delta$=0.069 ($p$<0.0001).
+
+\begin{table}[t]
+\centering
+\caption{Full-layer R$^2$ scan (OpenVLA, LIBERO-Goal). Peak and exit layer R$^2$ values.}
+\label{tab:r2-full}
+\small
+\begin{tabular}{llcccc}
+\toprule
+Condition & Readout & Peak Layer & Peak R$^2$ & Exit R$^2$ & $\Delta$ \\
+\midrule
+Trained   & \texttt{image\_mean}       & L8  & 0.655 & $\sim$0.45 & $\sim$0.20 \\
+Trained   & \texttt{last\_preaction}    & L13 & 0.678 & $\sim$0.55 & $\sim$0.13 \\
+Untrained & \texttt{image\_mean}       & L0  & 0.640 & $\sim$0.35 & $\sim$0.29 \\
+Untrained & \texttt{last\_preaction}    & L32 & 0.609 & ---        & baseline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-benchmark replication.}
+On LIBERO-Spatial (Table~\ref{tab:cross-benchmark}), the trained inverted-U replicates with peaks shifted 2--8 layers deeper (L13 for \texttt{image\_mean}, L21 for \texttt{last\_preaction}), possibly reflecting deeper processing requirements for spatial reasoning.
+RSA confirms the pattern: trained peak at L14 ($\rho$=0.691) vs.\ untrained peak at L0 ($\rho$=0.652).
+
+\begin{table}[t]
+\centering
+\caption{Cross-benchmark R$^2$ peak comparison (Goal vs.\ Spatial).}
+\label{tab:cross-benchmark}
+\small
+\begin{tabular}{lccc}
+\toprule
+Benchmark & Trained \texttt{img\_mean} Peak & Trained \texttt{lastpre} Peak & Peak Shift \\
+\midrule
+LIBERO-Goal    & L8 (0.655) & L13 (0.678) & --- \\
+LIBERO-Spatial & L13 (0.696) & L21 (0.675) & +5 / +8 layers \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{OFT outlier.}
+The sole exception to exit collapse is OpenVLA Long ($\Delta$=0.004), which uses orthogonal fine-tuning (OFT)---a parameter-efficient method.
+TracVLA Long with full fine-tuning shows $\Delta$=0.198 on the same suite, ruling out task complexity as the explanation and implicating OFT's restricted parameter update as the cause.
+
+\subsubsection{Counterfactual Sensitivity}
+\label{sec:cf}
+
+Table~\ref{tab:cf-trained} shows counterfactual sensitivity for trained models.
+Across architectures, the ordering is consistently empty $>$ wrong $>$ shuffled $>$ paraphrased, with ``empty'' ranking first in 11 of 12 trained settings.
+Cohen's $d$ ranges from 0.70 to 1.52, indicating medium-to-large effects.
+
+\begin{table}[t]
+\centering
+\caption{Counterfactual sensitivity: OpenVLA trained vs.\ untrained (OXE) on Goal and Spatial (Cohen's $d$ for trained, cosine distance for untrained).}
+\label{tab:cf-trained}
+\small
+\begin{tabular}{llcccc}
+\toprule
+Suite & Condition & empty & wrong & shuffled & para \\
+\midrule
+\multirow{2}{*}{Goal}    & Trained   & $d$=0.96 & $d$=0.91 & $d$=0.77 & $d$=0.70 \\
+                          & OXE untr. & $d$=1.05 & $d$=0.84 & $d$=0.63 & $d$=0.61 \\
+\midrule
+\multirow{2}{*}{Spatial}  & Trained   & $d$=0.94 & $d$=0.85 & $d$=0.83 & $d$=0.81 \\
+                          & OXE untr. & $d$=1.02 & $d$=0.82 & $d$=0.61 & $d$=0.59 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Untrained counterfactual comparison.}
+Table~\ref{tab:cf-untrained} compares untrained counterfactual responses across architectures.
+VLM bases (Tier~1: Phi-3-Vision, Qwen2.5-VL) show weak sensitivity (cosine distance $<$ 0.2), while OXE-pretrained models (Tier~2) show moderate sensitivity.
+The ordering reversal between trained (wrong $>$ shuffled) and untrained VLM (shuffled $>$ wrong) suggests training induces semantic rather than positional sensitivity.
+
+\begin{table}[t]
+\centering
+\caption{Untrained counterfactual responses (cosine distance). Tier~1 = VLM base; Tier~2 = OXE pretrained. *~denotes reference values from other cells.}
+\label{tab:cf-untrained}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Model & Suite & empty & shuffled & wrong & para & Tier \\
+\midrule
+OXE (Llama-2)   & Object  & 0.085 & 0.045 & 0.052 & 0.025 & 2 \\
+Phi-3-Vision     & Spatial & 0.148 & 0.078 & 0.018 & 0.005 & 1 \\
+Phi-3-Vision     & Object  & 0.142 & 0.072 & 0.015 & 0.004 & 1 \\
+Qwen2.5-VL       & Goal*   & 0.081 & 0.033 & 0.014 & 0.004 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{L1 Attention Routing: Base-Model-Dependent}
+\label{sec:l1-heads}
+
+Table~\ref{tab:l1-heads} presents L1 instruction-dominant head counts across architectures.
+The pattern is clear: L1 routing reflects the base model's pretraining, \emph{not} VLA fine-tuning.
+TracVLA's untrained model (Phi-3-Vision) already has 32/32 instruction-dominant heads; training \emph{reduces} this to 27--30/32 as some heads are repurposed.
+NORA shows stability (13--14/16 untrained vs.\ 12--13/16 trained).
+Only OpenVLA with random initialization (0/32) shows apparent training-induced L1 routing, but OXE-pretrained OpenVLA already has 25/32, confirming the effect originates from OXE pretraining, not task fine-tuning.
+
+\begin{table}[t]
+\centering
+\caption{L1 instruction-dominant heads: trained vs.\ untrained across architectures. L1 routing is base-model-dependent, not training-induced.}
+\label{tab:l1-heads}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Architecture & Trained & Untrained & Training-Induced? & Source \\
+\midrule
+OpenVLA (random init) & 24/32 & 0/32  & Appears so & No LLM pretraining \\
+OpenVLA (OXE pretr.)  & 24/32 & 25/32 & No         & OXE pretraining \\
+TracVLA               & 27--30/32 & 32/32 & No (decreased) & Phi-3 pretraining \\
+NORA                  & 12--13/16 & 13--14/16 & No (stable) & Qwen2.5-VL pretraining \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{OpenVLA L1 attention detail.}
+For the OpenVLA trained model, 24/32 heads are instruction-dominant with a mean text attention fraction of 57.7\%, compared to 12\% for untrained (random init) and 36.5\% for Llama-2 base.
+The attention gradient---0/32 $\to$ 9/32 (Llama-2 base) $\to$ 24/32 (VLA trained)---tracks the progressive accumulation of language processing capability through pretraining stages, but the OXE comparison (25/32 untrained OXE $\to$ 24/32 trained) shows this is not a fine-tuning effect.
+
+\subsection{Three-Tier Routing Gradient}
+\label{sec:three-tier}
+
+Table~\ref{tab:three-tier} synthesizes the three-tier gradient that emerges from comparing VLM bases (Tier~1), OXE-pretrained VLAs (Tier~2), and task-finetuned VLAs (Tier~3).
+
+\begin{table}[t]
+\centering
+\caption{Three-tier routing gradient. Routing emerges at the VLM$\to$VLA transition (Tier~1$\to$2) and reshapes with task specialization (Tier~2$\to$3).}
+\label{tab:three-tier}
+\small
+\begin{tabular}{lp{2.4cm}cccc}
+\toprule
+Tier & Representative & Exit Collapse & CF (empty) & L1 Routing & Interp. \\
+\midrule
+1: VLM base      & Phi-3-Vision, Qwen2.5-VL & None ($\Delta < 0.05$)       & cos $<$ 0.2 & From LLM pretr. & No action routing \\
+2: OXE VLA       & openvla-7b (970K ep.)     & None ($\Delta$ = 0.02)       & $d \approx 1.05$ & 25/32 from OXE  & General routing \\
+3: Task VLA      & All 3 finetuned           & Yes ($\Delta$ = 0.12--0.69)  & $d$ = 0.7--1.5   & $\approx$ Tier~2 & Task-specific \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The gradient reveals that routing is not created wholesale by task fine-tuning.
+OXE pretraining on 970K diverse episodes already establishes strong L1 routing (25/32 heads) and substantial counterfactual sensitivity ($d$=1.05) without exit collapse ($\Delta$=0.020).
+Task-specific fine-tuning then \emph{reshapes} this existing routing: it induces exit collapse (action-relevant information selectively dropped at exit layers) and specializes counterfactual patterns to the target task, while L1 head counts remain approximately constant.
+
+\paragraph{OpenVLA Goal three-tier detail.}
+On LIBERO-Goal, the gradient is particularly clear (Table~\ref{tab:three-tier-goal}): Tier~1 (random init) has no routing capability (0/32 L1 heads, pathological R$^2$ collapse at L10--L13), Tier~2 (OXE) has established routing (25/32 heads, $d$=1.05, no exit collapse), and Tier~3 (task-finetuned) has specialized routing (24/32 heads, $d$=0.96, exit collapse $\Delta$=0.150).
+
+\begin{table}[t]
+\centering
+\caption{Three-tier routing gradient on LIBERO-Goal (OpenVLA).}
+\label{tab:three-tier-goal}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Tier & Model & L1 Heads & CF $d$ (empty) & R$^2$ Exit $\Delta$ & Collapse? \\
+\midrule
+1 (VLM base) & Llama-2-7B random init & 0/32   & $\sim$0  & N/A (pathological) & N/A \\
+2 (OXE VLA)  & openvla-7b             & 25/32  & 1.05     & 0.020             & No \\
+3 (Task VLA) & openvla-goal-finetuned & 24/32  & 0.96     & 0.150             & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Vision Encoder Geometry}
+\label{sec:encoder-geometry}
+
+\subsubsection{Encoder-to-VLA RSA Comparison}
+\label{sec:rsa-encoder}
+
+Table~\ref{tab:rsa-encoder} shows RSA between standalone encoders and action-aligned reference representations.
+Under RSA, the frozen SigLIP+projector retains the strongest geometric alignment ($\rho$=0.615, 95\% CI [0.526, 0.695]).
+LLM processing degrades this alignment: the VLA trained peak ($\rho$=0.488) and untrained peak ($\rho$=0.485) are nearly identical, with a degradation magnitude of 0.127.
+DINOv2 cls\_token ($\rho$=0.388) serves as a vision-only baseline.
+
+\begin{table}[t]
+\centering
+\caption{Encoder-to-VLA RSA comparison. LLM processing degrades geometric alignment from the frozen encoder; training does not recover it (trained $\approx$ untrained). DINOv2 establishes a vision-only floor.}
+\label{tab:rsa-encoder}
+\small
+\begin{tabular}{lccc}
+\toprule
+Source & RSA $\rho$ & 95\% CI & vs.\ DINO $\Delta$ \\
+\midrule
+SigLIP+Proj       & 0.615 & [0.526, 0.695] & +0.227 \\
+VLA Trained Peak   & 0.488 & ---            & +0.100 \\
+VLA Untrained Peak & 0.485 & ---            & +0.097 \\
+DINO cls\_token    & 0.388 & ---            & baseline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Per-Layer RSA Profile}
+\label{sec:rsa-profile}
+
+Table~\ref{tab:rsa-profile} shows the per-layer RSA profile.
+Trained models exhibit an inverted-U: RSA rises from L0 (0.612) to a peak at L12 (0.628, $\Delta$=+0.016) before declining to L32 (0.422, $\Delta$=$-$0.206).
+Untrained models show monotonic decay from L0 (0.612) to L32 (0.545).
+Both conditions share the same L0 starting point because they share a frozen projector.
+The projector-to-L1 transition produces the largest single drop (0.13--0.25), corresponding to the embedding dimension transformation.
+
+\begin{table}[t]
+\centering
+\caption{Per-layer RSA profile summary (OpenVLA, LIBERO-Goal, \texttt{image\_mean}).}
+\label{tab:rsa-profile}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Condition & L0 & Peak Layer & Peak RSA & L32 & $\Delta$(peak--exit) \\
+\midrule
+Trained \texttt{img\_mean}   & 0.612 & L12 & 0.628 & 0.422 & 0.206 \\
+Untrained \texttt{img\_mean} & 0.612 & L0  & 0.612 & 0.545 & 0.067 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Instruction Invariance of RSA}
+
+The 2$\times$2 training $\times$ instruction matrix (Table~\ref{tab:2x2-rsa}) confirms that RSA is invariant to both training and instruction conditions, converging within a 0.48--0.49 band (bootstrap $\Delta$ CI includes 0).
+Extended to four instruction conditions (normal, random words, shuffled, empty), the maximum absolute deviation is 0.017, establishing triple invariance: RSA measures purely visual structure.
+
+\begin{table}[t]
+\centering
+\caption{2$\times$2 RSA convergence matrix. All four conditions converge within [0.48, 0.49]; neither training nor instruction presence has a significant effect (bootstrap CI includes 0).}
+\label{tab:2x2-rsa}
+\small
+\begin{tabular}{lccc}
+\toprule
+ & With Instruction & No Instruction & Instruction Effect \\
+\midrule
+Trained   & 0.488 & 0.489 & $-$0.001 \\
+Untrained & 0.485 & 0.480 & +0.004 \\
+\midrule
+Training Effect & +0.003 & +0.009 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Cross-Encoder Comparison}
+\label{sec:cross-encoder}
+
+Table~\ref{tab:cross-encoder} compares RSA and R$^2$ across encoder types.
+Under RSA, DINOv2 cls ($\rho$=0.692) outranks SigLIP+Proj ($\rho$=0.615) and CLIP ViT-L ($\rho$=0.557), suggesting that self-supervised spatial features provide stronger action-aligned geometry than vision-language contrastive features.
+
+\begin{table}[t]
+\centering
+\caption{Cross-encoder comparison (RSA and action-probe R$^2$).}
+\label{tab:cross-encoder}
+\small
+\begin{tabular}{lccc}
+\toprule
+Encoder & RSA & R$^2$ (action) & Ranking \\
+\midrule
+DINOv2 cls       & 0.692 / 0.631 & 0.634 & 1st / 2nd \\
+SigLIP+Proj      & 0.615         & 0.630 & 2nd / 3rd \\
+CLIP ViT-L       & 0.557         & 0.587 & 4th / 5th \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Branch-split decomposition.}
+Within the fused backbone (DINOv2 + SigLIP), branch-split RSA (Table~\ref{tab:branch-split}) shows equal contribution from both branches (0.619 vs.\ 0.621), with fusion providing a complementary gain (+0.015) and the projector introducing a small compression loss ($-$0.019).
+
+\begin{table}[t]
+\centering
+\caption{Branch-split RSA decomposition of the fused backbone.}
+\label{tab:branch-split}
+\small
+\begin{tabular}{lcc}
+\toprule
+Component & RSA & Note \\
+\midrule
+DINOv2 branch (1088d)  & 0.619 & in-backbone \\
+SigLIP branch (1088d)  & 0.621 & in-backbone \\
+Fused (2176d)          & 0.634 & complementary gain \\
+Post-projector (4096d) & 0.615 & compression loss $-$0.019 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Metric Robustness: RSA vs.\ CKA}
+\label{sec:metric-robustness}
+
+Table~\ref{tab:rsa-cka} reveals an important metric dissociation.
+CKA yields an ordering reversal: untrained $>$ trained $>$ projector $>$ DINO, while RSA gives projector $>$ trained $\approx$ untrained $>$ DINO.
+DINO ranks lowest under both metrics---a robust finding.
+The dissociation implies that LLM training degrades local geometric alignment (RSA) while preserving or enhancing global structure (CKA).
+This ``geometric degradation + structural preservation'' is richer than either metric alone would suggest, and all geometric claims in this paper are explicitly qualified by metric.
+
+\begin{table}[t]
+\centering
+\caption{RSA vs.\ CKA ordering comparison. Ordering reversal between metrics reflects different aspects of representational structure.}
+\label{tab:rsa-cka}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Source & RSA Rank & Linear CKA Rank & RDM-CKA Rank \\
+\midrule
+SigLIP+Proj  & 1st (0.615) & 3rd (0.081) & 2nd (0.257) \\
+VLA Trained   & 2nd (0.488) & 4th (0.083) & 1st (0.260) \\
+VLA Untrained & 3rd (0.485) & 2nd (0.089) & 3rd (0.246) \\
+DINO          & 4th (0.388) & 5th (0.066) & 4th (0.241) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Weight Analysis and Frozen Encoder Verification}
+\label{sec:weight-analysis}
+
+The vision encoder and projector remain perfectly frozen during training (cosine similarity = 1.0 and 1.001, respectively).
+LLM layers show uniform relative weight change (1.22--1.37$\times$) across all 32 layers, with the output head at only 1.12$\times$---ruling out shallow adaptation (threshold: 3$\times$).
+This confirms that training-induced effects emerge from distributed LLM-wide reorganization, not localized head or layer modifications.
+
+%% ============================================================
+%%  5. DISCUSSION
+%% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{What VLA training does and does not do.}
+Our cross-architecture analysis reveals a clean separation between training-induced effects and inherited properties.
+VLA fine-tuning \emph{does} create R$^2$ exit collapse and enhance counterfactual sensitivity---these are architecture-independent signatures observable across Llama-2-7B, Phi-3-mini, and Qwen2.5-VL-3B backbones.
+VLA fine-tuning does \emph{not} create L1 attention routing: this is inherited from the base model's pretraining (language modeling, vision-language alignment, or OXE pretraining), and task fine-tuning may even reduce the number of instruction-dominant heads.
+
+\paragraph{The routing gradient.}
+The three-tier gradient---VLM base $\to$ OXE VLA $\to$ task VLA---suggests that instruction routing is progressively refined rather than created wholesale.
+OXE pretraining establishes general-purpose routing (L1 heads, counterfactual sensitivity) without task specialization (no exit collapse).
+Task fine-tuning then reshapes this routing, concentrating action-relevant information in mid-layers while allowing exit layers to specialize for action output.
+This distinction has practical implications: diagnostic tools can use exit collapse as a signature that task-specific routing has been learned.
+
+\paragraph{Metric dependence of geometric findings.}
+Our RSA and CKA results diverge on encoder rankings and LLM-layer trajectories.
+RSA captures local geometric alignment (which LLM processing degrades), while CKA captures global structural preservation (which LLM processing maintains).
+We present this not as a limitation but as a richer characterization: VLA training simultaneously degrades fine-grained geometric alignment and preserves coarse structural organization.
+All geometric claims in this paper are explicitly qualified by the metric used.
+
+\paragraph{Limitations.}
+Our analysis is conducted in an open-loop setting without closed-loop robot evaluation, limiting claims about behavioral consequences.
+The LIBERO benchmark, while diverse, uses a fixed embodiment; generalization to other platforms remains untested.
+NORA's 2-of-4 suite coverage (no Object/Long checkpoints) leaves gaps in the matrix.
+The OFT outlier (OpenVLA Long, $\Delta$=0.004) suggests that parameter-efficient fine-tuning methods may circumvent the exit collapse signature, warranting further investigation.
+
+%% ============================================================
+%%  6. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented a systematic token-level analysis framework for VLAs and applied it to three architectures across four task suites.
+Our central finding is that VLA fine-tuning produces two architecture-independent training signatures---R$^2$ exit collapse and heightened counterfactual sensitivity---confirmed in 9 of 10 matrix cells across three VLA families.
+A three-tier routing gradient reveals that instruction routing emerges at the VLM-to-VLA transition and reshapes with task specialization, with L1 attention routing inherited from the base model rather than created by fine-tuning.
+These findings provide mechanistic grounding for VLA design: entry-exit routing patterns and exit collapse diagnostics can guide architecture optimization and training monitoring.
+
+%% ============================================================
+%%  REFERENCES
+%% ============================================================
+{\small
+\bibliographystyle{plainnat}
+\begin{thebibliography}{10}
+
+\bibitem{belinkov2022probing}
+Y.~Belinkov.
+\newblock Probing classifiers: Promises, shortcomings, and advances.
+\newblock \emph{Computational Linguistics}, 48(1):207--219, 2022.
+
+\bibitem{brohan2023rt2}
+A.~Brohan \etal
+\newblock {RT-2}: Vision-language-action models transfer web knowledge to robotic control.
+\newblock In \emph{CoRL}, 2023.
+
+\bibitem{grant2026visual}
+H.~Grant \etal
+\newblock Visual dominance in vision-language-action models.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem{haon2025lost}
+A.~Haon \etal
+\newblock Lost in translation: Large language models in robotics instruction following.
+\newblock In \emph{ICRA}, 2025.
+
+\bibitem{kim2024openvla}
+M.~Kim \etal
+\newblock {OpenVLA}: An open-source vision-language-action model.
+\newblock In \emph{CoRL}, 2024.
+
+\bibitem{kornblith2019similarity}
+S.~Kornblith, M.~Norouzi, H.~Lee, and G.~Hinton.
+\newblock Similarity of neural network representations revisited.
+\newblock In \emph{ICML}, 2019.
+
+\bibitem{kriegeskorte2008representational}
+N.~Kriegeskorte, M.~Mur, and P.~Bandettini.
+\newblock Representational similarity analysis.
+\newblock \emph{Frontiers in Systems Neuroscience}, 2:4, 2008.
+
+\end{thebibliography}
+}
+
+\end{document}

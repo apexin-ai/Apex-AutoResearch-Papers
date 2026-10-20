@@ -1,0 +1,43 @@
+{
+  "exp_id": "d027_siglip_only_rsa",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:10:53.129Z",
+    "updated_at": "2026-05-15T22:25:23.851Z",
+    "hypothesis": "D027 Exp-1 (SMOKING GUN): Extract SigLIP+projector output features (LLM input embeddings) from VLA architecture on LIBERO-Goal, run RSA. If SigLIP-only RSA ≈ 0.45-0.50 → confirms vision encoder is the source of action-relevant structure (LLM is passthrough). If RSA ≈ 0.39 (DINO level) → projector/LLM architecture contributes, need reanalysis.",
+    "spec": {
+      "command": "python /root/vla-ssd/scripts/extract_siglip_features.py + python /root/vla-ssd/rsa_siglip_only.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/siglip_only_libero_goal/",
+      "data_count": "10 tasks x 50 demos x 1 layer (projector output, 4096 dim)",
+      "model_name": "openvla/openvla-7b SigLIP+projector only (no LLM forward)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/rsa/rsa_siglip_only.json",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/rsa/"
+    },
+    "metrics": {
+      "siglip_projector_rsa": 0.6153,
+      "bootstrap_95_ci": [
+        0.5257,
+        0.6954
+      ],
+      "comparison": {
+        "siglip_projector": 0.6153,
+        "trained_with_inst": 0.4876,
+        "untrained_with_inst": 0.4846,
+        "untrained_no_inst": 0.4802,
+        "trained_no_inst": 0.489,
+        "dino": 0.388
+      },
+      "llm_degradation": "LLM reduces RSA from 0.615 (projector output) to ~0.488 (LLM hidden states)",
+      "gate_judgment": "PASS — SigLIP+projector RSA=0.6153 >> 0.45-0.50 threshold. Vision encoder is the source of action-relevant structure. LLM is not passthrough but actually degrades action alignment."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T22:25:23.927402+00:00",
+  "trigger": "update_registry"
+}

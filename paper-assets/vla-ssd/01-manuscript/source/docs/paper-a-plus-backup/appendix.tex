@@ -1,0 +1,264 @@
+\appendix
+
+\section{Supplementary Material}
+\label{sec:appendix}
+
+\subsection{CKA Analysis Method}
+\label{sec:cka_appendix}
+
+We employ Centered Kernel Alignment (CKA)~\cite{kornblith2019} alongside RSA as a complementary perspective.
+While RSA captures local geometric alignment via rank-order preservation, CKA measures global representational similarity through kernel-based comparisons.
+
+We compute both \emph{linear CKA}, which uses a linear kernel and is sensitive to second-order statistics, and \emph{RDM kernel CKA}, which operates on the same distance matrices as RSA but aggregates them differently.
+Using both variants tests whether conclusions about representation structure are robust to the choice of similarity metric.
+
+Linear CKA between high-dimensional representations (4{,}096-D for LLM layers) and the 7-D action space is subject to a known dimension mismatch: the linear kernel in the low-dimensional space may not capture the same structure as in the high-dimensional space.
+RDM kernel CKA avoids this issue by operating on distance matrices of equal size regardless of the original feature dimensionality.
+
+\subsection{Metric Sensitivity: RSA versus CKA}
+\label{sec:metric_sensitivity_appendix}
+
+Linear CKA~\cite{kornblith2019} reverses the RSA ordering: untrained LLM ($\text{CKA} = 0.089$) $>$ trained LLM ($0.083$) $>$ DinoSigLIP+Projector ($0.081$) $>$ DINOv2 ($0.066$), partially inverting the self-supervised advantage (Figure~\ref{fig:metric_comparison}).
+RDM kernel CKA partially resolves this discrepancy: trained ($0.260$) $\approx$ Projector ($0.257$) $>$ untrained ($0.246$) $>$ DINOv2 ($0.241$).
+This divergence reflects the known sensitivity of representation similarity metrics to different geometric properties.
+
+At the per-layer level, linear CKA between image\_mean and the action space rises monotonically from L0 ($0.081$) to L32 ($0.098$), showing no inverted-U pattern.
+RSA captures rank-order geometric alignment; CKA captures global linear structure.
+The dissociation indicates that the geometric refinement in early layers operates on the relative arrangement of representations (affecting RSA) without altering the overall covariance structure (captured by CKA).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig6.pdf}
+\caption{Three similarity metrics across representation sources. \textbf{(a)}~RSA ranks DINOv2 cls ($0.692$) $>$ Fused ($0.634$) $>$ Projector ($0.615$). \textbf{(b)}~Linear CKA reverses the ordering: Untrained ($0.089$) $>$ Trained ($0.083$) $>$ Projector ($0.081$) $>$ DINOv2 ($0.066$). \textbf{(c)}~RDM kernel CKA: Trained ($0.260$) $\approx$ Projector ($0.257$) $>$ Untrained ($0.246$) $>$ DINOv2 ($0.241$). The metric divergence underscores that RSA and CKA capture different aspects of representational structure.}
+\label{fig:metric_comparison}
+\end{figure}
+
+\subsection{Branch-Split Detailed Analysis}
+\label{sec:branch_split_appendix}
+
+To disentangle the contributions of the two encoder streams within DinoSigLIP, we extract representations from the DINOv2 branch (1{,}024-D) and SigLIP branch (1{,}152-D) separately before fusion.
+The two branches yield near-identical RSA: DINOv2 branch $\rho = 0.619$, SigLIP branch $\rho = 0.621$.
+Fusion produces a representation ($\rho = 0.634$) that exceeds either branch alone, indicating that concatenation captures complementary structure.
+The MLP projector then compresses this signal: DinoSigLIP+Projector achieves $\rho = 0.615$, a drop of $\Delta = 0.019$ from the fused 2{,}176-D input.
+
+\subsection{Additional RSA Values}
+\label{sec:additional_rsa}
+
+DINOv2 \texttt{patch\_mean} achieves RSA $\rho = 0.631$, between the \texttt{cls\_token} ($0.692$) and the fused DinoSigLIP ($0.634$).
+VLA untrained readout peaks at L1 ($\rho = 0.626$).
+Instruction invariance holds across all conditions (Figure~\ref{fig:factorial}, panel b): maximum $|\Delta| < 0.006$.
+
+\subsection{Cross-Benchmark Validation: LIBERO-Spatial}
+\label{sec:cross_benchmark_appendix}
+
+To assess generalization beyond in-distribution tasks, we repeat the core RSA and probe analyses on LIBERO-Spatial (10 out-of-distribution tasks requiring spatial reasoning).
+Figure~\ref{fig:cross_benchmark} shows per-layer RSA and $R^2$ profiles for both LIBERO-Goal and LIBERO-Spatial side by side.
+
+The inverted-U profile replicates on LIBERO-Spatial: trained image\_mean RSA peaks at L14 ($\rho = 0.691$) and $R^2$ at L13 ($0.696$), with peaks shifting ${\sim}2$ layers deeper than LIBERO-Goal (RSA L12, $R^2$ L8--L10)---consistent with increased task difficulty requiring deeper processing.
+Training produces a significant geometric gain (best-vs-best $\Delta = +0.023$, 95\% CI $[0.012, 0.036]$, $p < 0.001$), larger than the LIBERO-Goal effect ($\Delta = +0.017$, CI includes zero) and confirming that the n.s.\ result on Goal reflects limited statistical power.
+
+Two notable differences emerge.
+First, the absolute RSA values are higher on Spatial ($0.691$ vs.\ $0.628$), possibly reflecting greater action diversity in spatial tasks that produces a more discriminative action RDM.
+Second, RSA--$R^2$ peak convergence does not replicate: readout RSA peaks at L15 while $R^2$ peaks at L21 (6-layer gap), contrasting with the near-alignment on Goal ($|\Delta_\text{layer}| = 1$).
+This suggests that peak convergence is benchmark-specific rather than a general consequence of training.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig7.pdf}
+\caption{Cross-benchmark validation: per-layer RSA and $R^2$ profiles on LIBERO-Goal (left) vs.\ LIBERO-Spatial (right). The inverted-U replicates on both benchmarks. LIBERO-Spatial shows a significant training effect (RSA best-vs-best $\Delta = +0.023$, $p < 0.001$) and deeper peak layers (RSA L14, $R^2$ L13), but RSA--$R^2$ peak convergence does not replicate (6-layer gap).}
+\label{fig:cross_benchmark}
+\end{figure}
+
+\subsection{Robustness Analyses}
+\label{sec:robustness_appendix}
+
+\subsubsection{Distance Metric Invariance}
+\label{sec:metric_invariance}
+
+The inverted-U profile is robust to distance metric choice: cosine action distance yields identical peak layers (L12) and Pearson correlation $r > 0.989$ with the Euclidean profile reported in the main text (Table~\ref{tab:metric_invariance}).
+
+\begin{table}[h]
+\centering
+\caption{Peak layer comparison between Euclidean and cosine action distances. Profile $r$ denotes Pearson correlation across all 32 layers.}
+\label{tab:metric_invariance}
+\small
+\begin{tabular}{lccc}
+\toprule
+Condition & Eucl.\ Peak & Cos.\ Peak & Profile $r$ \\
+\midrule
+Trained image\_mean & L12 & L12 & 0.990 \\
+Trained last\_preaction & L12 & L13 & 0.990 \\
+Untrained image\_mean & L0 & L0 & 0.995 \\
+Untrained last\_preaction & L1 & L1 & 0.992 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Per-DOF Decomposition}
+\label{sec:perdof}
+
+RSA decomposition by action dimension confirms the inverted-U is not driven by any single degree of freedom: xyz translation (peak L13, $\rho = 0.193$), rotation (peak L12, $\rho = 0.175$), and gripper (peak L13, $\rho = 0.106$) all exhibit non-monotonic profiles.
+Per-DOF RSA values are lower than the 7-D RSA because single-dimension distances carry less discriminative information than the full action space.
+
+\subsubsection{Permutation Test}
+\label{sec:permutation}
+
+Permutation testing (1{,}000 shuffles) confirms all observed RSA values are highly significant: observed $\rho$ ($0.42$--$0.63$) exceeds the null distribution maximum ($0.08$--$0.10$) by $15$--$23$ standard deviations (all $p < 0.001$).
+
+\subsubsection{Probe Seed Sensitivity}
+\label{sec:seed_sensitivity}
+
+Action probe $R^2$ is highly stable across random seeds.
+Over 5 seeds (trained image\_mean, full-layer scan), per-layer $R^2$ standard deviation is uniformly below $0.01$ (mean $0.004$), and the peak $R^2$ varies by less than $0.4\%$ ($0.655 \pm 0.002$; Table~\ref{tab:seed_sensitivity}).
+Peak layer concentrates in the L8--L10 region ($4/5$ seeds), confirming the inverted-U shape is not a seed artifact.
+Seed 1 peaks at L16, but with $R^2$ difference ${<}0.002$---the inverted-U plateau (L8--L16) is sufficiently flat that argmax is sensitive to minor noise while the profile shape is invariant.
+
+\begin{table}[h]
+\centering
+\caption{Probe $R^2$ peak across 5 random seeds (trained image\_mean).}
+\label{tab:seed_sensitivity}
+\small
+\begin{tabular}{lcc}
+\toprule
+Seed & Peak Layer & Peak $R^2$ \\
+\midrule
+0 & L9 & 0.654 \\
+1 & L16 & 0.656 \\
+2 & L9 & 0.653 \\
+3 & L10 & 0.655 \\
+42 & L9 & 0.655 \\
+\midrule
+Mean$\pm$std & $10.6\pm2.7$ & $0.655\pm0.002$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Demonstration Subsample Sensitivity}
+\label{sec:demo_sensitivity}
+
+To verify that the inverted-U pattern is not an artifact of sample size, we subsample 25 from 50 demonstrations per task and recompute both RSA and probe profiles (Table~\ref{tab:demo_sensitivity}).
+The RSA peak layer remains at L12 with a profile correlation of $r = 0.970$ between 50- and 25-demo conditions, confirming high stability.
+The probe peak shifts from L9 to L11 (within the L8--L16 plateau) with $r = 0.819$, reflecting greater sensitivity of $R^2$ to training set size.
+Both metrics show reduced absolute values (RSA $-3.6\%$, $R^2$ $-7.6\%$) as expected from halved data, but the non-monotonic profile shape is preserved.
+
+\begin{table}[h]
+\centering
+\caption{Inverted-U stability under demonstration subsampling (trained image\_mean).}
+\label{tab:demo_sensitivity}
+\small
+\begin{tabular}{lccc}
+\toprule
+Metric & 50 demos & 25 demos & $\Delta$ \\
+\midrule
+RSA peak layer & L12 & L12 & 0 \\
+RSA peak $\rho$ & 0.628 & 0.606 & $-3.6\%$ \\
+$R^2$ peak layer & L9 & L11 & $+2$ \\
+$R^2$ peak value & 0.659 & 0.609 & $-7.6\%$ \\
+RSA profile $r$ & --- & 0.970 & --- \\
+$R^2$ profile $r$ & --- & 0.819 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Training Effect Size Summary}
+\label{sec:training_effect_summary}
+
+Table~\ref{tab:training_effect_summary} consolidates training effects across all metrics.
+Training effects on image\_mean metrics are modest (RSA $\Delta = +0.017$, $R^2$ $\Delta = +0.015$), but effects on last\_preaction metrics are substantial (routing $+18$pp, attention $+46$pp, $R^2$ $\Delta = +0.069$).
+This asymmetry confirms that training primarily reshapes how the readout token integrates information rather than altering the visual representations carried by image tokens.
+
+\begin{table}[h]
+\centering
+\caption{Training effect sizes across metrics. Image\_mean effects are modest; last\_preaction effects are large, confirming that training targets readout-token information integration.}
+\label{tab:training_effect_summary}
+\small
+\begin{tabular}{lccc}
+\toprule
+Metric & Trained & Untrained & $\Delta$ \\
+\midrule
+RSA peak (image\_mean) & 0.628 (L12) & 0.612 (L0) & $+$0.017 \\
+$R^2$ peak (image\_mean) & 0.655 (L8) & 0.640 (L0) & $+$0.015 \\
+$R^2$ peak (last\_preaction) & 0.678 (L13) & 0.609 (L32) & $+$0.069 \\
+Instruction routing L31 & 100\% & 82\% & $+$18pp \\
+Instruction attention L1 & 58\% & 12\% & $+$46pp \\
+Progress classification & 86.3\% (L20) & 85.3\% (L4) & $+$1pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Instruction Routing Probes}
+\label{sec:routing_appendix}
+
+\subsubsection{Cross-Instruction Classification: Dense Layer Profile}
+\label{sec:dense_routing}
+
+Table~\ref{tab:dense_routing} shows the dense per-layer profile of cross-instruction classification (10-way) at the readout token for layers L0--L8.
+The step-function onset between L0 ($10\%$, chance) and L1 (${\geq}99.6\%$) reflects the high discriminability of instruction embeddings from the frozen tokenizer: even incidental attention (${\sim}12\%$) suffices for linear classification at L1, though only trained deliberate routing (58\% attention) sustains the signal through all 31 layers.
+
+\begin{table}[h]
+\centering
+\caption{Cross-instruction 10-way classification accuracy at readout token, L0--L8.}
+\label{tab:dense_routing}
+\small
+\begin{tabular}{lccc}
+\toprule
+Layer & Trained & Untrained & Image\_mean (trained) \\
+\midrule
+L0 & 10.0\% & 10.0\% & 10.0\% \\
+L1 & 100.0\% & 100.0\% & 10.0\% \\
+L2 & 100.0\% & 99.6\% & 10.0\% \\
+L3 & 100.0\% & 99.6\% & 10.0\% \\
+L4 & 100.0\% & 99.1\% & 10.0\% \\
+L5 & 100.0\% & 98.2\% & 10.0\% \\
+L6 & 100.0\% & 97.3\% & 10.0\% \\
+L7 & 100.0\% & 96.4\% & 10.0\% \\
+L8 & 100.0\% & 95.5\% & 10.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Cross-Instruction LOOCV Validation}
+\label{sec:loocv}
+
+Leave-one-out cross-validation over 10 folds (each fold holds out one task's instructions) confirms the cross-instruction probe result is not driven by memorization.
+Trained last\_preaction achieves $100\% \pm 0.00$ across all 10 folds at layers L1--L31, confirming perfect generalization.
+
+\subsubsection{QA Probe: Progress and Subtask Classification}
+\label{sec:qa_probe}
+
+To test whether LLM layers encode task-relevant semantic information beyond instruction identity, we train probes to classify task progress (early/mid/late) and active subtask from frozen representations (Table~\ref{tab:qa_probe}).
+
+\begin{table}[h]
+\centering
+\caption{QA probe accuracy (progress + subtask classification, best layer).}
+\label{tab:qa_probe}
+\small
+\begin{tabular}{lcc}
+\toprule
+Source & Best Layer & Accuracy \\
+\midrule
+Trained last\_preaction & L20 & 86.3\% \\
+Untrained last\_preaction & L20 & 85.3\% \\
+DINOv2 cls\_token & --- & 82.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{L1 Attention Pattern Analysis}
+\label{sec:attention_pattern}
+
+To understand how training creates robust instruction routing, we analyze per-head attention distributions at L1 (Figure~\ref{fig:attention_heatmap}).
+
+In the trained model, 25 out of 32 attention heads are instruction-dominant: on average they allocate $58\%$ of attention weight to instruction tokens (${\sim}8\%$ of the sequence) and only $20.9\%$ to image tokens at the readout position.
+In the untrained model, 0/32 heads are instruction-dominant: attention defaults to image tokens ($87.8\%$) with only $11.7\%$ allocated to instruction tokens.
+Training thus learns deliberate instruction routing, converting L1 into a dedicated routing layer.
+
+Both models achieve near-perfect classification at L1 because instruction embeddings from the frozen tokenizer are inherently highly distinguishable: even the untrained model's $11.7\%$ incidental attention provides enough signal for a linear probe.
+The critical difference is robustness: trained deliberate routing (58\% attention, 25/32 heads) creates a signal strong enough to survive 30 subsequent layers ($100\%$ at L31), while untrained incidental routing ($11.7\%$ attention, 0/32 dedicated heads) produces a fragile signal that degrades to $82\%$ by L31.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig8_attention.pdf}
+\caption{L1 attention from the readout token, per head (sorted by instruction attention fraction). \textbf{(a)}~Trained: 25/32 heads are instruction-dominant ($>50\%$ attention to instruction tokens). \textbf{(b)}~Untrained: 0/32 heads are instruction-dominant; nearly all attention goes to image tokens. Training learns deliberate instruction routing, explaining why the trained signal persists to L31 ($100\%$) while the untrained signal decays ($82\%$).}
+\label{fig:attention_heatmap}
+\end{figure}

@@ -1,0 +1,67 @@
+{
+  "exp_id": "action_trajectory_cpu_analysis",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:35:44.880Z",
+    "updated_at": "2026-05-19T18:51:13.465Z",
+    "hypothesis": "Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-to-step action autocorrelation more than control, (2) bootstrap CI on per-head effect size — formal test of whether instruction heads per-head d (0.027) differs significantly from control heads per-head d (0.051).",
+    "parent": "action_trajectory_control",
+    "metrics": {
+      "bootstrap_per_head_d": {
+        "instruction_24h": {
+          "mean": 0.0271,
+          "ci_95": [
+            0.0258,
+            0.0285
+          ]
+        },
+        "control_8h": {
+          "mean": 0.0514,
+          "ci_95": [
+            0.0478,
+            0.0551
+          ]
+        },
+        "difference_ctrl_minus_inst": {
+          "mean": 0.0244,
+          "ci_95": [
+            0.0203,
+            0.0281
+          ]
+        },
+        "task_paired_t": {
+          "t": 7.356,
+          "p": 0.0018
+        },
+        "all_5_tasks_ctrl_gt_inst": true,
+        "interpretation": "Control heads ~1.9x per-head effect; instruction heads achieve larger total via 24-head collective coordination"
+      },
+      "temporal_coherence_proxy": {
+        "per_dim_cv_instruction": 1.3,
+        "per_dim_cv_control": 2.74,
+        "cross_task_I2_instruction": 0.87,
+        "cross_task_I2_control": 0.78,
+        "interpretation": "Instruction ablation produces more consistent (low CV) and more task-dependent (high I²) perturbation, consistent with structured language-dependent computation"
+      },
+      "result_path": "/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json"
+    },
+    "conclusion": "success",
+    "notes": "Per-head effect formally confirmed: control heads ~1.9x stronger per-head (d=0.051 vs 0.027, p=0.0018). But instruction heads show qualitatively different perturbation: more consistent across dimensions (CV 1.30 vs 2.74) and more task-dependent (I²=0.87 vs 0.78). Instruction heads mediate structured, coordinated computation rather than individual strong effects.",
+    "spec": {
+      "command": "python action_trajectory_cpu_analysis.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/results/",
+      "data_count": "5 tasks, existing ablation data",
+      "model_name": "N/A (CPU reanalysis)",
+      "seed": "N/A",
+      "checkpoint_source": "action_trajectory_analysis + action_trajectory_control data",
+      "eval_data": "existing ablation trajectory data"
+    }
+  },
+  "timestamp": "2026-05-19T18:51:13.675214+00:00",
+  "trigger": "update_registry"
+}

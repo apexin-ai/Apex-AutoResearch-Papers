@@ -1,0 +1,72 @@
+{
+  "exp_id": "lg_extract_trained",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-15T16:42:33.477Z",
+    "updated_at": "2026-05-15T17:41:46.136Z",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/extract_features.py --model_path openvla-7b --output_dir /root/autodl-tmp/vla-ssd/features/trained_libero_goal/ --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ --gpu 0 --max_demos 50\"",
+      "finished_at": "2026-05-15T17:39:24.617Z"
+    },
+    "failure_reason": "Traceback → -packages/urllib3/util/connection.py\", line 85, in create_connection raise err File \"/root/miniconda3/lib/python3.12/site-packages/urllib3/util/connection.py\", line 73, in create_connection sock.connect(sa) OSError: [Errno 101] Network is unreachable",
+    "completed_at": "2026-05-15T16:54:26.701Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T16:54:27.826438+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:39:25.096897+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: AutoProcessor.from_pretrained() 连接 huggingface.co 失败 (Network is unreachable)，AutoDL 服务器网络未启用代理。日志显示提取进度到 52%（open_the_top_drawer task），说明模型可能从缓存加载成功但后续网络调用导致崩溃。诊断 Worker: worker_diagnose_lg_extract_failed_20260515T165835"
+      }
+    },
+    "notes": "Retry #1 after local_files_only fix. PID 627256 restarted ~17:00 UTC. Script skips completed h5 files (3/10 done from first run).",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/extract_features.py --model_path openvla-7b --output_dir /root/autodl-tmp/vla-ssd/features/trained_libero_goal/ --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ --gpu 0 --max_demos 50\"",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks x 50 demos",
+      "model_name": "openvla/openvla-7b (LIBERO-10 fine-tuned)",
+      "seed": 42,
+      "pid": "627256",
+      "log_path": "~/runs/vla-ssd/lg_extract_trained.log",
+      "restarted_at": "2026-05-15T17:00:00Z",
+      "retry_count": 1,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/features/trained_libero_goal/",
+      "wall_clock_seconds": 3204,
+      "gpu_hours": 0.89
+    },
+    "pid": 627256,
+    "conclusion": "success",
+    "metrics": {
+      "tasks_completed": "10/10",
+      "extraction_time_min": 53.4,
+      "feature_dim": 4096,
+      "num_layers": 33,
+      "dtype": "float16",
+      "demos_per_task": 50,
+      "exit_code": 0,
+      "feature_keys": [
+        "image_mean",
+        "last_preaction"
+      ],
+      "note": "Retry after local_files_only fix. 3/10 from first run + 7/10 from retry."
+    }
+  },
+  "timestamp": "2026-05-15T17:41:46.183298+00:00",
+  "trigger": "update_registry"
+}

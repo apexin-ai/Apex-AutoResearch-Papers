@@ -1,0 +1,14 @@
+{
+  "exp_id": "behavioral_pilot_w4",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:34:21.677Z",
+    "updated_at": "2026-05-18T09:34:21.677Z"
+  },
+  "timestamp": "2026-05-18T09:34:21.843112+00:00",
+  "trigger": "update_registry"
+}

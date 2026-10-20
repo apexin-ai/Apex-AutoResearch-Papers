@@ -1,0 +1,15 @@
+{
+  "exp_id": "lg_dino_extract",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:42:52.995Z",
+    "updated_at": "2026-05-15T17:42:59.195Z",
+    "hypothesis": "DINO-V2 LIBERO-Goal feature extraction — vision-only baseline for Goal Classification gate (Sanity-GC: DINO acc ≤ 25%)"
+  },
+  "timestamp": "2026-05-15T17:42:59.259344+00:00",
+  "trigger": "update_registry"
+}

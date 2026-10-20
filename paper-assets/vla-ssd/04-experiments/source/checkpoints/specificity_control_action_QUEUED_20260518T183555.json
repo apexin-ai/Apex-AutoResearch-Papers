@@ -1,0 +1,16 @@
+{
+  "exp_id": "specificity_control_action",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:28:45.197Z",
+    "updated_at": "2026-05-18T18:35:54.950Z",
+    "hypothesis": "Ablating bottom-24 instruction-attention heads (size-matched control) will produce significantly lower action trajectory divergence (Cohen's d) than ablating top-24 instruction-dominant heads (d=0.65), demonstrating that the disruption effect is specific to instruction-dominant heads rather than a generic consequence of ablating any 24 heads.",
+    "parent": "action_trajectory_control"
+  },
+  "timestamp": "2026-05-18T18:35:55.144513+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,4 @@
+Chart location (remote server westd-19183):
+  PNG: /root/autodl-tmp/vla-ssd/results/perlayer_rsa/perlayer_rsa_comparison.png
+  PDF: /root/autodl-tmp/vla-ssd/results/perlayer_rsa/perlayer_rsa_comparison.pdf
+  Script: /root/autodl-tmp/vla-ssd/results/perlayer_rsa/plot_perlayer_rsa.py

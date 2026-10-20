@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_001",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:55:16.912Z",
+    "updated_at": "2026-05-15T04:55:16.912Z"
+  },
+  "timestamp": "2026-05-15T04:55:16.923643+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_013_branch_split",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:04:25.014Z",
+    "updated_at": "2026-05-16T05:04:38.766Z",
+    "hypothesis": "Branch-split RSA: separate DINOv2 branch (first 1024d) and SigLIP branch (last 1152d) from Prismatic fused backbone (2176d projector input). Quantify each component's contribution to action-aligned geometry. Method B, 50 demos/task, 10 LIBERO-Goal tasks."
+  },
+  "timestamp": "2026-05-16T05:04:38.878225+00:00",
+  "trigger": "update_registry"
+}

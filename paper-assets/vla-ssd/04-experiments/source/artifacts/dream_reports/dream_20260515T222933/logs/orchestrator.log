@@ -1,0 +1,3 @@
+2026-05-15 22:48:35,213 INFO    core.tools.feishu  create_chat: name='审稿-vla-ssd' → chat_id=oc_554a5023cde4d603635cf97e6ab8151a
+2026-05-15 22:48:35,215 INFO    core.tools.dream  [dream] auto-created Group C for project=vla-ssd: oc_554a5023cde4d603635cf97e6ab8151a
+2026-05-15 22:48:35,299 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_15/config/mcp_config_dream_review_director.json

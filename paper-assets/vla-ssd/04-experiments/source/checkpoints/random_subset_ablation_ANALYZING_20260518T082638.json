@@ -1,0 +1,39 @@
+{
+  "exp_id": "random_subset_ablation",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:25:38.132Z",
+    "updated_at": "2026-05-18T08:26:38.569Z",
+    "hypothesis": "Random subsets of 24 heads yield higher action R² increase than instruction-dominant 24 heads, indicating dominant heads serve dual routing-encoding function rather than pure capacity trade-off",
+    "parent": "ablation_50demos_main",
+    "spec": {
+      "command": "python scripts/random_subset_ablation.py --n_demos 50 --n_random 10 --output /root/autodl-tmp/vla-ssd/results/random_subset_ablation.json",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/trained_libero_goal/",
+      "data_count": "10 tasks x 50 demos",
+      "model_name": "ActionMLPProbe(4096->256->7) with L1 head ablation",
+      "seed": "10 random seeds for subset selection",
+      "checkpoint_source": "pre-extracted features from openvla-7b (trained)",
+      "eval_data": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/ (10 tasks, 50 demos, sequential split)"
+    },
+    "metrics": {
+      "baseline_r2": 0.517,
+      "dominant_24_delta": 0.042,
+      "random_24_mean_delta": 0.077,
+      "random_24_std_delta": 0.013,
+      "z_score": -2.73,
+      "p_value": 0.003,
+      "n_random_seeds": 10,
+      "interpretation": "dominant-24 heads NOT special - any 24/32 heads ablation produces similar or larger R² increase",
+      "result_path": "/root/autodl-tmp/vla-ssd/results/random_subset_ablation.json",
+      "figure_path": "/root/autodl-tmp/vla-ssd/results/figures/fig_random_subset_ablation.pdf"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T08:26:38.725972+00:00",
+  "trigger": "update_registry"
+}

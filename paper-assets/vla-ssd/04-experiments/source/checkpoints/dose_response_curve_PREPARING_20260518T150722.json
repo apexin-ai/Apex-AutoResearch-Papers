@@ -1,0 +1,14 @@
+{
+  "exp_id": "dose_response_curve",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:07:22.213Z",
+    "updated_at": "2026-05-18T15:07:22.213Z"
+  },
+  "timestamp": "2026-05-18T15:07:22.373339+00:00",
+  "trigger": "update_registry"
+}

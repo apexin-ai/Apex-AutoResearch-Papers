@@ -1,0 +1,16 @@
+{
+  "exp_id": "permutation_test_I2",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:07:21.232Z",
+    "updated_at": "2026-05-18T15:12:59.830Z",
+    "hypothesis": "Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).",
+    "parent": "action_trajectory_cpu_analysis"
+  },
+  "timestamp": "2026-05-18T15:13:00.115613+00:00",
+  "trigger": "update_registry"
+}

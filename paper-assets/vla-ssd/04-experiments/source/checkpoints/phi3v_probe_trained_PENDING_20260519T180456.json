@@ -1,0 +1,16 @@
+{
+  "exp_id": "phi3v_probe_trained",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:04:38.161Z",
+    "updated_at": "2026-05-19T18:04:56.507Z",
+    "hypothesis": "TracVLA-Phi3V trained model achieves 100% cross-instruction 10-way classification at last_preaction (L1+L31) while image_mean stays at chance, replicating OpenVLA's C1 readout pattern and confirming instruction routing is functionally readable across VLA architectures.",
+    "parent": "phi3v_attention_trained"
+  },
+  "timestamp": "2026-05-19T18:04:56.734032+00:00",
+  "trigger": "update_registry"
+}

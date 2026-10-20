@@ -1,0 +1,42 @@
+{
+  "exp_id": "nlp_finetuning_control_v1",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:02:18.987Z",
+    "updated_at": "2026-05-22T12:53:00.804Z",
+    "hypothesis": "NLP-finetuned Llama-2-7b-chat (text-only SFT, no action head) will NOT exhibit R² exit collapse because it lacks visuomotor grounding — the collapse is VLA-specific, not a general fine-tuning artifact.",
+    "spec": {
+      "command": "bash /tmp/wait_and_run.sh (PID 613202, waiting for model download PID 612748)",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks × 50 demos × ~100-150 timesteps",
+      "model_name": "NousResearch/Llama-2-7b-chat-hf (via ModelScope shakechen/Llama-2-7b-chat-hf)",
+      "seed": 42,
+      "checkpoint_source": "N/A (probing only)",
+      "gpu": "cuda:1",
+      "download_eta": "~6h from 13:32 (shard1 9.29GB @ 400KB/s)",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe/run.log"
+    },
+    "metrics": {
+      "r2_profile": {
+        "peak_r2": 0.1555,
+        "peak_layer": 15,
+        "exit_r2": 0.1555,
+        "exit_layer": 31,
+        "delta": 0,
+        "mean_r2": 0.1553,
+        "min_r2": 0.1547,
+        "max_r2": 0.1555,
+        "profile": "flat constant ~0.155 across all 32 layers"
+      },
+      "interpretation": "Zero exit collapse. R² ≈ 0.155 is noise baseline (between-task variance only). NLP-finetuned model has no layer-differentiated action representation. Confirms exit collapse is VLA-specific."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T12:53:01.098884+00:00",
+  "trigger": "update_registry"
+}

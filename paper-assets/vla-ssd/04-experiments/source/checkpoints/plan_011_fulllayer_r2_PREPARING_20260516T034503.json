@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_011_fulllayer_r2",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:45:03.186Z",
+    "updated_at": "2026-05-16T03:45:03.186Z"
+  },
+  "timestamp": "2026-05-16T03:45:03.389701+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,21 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Vision-language-action models (VLAs) fine-tune large language models on robot demonstrations~\cite{brohan2023_rt2,kim2024_openvla}, under the assumption that fine-tuning injects action-relevant representations.
+Yet this assumption has not been tested at the representational level: where do the representations driving action prediction originate, and how does the LLM transform them?
+The answers determine whether VLA design should prioritize scaling the LLM or improving vision encoder quality.
+
+Recent work suggests VLAs rely disproportionately on visual input~\cite{grant2026}, with language instructions largely ignored by the action pathway~\cite{haon2025}.
+However, these behavioral and single-component analyses have not provided a systematic \emph{representational decomposition} quantifying how each architectural stage independently contributes to action-relevant structure, leaving open whether fine-tuning creates new action knowledge or reconfigures inherited geometry.
+
+We address this gap by decomposing OpenVLA-7B~\cite{kim2024_openvla,karamcheti2024}---a VLA chaining a frozen DinoSigLIP vision backbone~\cite{zhai2023_siglip,oquab2024_dinov2}, an MLP projector, and Llama-2 7B---extracting representations from the projector, each of 32 LLM layers (at both image-token and readout-token positions), and two external baselines (CLIP~\cite{radford2021_clip} and DINOv2~\cite{oquab2024_dinov2}).
+We cross training status (trained vs.\ untrained, reinitializing 6.74B LLM parameters) with instruction presence in a $2\times 2$ factorial design, and quantify action-relevant structure using RSA~\cite{kriegeskorte2008} for geometric alignment and MLP probes~\cite{alain2017} for functional decodability.
+
+Three findings emerge from this decomposition.
+\emph{First}, the frozen vision encoder provides the dominant source of action-relevant geometry, with self-supervised pretraining exceeding vision-language pretraining.
+Standalone DINOv2 achieves the highest action-space alignment (RSA $\rho = 0.692$), far exceeding CLIP ($\rho = 0.557$) and the VLA's own peak internal representation ($\rho = 0.628$ at L12).
+Functional probes corroborate this ranking: DINOv2 ($R^2 = 0.634$) $\geq$ Projector ($0.630$) $>$ CLIP ($0.587$).
+\emph{Second}, the LLM applies a non-monotonic transformation: the first 12 layers \emph{enhance} geometric alignment above the vision encoder input ($\rho$: $0.612 \to 0.628$), while the remaining 20 layers degrade it ($0.628 \to 0.422$), and the readout token concentrates a functionally superior representation (probe $R^2 = 0.678$ vs.\ $0.630$ for the projector).
+\emph{Third}, training produces at most a modest geometric gain (RSA $\Delta = 0.017$--$0.023$ across two benchmarks, $3$--$4\%$ of baseline) while substantially improving functional capacity ($R^2$ $\Delta = +0.015$ to $+0.069$, $p \leq 0.006$)---redistribution dominates over creation.
+
+Our contributions are: (i)~the first per-layer representational decomposition of a VLA using both geometric and functional metrics; (ii)~trained-vs-untrained factorial controls isolating the LLM's contribution from pretrained vision geometry; and (iii)~multi-metric evidence that action representations are inherited from vision encoders and non-monotonically transformed by the LLM, suggesting that vision encoder quality is the primary design lever (\S\ref{sec:discussion}).

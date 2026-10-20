@@ -1,0 +1,33 @@
+{
+  "exp_id": "mvp2_delta_dino",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:23:29.771Z",
+    "updated_at": "2026-05-15T16:00:08.465Z",
+    "hypothesis": "DINO-V2 action-delta baseline (single layer) — establishes vision-only floor for G3 action-delta comparison",
+    "parent": "mvp2_action_probe",
+    "metrics": {
+      "overall_R2": 0.0604,
+      "per_task_mean_R2": 0.0609,
+      "gripper_accuracy": 0.57,
+      "per_dim_R2": {
+        "dx": 0.1744,
+        "dy": 0.2588,
+        "dz": 0.3745,
+        "drx": 0.084,
+        "dry": 0.0563,
+        "drz": 0.1765,
+        "gripper": 0.0365
+      },
+      "num_layers": 1,
+      "feature_dim": 1024
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T16:00:08.565357+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,3 @@
+image_mean: delta=0.0206, 95% CI=[-0.0314, 0.0638], p=0.1996 (not significant)
+last_preaction: delta=0.0076, 95% CI=[-0.0395, 0.0558], p=0.3701 (not significant)
+Full JSON at /root/autodl-tmp/vla-ssd/results/rsa/bootstrap_training_effect.json

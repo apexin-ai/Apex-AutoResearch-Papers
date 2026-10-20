@@ -1,0 +1,15 @@
+{
+  "exp_id": "lg_rsa_analysis",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:45:51.878Z",
+    "updated_at": "2026-05-15T19:46:37.621Z",
+    "hypothesis": "D019: RSA (Representational Similarity Analysis) on LIBERO-Goal features. Tests whether VLA training improves action-relevant representational structure, not just instruction presence. Same-scene/different-goal pairs: representation dissimilarity vs action dissimilarity correlation. G1: trained RSA peak > untrained peak + 0.05. G2: trained > untrained in ≥ 5/33 layers."
+  },
+  "timestamp": "2026-05-15T19:46:37.826658+00:00",
+  "trigger": "update_registry"
+}

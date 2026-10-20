@@ -1,0 +1,41 @@
+{
+  "exp_id": "p0_functional_action_delta_probe",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:21:52.667Z",
+    "updated_at": "2026-05-15T23:45:17.106Z",
+    "hypothesis": "P0 BLOCKING Functional Validation: Action-delta prediction (Δa = a_{t+1}-a_t) on SigLIP+projector output features. Removes autocorrelation. Compare with LLM best (L14, R²=0.059) and DINO (R²=0.060). Also tests image_mean aggregation.",
+    "metrics": {
+      "projector": {
+        "mean_R2": 0.1181,
+        "overall_R2": 0.1053
+      },
+      "trained_image_mean_L14": {
+        "mean_R2": 0.1215,
+        "overall_R2": 0.1091
+      },
+      "untrained_best_L0": {
+        "mean_R2": 0.1174,
+        "overall_R2": 0.107
+      },
+      "bootstrap_proj_vs_trained": {
+        "delta": -0.0034,
+        "ci_95": [
+          -0.0066,
+          0.0005
+        ],
+        "p_value": 0.04
+      },
+      "note": "image_mean R² (~0.12) substantially higher than last_preaction (~0.06). Per-dim: dz=0.46, dx=0.29, dy=0.25 most predictable.",
+      "gate": "Projector (0.118) ≈ LLM (0.122), gap tiny (Δ=0.003). Consistent with redistribution narrative.",
+      "result_path": "/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T23:45:17.193624+00:00",
+  "trigger": "update_registry"
+}

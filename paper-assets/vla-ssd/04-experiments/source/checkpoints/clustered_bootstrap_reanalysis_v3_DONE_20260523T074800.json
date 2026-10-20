@@ -1,0 +1,33 @@
+{
+  "exp_id": "clustered_bootstrap_reanalysis_v3",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:46:06.392Z",
+    "updated_at": "2026-05-23T07:47:59.985Z",
+    "hypothesis": "Monte Carlo Cross-Validation (without-replacement permutation 80/20 demo split × 1000 iterations) fixes v2's train-test demo overlap artifact. Expect bootstrap CIs to center around canonical deltas, confirming VLM→VLA exit collapse significance (TracVLA 4/4, NORA 2/2) while OpenVLA and untrained conditions remain non-significant.",
+    "parent": "clustered_bootstrap_reanalysis_v2",
+    "spec": {
+      "command": "tmux: bootstrap_v3_cuda0 (12 conditions) + bootstrap_v3_cuda1 (8 conditions)",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/results/ (extracted features)",
+      "data_count": "20 conditions (3 arch × 4 suites × 2 conditions)",
+      "model_name": "OpenVLA/TracVLA/NORA kernel ridge probes",
+      "seed": "per-iteration RNG seeds via np.random.default_rng",
+      "checkpoint_source": "clustered_bootstrap_reanalysis_v2 (reusing extracted features)",
+      "eval_data": "LIBERO goal/spatial/object/long demo features (100 demos each)"
+    },
+    "notes": "2026-05-23 07:19 UTC 进度: 2/20 完成. 首批结果验证 MCCV 修复正确: (1) openvla_goal/trained delta=0.086 CI=[-0.056,0.106] 不显著, delta在CI内✅ (2) tracvla_goal/trained delta=0.333 CI=[0.207,0.451] 显著, boot_mean=0.316≈delta✅. cuda:0 跑 openvla_goal/untrained, cuda:1 跑 tracvla_goal/untrained. 预计 ~13:00-14:00 UTC 全部完成. ⚠️ Cron 监控的是启动器PID(已退出), 后续cron回调均为误报.",
+    "reproduce": {
+      "finished_at": "2026-05-23T07:47:57.790Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T07:47:59.985Z"
+  },
+  "timestamp": "2026-05-23T07:48:00.315520+00:00",
+  "trigger": "update_registry"
+}

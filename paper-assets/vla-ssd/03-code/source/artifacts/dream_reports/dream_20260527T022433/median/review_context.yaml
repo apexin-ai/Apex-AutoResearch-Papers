@@ -1,0 +1,732 @@
+narrative_guidance: 'Exit collapse + routing gradient 保持为 core findings（reviewer acceptance
+  ~75%）， CF sensitivity 降为 "supporting evidence with caveats"（acceptance ~45%）。 1-2
+  位 reviewer 指出 metric incomparability（trained Cohen''s d vs untrained cosine dist）
+  使 amplification 的定量化不可靠，要求 behavioral validation 作为 representational claims 的补充。
+  Rebuttal 需要：(1) Δ>0.10 阈值 sensitivity analysis，(2) 诚实回应 behavioral gap， (3) 将 CF
+  从 "core finding" 重新定位为 "consistent observation"。 预计 reviewer_avg ~6.0，accept_prob
+  ~0.35，rebuttal_success ~0.50。
+
+  '
+imagined_experiments:
+- name: SigLIP+Projector RSA baseline
+  plan_id: plan_001
+  description: SigLIP+Projector RSA vs Full VLA vs DINO — 证明 action-relevant 结构源自
+    frozen vision encoder
+  expected_results:
+    siglip_projector_rsa: 0.6153
+    bootstrap_95_ci:
+    - 0.5257
+    - 0.6954
+    trained_vla_peak_rsa: 0.4876
+    untrained_vla_peak_rsa: 0.4846
+    dino_rsa: 0.388
+    llm_degradation_magnitude: 0.127
+  result_rationale: 'Median 档位下此实验被全部 reviewer 接受（A1 holds）。RSA=0.615 >> VLA 0.488
+    的 gap 清晰建立了 "vision encoder 是 action-relevant structure 的主要来源" 这一非争议性结论。 但 1 位
+    reviewer 会注意到这是 RSA metric 下的结论——CKA 下 ordering 不同（plan_009 结果）。 此实验对 C1 framework
+    贡献最大，不涉及 median 档位的核心争议点（CF metric incomparability）。 CI 较宽 [0.526, 0.695] 会被提及但不作为
+    major concern，因为 point estimate 远高于 VLA peak。
+
+    '
+  tables:
+  - title: Action-Relevant Structure Source Decomposition
+    columns:
+    - Representation
+    - RSA (ρ)
+    - 95% CI
+    - vs DINO
+    rows:
+    - - SigLIP+Projector
+      - '0.615'
+      - '[0.526, 0.695]'
+      - '+0.227'
+    - - VLA Trained Peak (L9)
+      - '0.488'
+      - —
+      - '+0.100'
+    - - VLA Untrained Peak (L12)
+      - '0.485'
+      - —
+      - '+0.097'
+    - - DINO cls_token
+      - '0.388'
+      - —
+      - baseline
+  figures_description:
+  - 'Bar chart: RSA values for SigLIP projector > VLA trained ≈ VLA untrained >> DINO,
+    with 95% CI error bars。清晰的三级阶梯。'
+  analysis: 'Reviewer 共识：frozen encoder dominance 不争议。但 median 档位下 Reviewer 2 可能指出
+    "LLM degradation" 的措辞过强——LLM 同时在做 instruction routing 和 action computation， RSA
+    下降可能反映功能转换而非信息丢失。建议用 "geometric reorganization" 替代 "degradation"。 此实验在 rebuttal
+    中无需调整。
+
+    '
+- name: DINO standalone baseline
+  plan_id: plan_002
+  description: DINOv2 baseline RSA — standalone vision model 参照
+  expected_results:
+    temporal_distance_rho_pooled: 0.833
+    per_task_rho_mean: 0.9008
+    R2: 0.687
+    subtask_macro_auc: 0.9717
+    control_b_permutation_rho: 0.039
+  result_rationale: 'Clean baseline，无争议。DINO RSA=0.388 远低于 VLA 和 projector，建立了 architecture
+    gap。 Subtask AUC=0.97 被 reviewer 接受但会引发 "goals are visually distinguishable" 的注意，
+    这在后续 goal classification experiments 中成为 confound（10-way classification trivially
+    easy）。 Median 档位下此实验本身不受挑战，但 reviewer 会用它来质疑后续 probe 实验的 discriminability。
+
+    '
+  tables:
+  - title: DINOv2 Standalone Performance
+    columns:
+    - Metric
+    - Value
+    - Note
+    rows:
+    - - Temporal ρ (per-task)
+      - '0.901'
+      - correct baseline
+    - - Action Probe R²
+      - '0.687'
+      - vision-only ceiling
+    - - Subtask AUC
+      - '0.972'
+      - visually distinguishable
+    - - Permutation Control ρ
+      - '0.039'
+      - validates signal
+  figures_description:
+  - 'Scatter: predicted vs actual temporal distance，per-task colored。High correlation
+    but cross-task variance visible。'
+  analysis: '所有 reviewer 接受。用于建立 DINO < SigLIP < VLA trained 的 ordering baseline。
+    Median 档位下唯一风险：Reviewer 3 可能质疑 DINOv2 作为 baseline 的 fairness （DINOv2 是 ViT-L/14
+    1024d vs VLA 4096d），但 dimension mismatch 在 RSA/CKA 中 不是 confound（metric 对 dimensionality
+    invariant）。
+
+    '
+- name: Per-layer RSA degradation curve
+  plan_id: plan_003
+  description: Per-layer RSA curve — 追踪 RSA 从 projector output 到 LLM 各层的变换轨迹
+  expected_results:
+    trained_image_mean_peak_layer: 9
+    trained_image_mean_peak_rsa: 0.4876
+    untrained_image_mean_peak_layer: 12
+    untrained_image_mean_peak_rsa: 0.4846
+    proj_to_l1_drop_trained: 0.2036
+    proj_to_l1_drop_untrained: 0.1512
+    trained_pattern: non_monotonic (inverted-U)
+    untrained_pattern: non_monotonic
+  result_rationale: 'Inverted-U pattern 是 C3 的核心 evidence。Median 档位下（A3 fails 的延伸）：
+    (1) rise phase Δρ=+0.016 被 1 位 reviewer 认为 negligible（CI includes 0）， inverted-U
+    的 "rise" 部分可能只是 noise； (2) CKA 下 pattern 完全不同（monotonic），reviewer 质疑 "non-monotonic
+    refinement"  是 metric-specific artifact； (3) decline phase Δρ=-0.206 更 robust，但
+    reviewer 要求在正文（非 appendix）承认 metric dependence。 最终 C3 作为 "qualified observation
+    under RSA" 存活，但不贡献于 core claims。
+
+    '
+  tables:
+  - title: Per-Layer RSA Profile Summary
+    columns:
+    - Condition
+    - Peak Layer
+    - Peak RSA
+    - Proj→L1 Drop
+    - Pattern
+    rows:
+    - - Trained (with inst)
+      - L9
+      - '0.488'
+      - '-0.204'
+      - inverted-U
+    - - Untrained (with inst)
+      - L12
+      - '0.485'
+      - '-0.151'
+      - non-monotonic
+    - - Trained (no inst)
+      - L30
+      - '0.489'
+      - '-0.253'
+      - increasing
+    - - Untrained (no inst)
+      - L6
+      - '0.480'
+      - '-0.137'
+      - non-monotonic
+  figures_description:
+  - '33-layer RSA profile plot: 4 conditions overlaid。Trained shows inverted-U with
+    peak at L9-L12, untrained flatter。Projector output (0.615) as horizontal dashed
+    line shows all LLM layers below projector。'
+  analysis: 'Median 档位 Reviewer 2 的典型批评："The inverted-U pattern is only demonstrated
+    under RSA.  CKA shows monotonic increase (plan_009), which directly contradicts
+    the ''non-monotonic refinement''  narrative. The authors should either demonstrate
+    metric-robustness or downgrade this to an observation." Response：承认并降级为 observation。Rebuttal
+    可补充 R² functional probe 也显示 inverted-U （plan_011），但 reviewer 可能 counter："R² measures
+    decodability, not geometry — different construct。"
+
+    '
+- name: Output head analysis (frozen encoder verification)
+  plan_id: plan_004
+  description: SigLIP+projector frozen 确认, LLM 权重变化不传导到视觉表征
+  expected_results:
+    vision_cos_sim: 1.0
+    vision_rel_change: 0.0
+    projector_cos_sim: 1.001
+    projector_rel_change: 0.0
+    llm_mean_rel_change: 1.316
+    llm_range:
+    - 1.22
+    - 1.37
+    head_vs_llm_ratio: 1.12
+    shallow_adaptation_gate: FAIL (1.12x < 3x threshold)
+  result_rationale: '此实验确认 vision backbone + projector 在 trained 和 untrained 之间完全一致（cos_sim=1.0），
+    解释了为什么 RSA 在 image_mean tokens 上 trained ≈ untrained。Median 档位下被接受 （A1 holds），但
+    reviewer 注意到 caveat："comparison is pretrained Llama vs random init,  not pre/post
+    fine-tuning"，这限制了 interpretability。LLM weights uniformly distributed （ratio=1.12x）否定了
+    shallow adaptation hypothesis——head 不特殊。 此实验支持 C1 framework 的 "frozen encoder"
+    前提，不涉及 median 档位的争议点。
+
+    '
+  tables:
+  - title: Weight Divergence by Module Group
+    columns:
+    - Module
+    - Count
+    - Mean Rel Change
+    - Cos Sim
+    - Verdict
+    rows:
+    - - Vision Backbone
+      - '685'
+      - '0.000'
+      - '1.000'
+      - IDENTICAL
+    - - Projector
+      - '6'
+      - '0.000'
+      - '1.001'
+      - IDENTICAL
+    - - LLM Layers
+      - '288'
+      - '1.316'
+      - '0.218'
+      - DIVERGED
+    - - LM Head
+      - '1'
+      - '1.475'
+      - '0.000'
+      - DIVERGED
+    - - Embedding
+      - '1'
+      - '1.329'
+      - '-0.000'
+      - DIVERGED
+  figures_description:
+  - 'Heatmap: rel_change per LLM layer (L0-L31)，showing uniform ~1.3 across all layers，no
+    depth gradient。Vision/projector rows blank (zero change)。'
+  analysis: '全部 reviewer 接受。此实验为 C1 framework 提供了必要的 architectural verification。 Median
+    档位下无额外挑战。但 Reviewer 1 可能在 minor comments 中建议 "clarify that  untrained = random
+    init, not ablated weights" 以避免读者误解。
+
+    '
+- name: 6 probing methods × 2 benchmarks (orphaned)
+  plan_id: plan_005
+  description: 系统性验证 trained ≈ untrained across 6 methods
+  expected_results:
+    status: orphaned
+    conclusion: 'All 6 methods consistent: trained ≈ untrained >> DINO'
+    note: 被后续更精细的实验取代（plan_011 fulllayer R², d041 definitive RSA, etc.）
+  result_rationale: '此实验在 Phase 1 被 orphaned，其核心结论（trained ≈ untrained in RSA/R²）被后续实验
+    独立复现。在 median 档位下不直接贡献，但其 "trained ≈ untrained" 的 RSA 结论正是 reviewer 用来质疑 "training
+    effect" narrative 的弹药之一——如果 training 不改变 RSA， 那 training 到底做了什么？Answer 在 C2（routing
+    reorganization），但 reviewer 可能认为 证据不够 conclusive without behavioral validation（A4
+    partially fails）。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Orphaned，不进入论文。但其结论（trained ≈ untrained）被 plan_007 和 d041 复现， 成为 C3 "observation"
+    而非 "finding" 的证据基础。
+
+    '
+- name: Instruction ablation RSA
+  plan_id: plan_006
+  description: 去掉 instruction text 测 RSA 变化
+  expected_results:
+    with_inst_untrained_peak_rsa: 0.4846
+    no_inst_untrained_peak_rsa: 0.4802
+    delta: 0.0044
+    gate_threshold: 0.1
+    gate_judgment: FAIL — Δ=0.004 << 0.10
+  result_rationale: 'Negative result：移除 instruction 对 image token RSA 几乎无影响（Δ=0.004
+    << 0.10）。 这证明了 action-relevant structure 是 vision-driven 而非 instruction-driven。
+    Median 档位下此结论被接受（支持 C1 "image tokens 不 attend to instructions" 的验证）， 但 reviewer
+    可能指出：这只说明 image_mean RSA 不依赖 instruction，不能推广到 last_preaction tokens（C2 的核心 readout
+    position）。实际上 last_preaction 的 routing 完全依赖 instruction（cross-instruction probe
+    100%），两个 readout 位置的 independence pattern 不同——这本身是一个 finding，但需要在论文中明确区分。
+
+    '
+  tables:
+  - title: Instruction Ablation Effect on RSA
+    columns:
+    - Condition
+    - Peak RSA
+    - Δ vs with-inst
+    rows:
+    - - Untrained + instruction
+      - '0.485'
+      - baseline
+    - - Untrained − instruction
+      - '0.480'
+      - '-0.004'
+    - - Threshold for significance
+      - —
+      - '0.10'
+    - - DINO baseline
+      - '0.388'
+      - —
+  figures_description:
+  - 'Per-layer RSA curves: with-instruction vs without-instruction overlay，几乎完全重合。DINO
+    horizontal line 远低于两者。'
+  analysis: 'Reviewer 接受。此 negative result 实际强化了 C1：image tokens 的 action-relevant  geometry
+    来自 visual content，instruction presence 不影响。但 median 档位下  Reviewer 2 会追问："if instruction
+    doesn''t matter for image tokens, what exactly  does VLA training change?" — 这个问题的答案在
+    C2（routing at instruction token positions）， 但需要更清晰的 framing。
+
+    '
+- name: 2×2 training × instruction matrix
+  plan_id: plan_007
+  description: 四条件全收敛验证 — trained/untrained × with/without instruction
+  expected_results:
+    trained_with_inst: 0.4876
+    trained_no_inst: 0.489
+    untrained_with_inst: 0.4846
+    untrained_no_inst: 0.4802
+    bootstrap_delta_ci: '[-0.058, 0.072] includes 0'
+    max_pairwise_delta: 0.0088
+    dino_baseline: 0.388
+  result_rationale: "2×2 matrix 所有 4 cells 收敛在 0.480-0.489 的窄带中，bootstrap CI 包含 0。\
+    \ 这是 C3 \"instruction invariance\" observation 的定量基础。Median 档位下被接受 但 reviewer\
+    \ 的解读分歧： - Reviewer 1：接受，认为 \"vision encoder geometry dominates\" 是 clean result\
+    \ - Reviewer 2：认为这意味着 \"neither training nor instruction has meaningful effect\
+    \ \n  on image token geometry\"，进而质疑论文的 novelty——如果训练不改变 RSA，论文需要\n  更强地论证 routing/R²\
+    \ 变化的意义\n- Reviewer 3：接受，但要求将此与 C2 的 exit collapse（R² 层面的变化）明确对比——\n  RSA 不变但\
+    \ R² 变化说明 \"geometry preserved but decodability reorganized\"\n"
+  tables:
+  - title: '2×2 Factorial Design: RSA Convergence'
+    columns:
+    - ''
+    - With Instruction
+    - Without Instruction
+    - Instruction Effect
+    rows:
+    - - Trained
+      - '0.488'
+      - '0.489'
+      - '-0.001'
+    - - Untrained
+      - '0.485'
+      - '0.480'
+      - '+0.004'
+    - - Training Effect
+      - '+0.003'
+      - '+0.009'
+      - —
+  figures_description:
+  - '2×2 interaction plot: RSA on y-axis (range 0.47-0.50), training on x-axis, instruction
+    as separate lines。Lines nearly flat and overlapping — no main effects, no interaction。DINO
+    at 0.388 shown as reference。'
+  analysis: 'Median 档位的关键 pivot point。此实验的 "null result"（4 条件无差异）在 median  scenario
+    下被部分 reviewer 视为 limitation："if your framework can''t detect training  effects
+    in RSA, perhaps RSA is the wrong metric。" 这直接导致 C3 从 core claim  降为 observation。Rebuttal
+    需要论证：RSA invariance + R² divergence = geometry-function  dissociation，这本身是 interesting，但需要
+    behavioral evidence 来确认 functional significance。
+
+    '
+- name: Random instruction control (content invariance)
+  plan_id: plan_008
+  description: 用 random/shuffled/empty instruction 替代真实 instruction 测 RSA 变化
+  expected_results:
+    normal_peak_rsa: 0.4888
+    random_peak_rsa: 0.4835
+    shuffled_peak_rsa: 0.4832
+    empty_peak_rsa: 0.4723
+    max_absolute_delta: 0.0165
+    instruction_invariant: true
+  result_rationale: '三重不变性完备验证：training invariance（plan_007）+ instruction presence
+    invariance （plan_006）+ instruction content invariance（此实验）。所有 delta < 0.017。 Median
+    档位下被全部 reviewer 接受为 thorough control。这实际上强化了 C1 framework 的可信度——image token geometry
+    对 instruction content 完全不敏感。 但 reviewer 会对比 counterfactual sensitivity results（C2-X
+    CF）：image tokens 对 instruction invariant，但 instruction/last_preaction tokens 高度
+    sensitive（d≥0.45）。 这个 dissociation 本身是 interesting，但在 median 档位下被认为 "consistent
+    with  causal mask — not surprising。"
+
+    '
+  tables:
+  - title: Instruction Content Invariance (Trained Model)
+    columns:
+    - Instruction Type
+    - Peak RSA
+    - Δ vs Normal
+    rows:
+    - - Normal (correct)
+      - '0.489'
+      - baseline
+    - - Random tokens
+      - '0.484'
+      - '-0.005'
+    - - Shuffled words
+      - '0.483'
+      - '-0.006'
+    - - Empty string
+      - '0.472'
+      - '-0.017'
+  figures_description:
+  - 'Per-layer RSA curves: 4 instruction conditions overlaid。All curves within ±0.017
+    band。Peak layers identical (L16)。'
+  analysis: 'Uncontroversial control。所有 reviewer 认为此实验 demonstrates thoroughness。
+    Median 档位下唯一 minor concern：empty string Δ=-0.017 是 4 条件中最大的， 暗示 instruction presence
+    有微弱效应（token count/position effect），但远低于 threshold。
+
+    '
+- name: CKA verification (metric robustness)
+  plan_id: plan_009
+  description: 用 CKA 指标重复 RSA 发现，确保不是指标依赖
+  expected_results:
+    linear_cka_ordering: untrained > trained > projector > DINO
+    rdm_cka_ordering: trained > projector > untrained > DINO
+    rsa_ordering: projector >> trained ≈ untrained >> DINO
+    cka_reversal_detected: true
+    dino_lowest_robust: true
+    last_preaction_highest: 0.127
+  result_rationale: '这是 median 档位的关键 problematic experiment。CKA ordering 与 RSA 反转——
+    CKA 下 untrained > trained（RSA 下 trained ≈ untrained），projector 不再最高。 这直接导致： (1)
+    C3 的 "non-monotonic refinement" 仅在 RSA 下成立，metric-dependent； (2) DINOv2 "highest
+    geometric foundation" 仅在 RSA 下成立； (3) 1-2 位 reviewer 认为 RSA 结果不可推广。 但 DINO 在所有
+    metrics 下均最低（robust），且 last_preaction >> image_mean 的 redistribution pattern 在
+    CKA 下也成立。 A2 partially 的表现：exit collapse 主要基于 R²（functional metric），不依赖 RSA/CKA，
+    所以 exit collapse 本身不受 CKA reversal 影响。但 C3 vision encoder geometry claim  被严重
+    undercut。
+
+    '
+  tables:
+  - title: RSA vs CKA Metric Comparison
+    columns:
+    - Representation
+    - RSA (ρ)
+    - Linear CKA
+    - RDM-CKA
+    - Consistent?
+    rows:
+    - - SigLIP Projector
+      - '0.615'
+      - '0.081'
+      - '0.257'
+      - No — RSA >> CKA
+    - - VLA Trained (img_mean)
+      - '0.488'
+      - '0.083'
+      - '0.260'
+      - 'No'
+    - - VLA Untrained (img_mean)
+      - '0.485'
+      - '0.089'
+      - '0.246'
+      - No — CKA reversal
+    - - DINO cls_token
+      - '0.388'
+      - '0.066'
+      - '0.241'
+      - Yes — lowest in all
+    - - VLA Trained (last_pre)
+      - —
+      - '0.127'
+      - '0.290'
+      - Highest in CKA
+  figures_description:
+  - 'Side-by-side bar charts: RSA ordering (projector > trained ≈ untrained > DINO)
+    vs CKA ordering (untrained > trained > projector > DINO for linear CKA)。Visual
+    对比 highlights reversal。'
+  analysis: 'Median 档位核心 attack surface。Reviewer 2 的典型评论： "The RSA-CKA dissociation
+    undermines confidence in the geometric interpretation.  The authors claim ''non-monotonic
+    refinement'' based on RSA, but CKA shows monotonic  structure. This metric dependence
+    should be acknowledged as a fundamental limitation,  not relegated to an appendix."
+    Rebuttal 策略：承认 dissociation，将 C3 降为 "observation under RSA"，强调 C2 （exit collapse,
+    routing）基于 R² functional probe，不依赖 RSA/CKA 选择。 Reviewer acceptance for C3 drops
+    to ~0.4，但 C2 不受影响（~0.75）。
+
+    '
+- name: LIBERO-Spatial cross-benchmark replication
+  plan_id: plan_010
+  description: 第三个 benchmark 交叉验证 RSA inverted-U 和 R² patterns
+  expected_results:
+    rsa_trained_img_peak:
+      layer: 14
+      rsa: 0.691
+    rsa_trained_lastpre_peak:
+      layer: 15
+      rsa: 0.695
+    rsa_untrained_img_peak:
+      layer: 0
+      rsa: 0.652
+    r2_trained_img_peak:
+      layer: 13
+      R2: 0.696
+    r2_trained_lastpre_peak:
+      layer: 21
+      R2: 0.675
+    r2_untrained_img_peak:
+      layer: 0
+      R2: 0.673
+    bootstrap_p: <0.001 for all trained vs untrained
+    cross_benchmark_consistency: high — peak layers within 2-layer range
+  result_rationale: 'LIBERO-Spatial 复现了 LIBERO-Goal 的所有核心 patterns：trained inverted-U,  untrained
+    flat/declining, bootstrap significant。Peak layers 一致（Goal L8-L13,  Spatial L13-L21）。Median
+    档位下此实验强化了 within-OpenVLA 的 reproducibility， 被 reviewer 接受。但 reviewer 会注意到： (1)
+    仍然是同一架构（OpenVLA），跨架构验证更重要（D088-D094 addresses this）； (2) RSA inverted-U 的 rise
+    phase 在 Spatial 中 Δρ=0.039（Goal 中 0.016）， 略更 robust 但仍在 metric-dependent 的质疑范围内。
+
+    '
+  tables:
+  - title: Cross-Benchmark Replication (Goal vs Spatial)
+    columns:
+    - Metric
+    - Goal Peak
+    - Spatial Peak
+    - Δ Layers
+    rows:
+    - - RSA trained img_mean
+      - L12 (0.628)
+      - L14 (0.691)
+      - '+2'
+    - - RSA trained last_pre
+      - L12 (0.643)
+      - L15 (0.695)
+      - '+3'
+    - - R² trained img_mean
+      - L8 (0.655)
+      - L13 (0.696)
+      - '+5'
+    - - R² trained last_pre
+      - L13 (0.678)
+      - L21 (0.675)
+      - '+8'
+  figures_description:
+  - 'Dual-panel per-layer profile: Goal (left) vs Spatial (right), with RSA and R²
+    curves overlaid。Both show inverted-U for trained condition。Peak layers marked
+    with vertical lines。'
+  analysis: 'Reviewer 接受 cross-benchmark replication。Median 档位下 Reviewer 1 可能评价： "Good
+    that patterns replicate across task suites, but both are within the same  model
+    (OpenVLA). The cross-architecture validation (TracVLA, NORA) is more convincing  for
+    the generalization claim." 此实验对 A1 holds 贡献但不是 decisive。
+
+    '
+- name: Full-layer R² scan (132 probes)
+  plan_id: plan_011
+  description: 33 layers × 2 conditions × 2 aggregations — R² per-layer curve 验证 exit
+    collapse
+  expected_results:
+    trained_image_mean_peak:
+      layer: 8
+      R2: 0.6553
+    trained_last_preaction_peak:
+      layer: 13
+      R2: 0.6779
+    untrained_image_mean_peak:
+      layer: 0
+      R2: 0.6403
+    untrained_last_preaction_peak:
+      layer: 32
+      R2: 0.6093
+    bootstrap_best_vs_best_imgmean:
+      delta: 0.015
+      p: 0.006
+    bootstrap_best_vs_best_lastpre:
+      delta: 0.069
+      p: 0.0001
+    untrained_L10_L13_collapse: R² near -0.33 (pathological)
+  result_rationale: "此实验是 C2 exit collapse 的 foundational evidence（OpenVLA 内部）。 Trained\
+    \ last_preaction 显示经典 inverted-U：L13 peak 0.678 → L32 exit 0.609（Δ=0.069）。 Untrained\
+    \ 则 L10-L13 完全 collapse（R² ≈ -0.33），仅 L32 恢复到 0.609。\nMedian 档位下（A2 partially）：\
+    \ - Exit collapse pattern 被接受（3/4 reviewers） - 但 Reviewer 3 质疑 Δ>0.10 阈值的 principled\
+    \ justification：为什么不是 0.05 或 0.15？\n  这个阈值是 ad hoc 还是有统计或领域基础？\n- Rebuttal 需要补充\
+    \ sensitivity analysis：在 0.05/0.10/0.15 三个阈值下 pattern 是否稳定\n注意：OpenVLA 的 R² exit\
+    \ Δ 在 v3 MCCV 修正后仅 0.033-0.086（VLA→VLA transition）， 低于 0.10 阈值。真正的 exit collapse\
+    \ 来自 TracVLA/NORA（VLM→VLA transition, Δ=0.156-0.455）。 此实验建立了 baseline expectation，但\
+    \ median 档位下 reviewer 会质疑 threshold choice。\n"
+  tables:
+  - title: R² Peak-Exit Comparison (OpenVLA, LIBERO-Goal)
+    columns:
+    - Condition
+    - Peak Layer
+    - Peak R²
+    - Exit R²
+    - Δ(peak-exit)
+    rows:
+    - - Trained img_mean
+      - L8
+      - '0.655'
+      - '0.520'
+      - '0.135'
+    - - Trained last_pre
+      - L13
+      - '0.678'
+      - '0.609'
+      - '0.069'
+    - - Untrained img_mean
+      - L0
+      - '0.640'
+      - '0.584'
+      - '0.056'
+    - - Untrained last_pre
+      - L32
+      - '0.609'
+      - '0.609'
+      - '0.000'
+  - title: Bootstrap Statistical Comparison
+    columns:
+    - Comparison
+    - Δ R²
+    - p-value
+    - Significant?
+    rows:
+    - - Best-vs-best img_mean
+      - '+0.015'
+      - '0.006'
+      - 'Yes'
+    - - Best-vs-best last_pre
+      - '+0.069'
+      - <0.0001
+      - 'Yes'
+    - - Same-layer L8 img_mean
+      - '+0.123'
+      - <0.0001
+      - 'Yes'
+    - - Same-layer L13 last_pre
+      - '+1.007'
+      - <0.0001
+      - Yes (collapsed)
+  figures_description:
+  - 'Per-layer R² profile: trained vs untrained, image_mean and last_preaction in
+    separate panels。Trained shows inverted-U with gradual decline。Untrained shows
+    deep-layer collapse (L10-L13 near zero) with L32 recovery spike。Shaded 95% CI
+    bands from bootstrap。'
+  analysis: 'Median 档位核心争议之一。Reviewer 3 的典型 comment： "The Δ>0.10 threshold for ''substantial''
+    exit collapse appears arbitrary. At this  threshold, OpenVLA shows collapse only
+    for image_mean (Δ=0.135) but not last_preaction  (Δ=0.069). The authors should
+    provide a principled justification or show that  conclusions hold across a range
+    of thresholds."
+
+    Rebuttal strategy：补充 sensitivity analysis showing pattern stability at 0.05/0.10/0.15。
+    At Δ>0.05：VLM→VLA 仍然 6/6，VLA→VLA 变为 2/4（Goal Δ=0.086 > 0.05）。 At Δ>0.15：VLM→VLA
+    仍然 5/6（TracVLA Spatial Δ=0.138 borderline）。 二元分离（VLM→VLA vs VLA→VLA）在所有阈值下基本 stable。
+
+    '
+- name: CLIP-ViT pretraining control
+  plan_id: plan_012
+  description: CLIP ViT-L 替代 SigLIP，区分 VL pretraining 贡献 vs encoder quality
+  expected_results:
+    projector_R2: 0.6298
+    dino_cls_R2: 0.6343
+    clip_cls_R2: 0.5866
+    vla_image_mean_L19_R2: 0.5986
+    vla_last_preaction_L19_R2: 0.6711
+    ordering: last_pre > dino_cls ≈ projector > vla_img_mean > clip_cls
+    clip_vs_dino_p: 0.0
+  result_rationale: "CLIP < DINO 在 RSA 和 R² 下均成立，否定了 \"VL pretraining dominance\"\
+    \ hypothesis。 Self-supervised (DINOv2) 比 VL pretrained (CLIP) 更好地 capture action-relevant\
+    \ structure。 Median 档位下此结果被接受，但 Reviewer 1 可能质疑： (1) CLIP ViT-L 和 DINOv2 ViT-L\
+    \ 是不同的 architecture variants，不能 solely \n    attribute to pretraining difference；\n\
+    (2) SigLIP（OpenVLA 的实际 encoder）是 VL pretrained 但 RSA=0.615 > DINO=0.631，\n   \
+    \ 矛盾——但这通过 plan_013 branch split 解释（fused backbone 中 DINOv2 和 SigLIP \n    贡献\
+    \ equally）。\n"
+  tables:
+  - title: Cross-Encoder Action Probe R² (Unified Hyperparams)
+    columns:
+    - Encoder
+    - Pretraining
+    - R²
+    - vs Projector p
+    rows:
+    - - VLA last_pre L19
+      - VLA fine-tuned
+      - '0.671'
+      - '0.002'
+    - - DINO cls_token
+      - Self-supervised
+      - '0.634'
+      - 0.557 (n.s.)
+    - - SigLIP+Projector
+      - VL + projection
+      - '0.630'
+      - baseline
+    - - VLA img_mean L19
+      - VLA fine-tuned
+      - '0.599'
+      - <0.001
+    - - CLIP cls_token
+      - VL contrastive
+      - '0.587'
+      - <0.001
+  figures_description:
+  - 'Bar chart with 95% CI: R² for 5 representations。DINO ≈ Projector > CLIP clearly。last_preaction
+    highest。'
+  analysis: 'Clean result，全部 reviewer 接受。Median 档位下此实验的贡献是 "supporting evidence  for
+    C3 vision encoder geometry observation"——DINOv2 ranking under RSA 在 functional  probe
+    中也 partially replicated（DINO R² ≈ Projector R²）。但 CKA reversal（plan_009） 仍然 undermines
+    跨 metric generalizability。
+
+    '
+- name: Branch-split RSA (DINOv2 vs SigLIP in fused backbone)
+  plan_id: plan_013
+  description: 分离 DinoSigLIP fused backbone 中 DINOv2 branch vs SigLIP branch 的 RSA
+    贡献
+  expected_results:
+    dinov2_branch_rsa: 0.619
+    siglip_branch_rsa: 0.621
+    fused_2176d_rsa: 0.634
+    post_projector_4096d_rsa: 0.615
+    standalone_dino_cls_rsa: 0.692
+    standalone_dino_patch_mean_rsa: 0.631
+  result_rationale: "DINOv2 ≈ SigLIP（Δ < 0.002）在 fused backbone 中贡献 equally。 Fused\
+    \ > either branch（complementary benefit）。Projector 从 0.634 压缩到 0.615。 Median 档位下此实验被接受为\
+    \ clean decomposition： - Reviewer 接受 \"both branches contribute equally\" 的结论\
+    \ - 但注意到 standalone DINO cls (0.692) > in-backbone DINOv2 branch (0.619)，\n  差距可能来自\
+    \ extraction layer difference（standalone = last layer，\n  in-backbone = fused\
+    \ intermediate）——这不是 meaningful comparison\n- 此实验支持 C3 但 C3 已降为 observation，所以贡献有限\n"
+  tables:
+  - title: Fused Backbone Branch Decomposition
+    columns:
+    - Component
+    - RSA (ρ)
+    - Dim
+    - Note
+    rows:
+    - - DINOv2 branch
+      - '0.619'
+      - '1088'
+      - in-backbone
+    - - SigLIP branch
+      - '0.621'
+      - '1088'
+      - in-backbone
+    - - Fused backbone
+      - '0.634'
+      - '2176'
+      - before projection
+    - - Post-projector
+      - '0.615'
+      - '4096'
+      - LLM input
+    - - Standalone DINO cls
+      - '0.692'
+      - '1024'
+      - different layer
+  figures_description:
+  - 'Stacked decomposition diagram: DINOv2 (0.619) + SigLIP (0.621) → Fused (0.634)
+    → Projector (0.615)。Arrows show fusion gain (+0.013) and projection loss (-0.019)。'
+  analysis: Median 档位下所有 reviewer 接受。此实验的价值在 median scenario 下有限—— C3 已降为 observation，branch-split
+    的精细分解不会改变 reviewer 对 core claims 的评估。 但它 demonstrates thoroughness，可能为 reviewer
+    1 的正面评价贡献 "well-executed experimental design"。 Reviewer 3 可能在 minor comments 中建议
+    "move branch-split analysis to supplementary  to save main text space for the
+    cross-architecture results which are more impactful。"

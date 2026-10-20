@@ -1,0 +1,37 @@
+{
+  "exp_id": "tracvla_spatial_pipeline",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:04:50.170Z",
+    "updated_at": "2026-05-21T02:14:09.469Z",
+    "spec": {
+      "command": "python /root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "520668",
+      "log_path": "~/runs/vla-ssd/tracvla_spatial_pipeline.log",
+      "submitted_at": "2026-05-21T02:05:22.292Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_spatial/",
+      "data_count": 5000,
+      "model_name": "tracevla-phi3v",
+      "seed": 42
+    },
+    "hypothesis": "The convergent entry-exit routing architecture observed in TraceVLA-Phi3V on LIBERO-Goal (inverted-U R² profile, instruction-dominant L1 heads) generalizes to LIBERO-Spatial tasks, demonstrating that VLA training produces consistent representational reorganization across spatial reasoning tasks.",
+    "reproduce": {
+      "finished_at": "2026-05-21T02:14:07.577Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T02:14:09.716615+00:00",
+  "trigger": "update_registry"
+}

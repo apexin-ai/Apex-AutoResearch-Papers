@@ -1,0 +1,16 @@
+{
+  "exp_id": "object_untrained_pipeline_v1",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:59:29.590Z",
+    "updated_at": "2026-05-21T08:59:50.830Z",
+    "hypothesis": "Untrained OpenVLA base model (openvla-7b) on LIBERO-Object lacks the convergent routing pattern (R² collapse, L1 specialization, counterfactual convergence) seen in the fine-tuned model, confirming routing is training-induced.",
+    "parent": "object_pipeline_ridge_v2"
+  },
+  "timestamp": "2026-05-21T08:59:51.078180+00:00",
+  "trigger": "update_registry"
+}

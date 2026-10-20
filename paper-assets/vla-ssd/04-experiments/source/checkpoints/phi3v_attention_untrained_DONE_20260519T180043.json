@@ -1,0 +1,36 @@
+{
+  "exp_id": "phi3v_attention_untrained",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:46:41.488Z",
+    "updated_at": "2026-05-19T18:00:43.363Z",
+    "hypothesis": "Base Phi-3-mini (before VLA training) does NOT show instruction-dominant routing at L1, confirming the pattern is learned during VLA training rather than inherited from the pretrained LLM — paralleling the llama2_base_control result for OpenVLA.",
+    "parent": "llama2_base_control",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T17:47:49.102Z"
+    },
+    "metrics": {
+      "L1_instruction_dominant_heads": 28,
+      "L1_total_heads": 32,
+      "L1_mean_text_attn": 0.7745,
+      "L1_mean_image_attn": 0.2255,
+      "L0_instruction_dominant_heads": 3,
+      "all_layers_avg_dominant_heads": 27.1,
+      "note": "Base Phi-3-mini-4k-instruct (instruction-tuned) already shows strong text-dominant attention. 28/32 at L1 vs trained TracVLA (compare when available). Unlike OpenVLA untrained=0, Phi-3-instruct has pre-existing instruction routing."
+    },
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json",
+    "log_path": "/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py",
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T18:00:43.363Z"
+  },
+  "timestamp": "2026-05-19T18:00:43.593472+00:00",
+  "trigger": "update_registry"
+}

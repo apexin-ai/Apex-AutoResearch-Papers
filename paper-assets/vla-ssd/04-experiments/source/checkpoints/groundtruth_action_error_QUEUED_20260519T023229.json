@@ -1,0 +1,16 @@
+{
+  "exp_id": "groundtruth_action_error",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:59:30.694Z",
+    "updated_at": "2026-05-19T02:32:28.964Z",
+    "parent": "action_trajectory_control",
+    "hypothesis": "Ablating instruction-dominant heads (top-24 by L1 instruction attention) increases error relative to LIBERO ground-truth actions, indicating these heads contribute to action quality via instruction grounding. Control: ablating bottom-24 non-instruction heads should show equal or smaller GT error increase."
+  },
+  "timestamp": "2026-05-19T02:32:29.185158+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,113 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023rt2,kim2024openvla}
+\citation{grant2026visual}
+\citation{haon2025instructions}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{brohan2023rt2}
+\citation{kim2024openvla}
+\citation{belinkov2017neural,hewitt2019structural}
+\citation{kriegeskorte2008representational}
+\citation{kornblith2019similarity}
+\citation{hewitt2019designing}
+\citation{grant2026visual}
+\citation{haon2025instructions}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representational Analysis of Transformers.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instruction Following in Embodied Agents.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Diagnostic Framework for VLA Profiling}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method: Diagnostic Framework for VLA Profiling}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overview}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Analysis Methods}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Counterfactual Perturbation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Architectures and Datasets}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Token-Level Specialization (C1 Framework)}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:token_specialization}{{4.1}{3}{Token-Level Specialization (C1 Framework)}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Instruction Classification.}{3}{section*.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-instruction classification accuracy across conditions and layers. Image-mean tokens remain at chance (10\%) due to causal masking. Trained and base models saturate quickly; random-init decays in deep layers.}}{3}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:cross_instruction}{{1}{3}{Cross-instruction classification accuracy across conditions and layers. Image-mean tokens remain at chance (10\%) due to causal masking. Trained and base models saturate quickly; random-init decays in deep layers}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces $2\times 2$ factorial design: RSA of image tokens under training $\times $ instruction conditions. Both factors produce null effects ($\Delta < 0.005$), as predicted by causal masking and frozen encoder constraints. Bootstrap CI includes zero for both effects.}}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:2x2}{{2}{4}{$2\times 2$ factorial design: RSA of image tokens under training $\times $ instruction conditions. Both factors produce null effects ($\Delta < 0.005$), as predicted by causal masking and frozen encoder constraints. Bootstrap CI includes zero for both effects}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Instruction Ablation and 2$\times $2 Factorial Design.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Random Instruction Control.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Vision Encoder Geometry}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:encoder}{{4.2}{4}{Vision Encoder Geometry}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Encoder quality measured by RSA and R$^2$ action probes. DINO (self-supervised, no language) achieves highest RSA and competitive R$^2$, while VL-pretrained encoders (SigLIP, CLIP) do not outperform. Language supervision appears unnecessary for action-relevant geometric structure.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:encoder_rsa}{{3}{4}{Encoder quality measured by RSA and R$^2$ action probes. DINO (self-supervised, no language) achieves highest RSA and competitive R$^2$, while VL-pretrained encoders (SigLIP, CLIP) do not outperform. Language supervision appears unnecessary for action-relevant geometric structure}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Encoder RSA and Pretraining Controls.}{4}{table.caption.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SigLIP+Projector RSA Scope.}{4}{table.caption.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces SigLIP+Projector RSA decomposition (OpenVLA only). The frozen vision encoder provides the highest geometric alignment ($\rho = 0.615$); LLM processing degrades it to $\rho = 0.488$, a drop of $\Delta = 0.127$.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:siglip_scope}{{4}{5}{SigLIP+Projector RSA decomposition (OpenVLA only). The frozen vision encoder provides the highest geometric alignment ($\rho = 0.615$); LLM processing degrades it to $\rho = 0.488$, a drop of $\Delta = 0.127$}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Branch-Split Analysis.}{5}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Metric ordering reversal between RSA and CKA. The two metrics give opposite rankings for trained vs.\ untrained representations, indicating that conclusions about action-relevant structure are metric-dependent.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:metric_reversal}{{5}{5}{Metric ordering reversal between RSA and CKA. The two metrics give opposite rankings for trained vs.\ untrained representations, indicating that conclusions about action-relevant structure are metric-dependent}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-Layer RSA and CKA Divergence.}{5}{table.caption.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Output Head Analysis.}{5}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Trained vs.\ untrained differences across six analysis methods. Deltas are uniformly small, consistent with the frozen-encoder prediction. CKA reverses the RSA direction, breaking full-method consistency.}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:six_methods}{{6}{5}{Trained vs.\ untrained differences across six analysis methods. Deltas are uniformly small, consistent with the frozen-encoder prediction. CKA reverses the RSA direction, breaking full-method consistency}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Six-Method Consistency Check.}{5}{table.caption.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}R$^2$ Exit Collapse}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exit_collapse}{{4.3}{6}{R$^2$ Exit Collapse}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces R$^2$ action probe profiles across conditions (OpenVLA, LIBERO-Goal). Exit collapse ($\Delta = 0.256$) appears only in the VLA-trained condition. NLP fine-tuning (Llama-2-chat) shows flat noise floor, confirming action-specificity.}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:r2_scan}{{7}{6}{R$^2$ action probe profiles across conditions (OpenVLA, LIBERO-Goal). Exit collapse ($\Delta = 0.256$) appears only in the VLA-trained condition. NLP fine-tuning (Llama-2-chat) shows flat noise floor, confirming action-specificity}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{Full-Layer R$^2$ Scan (OpenVLA).}{6}{table.caption.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces NLP fine-tuning controls across three LLM backbones. All show flat R$^2 \approx 0.155$ (noise floor) with $\Delta = 0.000$, confirming that exit collapse requires action-oriented training, not general fine-tuning.}}{6}{table.caption.22}\protected@file@percent }
+\newlabel{tab:nlp_control}{{8}{6}{NLP fine-tuning controls across three LLM backbones. All show flat R$^2 \approx 0.155$ (noise floor) with $\Delta = 0.000$, confirming that exit collapse requires action-oriented training, not general fine-tuning}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{NLP Fine-Tuning Control.}{6}{table.caption.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-benchmark R$^2$ comparison for OpenVLA. LIBERO-Spatial replicates the pattern from Goal: small trained-vs-untrained deltas consistent with VLA$\to $VLA transition producing minimal representational change.}}{6}{table.caption.24}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{9}{6}{Cross-benchmark R$^2$ comparison for OpenVLA. LIBERO-Spatial replicates the pattern from Goal: small trained-vs-untrained deltas consistent with VLA$\to $VLA transition producing minimal representational change}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Benchmark Replication (LIBERO-Spatial).}{6}{table.caption.24}\protected@file@percent }
+\newlabel{sec:cross_arch_collapse}{{4.3}{7}{Cross-Architecture R$^2$ Exit Collapse}{section*.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces R$^2$ exit collapse matrix: VLM$\to $VLA vs.\ VLA$\to $VLA transitions across architectures and task suites. VLM$\to $VLA transition produces substantial collapse in 6/6 cells ($\Delta = 0.138$--$0.691$); VLA$\to $VLA fine-tuning produces no cell above the $\Delta > 0.10$ threshold (0/4 cells, $\Delta = 0.033$--$0.086$). MCCV v3 corrects prior train-test leakage.}}{7}{table.caption.26}\protected@file@percent }
+\newlabel{tab:exit_collapse_matrix}{{10}{7}{R$^2$ exit collapse matrix: VLM$\to $VLA vs.\ VLA$\to $VLA transitions across architectures and task suites. VLM$\to $VLA transition produces substantial collapse in 6/6 cells ($\Delta = 0.138$--$0.691$); VLA$\to $VLA fine-tuning produces no cell above the $\Delta > 0.10$ threshold (0/4 cells, $\Delta = 0.033$--$0.086$). MCCV v3 corrects prior train-test leakage}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Architecture R$^2$ Exit Collapse.}{7}{table.caption.26}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Practical utility of exit collapse as a diagnostic tool. While directionally consistent, its one-time nature and magnitude variability limit quantitative diagnostic applications.}}{7}{table.caption.28}\protected@file@percent }
+\newlabel{tab:diagnostic_value}{{11}{7}{Practical utility of exit collapse as a diagnostic tool. While directionally consistent, its one-time nature and magnitude variability limit quantitative diagnostic applications}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic Value Assessment.}{7}{table.caption.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Counterfactual Sensitivity Analysis}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:cf_sensitivity}{{4.4}{7}{Counterfactual Sensitivity Analysis}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Architecture Counterfactual Results.}{7}{table.caption.30}\protected@file@percent }
+\citation{hewitt2019designing}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Counterfactual sensitivity across architectures. Only 2/7 architecture-suite pairs allow fair trained-vs-untrained comparison (same metric). 5/7 pairs use incommensurable metrics (Cohen's $d$ in action space vs.\ cosine distance in hidden space).}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:cf_sensitivity}{{12}{8}{Counterfactual sensitivity across architectures. Only 2/7 architecture-suite pairs allow fair trained-vs-untrained comparison (same metric). 5/7 pairs use incommensurable metrics (Cohen's $d$ in action space vs.\ cosine distance in hidden space)}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Gap between what counterfactual analysis measures and what would establish functional significance. No closed-loop behavioral data is available.}}{8}{table.caption.32}\protected@file@percent }
+\newlabel{tab:behavioral_gap}{{13}{8}{Gap between what counterfactual analysis measures and what would establish functional significance. No closed-loop behavioral data is available}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {paragraph}{Missing Behavioral Validation.}{8}{table.caption.32}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Spearman $\rho = 1.0$ between token novelty and Cohen's $d$, indicating that CF sensitivity tracks lexical/positional distance rather than semantic content. Trajectory-level $d$ inflates token-level $d$ by $\sim $4$\times $ via temporal autocorrelation.}}{8}{table.caption.34}\protected@file@percent }
+\newlabel{tab:token_overlap}{{14}{8}{Spearman $\rho = 1.0$ between token novelty and Cohen's $d$, indicating that CF sensitivity tracks lexical/positional distance rather than semantic content. Trajectory-level $d$ inflates token-level $d$ by $\sim $4$\times $ via temporal autocorrelation}{table.caption.34}{}}
+\@writefile{toc}{\contentsline {paragraph}{Token Overlap and Surface-Level Sensitivity.}{8}{table.caption.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Head Ablation and Functional Specificity.}{8}{table.caption.36}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Head ablation results. Instruction-dominant heads show no disproportionate functional role: their per-head effect ($d = 0.027$) is comparable to random heads ($d = 0.025$), and ground-truth action quality is unaffected ($\Delta $MSE $= -0.001$, $p = 0.52$). Specificity ratio of 1.08$\times $ is negligible.}}{9}{table.caption.36}\protected@file@percent }
+\newlabel{tab:head_ablation}{{15}{9}{Head ablation results. Instruction-dominant heads show no disproportionate functional role: their per-head effect ($d = 0.027$) is comparable to random heads ($d = 0.025$), and ground-truth action quality is unaffected ($\Delta $MSE $= -0.001$, $p = 0.52$). Specificity ratio of 1.08$\times $ is negligible}{table.caption.36}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Architecture Attention Analysis}{9}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:attention}{{4.5}{9}{Cross-Architecture Attention Analysis}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces L1 instruction-dominant head counts across architectures. Training does not increase head counts; in TracVLA, it reduces them. Head counts reflect base-model language pretraining, not VLA fine-tuning.}}{9}{table.caption.38}\protected@file@percent }
+\newlabel{tab:l1_heads}{{16}{9}{L1 instruction-dominant head counts across architectures. Training does not increase head counts; in TracVLA, it reduces them. Head counts reflect base-model language pretraining, not VLA fine-tuning}{table.caption.38}{}}
+\@writefile{toc}{\contentsline {paragraph}{L1 Attention Heads: Base-Model Artifact (D090).}{9}{table.caption.38}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Status of originally claimed contributions after the D090 base-model control. The experimental framework survives; most empirical findings are removed or weakened.}}{9}{table.caption.40}\protected@file@percent }
+\newlabel{tab:contribution_audit}{{17}{9}{Status of originally claimed contributions after the D090 base-model control. The experimental framework survives; most empirical findings are removed or weakened}{table.caption.40}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contribution Audit Post-D090.}{9}{table.caption.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Three-Tier Routing Gradient}{9}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:three_tier}{{4.6}{9}{Three-Tier Routing Gradient}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Three-tier routing gradient. Tier-2 has only $N=1$ data point (openvla-7b), preventing statistical establishment of a gradient. L1 head counts are non-monotonic across tiers (Tier-1 Phi-3 = 32 $>$ Tier-2 = 25 $\approx $ Tier-3 = 24--30).}}{10}{table.caption.41}\protected@file@percent }
+\newlabel{tab:three_tier}{{18}{10}{Three-tier routing gradient. Tier-2 has only $N=1$ data point (openvla-7b), preventing statistical establishment of a gradient. L1 head counts are non-monotonic across tiers (Tier-1 Phi-3 = 32 $>$ Tier-2 = 25 $\approx $ Tier-3 = 24--30)}{table.caption.41}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Synthesis: What VLA Training Contributes}{10}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:synthesis}{{4.7}{10}{Synthesis: What VLA Training Contributes}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Predicted reviewer assessment under worst-case interpretation. Mean score of 4.67/10 reflects strong methodology but thin post-D090 findings and missing behavioral validation.}}{10}{table.caption.42}\protected@file@percent }
+\newlabel{tab:score_prediction}{{19}{10}{Predicted reviewer assessment under worst-case interpretation. Mean score of 4.67/10 reflects strong methodology but thin post-D090 findings and missing behavioral validation}{table.caption.42}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{10}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Honest Assessment of Findings.}{10}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Diagnostic Utility Question.}{10}{section*.44}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\@writefile{toc}{\contentsline {paragraph}{Metric Dependence.}{11}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Missing Behavioral Grounding.}{11}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Framework Value.}{11}{section*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{11}{section*.48}\protected@file@percent }
+\gdef \@abspage@last{11}

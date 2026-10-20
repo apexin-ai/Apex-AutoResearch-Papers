@@ -1,0 +1,36 @@
+{
+  "exp_id": "lg_extract_untrained",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T16:42:35.326Z",
+    "updated_at": "2026-05-15T17:07:16.393Z",
+    "server": "westd-19183",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/extract_features.py --model_path openvla-7b-untrained --output_dir /root/autodl-tmp/vla-ssd/features/untrained_libero_goal/ --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ --gpu 0 --max_demos 50\"",
+      "finished_at": "2026-05-15T16:54:29.998Z"
+    },
+    "failure_reason": "Traceback → -packages/urllib3/util/connection.py\", line 85, in create_connection raise err File \"/root/miniconda3/lib/python3.12/site-packages/urllib3/util/connection.py\", line 73, in create_connection sock.connect(sa) OSError: [Errno 101] Network is unreachable",
+    "completed_at": "2026-05-15T16:54:31.908Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T16:54:33.449692+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: 同 lg_extract_trained — AutoProcessor.from_pretrained() 网络不可达。提取进度到 22%。诊断 Worker: worker_diagnose_lg_extract_failed_20260515T165835"
+      }
+    },
+    "notes": "失败原因: 同 lg_extract_trained — AutoProcessor.from_pretrained() 网络不可达。提取进度到 22%。诊断 Worker: worker_diagnose_lg_extract_failed_20260515T165835"
+  },
+  "timestamp": "2026-05-15T17:07:16.549775+00:00",
+  "trigger": "update_registry"
+}

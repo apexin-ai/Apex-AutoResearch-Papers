@@ -1,0 +1,122 @@
+{
+  "config": {
+    "experiment": "counterfactual_tracvla_spatial",
+    "conditions": ["wrong", "empty", "shuffled", "paraphrased"],
+    "n_tasks": 2,
+    "n_demos_per_task": 1,
+    "n_timesteps_per_demo": 2,
+    "model": "tracevla-phi3v",
+    "action_space": "normalized_bins",
+    "seed": 42,
+    "task_names": [
+      "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate"
+    ]
+  },
+  "wrong": {
+    "global_metrics": {
+      "paired_mse": {"mean": 0.065381, "std": 0.035064, "cohens_d": 1.6148},
+      "per_dim_shift": {
+        "means": [0.092157, 0.072549, 0.215686, 0.164706, 0.22549, 0.264706, 0.247059],
+        "stds": [0.054445, 0.04415, 0.203959, 0.056829, 0.126025, 0.248293, 0.247059],
+        "dim_names": ["dx", "dy", "dz", "rx", "ry", "rz", "gripper"]
+      },
+      "token_divergence_rate": 1.0,
+      "n_samples": 4
+    },
+    "per_task": {
+      "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate": {
+        "cohens_d": 1.4614, "demo_level_cohens_d": 0.0, "n_samples": 2, "mean_mse": 0.047467, "demo_mses": [0.047467],
+        "instruction_correct": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "instruction_counterfactual": "pick up the black bowl on the ramekin and place it on the plate"
+      },
+      "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate": {
+        "cohens_d": 1.6401, "demo_level_cohens_d": 0.0, "n_samples": 2, "mean_mse": 0.083295, "demo_mses": [0.083295],
+        "instruction_correct": "pick up the black bowl on the ramekin and place it on the plate",
+        "instruction_counterfactual": "pick up the black bowl on the cookie box and place it on the plate"
+      }
+    },
+    "cross_task_variance": {"cohens_d": {"values": [1.4614, 1.6401], "mean": 1.5508, "std": 0.0893, "cv": 0.0576}}
+  },
+  "empty": {
+    "global_metrics": {
+      "paired_mse": {"mean": 0.082726, "std": 0.019093, "cohens_d": 3.7523},
+      "per_dim_shift": {
+        "means": [0.22549, 0.045098, 0.262745, 0.131373, 0.398039, 0.14902, 0.370588],
+        "stds": [0.124181, 0.01951, 0.164285, 0.075101, 0.140781, 0.088908, 0.213959],
+        "dim_names": ["dx", "dy", "dz", "rx", "ry", "rz", "gripper"]
+      },
+      "token_divergence_rate": 1.0,
+      "n_samples": 4
+    },
+    "per_task": {
+      "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate": {
+        "cohens_d": 9.8828, "demo_level_cohens_d": 0.0, "n_samples": 2, "mean_mse": 0.067675, "demo_mses": [0.067675],
+        "instruction_correct": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "instruction_counterfactual": ""
+      },
+      "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate": {
+        "cohens_d": 4.3504, "demo_level_cohens_d": 0.0, "n_samples": 2, "mean_mse": 0.097778, "demo_mses": [0.097778],
+        "instruction_correct": "pick up the black bowl on the ramekin and place it on the plate",
+        "instruction_counterfactual": ""
+      }
+    },
+    "cross_task_variance": {"cohens_d": {"values": [9.8828, 4.3504], "mean": 7.1166, "std": 2.7662, "cv": 0.3887}}
+  },
+  "shuffled": {
+    "global_metrics": {
+      "paired_mse": {"mean": 0.055765, "std": 0.031054, "cohens_d": 1.5552},
+      "per_dim_shift": {
+        "means": [0.160784, 0.105882, 0.180392, 0.190196, 0.241176, 0.272549, 0.0],
+        "stds": [0.143178, 0.056693, 0.116728, 0.160581, 0.243034, 0.173027, 0.0],
+        "dim_names": ["dx", "dy", "dz", "rx", "ry", "rz", "gripper"]
+      },
+      "token_divergence_rate": 1.0,
+      "n_samples": 4
+    },
+    "per_task": {
+      "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate": {
+        "cohens_d": 1.2715, "demo_level_cohens_d": 0.0, "n_samples": 2, "mean_mse": 0.067372, "demo_mses": [0.067372],
+        "instruction_correct": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "instruction_counterfactual": "plate ramekin between the the on it the and up the place plate bowl and pick black"
+      },
+      "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate": {
+        "cohens_d": 1.9534, "demo_level_cohens_d": 0.0, "n_samples": 2, "mean_mse": 0.044159, "demo_mses": [0.044159],
+        "instruction_correct": "pick up the black bowl on the ramekin and place it on the plate",
+        "instruction_counterfactual": "and place it plate the the black up on ramekin the on bowl pick"
+      }
+    },
+    "cross_task_variance": {"cohens_d": {"values": [1.2715, 1.9534], "mean": 1.6124, "std": 0.3409, "cv": 0.2114}}
+  },
+  "paraphrased": {
+    "global_metrics": {
+      "paired_mse": {"mean": 0.07235, "std": 0.04034, "cohens_d": 1.5532},
+      "per_dim_shift": {
+        "means": [0.35098, 0.237255, 0.076471, 0.115686, 0.292157, 0.192157, 0.123529],
+        "stds": [0.101413, 0.127843, 0.056387, 0.118087, 0.207908, 0.193513, 0.213959],
+        "dim_names": ["dx", "dy", "dz", "rx", "ry", "rz", "gripper"]
+      },
+      "token_divergence_rate": 1.0,
+      "n_samples": 4
+    },
+    "per_task": {
+      "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate": {
+        "cohens_d": 12.5017, "demo_level_cohens_d": 0.0, "n_samples": 2, "mean_mse": 0.111944, "demo_mses": [0.111944],
+        "instruction_correct": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "instruction_counterfactual": "grab the black bowl between the plate and ramekin and put it on the plate"
+      },
+      "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate": {
+        "cohens_d": 2.6032, "demo_level_cohens_d": 0.0, "n_samples": 2, "mean_mse": 0.032757, "demo_mses": [0.032757],
+        "instruction_correct": "pick up the black bowl on the ramekin and place it on the plate",
+        "instruction_counterfactual": "grab the black bowl on the ramekin and put it on the plate"
+      }
+    },
+    "cross_task_variance": {"cohens_d": {"values": [12.5017, 2.6032], "mean": 7.5525, "std": 4.9493, "cv": 0.6553}}
+  },
+  "ranking_by_cohens_d": [
+    {"condition": "empty", "cohens_d": 3.7523, "paired_mse_mean": 0.082726},
+    {"condition": "wrong", "cohens_d": 1.6148, "paired_mse_mean": 0.065381},
+    {"condition": "shuffled", "cohens_d": 1.5552, "paired_mse_mean": 0.055765},
+    {"condition": "paraphrased", "cohens_d": 1.5532, "paired_mse_mean": 0.07235}
+  ]
+}

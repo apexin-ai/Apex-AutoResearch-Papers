@@ -1,0 +1,134 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\label{sec:setup}
+
+\looseness=-1
+We apply all three analyses (\S\ref{sec:cross_arch_analyses}) to the $3 \times 4$ architecture-suite matrix (10 of 12 cells filled; Figure~\ref{fig:result_matrix}, Table~\ref{tab:cross_arch_matrix}).
+For trained models, counterfactual sensitivity uses Cohen's $d$ on action MSE; reference VLMs use cosine distance on hidden representations (different scale; \S\ref{sec:cf_sensitivity}).
+OpenVLA's OXE-pretrained checkpoint produces actions, permitting same-metric comparison (Bonferroni correction in Appendix~\ref{sec:bonferroni_correction}).
+
+%------------------------------------------------------------------
+\subsection{OpenVLA: Motivating Single-Architecture Analysis}
+\label{sec:openvla_routing}
+
+\looseness=-1
+We first establish core phenomena on OpenVLA (Appendix~\ref{sec:openvla_deepdive_appendix}).
+At L1, instruction-dominant heads form a gradient: random initialization 0/32, Llama-2 base 9/32, VLA-trained 24/32.
+Per-layer $R^2$ probing (Figure~\ref{fig:action_r2_threecond}) shows the trained model peaks at L9 ($R^2 = 0.643$), Llama-2 base declines from L0, and random initialization collapses at deep layers.
+All three share L0 ($R^2 = 0.645$); divergence arises from Transformer processing, with VLA training building on pretrained scaffold rather than constructing representations from scratch.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.64\columnwidth]{figures/fig_action_r2_threecond.pdf}
+\caption{Per-layer action-probe $R^2$ for three OpenVLA conditions (3 seeds, mean $\pm$ std); all share L0 ($R^2 = 0.645$). Trained model peaks at L9, Llama-2 base declines from L0, random initialization collapses at deep layers.}
+\label{fig:action_r2_threecond}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_counterfactual_bar.pdf}
+\caption{Counterfactual sensitivity, measured as Cohen's $d$ (OpenVLA, TraceVLA; dashed: $d{=}0.8$) and cosine distance (NORA, ref.\ VLMs; \S\ref{sec:cf_repr}). E=empty, W=wrong, S=shuffled, P=paraphrased.}
+\label{fig:counterfactual_bar}
+\end{figure}
+
+%------------------------------------------------------------------
+\subsection{Exit Collapse: Layer-Wise Action Probing}
+\label{sec:r2_collapse}
+
+\looseness=-1
+We define $R^2$ exit collapse as $\Delta R^2 = R^2_{\text{peak}} - R^2_{\text{exit}}$ (Table~\ref{tab:cross_arch_matrix}).
+VLM-to-VLA fine-tuning shows substantial exit collapse: TraceVLA $\Delta R^2 = 0.156$--$0.362$ across all four suites, NORA $\Delta R^2 = 0.308$--$0.455$ (Figure~\ref{fig:r2_collapse}), all exceeding the $0.10$ threshold.
+Under VLA-to-VLA conditions, OpenVLA shows only small fluctuations ($\Delta R^2 = 0.033$--$0.086$); references similarly show $\Delta R^2 \leq 0.097$.
+Within each architecture, collapse magnitude varies across suites, with TraceVLA ranging from $0.156$ (Spatial) to $0.362$ (Object), suggesting that task demands modulate the degree of exit-layer specialization, though all six VLM-to-VLA cells exceed the $0.10$ threshold.
+A permutation test rejects random grouping ($p = 0.008$; Appendix~\ref{sec:delta_r2_threshold}), and Monte Carlo cross-validation confirms the separation: VLM-to-VLA trained CIs lie entirely above zero, while VLA-to-VLA CIs span zero (Table~\ref{tab:cross_arch_matrix}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_r2_collapse.pdf}
+\caption{\textbf{Layer-wise action-probe $R^2$ (LIBERO-Goal, readout token).} Solid blue: trained; dashed orange: reference; dotted gray: NLP finetuning control ($R^2 = 0.155$, matching backbone family). VLM-to-VLA transitions exhibit pronounced peak-to-exit drops ($\Delta R^2 = 0.16$--$0.46$); VLA-to-VLA remains flat ($< 0.09$); NLP controls produce flat profiles ($\Delta R^2 = 0.000$). Demo-level splitting; see Table~\ref{tab:cross_arch_matrix}.}
+\label{fig:r2_collapse}
+\end{figure}
+
+\paragraph{NLP finetuning control.}\looseness=-1
+To test whether exit collapse is specific to action-oriented training, we probe three chat-finetuned models sharing backbones with our VLAs but lacking action heads or robot data: Llama-2-7b-chat, Phi-3-mini-4k-instruct, and Qwen2.5-3B-Instruct.\footnote{Qwen2.5-3B-Instruct shares the Qwen2.5 language backbone with NORA's Qwen2.5-VL-3B but lacks the vision encoder; see Appendix~\ref{sec:nlp_control_appendix}.}
+All three produce flat $R^2$ profiles ($\Delta R^2 = 0.000$; dashed gray lines in Figure~\ref{fig:r2_collapse}), contrasting with VLM-to-VLA collapse ($\Delta R^2 = 0.156$--$0.455$).
+\textbf{Exit collapse is consistently associated with VLM-to-VLA transitions and absent in both VLA-to-VLA and NLP-only fine-tuning.}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.50\columnwidth]{figures/fig_multi_layer_attn.pdf}\hfill
+\includegraphics[width=0.42\columnwidth]{figures/fig_dose_response.pdf}
+\caption{\textbf{Left:} Instruction-dominant heads across all 32 layers (L1, L31 entry-exit for VLA-trained; L16 peak for Llama-2 base; zero for random). \textbf{Right:} Dose-response ablation (progressively masking instruction-dominant heads); divergence rises through 12 heads then plateaus. 95\% bootstrap CIs.}
+\label{fig:synthesis_panels}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Peak-to-exit action-probe drop across the architecture-suite matrix.} $\Delta R^2$ is computed as the difference between the maximum layer-wise action-probe $R^2$ and the exit-layer $R^2$. Values above 0.10 are treated as substantial descriptive drops. OpenVLA is a VLA-to-VLA comparison, whereas TraceVLA and NORA are VLM-to-VLA comparisons.}
+\label{tab:cross_arch_matrix}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lll cccc@{}}
+\toprule
+& & & \multicolumn{4}{c}{\textbf{$\Delta R^2$ (peak $-$ exit)}} \\
+\cmidrule(l){4-7}
+\textbf{Architecture} & \textbf{Suite} & \textbf{Transition} & \textbf{Trained} & \textbf{95\% CI} & \textbf{Reference} & \textbf{95\% CI} \\
+\midrule
+OpenVLA & Goal    & VLA$\to$VLA & 0.086 & [$-$0.060, 0.110] & 0.056 & [0.010, 0.080] \\
+OpenVLA & Spatial & VLA$\to$VLA & 0.037 & [0.010, 0.100]    & 0.044 & [0.030, 0.110] \\
+OpenVLA & Object  & VLA$\to$VLA & 0.037 & [0.000, 0.090]    & 0.051 & [0.000, 0.090] \\
+OpenVLA & Long    & VLA$\to$VLA & 0.033 & [0.000, 0.100]    & 0.035 & [0.030, 0.100] \\
+\midrule
+TraceVLA & Goal    & VLM$\to$VLA & 0.333 & [0.210, 0.450]    & 0.065 & [$-$0.110, 0.050] \\
+TraceVLA & Spatial & VLM$\to$VLA & 0.156 & [0.090, 0.220]    & 0.048 & ---$^{a}$ \\
+TraceVLA & Object  & VLM$\to$VLA & 0.362 & [0.280, 0.500]    & 0.009 & [$-$0.070, 0.020] \\
+TraceVLA & Long    & VLM$\to$VLA & 0.358 & [0.170, 0.530]    & 0.097 & [$-$0.020, 0.110] \\
+\midrule
+NORA    & Goal    & VLM$\to$VLA & 0.455$^{b}$ & ---$^{b}$  & 0.081 & [$-$0.010, 0.110] \\
+NORA    & Spatial & VLM$\to$VLA & 0.308 & [0.300, 0.510]    & 0.089 & [$-$0.010, 0.090] \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize NORA Object and Long-Horizon checkpoints are unavailable.}\\
+\multicolumn{7}{l}{\footnotesize $^{a}$CI artifact from flat $R^2$ profile. $^{b}$Bootstrap CI unreliable (exit-layer $R^2 \approx -0.006$).}\\
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------
+\subsection{Instruction Sensitivity: Counterfactual Perturbation}
+\label{sec:cf_sensitivity}
+
+\paragraph{Instruction Sensitivity in Action-Producing VLAs}\looseness=-1
+Across OpenVLA and TraceVLA, all perturbations yield $d = 0.45$--$1.52$ (Figure~\ref{fig:counterfactual_bar}; summary in Appendix Table~\ref{tab:cf_summary}, full rankings in Table~\ref{tab:counterfactual}).
+``Empty'' ranks first in 6/8 cells; ``paraphrased'' ranks last in 7/8, indicating encoding beyond token-level matching.
+TraceVLA produces systematically higher effect sizes ($d = 0.97$--$1.52$) than OpenVLA ($0.45$--$1.21$).
+The ranking reveals a semantic gradient: paraphrased instructions retain full semantic content but alter surface form, yielding the smallest effects; empty strings remove all linguistic signal, producing the largest; wrong-task and shuffled-token conditions fall in between, indicating sensitivity to both task identity and token ordering.
+TraceVLA's larger effect sizes are consistent with its spatial trace conditioning, which grounds instructions in visual trajectory tokens and may amplify instruction-action coupling.
+\textbf{Instruction perturbation produces graded action divergence with effect sizes reflecting perturbation severity.}
+
+\paragraph{Representation-Space Sensitivity in NORA and Reference VLMs}
+\label{sec:cf_repr}
+
+NORA and reference VLMs lack action outputs; their sensitivity is measured via cosine distance on hidden representations (different scale from Cohen's $d$; Appendix~\ref{sec:cf_details_appendix}).
+The trained-reference contrast is consistent with action-space findings: NORA Goal saturates ($1.0$); reference VLMs show weak sensitivity ($\leq 0.19$).
+
+%------------------------------------------------------------------
+\subsection{Inherited Routing: L1 Attention Profiling}
+\label{sec:l1_priors}
+
+\looseness=-2
+Counterfactual sensitivity confirms trained VLAs use instruction content, but not whether this reliance originates from training or backbone priors.
+L1 attention profiling compares head routing before and after fine-tuning: TraceVLA's reference saturates at 32/32 heads; training reduces to 27--30/32.
+NORA's reference allocates 13--14/16; training largely preserves this (13--14$\to$12--13/16).
+OpenVLA shows 24--26/32 in the OXE-pretrained baseline with similar trained values (Appendix Figure~\ref{fig:cross_arch_l1}).
+\textbf{L1 instruction routing is an inherited backbone property, not a consequence of VLA training.}
+
+%------------------------------------------------------------------
+
+\subsection{Synthesis: Training-Associated vs.\ Inherited Routing}
+\label{sec:routing_synthesis}
+
+\looseness=-2
+The three analyses separate two patterns: exit collapse and counterfactual sensitivity are training-associated (pronounced in VLM-to-VLA, small in VLA-to-VLA), while L1 attention is inherited from reference backbones.
+Trained OpenVLA and TraceVLA converge to nearly identical mid-layer peaks ($R^2 = 0.637$ at L9 vs.\ $0.634$ at L11; Appendix~\ref{sec:cross_arch_r2}), despite differing backbone families, suggesting a shared representational bottleneck in autoregressive VLA fine-tuning.
+The 32-layer profile (Figure~\ref{fig:synthesis_panels}, left) shows VLA-trained entry-exit concentration (L1: 24, L31: 18) versus Llama-2 base mid-depth peak (L16: 25); dose-response ablation (right) yields monotonic divergence ($d = 0.48$--$0.64$), causally linking L1 gating to action computation (Appendix Table~\ref{tab:specificity_control}), confirmed across all four LIBERO suites and absent in three NLP controls (Appendix Table~\ref{tab:convergent_evidence}).

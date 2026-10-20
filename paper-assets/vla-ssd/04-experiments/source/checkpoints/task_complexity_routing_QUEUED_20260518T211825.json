@@ -1,0 +1,16 @@
+{
+  "exp_id": "task_complexity_routing",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:11:23.792Z",
+    "updated_at": "2026-05-18T21:18:24.863Z",
+    "hypothesis": "Instruction-discriminative tasks (paired tasks sharing same manipulated object but different goal destinations) show larger L1 ablation effects than visually unambiguous tasks, because instruction routing heads at L1 encode goal-relevant information that differentially affects tasks requiring instruction-based disambiguation.",
+    "parent": "attention_decomposition"
+  },
+  "timestamp": "2026-05-18T21:18:25.073019+00:00",
+  "trigger": "update_registry"
+}

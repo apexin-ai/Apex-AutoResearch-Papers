@@ -1,0 +1,24 @@
+Bootstrap CI delta-R2 Gap Analysis Results
+Source: westd-19183:/root/autodl-tmp/vla-ssd/results/bootstrap_ci/bootstrap_ci_results.json
+
+Gap Test:
+  VLA->VLA max CI_upper: 0.1064 (openvla_goal)
+  VLM->VLA min CI_lower: 0.0906 (tracvla_spatial)
+  Gap: -0.0158
+  Significant: False (marginal overlap)
+
+VLA->VLA cells (no collapse):
+  openvla_long     dR2=0.0325  CI=[0.0037, 0.1030]
+  openvla_object   dR2=0.0370  CI=[-0.0038, 0.0854]
+  openvla_spatial  dR2=0.0371  CI=[0.0087, 0.1020]
+  openvla_goal     dR2=0.0864  CI=[-0.0560, 0.1064]
+
+VLM->VLA cells (exit collapse):
+  tracvla_spatial  dR2=0.1557  CI=[0.0906, 0.2244]
+  nora_spatial     dR2=0.3080  CI=[0.3011, 0.5119]
+  tracvla_goal     dR2=0.3334  CI=[0.2069, 0.4508]
+  tracvla_long     dR2=0.3579  CI=[0.1714, 0.5333]
+  tracvla_object   dR2=0.3623  CI=[0.2834, 0.5038]
+
+Flagged (unstable exit layer):
+  nora_goal        dR2=0.4551  CI=[0.9099, 1.6077]

@@ -1,0 +1,16 @@
+{
+  "exp_id": "linear_probe_last_preaction",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:11:47.015Z",
+    "updated_at": "2026-05-18T06:44:23.861Z",
+    "hypothesis": "Inverted-U pattern and trained > untrained Δ in action R² also hold for last_preaction token under linear probe (Linear(4096→7)), confirming the finding is not specific to image_mean token position or MLP probe architecture.",
+    "parent": "plan_011_fulllayer_r2"
+  },
+  "timestamp": "2026-05-18T06:44:24.017237+00:00",
+  "trigger": "update_registry"
+}

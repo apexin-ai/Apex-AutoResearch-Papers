@@ -1,0 +1,27 @@
+{
+  "exp_id": "official_checkpoint_sr_test",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:40:46.356Z",
+    "updated_at": "2026-05-19T17:41:13.604Z",
+    "hypothesis": "Official OpenVLA checkpoint (not fine-tuned) achieves non-zero SR on LIBERO-Goal tasks, confirming the evaluation pipeline is correct and Path B failure is due to fine-tuning degradation rather than pipeline bugs.",
+    "parent": "closedloop_diagnosis",
+    "spec": {
+      "command": "python eval_libero.py --ckpt official_openvla --tasks 0,3,7 --episodes 5 --max_steps 400",
+      "server": "westd-19183",
+      "data_path": "LIBERO-Goal",
+      "data_count": "15 episodes (3 tasks x 5 seeds)",
+      "model_name": "openvla-7b (official checkpoint)",
+      "seed": "multiple",
+      "checkpoint_source": "openvla/openvla-7b (HuggingFace official)",
+      "eval_data": "LIBERO-Goal tasks 0,3,7"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T17:41:13.832228+00:00",
+  "trigger": "update_registry"
+}

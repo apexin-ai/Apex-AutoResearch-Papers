@@ -1,0 +1,67 @@
+{
+  "method": "RSA permutation test (10000 shuffles)",
+  "condition": "trained_image_mean",
+  "rep_distance": "cosine",
+  "action_distance": "euclidean",
+  "distance_computation": "temporal average of per-timestep pairwise distances (Method B)",
+  "n_permutations": 10000,
+  "n_sample": 20,
+  "base_seed": 42,
+  "n_tasks": 10,
+  "layers_tested": [
+    0,
+    8,
+    12,
+    24,
+    32
+  ],
+  "results": {
+    "layer_0": {
+      "observed_rsa": 0.611741,
+      "null_mean": 0.000214,
+      "null_std": 0.027012,
+      "null_max": 0.103055,
+      "null_min": -0.092128,
+      "p_value": 0.0,
+      "significant_001": true
+    },
+    "layer_8": {
+      "observed_rsa": 0.618699,
+      "null_mean": -3.3e-05,
+      "null_std": 0.026788,
+      "null_max": 0.119987,
+      "null_min": -0.099672,
+      "p_value": 0.0,
+      "significant_001": true
+    },
+    "layer_12": {
+      "observed_rsa": 0.628249,
+      "null_mean": -0.000497,
+      "null_std": 0.02683,
+      "null_max": 0.118625,
+      "null_min": -0.105288,
+      "p_value": 0.0,
+      "significant_001": true
+    },
+    "layer_24": {
+      "observed_rsa": 0.5459,
+      "null_mean": 0.000254,
+      "null_std": 0.027015,
+      "null_max": 0.13272,
+      "null_min": -0.092114,
+      "p_value": 0.0,
+      "significant_001": true
+    },
+    "layer_32": {
+      "observed_rsa": 0.422317,
+      "null_mean": -0.000376,
+      "null_std": 0.02719,
+      "null_max": 0.117226,
+      "null_min": -0.112574,
+      "p_value": 0.0,
+      "significant_001": true
+    }
+  },
+  "conclusion": "All observed RSA values are statistically significant (p < 0.001, permutation test with 10000 shuffles)",
+  "elapsed_seconds": 315.2
+}

@@ -1,0 +1,59 @@
+{
+  "exp_id": "libero_object_full_pipeline",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:46:15.175Z",
+    "updated_at": "2026-05-21T05:22:44.457Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "513513",
+      "log_path": "~/runs/vla-ssd/libero_object_full_pipeline.log",
+      "submitted_at": "2026-05-21T00:46:14.777Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_object/",
+      "data_count": 5000,
+      "model_name": "openvla-7b-finetuned-libero-object",
+      "seed": 42,
+      "wall_clock_seconds": 15943.5,
+      "gpu_hours": 4.43
+    },
+    "hypothesis": "The convergent entry-exit routing architecture (inverted-U R² profile, instruction-dominant L1 heads, counterfactual sensitivity) observed in OpenVLA on LIBERO-Goal generalizes to LIBERO-Object tasks, demonstrating that VLA fine-tuning produces consistent representational reorganization across different task types (object manipulation vs goal-directed).",
+    "reproduce": {
+      "finished_at": "2026-05-21T05:03:58.166Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T05:04:01.910340+00:00"
+        }
+      ]
+    },
+    "conclusion": "killed",
+    "metrics": {
+      "partial_r2": {
+        "L0_img_mean": 0.6952,
+        "L0_last_pre": 0.571,
+        "L8_img_mean": 0.6727,
+        "L8_last_pre": 0.6753
+      },
+      "phases_completed": "1 of 6",
+      "failure_mode": "pipeline_incomplete_probable_OOM"
+    },
+    "notes": "Pipeline crashed after Phase 2 L8 (probable OOM: script stores 5000 L1 attention matrices ~50GB in RAM). No JSON results produced. Phases 3-6 never ran. Script needs memory optimization: stream attention analysis instead of storing all matrices. Partial R² shows L8 last_preaction=0.675 (higher than LIBERO-Goal peak=0.637), but only 2/32 layers available - insufficient for profile analysis.",
+    "completed_at": "2026-05-21T05:11:58.325Z"
+  },
+  "timestamp": "2026-05-21T05:22:44.733543+00:00",
+  "trigger": "update_registry"
+}

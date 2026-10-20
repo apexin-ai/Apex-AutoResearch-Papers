@@ -1,0 +1,2242 @@
+# code counterfactual instruction
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 0
+- **Tool calls:** 38
+- **Original source:** `logs/chats/worker_code_counterfactual_instruction_20260518T165804.jsonl`
+- **Structured JSON:** [`8804e5a1c71515479c0f.json`](../../sessions/88/8804e5a1c71515479c0f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+77 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T17:08:23.096104+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T17:08:23.096468+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T17:08:23.096646+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/action_trajectory_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/action_trajectory_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T17:08:23.096915+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Open-loop action trajectory analysis: baseline vs L1-ablated on LIBERO demo observations.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom scipy import stats\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\n# ── Config ──────────────────────────────────────────────────────────────────\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\n\\nINSTRUCTION_HEADS_24 = [\\n    0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20,\\n    22, 23, 25, 26, 27, 29, 30, 31,\\n]\\n\\nDIM_NAMES = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"]\\n\\n\\n# ── Model loading ───────────────────────────────────────────────────────────\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n    ).to(\\\"cuda:0\\\").eval()\\n    return model, processor\\n\\n\\n# ── Manual autoregressive generation (bypasses generate() DynamicCache bug) ─\\ndef predict_action_with_logits(model, input_ids, pixel_values, unnorm_key):\\n    action_dim = model.get_action_dim(unnorm_key)\\n   
+…[truncated 7113 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T17:08:23.097141+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -l /root/vla-ssd/scripts/action_trajectory_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "wc -l /root/vla-ssd/scripts/action_trajectory_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T17:08:23.097293+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"434 /root/vla-ssd/scripts/action_trajectory_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T17:08:23.097435+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -200 /root/vla-ssd/scripts/action_trajectory_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -200 /root/vla-ssd/scripts/action_trajectory_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T17:08:23.097690+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Open-loop action trajectory analysis: baseline vs L1-ablated on LIBERO demo observations.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom scipy import stats\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\n# ── Config ──────────────────────────────────────────────────────────────────\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\n\\nINSTRUCTION_HEADS_24 = [\\n    0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20,\\n    22, 23, 25, 26, 27, 29, 30, 31,\\n]\\n\\nDIM_NAMES = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"]\\n\\n\\n# ── Model loading ───────────────────────────────────────────────────────────\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n    ).to(\\\"cuda:0\\\").eval()\\n    return model, processor\\n\\n\\n# ── Manual autoregressive generation (bypasses generate() DynamicCache bug) ─\\ndef predict_action_with_logits(model, input_ids, pixel_values, unnorm_key):\\n    action_dim = model.get_action_dim(unnorm_key)\\n   
+…[truncated 6046 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T17:08:23.097846+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +200 /root/vla-ssd/scripts/action_trajectory_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -n +200 /root/vla-ssd/scripts/action_trajectory_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T17:08:23.098117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        },\\n        \\\"per_dim_shift\\\": {\\n            \\\"means\\\": [float(x) for x in np.mean(per_dim_shift, axis=0)],\\n            \\\"stds\\\": [float(x) for x in np.std(per_dim_shift, axis=0)],\\n        },\\n        \\\"token_divergence_rate\\\": float(token_div),\\n        \\\"kl_divergence\\\": {\\n            \\\"mean\\\": float(np.mean(task_kls)),\\n            \\\"std\\\": float(np.std(task_kls)),\\n        },\\n        \\\"n_samples\\\": int(len(task_b)),\\n    }\\n\\n\\n# ── Main ────────────────────────────────────────────────────────────────────\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    args = parser.parse_args()\\n\\n    n_tasks = 1 if args.dry_run else 5\\n    n_demos = 1 if args.dry_run else 10\\n    n_timesteps = 2 if args.dry_run else 50\\n\\n    os.makedirs(RESULTS_DIR, exist_ok=True)\\n\\n    print(\\\"Loading model...\\\")\\n    model, processor = load_model()\\n    print(\\\"Model loaded.\\\")\\n\\n    original_eager_fn = install_ablation_hook(model, INSTRUCTION_HEADS_24)\\n    layer1_attn = model.language_model.model.layers[1].self_attn\\n\\n    task_files = get_task_files(n_tasks)\\n    print(f\\\"Tasks ({n_tasks}): {[os.path.basename(f) for f in task_files]}\\\")\\n    print(f\\\"Config: {n_demos} demos/task, {n_timesteps} timesteps/demo\\\")\\n\\n    all_baseline_actions = []\\n    all_ablated_actions = []\\n    all_gt_actions = []\\n    all_baseline_token_ids = []\\n    all_ablated_token_ids = []\\n    all_kl_divs = []\\n    per_task_data = {}\\n\\n    total_passes = 0\\n    t_start = time.time()\\n\\n    for task_idx, hdf5_path in enumerate(task_files):\\n        task_name = os.path.basename(hdf5_path).replace(\\\"_demo.hdf5\\\", \\\"\\\")\\n        instruction = get_language_instruction(hdf5_path)\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"Task {task_idx}: {task_name
+…[truncated 7106 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T17:08:23.098316+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T17:08:23.098461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T17:08:23.098587+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py, json; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5','r'); print(json.loads(f['data'].attrs['problem_info'])['language_instruction']); f.close()\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import h5py, json; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5','r'); print(json.loads(f['data'].attrs['problem_info'])['language_instruction']); f.close()\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T17:08:23.098716+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T17:08:23.098836+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py, json; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_top_drawer_and_put_the_bowl_inside_demo.hdf5','r'); print(json.loads(f['data'].attrs['problem_info'])['language_instruction']); f.close()\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import h5py, json; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_top_drawer_and_put_the_bowl_inside_demo.hdf5','r'); print(json.loads(f['data'].attrs['problem_info'])['language_instruction']); f.close()\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T17:08:23.098996+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T17:08:23.099155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py, json; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(json.loads(f['data'].attrs['problem_info'])['language_instruction']); f.close()\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import h5py, json; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(json.loads(f['data'].attrs['problem_info'])['language_instruction']); f.close()\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T17:08:23.099282+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T17:08:23.099401+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport h5py, json, glob, os\nfiles = sorted(glob.glob('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5'))[:3]\nfor f_path in files:\n    f = h5py.File(f_path, 'r')\n    info = json.loads(f['data'].attrs['problem_info'])\n    print(os.path.basename(f_path), '|', info['language_instruction'])\n    f.close()\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"\nimport h5py, json, glob, os\nfiles = sorted(glob.glob('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5'))[:3]\nfor f_path in files:\n    f = h5py.File(f_path, 'r')\n    info = json.loads(f['data'].attrs['problem_info'])\n    print(os.path.basename(f_path), '|', info['language_instruction'])\n    f.close()\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T17:08:23.099533+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport h5py, json, glob, os\\\\nfiles = sorted(glob.glob(\\\\'/root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5\\\\'))[:3]\\\\nfor f_path in files:\\\\n    f = h5py.File(f_path, \\\\'r\\\\')\\\\n    info = json.loads(f[\\\\'data\\\\'].attrs[\\\\'problem_info\\\\'])\\\\n    print(os.path.basename(f_path), \\\\'|\\\\', info[\\\\'language_instruction\\\\'])\\\\n    f.close()\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T17:08:23.099663+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python -c \"\nimport h5py, json, glob, os\nfiles = sorted(glob.glob('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5'))[:3]\nfor f_path in files:\n    f = h5py.File(f_path, 'r')\n    info = json.loads(f['data'].attrs['problem_info'])\n    print(os.path.basename(f_path), '|', info['language_instruction'])\n    f.close()\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python -c \"\nimport h5py, json, glob, os\nfiles = sorted(glob.glob('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5'))[:3]\nfor f_path in files:\n    f = h5py.File(f_path, 'r')\n    info = json.loads(f['data'].attrs['problem_info'])\n    print(os.path.basename(f_path), '|', info['language_instruction'])\n    f.close()\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T17:08:23.099798+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python -c \\\"\\\\nimport h5py, json, glob, os\\\\nfiles = sorted(glob.glob(\\\\'/root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5\\\\'))[:3]\\\\nfor f_path in files:\\\\n    f = h5py.File(f_path, \\\\'r\\\\')\\\\n    info = json.loads(f[\\\\'data\\\\'].attrs[\\\\'problem_info\\\\'])\\\\n    print(os.path.basename(f_path), \\\\'|\\\\', info[\\\\'language_instruction\\\\'])\\\\n    f.close()\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T17:08:23.099938+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "which python3 || which python || ls /usr/bin/python* /usr/local/bin/python* /root/miniconda3/bin/python* 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "which python3 || which python || ls /usr/bin/python* /usr/local/bin/python* /root/miniconda3/bin/python* 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T17:08:23.100076+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python3 || which python || ls /usr/bin/python* /usr/local/bin/python* /root/miniconda3/bin/python* 2>/dev/null'\\n\\nExit code: 2\\n\\nStdout:\\n\\n/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T17:08:23.100196+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python -c \"\nimport h5py, json, glob, os\nfiles = sorted(glob.glob('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5'))[:3]\nfor f_path in files:\n    f = h5py.File(f_path, 'r')\n    info = json.loads(f['data'].attrs['problem_info'])\n    print(os.path.basename(f_path), '|', info['language_instruction'])\n    f.close()\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "/root/miniconda3/bin/python -c \"\nimport h5py, json, glob, os\nfiles = sorted(glob.glob('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5'))[:3]\nfor f_path in files:\n    f = h5py.File(f_path, 'r')\n    info = json.loads(f['data'].attrs['problem_info'])\n    print(os.path.basename(f_path), '|', info['language_instruction'])\n    f.close()\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T17:08:23.100320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5 | open the middle drawer of the cabinet\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5 | open the top drawer and put the bowl inside\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5 | push the plate to the front of the stove\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T17:08:23.100673+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_instruction.py",
+  "content": "\"\"\"Counterfactual instruction experiment: measures how different instruction perturbations\naffect action outputs, validating that L1 instruction-dominant heads perform\ninstruction-specific routing rather than generic text processing.\n\nConditions: correct (baseline), wrong, empty, shuffled, paraphrased\nInput: LIBERO-Goal demos (3 tasks x 10 demos x 50 timesteps)\nOutput: /root/autodl-tmp/vla-ssd/results/counterfactual_{condition}.json\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport os\nimport random\nimport sys\nimport time\n\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.multiprocessing as mp\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom scipy import stats\n\nSEED = 42\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\"\nUNNORM_KEY = \"bridge_orig\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\nN_TASKS = 3\nN_DEMOS = 10\nN_TIMESTEPS = 50\nDIM_NAMES = [\"dx\", \"dy\", \"dz\", \"rx\", \"ry\", \"rz\", \"gripper\"]\n\nTASK_INSTRUCTIONS = {\n    \"open_the_middle_drawer_of_the_cabinet\": {\n        \"correct\": \"open the middle drawer of the cabinet\",\n        \"paraphrased\": \"pull open the center drawer on the cabinet\",\n        \"wrong\": \"push the plate to the front of the stove\",\n    },\n    \"open_the_top_drawer_and_put_the_bowl_inside\": {\n        \"correct\": \"open the top drawer and put the bowl inside\",\n        \"paraphrased\": \"open the upper drawer and place the bowl in it\",\n        \"wrong\": \"open the middle drawer of the cabinet\",\n    },\n    \"push_the_plate_to_the_front_of_the_stove\": {\n        \"correct\": \"push the plate to the front of the stove\",\n        \"paraphrased\": \"slide the plate toward the front of the stove\",\n        \"wrong\": \"open the top drawer and put the bowl inside\",\n    },\n}\n\n\ndef load_model(device):\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        device_map=device,\n    ).eval()\n    return model, processor\n\n\ndef predict_action_with_logits(model, input_ids, pixel_values, unnorm_key):\n    \"\"\"Manual autoregressive generation (bypasses DynamicCache bug in transformers 4.40.1).\"\"\"\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    all_logits = []\n\n    for _ in range(action_dim):\n        all_logits.append(next_token_logits.float().cpu())\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device,\n            dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\n    )\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high = np.array(action_norm_stats[\"q99\"])\n    action_low = np.array(action_norm_stats[\"q01\"])\n    action = np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n\n    logits_tensor = torch.cat(all_logits, dim=0)\n    return action, predicted_action_token_ids, logits_tensor\n\n\ndef compute_kl_divergence(logits_p, logits_q):\n    log_p = F.log_softmax(logits_p, dim=-1)\n    log_q = F.log_softmax(logits_q, dim=-1)\n    p = F.softmax(logits_p, dim=-1)\n    kl = (p * (log_p - log_q)).sum(dim=-1)\n    return kl.numpy()\n\n\ndef get_shuffled_instruction(instruction, rng):\n    words = instruction.split()\n    rng.shuffle(words)\n    return \" \".join(words)\n\n\ndef get_task_files():\n    hdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*.hdf5\")))\n    return hdf5_files[:N_TASKS]\n\n\ndef get_language_instruction(hdf5_path):\n    with h5py.File(hdf5_path, \"r\") as f:\n        info = json.loads(f[\"data\"].attrs[\"problem_info\"])\n    return info[\"language_instruction\"]\n\n\ndef compute_condition_metrics(c_actions, cf_actions, c_ids, cf_ids, kl_arrays):\n    c = np.array(c_actions)\n    cf = np.array(cf_actions)\n    c_tok = np.array(c_ids)\n    cf_tok = np.array(cf_ids)\n    kls = np.array(kl_arrays)\n\n    paired_mse = np.mean((c - cf) ** 2, axis=1)\n    t_res = stats.ttest_1samp(paired_mse, 0)\n    cohens_d = np.mean(paired_mse) / (np.std(paired_mse, ddof=1) + 1e-12)\n    per_dim_shift = np.abs(c - cf)\n    token_div = np.mean(c_tok != cf_tok)\n\n    try:\n        wilcoxon_res = stats.wilcoxon(paired_mse)\n        wilcoxon_p = float(wilcoxon_res.pvalue)\n    except Exception:\n        wilcoxon_p = None\n\n    return {\n        \"paired_mse\": {\n            \"mean\": float(np.mean(paired_mse)),\n            \"std\": float(np.std(paired_mse)),\n            \"t_stat\": float(t_res.statistic),\n            \"p_value\": float(t_res.pvalue),\n            \"cohens_d\": float(cohens_d),\n        },\n        \"per_dim_shift\": {\n            \"means\": [float(x) for x in np.mean(per_dim_shift, axis=0)],\n            \"stds\": [float(x) for x in np.std(per_dim_shift, axis=0)],\n            \"dim_names\": DIM_NAMES,\n        },\n        \"token_divergence_rate\": float(token_div),\n        \"kl_divergence\": {\n            \"mean\": float(np.mean(kls)),\n            \"std\": float(np.std(kls)),\n            \"per_token_position\": [float(x) for x in np.mean(kls, axis=0)] if kls.ndim > 1 else [],\n        },\n        \"wilcoxon_p\": wilcoxon_p,\n        \"n_samples\": int(len(c)),\n    }\n\n\ndef gpu_worker(gpu_id, conditions, dry_run):\n    random.seed(SEED)\n    np.random.seed(SEED)\n    torch.manual_seed(SEED)\n    rng = random.Random(SEED)\n\n    device = f\"cuda:{gpu_id}\"\n    n_tasks = 1 if dry_run else N_TASKS\n    n_demos = 1 if dry_run else N_DEMOS\n    n_timesteps = 2 if dry_run else N_TIMESTEPS\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n\n    print(f\"[GPU {gpu_id}] Loading model on {device}...\")\n    model, processor = load_model(device)\n    print(f\"[GPU {gpu_id}] Model loaded. Conditions: {conditions}\")\n\n    task_files = get_task_files()[:n_tasks]\n\n    correct_global = {\"actions\": [], \"token_ids\": []}\n    cond_global = {c: {\"actions\": [], \"ids\": [], \"kls\": []} for c in conditions}\n    correct_global_ids = []\n    per_task_correct = {}\n    per_task_cond = {c: {} for c in conditions}\n\n    total_passes = 0\n    t_start = time.time()\n\n    for task_idx, hdf5_path in enumerate(task_files):\n        task_name = os.path.basename(hdf5_path).replace(\"_demo.hdf5\", \"\")\n        correct_instruction = get_language_instruction(hdf5_path)\n        task_cfg = TASK_INSTRUCTIONS[task_name]\n\n        print(f\"\\n[GPU {gpu_id}] Task {task_idx}: {task_name}\")\n        print(f\"  correct: {correct_instruction}\")\n\n        cf_instructions = {}\n        for cond in conditions:\n            if cond == \"wrong\":\n                cf_instructions[cond] = task_cfg[\"wrong\"]\n            elif cond == \"empty\":\n                cf_instructions[cond] = \"\"\n            elif cond == \"shuffled\":\n                cf_instructions[cond] = get_shuffled_instruction(correct_instruction, rng)\n            elif cond == \"paraphrased\":\n                cf_instructions[cond] = task_cfg[\"paraphrased\"]\n            print(f\"  {cond}: '{cf_instructions[cond]}'\")\n\n        correct_prompt = f\"In: What action should the robot take to {correct_instruction}?\\nOut:\"\n        cf_prompts = {}\n        for cond in conditions:\n            inst = cf_instructions[cond]\n            if inst == \"\":\n                cf_prompts[cond] = \"In: What action should the robot take to ?\\nOut:\"\n            else:\n                cf_prompts[cond] = f\"In: What action should the robot take to {inst}?\\nOut:\"\n\n        task_c_actions, task_c_ids = [], []\n        task_cf = {c: {\"actions\": [], \"ids\": [], \"kls\": []} for c in conditions}\n\n        with h5py.File(hdf5_path, \"r\") as f:\n            for demo_idx in range(n_demos):\n                demo_key = f\"data/demo_{demo_idx}\"\n                actions_data = f[f\"{demo_key}/actions\"][:]\n                images_data = f[f\"{demo_key}/obs/agentview_rgb\"][:]\n                n_steps = min(n_timesteps, len(actions_data))\n\n                for step_idx in range(n_steps):\n                    img = Image.fromarray(images_data[step_idx])\n\n                    inputs_c = processor(correct_prompt, img).to(device, dtype=torch.bfloat16)\n                    c_action, c_ids, c_logits = predict_action_with_logits(\n                        model, inputs_c[\"input_ids\"], inputs_c[\"pixel_values\"], UNNORM_KEY\n                    )\n                    task_c_actions.append(c_action)\n                    task_c_ids.append(c_ids)\n                    total_passes += 1\n\n                    for cond in conditions:\n                        inputs_cf = processor(cf_prompts[cond], img).to(\n                            device, dtype=torch.bfloat16\n                        )\n                        cf_action, cf_ids, cf_logits = predict_action_with_logits(\n                            model, inputs_cf[\"input_ids\"], inputs_cf[\"pixel_values\"], UNNORM_KEY\n                        )\n                        kl = compute_kl_divergence(c_logits, cf_logits)\n                        task_cf[cond][\"actions\"].append(cf_action)\n                        task_cf[cond][\"ids\"].append(cf_ids)\n                        task_cf[cond][\"kls\"].append(kl)\n                        total_passes += 1\n\n                    if total_passes % 100 == 0:\n                        elapsed = time.time() - t_start\n                        rate = total_passes / elapsed\n                        remaining = (n_tasks * n_demos * n_timesteps * (1 + len(conditions)) - total_passes)\n                        eta = remaining / rate if rate > 0 else 0\n                        print(\n                            f\"  [GPU {gpu_id}] {total_passes} passes, \"\n                            f\"{rate:.1f} pass/s, ETA {eta:.0f}s\"\n                        )\n\n        for cond in conditions:\n            metrics = compute_condition_metrics(\n                task_c_actions, task_cf[cond][\"actions\"],\n                task_c_ids, task_cf[cond][\"ids\"],\n                task_cf[cond][\"kls\"],\n            )\n            metrics[\"instruction_correct\"] = correct_instruction\n            metrics[\"instruction_counterfactual\"] = cf_instructions[cond]\n            per_task_cond[cond][task_name] = metrics\n            print(\n                f\"  [GPU {gpu_id}] {cond}: MSE={metrics['paired_mse']['mean']:.6f} \"\n                f\"d={metrics['paired_mse']['cohens_d']:.3f} \"\n                f\"token_div={metrics['token_divergence_rate']:.4f} \"\n                f\"KL={metrics['kl_divergence']['mean']:.4f}\"\n            )\n\n        correct_global[\"actions\"].extend(task_c_actions)\n        correct_global[\"token_ids\"].extend(task_c_ids)\n        correct_global_ids.extend(task_c_ids)\n        per_task_correct[task_name] = {\n            \"instruction\": correct_instruction,\n            \"n_samples\": len(task_c_actions),\n            \"action_mean\": [float(x) for x in np.mean(task_c_actions, axis=0)],\n            \"action_std\": [float(x) for x in np.std(task_c_actions, axis=0)],\n            \"dim_names\": DIM_NAMES,\n        }\n        for cond in conditions:\n            cond_global[cond][\"actions\"].extend(task_cf[cond][\"actions\"])\n            cond_global[cond][\"ids\"].extend(task_cf[cond][\"ids\"])\n            cond_global[cond][\"kls\"].extend(task_cf[cond][\"kls\"])\n\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    for cond in conditions:\n        global_metrics = compute_condition_metrics(\n            correct_global[\"actions\"], cond_global[cond][\"actions\"],\n            correct_global[\"token_ids\"], cond_global[cond][\"ids\"],\n            cond_global[cond][\"kls\"],\n        )\n\n        output = {\n            \"config\": {\n                \"condition\": cond,\n                \"n_tasks\": n_tasks,\n                \"n_demos_per_task\": n_demos,\n                \"n_timesteps_per_demo\": n_timesteps,\n                \"total_forward_passes\": total_passes,\n                \"model\": \"openvla-7b\",\n                \"unnorm_key\": UNNORM_KEY,\n                \"gpu\": gpu_id,\n                \"seed\": SEED,\n            },\n            \"global_metrics\": global_metrics,\n            \"per_task\": per_task_cond[cond],\n        }\n\n        out_path = os.path.join(RESULTS_DIR, f\"counterfactual_{cond}.json\")\n        with open(out_path, \"w\") as fout:\n            json.dump(output, fout, indent=2)\n        print(f\"[GPU {gpu_id}] Saved {out_path}\")\n\n    if gpu_id == 0:\n        all_actions = np.array(correct_global[\"actions\"])\n        correct_output = {\n            \"config\": {\n                \"condition\": \"correct\",\n                \"n_tasks\": n_tasks,\n                \"n_demos_per_task\": n_demos,\n                \"n_timesteps_per_demo\": n_timesteps,\n                \"model\": \"openvla-7b\",\n                \"unnorm_key\": UNNORM_KEY,\n                \"seed\": SEED,\n            },\n            \"global\": {\n                \"n_samples\": len(all_actions),\n                \"action_mean\": [float(x) for x in np.mean(all_actions, axis=0)],\n                \"action_std\": [float(x) for x in np.std(all_actions, axis=0)],\n                \"dim_names\": DIM_NAMES,\n            },\n            \"per_task\": per_task_correct,\n        }\n        out_path = os.path.join(RESULTS_DIR, \"counterfactual_correct.json\")\n        with open(out_path, \"w\") as fout:\n            json.dump(correct_output, fout, indent=2)\n        print(f\"[GPU {gpu_id}] Saved {out_path}\")\n\n    elapsed = time.time() - t_start\n    print(f\"\\n[GPU {gpu_id}] Done. {total_passes} passes in {elapsed:.0f}s\")\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    t_start = time.time()\n\n    gpu0_conditions = [\"wrong\", \"empty\"]\n    gpu1_conditions = [\"shuffled\", \"paraphrased\"]\n\n    p0 = mp.Process(target=gpu_worker, args=(0, gpu0_conditions, args.dry_run))\n    p1 = mp.Process(target=gpu_worker, args=(1, gpu1_conditions, args.dry_run))\n\n    p0.start()\n    p1.start()\n    p0.join()\n    p1.join()\n\n    if p0.exitcode != 0 or p1.exitcode != 0:\n        print(f\"ERROR: GPU 0 exit={p0.exitcode}, GPU 1 exit={p1.exitcode}\")\n        sys.exit(1)\n\n    print(\"\\nGenerating combined summary...\")\n    combined = {\n        \"config\": {\n            \"experiment\": \"counterfactual_instruction\",\n            \"conditions\": [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"],\n            \"n_tasks\": 1 if args.dry_run else N_TASKS,\n            \"n_demos_per_task\": 1 if args.dry_run else N_DEMOS,\n            \"n_timesteps_per_demo\": 2 if args.dry_run else N_TIMESTEPS,\n            \"model\": \"openvla-7b\",\n            \"unnorm_key\": UNNORM_KEY,\n            \"seed\": SEED,\n        },\n        \"conditions\": {},\n    }\n\n    for cond in [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"]:\n        cond_path = os.path.join(RESULTS_DIR, f\"counterfactual_{cond}.json\")\n        if os.path.exists(cond_path):\n            with open(cond_path, \"r\") as f:\n                data = json.load(f)\n            combined[\"conditions\"][cond] = {\n                \"global_metrics\": data[\"global_metrics\"],\n                \"per_task\": data[\"per_task\"],\n            }\n\n    ranking = sorted(\n        [(k, v[\"global_metrics\"]) for k, v in combined[\"conditions\"].items()],\n        key=lambda x: x[1][\"paired_mse\"][\"cohens_d\"],\n        reverse=True,\n    )\n    combined[\"ranking_by_cohens_d\"] = [\n        {\n            \"condition\": k,\n            \"cohens_d\": v[\"paired_mse\"][\"cohens_d\"],\n            \"paired_mse_mean\": v[\"paired_mse\"][\"mean\"],\n            \"token_divergence_rate\": v[\"token_divergence_rate\"],\n            \"kl_divergence_mean\": v[\"kl_divergence\"][\"mean\"],\n        }\n        for k, v in ranking\n    ]\n\n    out_path = os.path.join(RESULTS_DIR, \"counterfactual_combined.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(combined, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\nTotal time: {elapsed:.0f}s\")\n    print(f\"Combined results: {out_path}\")\n\n    print(f\"\\n{'='*60}\")\n    print(\"COUNTERFACTUAL INSTRUCTION EXPERIMENT SUMMARY\")\n    print(f\"{'='*60}\")\n    for k, v in ranking:\n        print(\n            f\"  {k:12s}: MSE={v['paired_mse']['mean']:.6f} \"\n            f\"d={v['paired_mse']['cohens_d']:.3f} \"\n            f\"token_div={v['token_divergence_rate']:.4f} \"\n            f\"KL={v['kl_divergence']['mean']:.4f}\"\n        )\n\n\nif __name__ == \"__main__\":\n    mp.set_start_method(\"spawn\")\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_instruction.py",
+    "content": "\"\"\"Counterfactual instruction experiment: measures how different instruction perturbations\naffect action outputs, validating that L1 instruction-dominant heads perform\ninstruction-specific routing rather than generic text processing.\n\nConditions: correct (baseline), wrong, empty, shuffled, paraphrased\nInput: LIBERO-Goal demos (3 tasks x 10 demos x 50 timesteps)\nOutput: /root/autodl-tmp/vla-ssd/results/counterfactual_{condition}.json\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport os\nimport random\nimport sys\nimport time\n\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.multiprocessing as mp\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom scipy import stats\n\nSEED = 42\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\"\nUNNORM_KEY = \"bridge_orig\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\nN_TASKS = 3\nN_DEMOS = 10\nN_TIMESTEPS = 50\nDIM_NAMES = [\"dx\", \"dy\", \"dz\", \"rx\", \"ry\", \"rz\", \"gripper\"]\n\nTASK_INSTRUCTIONS = {\n    \"open_the_middle_drawer_of_the_cabinet\": {\n        \"correct\": \"open the middle drawer of the cabinet\",\n        \"paraphrased\": \"pull open the center drawer on the cabinet\",\n        \"wrong\": \"push the plate to the front of the stove\",\n    },\n    \"open_the_top_drawer_and_put_the_bowl_inside\": {\n        \"correct\": \"open the top drawer and put the bowl inside\",\n        \"paraphrased\": \"open the upper drawer and place the bowl in it\",\n        \"wrong\": \"open the middle drawer of the cabinet\",\n    },\n    \"push_the_plate_to_the_front_of_the_stove\": {\n        \"correct\": \"push the plate to the front of the stove\",\n        \"paraphrased\": \"slide the plate toward the front of the stove\",\n        \"wrong\": \"open the top drawer and put the bowl inside\",\n    },\n}\n\n\ndef load_model(device):\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        device_map=device,\n    ).eval()\n    return model, processor\n\n\ndef predict_action_with_logits(model, input_ids, pixel_values, unnorm_key):\n    \"\"\"Manual autoregressive generation (bypasses DynamicCache bug in transformers 4.40.1).\"\"\"\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    all_logits = []\n\n    for _ in range(action_dim):\n        all_logits.append(next_token_logits.float().cpu())\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device,\n            dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\n    )\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high = np.array(action_norm_stats[\"q99\"])\n    action_low = np.array(action_norm_stats[\"q01\"])\n    action = np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n\n    logits_tensor = torch.cat(all_logits, dim=0)\n    return action, predicted_action_token_ids, logits_tensor\n\n\ndef compute_kl_divergence(logits_p, logits_q):\n    log_p = F.log_softmax(logits_p, dim=-1)\n    log_q = F.log_softmax(logits_q, dim=-1)\n    p = F.softmax(logits_p, dim=-1)\n    kl = (p * (log_p - log_q)).sum(dim=-1)\n    return kl.numpy()\n\n\ndef get_shuffled_instruction(instruction, rng):\n    words = instruction.split()\n    rng.shuffle(words)\n    return \" \".join(words)\n\n\ndef get_task_files():\n    hdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*.hdf5\")))\n    return hdf5_files[:N_TASKS]\n\n\ndef get_language_instruction(hdf5_path):\n    with h5py.File(hdf5_path, \"r\") as f:\n        info = json.loads(f[\"data\"].attrs[\"problem_info\"])\n    return info[\"language_instruction\"]\n\n\ndef compute_condition_metrics(c_actions, cf_actions, c_ids, cf_ids, kl_arrays):\n    c = np.array(c_actions)\n    cf = np.array(cf_actions)\n    c_tok = np.array(c_ids)\n    cf_tok = np.array(cf_ids)\n    kls = np.array(kl_arrays)\n\n    paired_mse = np.mean((c - cf) ** 2, axis=1)\n    t_res = stats.ttest_1samp(paired_mse, 0)\n    cohens_d = np.mean(paired_mse) / (np.std(paired_mse, ddof=1) + 1e-12)\n    per_dim_shift = np.abs(c - cf)\n    token_div = np.mean(c_tok != cf_tok)\n\n    try:\n        wilcoxon_res = stats.wilcoxon(paired_mse)\n        wilcoxon_p = float(wilcoxon_res.pvalue)\n    except Exception:\n        wilcoxon_p = None\n\n    return {\n        \"paired_mse\": {\n            \"mean\": float(np.mean(paired_mse)),\n            \"std\": float(np.std(paired_mse)),\n            \"t_stat\": float(t_res.statistic),\n            \"p_value\": float(t_res.pvalue),\n            \"cohens_d\": float(cohens_d),\n        },\n        \"per_dim_shift\": {\n            \"means\": [float(x) for x in np.mean(per_dim_shift, axis=0)],\n            \"stds\": [float(x) for x in np.std(per_dim_shift, axis=0)],\n            \"dim_names\": DIM_NAMES,\n        },\n        \"token_divergence_rate\": float(token_div),\n        \"kl_divergence\": {\n            \"mean\": float(np.mean(kls)),\n            \"std\": float(np.std(kls)),\n            \"per_token_position\": [float(x) for x in np.mean(kls, axis=0)] if kls.ndim > 1 else [],\n        },\n        \"wilcoxon_p\": wilcoxon_p,\n        \"n_samples\": int(len(c)),\n    }\n\n\ndef gpu_worker(gpu_id, conditions, dry_run):\n    random.seed(SEED)\n    np.random.seed(SEED)\n    torch.manual_seed(SEED)\n    rng = random.Random(SEED)\n\n    device = f\"cuda:{gpu_id}\"\n    n_tasks = 1 if dry_run else N_TASKS\n    n_demos = 1 if dry_run else N_DEMOS\n    n_timesteps = 2 if dry_run else N_TIMESTEPS\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n\n    print(f\"[GPU {gpu_id}] Loading model on {device}...\")\n    model, processor = load_model(device)\n    print(f\"[GPU {gpu_id}] Model loaded. Conditions: {conditions}\")\n\n    task_files = get_task_files()[:n_tasks]\n\n    correct_global = {\"actions\": [], \"token_ids\": []}\n    cond_global = {c: {\"actions\": [], \"ids\": [], \"kls\": []} for c in conditions}\n    correct_global_ids = []\n    per_task_correct = {}\n    per_task_cond = {c: {} for c in conditions}\n\n    total_passes = 0\n    t_start = time.time()\n\n    for task_idx, hdf5_path in enumerate(task_files):\n        task_name = os.path.basename(hdf5_path).replace(\"_demo.hdf5\", \"\")\n        correct_instruction = get_language_instruction(hdf5_path)\n        task_cfg = TASK_INSTRUCTIONS[task_name]\n\n        print(f\"\\n[GPU {gpu_id}] Task {task_idx}: {task_name}\")\n        print(f\"  correct: {correct_instruction}\")\n\n        cf_instructions = {}\n        for cond in conditions:\n            if cond == \"wrong\":\n                cf_instructions[cond] = task_cfg[\"wrong\"]\n            elif cond == \"empty\":\n                cf_instructions[cond] = \"\"\n            elif cond == \"shuffled\":\n                cf_instructions[cond] = get_shuffled_instruction(correct_instruction, rng)\n            elif cond == \"paraphrased\":\n                cf_instructions[cond] = task_cfg[\"paraphrased\"]\n            print(f\"  {cond}: '{cf_instructions[cond]}'\")\n\n        correct_prompt = f\"In: What action should the robot take to {correct_instruction}?\\nOut:\"\n        cf_prompts = {}\n        for cond in conditions:\n            inst = cf_instructions[cond]\n            if inst == \"\":\n                cf_prompts[cond] = \"In: What action should the robot take to ?\\nOut:\"\n            else:\n                cf_prompts[cond] = f\"In: What action should the robot take to {inst}?\\nOut:\"\n\n        task_c_actions, task_c_ids = [], []\n        task_cf = {c: {\"actions\": [], \"ids\": [], \"kls\": []} for c in conditions}\n\n        with h5py.File(hdf5_path, \"r\") as f:\n            for demo_idx in range(n_demos):\n                demo_key = f\"data/demo_{demo_idx}\"\n                actions_data = f[f\"{demo_key}/actions\"][:]\n                images_data = f[f\"{demo_key}/obs/agentview_rgb\"][:]\n                n_steps = min(n_timesteps, len(actions_data))\n\n                for step_idx in range(n_steps):\n                    img = Image.fromarray(images_data[step_idx])\n\n                    inputs_c = processor(correct_prompt, img).to(device, dtype=torch.bfloat16)\n                    c_action, c_ids, c_logits = predict_action_with_logits(\n                        model, inputs_c[\"input_ids\"], inputs_c[\"pixel_values\"], UNNORM_KEY\n                    )\n                    task_c_actions.append(c_action)\n                    task_c_ids.append(c_ids)\n                    total_passes += 1\n\n                    for cond in conditions:\n                        inputs_cf = processor(cf_prompts[cond], img).to(\n                            device, dtype=torch.bfloat16\n                        )\n                        cf_action, cf_ids, cf_logits = predict_action_with_logits(\n                            model, inputs_cf[\"input_ids\"], inputs_cf[\"pixel_values\"], UNNORM_KEY\n                        )\n                        kl = compute_kl_divergence(c_logits, cf_logits)\n                        task_cf[cond][\"actions\"].append(cf_action)\n                        task_cf[cond][\"ids\"].append(cf_ids)\n                        task_cf[cond][\"kls\"].append(kl)\n                        total_passes += 1\n\n                    if total_passes % 100 == 0:\n                        elapsed = time.time() - t_start\n                        rate = total_passes / elapsed\n                        remaining = (n_tasks * n_demos * n_timesteps * (1 + len(conditions)) - total_passes)\n                        eta = remaining / rate if rate > 0 else 0\n                        print(\n                            f\"  [GPU {gpu_id}] {total_passes} passes, \"\n                            f\"{rate:.1f} pass/s, ETA {eta:.0f}s\"\n                        )\n\n        for cond in conditions:\n            metrics = compute_condition_metrics(\n                task_c_actions, task_cf[cond][\"actions\"],\n                task_c_ids, task_cf[cond][\"ids\"],\n                task_cf[cond][\"kls\"],\n            )\n            metrics[\"instruction_correct\"] = correct_instruction\n            metrics[\"instruction_counterfactual\"] = cf_instructions[cond]\n            per_task_cond[cond][task_name] = metrics\n            print(\n                f\"  [GPU {gpu_id}] {cond}: MSE={metrics['paired_mse']['mean']:.6f} \"\n                f\"d={metrics['paired_mse']['cohens_d']:.3f} \"\n                f\"token_div={metrics['token_divergence_rate']:.4f} \"\n                f\"KL={metrics['kl_divergence']['mean']:.4f}\"\n            )\n\n        correct_global[\"actions\"].extend(task_c_actions)\n        correct_global[\"token_ids\"].extend(task_c_ids)\n        correct_global_ids.extend(task_c_ids)\n        per_task_correct[task_name] = {\n            \"instruction\": correct_instruction,\n            \"n_samples\": len(task_c_actions),\n            \"action_mean\": [float(x) for x in np.mean(task_c_actions, axis=0)],\n            \"action_std\": [float(x) for x in np.std(task_c_actions, axis=0)],\n            \"dim_names\": DIM_NAMES,\n        }\n        for cond in conditions:\n            cond_global[cond][\"actions\"].extend(task_cf[cond][\"actions\"])\n            cond_global[cond][\"ids\"].extend(task_cf[cond][\"ids\"])\n            cond_global[cond][\"kls\"].extend(task_cf[cond][\"kls\"])\n\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    for cond in conditions:\n        global_metrics = compute_condition_metrics(\n            correct_global[\"actions\"], cond_global[cond][\"actions\"],\n            correct_global[\"token_ids\"], cond_global[cond][\"ids\"],\n            cond_global[cond][\"kls\"],\n        )\n\n        output = {\n            \"config\": {\n                \"condition\": cond,\n                \"n_tasks\": n_tasks,\n                \"n_demos_per_task\": n_demos,\n                \"n_timesteps_per_demo\": n_timesteps,\n                \"total_forward_passes\": total_passes,\n                \"model\": \"openvla-7b\",\n                \"unnorm_key\": UNNORM_KEY,\n                \"gpu\": gpu_id,\n                \"seed\": SEED,\n            },\n            \"global_metrics\": global_metrics,\n            \"per_task\": per_task_cond[cond],\n        }\n\n        out_path = os.path.join(RESULTS_DIR, f\"counterfactual_{cond}.json\")\n        with open(out_path, \"w\") as fout:\n            json.dump(output, fout, indent=2)\n        print(f\"[GPU {gpu_id}] Saved {out_path}\")\n\n    if gpu_id == 0:\n        all_actions = np.array(correct_global[\"actions\"])\n        correct_output = {\n            \"config\": {\n                \"condition\": \"correct\",\n                \"n_tasks\": n_tasks,\n                \"n_demos_per_task\": n_demos,\n                \"n_timesteps_per_demo\": n_timesteps,\n                \"model\": \"openvla-7b\",\n                \"unnorm_key\": UNNORM_KEY,\n                \"seed\": SEED,\n            },\n            \"global\": {\n                \"n_samples\": len(all_actions),\n                \"action_mean\": [float(x) for x in np.mean(all_actions, axis=0)],\n                \"action_std\": [float(x) for x in np.std(all_actions, axis=0)],\n                \"dim_names\": DIM_NAMES,\n            },\n            \"per_task\": per_task_correct,\n        }\n        out_path = os.path.join(RESULTS_DIR, \"counterfactual_correct.json\")\n        with open(out_path, \"w\") as fout:\n            json.dump(correct_output, fout, indent=2)\n        print(f\"[GPU {gpu_id}] Saved {out_path}\")\n\n    elapsed = time.time() - t_start\n    print(f\"\\n[GPU {gpu_id}] Done. {total_passes} passes in {elapsed:.0f}s\")\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    t_start = time.time()\n\n    gpu0_conditions = [\"wrong\", \"empty\"]\n    gpu1_conditions = [\"shuffled\", \"paraphrased\"]\n\n    p0 = mp.Process(target=gpu_worker, args=(0, gpu0_conditions, args.dry_run))\n    p1 = mp.Process(target=gpu_worker, args=(1, gpu1_conditions, args.dry_run))\n\n    p0.start()\n    p1.start()\n    p0.join()\n    p1.join()\n\n    if p0.exitcode != 0 or p1.exitcode != 0:\n        print(f\"ERROR: GPU 0 exit={p0.exitcode}, GPU 1 exit={p1.exitcode}\")\n        sys.exit(1)\n\n    print(\"\\nGenerating combined summary...\")\n    combined = {\n        \"config\": {\n            \"experiment\": \"counterfactual_instruction\",\n            \"conditions\": [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"],\n            \"n_tasks\": 1 if args.dry_run else N_TASKS,\n            \"n_demos_per_task\": 1 if args.dry_run else N_DEMOS,\n            \"n_timesteps_per_demo\": 2 if args.dry_run else N_TIMESTEPS,\n            \"model\": \"openvla-7b\",\n            \"unnorm_key\": UNNORM_KEY,\n            \"seed\": SEED,\n        },\n        \"conditions\": {},\n    }\n\n    for cond in [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"]:\n        cond_path = os.path.join(RESULTS_DIR, f\"counterfactual_{cond}.json\")\n        if os.path.exists(cond_path):\n            with open(cond_path, \"r\") as f:\n                data = json.load(f)\n            combined[\"conditions\"][cond] = {\n                \"global_metrics\": data[\"global_metrics\"],\n                \"per_task\": data[\"per_task\"],\n            }\n\n    ranking = sorted(\n        [(k, v[\"global_metrics\"]) for k, v in combined[\"conditions\"].items()],\n        key=lambda x: x[1][\"paired_mse\"][\"cohens_d\"],\n        reverse=True,\n    )\n    combined[\"ranking_by_cohens_d\"] = [\n        {\n            \"condition\": k,\n            \"cohens_d\": v[\"paired_mse\"][\"cohens_d\"],\n            \"paired_mse_mean\": v[\"paired_mse\"][\"mean\"],\n            \"token_divergence_rate\": v[\"token_divergence_rate\"],\n            \"kl_divergence_mean\": v[\"kl_divergence\"][\"mean\"],\n        }\n        for k, v in ranking\n    ]\n\n    out_path = os.path.join(RESULTS_DIR, \"counterfactual_combined.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(combined, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\nTotal time: {elapsed:.0f}s\")\n    print(f\"Combined results: {out_path}\")\n\n    print(f\"\\n{'='*60}\")\n    print(\"COUNTERFACTUAL INSTRUCTION EXPERIMENT SUMMARY\")\n    print(f\"{'='*60}\")\n    for k, v in ranking:\n        print(\n            f\"  {k:12s}: MSE={v['paired_mse']['mean']:.6f} \"\n            f\"d={v['paired_mse']['cohens_d']:.3f} \"\n            f\"token_div={v['token_divergence_rate']:.4f} \"\n            f\"KL={v['kl_divergence']['mean']:.4f}\"\n        )\n\n\nif __name__ == \"__main__\":\n    mp.set_start_method(\"spawn\")\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T17:08:23.101063+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_instruction.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T17:08:23.101288+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/counterfactual_instruction.py << 'SCRIPT_EOF'\n\"\"\"Counterfactual instruction experiment: measures how different instruction perturbations\naffect action outputs, validating that L1 instruction-dominant heads perform\ninstruction-specific routing rather than generic text processing.\n\nConditions: correct (baseline), wrong, empty, shuffled, paraphrased\nInput: LIBERO-Goal demos (3 tasks x 10 demos x 50 timesteps)\nOutput: /root/autodl-tmp/vla-ssd/results/counterfactual_{condition}.json\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport os\nimport random\nimport sys\nimport time\n\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.multiprocessing as mp\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom scipy import stats\n\nSEED = 42\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\"\nUNNORM_KEY = \"bridge_orig\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\nN_TASKS = 3\nN_DEMOS = 10\nN_TIMESTEPS = 50\nDIM_NAMES = [\"dx\", \"dy\", \"dz\", \"rx\", \"ry\", \"rz\", \"gripper\"]\n\nTASK_INSTRUCTIONS = {\n    \"open_the_middle_drawer_of_the_cabinet\": {\n        \"correct\": \"open the middle drawer of the cabinet\",\n        \"paraphrased\": \"pull open the center drawer on the cabinet\",\n        \"wrong\": \"push the plate to the front of the stove\",\n    },\n    \"open_the_top_drawer_and_put_the_bowl_inside\": {\n        \"correct\": \"open the top drawer and put the bowl inside\",\n        \"paraphrased\": \"open the upper drawer and place the bowl in it\",\n        \"wrong\": \"open the middle drawer of the cabinet\",\n    },\n    \"push_the_plate_to_the_front_of_the_stove\": {\n        \"correct\": \"push the plate to the front of the stove\",\n        \"paraphrased\": \"slide the plate toward the front of the stove\",\n        \"wrong\": \"open the top drawer and put the bowl inside\",\n    },\n}\n\n\ndef load_model(device):\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        device_map=device,\n    ).eval()\n    return model, processor\n\n\ndef predict_action_with_logits(model, input_ids, pixel_values, unnorm_key):\n    \"\"\"Manual autoregressive generation (bypasses DynamicCache bug in transformers 4.40.1).\"\"\"\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    all_logits = []\n\n    for _ in range(action_dim):\n        all_logits.append(next_token_logits.float().cpu())\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device,\n            dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\n    )\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high = np.array(action_norm_stats[\"q99\"])\n    action_low = np.array(action_norm_stats[\"q01\"])\n    action = np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n\n    logits_tensor = torch.cat(all_logits, dim=0)\n    return action, predicted_action_token_ids, logits_tensor\n\n\ndef compute_kl_divergence(logits_p, logits_q):\n    log_p = F.log_softmax(logits_p, dim=-1)\n    log_q = F.log_softmax(logits_q, dim=-1)\n    p = F.softmax(logits_p, dim=-1)\n    kl = (p * (log_p - log_q)).sum(dim=-1)\n    return kl.numpy()\n\n\ndef get_shuffled_instruction(instruction, rng):\n    words = instruction.split()\n    rng.shuffle(words)\n    return \" \".join(words)\n\n\ndef get_task_files():\n    hdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*.hdf5\")))\n    return hdf5_files[:N_TASKS]\n\n\ndef get_language_instruction(hdf5_path):\n    with h5py.File(hdf5_path, \"r\") as f:\n        info = json.loads(f[\"data\"].attrs[\"problem_info\"])\n    return info[\"language_instruction\"]\n\n\ndef compute_condition_metrics(c_actions, cf_actions, c_ids, cf_ids, kl_arrays):\n    c = np.array(c_actions)\n    cf = np.array(cf_actions)\n    c_tok = np.array(c_ids)\n    cf_tok = np.array(cf_ids)\n    kls = np.array(kl_arrays)\n\n    paired_mse = np.mean((c - cf) ** 2, axis=1)\n    t_res = stats.ttest_1samp(paired_mse, 0)\n    cohens_d = np.mean(paired_mse) / (np.std(paired_mse, ddof=1) + 1e-12)\n    per_dim_shift = np.abs(c - cf)\n    token_div = np.mean(c_tok != cf_tok)\n\n    try:\n        wilcoxon_res = stats.wilcoxon(paired_mse)\n        wilcoxon_p = float(wilcoxon_res.pvalue)\n    except Exception:\n        wilcoxon_p = None\n\n    return {\n        \"paired_mse\": {\n            \"mean\": float(np.mean(paired_mse)),\n            \"std\": float(np.std(paired_mse)),\n            \"t_stat\": float(t_res.statistic),\n            \"p_value\": float(t_res.pvalue),\n            \"cohens_d\": float(cohens_d),\n        },\n        \"per_dim_shift\": {\n            \"means\": [float(x) for x in np.mean(per_dim_shift, axis=0)],\n            \"stds\": [float(x) for x in np.std(per_dim_shift, axis=0)],\n            \"dim_names\": DIM_NAMES,\n        },\n        \"token_divergence_rate\": float(token_div),\n        \"kl_divergence\": {\n            \"mean\": float(np.mean(kls)),\n            \"std\": float(np.std(kls)),\n            \"per_token_position\": [float(x) for x in np.mean(kls, axis=0)] if kls.ndim > 1 else [],\n        },\n        \"wilcoxon_p\": wilcoxon_p,\n        \"n_samples\": int(len(c)),\n    }\n\n\ndef gpu_worker(gpu_id, conditions, dry_run):\n    random.seed(SEED)\n    np.random.seed(SEED)\n    torch.manual_seed(SEED)\n    rng = random.Random(SEED)\n\n    device = f\"cuda:{gpu_id}\"\n    n_tasks = 1 if dry_run else N_TASKS\n    n_demos = 1 if dry_run else N_DEMOS\n    n_timesteps = 2 if dry_run else N_TIMESTEPS\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n\n    print(f\"[GPU {gpu_id}] Loading model on {device}...\")\n    model, processor = load_model(device)\n    print(f\"[GPU {gpu_id}] Model loaded. Conditions: {conditions}\")\n\n    task_files = get_task_files()[:n_tasks]\n\n    correct_global = {\"actions\": [], \"token_ids\": []}\n    cond_global = {c: {\"actions\": [], \"ids\": [], \"kls\": []} for c in conditions}\n    per_task_correct = {}\n    per_task_cond = {c: {} for c in conditions}\n\n    total_passes = 0\n    t_start = time.time()\n\n    for task_idx, hdf5_path in enumerate(task_files):\n        task_name = os.path.basename(hdf5_path).replace(\"_demo.hdf5\", \"\")\n        correct_instruction = get_language_instruction(hdf5_path)\n        task_cfg = TASK_INSTRUCTIONS[task_name]\n\n        print(f\"\\n[GPU {gpu_id}] Task {task_idx}: {task_name}\")\n        print(f\"  correct: {correct_instruction}\")\n\n        cf_instructions = {}\n        for cond in conditions:\n            if cond == \"wrong\":\n                cf_instructions[cond] = task_cfg[\"wrong\"]\n            elif cond == \"empty\":\n                cf_instructions[cond] = \"\"\n            elif cond == \"shuffled\":\n                cf_instructions[cond] = get_shuffled_instruction(correct_instruction, rng)\n            elif cond == \"paraphrased\":\n                cf_instructions[cond] = task_cfg[\"paraphrased\"]\n            print(f\"  {cond}: '{cf_instructions[cond]}'\")\n\n        correct_prompt = f\"In: What action should the robot take to {correct_instruction}?\\nOut:\"\n        cf_prompts = {}\n        for cond in conditions:\n            inst = cf_instructions[cond]\n            if inst == \"\":\n                cf_prompts[cond] = \"In: What action should the robot take to ?\\nOut:\"\n            else:\n                cf_prompts[cond] = f\"In: What action should the robot take to {inst}?\\nOut:\"\n\n        task_c_actions, task_c_ids = [], []\n        task_cf = {c: {\"actions\": [], \"ids\": [], \"kls\": []} for c in conditions}\n\n        with h5py.File(hdf5_path, \"r\") as f:\n            for demo_idx in range(n_demos):\n                demo_key = f\"data/demo_{demo_idx}\"\n                actions_data = f[f\"{demo_key}/actions\"][:]\n                images_data = f[f\"{demo_key}/obs/agentview_rgb\"][:]\n                n_steps = min(n_timesteps, len(actions_data))\n\n                for step_idx in range(n_steps):\n                    img = Image.fromarray(images_data[step_idx])\n\n                    inputs_c = processor(correct_prompt, img).to(device, dtype=torch.bfloat16)\n                    c_action, c_ids, c_logits = predict_action_with_logits(\n                        model, inputs_c[\"input_ids\"], inputs_c[\"pixel_values\"], UNNORM_KEY\n                    )\n                    task_c_actions.append(c_action)\n                    task_c_ids.append(c_ids)\n                    total_passes += 1\n\n                    for cond in conditions:\n                        inputs_cf = processor(cf_prompts[cond], img).to(\n                            device, dtype=torch.bfloat16\n                        )\n                        cf_action, cf_ids, cf_logits = predict_action_with_logits(\n                            model, inputs_cf[\"input_ids\"], inputs_cf[\"pixel_values\"], UNNORM_KEY\n                        )\n                        kl = compute_kl_divergence(c_logits, cf_logits)\n                        task_cf[cond][\"actions\"].append(cf_action)\n                        task_cf[cond][\"ids\"].append(cf_ids)\n                        task_cf[cond][\"kls\"].append(kl)\n                        total_passes += 1\n\n                    if total_passes % 100 == 0:\n                        elapsed = time.time() - t_start\n                        rate = total_passes / elapsed\n                        remaining = (n_tasks * n_demos * n_timesteps * (1 + len(conditions)) - total_passes)\n                        eta = remaining / rate if rate > 0 else 0\n                        print(\n                            f\"  [GPU {gpu_id}] {total_passes} passes, \"\n                            f\"{rate:.1f} pass/s, ETA {eta:.0f}s\"\n                        )\n\n        for cond in conditions:\n            metrics = compute_condition_metrics(\n                task_c_actions, task_cf[cond][\"actions\"],\n                task_c_ids, task_cf[cond][\"ids\"],\n                task_cf[cond][\"kls\"],\n            )\n            metrics[\"instruction_correct\"] = correct_instruction\n            metrics[\"instruction_counterfactual\"] = cf_instructions[cond]\n            per_task_cond[cond][task_name] = metrics\n            print(\n                f\"  [GPU {gpu_id}] {cond}: MSE={metrics['paired_mse']['mean']:.6f} \"\n                f\"d={metrics['paired_mse']['cohens_d']:.3f} \"\n                f\"token_div={metrics['token_divergence_rate']:.4f} \"\n                f\"KL={metrics['kl_divergence']['mean']:.4f}\"\n            )\n\n        correct_global[\"actions\"].extend(task_c_actions)\n        correct_global[\"token_ids\"].extend(task_c_ids)\n        per_task_correct[task_name] = {\n            \"instruction\": correct_instruction,\n            \"n_samples\": len(task_c_actions),\n            \"action_mean\": [float(x) for x in np.mean(task_c_actions, axis=0)],\n            \"action_std\": [float(x) for x in np.std(task_c_actions, axis=0)],\n            \"dim_names\": DIM_NAMES,\n        }\n        for cond in conditions:\n            cond_global[cond][\"actions\"].extend(task_cf[cond][\"actions\"])\n            cond_global[cond][\"ids\"].extend(task_cf[cond][\"ids\"])\n            cond_global[cond][\"kls\"].extend(task_cf[cond][\"kls\"])\n\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    for cond in conditions:\n        global_metrics = compute_condition_metrics(\n            correct_global[\"actions\"], cond_global[cond][\"actions\"],\n            correct_global[\"token_ids\"], cond_global[cond][\"ids\"],\n            cond_global[cond][\"kls\"],\n        )\n\n        output = {\n            \"config\": {\n                \"condition\": cond,\n                \"n_tasks\": n_tasks,\n                \"n_demos_per_task\": n_demos,\n                \"n_timesteps_per_demo\": n_timesteps,\n                \"total_forward_passes\": total_passes,\n                \"model\": \"openvla-7b\",\n                \"unnorm_key\": UNNORM_KEY,\n                \"gpu\": gpu_id,\n                \"seed\": SEED,\n            },\n            \"global_metrics\": global_metrics,\n            \"per_task\": per_task_cond[cond],\n        }\n\n        out_path = os.path.join(RESULTS_DIR, f\"counterfactual_{cond}.json\")\n        with open(out_path, \"w\") as fout:\n            json.dump(output, fout, indent=2)\n        print(f\"[GPU {gpu_id}] Saved {out_path}\")\n\n    if gpu_id == 0:\n        all_actions = np.array(correct_global[\"actions\"])\n        correct_output = {\n            \"config\": {\n                \"condition\": \"correct\",\n                \"n_tasks\": n_tasks,\n                \"n_demos_per_task\": n_demos,\n                \"n_timesteps_per_demo\": n_timesteps,\n                \"model\": \"openvla-7b\",\n                \"unnorm_key\": UNNORM_KEY,\n                \"seed\": SEED,\n            },\n            \"global\": {\n                \"n_samples\": len(all_actions),\n                \"action_mean\": [float(x) for x in np.mean(all_actions, axis=0)],\n                \"action_std\": [float(x) for x in np.std(all_actions, axis=0)],\n                \"dim_names\": DIM_NAMES,\n            },\n            \"per_task\": per_task_correct,\n        }\n        out_path = os.path.join(RESULTS_DIR, \"counterfactual_correct.json\")\n        with open(out_path, \"w\") as fout:\n            json.dump(correct_output, fout, indent=2)\n        print(f\"[GPU {gpu_id}] Saved {out_path}\")\n\n    elapsed = time.time() - t_start\n    print(f\"\\n[GPU {gpu_id}] Done. {total_passes} passes in {elapsed:.0f}s\")\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    t_start = time.time()\n\n    gpu0_conditions = [\"wrong\", \"empty\"]\n    gpu1_conditions = [\"shuffled\", \"paraphrased\"]\n\n    p0 = mp.Process(target=gpu_worker, args=(0, gpu0_conditions, args.dry_run))\n    p1 = mp.Process(target=gpu_worker, args=(1, gpu1_conditions, args.dry_run))\n\n    p0.start()\n    p1.start()\n    p0.join()\n    p1.join()\n\n    if p0.exitcode != 0 or p1.exitcode != 0:\n        print(f\"ERROR: GPU 0 exit={p0.exitcode}, GPU 1 exit={p1.exitcode}\")\n        sys.exit(1)\n\n    print(\"\\nGenerating combined summary...\")\n    combined = {\n        \"config\": {\n            \"experiment\": \"counterfactual_instruction\",\n            \"conditions\": [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"],\n            \"n_tasks\": 1 if args.dry_run else N_TASKS,\n            \"n_demos_per_task\": 1 if args.dry_run else N_DEMOS,\n            \"n_timesteps_per_demo\": 2 if args.dry_run else N_TIMESTEPS,\n            \"model\": \"openvla-7b\",\n            \"unnorm_key\": UNNORM_KEY,\n            \"seed\": SEED,\n        },\n        \"conditions\": {},\n    }\n\n    for cond in [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"]:\n        cond_path = os.path.join(RESULTS_DIR, f\"counterfactual_{cond}.json\")\n        if os.path.exists(cond_path):\n            with open(cond_path, \"r\") as f:\n                data = json.load(f)\n            combined[\"conditions\"][cond] = {\n                \"global_metrics\": data[\"global_metrics\"],\n                \"per_task\": data[\"per_task\"],\n            }\n\n    ranking = sorted(\n        [(k, v[\"global_metrics\"]) for k, v in combined[\"conditions\"].items()],\n        key=lambda x: x[1][\"paired_mse\"][\"cohens_d\"],\n        reverse=True,\n    )\n    combined[\"ranking_by_cohens_d\"] = [\n        {\n            \"condition\": k,\n            \"cohens_d\": v[\"paired_mse\"][\"cohens_d\"],\n            \"paired_mse_mean\": v[\"paired_mse\"][\"mean\"],\n            \"token_divergence_rate\": v[\"token_divergence_rate\"],\n            \"kl_divergence_mean\": v[\"kl_divergence\"][\"mean\"],\n        }\n        for k, v in ranking\n    ]\n\n    out_path = os.path.join(RESULTS_DIR, \"counterfactual_combined.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(combined, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\nTotal time: {elapsed:.0f}s\")\n    print(f\"Combined results: {out_path}\")\n\n    print(f\"\\n{'='*60}\")\n    print(\"COUNTERFACTUAL INSTRUCTION EXPERIMENT SUMMARY\")\n    print(f\"{'='*60}\")\n    for k, v in ranking:\n        print(\n            f\"  {k:12s}: MSE={v['paired_mse']['mean']:.6f} \"\n            f\"d={v['paired_mse']['cohens_d']:.3f} \"\n            f\"token_div={v['token_divergence_rate']:.4f} \"\n            f\"KL={v['kl_divergence']['mean']:.4f}\"\n        )\n\n\nif __name__ == \"__main__\":\n    mp.set_start_method(\"spawn\")\n    main()\nSCRIPT_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/counterfactual_instruction.py << 'SCRIPT_EOF'\n\"\"\"Counterfactual instruction experiment: measures how different instruction perturbations\naffect action outputs, validating that L1 instruction-dominant heads perform\ninstruction-specific routing rather than generic text processing.\n\nConditions: correct (baseline), wrong, empty, shuffled, paraphrased\nInput: LIBERO-Goal demos (3 tasks x 10 demos x 50 timesteps)\nOutput: /root/autodl-tmp/vla-ssd/results/counterfactual_{condition}.json\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport os\nimport random\nimport sys\nimport time\n\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.multiprocessing as mp\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom scipy import stats\n\nSEED = 42\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\"\nUNNORM_KEY = \"bridge_orig\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\nN_TASKS = 3\nN_DEMOS = 10\nN_TIMESTEPS = 50\nDIM_NAMES = [\"dx\", \"dy\", \"dz\", \"rx\", \"ry\", \"rz\", \"gripper\"]\n\nTASK_INSTRUCTIONS = {\n    \"open_the_middle_drawer_of_the_cabinet\": {\n        \"correct\": \"open the middle drawer of the cabinet\",\n        \"paraphrased\": \"pull open the center drawer on the cabinet\",\n        \"wrong\": \"push the plate to the front of the stove\",\n    },\n    \"open_the_top_drawer_and_put_the_bowl_inside\": {\n        \"correct\": \"open the top drawer and put the bowl inside\",\n        \"paraphrased\": \"open the upper drawer and place the bowl in it\",\n        \"wrong\": \"open the middle drawer of the cabinet\",\n    },\n    \"push_the_plate_to_the_front_of_the_stove\": {\n        \"correct\": \"push the plate to the front of the stove\",\n        \"paraphrased\": \"slide the plate toward the front of the stove\",\n        \"wrong\": \"open the top drawer and put the bowl inside\",\n    },\n}\n\n\ndef load_model(device):\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        device_map=device,\n    ).eval()\n    return model, processor\n\n\ndef predict_action_with_logits(model, input_ids, pixel_values, unnorm_key):\n    \"\"\"Manual autoregressive generation (bypasses DynamicCache bug in transformers 4.40.1).\"\"\"\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    all_logits = []\n\n    for _ in range(action_dim):\n        all_logits.append(next_token_logits.float().cpu())\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device,\n            dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\n    )\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high = np.array(action_norm_stats[\"q99\"])\n    action_low = np.array(action_norm_stats[\"q01\"])\n    action = np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n\n    logits_tensor = torch.cat(all_logits, dim=0)\n    return action, predicted_action_token_ids, logits_tensor\n\n\ndef compute_kl_divergence(logits_p, logits_q):\n    log_p = F.log_softmax(logits_p, dim=-1)\n    log_q = F.log_softmax(logits_q, dim=-1)\n    p = F.softmax(logits_p, dim=-1)\n    kl = (p * (log_p - log_q)).sum(dim=-1)\n    return kl.numpy()\n\n\ndef get_shuffled_instruction(instruction, rng):\n    words = instruction.split()\n    rng.shuffle(words)\n    return \" \".join(words)\n\n\ndef get_task_files():\n    hdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*.hdf5\")))\n    return hdf5_files[:N_TASKS]\n\n\ndef get_language_instruction(hdf5_path):\n    with h5py.File(hdf5_path, \"r\") as f:\n        info = json.loads(f[\"data\"].attrs[\"problem_info\"])\n    return info[\"language_instruction\"]\n\n\ndef compute_condition_metrics(c_actions, cf_actions, c_ids, cf_ids, kl_arrays):\n    c = np.array(c_actions)\n    cf = np.array(cf_actions)\n    c_tok = np.array(c_ids)\n    cf_tok = np.array(cf_ids)\n    kls = np.array(kl_arrays)\n\n    paired_mse = np.mean((c - cf) ** 2, axis=1)\n    t_res = stats.ttest_1samp(paired_mse, 0)\n    cohens_d = np.mean(paired_mse) / (np.std(paired_mse, ddof=1) + 1e-12)\n    per_dim_shift = np.abs(c - cf)\n    token_div = np.mean(c_tok != cf_tok)\n\n    try:\n        wilcoxon_res = stats.wilcoxon(paired_mse)\n        wilcoxon_p = float(wilcoxon_res.pvalue)\n    except Exception:\n        wilcoxon_p = None\n\n    return {\n        \"paired_mse\": {\n            \"mean\": float(np.mean(paired_mse)),\n            \"std\": float(np.std(paired_mse)),\n            \"t_stat\": float(t_res.statistic),\n            \"p_value\": float(t_res.pvalue),\n            \"cohens_d\": float(cohens_d),\n        },\n        \"per_dim_shift\": {\n            \"means\": [float(x) for x in np.mean(per_dim_shift, axis=0)],\n            \"stds\": [float(x) for x in np.std(per_dim_shift, axis=0)],\n            \"dim_names\": DIM_NAMES,\n        },\n        \"token_divergence_rate\": float(token_div),\n        \"kl_divergence\": {\n            \"mean\": float(np.mean(kls)),\n            \"std\": float(np.std(kls)),\n            \"per_token_position\": [float(x) for x in np.mean(kls, axis=0)] if kls.ndim > 1 else [],\n        },\n        \"wilcoxon_p\": wilcoxon_p,\n        \"n_samples\": int(len(c)),\n    }\n\n\ndef gpu_worker(gpu_id, conditions, dry_run):\n    random.seed(SEED)\n    np.random.seed(SEED)\n    torch.manual_seed(SEED)\n    rng = random.Random(SEED)\n\n    device = f\"cuda:{gpu_id}\"\n    n_tasks = 1 if dry_run else N_TASKS\n    n_demos = 1 if dry_run else N_DEMOS\n    n_timesteps = 2 if dry_run else N_TIMESTEPS\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n\n    print(f\"[GPU {gpu_id}] Loading model on {device}...\")\n    model, processor = load_model(device)\n    print(f\"[GPU {gpu_id}] Model loaded. Conditions: {conditions}\")\n\n    task_files = get_task_files()[:n_tasks]\n\n    correct_global = {\"actions\": [], \"token_ids\": []}\n    cond_global = {c: {\"actions\": [], \"ids\": [], \"kls\": []} for c in conditions}\n    per_task_correct = {}\n    per_task_cond = {c: {} for c in conditions}\n\n    total_passes = 0\n    t_start = time.time()\n\n    for task_idx, hdf5_path in enumerate(task_files):\n        task_name = os.path.basename(hdf5_path).replace(\"_demo.hdf5\", \"\")\n        correct_instruction = get_language_instruction(hdf5_path)\n        task_cfg = TASK_INSTRUCTIONS[task_name]\n\n        print(f\"\\n[GPU {gpu_id}] Task {task_idx}: {task_name}\")\n        print(f\"  correct: {correct_instruction}\")\n\n        cf_instructions = {}\n        for cond in conditions:\n            if cond == \"wrong\":\n                cf_instructions[cond] = task_cfg[\"wrong\"]\n            elif cond == \"empty\":\n                cf_instructions[cond] = \"\"\n            elif cond == \"shuffled\":\n                cf_instructions[cond] = get_shuffled_instruction(correct_instruction, rng)\n            elif cond == \"paraphrased\":\n                cf_instructions[cond] = task_cfg[\"paraphrased\"]\n            print(f\"  {cond}: '{cf_instructions[cond]}'\")\n\n        correct_prompt = f\"In: What action should the robot take to {correct_instruction}?\\nOut:\"\n        cf_prompts = {}\n        for cond in conditions:\n            inst = cf_instructions[cond]\n            if inst == \"\":\n                cf_prompts[cond] = \"In: What action should the robot take to ?\\nOut:\"\n            else:\n                cf_prompts[cond] = f\"In: What action should the robot take to {inst}?\\nOut:\"\n\n        task_c_actions, task_c_ids = [], []\n        task_cf = {c: {\"actions\": [], \"ids\": [], \"kls\": []} for c in conditions}\n\n        with h5py.File(hdf5_path, \"r\") as f:\n            for demo_idx in range(n_demos):\n                demo_key = f\"data/demo_{demo_idx}\"\n                actions_data = f[f\"{demo_key}/actions\"][:]\n                images_data = f[f\"{demo_key}/obs/agentview_rgb\"][:]\n                n_steps = min(n_timesteps, len(actions_data))\n\n                for step_idx in range(n_steps):\n                    img = Image.fromarray(images_data[step_idx])\n\n                    inputs_c = processor(correct_prompt, img).to(device, dtype=torch.bfloat16)\n                    c_action, c_ids, c_logits = predict_action_with_logits(\n                        model, inputs_c[\"input_ids\"], inputs_c[\"pixel_values\"], UNNORM_KEY\n                    )\n                    task_c_actions.append(c_action)\n                    task_c_ids.append(c_ids)\n                    total_passes += 1\n\n                    for cond in conditions:\n                        inputs_cf = processor(cf_prompts[cond], img).to(\n                            device, dtype=torch.bfloat16\n                        )\n                        cf_action, cf_ids, cf_logits = predict_action_with_logits(\n                            model, inputs_cf[\"input_ids\"], inputs_cf[\"pixel_values\"], UNNORM_KEY\n                        )\n                        kl = compute_kl_divergence(c_logits, cf_logits)\n                        task_cf[cond][\"actions\"].append(cf_action)\n                        task_cf[cond][\"ids\"].append(cf_ids)\n                        task_cf[cond][\"kls\"].append(kl)\n                        total_passes += 1\n\n                    if total_passes % 100 == 0:\n                        elapsed = time.time() - t_start\n                        rate = total_passes / elapsed\n                        remaining = (n_tasks * n_demos * n_timesteps * (1 + len(conditions)) - total_passes)\n                        eta = remaining / rate if rate > 0 else 0\n                        print(\n                            f\"  [GPU {gpu_id}] {total_passes} passes, \"\n                            f\"{rate:.1f} pass/s, ETA {eta:.0f}s\"\n                        )\n\n        for cond in conditions:\n            metrics = compute_condition_metrics(\n                task_c_actions, task_cf[cond][\"actions\"],\n                task_c_ids, task_cf[cond][\"ids\"],\n                task_cf[cond][\"kls\"],\n            )\n            metrics[\"instruction_correct\"] = correct_instruction\n            metrics[\"instruction_counterfactual\"] = cf_instructions[cond]\n            per_task_cond[cond][task_name] = metrics\n            print(\n                f\"  [GPU {gpu_id}] {cond}: MSE={metrics['paired_mse']['mean']:.6f} \"\n                f\"d={metrics['paired_mse']['cohens_d']:.3f} \"\n                f\"token_div={metrics['token_divergence_rate']:.4f} \"\n                f\"KL={metrics['kl_divergence']['mean']:.4f}\"\n            )\n\n        correct_global[\"actions\"].extend(task_c_actions)\n        correct_global[\"token_ids\"].extend(task_c_ids)\n        per_task_correct[task_name] = {\n            \"instruction\": correct_instruction,\n            \"n_samples\": len(task_c_actions),\n            \"action_mean\": [float(x) for x in np.mean(task_c_actions, axis=0)],\n            \"action_std\": [float(x) for x in np.std(task_c_actions, axis=0)],\n            \"dim_names\": DIM_NAMES,\n        }\n        for cond in conditions:\n            cond_global[cond][\"actions\"].extend(task_cf[cond][\"actions\"])\n            cond_global[cond][\"ids\"].extend(task_cf[cond][\"ids\"])\n            cond_global[cond][\"kls\"].extend(task_cf[cond][\"kls\"])\n\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    for cond in conditions:\n        global_metrics = compute_condition_metrics(\n            correct_global[\"actions\"], cond_global[cond][\"actions\"],\n            correct_global[\"token_ids\"], cond_global[cond][\"ids\"],\n            cond_global[cond][\"kls\"],\n        )\n\n        output = {\n            \"config\": {\n                \"condition\": cond,\n                \"n_tasks\": n_tasks,\n                \"n_demos_per_task\": n_demos,\n                \"n_timesteps_per_demo\": n_timesteps,\n                \"total_forward_passes\": total_passes,\n                \"model\": \"openvla-7b\",\n                \"unnorm_key\": UNNORM_KEY,\n                \"gpu\": gpu_id,\n                \"seed\": SEED,\n            },\n            \"global_metrics\": global_metrics,\n            \"per_task\": per_task_cond[cond],\n        }\n\n        out_path = os.path.join(RESULTS_DIR, f\"counterfactual_{cond}.json\")\n        with open(out_path, \"w\") as fout:\n            json.dump(output, fout, indent=2)\n        print(f\"[GPU {gpu_id}] Saved {out_path}\")\n\n    if gpu_id == 0:\n        all_actions = np.array(correct_global[\"actions\"])\n        correct_output = {\n            \"config\": {\n                \"condition\": \"correct\",\n                \"n_tasks\": n_tasks,\n                \"n_demos_per_task\": n_demos,\n                \"n_timesteps_per_demo\": n_timesteps,\n                \"model\": \"openvla-7b\",\n                \"unnorm_key\": UNNORM_KEY,\n                \"seed\": SEED,\n            },\n            \"global\": {\n                \"n_samples\": len(all_actions),\n                \"action_mean\": [float(x) for x in np.mean(all_actions, axis=0)],\n                \"action_std\": [float(x) for x in np.std(all_actions, axis=0)],\n                \"dim_names\": DIM_NAMES,\n            },\n            \"per_task\": per_task_correct,\n        }\n        out_path = os.path.join(RESULTS_DIR, \"counterfactual_correct.json\")\n        with open(out_path, \"w\") as fout:\n            json.dump(correct_output, fout, indent=2)\n        print(f\"[GPU {gpu_id}] Saved {out_path}\")\n\n    elapsed = time.time() - t_start\n    print(f\"\\n[GPU {gpu_id}] Done. {total_passes} passes in {elapsed:.0f}s\")\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    t_start = time.time()\n\n    gpu0_conditions = [\"wrong\", \"empty\"]\n    gpu1_conditions = [\"shuffled\", \"paraphrased\"]\n\n    p0 = mp.Process(target=gpu_worker, args=(0, gpu0_conditions, args.dry_run))\n    p1 = mp.Process(target=gpu_worker, args=(1, gpu1_conditions, args.dry_run))\n\n    p0.start()\n    p1.start()\n    p0.join()\n    p1.join()\n\n    if p0.exitcode != 0 or p1.exitcode != 0:\n        print(f\"ERROR: GPU 0 exit={p0.exitcode}, GPU 1 exit={p1.exitcode}\")\n        sys.exit(1)\n\n    print(\"\\nGenerating combined summary...\")\n    combined = {\n        \"config\": {\n            \"experiment\": \"counterfactual_instruction\",\n            \"conditions\": [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"],\n            \"n_tasks\": 1 if args.dry_run else N_TASKS,\n            \"n_demos_per_task\": 1 if args.dry_run else N_DEMOS,\n            \"n_timesteps_per_demo\": 2 if args.dry_run else N_TIMESTEPS,\n            \"model\": \"openvla-7b\",\n            \"unnorm_key\": UNNORM_KEY,\n            \"seed\": SEED,\n        },\n        \"conditions\": {},\n    }\n\n    for cond in [\"wrong\", \"empty\", \"shuffled\", \"paraphrased\"]:\n        cond_path = os.path.join(RESULTS_DIR, f\"counterfactual_{cond}.json\")\n        if os.path.exists(cond_path):\n            with open(cond_path, \"r\") as f:\n                data = json.load(f)\n            combined[\"conditions\"][cond] = {\n                \"global_metrics\": data[\"global_metrics\"],\n                \"per_task\": data[\"per_task\"],\n            }\n\n    ranking = sorted(\n        [(k, v[\"global_metrics\"]) for k, v in combined[\"conditions\"].items()],\n        key=lambda x: x[1][\"paired_mse\"][\"cohens_d\"],\n        reverse=True,\n    )\n    combined[\"ranking_by_cohens_d\"] = [\n        {\n            \"condition\": k,\n            \"cohens_d\": v[\"paired_mse\"][\"cohens_d\"],\n            \"paired_mse_mean\": v[\"paired_mse\"][\"mean\"],\n            \"token_divergence_rate\": v[\"token_divergence_rate\"],\n            \"kl_divergence_mean\": v[\"kl_divergence\"][\"mean\"],\n        }\n        for k, v in ranking\n    ]\n\n    out_path = os.path.join(RESULTS_DIR, \"counterfactual_combined.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(combined, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\nTotal time: {elapsed:.0f}s\")\n    print(f\"Combined results: {out_path}\")\n\n    print(f\"\\n{'='*60}\")\n    print(\"COUNTERFACTUAL INSTRUCTION EXPERIMENT SUMMARY\")\n    print(f\"{'='*60}\")\n    for k, v in ranking:\n        print(\n            f\"  {k:12s}: MSE={v['paired_mse']['mean']:.6f} \"\n            f\"d={v['paired_mse']['cohens_d']:.3f} \"\n            f\"token_div={v['token_divergence_rate']:.4f} \"\n            f\"KL={v['kl_divergence']['mean']:.4f}\"\n        )\n\n\nif __name__ == \"__main__\":\n    mp.set_start_method(\"spawn\")\n    main()\nSCRIPT_EOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T17:08:23.101596+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T17:08:23.101748+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py --dry-run 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py --dry-run 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T17:08:23.101914+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[GPU 1] Loading model on cuda:1...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][GPU 0] Loading model on cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.52s/it]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.75s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.06s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.12s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:04<00:00,  1.29s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:04<00:00,  1.54s/it]\\n\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:04<00:00,  1.32s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:04<00:00,  1.60s/it]\\n[GPU 1] Model loaded. Conditions: ['shuffled', 'paraphrased']\\n\\n[GPU 1] Task 0: open_the_middle_drawer_of_the_cabinet\\n  correct: open the middle drawer of the cabinet\\n  shuffled: 'the drawer of middle cabinet open the'\\n  paraphrased: 'pull open the center drawer on the cabinet'\\n  [GPU 1] shuffled: MSE=0.000316 d=8.314 token_div=0.8571 KL=8.1114\\n  [GPU 1] paraphrased: MSE=0.141836 d=1148.953 token_div=0.8571 KL=5.4883\\n[GPU 1] Saved /root/autodl-tmp/vla-ssd/results/counterfactual_shuffled.json\\n[GPU 1] Saved /root/autodl-tmp/vla-ssd/results/counterfactual_paraphrased.json\\n\\n[GPU 1] Done. 6 passes in 2s\\n[GPU 0] Model loaded. Conditions: ['wrong', 'empty']\\n\\n[GPU 0] Task 0: open_the_middle_drawer_of_the_cabinet\\n  correct: open the middle drawer of the cabinet\\n  wrong: 'push the plate to the front of the stove'\\n  empty: ''\\n  [GPU 0] wrong: MSE=0.000135 d=1.439 token_div=0.8571 KL=9.0151\\n  [GPU 0] empty: MSE=0.071268 d=0.713 token_div=0.8571 KL=7.5061\\n[GPU 0] Saved /root/autodl-tmp/vla-ssd/results/counterfactual_wrong.json\\n[GPU 0] Saved /root/autodl-tmp/vla-ssd/results/counterfactu
+…[truncated 815 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T17:08:23.102129+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && nohup bash -c 'MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py > /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log 2>&1' &",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && nohup bash -c 'MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py > /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log 2>&1' &",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T17:08:23.102268+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: \\\"cd /root/vla-ssd && nohup bash -c 'MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py > /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log 2>&1' &\\\"\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T17:08:23.102407+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && setsid bash -c 'MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py > /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log 2>&1 &' && echo \"Job launched\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && setsid bash -c 'MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py > /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log 2>&1 &' && echo \"Job launched\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T17:08:23.102534+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Job launched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T17:08:23.102651+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -5 /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -5 /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T17:08:23.102770+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T17:08:23.102898+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -c python /proc/*/comm 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -c python /proc/*/comm 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T17:08:23.103049+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T17:08:23.103169+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux | grep counterfactual | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps aux | grep counterfactual | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T17:08:23.103306+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root      65290  0.0  0.0   4364  1856 ?        S    01:05   0:00 bash -c cd /root/vla-ssd && nohup bash -c 'MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py > /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log 2>&1' &\\nroot      65291  0.0  0.0   4364  3192 ?        S    01:05   0:00 bash -c MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py > /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log 2>&1\\nroot      65292 30.2  0.0 10259316 594920 ?     Sl   01:05   0:15 /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py\\nroot      66009 92.7  0.0 10258284 595416 ?     Sl   01:05   0:12 /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T17:08:23.103453+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "kill 65290 65291 65292 && echo \"killed nohup group\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "kill 65290 65291 65292 && echo \"killed nohup group\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T17:08:23.103576+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed nohup group\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T17:08:23.103692+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux | grep counterfactual | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps aux | grep counterfactual | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T17:08:23.103812+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root      66009 56.4  0.0 10258284 595416 ?     Sl   01:05   0:12 /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T17:08:23.103975+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "kill 66009 && sleep 2 && ps aux | grep counterfactual | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "kill 66009 && sleep 2 && ps aux | grep counterfactual | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T17:08:23.104112+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T17:08:23.104256+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "rm -f /root/autodl-tmp/vla-ssd/results/counterfactual_*.json /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log && cd /root/vla-ssd && setsid bash -c 'MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py > /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log 2>&1 &' && sleep 3 && head -10 /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "rm -f /root/autodl-tmp/vla-ssd/results/counterfactual_*.json /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log && cd /root/vla-ssd && setsid bash -c 'MUJOCO_GL=egl /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py > /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log 2>&1 &' && sleep 3 && head -10 /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T17:08:23.104380+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T17:08:23.104494+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sleep 10 && cat /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sleep 10 && cat /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T17:08:23.104626+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[GPU 1] Loading model on cuda:1...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][GPU 0] Loading model on cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.37s/it]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.45s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.38s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.40s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.07s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.54s/it]\\n\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.07s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.52s/it]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T17:08:23.104772+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "counterfactual_instruction",
+  "field": "hypothesis",
+  "value": "L1 instruction-dominant heads perform instruction-specific routing: changing the instruction (wrong/empty/shuffled/paraphrased) should produce systematically different action outputs compared to correct instruction, with wrong and empty causing larger divergence than shuffled or paraphrased.",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "counterfactual_instruction",
+    "field": "hypothesis",
+    "value": "L1 instruction-dominant heads perform instruction-specific routing: changing the instruction (wrong/empty/shuffled/paraphrased) should produce systematically different action outputs compared to correct instruction, with wrong and empty causing larger divergence than shuffled or paraphrased.",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T17:08:23.104911+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"counterfactual_instruction\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:52:52.867Z\", \"updated_at\": \"2026-05-18T17:06:51.694Z\", \"hypothesis\": \"L1 instruction-dominant heads perform instruction-specific routing: changing the instruction (wrong/empty/shuffled/paraphrased) should produce systematically different action outputs compared to correct instruction, with wrong and empty causing larger divergence than shuffled or paraphrased.\", \"parent\": \"action_trajectory_control\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4067}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T17:08:23.105060+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "counterfactual_instruction",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'MUJOCO_GL=egl python -u scripts/counterfactual_instruction.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': 6000, 'model_name': 'openvla-7b', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "counterfactual_instruction",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'MUJOCO_GL=egl python -u scripts/counterfactual_instruction.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': 6000, 'model_name': 'openvla-7b', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T17:08:23.105193+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2967}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T17:08:23.105312+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "counterfactual_instruction",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "counterfactual_instruction",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T17:08:23.105452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"counterfactual_instruction\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:52:52.867Z\", \"updated_at\": \"2026-05-18T17:07:01.558Z\", \"hypothesis\": \"L1 instruction-dominant heads perform instruction-specific routing: changing the instruction (wrong/empty/shuffled/paraphrased) should produce systematically different action outputs compared to correct instruction, with wrong and empty causing larger divergence than shuffled or paraphrased.\", \"parent\": \"action_trajectory_control\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9872}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T17:08:23.105578+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "counterfactual_instruction",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'MUJOCO_GL=egl python -u scripts/counterfactual_instruction.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': 6000, 'model_name': 'openvla-7b', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "counterfactual_instruction",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'MUJOCO_GL=egl python -u scripts/counterfactual_instruction.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': 6000, 'model_name': 'openvla-7b', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T17:08:23.105702+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2496}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T17:08:23.105827+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "counterfactual_instruction",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'MUJOCO_GL=egl python -u scripts/counterfactual_instruction.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': 6000, 'model_name': 'openvla-7b', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b', 'eval_data': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "counterfactual_instruction",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'MUJOCO_GL=egl python -u scripts/counterfactual_instruction.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': 6000, 'model_name': 'openvla-7b', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b', 'eval_data': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T17:08:23.105989+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"counterfactual_instruction\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:52:52.867Z\", \"updated_at\": \"2026-05-18T17:07:10.956Z\", \"hypothesis\": \"L1 instruction-dominant heads perform instruction-specific routing: changing the instruction (wrong/empty/shuffled/paraphrased) should produce systematically different action outputs compared to correct instruction, with wrong and empty causing larger divergence than shuffled or paraphrased.\", \"parent\": \"action_trajectory_control\", \"spec\": {\"command\": \"MUJOCO_GL=egl python -u scripts/counterfactual_instruction.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\", \"data_count\": 6000, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8552}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T17:08:23.106136+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux | grep counterfactual | grep -v grep | wc -l",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps aux | grep counterfactual | grep -v grep | wc -l",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T17:08:23.106259+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T17:08:23.106387+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux | grep python | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps aux | grep python | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T17:08:23.106529+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root        820  0.0  0.0 3328480 72748 ?       Sl   May15   2:50 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        825  0.0  0.0 191520 99100 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        908  0.0  0.0 28341068 10540 ?      Sl   May15   4:42 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ul7je562/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ul7je562/startup_error\\nroot      65423  0.0  0.0  16924 13240 ?        S    01:05   0:00 /root/miniconda3/bin/python -c from multiprocessing.resource_tracker import main;main(3)\\nroot      65424  599  0.2 58135300 2170844 ?    Rl   01:05  12:40 /root/miniconda3/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=4, pipe_handle=6) --multiprocessing-fork\\nroot      65425  594  0.2 58189824 2223500 ?    Rl   01:05  12:35 /root/miniconda3/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=4, pipe_handle=8) --multiprocessing-fork\\nroot      66138  0.0  0.0  16924 13216 ?        S    01:05   0:00 /root/miniconda3/bin/python -c from multiprocessing.resource_tracker import main;main(3)\\nroot      66139  517  0.1 57913716 1945484 ?    Rl   01:05   7:45 /root/miniconda3/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=4, pipe_handle=6) --multiprocessing-fork\\nroot      66140  534  0.1 57988896 2020752 ?    Rl   01:05   8:00 /root/miniconda3/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=4, pipe_handle=8) --multiprocessing-fork\\nroot      66746 22.0  0.0 10258288 595612 ?     Sl   01:06   0:12 /root/miniconda3/b
+…[truncated 1040 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T17:08:23.106707+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "kill 65423 65424 65425 66138 66139 66140 && echo \"killed orphans\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "kill 65423 65424 65425 66138 66139 66140 && echo \"killed orphans\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T17:08:23.106835+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed orphans\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T17:08:23.106973+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T17:08:23.107113+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[GPU 1] Loading model on cuda:1...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][GPU 0] Loading model on cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.37s/it]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.45s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.38s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.40s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.07s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.54s/it]\\n\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.07s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.52s/it]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T17:08:23.107271+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sleep 15 && tail -30 /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "sleep 15 && tail -30 /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T17:08:23.107408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[GPU 1] Loading model on cuda:1...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][GPU 0] Loading model on cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.37s/it]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.45s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.38s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.40s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.07s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.54s/it]\\n\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.07s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.52s/it]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T17:08:23.107552+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux | grep -E \"(counterfactual|spawn_main)\" | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps aux | grep -E \"(counterfactual|spawn_main)\" | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T17:08:23.107679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root      66746 12.1  0.0 10258288 595612 ?     Sl   01:06   0:12 /root/miniconda3/bin/python -u scripts/counterfactual_instruction.py\\nroot      66879  544  0.1 58072484 2111952 ?    Rl   01:06   8:53 /root/miniconda3/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=4, pipe_handle=6) --multiprocessing-fork\\nroot      66880  546  0.1 58062028 2104312 ?    Rl   01:06   8:55 /root/miniconda3/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=4, pipe_handle=8) --multiprocessing-fork\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T17:08:23.107831+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T17:08:23.107976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 82 %, 15483 MiB, 97887 MiB\\n1, 88 %, 15483 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_counterfactual_instruction_20260518T165804",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-18T17:08:23.108150+00:00_
+
+两个 GPU 都在 82-88% 利用率，15.5GB 显存使用，实验正常运行。
+
+脚本 `scripts/counterfactual_instruction.py` 已创建并提交到 westd-19183，registry 状态已更新为 RUNNING。
+
+实验配置：
+- 3 tasks × 10 demos × 50 timesteps = 1500 samples/condition
+- GPU 0: correct + wrong + empty（4500 forward passes）
+- GPU 1: correct + shuffled + paraphrased（4500 forward passes）
+- 输出：`/root/autodl-tmp/vla-ssd/results/counterfactual_{correct,wrong,empty,shuffled,paraphrased,combined}.json`
+- 日志：`/root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log`
+
+注意：multiprocessing spawn 的 stdout 重定向会导致日志输出有延迟，但 GPU 利用率和进程状态确认实验在正常推进。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_counterfactual_instruction_20260518T165804"
+}
+```
+
+</details>
+
+---

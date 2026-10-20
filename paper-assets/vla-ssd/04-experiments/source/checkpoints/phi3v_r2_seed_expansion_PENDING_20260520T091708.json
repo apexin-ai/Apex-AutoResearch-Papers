@@ -1,0 +1,16 @@
+{
+  "exp_id": "phi3v_r2_seed_expansion",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:16:58.882Z",
+    "updated_at": "2026-05-20T09:17:08.207Z",
+    "hypothesis": "Expanding TracVLA-Phi3V per-layer R² probe from 5 to 15 seeds will tighten confidence intervals and confirm the inverted-U profile (peak L11) is robust, aligning statistical power with OpenVLA's 15-seed measurement and eliminating the \"unequal seed count\" reviewer attack surface.",
+    "parent": "phi3v_r2_action_probe"
+  },
+  "timestamp": "2026-05-20T09:17:08.438225+00:00",
+  "trigger": "update_registry"
+}

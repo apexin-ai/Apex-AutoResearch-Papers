@@ -1,0 +1,2257 @@
+# analysis llama2base action probe results
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_analysis_llama2base_action_probe_results_20260517T215857.log`
+- **Structured JSON:** [`e95cb613cc376ca77d37.json`](../../sessions/e9/e95cb613cc376ca77d37.json)
+
+## Before a recorded user message
+
+46 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "92f7929f-d894-47da-8676-a892a4fc35fd",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779058200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8598a5e4-2040-4986-9d7e-e9bba5d317cd",
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me SSH to the server and read the experiment results for the Llama-2 base action probe experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "d5ebdaea-e71f-447a-9f32-d5c1c6bf5a70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NksSjM22LHUHsthyhYCisx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12856,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12856
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018oYMPxHEuHMN6oNirSuebn`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "82abfc10-f1c7-419a-862c-cf280be4c3a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NksSjM22LHUHsthyhYCisx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12856,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12856
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T21:59:08.846Z_
+
+<details><summary>↩ Tool result · `toolu_018oYMPxHEuHMN6oNirSuebn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "95ed3a3d-7309-4ebe-8e70-46c62ff4f690",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the results from the server. I'll check multiple locations in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "6fc39b30-ec48-498f-ba76-45d32ad7fe86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KiFiSVAwJ4dpqAPh2xedy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 24697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Gt1gzbsdyxVYCdmxRRnZ6S`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/llama2base_action_probe/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "16955a76-392c-42e2-a225-2ebc4046de31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KiFiSVAwJ4dpqAPh2xedy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 24697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012yPBo69AjhsJkTFNKasMVw`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*llama*\" -o -name \"*three_condition*\" -o -name \"*action_probe*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "5b4a5685-04d8-4b87-945e-a1f3c79c8075",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KiFiSVAwJ4dpqAPh2xedy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 24697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T21:59:14.148Z_
+
+<details><summary>↩ Tool result · `toolu_01Gt1gzbsdyxVYCdmxRRnZ6S`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/vla-ssd/results/llama2base_action_probe/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "b533f5fc-36e3-458d-bbd3-cff547f6c421",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/vla-ssd/results/llama2base_action_probe/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/vla-ssd/results/llama2base_action_probe/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T21:59:14.666Z_
+
+<details><summary>↩ Tool result · `toolu_012yPBo69AjhsJkTFNKasMVw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/analysis/action_probe_analysis_action_prediction.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_cross_inst_dense.h5\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/classification_results_with_llama2base.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_L9-L31.log\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_cross_inst_L9-L31.h5\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_full_layer_classification.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_log.txt\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\n/root/autodl-tmp/vla-ssd/results/action_probe\\n/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "3ecd021e-8134-4538-957a-03011368515d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/analysis/action_probe_analysis_action_prediction.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_cross_inst_dense.h5\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/classification_results_with_llama2base.json\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_L9-L31.log\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_cross_inst_L9-L31.h5\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_full_layer_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_log.txt\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\\n/root/autodl-tmp/vla-ssd/results/action_probe\\\\n/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/analysis/action_probe_analysis_action_prediction.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_cross_inst_dense.h5\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/classification_results_with_llama2base.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_L9-L31.log\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_cross_inst_L9-L31.h5\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_full_layer_classification.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_log.txt\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\n/root/autodl-tmp/vla-ssd/results/action_probe\\n/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+找到了。结果在 `/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json`。同时读取三个数据源。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "959e0ff9-268f-4e11-bc7d-fe6d03c74565",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176LoDBKFV4o2T9ihagDCAY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1316,
+      "cache_read_input_tokens": 25407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1316
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XabwE54nHPvW6Y4tTAYBSK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "b64b4d50-48b1-4d9a-8152-8a3604ccab4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176LoDBKFV4o2T9ihagDCAY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1316,
+      "cache_read_input_tokens": 25407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1316
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T21:59:19.831Z_
+
+<details><summary>↩ Tool result · `toolu_01XabwE54nHPvW6Y4tTAYBSK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"llama2base\\\",\\n  \\\"readout\\\": \\\"image_mean\\\",\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\",\\n    \\\"model\\\": \\\"Linear(4096,256)->ReLU->Linear(256,7)\\\"\\n  },\\n  \\\"llama2base_image_mean\\\": {\\n    \\\"layer_0\\\": {\\n      \\\"mean_R2\\\": 0.6403305426239967,\\n      \\\"overall_R2\\\": 0.7060226500034332,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5245712399482727,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7481187880039215,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5987088084220886,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5898726880550385,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6836937367916107,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6481685936450958,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6426793932914734,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.5440970659255981,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6585553288459778,\\n        \\\"turn_on_the_stove\\\": 0.7648397833108902\\n      },\\n      \\\"gripper_acc\\\": 0.9217916535927204,\\n      \\\"epochs_trained\\\": 26,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_1\\\": {\\n      \\\"mean_R2\\\": 0.6366456896066666,\\n      \\\"overall_R2\\\": 0.7027500569820404,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5250615775585175,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7545873373746872,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5845242440700531,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.6017263233661652,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6856708526611328,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6639572381973267,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6277442276477814,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.5155117213726044,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6395327746868134,\\n        \\\"turn_on_the_stove\\\": 0.7681405991315842\\n      },\\n      \\\"gripper_acc\\\": 0.921085660495764,\\n      \\\"epochs_trained\\\": 24,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_2\\\": {\\n      \\\"mean_R2\\\": 0.6123943850398064,\\n      \\\"overall_R2\\\": 0.6829255521297455,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4645620584487915,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7407320737838745,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.6157212853431702,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5814997255802155,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6455161571502686,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6249459981918335,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5681646466255188,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.5029520392417908,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6293822824954987,\\n        \\\"turn_on_the_stove\\\": 0.7504675835371017\\n      },\\n      \\\"gripper_acc\\\": 0.9166928145591465,\\n      \\\"epochs_trained\\\": 16,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_3\\\": {\\n      \\\"mean_R2\\\": 0.6446209385991096,\\n      \\\"overall_R2\\\": 0.7129864692687988,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5100268125534058,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7762542814016342,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.597025990486145,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.6010452210903168,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.7057526707649231,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6565360724925995,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6430553793907166,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.5486375689506531,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6494992971420288,\\n        \\\"turn_on_the_stove\\\": 0.7583760917186737\\n      },\\n      \\\"gripper_acc\\\": 0.92383118920615,\\n      \\\"epochs_trained\\\": 24,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_4\\\": {\\n      \\\"mean_R2\\\": 0.64465403556823\\n\\n... [截断: 输出过长，省略 21889 字符] ...\\n\\n18743134,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.46221160888671875,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.552842378616333,\\n        \\\"turn_on_the_stove\\\": 0.69648477435112\\n      },\\n      \\\"gripper_acc\\\": 0.9047693755883276,\\n      \\\"epochs_trained\\\": 21,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_29\\\": {\\n      \\\"mean_R2\\\": 0.5726776510477066,\\n      \\\"overall_R2\\\": 0.6512449085712433,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.39165228605270386,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7029730975627899,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5754714012145996,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5238155424594879,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6427221596240997,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.5957108736038208,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.554128110408783,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.449129581451416,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5869726240634918,\\n        \\\"turn_on_the_stove\\\": 0.7042008340358734\\n      },\\n      \\\"gripper_acc\\\": 0.9060244744273611,\\n      \\\"epochs_trained\\\": 26,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_30\\\": {\\n      \\\"mean_R2\\\": 0.5593085438013077,\\n      \\\"overall_R2\\\": 0.6392732858657837,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.3812441825866699,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7046956419944763,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5621531009674072,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5265451371669769,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6209424138069153,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.5982377529144287,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5563381612300873,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.39378130435943604,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5506300926208496,\\n        \\\"turn_on_the_stove\\\": 0.6985176503658295\\n      },\\n      \\\"gripper_acc\\\": 0.9055538123627236,\\n      \\\"epochs_trained\\\": 24,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_31\\\": {\\n      \\\"mean_R2\\\": 0.5709007382392883,\\n      \\\"overall_R2\\\": 0.6497676074504852,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4092559218406677,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6866999566555023,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.529647946357727,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5395461916923523,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6189074218273163,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6046612858772278,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5575399994850159,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.4676675796508789,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5835846662521362,\\n        \\\"turn_on_the_stove\\\": 0.7114964127540588\\n      },\\n      \\\"gripper_acc\\\": 0.9075149042987135,\\n      \\\"epochs_trained\\\": 26,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_32\\\": {\\n      \\\"mean_R2\\\": 0.5255301654338836,\\n      \\\"overall_R2\\\": 0.6173523366451263,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.28136134147644043,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6501320898532867,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.4810304641723633,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.46760672330856323,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6154537796974182,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.5870293974876404,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.46337300539016724,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.4461694359779358,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5755615532398224,\\n        \\\"turn_on_the_stove\\\": 0.687583863735199\\n      },\\n      \\\"gripper_acc\\\": 0.8995136491998745,\\n      \\\"epochs_trained\\\": 18,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"llama2base_peak\\\": {\\n      \\\"layer\\\": 4,\\n      \\\"mean_R2\\\": 0.6446540355682373\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "51ab885f-76cd-4487-b677-8e41bc5870e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"llama2base\\\\\\\",\\\\n  \\\\\\\"readout\\\\\\\": \\\\\\\"image_mean\\\\\\\",\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"lr\\\\\\\": 0.001,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"hidden\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Linear(4096,256)->ReLU->Linear(256,7)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"llama2base_image_mean\\\\\\\": {\\\\n    \\\\\\\"layer_0\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6403305426239967,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.7060226500034332,\\\\n      \\\\\\\"per_task_R2\\\\\\\": {\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.5245712399482727,\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7481187880039215,\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5987088084220886,\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5898726880550385,\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6836937367916107,\\\\n        \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6481685936450958,\\\\n        \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6426793932914734,\\\\n        \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5440970659255981,\\\\n        \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6585553288459778,\\\\n        \\\\\\\"turn_on_the_stove\\\\\\\": 0.7648397833108902\\\\n      },\\\\n      \\\\\\\"gripper_acc\\\\\\\": 0.9217916535927204,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 26,\\\\n      \\\\\\\"n_train\\\\\\\": 50480,\\\\n      \\\\\\\"n_val\\\\\\\": 12748\\\\n    },\\\\n    \\\\\\\"layer_1\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6366456896066666,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.7027500569820404,\\\\n      \\\\\\\"per_task_R2\\\\\\\": {\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.5250615775585175,\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7545873373746872,\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5845242440700531,\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6017263233661652,\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6856708526611328,\\\\n        \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6639572381973267,\\\\n        \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6277442276477814,\\\\n        \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5155117213726044,\\\\n        \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6395327746868134,\\\\n        \\\\\\\"turn_on_the_stove\\\\\\\": 0.7681405991315842\\\\n      },\\\\n      \\\\\\\"gripper_acc\\\\\\\": 0.921085660495764,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 24,\\\\n      \\\\\\\"n_train\\\\\\\": 50480,\\\\n      \\\\\\\"n_val\\\\\\\": 12748\\\\n    },\\\\n    \\\\\\\"layer_2\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6123943850398064,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6829255521297455,\\\\n      \\\\\\\"per_task_R2\\\\\\\": {\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4645620584487915,\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7407320737838745,\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.6157212853431702,\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5814997255802155,\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6455161571502686,\\\\n        \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6249459981918335,\\\\n        \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.5681646466255188,\\\\n        \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5029520392417908,\\\\n        \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6293822824954987,\\\\n        \\\\\\\"turn_on_the_stove\\\\\\\": 0.7504675835371017\\\\n      },\\\\n      \\\\\\\"gripper_acc\\\\\\\": 0.9166928145591465,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 16,\\\\n      \\\\\\\"n_train\\\\\\\": 50480,\\\\n      \\\\\\\"n_val\\\\\\\": 12748\\\\n    },\\\\n    \\\\\\\"layer_3\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6446209385991096,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.7129864692687988,\\\\n      \\\\\\\"per_task_R2\\\\\\\": {\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.5100268125534058,\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7762542814016342,\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.597025990486145,\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6010452210903168,\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7057526707649231,\\\\n        \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6565360724925995,\\\\n        \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6430553793907166,\\\\n        \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5486375689506531,\\\\n        \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6494992971420288,\\\\n        \\\\\\\"turn_on_the_stove\\\\\\\": 0.7583760917186737\\\\n      },\\\\n      \\\\\\\"gripper_acc\\\\\\\": 0.92383118920615,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 24,\\\\n      \\\\\\\"n_train\\\\\\\": 50480,\\\\n      \\\\\\\"n_val\\\\\\\": 12748\\\\n    },\\\\n    \\\\\\\"layer_4\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.64465403556823\\\\n\\\\n... [截断: 输出过长，省略 21889 字符] ...\\\\n\\\\n18743134,\\\\n        \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.46221160888671875,\\\\n        \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.552842378616333,\\\\n        \\\\\\\"turn_on_the_stove\\\\\\\": 0.69648477435112\\\\n      },\\\\n      \\\\\\\"gripper_acc\\\\\\\": 0.9047693755883276,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 21,\\\\n      \\\\\\\"n_train\\\\\\\": 50480,\\\\n      \\\\\\\"n_val\\\\\\\": 12748\\\\n    },\\\\n    \\\\\\\"layer_29\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.5726776510477066,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6512449085712433,\\\\n      \\\\\\\"per_task_R2\\\\\\\": {\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.39165228605270386,\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7029730975627899,\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5754714012145996,\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5238155424594879,\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6427221596240997,\\\\n        \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.5957108736038208,\\\\n        \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.554128110408783,\\\\n        \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.449129581451416,\\\\n        \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5869726240634918,\\\\n        \\\\\\\"turn_on_the_stove\\\\\\\": 0.7042008340358734\\\\n      },\\\\n      \\\\\\\"gripper_acc\\\\\\\": 0.9060244744273611,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 26,\\\\n      \\\\\\\"n_train\\\\\\\": 50480,\\\\n      \\\\\\\"n_val\\\\\\\": 12748\\\\n    },\\\\n    \\\\\\\"layer_30\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.5593085438013077,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6392732858657837,\\\\n      \\\\\\\"per_task_R2\\\\\\\": {\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.3812441825866699,\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7046956419944763,\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5621531009674072,\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5265451371669769,\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6209424138069153,\\\\n        \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.5982377529144287,\\\\n        \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.5563381612300873,\\\\n        \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.39378130435943604,\\\\n        \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5506300926208496,\\\\n        \\\\\\\"turn_on_the_stove\\\\\\\": 0.6985176503658295\\\\n      },\\\\n      \\\\\\\"gripper_acc\\\\\\\": 0.9055538123627236,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 24,\\\\n      \\\\\\\"n_train\\\\\\\": 50480,\\\\n      \\\\\\\"n_val\\\\\\\": 12748\\\\n    },\\\\n    \\\\\\\"layer_31\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.5709007382392883,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6497676074504852,\\\\n      \\\\\\\"per_task_R2\\\\\\\": {\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4092559218406677,\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.6866999566555023,\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.529647946357727,\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5395461916923523,\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6189074218273163,\\\\n        \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6046612858772278,\\\\n        \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.5575399994850159,\\\\n        \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.4676675796508789,\\\\n        \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5835846662521362,\\\\n        \\\\\\\"turn_on_the_stove\\\\\\\": 0.7114964127540588\\\\n      },\\\\n      \\\\\\\"gripper_acc\\\\\\\": 0.9075149042987135,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 26,\\\\n      \\\\\\\"n_train\\\\\\\": 50480,\\\\n      \\\\\\\"n_val\\\\\\\": 12748\\\\n    },\\\\n    \\\\\\\"layer_32\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.5255301654338836,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6173523366451263,\\\\n      \\\\\\\"per_task_R2\\\\\\\": {\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.28136134147644043,\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.6501320898532867,\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.4810304641723633,\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.46760672330856323,\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6154537796974182,\\\\n        \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.5870293974876404,\\\\n        \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.46337300539016724,\\\\n        \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.4461694359779358,\\\\n        \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5755615532398224,\\\\n        \\\\\\\"turn_on_the_stove\\\\\\\": 0.687583863735199\\\\n      },\\\\n      \\\\\\\"gripper_acc\\\\\\\": 0.8995136491998745,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 18,\\\\n      \\\\\\\"n_train\\\\\\\": 50480,\\\\n      \\\\\\\"n_val\\\\\\\": 12748\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"llama2base_peak\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 4,\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6446540355682373\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"llama2base\\\",\\n  \\\"readout\\\": \\\"image_mean\\\",\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\",\\n    \\\"model\\\": \\\"Linear(4096,256)->ReLU->Linear(256,7)\\\"\\n  },\\n  \\\"llama2base_image_mean\\\": {\\n    \\\"layer_0\\\": {\\n      \\\"mean_R2\\\": 0.6403305426239967,\\n      \\\"overall_R2\\\": 0.7060226500034332,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5245712399482727,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7481187880039215,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5987088084220886,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5898726880550385,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6836937367916107,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6481685936450958,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6426793932914734,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.5440970659255981,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6585553288459778,\\n        \\\"turn_on_the_stove\\\": 0.7648397833108902\\n      },\\n      \\\"gripper_acc\\\": 0.9217916535927204,\\n      \\\"epochs_trained\\\": 26,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_1\\\": {\\n      \\\"mean_R2\\\": 0.6366456896066666,\\n      \\\"overall_R2\\\": 0.7027500569820404,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5250615775585175,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7545873373746872,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5845242440700531,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.6017263233661652,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6856708526611328,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6639572381973267,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6277442276477814,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.5155117213726044,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6395327746868134,\\n        \\\"turn_on_the_stove\\\": 0.7681405991315842\\n      },\\n      \\\"gripper_acc\\\": 0.921085660495764,\\n      \\\"epochs_trained\\\": 24,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_2\\\": {\\n      \\\"mean_R2\\\": 0.6123943850398064,\\n      \\\"overall_R2\\\": 0.6829255521297455,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4645620584487915,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7407320737838745,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.6157212853431702,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5814997255802155,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6455161571502686,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6249459981918335,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5681646466255188,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.5029520392417908,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6293822824954987,\\n        \\\"turn_on_the_stove\\\": 0.7504675835371017\\n      },\\n      \\\"gripper_acc\\\": 0.9166928145591465,\\n      \\\"epochs_trained\\\": 16,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_3\\\": {\\n      \\\"mean_R2\\\": 0.6446209385991096,\\n      \\\"overall_R2\\\": 0.7129864692687988,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5100268125534058,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7762542814016342,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.597025990486145,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.6010452210903168,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.7057526707649231,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6565360724925995,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6430553793907166,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.5486375689506531,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6494992971420288,\\n        \\\"turn_on_the_stove\\\": 0.7583760917186737\\n      },\\n      \\\"gripper_acc\\\": 0.92383118920615,\\n      \\\"epochs_trained\\\": 24,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_4\\\": {\\n      \\\"mean_R2\\\": 0.64465403556823\\n\\n... [截断: 输出过长，省略 21889 字符] ...\\n\\n18743134,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.46221160888671875,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.552842378616333,\\n        \\\"turn_on_the_stove\\\": 0.69648477435112\\n      },\\n      \\\"gripper_acc\\\": 0.9047693755883276,\\n      \\\"epochs_trained\\\": 21,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_29\\\": {\\n      \\\"mean_R2\\\": 0.5726776510477066,\\n      \\\"overall_R2\\\": 0.6512449085712433,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.39165228605270386,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7029730975627899,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5754714012145996,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5238155424594879,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6427221596240997,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.5957108736038208,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.554128110408783,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.449129581451416,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5869726240634918,\\n        \\\"turn_on_the_stove\\\": 0.7042008340358734\\n      },\\n      \\\"gripper_acc\\\": 0.9060244744273611,\\n      \\\"epochs_trained\\\": 26,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_30\\\": {\\n      \\\"mean_R2\\\": 0.5593085438013077,\\n      \\\"overall_R2\\\": 0.6392732858657837,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.3812441825866699,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7046956419944763,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5621531009674072,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5265451371669769,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6209424138069153,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.5982377529144287,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5563381612300873,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.39378130435943604,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5506300926208496,\\n        \\\"turn_on_the_stove\\\": 0.6985176503658295\\n      },\\n      \\\"gripper_acc\\\": 0.9055538123627236,\\n      \\\"epochs_trained\\\": 24,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_31\\\": {\\n      \\\"mean_R2\\\": 0.5709007382392883,\\n      \\\"overall_R2\\\": 0.6497676074504852,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4092559218406677,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6866999566555023,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.529647946357727,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.5395461916923523,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6189074218273163,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6046612858772278,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5575399994850159,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.4676675796508789,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5835846662521362,\\n        \\\"turn_on_the_stove\\\": 0.7114964127540588\\n      },\\n      \\\"gripper_acc\\\": 0.9075149042987135,\\n      \\\"epochs_trained\\\": 26,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    },\\n    \\\"layer_32\\\": {\\n      \\\"mean_R2\\\": 0.5255301654338836,\\n      \\\"overall_R2\\\": 0.6173523366451263,\\n      \\\"per_task_R2\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.28136134147644043,\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6501320898532867,\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.4810304641723633,\\n        \\\"put_the_bowl_on_the_plate\\\": 0.46760672330856323,\\n        \\\"put_the_bowl_on_the_stove\\\": 0.6154537796974182,\\n        \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.5870293974876404,\\n        \\\"put_the_cream_cheese_in_the_bowl\\\": 0.46337300539016724,\\n        \\\"put_the_wine_bottle_on_the_rack\\\": 0.4461694359779358,\\n        \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5755615532398224,\\n        \\\"turn_on_the_stove\\\": 0.687583863735199\\n      },\\n      \\\"gripper_acc\\\": 0.8995136491998745,\\n      \\\"epochs_trained\\\": 18,\\n      \\\"n_train\\\": 50480,\\n      \\\"n_val\\\": 12748\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"llama2base_peak\\\": {\\n      \\\"layer\\\": 4,\\n      \\\"mean_R2\\\": 0.6446540355682373\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LW3r1Ra9B75o3ZAzJB5ysK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "d21e945f-51cb-44fc-aca8-6840bec63097",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176LoDBKFV4o2T9ihagDCAY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1316,
+      "cache_read_input_tokens": 25407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1316
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PkEN7SAsZCwsSA7diB9nxu`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "5bdf472f-25f5-4b15-9384-9cbc5c15d3b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176LoDBKFV4o2T9ihagDCAY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1316,
+      "cache_read_input_tokens": 25407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1316
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T21:59:20.584Z_
+
+<details><summary>↩ Tool result · `toolu_01LW3r1Ra9B75o3ZAzJB5ysK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"action_probe_R2\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": 0.5567,\\n      \\\"L8\\\": 0.6199,\\n      \\\"L13\\\": 0.6763\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": 0.6153,\\n      \\\"L8\\\": 0.6377,\\n      \\\"L13\\\": 0.6762\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": 0.5823,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6636\\n    }\\n  },\\n  \\\"bootstrap_paired_CI\\\": {\\n    \\\"baseline_vs_ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"observed_diff\\\": 0.0585,\\n        \\\"CI_95\\\": [\\n          0.0418,\\n          0.0748\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.5567,\\n        \\\"baseline_CI_95\\\": [\\n          0.5038,\\n          0.6144\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6153,\\n        \\\"ablation_CI_95\\\": [\\n          0.5634,\\n          0.6664\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0218,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0714,\\n          \\\"push the plate to the front of the stove\\\": 0.0404,\\n          \\\"put the bowl on the plate\\\": 0.084,\\n          \\\"put the bowl on the stove\\\": 0.0704,\\n          \\\"put the bowl on top of the cabinet\\\": 0.0966,\\n          \\\"put the cream cheese in the bowl\\\": 0.0901,\\n          \\\"put the wine bottle on the rack\\\": 0.0533,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.041,\\n          \\\"turn on the stove\\\": 0.0165\\n        }\\n      },\\n      \\\"L8\\\": {\\n        \\\"observed_diff\\\": 0.0177,\\n        \\\"CI_95\\\": [\\n          0.0087,\\n          0.0276\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.62,\\n        \\\"baseline_CI_95\\\": [\\n          0.5675,\\n          0.6741\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6377,\\n        \\\"ablation_CI_95\\\": [\\n          0.5886,\\n          0.6888\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0241,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0284,\\n          \\\"push the plate to the front of the stove\\\": 0.0177,\\n          \\\"put the bowl on the plate\\\": -0.0029,\\n          \\\"put the bowl on the stove\\\": 0.0048,\\n          \\\"put the bowl on top of the cabinet\\\": -0.0019,\\n          \\\"put the cream cheese in the bowl\\\": 0.0131,\\n          \\\"put the wine bottle on the rack\\\": 0.0454,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.0389,\\n          \\\"turn on the stove\\\": 0.0097\\n        }\\n      },\\n      \\\"L13\\\": {\\n        \\\"observed_diff\\\": -0.0002,\\n        \\\"CI_95\\\": [\\n          -0.0086,\\n          0.0088\\n        ],\\n        \\\"p_value\\\": 0.9594,\\n        \\\"baseline_mean_R2\\\": 0.6764,\\n        \\\"baseline_CI_95\\\": [\\n          0.6342,\\n          0.7233\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6762,\\n        \\\"ablation_CI_95\\\": [\\n          0.6336,\\n          0.7242\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0287,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.004,\\n          \\\"push the plate to the front of the stove\\\": -0.0089,\\n          \\\"put the bowl on the plate\\\": -0.023,\\n          \\\"put the bowl on the stove\\\": -0.0001,\\n          \\\"put the bowl on top of the cabinet\\\": 0.0139,\\n          \\\"put the cream cheese in the bowl\\\": -0.0157,\\n          \\\"put the wine bottle on the rack\\\": -0.008,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.003,\\n          \\\"turn on the stove\\\": 0.0045\\n        }\\n      }\\n    },\\n    \\\"baseline_vs_ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"observed_diff\\\": 0.0256,\\n        \\\"CI_95\\\": [\\n          0.015,\\n          0.0372\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.5567,\\n        \\\"baseline_CI_95\\\": [\\n          0.5044,\\n          0.6145\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.5823,\\n        \\\"ablation_CI_95\\\": [\\n          0.5286,\\n          0.6386\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": -0.0041,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0231,\\n          \\\"push the plate to the front of the stove\\\": 0.0259,\\n          \\\"put the bowl on the plate\\\": 0.0172,\\n          \\\"put the bowl on the stove\\\": 0.0373,\\n     \\n\\n... [截断: 输出过长，省略 7209 字符] ...\\n\\n front of the stove\\\": 0.7023,\\n          \\\"put the bowl on the plate\\\": 0.6429,\\n          \\\"put the bowl on the stove\\\": 0.7257,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6737,\\n          \\\"put the cream cheese in the bowl\\\": 0.6036,\\n          \\\"put the wine bottle on the rack\\\": 0.5837,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6215,\\n          \\\"turn on the stove\\\": 0.8164\\n        },\\n        \\\"epochs_trained\\\": 15,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.5823,\\n        \\\"overall_R2\\\": 0.6499,\\n        \\\"per_dim_R2\\\": [\\n          0.6462,\\n          0.6666,\\n          0.5822,\\n          0.585,\\n          0.3929,\\n          0.7275,\\n          0.6667\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4415,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.6472,\\n          \\\"push the plate to the front of the stove\\\": 0.6405,\\n          \\\"put the bowl on the plate\\\": 0.5358,\\n          \\\"put the bowl on the stove\\\": 0.6225,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6036,\\n          \\\"put the cream cheese in the bowl\\\": 0.4779,\\n          \\\"put the wine bottle on the rack\\\": 0.5056,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.5878,\\n          \\\"turn on the stove\\\": 0.7608\\n        },\\n        \\\"epochs_trained\\\": 26,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.6311,\\n        \\\"overall_R2\\\": 0.6976,\\n        \\\"per_dim_R2\\\": [\\n          0.7162,\\n          0.7192,\\n          0.6459,\\n          0.5943,\\n          0.43,\\n          0.7504,\\n          0.7063\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4712,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.718,\\n          \\\"push the plate to the front of the stove\\\": 0.6135,\\n          \\\"put the bowl on the plate\\\": 0.621,\\n          \\\"put the bowl on the stove\\\": 0.6988,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6548,\\n          \\\"put the cream cheese in the bowl\\\": 0.5688,\\n          \\\"put the wine bottle on the rack\\\": 0.5551,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6234,\\n          \\\"turn on the stove\\\": 0.7866\\n        },\\n        \\\"epochs_trained\\\": 29,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean_R2\\\": 0.6636,\\n        \\\"overall_R2\\\": 0.716,\\n        \\\"per_dim_R2\\\": [\\n          0.7256,\\n          0.7414,\\n          0.6573,\\n          0.6028,\\n          0.4044,\\n          0.7548,\\n          0.7281\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.5587,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.7082,\\n          \\\"push the plate to the front of the stove\\\": 0.7152,\\n          \\\"put the bowl on the plate\\\": 0.6482,\\n          \\\"put the bowl on the stove\\\": 0.7134,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6656,\\n          \\\"put the cream cheese in the bowl\\\": 0.6003,\\n          \\\"put the wine bottle on the rack\\\": 0.592,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6241,\\n          \\\"turn on the stove\\\": 0.8104\\n        },\\n        \\\"epochs_trained\\\": 10,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"probe\\\": \\\"MLP(4096,256,7)\\\",\\n    \\\"optimizer\\\": \\\"Adam lr=0.001\\\",\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"batch_size\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action a_{t+1} from feature at time t\\\",\\n    \\\"normalization\\\": \\\"z-score (train mean/std)\\\",\\n    \\\"split\\\": \\\"80/20 per-task by demo index\\\",\\n    \\\"readout_layers\\\": [\\n      1,\\n      8,\\n      13\\n    ],\\n    \\\"demos_per_task\\\": 50,\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    \\\"instruction_heads_24\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "960fa1b6-02f5-4457-a16b-f3c6beed86af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"action_probe_R2\\\\\\\": {\\\\n    \\\\\\\"baseline\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.5567,\\\\n      \\\\\\\"L8\\\\\\\": 0.6199,\\\\n      \\\\\\\"L13\\\\\\\": 0.6763\\\\n    },\\\\n    \\\\\\\"ablate_all24\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.6153,\\\\n      \\\\\\\"L8\\\\\\\": 0.6377,\\\\n      \\\\\\\"L13\\\\\\\": 0.6762\\\\n    },\\\\n    \\\\\\\"ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.5823,\\\\n      \\\\\\\"L8\\\\\\\": 0.6311,\\\\n      \\\\\\\"L13\\\\\\\": 0.6636\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_paired_CI\\\\\\\": {\\\\n    \\\\\\\"baseline_vs_ablate_all24\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"observed_diff\\\\\\\": 0.0585,\\\\n        \\\\\\\"CI_95\\\\\\\": [\\\\n          0.0418,\\\\n          0.0748\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"baseline_mean_R2\\\\\\\": 0.5567,\\\\n        \\\\\\\"baseline_CI_95\\\\\\\": [\\\\n          0.5038,\\\\n          0.6144\\\\n        ],\\\\n        \\\\\\\"ablation_mean_R2\\\\\\\": 0.6153,\\\\n        \\\\\\\"ablation_CI_95\\\\\\\": [\\\\n          0.5634,\\\\n          0.6664\\\\n        ],\\\\n        \\\\\\\"n_tasks\\\\\\\": 10,\\\\n        \\\\\\\"per_task_diffs\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.0218,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.0714,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.0404,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.084,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.0704,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.0966,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.0901,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.0533,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.041,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.0165\\\\n        }\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"observed_diff\\\\\\\": 0.0177,\\\\n        \\\\\\\"CI_95\\\\\\\": [\\\\n          0.0087,\\\\n          0.0276\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"baseline_mean_R2\\\\\\\": 0.62,\\\\n        \\\\\\\"baseline_CI_95\\\\\\\": [\\\\n          0.5675,\\\\n          0.6741\\\\n        ],\\\\n        \\\\\\\"ablation_mean_R2\\\\\\\": 0.6377,\\\\n        \\\\\\\"ablation_CI_95\\\\\\\": [\\\\n          0.5886,\\\\n          0.6888\\\\n        ],\\\\n        \\\\\\\"n_tasks\\\\\\\": 10,\\\\n        \\\\\\\"per_task_diffs\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.0241,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.0284,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.0177,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": -0.0029,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.0048,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": -0.0019,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.0131,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.0454,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.0389,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.0097\\\\n        }\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"observed_diff\\\\\\\": -0.0002,\\\\n        \\\\\\\"CI_95\\\\\\\": [\\\\n          -0.0086,\\\\n          0.0088\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 0.9594,\\\\n        \\\\\\\"baseline_mean_R2\\\\\\\": 0.6764,\\\\n        \\\\\\\"baseline_CI_95\\\\\\\": [\\\\n          0.6342,\\\\n          0.7233\\\\n        ],\\\\n        \\\\\\\"ablation_mean_R2\\\\\\\": 0.6762,\\\\n        \\\\\\\"ablation_CI_95\\\\\\\": [\\\\n          0.6336,\\\\n          0.7242\\\\n        ],\\\\n        \\\\\\\"n_tasks\\\\\\\": 10,\\\\n        \\\\\\\"per_task_diffs\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.0287,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.004,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": -0.0089,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": -0.023,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": -0.0001,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.0139,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": -0.0157,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": -0.008,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.003,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.0045\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"baseline_vs_ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"observed_diff\\\\\\\": 0.0256,\\\\n        \\\\\\\"CI_95\\\\\\\": [\\\\n          0.015,\\\\n          0.0372\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"baseline_mean_R2\\\\\\\": 0.5567,\\\\n        \\\\\\\"baseline_CI_95\\\\\\\": [\\\\n          0.5044,\\\\n          0.6145\\\\n        ],\\\\n        \\\\\\\"ablation_mean_R2\\\\\\\": 0.5823,\\\\n        \\\\\\\"ablation_CI_95\\\\\\\": [\\\\n          0.5286,\\\\n          0.6386\\\\n        ],\\\\n        \\\\\\\"n_tasks\\\\\\\": 10,\\\\n        \\\\\\\"per_task_diffs\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": -0.0041,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.0231,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.0259,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.0172,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.0373,\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 7209 字符] ...\\\\n\\\\n front of the stove\\\\\\\": 0.7023,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.6429,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.7257,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6737,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.6036,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.5837,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.6215,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.8164\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 15,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748\\\\n      }\\\\n    },\\\\n    \\\\\\\"ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.5823,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6499,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.6462,\\\\n          0.6666,\\\\n          0.5822,\\\\n          0.585,\\\\n          0.3929,\\\\n          0.7275,\\\\n          0.6667\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.4415,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.6472,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.6405,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.5358,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.6225,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6036,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.4779,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.5056,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.5878,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.7608\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 26,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6311,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6976,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.7162,\\\\n          0.7192,\\\\n          0.6459,\\\\n          0.5943,\\\\n          0.43,\\\\n          0.7504,\\\\n          0.7063\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.4712,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.718,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.6135,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.621,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.6988,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6548,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.5688,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.5551,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.6234,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.7866\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 29,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6636,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.716,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.7256,\\\\n          0.7414,\\\\n          0.6573,\\\\n          0.6028,\\\\n          0.4044,\\\\n          0.7548,\\\\n          0.7281\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.5587,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.7082,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.7152,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.6482,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.7134,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6656,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.6003,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.592,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.6241,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.8104\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 10,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"probe\\\\\\\": \\\\\\\"MLP(4096,256,7)\\\\\\\",\\\\n    \\\\\\\"optimizer\\\\\\\": \\\\\\\"Adam lr=0.001\\\\\\\",\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action a_{t+1} from feature at time t\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score (train mean/std)\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20 per-task by demo index\\\\\\\",\\\\n    \\\\\\\"readout_layers\\\\\\\": [\\\\n      1,\\\\n      8,\\\\n      13\\\\n    ],\\\\n    \\\\\\\"demos_per_task\\\\\\\": 50,\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    \\\\\\\"instruction_heads_24\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"action_probe_R2\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": 0.5567,\\n      \\\"L8\\\": 0.6199,\\n      \\\"L13\\\": 0.6763\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": 0.6153,\\n      \\\"L8\\\": 0.6377,\\n      \\\"L13\\\": 0.6762\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": 0.5823,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6636\\n    }\\n  },\\n  \\\"bootstrap_paired_CI\\\": {\\n    \\\"baseline_vs_ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"observed_diff\\\": 0.0585,\\n        \\\"CI_95\\\": [\\n          0.0418,\\n          0.0748\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.5567,\\n        \\\"baseline_CI_95\\\": [\\n          0.5038,\\n          0.6144\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6153,\\n        \\\"ablation_CI_95\\\": [\\n          0.5634,\\n          0.6664\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0218,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0714,\\n          \\\"push the plate to the front of the stove\\\": 0.0404,\\n          \\\"put the bowl on the plate\\\": 0.084,\\n          \\\"put the bowl on the stove\\\": 0.0704,\\n          \\\"put the bowl on top of the cabinet\\\": 0.0966,\\n          \\\"put the cream cheese in the bowl\\\": 0.0901,\\n          \\\"put the wine bottle on the rack\\\": 0.0533,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.041,\\n          \\\"turn on the stove\\\": 0.0165\\n        }\\n      },\\n      \\\"L8\\\": {\\n        \\\"observed_diff\\\": 0.0177,\\n        \\\"CI_95\\\": [\\n          0.0087,\\n          0.0276\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.62,\\n        \\\"baseline_CI_95\\\": [\\n          0.5675,\\n          0.6741\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6377,\\n        \\\"ablation_CI_95\\\": [\\n          0.5886,\\n          0.6888\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0241,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0284,\\n          \\\"push the plate to the front of the stove\\\": 0.0177,\\n          \\\"put the bowl on the plate\\\": -0.0029,\\n          \\\"put the bowl on the stove\\\": 0.0048,\\n          \\\"put the bowl on top of the cabinet\\\": -0.0019,\\n          \\\"put the cream cheese in the bowl\\\": 0.0131,\\n          \\\"put the wine bottle on the rack\\\": 0.0454,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.0389,\\n          \\\"turn on the stove\\\": 0.0097\\n        }\\n      },\\n      \\\"L13\\\": {\\n        \\\"observed_diff\\\": -0.0002,\\n        \\\"CI_95\\\": [\\n          -0.0086,\\n          0.0088\\n        ],\\n        \\\"p_value\\\": 0.9594,\\n        \\\"baseline_mean_R2\\\": 0.6764,\\n        \\\"baseline_CI_95\\\": [\\n          0.6342,\\n          0.7233\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6762,\\n        \\\"ablation_CI_95\\\": [\\n          0.6336,\\n          0.7242\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0287,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.004,\\n          \\\"push the plate to the front of the stove\\\": -0.0089,\\n          \\\"put the bowl on the plate\\\": -0.023,\\n          \\\"put the bowl on the stove\\\": -0.0001,\\n          \\\"put the bowl on top of the cabinet\\\": 0.0139,\\n          \\\"put the cream cheese in the bowl\\\": -0.0157,\\n          \\\"put the wine bottle on the rack\\\": -0.008,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.003,\\n          \\\"turn on the stove\\\": 0.0045\\n        }\\n      }\\n    },\\n    \\\"baseline_vs_ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"observed_diff\\\": 0.0256,\\n        \\\"CI_95\\\": [\\n          0.015,\\n          0.0372\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.5567,\\n        \\\"baseline_CI_95\\\": [\\n          0.5044,\\n          0.6145\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.5823,\\n        \\\"ablation_CI_95\\\": [\\n          0.5286,\\n          0.6386\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": -0.0041,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0231,\\n          \\\"push the plate to the front of the stove\\\": 0.0259,\\n          \\\"put the bowl on the plate\\\": 0.0172,\\n          \\\"put the bowl on the stove\\\": 0.0373,\\n     \\n\\n... [截断: 输出过长，省略 7209 字符] ...\\n\\n front of the stove\\\": 0.7023,\\n          \\\"put the bowl on the plate\\\": 0.6429,\\n          \\\"put the bowl on the stove\\\": 0.7257,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6737,\\n          \\\"put the cream cheese in the bowl\\\": 0.6036,\\n          \\\"put the wine bottle on the rack\\\": 0.5837,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6215,\\n          \\\"turn on the stove\\\": 0.8164\\n        },\\n        \\\"epochs_trained\\\": 15,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.5823,\\n        \\\"overall_R2\\\": 0.6499,\\n        \\\"per_dim_R2\\\": [\\n          0.6462,\\n          0.6666,\\n          0.5822,\\n          0.585,\\n          0.3929,\\n          0.7275,\\n          0.6667\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4415,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.6472,\\n          \\\"push the plate to the front of the stove\\\": 0.6405,\\n          \\\"put the bowl on the plate\\\": 0.5358,\\n          \\\"put the bowl on the stove\\\": 0.6225,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6036,\\n          \\\"put the cream cheese in the bowl\\\": 0.4779,\\n          \\\"put the wine bottle on the rack\\\": 0.5056,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.5878,\\n          \\\"turn on the stove\\\": 0.7608\\n        },\\n        \\\"epochs_trained\\\": 26,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.6311,\\n        \\\"overall_R2\\\": 0.6976,\\n        \\\"per_dim_R2\\\": [\\n          0.7162,\\n          0.7192,\\n          0.6459,\\n          0.5943,\\n          0.43,\\n          0.7504,\\n          0.7063\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4712,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.718,\\n          \\\"push the plate to the front of the stove\\\": 0.6135,\\n          \\\"put the bowl on the plate\\\": 0.621,\\n          \\\"put the bowl on the stove\\\": 0.6988,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6548,\\n          \\\"put the cream cheese in the bowl\\\": 0.5688,\\n          \\\"put the wine bottle on the rack\\\": 0.5551,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6234,\\n          \\\"turn on the stove\\\": 0.7866\\n        },\\n        \\\"epochs_trained\\\": 29,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean_R2\\\": 0.6636,\\n        \\\"overall_R2\\\": 0.716,\\n        \\\"per_dim_R2\\\": [\\n          0.7256,\\n          0.7414,\\n          0.6573,\\n          0.6028,\\n          0.4044,\\n          0.7548,\\n          0.7281\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.5587,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.7082,\\n          \\\"push the plate to the front of the stove\\\": 0.7152,\\n          \\\"put the bowl on the plate\\\": 0.6482,\\n          \\\"put the bowl on the stove\\\": 0.7134,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6656,\\n          \\\"put the cream cheese in the bowl\\\": 0.6003,\\n          \\\"put the wine bottle on the rack\\\": 0.592,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6241,\\n          \\\"turn on the stove\\\": 0.8104\\n        },\\n        \\\"epochs_trained\\\": 10,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"probe\\\": \\\"MLP(4096,256,7)\\\",\\n    \\\"optimizer\\\": \\\"Adam lr=0.001\\\",\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"batch_size\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action a_{t+1} from feature at time t\\\",\\n    \\\"normalization\\\": \\\"z-score (train mean/std)\\\",\\n    \\\"split\\\": \\\"80/20 per-task by demo index\\\",\\n    \\\"readout_layers\\\": [\\n      1,\\n      8,\\n      13\\n    ],\\n    \\\"demos_per_task\\\": 50,\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    \\\"instruction_heads_24\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T21:59:21.119Z_
+
+<details><summary>↩ Tool result · `toolu_01PkEN7SAsZCwsSA7diB9nxu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\"\\n  },\\n  \\\"projector\\\": {\\n    \\\"mean_R2\\\": 0.6298085182905198,\\n    \\\"overall_R2\\\": 0.6991766095161438,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6506892442703247,\\n      \\\"dy\\\": 0.7160145938396454,\\n      \\\"dz\\\": 0.6620165109634399,\\n      \\\"drx\\\": 0.549751490354538,\\n      \\\"dry\\\": 0.3786472678184509,\\n      \\\"drz\\\": 0.7263338565826416,\\n      \\\"gripper\\\": 0.7167081236839294\\n    },\\n    \\\"gripper_acc\\\": 0.9221054283024788,\\n    \\\"epochs_trained\\\": 22,\\n    \\\"val_loss\\\": 0.3606724441051483\\n  },\\n  \\\"dino_cls\\\": {\\n    \\\"mean_R2\\\": 0.6342984035611152,\\n    \\\"overall_R2\\\": 0.7012259066104889,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6640855669975281,\\n      \\\"dy\\\": 0.6851263046264648,\\n      \\\"dz\\\": 0.6625147461891174,\\n      \\\"drx\\\": 0.5797748863697052,\\n      \\\"dry\\\": 0.3829028606414795,\\n      \\\"drz\\\": 0.7384836375713348,\\n      \\\"gripper\\\": 0.7214260399341583\\n    },\\n    \\\"gripper_acc\\\": 0.9258707248195795,\\n    \\\"epochs_trained\\\": 17,\\n    \\\"val_loss\\\": 0.35598811507225037\\n  },\\n  \\\"clip_cls\\\": {\\n    \\\"mean_R2\\\": 0.5865547895431519,\\n    \\\"overall_R2\\\": 0.6602204144001007,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.41159433126449585,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6684410572052002,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5893205404281616,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5487157106399536,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6501100063323975,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6248729825019836,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6032691895961761,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.48588043451309204,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5819304883480072,\\n      \\\"turn_on_the_stove\\\": 0.7014131546020508\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6521816849708557,\\n      \\\"dy\\\": 0.6515396535396576,\\n      \\\"dz\\\": 0.5995787978172302,\\n      \\\"drx\\\": 0.4989588260650635,\\n      \\\"dry\\\": 0.36573320627212524,\\n      \\\"drz\\\": 0.6895537972450256,\\n      \\\"gripper\\\": 0.6803024709224701\\n    },\\n    \\\"gripper_acc\\\": 0.9072011295889552,\\n    \\\"epochs_trained\\\": 21,\\n    \\\"val_loss\\\": 0.3972415030002594\\n  },\\n  \\\"vla_image_mean_L19\\\": {\\n    \\\"mean_R2\\\": 0.598588165640831,\\n    \\\"overall_R2\\\": 0.6770166754722595,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4003335237503052,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7283858358860016,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5829597115516663,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5454415380954742,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6689810454845428,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6383338272571564,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5501567423343658,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5397705733776093,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5990277230739594,\\n      \\\"turn_on_the_stove\\\": 0.732491135597229\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6306567490100861,\\n      \\\"dy\\\": 0.6769898533821106,\\n      \\\"dz\\\": 0.629553884267807,\\n      \\\"drx\\\": 0.5495882034301758,\\n      \\\"dry\\\": 0.38391029834747314,\\n      \\\"drz\\\": 0.7279437780380249,\\n      \\\"gripper\\\": 0.6985472440719604\\n    },\\n    \\\"gripper_acc\\\": 0.9181832444304989,\\n    \\\"epochs_trained\\\": 26,\\n    \\\"val_loss\\\": 0.37492164969444275\\n  },\\n  \\\"vla_last_preaction_L19\\\": {\\n    \\\"mean_R2\\\": 0.6711319893598556,\\n    \\\"overall_R2\\\": 0.7233986854553223,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.6014720797538757,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7516207098960876,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.7096197605133057,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6417562663555145,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7298527657985687,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6630740761756897,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6076358258724213,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.577876627445221,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.627865731716156,\\n      \\\"turn_on_the_stove\\\": 0.8005460500717163\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.7355284988880157,\\n      \\\"dy\\\": 0.7502064555883408,\\n      \\\"dz\\\": 0.6814955770969391,\\n      \\\"drx\\\": 0.5960763096809387,\\n      \\\"dry\\\": 0.42453593015670776,\\n      \\\"drz\\\": 0.7456617653369904,\\n      \\\"gripper\\\": 0.7306763231754303\\n    },\\n    \\\"gripper_acc\\\": 0.9184185754628177,\\n    \\\"epochs_trained\\\": 9,\\n    \\\"val_loss\\\": 0.32443761825561523\\n  },\\n  \\\"bootstrap_pairwise\\\": {\\n    \\\"projector_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.004489885270595462,\\n      \\\"ci_95\\\": [\\n        -0.019630291834473675,\\n        0.010527572035789579\\n      ],\\n      \\\"p_value\\\": 0.557\\n    },\\n    \\\"projector_vs_clip_cls\\\": {\\n      \\\"delta\\\": 0.04325372874736788,\\n      \\\"ci_95\\\": [\\n        0.027332877293229127,\\n        0.059175393506884576\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"clip_cls_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.04774361401796334,\\n      \\\"ci_95\\\": [\\n        -0.06381510496139531,\\n        -0.029304770007729627\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_image_mean_L19\\\": {\\n      \\\"delta\\\": 0.03122035264968881,\\n      \\\"ci_95\\\": [\\n        0.013293082863092423,\\n        0.05182204544544222\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_last_preaction_L19\\\": {\\n      \\\"delta\\\": -0.04132347106933587,\\n      \\\"ci_95\\\": [\\n        -0.0696891056001187,\\n        -0.01466156482696543\\n      ],\\n      \\\"p_value\\\": 0.0016\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "c8d60fed-770a-4aba-bb29-78f0f50a33ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"lr\\\\\\\": 0.001,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"hidden\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\"\\\\n  },\\\\n  \\\\\\\"projector\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6298085182905198,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6991766095161438,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.49730074405670166,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7499217689037323,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5860892236232758,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5864041447639465,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6738172769546509,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6633979082107544,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6218974888324738,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5312090218067169,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6380730867385864,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7499745190143585\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6506892442703247,\\\\n      \\\\\\\"dy\\\\\\\": 0.7160145938396454,\\\\n      \\\\\\\"dz\\\\\\\": 0.6620165109634399,\\\\n      \\\\\\\"drx\\\\\\\": 0.549751490354538,\\\\n      \\\\\\\"dry\\\\\\\": 0.3786472678184509,\\\\n      \\\\\\\"drz\\\\\\\": 0.7263338565826416,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7167081236839294\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9221054283024788,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 22,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.3606724441051483\\\\n  },\\\\n  \\\\\\\"dino_cls\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6342984035611152,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.7012259066104889,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4813086986541748,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.713790625333786,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5821199119091034,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6170255541801453,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7149612605571747,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6578902006149292,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6068297922611237,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5611678063869476,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6304799914360046,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7774101942777634\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6640855669975281,\\\\n      \\\\\\\"dy\\\\\\\": 0.6851263046264648,\\\\n      \\\\\\\"dz\\\\\\\": 0.6625147461891174,\\\\n      \\\\\\\"drx\\\\\\\": 0.5797748863697052,\\\\n      \\\\\\\"dry\\\\\\\": 0.3829028606414795,\\\\n      \\\\\\\"drz\\\\\\\": 0.7384836375713348,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7214260399341583\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9258707248195795,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 17,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.35598811507225037\\\\n  },\\\\n  \\\\\\\"clip_cls\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.5865547895431519,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6602204144001007,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.41159433126449585,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.6684410572052002,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5893205404281616,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5487157106399536,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6501100063323975,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6248729825019836,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6032691895961761,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.48588043451309204,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5819304883480072,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7014131546020508\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6521816849708557,\\\\n      \\\\\\\"dy\\\\\\\": 0.6515396535396576,\\\\n      \\\\\\\"dz\\\\\\\": 0.5995787978172302,\\\\n      \\\\\\\"drx\\\\\\\": 0.4989588260650635,\\\\n      \\\\\\\"dry\\\\\\\": 0.36573320627212524,\\\\n      \\\\\\\"drz\\\\\\\": 0.6895537972450256,\\\\n      \\\\\\\"gripper\\\\\\\": 0.6803024709224701\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9072011295889552,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 21,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.3972415030002594\\\\n  },\\\\n  \\\\\\\"vla_image_mean_L19\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.598588165640831,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6770166754722595,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4003335237503052,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7283858358860016,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5829597115516663,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5454415380954742,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6689810454845428,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6383338272571564,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.5501567423343658,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5397705733776093,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5990277230739594,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.732491135597229\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6306567490100861,\\\\n      \\\\\\\"dy\\\\\\\": 0.6769898533821106,\\\\n      \\\\\\\"dz\\\\\\\": 0.629553884267807,\\\\n      \\\\\\\"drx\\\\\\\": 0.5495882034301758,\\\\n      \\\\\\\"dry\\\\\\\": 0.38391029834747314,\\\\n      \\\\\\\"drz\\\\\\\": 0.7279437780380249,\\\\n      \\\\\\\"gripper\\\\\\\": 0.6985472440719604\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9181832444304989,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 26,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.37492164969444275\\\\n  },\\\\n  \\\\\\\"vla_last_preaction_L19\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6711319893598556,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.7233986854553223,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.6014720797538757,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7516207098960876,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.7096197605133057,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6417562663555145,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7298527657985687,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6630740761756897,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6076358258724213,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.577876627445221,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.627865731716156,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.8005460500717163\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.7355284988880157,\\\\n      \\\\\\\"dy\\\\\\\": 0.7502064555883408,\\\\n      \\\\\\\"dz\\\\\\\": 0.6814955770969391,\\\\n      \\\\\\\"drx\\\\\\\": 0.5960763096809387,\\\\n      \\\\\\\"dry\\\\\\\": 0.42453593015670776,\\\\n      \\\\\\\"drz\\\\\\\": 0.7456617653369904,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7306763231754303\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9184185754628177,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 9,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.32443761825561523\\\\n  },\\\\n  \\\\\\\"bootstrap_pairwise\\\\\\\": {\\\\n    \\\\\\\"projector_vs_dino_cls\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.004489885270595462,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.019630291834473675,\\\\n        0.010527572035789579\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.557\\\\n    },\\\\n    \\\\\\\"projector_vs_clip_cls\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.04325372874736788,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.027332877293229127,\\\\n        0.059175393506884576\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"clip_cls_vs_dino_cls\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.04774361401796334,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.06381510496139531,\\\\n        -0.029304770007729627\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"projector_vs_vla_image_mean_L19\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.03122035264968881,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.013293082863092423,\\\\n        0.05182204544544222\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"projector_vs_vla_last_preaction_L19\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.04132347106933587,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.0696891056001187,\\\\n        -0.01466156482696543\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0016\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\"\\n  },\\n  \\\"projector\\\": {\\n    \\\"mean_R2\\\": 0.6298085182905198,\\n    \\\"overall_R2\\\": 0.6991766095161438,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6506892442703247,\\n      \\\"dy\\\": 0.7160145938396454,\\n      \\\"dz\\\": 0.6620165109634399,\\n      \\\"drx\\\": 0.549751490354538,\\n      \\\"dry\\\": 0.3786472678184509,\\n      \\\"drz\\\": 0.7263338565826416,\\n      \\\"gripper\\\": 0.7167081236839294\\n    },\\n    \\\"gripper_acc\\\": 0.9221054283024788,\\n    \\\"epochs_trained\\\": 22,\\n    \\\"val_loss\\\": 0.3606724441051483\\n  },\\n  \\\"dino_cls\\\": {\\n    \\\"mean_R2\\\": 0.6342984035611152,\\n    \\\"overall_R2\\\": 0.7012259066104889,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6640855669975281,\\n      \\\"dy\\\": 0.6851263046264648,\\n      \\\"dz\\\": 0.6625147461891174,\\n      \\\"drx\\\": 0.5797748863697052,\\n      \\\"dry\\\": 0.3829028606414795,\\n      \\\"drz\\\": 0.7384836375713348,\\n      \\\"gripper\\\": 0.7214260399341583\\n    },\\n    \\\"gripper_acc\\\": 0.9258707248195795,\\n    \\\"epochs_trained\\\": 17,\\n    \\\"val_loss\\\": 0.35598811507225037\\n  },\\n  \\\"clip_cls\\\": {\\n    \\\"mean_R2\\\": 0.5865547895431519,\\n    \\\"overall_R2\\\": 0.6602204144001007,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.41159433126449585,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6684410572052002,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5893205404281616,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5487157106399536,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6501100063323975,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6248729825019836,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6032691895961761,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.48588043451309204,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5819304883480072,\\n      \\\"turn_on_the_stove\\\": 0.7014131546020508\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6521816849708557,\\n      \\\"dy\\\": 0.6515396535396576,\\n      \\\"dz\\\": 0.5995787978172302,\\n      \\\"drx\\\": 0.4989588260650635,\\n      \\\"dry\\\": 0.36573320627212524,\\n      \\\"drz\\\": 0.6895537972450256,\\n      \\\"gripper\\\": 0.6803024709224701\\n    },\\n    \\\"gripper_acc\\\": 0.9072011295889552,\\n    \\\"epochs_trained\\\": 21,\\n    \\\"val_loss\\\": 0.3972415030002594\\n  },\\n  \\\"vla_image_mean_L19\\\": {\\n    \\\"mean_R2\\\": 0.598588165640831,\\n    \\\"overall_R2\\\": 0.6770166754722595,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4003335237503052,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7283858358860016,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5829597115516663,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5454415380954742,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6689810454845428,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6383338272571564,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5501567423343658,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5397705733776093,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5990277230739594,\\n      \\\"turn_on_the_stove\\\": 0.732491135597229\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6306567490100861,\\n      \\\"dy\\\": 0.6769898533821106,\\n      \\\"dz\\\": 0.629553884267807,\\n      \\\"drx\\\": 0.5495882034301758,\\n      \\\"dry\\\": 0.38391029834747314,\\n      \\\"drz\\\": 0.7279437780380249,\\n      \\\"gripper\\\": 0.6985472440719604\\n    },\\n    \\\"gripper_acc\\\": 0.9181832444304989,\\n    \\\"epochs_trained\\\": 26,\\n    \\\"val_loss\\\": 0.37492164969444275\\n  },\\n  \\\"vla_last_preaction_L19\\\": {\\n    \\\"mean_R2\\\": 0.6711319893598556,\\n    \\\"overall_R2\\\": 0.7233986854553223,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.6014720797538757,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7516207098960876,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.7096197605133057,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6417562663555145,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7298527657985687,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6630740761756897,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6076358258724213,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.577876627445221,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.627865731716156,\\n      \\\"turn_on_the_stove\\\": 0.8005460500717163\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.7355284988880157,\\n      \\\"dy\\\": 0.7502064555883408,\\n      \\\"dz\\\": 0.6814955770969391,\\n      \\\"drx\\\": 0.5960763096809387,\\n      \\\"dry\\\": 0.42453593015670776,\\n      \\\"drz\\\": 0.7456617653369904,\\n      \\\"gripper\\\": 0.7306763231754303\\n    },\\n    \\\"gripper_acc\\\": 0.9184185754628177,\\n    \\\"epochs_trained\\\": 9,\\n    \\\"val_loss\\\": 0.32443761825561523\\n  },\\n  \\\"bootstrap_pairwise\\\": {\\n    \\\"projector_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.004489885270595462,\\n      \\\"ci_95\\\": [\\n        -0.019630291834473675,\\n        0.010527572035789579\\n      ],\\n      \\\"p_value\\\": 0.557\\n    },\\n    \\\"projector_vs_clip_cls\\\": {\\n      \\\"delta\\\": 0.04325372874736788,\\n      \\\"ci_95\\\": [\\n        0.027332877293229127,\\n        0.059175393506884576\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"clip_cls_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.04774361401796334,\\n      \\\"ci_95\\\": [\\n        -0.06381510496139531,\\n        -0.029304770007729627\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_image_mean_L19\\\": {\\n      \\\"delta\\\": 0.03122035264968881,\\n      \\\"ci_95\\\": [\\n        0.013293082863092423,\\n        0.05182204544544222\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_last_preaction_L19\\\": {\\n      \\\"delta\\\": -0.04132347106933587,\\n      \\\"ci_95\\\": [\\n        -0.0696891056001187,\\n        -0.01466156482696543\\n      ],\\n      \\\"p_value\\\": 0.0016\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the llama2base data (per-layer from L0 to L32), and I have the trained data from `action_probe_50demos.json` which has baseline R² for L1, L8, L13 only. I need the full per-layer trained data. Let me check the `fulllayer_action_probe.json` file which likely has the full-layer trained data. Also, I need untrained data (random initialization). Let me look for it.
+
+From the `action_probe_50demos.json`, the "baseline" condition is the trained VLA (OpenVLA). 
+
+The ablated conditions show attention heads removed, giving me trained R² values at L1=0.5567, L8=0.6199, L13=0.6763, but I need the complete 33-layer trained dataset. I should also locate the untrained baseline data from the random initialization files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "ddd6b23b-cb6a-4d74-b05d-8a7cb6c99bd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K11UGoLamxDxJKfuvx4Fz3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12885,
+      "cache_read_input_tokens": 26723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+需要完整的 trained 和 untrained 全层数据。让我查找这些文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "d958e20e-acb3-4d82-8418-9ec8272b59aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K11UGoLamxDxJKfuvx4Fz3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12885,
+      "cache_read_input_tokens": 26723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014f7WdJw6kXbGY9MfgwjUgi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "fbaf2bad-376c-4cf3-bc49-81c6197c0a30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K11UGoLamxDxJKfuvx4Fz3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12885,
+      "cache_read_input_tokens": 26723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E1hyAveKCJVsdpVahfX8ne`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "071e096e-0a1a-4e84-9d0b-4a651b5535d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K11UGoLamxDxJKfuvx4Fz3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12885,
+      "cache_read_input_tokens": 26723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T21:59:40.222Z_
+
+<details><summary>↩ Tool result · `toolu_014f7WdJw6kXbGY9MfgwjUgi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\",\\n    \\\"model\\\": \\\"Linear(4096,256)->ReLU->Linear(256,7)\\\"\\n  },\\n  \\\"trained\\\": {\\n    \\\"image_mean\\\": {\\n      \\\"layer_0\\\": {\\n        \\\"mean_R2\\\": 0.6403305426239967,\\n        \\\"overall_R2\\\": 0.7060226500034332,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5245712399482727,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7481187880039215,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5987088084220886,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5898726880550385,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.6836937367916107,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6481685936450958,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6426793932914734,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.5440970659255981,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6585553288459778,\\n          \\\"turn_on_the_stove\\\": 0.7648397833108902\\n        },\\n        \\\"gripper_acc\\\": 0.9217916535927204,\\n        \\\"epochs_trained\\\": 26\\n      },\\n      \\\"layer_1\\\": {\\n        \\\"mean_R2\\\": 0.6330601245164871,\\n        \\\"overall_R2\\\": 0.7004302144050598,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49988532066345215,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7509071230888367,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5999299585819244,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5850407183170319,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.6926499605178833,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6636823117733002,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5989758968353271,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.5255537629127502,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6407515108585358,\\n          \\\"turn_on_the_stove\\\": 0.7732246816158295\\n        },\\n        \\\"gripper_acc\\\": 0.9216347662378412,\\n        \\\"epochs_trained\\\": 21\\n      },\\n      \\\"layer_2\\\": {\\n        \\\"mean_R2\\\": 0.6277795389294625,\\n        \\\"overall_R2\\\": 0.6978726983070374,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4497917890548706,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7380656898021698,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.6049258708953857,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5917651951313019,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.6899589598178864,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6470091044902802,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6086670458316803,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.537585437297821,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6360850632190704,\\n          \\\"turn_on_the_stove\\\": 0.773941233754158\\n        },\\n        \\\"gripper_acc\\\": 0.9194383432695324,\\n        \\\"epochs_trained\\\": 22\\n      },\\n      \\\"layer_3\\\": {\\n        \\\"mean_R2\\\": 0.6519127771258354,\\n        \\\"overall_R2\\\": 0.712092250585556,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5672473907470703,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7482083141803741,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.6289562880992889,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5923803150653839,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.7050803303718567,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6537047326564789,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6447681784629822,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.547883927822113,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.655638724565506,\\n          \\\"turn_on_the_stove\\\": 0.7752595692873001\\n        },\\n        \\\"gripper_acc\\\": 0.9227329777219956,\\n        \\\"epochs_trained\\\": 26\\n      },\\n      \\\"layer_4\\\": {\\n        \\\"mean_R2\\\": 0.6468106269836426,\\n        \\\"overall_R2\\\": 0.7128955721855164,\\n        \\\"per_task_R2\\\": {\\n          \\\"open\\n\\n... [截断: 输出过长，省略 112236 字符] ...\\n\\nck\\\": -0.05259561538696289,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": -0.2043818235397339,\\n          \\\"turn_on_the_stove\\\": -0.16897356510162354\\n        },\\n        \\\"gripper_acc\\\": 0.6403357389394415,\\n        \\\"epochs_trained\\\": 20\\n      },\\n      \\\"layer_32\\\": {\\n        \\\"mean_R2\\\": 0.6093123614788055,\\n        \\\"overall_R2\\\": 0.6777962148189545,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49091488122940063,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.730451375246048,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.6034921705722809,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5747291147708893,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.6667674481868744,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6118732392787933,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5873182415962219,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.510261744260788,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5406293869018555,\\n          \\\"turn_on_the_stove\\\": 0.7766860127449036\\n        },\\n        \\\"gripper_acc\\\": 0.9124568559774082,\\n        \\\"epochs_trained\\\": 9\\n      }\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"trained_image_mean_peak\\\": {\\n      \\\"layer\\\": 8,\\n      \\\"mean_R2\\\": 0.6552544310688972\\n    },\\n    \\\"trained_last_preaction_peak\\\": {\\n      \\\"layer\\\": 13,\\n      \\\"mean_R2\\\": 0.677866330742836\\n    },\\n    \\\"untrained_image_mean_peak\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"mean_R2\\\": 0.6403305426239967\\n    },\\n    \\\"untrained_last_preaction_peak\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"mean_R2\\\": 0.6093123614788055\\n    }\\n  },\\n  \\\"bootstrap_comparisons\\\": {\\n    \\\"projector_vs_trained_imgmean_peak\\\": {\\n      \\\"delta\\\": -0.02544591277837749,\\n      \\\"ci_95\\\": [\\n        -0.035736515149474166,\\n        -0.015673171095550043\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_imgmean_bestvsbest\\\": {\\n      \\\"delta\\\": 0.014923888444900557,\\n      \\\"ci_95\\\": [\\n        0.004007903262972787,\\n        0.025098973140120516\\n      ],\\n      \\\"p_value\\\": 0.006\\n    },\\n    \\\"trained_vs_untrained_lastpre_bestvsbest\\\": {\\n      \\\"delta\\\": 0.06855396926403046,\\n      \\\"ci_95\\\": [\\n        0.047302312329411504,\\n        0.09029129177331918\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_imgmean_samelayer\\\": {\\n      \\\"delta\\\": 0.12292304188013081,\\n      \\\"ci_95\\\": [\\n        0.0739687946066261,\\n        0.19060997642576696\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_lastpre_samelayer\\\": {\\n      \\\"delta\\\": 1.0071136385202408,\\n      \\\"ci_95\\\": [\\n        0.7470319014787674,\\n        1.3420179168134927\\n      ],\\n      \\\"p_value\\\": 0.0\\n    }\\n  },\\n  \\\"reference_baselines\\\": {\\n    \\\"projector_mean_R2\\\": 0.6298085182905198,\\n    \\\"projector_per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"dino_cls_mean_R2\\\": 0.6342984035611152,\\n    \\\"dino_cls_per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "5ee31e58-bf0e-455f-8987-a174737d31c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"lr\\\\\\\": 0.001,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"hidden\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Linear(4096,256)->ReLU->Linear(256,7)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"trained\\\\\\\": {\\\\n    \\\\\\\"image_mean\\\\\\\": {\\\\n      \\\\\\\"layer_0\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6403305426239967,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.7060226500034332,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.5245712399482727,\\\\n          \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7481187880039215,\\\\n          \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5987088084220886,\\\\n          \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5898726880550385,\\\\n          \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6836937367916107,\\\\n          \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6481685936450958,\\\\n          \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6426793932914734,\\\\n          \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5440970659255981,\\\\n          \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6585553288459778,\\\\n          \\\\\\\"turn_on_the_stove\\\\\\\": 0.7648397833108902\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.9217916535927204,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 26\\\\n      },\\\\n      \\\\\\\"layer_1\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6330601245164871,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.7004302144050598,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.49988532066345215,\\\\n          \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7509071230888367,\\\\n          \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5999299585819244,\\\\n          \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5850407183170319,\\\\n          \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6926499605178833,\\\\n          \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6636823117733002,\\\\n          \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.5989758968353271,\\\\n          \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5255537629127502,\\\\n          \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6407515108585358,\\\\n          \\\\\\\"turn_on_the_stove\\\\\\\": 0.7732246816158295\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.9216347662378412,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 21\\\\n      },\\\\n      \\\\\\\"layer_2\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6277795389294625,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6978726983070374,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4497917890548706,\\\\n          \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7380656898021698,\\\\n          \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.6049258708953857,\\\\n          \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5917651951313019,\\\\n          \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6899589598178864,\\\\n          \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6470091044902802,\\\\n          \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6086670458316803,\\\\n          \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.537585437297821,\\\\n          \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6360850632190704,\\\\n          \\\\\\\"turn_on_the_stove\\\\\\\": 0.773941233754158\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.9194383432695324,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 22\\\\n      },\\\\n      \\\\\\\"layer_3\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6519127771258354,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.712092250585556,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.5672473907470703,\\\\n          \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7482083141803741,\\\\n          \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.6289562880992889,\\\\n          \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5923803150653839,\\\\n          \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7050803303718567,\\\\n          \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6537047326564789,\\\\n          \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6447681784629822,\\\\n          \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.547883927822113,\\\\n          \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.655638724565506,\\\\n          \\\\\\\"turn_on_the_stove\\\\\\\": 0.7752595692873001\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.9227329777219956,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 26\\\\n      },\\\\n      \\\\\\\"layer_4\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6468106269836426,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.7128955721855164,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open\\\\n\\\\n... [截断: 输出过长，省略 112236 字符] ...\\\\n\\\\nck\\\\\\\": -0.05259561538696289,\\\\n          \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": -0.2043818235397339,\\\\n          \\\\\\\"turn_on_the_stove\\\\\\\": -0.16897356510162354\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.6403357389394415,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 20\\\\n      },\\\\n      \\\\\\\"layer_32\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6093123614788055,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6777962148189545,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.49091488122940063,\\\\n          \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.730451375246048,\\\\n          \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.6034921705722809,\\\\n          \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5747291147708893,\\\\n          \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6667674481868744,\\\\n          \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6118732392787933,\\\\n          \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.5873182415962219,\\\\n          \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.510261744260788,\\\\n          \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5406293869018555,\\\\n          \\\\\\\"turn_on_the_stove\\\\\\\": 0.7766860127449036\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.9124568559774082,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 9\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"trained_image_mean_peak\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 8,\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6552544310688972\\\\n    },\\\\n    \\\\\\\"trained_last_preaction_peak\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 13,\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.677866330742836\\\\n    },\\\\n    \\\\\\\"untrained_image_mean_peak\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 0,\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6403305426239967\\\\n    },\\\\n    \\\\\\\"untrained_last_preaction_peak\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 32,\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6093123614788055\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_comparisons\\\\\\\": {\\\\n    \\\\\\\"projector_vs_trained_imgmean_peak\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.02544591277837749,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.035736515149474166,\\\\n        -0.015673171095550043\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"trained_vs_untrained_imgmean_bestvsbest\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.014923888444900557,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.004007903262972787,\\\\n        0.025098973140120516\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.006\\\\n    },\\\\n    \\\\\\\"trained_vs_untrained_lastpre_bestvsbest\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.06855396926403046,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.047302312329411504,\\\\n        0.09029129177331918\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"trained_vs_untrained_imgmean_samelayer\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.12292304188013081,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.0739687946066261,\\\\n        0.19060997642576696\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"trained_vs_untrained_lastpre_samelayer\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 1.0071136385202408,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.7470319014787674,\\\\n        1.3420179168134927\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"reference_baselines\\\\\\\": {\\\\n    \\\\\\\"projector_mean_R2\\\\\\\": 0.6298085182905198,\\\\n    \\\\\\\"projector_per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.49730074405670166,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7499217689037323,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5860892236232758,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5864041447639465,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6738172769546509,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6633979082107544,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6218974888324738,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5312090218067169,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6380730867385864,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7499745190143585\\\\n    },\\\\n    \\\\\\\"dino_cls_mean_R2\\\\\\\": 0.6342984035611152,\\\\n    \\\\\\\"dino_cls_per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4813086986541748,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.713790625333786,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5821199119091034,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6170255541801453,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7149612605571747,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6578902006149292,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6068297922611237,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5611678063869476,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6304799914360046,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7774101942777634\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\",\\n    \\\"model\\\": \\\"Linear(4096,256)->ReLU->Linear(256,7)\\\"\\n  },\\n  \\\"trained\\\": {\\n    \\\"image_mean\\\": {\\n      \\\"layer_0\\\": {\\n        \\\"mean_R2\\\": 0.6403305426239967,\\n        \\\"overall_R2\\\": 0.7060226500034332,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5245712399482727,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7481187880039215,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5987088084220886,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5898726880550385,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.6836937367916107,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6481685936450958,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6426793932914734,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.5440970659255981,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6585553288459778,\\n          \\\"turn_on_the_stove\\\": 0.7648397833108902\\n        },\\n        \\\"gripper_acc\\\": 0.9217916535927204,\\n        \\\"epochs_trained\\\": 26\\n      },\\n      \\\"layer_1\\\": {\\n        \\\"mean_R2\\\": 0.6330601245164871,\\n        \\\"overall_R2\\\": 0.7004302144050598,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49988532066345215,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7509071230888367,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5999299585819244,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5850407183170319,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.6926499605178833,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6636823117733002,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5989758968353271,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.5255537629127502,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6407515108585358,\\n          \\\"turn_on_the_stove\\\": 0.7732246816158295\\n        },\\n        \\\"gripper_acc\\\": 0.9216347662378412,\\n        \\\"epochs_trained\\\": 21\\n      },\\n      \\\"layer_2\\\": {\\n        \\\"mean_R2\\\": 0.6277795389294625,\\n        \\\"overall_R2\\\": 0.6978726983070374,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4497917890548706,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7380656898021698,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.6049258708953857,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5917651951313019,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.6899589598178864,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6470091044902802,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6086670458316803,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.537585437297821,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6360850632190704,\\n          \\\"turn_on_the_stove\\\": 0.773941233754158\\n        },\\n        \\\"gripper_acc\\\": 0.9194383432695324,\\n        \\\"epochs_trained\\\": 22\\n      },\\n      \\\"layer_3\\\": {\\n        \\\"mean_R2\\\": 0.6519127771258354,\\n        \\\"overall_R2\\\": 0.712092250585556,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.5672473907470703,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7482083141803741,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.6289562880992889,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5923803150653839,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.7050803303718567,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6537047326564789,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6447681784629822,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.547883927822113,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.655638724565506,\\n          \\\"turn_on_the_stove\\\": 0.7752595692873001\\n        },\\n        \\\"gripper_acc\\\": 0.9227329777219956,\\n        \\\"epochs_trained\\\": 26\\n      },\\n      \\\"layer_4\\\": {\\n        \\\"mean_R2\\\": 0.6468106269836426,\\n        \\\"overall_R2\\\": 0.7128955721855164,\\n        \\\"per_task_R2\\\": {\\n          \\\"open\\n\\n... [截断: 输出过长，省略 112236 字符] ...\\n\\nck\\\": -0.05259561538696289,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": -0.2043818235397339,\\n          \\\"turn_on_the_stove\\\": -0.16897356510162354\\n        },\\n        \\\"gripper_acc\\\": 0.6403357389394415,\\n        \\\"epochs_trained\\\": 20\\n      },\\n      \\\"layer_32\\\": {\\n        \\\"mean_R2\\\": 0.6093123614788055,\\n        \\\"overall_R2\\\": 0.6777962148189545,\\n        \\\"per_task_R2\\\": {\\n          \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49091488122940063,\\n          \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.730451375246048,\\n          \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.6034921705722809,\\n          \\\"put_the_bowl_on_the_plate\\\": 0.5747291147708893,\\n          \\\"put_the_bowl_on_the_stove\\\": 0.6667674481868744,\\n          \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6118732392787933,\\n          \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5873182415962219,\\n          \\\"put_the_wine_bottle_on_the_rack\\\": 0.510261744260788,\\n          \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5406293869018555,\\n          \\\"turn_on_the_stove\\\": 0.7766860127449036\\n        },\\n        \\\"gripper_acc\\\": 0.9124568559774082,\\n        \\\"epochs_trained\\\": 9\\n      }\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"trained_image_mean_peak\\\": {\\n      \\\"layer\\\": 8,\\n      \\\"mean_R2\\\": 0.6552544310688972\\n    },\\n    \\\"trained_last_preaction_peak\\\": {\\n      \\\"layer\\\": 13,\\n      \\\"mean_R2\\\": 0.677866330742836\\n    },\\n    \\\"untrained_image_mean_peak\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"mean_R2\\\": 0.6403305426239967\\n    },\\n    \\\"untrained_last_preaction_peak\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"mean_R2\\\": 0.6093123614788055\\n    }\\n  },\\n  \\\"bootstrap_comparisons\\\": {\\n    \\\"projector_vs_trained_imgmean_peak\\\": {\\n      \\\"delta\\\": -0.02544591277837749,\\n      \\\"ci_95\\\": [\\n        -0.035736515149474166,\\n        -0.015673171095550043\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_imgmean_bestvsbest\\\": {\\n      \\\"delta\\\": 0.014923888444900557,\\n      \\\"ci_95\\\": [\\n        0.004007903262972787,\\n        0.025098973140120516\\n      ],\\n      \\\"p_value\\\": 0.006\\n    },\\n    \\\"trained_vs_untrained_lastpre_bestvsbest\\\": {\\n      \\\"delta\\\": 0.06855396926403046,\\n      \\\"ci_95\\\": [\\n        0.047302312329411504,\\n        0.09029129177331918\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_imgmean_samelayer\\\": {\\n      \\\"delta\\\": 0.12292304188013081,\\n      \\\"ci_95\\\": [\\n        0.0739687946066261,\\n        0.19060997642576696\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_lastpre_samelayer\\\": {\\n      \\\"delta\\\": 1.0071136385202408,\\n      \\\"ci_95\\\": [\\n        0.7470319014787674,\\n        1.3420179168134927\\n      ],\\n      \\\"p_value\\\": 0.0\\n    }\\n  },\\n  \\\"reference_baselines\\\": {\\n    \\\"projector_mean_R2\\\": 0.6298085182905198,\\n    \\\"projector_per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"dino_cls_mean_R2\\\": 0.6342984035611152,\\n    \\\"dino_cls_per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TG9qpSZmMDzhJmvpyShtEV`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/action_probe/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "2a1fb07b-bc27-4a8d-b0c4-4c6603de4735",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K11UGoLamxDxJKfuvx4Fz3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12885,
+      "cache_read_input_tokens": 26723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T21:59:40.763Z_
+
+<details><summary>↩ Tool result · `toolu_01E1hyAveKCJVsdpVahfX8ne`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"untrained_last_preaction_L19\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.48799586296081543,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.410416841506958,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5625075101852417,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.21188724040985107,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.07568627595901489,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.3459491729736328,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.27515679597854614,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.2677685618400574,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.36104816198349,\\n      \\\"turn_on_the_stove\\\": 0.25357043743133545\\n    },\\n    \\\"mean_R2\\\": 0.32519868612289426,\\n    \\\"overall_R2\\\": 0.3567284345626831,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.14876043796539307,\\n      \\\"dy\\\": 0.3027172088623047,\\n      \\\"dz\\\": 0.3601384162902832,\\n      \\\"drx\\\": 0.040006816387176514,\\n      \\\"dry\\\": 0.04569804668426514,\\n      \\\"drz\\\": 0.005398154258728027,\\n      \\\"gripper\\\": 0.3407720923423767\\n    },\\n    \\\"gripper_acc\\\": 0.7854565422026984,\\n    \\\"val_loss\\\": 0.8011825680732727,\\n    \\\"epochs_trained\\\": 40\\n  },\\n  \\\"untrained_last_preaction_best\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.8506230115890503,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7450185418128967,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.8619183301925659,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5940660238265991,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6797966361045837,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6260933876037598,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6001724004745483,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.525119423866272,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.565106213092804,\\n      \\\"turn_on_the_stove\\\": 0.809596061706543\\n    },\\n    \\\"mean_R2\\\": 0.6857510030269622,\\n    \\\"overall_R2\\\": 0.6967933177947998,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6761484146118164,\\n      \\\"dy\\\": 0.6936702728271484,\\n      \\\"dz\\\": 0.6233425140380859,\\n      \\\"drx\\\": 0.5427270531654358,\\n      \\\"dry\\\": 0.32442766427993774,\\n      \\\"drz\\\": 0.6959559917449951,\\n      \\\"gripper\\\": 0.692419171333313\\n    },\\n    \\\"gripper_acc\\\": 0.9124568559774082,\\n    \\\"val_loss\\\": 0.38216692209243774,\\n    \\\"epochs_trained\\\": 9,\\n    \\\"best_layer\\\": 32\\n  },\\n  \\\"untrained_last_preaction_all_layers\\\": {\\n    \\\"0\\\": {\\n      \\\"mean_R2\\\": 0.02966972589492798,\\n      \\\"overall_R2\\\": 0.058932483196258545\\n    },\\n    \\\"1\\\": {\\n      \\\"mean_R2\\\": 0.6787814378738404,\\n      \\\"overall_R2\\\": 0.6892287135124207\\n    },\\n    \\\"2\\\": {\\n      \\\"mean_R2\\\": 0.6662302315235138,\\n      \\\"overall_R2\\\": 0.6789769530296326\\n    },\\n    \\\"3\\\": {\\n      \\\"mean_R2\\\": 0.6297196269035339,\\n      \\\"overall_R2\\\": 0.6421759128570557\\n    },\\n    \\\"4\\\": {\\n      \\\"mean_R2\\\": 0.5106422185897828,\\n      \\\"overall_R2\\\": 0.5315021276473999\\n    },\\n    \\\"5\\\": {\\n      \\\"mean_R2\\\": 0.5078735411167145,\\n      \\\"overall_R2\\\": 0.5256627798080444\\n    },\\n    \\\"6\\\": {\\n      \\\"mean_R2\\\": 0.36337817907333375,\\n      \\\"overall_R2\\\": 0.3995012044906616\\n    },\\n    \\\"7\\\": {\\n      \\\"mean_R2\\\": 0.062347549200057986,\\n      \\\"overall_R2\\\": 0.09795546531677246\\n    },\\n    \\\"8\\\": {\\n      \\\"mean_R2\\\": 0.6571871995925903,\\n      \\\"overall_R2\\\": 0.668339192867279\\n    },\\n    \\\"9\\\": {\\n      \\\"mean_R2\\\": 0.564545351266861,\\n      \\\"overall_R2\\\": 0.5814110040664673\\n    },\\n    \\\"10\\\": {\\n      \\\"mean_R2\\\": 0.6494004786014557,\\n      \\\"overall_R2\\\": 0.6621130704879761\\n    },\\n    \\\"11\\\": {\\n      \\\"mean_R2\\\": 0.5652701795101166,\\n      \\\"overall_R2\\\": 0.5869431495666504\\n    },\\n    \\\"12\\\": {\\n      \\\"mean_R2\\\": 0.029371881484985353,\\n      \\\"overall_R2\\\": 0.0588952898979187\\n    },\\n    \\\"13\\\": {\\n      \\\"mean_R2\\\": 0.029409581422805788,\\n      \\\"overall_R2\\\": 0.05890762805938721\\n    },\\n    \\\"14\\\": {\\n      \\\"mean_R2\\\": 0.0496049165725708,\\n      \\\"overall_R2\\\": 0.08474069833755493\\n    },\\n    \\\"15\\\": {\\n      \\\"mean_R2\\\": 0.029592007398605347,\\n      \\\"overall_R2\\\": 0.05892592668533325\\n    },\\n    \\\"16\\\": {\\n      \\\"mean_R2\\\": 0.02940138578414917,\\n      \\\"overall_R2\\\": 0.05891376733779907\\n    },\\n    \\\"17\\\": {\\n      \\\"mean_R2\\\": 0.029579490423202515,\\n      \\n\\n... [截断: 输出过长，省略 152 字符] ...\\n\\n     \\\"mean_R2\\\": 0.32519868612289426,\\n      \\\"overall_R2\\\": 0.3567284345626831\\n    },\\n    \\\"20\\\": {\\n      \\\"mean_R2\\\": 0.05136546492576599,\\n      \\\"overall_R2\\\": 0.08612143993377686\\n    },\\n    \\\"21\\\": {\\n      \\\"mean_R2\\\": 0.02922500967979431,\\n      \\\"overall_R2\\\": 0.058879852294921875\\n    },\\n    \\\"22\\\": {\\n      \\\"mean_R2\\\": 0.029222965240478516,\\n      \\\"overall_R2\\\": 0.058875083923339844\\n    },\\n    \\\"23\\\": {\\n      \\\"mean_R2\\\": 0.31534924507141116,\\n      \\\"overall_R2\\\": 0.347003698348999\\n    },\\n    \\\"24\\\": {\\n      \\\"mean_R2\\\": 0.029224097728729248,\\n      \\\"overall_R2\\\": 0.058870673179626465\\n    },\\n    \\\"25\\\": {\\n      \\\"mean_R2\\\": 0.055670762062072755,\\n      \\\"overall_R2\\\": 0.08981609344482422\\n    },\\n    \\\"26\\\": {\\n      \\\"mean_R2\\\": 0.02923034429550171,\\n      \\\"overall_R2\\\": 0.05887138843536377\\n    },\\n    \\\"27\\\": {\\n      \\\"mean_R2\\\": 0.029217034578323364,\\n      \\\"overall_R2\\\": 0.05887717008590698\\n    },\\n    \\\"28\\\": {\\n      \\\"mean_R2\\\": 0.029215455055236816,\\n      \\\"overall_R2\\\": 0.058876872062683105\\n    },\\n    \\\"29\\\": {\\n      \\\"mean_R2\\\": 0.029212403297424316,\\n      \\\"overall_R2\\\": 0.05887633562088013\\n    },\\n    \\\"30\\\": {\\n      \\\"mean_R2\\\": 0.02921527624130249,\\n      \\\"overall_R2\\\": 0.058877766132354736\\n    },\\n    \\\"31\\\": {\\n      \\\"mean_R2\\\": 0.029217630624771118,\\n      \\\"overall_R2\\\": 0.05887806415557861\\n    },\\n    \\\"32\\\": {\\n      \\\"mean_R2\\\": 0.6857510030269622,\\n      \\\"overall_R2\\\": 0.6967933177947998\\n    }\\n  },\\n  \\\"untrained_last_preaction_delta_L19\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.04913830757141113,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.09565377235412598,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.08706945180892944,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.11995166540145874,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.11047011613845825,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.11040371656417847,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.09249067306518555,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.016065120697021484,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.07636475563049316,\\n      \\\"turn_on_the_stove\\\": 0.03805512189865112\\n    },\\n    \\\"mean_R2\\\": 0.07956627011299133,\\n    \\\"overall_R2\\\": 0.0858147144317627,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.27474069595336914,\\n      \\\"dy\\\": 0.23007994890213013,\\n      \\\"dz\\\": 0.39985817670822144,\\n      \\\"drx\\\": 0.059844970703125,\\n      \\\"dry\\\": 0.06531184911727905,\\n      \\\"drz\\\": 0.13987278938293457,\\n      \\\"gripper\\\": 0.03668159246444702\\n    },\\n    \\\"gripper_delta_accuracy\\\": 0.9872136805773455,\\n    \\\"val_loss\\\": 0.8073104619979858,\\n    \\\"epochs_trained\\\": 10\\n  },\\n  \\\"untrained_last_preaction_delta_L32\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.12383860349655151,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.10918831825256348,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.12594103813171387,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.11655920743942261,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.12269997596740723,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.1310032606124878,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.1092919111251831,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.02926015853881836,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.08328652381896973,\\n      \\\"turn_on_the_stove\\\": 0.04975169897079468\\n    },\\n    \\\"mean_R2\\\": 0.10008206963539124,\\n    \\\"overall_R2\\\": 0.09876739978790283,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.2567613124847412,\\n      \\\"dy\\\": 0.24909985065460205,\\n      \\\"dz\\\": 0.4554203748703003,\\n      \\\"drx\\\": 0.08621907234191895,\\n      \\\"dry\\\": 0.0770522952079773,\\n      \\\"drz\\\": 0.17692112922668457,\\n      \\\"gripper\\\": 0.047566771507263184\\n    },\\n    \\\"gripper_delta_accuracy\\\": 0.9872136805773455,\\n    \\\"val_loss\\\": 0.7872001528739929,\\n    \\\"epochs_trained\\\": 8\\n  },\\n  \\\"comparison\\\": {\\n    \\\"trained_last_preaction_L19\\\": 0.7309,\\n    \\\"projector\\\": 0.7063,\\n    \\\"untrained_last_preaction_L19\\\": 0.32519868612289426,\\n    \\\"untrained_last_preaction_best_layer\\\": 32,\\n    \\\"untrained_last_preaction_best_mean_R2\\\": 0.6857510030269622,\\n    \\\"verdict\\\": \\\"training_matters: untrained last_preaction < projector\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "65b09494-c960-4a15-9dfa-ac83b3d8ef18",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"untrained_last_preaction_L19\\\\\\\": {\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.48799586296081543,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.410416841506958,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5625075101852417,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.21188724040985107,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.07568627595901489,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.3459491729736328,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.27515679597854614,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.2677685618400574,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.36104816198349,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.25357043743133545\\\\n    },\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.32519868612289426,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.3567284345626831,\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.14876043796539307,\\\\n      \\\\\\\"dy\\\\\\\": 0.3027172088623047,\\\\n      \\\\\\\"dz\\\\\\\": 0.3601384162902832,\\\\n      \\\\\\\"drx\\\\\\\": 0.040006816387176514,\\\\n      \\\\\\\"dry\\\\\\\": 0.04569804668426514,\\\\n      \\\\\\\"drz\\\\\\\": 0.005398154258728027,\\\\n      \\\\\\\"gripper\\\\\\\": 0.3407720923423767\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.7854565422026984,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.8011825680732727,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 40\\\\n  },\\\\n  \\\\\\\"untrained_last_preaction_best\\\\\\\": {\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.8506230115890503,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7450185418128967,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.8619183301925659,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5940660238265991,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6797966361045837,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6260933876037598,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6001724004745483,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.525119423866272,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.565106213092804,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.809596061706543\\\\n    },\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6857510030269622,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6967933177947998,\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6761484146118164,\\\\n      \\\\\\\"dy\\\\\\\": 0.6936702728271484,\\\\n      \\\\\\\"dz\\\\\\\": 0.6233425140380859,\\\\n      \\\\\\\"drx\\\\\\\": 0.5427270531654358,\\\\n      \\\\\\\"dry\\\\\\\": 0.32442766427993774,\\\\n      \\\\\\\"drz\\\\\\\": 0.6959559917449951,\\\\n      \\\\\\\"gripper\\\\\\\": 0.692419171333313\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9124568559774082,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.38216692209243774,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 9,\\\\n    \\\\\\\"best_layer\\\\\\\": 32\\\\n  },\\\\n  \\\\\\\"untrained_last_preaction_all_layers\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.02966972589492798,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.058932483196258545\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6787814378738404,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6892287135124207\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6662302315235138,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6789769530296326\\\\n    },\\\\n    \\\\\\\"3\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6297196269035339,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6421759128570557\\\\n    },\\\\n    \\\\\\\"4\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.5106422185897828,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.5315021276473999\\\\n    },\\\\n    \\\\\\\"5\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.5078735411167145,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.5256627798080444\\\\n    },\\\\n    \\\\\\\"6\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.36337817907333375,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.3995012044906616\\\\n    },\\\\n    \\\\\\\"7\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.062347549200057986,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.09795546531677246\\\\n    },\\\\n    \\\\\\\"8\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6571871995925903,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.668339192867279\\\\n    },\\\\n    \\\\\\\"9\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.564545351266861,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.5814110040664673\\\\n    },\\\\n    \\\\\\\"10\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6494004786014557,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6621130704879761\\\\n    },\\\\n    \\\\\\\"11\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.5652701795101166,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.5869431495666504\\\\n    },\\\\n    \\\\\\\"12\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029371881484985353,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.0588952898979187\\\\n    },\\\\n    \\\\\\\"13\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029409581422805788,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.05890762805938721\\\\n    },\\\\n    \\\\\\\"14\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.0496049165725708,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.08474069833755493\\\\n    },\\\\n    \\\\\\\"15\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029592007398605347,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.05892592668533325\\\\n    },\\\\n    \\\\\\\"16\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.02940138578414917,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.05891376733779907\\\\n    },\\\\n    \\\\\\\"17\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029579490423202515,\\\\n      \\\\n\\\\n... [截断: 输出过长，省略 152 字符] ...\\\\n\\\\n     \\\\\\\"mean_R2\\\\\\\": 0.32519868612289426,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.3567284345626831\\\\n    },\\\\n    \\\\\\\"20\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.05136546492576599,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.08612143993377686\\\\n    },\\\\n    \\\\\\\"21\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.02922500967979431,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.058879852294921875\\\\n    },\\\\n    \\\\\\\"22\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029222965240478516,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.058875083923339844\\\\n    },\\\\n    \\\\\\\"23\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.31534924507141116,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.347003698348999\\\\n    },\\\\n    \\\\\\\"24\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029224097728729248,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.058870673179626465\\\\n    },\\\\n    \\\\\\\"25\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.055670762062072755,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.08981609344482422\\\\n    },\\\\n    \\\\\\\"26\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.02923034429550171,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.05887138843536377\\\\n    },\\\\n    \\\\\\\"27\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029217034578323364,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.05887717008590698\\\\n    },\\\\n    \\\\\\\"28\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029215455055236816,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.058876872062683105\\\\n    },\\\\n    \\\\\\\"29\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029212403297424316,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.05887633562088013\\\\n    },\\\\n    \\\\\\\"30\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.02921527624130249,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.058877766132354736\\\\n    },\\\\n    \\\\\\\"31\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.029217630624771118,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.05887806415557861\\\\n    },\\\\n    \\\\\\\"32\\\\\\\": {\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6857510030269622,\\\\n      \\\\\\\"overall_R2\\\\\\\": 0.6967933177947998\\\\n    }\\\\n  },\\\\n  \\\\\\\"untrained_last_preaction_delta_L19\\\\\\\": {\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.04913830757141113,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.09565377235412598,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.08706945180892944,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.11995166540145874,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.11047011613845825,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.11040371656417847,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.09249067306518555,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.016065120697021484,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.07636475563049316,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.03805512189865112\\\\n    },\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.07956627011299133,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.0858147144317627,\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.27474069595336914,\\\\n      \\\\\\\"dy\\\\\\\": 0.23007994890213013,\\\\n      \\\\\\\"dz\\\\\\\": 0.39985817670822144,\\\\n      \\\\\\\"drx\\\\\\\": 0.059844970703125,\\\\n      \\\\\\\"dry\\\\\\\": 0.06531184911727905,\\\\n      \\\\\\\"drz\\\\\\\": 0.13987278938293457,\\\\n      \\\\\\\"gripper\\\\\\\": 0.03668159246444702\\\\n    },\\\\n    \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.9872136805773455,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.8073104619979858,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 10\\\\n  },\\\\n  \\\\\\\"untrained_last_preaction_delta_L32\\\\\\\": {\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.12383860349655151,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.10918831825256348,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.12594103813171387,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.11655920743942261,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.12269997596740723,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.1310032606124878,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.1092919111251831,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.02926015853881836,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.08328652381896973,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.04975169897079468\\\\n    },\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.10008206963539124,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.09876739978790283,\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.2567613124847412,\\\\n      \\\\\\\"dy\\\\\\\": 0.24909985065460205,\\\\n      \\\\\\\"dz\\\\\\\": 0.4554203748703003,\\\\n      \\\\\\\"drx\\\\\\\": 0.08621907234191895,\\\\n      \\\\\\\"dry\\\\\\\": 0.0770522952079773,\\\\n      \\\\\\\"drz\\\\\\\": 0.17692112922668457,\\\\n      \\\\\\\"gripper\\\\\\\": 0.047566771507263184\\\\n    },\\\\n    \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.9872136805773455,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.7872001528739929,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 8\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"trained_last_preaction_L19\\\\\\\": 0.7309,\\\\n    \\\\\\\"projector\\\\\\\": 0.7063,\\\\n    \\\\\\\"untrained_last_preaction_L19\\\\\\\": 0.32519868612289426,\\\\n    \\\\\\\"untrained_last_preaction_best_layer\\\\\\\": 32,\\\\n    \\\\\\\"untrained_last_preaction_best_mean_R2\\\\\\\": 0.6857510030269622,\\\\n    \\\\\\\"verdict\\\\\\\": \\\\\\\"training_matters: untrained last_preaction < projector\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"untrained_last_preaction_L19\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.48799586296081543,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.410416841506958,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5625075101852417,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.21188724040985107,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.07568627595901489,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.3459491729736328,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.27515679597854614,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.2677685618400574,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.36104816198349,\\n      \\\"turn_on_the_stove\\\": 0.25357043743133545\\n    },\\n    \\\"mean_R2\\\": 0.32519868612289426,\\n    \\\"overall_R2\\\": 0.3567284345626831,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.14876043796539307,\\n      \\\"dy\\\": 0.3027172088623047,\\n      \\\"dz\\\": 0.3601384162902832,\\n      \\\"drx\\\": 0.040006816387176514,\\n      \\\"dry\\\": 0.04569804668426514,\\n      \\\"drz\\\": 0.005398154258728027,\\n      \\\"gripper\\\": 0.3407720923423767\\n    },\\n    \\\"gripper_acc\\\": 0.7854565422026984,\\n    \\\"val_loss\\\": 0.8011825680732727,\\n    \\\"epochs_trained\\\": 40\\n  },\\n  \\\"untrained_last_preaction_best\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.8506230115890503,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7450185418128967,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.8619183301925659,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5940660238265991,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6797966361045837,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6260933876037598,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6001724004745483,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.525119423866272,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.565106213092804,\\n      \\\"turn_on_the_stove\\\": 0.809596061706543\\n    },\\n    \\\"mean_R2\\\": 0.6857510030269622,\\n    \\\"overall_R2\\\": 0.6967933177947998,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6761484146118164,\\n      \\\"dy\\\": 0.6936702728271484,\\n      \\\"dz\\\": 0.6233425140380859,\\n      \\\"drx\\\": 0.5427270531654358,\\n      \\\"dry\\\": 0.32442766427993774,\\n      \\\"drz\\\": 0.6959559917449951,\\n      \\\"gripper\\\": 0.692419171333313\\n    },\\n    \\\"gripper_acc\\\": 0.9124568559774082,\\n    \\\"val_loss\\\": 0.38216692209243774,\\n    \\\"epochs_trained\\\": 9,\\n    \\\"best_layer\\\": 32\\n  },\\n  \\\"untrained_last_preaction_all_layers\\\": {\\n    \\\"0\\\": {\\n      \\\"mean_R2\\\": 0.02966972589492798,\\n      \\\"overall_R2\\\": 0.058932483196258545\\n    },\\n    \\\"1\\\": {\\n      \\\"mean_R2\\\": 0.6787814378738404,\\n      \\\"overall_R2\\\": 0.6892287135124207\\n    },\\n    \\\"2\\\": {\\n      \\\"mean_R2\\\": 0.6662302315235138,\\n      \\\"overall_R2\\\": 0.6789769530296326\\n    },\\n    \\\"3\\\": {\\n      \\\"mean_R2\\\": 0.6297196269035339,\\n      \\\"overall_R2\\\": 0.6421759128570557\\n    },\\n    \\\"4\\\": {\\n      \\\"mean_R2\\\": 0.5106422185897828,\\n      \\\"overall_R2\\\": 0.5315021276473999\\n    },\\n    \\\"5\\\": {\\n      \\\"mean_R2\\\": 0.5078735411167145,\\n      \\\"overall_R2\\\": 0.5256627798080444\\n    },\\n    \\\"6\\\": {\\n      \\\"mean_R2\\\": 0.36337817907333375,\\n      \\\"overall_R2\\\": 0.3995012044906616\\n    },\\n    \\\"7\\\": {\\n      \\\"mean_R2\\\": 0.062347549200057986,\\n      \\\"overall_R2\\\": 0.09795546531677246\\n    },\\n    \\\"8\\\": {\\n      \\\"mean_R2\\\": 0.6571871995925903,\\n      \\\"overall_R2\\\": 0.668339192867279\\n    },\\n    \\\"9\\\": {\\n      \\\"mean_R2\\\": 0.564545351266861,\\n      \\\"overall_R2\\\": 0.5814110040664673\\n    },\\n    \\\"10\\\": {\\n      \\\"mean_R2\\\": 0.6494004786014557,\\n      \\\"overall_R2\\\": 0.6621130704879761\\n    },\\n    \\\"11\\\": {\\n      \\\"mean_R2\\\": 0.5652701795101166,\\n      \\\"overall_R2\\\": 0.5869431495666504\\n    },\\n    \\\"12\\\": {\\n      \\\"mean_R2\\\": 0.029371881484985353,\\n      \\\"overall_R2\\\": 0.0588952898979187\\n    },\\n    \\\"13\\\": {\\n      \\\"mean_R2\\\": 0.029409581422805788,\\n      \\\"overall_R2\\\": 0.05890762805938721\\n    },\\n    \\\"14\\\": {\\n      \\\"mean_R2\\\": 0.0496049165725708,\\n      \\\"overall_R2\\\": 0.08474069833755493\\n    },\\n    \\\"15\\\": {\\n      \\\"mean_R2\\\": 0.029592007398605347,\\n      \\\"overall_R2\\\": 0.05892592668533325\\n    },\\n    \\\"16\\\": {\\n      \\\"mean_R2\\\": 0.02940138578414917,\\n      \\\"overall_R2\\\": 0.05891376733779907\\n    },\\n    \\\"17\\\": {\\n      \\\"mean_R2\\\": 0.029579490423202515,\\n      \\n\\n... [截断: 输出过长，省略 152 字符] ...\\n\\n     \\\"mean_R2\\\": 0.32519868612289426,\\n      \\\"overall_R2\\\": 0.3567284345626831\\n    },\\n    \\\"20\\\": {\\n      \\\"mean_R2\\\": 0.05136546492576599,\\n      \\\"overall_R2\\\": 0.08612143993377686\\n    },\\n    \\\"21\\\": {\\n      \\\"mean_R2\\\": 0.02922500967979431,\\n      \\\"overall_R2\\\": 0.058879852294921875\\n    },\\n    \\\"22\\\": {\\n      \\\"mean_R2\\\": 0.029222965240478516,\\n      \\\"overall_R2\\\": 0.058875083923339844\\n    },\\n    \\\"23\\\": {\\n      \\\"mean_R2\\\": 0.31534924507141116,\\n      \\\"overall_R2\\\": 0.347003698348999\\n    },\\n    \\\"24\\\": {\\n      \\\"mean_R2\\\": 0.029224097728729248,\\n      \\\"overall_R2\\\": 0.058870673179626465\\n    },\\n    \\\"25\\\": {\\n      \\\"mean_R2\\\": 0.055670762062072755,\\n      \\\"overall_R2\\\": 0.08981609344482422\\n    },\\n    \\\"26\\\": {\\n      \\\"mean_R2\\\": 0.02923034429550171,\\n      \\\"overall_R2\\\": 0.05887138843536377\\n    },\\n    \\\"27\\\": {\\n      \\\"mean_R2\\\": 0.029217034578323364,\\n      \\\"overall_R2\\\": 0.05887717008590698\\n    },\\n    \\\"28\\\": {\\n      \\\"mean_R2\\\": 0.029215455055236816,\\n      \\\"overall_R2\\\": 0.058876872062683105\\n    },\\n    \\\"29\\\": {\\n      \\\"mean_R2\\\": 0.029212403297424316,\\n      \\\"overall_R2\\\": 0.05887633562088013\\n    },\\n    \\\"30\\\": {\\n      \\\"mean_R2\\\": 0.02921527624130249,\\n      \\\"overall_R2\\\": 0.058877766132354736\\n    },\\n    \\\"31\\\": {\\n      \\\"mean_R2\\\": 0.029217630624771118,\\n      \\\"overall_R2\\\": 0.05887806415557861\\n    },\\n    \\\"32\\\": {\\n      \\\"mean_R2\\\": 0.6857510030269622,\\n      \\\"overall_R2\\\": 0.6967933177947998\\n    }\\n  },\\n  \\\"untrained_last_preaction_delta_L19\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.04913830757141113,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.09565377235412598,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.08706945180892944,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.11995166540145874,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.11047011613845825,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.11040371656417847,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.09249067306518555,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.016065120697021484,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.07636475563049316,\\n      \\\"turn_on_the_stove\\\": 0.03805512189865112\\n    },\\n    \\\"mean_R2\\\": 0.07956627011299133,\\n    \\\"overall_R2\\\": 0.0858147144317627,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.27474069595336914,\\n      \\\"dy\\\": 0.23007994890213013,\\n      \\\"dz\\\": 0.39985817670822144,\\n      \\\"drx\\\": 0.059844970703125,\\n      \\\"dry\\\": 0.06531184911727905,\\n      \\\"drz\\\": 0.13987278938293457,\\n      \\\"gripper\\\": 0.03668159246444702\\n    },\\n    \\\"gripper_delta_accuracy\\\": 0.9872136805773455,\\n    \\\"val_loss\\\": 0.8073104619979858,\\n    \\\"epochs_trained\\\": 10\\n  },\\n  \\\"untrained_last_preaction_delta_L32\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.12383860349655151,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.10918831825256348,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.12594103813171387,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.11655920743942261,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.12269997596740723,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.1310032606124878,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.1092919111251831,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.02926015853881836,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.08328652381896973,\\n      \\\"turn_on_the_stove\\\": 0.04975169897079468\\n    },\\n    \\\"mean_R2\\\": 0.10008206963539124,\\n    \\\"overall_R2\\\": 0.09876739978790283,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.2567613124847412,\\n      \\\"dy\\\": 0.24909985065460205,\\n      \\\"dz\\\": 0.4554203748703003,\\n      \\\"drx\\\": 0.08621907234191895,\\n      \\\"dry\\\": 0.0770522952079773,\\n      \\\"drz\\\": 0.17692112922668457,\\n      \\\"gripper\\\": 0.047566771507263184\\n    },\\n    \\\"gripper_delta_accuracy\\\": 0.9872136805773455,\\n    \\\"val_loss\\\": 0.7872001528739929,\\n    \\\"epochs_trained\\\": 8\\n  },\\n  \\\"comparison\\\": {\\n    \\\"trained_last_preaction_L19\\\": 0.7309,\\n    \\\"projector\\\": 0.7063,\\n    \\\"untrained_last_preaction_L19\\\": 0.32519868612289426,\\n    \\\"untrained_last_preaction_best_layer\\\": 32,\\n    \\\"untrained_last_preaction_best_mean_R2\\\": 0.6857510030269622,\\n    \\\"verdict\\\": \\\"training_matters: untrained last_preaction < projector\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T21:59:41.290Z_
+
+<details><summary>↩ Tool result · `toolu_01TG9qpSZmMDzhJmvpyShtEV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"llama2base_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "de218f96-6a5f-49f2-9da8-88bba0174ce2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama2base_action_probe.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"llama2base_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all three datasets. Let me compile:
+
+1. **llama2base** - from `/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json` - has layer_0 to layer_32, using `mean_R2` for each layer.
+
+2. **trained** - from `fulllayer_action_probe.json` - the `trained.image_mean` section has all layers.
+
+3. **untrained** - from `fulllayer_action_probe.json` - the `untrained.image_mean` section has all layers.
+
+
+I need to make sure I'm comparing the same readout type across all datasets. The llama2base probe used `image_mean`, so I should pull both trained and untrained from the same `fulllayer_action_probe.json` file using their respective `image_mean` sections to keep everything consistent.
+
+Looking at the summary data, I notice the untrained peak is at layer 0 with mean_R2=0.6403, which matches the trained layer_0 value—that's worth investigating. Let me extract just the mean_R2 values for each layer across both conditions to see the full pattern. The llama2base model is actually a different baseline (Llama-2 pretrained rather than OpenVLA), so the identical layer 0 values might just reflect how the data was extracted. Let me pull out the mean_R2 values across all layers for each condition to compare them properly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "226436a6-5383-48d5-87e7-a632bc4317fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQmxyGZCHHDSqVWsUnh7Sp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9929,
+      "cache_read_input_tokens": 39608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9929
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+数据都找到了。现在用 Python 提取三个条件的 per-layer mean_R2 来对比。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "8f408129-07e6-4f53-b2e1-271c4e516a97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQmxyGZCHHDSqVWsUnh7Sp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9929,
+      "cache_read_input_tokens": 39608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9929
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XcEVgpDSNpLUJMYSKF6eod`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json\nf = json.load(open('/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json'))\n# trained image_mean\ntrained = {k: v['mean_R2'] for k, v in f['trained']['image_mean'].items()}\nprint('TRAINED:', json.dumps(trained))\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "3ad31783-48ef-41e0-9eca-3ba66444678f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQmxyGZCHHDSqVWsUnh7Sp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9929,
+      "cache_read_input_tokens": 39608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9929
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T22:00:07.132Z_
+
+<details><summary>↩ Tool result · `toolu_01XcEVgpDSNpLUJMYSKF6eod`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "d53ce6e1-ffc8-4244-8c40-8b1e4577a34e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CRXG3kGjZaNDafcoJpNDgn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json\nf = json.load(open('/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json'))\n# untrained image_mean\nuntrained = {k: v['mean_R2'] for k, v in f['untrained']['image_mean'].items()}\nprint('UNTRAINED:', json.dumps(untrained))\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "7ab3c557-3931-4355-90d0-c0491dafd450",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQmxyGZCHHDSqVWsUnh7Sp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9929,
+      "cache_read_input_tokens": 39608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9929
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T22:00:08.069Z_
+
+<details><summary>↩ Tool result · `toolu_01CRXG3kGjZaNDafcoJpNDgn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "4b70d7a0-4e5e-4cfb-a6b0-af967e9c5eb6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PGSseqaV33eRgWzcJDSM5v`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json\nf = json.load(open('/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json'))\nllama2base = {k: v['mean_R2'] for k, v in f['llama2base_image_mean'].items()}\nprint('LLAMA2BASE:', json.dumps(llama2base))\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "31611a2d-2c04-4ed0-9fb6-0c69525dbce2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQmxyGZCHHDSqVWsUnh7Sp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9929,
+      "cache_read_input_tokens": 39608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9929
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T22:00:09.403Z_
+
+<details><summary>↩ Tool result · `toolu_01PGSseqaV33eRgWzcJDSM5v`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "b5666702-5240-4ec2-b48a-b81a30d8e04f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Can't use Python with open(). Let me use grep to extract the mean_R2 values from the files. Or better, let me use ssh_execute to run the Python commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "6c348c20-4c63-4b59-bcd6-b374f887bb0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4VxfpK4ymGijV6zSicdQM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1837,
+      "cache_read_input_tokens": 49537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HnJvoEbxMAgx2wrmc9wvBC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json\n\n# Load all three data sources\nfulllayer = json.load(open('/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json'))\nllama2base_f = json.load(open('/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json'))\n\n# Extract mean_R2 per layer\ntrained = {}\nfor k, v in fulllayer['trained']['image_mean'].items():\n    layer_num = int(k.split('_')[1])\n    trained[layer_num] = v['mean_R2']\n\nuntrained = {}\nfor k, v in fulllayer['untrained']['image_mean'].items():\n    layer_num = int(k.split('_')[1])\n    untrained[layer_num] = v['mean_R2']\n\nllama2base = {}\nfor k, v in llama2base_f['llama2base_image_mean'].items():\n    layer_num = int(k.split('_')[1])\n    llama2base[layer_num] = v['mean_R2']\n\n# Print comparison table\nprint(f'{'Layer':<6} {'Untrained':<12} {'Llama2Base':<12} {'Trained':<12} {'Pattern':<20}')\nprint('-' * 62)\nfor layer in range(33):\n    u = untrained.get(layer, None)\n    l = llama2base.get(layer, None)\n    t = trained.get(layer, None)\n    if u is not None and l is not None and t is not None:\n        if u < l < t:\n            pattern = 'U < L < T (expected)'\n        elif u < l and l >= t:\n            pattern = 'U < L >= T'\n        elif u >= l:\n            pattern = 'U >= L'\n        else:\n            pattern = 'other'\n        print(f'L{layer:<5} {u:<12.4f} {l:<12.4f} {t:<12.4f} {pattern}')\n\nprint()\nprint('=== KEY SUMMARY ===')\nprint(f'L1:  untrained={untrained[1]:.4f}, llama2base={llama2base[1]:.4f}, trained={trained[1]:.4f}')\nprint(f'Peak trained: L{max(trained, key=trained.get)} = {max(trained.values()):.4f}')\nprint(f'Peak llama2base: L{max(llama2base, key=llama2base.get)} = {max(llama2base.values()):.4f}')\nprint(f'Peak untrained: L{max(untrained, key=untrained.get)} = {max(untrained.values()):.4f}')\n\n# Averages\nprint(f'Mean across all layers - untrained: {sum(untrained.values())/len(untrained):.4f}, llama2base: {sum(llama2base.values())/len(llama2base):.4f}, trained: {sum(trained.values())/len(trained):.4f}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "09751b1f-61f9-44bd-be3b-b64e961754ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4VxfpK4ymGijV6zSicdQM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1837,
+      "cache_read_input_tokens": 49537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T22:00:23.960Z_
+
+<details><summary>↩ Tool result · `toolu_01HnJvoEbxMAgx2wrmc9wvBC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\n\\\\n# Load all three data sources\\\\nfulllayer = json.load(open(\\\\'/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\\'))\\\\nllama2base_f = json.load(open(\\\\'/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\\\'))\\\\n\\\\n# Extract mean_R2 per layer\\\\ntrained = {}\\\\nfor k, v in fulllayer[\\\\'trained\\\\'][\\\\'image_mean\\\\'].items():\\\\n    layer_num = int(k.split(\\\\'_\\\\')[1])\\\\n    trained[layer_num] = v[\\\\'mean_R2\\\\']\\\\n\\\\nuntrained = {}\\\\nfor k, v in fulllayer[\\\\'untrained\\\\'][\\\\'image_mean\\\\'].items():\\\\n    layer_num = int(k.split(\\\\'_\\\\')[1])\\\\n    untrained[layer_num] = v[\\\\'mean_R2\\\\']\\\\n\\\\nllama2base = {}\\\\nfor k, v in llama2base_f[\\\\'llama2base_image_mean\\\\'].items():\\\\n    layer_num = int(k.split(\\\\'_\\\\')[1])\\\\n    llama2base[layer_num] = v[\\\\'mean_R2\\\\']\\\\n\\\\n# Print comparison table\\\\nprint(f\\\\'{\\\\'Layer\\\\':<6} {\\\\'Untrained\\\\':<12} {\\\\'Llama2Base\\\\':<12} {\\\\'Trained\\\\':<12} {\\\\'Pattern\\\\':<20}\\\\')\\\\nprint(\\\\'-\\\\' * 62)\\\\nfor layer in range(33):\\\\n    u = untrained.get(layer, None)\\\\n    l = llama2base.get(layer, None)\\\\n    t = trained.get(layer, None)\\\\n    if u is not None and l is not None and t is not None:\\\\n        if u < l < t:\\\\n            pattern = \\\\'U < L < T (expected)\\\\'\\\\n        elif u < l and l >= t:\\\\n            pattern = \\\\'U < L >= T\\\\'\\\\n        elif u >= l:\\\\n            pattern = \\\\'U >= L\\\\'\\\\n        else:\\\\n            pattern = \\\\'other\\\\'\\\\n        print(f\\\\'L{layer:<5} {u:<12.4f} {l:<12.4f} {t:<12.4f} {pattern}\\\\')\\\\n\\\\nprint()\\\\nprint(\\\\'=== KEY SUMMARY ===\\\\')\\\\nprint(f\\\\'L1:  untrained={untrained[1]:.4f}, llama2base={llama2base[1]:.4f}, trained={trained[1]:.4f}\\\\')\\\\nprint(f\\\\'Peak trained: L{max(trained, key=trained.get)} = {max(trained.values()):.4f}\\\\')\\\\nprint(f\\\\'Peak llama2base: L{max(llama2base, key=llama2base.get)} = {max(llama2base.values()):.4f}\\\\')\\\\nprint(f\\\\'Peak untrained: L{max(untrained, key=untrained.get)} = {max(untrained.values()):.4f}\\\\')\\\\n\\\\n# Averages\\\\nprint(f\\\\'Mean across all layers - untrained: {sum(untrained.values())/len(untrained):.4f}, llama2base: {sum(llama2base.values())/len(llama2base):.4f}, trained: {sum(trained.values())/len(trained):.4f}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "8ebb5004-b2a0-49ac-8803-6da0c0b02937",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\n\\\\\\\\n# Load all three data sources\\\\\\\\nfulllayer = json.load(open(\\\\\\\\'/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\\\\\\'))\\\\\\\\nllama2base_f = json.load(open(\\\\\\\\'/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\\\\\\\'))\\\\\\\\n\\\\\\\\n# Extract mean_R2 per layer\\\\\\\\ntrained = {}\\\\\\\\nfor k, v in fulllayer[\\\\\\\\'trained\\\\\\\\'][\\\\\\\\'image_mean\\\\\\\\'].items():\\\\\\\\n    layer_num = int(k.split(\\\\\\\\'_\\\\\\\\')[1])\\\\\\\\n    trained[layer_num] = v[\\\\\\\\'mean_R2\\\\\\\\']\\\\\\\\n\\\\\\\\nuntrained = {}\\\\\\\\nfor k, v in fulllayer[\\\\\\\\'untrained\\\\\\\\'][\\\\\\\\'image_mean\\\\\\\\'].items():\\\\\\\\n    layer_num = int(k.split(\\\\\\\\'_\\\\\\\\')[1])\\\\\\\\n    untrained[layer_num] = v[\\\\\\\\'mean_R2\\\\\\\\']\\\\\\\\n\\\\\\\\nllama2base = {}\\\\\\\\nfor k, v in llama2base_f[\\\\\\\\'llama2base_image_mean\\\\\\\\'].items():\\\\\\\\n    layer_num = int(k.split(\\\\\\\\'_\\\\\\\\')[1])\\\\\\\\n    llama2base[layer_num] = v[\\\\\\\\'mean_R2\\\\\\\\']\\\\\\\\n\\\\\\\\n# Print comparison table\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\'Layer\\\\\\\\':<6} {\\\\\\\\'Untrained\\\\\\\\':<12} {\\\\\\\\'Llama2Base\\\\\\\\':<12} {\\\\\\\\'Trained\\\\\\\\':<12} {\\\\\\\\'Pattern\\\\\\\\':<20}\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'-\\\\\\\\' * 62)\\\\\\\\nfor layer in range(33):\\\\\\\\n    u = untrained.get(layer, None)\\\\\\\\n    l = llama2base.get(layer, None)\\\\\\\\n    t = trained.get(layer, None)\\\\\\\\n    if u is not None and l is not None and t is not None:\\\\\\\\n        if u < l < t:\\\\\\\\n            pattern = \\\\\\\\'U < L < T (expected)\\\\\\\\'\\\\\\\\n        elif u < l and l >= t:\\\\\\\\n            pattern = \\\\\\\\'U < L >= T\\\\\\\\'\\\\\\\\n        elif u >= l:\\\\\\\\n            pattern = \\\\\\\\'U >= L\\\\\\\\'\\\\\\\\n        else:\\\\\\\\n            pattern = \\\\\\\\'other\\\\\\\\'\\\\\\\\n        print(f\\\\\\\\'L{layer:<5} {u:<12.4f} {l:<12.4f} {t:<12.4f} {pattern}\\\\\\\\')\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=== KEY SUMMARY ===\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'L1:  untrained={untrained[1]:.4f}, llama2base={llama2base[1]:.4f}, trained={trained[1]:.4f}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Peak trained: L{max(trained, key=trained.get)} = {max(trained.values()):.4f}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Peak llama2base: L{max(llama2base, key=llama2base.get)} = {max(llama2base.values()):.4f}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Peak untrained: L{max(untrained, key=untrained.get)} = {max(untrained.values()):.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Averages\\\\\\\\nprint(f\\\\\\\\'Mean across all layers - untrained: {sum(untrained.values())/len(untrained):.4f}, llama2base: {sum(llama2base.values())/len(llama2base):.4f}, trained: {sum(trained.values())/len(trained):.4f}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\n\\\\n# Load all three data sources\\\\nfulllayer = json.load(open(\\\\'/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\\'))\\\\nllama2base_f = json.load(open(\\\\'/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\\\'))\\\\n\\\\n# Extract mean_R2 per layer\\\\ntrained = {}\\\\nfor k, v in fulllayer[\\\\'trained\\\\'][\\\\'image_mean\\\\'].items():\\\\n    layer_num = int(k.split(\\\\'_\\\\')[1])\\\\n    trained[layer_num] = v[\\\\'mean_R2\\\\']\\\\n\\\\nuntrained = {}\\\\nfor k, v in fulllayer[\\\\'untrained\\\\'][\\\\'image_mean\\\\'].items():\\\\n    layer_num = int(k.split(\\\\'_\\\\')[1])\\\\n    untrained[layer_num] = v[\\\\'mean_R2\\\\']\\\\n\\\\nllama2base = {}\\\\nfor k, v in llama2base_f[\\\\'llama2base_image_mean\\\\'].items():\\\\n    layer_num = int(k.split(\\\\'_\\\\')[1])\\\\n    llama2base[layer_num] = v[\\\\'mean_R2\\\\']\\\\n\\\\n# Print comparison table\\\\nprint(f\\\\'{\\\\'Layer\\\\':<6} {\\\\'Untrained\\\\':<12} {\\\\'Llama2Base\\\\':<12} {\\\\'Trained\\\\':<12} {\\\\'Pattern\\\\':<20}\\\\')\\\\nprint(\\\\'-\\\\' * 62)\\\\nfor layer in range(33):\\\\n    u = untrained.get(layer, None)\\\\n    l = llama2base.get(layer, None)\\\\n    t = trained.get(layer, None)\\\\n    if u is not None and l is not None and t is not None:\\\\n        if u < l < t:\\\\n            pattern = \\\\'U < L < T (expected)\\\\'\\\\n        elif u < l and l >= t:\\\\n            pattern = \\\\'U < L >= T\\\\'\\\\n        elif u >= l:\\\\n            pattern = \\\\'U >= L\\\\'\\\\n        else:\\\\n            pattern = \\\\'other\\\\'\\\\n        print(f\\\\'L{layer:<5} {u:<12.4f} {l:<12.4f} {t:<12.4f} {pattern}\\\\')\\\\n\\\\nprint()\\\\nprint(\\\\'=== KEY SUMMARY ===\\\\')\\\\nprint(f\\\\'L1:  untrained={untrained[1]:.4f}, llama2base={llama2base[1]:.4f}, trained={trained[1]:.4f}\\\\')\\\\nprint(f\\\\'Peak trained: L{max(trained, key=trained.get)} = {max(trained.values()):.4f}\\\\')\\\\nprint(f\\\\'Peak llama2base: L{max(llama2base, key=llama2base.get)} = {max(llama2base.values()):.4f}\\\\')\\\\nprint(f\\\\'Peak untrained: L{max(untrained, key=untrained.get)} = {max(untrained.values()):.4f}\\\\')\\\\n\\\\n# Averages\\\\nprint(f\\\\'Mean across all layers - untrained: {sum(untrained.values())/len(untrained):.4f}, llama2base: {sum(llama2base.values())/len(llama2base):.4f}, trained: {sum(trained.values())/len(trained):.4f}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Need to use `/root/miniconda3/bin/python3.12` as specified in the project config.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "d2d863e2-81f1-4d78-965c-0b2e8ca98095",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzMnCuTssnGTVKKRiMKW1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2061,
+      "cache_read_input_tokens": 51374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2061
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013Fi5QeyLgZoRt7oD6iDHja`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python3.12 << 'EOF'\nimport json\n\nfulllayer = json.load(open('/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json'))\nllama2base_f = json.load(open('/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json'))\n\ntrained = {}\nfor k, v in fulllayer['trained']['image_mean'].items():\n    layer_num = int(k.split('_')[1])\n    trained[layer_num] = v['mean_R2']\n\nuntrained = {}\nfor k, v in fulllayer['untrained']['image_mean'].items():\n    layer_num = int(k.split('_')[1])\n    untrained[layer_num] = v['mean_R2']\n\nllama2base = {}\nfor k, v in llama2base_f['llama2base_image_mean'].items():\n    layer_num = int(k.split('_')[1])\n    llama2base[layer_num] = v['mean_R2']\n\nprint(f\"{'Layer':<6} {'Untrained':<12} {'Llama2Base':<12} {'Trained':<12} {'Pattern':<20}\")\nprint('-' * 62)\nfor layer in range(33):\n    u = untrained.get(layer)\n    l = llama2base.get(layer)\n    t = trained.get(layer)\n    if u is not None and l is not None and t is not None:\n        if u < l < t:\n            pattern = 'U < L < T'\n        elif u < l and l >= t:\n            pattern = 'U < L >= T'\n        elif u >= l and l < t:\n            pattern = 'U >= L, L < T'\n        elif u >= l and l >= t:\n            pattern = 'U >= L >= T'\n        else:\n            pattern = 'other'\n        print(f\"L{layer:<5} {u:<12.4f} {l:<12.4f} {t:<12.4f} {pattern}\")\n\nprint()\nprint(\"=== KEY METRICS ===\")\nprint(f\"L1:  untrained={untrained[1]:.4f}, llama2base={llama2base[1]:.4f}, trained={trained[1]:.4f}\")\nprint(f\"Peak trained: L{max(trained, key=trained.get)} = {max(trained.values()):.4f}\")\nprint(f\"Peak llama2base: L{max(llama2base, key=llama2base.get)} = {max(llama2base.values()):.4f}\")\nprint(f\"Peak untrained: L{max(untrained, key=untrained.get)} = {max(untrained.values()):.4f}\")\navg_u = sum(untrained.values())/len(untrained)\navg_l = sum(llama2base.values())/len(llama2base)\navg_t = sum(trained.values())/len(trained)\nprint(f\"Mean all layers - untrained: {avg_u:.4f}, llama2base: {avg_l:.4f}, trained: {avg_t:.4f}\")\n\n# Count patterns\npatterns = {'U < L < T': 0, 'U < L >= T': 0, 'U >= L, L < T': 0, 'U >= L >= T': 0}\nfor layer in range(33):\n    u, l, t = untrained.get(layer), llama2base.get(layer), trained.get(layer)\n    if u is not None and l is not None and t is not None:\n        if u < l < t: patterns['U < L < T'] += 1\n        elif u < l and l >= t: patterns['U < L >= T'] += 1\n        elif u >= l and l < t: patterns['U >= L, L < T'] += 1\n        elif u >= l and l >= t: patterns['U >= L >= T'] += 1\nprint(f\"\\nPattern counts: {patterns}\")\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "2fb13992-295b-4695-a3c2-4d75ba84c0a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzMnCuTssnGTVKKRiMKW1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2061,
+      "cache_read_input_tokens": 51374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2061
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T22:00:38.519Z_
+
+<details><summary>↩ Tool result · `toolu_013Fi5QeyLgZoRt7oD6iDHja`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Layer  Untrained    Llama2Base   Trained      Pattern             \\n--------------------------------------------------------------\\nL0     0.6403       0.6403       0.6403       U >= L >= T\\nL1     0.5546       0.6366       0.6331       U < L >= T\\nL2     0.5219       0.6124       0.6278       U < L < T\\nL3     0.5338       0.6446       0.6519       U < L < T\\nL4     0.5606       0.6447       0.6468       U < L < T\\nL5     0.5383       0.6326       0.6468       U < L < T\\nL6     0.5313       0.6413       0.6494       U < L < T\\nL7     0.5176       0.6335       0.6447       U < L < T\\nL8     0.5323       0.6307       0.6553       U < L < T\\nL9     0.5350       0.6371       0.6511       U < L < T\\nL10    -0.3293      0.6233       0.6427       U < L < T\\nL11    -0.2806      0.6184       0.6436       U < L < T\\nL12    0.5198       0.6268       0.6086       U < L >= T\\nL13    0.4410       0.6047       0.6296       U < L < T\\nL14    0.4184       0.6190       0.6208       U < L < T\\nL15    0.5041       0.6127       0.6280       U < L < T\\nL16    0.4567       0.6136       0.6188       U < L < T\\nL17    0.4704       0.6103       0.6345       U < L < T\\nL18    0.4924       0.6088       0.6348       U < L < T\\nL19    0.4901       0.5824       0.5986       U < L < T\\nL20    0.4918       0.5395       0.5788       U < L < T\\nL21    0.4839       0.6089       0.5736       U < L >= T\\nL22    0.4696       0.5817       0.5831       U < L < T\\nL23    0.5156       0.5846       0.4363       U < L >= T\\nL24    0.4894       0.5710       0.5537       U < L >= T\\nL25    0.5085       0.5535       0.5477       U < L >= T\\nL26    0.4584       0.5687       0.5057       U < L >= T\\nL27    0.5174       0.5707       0.4261       U < L >= T\\nL28    0.3633       0.5645       0.4184       U < L >= T\\nL29    0.4445       0.5727       0.5286       U < L >= T\\nL30    0.4621       0.5593       0.5233       U < L >= T\\nL31    0.3878       0.5709       0.3803       U < L >= T\\nL32    0.5785       0.5255       0.5390       U >= L, L < T\\n\\n=== KEY METRICS ===\\nL1:  untrained=0.5546, llama2base=0.6366, trained=0.6331\\nPeak trained: L8 = 0.6553\\nPeak llama2base: L4 = 0.6447\\nPeak untrained: L0 = 0.6403\\nMean all layers - untrained: 0.4491, llama2base: 0.6014, trained: 0.5849\\n\\nPattern counts: {'U < L < T': 19, 'U < L >= T': 12, 'U >= L, L < T': 1, 'U >= L >= T': 1}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "69c4641e-0b03-4b81-87b4-41ba282fb2be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Layer  Untrained    Llama2Base   Trained      Pattern             \\\\n--------------------------------------------------------------\\\\nL0     0.6403       0.6403       0.6403       U >= L >= T\\\\nL1     0.5546       0.6366       0.6331       U < L >= T\\\\nL2     0.5219       0.6124       0.6278       U < L < T\\\\nL3     0.5338       0.6446       0.6519       U < L < T\\\\nL4     0.5606       0.6447       0.6468       U < L < T\\\\nL5     0.5383       0.6326       0.6468       U < L < T\\\\nL6     0.5313       0.6413       0.6494       U < L < T\\\\nL7     0.5176       0.6335       0.6447       U < L < T\\\\nL8     0.5323       0.6307       0.6553       U < L < T\\\\nL9     0.5350       0.6371       0.6511       U < L < T\\\\nL10    -0.3293      0.6233       0.6427       U < L < T\\\\nL11    -0.2806      0.6184       0.6436       U < L < T\\\\nL12    0.5198       0.6268       0.6086       U < L >= T\\\\nL13    0.4410       0.6047       0.6296       U < L < T\\\\nL14    0.4184       0.6190       0.6208       U < L < T\\\\nL15    0.5041       0.6127       0.6280       U < L < T\\\\nL16    0.4567       0.6136       0.6188       U < L < T\\\\nL17    0.4704       0.6103       0.6345       U < L < T\\\\nL18    0.4924       0.6088       0.6348       U < L < T\\\\nL19    0.4901       0.5824       0.5986       U < L < T\\\\nL20    0.4918       0.5395       0.5788       U < L < T\\\\nL21    0.4839       0.6089       0.5736       U < L >= T\\\\nL22    0.4696       0.5817       0.5831       U < L < T\\\\nL23    0.5156       0.5846       0.4363       U < L >= T\\\\nL24    0.4894       0.5710       0.5537       U < L >= T\\\\nL25    0.5085       0.5535       0.5477       U < L >= T\\\\nL26    0.4584       0.5687       0.5057       U < L >= T\\\\nL27    0.5174       0.5707       0.4261       U < L >= T\\\\nL28    0.3633       0.5645       0.4184       U < L >= T\\\\nL29    0.4445       0.5727       0.5286       U < L >= T\\\\nL30    0.4621       0.5593       0.5233       U < L >= T\\\\nL31    0.3878       0.5709       0.3803       U < L >= T\\\\nL32    0.5785       0.5255       0.5390       U >= L, L < T\\\\n\\\\n=== KEY METRICS ===\\\\nL1:  untrained=0.5546, llama2base=0.6366, trained=0.6331\\\\nPeak trained: L8 = 0.6553\\\\nPeak llama2base: L4 = 0.6447\\\\nPeak untrained: L0 = 0.6403\\\\nMean all layers - untrained: 0.4491, llama2base: 0.6014, trained: 0.5849\\\\n\\\\nPattern counts: {'U < L < T': 19, 'U < L >= T': 12, 'U >= L, L < T': 1, 'U >= L >= T': 1}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Layer  Untrained    Llama2Base   Trained      Pattern             \\n--------------------------------------------------------------\\nL0     0.6403       0.6403       0.6403       U >= L >= T\\nL1     0.5546       0.6366       0.6331       U < L >= T\\nL2     0.5219       0.6124       0.6278       U < L < T\\nL3     0.5338       0.6446       0.6519       U < L < T\\nL4     0.5606       0.6447       0.6468       U < L < T\\nL5     0.5383       0.6326       0.6468       U < L < T\\nL6     0.5313       0.6413       0.6494       U < L < T\\nL7     0.5176       0.6335       0.6447       U < L < T\\nL8     0.5323       0.6307       0.6553       U < L < T\\nL9     0.5350       0.6371       0.6511       U < L < T\\nL10    -0.3293      0.6233       0.6427       U < L < T\\nL11    -0.2806      0.6184       0.6436       U < L < T\\nL12    0.5198       0.6268       0.6086       U < L >= T\\nL13    0.4410       0.6047       0.6296       U < L < T\\nL14    0.4184       0.6190       0.6208       U < L < T\\nL15    0.5041       0.6127       0.6280       U < L < T\\nL16    0.4567       0.6136       0.6188       U < L < T\\nL17    0.4704       0.6103       0.6345       U < L < T\\nL18    0.4924       0.6088       0.6348       U < L < T\\nL19    0.4901       0.5824       0.5986       U < L < T\\nL20    0.4918       0.5395       0.5788       U < L < T\\nL21    0.4839       0.6089       0.5736       U < L >= T\\nL22    0.4696       0.5817       0.5831       U < L < T\\nL23    0.5156       0.5846       0.4363       U < L >= T\\nL24    0.4894       0.5710       0.5537       U < L >= T\\nL25    0.5085       0.5535       0.5477       U < L >= T\\nL26    0.4584       0.5687       0.5057       U < L >= T\\nL27    0.5174       0.5707       0.4261       U < L >= T\\nL28    0.3633       0.5645       0.4184       U < L >= T\\nL29    0.4445       0.5727       0.5286       U < L >= T\\nL30    0.4621       0.5593       0.5233       U < L >= T\\nL31    0.3878       0.5709       0.3803       U < L >= T\\nL32    0.5785       0.5255       0.5390       U >= L, L < T\\n\\n=== KEY METRICS ===\\nL1:  untrained=0.5546, llama2base=0.6366, trained=0.6331\\nPeak trained: L8 = 0.6553\\nPeak llama2base: L4 = 0.6447\\nPeak untrained: L0 = 0.6403\\nMean all layers - untrained: 0.4491, llama2base: 0.6014, trained: 0.5849\\n\\nPattern counts: {'U < L < T': 19, 'U < L >= T': 12, 'U >= L, L < T': 1, 'U >= L >= T': 1}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very interesting results! Let me now generate the JSON output and write it to the server. Let me also note the key findings:
+
+1. **L1 (core layer)**: untrained=0.5546, llama2base=0.6366, trained=0.6331
+   - Pattern: U < L >= T — llama2base is actually slightly HIGHER than trained at L1!
+
+2. **Overall pattern**: 
+   - 19/33 layers follow U < L < T (expected)
+   - 12/33 layers show U < L >= T (llama2base >= trained)
+   - The expected gradient U < L < T holds for early-to-mid layers (L2-L9, L13-L20, L22)
+   - Late layers (L21+) predominantly show llama2base >= trained
+
+3. **Means**: untrained 0.4491 < llama2base 0.6014 > trained 0.5849
+   - The overall mean shows llama2base > trained, which contradicts the hypothesis!
+
+4. **Peaks**: trained peak at L8 (0.6553) > llama2base peak at L4 (0.6447) > untrained peak at L0 (0.6403)
+   - Peak-to-peak comparison does show the expected gradient
+
+So the pattern is more complex than expected—the early-to-mid layers follow the hypothesis, but late layers show the trained model actually degrading relative to llama2base, likely because VLA training repurposes those layers for action generation rather than preserving visual encoding. Now I'm writing out the comprehensive JSON file with these findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "40dea1c1-f30f-461b-ae08-48ea52584d7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSF9d1y2FRAxtPXSm9FL4s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2244,
+      "cache_read_input_tokens": 53435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2244
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+结果非常有意思。现在写入完整的三条件对比 JSON。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "3a4a66c0-d507-4ba9-96d6-b55ac99cf899",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSF9d1y2FRAxtPXSm9FL4s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2244,
+      "cache_read_input_tokens": 53435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2244
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UQaX79BFV7fEnnQzxYcXFx`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "mkdir -p /root/autodl-tmp/vla-ssd/results/llama2base_action_probe && /root/miniconda3/bin/python3.12 << 'EOF'\nimport json\n\nfulllayer = json.load(open('/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json'))\nllama2base_f = json.load(open('/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json'))\n\ntrained = {}\nfor k, v in fulllayer['trained']['image_mean'].items():\n    layer_num = int(k.split('_')[1])\n    trained[layer_num] = v['mean_R2']\n\nuntrained = {}\nfor k, v in fulllayer['untrained']['image_mean'].items():\n    layer_num = int(k.split('_')[1])\n    untrained[layer_num] = v['mean_R2']\n\nllama2base = {}\nfor k, v in llama2base_f['llama2base_image_mean'].items():\n    layer_num = int(k.split('_')[1])\n    llama2base[layer_num] = v['mean_R2']\n\nresult = {\n    \"description\": \"Three-condition action R2 probe comparison: untrained (random init) vs llama2base (pretrained LLM) vs trained (VLA fine-tuned OpenVLA)\",\n    \"readout\": \"image_mean\",\n    \"hypothesis\": \"untrained < llama2base < trained (VLA training specializes action encoding beyond language pretraining)\",\n    \"per_layer_comparison\": {},\n    \"summary\": {},\n    \"pattern_analysis\": {}\n}\n\npattern_counts = {'U&lt;L&lt;T': 0, 'U&lt;L>=T': 0, 'U>=L&lt;T': 0, 'U>=L>=T': 0}\nfor layer in range(33):\n    u = untrained.get(layer)\n    l = llama2base.get(layer)\n    t = trained.get(layer)\n    if u is not None and l is not None and t is not None:\n        if u < l < t:\n            p = 'U&lt;L&lt;T'\n        elif u < l and l >= t:\n            p = 'U&lt;L>=T'\n        elif u >= l and l < t:\n            p = 'U>=L&lt;T'\n        else:\n            p = 'U>=L>=T'\n        pattern_counts[p] += 1\n        result[\"per_layer_comparison\"][f\"L{layer}\"] = {\n            \"untrained_R2\": round(u, 4),\n            \"llama2base_R2\": round(l, 4),\n            \"trained_R2\": round(t, 4),\n            \"pattern\": p,\n            \"llama2base_minus_untrained\": round(l - u, 4),\n            \"trained_minus_llama2base\": round(t - l, 4)\n        }\n\nresult[\"summary\"] = {\n    \"L1_core_layer\": {\n        \"untrained_R2\": round(untrained[1], 4),\n        \"llama2base_R2\": round(llama2base[1], 4),\n        \"trained_R2\": round(trained[1], 4),\n        \"pattern\": \"U < L >= T (llama2base slightly higher than trained)\"\n    },\n    \"peaks\": {\n        \"trained_peak\": {\"layer\": max(trained, key=trained.get), \"R2\": round(max(trained.values()), 4)},\n        \"llama2base_peak\": {\"layer\": max(llama2base, key=llama2base.get), \"R2\": round(max(llama2base.values()), 4)},\n        \"untrained_peak\": {\"layer\": max(untrained, key=untrained.get), \"R2\": round(max(untrained.values()), 4)}\n    },\n    \"means_across_all_layers\": {\n        \"untrained\": round(sum(untrained.values())/len(untrained), 4),\n        \"llama2base\": round(sum(llama2base.values())/len(llama2base), 4),\n        \"trained\": round(sum(trained.values())/len(trained), 4)\n    },\n    \"early_mid_layers_L2_L9_mean\": {\n        \"untrained\": round(sum(untrained[i] for i in range(2,10))/8, 4),\n        \"llama2base\": round(sum(llama2base[i] for i in range(2,10))/8, 4),\n        \"trained\": round(sum(trained[i] for i in range(2,10))/8, 4)\n    },\n    \"late_layers_L21_L32_mean\": {\n        \"untrained\": round(sum(untrained[i] for i in range(21,33))/12, 4),\n        \"llama2base\": round(sum(llama2base[i] for i in range(21,33))/12, 4),\n        \"trained\": round(sum(trained[i] for i in range(21,33))/12, 4)\n    }\n}\n\nresult[\"pattern_analysis\"] = {\n    \"pattern_counts\": pattern_counts,\n    \"interpretation\": {\n        \"early_mid_layers\": \"L2-L20: mostly U&lt;L&lt;T (19/21 layers). VLA training adds incremental improvement over language pretraining.\",\n        \"late_layers\": \"L21-L31: mostly U&lt;L>=T (10/11 layers). Llama2base outperforms VLA-trained model, suggesting VLA training repurposes late layers for action token generation rather than state encoding.\",\n        \"L1_finding\": \"At L1, llama2base (0.6366) slightly exceeds trained (0.6331). Language pretraining already establishes strong spatial representations at early layers.\",\n        \"overall\": \"Hypothesis partially confirmed. Peak-to-peak: trained (0.6553@L8) > llama2base (0.6447@L4) > untrained (0.6403@L0). But mean across all layers: llama2base (0.6014) > trained (0.5849) due to late-layer degradation in trained model.\"\n    }\n}\n\nwith open('/root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json', 'w') as f:\n    json.dump(result, f, indent=2)\n\nprint(\"Written to /root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json\")\nprint(f\"\\nFile size: {len(json.dumps(result, indent=2))} bytes\")\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "3d3ccbdb-518d-402c-840d-667b3af23e0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSF9d1y2FRAxtPXSm9FL4s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2244,
+      "cache_read_input_tokens": 53435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2244
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T22:01:12.464Z_
+
+<details><summary>↩ Tool result · `toolu_01UQaX79BFV7fEnnQzxYcXFx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Written to /root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json\\n\\nFile size: 9351 bytes\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "0e5c0e18-6129-4d7b-b94d-6ce865fb0185",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Written to /root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json\\\\n\\\\nFile size: 9351 bytes\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Written to /root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json\\n\\nFile size: 9351 bytes\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+## 结果
+
+### 三条件对比表（mean R² per layer, image_mean readout）
+
+| Layer | Untrained | Llama2Base | Trained | Pattern |
+|-------|-----------|------------|---------|---------|
+| L0 | 0.6403 | 0.6403 | 0.6403 | U = L = T |
+| **L1** | **0.5546** | **0.6366** | **0.6331** | **U < L >= T** |
+| L2 | 0.5219 | 0.6124 | 0.6278 | U < L < T |
+| L3 | 0.5338 | 0.6446 | 0.6519 | U < L < T |
+| L4 | 0.5606 | 0.6447 | 0.6468 | U < L < T |
+| L5 | 0.5383 | 0.6326 | 0.6468 | U < L < T |
+| L6 | 0.5313 | 0.6413 | 0.6494 | U < L < T |
+| L7 | 0.5176 | 0.6335 | 0.6447 | U < L < T |
+| **L8** | 0.5323 | 0.6307 | **0.6553** | U < L < T |
+| L9 | 0.5350 | 0.6371 | 0.6511 | U < L < T |
+| L10 | -0.3293 | 0.6233 | 0.6427 | U < L < T |
+| L11 | -0.2806 | 0.6184 | 0.6436 | U < L < T |
+| L12 | 0.5198 | 0.6268 | 0.6086 | U < L >= T |
+| L13 | 0.4410 | 0.6047 | 0.6296 | U < L < T |
+| L14-L20 | ... | ... | ... | U < L < T |
+| L21-L31 | ~0.45 | ~0.57 | ~0.48 | U < L >= T |
+| L32 | 0.5785 | 0.5255 | 0.5390 | U >= L < T |
+
+### L1 关键数值
+- **Untrained: 0.5546**
+- **Llama2Base: 0.6366**
+- **Trained (VLA): 0.6331**
+- Delta: llama2base比untrained高 +0.082, 但比trained略高 +0.004
+
+### 整体 Pattern
+
+| 指标 | Untrained | Llama2Base | Trained |
+|------|-----------|------------|---------|
+| Peak R² | 0.6403 (L0) | 0.6447 (L4) | 0.6553 (L8) |
+| Mean (all layers) | 0.4491 | **0.6014** | 0.5849 |
+| Mean (L2-L9) | 0.5294 | 0.6347 | **0.6463** |
+| Mean (L21-L32) | 0.4686 | **0.5700** | 0.4924 |
+
+### 核心发现
+
+1. **假设部分成立**：Peak-to-peak 确认 untrained(0.64) < llama2base(0.64) < trained(0.66)，但差异很小
+
+2. **Early-mid layers (L2-L9)**：19/21 层符合 U<L<T，VLA training 在语言预训练基础上确实有增量改善
+
+3. **Late layers (L21-L31)**：10/11 层 llama2base 反超 trained。VLA training 将后层重新用于 action token generation，降低了 image_mean readout 的 action encoding
+
+4. **L1 意外发现**：llama2base(0.6366) ≈ trained(0.6331)。语言预训练已经在 L1 建立了与 VLA-trained 相当的 spatial representation
+
+### 结果文件
+`/root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "uuid": "8fe31ec5-25af-4a44-ad47-f703b9d36ebe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KB66rikXJY53jJU3Ti1L5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2380,
+      "cache_read_input_tokens": 55679,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2380
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 46_
+
+## 结果
+
+### 三条件对比表（mean R² per layer, image_mean readout）
+
+| Layer | Untrained | Llama2Base | Trained | Pattern |
+|-------|-----------|------------|---------|---------|
+| L0 | 0.6403 | 0.6403 | 0.6403 | U = L = T |
+| **L1** | **0.5546** | **0.6366** | **0.6331** | **U < L >= T** |
+| L2 | 0.5219 | 0.6124 | 0.6278 | U < L < T |
+| L3 | 0.5338 | 0.6446 | 0.6519 | U < L < T |
+| L4 | 0.5606 | 0.6447 | 0.6468 | U < L < T |
+| L5 | 0.5383 | 0.6326 | 0.6468 | U < L < T |
+| L6 | 0.5313 | 0.6413 | 0.6494 | U < L < T |
+| L7 | 0.5176 | 0.6335 | 0.6447 | U < L < T |
+| **L8** | 0.5323 | 0.6307 | **0.6553** | U < L < T |
+| L9 | 0.5350 | 0.6371 | 0.6511 | U < L < T |
+| L10 | -0.3293 | 0.6233 | 0.6427 | U < L < T |
+| L11 | -0.2806 | 0.6184 | 0.6436 | U < L < T |
+| L12 | 0.5198 | 0.6268 | 0.6086 | U < L >= T |
+| L13 | 0.4410 | 0.6047 | 0.6296 | U < L < T |
+| L14-L20 | ... | ... | ... | U < L < T |
+| L21-L31 | ~0.45 | ~0.57 | ~0.48 | U < L >= T |
+| L32 | 0.5785 | 0.5255 | 0.5390 | U >= L < T |
+
+### L1 关键数值
+- **Untrained: 0.5546**
+- **Llama2Base: 0.6366**
+- **Trained (VLA): 0.6331**
+- Delta: llama2base比untrained高 +0.082, 但比trained略高 +0.004
+
+### 整体 Pattern
+
+| 指标 | Untrained | Llama2Base | Trained |
+|------|-----------|------------|---------|
+| Peak R² | 0.6403 (L0) | 0.6447 (L4) | 0.6553 (L8) |
+| Mean (all layers) | 0.4491 | **0.6014** | 0.5849 |
+| Mean (L2-L9) | 0.5294 | 0.6347 | **0.6463** |
+| Mean (L21-L32) | 0.4686 | **0.5700** | 0.4924 |
+
+### 核心发现
+
+1. **假设部分成立**：Peak-to-peak 确认 untrained(0.64) < llama2base(0.64) < trained(0.66)，但差异很小
+
+2. **Early-mid layers (L2-L9)**：19/21 层符合 U<L<T，VLA training 在语言预训练基础上确实有增量改善
+
+3. **Late layers (L21-L31)**：10/11 层 llama2base 反超 trained。VLA training 将后层重新用于 action token generation，降低了 image_mean readout 的 action encoding
+
+4. **L1 意外发现**：llama2base(0.6366) ≈ trained(0.6331)。语言预训练已经在 L1 建立了与 VLA-trained 相当的 spatial representation
+
+### 结果文件
+`/root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 147798,
+  "duration_api_ms": 144630,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "ab1635e6-dc72-4b86-a40f-1f35f71bb61d",
+  "total_cost_usd": 0.666831,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 46218,
+    "cache_read_input_tokens": 338301,
+    "output_tokens": 8288,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 46218,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1136,
+        "cache_read_input_tokens": 55679,
+        "cache_creation_input_tokens": 2380,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2380
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1458,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0015530000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 8288,
+      "cacheReadInputTokens": 338301,
+      "cacheCreationInputTokens": 46218,
+      "webSearchRequests": 0,
+      "costUSD": 0.665278,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "93f57fa3-5f49-4afb-8a20-8e04123d2d04"
+}
+```
+
+</details>
+
+---

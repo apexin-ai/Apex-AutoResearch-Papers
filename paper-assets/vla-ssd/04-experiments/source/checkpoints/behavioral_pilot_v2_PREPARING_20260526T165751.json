@@ -1,0 +1,18 @@
+{
+  "exp_id": "behavioral_pilot_v2",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:40:18.951Z",
+    "updated_at": "2026-05-26T16:57:50.896Z",
+    "hypothesis": "Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.",
+    "parent": "behavioral_pilot_w4",
+    "conclusion": "killed",
+    "notes": "Director 确认放弃 behavioral rollout（mujoco 版本不匹配）。Phase 1 SR=0/3，fine-tuned checkpoint 加载成功但 action[0] 锁定在 0.236，Blackwell GPU 需要 device_map 绕过 segfault，可能影响 inference。不再投入。"
+  },
+  "timestamp": "2026-05-26T16:57:51.204366+00:00",
+  "trigger": "update_registry"
+}

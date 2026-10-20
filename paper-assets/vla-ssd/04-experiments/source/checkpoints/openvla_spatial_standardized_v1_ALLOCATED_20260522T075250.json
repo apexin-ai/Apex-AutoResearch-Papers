@@ -1,0 +1,32 @@
+{
+  "exp_id": "openvla_spatial_standardized_v1",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-22T01:02:09.424Z",
+    "updated_at": "2026-05-22T07:52:50.353Z",
+    "hypothesis": "OpenVLA (Llama-2-7B backbone) on LIBERO-Spatial standardized 5-phase pipeline (R² probing, L1 attention, cross-instruction classification, RSA, counterfactual). Both trained and untrained conditions. Filling missing R² exit, L1 attention, and untrained CF data for Spatial cell. Expect similar patterns to Goal/Object: R² exit collapse in trained, instruction-dominant L1 heads.",
+    "reproduce": {
+      "finished_at": "2026-05-22T07:21:51.015Z"
+    },
+    "failure_reason": "Traceback → ll_pipeline.py\", line 26, in <module> from transformers import AutoModelForVision2Seq, AutoProcessor ImportError: cannot import name 'AutoModelForVision2Seq' from 'transformers' (/root/miniconda3/lib/python3.12/site-packages/transformers/__init__.py)",
+    "completed_at": "2026-05-22T07:21:53.751Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T07:21:57.386888+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-22T07:52:50.647995+00:00",
+  "trigger": "update_registry"
+}

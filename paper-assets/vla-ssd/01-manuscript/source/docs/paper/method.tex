@@ -1,0 +1,71 @@
+\section{Method}
+\label{sec:method}
+
+We investigate how action-relevant representations are organized across three VLA architectures using complementary probing, attention, and perturbation analyses.
+
+%------------------------------------------------------------------
+\subsection{Architectures and Data}
+\label{sec:arch_data}
+
+\looseness=-1
+We study three VLAs spanning distinct backbone families (Table~\ref{tab:arch_overview}):
+\textbf{OpenVLA}~\cite{kim2024_openvla,karamcheti2024} (Llama-2-7B~\cite{touvron2023_llama2}, 32 layers, pretrained on Open X-Embodiment~\cite{padalkar2023_oxe} [OXE; 970K episodes]),
+\textbf{TraceVLA}~\cite{zheng2024tracevla} (Phi-3-mini~\cite{abdin2024phi3}, 32 layers, trained on an OXE subset with spatial trace conditioning), and
+\textbf{NORA}~\cite{hung2025nora} (Qwen2.5-VL-3B, 36 layers, grouped-query attention with 16 query heads).
+Each is evaluated in trained and reference conditions.
+A critical asymmetry distinguishes the references: OpenVLA's is an OXE-pretrained VLA (already producing actions), while TraceVLA and NORA references are pure VLMs (Phi-3-Vision, Qwen2.5-VL) with no action training; thus OpenVLA comparisons measure VLA-to-VLA transitions, while TraceVLA and NORA measure VLM-to-VLA transitions.
+OpenVLA additionally provides Llama-2 base and random-weight conditions (\S\ref{sec:openvla_routing}).
+
+We evaluate on LIBERO~\cite{liu2023_libero}, comprising four task suites (Goal, Spatial, Object, Long-Horizon) with 10 tasks and 50 demonstrations each.
+LIBERO provides a controlled evaluation framework: all suites share the same simulated tabletop environment and robot embodiment, isolating instruction complexity as the primary experimental variable.
+The four suites systematically vary instruction demands (Goal requires object identification, Spatial adds relative positioning, Object introduces distractors, and Long-Horizon chains multiple sub-tasks), enabling us to test whether routing patterns generalize across instruction complexity levels.
+The three architectures and four suites form a $3 \times 4$ matrix; 10 of 12 cells are filled (NORA Object and Long-Horizon lack available checkpoints).
+
+%------------------------------------------------------------------
+\subsection{Representation Extraction}
+\looseness=-1
+From each architecture, we extract hidden states at every transformer layer from two token positions: (a)~\textbf{image\_mean}, the mean activation over image tokens, and (b)~\textbf{readout}, the hidden state at the final pre-action token, which can attend to all preceding context.
+L0 denotes the embedding layer, L1--L$N$ the post-transformer hidden states ($N = 32$ for OpenVLA/TraceVLA, $36$ for NORA).
+We cross training status (trained vs.\ reference) $\times$ instruction presence (with vs.\ without) across all 10 cells.
+OpenVLA additionally provides DinoSigLIP projector, DINOv2, and CLIP representations for the single-architecture analyses (\S\ref{sec:openvla_routing}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\columnwidth]{figures/fig_rsa_perlayer_curve.pdf}
+\caption{Per-layer RSA (Spearman $\rho$) for trained/reference OpenVLA. Trained: inverted-U peaking at L12; reference: monotonic decline. Readout and image\_mean diverge after L12.}
+\label{fig:rsa_perlayer}
+\end{figure}
+
+%------------------------------------------------------------------
+\subsection{Cross-Architecture Analyses}
+\label{sec:cross_arch_analyses}
+
+Three analyses are applied to every available cell in the $3 \times 4$ matrix.
+
+\paragraph{Action probes.}\looseness=-1
+Two-layer MLP probes~\cite{alain2017} predict 7 degree-of-freedom (DoF) actions from frozen representations (details in Appendix~\ref{sec:openvla_methods_appendix}).
+Probe $R^2$ measures decodability, not causal usage.
+$\Delta R^2 = R^2_{\text{peak}} - R^2_{\text{exit}}$; we use $> 0.10$ as the threshold for substantial peak-to-exit reduction.
+Demo-level train/test splits and Monte Carlo cross-validation ($n = 1{,}000$) provide 95\% confidence intervals (CIs; Appendix~\ref{sec:delta_r2_threshold}); linear probes yield consistent patterns (Appendix~\ref{sec:linear_probe}).
+
+\paragraph{L1 attention head profiling.}\looseness=-1
+To determine whether attention heads preferentially route instruction information to the readout position, each L1 head is classified as instruction-dominant ($>50\%$ of readout-token attention to instruction tokens) or image-dominant, reported as $k/N$ heads (32 for MHA, 16 for GQA).
+Sensitivity analysis at thresholds from $30\%$ to $70\%$ confirms ordering robustness (Appendix~\ref{sec:threshold_sensitivity}).
+
+\paragraph{Counterfactual instruction perturbation.}\looseness=-1
+To test whether the model's actions depend on instruction content, the instruction is replaced with four conditions: empty string, wrong task, shuffled tokens, and paraphrased.
+We measure trained-model sensitivity via Cohen's $d$ on action MSE (OpenVLA, TraceVLA) or cosine distance (NORA); reference VLMs use cosine distance on hidden representations.
+These metrics operate on different scales; cross-metric ratios are invalid (\S\ref{sec:cf_sensitivity}).
+
+\looseness=-1
+OpenVLA additionally supports cross-instruction probes, representational similarity analysis (RSA)~\cite{kriegeskorte2008}, and external baselines (DINOv2~\cite{oquab2024_dinov2}, CLIP~\cite{radford2021_clip}); these single-architecture methods are detailed in Appendix~\ref{sec:openvla_methods_appendix}.
+Figure~\ref{fig:rsa_perlayer} previews this: per-layer geometric alignment ($\rho$) diverges between trained and reference models after L12, with trained readout tokens maintaining alignment ($\rho = 0.584$) while image-mean representations decay ($\rho = 0.422$), suggesting task-specific conditioning at the readout position.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_matrix_heatmap.pdf}
+\caption{\textbf{Cross-architecture analysis matrix.} Three architectures (OpenVLA, TraceVLA, NORA) $\times$ four LIBERO suites; 10 of 12 cells filled. Color encodes $\Delta R^2$ (peak$-$exit); bold borders mark VLM-to-VLA transitions exhibiting substantial exit collapse ($\Delta R^2 > 0.10$).}
+\label{fig:result_matrix}
+\end{figure}
+
+\FloatBarrier

@@ -1,0 +1,47 @@
+{
+  "exp_id": "lg_dino_extract",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:42:52.995Z",
+    "updated_at": "2026-05-15T17:51:22.838Z",
+    "hypothesis": "DINO-V2 LIBERO-Goal feature extraction — vision-only baseline for Goal Classification gate (Sanity-GC: DINO acc ≤ 25%)",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T17:43:09.957Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/extract_dinov2.py --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ --output_dir /root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/ --model_path /root/autodl-tmp/vla-ssd/checkpoints/dinov2-large --gpu 0\"",
+      "finished_at": "2026-05-15T17:49:37.592Z",
+      "training_hours": 0.11
+    },
+    "spec": {
+      "command": "python extract_features.py --model dinov2-large --dataset libero_goal",
+      "server": "westd-19183",
+      "data_path": "LIBERO-Goal",
+      "data_count": 500,
+      "model_name": "facebook/dinov2-large",
+      "seed": 0,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/",
+      "log_path": "~/runs/vla-ssd/lg_dino_extract.log"
+    },
+    "pid": "634279",
+    "log_path": "~/runs/vla-ssd/lg_dino_extract.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:49:38.728557+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T17:51:22.910626+00:00",
+  "trigger": "update_registry"
+}

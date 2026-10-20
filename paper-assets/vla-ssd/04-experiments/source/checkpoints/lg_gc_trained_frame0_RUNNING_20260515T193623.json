@@ -1,0 +1,65 @@
+{
+  "exp_id": "lg_gc_trained_frame0",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:27:20.212Z",
+    "updated_at": "2026-05-15T19:36:23.138Z",
+    "hypothesis": "Frame-0-only goal classification on trained VLA features (33 layers). Tests instruction encoding when visual states are most similar across goals. Key layer curve: L0=10%, L1=39%, L2=58%, L3+=100%.",
+    "spec": {
+      "command": "python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/trained_libero_goal/ --output_dir /root/autodl-tmp/vla-ssd/results/trained_libero_goal_frame0/ --probe_type goal_classification --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ --gpu 0 --max_frames 1",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/trained_libero_goal/",
+      "data_count": "10 tasks x 50 demos x 33 layers x 4096 dim (frame 0 only)",
+      "model_name": "GoalClassificationProbe MLP (4096→256→10), trained VLA features frame-0 only",
+      "seed": 42,
+      "checkpoint_source": "lg_extract_trained",
+      "note": "Frame-0 layer curve: L0=10%, L1=39%, L2=58%, L3+=100%. Shows 3+ layers needed for instruction integration at max visual ambiguity. Worker: worker_ssh_initial-frame-gc",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/trained_libero_goal_frame0/goal_classification/",
+      "log_path": "~/runs/vla-ssd/lg_gc_trained_frame0.log"
+    },
+    "metrics": {
+      "trained_best_layer": 3,
+      "trained_best_acc": 1,
+      "trained_best_f1": 1,
+      "untrained_best_layer": 2,
+      "untrained_best_acc": 1,
+      "untrained_best_f1": 1,
+      "dino_best_acc": 0.15,
+      "dino_best_f1": 0.0911,
+      "n_classes": 10,
+      "n_train": 400,
+      "n_val": 100,
+      "trained_layer_curve": {
+        "L0": 0.1,
+        "L1": 0.39,
+        "L2": 0.58,
+        "L3": 1,
+        "L4_to_L18": 1,
+        "L19": 1,
+        "L28": 1,
+        "L31": 1,
+        "L32": 1
+      },
+      "untrained_layer_curve": {
+        "L0": 0.1,
+        "L1": 0.95,
+        "L2": 1,
+        "L3": 0.99,
+        "L19": 0.91,
+        "L28": 0.9,
+        "L31": 0.88,
+        "L32": 0.98
+      },
+      "sanity_gc_frame0": "PASS (DINO 15% <= 25%)",
+      "g3_gc_frame0": "FAIL (Δ=0pp, both 100%)",
+      "key_finding": "DINO 15% at t=0 confirms visual ambiguity. But MLP+4096 probe capacity still saturates both VLA models. Trained VLA more stable across layers (100% L3+) vs untrained (88-100% oscillation in deep layers). Needs PCA+linear verification."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T19:36:23.217711+00:00",
+  "trigger": "update_registry"
+}

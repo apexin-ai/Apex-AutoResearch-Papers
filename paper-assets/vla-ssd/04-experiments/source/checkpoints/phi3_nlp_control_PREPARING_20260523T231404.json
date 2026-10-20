@@ -1,0 +1,14 @@
+{
+  "exp_id": "phi3_nlp_control",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:14:04.023Z",
+    "updated_at": "2026-05-23T23:14:04.023Z"
+  },
+  "timestamp": "2026-05-23T23:14:04.315946+00:00",
+  "trigger": "update_registry"
+}

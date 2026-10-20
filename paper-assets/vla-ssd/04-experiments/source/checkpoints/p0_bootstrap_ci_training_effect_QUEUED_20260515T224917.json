@@ -1,0 +1,40 @@
+{
+  "exp_id": "p0_bootstrap_ci_training_effect",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:44:40.511Z",
+    "updated_at": "2026-05-15T22:49:16.942Z",
+    "hypothesis": "P0: Bootstrap CI on training effect (image_mean aggregation). Trained RSA=0.5014 vs untrained RSA=0.4847, Δ=+0.017. Task-level resampling bootstrap 95% CI. If CI excludes 0 → Claim 3 needs minor adjustment (\"minimal but detectable\"). If CI includes 0 → Claim 3 \"invariance\" holds.",
+    "metrics": {
+      "image_mean": {
+        "delta": 0.0206,
+        "ci_95": [
+          -0.0314,
+          0.0638
+        ],
+        "p_value": 0.2,
+        "significant": false
+      },
+      "last_preaction": {
+        "delta": 0.0076,
+        "ci_95": [
+          -0.0395,
+          0.0558
+        ],
+        "p_value": 0.37,
+        "significant": false
+      },
+      "n_bootstrap": 10000,
+      "n_tasks": 10,
+      "conclusion": "Both CIs include 0. Training effect not significant under task-level bootstrap. Claim 3 invariance holds.",
+      "result_path": "/root/autodl-tmp/vla-ssd/results/rsa/bootstrap_training_effect.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T22:49:17.023439+00:00",
+  "trigger": "update_registry"
+}

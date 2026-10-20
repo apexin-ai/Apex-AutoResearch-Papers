@@ -1,0 +1,15 @@
+{
+  "exp_id": "lg_gc_trained_frame0",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:27:20.212Z",
+    "updated_at": "2026-05-15T19:27:27.886Z",
+    "hypothesis": "Frame-0-only goal classification on trained VLA features (33 layers). Tests instruction encoding when visual states are most similar across goals. Key layer curve: L0=10%, L1=39%, L2=58%, L3+=100%."
+  },
+  "timestamp": "2026-05-15T19:27:27.955375+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1 @@
+All layers significant at p < 0.0001 with 10000 shuffles. Layer 0: obs=0.6117, Layer 8: obs=0.6187, Layer 12: obs=0.6282, Layer 24: obs=0.5459, Layer 32: obs=0.4223. All p=0.0 (0/10000 null exceeded observed).

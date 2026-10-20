@@ -1,0 +1,28 @@
+{
+  "exp_id": "libero_object_full_pipeline",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:46:15.175Z",
+    "updated_at": "2026-05-21T02:05:43.534Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && CUDA_VISIBLE_DEVICES=0 python /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/libero_object/pipeline.log\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "513513",
+      "log_path": "~/runs/vla-ssd/libero_object_full_pipeline.log",
+      "submitted_at": "2026-05-21T00:46:14.777Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "The convergent entry-exit routing architecture (inverted-U R² profile, instruction-dominant L1 heads, counterfactual sensitivity) observed in OpenVLA on LIBERO-Goal generalizes to LIBERO-Object tasks, demonstrating that VLA fine-tuning produces consistent representational reorganization across different task types (object manipulation vs goal-directed)."
+  },
+  "timestamp": "2026-05-21T02:05:44.091794+00:00",
+  "trigger": "update_registry"
+}

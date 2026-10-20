@@ -1,0 +1,158 @@
+{
+  "untrained_last_preaction_L19": {
+    "per_task_R2": {
+      "open_the_middle_drawer_of_the_cabinet": 0.48799586296081543,
+      "open_the_top_drawer_and_put_the_bowl_inside": 0.410416841506958,
+      "push_the_plate_to_the_front_of_the_stove": 0.5625075101852417,
+      "put_the_bowl_on_the_plate": 0.21188724040985107,
+      "put_the_bowl_on_the_stove": 0.07568627595901489,
+      "put_the_bowl_on_top_of_the_cabinet": 0.3459491729736328,
+      "put_the_cream_cheese_in_the_bowl": 0.27515679597854614,
+      "put_the_wine_bottle_on_the_rack": 0.2677685618400574,
+      "put_the_wine_bottle_on_top_of_the_cabinet": 0.36104816198349,
+      "turn_on_the_stove": 0.25357043743133545
+    },
+    "mean_R2": 0.32519868612289426,
+    "overall_R2": 0.3567284345626831,
+    "per_dim_R2": {
+      "dx": 0.14876043796539307,
+      "dy": 0.3027172088623047,
+      "dz": 0.3601384162902832,
+      "drx": 0.040006816387176514,
+      "dry": 0.04569804668426514,
+      "drz": 0.005398154258728027,
+      "gripper": 0.3407720923423767
+    },
+    "gripper_acc": 0.7854565422026984,
+    "val_loss": 0.8011825680732727,
+    "epochs_trained": 40
+  },
+  "untrained_last_preaction_best": {
+    "per_task_R2": {
+      "open_the_middle_drawer_of_the_cabinet": 0.8506230115890503,
+      "open_the_top_drawer_and_put_the_bowl_inside": 0.7450185418128967,
+      "push_the_plate_to_the_front_of_the_stove": 0.8619183301925659,
+      "put_the_bowl_on_the_plate": 0.5940660238265991,
+      "put_the_bowl_on_the_stove": 0.6797966361045837,
+      "put_the_bowl_on_top_of_the_cabinet": 0.6260933876037598,
+      "put_the_cream_cheese_in_the_bowl": 0.6001724004745483,
+      "put_the_wine_bottle_on_the_rack": 0.525119423866272,
+      "put_the_wine_bottle_on_top_of_the_cabinet": 0.565106213092804,
+      "turn_on_the_stove": 0.809596061706543
+    },
+    "mean_R2": 0.6857510030269622,
+    "overall_R2": 0.6967933177947998,
+    "per_dim_R2": {
+      "dx": 0.6761484146118164,
+      "dy": 0.6936702728271484,
+      "dz": 0.6233425140380859,
+      "drx": 0.5427270531654358,
+      "dry": 0.32442766427993774,
+      "drz": 0.6959559917449951,
+      "gripper": 0.692419171333313
+    },
+    "gripper_acc": 0.9124568559774082,
+    "val_loss": 0.38216692209243774,
+    "epochs_trained": 9,
+    "best_layer": 32
+  },
+  "untrained_last_preaction_all_layers": {
+    "0": {"mean_R2": 0.02966972589492798, "overall_R2": 0.058932483196258545},
+    "1": {"mean_R2": 0.6787814378738404, "overall_R2": 0.6892287135124207},
+    "2": {"mean_R2": 0.6662302315235138, "overall_R2": 0.6789769530296326},
+    "3": {"mean_R2": 0.6297196269035339, "overall_R2": 0.6421759128570557},
+    "4": {"mean_R2": 0.5106422185897828, "overall_R2": 0.5315021276473999},
+    "5": {"mean_R2": 0.5078735411167145, "overall_R2": 0.5256627798080444},
+    "6": {"mean_R2": 0.36337817907333375, "overall_R2": 0.3995012044906616},
+    "7": {"mean_R2": 0.062347549200057986, "overall_R2": 0.09795546531677246},
+    "8": {"mean_R2": 0.6571871995925903, "overall_R2": 0.668339192867279},
+    "9": {"mean_R2": 0.564545351266861, "overall_R2": 0.5814110040664673},
+    "10": {"mean_R2": 0.6494004786014557, "overall_R2": 0.6621130704879761},
+    "11": {"mean_R2": 0.5652701795101166, "overall_R2": 0.5869431495666504},
+    "12": {"mean_R2": 0.029371881484985353, "overall_R2": 0.0588952898979187},
+    "13": {"mean_R2": 0.029409581422805788, "overall_R2": 0.05890762805938721},
+    "14": {"mean_R2": 0.0496049165725708, "overall_R2": 0.08474069833755493},
+    "15": {"mean_R2": 0.029592007398605347, "overall_R2": 0.05892592668533325},
+    "16": {"mean_R2": 0.02940138578414917, "overall_R2": 0.05891376733779907},
+    "17": {"mean_R2": 0.029579490423202515, "overall_R2": 0.05892419815063477},
+    "18": {"mean_R2": 0.029579490423202515, "overall_R2": 0.05892419815063477},
+    "19": {"mean_R2": 0.32519868612289426, "overall_R2": 0.3567284345626831},
+    "20": {"mean_R2": 0.05136546492576599, "overall_R2": 0.08612143993377686},
+    "21": {"mean_R2": 0.02922500967979431, "overall_R2": 0.058879852294921875},
+    "22": {"mean_R2": 0.029222965240478516, "overall_R2": 0.058875083923339844},
+    "23": {"mean_R2": 0.31534924507141116, "overall_R2": 0.347003698348999},
+    "24": {"mean_R2": 0.029224097728729248, "overall_R2": 0.058870673179626465},
+    "25": {"mean_R2": 0.055670762062072755, "overall_R2": 0.08981609344482422},
+    "26": {"mean_R2": 0.02923034429550171, "overall_R2": 0.05887138843536377},
+    "27": {"mean_R2": 0.029217034578323364, "overall_R2": 0.05887717008590698},
+    "28": {"mean_R2": 0.029215455055236816, "overall_R2": 0.058876872062683105},
+    "29": {"mean_R2": 0.029212403297424316, "overall_R2": 0.05887633562088013},
+    "30": {"mean_R2": 0.02921527624130249, "overall_R2": 0.058877766132354736},
+    "31": {"mean_R2": 0.029217630624771118, "overall_R2": 0.05887806415557861},
+    "32": {"mean_R2": 0.6857510030269622, "overall_R2": 0.6967933177947998}
+  },
+  "untrained_last_preaction_delta_L19": {
+    "per_task_R2": {
+      "open_the_middle_drawer_of_the_cabinet": 0.04913830757141113,
+      "open_the_top_drawer_and_put_the_bowl_inside": 0.09565377235412598,
+      "push_the_plate_to_the_front_of_the_stove": 0.08706945180892944,
+      "put_the_bowl_on_the_plate": 0.11995166540145874,
+      "put_the_bowl_on_the_stove": 0.11047011613845825,
+      "put_the_bowl_on_top_of_the_cabinet": 0.11040371656417847,
+      "put_the_cream_cheese_in_the_bowl": 0.09249067306518555,
+      "put_the_wine_bottle_on_the_rack": 0.016065120697021484,
+      "put_the_wine_bottle_on_top_of_the_cabinet": 0.07636475563049316,
+      "turn_on_the_stove": 0.03805512189865112
+    },
+    "mean_R2": 0.07956627011299133,
+    "overall_R2": 0.0858147144317627,
+    "per_dim_R2": {
+      "dx": 0.27474069595336914,
+      "dy": 0.23007994890213013,
+      "dz": 0.39985817670822144,
+      "drx": 0.059844970703125,
+      "dry": 0.06531184911727905,
+      "drz": 0.13987278938293457,
+      "gripper": 0.03668159246444702
+    },
+    "gripper_delta_accuracy": 0.9872136805773455,
+    "val_loss": 0.8073104619979858,
+    "epochs_trained": 10
+  },
+  "untrained_last_preaction_delta_L32": {
+    "per_task_R2": {
+      "open_the_middle_drawer_of_the_cabinet": 0.12383860349655151,
+      "open_the_top_drawer_and_put_the_bowl_inside": 0.10918831825256348,
+      "push_the_plate_to_the_front_of_the_stove": 0.12594103813171387,
+      "put_the_bowl_on_the_plate": 0.11655920743942261,
+      "put_the_bowl_on_the_stove": 0.12269997596740723,
+      "put_the_bowl_on_top_of_the_cabinet": 0.1310032606124878,
+      "put_the_cream_cheese_in_the_bowl": 0.1092919111251831,
+      "put_the_wine_bottle_on_the_rack": 0.02926015853881836,
+      "put_the_wine_bottle_on_top_of_the_cabinet": 0.08328652381896973,
+      "turn_on_the_stove": 0.04975169897079468
+    },
+    "mean_R2": 0.10008206963539124,
+    "overall_R2": 0.09876739978790283,
+    "per_dim_R2": {
+      "dx": 0.2567613124847412,
+      "dy": 0.24909985065460205,
+      "dz": 0.4554203748703003,
+      "drx": 0.08621907234191895,
+      "dry": 0.0770522952079773,
+      "drz": 0.17692112922668457,
+      "gripper": 0.047566771507263184
+    },
+    "gripper_delta_accuracy": 0.9872136805773455,
+    "val_loss": 0.7872001528739929,
+    "epochs_trained": 8
+  },
+  "comparison": {
+    "trained_last_preaction_L19": 0.7309,
+    "projector": 0.7063,
+    "untrained_last_preaction_L19": 0.32519868612289426,
+    "untrained_last_preaction_best_layer": 32,
+    "untrained_last_preaction_best_mean_R2": 0.6857510030269622,
+    "verdict": "training_matters: untrained last_preaction < projector"
+  }
+}

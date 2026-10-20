@@ -1,0 +1,5598 @@
+# code action head v2 trained
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 197
+- **Recorded user turns:** 0
+- **Tool calls:** 98
+- **Original source:** `logs/chats/worker_code_action_head_v2_trained_20260526T201901.jsonl`
+- **Structured JSON:** [`5986a7d0ad1815352c8e.json`](../../sessions/59/5986a7d0ad1815352c8e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+197 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-26T20:29:37.631768+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-26T20:29:37.632156+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-26T20:29:37.632367+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import transformers; print(transformers.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import transformers; print(transformers.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-26T20:29:37.632515+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-26T20:29:37.632655+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "filters": "{'exp_id': 'action_head_decoding_openvla_goal'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "filters": "{'exp_id': 'action_head_decoding_openvla_goal'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T20:29:37.632791+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4889}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-26T20:29:37.632952+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "pip3 list 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "pip3 list 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-26T20:29:37.633090+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-26T20:29:37.633210+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import transformers; print(transformers.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import transformers; print(transformers.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T20:29:37.633337+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import transformers; print(transformers.__version__)\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 1, in &lt;module>\\nModuleNotFoundError: No module named 'transformers'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-26T20:29:37.633487+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westd-19183"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westd-19183"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-26T20:29:37.633621+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-26T20:29:37.633741+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "which python3 && python3 --version && nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader && ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/ 2>/dev/null | head -20 && ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5 2>/dev/null | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "which python3 && python3 --version && nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader && ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/ 2>/dev/null | head -20 && ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/*.hdf5 2>/dev/null | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T20:29:37.633871+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/usr/bin/python3\\nPython 3.10.12\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.82.09\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.82.09\\nREADME.md\\n__pycache__\\nadded_tokens.json\\nconfig.json\\nconfiguration_prismatic.py\\ndataset_statistics.json\\ngeneration_config.json\\nmodel-00001-of-00004.safetensors\\nmodel-00002-of-00004.safetensors\\nmodel-00003-of-00004.safetensors\\nmodel-00004-of-00004.safetensors\\nmodel.safetensors.index.json\\nmodeling_prismatic.py\\npreprocessor_config.json\\nprocessing_prismatic.py\\nprocessor_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\n10\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-26T20:29:37.634050+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "nvcc --version 2>/dev/null | grep \"release\" && ls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo \"PEP668_MANAGED\" || echo \"PEP668_OK\" && pip3 --version 2>/dev/null || echo \"NO_PIP\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "nvcc --version 2>/dev/null | grep \"release\" && ls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo \"PEP668_MANAGED\" || echo \"PEP668_OK\" && pip3 --version 2>/dev/null || echo \"NO_PIP\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T20:29:37.634177+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PEP668_OK\\nNO_PIP\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-26T20:29:37.634313+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -d /opt/miniconda3 ~/miniconda3 ~/.conda 2>/dev/null || echo \"NO_CONDA\" && which pip pip3 2>/dev/null || echo \"NO_PIP_BIN\" && python3 -c \"import pip\" 2>/dev/null && echo \"PIP_MODULE_OK\" || echo \"NO_PIP_MODULE\" && cat /usr/local/cuda/version.txt 2>/dev/null || ls /usr/local/cuda*/version.txt 2>/dev/null || echo \"NO_CUDA_TOOLKIT\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls -d /opt/miniconda3 ~/miniconda3 ~/.conda 2>/dev/null || echo \"NO_CONDA\" && which pip pip3 2>/dev/null || echo \"NO_PIP_BIN\" && python3 -c \"import pip\" 2>/dev/null && echo \"PIP_MODULE_OK\" || echo \"NO_PIP_MODULE\" && cat /usr/local/cuda/version.txt 2>/dev/null || ls /usr/local/cuda*/version.txt 2>/dev/null || echo \"NO_CUDA_TOOLKIT\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-26T20:29:37.634438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/.conda\\n/root/miniconda3\\nNO_CONDA\\nNO_PIP_BIN\\nNO_PIP_MODULE\\nNO_CUDA_TOOLKIT\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-26T20:29:37.634602+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python && python --version && pip --version && pip list --format=freeze 2>/dev/null | grep -iE \"torch|transformers|flash|accelerate|einops|h5py|pillow|sklearn|scikit\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python && python --version && pip --version && pip list --format=freeze 2>/dev/null | grep -iE \"torch|transformers|flash|accelerate|einops|h5py|pillow|sklearn|scikit\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-26T20:29:37.634737+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\nPython 3.12.3\\npip 24.0 from /root/miniconda3/lib/python3.12/site-packages/pip (python 3.12)\\naccelerate==1.13.0\\neinops==0.8.2\\nflashinfer-python==0.6.6\\nh5py==3.16.0\\nopen_clip_torch==3.3.0\\npillow==11.3.0\\nscikit-learn==1.8.0\\nsentence-transformers==5.4.1\\ntorch==2.10.0+cu128\\ntorch_c_dlpack_ext==0.1.5\\ntorchaudio==2.10.0\\ntorchvision==0.25.0+cu128\\ntransformers==4.40.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-26T20:29:37.634940+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/action_head_v2_trained.py << 'PYEOF'\n\"\"\"Action-Head Decoding v2: Trained OpenVLA on LIBERO-Goal.\nFixes: correct transformers version, no double-norm, clone hidden states.\n\"\"\"\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\n\nimport torch, json, glob, h5py, time\nimport numpy as np\nfrom PIL import Image\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\nfrom sklearn.metrics import r2_score\n\n# === Config ===\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\"\nN_DEMOS = 50\nN_FRAMES_PER_DEMO = 10\nN_LAYERS = 32  # L0..L31, plus embedding = 33 hidden states total\nOUT_DIR = \"/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2\"\nos.makedirs(OUT_DIR, exist_ok=True)\n\n# === Load model ===\nprint(\"Loading model...\")\nmodel = AutoModelForVision2Seq.from_pretrained(MODEL_PATH, torch_dtype=torch.bfloat16).to(\"cuda:0\").eval()\nprocessor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n\nvocab_size = model.config.text_config.vocab_size\nn_bins = 256\nbins = np.linspace(-1, 1, n_bins)\nbin_centers = (bins[:-1] + bins[1:]) / 2.0\n\n# Access model internals\nfinal_norm = model.language_model.model.norm\nlm_head = model.language_model.lm_head\n\ndef detokenize_actions(token_ids):\n    \"\"\"Token IDs -> continuous actions in [-1,1].\"\"\"\n    bin_idx = np.clip(vocab_size - 1 - token_ids, 0, len(bin_centers) - 1)\n    return bin_centers[bin_idx]\n\ndef tokenize_actions(actions_norm):\n    \"\"\"Continuous actions in [-1,1] -> token IDs.\"\"\"\n    bin_idx = np.digitize(actions_norm, bins) - 1\n    bin_idx = np.clip(bin_idx, 0, n_bins - 2)\n    return vocab_size - 1 - bin_idx\n\n# === Sanity check (1 sample) ===\nprint(\"\\n=== SANITY CHECK ===\")\nhdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*_demo.hdf5\")))\nwith h5py.File(hdf5_files[0], \"r\") as hf:\n    img = Image.fromarray(hf[\"data/demo_0/obs/agentview_rgb\"][0])\n    gt_action_raw = hf[\"data/demo_0/actions\"][0]\n\nfname = os.path.basename(hdf5_files[0]).replace(\"_demo.hdf5\", \"\").replace(\"_\", \" \")\nprompt = f\"In: What action should the robot take to {fname}?\\nOut:\"\ninputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n\nwith torch.no_grad():\n    out = model(**inputs, output_hidden_states=True)\n\n# Check aliasing\nprint(\"Aliasing check:\")\nfor i in range(len(out.hidden_states) - 1):\n    if out.hidden_states[i].data_ptr() == out.hidden_states[i+1].data_ptr():\n        print(f\"  WARNING: hidden_states[{i}] and [{i+1}] share data_ptr!\")\n\n# Check content equality\nfor i in range(len(out.hidden_states) - 1):\n    diff = (out.hidden_states[i] - out.hidden_states[i+1]).abs().max().item()\n    if diff == 0.0:\n        print(f\"  IDENTICAL content: hidden_states[{i}] == [{i+1}]\")\n\n# Verify exit layer decode matches model logits\nhs_exit = out.hidden_states[-1][0, -1, :].clone()  # last hidden state, last token\n# hidden_states[-1] = hidden_states[32] = POST-norm in HuggingFace Llama\n# So for exit layer: directly apply lm_head (NO norm)\nlogits_manual = lm_head(hs_exit.unsqueeze(0))\nlogits_model = out.logits[0, -1, :]\ndiff = (logits_manual[0] - logits_model).abs().max().item()\nprint(f\"Exit layer logits match (no norm): max diff = {diff:.6f}\")\n\n# Also check: applying norm first (should NOT match = double-norm)\nlogits_double = lm_head(final_norm(hs_exit.unsqueeze(0)))\ndiff2 = (logits_double[0] - logits_model).abs().max().item()\nprint(f\"Exit layer logits match (with norm = double): max diff = {diff2:.6f}\")\n\n# Check generate output\nwith torch.no_grad():\n    gen_ids = model.generate(**inputs, max_new_tokens=7, do_sample=False)\ngen_tokens = gen_ids[0, -7:].cpu().numpy()\ngen_action = detokenize_actions(gen_tokens)\nprint(f\"Generate tokens: {gen_tokens}\")\nprint(f\"Generate action:  {gen_action}\")\nprint(f\"Unique tokens: {len(set(gen_tokens))}\")\nif len(set(gen_tokens)) == 1:\n    print(\"FATAL: All generated tokens identical! Model still broken.\")\n    print(\"Check transformers version and model loading.\")\n    exit(1)\nelse:\n    print(\"PASS: Generate produces diverse tokens.\")\n\n# Exit layer manual decode should match generate's first token\nexit_argmax = logits_manual[0].argmax().item()\nprint(f\"Exit layer argmax token: {exit_argmax}\")\nprint(f\"Generate first token:    {gen_tokens[0]}\")\n\nprint(\"\\n=== SANITY CHECK PASSED ===\\n\")\n\n# === Determine norm strategy ===\nprint(\"Checking norm status of hidden_states...\")\nhs_31 = out.hidden_states[31][0, -1, :].clone()\nhs_32 = out.hidden_states[32][0, -1, :].clone()\nprint(f\"  hs[31] L2 norm: {hs_31.float().norm().item():.2f}\")\nprint(f\"  hs[32] L2 norm: {hs_32.float().norm().item():.2f}\")\n\n# === Main experiment: teacher-forcing forward pass ===\nprint(\"Starting main experiment (50 demos/task, 10 frames/demo)...\")\nstart_time = time.time()\n\n# We need action normalization stats for teacher forcing\nnorm_stats = None\nstats_path = os.path.join(MODEL_PATH, \"dataset_statistics.json\")\nif os.path.exists(stats_path):\n    with open(stats_path) as f:\n        all_stats = json.load(f)\n    # Find LIBERO key\n    for k in all_stats:\n        if \"libero\" in k.lower() or \"goal\" in k.lower():\n            norm_stats = all_stats[k]\n            print(f\"Using norm stats from key: {k}\")\n            break\n    if norm_stats is None:\n        # Use first key\n        first_key = list(all_stats.keys())[0]\n        norm_stats = all_stats[first_key]\n        print(f\"Using norm stats from first key: {first_key}\")\n\ndef normalize_action(action_raw, stats):\n    \"\"\"Raw action -> normalized [-1, 1].\"\"\"\n    if stats is None:\n        return action_raw  # fallback: assume already normalized\n    mean = np.array(stats[\"action\"][\"mean\"])\n    std = np.array(stats[\"action\"][\"std\"])\n    if \"q01\" in stats[\"action\"] and \"q99\" in stats[\"action\"]:\n        low = np.array(stats[\"action\"][\"q01\"])\n        high = np.array(stats[\"action\"][\"q99\"])\n        normalized = 2.0 * (action_raw - low) / (high - low + 1e-8) - 1.0\n    else:\n        normalized = (action_raw - mean) / (std + 1e-8)\n    return np.clip(normalized, -1.0, 1.0)\n\n# Collect per-layer predictions\nall_preds = {l: [] for l in range(N_LAYERS + 1)}  # L0..L31 + exit(L32)\nall_gt_norm = []\nn_total = 0\n\nfor task_idx, hf_path in enumerate(hdf5_files):\n    fname = os.path.basename(hf_path).replace(\"_demo.hdf5\", \"\").replace(\"_\", \" \")\n    instruction = fname\n    prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n    \n    with h5py.File(hf_path, \"r\") as hf:\n        demo_keys = sorted([k for k in hf[\"data\"].keys() if k.startswith(\"demo_\")],\n                          key=lambda x: int(x.split(\"_\")[1]))\n        \n        for dk in demo_keys[:N_DEMOS]:\n            actions_raw = hf[f\"data/{dk}/actions\"][:]\n            images = hf[f\"data/{dk}/obs/agentview_rgb\"]\n            T = len(actions_raw)\n            indices = np.linspace(0, T-1, N_FRAMES_PER_DEMO, dtype=int)\n            \n            for t in indices:\n                img = Image.fromarray(images[t])\n                gt_raw = actions_raw[t]\n                gt_norm = normalize_action(gt_raw, norm_stats)\n                gt_tokens = tokenize_actions(gt_norm)\n                \n                # Prepare teacher-forcing input\n                inputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n                gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\"cuda:0\")\n                input_ids = torch.cat([inputs[\"input_ids\"], gt_token_tensor], dim=1)\n                \n                with torch.no_grad():\n                    out = model(\n                        input_ids=input_ids,\n                        pixel_values=inputs.get(\"pixel_values\", inputs.get(\"pixel_values\")).to(\"cuda:0\", dtype=torch.bfloat16),\n                        output_hidden_states=True\n                    )\n                \n                # Decode each layer\n                n_hs = len(out.hidden_states)  # 33 (embedding + 32 layers) or 34 if post-norm included\n                \n                for l in range(min(n_hs, N_LAYERS + 1)):\n                    # Clone to avoid aliasing\n                    hs = out.hidden_states[l][0, -7:, :].clone()  # [7, hidden_dim]\n                    \n                    if l < N_LAYERS:\n                        # Pre-norm layers: apply norm + lm_head\n                        normed = final_norm(hs)\n                        logits = lm_head(normed)\n                    else:\n                        # Exit layer (l == N_LAYERS): post-norm, apply lm_head directly\n                        logits = lm_head(hs)\n                    \n                    pred_tokens = logits.argmax(dim=-1).cpu().numpy()  # [7]\n                    pred_action = detokenize_actions(pred_tokens)\n                    all_preds[l].append(pred_action)\n                \n                all_gt_norm.append(gt_norm)\n                n_total += 1\n                \n                if n_total % 500 == 0:\n                    elapsed = time.time() - start_time\n                    rate = n_total / elapsed\n                    print(f\"  {n_total} samples, {rate:.1f} samp/s, elapsed {elapsed:.0f}s\")\n    \n    print(f\"Task {task_idx+1}/10 done ({fname[:40]}...)\")\n\n# === Compute R2 per layer ===\ngt_array = np.array(all_gt_norm)  # [N, 7]\nresults = {\n    \"model\": \"openvla-7b-finetuned-libero-goal (trained)\",\n    \"dataset\": \"libero_goal\",\n    \"n_demos\": N_DEMOS,\n    \"n_samples\": n_total,\n    \"transformers_version\": \"4.40.1\",\n    \"fixes\": [\"no_double_norm\", \"clone_hidden_states\", \"correct_transformers\"],\n}\n\nper_layer_r2 = []\nper_layer_mse = []\nfor l in range(min(len(all_preds), N_LAYERS + 1)):\n    if len(all_preds[l]) == 0:\n        continue\n    preds = np.array(all_preds[l])\n    r2 = r2_score(gt_array, preds)\n    mse = float(np.mean((gt_array - preds) ** 2))\n    per_layer_r2.append(float(r2))\n    per_layer_mse.append(mse)\n\nresults[\"per_layer_r2\"] = per_layer_r2\nresults[\"per_layer_mse\"] = per_layer_mse\n\n# Print summary\nprint(f\"\\n=== RESULTS ({n_total} samples) ===\")\nfor l, (r2, mse) in enumerate(zip(per_layer_r2, per_layer_mse)):\n    marker = \" <- EXIT\" if l == N_LAYERS else \"\"\n    print(f\"  Layer {l:2d}: R2={r2:+.4f}, MSE={mse:.4f}{marker}\")\n\nprint(f\"\\nPeak R2: {max(per_layer_r2):.4f} at layer {np.argmax(per_layer_r2)}\")\nprint(f\"Exit R2: {per_layer_r2[-1]:.4f}\")\n\n# Save\nout_path = os.path.join(OUT_DIR, \"trained_action_head_r2.json\")\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved: {out_path}\")\n\nelapsed = time.time() - start_time\nprint(f\"Total time: {elapsed:.0f}s ({n_total/elapsed:.1f} samp/s)\")\nPYEOF\necho \"Script written: $?\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/action_head_v2_trained.py << 'PYEOF'\n\"\"\"Action-Head Decoding v2: Trained OpenVLA on LIBERO-Goal.\nFixes: correct transformers version, no double-norm, clone hidden states.\n\"\"\"\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\n\nimport torch, json, glob, h5py, time\nimport numpy as np\nfrom PIL import Image\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\nfrom sklearn.metrics import r2_score\n\n# === Config ===\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\"\nN_DEMOS = 50\nN_FRAMES_PER_DEMO = 10\nN_LAYERS = 32  # L0..L31, plus embedding = 33 hidden states total\nOUT_DIR = \"/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2\"\nos.makedirs(OUT_DIR, exist_ok=True)\n\n# === Load model ===\nprint(\"Loading model...\")\nmodel = AutoModelForVision2Seq.from_pretrained(MODEL_PATH, torch_dtype=torch.bfloat16).to(\"cuda:0\").eval()\nprocessor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n\nvocab_size = model.config.text_config.vocab_size\nn_bins = 256\nbins = np.linspace(-1, 1, n_bins)\nbin_centers = (bins[:-1] + bins[1:]) / 2.0\n\n# Access model internals\nfinal_norm = model.language_model.model.norm\nlm_head = model.language_model.lm_head\n\ndef detokenize_actions(token_ids):\n    \"\"\"Token IDs -> continuous actions in [-1,1].\"\"\"\n    bin_idx = np.clip(vocab_size - 1 - token_ids, 0, len(bin_centers) - 1)\n    return bin_centers[bin_idx]\n\ndef tokenize_actions(actions_norm):\n    \"\"\"Continuous actions in [-1,1] -> token IDs.\"\"\"\n    bin_idx = np.digitize(actions_norm, bins) - 1\n    bin_idx = np.clip(bin_idx, 0, n_bins - 2)\n    return vocab_size - 1 - bin_idx\n\n# === Sanity check (1 sample) ===\nprint(\"\\n=== SANITY CHECK ===\")\nhdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*_demo.hdf5\")))\nwith h5py.File(hdf5_files[0], \"r\") as hf:\n    img = Image.fromarray(hf[\"data/demo_0/obs/agentview_rgb\"][0])\n    gt_action_raw = hf[\"data/demo_0/actions\"][0]\n\nfname = os.path.basename(hdf5_files[0]).replace(\"_demo.hdf5\", \"\").replace(\"_\", \" \")\nprompt = f\"In: What action should the robot take to {fname}?\\nOut:\"\ninputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n\nwith torch.no_grad():\n    out = model(**inputs, output_hidden_states=True)\n\n# Check aliasing\nprint(\"Aliasing check:\")\nfor i in range(len(out.hidden_states) - 1):\n    if out.hidden_states[i].data_ptr() == out.hidden_states[i+1].data_ptr():\n        print(f\"  WARNING: hidden_states[{i}] and [{i+1}] share data_ptr!\")\n\n# Check content equality\nfor i in range(len(out.hidden_states) - 1):\n    diff = (out.hidden_states[i] - out.hidden_states[i+1]).abs().max().item()\n    if diff == 0.0:\n        print(f\"  IDENTICAL content: hidden_states[{i}] == [{i+1}]\")\n\n# Verify exit layer decode matches model logits\nhs_exit = out.hidden_states[-1][0, -1, :].clone()  # last hidden state, last token\n# hidden_states[-1] = hidden_states[32] = POST-norm in HuggingFace Llama\n# So for exit layer: directly apply lm_head (NO norm)\nlogits_manual = lm_head(hs_exit.unsqueeze(0))\nlogits_model = out.logits[0, -1, :]\ndiff = (logits_manual[0] - logits_model).abs().max().item()\nprint(f\"Exit layer logits match (no norm): max diff = {diff:.6f}\")\n\n# Also check: applying norm first (should NOT match = double-norm)\nlogits_double = lm_head(final_norm(hs_exit.unsqueeze(0)))\ndiff2 = (logits_double[0] - logits_model).abs().max().item()\nprint(f\"Exit layer logits match (with norm = double): max diff = {diff2:.6f}\")\n\n# Check generate output\nwith torch.no_grad():\n    gen_ids = model.generate(**inputs, max_new_tokens=7, do_sample=False)\ngen_tokens = gen_ids[0, -7:].cpu().numpy()\ngen_action = detokenize_actions(gen_tokens)\nprint(f\"Generate tokens: {gen_tokens}\")\nprint(f\"Generate action:  {gen_action}\")\nprint(f\"Unique tokens: {len(set(gen_tokens))}\")\nif len(set(gen_tokens)) == 1:\n    print(\"FATAL: All generated tokens identical! Model still broken.\")\n    print(\"Check transformers version and model loading.\")\n    exit(1)\nelse:\n    print(\"PASS: Generate produces diverse tokens.\")\n\n# Exit layer manual decode should match generate's first token\nexit_argmax = logits_manual[0].argmax().item()\nprint(f\"Exit layer argmax token: {exit_argmax}\")\nprint(f\"Generate first token:    {gen_tokens[0]}\")\n\nprint(\"\\n=== SANITY CHECK PASSED ===\\n\")\n\n# === Determine norm strategy ===\nprint(\"Checking norm status of hidden_states...\")\nhs_31 = out.hidden_states[31][0, -1, :].clone()\nhs_32 = out.hidden_states[32][0, -1, :].clone()\nprint(f\"  hs[31] L2 norm: {hs_31.float().norm().item():.2f}\")\nprint(f\"  hs[32] L2 norm: {hs_32.float().norm().item():.2f}\")\n\n# === Main experiment: teacher-forcing forward pass ===\nprint(\"Starting main experiment (50 demos/task, 10 frames/demo)...\")\nstart_time = time.time()\n\n# We need action normalization stats for teacher forcing\nnorm_stats = None\nstats_path = os.path.join(MODEL_PATH, \"dataset_statistics.json\")\nif os.path.exists(stats_path):\n    with open(stats_path) as f:\n        all_stats = json.load(f)\n    # Find LIBERO key\n    for k in all_stats:\n        if \"libero\" in k.lower() or \"goal\" in k.lower():\n            norm_stats = all_stats[k]\n            print(f\"Using norm stats from key: {k}\")\n            break\n    if norm_stats is None:\n        # Use first key\n        first_key = list(all_stats.keys())[0]\n        norm_stats = all_stats[first_key]\n        print(f\"Using norm stats from first key: {first_key}\")\n\ndef normalize_action(action_raw, stats):\n    \"\"\"Raw action -> normalized [-1, 1].\"\"\"\n    if stats is None:\n        return action_raw  # fallback: assume already normalized\n    mean = np.array(stats[\"action\"][\"mean\"])\n    std = np.array(stats[\"action\"][\"std\"])\n    if \"q01\" in stats[\"action\"] and \"q99\" in stats[\"action\"]:\n        low = np.array(stats[\"action\"][\"q01\"])\n        high = np.array(stats[\"action\"][\"q99\"])\n        normalized = 2.0 * (action_raw - low) / (high - low + 1e-8) - 1.0\n    else:\n        normalized = (action_raw - mean) / (std + 1e-8)\n    return np.clip(normalized, -1.0, 1.0)\n\n# Collect per-layer predictions\nall_preds = {l: [] for l in range(N_LAYERS + 1)}  # L0..L31 + exit(L32)\nall_gt_norm = []\nn_total = 0\n\nfor task_idx, hf_path in enumerate(hdf5_files):\n    fname = os.path.basename(hf_path).replace(\"_demo.hdf5\", \"\").replace(\"_\", \" \")\n    instruction = fname\n    prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n    \n    with h5py.File(hf_path, \"r\") as hf:\n        demo_keys = sorted([k for k in hf[\"data\"].keys() if k.startswith(\"demo_\")],\n                          key=lambda x: int(x.split(\"_\")[1]))\n        \n        for dk in demo_keys[:N_DEMOS]:\n            actions_raw = hf[f\"data/{dk}/actions\"][:]\n            images = hf[f\"data/{dk}/obs/agentview_rgb\"]\n            T = len(actions_raw)\n            indices = np.linspace(0, T-1, N_FRAMES_PER_DEMO, dtype=int)\n            \n            for t in indices:\n                img = Image.fromarray(images[t])\n                gt_raw = actions_raw[t]\n                gt_norm = normalize_action(gt_raw, norm_stats)\n                gt_tokens = tokenize_actions(gt_norm)\n                \n                # Prepare teacher-forcing input\n                inputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n                gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\"cuda:0\")\n                input_ids = torch.cat([inputs[\"input_ids\"], gt_token_tensor], dim=1)\n                \n                with torch.no_grad():\n                    out = model(\n                        input_ids=input_ids,\n                        pixel_values=inputs.get(\"pixel_values\", inputs.get(\"pixel_values\")).to(\"cuda:0\", dtype=torch.bfloat16),\n                        output_hidden_states=True\n                    )\n                \n                # Decode each layer\n                n_hs = len(out.hidden_states)  # 33 (embedding + 32 layers) or 34 if post-norm included\n                \n                for l in range(min(n_hs, N_LAYERS + 1)):\n                    # Clone to avoid aliasing\n                    hs = out.hidden_states[l][0, -7:, :].clone()  # [7, hidden_dim]\n                    \n                    if l < N_LAYERS:\n                        # Pre-norm layers: apply norm + lm_head\n                        normed = final_norm(hs)\n                        logits = lm_head(normed)\n                    else:\n                        # Exit layer (l == N_LAYERS): post-norm, apply lm_head directly\n                        logits = lm_head(hs)\n                    \n                    pred_tokens = logits.argmax(dim=-1).cpu().numpy()  # [7]\n                    pred_action = detokenize_actions(pred_tokens)\n                    all_preds[l].append(pred_action)\n                \n                all_gt_norm.append(gt_norm)\n                n_total += 1\n                \n                if n_total % 500 == 0:\n                    elapsed = time.time() - start_time\n                    rate = n_total / elapsed\n                    print(f\"  {n_total} samples, {rate:.1f} samp/s, elapsed {elapsed:.0f}s\")\n    \n    print(f\"Task {task_idx+1}/10 done ({fname[:40]}...)\")\n\n# === Compute R2 per layer ===\ngt_array = np.array(all_gt_norm)  # [N, 7]\nresults = {\n    \"model\": \"openvla-7b-finetuned-libero-goal (trained)\",\n    \"dataset\": \"libero_goal\",\n    \"n_demos\": N_DEMOS,\n    \"n_samples\": n_total,\n    \"transformers_version\": \"4.40.1\",\n    \"fixes\": [\"no_double_norm\", \"clone_hidden_states\", \"correct_transformers\"],\n}\n\nper_layer_r2 = []\nper_layer_mse = []\nfor l in range(min(len(all_preds), N_LAYERS + 1)):\n    if len(all_preds[l]) == 0:\n        continue\n    preds = np.array(all_preds[l])\n    r2 = r2_score(gt_array, preds)\n    mse = float(np.mean((gt_array - preds) ** 2))\n    per_layer_r2.append(float(r2))\n    per_layer_mse.append(mse)\n\nresults[\"per_layer_r2\"] = per_layer_r2\nresults[\"per_layer_mse\"] = per_layer_mse\n\n# Print summary\nprint(f\"\\n=== RESULTS ({n_total} samples) ===\")\nfor l, (r2, mse) in enumerate(zip(per_layer_r2, per_layer_mse)):\n    marker = \" <- EXIT\" if l == N_LAYERS else \"\"\n    print(f\"  Layer {l:2d}: R2={r2:+.4f}, MSE={mse:.4f}{marker}\")\n\nprint(f\"\\nPeak R2: {max(per_layer_r2):.4f} at layer {np.argmax(per_layer_r2)}\")\nprint(f\"Exit R2: {per_layer_r2[-1]:.4f}\")\n\n# Save\nout_path = os.path.join(OUT_DIR, \"trained_action_head_r2.json\")\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved: {out_path}\")\n\nelapsed = time.time() - start_time\nprint(f\"Total time: {elapsed:.0f}s ({n_total/elapsed:.1f} samp/s)\")\nPYEOF\necho \"Script written: $?\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T20:29:37.635180+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-26T20:29:37.635326+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python action_head_v2_trained.py > /tmp/action_head_v2.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python action_head_v2_trained.py > /tmp/action_head_v2.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-26T20:29:37.635454+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=965604\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-26T20:29:37.635624+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -30 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -30 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-26T20:29:37.635811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model...\\nThe repository for /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co//root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal.\\nYou can avoid this prompt in future by passing the argument `trust_remote_code=True`.\\n\\nDo you wish to run the custom code? [y/N] Traceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/dynamic_module_utils.py\\\", line 600, in resolve_trust_remote_code\\n    answer = input(\\n             ^^^^^^\\nEOFError: EOF when reading a line\\n\\nDuring handling of the above exception, another exception occurred:\\n\\nTraceback (most recent call last):\\n  File \\\"/root/vla-ssd/action_head_v2_trained.py\\\", line 24, in &lt;module>\\n    model = AutoModelForVision2Seq.from_pretrained(MODEL_PATH, torch_dtype=torch.bfloat16).to(\\\"cuda:0\\\").eval()\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py\\\", line 523, in from_pretrained\\n    config, kwargs = AutoConfig.from_pretrained(\\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py\\\", line 931, in from_pretrained\\n    trust_remote_code = resolve_trust_remote_code(\\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/dynamic_module_utils.py\\\", line 613, in resolve_trust_remote_code\\n    raise ValueError(\\nValueError: The repository for /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal contains custom code which must be executed to correctly load the model. You can inspect the 
+…[truncated 297 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-26T20:29:37.636013+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && sed -i 's/model = AutoModelForVision2Seq.from_pretrained(MODEL_PATH, torch_dtype=torch.bfloat16)/model = AutoModelForVision2Seq.from_pretrained(MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True)/' action_head_v2_trained.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python action_head_v2_trained.py > /tmp/action_head_v2.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && sed -i 's/model = AutoModelForVision2Seq.from_pretrained(MODEL_PATH, torch_dtype=torch.bfloat16)/model = AutoModelForVision2Seq.from_pretrained(MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True)/' action_head_v2_trained.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python action_head_v2_trained.py > /tmp/action_head_v2.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-26T20:29:37.636154+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=965760\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-26T20:29:37.636291+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -40 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -40 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T20:29:37.636476+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model...\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.08s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.00s/it]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.04it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.60it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.31it/s]\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-26T20:29:37.636658+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -60 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -60 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-26T20:29:37.636800+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model...\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.08s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.00s/it]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.04it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.60it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.31it/s]\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-26T20:29:37.637002+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 965760 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 965760 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-26T20:29:37.637152+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"965760\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-26T20:29:37.637292+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -50 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -50 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-26T20:29:37.637431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model...\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.08s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.00s/it]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.04it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.60it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.31it/s]\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-26T20:29:37.637594+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "kill 965760 && sleep 1 && cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python -u action_head_v2_trained.py > /tmp/action_head_v2.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "kill 965760 && sleep 1 && cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python -u action_head_v2_trained.py > /tmp/action_head_v2.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-26T20:29:37.637728+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 965760 && sleep 1 && cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python -u action_head_v2_trained.py > /tmp/action_head_v2.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=966092\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-26T20:29:37.637885+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -50 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -50 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-26T20:29:37.638083+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model...\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.25s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.82s/it]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.62s/it]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.31s/it]\\n\\n=== SANITY CHECK ===\\nAliasing check:\\n  IDENTICAL content: hidden_states[27] == [28]\\nExit layer logits match (no norm): max diff = 0.062500\\nExit layer logits match (with norm = double): max diff = 6.875000\\nGenerate tokens: [31836 31821 31886 31935 31866 31935 31869]\\nGenerate action:  [0.78431373 0.90196078 0.39215686 0.00784314 0.54901961 0.00784314\\n 0.5254902 ]\\nUnique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-26T20:29:37.638249+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -5 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -5 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-26T20:29:37.638385+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-26T20:29:37.638544+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-26T20:29:37.638679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-26T20:29:37.638804+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid,etime= && nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid,etime= && nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-26T20:29:37.638945+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID            \\n966092       00:53\\n965766, 15882 MiB\\n966100, 15766 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-26T20:29:37.639105+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-26T20:29:37.639235+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-26T20:29:37.639385+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-26T20:29:37.639542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 0.5254902 ]\\nUnique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-26T20:29:37.639762+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid,etime="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid,etime="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-26T20:29:37.639905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID            \\n966092       01:13\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-26T20:29:37.640081+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-26T20:29:37.640216+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-26T20:29:37.640359+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-26T20:29:37.640489+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-26T20:29:37.640618+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -5 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -5 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-26T20:29:37.640747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Using norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-26T20:29:37.640882+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-26T20:29:37.641034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-26T20:29:37.641158+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-26T20:29:37.641286+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-26T20:29:37.641427+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid,etime= && nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid,etime= && nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-26T20:29:37.641552+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID            \\n966092       01:42\\n965766, 15882 MiB\\n966100, 15882 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-26T20:29:37.641706+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "kill 965766 2>/dev/null; kill 965604 2>/dev/null; echo \"cleaned\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "kill 965766 2>/dev/null; kill 965604 2>/dev/null; echo \"cleaned\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-26T20:29:37.641831+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cleaned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-26T20:29:37.641965+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -5 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -5 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-26T20:29:37.642096+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Using norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-26T20:29:37.642215+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-26T20:29:37.642346+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-26T20:29:37.642481+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid,etime= && wc -l /tmp/action_head_v2.log && wc -c /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid,etime= && wc -l /tmp/action_head_v2.log && wc -c /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-26T20:29:37.642603+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID            \\n966092       02:04\\n29 /tmp/action_head_v2.log\\n1720 /tmp/action_head_v2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-26T20:29:37.642746+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -c /tmp/action_head_v2.log && sleep 5 && wc -c /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "wc -c /tmp/action_head_v2.log && sleep 5 && wc -c /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-26T20:29:37.642866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1720 /tmp/action_head_v2.log\\n1720 /tmp/action_head_v2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-26T20:29:37.643034+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux --sort=-pcpu | head -5 && nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps aux --sort=-pcpu | head -5 && nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-26T20:29:37.643166+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot     966100 1343  0.3 55802040 3473024 ?    Rl   04:22  30:40 python -u action_head_v2_trained.py\\nroot        801  2.8  0.0 724384 22112 ?        Sl   May15 476:14 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        823  0.2  0.0 7338252 111712 ?      Sl   May15  38:12 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot          1  0.0  0.0   4476  3180 ?        Ss   May15   0:02 bash /init/boot/boot.sh\\n966100, 15882 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-26T20:29:37.643310+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-26T20:29:37.643441+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-26T20:29:37.643633+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-26T20:29:37.643823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-26T20:29:37.643994+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-26T20:29:37.644132+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-26T20:29:37.644263+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-26T20:29:37.644393+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-26T20:29:37.644528+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-26T20:29:37.644659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-26T20:29:37.644790+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-26T20:29:37.644936+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-26T20:29:37.645072+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-26T20:29:37.645204+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Unique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-26T20:29:37.645349+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid,etime= && wc -c /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid,etime= && wc -c /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-26T20:29:37.645485+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID            \\n966092       02:54\\n1911 /tmp/action_head_v2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-26T20:29:37.645634+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-26T20:29:37.645775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Checking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-26T20:29:37.645938+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-26T20:29:37.646082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-26T20:29:37.646208+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-26T20:29:37.646343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Checking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-26T20:29:37.646471+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-26T20:29:37.646600+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Checking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-26T20:29:37.646725+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-26T20:29:37.646854+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Checking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-26T20:29:37.647004+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-26T20:29:37.647139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-26T20:29:37.647284+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-26T20:29:37.647424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-26T20:29:37.647584+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-26T20:29:37.647735+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-26T20:29:37.647862+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-26T20:29:37.648016+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-26T20:29:37.648140+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-26T20:29:37.648268+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-26T20:29:37.648398+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-26T20:29:37.648527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-26T20:29:37.648650+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-26T20:29:37.648777+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-26T20:29:37.648905+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-26T20:29:37.649057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-26T20:29:37.649201+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-26T20:29:37.649331+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-26T20:29:37.649462+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-26T20:29:37.649594+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Using norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-26T20:29:37.649717+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-26T20:29:37.649844+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Using norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-26T20:29:37.649986+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-26T20:29:37.650125+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-26T20:29:37.650252+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-26T20:29:37.650379+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-26T20:29:37.650502+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -25 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -25 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-26T20:29:37.650632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-26T20:29:37.650771+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -30 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -30 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-26T20:29:37.650906+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Generate action:  [0.78431373 0.90196078 0.39215686 0.00784314 0.54901961 0.00784314\\n 0.5254902 ]\\nUnique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-26T20:29:37.651083+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -15 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -15 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-26T20:29:37.651218+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-26T20:29:37.651344+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-26T20:29:37.651478+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-26T20:29:37.651619+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-26T20:29:37.651752+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-26T20:29:37.651885+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-26T20:29:37.652041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-26T20:29:37.652171+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid,etime= && wc -c /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid,etime= && wc -c /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-26T20:29:37.652292+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID            \\n966092       04:23\\n2191 /tmp/action_head_v2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-26T20:29:37.652445+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -30 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -30 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-26T20:29:37.652585+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Unique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n  4000 samples, 16.7 samp/s, elapsed 239s\\nTask 8/10 done (put the wine bottle on the rack...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-26T20:29:37.652731+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -30 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -30 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-26T20:29:37.652867+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Unique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n  4000 samples, 16.7 samp/s, elapsed 239s\\nTask 8/10 done (put the wine bottle on the rack...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-26T20:29:37.653030+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -40 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -40 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-26T20:29:37.653191+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.25s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.82s/it]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.62s/it]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.31s/it]\\n\\n=== SANITY CHECK ===\\nAliasing check:\\n  IDENTICAL content: hidden_states[27] == [28]\\nExit layer logits match (no norm): max diff = 0.062500\\nExit layer logits match (with norm = double): max diff = 6.875000\\nGenerate tokens: [31836 31821 31886 31935 31866 31935 31869]\\nGenerate action:  [0.78431373 0.90196078 0.39215686 0.00784314 0.54901961 0.00784314\\n 0.5254902 ]\\nUnique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 s
+…[truncated 472 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-26T20:29:37.653337+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-26T20:29:37.653474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n  4000 samples, 16.7 samp/s, elapsed 239s\\nTask 8/10 done (put the wine bottle on the rack...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-26T20:29:37.653611+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-26T20:29:37.653737+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"966092\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-26T20:29:37.653854+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -25 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -25 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-26T20:29:37.654008+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n  4000 samples, 16.7 samp/s, elapsed 239s\\nTask 8/10 done (put the wine bottle on the rack...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-26T20:29:37.654149+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -30 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -30 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-26T20:29:37.654287+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Unique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n  4000 samples, 16.7 samp/s, elapsed 239s\\nTask 8/10 done (put the wine bottle on the rack...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-26T20:29:37.654417+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -30 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -30 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-26T20:29:37.654553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Exit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n  4000 samples, 16.7 samp/s, elapsed 239s\\nTask 8/10 done (put the wine bottle on the rack...)\\n  4500 samples, 17.1 samp/s, elapsed 264s\\nTask 9/10 done (put the wine bottle on top of the cabine...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-26T20:29:37.654706+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -50 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -50 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-26T20:29:37.654867+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model...\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.25s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.82s/it]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.62s/it]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.31s/it]\\n\\n=== SANITY CHECK ===\\nAliasing check:\\n  IDENTICAL content: hidden_states[27] == [28]\\nExit layer logits match (no norm): max diff = 0.062500\\nExit layer logits match (with norm = double): max diff = 6.875000\\nGenerate tokens: [31836 31821 31886 31935 31866 31935 31869]\\nGenerate action:  [0.78431373 0.90196078 0.39215686 0.00784314 0.54901961 0.00784314\\n 0.5254902 ]\\nUnique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2
+…[truncated 598 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-26T20:29:37.655038+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-26T20:29:37.655172+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"966092\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-26T20:29:37.655292+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -30 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -30 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-26T20:29:37.655428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Exit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n  4000 samples, 16.7 samp/s, elapsed 239s\\nTask 8/10 done (put the wine bottle on the rack...)\\n  4500 samples, 17.1 samp/s, elapsed 264s\\nTask 9/10 done (put the wine bottle on top of the cabine...)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-26T20:29:37.655588+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-26T20:29:37.655734+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"966092\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 167 · 2026-05-26T20:29:37.655853+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -40 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -40 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-26T20:29:37.656025+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== SANITY CHECK ===\\nAliasing check:\\n  IDENTICAL content: hidden_states[27] == [28]\\nExit layer logits match (no norm): max diff = 0.062500\\nExit layer logits match (with norm = double): max diff = 6.875000\\nGenerate tokens: [31836 31821 31886 31935 31866 31935 31869]\\nGenerate action:  [0.78431373 0.90196078 0.39215686 0.00784314 0.54901961 0.00784314\\n 0.5254902 ]\\nUnique tokens: 6\\nPASS: Generate produces diverse tokens.\\nExit layer argmax token: 31836\\nGenerate first token:    31836\\n\\n=== SANITY CHECK PASSED ===\\n\\nChecking norm status of hidden_states...\\n  hs[31] L2 norm: 104.10\\n  hs[32] L2 norm: 90.60\\nStarting main experiment (50 demos/task, 10 frames/demo)...\\nUsing norm stats from key: libero_goal\\n/root/vla-ssd/action_head_v2_trained.py:180: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)\\n  gt_token_tensor = torch.tensor([gt_tokens], dtype=torch.long, device=\\\"cuda:0\\\")\\n  500 samples, 10.1 samp/s, elapsed 49s\\nTask 1/10 done (open the middle drawer of the cabinet...)\\n  1000 samples, 10.9 samp/s, elapsed 91s\\nTask 2/10 done (open the top drawer and put the bowl ins...)\\n  1500 samples, 12.9 samp/s, elapsed 116s\\nTask 3/10 done (push the plate to the front of the stove...)\\n  2000 samples, 14.2 samp/s, elapsed 141s\\nTask 4/10 done (put the bowl on the plate...)\\n  2500 samples, 15.1 samp/s, elapsed 166s\\nTask 5/10 done (put the bowl on the stove...)\\n  3000 samples, 15.8 samp/s, elapsed 190s\\nTask 6/10 done (put the bowl on top of the cabinet...)\\n  3500 samples, 16.3 samp/s, elapsed 215s\\nTask 7/10 done (put the cream cheese in the bowl...)\\n  4000 samples, 16.7 samp/s, elapsed 239s\\nTask 8/10 done (put the wine bottle on the rack...)\\n  450
+…[truncated 206 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169 · 2026-05-26T20:29:37.656195+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps -p 966092 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ps -p 966092 -o pid= && echo \"RUNNING\" || echo \"DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-26T20:29:37.656323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"966092\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 171 · 2026-05-26T20:29:37.656441+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/action_head_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/action_head_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 172 · 2026-05-26T20:29:37.656565+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Layer 29: R2=-3.7059, MSE=0.9334\\n  Layer 30: R2=-3.4022, MSE=0.8788\\n  Layer 31: R2=-2.7668, MSE=0.8072\\n  Layer 32: R2=-3.0432, MSE=0.8461 <- EXIT\\n\\nPeak R2: -2.7668 at layer 31\\nExit R2: -3.0432\\n\\nSaved: /root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json\\nTotal time: 288s (17.3 samp/s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 173 · 2026-05-26T20:29:37.656708+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 174 · 2026-05-26T20:29:37.656864+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"openvla-7b-finetuned-libero-goal (trained)\\\",\\n  \\\"dataset\\\": \\\"libero_goal\\\",\\n  \\\"n_demos\\\": 50,\\n  \\\"n_samples\\\": 5000,\\n  \\\"transformers_version\\\": \\\"4.40.1\\\",\\n  \\\"fixes\\\": [\\n    \\\"no_double_norm\\\",\\n    \\\"clone_hidden_states\\\",\\n    \\\"correct_transformers\\\"\\n  ],\\n  \\\"per_layer_r2\\\": [\\n    -5.596112769172639,\\n    -5.835972786195763,\\n    -6.010963011378242,\\n    -5.583554860496419,\\n    -5.941366440464816,\\n    -5.4158989011418095,\\n    -4.606176150654869,\\n    -5.039074999517366,\\n    -5.566721144809932,\\n    -6.0215118643758885,\\n    -6.704467225181929,\\n    -6.971059093097167,\\n    -6.164170051309108,\\n    -6.631506049919358,\\n    -7.082004876561707,\\n    -5.824336665488184,\\n    -5.593854929083738,\\n    -4.788223676011432,\\n    -4.680409545240977,\\n    -4.017666912862935,\\n    -4.010254304898335,\\n    -4.380000840279384,\\n    -4.408661845591261,\\n    -3.714042951916801,\\n    -3.649018778897014,\\n    -4.129458947776562,\\n    -4.149148545977472,\\n    -4.180134610288585,\\n    -4.180134610288585,\\n    -3.7058547765989402,\\n    -3.402153763309078,\\n    -2.766760625787312,\\n    -3.0431905573927303\\n  ],\\n  \\\"per_layer_mse\\\": [\\n    1.1631920484669012,\\n    1.1672352436313236,\\n    1.270992927931317,\\n    1.2446572775846638,\\n    1.2569920024899637,\\n    1.0733818335232719,\\n    0.980591798535835,\\n    1.059867603268312,\\n    1.0685582000740046,\\n    1.134520821470731,\\n    1.2553827701931102,\\n    1.324569926950923,\\n    1.252049942362751,\\n    1.282734035729404,\\n    1.3257827449865356,\\n    1.1363485024029003,\\n    1.1679543288679273,\\n    1.0766169474924778,\\n    1.065852975187191,\\n    0.9830253190520932,\\n    0.9826050390418417,\\n    1.0319995315292698,\\n    1.030359400323703,\\n    0.938492458356612,\\n    0.9304022665256114,\\n    0.9842986970767951,\\n    
+…[truncated 288 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175 · 2026-05-26T20:29:37.657080+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts && scp connect.westd.seetacloud.com:/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/",
+  "description": "Copy results JSON from server to local artifacts",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts && scp connect.westd.seetacloud.com:/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/",
+    "description": "Copy results JSON from server to local artifacts",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 176 · 2026-05-26T20:29:37.657213+00:00_
+
+Exit code 255
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+ubuntu@connect.westd.seetacloud.com: Permission denied ().
+scp: Connection closed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 177 · 2026-05-26T20:29:37.657362+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 178 · 2026-05-26T20:29:37.657525+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"openvla-7b-finetuned-libero-goal (trained)\\\",\\n  \\\"dataset\\\": \\\"libero_goal\\\",\\n  \\\"n_demos\\\": 50,\\n  \\\"n_samples\\\": 5000,\\n  \\\"transformers_version\\\": \\\"4.40.1\\\",\\n  \\\"fixes\\\": [\\n    \\\"no_double_norm\\\",\\n    \\\"clone_hidden_states\\\",\\n    \\\"correct_transformers\\\"\\n  ],\\n  \\\"per_layer_r2\\\": [\\n    -5.596112769172639,\\n    -5.835972786195763,\\n    -6.010963011378242,\\n    -5.583554860496419,\\n    -5.941366440464816,\\n    -5.4158989011418095,\\n    -4.606176150654869,\\n    -5.039074999517366,\\n    -5.566721144809932,\\n    -6.0215118643758885,\\n    -6.704467225181929,\\n    -6.971059093097167,\\n    -6.164170051309108,\\n    -6.631506049919358,\\n    -7.082004876561707,\\n    -5.824336665488184,\\n    -5.593854929083738,\\n    -4.788223676011432,\\n    -4.680409545240977,\\n    -4.017666912862935,\\n    -4.010254304898335,\\n    -4.380000840279384,\\n    -4.408661845591261,\\n    -3.714042951916801,\\n    -3.649018778897014,\\n    -4.129458947776562,\\n    -4.149148545977472,\\n    -4.180134610288585,\\n    -4.180134610288585,\\n    -3.7058547765989402,\\n    -3.402153763309078,\\n    -2.766760625787312,\\n    -3.0431905573927303\\n  ],\\n  \\\"per_layer_mse\\\": [\\n    1.1631920484669012,\\n    1.1672352436313236,\\n    1.270992927931317,\\n    1.2446572775846638,\\n    1.2569920024899637,\\n    1.0733818335232719,\\n    0.980591798535835,\\n    1.059867603268312,\\n    1.0685582000740046,\\n    1.134520821470731,\\n    1.2553827701931102,\\n    1.324569926950923,\\n    1.252049942362751,\\n    1.282734035729404,\\n    1.3257827449865356,\\n    1.1363485024029003,\\n    1.1679543288679273,\\n    1.0766169474924778,\\n    1.065852975187191,\\n    0.9830253190520932,\\n    0.9826050390418417,\\n    1.0319995315292698,\\n    1.030359400323703,\\n    0.938492458356612,\\n    0.9304022665256114,\\n    0.9842986970767951,\\n    
+…[truncated 288 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 179 · 2026-05-26T20:29:37.657678+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/trained_action_head_r2.json",
+  "content": "{\n  \"model\": \"openvla-7b-finetuned-libero-goal (trained)\",\n  \"dataset\": \"libero_goal\",\n  \"n_demos\": 50,\n  \"n_samples\": 5000,\n  \"transformers_version\": \"4.40.1\",\n  \"fixes\": [\n    \"no_double_norm\",\n    \"clone_hidden_states\",\n    \"correct_transformers\"\n  ],\n  \"per_layer_r2\": [\n    -5.596112769172639,\n    -5.835972786195763,\n    -6.010963011378242,\n    -5.583554860496419,\n    -5.941366440464816,\n    -5.4158989011418095,\n    -4.606176150654869,\n    -5.039074999517366,\n    -5.566721144809932,\n    -6.0215118643758885,\n    -6.704467225181929,\n    -6.971059093097167,\n    -6.164170051309108,\n    -6.631506049919358,\n    -7.082004876561707,\n    -5.824336665488184,\n    -5.593854929083738,\n    -4.788223676011432,\n    -4.680409545240977,\n    -4.017666912862935,\n    -4.010254304898335,\n    -4.380000840279384,\n    -4.408661845591261,\n    -3.714042951916801,\n    -3.649018778897014,\n    -4.129458947776562,\n    -4.149148545977472,\n    -4.180134610288585,\n    -4.180134610288585,\n    -3.7058547765989402,\n    -3.402153763309078,\n    -2.766760625787312,\n    -3.0431905573927303\n  ],\n  \"per_layer_mse\": [\n    1.1631920484669012,\n    1.1672352436313236,\n    1.270992927931317,\n    1.2446572775846638,\n    1.2569920024899637,\n    1.0733818335232719,\n    0.980591798535835,\n    1.059867603268312,\n    1.0685582000740046,\n    1.134520821470731,\n    1.2553827701931102,\n    1.324569926950923,\n    1.252049942362751,\n    1.282734035729404,\n    1.3257827449865356,\n    1.1363485024029003,\n    1.1679543288679273,\n    1.0766169474924778,\n    1.065852975187191,\n    0.9830253190520932,\n    0.9826050390418417,\n    1.0319995315292698,\n    1.030359400323703,\n    0.938492458356612,\n    0.9304022665256114,\n    0.9842986970767951,\n    0.9863356770854441,\n    0.9951586530170305,\n    0.9951586530170305,\n    0.9333997857425662,\n    0.8787689164893091,\n    0.8071905301994197,\n    0.8461432087995541\n  ]\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/trained_action_head_r2.json",
+    "content": "{\n  \"model\": \"openvla-7b-finetuned-libero-goal (trained)\",\n  \"dataset\": \"libero_goal\",\n  \"n_demos\": 50,\n  \"n_samples\": 5000,\n  \"transformers_version\": \"4.40.1\",\n  \"fixes\": [\n    \"no_double_norm\",\n    \"clone_hidden_states\",\n    \"correct_transformers\"\n  ],\n  \"per_layer_r2\": [\n    -5.596112769172639,\n    -5.835972786195763,\n    -6.010963011378242,\n    -5.583554860496419,\n    -5.941366440464816,\n    -5.4158989011418095,\n    -4.606176150654869,\n    -5.039074999517366,\n    -5.566721144809932,\n    -6.0215118643758885,\n    -6.704467225181929,\n    -6.971059093097167,\n    -6.164170051309108,\n    -6.631506049919358,\n    -7.082004876561707,\n    -5.824336665488184,\n    -5.593854929083738,\n    -4.788223676011432,\n    -4.680409545240977,\n    -4.017666912862935,\n    -4.010254304898335,\n    -4.380000840279384,\n    -4.408661845591261,\n    -3.714042951916801,\n    -3.649018778897014,\n    -4.129458947776562,\n    -4.149148545977472,\n    -4.180134610288585,\n    -4.180134610288585,\n    -3.7058547765989402,\n    -3.402153763309078,\n    -2.766760625787312,\n    -3.0431905573927303\n  ],\n  \"per_layer_mse\": [\n    1.1631920484669012,\n    1.1672352436313236,\n    1.270992927931317,\n    1.2446572775846638,\n    1.2569920024899637,\n    1.0733818335232719,\n    0.980591798535835,\n    1.059867603268312,\n    1.0685582000740046,\n    1.134520821470731,\n    1.2553827701931102,\n    1.324569926950923,\n    1.252049942362751,\n    1.282734035729404,\n    1.3257827449865356,\n    1.1363485024029003,\n    1.1679543288679273,\n    1.0766169474924778,\n    1.065852975187191,\n    0.9830253190520932,\n    0.9826050390418417,\n    1.0319995315292698,\n    1.030359400323703,\n    0.938492458356612,\n    0.9304022665256114,\n    0.9842986970767951,\n    0.9863356770854441,\n    0.9951586530170305,\n    0.9951586530170305,\n    0.9333997857425662,\n    0.8787689164893091,\n    0.8071905301994197,\n    0.8461432087995541\n  ]\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 180 · 2026-05-26T20:29:37.657828+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/trained_action_head_r2.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 181 · 2026-05-26T20:29:37.657991+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "action_head_v2_trained_r2",
+  "type": "data",
+  "description": "Action-Head Decoding v2 per-layer R² for trained OpenVLA on LIBERO-Goal (5000 samples, 33 layers). Fixes: no double-norm, clone hidden states, transformers 4.40.1.",
+  "project": "vla-ssd",
+  "exp_id": "action_head_decoding_openvla_goal",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/trained_action_head_r2.json",
+  "tags": "['action_head', 'r2', 'trained', 'libero_goal', 'v2']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "action_head_v2_trained_r2",
+    "type": "data",
+    "description": "Action-Head Decoding v2 per-layer R² for trained OpenVLA on LIBERO-Goal (5000 samples, 33 layers). Fixes: no double-norm, clone hidden states, transformers 4.40.1.",
+    "project": "vla-ssd",
+    "exp_id": "action_head_decoding_openvla_goal",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/trained_action_head_r2.json",
+    "tags": "['action_head', 'r2', 'trained', 'libero_goal', 'v2']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 182 · 2026-05-26T20:29:37.658152+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260526_881920\", \"name\": \"action_head_v2_trained_r2\", \"type\": \"data\", \"description\": \"Action-Head Decoding v2 per-layer R² for trained OpenVLA on LIBERO-Goal (5000 samples, 33 layers). Fixes: no double-norm, clone hidden states, transformers 4.40.1.\", \"path\": \"projects/vla-ssd/artifacts/action_head_decoding_openvla_goal/data/trained_action_head_r2.json\", \"url\": null, \"project\": \"vla-ssd\", \"exp_id\": \"action_head_decoding_openvla_goal\", \"skill\": \"\", \"created_at\": \"2026-05-26T20:28:48.685107+00:00\", \"tags\": [\"action_head\", \"r2\", \"trained\", \"libero_goal\", \"v2\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 183 · 2026-05-26T20:29:37.658288+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "action_head_decoding_openvla_goal",
+  "field": "status",
+  "value": "DONE",
+  "project": "vla-ssd",
+  "spec": "{'command': 'python -u action_head_v2_trained.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/', 'data_count': 5000, 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 0, 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', 'checkpoint_path': '/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json', 'log_path': '/tmp/action_head_v2.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "action_head_decoding_openvla_goal",
+    "field": "status",
+    "value": "DONE",
+    "project": "vla-ssd",
+    "spec": "{'command': 'python -u action_head_v2_trained.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/', 'data_count': 5000, 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 0, 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', 'checkpoint_path': '/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json', 'log_path': '/tmp/action_head_v2.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 184 · 2026-05-26T20:29:37.658435+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4501}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 185 · 2026-05-26T20:29:37.658565+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "action_head_decoding_openvla_goal",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "vla-ssd",
+  "spec": "{'command': 'python -u action_head_v2_trained.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/', 'data_count': 5000, 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 0, 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', 'checkpoint_path': '/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json', 'log_path': '/tmp/action_head_v2.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "action_head_decoding_openvla_goal",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "vla-ssd",
+    "spec": "{'command': 'python -u action_head_v2_trained.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/', 'data_count': 5000, 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 0, 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', 'checkpoint_path': '/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json', 'log_path': '/tmp/action_head_v2.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 186 · 2026-05-26T20:29:37.658719+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"action_head_decoding_openvla_goal\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-26T19:12:19.738Z\", \"updated_at\": \"2026-05-26T20:29:01.012Z\", \"hypothesis\": \"Exit-layer ΔR² drop in VLM→VLA models reflects format specialization (exit representations are optimized for the action head's specific decoding format) rather than genuine information loss. If true, applying the frozen action head to each layer's hidden state should show monotonically increasing or exit-peaking R², while independent probes show mid-layer peak + exit drop — the dissociation between the two curves is direct evidence of format specialization.\", \"spec\": {\"command\": \"python -u action_head_v2_trained.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 5000, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json\", \"log_path\": \"/tmp/action_head_v2.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0515}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 187 · 2026-05-26T20:29:37.658857+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "action_head_decoding_openvla_goal",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'python -u action_head_v2_trained.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/', 'data_count': 5000, 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 0, 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', 'checkpoint_path': '/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json', 'log_path': '/tmp/action_head_v2.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "action_head_decoding_openvla_goal",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'python -u action_head_v2_trained.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/', 'data_count': 5000, 'model_name': 'openvla-7b-finetuned-libero-goal', 'seed': 0, 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal', 'checkpoint_path': '/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json', 'log_path': '/tmp/action_head_v2.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 188 · 2026-05-26T20:29:37.659034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"action_head_decoding_openvla_goal\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T19:12:19.738Z\", \"updated_at\": \"2026-05-26T20:29:07.937Z\", \"hypothesis\": \"Exit-layer ΔR² drop in VLM→VLA models reflects format specialization (exit representations are optimized for the action head's specific decoding format) rather than genuine information loss. If true, applying the frozen action head to each layer's hidden state should show monotonically increasing or exit-peaking R², while independent probes show mid-layer peak + exit drop — the dissociation between the two curves is direct evidence of format specialization.\", \"spec\": {\"command\": \"python -u action_head_v2_trained.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 5000, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json\", \"log_path\": \"/tmp/action_head_v2.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7595}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 189 · 2026-05-26T20:29:37.659179+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "action_head_decoding_openvla_goal",
+  "field": "status",
+  "value": "DONE",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "action_head_decoding_openvla_goal",
+    "field": "status",
+    "value": "DONE",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 190 · 2026-05-26T20:29:37.659304+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.4475}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 191 · 2026-05-26T20:29:37.659426+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "action_head_decoding_openvla_goal",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "action_head_decoding_openvla_goal",
+    "field": "conclusion",
+    "value": "negative",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 192 · 2026-05-26T20:29:37.659608+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"action_head_decoding_openvla_goal\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T19:12:19.738Z\", \"updated_at\": \"2026-05-26T20:29:16.802Z\", \"hypothesis\": \"Exit-layer ΔR² drop in VLM→VLA models reflects format specialization (exit representations are optimized for the action head's specific decoding format) rather than genuine information loss. If true, applying the frozen action head to each layer's hidden state should show monotonically increasing or exit-peaking R², while independent probes show mid-layer peak + exit drop — the dissociation between the two curves is direct evidence of format specialization.\", \"spec\": {\"command\": \"python -u action_head_v2_trained.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 5000, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json\", \"log_path\": \"/tmp/action_head_v2.log\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7479}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 193 · 2026-05-26T20:29:37.659784+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "action_head_decoding_openvla_goal",
+  "field": "metrics",
+  "value": "{'n_samples': 5000, 'peak_r2': -2.77, 'peak_layer': 31, 'exit_r2': -3.04, 'exit_mse': 0.846, 'peak_mse': 0.807, 'throughput_samp_s': 17.3, 'total_time_s': 288}",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "action_head_decoding_openvla_goal",
+    "field": "metrics",
+    "value": "{'n_samples': 5000, 'peak_r2': -2.77, 'peak_layer': 31, 'exit_r2': -3.04, 'exit_mse': 0.846, 'peak_mse': 0.807, 'throughput_samp_s': 17.3, 'total_time_s': 288}",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 194 · 2026-05-26T20:29:37.659966+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"action_head_decoding_openvla_goal\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T19:12:19.738Z\", \"updated_at\": \"2026-05-26T20:29:22.089Z\", \"hypothesis\": \"Exit-layer ΔR² drop in VLM→VLA models reflects format specialization (exit representations are optimized for the action head's specific decoding format) rather than genuine information loss. If true, applying the frozen action head to each layer's hidden state should show monotonically increasing or exit-peaking R², while independent probes show mid-layer peak + exit drop — the dissociation between the two curves is direct evidence of format specialization.\", \"spec\": {\"command\": \"python -u action_head_v2_trained.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 5000, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json\", \"log_path\": \"/tmp/action_head_v2.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"n_samples\": 5000, \"peak_r2\": -2.77, \"peak_layer\": 31, \"exit_r2\": -3.04, \"exit_mse\": 0.846, \"peak_mse\": 0.807, \"throughput_samp_s\": 17.3, \"total_time_s\": 288}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7399}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 195 · 2026-05-26T20:29:37.660113+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "action_head_decoding_openvla_goal",
+  "field": "status",
+  "value": "DONE",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "action_head_decoding_openvla_goal",
+    "field": "status",
+    "value": "DONE",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 196 · 2026-05-26T20:29:37.660279+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"action_head_decoding_openvla_goal\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T19:12:19.738Z\", \"updated_at\": \"2026-05-26T20:29:25.848Z\", \"hypothesis\": \"Exit-layer ΔR² drop in VLM→VLA models reflects format specialization (exit representations are optimized for the action head's specific decoding format) rather than genuine information loss. If true, applying the frozen action head to each layer's hidden state should show monotonically increasing or exit-peaking R², while independent probes show mid-layer peak + exit drop — the dissociation between the two curves is direct evidence of format specialization.\", \"spec\": {\"command\": \"python -u action_head_v2_trained.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 5000, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/action_head_decoding_v2/trained_action_head_r2.json\", \"log_path\": \"/tmp/action_head_v2.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"n_samples\": 5000, \"peak_r2\": -2.77, \"peak_layer\": 31, \"exit_r2\": -3.04, \"exit_mse\": 0.846, \"peak_mse\": 0.807, \"throughput_samp_s\": 17.3, \"total_time_s\": 288}, \"completed_at\": \"2026-05-26T20:29:25.848Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6606}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_v2_trained_20260526T201901",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 197 · 2026-05-26T20:29:37.660472+00:00_
+
+任务完成。
+
+**结果总结：**
+- 5000 samples (10 tasks × 50 demos × 10 frames), 288s, 17.3 samp/s
+- **所有 33 层的 R² 均为负值**（-7.08 ~ -2.77），表示 action head 在任何层的 hidden state 上直接解码都比预测均值更差
+- Peak R² = **-2.77** at layer 31（最后一个 transformer layer，pre-norm）
+- Exit R² = **-3.04**（post-norm layer 32）
+- 层趋势呈 U 形：中间层 (L10-L14) 最差，后期层逐步改善
+- **hidden_states[27] == [28] aliasing 确认**（两层 MSE 完全相同）
+- Sanity check 通过：模型 generate 正常（6 unique tokens），no-double-norm 验证正确
+
+Registry 已更新为 DONE (negative)。Artifact 已注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_action_head_v2_trained_20260526T201901"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,26 @@
+{
+  "exp_id": "d021_output_head_analysis",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:11:17.179Z",
+    "updated_at": "2026-05-15T20:18:04.416Z",
+    "hypothesis": "D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences per layer (Frobenius norm ratio). PASS: output head norm ratio >> LLM deep layer mean (>3x), confirming shallow adaptation. FAIL: differences uniformly distributed.",
+    "spec": {
+      "command": "python output_head_analysis.py (load trained + untrained state_dicts, compute per-layer Frobenius norm ratio)",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/ + openvla-7b-untrained/",
+      "data_count": "2 models x ~7B params each",
+      "model_name": "openvla/openvla-7b vs openvla-7b-untrained weight comparison",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/output_head_analysis.json",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/",
+      "note": "Worker: worker_ssh_output-head-analysis_20260515T200957. CPU-only analysis. PASS: output head norm ratio > 3x LLM layer mean."
+    }
+  },
+  "timestamp": "2026-05-15T20:18:04.490069+00:00",
+  "trigger": "update_registry"
+}

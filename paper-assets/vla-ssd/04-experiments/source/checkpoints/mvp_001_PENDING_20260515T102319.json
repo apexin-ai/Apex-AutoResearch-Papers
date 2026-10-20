@@ -1,0 +1,33 @@
+{
+  "exp_id": "mvp_001",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:55:16.912Z",
+    "updated_at": "2026-05-15T10:23:19.465Z",
+    "hypothesis": "OpenVLA 7B 隐状态编码了 task-progress 信息（temporal distance），且信号来自 task-semantic content 而非 positional shortcut (RoPE)",
+    "spec": {
+      "server": "westd-19183",
+      "data_path": "/root/vla-ssd/data/libero-long/",
+      "model_name": "openvla/openvla-7b",
+      "model_version": "HuggingFace main",
+      "seed": 42,
+      "gpu": "2x RTX PRO 6000",
+      "checkpoint_path": "/root/vla-ssd/checkpoints/openvla-7b",
+      "log_path": "/root/vla-ssd/logs/",
+      "feature_path": "/root/vla-ssd/features/ (symlink to data disk)",
+      "controls": [
+        "Control A: timestep fraction oracle",
+        "Control B: cross-trajectory shuffle",
+        "Control C: untrained model baseline",
+        "Control D: DINO-V2 ViT-L/14"
+      ],
+      "pass_criteria": "best_layer rho>0.3 AND delta_rho(trained-untrained)>0.1 AND (VLA>=DINO-V2 OR subtask_AUC>0.7)"
+    }
+  },
+  "timestamp": "2026-05-15T10:23:19.498259+00:00",
+  "trigger": "update_registry"
+}

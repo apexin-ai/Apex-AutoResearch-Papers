@@ -1,0 +1,9 @@
+CLIP Action Probe Results (same-code comparison with DINO)
+
+cls_token mean_R2: CLIP=0.8046, DINO=0.8137, delta=-0.009, p=0.10 (not significant)
+patch_mean mean_R2: CLIP=0.7814, DINO=0.8093, delta=-0.028, p=0.00
+
+Conclusion: CLIP ≈ DINO for action prediction despite CLIP RSA=0.557 >> DINO RSA=0.388.
+VL pretraining adds geometric alignment but not extra predictive content.
+
+Full results: /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json

@@ -1,0 +1,5093 @@
+# code action head sanity check
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 107
+- **Recorded user turns:** 0
+- **Tool calls:** 40
+- **Original source:** `logs/workers/worker_code_action_head_sanity_check_20260526T195505.log`
+- **Structured JSON:** [`69c1896d5be133e57404.json`](../../sessions/69/69c1896d5be133e57404.json)
+
+## Before a recorded user message
+
+107 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "766d8084-6062-41be-a5c1-9a20609bf0f4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779832200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9e87016d-8c84-425f-9991-54d739558bcc",
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to run a sanity check diagnostic on a remote server. Let me break this down:
+
+1. SSH to westd-19183
+2. Write a `sanity_check.py` script with 4 diagnostic checks
+3. Run it and return the results
+
+Let me start by checking the server environment and any existing code.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "8a727c07-dde9-4288-9b05-17b6d1e1c5aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHqPkCFsqj28krxmDj8f3e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13675,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13675
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始执行 action-head decoding sanity check。先探测服务器环境和已有代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "17209f1f-3f2c-4870-b2fb-e9da7037dd51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHqPkCFsqj28krxmDj8f3e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13675,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13675
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GSSvE6FFcAU4Zd4E9WbqEj`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "e4b20b1b-162a-44db-859d-2842fc7e68e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHqPkCFsqj28krxmDj8f3e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13675,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13675
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-26T19:55:19.756Z_
+
+<details><summary>↩ Tool result · `toolu_01GSSvE6FFcAU4Zd4E9WbqEj`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "04b2de29-a9b6-467b-8cb0-a1fc361edde3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image · `toolu_01CDfSYdxjDctg6KhYwAx8EJ`</summary>
+
+```json
+{
+  "server": "westd-19183"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "e59ec800-0b91-4d6e-bea2-c1907cc4a0f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6EguP3dLgbG6A5c26ynFj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 25516,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 991
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T19:55:22.689Z_
+
+<details><summary>↩ Tool result · `toolu_01CDfSYdxjDctg6KhYwAx8EJ`</summary>
+
+```text
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "acb29308-347d-418e-9af4-755fb836dc8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}",
+    "structuredContent": {
+      "result": "{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WNeXxcS8oV65eH7i4bdhTv`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/ /root/autodl-tmp/vla-ssd/results/action_head_decoding/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "3143038e-16cd-40e7-9fc1-c12ddc56039d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iLtxVSRCH9QBZpwaJXc37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 141,
+      "cache_read_input_tokens": 26507,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 141
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T19:55:26.208Z_
+
+<details><summary>↩ Tool result · `toolu_01WNeXxcS8oV65eH7i4bdhTv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "da6c9cf7-c84c-4323-9e7e-b9c26cd6c32a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Uioai6PD1paioeBByaKGCC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "8ed3d58e-6c5b-48fb-8b75-fe5e3d13deac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iLtxVSRCH9QBZpwaJXc37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 141,
+      "cache_read_input_tokens": 26507,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 141
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J8HA3PqdYbhZPPzMfiuGV5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "363c66b4-da60-4c33-bfdb-c52c0517522b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iLtxVSRCH9QBZpwaJXc37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 141,
+      "cache_read_input_tokens": 26507,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 141
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T19:55:28.094Z_
+
+<details><summary>↩ Tool result · `toolu_01Uioai6PD1paioeBByaKGCC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\nadded_tokens.json\\nconfig.json\\nconfiguration_prismatic.py\\ndataset_statistics.json\\ngeneration_config.json\\nmodel-00001-of-00004.safetensors\\nmodel-00002-of-00004.safetensors\\nmodel-00003-of-00004.safetensors\\nmodel-00004-of-00004.safetensors\\nmodel.safetensors.index.json\\nmodeling_prismatic.py\\npreprocessor_config.json\\nprocessing_prismatic.py\\nprocessor_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "c805fedc-7de4-4510-b0d3-d6e593f28815",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\n__pycache__\\\\nadded_tokens.json\\\\nconfig.json\\\\nconfiguration_prismatic.py\\\\ndataset_statistics.json\\\\ngeneration_config.json\\\\nmodel-00001-of-00004.safetensors\\\\nmodel-00002-of-00004.safetensors\\\\nmodel-00003-of-00004.safetensors\\\\nmodel-00004-of-00004.safetensors\\\\nmodel.safetensors.index.json\\\\nmodeling_prismatic.py\\\\npreprocessor_config.json\\\\nprocessing_prismatic.py\\\\nprocessor_config.json\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer.model\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\nadded_tokens.json\\nconfig.json\\nconfiguration_prismatic.py\\ndataset_statistics.json\\ngeneration_config.json\\nmodel-00001-of-00004.safetensors\\nmodel-00002-of-00004.safetensors\\nmodel-00003-of-00004.safetensors\\nmodel-00004-of-00004.safetensors\\nmodel.safetensors.index.json\\nmodeling_prismatic.py\\npreprocessor_config.json\\nprocessing_prismatic.py\\nprocessor_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-26T19:55:28.620Z_
+
+<details><summary>↩ Tool result · `toolu_01J8HA3PqdYbhZPPzMfiuGV5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "eb26b2c7-73de-4582-b441-624b7534f746",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\\\nput_the_bowl_on_the_plate_demo.hdf5\\\\nput_the_bowl_on_the_stove_demo.hdf5\\\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\\\nturn_on_the_stove_demo.hdf5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JemEuy1Y12q9Jmnyc6W7pu`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "0a00619e-39d6-41f4-9ab9-b2108086812e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016uHhR8YdDrDXcQQXmAuRxZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1047,
+      "cache_read_input_tokens": 26648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1047
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-26T19:55:31.851Z_
+
+<details><summary>↩ Tool result · `toolu_01JemEuy1Y12q9Jmnyc6W7pu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\naction_baselines.py\\nartifacts\\nbootstrap_training_effect.py\\nbranch_split_rsa_results.json\\ncheckpoints\\ndata\\ndebug_verify.log\\nfeatures\\nlibero_closedloop_probe.py\\nlogs\\nloocv_output.log\\npaper\\npaper_figures\\npca_linear_probe_gc.py\\nquick_verify.log\\nquick_verify2.log\\nresults\\nrsa_analysis.py\\nrsa_analysis_no_inst.py\\nrsa_image_mean.py\\nrsa_image_mean_no_inst.py\\nrsa_no_instruction.py\\nscripts\\nsr_validation.log\\nsr_validation2.log\\nsr_validation3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "235572f5-112a-4309-8b95-2bd2e03b13be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\naction_baselines.py\\\\nartifacts\\\\nbootstrap_training_effect.py\\\\nbranch_split_rsa_results.json\\\\ncheckpoints\\\\ndata\\\\ndebug_verify.log\\\\nfeatures\\\\nlibero_closedloop_probe.py\\\\nlogs\\\\nloocv_output.log\\\\npaper\\\\npaper_figures\\\\npca_linear_probe_gc.py\\\\nquick_verify.log\\\\nquick_verify2.log\\\\nresults\\\\nrsa_analysis.py\\\\nrsa_analysis_no_inst.py\\\\nrsa_image_mean.py\\\\nrsa_image_mean_no_inst.py\\\\nrsa_no_instruction.py\\\\nscripts\\\\nsr_validation.log\\\\nsr_validation2.log\\\\nsr_validation3.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\naction_baselines.py\\nartifacts\\nbootstrap_training_effect.py\\nbranch_split_rsa_results.json\\ncheckpoints\\ndata\\ndebug_verify.log\\nfeatures\\nlibero_closedloop_probe.py\\nlogs\\nloocv_output.log\\npaper\\npaper_figures\\npca_linear_probe_gc.py\\nquick_verify.log\\nquick_verify2.log\\nresults\\nrsa_analysis.py\\nrsa_analysis_no_inst.py\\nrsa_image_mean.py\\nrsa_image_mean_no_inst.py\\nrsa_no_instruction.py\\nscripts\\nsr_validation.log\\nsr_validation2.log\\nsr_validation3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SbyqwmwoH8BAF3BnTDuTDb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "af56c7dc-97f3-41ce-8bf2-af87e93ab95a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016uHhR8YdDrDXcQQXmAuRxZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1047,
+      "cache_read_input_tokens": 26648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1047
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T19:55:32.320Z_
+
+<details><summary>↩ Tool result · `toolu_01SbyqwmwoH8BAF3BnTDuTDb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "418bb2ec-e123-48d1-afd7-4b22a777274d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019hw2x9vG7b9rrr2ZkK3qPu`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/dataset_statistics.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "cd361c29-727a-4c87-9503-05851defd60a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016uHhR8YdDrDXcQQXmAuRxZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1047,
+      "cache_read_input_tokens": 26648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1047
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-26T19:55:32.943Z_
+
+<details><summary>↩ Tool result · `toolu_019hw2x9vG7b9rrr2ZkK3qPu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"libero_goal\\\": {\\n    \\\"action\\\": {\\n      \\\"mean\\\": [\\n        0.04721052572131157,\\n        0.028835246339440346,\\n        -0.1485840231180191,\\n        -0.0025010062381625175,\\n        0.026408178731799126,\\n        0.027379808947443962,\\n        0.6299911737442017\\n      ],\\n      \\\"std\\\": [\\n        0.3968801498413086,\\n        0.3473387360572815,\\n        0.49239858984947205,\\n        0.055331431329250336,\\n        0.07844757288694382,\\n        0.10008802264928818,\\n        0.48270025849342346\\n      ],\\n      \\\"max\\\": [\\n        0.9375,\\n        0.9375,\\n        0.9375,\\n        0.3557142913341522,\\n        0.375,\\n        0.375,\\n        1.0\\n      ],\\n      \\\"min\\\": [\\n        -0.9375,\\n        -0.9375,\\n        -0.9375,\\n        -0.2582142949104309,\\n        -0.375,\\n        -0.2871428430080414,\\n        0.0\\n      ],\\n      \\\"q01\\\": [\\n        -0.8785714507102966,\\n        -0.7553571462631226,\\n        -0.9375,\\n        -0.1510714292526245,\\n        -0.1639285683631897,\\n        -0.13777500048279764,\\n        0.0\\n      ],\\n      \\\"q99\\\": [\\n        0.9375,\\n        0.9107142686843872,\\n        0.9375,\\n        0.20357142388820648,\\n        0.26357144117355347,\\n        0.375,\\n        1.0\\n      ],\\n      \\\"mask\\\": [\\n        true,\\n        true,\\n        true,\\n        true,\\n        true,\\n        true,\\n        false\\n      ]\\n    },\\n    \\\"proprio\\\": {\\n      \\\"mean\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"std\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"max\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"min\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"q01\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"q99\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ]\\n    },\\n    \\\"num_transitions\\\": 52042,\\n    \\\"num_trajectories\\\": 428\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "286258a3-542f-4335-8c27-a901ffd3f10d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"libero_goal\\\\\\\": {\\\\n    \\\\\\\"action\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": [\\\\n        0.04721052572131157,\\\\n        0.028835246339440346,\\\\n        -0.1485840231180191,\\\\n        -0.0025010062381625175,\\\\n        0.026408178731799126,\\\\n        0.027379808947443962,\\\\n        0.6299911737442017\\\\n      ],\\\\n      \\\\\\\"std\\\\\\\": [\\\\n        0.3968801498413086,\\\\n        0.3473387360572815,\\\\n        0.49239858984947205,\\\\n        0.055331431329250336,\\\\n        0.07844757288694382,\\\\n        0.10008802264928818,\\\\n        0.48270025849342346\\\\n      ],\\\\n      \\\\\\\"max\\\\\\\": [\\\\n        0.9375,\\\\n        0.9375,\\\\n        0.9375,\\\\n        0.3557142913341522,\\\\n        0.375,\\\\n        0.375,\\\\n        1.0\\\\n      ],\\\\n      \\\\\\\"min\\\\\\\": [\\\\n        -0.9375,\\\\n        -0.9375,\\\\n        -0.9375,\\\\n        -0.2582142949104309,\\\\n        -0.375,\\\\n        -0.2871428430080414,\\\\n        0.0\\\\n      ],\\\\n      \\\\\\\"q01\\\\\\\": [\\\\n        -0.8785714507102966,\\\\n        -0.7553571462631226,\\\\n        -0.9375,\\\\n        -0.1510714292526245,\\\\n        -0.1639285683631897,\\\\n        -0.13777500048279764,\\\\n        0.0\\\\n      ],\\\\n      \\\\\\\"q99\\\\\\\": [\\\\n        0.9375,\\\\n        0.9107142686843872,\\\\n        0.9375,\\\\n        0.20357142388820648,\\\\n        0.26357144117355347,\\\\n        0.375,\\\\n        1.0\\\\n      ],\\\\n      \\\\\\\"mask\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        false\\\\n      ]\\\\n    },\\\\n    \\\\\\\"proprio\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": [\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0\\\\n      ],\\\\n      \\\\\\\"std\\\\\\\": [\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0\\\\n      ],\\\\n      \\\\\\\"max\\\\\\\": [\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0\\\\n      ],\\\\n      \\\\\\\"min\\\\\\\": [\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0\\\\n      ],\\\\n      \\\\\\\"q01\\\\\\\": [\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0\\\\n      ],\\\\n      \\\\\\\"q99\\\\\\\": [\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0\\\\n      ]\\\\n    },\\\\n    \\\\\\\"num_transitions\\\\\\\": 52042,\\\\n    \\\\\\\"num_trajectories\\\\\\\": 428\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"libero_goal\\\": {\\n    \\\"action\\\": {\\n      \\\"mean\\\": [\\n        0.04721052572131157,\\n        0.028835246339440346,\\n        -0.1485840231180191,\\n        -0.0025010062381625175,\\n        0.026408178731799126,\\n        0.027379808947443962,\\n        0.6299911737442017\\n      ],\\n      \\\"std\\\": [\\n        0.3968801498413086,\\n        0.3473387360572815,\\n        0.49239858984947205,\\n        0.055331431329250336,\\n        0.07844757288694382,\\n        0.10008802264928818,\\n        0.48270025849342346\\n      ],\\n      \\\"max\\\": [\\n        0.9375,\\n        0.9375,\\n        0.9375,\\n        0.3557142913341522,\\n        0.375,\\n        0.375,\\n        1.0\\n      ],\\n      \\\"min\\\": [\\n        -0.9375,\\n        -0.9375,\\n        -0.9375,\\n        -0.2582142949104309,\\n        -0.375,\\n        -0.2871428430080414,\\n        0.0\\n      ],\\n      \\\"q01\\\": [\\n        -0.8785714507102966,\\n        -0.7553571462631226,\\n        -0.9375,\\n        -0.1510714292526245,\\n        -0.1639285683631897,\\n        -0.13777500048279764,\\n        0.0\\n      ],\\n      \\\"q99\\\": [\\n        0.9375,\\n        0.9107142686843872,\\n        0.9375,\\n        0.20357142388820648,\\n        0.26357144117355347,\\n        0.375,\\n        1.0\\n      ],\\n      \\\"mask\\\": [\\n        true,\\n        true,\\n        true,\\n        true,\\n        true,\\n        true,\\n        false\\n      ]\\n    },\\n    \\\"proprio\\\": {\\n      \\\"mean\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"std\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"max\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"min\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"q01\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"q99\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ]\\n    },\\n    \\\"num_transitions\\\": 52042,\\n    \\\"num_trajectories\\\": 428\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the dataset statistics. Now let me check the existing action head decoding scripts to understand the current implementation, and also check how OpenVLA tokenizes/detokenizes actions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "9630df61-a8ac-41df-8411-7cc1e3fd7144",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015L5pcgcwLTaBkkY27JXSGf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1867,
+      "cache_read_input_tokens": 27695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1867
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Let me check the existing code and the OpenVLA processor to understand the action tokenization.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "86db28ef-1135-465f-ba20-678c39aa4989",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015L5pcgcwLTaBkkY27JXSGf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1867,
+      "cache_read_input_tokens": 27695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1867
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q2tSci6TzpJ1LZB4rDDa7i`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "80380627-f2e6-4f01-83c0-39e8a1aec3e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015L5pcgcwLTaBkkY27JXSGf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1867,
+      "cache_read_input_tokens": 27695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1867
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-26T19:55:39.177Z_
+
+<details><summary>↩ Tool result · `toolu_01Q2tSci6TzpJ1LZB4rDDa7i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"trained_dryrun\\ntrained_dryrun_pca1024\\ntrained_pca1024\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "47878b8a-69a7-43e9-beae-8448d34f373b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"trained_dryrun\\\\ntrained_dryrun_pca1024\\\\ntrained_pca1024\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"trained_dryrun\\ntrained_dryrun_pca1024\\ntrained_pca1024\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019v2LbxKyUDi9ipnRmkxZqW`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/processing_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "f7acb28c-963f-45be-9748-d8ae63bb8c90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015L5pcgcwLTaBkkY27JXSGf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1867,
+      "cache_read_input_tokens": 27695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1867
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-26T19:55:40.505Z_
+
+<details><summary>↩ Tool result · `toolu_019v2LbxKyUDi9ipnRmkxZqW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nprocessing_prismatic.py\\n\\nHuggingFace-style preprocessor definitions for Prismatic VLMs, inheriting from `ProcessorMixin`. Default configuration\\nspecifies `siglip-224px+7b`.\\n\\\"\\\"\\\"\\n\\nfrom typing import Any, ClassVar, List, Optional, Tuple, Union\\n\\nimport timm.data\\nimport torch\\nimport torchvision.transforms.functional as TVF\\nfrom PIL import Image\\nfrom torchvision.transforms import CenterCrop, Compose, Normalize, Resize, ToTensor\\nfrom transformers import PreTrainedTokenizerBase\\nfrom transformers.image_processing_utils import BatchFeature, ImageProcessingMixin\\nfrom transformers.processing_utils import ProcessorMixin\\ntry:\\n    from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\nexcept ImportError:\\n    from enum import Enum\\n    try:\\n        from transformers.utils import PaddingStrategy\\n    except ImportError:\\n        class PaddingStrategy(Enum):\\n            LONGEST = \\\"longest\\\"\\n            MAX_LENGTH = \\\"max_length\\\"\\n            DO_NOT_PAD = \\\"do_not_pad\\\"\\n    try:\\n        from transformers.utils import TruncationStrategy\\n    except ImportError:\\n        class TruncationStrategy(Enum):\\n            ONLY_FIRST = \\\"only_first\\\"\\n            ONLY_SECOND = \\\"only_second\\\"\\n            LONGEST_FIRST = \\\"longest_first\\\"\\n            DO_NOT_TRUNCATE = \\\"do_not_truncate\\\"\\n    PreTokenizedInput = list\\n    TextInput = str\\nfrom transformers.utils import TensorType\\n\\n\\n# === Image Processing ===\\ndef letterbox_pad_transform(image: Image.Image, padding_fill_value: Tuple[int, int, int]) -> Image.Image:\\n    \\\"\\\"\\\"Given a PIL.Image, pad to square by adding a symmetric border around the height/width.\\\"\\\"\\\"\\n    (w, h), max_wh = image.size, max(image.size)\\n    horizontal_pad, vertical_pad = int((max_wh - w) / 2), int((max_wh - h) / 2)\\n    padding = (horizontal_pad, vertical_pad, horizontal_pad, vertical_pad)\\n\\n    return TVF.pad(image, padding, fill=padding_fill_value, padding_mode=\\\"constant\\\")\\n\\n\\nclass PrismaticImageProcessor(ImageProcessingMixin):\\n    model_input_names: ClassVar[List[str]] = [\\\"pixel_values\\\"]\\n\\n    def __init__(\\n        self,\\n        use_fused_vision_backbone: bool = False,\\n        image_resize_strategy: str = \\\"letterbox\\\",\\n        input_sizes: Optional[List[Tuple[int, int, int]]] = None,\\n        interpolations: Optional[List[str]] = None,\\n        means: Optional[List[Tuple[float, float, float]]] = None,\\n        stds: Optional[List[Tuple[float, float, float]]] = None,\\n        **kwargs: str,\\n    ) -> None:\\n        \\\"\\\"\\\"\\n        Initialize a PrismaticImageProcessor as a wrapper around a torchvision transform; this transform will be\\n        created by TIMM, and edited to follow our custom `image_resize_strategy` logic.\\n\\n        @param use_fused_vision_backbone: Boolean indicating single or fused (dual) vision backbone\\n        @param image_resize_strategy: Prismatic image resize strategy in < resize-naive | resize-crop | letterbox >\\n        @param input_size: [TIMM :: `data_cfg`] Input image size as tuple (channels, width, height)\\n        @param interpolation: [TIMM :: `data_cfg`] Interpolation as string (default: \\\"bicubic\\\")\\n        @param mean: [TIMM :: `data_cfg`] Normalization mean as float tuple (or two-tuple if `fused_backbone`)\\n        @param std: [TIMM :: `data_cfg`] Normalization std as float tuple (or two-tuple if `fused_backbone`)\\n        \\\"\\\"\\\"\\n        self.use_fused_vision_backbone = use_fused_vision_backbone\\n        self.image_resize_strategy = image_resize_strategy\\n\\n        # Handle `None` default values\\n        input_sizes = [(3, 224, 224)] if input_sizes is None else input_sizes\\n        means = [(0.5, 0.5, 0.5)] if means is None else means\\n        stds = [(0.5, 0.5, 0.5)] if stds is None else stds\\n\\n        # TIMM `data_cfg` Parameters\\n        self.input_sizes, self.interpolations, self.means, self.stds = input_sizes, interpolations, means, stds\\n\\n        # Grab torchvision transforms via TIMM =>> need to parse for specific \\\"functional\\\" transform values!\\n        self.tvf_resize_params, self.tvf_crop_para\\n\\n... [截断: 输出过长，省略 5356 字符] ...\\n\\nge.Image]], **kwargs) -> BatchFeature:\\n        return self.preprocess(images, **kwargs)\\n\\n\\n# === PrismaticProcessor =>> Wraps both ImageProcessor and Tokenizer ===\\n#   =>> https://github.com/huggingface/transformers/blob/main/src/transformers/models/llava/processing_llava.py\\nclass PrismaticProcessor(ProcessorMixin):\\n    attributes: ClassVar[List[str]] = [\\\"image_processor\\\", \\\"tokenizer\\\"]\\n    image_processor_class: str = \\\"AutoImageProcessor\\\"\\n    tokenizer_class: str = \\\"AutoTokenizer\\\"\\n\\n    def __init__(\\n        self,\\n        image_processor: Optional[ImageProcessingMixin] = None,\\n        tokenizer: Optional[PreTrainedTokenizerBase] = None,\\n    ) -> None:\\n        super().__init__(image_processor, tokenizer)\\n\\n    def __call__(\\n        self,\\n        text: Union[TextInput, PreTokenizedInput, List[TextInput], List[PreTokenizedInput]],\\n        images: Union[Image.Image, List[Image.Image]],\\n        padding: Union[bool, str, PaddingStrategy] = False,\\n        truncation: Optional[Union[bool, str, TruncationStrategy]] = None,\\n        max_length: Optional[int] = None,\\n        return_tensors: Optional[Union[str, TensorType]] = TensorType.PYTORCH,\\n    ) -> BatchFeature:\\n        \\\"\\\"\\\"\\n        Preprocess a given (batch) of text/images for a Prismatic VLM; forwards text to the underlying LLM's tokenizer,\\n        forwards images to PrismaticImageProcessor.\\n\\n        @param text: The (batch) of text to encode; must be a string or list of strings.\\n        @param images: A (batch of) PIL.Image.Image instance(s) to preprocess.\\n        @param padding: Sequence padding strategy (if multiple specified) in < True = \\\"longest\\\" | \\\"max_length\\\" | False >\\n        @param truncation: Truncation strategy for the output sequences; requires `max_length` to be specified\\n        @param max_length: Maximum length (in tokens) to truncate\\n        @param return_tensors: Type of return tensors (usually \\\"pt\\\" or TensorType.PYTORCH)\\n\\n        @return: BatchFeature with keys for `input_ids`, `attention_mask` and `pixel_values`.\\n        \\\"\\\"\\\"\\n        pixel_values = self.image_processor(images, return_tensors=return_tensors)[\\\"pixel_values\\\"]\\n        text_inputs = self.tokenizer(\\n            text, return_tensors=return_tensors, padding=padding, truncation=truncation, max_length=max_length\\n        )\\n\\n        # [Validate] Need same number of images and text inputs!\\n        if pixel_values.shape[0] != text_inputs.input_ids.shape[0]:\\n            raise ValueError(\\\"Batch is malformed; expected same number of images and text inputs!\\\")\\n\\n        return BatchFeature(data={**text_inputs, \\\"pixel_values\\\": pixel_values})\\n\\n    # === Tokenizer Dispatch Utilities =>> check `PreTrainedTokenizerBase` for documentation ===\\n    def batch_decode(\\n        self,\\n        sequences: Union[List[int], List[List[int]], torch.Tensor, Any],  # `Any` = np.ndarray | tf.Tensor\\n        skip_special_tokens: bool = False,\\n        clean_up_tokenization_spaces: Optional[bool] = None,\\n        **kwargs: str,\\n    ) -> List[str]:\\n        return self.tokenizer.batch_decode(\\n            sequences=sequences,\\n            skip_special_tokens=skip_special_tokens,\\n            clean_up_tokenization_spaces=clean_up_tokenization_spaces,\\n            **kwargs,\\n        )\\n\\n    def decode(\\n        self,\\n        token_ids: Union[int, List[int], torch.Tensor, Any],  # `Any` = np.ndarray | tf.Tensor\\n        skip_special_tokens: bool = False,\\n        clean_up_tokenization_spaces: Optional[bool] = None,\\n        **kwargs: str,\\n    ) -> str:\\n        return self.tokenizer.decode(\\n            token_ids=token_ids,\\n            skip_special_tokens=skip_special_tokens,\\n            clean_up_tokenization_spaces=clean_up_tokenization_spaces,\\n            **kwargs,\\n        )\\n\\n    @property\\n    def model_input_names(self) -> List[str]:\\n        tokenizer_input_names = self.tokenizer.model_input_names\\n        image_processor_input_names = self.image_processor.model_input_names\\n\\n        return list(dict.fromkeys(tokenizer_input_names + image_processor_input_names))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "db7576a2-0832-483c-8bd6-84dca4468a3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nprocessing_prismatic.py\\\\n\\\\nHuggingFace-style preprocessor definitions for Prismatic VLMs, inheriting from `ProcessorMixin`. Default configuration\\\\nspecifies `siglip-224px+7b`.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom typing import Any, ClassVar, List, Optional, Tuple, Union\\\\n\\\\nimport timm.data\\\\nimport torch\\\\nimport torchvision.transforms.functional as TVF\\\\nfrom PIL import Image\\\\nfrom torchvision.transforms import CenterCrop, Compose, Normalize, Resize, ToTensor\\\\nfrom transformers import PreTrainedTokenizerBase\\\\nfrom transformers.image_processing_utils import BatchFeature, ImageProcessingMixin\\\\nfrom transformers.processing_utils import ProcessorMixin\\\\ntry:\\\\n    from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\\\nexcept ImportError:\\\\n    from enum import Enum\\\\n    try:\\\\n        from transformers.utils import PaddingStrategy\\\\n    except ImportError:\\\\n        class PaddingStrategy(Enum):\\\\n            LONGEST = \\\\\\\"longest\\\\\\\"\\\\n            MAX_LENGTH = \\\\\\\"max_length\\\\\\\"\\\\n            DO_NOT_PAD = \\\\\\\"do_not_pad\\\\\\\"\\\\n    try:\\\\n        from transformers.utils import TruncationStrategy\\\\n    except ImportError:\\\\n        class TruncationStrategy(Enum):\\\\n            ONLY_FIRST = \\\\\\\"only_first\\\\\\\"\\\\n            ONLY_SECOND = \\\\\\\"only_second\\\\\\\"\\\\n            LONGEST_FIRST = \\\\\\\"longest_first\\\\\\\"\\\\n            DO_NOT_TRUNCATE = \\\\\\\"do_not_truncate\\\\\\\"\\\\n    PreTokenizedInput = list\\\\n    TextInput = str\\\\nfrom transformers.utils import TensorType\\\\n\\\\n\\\\n# === Image Processing ===\\\\ndef letterbox_pad_transform(image: Image.Image, padding_fill_value: Tuple[int, int, int]) -> Image.Image:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Given a PIL.Image, pad to square by adding a symmetric border around the height/width.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    (w, h), max_wh = image.size, max(image.size)\\\\n    horizontal_pad, vertical_pad = int((max_wh - w) / 2), int((max_wh - h) / 2)\\\\n    padding = (horizontal_pad, vertical_pad, horizontal_pad, vertical_pad)\\\\n\\\\n    return TVF.pad(image, padding, fill=padding_fill_value, padding_mode=\\\\\\\"constant\\\\\\\")\\\\n\\\\n\\\\nclass PrismaticImageProcessor(ImageProcessingMixin):\\\\n    model_input_names: ClassVar[List[str]] = [\\\\\\\"pixel_values\\\\\\\"]\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        use_fused_vision_backbone: bool = False,\\\\n        image_resize_strategy: str = \\\\\\\"letterbox\\\\\\\",\\\\n        input_sizes: Optional[List[Tuple[int, int, int]]] = None,\\\\n        interpolations: Optional[List[str]] = None,\\\\n        means: Optional[List[Tuple[float, float, float]]] = None,\\\\n        stds: Optional[List[Tuple[float, float, float]]] = None,\\\\n        **kwargs: str,\\\\n    ) -> None:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Initialize a PrismaticImageProcessor as a wrapper around a torchvision transform; this transform will be\\\\n        created by TIMM, and edited to follow our custom `image_resize_strategy` logic.\\\\n\\\\n        @param use_fused_vision_backbone: Boolean indicating single or fused (dual) vision backbone\\\\n        @param image_resize_strategy: Prismatic image resize strategy in < resize-naive | resize-crop | letterbox >\\\\n        @param input_size: [TIMM :: `data_cfg`] Input image size as tuple (channels, width, height)\\\\n        @param interpolation: [TIMM :: `data_cfg`] Interpolation as string (default: \\\\\\\"bicubic\\\\\\\")\\\\n        @param mean: [TIMM :: `data_cfg`] Normalization mean as float tuple (or two-tuple if `fused_backbone`)\\\\n        @param std: [TIMM :: `data_cfg`] Normalization std as float tuple (or two-tuple if `fused_backbone`)\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self.use_fused_vision_backbone = use_fused_vision_backbone\\\\n        self.image_resize_strategy = image_resize_strategy\\\\n\\\\n        # Handle `None` default values\\\\n        input_sizes = [(3, 224, 224)] if input_sizes is None else input_sizes\\\\n        means = [(0.5, 0.5, 0.5)] if means is None else means\\\\n        stds = [(0.5, 0.5, 0.5)] if stds is None else stds\\\\n\\\\n        # TIMM `data_cfg` Parameters\\\\n        self.input_sizes, self.interpolations, self.means, self.stds = input_sizes, interpolations, means, stds\\\\n\\\\n        # Grab torchvision transforms via TIMM =>> need to parse for specific \\\\\\\"functional\\\\\\\" transform values!\\\\n        self.tvf_resize_params, self.tvf_crop_para\\\\n\\\\n... [截断: 输出过长，省略 5356 字符] ...\\\\n\\\\nge.Image]], **kwargs) -> BatchFeature:\\\\n        return self.preprocess(images, **kwargs)\\\\n\\\\n\\\\n# === PrismaticProcessor =>> Wraps both ImageProcessor and Tokenizer ===\\\\n#   =>> https://github.com/huggingface/transformers/blob/main/src/transformers/models/llava/processing_llava.py\\\\nclass PrismaticProcessor(ProcessorMixin):\\\\n    attributes: ClassVar[List[str]] = [\\\\\\\"image_processor\\\\\\\", \\\\\\\"tokenizer\\\\\\\"]\\\\n    image_processor_class: str = \\\\\\\"AutoImageProcessor\\\\\\\"\\\\n    tokenizer_class: str = \\\\\\\"AutoTokenizer\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        image_processor: Optional[ImageProcessingMixin] = None,\\\\n        tokenizer: Optional[PreTrainedTokenizerBase] = None,\\\\n    ) -> None:\\\\n        super().__init__(image_processor, tokenizer)\\\\n\\\\n    def __call__(\\\\n        self,\\\\n        text: Union[TextInput, PreTokenizedInput, List[TextInput], List[PreTokenizedInput]],\\\\n        images: Union[Image.Image, List[Image.Image]],\\\\n        padding: Union[bool, str, PaddingStrategy] = False,\\\\n        truncation: Optional[Union[bool, str, TruncationStrategy]] = None,\\\\n        max_length: Optional[int] = None,\\\\n        return_tensors: Optional[Union[str, TensorType]] = TensorType.PYTORCH,\\\\n    ) -> BatchFeature:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Preprocess a given (batch) of text/images for a Prismatic VLM; forwards text to the underlying LLM's tokenizer,\\\\n        forwards images to PrismaticImageProcessor.\\\\n\\\\n        @param text: The (batch) of text to encode; must be a string or list of strings.\\\\n        @param images: A (batch of) PIL.Image.Image instance(s) to preprocess.\\\\n        @param padding: Sequence padding strategy (if multiple specified) in < True = \\\\\\\"longest\\\\\\\" | \\\\\\\"max_length\\\\\\\" | False >\\\\n        @param truncation: Truncation strategy for the output sequences; requires `max_length` to be specified\\\\n        @param max_length: Maximum length (in tokens) to truncate\\\\n        @param return_tensors: Type of return tensors (usually \\\\\\\"pt\\\\\\\" or TensorType.PYTORCH)\\\\n\\\\n        @return: BatchFeature with keys for `input_ids`, `attention_mask` and `pixel_values`.\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        pixel_values = self.image_processor(images, return_tensors=return_tensors)[\\\\\\\"pixel_values\\\\\\\"]\\\\n        text_inputs = self.tokenizer(\\\\n            text, return_tensors=return_tensors, padding=padding, truncation=truncation, max_length=max_length\\\\n        )\\\\n\\\\n        # [Validate] Need same number of images and text inputs!\\\\n        if pixel_values.shape[0] != text_inputs.input_ids.shape[0]:\\\\n            raise ValueError(\\\\\\\"Batch is malformed; expected same number of images and text inputs!\\\\\\\")\\\\n\\\\n        return BatchFeature(data={**text_inputs, \\\\\\\"pixel_values\\\\\\\": pixel_values})\\\\n\\\\n    # === Tokenizer Dispatch Utilities =>> check `PreTrainedTokenizerBase` for documentation ===\\\\n    def batch_decode(\\\\n        self,\\\\n        sequences: Union[List[int], List[List[int]], torch.Tensor, Any],  # `Any` = np.ndarray | tf.Tensor\\\\n        skip_special_tokens: bool = False,\\\\n        clean_up_tokenization_spaces: Optional[bool] = None,\\\\n        **kwargs: str,\\\\n    ) -> List[str]:\\\\n        return self.tokenizer.batch_decode(\\\\n            sequences=sequences,\\\\n            skip_special_tokens=skip_special_tokens,\\\\n            clean_up_tokenization_spaces=clean_up_tokenization_spaces,\\\\n            **kwargs,\\\\n        )\\\\n\\\\n    def decode(\\\\n        self,\\\\n        token_ids: Union[int, List[int], torch.Tensor, Any],  # `Any` = np.ndarray | tf.Tensor\\\\n        skip_special_tokens: bool = False,\\\\n        clean_up_tokenization_spaces: Optional[bool] = None,\\\\n        **kwargs: str,\\\\n    ) -> str:\\\\n        return self.tokenizer.decode(\\\\n            token_ids=token_ids,\\\\n            skip_special_tokens=skip_special_tokens,\\\\n            clean_up_tokenization_spaces=clean_up_tokenization_spaces,\\\\n            **kwargs,\\\\n        )\\\\n\\\\n    @property\\\\n    def model_input_names(self) -> List[str]:\\\\n        tokenizer_input_names = self.tokenizer.model_input_names\\\\n        image_processor_input_names = self.image_processor.model_input_names\\\\n\\\\n        return list(dict.fromkeys(tokenizer_input_names + image_processor_input_names))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nprocessing_prismatic.py\\n\\nHuggingFace-style preprocessor definitions for Prismatic VLMs, inheriting from `ProcessorMixin`. Default configuration\\nspecifies `siglip-224px+7b`.\\n\\\"\\\"\\\"\\n\\nfrom typing import Any, ClassVar, List, Optional, Tuple, Union\\n\\nimport timm.data\\nimport torch\\nimport torchvision.transforms.functional as TVF\\nfrom PIL import Image\\nfrom torchvision.transforms import CenterCrop, Compose, Normalize, Resize, ToTensor\\nfrom transformers import PreTrainedTokenizerBase\\nfrom transformers.image_processing_utils import BatchFeature, ImageProcessingMixin\\nfrom transformers.processing_utils import ProcessorMixin\\ntry:\\n    from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\nexcept ImportError:\\n    from enum import Enum\\n    try:\\n        from transformers.utils import PaddingStrategy\\n    except ImportError:\\n        class PaddingStrategy(Enum):\\n            LONGEST = \\\"longest\\\"\\n            MAX_LENGTH = \\\"max_length\\\"\\n            DO_NOT_PAD = \\\"do_not_pad\\\"\\n    try:\\n        from transformers.utils import TruncationStrategy\\n    except ImportError:\\n        class TruncationStrategy(Enum):\\n            ONLY_FIRST = \\\"only_first\\\"\\n            ONLY_SECOND = \\\"only_second\\\"\\n            LONGEST_FIRST = \\\"longest_first\\\"\\n            DO_NOT_TRUNCATE = \\\"do_not_truncate\\\"\\n    PreTokenizedInput = list\\n    TextInput = str\\nfrom transformers.utils import TensorType\\n\\n\\n# === Image Processing ===\\ndef letterbox_pad_transform(image: Image.Image, padding_fill_value: Tuple[int, int, int]) -> Image.Image:\\n    \\\"\\\"\\\"Given a PIL.Image, pad to square by adding a symmetric border around the height/width.\\\"\\\"\\\"\\n    (w, h), max_wh = image.size, max(image.size)\\n    horizontal_pad, vertical_pad = int((max_wh - w) / 2), int((max_wh - h) / 2)\\n    padding = (horizontal_pad, vertical_pad, horizontal_pad, vertical_pad)\\n\\n    return TVF.pad(image, padding, fill=padding_fill_value, padding_mode=\\\"constant\\\")\\n\\n\\nclass PrismaticImageProcessor(ImageProcessingMixin):\\n    model_input_names: ClassVar[List[str]] = [\\\"pixel_values\\\"]\\n\\n    def __init__(\\n        self,\\n        use_fused_vision_backbone: bool = False,\\n        image_resize_strategy: str = \\\"letterbox\\\",\\n        input_sizes: Optional[List[Tuple[int, int, int]]] = None,\\n        interpolations: Optional[List[str]] = None,\\n        means: Optional[List[Tuple[float, float, float]]] = None,\\n        stds: Optional[List[Tuple[float, float, float]]] = None,\\n        **kwargs: str,\\n    ) -> None:\\n        \\\"\\\"\\\"\\n        Initialize a PrismaticImageProcessor as a wrapper around a torchvision transform; this transform will be\\n        created by TIMM, and edited to follow our custom `image_resize_strategy` logic.\\n\\n        @param use_fused_vision_backbone: Boolean indicating single or fused (dual) vision backbone\\n        @param image_resize_strategy: Prismatic image resize strategy in < resize-naive | resize-crop | letterbox >\\n        @param input_size: [TIMM :: `data_cfg`] Input image size as tuple (channels, width, height)\\n        @param interpolation: [TIMM :: `data_cfg`] Interpolation as string (default: \\\"bicubic\\\")\\n        @param mean: [TIMM :: `data_cfg`] Normalization mean as float tuple (or two-tuple if `fused_backbone`)\\n        @param std: [TIMM :: `data_cfg`] Normalization std as float tuple (or two-tuple if `fused_backbone`)\\n        \\\"\\\"\\\"\\n        self.use_fused_vision_backbone = use_fused_vision_backbone\\n        self.image_resize_strategy = image_resize_strategy\\n\\n        # Handle `None` default values\\n        input_sizes = [(3, 224, 224)] if input_sizes is None else input_sizes\\n        means = [(0.5, 0.5, 0.5)] if means is None else means\\n        stds = [(0.5, 0.5, 0.5)] if stds is None else stds\\n\\n        # TIMM `data_cfg` Parameters\\n        self.input_sizes, self.interpolations, self.means, self.stds = input_sizes, interpolations, means, stds\\n\\n        # Grab torchvision transforms via TIMM =>> need to parse for specific \\\"functional\\\" transform values!\\n        self.tvf_resize_params, self.tvf_crop_para\\n\\n... [截断: 输出过长，省略 5356 字符] ...\\n\\nge.Image]], **kwargs) -> BatchFeature:\\n        return self.preprocess(images, **kwargs)\\n\\n\\n# === PrismaticProcessor =>> Wraps both ImageProcessor and Tokenizer ===\\n#   =>> https://github.com/huggingface/transformers/blob/main/src/transformers/models/llava/processing_llava.py\\nclass PrismaticProcessor(ProcessorMixin):\\n    attributes: ClassVar[List[str]] = [\\\"image_processor\\\", \\\"tokenizer\\\"]\\n    image_processor_class: str = \\\"AutoImageProcessor\\\"\\n    tokenizer_class: str = \\\"AutoTokenizer\\\"\\n\\n    def __init__(\\n        self,\\n        image_processor: Optional[ImageProcessingMixin] = None,\\n        tokenizer: Optional[PreTrainedTokenizerBase] = None,\\n    ) -> None:\\n        super().__init__(image_processor, tokenizer)\\n\\n    def __call__(\\n        self,\\n        text: Union[TextInput, PreTokenizedInput, List[TextInput], List[PreTokenizedInput]],\\n        images: Union[Image.Image, List[Image.Image]],\\n        padding: Union[bool, str, PaddingStrategy] = False,\\n        truncation: Optional[Union[bool, str, TruncationStrategy]] = None,\\n        max_length: Optional[int] = None,\\n        return_tensors: Optional[Union[str, TensorType]] = TensorType.PYTORCH,\\n    ) -> BatchFeature:\\n        \\\"\\\"\\\"\\n        Preprocess a given (batch) of text/images for a Prismatic VLM; forwards text to the underlying LLM's tokenizer,\\n        forwards images to PrismaticImageProcessor.\\n\\n        @param text: The (batch) of text to encode; must be a string or list of strings.\\n        @param images: A (batch of) PIL.Image.Image instance(s) to preprocess.\\n        @param padding: Sequence padding strategy (if multiple specified) in < True = \\\"longest\\\" | \\\"max_length\\\" | False >\\n        @param truncation: Truncation strategy for the output sequences; requires `max_length` to be specified\\n        @param max_length: Maximum length (in tokens) to truncate\\n        @param return_tensors: Type of return tensors (usually \\\"pt\\\" or TensorType.PYTORCH)\\n\\n        @return: BatchFeature with keys for `input_ids`, `attention_mask` and `pixel_values`.\\n        \\\"\\\"\\\"\\n        pixel_values = self.image_processor(images, return_tensors=return_tensors)[\\\"pixel_values\\\"]\\n        text_inputs = self.tokenizer(\\n            text, return_tensors=return_tensors, padding=padding, truncation=truncation, max_length=max_length\\n        )\\n\\n        # [Validate] Need same number of images and text inputs!\\n        if pixel_values.shape[0] != text_inputs.input_ids.shape[0]:\\n            raise ValueError(\\\"Batch is malformed; expected same number of images and text inputs!\\\")\\n\\n        return BatchFeature(data={**text_inputs, \\\"pixel_values\\\": pixel_values})\\n\\n    # === Tokenizer Dispatch Utilities =>> check `PreTrainedTokenizerBase` for documentation ===\\n    def batch_decode(\\n        self,\\n        sequences: Union[List[int], List[List[int]], torch.Tensor, Any],  # `Any` = np.ndarray | tf.Tensor\\n        skip_special_tokens: bool = False,\\n        clean_up_tokenization_spaces: Optional[bool] = None,\\n        **kwargs: str,\\n    ) -> List[str]:\\n        return self.tokenizer.batch_decode(\\n            sequences=sequences,\\n            skip_special_tokens=skip_special_tokens,\\n            clean_up_tokenization_spaces=clean_up_tokenization_spaces,\\n            **kwargs,\\n        )\\n\\n    def decode(\\n        self,\\n        token_ids: Union[int, List[int], torch.Tensor, Any],  # `Any` = np.ndarray | tf.Tensor\\n        skip_special_tokens: bool = False,\\n        clean_up_tokenization_spaces: Optional[bool] = None,\\n        **kwargs: str,\\n    ) -> str:\\n        return self.tokenizer.decode(\\n            token_ids=token_ids,\\n            skip_special_tokens=skip_special_tokens,\\n            clean_up_tokenization_spaces=clean_up_tokenization_spaces,\\n            **kwargs,\\n        )\\n\\n    @property\\n    def model_input_names(self) -> List[str]:\\n        tokenizer_input_names = self.tokenizer.model_input_names\\n        image_processor_input_names = self.image_processor.model_input_names\\n\\n        return list(dict.fromkeys(tokenizer_input_names + image_processor_input_names))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The processor doesn't have an action tokenizer built in. Let me check if there are any existing action head decoding scripts that show how actions are tokenized/detokenized, and also check the model architecture.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "585453bb-0c9a-492a-bbfd-cb32f14dc9a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTVXjYH8oCtMPyEBg81jjn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 29562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+Let me check existing scripts and the model config to understand the architecture.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "eda997e8-3f3b-4092-8072-989ab653b785",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTVXjYH8oCtMPyEBg81jjn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 29562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Tiy4Zg6AAfKbXTzfrDq5p`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/results/ -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "eb2b8b62-3bdd-4a88-ad00-dc96647cfc8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTVXjYH8oCtMPyEBg81jjn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 29562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-26T19:55:46.708Z_
+
+<details><summary>↩ Tool result · `toolu_011Tiy4Zg6AAfKbXTzfrDq5p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "c25b9d01-12c3-46af-b453-70527d02eb5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QvCBAbGtmr5zSBD88kFQDK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "f7df621b-9458-448e-91b0-97ad9f60590c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTVXjYH8oCtMPyEBg81jjn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 29562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-26T19:55:47.662Z_
+
+<details><summary>↩ Tool result · `toolu_01QvCBAbGtmr5zSBD88kFQDK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"_name_or_path\\\": \\\"openvla/openvla-7b\\\",\\n  \\\"arch_specifier\\\": \\\"no-align+fused-gelu-mlp\\\",\\n  \\\"architectures\\\": [\\n    \\\"OpenVLAForActionPrediction\\\"\\n  ],\\n  \\\"auto_map\\\": {\\n    \\\"AutoConfig\\\": \\\"configuration_prismatic.OpenVLAConfig\\\",\\n    \\\"AutoModelForVision2Seq\\\": \\\"modeling_prismatic.OpenVLAForActionPrediction\\\"\\n  },\\n  \\\"hf_llm_id\\\": \\\"meta-llama/Llama-2-7b-hf\\\",\\n  \\\"image_resize_strategy\\\": \\\"resize-naive\\\",\\n  \\\"image_sizes\\\": [\\n    224,\\n    224\\n  ],\\n  \\\"llm_backbone_id\\\": \\\"llama2-7b-pure\\\",\\n  \\\"llm_max_length\\\": 2048,\\n  \\\"model_type\\\": \\\"openvla\\\",\\n  \\\"n_action_bins\\\": 256,\\n  \\\"norm_stats\\\": {\\n    \\\"libero_goal\\\": {\\n      \\\"action\\\": {\\n        \\\"mean\\\": [\\n          0.04721052572131157,\\n          0.028835246339440346,\\n          -0.1485840231180191,\\n          -0.0025010062381625175,\\n          0.026408178731799126,\\n          0.027379808947443962,\\n          0.6299911737442017\\n        ],\\n        \\\"std\\\": [\\n          0.3968801498413086,\\n          0.3473387360572815,\\n          0.49239858984947205,\\n          0.055331431329250336,\\n          0.07844757288694382,\\n          0.10008802264928818,\\n          0.48270025849342346\\n        ],\\n        \\\"max\\\": [\\n          0.9375,\\n          0.9375,\\n          0.9375,\\n          0.3557142913341522,\\n          0.375,\\n          0.375,\\n          1.0\\n        ],\\n        \\\"min\\\": [\\n          -0.9375,\\n          -0.9375,\\n          -0.9375,\\n          -0.2582142949104309,\\n          -0.375,\\n          -0.2871428430080414,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          -0.8785714507102966,\\n          -0.7553571462631226,\\n          -0.9375,\\n          -0.1510714292526245,\\n          -0.1639285683631897,\\n          -0.13777500048279764,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.9375,\\n          0.9107142686843872,\\n          0.9375,\\n          0.20357142388820648,\\n          0.26357144117355347,\\n          0.375,\\n          1.0\\n        ],\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n        ]\\n      },\\n      \\\"proprio\\\": {\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"std\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ]\\n      },\\n      \\\"num_transitions\\\": 52042,\\n      \\\"num_trajectories\\\": 428\\n    }\\n  },\\n  \\\"output_projector_states\\\": false,\\n  \\\"pad_to_multiple_of\\\": 64,\\n  \\\"pad_token_id\\\": 32000,\\n  \\\"text_config\\\": {\\n    \\\"model_type\\\": \\\"llama\\\",\\n    \\\"pad_token_id\\\": 32000,\\n    \\\"torch_dtype\\\": \\\"bfloat16\\\",\\n    \\\"vocab_size\\\": 32064\\n  },\\n  \\\"timm_model_ids\\\": [\\n    \\\"vit_large_patch14_reg4_dinov2.lvd142m\\\",\\n    \\\"vit_so400m_patch14_siglip_224\\\"\\n  ],\\n  \\\"timm_override_act_layers\\\": [\\n    null,\\n    null\\n  ],\\n  \\\"torch_dtype\\\": \\\"bfloat16\\\",\\n  \\\"transformers_version\\\": \\\"4.40.1\\\",\\n  \\\"use_fused_vision_backbone\\\": true,\\n  \\\"vision_backbone_id\\\": \\\"dinosiglip-vit-so-224px\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "baa8766d-261f-4e02-b0a7-b70395bf70ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"_name_or_path\\\\\\\": \\\\\\\"openvla/openvla-7b\\\\\\\",\\\\n  \\\\\\\"arch_specifier\\\\\\\": \\\\\\\"no-align+fused-gelu-mlp\\\\\\\",\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"OpenVLAForActionPrediction\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auto_map\\\\\\\": {\\\\n    \\\\\\\"AutoConfig\\\\\\\": \\\\\\\"configuration_prismatic.OpenVLAConfig\\\\\\\",\\\\n    \\\\\\\"AutoModelForVision2Seq\\\\\\\": \\\\\\\"modeling_prismatic.OpenVLAForActionPrediction\\\\\\\"\\\\n  },\\\\n  \\\\\\\"hf_llm_id\\\\\\\": \\\\\\\"meta-llama/Llama-2-7b-hf\\\\\\\",\\\\n  \\\\\\\"image_resize_strategy\\\\\\\": \\\\\\\"resize-naive\\\\\\\",\\\\n  \\\\\\\"image_sizes\\\\\\\": [\\\\n    224,\\\\n    224\\\\n  ],\\\\n  \\\\\\\"llm_backbone_id\\\\\\\": \\\\\\\"llama2-7b-pure\\\\\\\",\\\\n  \\\\\\\"llm_max_length\\\\\\\": 2048,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"openvla\\\\\\\",\\\\n  \\\\\\\"n_action_bins\\\\\\\": 256,\\\\n  \\\\\\\"norm_stats\\\\\\\": {\\\\n    \\\\\\\"libero_goal\\\\\\\": {\\\\n      \\\\\\\"action\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": [\\\\n          0.04721052572131157,\\\\n          0.028835246339440346,\\\\n          -0.1485840231180191,\\\\n          -0.0025010062381625175,\\\\n          0.026408178731799126,\\\\n          0.027379808947443962,\\\\n          0.6299911737442017\\\\n        ],\\\\n        \\\\\\\"std\\\\\\\": [\\\\n          0.3968801498413086,\\\\n          0.3473387360572815,\\\\n          0.49239858984947205,\\\\n          0.055331431329250336,\\\\n          0.07844757288694382,\\\\n          0.10008802264928818,\\\\n          0.48270025849342346\\\\n        ],\\\\n        \\\\\\\"max\\\\\\\": [\\\\n          0.9375,\\\\n          0.9375,\\\\n          0.9375,\\\\n          0.3557142913341522,\\\\n          0.375,\\\\n          0.375,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"min\\\\\\\": [\\\\n          -0.9375,\\\\n          -0.9375,\\\\n          -0.9375,\\\\n          -0.2582142949104309,\\\\n          -0.375,\\\\n          -0.2871428430080414,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q01\\\\\\\": [\\\\n          -0.8785714507102966,\\\\n          -0.7553571462631226,\\\\n          -0.9375,\\\\n          -0.1510714292526245,\\\\n          -0.1639285683631897,\\\\n          -0.13777500048279764,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q99\\\\\\\": [\\\\n          0.9375,\\\\n          0.9107142686843872,\\\\n          0.9375,\\\\n          0.20357142388820648,\\\\n          0.26357144117355347,\\\\n          0.375,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"mask\\\\\\\": [\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          false\\\\n        ]\\\\n      },\\\\n      \\\\\\\"proprio\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"std\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"max\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"min\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q01\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q99\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ]\\\\n      },\\\\n      \\\\\\\"num_transitions\\\\\\\": 52042,\\\\n      \\\\\\\"num_trajectories\\\\\\\": 428\\\\n    }\\\\n  },\\\\n  \\\\\\\"output_projector_states\\\\\\\": false,\\\\n  \\\\\\\"pad_to_multiple_of\\\\\\\": 64,\\\\n  \\\\\\\"pad_token_id\\\\\\\": 32000,\\\\n  \\\\\\\"text_config\\\\\\\": {\\\\n    \\\\\\\"model_type\\\\\\\": \\\\\\\"llama\\\\\\\",\\\\n    \\\\\\\"pad_token_id\\\\\\\": 32000,\\\\n    \\\\\\\"torch_dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n    \\\\\\\"vocab_size\\\\\\\": 32064\\\\n  },\\\\n  \\\\\\\"timm_model_ids\\\\\\\": [\\\\n    \\\\\\\"vit_large_patch14_reg4_dinov2.lvd142m\\\\\\\",\\\\n    \\\\\\\"vit_so400m_patch14_siglip_224\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"timm_override_act_layers\\\\\\\": [\\\\n    null,\\\\n    null\\\\n  ],\\\\n  \\\\\\\"torch_dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.40.1\\\\\\\",\\\\n  \\\\\\\"use_fused_vision_backbone\\\\\\\": true,\\\\n  \\\\\\\"vision_backbone_id\\\\\\\": \\\\\\\"dinosiglip-vit-so-224px\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"_name_or_path\\\": \\\"openvla/openvla-7b\\\",\\n  \\\"arch_specifier\\\": \\\"no-align+fused-gelu-mlp\\\",\\n  \\\"architectures\\\": [\\n    \\\"OpenVLAForActionPrediction\\\"\\n  ],\\n  \\\"auto_map\\\": {\\n    \\\"AutoConfig\\\": \\\"configuration_prismatic.OpenVLAConfig\\\",\\n    \\\"AutoModelForVision2Seq\\\": \\\"modeling_prismatic.OpenVLAForActionPrediction\\\"\\n  },\\n  \\\"hf_llm_id\\\": \\\"meta-llama/Llama-2-7b-hf\\\",\\n  \\\"image_resize_strategy\\\": \\\"resize-naive\\\",\\n  \\\"image_sizes\\\": [\\n    224,\\n    224\\n  ],\\n  \\\"llm_backbone_id\\\": \\\"llama2-7b-pure\\\",\\n  \\\"llm_max_length\\\": 2048,\\n  \\\"model_type\\\": \\\"openvla\\\",\\n  \\\"n_action_bins\\\": 256,\\n  \\\"norm_stats\\\": {\\n    \\\"libero_goal\\\": {\\n      \\\"action\\\": {\\n        \\\"mean\\\": [\\n          0.04721052572131157,\\n          0.028835246339440346,\\n          -0.1485840231180191,\\n          -0.0025010062381625175,\\n          0.026408178731799126,\\n          0.027379808947443962,\\n          0.6299911737442017\\n        ],\\n        \\\"std\\\": [\\n          0.3968801498413086,\\n          0.3473387360572815,\\n          0.49239858984947205,\\n          0.055331431329250336,\\n          0.07844757288694382,\\n          0.10008802264928818,\\n          0.48270025849342346\\n        ],\\n        \\\"max\\\": [\\n          0.9375,\\n          0.9375,\\n          0.9375,\\n          0.3557142913341522,\\n          0.375,\\n          0.375,\\n          1.0\\n        ],\\n        \\\"min\\\": [\\n          -0.9375,\\n          -0.9375,\\n          -0.9375,\\n          -0.2582142949104309,\\n          -0.375,\\n          -0.2871428430080414,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          -0.8785714507102966,\\n          -0.7553571462631226,\\n          -0.9375,\\n          -0.1510714292526245,\\n          -0.1639285683631897,\\n          -0.13777500048279764,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.9375,\\n          0.9107142686843872,\\n          0.9375,\\n          0.20357142388820648,\\n          0.26357144117355347,\\n          0.375,\\n          1.0\\n        ],\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n        ]\\n      },\\n      \\\"proprio\\\": {\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"std\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ]\\n      },\\n      \\\"num_transitions\\\": 52042,\\n      \\\"num_trajectories\\\": 428\\n    }\\n  },\\n  \\\"output_projector_states\\\": false,\\n  \\\"pad_to_multiple_of\\\": 64,\\n  \\\"pad_token_id\\\": 32000,\\n  \\\"text_config\\\": {\\n    \\\"model_type\\\": \\\"llama\\\",\\n    \\\"pad_token_id\\\": 32000,\\n    \\\"torch_dtype\\\": \\\"bfloat16\\\",\\n    \\\"vocab_size\\\": 32064\\n  },\\n  \\\"timm_model_ids\\\": [\\n    \\\"vit_large_patch14_reg4_dinov2.lvd142m\\\",\\n    \\\"vit_so400m_patch14_siglip_224\\\"\\n  ],\\n  \\\"timm_override_act_layers\\\": [\\n    null,\\n    null\\n  ],\\n  \\\"torch_dtype\\\": \\\"bfloat16\\\",\\n  \\\"transformers_version\\\": \\\"4.40.1\\\",\\n  \\\"use_fused_vision_backbone\\\": true,\\n  \\\"vision_backbone_id\\\": \\\"dinosiglip-vit-so-224px\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019neWcunbvHQwggCraLwjqo`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/scripts/ -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "10a136ca-94a1-4f85-a784-389ce827ba15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTVXjYH8oCtMPyEBg81jjn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 29562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-26T19:55:48.290Z_
+
+<details><summary>↩ Tool result · `toolu_019neWcunbvHQwggCraLwjqo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/extract_features.py\\n/root/vla-ssd/scripts/extract_dinov2.py\\n/root/vla-ssd/scripts/__init__.py\\n/root/vla-ssd/scripts/train_probes.py\\n/root/vla-ssd/scripts/analyze_results.py\\n/root/vla-ssd/scripts/init_untrained.py\\n/root/vla-ssd/scripts/verify_shard.py\\n/root/vla-ssd/scripts/test_forward.py\\n/root/vla-ssd/scripts/post_download_pipeline.py\\n/root/vla-ssd/scripts/plot_ood_diagnostics.py\\n/root/vla-ssd/scripts/quick_verify.py\\n/root/vla-ssd/scripts/extract_subtask_labels.py\\n/root/vla-ssd/scripts/subtask_auc_dinov2.py\\n/root/vla-ssd/scripts/analyze_mvp_DEPRECATED.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe.py\\n/root/vla-ssd/scripts/analyze_action_probes.py\\n/root/vla-ssd/scripts/plot_action_probes.py\\n/root/vla-ssd/scripts/sr_debug.py\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\n/root/vla-ssd/scripts/behavioral_pilot.py\\n/root/vla-ssd/scripts/visual_similarity_gate.py\\n/root/vla-ssd/scripts/plot_full_32layer_attention.py\\n/root/vla-ssd/scripts/analyze_timestep_accuracy.py\\n/root/vla-ssd/scripts/plot_timestep_accuracy.py\\n/root/vla-ssd/scripts/shuffled_token_control.py\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\n/root/vla-ssd/scripts/extract_siglip_features.py\\n/root/vla-ssd/scripts/rsa_siglip_only.py\\n/root/vla-ssd/scripts/perlayer_degradation.py\\n/root/vla-ssd/scripts/extract_features_rand_inst.py\\n/root/vla-ssd/scripts/rsa_instruction_control.py\\n/root/vla-ssd/scripts/action_probe_projector.py\\n/root/vla-ssd/scripts/run_action_delta_all.py\\n/root/vla-ssd/scripts/dino_action_probe.py\\n/root/vla-ssd/scripts/action_probe_v2.py\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\n/root/vla-ssd/scripts/cka_verification.py\\n/root/vla-ssd/scripts/extract_clip_features.py\\n/root/vla-ssd/scripts/extract_features_clip.py\\n/root/vla-ssd/scripts/rsa_clip.py\\n/root/vla-ssd/scripts/unified_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe_final.py\\n/root/vla-ssd/scripts/patch_mean_action_probe.py\\n/root/vla-ssd/scripts/rsa_method_audit.py\\n/root/vla-ssd/scripts/extract_fused_backbone.py\\n/root/vla-ssd/scripts/rsa_branch_split.py\\n/root/vla-ssd/scripts/rsa_unified_vla.py\\n/root/vla-ssd/scripts/rsa_demo_standardized.py\\n/root/vla-ssd/scripts/rsa_definitive.py\\n/root/vla-ssd/scripts/fulllayer_action_probe.py\\n/root/vla-ssd/scripts/rsa_dino_standalone.py\\n/root/vla-ssd/scripts/rsa_libero_spatial.py\\n/root/vla-ssd/scripts/action_probe_libero_spatial.py\\n/root/vla-ssd/scripts/plot_spatial_results.py\\n/root/vla-ssd/scripts/ablations/rsa_cosine_action_metric.py\\n/root/vla-ssd/scripts/ablations/rsa_per_dof.py\\n/root/vla-ssd/scripts/ablations/rsa_permutation_null.py\\n/root/vla-ssd/scripts/ablations/probe_seed_robustness.py\\n/root/vla-ssd/scripts/ablations/demo_sensitivity.py\\n/root/vla-ssd/scripts/ablations/rsa_permutation_null_10k.py\\n/root/vla-ssd/scripts/qa_probe_classification.py\\n/root/vla-ssd/scripts/instruction_conditional_probe.py\\n/root/vla-ssd/scripts/instruction_conditional_extract.py\\n/root/vla-ssd/scripts/cross_instruction_classify.py\\n/root/vla-ssd/scripts/cross_instruction_extract_dense.py\\n/root/vla-ssd/scripts/cross_instruction_loocv.py\\n/root/vla-ssd/scripts/cross_instruction_classify_dense.py\\n/root/vla-ssd/scripts/l1_attention_visualization.py\\n/root/vla-ssd/scripts/create_llama2_base_openvla.py\\n/root/vla-ssd/scripts/cross_instruction_mlp_controls.py\\n/root/vla-ssd/scripts/plot_l1_attention_three_conditions.py\\n/root/vla-ssd/scripts/cross_instruction_extract_layers.py\\n/root/vla-ssd/scripts/multi_layer_attention.py\\n/root/vla-ssd/scripts/cross_instruction_classify_full.py\\n/root/vla-ssd/scripts/plot_three_condition_probe.py\\n/root/vla-ssd/scripts/full_layer_attention_analysis.py\\n/root/vla-ssd/scripts/plot_32layer_attention_profile.py\\n/root/vla-ssd/scripts/cross_instruction_classify_spatial.py\\n/root/vla-ssd/scripts/l1_head_ablation.py\\n/root/vla-ssd/scripts/l1_ablation_diagnostic.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe.py\\n/root/vla-ssd/scripts/bootstrap_action_probe.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe_control8.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\\n/root/vla-ssd/scripts/analyze_ablation_50demos.py\\n/root/vla-ssd/scripts/llama2base_action_probe.py\\n/root/vla-ssd/scripts/plot_action_r2_threecond.py\\n/root/vla-ssd/scripts/random_subset_ablation.py\\n/root/vla-ssd/scripts/linear_action_probe.py\\n/root/vla-ssd/scripts/ood_diagnostics.py\\n/root/vla-ssd/scripts/debug_verify.py\\n/root/vla-ssd/scripts/linear_probe_last_preaction.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe_v2.py\\n/root/vla-ssd/scripts/plot_threecond_multiseed_v2.py\\n/root/vla-ssd/scripts/action_trajectory_analysis.py\\n/root/vla-ssd/scripts/action_trajectory_control.py\\n/root/vla-ssd/scripts/behavioral_sr_validation.py\\n/root/vla-ssd/scripts/behavioral_pilot_v2.py\\n/root/vla-ssd/scripts/sr_debug2.py\\n/root/vla-ssd/scripts/sr_debug3.py\\n/root/vla-ssd/scripts/sr_debug4.py\\n/root/vla-ssd/scripts/sr_debug5.py\\n/root/vla-ssd/scripts/action_trajectory_L8_ablation.py\\n/root/vla-ssd/scripts/action_trajectory_L13_ablation.py\\n/root/vla-ssd/scripts/action_trajectory_extended_analysis.py\\n/root/vla-ssd/scripts/permutation_test_I2.py\\n/root/vla-ssd/scripts/dose_response_curve.py\\n/root/vla-ssd/scripts/plot_dose_response.py\\n/root/vla-ssd/scripts/combine_dose_response.py\\n/root/vla-ssd/scripts/counterfactual_instruction.py\\n/root/vla-ssd/scripts/attention_decomposition_and_r2.py\\n/root/vla-ssd/scripts/specificity_control_action.py\\n/root/vla-ssd/scripts/token_overlap_analysis.py\\n/root/vla-ssd/scripts/trajectory_level_cohens_d.py\\n/root/vla-ssd/scripts/groundtruth_action_error.py\\n/root/vla-ssd/scripts/matched_ablation_controls.py\\n/root/vla-ssd/scripts/behavioral_smoketest.py\\n/root/vla-ssd/scripts/libero_finetuned_attention_profile.py\\n/root/vla-ssd/scripts/libero_finetuned_probe_profile.py\\n/root/vla-ssd/scripts/sr_diagnostic.py\\n/root/vla-ssd/scripts/sr_diagnostic_run.py\\n/root/vla-ssd/scripts/sr_corrected_3ep.py\\n/root/vla-ssd/scripts/sr_official_pipeline.py\\n/root/vla-ssd/scripts/sr_official_pipeline_v2.py\\n/root/vla-ssd/scripts/phi3v_attention_profile.py\\n/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py\\n/root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\\n/root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\n/root/vla-ssd/scripts/fig_cross_architecture_attention.py\\n/root/vla-ssd/scripts/action_trajectory_cpu_analysis.py\\n/root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py\\n/root/vla-ssd/scripts/r2_probe_seed_expansion.py\\n/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\n/root/vla-ssd/scripts/phi3v_attention_untrained_10tasks.py\\n/root/vla-ssd/scripts/phi3v_r2_action_probe.py\\n/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py\\n/root/vla-ssd/scripts/phi3v_r2_seed_expansion.py\\n/root/vla-ssd/scripts/phi3v_untrained_seed_expansion.py\\n/root/vla-ssd/scripts/counterfactual_instruction_10tasks.py\\n/root/vla-ssd/scripts/counterfactual_spatial.py\\n/root/vla-ssd/scripts/counterfactual_10tasks_trajectory.py\\n/root/vla-ssd/scripts/smolvla_dryrun.py\\n/root/vla-ssd/scripts/gen_fig_r2_collapse_v2.py\\n/root/vla-ssd/scripts/gen_fig_r2_collapse_v3.py\\n/root/vla-ssd/scripts/action_head_decode_untrained.py\\n/root/vla-ssd/scripts/action_head_decoding.py\\n/root/vla-ssd/scripts/action_head_decode_untrained_50demos.py\\n/root/vla-ssd/scripts/diagnose_exit_layer.py\\n/root/vla-ssd/scripts/diagnose_exit_layer2.py\\n/root/vla-ssd/scripts/diagnose_causal.py\\n/root/vla-ssd/scripts/diagnose_mini.py\\n/root/vla-ssd/scripts/diagnose_mini2.py\\n/root/vla-ssd/scripts/diagnose_softmax.py\\n/root/vla-ssd/scripts/diagnose_autoreg.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "60b5a0d3-ba0d-4f6c-a3f3-b262e7cde26f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/vla-ssd/scripts/extract_features.py\\\\n/root/vla-ssd/scripts/extract_dinov2.py\\\\n/root/vla-ssd/scripts/__init__.py\\\\n/root/vla-ssd/scripts/train_probes.py\\\\n/root/vla-ssd/scripts/analyze_results.py\\\\n/root/vla-ssd/scripts/init_untrained.py\\\\n/root/vla-ssd/scripts/verify_shard.py\\\\n/root/vla-ssd/scripts/test_forward.py\\\\n/root/vla-ssd/scripts/post_download_pipeline.py\\\\n/root/vla-ssd/scripts/plot_ood_diagnostics.py\\\\n/root/vla-ssd/scripts/quick_verify.py\\\\n/root/vla-ssd/scripts/extract_subtask_labels.py\\\\n/root/vla-ssd/scripts/subtask_auc_dinov2.py\\\\n/root/vla-ssd/scripts/analyze_mvp_DEPRECATED.py\\\\n/root/vla-ssd/scripts/threecond_multiseed_probe.py\\\\n/root/vla-ssd/scripts/analyze_action_probes.py\\\\n/root/vla-ssd/scripts/plot_action_probes.py\\\\n/root/vla-ssd/scripts/sr_debug.py\\\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\\\n/root/vla-ssd/scripts/behavioral_pilot.py\\\\n/root/vla-ssd/scripts/visual_similarity_gate.py\\\\n/root/vla-ssd/scripts/plot_full_32layer_attention.py\\\\n/root/vla-ssd/scripts/analyze_timestep_accuracy.py\\\\n/root/vla-ssd/scripts/plot_timestep_accuracy.py\\\\n/root/vla-ssd/scripts/shuffled_token_control.py\\\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\\\n/root/vla-ssd/scripts/extract_siglip_features.py\\\\n/root/vla-ssd/scripts/rsa_siglip_only.py\\\\n/root/vla-ssd/scripts/perlayer_degradation.py\\\\n/root/vla-ssd/scripts/extract_features_rand_inst.py\\\\n/root/vla-ssd/scripts/rsa_instruction_control.py\\\\n/root/vla-ssd/scripts/action_probe_projector.py\\\\n/root/vla-ssd/scripts/run_action_delta_all.py\\\\n/root/vla-ssd/scripts/dino_action_probe.py\\\\n/root/vla-ssd/scripts/action_probe_v2.py\\\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\\\n/root/vla-ssd/scripts/cka_verification.py\\\\n/root/vla-ssd/scripts/extract_clip_features.py\\\\n/root/vla-ssd/scripts/extract_features_clip.py\\\\n/root/vla-ssd/scripts/rsa_clip.py\\\\n/root/vla-ssd/scripts/unified_action_probe.py\\\\n/root/vla-ssd/scripts/run_clip_action_probe.py\\\\n/root/vla-ssd/scripts/run_clip_action_probe_final.py\\\\n/root/vla-ssd/scripts/patch_mean_action_probe.py\\\\n/root/vla-ssd/scripts/rsa_method_audit.py\\\\n/root/vla-ssd/scripts/extract_fused_backbone.py\\\\n/root/vla-ssd/scripts/rsa_branch_split.py\\\\n/root/vla-ssd/scripts/rsa_unified_vla.py\\\\n/root/vla-ssd/scripts/rsa_demo_standardized.py\\\\n/root/vla-ssd/scripts/rsa_definitive.py\\\\n/root/vla-ssd/scripts/fulllayer_action_probe.py\\\\n/root/vla-ssd/scripts/rsa_dino_standalone.py\\\\n/root/vla-ssd/scripts/rsa_libero_spatial.py\\\\n/root/vla-ssd/scripts/action_probe_libero_spatial.py\\\\n/root/vla-ssd/scripts/plot_spatial_results.py\\\\n/root/vla-ssd/scripts/ablations/rsa_cosine_action_metric.py\\\\n/root/vla-ssd/scripts/ablations/rsa_per_dof.py\\\\n/root/vla-ssd/scripts/ablations/rsa_permutation_null.py\\\\n/root/vla-ssd/scripts/ablations/probe_seed_robustness.py\\\\n/root/vla-ssd/scripts/ablations/demo_sensitivity.py\\\\n/root/vla-ssd/scripts/ablations/rsa_permutation_null_10k.py\\\\n/root/vla-ssd/scripts/qa_probe_classification.py\\\\n/root/vla-ssd/scripts/instruction_conditional_probe.py\\\\n/root/vla-ssd/scripts/instruction_conditional_extract.py\\\\n/root/vla-ssd/scripts/cross_instruction_classify.py\\\\n/root/vla-ssd/scripts/cross_instruction_extract_dense.py\\\\n/root/vla-ssd/scripts/cross_instruction_loocv.py\\\\n/root/vla-ssd/scripts/cross_instruction_classify_dense.py\\\\n/root/vla-ssd/scripts/l1_attention_visualization.py\\\\n/root/vla-ssd/scripts/create_llama2_base_openvla.py\\\\n/root/vla-ssd/scripts/cross_instruction_mlp_controls.py\\\\n/root/vla-ssd/scripts/plot_l1_attention_three_conditions.py\\\\n/root/vla-ssd/scripts/cross_instruction_extract_layers.py\\\\n/root/vla-ssd/scripts/multi_layer_attention.py\\\\n/root/vla-ssd/scripts/cross_instruction_classify_full.py\\\\n/root/vla-ssd/scripts/plot_three_condition_probe.py\\\\n/root/vla-ssd/scripts/full_layer_attention_analysis.py\\\\n/root/vla-ssd/scripts/plot_32layer_attention_profile.py\\\\n/root/vla-ssd/scripts/cross_instruction_classify_spatial.py\\\\n/root/vla-ssd/scripts/l1_head_ablation.py\\\\n/root/vla-ssd/scripts/l1_ablation_diagnostic.py\\\\n/root/vla-ssd/scripts/l1_ablation_action_probe.py\\\\n/root/vla-ssd/scripts/bootstrap_action_probe.py\\\\n/root/vla-ssd/scripts/l1_ablation_action_probe_control8.py\\\\n/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\\\\n/root/vla-ssd/scripts/analyze_ablation_50demos.py\\\\n/root/vla-ssd/scripts/llama2base_action_probe.py\\\\n/root/vla-ssd/scripts/plot_action_r2_threecond.py\\\\n/root/vla-ssd/scripts/random_subset_ablation.py\\\\n/root/vla-ssd/scripts/linear_action_probe.py\\\\n/root/vla-ssd/scripts/ood_diagnostics.py\\\\n/root/vla-ssd/scripts/debug_verify.py\\\\n/root/vla-ssd/scripts/linear_probe_last_preaction.py\\\\n/root/vla-ssd/scripts/threecond_multiseed_probe_v2.py\\\\n/root/vla-ssd/scripts/plot_threecond_multiseed_v2.py\\\\n/root/vla-ssd/scripts/action_trajectory_analysis.py\\\\n/root/vla-ssd/scripts/action_trajectory_control.py\\\\n/root/vla-ssd/scripts/behavioral_sr_validation.py\\\\n/root/vla-ssd/scripts/behavioral_pilot_v2.py\\\\n/root/vla-ssd/scripts/sr_debug2.py\\\\n/root/vla-ssd/scripts/sr_debug3.py\\\\n/root/vla-ssd/scripts/sr_debug4.py\\\\n/root/vla-ssd/scripts/sr_debug5.py\\\\n/root/vla-ssd/scripts/action_trajectory_L8_ablation.py\\\\n/root/vla-ssd/scripts/action_trajectory_L13_ablation.py\\\\n/root/vla-ssd/scripts/action_trajectory_extended_analysis.py\\\\n/root/vla-ssd/scripts/permutation_test_I2.py\\\\n/root/vla-ssd/scripts/dose_response_curve.py\\\\n/root/vla-ssd/scripts/plot_dose_response.py\\\\n/root/vla-ssd/scripts/combine_dose_response.py\\\\n/root/vla-ssd/scripts/counterfactual_instruction.py\\\\n/root/vla-ssd/scripts/attention_decomposition_and_r2.py\\\\n/root/vla-ssd/scripts/specificity_control_action.py\\\\n/root/vla-ssd/scripts/token_overlap_analysis.py\\\\n/root/vla-ssd/scripts/trajectory_level_cohens_d.py\\\\n/root/vla-ssd/scripts/groundtruth_action_error.py\\\\n/root/vla-ssd/scripts/matched_ablation_controls.py\\\\n/root/vla-ssd/scripts/behavioral_smoketest.py\\\\n/root/vla-ssd/scripts/libero_finetuned_attention_profile.py\\\\n/root/vla-ssd/scripts/libero_finetuned_probe_profile.py\\\\n/root/vla-ssd/scripts/sr_diagnostic.py\\\\n/root/vla-ssd/scripts/sr_diagnostic_run.py\\\\n/root/vla-ssd/scripts/sr_corrected_3ep.py\\\\n/root/vla-ssd/scripts/sr_official_pipeline.py\\\\n/root/vla-ssd/scripts/sr_official_pipeline_v2.py\\\\n/root/vla-ssd/scripts/phi3v_attention_profile.py\\\\n/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py\\\\n/root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\\\\n/root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\\\n/root/vla-ssd/scripts/fig_cross_architecture_attention.py\\\\n/root/vla-ssd/scripts/action_trajectory_cpu_analysis.py\\\\n/root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py\\\\n/root/vla-ssd/scripts/r2_probe_seed_expansion.py\\\\n/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\\\n/root/vla-ssd/scripts/phi3v_attention_untrained_10tasks.py\\\\n/root/vla-ssd/scripts/phi3v_r2_action_probe.py\\\\n/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py\\\\n/root/vla-ssd/scripts/phi3v_r2_seed_expansion.py\\\\n/root/vla-ssd/scripts/phi3v_untrained_seed_expansion.py\\\\n/root/vla-ssd/scripts/counterfactual_instruction_10tasks.py\\\\n/root/vla-ssd/scripts/counterfactual_spatial.py\\\\n/root/vla-ssd/scripts/counterfactual_10tasks_trajectory.py\\\\n/root/vla-ssd/scripts/smolvla_dryrun.py\\\\n/root/vla-ssd/scripts/gen_fig_r2_collapse_v2.py\\\\n/root/vla-ssd/scripts/gen_fig_r2_collapse_v3.py\\\\n/root/vla-ssd/scripts/action_head_decode_untrained.py\\\\n/root/vla-ssd/scripts/action_head_decoding.py\\\\n/root/vla-ssd/scripts/action_head_decode_untrained_50demos.py\\\\n/root/vla-ssd/scripts/diagnose_exit_layer.py\\\\n/root/vla-ssd/scripts/diagnose_exit_layer2.py\\\\n/root/vla-ssd/scripts/diagnose_causal.py\\\\n/root/vla-ssd/scripts/diagnose_mini.py\\\\n/root/vla-ssd/scripts/diagnose_mini2.py\\\\n/root/vla-ssd/scripts/diagnose_softmax.py\\\\n/root/vla-ssd/scripts/diagnose_autoreg.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/extract_features.py\\n/root/vla-ssd/scripts/extract_dinov2.py\\n/root/vla-ssd/scripts/__init__.py\\n/root/vla-ssd/scripts/train_probes.py\\n/root/vla-ssd/scripts/analyze_results.py\\n/root/vla-ssd/scripts/init_untrained.py\\n/root/vla-ssd/scripts/verify_shard.py\\n/root/vla-ssd/scripts/test_forward.py\\n/root/vla-ssd/scripts/post_download_pipeline.py\\n/root/vla-ssd/scripts/plot_ood_diagnostics.py\\n/root/vla-ssd/scripts/quick_verify.py\\n/root/vla-ssd/scripts/extract_subtask_labels.py\\n/root/vla-ssd/scripts/subtask_auc_dinov2.py\\n/root/vla-ssd/scripts/analyze_mvp_DEPRECATED.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe.py\\n/root/vla-ssd/scripts/analyze_action_probes.py\\n/root/vla-ssd/scripts/plot_action_probes.py\\n/root/vla-ssd/scripts/sr_debug.py\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\n/root/vla-ssd/scripts/behavioral_pilot.py\\n/root/vla-ssd/scripts/visual_similarity_gate.py\\n/root/vla-ssd/scripts/plot_full_32layer_attention.py\\n/root/vla-ssd/scripts/analyze_timestep_accuracy.py\\n/root/vla-ssd/scripts/plot_timestep_accuracy.py\\n/root/vla-ssd/scripts/shuffled_token_control.py\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\n/root/vla-ssd/scripts/extract_siglip_features.py\\n/root/vla-ssd/scripts/rsa_siglip_only.py\\n/root/vla-ssd/scripts/perlayer_degradation.py\\n/root/vla-ssd/scripts/extract_features_rand_inst.py\\n/root/vla-ssd/scripts/rsa_instruction_control.py\\n/root/vla-ssd/scripts/action_probe_projector.py\\n/root/vla-ssd/scripts/run_action_delta_all.py\\n/root/vla-ssd/scripts/dino_action_probe.py\\n/root/vla-ssd/scripts/action_probe_v2.py\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\n/root/vla-ssd/scripts/cka_verification.py\\n/root/vla-ssd/scripts/extract_clip_features.py\\n/root/vla-ssd/scripts/extract_features_clip.py\\n/root/vla-ssd/scripts/rsa_clip.py\\n/root/vla-ssd/scripts/unified_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe_final.py\\n/root/vla-ssd/scripts/patch_mean_action_probe.py\\n/root/vla-ssd/scripts/rsa_method_audit.py\\n/root/vla-ssd/scripts/extract_fused_backbone.py\\n/root/vla-ssd/scripts/rsa_branch_split.py\\n/root/vla-ssd/scripts/rsa_unified_vla.py\\n/root/vla-ssd/scripts/rsa_demo_standardized.py\\n/root/vla-ssd/scripts/rsa_definitive.py\\n/root/vla-ssd/scripts/fulllayer_action_probe.py\\n/root/vla-ssd/scripts/rsa_dino_standalone.py\\n/root/vla-ssd/scripts/rsa_libero_spatial.py\\n/root/vla-ssd/scripts/action_probe_libero_spatial.py\\n/root/vla-ssd/scripts/plot_spatial_results.py\\n/root/vla-ssd/scripts/ablations/rsa_cosine_action_metric.py\\n/root/vla-ssd/scripts/ablations/rsa_per_dof.py\\n/root/vla-ssd/scripts/ablations/rsa_permutation_null.py\\n/root/vla-ssd/scripts/ablations/probe_seed_robustness.py\\n/root/vla-ssd/scripts/ablations/demo_sensitivity.py\\n/root/vla-ssd/scripts/ablations/rsa_permutation_null_10k.py\\n/root/vla-ssd/scripts/qa_probe_classification.py\\n/root/vla-ssd/scripts/instruction_conditional_probe.py\\n/root/vla-ssd/scripts/instruction_conditional_extract.py\\n/root/vla-ssd/scripts/cross_instruction_classify.py\\n/root/vla-ssd/scripts/cross_instruction_extract_dense.py\\n/root/vla-ssd/scripts/cross_instruction_loocv.py\\n/root/vla-ssd/scripts/cross_instruction_classify_dense.py\\n/root/vla-ssd/scripts/l1_attention_visualization.py\\n/root/vla-ssd/scripts/create_llama2_base_openvla.py\\n/root/vla-ssd/scripts/cross_instruction_mlp_controls.py\\n/root/vla-ssd/scripts/plot_l1_attention_three_conditions.py\\n/root/vla-ssd/scripts/cross_instruction_extract_layers.py\\n/root/vla-ssd/scripts/multi_layer_attention.py\\n/root/vla-ssd/scripts/cross_instruction_classify_full.py\\n/root/vla-ssd/scripts/plot_three_condition_probe.py\\n/root/vla-ssd/scripts/full_layer_attention_analysis.py\\n/root/vla-ssd/scripts/plot_32layer_attention_profile.py\\n/root/vla-ssd/scripts/cross_instruction_classify_spatial.py\\n/root/vla-ssd/scripts/l1_head_ablation.py\\n/root/vla-ssd/scripts/l1_ablation_diagnostic.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe.py\\n/root/vla-ssd/scripts/bootstrap_action_probe.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe_control8.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py\\n/root/vla-ssd/scripts/analyze_ablation_50demos.py\\n/root/vla-ssd/scripts/llama2base_action_probe.py\\n/root/vla-ssd/scripts/plot_action_r2_threecond.py\\n/root/vla-ssd/scripts/random_subset_ablation.py\\n/root/vla-ssd/scripts/linear_action_probe.py\\n/root/vla-ssd/scripts/ood_diagnostics.py\\n/root/vla-ssd/scripts/debug_verify.py\\n/root/vla-ssd/scripts/linear_probe_last_preaction.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe_v2.py\\n/root/vla-ssd/scripts/plot_threecond_multiseed_v2.py\\n/root/vla-ssd/scripts/action_trajectory_analysis.py\\n/root/vla-ssd/scripts/action_trajectory_control.py\\n/root/vla-ssd/scripts/behavioral_sr_validation.py\\n/root/vla-ssd/scripts/behavioral_pilot_v2.py\\n/root/vla-ssd/scripts/sr_debug2.py\\n/root/vla-ssd/scripts/sr_debug3.py\\n/root/vla-ssd/scripts/sr_debug4.py\\n/root/vla-ssd/scripts/sr_debug5.py\\n/root/vla-ssd/scripts/action_trajectory_L8_ablation.py\\n/root/vla-ssd/scripts/action_trajectory_L13_ablation.py\\n/root/vla-ssd/scripts/action_trajectory_extended_analysis.py\\n/root/vla-ssd/scripts/permutation_test_I2.py\\n/root/vla-ssd/scripts/dose_response_curve.py\\n/root/vla-ssd/scripts/plot_dose_response.py\\n/root/vla-ssd/scripts/combine_dose_response.py\\n/root/vla-ssd/scripts/counterfactual_instruction.py\\n/root/vla-ssd/scripts/attention_decomposition_and_r2.py\\n/root/vla-ssd/scripts/specificity_control_action.py\\n/root/vla-ssd/scripts/token_overlap_analysis.py\\n/root/vla-ssd/scripts/trajectory_level_cohens_d.py\\n/root/vla-ssd/scripts/groundtruth_action_error.py\\n/root/vla-ssd/scripts/matched_ablation_controls.py\\n/root/vla-ssd/scripts/behavioral_smoketest.py\\n/root/vla-ssd/scripts/libero_finetuned_attention_profile.py\\n/root/vla-ssd/scripts/libero_finetuned_probe_profile.py\\n/root/vla-ssd/scripts/sr_diagnostic.py\\n/root/vla-ssd/scripts/sr_diagnostic_run.py\\n/root/vla-ssd/scripts/sr_corrected_3ep.py\\n/root/vla-ssd/scripts/sr_official_pipeline.py\\n/root/vla-ssd/scripts/sr_official_pipeline_v2.py\\n/root/vla-ssd/scripts/phi3v_attention_profile.py\\n/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py\\n/root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\\n/root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\\n/root/vla-ssd/scripts/fig_cross_architecture_attention.py\\n/root/vla-ssd/scripts/action_trajectory_cpu_analysis.py\\n/root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py\\n/root/vla-ssd/scripts/r2_probe_seed_expansion.py\\n/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\n/root/vla-ssd/scripts/phi3v_attention_untrained_10tasks.py\\n/root/vla-ssd/scripts/phi3v_r2_action_probe.py\\n/root/vla-ssd/scripts/phi3v_r2_untrained_probe.py\\n/root/vla-ssd/scripts/phi3v_r2_seed_expansion.py\\n/root/vla-ssd/scripts/phi3v_untrained_seed_expansion.py\\n/root/vla-ssd/scripts/counterfactual_instruction_10tasks.py\\n/root/vla-ssd/scripts/counterfactual_spatial.py\\n/root/vla-ssd/scripts/counterfactual_10tasks_trajectory.py\\n/root/vla-ssd/scripts/smolvla_dryrun.py\\n/root/vla-ssd/scripts/gen_fig_r2_collapse_v2.py\\n/root/vla-ssd/scripts/gen_fig_r2_collapse_v3.py\\n/root/vla-ssd/scripts/action_head_decode_untrained.py\\n/root/vla-ssd/scripts/action_head_decoding.py\\n/root/vla-ssd/scripts/action_head_decode_untrained_50demos.py\\n/root/vla-ssd/scripts/diagnose_exit_layer.py\\n/root/vla-ssd/scripts/diagnose_exit_layer2.py\\n/root/vla-ssd/scripts/diagnose_causal.py\\n/root/vla-ssd/scripts/diagnose_mini.py\\n/root/vla-ssd/scripts/diagnose_mini2.py\\n/root/vla-ssd/scripts/diagnose_softmax.py\\n/root/vla-ssd/scripts/diagnose_autoreg.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There are existing diagnosis scripts. Let me check `action_head_decoding.py` and the latest `diagnose_*.py` scripts to understand the current implementation and potential issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "fe4e19ff-83f3-455e-ad2b-050a8f186ec0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6moRuV83BYfTuQYGRnWx1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5850,
+      "cache_read_input_tokens": 32872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Let me check the existing decoding and diagnosis scripts to understand the current implementation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "046b5903-b679-46df-b075-ca8d7b764313",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6moRuV83BYfTuQYGRnWx1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5850,
+      "cache_read_input_tokens": 32872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015aWSVAgcSFF9XbR69Gq7Te`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/action_head_decoding.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "adfd3e39-7301-40a7-9de6-d69487e77403",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6moRuV83BYfTuQYGRnWx1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5850,
+      "cache_read_input_tokens": 32872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KFh7VD9uC1UkAdhieyBAA5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/diagnose_autoreg.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "ec13e9ba-66fc-46f5-b998-be3fd8f6786b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6moRuV83BYfTuQYGRnWx1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5850,
+      "cache_read_input_tokens": 32872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-26T19:55:57.406Z_
+
+<details><summary>↩ Tool result · `toolu_015aWSVAgcSFF9XbR69Gq7Te`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Action-Head Decoding: apply frozen LM head to each layer's hidden state.\\n\\nTeacher forcing with ground truth action tokens. Compare decoded actions\\nagainst ground truth to get per-layer R², then compare with independent\\nprobe R² to distinguish genuine information collapse from format specialization.\\n\\\"\\\"\\\"\\n\\nimport os, json, time, glob\\nimport numpy as np\\nimport torch\\nimport h5py\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nOUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/action_head_decoding\\\"\\nPROBE_JSON = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_DEMOS = 50\\nFRAMES_PER_DEMO = 10\\nN_HIDDEN = 33\\nACTION_DIM = 7\\nN_ACTION_BINS = 256\\nEMPTY_TOKEN = 29871\\n\\nos.makedirs(OUT_DIR, exist_ok=True)\\n\\n\\ndef task_desc_from_filename(fname):\\n    return Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    print(f\\\"Model: {sum(p.numel() for p in model.parameters())/1e9:.1f}B on {device}\\\")\\n    return model, proc\\n\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    return dict(\\n        q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n        mask=np.array(stats[\\\"mask\\\"]), vocab_size=vocab_size,\\n        bins=bins, bin_centers=(bins[:-1] + bins[1:]) / 2.0,\\n    )\\n\\n\\ndef raw_to_norm(action, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(action - c[\\\"q01\\\"])/(c[\\\"q99\\\"] - c[\\\"q01\\\"] + 1e-8) - 1, action)\\n    return np.clip(n, -1, 1)\\n\\n\\ndef norm_to_tokens(norm_action, c):\\n    idx = np.clip(np.digitize(norm_action, c[\\\"bins\\\"]) - 1, 0, N_ACTION_BINS - 2)\\n    return c[\\\"vocab_size\\\"] - 1 - idx\\n\\n\\ndef tokens_to_norm(token_ids, c):\\n    d = np.clip(c[\\\"vocab_size\\\"] - token_ids - 1, 0, len(c[\\\"bin_centers\\\"]) - 1)\\n    return c[\\\"bin_centers\\\"][d]\\n\\n\\ndef make_tf_input(proc, prompt, image, gt_action, codec, device):\\n    inp = proc(text=prompt, images=image, return_tensors=\\\"pt\\\")\\n    inp = {k: v.to(device) for k, v in inp.items()}\\n\\n    if inp[\\\"input_ids\\\"][0, -1].item() != EMPTY_TOKEN:\\n        inp[\\\"input_ids\\\"] = torch.cat([\\n            inp[\\\"input_ids\\\"],\\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=device)\\n        ], dim=1)\\n        if \\\"attention_mask\\\" in inp:\\n            inp[\\\"attention_mask\\\"] = torch.cat([\\n                inp[\\\"attention_mask\\\"],\\n                torch.ones(1, 1, dtype=inp[\\\"attention_mask\\\"].dtype, device=device)\\n            ], dim=1)\\n\\n    gt_norm = raw_to_norm(gt_action, codec)\\n    gt_toks = norm_to_tokens(gt_norm, codec)\\n    action_ids = torch.tensor(gt_toks, dtype=torch.long, device=device).unsqueeze(0)\\n    inp[\\\"input_ids\\\"] = torch.cat([inp[\\\"input_ids\\\"], action_ids], dim=1)\\n    if \\\"attention_mask\\\" in inp:\\n        inp[\\\"attention_mask\\\"] = torch.cat([\\n            inp[\\\"attention_mask\\\"],\\n            torch.ones(1, ACTION_DIM, dtype=inp[\\\"attention_mask\\\"].dtype, device=device)\\n        ], dim=1)\\n    return inp, gt_norm\\n\\n\\n@torch.no_grad()\\ndef decode_layers(model, inp, codec):\\n    norm_fn = model.language_model.model.norm\\n    lm_head = model.language_model.lm_head\\n\\n    with torch.amp.autocast(\\\"cuda\\\", dtype=torch.bfloat16):\\n        out = model(**inp, output_hidden_states=True)\\n\\n    # IMPORTANT: actual seq_len includes 256 image \\n\\n... [截断: 输出过长，省略 3501 字符] ...\\n\\n_pred = [], {li: [] for li in range(N_HIDDEN)}\\n    n = 0\\n    t_start = time.time()\\n\\n    for hf_path in hdf5_files:\\n        task = task_desc_from_filename(hf_path)\\n        prompt = f\\\"In: What action should the robot take to {task}?\\\\nOut:\\\"\\n\\n        with h5py.File(hf_path, \\\"r\\\") as hf:\\n            dkeys = sorted(hf[\\\"data\\\"].keys(), key=lambda x: int(x.split(\\\"_\\\")[1]))[:MAX_DEMOS]\\n            for dk in dkeys:\\n                imgs = hf[f\\\"data/{dk}/obs/agentview_rgb\\\"]\\n                acts = np.array(hf[f\\\"data/{dk}/actions\\\"])\\n                T = imgs.shape[0]\\n                idxs = (list(range(T)) if T <= FRAMES_PER_DEMO\\n                        else np.linspace(0, T-1, FRAMES_PER_DEMO, dtype=int).tolist())\\n\\n                for t in idxs:\\n                    img = Image.fromarray(imgs[t])\\n                    inp, gt_n = make_tf_input(proc, prompt, img, acts[t], codec, device)\\n                    preds = decode_layers(model, inp, codec)\\n\\n                    all_gt.append(gt_n)\\n                    for li in range(N_HIDDEN):\\n                        all_pred[li].append(preds[li])\\n                    n += 1\\n                    del inp\\n\\n        elapsed = time.time() - t_start\\n        rate = n / elapsed if elapsed > 0 else 0\\n        print(f\\\"  {task[:45]:45s}  [{n:5d} samples, {rate:.1f} samp/s]\\\")\\n\\n    gt_arr = np.array(all_gt)\\n    results = {}\\n    for li in range(N_HIDDEN):\\n        pa = np.array(all_pred[li])\\n        ss_res = np.sum((pa - gt_arr)**2, axis=0)\\n        ss_tot = np.sum((gt_arr - gt_arr.mean(0, keepdims=True))**2, axis=0)\\n        r2_dim = 1 - ss_res / (ss_tot + 1e-12)\\n        results[f\\\"L{li}\\\"] = dict(\\n            mean_R2=float(np.mean(r2_dim)),\\n            overall_R2=float(1 - ss_res.sum()/(ss_tot.sum()+1e-12)),\\n            r2_per_dim=[float(x) for x in r2_dim],\\n            mse=float(np.mean((pa - gt_arr)**2)),\\n        )\\n    return results, n\\n\\n\\ndef plot(results):\\n    import matplotlib\\n    matplotlib.use(\\\"Agg\\\")\\n    matplotlib.rcParams[\\\"pdf.fonttype\\\"] = 42\\n    matplotlib.rcParams[\\\"ps.fonttype\\\"] = 42\\n    import matplotlib.pyplot as plt\\n\\n    with open(PROBE_JSON) as f:\\n        pd = json.load(f)\\n\\n    layers = list(range(N_HIDDEN))\\n    ah = [results[f\\\"L{l}\\\"][\\\"mean_R2\\\"] for l in layers]\\n    pr = [pd[\\\"trained\\\"][\\\"last_preaction\\\"][f\\\"layer_{l}\\\"][\\\"mean_R2\\\"] for l in layers]\\n\\n    fig, ax = plt.subplots(figsize=(8, 4.8))\\n    ax.plot(layers, ah, \\\"o-\\\",  color=\\\"#e74c3c\\\", lw=2, ms=4, label=\\\"Action Head (frozen LM head)\\\")\\n    ax.plot(layers, pr, \\\"s--\\\", color=\\\"#3498db\\\", lw=2, ms=4, label=\\\"Independent Probe (MLP)\\\")\\n    ax.set_xlabel(\\\"Layer\\\", fontsize=13)\\n    ax.set_ylabel(\\\"R²\\\", fontsize=13)\\n    ax.legend(fontsize=11, loc=\\\"lower right\\\")\\n    ax.set_xlim(-0.5, N_HIDDEN - 0.5)\\n    ax.grid(True, alpha=0.3)\\n    plt.tight_layout()\\n\\n    pdf = os.path.join(OUT_DIR, \\\"fig_action_head_vs_probe.pdf\\\")\\n    plt.savefig(pdf, dpi=150)\\n    plt.savefig(pdf.replace(\\\".pdf\\\", \\\".png\\\"), dpi=150)\\n    print(f\\\"Figure: {pdf}\\\")\\n\\n\\ndef main():\\n    print(\\\"=== Action Head Decoding: OpenVLA LIBERO-Goal ===\\\")\\n    t0 = time.time()\\n\\n    model, proc = load_model(CKPT, DEVICE)\\n    codec = get_codec(model)\\n    print(f\\\"Action vocab_size: {codec['vocab_size']}\\\")\\n\\n    print(\\\"\\\\n-- DRY RUN --\\\")\\n    dry_run(model, proc, codec, DEVICE)\\n\\n    print(\\\"-- FULL EXPERIMENT --\\\")\\n    results, n = run_experiment(model, proc, codec, DEVICE)\\n\\n    elapsed = time.time() - t0\\n    out = dict(\\n        experiment=\\\"action_head_decoding\\\",\\n        model=\\\"openvla-7b-finetuned-libero-goal\\\",\\n        n_samples=n, frames_per_demo=FRAMES_PER_DEMO, max_demos=MAX_DEMOS,\\n        per_layer=results, elapsed_seconds=elapsed,\\n    )\\n    jpath = os.path.join(OUT_DIR, \\\"openvla_goal_action_head_r2.json\\\")\\n    with open(jpath, \\\"w\\\") as f:\\n        json.dump(out, f, indent=2)\\n    print(f\\\"JSON: {jpath}\\\")\\n\\n    plot(results)\\n\\n    print(\\\"\\\\n-- SUMMARY --\\\")\\n    for l in [0, 8, 13, 16, 24, 31, 32]:\\n        print(f\\\"  L{l:2d}: R2={results[f'L{l}']['mean_R2']:.4f}\\\")\\n    print(f\\\"Done: {n} samples, {elapsed:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "50d516e3-d8ad-4068-8540-2f5bf75b5283",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Action-Head Decoding: apply frozen LM head to each layer's hidden state.\\\\n\\\\nTeacher forcing with ground truth action tokens. Compare decoded actions\\\\nagainst ground truth to get per-layer R², then compare with independent\\\\nprobe R² to distinguish genuine information collapse from format specialization.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, json, time, glob\\\\nimport numpy as np\\\\nimport torch\\\\nimport h5py\\\\nfrom pathlib import Path\\\\nfrom PIL import Image\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nCKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\"\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nOUT_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/results/action_head_decoding\\\\\\\"\\\\nPROBE_JSON = \\\\\\\"/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nMAX_DEMOS = 50\\\\nFRAMES_PER_DEMO = 10\\\\nN_HIDDEN = 33\\\\nACTION_DIM = 7\\\\nN_ACTION_BINS = 256\\\\nEMPTY_TOKEN = 29871\\\\n\\\\nos.makedirs(OUT_DIR, exist_ok=True)\\\\n\\\\n\\\\ndef task_desc_from_filename(fname):\\\\n    return Path(fname).stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")\\\\n\\\\n\\\\ndef load_model(ckpt, device):\\\\n    from transformers import AutoProcessor\\\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\\\n\\\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\\\n    ModelClass = get_class_from_dynamic_module(\\\\n        \\\\\\\"modeling_prismatic.OpenVLAForActionPrediction\\\\\\\", ckpt)\\\\n    model = ModelClass.from_pretrained(\\\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\", local_files_only=True,\\\\n    ).to(device).eval()\\\\n    print(f\\\\\\\"Model: {sum(p.numel() for p in model.parameters())/1e9:.1f}B on {device}\\\\\\\")\\\\n    return model, proc\\\\n\\\\n\\\\ndef get_codec(model):\\\\n    stats = model.norm_stats[\\\\\\\"libero_goal\\\\\\\"][\\\\\\\"action\\\\\\\"]\\\\n    vocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\\\n    return dict(\\\\n        q01=np.array(stats[\\\\\\\"q01\\\\\\\"]), q99=np.array(stats[\\\\\\\"q99\\\\\\\"]),\\\\n        mask=np.array(stats[\\\\\\\"mask\\\\\\\"]), vocab_size=vocab_size,\\\\n        bins=bins, bin_centers=(bins[:-1] + bins[1:]) / 2.0,\\\\n    )\\\\n\\\\n\\\\ndef raw_to_norm(action, c):\\\\n    n = np.where(c[\\\\\\\"mask\\\\\\\"], 2*(action - c[\\\\\\\"q01\\\\\\\"])/(c[\\\\\\\"q99\\\\\\\"] - c[\\\\\\\"q01\\\\\\\"] + 1e-8) - 1, action)\\\\n    return np.clip(n, -1, 1)\\\\n\\\\n\\\\ndef norm_to_tokens(norm_action, c):\\\\n    idx = np.clip(np.digitize(norm_action, c[\\\\\\\"bins\\\\\\\"]) - 1, 0, N_ACTION_BINS - 2)\\\\n    return c[\\\\\\\"vocab_size\\\\\\\"] - 1 - idx\\\\n\\\\n\\\\ndef tokens_to_norm(token_ids, c):\\\\n    d = np.clip(c[\\\\\\\"vocab_size\\\\\\\"] - token_ids - 1, 0, len(c[\\\\\\\"bin_centers\\\\\\\"]) - 1)\\\\n    return c[\\\\\\\"bin_centers\\\\\\\"][d]\\\\n\\\\n\\\\ndef make_tf_input(proc, prompt, image, gt_action, codec, device):\\\\n    inp = proc(text=prompt, images=image, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n    inp = {k: v.to(device) for k, v in inp.items()}\\\\n\\\\n    if inp[\\\\\\\"input_ids\\\\\\\"][0, -1].item() != EMPTY_TOKEN:\\\\n        inp[\\\\\\\"input_ids\\\\\\\"] = torch.cat([\\\\n            inp[\\\\\\\"input_ids\\\\\\\"],\\\\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=device)\\\\n        ], dim=1)\\\\n        if \\\\\\\"attention_mask\\\\\\\" in inp:\\\\n            inp[\\\\\\\"attention_mask\\\\\\\"] = torch.cat([\\\\n                inp[\\\\\\\"attention_mask\\\\\\\"],\\\\n                torch.ones(1, 1, dtype=inp[\\\\\\\"attention_mask\\\\\\\"].dtype, device=device)\\\\n            ], dim=1)\\\\n\\\\n    gt_norm = raw_to_norm(gt_action, codec)\\\\n    gt_toks = norm_to_tokens(gt_norm, codec)\\\\n    action_ids = torch.tensor(gt_toks, dtype=torch.long, device=device).unsqueeze(0)\\\\n    inp[\\\\\\\"input_ids\\\\\\\"] = torch.cat([inp[\\\\\\\"input_ids\\\\\\\"], action_ids], dim=1)\\\\n    if \\\\\\\"attention_mask\\\\\\\" in inp:\\\\n        inp[\\\\\\\"attention_mask\\\\\\\"] = torch.cat([\\\\n            inp[\\\\\\\"attention_mask\\\\\\\"],\\\\n            torch.ones(1, ACTION_DIM, dtype=inp[\\\\\\\"attention_mask\\\\\\\"].dtype, device=device)\\\\n        ], dim=1)\\\\n    return inp, gt_norm\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef decode_layers(model, inp, codec):\\\\n    norm_fn = model.language_model.model.norm\\\\n    lm_head = model.language_model.lm_head\\\\n\\\\n    with torch.amp.autocast(\\\\\\\"cuda\\\\\\\", dtype=torch.bfloat16):\\\\n        out = model(**inp, output_hidden_states=True)\\\\n\\\\n    # IMPORTANT: actual seq_len includes 256 image \\\\n\\\\n... [截断: 输出过长，省略 3501 字符] ...\\\\n\\\\n_pred = [], {li: [] for li in range(N_HIDDEN)}\\\\n    n = 0\\\\n    t_start = time.time()\\\\n\\\\n    for hf_path in hdf5_files:\\\\n        task = task_desc_from_filename(hf_path)\\\\n        prompt = f\\\\\\\"In: What action should the robot take to {task}?\\\\\\\\nOut:\\\\\\\"\\\\n\\\\n        with h5py.File(hf_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            dkeys = sorted(hf[\\\\\\\"data\\\\\\\"].keys(), key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[1]))[:MAX_DEMOS]\\\\n            for dk in dkeys:\\\\n                imgs = hf[f\\\\\\\"data/{dk}/obs/agentview_rgb\\\\\\\"]\\\\n                acts = np.array(hf[f\\\\\\\"data/{dk}/actions\\\\\\\"])\\\\n                T = imgs.shape[0]\\\\n                idxs = (list(range(T)) if T <= FRAMES_PER_DEMO\\\\n                        else np.linspace(0, T-1, FRAMES_PER_DEMO, dtype=int).tolist())\\\\n\\\\n                for t in idxs:\\\\n                    img = Image.fromarray(imgs[t])\\\\n                    inp, gt_n = make_tf_input(proc, prompt, img, acts[t], codec, device)\\\\n                    preds = decode_layers(model, inp, codec)\\\\n\\\\n                    all_gt.append(gt_n)\\\\n                    for li in range(N_HIDDEN):\\\\n                        all_pred[li].append(preds[li])\\\\n                    n += 1\\\\n                    del inp\\\\n\\\\n        elapsed = time.time() - t_start\\\\n        rate = n / elapsed if elapsed > 0 else 0\\\\n        print(f\\\\\\\"  {task[:45]:45s}  [{n:5d} samples, {rate:.1f} samp/s]\\\\\\\")\\\\n\\\\n    gt_arr = np.array(all_gt)\\\\n    results = {}\\\\n    for li in range(N_HIDDEN):\\\\n        pa = np.array(all_pred[li])\\\\n        ss_res = np.sum((pa - gt_arr)**2, axis=0)\\\\n        ss_tot = np.sum((gt_arr - gt_arr.mean(0, keepdims=True))**2, axis=0)\\\\n        r2_dim = 1 - ss_res / (ss_tot + 1e-12)\\\\n        results[f\\\\\\\"L{li}\\\\\\\"] = dict(\\\\n            mean_R2=float(np.mean(r2_dim)),\\\\n            overall_R2=float(1 - ss_res.sum()/(ss_tot.sum()+1e-12)),\\\\n            r2_per_dim=[float(x) for x in r2_dim],\\\\n            mse=float(np.mean((pa - gt_arr)**2)),\\\\n        )\\\\n    return results, n\\\\n\\\\n\\\\ndef plot(results):\\\\n    import matplotlib\\\\n    matplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\n    matplotlib.rcParams[\\\\\\\"pdf.fonttype\\\\\\\"] = 42\\\\n    matplotlib.rcParams[\\\\\\\"ps.fonttype\\\\\\\"] = 42\\\\n    import matplotlib.pyplot as plt\\\\n\\\\n    with open(PROBE_JSON) as f:\\\\n        pd = json.load(f)\\\\n\\\\n    layers = list(range(N_HIDDEN))\\\\n    ah = [results[f\\\\\\\"L{l}\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"] for l in layers]\\\\n    pr = [pd[\\\\\\\"trained\\\\\\\"][\\\\\\\"last_preaction\\\\\\\"][f\\\\\\\"layer_{l}\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"] for l in layers]\\\\n\\\\n    fig, ax = plt.subplots(figsize=(8, 4.8))\\\\n    ax.plot(layers, ah, \\\\\\\"o-\\\\\\\",  color=\\\\\\\"#e74c3c\\\\\\\", lw=2, ms=4, label=\\\\\\\"Action Head (frozen LM head)\\\\\\\")\\\\n    ax.plot(layers, pr, \\\\\\\"s--\\\\\\\", color=\\\\\\\"#3498db\\\\\\\", lw=2, ms=4, label=\\\\\\\"Independent Probe (MLP)\\\\\\\")\\\\n    ax.set_xlabel(\\\\\\\"Layer\\\\\\\", fontsize=13)\\\\n    ax.set_ylabel(\\\\\\\"R²\\\\\\\", fontsize=13)\\\\n    ax.legend(fontsize=11, loc=\\\\\\\"lower right\\\\\\\")\\\\n    ax.set_xlim(-0.5, N_HIDDEN - 0.5)\\\\n    ax.grid(True, alpha=0.3)\\\\n    plt.tight_layout()\\\\n\\\\n    pdf = os.path.join(OUT_DIR, \\\\\\\"fig_action_head_vs_probe.pdf\\\\\\\")\\\\n    plt.savefig(pdf, dpi=150)\\\\n    plt.savefig(pdf.replace(\\\\\\\".pdf\\\\\\\", \\\\\\\".png\\\\\\\"), dpi=150)\\\\n    print(f\\\\\\\"Figure: {pdf}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    print(\\\\\\\"=== Action Head Decoding: OpenVLA LIBERO-Goal ===\\\\\\\")\\\\n    t0 = time.time()\\\\n\\\\n    model, proc = load_model(CKPT, DEVICE)\\\\n    codec = get_codec(model)\\\\n    print(f\\\\\\\"Action vocab_size: {codec['vocab_size']}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n-- DRY RUN --\\\\\\\")\\\\n    dry_run(model, proc, codec, DEVICE)\\\\n\\\\n    print(\\\\\\\"-- FULL EXPERIMENT --\\\\\\\")\\\\n    results, n = run_experiment(model, proc, codec, DEVICE)\\\\n\\\\n    elapsed = time.time() - t0\\\\n    out = dict(\\\\n        experiment=\\\\\\\"action_head_decoding\\\\\\\",\\\\n        model=\\\\\\\"openvla-7b-finetuned-libero-goal\\\\\\\",\\\\n        n_samples=n, frames_per_demo=FRAMES_PER_DEMO, max_demos=MAX_DEMOS,\\\\n        per_layer=results, elapsed_seconds=elapsed,\\\\n    )\\\\n    jpath = os.path.join(OUT_DIR, \\\\\\\"openvla_goal_action_head_r2.json\\\\\\\")\\\\n    with open(jpath, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(out, f, indent=2)\\\\n    print(f\\\\\\\"JSON: {jpath}\\\\\\\")\\\\n\\\\n    plot(results)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n-- SUMMARY --\\\\\\\")\\\\n    for l in [0, 8, 13, 16, 24, 31, 32]:\\\\n        print(f\\\\\\\"  L{l:2d}: R2={results[f'L{l}']['mean_R2']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Done: {n} samples, {elapsed:.0f}s\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Action-Head Decoding: apply frozen LM head to each layer's hidden state.\\n\\nTeacher forcing with ground truth action tokens. Compare decoded actions\\nagainst ground truth to get per-layer R², then compare with independent\\nprobe R² to distinguish genuine information collapse from format specialization.\\n\\\"\\\"\\\"\\n\\nimport os, json, time, glob\\nimport numpy as np\\nimport torch\\nimport h5py\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nOUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/action_head_decoding\\\"\\nPROBE_JSON = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_DEMOS = 50\\nFRAMES_PER_DEMO = 10\\nN_HIDDEN = 33\\nACTION_DIM = 7\\nN_ACTION_BINS = 256\\nEMPTY_TOKEN = 29871\\n\\nos.makedirs(OUT_DIR, exist_ok=True)\\n\\n\\ndef task_desc_from_filename(fname):\\n    return Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    print(f\\\"Model: {sum(p.numel() for p in model.parameters())/1e9:.1f}B on {device}\\\")\\n    return model, proc\\n\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    return dict(\\n        q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n        mask=np.array(stats[\\\"mask\\\"]), vocab_size=vocab_size,\\n        bins=bins, bin_centers=(bins[:-1] + bins[1:]) / 2.0,\\n    )\\n\\n\\ndef raw_to_norm(action, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(action - c[\\\"q01\\\"])/(c[\\\"q99\\\"] - c[\\\"q01\\\"] + 1e-8) - 1, action)\\n    return np.clip(n, -1, 1)\\n\\n\\ndef norm_to_tokens(norm_action, c):\\n    idx = np.clip(np.digitize(norm_action, c[\\\"bins\\\"]) - 1, 0, N_ACTION_BINS - 2)\\n    return c[\\\"vocab_size\\\"] - 1 - idx\\n\\n\\ndef tokens_to_norm(token_ids, c):\\n    d = np.clip(c[\\\"vocab_size\\\"] - token_ids - 1, 0, len(c[\\\"bin_centers\\\"]) - 1)\\n    return c[\\\"bin_centers\\\"][d]\\n\\n\\ndef make_tf_input(proc, prompt, image, gt_action, codec, device):\\n    inp = proc(text=prompt, images=image, return_tensors=\\\"pt\\\")\\n    inp = {k: v.to(device) for k, v in inp.items()}\\n\\n    if inp[\\\"input_ids\\\"][0, -1].item() != EMPTY_TOKEN:\\n        inp[\\\"input_ids\\\"] = torch.cat([\\n            inp[\\\"input_ids\\\"],\\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=device)\\n        ], dim=1)\\n        if \\\"attention_mask\\\" in inp:\\n            inp[\\\"attention_mask\\\"] = torch.cat([\\n                inp[\\\"attention_mask\\\"],\\n                torch.ones(1, 1, dtype=inp[\\\"attention_mask\\\"].dtype, device=device)\\n            ], dim=1)\\n\\n    gt_norm = raw_to_norm(gt_action, codec)\\n    gt_toks = norm_to_tokens(gt_norm, codec)\\n    action_ids = torch.tensor(gt_toks, dtype=torch.long, device=device).unsqueeze(0)\\n    inp[\\\"input_ids\\\"] = torch.cat([inp[\\\"input_ids\\\"], action_ids], dim=1)\\n    if \\\"attention_mask\\\" in inp:\\n        inp[\\\"attention_mask\\\"] = torch.cat([\\n            inp[\\\"attention_mask\\\"],\\n            torch.ones(1, ACTION_DIM, dtype=inp[\\\"attention_mask\\\"].dtype, device=device)\\n        ], dim=1)\\n    return inp, gt_norm\\n\\n\\n@torch.no_grad()\\ndef decode_layers(model, inp, codec):\\n    norm_fn = model.language_model.model.norm\\n    lm_head = model.language_model.lm_head\\n\\n    with torch.amp.autocast(\\\"cuda\\\", dtype=torch.bfloat16):\\n        out = model(**inp, output_hidden_states=True)\\n\\n    # IMPORTANT: actual seq_len includes 256 image \\n\\n... [截断: 输出过长，省略 3501 字符] ...\\n\\n_pred = [], {li: [] for li in range(N_HIDDEN)}\\n    n = 0\\n    t_start = time.time()\\n\\n    for hf_path in hdf5_files:\\n        task = task_desc_from_filename(hf_path)\\n        prompt = f\\\"In: What action should the robot take to {task}?\\\\nOut:\\\"\\n\\n        with h5py.File(hf_path, \\\"r\\\") as hf:\\n            dkeys = sorted(hf[\\\"data\\\"].keys(), key=lambda x: int(x.split(\\\"_\\\")[1]))[:MAX_DEMOS]\\n            for dk in dkeys:\\n                imgs = hf[f\\\"data/{dk}/obs/agentview_rgb\\\"]\\n                acts = np.array(hf[f\\\"data/{dk}/actions\\\"])\\n                T = imgs.shape[0]\\n                idxs = (list(range(T)) if T <= FRAMES_PER_DEMO\\n                        else np.linspace(0, T-1, FRAMES_PER_DEMO, dtype=int).tolist())\\n\\n                for t in idxs:\\n                    img = Image.fromarray(imgs[t])\\n                    inp, gt_n = make_tf_input(proc, prompt, img, acts[t], codec, device)\\n                    preds = decode_layers(model, inp, codec)\\n\\n                    all_gt.append(gt_n)\\n                    for li in range(N_HIDDEN):\\n                        all_pred[li].append(preds[li])\\n                    n += 1\\n                    del inp\\n\\n        elapsed = time.time() - t_start\\n        rate = n / elapsed if elapsed > 0 else 0\\n        print(f\\\"  {task[:45]:45s}  [{n:5d} samples, {rate:.1f} samp/s]\\\")\\n\\n    gt_arr = np.array(all_gt)\\n    results = {}\\n    for li in range(N_HIDDEN):\\n        pa = np.array(all_pred[li])\\n        ss_res = np.sum((pa - gt_arr)**2, axis=0)\\n        ss_tot = np.sum((gt_arr - gt_arr.mean(0, keepdims=True))**2, axis=0)\\n        r2_dim = 1 - ss_res / (ss_tot + 1e-12)\\n        results[f\\\"L{li}\\\"] = dict(\\n            mean_R2=float(np.mean(r2_dim)),\\n            overall_R2=float(1 - ss_res.sum()/(ss_tot.sum()+1e-12)),\\n            r2_per_dim=[float(x) for x in r2_dim],\\n            mse=float(np.mean((pa - gt_arr)**2)),\\n        )\\n    return results, n\\n\\n\\ndef plot(results):\\n    import matplotlib\\n    matplotlib.use(\\\"Agg\\\")\\n    matplotlib.rcParams[\\\"pdf.fonttype\\\"] = 42\\n    matplotlib.rcParams[\\\"ps.fonttype\\\"] = 42\\n    import matplotlib.pyplot as plt\\n\\n    with open(PROBE_JSON) as f:\\n        pd = json.load(f)\\n\\n    layers = list(range(N_HIDDEN))\\n    ah = [results[f\\\"L{l}\\\"][\\\"mean_R2\\\"] for l in layers]\\n    pr = [pd[\\\"trained\\\"][\\\"last_preaction\\\"][f\\\"layer_{l}\\\"][\\\"mean_R2\\\"] for l in layers]\\n\\n    fig, ax = plt.subplots(figsize=(8, 4.8))\\n    ax.plot(layers, ah, \\\"o-\\\",  color=\\\"#e74c3c\\\", lw=2, ms=4, label=\\\"Action Head (frozen LM head)\\\")\\n    ax.plot(layers, pr, \\\"s--\\\", color=\\\"#3498db\\\", lw=2, ms=4, label=\\\"Independent Probe (MLP)\\\")\\n    ax.set_xlabel(\\\"Layer\\\", fontsize=13)\\n    ax.set_ylabel(\\\"R²\\\", fontsize=13)\\n    ax.legend(fontsize=11, loc=\\\"lower right\\\")\\n    ax.set_xlim(-0.5, N_HIDDEN - 0.5)\\n    ax.grid(True, alpha=0.3)\\n    plt.tight_layout()\\n\\n    pdf = os.path.join(OUT_DIR, \\\"fig_action_head_vs_probe.pdf\\\")\\n    plt.savefig(pdf, dpi=150)\\n    plt.savefig(pdf.replace(\\\".pdf\\\", \\\".png\\\"), dpi=150)\\n    print(f\\\"Figure: {pdf}\\\")\\n\\n\\ndef main():\\n    print(\\\"=== Action Head Decoding: OpenVLA LIBERO-Goal ===\\\")\\n    t0 = time.time()\\n\\n    model, proc = load_model(CKPT, DEVICE)\\n    codec = get_codec(model)\\n    print(f\\\"Action vocab_size: {codec['vocab_size']}\\\")\\n\\n    print(\\\"\\\\n-- DRY RUN --\\\")\\n    dry_run(model, proc, codec, DEVICE)\\n\\n    print(\\\"-- FULL EXPERIMENT --\\\")\\n    results, n = run_experiment(model, proc, codec, DEVICE)\\n\\n    elapsed = time.time() - t0\\n    out = dict(\\n        experiment=\\\"action_head_decoding\\\",\\n        model=\\\"openvla-7b-finetuned-libero-goal\\\",\\n        n_samples=n, frames_per_demo=FRAMES_PER_DEMO, max_demos=MAX_DEMOS,\\n        per_layer=results, elapsed_seconds=elapsed,\\n    )\\n    jpath = os.path.join(OUT_DIR, \\\"openvla_goal_action_head_r2.json\\\")\\n    with open(jpath, \\\"w\\\") as f:\\n        json.dump(out, f, indent=2)\\n    print(f\\\"JSON: {jpath}\\\")\\n\\n    plot(results)\\n\\n    print(\\\"\\\\n-- SUMMARY --\\\")\\n    for l in [0, 8, 13, 16, 24, 31, 32]:\\n        print(f\\\"  L{l:2d}: R2={results[f'L{l}']['mean_R2']:.4f}\\\")\\n    print(f\\\"Done: {n} samples, {elapsed:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Aap2JM1kE1oiEgxm4oCcHZ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/diagnose_mini2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "dbc62336-3433-42db-a487-47700ca314cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6moRuV83BYfTuQYGRnWx1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5850,
+      "cache_read_input_tokens": 32872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-26T19:55:57.934Z_
+
+<details><summary>↩ Tool result · `toolu_01KFh7VD9uC1UkAdhieyBAA5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Test autoregressive action decoding with per-layer hidden state extraction.\\\"\\\"\\\"\\nimport os, numpy as np, torch, h5py, glob\\nfrom pathlib import Path\\nfrom PIL import Image\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\nN_HIDDEN = 33; ACTION_DIM = 7; N_ACTION_BINS = 256; EMPTY_TOKEN = 29871\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    return model, proc\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vs = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    bc = (bins[:-1]+bins[1:])/2.0\\n    return dict(q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n                mask=np.array(stats[\\\"mask\\\"]), vocab_size=vs, bins=bins,\\n                bin_centers=bc)\\n\\ndef raw_to_norm(a, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(a-c[\\\"q01\\\"])/(c[\\\"q99\\\"]-c[\\\"q01\\\"]+1e-8)-1, a)\\n    return np.clip(n, -1, 1)\\n\\ndef norm_to_tokens(n, c):\\n    idx = np.clip(np.digitize(n, c[\\\"bins\\\"])-1, 0, N_ACTION_BINS-2)\\n    return c[\\\"vocab_size\\\"]-1-idx\\n\\ndef tokens_to_norm(t, c):\\n    d = np.clip(c[\\\"vocab_size\\\"]-t-1, 0, len(c[\\\"bin_centers\\\"])-1)\\n    return c[\\\"bin_centers\\\"][d]\\n\\n@torch.no_grad()\\ndef main():\\n    model, proc = load_model(CKPT, DEVICE)\\n    codec = get_codec(model)\\n    vs = codec[\\\"vocab_size\\\"]\\n    action_lo, action_hi = vs-N_ACTION_BINS+1, vs-1\\n    norm_fn = model.language_model.model.norm\\n    lm_head = model.language_model.lm_head\\n\\n    action_bin_centers = torch.tensor(\\n        [codec[\\\"bin_centers\\\"][min(vs-1-tok, len(codec[\\\"bin_centers\\\"])-1)]\\n         for tok in range(action_lo, action_hi+1)],\\n        dtype=torch.float32, device=DEVICE\\n    )\\n\\n    hf_path = sorted(glob.glob(os.path.join(DATA_DIR, \\\"*_demo.hdf5\\\")))[0]\\n    task = Path(hf_path).stem.replace(\\\"_demo\\\",\\\"\\\").replace(\\\"_\\\",\\\" \\\")\\n    prompt = f\\\"In: What action should the robot take to {task}?\\\\nOut:\\\"\\n\\n    with h5py.File(hf_path, \\\"r\\\") as hf:\\n        dk = sorted(hf[\\\"data\\\"].keys(), key=lambda x:int(x.split(\\\"_\\\")[1]))[0]\\n        img_arr = np.array(hf[f\\\"data/{dk}/obs/agentview_rgb\\\"][0])\\n        gt_action = np.array(hf[f\\\"data/{dk}/actions\\\"][0])\\n\\n    img = Image.fromarray(img_arr)\\n    gt_norm = raw_to_norm(gt_action, codec)\\n\\n    # Build prompt input (no action tokens)\\n    inp = proc(text=prompt, images=img, return_tensors=\\\"pt\\\")\\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\\n\\n    # Autoregressive generation: one token at a time\\n    per_layer_preds_argmax = {li: [] for li in range(N_HIDDEN)}\\n    per_layer_preds_ev = {li: [] for li in range(N_HIDDEN)}\\n    generated_tokens = []\\n\\n    current_ids = inp[\\\"input_ids\\\"].clone()\\n    current_mask = inp.get(\\\"attention_mask\\\", torch.ones_like(current_ids)).clone()\\n    pixel_values = inp.get(\\\"pixel_values\\\")\\n\\n    print(f\\\"GT norm:   {gt_norm}\\\")\\n    print(f\\\"GT tokens: {norm_to_tokens(gt_norm, codec)}\\\")\\n    print()\\n\\n    for step in range(ACTION_DIM):\\n        fwd_inp = {\\\"input_ids\\\": current_ids, \\\"attention_mask\\\": current_mask}\\n        if pixel_values is not None:\\n            fwd_inp[\\\"pixel_values\\\"] = pixel_values\\n\\n        with torch.amp.autocast(\\\"cuda\\\", dtype=torch.bfloat16):\\n            out = model(**fwd_inp, output_hidden_states=True)\\n\\n        # Extract hidden states at the LAST position (which predicts next token)\\n        for li in range(N_HIDDEN):\\n            hs = out.hidden_states[li][0, -1:, :]  # [1, D]\\n            logits = lm_head(norm_fn(hs)).float()[0]  # [V]\\n\\n            # Argmax\\n            tok = logits.argmax().item()\\n            decoded = tokens_to_norm(np.array([tok]), codec)[0] if action_lo <= tok <= action_hi else float('nan')\\n            per_layer_preds_argmax[li].append(decoded)\\n\\n            # Softmax EV\\n            action_logits = logits[action_lo:action_hi+1]\\n            action_probs = torch.softmax(action_logits, -1)\\n            ev = (action_probs * action_bin_centers).sum().item()\\n            per_layer_preds_ev[li].append(ev)\\n\\n        # Use exit layer argmax to generate next token (autoregressive)\\n        exit_logits = lm_head(norm_fn(out.hidden_states[32][0, -1:, :])).float()[0]\\n        next_tok = exit_logits.argmax().item()\\n        generated_tokens.append(next_tok)\\n\\n        print(f\\\"Step {step}: generated tok={next_tok}, \\\"\\n              f\\\"is_action={action_lo<=next_tok<=action_hi}, \\\"\\n              f\\\"decoded={tokens_to_norm(np.array([next_tok]), codec)[0] if action_lo<=next_tok<=action_hi else 'N/A'}\\\")\\n\\n        # Append to input for next step\\n        current_ids = torch.cat([current_ids, torch.tensor([[next_tok]], device=DEVICE)], dim=1)\\n        current_mask = torch.cat([current_mask, torch.ones(1,1,dtype=current_mask.dtype,device=DEVICE)], dim=1)\\n        # Don't pass pixel_values again after first step (already processed)\\n        # Actually, the model re-processes pixel_values each forward pass, which is fine for correctness\\n\\n        del out\\n\\n    gen_norm = tokens_to_norm(np.array(generated_tokens), codec)\\n    print(f\\\"\\\\nGenerated norm: {gen_norm}\\\")\\n    print(f\\\"GT norm:        {gt_norm}\\\")\\n    print(f\\\"L2 error:       {np.sqrt(np.sum((gen_norm - gt_norm)**2)):.4f}\\\")\\n\\n    print(f\\\"\\\\n{'Layer':>6} {'Argmax':>50} {'EV':>50}\\\")\\n    for li in [0, 4, 8, 13, 16, 20, 24, 28, 31, 32]:\\n        a = np.array(per_layer_preds_argmax[li])\\n        e = np.array(per_layer_preds_ev[li])\\n        a_str = np.array2string(a, precision=3, separator=',')\\n        e_str = np.array2string(e, precision=3, separator=',')\\n        print(f\\\"  L{li:2d} {a_str:>50} {e_str:>50}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "c1461b95-acf0-45bc-b051-1478f0987e03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Test autoregressive action decoding with per-layer hidden state extraction.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os, numpy as np, torch, h5py, glob\\\\nfrom pathlib import Path\\\\nfrom PIL import Image\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nCKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\"\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nN_HIDDEN = 33; ACTION_DIM = 7; N_ACTION_BINS = 256; EMPTY_TOKEN = 29871\\\\n\\\\ndef load_model(ckpt, device):\\\\n    from transformers import AutoProcessor\\\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\\\n    ModelClass = get_class_from_dynamic_module(\\\\n        \\\\\\\"modeling_prismatic.OpenVLAForActionPrediction\\\\\\\", ckpt)\\\\n    model = ModelClass.from_pretrained(\\\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\", local_files_only=True,\\\\n    ).to(device).eval()\\\\n    return model, proc\\\\n\\\\ndef get_codec(model):\\\\n    stats = model.norm_stats[\\\\\\\"libero_goal\\\\\\\"][\\\\\\\"action\\\\\\\"]\\\\n    vs = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\\\n    bc = (bins[:-1]+bins[1:])/2.0\\\\n    return dict(q01=np.array(stats[\\\\\\\"q01\\\\\\\"]), q99=np.array(stats[\\\\\\\"q99\\\\\\\"]),\\\\n                mask=np.array(stats[\\\\\\\"mask\\\\\\\"]), vocab_size=vs, bins=bins,\\\\n                bin_centers=bc)\\\\n\\\\ndef raw_to_norm(a, c):\\\\n    n = np.where(c[\\\\\\\"mask\\\\\\\"], 2*(a-c[\\\\\\\"q01\\\\\\\"])/(c[\\\\\\\"q99\\\\\\\"]-c[\\\\\\\"q01\\\\\\\"]+1e-8)-1, a)\\\\n    return np.clip(n, -1, 1)\\\\n\\\\ndef norm_to_tokens(n, c):\\\\n    idx = np.clip(np.digitize(n, c[\\\\\\\"bins\\\\\\\"])-1, 0, N_ACTION_BINS-2)\\\\n    return c[\\\\\\\"vocab_size\\\\\\\"]-1-idx\\\\n\\\\ndef tokens_to_norm(t, c):\\\\n    d = np.clip(c[\\\\\\\"vocab_size\\\\\\\"]-t-1, 0, len(c[\\\\\\\"bin_centers\\\\\\\"])-1)\\\\n    return c[\\\\\\\"bin_centers\\\\\\\"][d]\\\\n\\\\n@torch.no_grad()\\\\ndef main():\\\\n    model, proc = load_model(CKPT, DEVICE)\\\\n    codec = get_codec(model)\\\\n    vs = codec[\\\\\\\"vocab_size\\\\\\\"]\\\\n    action_lo, action_hi = vs-N_ACTION_BINS+1, vs-1\\\\n    norm_fn = model.language_model.model.norm\\\\n    lm_head = model.language_model.lm_head\\\\n\\\\n    action_bin_centers = torch.tensor(\\\\n        [codec[\\\\\\\"bin_centers\\\\\\\"][min(vs-1-tok, len(codec[\\\\\\\"bin_centers\\\\\\\"])-1)]\\\\n         for tok in range(action_lo, action_hi+1)],\\\\n        dtype=torch.float32, device=DEVICE\\\\n    )\\\\n\\\\n    hf_path = sorted(glob.glob(os.path.join(DATA_DIR, \\\\\\\"*_demo.hdf5\\\\\\\")))[0]\\\\n    task = Path(hf_path).stem.replace(\\\\\\\"_demo\\\\\\\",\\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\",\\\\\\\" \\\\\\\")\\\\n    prompt = f\\\\\\\"In: What action should the robot take to {task}?\\\\\\\\nOut:\\\\\\\"\\\\n\\\\n    with h5py.File(hf_path, \\\\\\\"r\\\\\\\") as hf:\\\\n        dk = sorted(hf[\\\\\\\"data\\\\\\\"].keys(), key=lambda x:int(x.split(\\\\\\\"_\\\\\\\")[1]))[0]\\\\n        img_arr = np.array(hf[f\\\\\\\"data/{dk}/obs/agentview_rgb\\\\\\\"][0])\\\\n        gt_action = np.array(hf[f\\\\\\\"data/{dk}/actions\\\\\\\"][0])\\\\n\\\\n    img = Image.fromarray(img_arr)\\\\n    gt_norm = raw_to_norm(gt_action, codec)\\\\n\\\\n    # Build prompt input (no action tokens)\\\\n    inp = proc(text=prompt, images=img, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\\\\n\\\\n    # Autoregressive generation: one token at a time\\\\n    per_layer_preds_argmax = {li: [] for li in range(N_HIDDEN)}\\\\n    per_layer_preds_ev = {li: [] for li in range(N_HIDDEN)}\\\\n    generated_tokens = []\\\\n\\\\n    current_ids = inp[\\\\\\\"input_ids\\\\\\\"].clone()\\\\n    current_mask = inp.get(\\\\\\\"attention_mask\\\\\\\", torch.ones_like(current_ids)).clone()\\\\n    pixel_values = inp.get(\\\\\\\"pixel_values\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"GT norm:   {gt_norm}\\\\\\\")\\\\n    print(f\\\\\\\"GT tokens: {norm_to_tokens(gt_norm, codec)}\\\\\\\")\\\\n    print()\\\\n\\\\n    for step in range(ACTION_DIM):\\\\n        fwd_inp = {\\\\\\\"input_ids\\\\\\\": current_ids, \\\\\\\"attention_mask\\\\\\\": current_mask}\\\\n        if pixel_values is not None:\\\\n            fwd_inp[\\\\\\\"pixel_values\\\\\\\"] = pixel_values\\\\n\\\\n        with torch.amp.autocast(\\\\\\\"cuda\\\\\\\", dtype=torch.bfloat16):\\\\n            out = model(**fwd_inp, output_hidden_states=True)\\\\n\\\\n        # Extract hidden states at the LAST position (which predicts next token)\\\\n        for li in range(N_HIDDEN):\\\\n            hs = out.hidden_states[li][0, -1:, :]  # [1, D]\\\\n            logits = lm_head(norm_fn(hs)).float()[0]  # [V]\\\\n\\\\n            # Argmax\\\\n            tok = logits.argmax().item()\\\\n            decoded = tokens_to_norm(np.array([tok]), codec)[0] if action_lo <= tok <= action_hi else float('nan')\\\\n            per_layer_preds_argmax[li].append(decoded)\\\\n\\\\n            # Softmax EV\\\\n            action_logits = logits[action_lo:action_hi+1]\\\\n            action_probs = torch.softmax(action_logits, -1)\\\\n            ev = (action_probs * action_bin_centers).sum().item()\\\\n            per_layer_preds_ev[li].append(ev)\\\\n\\\\n        # Use exit layer argmax to generate next token (autoregressive)\\\\n        exit_logits = lm_head(norm_fn(out.hidden_states[32][0, -1:, :])).float()[0]\\\\n        next_tok = exit_logits.argmax().item()\\\\n        generated_tokens.append(next_tok)\\\\n\\\\n        print(f\\\\\\\"Step {step}: generated tok={next_tok}, \\\\\\\"\\\\n              f\\\\\\\"is_action={action_lo<=next_tok<=action_hi}, \\\\\\\"\\\\n              f\\\\\\\"decoded={tokens_to_norm(np.array([next_tok]), codec)[0] if action_lo<=next_tok<=action_hi else 'N/A'}\\\\\\\")\\\\n\\\\n        # Append to input for next step\\\\n        current_ids = torch.cat([current_ids, torch.tensor([[next_tok]], device=DEVICE)], dim=1)\\\\n        current_mask = torch.cat([current_mask, torch.ones(1,1,dtype=current_mask.dtype,device=DEVICE)], dim=1)\\\\n        # Don't pass pixel_values again after first step (already processed)\\\\n        # Actually, the model re-processes pixel_values each forward pass, which is fine for correctness\\\\n\\\\n        del out\\\\n\\\\n    gen_norm = tokens_to_norm(np.array(generated_tokens), codec)\\\\n    print(f\\\\\\\"\\\\\\\\nGenerated norm: {gen_norm}\\\\\\\")\\\\n    print(f\\\\\\\"GT norm:        {gt_norm}\\\\\\\")\\\\n    print(f\\\\\\\"L2 error:       {np.sqrt(np.sum((gen_norm - gt_norm)**2)):.4f}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'Layer':>6} {'Argmax':>50} {'EV':>50}\\\\\\\")\\\\n    for li in [0, 4, 8, 13, 16, 20, 24, 28, 31, 32]:\\\\n        a = np.array(per_layer_preds_argmax[li])\\\\n        e = np.array(per_layer_preds_ev[li])\\\\n        a_str = np.array2string(a, precision=3, separator=',')\\\\n        e_str = np.array2string(e, precision=3, separator=',')\\\\n        print(f\\\\\\\"  L{li:2d} {a_str:>50} {e_str:>50}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Test autoregressive action decoding with per-layer hidden state extraction.\\\"\\\"\\\"\\nimport os, numpy as np, torch, h5py, glob\\nfrom pathlib import Path\\nfrom PIL import Image\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\nN_HIDDEN = 33; ACTION_DIM = 7; N_ACTION_BINS = 256; EMPTY_TOKEN = 29871\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    return model, proc\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vs = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    bc = (bins[:-1]+bins[1:])/2.0\\n    return dict(q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n                mask=np.array(stats[\\\"mask\\\"]), vocab_size=vs, bins=bins,\\n                bin_centers=bc)\\n\\ndef raw_to_norm(a, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(a-c[\\\"q01\\\"])/(c[\\\"q99\\\"]-c[\\\"q01\\\"]+1e-8)-1, a)\\n    return np.clip(n, -1, 1)\\n\\ndef norm_to_tokens(n, c):\\n    idx = np.clip(np.digitize(n, c[\\\"bins\\\"])-1, 0, N_ACTION_BINS-2)\\n    return c[\\\"vocab_size\\\"]-1-idx\\n\\ndef tokens_to_norm(t, c):\\n    d = np.clip(c[\\\"vocab_size\\\"]-t-1, 0, len(c[\\\"bin_centers\\\"])-1)\\n    return c[\\\"bin_centers\\\"][d]\\n\\n@torch.no_grad()\\ndef main():\\n    model, proc = load_model(CKPT, DEVICE)\\n    codec = get_codec(model)\\n    vs = codec[\\\"vocab_size\\\"]\\n    action_lo, action_hi = vs-N_ACTION_BINS+1, vs-1\\n    norm_fn = model.language_model.model.norm\\n    lm_head = model.language_model.lm_head\\n\\n    action_bin_centers = torch.tensor(\\n        [codec[\\\"bin_centers\\\"][min(vs-1-tok, len(codec[\\\"bin_centers\\\"])-1)]\\n         for tok in range(action_lo, action_hi+1)],\\n        dtype=torch.float32, device=DEVICE\\n    )\\n\\n    hf_path = sorted(glob.glob(os.path.join(DATA_DIR, \\\"*_demo.hdf5\\\")))[0]\\n    task = Path(hf_path).stem.replace(\\\"_demo\\\",\\\"\\\").replace(\\\"_\\\",\\\" \\\")\\n    prompt = f\\\"In: What action should the robot take to {task}?\\\\nOut:\\\"\\n\\n    with h5py.File(hf_path, \\\"r\\\") as hf:\\n        dk = sorted(hf[\\\"data\\\"].keys(), key=lambda x:int(x.split(\\\"_\\\")[1]))[0]\\n        img_arr = np.array(hf[f\\\"data/{dk}/obs/agentview_rgb\\\"][0])\\n        gt_action = np.array(hf[f\\\"data/{dk}/actions\\\"][0])\\n\\n    img = Image.fromarray(img_arr)\\n    gt_norm = raw_to_norm(gt_action, codec)\\n\\n    # Build prompt input (no action tokens)\\n    inp = proc(text=prompt, images=img, return_tensors=\\\"pt\\\")\\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\\n\\n    # Autoregressive generation: one token at a time\\n    per_layer_preds_argmax = {li: [] for li in range(N_HIDDEN)}\\n    per_layer_preds_ev = {li: [] for li in range(N_HIDDEN)}\\n    generated_tokens = []\\n\\n    current_ids = inp[\\\"input_ids\\\"].clone()\\n    current_mask = inp.get(\\\"attention_mask\\\", torch.ones_like(current_ids)).clone()\\n    pixel_values = inp.get(\\\"pixel_values\\\")\\n\\n    print(f\\\"GT norm:   {gt_norm}\\\")\\n    print(f\\\"GT tokens: {norm_to_tokens(gt_norm, codec)}\\\")\\n    print()\\n\\n    for step in range(ACTION_DIM):\\n        fwd_inp = {\\\"input_ids\\\": current_ids, \\\"attention_mask\\\": current_mask}\\n        if pixel_values is not None:\\n            fwd_inp[\\\"pixel_values\\\"] = pixel_values\\n\\n        with torch.amp.autocast(\\\"cuda\\\", dtype=torch.bfloat16):\\n            out = model(**fwd_inp, output_hidden_states=True)\\n\\n        # Extract hidden states at the LAST position (which predicts next token)\\n        for li in range(N_HIDDEN):\\n            hs = out.hidden_states[li][0, -1:, :]  # [1, D]\\n            logits = lm_head(norm_fn(hs)).float()[0]  # [V]\\n\\n            # Argmax\\n            tok = logits.argmax().item()\\n            decoded = tokens_to_norm(np.array([tok]), codec)[0] if action_lo <= tok <= action_hi else float('nan')\\n            per_layer_preds_argmax[li].append(decoded)\\n\\n            # Softmax EV\\n            action_logits = logits[action_lo:action_hi+1]\\n            action_probs = torch.softmax(action_logits, -1)\\n            ev = (action_probs * action_bin_centers).sum().item()\\n            per_layer_preds_ev[li].append(ev)\\n\\n        # Use exit layer argmax to generate next token (autoregressive)\\n        exit_logits = lm_head(norm_fn(out.hidden_states[32][0, -1:, :])).float()[0]\\n        next_tok = exit_logits.argmax().item()\\n        generated_tokens.append(next_tok)\\n\\n        print(f\\\"Step {step}: generated tok={next_tok}, \\\"\\n              f\\\"is_action={action_lo<=next_tok<=action_hi}, \\\"\\n              f\\\"decoded={tokens_to_norm(np.array([next_tok]), codec)[0] if action_lo<=next_tok<=action_hi else 'N/A'}\\\")\\n\\n        # Append to input for next step\\n        current_ids = torch.cat([current_ids, torch.tensor([[next_tok]], device=DEVICE)], dim=1)\\n        current_mask = torch.cat([current_mask, torch.ones(1,1,dtype=current_mask.dtype,device=DEVICE)], dim=1)\\n        # Don't pass pixel_values again after first step (already processed)\\n        # Actually, the model re-processes pixel_values each forward pass, which is fine for correctness\\n\\n        del out\\n\\n    gen_norm = tokens_to_norm(np.array(generated_tokens), codec)\\n    print(f\\\"\\\\nGenerated norm: {gen_norm}\\\")\\n    print(f\\\"GT norm:        {gt_norm}\\\")\\n    print(f\\\"L2 error:       {np.sqrt(np.sum((gen_norm - gt_norm)**2)):.4f}\\\")\\n\\n    print(f\\\"\\\\n{'Layer':>6} {'Argmax':>50} {'EV':>50}\\\")\\n    for li in [0, 4, 8, 13, 16, 20, 24, 28, 31, 32]:\\n        a = np.array(per_layer_preds_argmax[li])\\n        e = np.array(per_layer_preds_ev[li])\\n        a_str = np.array2string(a, precision=3, separator=',')\\n        e_str = np.array2string(e, precision=3, separator=',')\\n        print(f\\\"  L{li:2d} {a_str:>50} {e_str:>50}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-26T19:55:58.458Z_
+
+<details><summary>↩ Tool result · `toolu_01Aap2JM1kE1oiEgxm4oCcHZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Minimal test: run decode_layers on 3 samples and check exit layer.\\\"\\\"\\\"\\nimport os, numpy as np, torch, h5py, glob\\nfrom pathlib import Path\\nfrom PIL import Image\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\nN_HIDDEN = 33; ACTION_DIM = 7; N_ACTION_BINS = 256; EMPTY_TOKEN = 29871\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    return model, proc\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vs = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    return dict(q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n                mask=np.array(stats[\\\"mask\\\"]), vocab_size=vs,\\n                bins=bins, bin_centers=(bins[:-1]+bins[1:])/2.0)\\n\\ndef raw_to_norm(a, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(a-c[\\\"q01\\\"])/(c[\\\"q99\\\"]-c[\\\"q01\\\"]+1e-8)-1, a)\\n    return np.clip(n, -1, 1)\\n\\ndef norm_to_tokens(n, c):\\n    idx = np.clip(np.digitize(n, c[\\\"bins\\\"])-1, 0, N_ACTION_BINS-2)\\n    return c[\\\"vocab_size\\\"]-1-idx\\n\\ndef tokens_to_norm(t, c):\\n    d = np.clip(c[\\\"vocab_size\\\"]-t-1, 0, len(c[\\\"bin_centers\\\"])-1)\\n    return c[\\\"bin_centers\\\"][d]\\n\\n@torch.no_grad()\\ndef main():\\n    model, proc = load_model(CKPT, DEVICE)\\n    codec = get_codec(model)\\n    vs = codec[\\\"vocab_size\\\"]\\n    action_lo, action_hi = vs-N_ACTION_BINS+1, vs-1\\n    norm_fn = model.language_model.model.norm\\n    lm_head = model.language_model.lm_head\\n\\n    hf_path = sorted(glob.glob(os.path.join(DATA_DIR, \\\"*_demo.hdf5\\\")))[0]\\n    task = Path(hf_path).stem.replace(\\\"_demo\\\",\\\"\\\").replace(\\\"_\\\",\\\" \\\")\\n    prompt = f\\\"In: What action should the robot take to {task}?\\\\nOut:\\\"\\n\\n    # Load data first\\n    with h5py.File(hf_path, \\\"r\\\") as hf:\\n        dk = sorted(hf[\\\"data\\\"].keys(), key=lambda x:int(x.split(\\\"_\\\")[1]))[0]\\n        all_imgs = np.array(hf[f\\\"data/{dk}/obs/agentview_rgb\\\"][:3])\\n        all_acts = np.array(hf[f\\\"data/{dk}/actions\\\"][:3])\\n\\n    for t in range(3):\\n        img = Image.fromarray(all_imgs[t])\\n        gt = all_acts[t]\\n        gt_norm = raw_to_norm(gt, codec)\\n        gt_toks = norm_to_tokens(gt_norm, codec)\\n\\n        # Build TF input\\n        inp = proc(text=prompt, images=img, return_tensors=\\\"pt\\\")\\n        inp = {k: v.to(DEVICE) for k, v in inp.items()}\\n        if inp[\\\"input_ids\\\"][0,-1].item() != EMPTY_TOKEN:\\n            inp[\\\"input_ids\\\"] = torch.cat([inp[\\\"input_ids\\\"],\\n                torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)], dim=1)\\n            if \\\"attention_mask\\\" in inp:\\n                inp[\\\"attention_mask\\\"] = torch.cat([inp[\\\"attention_mask\\\"],\\n                    torch.ones(1,1,dtype=inp[\\\"attention_mask\\\"].dtype,device=DEVICE)], dim=1)\\n        act_ids = torch.tensor(gt_toks, dtype=torch.long, device=DEVICE).unsqueeze(0)\\n        inp[\\\"input_ids\\\"] = torch.cat([inp[\\\"input_ids\\\"], act_ids], dim=1)\\n        if \\\"attention_mask\\\" in inp:\\n            inp[\\\"attention_mask\\\"] = torch.cat([inp[\\\"attention_mask\\\"],\\n                torch.ones(1,ACTION_DIM,dtype=inp[\\\"attention_mask\\\"].dtype,device=DEVICE)], dim=1)\\n\\n        with torch.amp.autocast(\\\"cuda\\\", dtype=torch.bfloat16):\\n            out = model(**inp, output_hidden_states=True)\\n\\n        seq_len = out.hidden_states[0].shape[1]\\n        positions = list(range(seq_len-ACTION_DIM-1, seq_len-1))\\n\\n        print(f\\\"\\\\n=== Sample {t} ===\\\")\\n        print(f\\\"GT norm: {gt_norm}\\\")\\n        print(f\\\"seq_len={seq_len}, positions={positions}\\\")\\n\\n        # Method A: original script's approach (batch norm+lm_head)\\n        hs32 = out.hidden_states[32][0, positions, :]  # [7, 4096]\\n        logits_A = lm_head(norm_fn(hs32))  # [7, vocab]\\n        toks_A = logits_A.argmax(dim=-1).cpu().numpy()\\n        pred_A = tokens_to_norm(toks_A, codec)\\n\\n        # Method B: one-at-a-time (diagnostic style)\\n        pred_B = []\\n        for i, pos in enumerate(positions):\\n            h = out.hidden_states[32][0, pos]\\n            logits_B = lm_head(norm_fn(h.unsqueeze(0).unsqueeze(0)))[0,0]\\n            tok_B = logits_B.argmax().item()\\n            pred_B.append(tokens_to_norm(np.array([tok_B]), codec)[0])\\n\\n            # Check action mass for first dim only\\n            if i == 0:\\n                probs = torch.softmax(logits_B.float(), -1)\\n                act_mass = probs[action_lo:action_hi+1].sum().item()\\n                is_act_A = action_lo <= toks_A[0] <= action_hi\\n                is_act_B = action_lo <= tok_B <= action_hi\\n                print(f\\\"  Dim0: act_mass={act_mass:.4f}, tokA={toks_A[0]}(act={is_act_A}), tokB={tok_B}(act={is_act_B})\\\")\\n\\n        pred_B = np.array(pred_B)\\n        print(f\\\"  Method A (batch):  {pred_A}\\\")\\n        print(f\\\"  Method B (single): {pred_B}\\\")\\n        print(f\\\"  GT norm:           {gt_norm}\\\")\\n        print(f\\\"  Match A==B: {np.allclose(pred_A, pred_B, atol=0.01)}\\\")\\n        \\n        # Check: are ALL A predictions the same value?\\n        print(f\\\"  All A same? {np.all(pred_A == pred_A[0])}\\\")\\n        print(f\\\"  A unique values: {np.unique(pred_A)}\\\")\\n\\n        del out\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "5ceba889-9025-435b-981b-98b8934e7b39",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Minimal test: run decode_layers on 3 samples and check exit layer.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os, numpy as np, torch, h5py, glob\\\\nfrom pathlib import Path\\\\nfrom PIL import Image\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nCKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\"\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nN_HIDDEN = 33; ACTION_DIM = 7; N_ACTION_BINS = 256; EMPTY_TOKEN = 29871\\\\n\\\\ndef load_model(ckpt, device):\\\\n    from transformers import AutoProcessor\\\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\\\n    ModelClass = get_class_from_dynamic_module(\\\\n        \\\\\\\"modeling_prismatic.OpenVLAForActionPrediction\\\\\\\", ckpt)\\\\n    model = ModelClass.from_pretrained(\\\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\", local_files_only=True,\\\\n    ).to(device).eval()\\\\n    return model, proc\\\\n\\\\ndef get_codec(model):\\\\n    stats = model.norm_stats[\\\\\\\"libero_goal\\\\\\\"][\\\\\\\"action\\\\\\\"]\\\\n    vs = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\\\n    return dict(q01=np.array(stats[\\\\\\\"q01\\\\\\\"]), q99=np.array(stats[\\\\\\\"q99\\\\\\\"]),\\\\n                mask=np.array(stats[\\\\\\\"mask\\\\\\\"]), vocab_size=vs,\\\\n                bins=bins, bin_centers=(bins[:-1]+bins[1:])/2.0)\\\\n\\\\ndef raw_to_norm(a, c):\\\\n    n = np.where(c[\\\\\\\"mask\\\\\\\"], 2*(a-c[\\\\\\\"q01\\\\\\\"])/(c[\\\\\\\"q99\\\\\\\"]-c[\\\\\\\"q01\\\\\\\"]+1e-8)-1, a)\\\\n    return np.clip(n, -1, 1)\\\\n\\\\ndef norm_to_tokens(n, c):\\\\n    idx = np.clip(np.digitize(n, c[\\\\\\\"bins\\\\\\\"])-1, 0, N_ACTION_BINS-2)\\\\n    return c[\\\\\\\"vocab_size\\\\\\\"]-1-idx\\\\n\\\\ndef tokens_to_norm(t, c):\\\\n    d = np.clip(c[\\\\\\\"vocab_size\\\\\\\"]-t-1, 0, len(c[\\\\\\\"bin_centers\\\\\\\"])-1)\\\\n    return c[\\\\\\\"bin_centers\\\\\\\"][d]\\\\n\\\\n@torch.no_grad()\\\\ndef main():\\\\n    model, proc = load_model(CKPT, DEVICE)\\\\n    codec = get_codec(model)\\\\n    vs = codec[\\\\\\\"vocab_size\\\\\\\"]\\\\n    action_lo, action_hi = vs-N_ACTION_BINS+1, vs-1\\\\n    norm_fn = model.language_model.model.norm\\\\n    lm_head = model.language_model.lm_head\\\\n\\\\n    hf_path = sorted(glob.glob(os.path.join(DATA_DIR, \\\\\\\"*_demo.hdf5\\\\\\\")))[0]\\\\n    task = Path(hf_path).stem.replace(\\\\\\\"_demo\\\\\\\",\\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\",\\\\\\\" \\\\\\\")\\\\n    prompt = f\\\\\\\"In: What action should the robot take to {task}?\\\\\\\\nOut:\\\\\\\"\\\\n\\\\n    # Load data first\\\\n    with h5py.File(hf_path, \\\\\\\"r\\\\\\\") as hf:\\\\n        dk = sorted(hf[\\\\\\\"data\\\\\\\"].keys(), key=lambda x:int(x.split(\\\\\\\"_\\\\\\\")[1]))[0]\\\\n        all_imgs = np.array(hf[f\\\\\\\"data/{dk}/obs/agentview_rgb\\\\\\\"][:3])\\\\n        all_acts = np.array(hf[f\\\\\\\"data/{dk}/actions\\\\\\\"][:3])\\\\n\\\\n    for t in range(3):\\\\n        img = Image.fromarray(all_imgs[t])\\\\n        gt = all_acts[t]\\\\n        gt_norm = raw_to_norm(gt, codec)\\\\n        gt_toks = norm_to_tokens(gt_norm, codec)\\\\n\\\\n        # Build TF input\\\\n        inp = proc(text=prompt, images=img, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n        inp = {k: v.to(DEVICE) for k, v in inp.items()}\\\\n        if inp[\\\\\\\"input_ids\\\\\\\"][0,-1].item() != EMPTY_TOKEN:\\\\n            inp[\\\\\\\"input_ids\\\\\\\"] = torch.cat([inp[\\\\\\\"input_ids\\\\\\\"],\\\\n                torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)], dim=1)\\\\n            if \\\\\\\"attention_mask\\\\\\\" in inp:\\\\n                inp[\\\\\\\"attention_mask\\\\\\\"] = torch.cat([inp[\\\\\\\"attention_mask\\\\\\\"],\\\\n                    torch.ones(1,1,dtype=inp[\\\\\\\"attention_mask\\\\\\\"].dtype,device=DEVICE)], dim=1)\\\\n        act_ids = torch.tensor(gt_toks, dtype=torch.long, device=DEVICE).unsqueeze(0)\\\\n        inp[\\\\\\\"input_ids\\\\\\\"] = torch.cat([inp[\\\\\\\"input_ids\\\\\\\"], act_ids], dim=1)\\\\n        if \\\\\\\"attention_mask\\\\\\\" in inp:\\\\n            inp[\\\\\\\"attention_mask\\\\\\\"] = torch.cat([inp[\\\\\\\"attention_mask\\\\\\\"],\\\\n                torch.ones(1,ACTION_DIM,dtype=inp[\\\\\\\"attention_mask\\\\\\\"].dtype,device=DEVICE)], dim=1)\\\\n\\\\n        with torch.amp.autocast(\\\\\\\"cuda\\\\\\\", dtype=torch.bfloat16):\\\\n            out = model(**inp, output_hidden_states=True)\\\\n\\\\n        seq_len = out.hidden_states[0].shape[1]\\\\n        positions = list(range(seq_len-ACTION_DIM-1, seq_len-1))\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n=== Sample {t} ===\\\\\\\")\\\\n        print(f\\\\\\\"GT norm: {gt_norm}\\\\\\\")\\\\n        print(f\\\\\\\"seq_len={seq_len}, positions={positions}\\\\\\\")\\\\n\\\\n        # Method A: original script's approach (batch norm+lm_head)\\\\n        hs32 = out.hidden_states[32][0, positions, :]  # [7, 4096]\\\\n        logits_A = lm_head(norm_fn(hs32))  # [7, vocab]\\\\n        toks_A = logits_A.argmax(dim=-1).cpu().numpy()\\\\n        pred_A = tokens_to_norm(toks_A, codec)\\\\n\\\\n        # Method B: one-at-a-time (diagnostic style)\\\\n        pred_B = []\\\\n        for i, pos in enumerate(positions):\\\\n            h = out.hidden_states[32][0, pos]\\\\n            logits_B = lm_head(norm_fn(h.unsqueeze(0).unsqueeze(0)))[0,0]\\\\n            tok_B = logits_B.argmax().item()\\\\n            pred_B.append(tokens_to_norm(np.array([tok_B]), codec)[0])\\\\n\\\\n            # Check action mass for first dim only\\\\n            if i == 0:\\\\n                probs = torch.softmax(logits_B.float(), -1)\\\\n                act_mass = probs[action_lo:action_hi+1].sum().item()\\\\n                is_act_A = action_lo <= toks_A[0] <= action_hi\\\\n                is_act_B = action_lo <= tok_B <= action_hi\\\\n                print(f\\\\\\\"  Dim0: act_mass={act_mass:.4f}, tokA={toks_A[0]}(act={is_act_A}), tokB={tok_B}(act={is_act_B})\\\\\\\")\\\\n\\\\n        pred_B = np.array(pred_B)\\\\n        print(f\\\\\\\"  Method A (batch):  {pred_A}\\\\\\\")\\\\n        print(f\\\\\\\"  Method B (single): {pred_B}\\\\\\\")\\\\n        print(f\\\\\\\"  GT norm:           {gt_norm}\\\\\\\")\\\\n        print(f\\\\\\\"  Match A==B: {np.allclose(pred_A, pred_B, atol=0.01)}\\\\\\\")\\\\n        \\\\n        # Check: are ALL A predictions the same value?\\\\n        print(f\\\\\\\"  All A same? {np.all(pred_A == pred_A[0])}\\\\\\\")\\\\n        print(f\\\\\\\"  A unique values: {np.unique(pred_A)}\\\\\\\")\\\\n\\\\n        del out\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Minimal test: run decode_layers on 3 samples and check exit layer.\\\"\\\"\\\"\\nimport os, numpy as np, torch, h5py, glob\\nfrom pathlib import Path\\nfrom PIL import Image\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\nN_HIDDEN = 33; ACTION_DIM = 7; N_ACTION_BINS = 256; EMPTY_TOKEN = 29871\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    return model, proc\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vs = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    return dict(q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n                mask=np.array(stats[\\\"mask\\\"]), vocab_size=vs,\\n                bins=bins, bin_centers=(bins[:-1]+bins[1:])/2.0)\\n\\ndef raw_to_norm(a, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(a-c[\\\"q01\\\"])/(c[\\\"q99\\\"]-c[\\\"q01\\\"]+1e-8)-1, a)\\n    return np.clip(n, -1, 1)\\n\\ndef norm_to_tokens(n, c):\\n    idx = np.clip(np.digitize(n, c[\\\"bins\\\"])-1, 0, N_ACTION_BINS-2)\\n    return c[\\\"vocab_size\\\"]-1-idx\\n\\ndef tokens_to_norm(t, c):\\n    d = np.clip(c[\\\"vocab_size\\\"]-t-1, 0, len(c[\\\"bin_centers\\\"])-1)\\n    return c[\\\"bin_centers\\\"][d]\\n\\n@torch.no_grad()\\ndef main():\\n    model, proc = load_model(CKPT, DEVICE)\\n    codec = get_codec(model)\\n    vs = codec[\\\"vocab_size\\\"]\\n    action_lo, action_hi = vs-N_ACTION_BINS+1, vs-1\\n    norm_fn = model.language_model.model.norm\\n    lm_head = model.language_model.lm_head\\n\\n    hf_path = sorted(glob.glob(os.path.join(DATA_DIR, \\\"*_demo.hdf5\\\")))[0]\\n    task = Path(hf_path).stem.replace(\\\"_demo\\\",\\\"\\\").replace(\\\"_\\\",\\\" \\\")\\n    prompt = f\\\"In: What action should the robot take to {task}?\\\\nOut:\\\"\\n\\n    # Load data first\\n    with h5py.File(hf_path, \\\"r\\\") as hf:\\n        dk = sorted(hf[\\\"data\\\"].keys(), key=lambda x:int(x.split(\\\"_\\\")[1]))[0]\\n        all_imgs = np.array(hf[f\\\"data/{dk}/obs/agentview_rgb\\\"][:3])\\n        all_acts = np.array(hf[f\\\"data/{dk}/actions\\\"][:3])\\n\\n    for t in range(3):\\n        img = Image.fromarray(all_imgs[t])\\n        gt = all_acts[t]\\n        gt_norm = raw_to_norm(gt, codec)\\n        gt_toks = norm_to_tokens(gt_norm, codec)\\n\\n        # Build TF input\\n        inp = proc(text=prompt, images=img, return_tensors=\\\"pt\\\")\\n        inp = {k: v.to(DEVICE) for k, v in inp.items()}\\n        if inp[\\\"input_ids\\\"][0,-1].item() != EMPTY_TOKEN:\\n            inp[\\\"input_ids\\\"] = torch.cat([inp[\\\"input_ids\\\"],\\n                torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)], dim=1)\\n            if \\\"attention_mask\\\" in inp:\\n                inp[\\\"attention_mask\\\"] = torch.cat([inp[\\\"attention_mask\\\"],\\n                    torch.ones(1,1,dtype=inp[\\\"attention_mask\\\"].dtype,device=DEVICE)], dim=1)\\n        act_ids = torch.tensor(gt_toks, dtype=torch.long, device=DEVICE).unsqueeze(0)\\n        inp[\\\"input_ids\\\"] = torch.cat([inp[\\\"input_ids\\\"], act_ids], dim=1)\\n        if \\\"attention_mask\\\" in inp:\\n            inp[\\\"attention_mask\\\"] = torch.cat([inp[\\\"attention_mask\\\"],\\n                torch.ones(1,ACTION_DIM,dtype=inp[\\\"attention_mask\\\"].dtype,device=DEVICE)], dim=1)\\n\\n        with torch.amp.autocast(\\\"cuda\\\", dtype=torch.bfloat16):\\n            out = model(**inp, output_hidden_states=True)\\n\\n        seq_len = out.hidden_states[0].shape[1]\\n        positions = list(range(seq_len-ACTION_DIM-1, seq_len-1))\\n\\n        print(f\\\"\\\\n=== Sample {t} ===\\\")\\n        print(f\\\"GT norm: {gt_norm}\\\")\\n        print(f\\\"seq_len={seq_len}, positions={positions}\\\")\\n\\n        # Method A: original script's approach (batch norm+lm_head)\\n        hs32 = out.hidden_states[32][0, positions, :]  # [7, 4096]\\n        logits_A = lm_head(norm_fn(hs32))  # [7, vocab]\\n        toks_A = logits_A.argmax(dim=-1).cpu().numpy()\\n        pred_A = tokens_to_norm(toks_A, codec)\\n\\n        # Method B: one-at-a-time (diagnostic style)\\n        pred_B = []\\n        for i, pos in enumerate(positions):\\n            h = out.hidden_states[32][0, pos]\\n            logits_B = lm_head(norm_fn(h.unsqueeze(0).unsqueeze(0)))[0,0]\\n            tok_B = logits_B.argmax().item()\\n            pred_B.append(tokens_to_norm(np.array([tok_B]), codec)[0])\\n\\n            # Check action mass for first dim only\\n            if i == 0:\\n                probs = torch.softmax(logits_B.float(), -1)\\n                act_mass = probs[action_lo:action_hi+1].sum().item()\\n                is_act_A = action_lo <= toks_A[0] <= action_hi\\n                is_act_B = action_lo <= tok_B <= action_hi\\n                print(f\\\"  Dim0: act_mass={act_mass:.4f}, tokA={toks_A[0]}(act={is_act_A}), tokB={tok_B}(act={is_act_B})\\\")\\n\\n        pred_B = np.array(pred_B)\\n        print(f\\\"  Method A (batch):  {pred_A}\\\")\\n        print(f\\\"  Method B (single): {pred_B}\\\")\\n        print(f\\\"  GT norm:           {gt_norm}\\\")\\n        print(f\\\"  Match A==B: {np.allclose(pred_A, pred_B, atol=0.01)}\\\")\\n        \\n        # Check: are ALL A predictions the same value?\\n        print(f\\\"  All A same? {np.all(pred_A == pred_A[0])}\\\")\\n        print(f\\\"  A unique values: {np.unique(pred_A)}\\\")\\n\\n        del out\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the existing code. Let me also check the `modeling_prismatic.py` to understand the model architecture, specifically how `hidden_states` are returned and the norm layer setup.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "ac9a4788-6dd0-4ca2-a067-fe3799d96c8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015udLXnxASEvoMqBNAxxxNj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9301,
+      "cache_read_input_tokens": 38722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9301
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+Let me check the model architecture to understand the hidden state flow.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "92b3e129-ddad-40ab-b071-4f0fceed9097",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015udLXnxASEvoMqBNAxxxNj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9301,
+      "cache_read_input_tokens": 38722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9301
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013E6gCUYkCrKUGwcpQYazeC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"hidden_states\\|output_hidden\\|def forward\\|class OpenVLA\\|language_model\\|lm_head\\|\\.norm\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "ebd6ecb3-5e3f-4c70-a408-d70842a78aa4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015udLXnxASEvoMqBNAxxxNj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9301,
+      "cache_read_input_tokens": 38722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9301
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-26T19:56:05.015Z_
+
+<details><summary>↩ Tool result · `toolu_013E6gCUYkCrKUGwcpQYazeC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "882fe5ef-1292-4e08-adde-f1ca42770747",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015ivefjWQcWzT7z7KV2KEFs`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -50 /root/vla-ssd/scripts/diagnose_exit_layer.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "9d78c64a-8514-42cd-a23e-23d7a841bc7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015udLXnxASEvoMqBNAxxxNj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9301,
+      "cache_read_input_tokens": 38722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9301
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-26T19:56:07.650Z_
+
+<details><summary>↩ Tool result · `toolu_015ivefjWQcWzT7z7KV2KEFs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Diagnose why action-head decoding gives negative R² at the exit layer.\\\"\\\"\\\"\\nimport os, json, numpy as np, torch, h5py\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\nN_ACTION_BINS = 256\\nEMPTY_TOKEN = 29871\\nACTION_DIM = 7\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    return model, proc\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    return dict(\\n        q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n        mask=np.array(stats[\\\"mask\\\"]), vocab_size=vocab_size,\\n        bins=bins, bin_centers=(bins[:-1] + bins[1:]) / 2.0,\\n    )\\n\\ndef raw_to_norm(action, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(action - c[\\\"q01\\\"])/(c[\\\"q99\\\"] - c[\\\"q01\\\"] + 1e-8) - 1, action)\\n    return np.clip(n, -1, 1)\\n\\ndef norm_to_tokens(norm_action, c):\\n    idx = np.clip(np.digitize(norm_action, c[\\\"bins\\\"]) - 1, 0, N_ACTION_BINS - 2)\\n    return c[\\\"vocab_size\\\"] - 1 - idx\\n\\ndef tokens_to_norm(token_ids, c):\\n    d = np.clip(c[\\\"vocab_size\\\"] - token_ids - 1, 0, len(c[\\\"bin_centers\\\"]) - 1)\\n    return c[\\\"bin_centers\\\"][d]\\n\\ndef main():\\n    print(\\\"Loading model...\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "d1d3ad02-7c90-4caa-b837-8c26b6bf1d57",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Diagnose why action-head decoding gives negative R² at the exit layer.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os, json, numpy as np, torch, h5py\\\\nfrom pathlib import Path\\\\nfrom PIL import Image\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nCKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\"\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nN_ACTION_BINS = 256\\\\nEMPTY_TOKEN = 29871\\\\nACTION_DIM = 7\\\\n\\\\ndef load_model(ckpt, device):\\\\n    from transformers import AutoProcessor\\\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\\\n    ModelClass = get_class_from_dynamic_module(\\\\n        \\\\\\\"modeling_prismatic.OpenVLAForActionPrediction\\\\\\\", ckpt)\\\\n    model = ModelClass.from_pretrained(\\\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\", local_files_only=True,\\\\n    ).to(device).eval()\\\\n    return model, proc\\\\n\\\\ndef get_codec(model):\\\\n    stats = model.norm_stats[\\\\\\\"libero_goal\\\\\\\"][\\\\\\\"action\\\\\\\"]\\\\n    vocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\\\n    return dict(\\\\n        q01=np.array(stats[\\\\\\\"q01\\\\\\\"]), q99=np.array(stats[\\\\\\\"q99\\\\\\\"]),\\\\n        mask=np.array(stats[\\\\\\\"mask\\\\\\\"]), vocab_size=vocab_size,\\\\n        bins=bins, bin_centers=(bins[:-1] + bins[1:]) / 2.0,\\\\n    )\\\\n\\\\ndef raw_to_norm(action, c):\\\\n    n = np.where(c[\\\\\\\"mask\\\\\\\"], 2*(action - c[\\\\\\\"q01\\\\\\\"])/(c[\\\\\\\"q99\\\\\\\"] - c[\\\\\\\"q01\\\\\\\"] + 1e-8) - 1, action)\\\\n    return np.clip(n, -1, 1)\\\\n\\\\ndef norm_to_tokens(norm_action, c):\\\\n    idx = np.clip(np.digitize(norm_action, c[\\\\\\\"bins\\\\\\\"]) - 1, 0, N_ACTION_BINS - 2)\\\\n    return c[\\\\\\\"vocab_size\\\\\\\"] - 1 - idx\\\\n\\\\ndef tokens_to_norm(token_ids, c):\\\\n    d = np.clip(c[\\\\\\\"vocab_size\\\\\\\"] - token_ids - 1, 0, len(c[\\\\\\\"bin_centers\\\\\\\"]) - 1)\\\\n    return c[\\\\\\\"bin_centers\\\\\\\"][d]\\\\n\\\\ndef main():\\\\n    print(\\\\\\\"Loading model...\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Diagnose why action-head decoding gives negative R² at the exit layer.\\\"\\\"\\\"\\nimport os, json, numpy as np, torch, h5py\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\nN_ACTION_BINS = 256\\nEMPTY_TOKEN = 29871\\nACTION_DIM = 7\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    return model, proc\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    return dict(\\n        q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n        mask=np.array(stats[\\\"mask\\\"]), vocab_size=vocab_size,\\n        bins=bins, bin_centers=(bins[:-1] + bins[1:]) / 2.0,\\n    )\\n\\ndef raw_to_norm(action, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(action - c[\\\"q01\\\"])/(c[\\\"q99\\\"] - c[\\\"q01\\\"] + 1e-8) - 1, action)\\n    return np.clip(n, -1, 1)\\n\\ndef norm_to_tokens(norm_action, c):\\n    idx = np.clip(np.digitize(norm_action, c[\\\"bins\\\"]) - 1, 0, N_ACTION_BINS - 2)\\n    return c[\\\"vocab_size\\\"] - 1 - idx\\n\\ndef tokens_to_norm(token_ids, c):\\n    d = np.clip(c[\\\"vocab_size\\\"] - token_ids - 1, 0, len(c[\\\"bin_centers\\\"]) - 1)\\n    return c[\\\"bin_centers\\\"][d]\\n\\ndef main():\\n    print(\\\"Loading model...\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the existing code. Key observations:
+
+1. `vocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of` = 32064 - 64 = 32000
+2. The model uses `model.language_model.model.norm` (RMSNorm) + `model.language_model.lm_head`
+3. `n_action_bins = 256`
+4. Token mapping: `token_id = vocab_size - 1 - bin_idx`
+
+
+5. The action head decoding extracts hidden states at specific positions, applies normalization and the language model head to generate logits, then uses argmax to get predicted tokens. The teacher-forcing setup positions predictions at indices just before each action token so position i predicts the token at position i+1. I'm realizing the autoregressive decoding logic needs careful attention here.
+
+Now I need to write a comprehensive sanity check script that validates the entire pipeline. I'll verify the exit layer predictions against ground truth with detailed comparisons, check token-level accuracy, and look for any double-normalization bugs.
+
+Writing sanity check script... (compare manual norm+lm_head vs model's own logits)
+- Check 4: Bin-to-continuous roundtrip verification
+
+I'm realizing the vocab size accounting is more nuanced than I initially thought. The config shows `vocab_size: 32064` and `pad_to_multiple_of: 64`, but the existing code treats the effective vocab as 32000 (32064 - 64). This suggests the base LLaMA-2 vocab is 32000 tokens, OpenVLA adds 256 action bin tokens on top, and the action token IDs should fall in the range [32000-32256), with the padding bringing the total to 32064. I need to verify the actual model vocabulary size and understand how the action bin tokens map to the token space. The base LLaMA-2 vocabulary is 32000, and OpenVLA adds special tokens on top with padding to reach 32064 total. This means the action bin tokens occupy the upper range of the vocabulary, so I can now write the script to extract and decode these tokens properly. Writing sanity checks...
+
+The key insight is that `hidden_states[32]` is pre-final-norm, so I need to apply the norm myself before the lm_head to match what `out.logits` produces. For the `model.generate()` comparison, I need to be careful about position alignment—the first generated token should correspond to the exit layer's argmax at the position right before the first action token in the teacher-forced sequence.
+
+Now I'm mapping out the exact positions: in teacher-forcing, the empty token predicts the first action dimension, then each subsequent action token predicts the next dimension. So I need to extract logits from positions `seq_len - 8` through `seq_len - 2` to get all seven action predictions.
+
+Writing the extraction logic... Writing the validation script... Loading the model and setting up action codec...
+
+Now I'm loading the HDF5 demonstration files from the dataset directory, extracting the first frame and action from each task to build a sample set, then printing out the loaded samples and action token range for verification.
+
+Setting up the first validation check to compare exit layer predictions against ground truth using teacher forcing...
+
+For each sample, I'm converting the ground truth action to normalized form and then to tokens, then preparing the input by processing the text and image through the processor, appending an empty token if needed, and concatenating the ground truth action tokens to the input sequence...
+
+Continuing with the forward pass...
+
+Now I'm collecting the ground truth and predicted tokens, then running the model's generate method to get its own action predictions using the same input, and storing those results for comparison. Writing debug output... Writing validation checks... Writing tensor operations... Writing diagnostic output... Writing verification code... Writing verification output...
+
+Now I'm thinking through how to handle the model's generate method—OpenVLA might have a custom implementation or use the standard HuggingFace approach, so I should keep it straightforward and just use the standard generate call to compare the autoregressive predictions against the teacher-forced output from the exit layer.
+
+The key insight is that both approaches should produce identical logits at the first action token position since there's no divergence yet—the teacher-forced input includes the prompt tokens plus an empty token, and generate starts from the same context, so the first predicted token should match the teacher-forced argmax at that position.
+
+I need to verify what the processor actually outputs to understand whether the generate input includes the empty token or not, since that affects whether the contexts are truly aligned. I'm looking at the `decode_layers` function to understand how it processes hidden states through the language model's normalization and output layers, extracting logits at specific sequence positions for the action tokens.
+
+Now I'm noticing a potential dtype mismatch — the hidden states are converted to float32 before applying the normalization function, but the model was loaded in bfloat16, so the norm weights are also in bfloat16. This could introduce numerical differences compared to how the model processes data during its own forward pass, where everything stays in bfloat16 throughout.
+
+There's also the question of whether early and middle layer hidden states should even be processed through the final layer norm and language model head — those layers operate in a different representational space, so negative R² would be expected. But if the exit layer itself is showing negative R², that's the real concern here.
+
+Let me write out a comprehensive sanity check script to investigate what's happening. I should also verify whether `model.generate()` behaves differently from a standard forward pass for OpenVLA, and check if there's a `predict_action` method on the model.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "8b6a3e51-0606-468d-9956-f7c1273ed39e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018rCqBWBdyGkAXe1Qxmiphj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1543,
+      "cache_read_input_tokens": 48023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MHjSmxrTmxUAL2hnENrp7F`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def generate\\|def predict_action\\|def forward\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "d4f6715c-168c-44bf-965a-5980614271ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018rCqBWBdyGkAXe1Qxmiphj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1543,
+      "cache_read_input_tokens": 48023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-26T19:58:27.918Z_
+
+<details><summary>↩ Tool result · `toolu_01MHjSmxrTmxUAL2hnENrp7F`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "0ff9d24c-a86b-4d5a-b2ab-b573d51db8b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JWTvnR8vNd4hD1XrJ6vQdb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -200 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "766cef75-8aea-4040-9fbd-1d9fcc68ceab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018rCqBWBdyGkAXe1Qxmiphj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1543,
+      "cache_read_input_tokens": 48023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-26T19:58:28.387Z_
+
+<details><summary>↩ Tool result · `toolu_01JWTvnR8vNd4hD1XrJ6vQdb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nmodeling_prismatic.py\\n\\nCore HuggingFace-style PrismaticPreTrainedModel and PrismaticForConditionalGeneration class definitions, inheriting\\nfrom the default `transformers.PretrainedModel`. Meant to be standalone and self-contained, but exactly replicate the\\nlogic in `prismatic.models.vlms.prismatic.py`.\\n\\nNote =>> for the time being, not adding the custom HF \\\"docstring\\\" formatting.\\n\\nReferences [LLaVa, IDEFICS-2]:\\n    => https://github.com/huggingface/transformers/blob/main/src/transformers/models/llava/modeling_llava.py\\n    => https://github.com/huggingface/transformers/blob/main/src/transformers/models/idefics2/modeling_idefics2.py\\n\\\"\\\"\\\"\\n\\nimport logging\\nfrom dataclasses import dataclass\\nfrom functools import partial\\nfrom typing import Any, Callable, ClassVar, Dict, List, Optional, Tuple, Union\\n\\nimport numpy as np\\nimport timm\\nimport tokenizers\\nimport torch\\nimport torch.nn as nn\\nimport transformers\\nfrom timm.models.vision_transformer import LayerScale\\nfrom transformers import AutoModelForCausalLM, PretrainedConfig, PreTrainedModel\\nfrom transformers.modeling_outputs import ModelOutput\\n\\nfrom .configuration_prismatic import OpenVLAConfig, PrismaticConfig\\n\\n# Get Logger\\nlogger = logging.getLogger(__name__)\\n\\n\\n# === PyTorch/HuggingFace Default IGNORE_INDEX (for CrossEntropyLoss labels)\\nIGNORE_INDEX = -100\\n\\n\\n# === Utility Functions for Monkey-Patching ===\\ndef unpack_tuple(fn: Callable[[Any], Tuple[Any]]) -> Callable[[Any], Any]:\\n    def wrapper(*args: Any, **kwargs: Any) -> Any:\\n        result = fn(*args, **kwargs)\\n        return result[0] if isinstance(result, (tuple, list)) else result\\n\\n    return wrapper\\n\\n\\n# HF Transformers overwrites parameters with names containing `gamma`; we're going to patch VisionBackbone.LayerScale.\\n#   =>> TIMM :: https://github.com/huggingface/pytorch-image-models/blob/main/timm/models/vision_transformer.py#L109\\n#   =>> Transformers :: https://github.com/huggingface/transformers/blob/main/src/transformers/modeling_utils.py#L3960\\ndef _ls_new_forward(self, x: torch.Tensor) -> torch.Tensor:\\n    return x.mul_(self.scale_factor) if self.inplace else x * self.scale_factor\\n\\n\\ndef ls_apply_patch(ls_module: LayerScale):\\n    ls_module.scale_factor = nn.Parameter(ls_module.gamma.clone())\\n    ls_module.forward = _ls_new_forward.__get__(ls_module, LayerScale)\\n    del ls_module.gamma\\n\\n\\n# === Prismatic Vision Backbone (nn.Module) Definitions (w/ Fused Backbone Support) ===\\nclass PrismaticVisionBackbone(nn.Module):\\n    def __init__(\\n        self,\\n        use_fused_vision_backbone: bool,\\n        image_sizes: List[int],\\n        timm_model_ids: List[str],\\n        timm_override_act_layers: List[Optional[str]],\\n    ) -> None:\\n        super().__init__()\\n        self.use_fused_vision_backbone = use_fused_vision_backbone\\n\\n        # [Contract] Validate number of (fused) vision backbones, create \\\"alpha\\\" featurizer and Instantiate\\n        #   =>> Note :: Monkey-Patch the `forward()` function of the backbone to ensure FSDP-compatibility\\n        #               Hardcodes `get_intermediate_layers` to return the **SECOND-TO-LAST** layer patches!\\n        assert len(timm_model_ids) <= 2, \\\"Prismatic models only support up to 2 (fused) vision backbones!\\\"\\n        self.featurizer = timm.create_model(\\n            timm_model_ids[0],\\n            pretrained=False,\\n            num_classes=0,\\n            img_size=image_sizes[0],\\n            act_layer=timm_override_act_layers[0],\\n        )\\n        self.featurizer.forward = unpack_tuple(\\n            partial(self.featurizer.get_intermediate_layers, n={len(self.featurizer.blocks) - 2})\\n        )\\n        self.embed_dim = self.featurizer.embed_dim\\n\\n        # If `use_fused_vision_backbone` =>> create \\\"beta\\\" featurizer\\n        if self.use_fused_vision_backbone:\\n            self.fused_featurizer = timm.create_model(\\n                timm_model_ids[1],\\n                pretrained=False,\\n                num_classes=0,\\n                img_size=image_sizes[1],\\n                act_layer=timm_override_act_layers[1],\\n\\n\\n... [截断: 输出过长，省略 763 字符] ...\\n\\ntorch.Tensor:\\n        \\\"\\\"\\\"Run image (`pixel_values`) through featurizer; if channel-stacked, then dispatch and sequence stack.\\\"\\\"\\\"\\n        if not self.use_fused_vision_backbone:\\n            return self.featurizer(pixel_values)\\n\\n        # Split `pixel_values :: [bsz, 2 * 3, resolution, resolution]` =>> featurize =>> channel stack\\n        img, img_fused = torch.split(pixel_values, [3, 3], dim=1)\\n        patches, patches_fused = self.featurizer(img), self.fused_featurizer(img_fused)\\n\\n        return torch.cat([patches, patches_fused], dim=2)\\n\\n\\n# === Prismatic Projector (nn.Module) Definitions ===\\nclass PrismaticProjector(nn.Module):\\n    def __init__(self, use_fused_vision_backbone: bool, vision_dim: int, llm_dim: int) -> None:\\n        super().__init__()\\n        self.use_fused_vision_backbone = use_fused_vision_backbone\\n        self.vision_dim, self.llm_dim = vision_dim, llm_dim\\n\\n        # Switch on `use_fused_vision_backbone` =>> use slightly different MLPs and projection factors!\\n        if not self.use_fused_vision_backbone:\\n            self.fc1 = nn.Linear(self.vision_dim, self.llm_dim, bias=True)\\n            self.fc2 = nn.Linear(self.llm_dim, self.llm_dim, bias=True)\\n            self.act_fn1 = nn.GELU()\\n        else:\\n            initial_projection_dim = 4 * vision_dim\\n            self.fc1 = nn.Linear(self.vision_dim, initial_projection_dim, bias=True)\\n            self.fc2 = nn.Linear(initial_projection_dim, self.llm_dim, bias=True)\\n            self.fc3 = nn.Linear(self.llm_dim, self.llm_dim, bias=True)\\n            self.act_fn1 = nn.GELU()\\n            self.act_fn2 = nn.GELU()\\n\\n    def forward(self, img_patches: torch.Tensor) -> torch.Tensor:\\n        if not self.use_fused_vision_backbone:\\n            projected_features = self.fc1(img_patches)\\n            projected_features = self.act_fn1(projected_features)\\n            projected_features = self.fc2(projected_features)\\n        else:\\n            projected_features = self.fc1(img_patches)\\n            projected_features = self.act_fn1(projected_features)\\n            projected_features = self.fc2(projected_features)\\n            projected_features = self.act_fn2(projected_features)\\n            projected_features = self.fc3(projected_features)\\n\\n        return projected_features\\n\\n\\n# === Main HF Class Definitions ===\\n@dataclass\\nclass PrismaticCausalLMOutputWithPast(ModelOutput):\\n    \\\"\\\"\\\"Base class for Prismatic casual (visually-conditioned) language model outputs; also exposes visual features.\\\"\\\"\\\"\\n\\n    loss: Optional[torch.FloatTensor] = None\\n    logits: torch.FloatTensor = None\\n    past_key_values: Optional[Tuple[Tuple[torch.FloatTensor]]] = None\\n    hidden_states: Optional[Tuple[torch.FloatTensor, ...]] = None\\n    attentions: Optional[Tuple[torch.FloatTensor]] = None\\n\\n    # Additions for VLMs\\n    projector_features: Optional[torch.FloatTensor] = None\\n\\n\\nclass PrismaticPreTrainedModel(PreTrainedModel):\\n    config_class: PretrainedConfig = PrismaticConfig\\n    base_model_prefix: str = \\\"model\\\"\\n    supports_gradient_checkpointing: bool = True\\n\\n    _no_split_modules: ClassVar[List[str]] = [\\\"PrismaticProjector\\\"]\\n    _skip_keys_device_placement: str = \\\"past_key_values\\\"\\n    _supports_flash_attn_2: bool = True\\n\\n    def _init_weights(self, module: nn.Module) -> None:\\n        # Important :: this HF ported version is *not* meant for training from scratch; only inference and fine-tuning!\\n        #   => As such, this init_weights code is not correct; if training VLMs from scratch, use the main codebase at\\n        #      https://github.com/TRI-ML/prismatic-vlms\\n        std = (\\n            self.config.initializer_range\\n            if hasattr(self.config, \\\"initializer_range\\\")\\n            else self.config.text_config.initializer_range\\n        )\\n\\n        if hasattr(module, \\\"class_embedding\\\"):\\n            module.class_embedding.data.normal_(mean=0.0, std=std)\\n\\n        if isinstance(module, (nn.Linear, nn.Conv2d)):\\n            module.weight.data.normal_(mean=0.0, std=std)\\n            if module.bias is not None:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "709c4d67-9474-4744-97cd-28457ee83451",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nmodeling_prismatic.py\\\\n\\\\nCore HuggingFace-style PrismaticPreTrainedModel and PrismaticForConditionalGeneration class definitions, inheriting\\\\nfrom the default `transformers.PretrainedModel`. Meant to be standalone and self-contained, but exactly replicate the\\\\nlogic in `prismatic.models.vlms.prismatic.py`.\\\\n\\\\nNote =>> for the time being, not adding the custom HF \\\\\\\"docstring\\\\\\\" formatting.\\\\n\\\\nReferences [LLaVa, IDEFICS-2]:\\\\n    => https://github.com/huggingface/transformers/blob/main/src/transformers/models/llava/modeling_llava.py\\\\n    => https://github.com/huggingface/transformers/blob/main/src/transformers/models/idefics2/modeling_idefics2.py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport logging\\\\nfrom dataclasses import dataclass\\\\nfrom functools import partial\\\\nfrom typing import Any, Callable, ClassVar, Dict, List, Optional, Tuple, Union\\\\n\\\\nimport numpy as np\\\\nimport timm\\\\nimport tokenizers\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport transformers\\\\nfrom timm.models.vision_transformer import LayerScale\\\\nfrom transformers import AutoModelForCausalLM, PretrainedConfig, PreTrainedModel\\\\nfrom transformers.modeling_outputs import ModelOutput\\\\n\\\\nfrom .configuration_prismatic import OpenVLAConfig, PrismaticConfig\\\\n\\\\n# Get Logger\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# === PyTorch/HuggingFace Default IGNORE_INDEX (for CrossEntropyLoss labels)\\\\nIGNORE_INDEX = -100\\\\n\\\\n\\\\n# === Utility Functions for Monkey-Patching ===\\\\ndef unpack_tuple(fn: Callable[[Any], Tuple[Any]]) -> Callable[[Any], Any]:\\\\n    def wrapper(*args: Any, **kwargs: Any) -> Any:\\\\n        result = fn(*args, **kwargs)\\\\n        return result[0] if isinstance(result, (tuple, list)) else result\\\\n\\\\n    return wrapper\\\\n\\\\n\\\\n# HF Transformers overwrites parameters with names containing `gamma`; we're going to patch VisionBackbone.LayerScale.\\\\n#   =>> TIMM :: https://github.com/huggingface/pytorch-image-models/blob/main/timm/models/vision_transformer.py#L109\\\\n#   =>> Transformers :: https://github.com/huggingface/transformers/blob/main/src/transformers/modeling_utils.py#L3960\\\\ndef _ls_new_forward(self, x: torch.Tensor) -> torch.Tensor:\\\\n    return x.mul_(self.scale_factor) if self.inplace else x * self.scale_factor\\\\n\\\\n\\\\ndef ls_apply_patch(ls_module: LayerScale):\\\\n    ls_module.scale_factor = nn.Parameter(ls_module.gamma.clone())\\\\n    ls_module.forward = _ls_new_forward.__get__(ls_module, LayerScale)\\\\n    del ls_module.gamma\\\\n\\\\n\\\\n# === Prismatic Vision Backbone (nn.Module) Definitions (w/ Fused Backbone Support) ===\\\\nclass PrismaticVisionBackbone(nn.Module):\\\\n    def __init__(\\\\n        self,\\\\n        use_fused_vision_backbone: bool,\\\\n        image_sizes: List[int],\\\\n        timm_model_ids: List[str],\\\\n        timm_override_act_layers: List[Optional[str]],\\\\n    ) -> None:\\\\n        super().__init__()\\\\n        self.use_fused_vision_backbone = use_fused_vision_backbone\\\\n\\\\n        # [Contract] Validate number of (fused) vision backbones, create \\\\\\\"alpha\\\\\\\" featurizer and Instantiate\\\\n        #   =>> Note :: Monkey-Patch the `forward()` function of the backbone to ensure FSDP-compatibility\\\\n        #               Hardcodes `get_intermediate_layers` to return the **SECOND-TO-LAST** layer patches!\\\\n        assert len(timm_model_ids) <= 2, \\\\\\\"Prismatic models only support up to 2 (fused) vision backbones!\\\\\\\"\\\\n        self.featurizer = timm.create_model(\\\\n            timm_model_ids[0],\\\\n            pretrained=False,\\\\n            num_classes=0,\\\\n            img_size=image_sizes[0],\\\\n            act_layer=timm_override_act_layers[0],\\\\n        )\\\\n        self.featurizer.forward = unpack_tuple(\\\\n            partial(self.featurizer.get_intermediate_layers, n={len(self.featurizer.blocks) - 2})\\\\n        )\\\\n        self.embed_dim = self.featurizer.embed_dim\\\\n\\\\n        # If `use_fused_vision_backbone` =>> create \\\\\\\"beta\\\\\\\" featurizer\\\\n        if self.use_fused_vision_backbone:\\\\n            self.fused_featurizer = timm.create_model(\\\\n                timm_model_ids[1],\\\\n                pretrained=False,\\\\n                num_classes=0,\\\\n                img_size=image_sizes[1],\\\\n                act_layer=timm_override_act_layers[1],\\\\n\\\\n\\\\n... [截断: 输出过长，省略 763 字符] ...\\\\n\\\\ntorch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Run image (`pixel_values`) through featurizer; if channel-stacked, then dispatch and sequence stack.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        if not self.use_fused_vision_backbone:\\\\n            return self.featurizer(pixel_values)\\\\n\\\\n        # Split `pixel_values :: [bsz, 2 * 3, resolution, resolution]` =>> featurize =>> channel stack\\\\n        img, img_fused = torch.split(pixel_values, [3, 3], dim=1)\\\\n        patches, patches_fused = self.featurizer(img), self.fused_featurizer(img_fused)\\\\n\\\\n        return torch.cat([patches, patches_fused], dim=2)\\\\n\\\\n\\\\n# === Prismatic Projector (nn.Module) Definitions ===\\\\nclass PrismaticProjector(nn.Module):\\\\n    def __init__(self, use_fused_vision_backbone: bool, vision_dim: int, llm_dim: int) -> None:\\\\n        super().__init__()\\\\n        self.use_fused_vision_backbone = use_fused_vision_backbone\\\\n        self.vision_dim, self.llm_dim = vision_dim, llm_dim\\\\n\\\\n        # Switch on `use_fused_vision_backbone` =>> use slightly different MLPs and projection factors!\\\\n        if not self.use_fused_vision_backbone:\\\\n            self.fc1 = nn.Linear(self.vision_dim, self.llm_dim, bias=True)\\\\n            self.fc2 = nn.Linear(self.llm_dim, self.llm_dim, bias=True)\\\\n            self.act_fn1 = nn.GELU()\\\\n        else:\\\\n            initial_projection_dim = 4 * vision_dim\\\\n            self.fc1 = nn.Linear(self.vision_dim, initial_projection_dim, bias=True)\\\\n            self.fc2 = nn.Linear(initial_projection_dim, self.llm_dim, bias=True)\\\\n            self.fc3 = nn.Linear(self.llm_dim, self.llm_dim, bias=True)\\\\n            self.act_fn1 = nn.GELU()\\\\n            self.act_fn2 = nn.GELU()\\\\n\\\\n    def forward(self, img_patches: torch.Tensor) -> torch.Tensor:\\\\n        if not self.use_fused_vision_backbone:\\\\n            projected_features = self.fc1(img_patches)\\\\n            projected_features = self.act_fn1(projected_features)\\\\n            projected_features = self.fc2(projected_features)\\\\n        else:\\\\n            projected_features = self.fc1(img_patches)\\\\n            projected_features = self.act_fn1(projected_features)\\\\n            projected_features = self.fc2(projected_features)\\\\n            projected_features = self.act_fn2(projected_features)\\\\n            projected_features = self.fc3(projected_features)\\\\n\\\\n        return projected_features\\\\n\\\\n\\\\n# === Main HF Class Definitions ===\\\\n@dataclass\\\\nclass PrismaticCausalLMOutputWithPast(ModelOutput):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Base class for Prismatic casual (visually-conditioned) language model outputs; also exposes visual features.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    loss: Optional[torch.FloatTensor] = None\\\\n    logits: torch.FloatTensor = None\\\\n    past_key_values: Optional[Tuple[Tuple[torch.FloatTensor]]] = None\\\\n    hidden_states: Optional[Tuple[torch.FloatTensor, ...]] = None\\\\n    attentions: Optional[Tuple[torch.FloatTensor]] = None\\\\n\\\\n    # Additions for VLMs\\\\n    projector_features: Optional[torch.FloatTensor] = None\\\\n\\\\n\\\\nclass PrismaticPreTrainedModel(PreTrainedModel):\\\\n    config_class: PretrainedConfig = PrismaticConfig\\\\n    base_model_prefix: str = \\\\\\\"model\\\\\\\"\\\\n    supports_gradient_checkpointing: bool = True\\\\n\\\\n    _no_split_modules: ClassVar[List[str]] = [\\\\\\\"PrismaticProjector\\\\\\\"]\\\\n    _skip_keys_device_placement: str = \\\\\\\"past_key_values\\\\\\\"\\\\n    _supports_flash_attn_2: bool = True\\\\n\\\\n    def _init_weights(self, module: nn.Module) -> None:\\\\n        # Important :: this HF ported version is *not* meant for training from scratch; only inference and fine-tuning!\\\\n        #   => As such, this init_weights code is not correct; if training VLMs from scratch, use the main codebase at\\\\n        #      https://github.com/TRI-ML/prismatic-vlms\\\\n        std = (\\\\n            self.config.initializer_range\\\\n            if hasattr(self.config, \\\\\\\"initializer_range\\\\\\\")\\\\n            else self.config.text_config.initializer_range\\\\n        )\\\\n\\\\n        if hasattr(module, \\\\\\\"class_embedding\\\\\\\"):\\\\n            module.class_embedding.data.normal_(mean=0.0, std=std)\\\\n\\\\n        if isinstance(module, (nn.Linear, nn.Conv2d)):\\\\n            module.weight.data.normal_(mean=0.0, std=std)\\\\n            if module.bias is not None:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nmodeling_prismatic.py\\n\\nCore HuggingFace-style PrismaticPreTrainedModel and PrismaticForConditionalGeneration class definitions, inheriting\\nfrom the default `transformers.PretrainedModel`. Meant to be standalone and self-contained, but exactly replicate the\\nlogic in `prismatic.models.vlms.prismatic.py`.\\n\\nNote =>> for the time being, not adding the custom HF \\\"docstring\\\" formatting.\\n\\nReferences [LLaVa, IDEFICS-2]:\\n    => https://github.com/huggingface/transformers/blob/main/src/transformers/models/llava/modeling_llava.py\\n    => https://github.com/huggingface/transformers/blob/main/src/transformers/models/idefics2/modeling_idefics2.py\\n\\\"\\\"\\\"\\n\\nimport logging\\nfrom dataclasses import dataclass\\nfrom functools import partial\\nfrom typing import Any, Callable, ClassVar, Dict, List, Optional, Tuple, Union\\n\\nimport numpy as np\\nimport timm\\nimport tokenizers\\nimport torch\\nimport torch.nn as nn\\nimport transformers\\nfrom timm.models.vision_transformer import LayerScale\\nfrom transformers import AutoModelForCausalLM, PretrainedConfig, PreTrainedModel\\nfrom transformers.modeling_outputs import ModelOutput\\n\\nfrom .configuration_prismatic import OpenVLAConfig, PrismaticConfig\\n\\n# Get Logger\\nlogger = logging.getLogger(__name__)\\n\\n\\n# === PyTorch/HuggingFace Default IGNORE_INDEX (for CrossEntropyLoss labels)\\nIGNORE_INDEX = -100\\n\\n\\n# === Utility Functions for Monkey-Patching ===\\ndef unpack_tuple(fn: Callable[[Any], Tuple[Any]]) -> Callable[[Any], Any]:\\n    def wrapper(*args: Any, **kwargs: Any) -> Any:\\n        result = fn(*args, **kwargs)\\n        return result[0] if isinstance(result, (tuple, list)) else result\\n\\n    return wrapper\\n\\n\\n# HF Transformers overwrites parameters with names containing `gamma`; we're going to patch VisionBackbone.LayerScale.\\n#   =>> TIMM :: https://github.com/huggingface/pytorch-image-models/blob/main/timm/models/vision_transformer.py#L109\\n#   =>> Transformers :: https://github.com/huggingface/transformers/blob/main/src/transformers/modeling_utils.py#L3960\\ndef _ls_new_forward(self, x: torch.Tensor) -> torch.Tensor:\\n    return x.mul_(self.scale_factor) if self.inplace else x * self.scale_factor\\n\\n\\ndef ls_apply_patch(ls_module: LayerScale):\\n    ls_module.scale_factor = nn.Parameter(ls_module.gamma.clone())\\n    ls_module.forward = _ls_new_forward.__get__(ls_module, LayerScale)\\n    del ls_module.gamma\\n\\n\\n# === Prismatic Vision Backbone (nn.Module) Definitions (w/ Fused Backbone Support) ===\\nclass PrismaticVisionBackbone(nn.Module):\\n    def __init__(\\n        self,\\n        use_fused_vision_backbone: bool,\\n        image_sizes: List[int],\\n        timm_model_ids: List[str],\\n        timm_override_act_layers: List[Optional[str]],\\n    ) -> None:\\n        super().__init__()\\n        self.use_fused_vision_backbone = use_fused_vision_backbone\\n\\n        # [Contract] Validate number of (fused) vision backbones, create \\\"alpha\\\" featurizer and Instantiate\\n        #   =>> Note :: Monkey-Patch the `forward()` function of the backbone to ensure FSDP-compatibility\\n        #               Hardcodes `get_intermediate_layers` to return the **SECOND-TO-LAST** layer patches!\\n        assert len(timm_model_ids) <= 2, \\\"Prismatic models only support up to 2 (fused) vision backbones!\\\"\\n        self.featurizer = timm.create_model(\\n            timm_model_ids[0],\\n            pretrained=False,\\n            num_classes=0,\\n            img_size=image_sizes[0],\\n            act_layer=timm_override_act_layers[0],\\n        )\\n        self.featurizer.forward = unpack_tuple(\\n            partial(self.featurizer.get_intermediate_layers, n={len(self.featurizer.blocks) - 2})\\n        )\\n        self.embed_dim = self.featurizer.embed_dim\\n\\n        # If `use_fused_vision_backbone` =>> create \\\"beta\\\" featurizer\\n        if self.use_fused_vision_backbone:\\n            self.fused_featurizer = timm.create_model(\\n                timm_model_ids[1],\\n                pretrained=False,\\n                num_classes=0,\\n                img_size=image_sizes[1],\\n                act_layer=timm_override_act_layers[1],\\n\\n\\n... [截断: 输出过长，省略 763 字符] ...\\n\\ntorch.Tensor:\\n        \\\"\\\"\\\"Run image (`pixel_values`) through featurizer; if channel-stacked, then dispatch and sequence stack.\\\"\\\"\\\"\\n        if not self.use_fused_vision_backbone:\\n            return self.featurizer(pixel_values)\\n\\n        # Split `pixel_values :: [bsz, 2 * 3, resolution, resolution]` =>> featurize =>> channel stack\\n        img, img_fused = torch.split(pixel_values, [3, 3], dim=1)\\n        patches, patches_fused = self.featurizer(img), self.fused_featurizer(img_fused)\\n\\n        return torch.cat([patches, patches_fused], dim=2)\\n\\n\\n# === Prismatic Projector (nn.Module) Definitions ===\\nclass PrismaticProjector(nn.Module):\\n    def __init__(self, use_fused_vision_backbone: bool, vision_dim: int, llm_dim: int) -> None:\\n        super().__init__()\\n        self.use_fused_vision_backbone = use_fused_vision_backbone\\n        self.vision_dim, self.llm_dim = vision_dim, llm_dim\\n\\n        # Switch on `use_fused_vision_backbone` =>> use slightly different MLPs and projection factors!\\n        if not self.use_fused_vision_backbone:\\n            self.fc1 = nn.Linear(self.vision_dim, self.llm_dim, bias=True)\\n            self.fc2 = nn.Linear(self.llm_dim, self.llm_dim, bias=True)\\n            self.act_fn1 = nn.GELU()\\n        else:\\n            initial_projection_dim = 4 * vision_dim\\n            self.fc1 = nn.Linear(self.vision_dim, initial_projection_dim, bias=True)\\n            self.fc2 = nn.Linear(initial_projection_dim, self.llm_dim, bias=True)\\n            self.fc3 = nn.Linear(self.llm_dim, self.llm_dim, bias=True)\\n            self.act_fn1 = nn.GELU()\\n            self.act_fn2 = nn.GELU()\\n\\n    def forward(self, img_patches: torch.Tensor) -> torch.Tensor:\\n        if not self.use_fused_vision_backbone:\\n            projected_features = self.fc1(img_patches)\\n            projected_features = self.act_fn1(projected_features)\\n            projected_features = self.fc2(projected_features)\\n        else:\\n            projected_features = self.fc1(img_patches)\\n            projected_features = self.act_fn1(projected_features)\\n            projected_features = self.fc2(projected_features)\\n            projected_features = self.act_fn2(projected_features)\\n            projected_features = self.fc3(projected_features)\\n\\n        return projected_features\\n\\n\\n# === Main HF Class Definitions ===\\n@dataclass\\nclass PrismaticCausalLMOutputWithPast(ModelOutput):\\n    \\\"\\\"\\\"Base class for Prismatic casual (visually-conditioned) language model outputs; also exposes visual features.\\\"\\\"\\\"\\n\\n    loss: Optional[torch.FloatTensor] = None\\n    logits: torch.FloatTensor = None\\n    past_key_values: Optional[Tuple[Tuple[torch.FloatTensor]]] = None\\n    hidden_states: Optional[Tuple[torch.FloatTensor, ...]] = None\\n    attentions: Optional[Tuple[torch.FloatTensor]] = None\\n\\n    # Additions for VLMs\\n    projector_features: Optional[torch.FloatTensor] = None\\n\\n\\nclass PrismaticPreTrainedModel(PreTrainedModel):\\n    config_class: PretrainedConfig = PrismaticConfig\\n    base_model_prefix: str = \\\"model\\\"\\n    supports_gradient_checkpointing: bool = True\\n\\n    _no_split_modules: ClassVar[List[str]] = [\\\"PrismaticProjector\\\"]\\n    _skip_keys_device_placement: str = \\\"past_key_values\\\"\\n    _supports_flash_attn_2: bool = True\\n\\n    def _init_weights(self, module: nn.Module) -> None:\\n        # Important :: this HF ported version is *not* meant for training from scratch; only inference and fine-tuning!\\n        #   => As such, this init_weights code is not correct; if training VLMs from scratch, use the main codebase at\\n        #      https://github.com/TRI-ML/prismatic-vlms\\n        std = (\\n            self.config.initializer_range\\n            if hasattr(self.config, \\\"initializer_range\\\")\\n            else self.config.text_config.initializer_range\\n        )\\n\\n        if hasattr(module, \\\"class_embedding\\\"):\\n            module.class_embedding.data.normal_(mean=0.0, std=std)\\n\\n        if isinstance(module, (nn.Linear, nn.Conv2d)):\\n            module.weight.data.normal_(mean=0.0, std=std)\\n            if module.bias is not None:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LMEj5TcxiNKCimqJZFXLWU`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def forward\\|def generate\\|def predict_action\\|class OpenVLA\\|class Prismatic\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "3b4be09e-430b-4a05-bda3-88c097041b4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T5zQyS4GaFqDyLZxt5tZ1S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11875,
+      "cache_read_input_tokens": 49566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11875
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-26T19:58:35.286Z_
+
+<details><summary>↩ Tool result · `toolu_01LMEj5TcxiNKCimqJZFXLWU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "1a60f1aa-d0e8-40c2-ab0c-4f1a21da2ea3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012RYRq5z7PnhHzEHEbxZs9d`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def forward\\|def generate\\|def predict_action\\|class OpenVLA\\|class Prismatic\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "a52edf6b-a826-4d94-b75a-372f0e401ca5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018AV6HPLdvbpkvqavcM6jLG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 246,
+      "cache_read_input_tokens": 61441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 246
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-26T19:58:38.232Z_
+
+<details><summary>↩ Tool result · `toolu_012RYRq5z7PnhHzEHEbxZs9d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"63:class PrismaticVisionBackbone(nn.Module):\\n114:    def forward(self, pixel_values: torch.Tensor) -> torch.Tensor:\\n127:class PrismaticProjector(nn.Module):\\n146:    def forward(self, img_patches: torch.Tensor) -> torch.Tensor:\\n163:class PrismaticCausalLMOutputWithPast(ModelOutput):\\n176:class PrismaticPreTrainedModel(PreTrainedModel):\\n213:class PrismaticForConditionalGeneration(PrismaticPreTrainedModel):\\n291:    def forward(\\n497:class OpenVLAForActionPrediction(PrismaticForConditionalGeneration):\\n511:    def predict_action(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "cc8f18e5-cd94-4d9c-b5c2-c6407387401a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"63:class PrismaticVisionBackbone(nn.Module):\\\\n114:    def forward(self, pixel_values: torch.Tensor) -> torch.Tensor:\\\\n127:class PrismaticProjector(nn.Module):\\\\n146:    def forward(self, img_patches: torch.Tensor) -> torch.Tensor:\\\\n163:class PrismaticCausalLMOutputWithPast(ModelOutput):\\\\n176:class PrismaticPreTrainedModel(PreTrainedModel):\\\\n213:class PrismaticForConditionalGeneration(PrismaticPreTrainedModel):\\\\n291:    def forward(\\\\n497:class OpenVLAForActionPrediction(PrismaticForConditionalGeneration):\\\\n511:    def predict_action(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"63:class PrismaticVisionBackbone(nn.Module):\\n114:    def forward(self, pixel_values: torch.Tensor) -> torch.Tensor:\\n127:class PrismaticProjector(nn.Module):\\n146:    def forward(self, img_patches: torch.Tensor) -> torch.Tensor:\\n163:class PrismaticCausalLMOutputWithPast(ModelOutput):\\n176:class PrismaticPreTrainedModel(PreTrainedModel):\\n213:class PrismaticForConditionalGeneration(PrismaticPreTrainedModel):\\n291:    def forward(\\n497:class OpenVLAForActionPrediction(PrismaticForConditionalGeneration):\\n511:    def predict_action(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NJbGSmg77Mkms7htmSLYPr`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +291 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "ad08bd61-1aab-4b9d-acb0-6d321cec40cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFpbF7fV5Ha9PPpQNnP8AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 419,
+      "cache_read_input_tokens": 61687,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 419
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-26T19:58:40.993Z_
+
+<details><summary>↩ Tool result · `toolu_01NJbGSmg77Mkms7htmSLYPr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    def forward(\\n        self,\\n        input_ids: Optional[torch.LongTensor] = None,\\n        attention_mask: Optional[torch.Tensor] = None,\\n        pixel_values: Optional[torch.FloatTensor] = None,\\n        labels: Optional[torch.LongTensor] = None,\\n        inputs_embeds: Optional[torch.FloatTensor] = None,\\n        past_key_values: Optional[List[torch.FloatTensor]] = None,\\n        use_cache: Optional[bool] = None,\\n        output_attentions: Optional[bool] = None,\\n        output_hidden_states: Optional[bool] = None,\\n        output_projector_features: Optional[bool] = None,\\n        return_dict: Optional[bool] = None,\\n    ) -> Union[Tuple, PrismaticCausalLMOutputWithPast]:\\n        \\\"\\\"\\\"Run a forward pass through the VLM, returning a PrismaticCausalLMOutputWithPast instance.\\\"\\\"\\\"\\n        output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions\\n        output_hidden_states = (\\n            output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states\\n        )\\n        output_projector_features = output_projector_features if output_projector_features is not None else False\\n        return_dict = return_dict if return_dict is not None else self.config.use_return_dict\\n\\n        # Respect `use_cache` only if not training (even if `gradient_checkpointing` is off)\\n        use_cache = use_cache and not self.training\\n\\n        # Instantiate Placeholder for Projector Features\\n        projected_patch_embeddings = None\\n\\n        # Note :: We only support forward passes with the following cases:\\n        #   => Cached Generation :: (input_ids.shape[1] == 1) and (past_key_values is not None)\\n        #   => Unimodal Forward :: (pixel_values is None)\\n        #   => Multimodal Forward :: (pixel_values is not None) and (input_ids/embeds.shape[0] == pixel_values.shape[0])\\n\\n        # === Handle Generation with Cache (`input_ids.shape[1] == 1`) =>> requires `past_keys_values` ===\\n        if input_ids.shape[1] == 1:\\n            assert input_ids.shape[0] == 1, \\\"Generation is only currently supported for batch size of 1!\\\"\\n            assert past_key_values is not None, \\\"You must provide `past_key_values` during cached generation!\\\"\\n            assert labels is None, \\\"Unexpected key `labels` provided during cached generation!\\\"\\n\\n            language_model_output = self.language_model(\\n                input_ids=input_ids,\\n                attention_mask=None,\\n                position_ids=None,\\n                past_key_values=past_key_values,\\n                inputs_embeds=None,\\n                labels=None,\\n                use_cache=use_cache,\\n                output_attentions=output_attentions,\\n                output_hidden_states=output_hidden_states,\\n                return_dict=return_dict,\\n            )\\n\\n        # === Handle Unimodal Forward ===\\n        elif pixel_values is None:\\n            assert (input_ids is not None) and (inputs_embeds is None), \\\"Missing `input_ids` in language-only forward!\\\"\\n            assert past_key_values is None, \\\"Unexpected key `past_key_values` provided during language-only forward!\\\"\\n\\n            language_model_output = self.language_model(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                position_ids=None,\\n                past_key_values=None,\\n                inputs_embeds=None,\\n                labels=labels,\\n                use_cache=use_cache,\\n                output_attentions=output_attentions,\\n                output_hidden_states=output_hidden_states,\\n                return_dict=return_dict,\\n            )\\n\\n        # === Handle Multimodal Forward ===\\n        elif (input_ids.shape[0] == pixel_values.shape[0]) or (inputs_embeds.shape[0] == pixel_values.shape[0]):\\n            assert past_key_values is None, \\\"Unexpected key `past_key_values` provided during language-only forward!\\\"\\n\\n            # Visual Feature Extraction\\n            patch_features = self.vision_backbone(pixel_values)\\n\\n            # Projectio\\n\\n... [截断: 输出过长，省略 5762 字符] ...\\n\\nel_values,\\n                \\\"past_key_values\\\": past_key_values,\\n                \\\"use_cache\\\": kwargs.get(\\\"use_cache\\\"),\\n            }\\n        )\\n\\n        return model_inputs\\n\\n    # Defer to Language Model (all handle this differently, with different return types)\\n    def _reorder_cache(self, *args, **kwargs) -> Any:\\n        return self.language_model._reorder_cache(*args, **kwargs)\\n\\n\\nclass OpenVLAForActionPrediction(PrismaticForConditionalGeneration):\\n    config_class: PretrainedConfig = OpenVLAConfig\\n\\n    def __init__(self, config: OpenVLAConfig) -> None:\\n        super().__init__(config)\\n        self.norm_stats = config.norm_stats\\n\\n        # Compute action bins\\n        self.bins = np.linspace(-1, 1, config.n_action_bins)\\n        self.bin_centers = (self.bins[:-1] + self.bins[1:]) / 2.0\\n\\n        # Compute vocab size for de-tokenization -- revert added \\\"multiple of\\\"\\n        self.vocab_size = self.config.text_config.vocab_size - self.config.pad_to_multiple_of\\n\\n    def predict_action(\\n        self, input_ids: Optional[torch.LongTensor] = None, unnorm_key: Optional[str] = None, **kwargs: str\\n    ) -> np.ndarray:\\n        \\\"\\\"\\\"Thin wrapper around .generate() that decodes predicted actions and unnormalizes them.\\\"\\\"\\\"\\n        # If the special empty token ('') does not already appear after the colon (':') token in the prompt\\n        # (after \\\"OUT:\\\" or \\\"ASSISTANT:\\\"), insert it to match the inputs seen at training time\\n        if not torch.all(input_ids[:, -1] == 29871):\\n            input_ids = torch.cat(\\n                (input_ids, torch.unsqueeze(torch.Tensor([29871]).long(), dim=0).to(input_ids.device)), dim=1\\n            )\\n\\n        # Run VLA inference\\n        generated_ids = self.generate(input_ids, max_new_tokens=self.get_action_dim(unnorm_key), **kwargs)\\n\\n        # Extract predicted action tokens and translate into (normalized) continuous actions\\n        predicted_action_token_ids = generated_ids[0, -self.get_action_dim(unnorm_key) :].cpu().numpy()\\n        discretized_actions = self.vocab_size - predicted_action_token_ids\\n        discretized_actions = np.clip(discretized_actions - 1, a_min=0, a_max=self.bin_centers.shape[0] - 1)\\n        normalized_actions = self.bin_centers[discretized_actions]\\n\\n        # Unnormalize actions\\n        action_norm_stats = self.get_action_stats(unnorm_key)\\n        mask = action_norm_stats.get(\\\"mask\\\", np.ones_like(action_norm_stats[\\\"q01\\\"], dtype=bool))\\n        action_high, action_low = np.array(action_norm_stats[\\\"q99\\\"]), np.array(action_norm_stats[\\\"q01\\\"])\\n        actions = np.where(\\n            mask,\\n            0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\n            normalized_actions,\\n        )\\n\\n        return actions\\n\\n    @staticmethod\\n    def _check_unnorm_key(norm_stats: Dict[str, Dict[str, Any]], unnorm_key: Optional[str]) -> str:\\n        if unnorm_key is None:\\n            assert len(norm_stats) == 1, (\\n                f\\\"Your model was trained on more than one dataset, \\\"\\n                f\\\"please pass a `unnorm_key` from the following options to choose the statistics \\\"\\n                f\\\"used for un-normalizing actions: {norm_stats.keys()}\\\"\\n            )\\n            unnorm_key = next(iter(norm_stats.keys()))\\n\\n        assert unnorm_key in norm_stats, (\\n            f\\\"The `unnorm_key` you chose is not in the set of available dataset statistics, \\\"\\n            f\\\"please choose from: {norm_stats.keys()}\\\"\\n        )\\n        return unnorm_key\\n\\n    def get_action_dim(self, unnorm_key: Optional[str] = None) -> int:\\n        \\\"\\\"\\\"Get the dimensionality of the policy's action space.\\\"\\\"\\\"\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n        return len(self.norm_stats[unnorm_key][\\\"action\\\"][\\\"q01\\\"])\\n\\n    def get_action_stats(self, unnorm_key: Optional[str] = None) -> Dict[str, Any]:\\n        \\\"\\\"\\\"Get all the logged statistics for the given dataset.\\\"\\\"\\\"\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n        return self.norm_stats[unnorm_key][\\\"action\\\"]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "caa4b2a8-d68b-47cf-a0a3-eaa10e8f34ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    def forward(\\\\n        self,\\\\n        input_ids: Optional[torch.LongTensor] = None,\\\\n        attention_mask: Optional[torch.Tensor] = None,\\\\n        pixel_values: Optional[torch.FloatTensor] = None,\\\\n        labels: Optional[torch.LongTensor] = None,\\\\n        inputs_embeds: Optional[torch.FloatTensor] = None,\\\\n        past_key_values: Optional[List[torch.FloatTensor]] = None,\\\\n        use_cache: Optional[bool] = None,\\\\n        output_attentions: Optional[bool] = None,\\\\n        output_hidden_states: Optional[bool] = None,\\\\n        output_projector_features: Optional[bool] = None,\\\\n        return_dict: Optional[bool] = None,\\\\n    ) -> Union[Tuple, PrismaticCausalLMOutputWithPast]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Run a forward pass through the VLM, returning a PrismaticCausalLMOutputWithPast instance.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions\\\\n        output_hidden_states = (\\\\n            output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states\\\\n        )\\\\n        output_projector_features = output_projector_features if output_projector_features is not None else False\\\\n        return_dict = return_dict if return_dict is not None else self.config.use_return_dict\\\\n\\\\n        # Respect `use_cache` only if not training (even if `gradient_checkpointing` is off)\\\\n        use_cache = use_cache and not self.training\\\\n\\\\n        # Instantiate Placeholder for Projector Features\\\\n        projected_patch_embeddings = None\\\\n\\\\n        # Note :: We only support forward passes with the following cases:\\\\n        #   => Cached Generation :: (input_ids.shape[1] == 1) and (past_key_values is not None)\\\\n        #   => Unimodal Forward :: (pixel_values is None)\\\\n        #   => Multimodal Forward :: (pixel_values is not None) and (input_ids/embeds.shape[0] == pixel_values.shape[0])\\\\n\\\\n        # === Handle Generation with Cache (`input_ids.shape[1] == 1`) =>> requires `past_keys_values` ===\\\\n        if input_ids.shape[1] == 1:\\\\n            assert input_ids.shape[0] == 1, \\\\\\\"Generation is only currently supported for batch size of 1!\\\\\\\"\\\\n            assert past_key_values is not None, \\\\\\\"You must provide `past_key_values` during cached generation!\\\\\\\"\\\\n            assert labels is None, \\\\\\\"Unexpected key `labels` provided during cached generation!\\\\\\\"\\\\n\\\\n            language_model_output = self.language_model(\\\\n                input_ids=input_ids,\\\\n                attention_mask=None,\\\\n                position_ids=None,\\\\n                past_key_values=past_key_values,\\\\n                inputs_embeds=None,\\\\n                labels=None,\\\\n                use_cache=use_cache,\\\\n                output_attentions=output_attentions,\\\\n                output_hidden_states=output_hidden_states,\\\\n                return_dict=return_dict,\\\\n            )\\\\n\\\\n        # === Handle Unimodal Forward ===\\\\n        elif pixel_values is None:\\\\n            assert (input_ids is not None) and (inputs_embeds is None), \\\\\\\"Missing `input_ids` in language-only forward!\\\\\\\"\\\\n            assert past_key_values is None, \\\\\\\"Unexpected key `past_key_values` provided during language-only forward!\\\\\\\"\\\\n\\\\n            language_model_output = self.language_model(\\\\n                input_ids=input_ids,\\\\n                attention_mask=attention_mask,\\\\n                position_ids=None,\\\\n                past_key_values=None,\\\\n                inputs_embeds=None,\\\\n                labels=labels,\\\\n                use_cache=use_cache,\\\\n                output_attentions=output_attentions,\\\\n                output_hidden_states=output_hidden_states,\\\\n                return_dict=return_dict,\\\\n            )\\\\n\\\\n        # === Handle Multimodal Forward ===\\\\n        elif (input_ids.shape[0] == pixel_values.shape[0]) or (inputs_embeds.shape[0] == pixel_values.shape[0]):\\\\n            assert past_key_values is None, \\\\\\\"Unexpected key `past_key_values` provided during language-only forward!\\\\\\\"\\\\n\\\\n            # Visual Feature Extraction\\\\n            patch_features = self.vision_backbone(pixel_values)\\\\n\\\\n            # Projectio\\\\n\\\\n... [截断: 输出过长，省略 5762 字符] ...\\\\n\\\\nel_values,\\\\n                \\\\\\\"past_key_values\\\\\\\": past_key_values,\\\\n                \\\\\\\"use_cache\\\\\\\": kwargs.get(\\\\\\\"use_cache\\\\\\\"),\\\\n            }\\\\n        )\\\\n\\\\n        return model_inputs\\\\n\\\\n    # Defer to Language Model (all handle this differently, with different return types)\\\\n    def _reorder_cache(self, *args, **kwargs) -> Any:\\\\n        return self.language_model._reorder_cache(*args, **kwargs)\\\\n\\\\n\\\\nclass OpenVLAForActionPrediction(PrismaticForConditionalGeneration):\\\\n    config_class: PretrainedConfig = OpenVLAConfig\\\\n\\\\n    def __init__(self, config: OpenVLAConfig) -> None:\\\\n        super().__init__(config)\\\\n        self.norm_stats = config.norm_stats\\\\n\\\\n        # Compute action bins\\\\n        self.bins = np.linspace(-1, 1, config.n_action_bins)\\\\n        self.bin_centers = (self.bins[:-1] + self.bins[1:]) / 2.0\\\\n\\\\n        # Compute vocab size for de-tokenization -- revert added \\\\\\\"multiple of\\\\\\\"\\\\n        self.vocab_size = self.config.text_config.vocab_size - self.config.pad_to_multiple_of\\\\n\\\\n    def predict_action(\\\\n        self, input_ids: Optional[torch.LongTensor] = None, unnorm_key: Optional[str] = None, **kwargs: str\\\\n    ) -> np.ndarray:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Thin wrapper around .generate() that decodes predicted actions and unnormalizes them.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        # If the special empty token ('') does not already appear after the colon (':') token in the prompt\\\\n        # (after \\\\\\\"OUT:\\\\\\\" or \\\\\\\"ASSISTANT:\\\\\\\"), insert it to match the inputs seen at training time\\\\n        if not torch.all(input_ids[:, -1] == 29871):\\\\n            input_ids = torch.cat(\\\\n                (input_ids, torch.unsqueeze(torch.Tensor([29871]).long(), dim=0).to(input_ids.device)), dim=1\\\\n            )\\\\n\\\\n        # Run VLA inference\\\\n        generated_ids = self.generate(input_ids, max_new_tokens=self.get_action_dim(unnorm_key), **kwargs)\\\\n\\\\n        # Extract predicted action tokens and translate into (normalized) continuous actions\\\\n        predicted_action_token_ids = generated_ids[0, -self.get_action_dim(unnorm_key) :].cpu().numpy()\\\\n        discretized_actions = self.vocab_size - predicted_action_token_ids\\\\n        discretized_actions = np.clip(discretized_actions - 1, a_min=0, a_max=self.bin_centers.shape[0] - 1)\\\\n        normalized_actions = self.bin_centers[discretized_actions]\\\\n\\\\n        # Unnormalize actions\\\\n        action_norm_stats = self.get_action_stats(unnorm_key)\\\\n        mask = action_norm_stats.get(\\\\\\\"mask\\\\\\\", np.ones_like(action_norm_stats[\\\\\\\"q01\\\\\\\"], dtype=bool))\\\\n        action_high, action_low = np.array(action_norm_stats[\\\\\\\"q99\\\\\\\"]), np.array(action_norm_stats[\\\\\\\"q01\\\\\\\"])\\\\n        actions = np.where(\\\\n            mask,\\\\n            0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\\\n            normalized_actions,\\\\n        )\\\\n\\\\n        return actions\\\\n\\\\n    @staticmethod\\\\n    def _check_unnorm_key(norm_stats: Dict[str, Dict[str, Any]], unnorm_key: Optional[str]) -> str:\\\\n        if unnorm_key is None:\\\\n            assert len(norm_stats) == 1, (\\\\n                f\\\\\\\"Your model was trained on more than one dataset, \\\\\\\"\\\\n                f\\\\\\\"please pass a `unnorm_key` from the following options to choose the statistics \\\\\\\"\\\\n                f\\\\\\\"used for un-normalizing actions: {norm_stats.keys()}\\\\\\\"\\\\n            )\\\\n            unnorm_key = next(iter(norm_stats.keys()))\\\\n\\\\n        assert unnorm_key in norm_stats, (\\\\n            f\\\\\\\"The `unnorm_key` you chose is not in the set of available dataset statistics, \\\\\\\"\\\\n            f\\\\\\\"please choose from: {norm_stats.keys()}\\\\\\\"\\\\n        )\\\\n        return unnorm_key\\\\n\\\\n    def get_action_dim(self, unnorm_key: Optional[str] = None) -> int:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Get the dimensionality of the policy's action space.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\\\n        return len(self.norm_stats[unnorm_key][\\\\\\\"action\\\\\\\"][\\\\\\\"q01\\\\\\\"])\\\\n\\\\n    def get_action_stats(self, unnorm_key: Optional[str] = None) -> Dict[str, Any]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Get all the logged statistics for the given dataset.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\\\n        return self.norm_stats[unnorm_key][\\\\\\\"action\\\\\\\"]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    def forward(\\n        self,\\n        input_ids: Optional[torch.LongTensor] = None,\\n        attention_mask: Optional[torch.Tensor] = None,\\n        pixel_values: Optional[torch.FloatTensor] = None,\\n        labels: Optional[torch.LongTensor] = None,\\n        inputs_embeds: Optional[torch.FloatTensor] = None,\\n        past_key_values: Optional[List[torch.FloatTensor]] = None,\\n        use_cache: Optional[bool] = None,\\n        output_attentions: Optional[bool] = None,\\n        output_hidden_states: Optional[bool] = None,\\n        output_projector_features: Optional[bool] = None,\\n        return_dict: Optional[bool] = None,\\n    ) -> Union[Tuple, PrismaticCausalLMOutputWithPast]:\\n        \\\"\\\"\\\"Run a forward pass through the VLM, returning a PrismaticCausalLMOutputWithPast instance.\\\"\\\"\\\"\\n        output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions\\n        output_hidden_states = (\\n            output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states\\n        )\\n        output_projector_features = output_projector_features if output_projector_features is not None else False\\n        return_dict = return_dict if return_dict is not None else self.config.use_return_dict\\n\\n        # Respect `use_cache` only if not training (even if `gradient_checkpointing` is off)\\n        use_cache = use_cache and not self.training\\n\\n        # Instantiate Placeholder for Projector Features\\n        projected_patch_embeddings = None\\n\\n        # Note :: We only support forward passes with the following cases:\\n        #   => Cached Generation :: (input_ids.shape[1] == 1) and (past_key_values is not None)\\n        #   => Unimodal Forward :: (pixel_values is None)\\n        #   => Multimodal Forward :: (pixel_values is not None) and (input_ids/embeds.shape[0] == pixel_values.shape[0])\\n\\n        # === Handle Generation with Cache (`input_ids.shape[1] == 1`) =>> requires `past_keys_values` ===\\n        if input_ids.shape[1] == 1:\\n            assert input_ids.shape[0] == 1, \\\"Generation is only currently supported for batch size of 1!\\\"\\n            assert past_key_values is not None, \\\"You must provide `past_key_values` during cached generation!\\\"\\n            assert labels is None, \\\"Unexpected key `labels` provided during cached generation!\\\"\\n\\n            language_model_output = self.language_model(\\n                input_ids=input_ids,\\n                attention_mask=None,\\n                position_ids=None,\\n                past_key_values=past_key_values,\\n                inputs_embeds=None,\\n                labels=None,\\n                use_cache=use_cache,\\n                output_attentions=output_attentions,\\n                output_hidden_states=output_hidden_states,\\n                return_dict=return_dict,\\n            )\\n\\n        # === Handle Unimodal Forward ===\\n        elif pixel_values is None:\\n            assert (input_ids is not None) and (inputs_embeds is None), \\\"Missing `input_ids` in language-only forward!\\\"\\n            assert past_key_values is None, \\\"Unexpected key `past_key_values` provided during language-only forward!\\\"\\n\\n            language_model_output = self.language_model(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                position_ids=None,\\n                past_key_values=None,\\n                inputs_embeds=None,\\n                labels=labels,\\n                use_cache=use_cache,\\n                output_attentions=output_attentions,\\n                output_hidden_states=output_hidden_states,\\n                return_dict=return_dict,\\n            )\\n\\n        # === Handle Multimodal Forward ===\\n        elif (input_ids.shape[0] == pixel_values.shape[0]) or (inputs_embeds.shape[0] == pixel_values.shape[0]):\\n            assert past_key_values is None, \\\"Unexpected key `past_key_values` provided during language-only forward!\\\"\\n\\n            # Visual Feature Extraction\\n            patch_features = self.vision_backbone(pixel_values)\\n\\n            # Projectio\\n\\n... [截断: 输出过长，省略 5762 字符] ...\\n\\nel_values,\\n                \\\"past_key_values\\\": past_key_values,\\n                \\\"use_cache\\\": kwargs.get(\\\"use_cache\\\"),\\n            }\\n        )\\n\\n        return model_inputs\\n\\n    # Defer to Language Model (all handle this differently, with different return types)\\n    def _reorder_cache(self, *args, **kwargs) -> Any:\\n        return self.language_model._reorder_cache(*args, **kwargs)\\n\\n\\nclass OpenVLAForActionPrediction(PrismaticForConditionalGeneration):\\n    config_class: PretrainedConfig = OpenVLAConfig\\n\\n    def __init__(self, config: OpenVLAConfig) -> None:\\n        super().__init__(config)\\n        self.norm_stats = config.norm_stats\\n\\n        # Compute action bins\\n        self.bins = np.linspace(-1, 1, config.n_action_bins)\\n        self.bin_centers = (self.bins[:-1] + self.bins[1:]) / 2.0\\n\\n        # Compute vocab size for de-tokenization -- revert added \\\"multiple of\\\"\\n        self.vocab_size = self.config.text_config.vocab_size - self.config.pad_to_multiple_of\\n\\n    def predict_action(\\n        self, input_ids: Optional[torch.LongTensor] = None, unnorm_key: Optional[str] = None, **kwargs: str\\n    ) -> np.ndarray:\\n        \\\"\\\"\\\"Thin wrapper around .generate() that decodes predicted actions and unnormalizes them.\\\"\\\"\\\"\\n        # If the special empty token ('') does not already appear after the colon (':') token in the prompt\\n        # (after \\\"OUT:\\\" or \\\"ASSISTANT:\\\"), insert it to match the inputs seen at training time\\n        if not torch.all(input_ids[:, -1] == 29871):\\n            input_ids = torch.cat(\\n                (input_ids, torch.unsqueeze(torch.Tensor([29871]).long(), dim=0).to(input_ids.device)), dim=1\\n            )\\n\\n        # Run VLA inference\\n        generated_ids = self.generate(input_ids, max_new_tokens=self.get_action_dim(unnorm_key), **kwargs)\\n\\n        # Extract predicted action tokens and translate into (normalized) continuous actions\\n        predicted_action_token_ids = generated_ids[0, -self.get_action_dim(unnorm_key) :].cpu().numpy()\\n        discretized_actions = self.vocab_size - predicted_action_token_ids\\n        discretized_actions = np.clip(discretized_actions - 1, a_min=0, a_max=self.bin_centers.shape[0] - 1)\\n        normalized_actions = self.bin_centers[discretized_actions]\\n\\n        # Unnormalize actions\\n        action_norm_stats = self.get_action_stats(unnorm_key)\\n        mask = action_norm_stats.get(\\\"mask\\\", np.ones_like(action_norm_stats[\\\"q01\\\"], dtype=bool))\\n        action_high, action_low = np.array(action_norm_stats[\\\"q99\\\"]), np.array(action_norm_stats[\\\"q01\\\"])\\n        actions = np.where(\\n            mask,\\n            0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\n            normalized_actions,\\n        )\\n\\n        return actions\\n\\n    @staticmethod\\n    def _check_unnorm_key(norm_stats: Dict[str, Dict[str, Any]], unnorm_key: Optional[str]) -> str:\\n        if unnorm_key is None:\\n            assert len(norm_stats) == 1, (\\n                f\\\"Your model was trained on more than one dataset, \\\"\\n                f\\\"please pass a `unnorm_key` from the following options to choose the statistics \\\"\\n                f\\\"used for un-normalizing actions: {norm_stats.keys()}\\\"\\n            )\\n            unnorm_key = next(iter(norm_stats.keys()))\\n\\n        assert unnorm_key in norm_stats, (\\n            f\\\"The `unnorm_key` you chose is not in the set of available dataset statistics, \\\"\\n            f\\\"please choose from: {norm_stats.keys()}\\\"\\n        )\\n        return unnorm_key\\n\\n    def get_action_dim(self, unnorm_key: Optional[str] = None) -> int:\\n        \\\"\\\"\\\"Get the dimensionality of the policy's action space.\\\"\\\"\\\"\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n        return len(self.norm_stats[unnorm_key][\\\"action\\\"][\\\"q01\\\"])\\n\\n    def get_action_stats(self, unnorm_key: Optional[str] = None) -> Dict[str, Any]:\\n        \\\"\\\"\\\"Get all the logged statistics for the given dataset.\\\"\\\"\\\"\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n        return self.norm_stats[unnorm_key][\\\"action\\\"]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have all the info I need. Let me look at key details from the `predict_action` method:
+
+```python
+predicted_action_token_ids = generated_ids[0, -self.get_action_dim(unnorm_key) :].cpu().numpy()
+discretized_actions = self.vocab_size - predicted_action_token_ids
+discretized_actions = np.clip(discretized_actions - 1, a_min=0, a_max=self.bin_centers.shape[0] - 1)
+
+
+```
+
+So the de-tokenization in OpenVLA is:
+1. `bin_idx = vocab_size - token_id - 1` (since `discretized_actions = vocab_size - token_ids`, then subtract 1)
+2. `value = bin_centers[bin_idx]`
+
+This matches `tokens_to_norm` in the existing scripts:
+```python
+def tokens_to_norm(t, c):
+    d = np.clip(c["vocab_size"] - t - 1, 0, len(c["bin_centers"]) - 1)
+    return c["bin_centers"][d]
+```
+
+Looking up the normalized action values...
+
+Now I need to trace through how `predict_action` works — it appends token 29871 if it's not already present, then generates 7 new tokens. I should also check the `forward` function to understand how hidden states flow through the model. The language model returns hidden states from both the embedding layer and each transformer layer, though they're computed before the final normalization that produces the logits.
+
+Actually, I'm realizing the norm gets applied inside LlamaModel before returning, so the hidden states are post-norm. But when `output_hidden_states` is enabled, it captures states from each individual layer, and I need to verify exactly which ones get returned and in what form. I need to verify the exact behavior—looking at the actual HuggingFace implementation, the tuple captures the embedding output first, then the pre-norm output from each transformer layer, and finally the post-norm output after the final layer normalization. output of layer 30) → all_hidden_states[31]
+  - hidden_states = layer[31](output of layer 30)
+
+After loop:
+  - hidden_states = self.norm(hidden_states) (final norm applied)
+  - Store hidden_states (post-norm output) → all_hidden_states[32]
+
+So all_hidden_states has 33 elements total: embeddings + 32 layer outputs + final norm output.
+
+Wait, this means all_hidden_states[32] is already post-norm, not pre-norm. If existing scripts are applying norm again to all_hidden_states[32], that would be double-normalizing! Let me check how HuggingFace LlamaModel actually handles this in output_hidden_states...
+
+Looking at PrismaticForConditionalGeneration, it calls self.language_model which is a LlamaForCausalLM wrapper. The language model passes output_hidden_states through to the underlying LlamaModel, and what gets returned is the post-norm hidden state that's already been processed through the final layer norm before being fed to the lm_head for logits.
+
+So if the script retrieves hidden_states[32] from the model output, it's getting the already-normalized output, and applying norm again would create a double-normalization bug. But I need to verify this against the actual HuggingFace transformer versions being used and how Prismatic specifically handles the output structure, since the behavior might differ across versions. Looking at how LlamaModel constructs its hidden states—it accumulates outputs from each decoder layer, applies a final normalization, and returns all intermediate hidden states if requested, so the hidden states passed through the output chain represent the full sequence of transformations from input through the final layer norm. I see the issue now—when accessing the hidden states at index 32 (the post-norm output), applying an additional normalization before the language model head creates a double-norm bug. The correct approach for the exit layer should use the post-norm hidden state directly without extra normalization, just like how the main forward pass handles it.
+
+For intermediate layers (indices 1-31), which are pre-norm outputs, I'd need to apply normalization first before decoding them. But I'm second-guessing the exact indexing scheme—let me trace through how the hidden states are actually stored during the forward pass. The final entry at index 32 captures the normalized output of the last layer, so the raw output of layer 31 itself isn't directly stored—only its post-norm version appears in the hidden states collection. Verifying the bug in the decoding logic...
+
+Writing verification code... I need to verify whether `hidden_states[32]` is actually post-norm by checking the length of the hidden states array and comparing the different normalization approaches in the diagnostic script. The key issue is that if layer 32 is already normalized, applying the norm function again would be double-normalizing, which could explain the discrepancy I'm seeing.
+
+Looking at both diagnostic scripts, they're applying normalization to all layers including 32, which would cause double-normalization if that final layer is already post-norm. This is likely the root cause of the negative R² values. Before writing the sanity check, I should examine how the Prismatic model's forward pass handles hidden states, particularly when processing multimodal inputs through the vision backbone and projector.
+
+The language model receives the merged embeddings and outputs hidden states following the standard pattern, but I need to verify whether the hidden_states tuple includes the post-norm state or not, as this varies across HuggingFace transformer versions.
+
+Let me write an empirical check script to definitively determine if the exit layer applies double normalization, since that would explain the negative R² — if the predictions are corrupted by double-norm, the decoded actions won't match the ground truth, making the model perform worse than just predicting the mean.
+
+Writing the verification script... Setting up the model loading pipeline...
+
+Now I'm extracting the normalization statistics from the model and defining the action codec, which maps raw actions to normalized bins between -1 and 1, then creating a function to convert raw action values using quantile-based normalization.
+
+Setting up conversion functions... I'm loading the sample data and setting up the action token range, then moving into the critical verification check for the double-norm bug by processing the first sample through the model pipeline to see if there's an issue with how actions are being normalized and tokenized. Finishing the attention mask concatenation, then running the model in inference mode with mixed precision to get the hidden states, and checking the shapes across different layers to understand the output structure.
+
+Now I'm extracting the hidden state from the final layer at the second-to-last position and comparing three different approaches to generate logits: using the hidden state directly without normalization, applying layer normalization first, and using the model's own logits output to see which method aligns best with the actual model behavior. Checking intermediate layer diagnostics... Writing validation code... Writing tensor operations... Writing evaluation code... Printing detailed comparison output... Generating diagnostic output... Now I'm computing the R² scores by calculating the total sum of squares and residual sum of squares for each prediction method against the ground truth normalized values. Now I'm printing out the vocabulary configuration details—the full vocab size from the model config, the padding multiple, and the effective vocab size we're using. I'm also showing the bin structure with its range and centers, then iterating through some token examples to demonstrate the token-to-bin-index-to-value conversion process.
+
+Verifying the roundtrip conversion...
+
+Now I'm checking my tokenization logic against the model's own de-tokenization method by comparing how we decode test tokens versus how the model does it.
+
+Printing dataset statistics...
+
+I'm noticing an issue with how `model.generate()` handles the empty token prepending. The `predict_action` method adds the empty token if it's missing from the input, but I need to verify that calling `generate()` directly also handles this correctly.
+
+Looking at the flow, `predict_action` accepts `input_ids` and `unnorm_key`, with any additional arguments passed through `**kwargs` to `generate()`. So when calling `predict_action`, I'd pass `pixel_values` as part of those kwargs, and `generate()` would handle them through its `prepare_inputs_for_generation` method.
+
+For my sanity check, I want to compare teacher-forced predictions against generation. I'll use the processor to create inputs and call `generate()` directly with the full set of inputs including `pixel_values`, making sure not to append action tokens beforehand. I need to handle the empty token explicitly for generation, then finalize and clean up the script before running it on the server.
+
+I'm also realizing that `PrismaticForConditionalGeneration` likely has a custom `prepare_inputs_for_generation` method that handles `pixel_values` specially during the generation loop...
+
+Examining the implementation...
+
+Actually, I see the key insight now: during cached generation after the first step, only the new token ID gets passed to the language model while the KV cache provides the context, so `pixel_values` might be included in the inputs but aren't actually processed again since the vision features were already cached.
+
+For the generate call to work properly, I need to make sure the initial input includes the empty token along with the correct `input_ids`, `attention_mask`, and `pixel_values`. Let me write out the complete script now.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "0d79ea2e-b9ad-475e-b94c-544fbdcb96fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZM7G2oD36jMhNphiBhodX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2834,
+      "cache_read_input_tokens": 62106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2834
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+Now I have a clear picture of the code. I see a strong candidate for the bug: in HuggingFace's LlamaModel, `hidden_states[32]` (the last entry) is already POST-norm (after final RMSNorm), but the existing scripts apply `norm_fn` to ALL layers including this one, creating a double-norm. Let me write and run the sanity check.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "3b65bb61-4b00-444a-9de0-4a146ee287ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZM7G2oD36jMhNphiBhodX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2834,
+      "cache_read_input_tokens": 62106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2834
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QHWvWGgByjEKcJDjyeEFph`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/sanity_check.py << 'PYEOF'\n\"\"\"Action-Head Decoding Sanity Check: 4 diagnostics on 10 samples.\"\"\"\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport torch, json, glob, h5py\nimport numpy as np\nfrom PIL import Image\nfrom pathlib import Path\n\nCKPT = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nDEVICE = \"cuda:0\"\nN_ACTION_BINS = 256\nEMPTY_TOKEN = 29871\nACTION_DIM = 7\nN_SAMPLES = 10\n\n# ─── Load model ───\nprint(\"Loading model...\")\nfrom transformers import AutoProcessor\nfrom transformers.dynamic_module_utils import get_class_from_dynamic_module\n\nproc = AutoProcessor.from_pretrained(CKPT, trust_remote_code=True, local_files_only=True)\nModelClass = get_class_from_dynamic_module(\n    \"modeling_prismatic.OpenVLAForActionPrediction\", CKPT)\nmodel = ModelClass.from_pretrained(\n    CKPT, dtype=torch.bfloat16, low_cpu_mem_usage=True,\n    attn_implementation=\"eager\", local_files_only=True,\n).to(DEVICE).eval()\nprint(f\"Model loaded: {sum(p.numel() for p in model.parameters())/1e9:.1f}B params\")\n\n# ─── Codec ───\nstats = model.norm_stats[\"libero_goal\"][\"action\"]\nvocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\nbins = np.linspace(-1, 1, N_ACTION_BINS)\nbin_centers = (bins[:-1] + bins[1:]) / 2.0\nq01 = np.array(stats[\"q01\"])\nq99 = np.array(stats[\"q99\"])\nmask_arr = np.array(stats[\"mask\"])\n\ndef raw_to_norm(action):\n    n = np.where(mask_arr, 2*(action - q01)/(q99 - q01 + 1e-8) - 1, action)\n    return np.clip(n, -1, 1)\n\ndef norm_to_tokens(norm_action):\n    idx = np.clip(np.digitize(norm_action, bins) - 1, 0, N_ACTION_BINS - 2)\n    return vocab_size - 1 - idx\n\ndef tokens_to_norm(token_ids):\n    d = np.clip(vocab_size - token_ids - 1, 0, len(bin_centers) - 1)\n    return bin_centers[d]\n\nnorm_fn = model.language_model.model.norm\nlm_head = model.language_model.lm_head\n\n# ─── Load samples ───\nhdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*_demo.hdf5\")))\nsamples = []\nfor hf_path in hdf5_files:\n    task = Path(hf_path).stem.replace(\"_demo\", \"\").replace(\"_\", \" \")\n    prompt = f\"In: What action should the robot take to {task}?\\nOut:\"\n    with h5py.File(hf_path, \"r\") as hf:\n        dk = sorted(hf[\"data\"].keys(), key=lambda x: int(x.split(\"_\")[1]))[0]\n        imgs = np.array(hf[f\"data/{dk}/obs/agentview_rgb\"])\n        acts = np.array(hf[f\"data/{dk}/actions\"])\n    samples.append((prompt, Image.fromarray(imgs[0]), acts[0]))\n    if len(samples) >= N_SAMPLES:\n        break\n\nprint(f\"Loaded {len(samples)} samples from {len(hdf5_files)} tasks\")\nprint(f\"Effective vocab_size: {vocab_size}\")\naction_lo = vocab_size - N_ACTION_BINS + 1\naction_hi = vocab_size - 1\nprint(f\"Action token range: [{action_lo}, {action_hi}]\")\n\ndef build_tf_input(prompt, img, gt_action):\n    \"\"\"Build teacher-forcing input with GT action tokens appended.\"\"\"\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    inp = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\n    if inp[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    act_ids = torch.tensor(gt_toks, dtype=torch.long, device=DEVICE).unsqueeze(0)\n    inp[\"input_ids\"] = torch.cat([inp[\"input_ids\"], act_ids], dim=1)\n    if \"attention_mask\" in inp:\n        inp[\"attention_mask\"] = torch.cat([\n            inp[\"attention_mask\"],\n            torch.ones(1, ACTION_DIM, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n        ], dim=1)\n    return inp, gt_norm, gt_toks\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 3: Double-norm bug (most critical — run first)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 3: Double-norm bug verification\")\nprint(\"=\"*70)\n\ninp, _, _ = build_tf_input(*samples[0])\nwith torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n    out = model(**inp, output_hidden_states=True)\n\nn_hs = len(out.hidden_states)\nprint(f\"Number of hidden states: {n_hs}\")\nfor idx in [0, 1, n_hs-2, n_hs-1]:\n    print(f\"  hidden_states[{idx}] shape: {out.hidden_states[idx].shape}\")\n\nlast_pos = out.hidden_states[0].shape[1] - 2\nhs_exit = out.hidden_states[n_hs-1][0, last_pos, :]\n\n# Three methods:\nlogits_no_norm = lm_head(hs_exit.unsqueeze(0)).float()[0]\nlogits_with_norm = lm_head(norm_fn(hs_exit.unsqueeze(0))).float()[0]\nlogits_model = out.logits[0, last_pos, :].float()\n\ndiff_no_norm = (logits_no_norm - logits_model).abs().max().item()\ndiff_with_norm = (logits_with_norm - logits_model).abs().max().item()\nmean_diff_no = (logits_no_norm - logits_model).abs().mean().item()\nmean_diff_with = (logits_with_norm - logits_model).abs().mean().item()\n\nprint(f\"\\nmodel.language_model.model.norm type: {type(norm_fn)}\")\nprint(f\"hidden_states[{n_hs-1}] (exit) L2 norm:  {hs_exit.float().norm().item():.4f}\")\nprint(f\"After applying norm, L2 norm:            {norm_fn(hs_exit.unsqueeze(0)).float().norm().item():.4f}\")\n\nprint(f\"\\nLogits comparison at position {last_pos}:\")\nprint(f\"  lm_head(hs) vs model logits:       max={diff_no_norm:.6f}, mean={mean_diff_no:.6f}\")\nprint(f\"  lm_head(norm(hs)) vs model logits: max={diff_with_norm:.6f}, mean={mean_diff_with:.6f}\")\n\nif diff_no_norm < 0.1 and diff_no_norm < diff_with_norm:\n    IS_POST_NORM = True\n    print(\"  >>> FINDING: hidden_states[-1] is POST-norm\")\n    print(\"  >>> Applying norm again = DOUBLE-NORM BUG!\")\n    print(\"  >>> FIX: For exit layer, use lm_head(hs) directly\")\nelif diff_with_norm < 0.1 and diff_with_norm < diff_no_norm:\n    IS_POST_NORM = False\n    print(\"  >>> FINDING: hidden_states[-1] is PRE-norm\")\n    print(\"  >>> Current code (apply norm) is correct\")\nelse:\n    IS_POST_NORM = None\n    print(\"  >>> INCONCLUSIVE — both methods have significant diff\")\n\n# Argmax comparison\ntok_no_norm = logits_no_norm.argmax().item()\ntok_with_norm = logits_with_norm.argmax().item()\ntok_model = logits_model.argmax().item()\nprint(f\"\\nArgmax token at exit layer:\")\nprint(f\"  lm_head(hs):       {tok_no_norm}  (is_action={action_lo <= tok_no_norm <= action_hi})\")\nprint(f\"  lm_head(norm(hs)): {tok_with_norm}  (is_action={action_lo <= tok_with_norm <= action_hi})\")\nprint(f\"  model logits:      {tok_model}  (is_action={action_lo <= tok_model <= action_hi})\")\n\n# Check ALL layers: which are pre-norm, which are post-norm?\nprint(f\"\\nL2 norms across all hidden_states:\")\nfor li in [0, 1, 8, 16, 24, 31, 32]:\n    if li < n_hs:\n        h = out.hidden_states[li][0, last_pos, :]\n        hn = norm_fn(h.unsqueeze(0))[0]\n        print(f\"  hs[{li:2d}]: raw_norm={h.float().norm().item():.1f}, \"\n              f\"after_norm={hn.float().norm().item():.1f}\")\n\ndel out, inp\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 1 & 2: Exit layer predictions (10 samples)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 1: Exit layer prediction vs ground truth (teacher forcing)\")\nprint(\"=\"*70)\n\nall_gt_toks = []\nall_pred_correct = []\nall_pred_buggy = []\nall_gen_toks = []\nall_top5 = []\n\nfor i, (prompt, img, gt_action) in enumerate(samples):\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    \n    # Teacher-forcing\n    inp, _, _ = build_tf_input(prompt, img, gt_action)\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        out = model(**inp, output_hidden_states=True)\n    \n    seq_len = out.hidden_states[0].shape[1]\n    positions = list(range(seq_len - ACTION_DIM - 1, seq_len - 1))\n    hs_exit = out.hidden_states[n_hs-1][0, positions, :]  # [7, D]\n    \n    # Correct method (based on Check 3)\n    if IS_POST_NORM:\n        logits_c = lm_head(hs_exit).float()\n    else:\n        logits_c = lm_head(norm_fn(hs_exit)).float()\n    pred_c = logits_c.argmax(dim=-1).cpu().numpy()\n    \n    # Buggy method (always apply norm)\n    logits_b = lm_head(norm_fn(hs_exit)).float()\n    pred_b = logits_b.argmax(dim=-1).cpu().numpy()\n    \n    # Model's own logits\n    pred_model = out.logits[0, positions, :].float().argmax(dim=-1).cpu().numpy()\n    \n    # Top-5\n    top5_ids = logits_c.topk(5, dim=-1).indices.cpu().numpy()\n    top5_hit = np.array([gt_toks[d] in top5_ids[d] for d in range(ACTION_DIM)])\n    \n    # model.generate()\n    inp_gen = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp_gen = {k: v.to(DEVICE) for k, v in inp_gen.items()}\n    if inp_gen[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp_gen[\"input_ids\"] = torch.cat([\n            inp_gen[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp_gen:\n            inp_gen[\"attention_mask\"] = torch.cat([\n                inp_gen[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp_gen[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        gen_out = model.generate(**inp_gen, max_new_tokens=ACTION_DIM, do_sample=False)\n    gen_toks = gen_out[0, -ACTION_DIM:].cpu().numpy()\n    \n    all_gt_toks.append(gt_toks)\n    all_pred_correct.append(pred_c)\n    all_pred_buggy.append(pred_b)\n    all_gen_toks.append(gen_toks)\n    all_top5.append(top5_hit)\n    \n    print(f\"\\nSample {i}:\")\n    print(f\"  GT action (raw):       [{', '.join(f'{x:.4f}' for x in gt_action)}]\")\n    print(f\"  GT action (norm):      [{', '.join(f'{x:.4f}' for x in gt_norm)}]\")\n    print(f\"  GT token IDs:          {gt_toks}\")\n    print(f\"  Exit layer (L{n_hs-1}, correct={'no-norm' if IS_POST_NORM else 'with-norm'}):\")\n    print(f\"    Argmax token IDs:    {pred_c}\")\n    print(f\"    De-tokenized:        [{', '.join(f'{x:.4f}' for x in tokens_to_norm(pred_c))}]\")\n    print(f\"    Match GT tokens?:    {(pred_c == gt_toks).tolist()}\")\n    print(f\"    Top-5 match?:        {top5_hit.tolist()}\")\n    print(f\"  Buggy (always norm):   {pred_b}\")\n    print(f\"  Model logits argmax:   {pred_model}\")\n    print(f\"  model.generate():      {gen_toks}\")\n    print(f\"    Generated action:    [{', '.join(f'{x:.4f}' for x in tokens_to_norm(gen_toks))}]\")\n    print(f\"  Correct==Model:        {np.array_equal(pred_c, pred_model)}\")\n    print(f\"  Gen[0]==Correct[0]:    {gen_toks[0] == pred_c[0]}\")\n    \n    del out, inp, inp_gen, gen_out\n    torch.cuda.empty_cache()\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 2: Token-level exact match rate\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 2: Token-level exact match rate summary\")\nprint(\"=\"*70)\n\ngt_a = np.array(all_gt_toks)\npc = np.array(all_pred_correct)\npb = np.array(all_pred_buggy)\nga = np.array(all_gen_toks)\nt5 = np.array(all_top5)\n\nem_c = (pc == gt_a)\nem_b = (pb == gt_a)\nem_g = (ga == gt_a)\n\nprint(f\"\\nCorrect method ({'no-norm' if IS_POST_NORM else 'with-norm'} for exit layer):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_c.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_c.mean():.4f}\")\nprint(f\"  Top-5 match per dim:  {np.array2string(t5.mean(axis=0).astype(float), precision=3)}\")\nprint(f\"  Overall top-5 match:  {t5.mean():.4f}\")\n\nprint(f\"\\nBuggy method (always norm):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_b.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_b.mean():.4f}\")\n\nprint(f\"\\nmodel.generate():\")\nprint(f\"  Exact match per dim:  {np.array2string(em_g.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_g.mean():.4f}\")\n\n# R² on these 10 samples\ngt_norm_all = np.array([raw_to_norm(s[2]) for s in samples])\npn_c = np.array([tokens_to_norm(t) for t in pc])\npn_b = np.array([tokens_to_norm(t) for t in pb])\ngn_a = np.array([tokens_to_norm(t) for t in ga])\n\nss_tot = np.sum((gt_norm_all - gt_norm_all.mean(0))**2)\nr2_c = 1 - np.sum((pn_c - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_b = 1 - np.sum((pn_b - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_g = 1 - np.sum((gn_a - gt_norm_all)**2) / (ss_tot + 1e-12)\n\nprint(f\"\\nR² (exit layer, 10 samples):\")\nprint(f\"  Correct method: {r2_c:.4f}\")\nprint(f\"  Buggy method:   {r2_b:.4f}\")\nprint(f\"  Generate:       {r2_g:.4f}\")\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 4: Bin→continuous roundtrip\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 4: Bin→continuous roundtrip verification\")\nprint(\"=\"*70)\n\nfull_vocab = model.config.text_config.vocab_size\nprint(f\"Full vocab size (config):  {full_vocab}\")\nprint(f\"pad_to_multiple_of:        {model.config.pad_to_multiple_of}\")\nprint(f\"Effective vocab_size:      {vocab_size}\")\nprint(f\"n_action_bins:             {N_ACTION_BINS}\")\nprint(f\"Bin edges:                 {len(bins)} (range [{bins[0]:.4f}, {bins[-1]:.4f}])\")\nprint(f\"Bin centers:               {len(bin_centers)} (range [{bin_centers[0]:.4f}, {bin_centers[-1]:.4f}])\")\n\nprint(f\"\\nToken → bin_idx → value examples:\")\nfor tok in [vocab_size-1, vocab_size-128, vocab_size-255, vocab_size-256+1]:\n    bi = vocab_size - 1 - tok\n    if 0 <= bi < len(bin_centers):\n        print(f\"  Token {tok} → bin {bi:3d} → value {bin_centers[bi]:.4f}\")\n    else:\n        print(f\"  Token {tok} → bin {bi:3d} → OUT OF RANGE\")\n\nprint(f\"\\nRoundtrip: GT action → normalize → tokenize → de-tokenize:\")\nfor i in range(min(3, len(samples))):\n    gn = raw_to_norm(samples[i][2])\n    gt = norm_to_tokens(gn)\n    rec = tokens_to_norm(gt)\n    print(f\"  Sample {i}: max error = {np.abs(gn - rec).max():.6f}\")\n    print(f\"    Norm:      [{', '.join(f'{x:.4f}' for x in gn)}]\")\n    print(f\"    Tokens:    {gt}\")\n    print(f\"    Recovered: [{', '.join(f'{x:.4f}' for x in rec)}]\")\n\n# Cross-check with model's own de-tokenization\nprint(f\"\\nCross-check with model.predict_action's de-tokenization:\")\nprint(f\"  model.vocab_size = {model.vocab_size}\")\nprint(f\"  model.bin_centers shape = {model.bin_centers.shape}\")\ntest_toks = np.array([31900, 31950, 31800])\nour_decode = tokens_to_norm(test_toks)\nmodel_decode = model.bin_centers[np.clip(model.vocab_size - test_toks - 1, 0, model.bin_centers.shape[0] - 1)]\nprint(f\"  Test tokens:  {test_toks}\")\nprint(f\"  Our decode:   {our_decode}\")\nprint(f\"  Model decode: {model_decode}\")\nprint(f\"  Match: {np.allclose(our_decode, model_decode)}\")\n\nprint(f\"\\nDataset statistics (libero_goal):\")\nprint(f\"  Mean:  [{', '.join(f'{x:.4f}' for x in stats['mean'])}]\")\nprint(f\"  Std:   [{', '.join(f'{x:.4f}' for x in stats['std'])}]\")\nprint(f\"  q01:   [{', '.join(f'{x:.4f}' for x in stats['q01'])}]\")\nprint(f\"  q99:   [{', '.join(f'{x:.4f}' for x in stats['q99'])}]\")\nprint(f\"  Mask:  {stats['mask']}\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"ALL 4 CHECKS COMPLETE\")\nprint(\"=\"*70)\nPYEOF\necho \"Script written successfully\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "4a5fde35-1734-4473-a142-40087eec3716",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZM7G2oD36jMhNphiBhodX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2834,
+      "cache_read_input_tokens": 62106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2834
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-26T20:02:56.732Z_
+
+<details><summary>↩ Tool result · `toolu_01QHWvWGgByjEKcJDjyeEFph`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "95e4b9cf-cb1b-4124-b390-5abcc3cdc18f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+脚本已写入。开始运行（模型加载 + 10 个样本推理，预计 3-5 分钟）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "fe7a2797-b5fc-4c69-9760-fbd1a4e43599",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014SAQBaZceEPG6hYe9dd2Ss",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19104,
+      "cache_read_input_tokens": 64940,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19104
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017XHbg2rP1hnKhZKB7iHMc8`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && nohup python scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "fb7e4c13-f243-4222-93ae-fb0911e2af04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014SAQBaZceEPG6hYe9dd2Ss",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19104,
+      "cache_read_input_tokens": 64940,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19104
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-26T20:03:02.310Z_
+
+<details><summary>↩ Tool result · `toolu_017XHbg2rP1hnKhZKB7iHMc8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 963815\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "3280864e-287c-45c1-ab30-0a0cb3448f09",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID: 963815\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID: 963815\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GSGG9ghtb7kJkkaKx7Qaqo`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -5 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "7d680e74-3ada-4340-ae1c-e0f9238d3457",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01395Y5yEMhjTB5YGpY2HSv2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 84044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 249
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-26T20:03:04.988Z_
+
+<details><summary>↩ Tool result · `toolu_01GSGG9ghtb7kJkkaKx7Qaqo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"nohup: failed to run command 'python': No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "2113497b-a9f5-4052-9bda-5e5ccc9c08a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"nohup: failed to run command 'python': No such file or directory\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"nohup: failed to run command 'python': No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A3fJmQsqQN2uZXwd7K4QAQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "which python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "9c722c5b-2e45-4332-82e8-fe9fddeb1f81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yisQcDkDTzXcLgBJ3hZ5S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 292,
+      "cache_read_input_tokens": 84293,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 292
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-26T20:03:07.109Z_
+
+<details><summary>↩ Tool result · `toolu_01A3fJmQsqQN2uZXwd7K4QAQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "7f40d2f7-5a06-4941-b830-274b94b71dde",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HLRkfZoSHFVCvPKoHrfGk7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "which python3 && which python"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "8fc0bf86-270e-4de1-87bb-d8e449f95644",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mph5eWFsf8UJbT2kRoK5BD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 179,
+      "cache_read_input_tokens": 84585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 179
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-26T20:03:09.472Z_
+
+<details><summary>↩ Tool result · `toolu_01HLRkfZoSHFVCvPKoHrfGk7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python3 && which python'\\n\\nExit code: 1\\n\\nStdout:\\n\\n/usr/bin/python3\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "672bc5e9-f136-4646-9394-eac8f965fd99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'which python3 && which python'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n/usr/bin/python3\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python3 && which python'\\n\\nExit code: 1\\n\\nStdout:\\n\\n/usr/bin/python3\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DZAaXqKZR2Mj83x4DE6pYe`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && nohup python3 scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "dc69ab7b-8931-49cf-83e8-980e6e55052c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBw1g6SLfsygcV3Nczf6Zo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 207,
+      "cache_read_input_tokens": 84764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 207
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-26T20:03:13.169Z_
+
+<details><summary>↩ Tool result · `toolu_01DZAaXqKZR2Mj83x4DE6pYe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 963853\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "26da9559-5ee2-4f55-9feb-9aae62c5135f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID: 963853\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID: 963853\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S52ytyXmAoDxDJYdcp1aNd`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "0eba77f5-fa20-45aa-ae41-460618e19876",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wFuD2GyWWkonY6Y3M6g4F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 211,
+      "cache_read_input_tokens": 84971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 211
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-26T20:03:15.825Z_
+
+<details><summary>↩ Tool result · `toolu_01S52ytyXmAoDxDJYdcp1aNd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Traceback (most recent call last):\\n  File \\\"/root/vla-ssd/scripts/sanity_check.py\\\", line 6, in &lt;module>\\n    import torch, json, glob, h5py\\nModuleNotFoundError: No module named 'torch'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "6a3ba7d6-5f3b-4f0c-b096-5fa93b2ec5e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/root/vla-ssd/scripts/sanity_check.py\\\\\\\", line 6, in &lt;module>\\\\n    import torch, json, glob, h5py\\\\nModuleNotFoundError: No module named 'torch'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Traceback (most recent call last):\\n  File \\\"/root/vla-ssd/scripts/sanity_check.py\\\", line 6, in &lt;module>\\n    import torch, json, glob, h5py\\nModuleNotFoundError: No module named 'torch'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FqakWvtYc8rTaYycDtHeF5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/miniconda3/bin/python 2>/dev/null || ls /opt/conda/bin/python 2>/dev/null || find /root -name \"python\" -path \"*/bin/*\" -type f 2>/dev/null | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "350cf636-9c81-43d4-9a4e-7025a0218bef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GtErDKv8b2YzgypE4LUyYf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 243,
+      "cache_read_input_tokens": 85182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 243
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-26T20:03:19.131Z_
+
+<details><summary>↩ Tool result · `toolu_01FqakWvtYc8rTaYycDtHeF5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "26556a23-b9da-4326-9258-3475063919ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019YdiCe9Gnx9Fk452EtpALw`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "5adff21c-dd7d-45a5-93a2-102483f68dc6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PSi44xcv4ntQx1GtrXpB9v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 85425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-26T20:03:50.360Z_
+
+<details><summary>↩ Tool result · `toolu_019YdiCe9Gnx9Fk452EtpALw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 963870\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "0ad88de1-37cf-4ad4-9c38-d0bebd209d39",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID: 963870\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 28.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID: 963870\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+等待模型加载和推理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "ff265e32-6cdf-44c4-ab91-f8081c5778bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GruUnu3Rib9xo14iBWJt2i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 232,
+      "cache_read_input_tokens": 85656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 232
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VPcyZ412stQxZ2yn7i4djK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "6141c46d-a45b-4dbe-bd52-052956a92c34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GruUnu3Rib9xo14iBWJt2i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 232,
+      "cache_read_input_tokens": 85656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 232
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-26T20:03:53.429Z_
+
+<details><summary>↩ Tool result · `toolu_01VPcyZ412stQxZ2yn7i4djK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nCHECK 1: Exit layer prediction vs ground truth (teacher forcing)\\n======================================================================\\nTraceback (most recent call last):\\n  File \\\"/root/vla-ssd/scripts/sanity_check.py\\\", line 230, in &lt;module>\\n    gen_out = model.generate(**inp_gen, max_new_tokens=ACTION_DIM, do_sample=False)\\n              ^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1965, in __getattr__\\n    raise AttributeError(\\nAttributeError: 'OpenVLAForActionPrediction' object has no attribute 'generate'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "d50075e8-7111-42bb-88a0-b85be52b056f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nCHECK 1: Exit layer prediction vs ground truth (teacher forcing)\\\\n======================================================================\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/vla-ssd/scripts/sanity_check.py\\\\\\\", line 230, in &lt;module>\\\\n    gen_out = model.generate(**inp_gen, max_new_tokens=ACTION_DIM, do_sample=False)\\\\n              ^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1965, in __getattr__\\\\n    raise AttributeError(\\\\nAttributeError: 'OpenVLAForActionPrediction' object has no attribute 'generate'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nCHECK 1: Exit layer prediction vs ground truth (teacher forcing)\\n======================================================================\\nTraceback (most recent call last):\\n  File \\\"/root/vla-ssd/scripts/sanity_check.py\\\", line 230, in &lt;module>\\n    gen_out = model.generate(**inp_gen, max_new_tokens=ACTION_DIM, do_sample=False)\\n              ^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1965, in __getattr__\\n    raise AttributeError(\\nAttributeError: 'OpenVLAForActionPrediction' object has no attribute 'generate'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The model doesn't have a `generate` method. OpenVLAForActionPrediction inherits from PrismaticForConditionalGeneration, which might not have a generate method. Let me check.
+
+Actually, looking at the code again, `PrismaticForConditionalGeneration` inherits from `PrismaticPreTrainedModel` which inherits from `PreTrainedModel`. PreTrainedModel does have a `generate` method. But it might not be properly set up.
+
+Wait, looking at the model code: `PrismaticForConditionalGeneration` has a `prepare_inputs_for_generation` method, which suggests it should support `generate()`. 
+
+But the error shows the model genuinely doesn't have the `generate` attribute. I'm wondering if this is a version mismatch with transformers, or if the dynamic module loading isn't properly inheriting from the HF base classes that provide the generation functionality. I need to check what version of transformers is actually installed versus what the config specifies, since that could explain why `generate()` isn't available. Rather than relying on a method that might not exist, I'll rewrite the script to implement manual autoregressive generation instead, similar to how the diagnostic script handles it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "4038357e-c1e5-4fa8-baa5-c5775a20b357",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNgacgoDhncFCRqFTZhCqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 372,
+      "cache_read_input_tokens": 85888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+Model doesn't have `generate()` in this environment. Let me fix the script to use manual autoregressive decoding instead.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "ee32ef21-0756-46c5-8410-bfc52f762d2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNgacgoDhncFCRqFTZhCqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 372,
+      "cache_read_input_tokens": 85888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013JTpewavX8eQJtuTF5gD2G`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/sanity_check.py << 'PYEOF'\n\"\"\"Action-Head Decoding Sanity Check: 4 diagnostics on 10 samples.\"\"\"\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport torch, json, glob, h5py\nimport numpy as np\nfrom PIL import Image\nfrom pathlib import Path\n\nCKPT = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nDEVICE = \"cuda:0\"\nN_ACTION_BINS = 256\nEMPTY_TOKEN = 29871\nACTION_DIM = 7\nN_SAMPLES = 10\n\n# ─── Load model ───\nprint(\"Loading model...\")\nfrom transformers import AutoProcessor\nfrom transformers.dynamic_module_utils import get_class_from_dynamic_module\n\nproc = AutoProcessor.from_pretrained(CKPT, trust_remote_code=True, local_files_only=True)\nModelClass = get_class_from_dynamic_module(\n    \"modeling_prismatic.OpenVLAForActionPrediction\", CKPT)\nmodel = ModelClass.from_pretrained(\n    CKPT, dtype=torch.bfloat16, low_cpu_mem_usage=True,\n    attn_implementation=\"eager\", local_files_only=True,\n).to(DEVICE).eval()\nprint(f\"Model loaded: {sum(p.numel() for p in model.parameters())/1e9:.1f}B params\")\n\n# ─── Codec ───\nstats = model.norm_stats[\"libero_goal\"][\"action\"]\nvocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\nbins = np.linspace(-1, 1, N_ACTION_BINS)\nbin_centers = (bins[:-1] + bins[1:]) / 2.0\nq01 = np.array(stats[\"q01\"])\nq99 = np.array(stats[\"q99\"])\nmask_arr = np.array(stats[\"mask\"])\n\ndef raw_to_norm(action):\n    n = np.where(mask_arr, 2*(action - q01)/(q99 - q01 + 1e-8) - 1, action)\n    return np.clip(n, -1, 1)\n\ndef norm_to_tokens(norm_action):\n    idx = np.clip(np.digitize(norm_action, bins) - 1, 0, N_ACTION_BINS - 2)\n    return vocab_size - 1 - idx\n\ndef tokens_to_norm(token_ids):\n    d = np.clip(vocab_size - token_ids - 1, 0, len(bin_centers) - 1)\n    return bin_centers[d]\n\nnorm_fn = model.language_model.model.norm\nlm_head = model.language_model.lm_head\naction_lo = vocab_size - N_ACTION_BINS + 1\naction_hi = vocab_size - 1\n\n# ─── Load samples ───\nhdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*_demo.hdf5\")))\nsamples = []\nfor hf_path in hdf5_files:\n    task = Path(hf_path).stem.replace(\"_demo\", \"\").replace(\"_\", \" \")\n    prompt = f\"In: What action should the robot take to {task}?\\nOut:\"\n    with h5py.File(hf_path, \"r\") as hf:\n        dk = sorted(hf[\"data\"].keys(), key=lambda x: int(x.split(\"_\")[1]))[0]\n        imgs = np.array(hf[f\"data/{dk}/obs/agentview_rgb\"])\n        acts = np.array(hf[f\"data/{dk}/actions\"])\n    samples.append((prompt, Image.fromarray(imgs[0]), acts[0]))\n    if len(samples) >= N_SAMPLES:\n        break\n\nprint(f\"Loaded {len(samples)} samples from {len(hdf5_files)} tasks\")\nprint(f\"Effective vocab_size: {vocab_size}\")\nprint(f\"Action token range: [{action_lo}, {action_hi}]\")\n\ndef build_tf_input(prompt, img, gt_action):\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    inp = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\n    if inp[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    act_ids = torch.tensor(gt_toks, dtype=torch.long, device=DEVICE).unsqueeze(0)\n    inp[\"input_ids\"] = torch.cat([inp[\"input_ids\"], act_ids], dim=1)\n    if \"attention_mask\" in inp:\n        inp[\"attention_mask\"] = torch.cat([\n            inp[\"attention_mask\"],\n            torch.ones(1, ACTION_DIM, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n        ], dim=1)\n    return inp, gt_norm, gt_toks\n\n@torch.no_grad()\ndef autoregressive_generate(model, proc, prompt, img, norm_fn, lm_head):\n    \"\"\"Manual autoregressive generation (7 action tokens).\"\"\"\n    inp = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\n    if inp[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    \n    gen_tokens = []\n    for step in range(ACTION_DIM):\n        with torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n            out = model(**inp, output_hidden_states=False)\n        logits = out.logits[0, -1, :].float()\n        next_tok = logits.argmax().item()\n        gen_tokens.append(next_tok)\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[next_tok]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n        del out\n    return np.array(gen_tokens)\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 3: Double-norm bug (most critical — run first)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 3: Double-norm bug verification\")\nprint(\"=\"*70)\n\ninp, _, _ = build_tf_input(*samples[0])\nwith torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n    out = model(**inp, output_hidden_states=True)\n\nn_hs = len(out.hidden_states)\nprint(f\"Number of hidden states: {n_hs}\")\nfor idx in [0, 1, n_hs-2, n_hs-1]:\n    print(f\"  hidden_states[{idx}] shape: {out.hidden_states[idx].shape}\")\n\nlast_pos = out.hidden_states[0].shape[1] - 2\nhs_exit = out.hidden_states[n_hs-1][0, last_pos, :]\n\nlogits_no_norm = lm_head(hs_exit.unsqueeze(0)).float()[0]\nlogits_with_norm = lm_head(norm_fn(hs_exit.unsqueeze(0))).float()[0]\nlogits_model = out.logits[0, last_pos, :].float()\n\ndiff_no_norm = (logits_no_norm - logits_model).abs().max().item()\ndiff_with_norm = (logits_with_norm - logits_model).abs().max().item()\nmean_diff_no = (logits_no_norm - logits_model).abs().mean().item()\nmean_diff_with = (logits_with_norm - logits_model).abs().mean().item()\n\nprint(f\"\\nmodel.language_model.model.norm type: {type(norm_fn)}\")\nprint(f\"hidden_states[{n_hs-1}] (exit) L2 norm:  {hs_exit.float().norm().item():.4f}\")\nprint(f\"After applying norm, L2 norm:            {norm_fn(hs_exit.unsqueeze(0)).float().norm().item():.4f}\")\n\nprint(f\"\\nLogits comparison at position {last_pos}:\")\nprint(f\"  lm_head(hs) vs model logits:       max={diff_no_norm:.6f}, mean={mean_diff_no:.6f}\")\nprint(f\"  lm_head(norm(hs)) vs model logits: max={diff_with_norm:.6f}, mean={mean_diff_with:.6f}\")\n\nif diff_no_norm < 0.1 and diff_no_norm < diff_with_norm:\n    IS_POST_NORM = True\n    print(\"  >>> FINDING: hidden_states[-1] is POST-norm\")\n    print(\"  >>> Applying norm again = DOUBLE-NORM BUG!\")\n    print(\"  >>> FIX: For exit layer, use lm_head(hs) directly\")\nelif diff_with_norm < 0.1 and diff_with_norm < diff_no_norm:\n    IS_POST_NORM = False\n    print(\"  >>> FINDING: hidden_states[-1] is PRE-norm\")\n    print(\"  >>> Current code (apply norm) is correct\")\nelse:\n    IS_POST_NORM = None\n    print(\"  >>> INCONCLUSIVE — both methods have significant diff\")\n\ntok_no_norm = logits_no_norm.argmax().item()\ntok_with_norm = logits_with_norm.argmax().item()\ntok_model = logits_model.argmax().item()\nprint(f\"\\nArgmax token at exit layer:\")\nprint(f\"  lm_head(hs):       {tok_no_norm}  (is_action={action_lo <= tok_no_norm <= action_hi})\")\nprint(f\"  lm_head(norm(hs)): {tok_with_norm}  (is_action={action_lo <= tok_with_norm <= action_hi})\")\nprint(f\"  model logits:      {tok_model}  (is_action={action_lo <= tok_model <= action_hi})\")\n\nprint(f\"\\nL2 norms across all hidden_states:\")\nfor li in [0, 1, 8, 16, 24, 31, 32]:\n    if li < n_hs:\n        h = out.hidden_states[li][0, last_pos, :]\n        hn = norm_fn(h.unsqueeze(0))[0]\n        print(f\"  hs[{li:2d}]: raw_norm={h.float().norm().item():.1f}, \"\n              f\"after_norm={hn.float().norm().item():.1f}\")\n\ndel out, inp\ntorch.cuda.empty_cache()\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 1 & 2: Exit layer predictions (10 samples)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 1: Exit layer prediction vs ground truth (teacher forcing)\")\nprint(\"=\"*70)\n\nall_gt_toks = []\nall_pred_correct = []\nall_pred_buggy = []\nall_gen_toks = []\nall_top5 = []\n\nfor i, (prompt, img, gt_action) in enumerate(samples):\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    \n    inp, _, _ = build_tf_input(prompt, img, gt_action)\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        out = model(**inp, output_hidden_states=True)\n    \n    seq_len = out.hidden_states[0].shape[1]\n    positions = list(range(seq_len - ACTION_DIM - 1, seq_len - 1))\n    hs_exit = out.hidden_states[n_hs-1][0, positions, :]\n    \n    # Correct method (based on Check 3)\n    if IS_POST_NORM:\n        logits_c = lm_head(hs_exit).float()\n    else:\n        logits_c = lm_head(norm_fn(hs_exit)).float()\n    pred_c = logits_c.argmax(dim=-1).cpu().numpy()\n    \n    # Buggy method (always apply norm)\n    logits_b = lm_head(norm_fn(hs_exit)).float()\n    pred_b = logits_b.argmax(dim=-1).cpu().numpy()\n    \n    # Model's own logits\n    pred_model = out.logits[0, positions, :].float().argmax(dim=-1).cpu().numpy()\n    \n    # Top-5\n    top5_ids = logits_c.topk(5, dim=-1).indices.cpu().numpy()\n    top5_hit = np.array([gt_toks[d] in top5_ids[d] for d in range(ACTION_DIM)])\n    \n    del out, inp\n    torch.cuda.empty_cache()\n    \n    # Autoregressive generation (manual)\n    gen_toks = autoregressive_generate(model, proc, prompt, img, norm_fn, lm_head)\n    \n    all_gt_toks.append(gt_toks)\n    all_pred_correct.append(pred_c)\n    all_pred_buggy.append(pred_b)\n    all_gen_toks.append(gen_toks)\n    all_top5.append(top5_hit)\n    \n    print(f\"\\nSample {i}:\")\n    print(f\"  GT action (raw):       [{', '.join(f'{x:.4f}' for x in gt_action)}]\")\n    print(f\"  GT action (norm):      [{', '.join(f'{x:.4f}' for x in gt_norm)}]\")\n    print(f\"  GT token IDs:          {gt_toks}\")\n    print(f\"  Exit layer (L{n_hs-1}, correct={'no-norm' if IS_POST_NORM else 'with-norm'}):\")\n    print(f\"    Argmax token IDs:    {pred_c}\")\n    print(f\"    De-tokenized:        [{', '.join(f'{x:.4f}' for x in tokens_to_norm(pred_c))}]\")\n    print(f\"    Match GT tokens?:    {(pred_c == gt_toks).tolist()}\")\n    print(f\"    Top-5 match?:        {top5_hit.tolist()}\")\n    print(f\"  Buggy (always norm):   {pred_b}\")\n    print(f\"    De-tokenized:        [{', '.join(f'{x:.4f}' for x in tokens_to_norm(pred_b))}]\")\n    print(f\"  Model logits argmax:   {pred_model}\")\n    print(f\"  Autoregressive gen:    {gen_toks}\")\n    print(f\"    Generated action:    [{', '.join(f'{x:.4f}' for x in tokens_to_norm(gen_toks))}]\")\n    print(f\"  Correct==Model:        {np.array_equal(pred_c, pred_model)}\")\n    print(f\"  Gen[0]==Correct[0]:    {gen_toks[0] == pred_c[0]}\")\n    \n    torch.cuda.empty_cache()\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 2: Token-level exact match rate\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 2: Token-level exact match rate summary\")\nprint(\"=\"*70)\n\ngt_a = np.array(all_gt_toks)\npc = np.array(all_pred_correct)\npb = np.array(all_pred_buggy)\nga = np.array(all_gen_toks)\nt5 = np.array(all_top5)\n\nem_c = (pc == gt_a)\nem_b = (pb == gt_a)\nem_g = (ga == gt_a)\n\nprint(f\"\\nCorrect method ({'no-norm' if IS_POST_NORM else 'with-norm'} for exit layer):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_c.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_c.mean():.4f}\")\nprint(f\"  Top-5 match per dim:  {np.array2string(t5.mean(axis=0).astype(float), precision=3)}\")\nprint(f\"  Overall top-5 match:  {t5.mean():.4f}\")\n\nprint(f\"\\nBuggy method (always norm):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_b.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_b.mean():.4f}\")\n\nprint(f\"\\nAutoregressive generate:\")\nprint(f\"  Exact match per dim:  {np.array2string(em_g.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_g.mean():.4f}\")\n\n# R²\ngt_norm_all = np.array([raw_to_norm(s[2]) for s in samples])\npn_c = np.array([tokens_to_norm(t) for t in pc])\npn_b = np.array([tokens_to_norm(t) for t in pb])\ngn_a = np.array([tokens_to_norm(t) for t in ga])\n\nss_tot = np.sum((gt_norm_all - gt_norm_all.mean(0))**2)\nr2_c = 1 - np.sum((pn_c - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_b = 1 - np.sum((pn_b - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_g = 1 - np.sum((gn_a - gt_norm_all)**2) / (ss_tot + 1e-12)\n\nprint(f\"\\nR² (exit layer, {N_SAMPLES} samples):\")\nprint(f\"  Correct method: {r2_c:.4f}\")\nprint(f\"  Buggy method:   {r2_b:.4f}\")\nprint(f\"  AR generate:    {r2_g:.4f}\")\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 4: Bin→continuous roundtrip\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 4: Bin→continuous roundtrip verification\")\nprint(\"=\"*70)\n\nfull_vocab = model.config.text_config.vocab_size\nprint(f\"Full vocab size (config):  {full_vocab}\")\nprint(f\"pad_to_multiple_of:        {model.config.pad_to_multiple_of}\")\nprint(f\"Effective vocab_size:      {vocab_size}\")\nprint(f\"n_action_bins:             {N_ACTION_BINS}\")\nprint(f\"Bin edges:                 {len(bins)} (range [{bins[0]:.4f}, {bins[-1]:.4f}])\")\nprint(f\"Bin centers:               {len(bin_centers)} (range [{bin_centers[0]:.4f}, {bin_centers[-1]:.4f}])\")\n\nprint(f\"\\nToken -> bin_idx -> value examples:\")\nfor tok in [vocab_size-1, vocab_size-128, vocab_size-255, vocab_size-256+1]:\n    bi = vocab_size - 1 - tok\n    if 0 <= bi < len(bin_centers):\n        print(f\"  Token {tok} -> bin {bi:3d} -> value {bin_centers[bi]:.4f}\")\n    else:\n        print(f\"  Token {tok} -> bin {bi:3d} -> OUT OF RANGE\")\n\nprint(f\"\\nRoundtrip: GT action -> normalize -> tokenize -> de-tokenize:\")\nfor i in range(min(3, len(samples))):\n    gn = raw_to_norm(samples[i][2])\n    gt = norm_to_tokens(gn)\n    rec = tokens_to_norm(gt)\n    print(f\"  Sample {i}: max error = {np.abs(gn - rec).max():.6f}\")\n    print(f\"    Norm:      [{', '.join(f'{x:.4f}' for x in gn)}]\")\n    print(f\"    Tokens:    {gt}\")\n    print(f\"    Recovered: [{', '.join(f'{x:.4f}' for x in rec)}]\")\n\n# Cross-check with model's own de-tokenization\nprint(f\"\\nCross-check with model.predict_action de-tokenization:\")\nprint(f\"  model.vocab_size = {model.vocab_size}\")\nprint(f\"  model.bin_centers shape = {model.bin_centers.shape}\")\ntest_toks = np.array([31900, 31950, 31800])\nour_decode = tokens_to_norm(test_toks)\nmodel_decode = model.bin_centers[np.clip(model.vocab_size - test_toks - 1, 0, model.bin_centers.shape[0] - 1)]\nprint(f\"  Test tokens:  {test_toks}\")\nprint(f\"  Our decode:   {our_decode}\")\nprint(f\"  Model decode: {model_decode}\")\nprint(f\"  Match: {np.allclose(our_decode, model_decode)}\")\n\nprint(f\"\\nDataset statistics (libero_goal):\")\nprint(f\"  Mean:  [{', '.join(f'{x:.4f}' for x in stats['mean'])}]\")\nprint(f\"  Std:   [{', '.join(f'{x:.4f}' for x in stats['std'])}]\")\nprint(f\"  q01:   [{', '.join(f'{x:.4f}' for x in stats['q01'])}]\")\nprint(f\"  q99:   [{', '.join(f'{x:.4f}' for x in stats['q99'])}]\")\nprint(f\"  Mask:  {stats['mask']}\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"ALL 4 CHECKS COMPLETE\")\nprint(\"=\"*70)\nPYEOF\necho \"Script updated\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "957fd460-bd6f-423d-b2b3-124fb1c755be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNgacgoDhncFCRqFTZhCqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 372,
+      "cache_read_input_tokens": 85888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-26T20:05:38.872Z_
+
+<details><summary>↩ Tool result · `toolu_013JTpewavX8eQJtuTF5gD2G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "76170249-b9a6-440a-bf0d-3b0bf1aec81a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script updated\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UT2sy3FusXo7gjKEqPTkHn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "9a1b0833-8d96-4484-8ec5-abe74d288418",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Y4jeZGPKDSfjKTwfomSa6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7224,
+      "cache_read_input_tokens": 86260,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7224
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-26T20:06:12.999Z_
+
+<details><summary>↩ Tool result · `toolu_01UT2sy3FusXo7gjKEqPTkHn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 964314\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "b76d622d-7125-435c-aa24-7589f8800f35",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID: 964314\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID: 964314\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+等待运行。模型加载约需 1-2 分钟，10 个样本的推理 + autoregressive generation 约需 3-5 分钟。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "290d26df-3aaf-4ba6-83b0-9d8e2c0f3488",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016KFHuarP19LJK3ZaeXozTk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 232,
+      "cache_read_input_tokens": 93484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 232
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015mL1FknQrobDo8AK9jvJKW`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "77446588-51d6-4a72-84b6-2f5446df4f11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016KFHuarP19LJK3ZaeXozTk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 232,
+      "cache_read_input_tokens": 93484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 232
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-26T20:06:22.212Z_
+
+<details><summary>↩ Tool result · `toolu_015mL1FknQrobDo8AK9jvJKW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\n\\nCross-check with model.predict_action de-tokenization:\\n  model.vocab_size = 32000\\n  model.bin_centers shape = (255,)\\n  Test tokens:  [31900 31950 31800]\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\n  Match: True\\n\\nDataset statistics (libero_goal):\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\n  Mask:  [True, True, True, True, True, True, False]\\n\\n======================================================================\\nALL 4 CHECKS COMPLETE\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "6123894c-a0a6-445a-be5e-ea54de5c0c71",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\\\n\\\\nCross-check with model.predict_action de-tokenization:\\\\n  model.vocab_size = 32000\\\\n  model.bin_centers shape = (255,)\\\\n  Test tokens:  [31900 31950 31800]\\\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\\\n  Match: True\\\\n\\\\nDataset statistics (libero_goal):\\\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\\\n  Mask:  [True, True, True, True, True, True, False]\\\\n\\\\n======================================================================\\\\nALL 4 CHECKS COMPLETE\\\\n======================================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\n\\nCross-check with model.predict_action de-tokenization:\\n  model.vocab_size = 32000\\n  model.bin_centers shape = (255,)\\n  Test tokens:  [31900 31950 31800]\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\n  Match: True\\n\\nDataset statistics (libero_goal):\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\n  Mask:  [True, True, True, True, True, True, False]\\n\\n======================================================================\\nALL 4 CHECKS COMPLETE\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+运行完成。读取完整输出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "0b223711-ed08-4422-9619-59b2ecb48d17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CfhWVRWpPKofRJDPnZVc3i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 636,
+      "cache_read_input_tokens": 93716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 636
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FY3wwBSZEmKNgeTCmqQcZx`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "20c50a3e-a8f5-4f85-abbc-70afb21de7da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CfhWVRWpPKofRJDPnZVc3i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 636,
+      "cache_read_input_tokens": 93716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 636
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-26T20:06:26.035Z_
+
+<details><summary>↩ Tool result · `toolu_01FY3wwBSZEmKNgeTCmqQcZx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==5.9.0` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\nLoading model...\\n\\rLoading weights:   0%|          | 0/982 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 982/982 [00:00<00:00, 11677.87it/s]\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transfor\\n\\n... [截断: 输出过长，省略 11199 字符] ...\\n\\n:    True\\n\\nSample 9:\\n  GT action (raw):       [0.2866, 0.1366, 0.0027, 0.0000, 0.1286, -0.0664, -1.0000]\\n  GT action (norm):      [0.2832, 0.0707, 0.0029, -0.1480, 0.3684, -0.7217, -1.0000]\\n  GT token IDs:          [31836 31863 31872 31891 31825 31964 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\n======================================================================\\nCHECK 2: Token-level exact match rate summary\\n======================================================================\\n\\nCorrect method (no-norm for exit layer):\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n  Top-5 match per dim:  [0.1 0.  0.  0.  0.  0.  0. ]\\n  Overall top-5 match:  0.0143\\n\\nBuggy method (always norm):\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n\\nAutoregressive generate:\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n\\nR² (exit layer, 10 samples):\\n  Correct method: -11.6231\\n  Buggy method:   -11.6231\\n  AR generate:    -11.6231\\n\\n======================================================================\\nCHECK 4: Bin→continuous roundtrip verification\\n======================================================================\\nFull vocab size (config):  32064\\npad_to_multiple_of:        64\\nEffective vocab_size:      32000\\nn_action_bins:             256\\nBin edges:                 256 (range [-1.0000, 1.0000])\\nBin centers:               255 (range [-0.9961, 0.9961])\\n\\nToken -> bin_idx -> value examples:\\n  Token 31999 -> bin   0 -> value -0.9961\\n  Token 31872 -> bin 127 -> value 0.0000\\n  Token 31745 -> bin 254 -> value 0.9961\\n  Token 31745 -> bin 254 -> value 0.9961\\n\\nRoundtrip: GT action -> normalize -> tokenize -> de-tokenize:\\n  Sample 0: max error = 0.003922\\n    Norm:      [0.2183, -0.0675, -0.0000, -0.2810, 0.4887, -0.3999, -1.0000]\\n    Tokens:    [31844 31881 31872 31908 31810 31923 31999]\\n    Recovered: [0.2196, -0.0706, 0.0000, -0.2824, 0.4863, -0.4000, -0.9961]\\n  Sample 1: max error = 0.003922\\n    Norm:      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\n    Tokens:    [31819 31884 31872 31919 31856 31931 31999]\\n    Recovered: [0.4157, -0.0941, 0.0000, -0.3686, 0.1255, -0.4627, -0.9961]\\n  Sample 2: max error = 0.003922\\n    Norm:      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\n    Tokens:    [31863 31884 31880 31891 31900 31931 31999]\\n    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\n\\nCross-check with model.predict_action de-tokenization:\\n  model.vocab_size = 32000\\n  model.bin_centers shape = (255,)\\n  Test tokens:  [31900 31950 31800]\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\n  Match: True\\n\\nDataset statistics (libero_goal):\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\n  Mask:  [True, True, True, True, True, True, False]\\n\\n======================================================================\\nALL 4 CHECKS COMPLETE\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "bb4e72b4-3581-4108-8d31-d057338ba38e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] `PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==5.9.0` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\\\nLoading model...\\\\n\\\\rLoading weights:   0%|          | 0/982 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 982/982 [00:00<00:00, 11677.87it/s]\\\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\\\n[transfor\\\\n\\\\n... [截断: 输出过长，省略 11199 字符] ...\\\\n\\\\n:    True\\\\n\\\\nSample 9:\\\\n  GT action (raw):       [0.2866, 0.1366, 0.0027, 0.0000, 0.1286, -0.0664, -1.0000]\\\\n  GT action (norm):      [0.2832, 0.0707, 0.0029, -0.1480, 0.3684, -0.7217, -1.0000]\\\\n  GT token IDs:          [31836 31863 31872 31891 31825 31964 31999]\\\\n  Exit layer (L32, correct=no-norm):\\\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Correct==Model:        True\\\\n  Gen[0]==Correct[0]:    True\\\\n\\\\n======================================================================\\\\nCHECK 2: Token-level exact match rate summary\\\\n======================================================================\\\\n\\\\nCorrect method (no-norm for exit layer):\\\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\\\n  Overall exact match:  0.0000\\\\n  Top-5 match per dim:  [0.1 0.  0.  0.  0.  0.  0. ]\\\\n  Overall top-5 match:  0.0143\\\\n\\\\nBuggy method (always norm):\\\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\\\n  Overall exact match:  0.0000\\\\n\\\\nAutoregressive generate:\\\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\\\n  Overall exact match:  0.0000\\\\n\\\\nR² (exit layer, 10 samples):\\\\n  Correct method: -11.6231\\\\n  Buggy method:   -11.6231\\\\n  AR generate:    -11.6231\\\\n\\\\n======================================================================\\\\nCHECK 4: Bin→continuous roundtrip verification\\\\n======================================================================\\\\nFull vocab size (config):  32064\\\\npad_to_multiple_of:        64\\\\nEffective vocab_size:      32000\\\\nn_action_bins:             256\\\\nBin edges:                 256 (range [-1.0000, 1.0000])\\\\nBin centers:               255 (range [-0.9961, 0.9961])\\\\n\\\\nToken -> bin_idx -> value examples:\\\\n  Token 31999 -> bin   0 -> value -0.9961\\\\n  Token 31872 -> bin 127 -> value 0.0000\\\\n  Token 31745 -> bin 254 -> value 0.9961\\\\n  Token 31745 -> bin 254 -> value 0.9961\\\\n\\\\nRoundtrip: GT action -> normalize -> tokenize -> de-tokenize:\\\\n  Sample 0: max error = 0.003922\\\\n    Norm:      [0.2183, -0.0675, -0.0000, -0.2810, 0.4887, -0.3999, -1.0000]\\\\n    Tokens:    [31844 31881 31872 31908 31810 31923 31999]\\\\n    Recovered: [0.2196, -0.0706, 0.0000, -0.2824, 0.4863, -0.4000, -0.9961]\\\\n  Sample 1: max error = 0.003922\\\\n    Norm:      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\\\n    Tokens:    [31819 31884 31872 31919 31856 31931 31999]\\\\n    Recovered: [0.4157, -0.0941, 0.0000, -0.3686, 0.1255, -0.4627, -0.9961]\\\\n  Sample 2: max error = 0.003922\\\\n    Norm:      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\\\n    Tokens:    [31863 31884 31880 31891 31900 31931 31999]\\\\n    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\\\n\\\\nCross-check with model.predict_action de-tokenization:\\\\n  model.vocab_size = 32000\\\\n  model.bin_centers shape = (255,)\\\\n  Test tokens:  [31900 31950 31800]\\\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\\\n  Match: True\\\\n\\\\nDataset statistics (libero_goal):\\\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\\\n  Mask:  [True, True, True, True, True, True, False]\\\\n\\\\n======================================================================\\\\nALL 4 CHECKS COMPLETE\\\\n======================================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[transformers] `PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==5.9.0` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\nLoading model...\\n\\rLoading weights:   0%|          | 0/982 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 982/982 [00:00<00:00, 11677.87it/s]\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transfor\\n\\n... [截断: 输出过长，省略 11199 字符] ...\\n\\n:    True\\n\\nSample 9:\\n  GT action (raw):       [0.2866, 0.1366, 0.0027, 0.0000, 0.1286, -0.0664, -1.0000]\\n  GT action (norm):      [0.2832, 0.0707, 0.0029, -0.1480, 0.3684, -0.7217, -1.0000]\\n  GT token IDs:          [31836 31863 31872 31891 31825 31964 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\n======================================================================\\nCHECK 2: Token-level exact match rate summary\\n======================================================================\\n\\nCorrect method (no-norm for exit layer):\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n  Top-5 match per dim:  [0.1 0.  0.  0.  0.  0.  0. ]\\n  Overall top-5 match:  0.0143\\n\\nBuggy method (always norm):\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n\\nAutoregressive generate:\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n\\nR² (exit layer, 10 samples):\\n  Correct method: -11.6231\\n  Buggy method:   -11.6231\\n  AR generate:    -11.6231\\n\\n======================================================================\\nCHECK 4: Bin→continuous roundtrip verification\\n======================================================================\\nFull vocab size (config):  32064\\npad_to_multiple_of:        64\\nEffective vocab_size:      32000\\nn_action_bins:             256\\nBin edges:                 256 (range [-1.0000, 1.0000])\\nBin centers:               255 (range [-0.9961, 0.9961])\\n\\nToken -> bin_idx -> value examples:\\n  Token 31999 -> bin   0 -> value -0.9961\\n  Token 31872 -> bin 127 -> value 0.0000\\n  Token 31745 -> bin 254 -> value 0.9961\\n  Token 31745 -> bin 254 -> value 0.9961\\n\\nRoundtrip: GT action -> normalize -> tokenize -> de-tokenize:\\n  Sample 0: max error = 0.003922\\n    Norm:      [0.2183, -0.0675, -0.0000, -0.2810, 0.4887, -0.3999, -1.0000]\\n    Tokens:    [31844 31881 31872 31908 31810 31923 31999]\\n    Recovered: [0.2196, -0.0706, 0.0000, -0.2824, 0.4863, -0.4000, -0.9961]\\n  Sample 1: max error = 0.003922\\n    Norm:      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\n    Tokens:    [31819 31884 31872 31919 31856 31931 31999]\\n    Recovered: [0.4157, -0.0941, 0.0000, -0.3686, 0.1255, -0.4627, -0.9961]\\n  Sample 2: max error = 0.003922\\n    Norm:      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\n    Tokens:    [31863 31884 31880 31891 31900 31931 31999]\\n    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\n\\nCross-check with model.predict_action de-tokenization:\\n  model.vocab_size = 32000\\n  model.bin_centers shape = (255,)\\n  Test tokens:  [31900 31950 31800]\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\n  Match: True\\n\\nDataset statistics (libero_goal):\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\n  Mask:  [True, True, True, True, True, True, False]\\n\\n======================================================================\\nALL 4 CHECKS COMPLETE\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me get the full output, as some was truncated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "15a435ae-abca-43e4-beaa-0677073f8289",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGatBpi6Z8gE6n8szwvULN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3153,
+      "cache_read_input_tokens": 94352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98_
+
+输出被截断，让我分段读取完整结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "0493c96b-9bda-4e65-89aa-ae65ff2c2b1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGatBpi6Z8gE6n8szwvULN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3153,
+      "cache_read_input_tokens": 94352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UdRxSqkTjujPJtVhKGn8TD`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -80 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "63d73058-57fb-4e87-a2c4-e14e2c02926e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGatBpi6Z8gE6n8szwvULN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3153,
+      "cache_read_input_tokens": 94352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GowhA9VcNdZCucdBQc694u`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -l /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "b573a3f0-ae73-445f-8163-de31b43077ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGatBpi6Z8gE6n8szwvULN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3153,
+      "cache_read_input_tokens": 94352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-26T20:06:30.859Z_
+
+<details><summary>↩ Tool result · `toolu_01UdRxSqkTjujPJtVhKGn8TD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==5.9.0` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\nLoading model...\\n\\rLoading weights:   0%|          | 0/982 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 982/982 [00:00<00:00, 11677.87it/s]\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!\\nModel loaded: 7.5B params\\nLoaded 10 samples from 10 tasks\\nEffective vocab_size: 32000\\nAction token range: [31745, 31999]\\n\\n======================================================================\\nCHECK 3: Double-norm bug verification\\n======================================================================\\nNumber of hidden states: 33\\n  hidden_states[0] shape: torch.Size([1, 286, 4096])\\n  hidden_states[1] shape: torch.Size([1, 286, 4096])\\n  hidden_states[31] shape: torch.Size([1, 286, 4096])\\n  hidden_states[32] shape: torch.Size([1, 286, 4096])\\n\\nmodel.language_model.model.norm type: &lt;class 'transformers.models.llama.modeling_llama.LlamaRMSNorm'>\\nhidden_states[32] (exit) L2 norm:  114.7763\\nAfter applying norm, L2 norm:            120.1473\\n\\nLogits comparison at position 284:\\n  lm_head(hs) vs model logits:       max=0.062500, mean=0.000015\\n  lm_head(norm(hs)) vs model logits: max=1.312500, mean=0.441847\\n  >>> FINDING: hidden_states[-1] is POST-norm\\n  >>> Applying norm again = DOUBLE-NORM BUG!\\n  >>> FIX: For exit layer, use lm_head(hs) directly\\n\\nArgmax token at exit layer:\\n  lm_head(hs):       31935  (is_action=True)\\n  lm_head(norm(hs)): 31935  (is_action=True)\\n  model logits:      31935  (is_action=True)\\n\\nL2 norms across all hidden_states:\\n  hs[ 0]: raw_norm=1.1, after_norm=118.7\\n  hs[ 1]: raw_norm=3.2, after_norm=110.2\\n  hs[ 8]: raw_norm=48.5, after_norm=118.2\\n  hs[16]: raw_norm=81.2, after_norm=117.9\\n  hs[24]: raw_norm=126.6, after_norm=117.3\\n  hs[31]: raw_norm=193.3, after_norm=114.9\\n  hs[32]: raw_norm=114.8, after_norm=120.1\\n\\n======================================================================\\nCHECK 1: Exit layer prediction vs ground truth (teacher forcing)\\n======================================================================\\n\\nSample 0:\\n  GT action (raw):       [0.2277, 0.0214, -0.0000, -0.0236, 0.1543, 0.0161, -1.0000]\\n  GT action (norm):      [0.2183, -0.0675, -0.0000, -0.2810, 0.4887, -0.3999, -1.0000]\\n  GT token IDs:          [31844 31881 31872 31908 31810 31923 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [True, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "cdbe42bc-e83d-475f-8776-5c3cf80c0534",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] `PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==5.9.0` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\\\nLoading model...\\\\n\\\\rLoading weights:   0%|          | 0/982 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 982/982 [00:00<00:00, 11677.87it/s]\\\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\\\n[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!\\\\nModel loaded: 7.5B params\\\\nLoaded 10 samples from 10 tasks\\\\nEffective vocab_size: 32000\\\\nAction token range: [31745, 31999]\\\\n\\\\n======================================================================\\\\nCHECK 3: Double-norm bug verification\\\\n======================================================================\\\\nNumber of hidden states: 33\\\\n  hidden_states[0] shape: torch.Size([1, 286, 4096])\\\\n  hidden_states[1] shape: torch.Size([1, 286, 4096])\\\\n  hidden_states[31] shape: torch.Size([1, 286, 4096])\\\\n  hidden_states[32] shape: torch.Size([1, 286, 4096])\\\\n\\\\nmodel.language_model.model.norm type: &lt;class 'transformers.models.llama.modeling_llama.LlamaRMSNorm'>\\\\nhidden_states[32] (exit) L2 norm:  114.7763\\\\nAfter applying norm, L2 norm:            120.1473\\\\n\\\\nLogits comparison at position 284:\\\\n  lm_head(hs) vs model logits:       max=0.062500, mean=0.000015\\\\n  lm_head(norm(hs)) vs model logits: max=1.312500, mean=0.441847\\\\n  >>> FINDING: hidden_states[-1] is POST-norm\\\\n  >>> Applying norm again = DOUBLE-NORM BUG!\\\\n  >>> FIX: For exit layer, use lm_head(hs) directly\\\\n\\\\nArgmax token at exit layer:\\\\n  lm_head(hs):       31935  (is_action=True)\\\\n  lm_head(norm(hs)): 31935  (is_action=True)\\\\n  model logits:      31935  (is_action=True)\\\\n\\\\nL2 norms across all hidden_states:\\\\n  hs[ 0]: raw_norm=1.1, after_norm=118.7\\\\n  hs[ 1]: raw_norm=3.2, after_norm=110.2\\\\n  hs[ 8]: raw_norm=48.5, after_norm=118.2\\\\n  hs[16]: raw_norm=81.2, after_norm=117.9\\\\n  hs[24]: raw_norm=126.6, after_norm=117.3\\\\n  hs[31]: raw_norm=193.3, after_norm=114.9\\\\n  hs[32]: raw_norm=114.8, after_norm=120.1\\\\n\\\\n======================================================================\\\\nCHECK 1: Exit layer prediction vs ground truth (teacher forcing)\\\\n======================================================================\\\\n\\\\nSample 0:\\\\n  GT action (raw):       [0.2277, 0.0214, -0.0000, -0.0236, 0.1543, 0.0161, -1.0000]\\\\n  GT action (norm):      [0.2183, -0.0675, -0.0000, -0.2810, 0.4887, -0.3999, -1.0000]\\\\n  GT token IDs:          [31844 31881 31872 31908 31810 31923 31999]\\\\n  Exit layer (L32, correct=no-norm):\\\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\\\n    Top-5 match?:        [True, False, False, False, False, False, False]\\\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Correct==Model:        True\\\\n  Gen[0]==Correct[0]:    True\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[transformers] `PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==5.9.0` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\nLoading model...\\n\\rLoading weights:   0%|          | 0/982 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 982/982 [00:00<00:00, 11677.87it/s]\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!\\nModel loaded: 7.5B params\\nLoaded 10 samples from 10 tasks\\nEffective vocab_size: 32000\\nAction token range: [31745, 31999]\\n\\n======================================================================\\nCHECK 3: Double-norm bug verification\\n======================================================================\\nNumber of hidden states: 33\\n  hidden_states[0] shape: torch.Size([1, 286, 4096])\\n  hidden_states[1] shape: torch.Size([1, 286, 4096])\\n  hidden_states[31] shape: torch.Size([1, 286, 4096])\\n  hidden_states[32] shape: torch.Size([1, 286, 4096])\\n\\nmodel.language_model.model.norm type: &lt;class 'transformers.models.llama.modeling_llama.LlamaRMSNorm'>\\nhidden_states[32] (exit) L2 norm:  114.7763\\nAfter applying norm, L2 norm:            120.1473\\n\\nLogits comparison at position 284:\\n  lm_head(hs) vs model logits:       max=0.062500, mean=0.000015\\n  lm_head(norm(hs)) vs model logits: max=1.312500, mean=0.441847\\n  >>> FINDING: hidden_states[-1] is POST-norm\\n  >>> Applying norm again = DOUBLE-NORM BUG!\\n  >>> FIX: For exit layer, use lm_head(hs) directly\\n\\nArgmax token at exit layer:\\n  lm_head(hs):       31935  (is_action=True)\\n  lm_head(norm(hs)): 31935  (is_action=True)\\n  model logits:      31935  (is_action=True)\\n\\nL2 norms across all hidden_states:\\n  hs[ 0]: raw_norm=1.1, after_norm=118.7\\n  hs[ 1]: raw_norm=3.2, after_norm=110.2\\n  hs[ 8]: raw_norm=48.5, after_norm=118.2\\n  hs[16]: raw_norm=81.2, after_norm=117.9\\n  hs[24]: raw_norm=126.6, after_norm=117.3\\n  hs[31]: raw_norm=193.3, after_norm=114.9\\n  hs[32]: raw_norm=114.8, after_norm=120.1\\n\\n======================================================================\\nCHECK 1: Exit layer prediction vs ground truth (teacher forcing)\\n======================================================================\\n\\nSample 0:\\n  GT action (raw):       [0.2277, 0.0214, -0.0000, -0.0236, 0.1543, 0.0161, -1.0000]\\n  GT action (norm):      [0.2183, -0.0675, -0.0000, -0.2810, 0.4887, -0.3999, -1.0000]\\n  GT token IDs:          [31844 31881 31872 31908 31810 31923 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [True, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-26T20:06:31.385Z_
+
+<details><summary>↩ Tool result · `toolu_01GowhA9VcNdZCucdBQc694u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"305 /tmp/sanity_check.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "905ca179-77d5-46fc-88da-f0033e481fb3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"305 /tmp/sanity_check.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"305 /tmp/sanity_check.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CHD3PWUZPWDcykQWgS4Siv`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +80 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "1c541e20-b4d3-422d-9a23-4c9f3a308668",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMPjqeQALSFaHqk3UZ3DRZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2753,
+      "cache_read_input_tokens": 97505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2753
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-26T20:06:34.934Z_
+
+<details><summary>↩ Tool result · `toolu_01CHD3PWUZPWDcykQWgS4Siv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Gen[0]==Correct[0]:    True\\n\\nSample 1:\\n  GT action (raw):       [0.4045, 0.0000, -0.0000, -0.0386, 0.0761, -0.0000, -1.0000]\\n  GT action (norm):      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\n  GT token IDs:          [31819 31884 31872 31919 31856 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\nSample 2:\\n  GT action (raw):       [0.0964, 0.0000, -0.0563, 0.0000, 0.0021, -0.0000, -1.0000]\\n  GT action (norm):      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\n  GT token IDs:          [31863 31884 31880 31891 31900 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\nSample 3:\\n  GT action (raw):       [0.0723, 0.0536, -0.0000, 0.0000, 0.0000, -0.0000, -1.0000]\\n  GT action (norm):      [0.0472, -0.0289, -0.0000, -0.1480, -0.2331, -0.4626, -1.0000]\\n  GT token IDs:          [31866 31876 31872 31891 31902 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\nSample 4:\\n  GT action (raw):       [0.1071, 0.0000, -0.0000, 0.0000, 0.0021, -0.0000, -1.0000]\\n  GT action (norm):      [0.0855, -0.0932, -0.0000, -0.1480, -0.2231, -0.4626, -1.0000]\\n  GT token IDs:          [31861 31884 31872 31891 31900 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive\\n\\n... [截断: 输出过长，省略 4369 字符] ...\\n\\n:    True\\n\\nSample 9:\\n  GT action (raw):       [0.2866, 0.1366, 0.0027, 0.0000, 0.1286, -0.0664, -1.0000]\\n  GT action (norm):      [0.2832, 0.0707, 0.0029, -0.1480, 0.3684, -0.7217, -1.0000]\\n  GT token IDs:          [31836 31863 31872 31891 31825 31964 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\n======================================================================\\nCHECK 2: Token-level exact match rate summary\\n======================================================================\\n\\nCorrect method (no-norm for exit layer):\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n  Top-5 match per dim:  [0.1 0.  0.  0.  0.  0.  0. ]\\n  Overall top-5 match:  0.0143\\n\\nBuggy method (always norm):\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n\\nAutoregressive generate:\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n\\nR² (exit layer, 10 samples):\\n  Correct method: -11.6231\\n  Buggy method:   -11.6231\\n  AR generate:    -11.6231\\n\\n======================================================================\\nCHECK 4: Bin→continuous roundtrip verification\\n======================================================================\\nFull vocab size (config):  32064\\npad_to_multiple_of:        64\\nEffective vocab_size:      32000\\nn_action_bins:             256\\nBin edges:                 256 (range [-1.0000, 1.0000])\\nBin centers:               255 (range [-0.9961, 0.9961])\\n\\nToken -> bin_idx -> value examples:\\n  Token 31999 -> bin   0 -> value -0.9961\\n  Token 31872 -> bin 127 -> value 0.0000\\n  Token 31745 -> bin 254 -> value 0.9961\\n  Token 31745 -> bin 254 -> value 0.9961\\n\\nRoundtrip: GT action -> normalize -> tokenize -> de-tokenize:\\n  Sample 0: max error = 0.003922\\n    Norm:      [0.2183, -0.0675, -0.0000, -0.2810, 0.4887, -0.3999, -1.0000]\\n    Tokens:    [31844 31881 31872 31908 31810 31923 31999]\\n    Recovered: [0.2196, -0.0706, 0.0000, -0.2824, 0.4863, -0.4000, -0.9961]\\n  Sample 1: max error = 0.003922\\n    Norm:      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\n    Tokens:    [31819 31884 31872 31919 31856 31931 31999]\\n    Recovered: [0.4157, -0.0941, 0.0000, -0.3686, 0.1255, -0.4627, -0.9961]\\n  Sample 2: max error = 0.003922\\n    Norm:      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\n    Tokens:    [31863 31884 31880 31891 31900 31931 31999]\\n    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\n\\nCross-check with model.predict_action de-tokenization:\\n  model.vocab_size = 32000\\n  model.bin_centers shape = (255,)\\n  Test tokens:  [31900 31950 31800]\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\n  Match: True\\n\\nDataset statistics (libero_goal):\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\n  Mask:  [True, True, True, True, True, True, False]\\n\\n======================================================================\\nALL 4 CHECKS COMPLETE\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "6651010b-29d8-4909-b44e-c7c265d62cb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Gen[0]==Correct[0]:    True\\\\n\\\\nSample 1:\\\\n  GT action (raw):       [0.4045, 0.0000, -0.0000, -0.0386, 0.0761, -0.0000, -1.0000]\\\\n  GT action (norm):      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\\\n  GT token IDs:          [31819 31884 31872 31919 31856 31931 31999]\\\\n  Exit layer (L32, correct=no-norm):\\\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Correct==Model:        True\\\\n  Gen[0]==Correct[0]:    True\\\\n\\\\nSample 2:\\\\n  GT action (raw):       [0.0964, 0.0000, -0.0563, 0.0000, 0.0021, -0.0000, -1.0000]\\\\n  GT action (norm):      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\\\n  GT token IDs:          [31863 31884 31880 31891 31900 31931 31999]\\\\n  Exit layer (L32, correct=no-norm):\\\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Correct==Model:        True\\\\n  Gen[0]==Correct[0]:    True\\\\n\\\\nSample 3:\\\\n  GT action (raw):       [0.0723, 0.0536, -0.0000, 0.0000, 0.0000, -0.0000, -1.0000]\\\\n  GT action (norm):      [0.0472, -0.0289, -0.0000, -0.1480, -0.2331, -0.4626, -1.0000]\\\\n  GT token IDs:          [31866 31876 31872 31891 31902 31931 31999]\\\\n  Exit layer (L32, correct=no-norm):\\\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Correct==Model:        True\\\\n  Gen[0]==Correct[0]:    True\\\\n\\\\nSample 4:\\\\n  GT action (raw):       [0.1071, 0.0000, -0.0000, 0.0000, 0.0021, -0.0000, -1.0000]\\\\n  GT action (norm):      [0.0855, -0.0932, -0.0000, -0.1480, -0.2231, -0.4626, -1.0000]\\\\n  GT token IDs:          [31861 31884 31872 31891 31900 31931 31999]\\\\n  Exit layer (L32, correct=no-norm):\\\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\\\n  Autoregressive\\\\n\\\\n... [截断: 输出过长，省略 4369 字符] ...\\\\n\\\\n:    True\\\\n\\\\nSample 9:\\\\n  GT action (raw):       [0.2866, 0.1366, 0.0027, 0.0000, 0.1286, -0.0664, -1.0000]\\\\n  GT action (norm):      [0.2832, 0.0707, 0.0029, -0.1480, 0.3684, -0.7217, -1.0000]\\\\n  GT token IDs:          [31836 31863 31872 31891 31825 31964 31999]\\\\n  Exit layer (L32, correct=no-norm):\\\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\\\n  Correct==Model:        True\\\\n  Gen[0]==Correct[0]:    True\\\\n\\\\n======================================================================\\\\nCHECK 2: Token-level exact match rate summary\\\\n======================================================================\\\\n\\\\nCorrect method (no-norm for exit layer):\\\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\\\n  Overall exact match:  0.0000\\\\n  Top-5 match per dim:  [0.1 0.  0.  0.  0.  0.  0. ]\\\\n  Overall top-5 match:  0.0143\\\\n\\\\nBuggy method (always norm):\\\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\\\n  Overall exact match:  0.0000\\\\n\\\\nAutoregressive generate:\\\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\\\n  Overall exact match:  0.0000\\\\n\\\\nR² (exit layer, 10 samples):\\\\n  Correct method: -11.6231\\\\n  Buggy method:   -11.6231\\\\n  AR generate:    -11.6231\\\\n\\\\n======================================================================\\\\nCHECK 4: Bin→continuous roundtrip verification\\\\n======================================================================\\\\nFull vocab size (config):  32064\\\\npad_to_multiple_of:        64\\\\nEffective vocab_size:      32000\\\\nn_action_bins:             256\\\\nBin edges:                 256 (range [-1.0000, 1.0000])\\\\nBin centers:               255 (range [-0.9961, 0.9961])\\\\n\\\\nToken -> bin_idx -> value examples:\\\\n  Token 31999 -> bin   0 -> value -0.9961\\\\n  Token 31872 -> bin 127 -> value 0.0000\\\\n  Token 31745 -> bin 254 -> value 0.9961\\\\n  Token 31745 -> bin 254 -> value 0.9961\\\\n\\\\nRoundtrip: GT action -> normalize -> tokenize -> de-tokenize:\\\\n  Sample 0: max error = 0.003922\\\\n    Norm:      [0.2183, -0.0675, -0.0000, -0.2810, 0.4887, -0.3999, -1.0000]\\\\n    Tokens:    [31844 31881 31872 31908 31810 31923 31999]\\\\n    Recovered: [0.2196, -0.0706, 0.0000, -0.2824, 0.4863, -0.4000, -0.9961]\\\\n  Sample 1: max error = 0.003922\\\\n    Norm:      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\\\n    Tokens:    [31819 31884 31872 31919 31856 31931 31999]\\\\n    Recovered: [0.4157, -0.0941, 0.0000, -0.3686, 0.1255, -0.4627, -0.9961]\\\\n  Sample 2: max error = 0.003922\\\\n    Norm:      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\\\n    Tokens:    [31863 31884 31880 31891 31900 31931 31999]\\\\n    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\\\n\\\\nCross-check with model.predict_action de-tokenization:\\\\n  model.vocab_size = 32000\\\\n  model.bin_centers shape = (255,)\\\\n  Test tokens:  [31900 31950 31800]\\\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\\\n  Match: True\\\\n\\\\nDataset statistics (libero_goal):\\\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\\\n  Mask:  [True, True, True, True, True, True, False]\\\\n\\\\n======================================================================\\\\nALL 4 CHECKS COMPLETE\\\\n======================================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Gen[0]==Correct[0]:    True\\n\\nSample 1:\\n  GT action (raw):       [0.4045, 0.0000, -0.0000, -0.0386, 0.0761, -0.0000, -1.0000]\\n  GT action (norm):      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\n  GT token IDs:          [31819 31884 31872 31919 31856 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\nSample 2:\\n  GT action (raw):       [0.0964, 0.0000, -0.0563, 0.0000, 0.0021, -0.0000, -1.0000]\\n  GT action (norm):      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\n  GT token IDs:          [31863 31884 31880 31891 31900 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\nSample 3:\\n  GT action (raw):       [0.0723, 0.0536, -0.0000, 0.0000, 0.0000, -0.0000, -1.0000]\\n  GT action (norm):      [0.0472, -0.0289, -0.0000, -0.1480, -0.2331, -0.4626, -1.0000]\\n  GT token IDs:          [31866 31876 31872 31891 31902 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\nSample 4:\\n  GT action (raw):       [0.1071, 0.0000, -0.0000, 0.0000, 0.0021, -0.0000, -1.0000]\\n  GT action (norm):      [0.0855, -0.0932, -0.0000, -0.1480, -0.2231, -0.4626, -1.0000]\\n  GT token IDs:          [31861 31884 31872 31891 31900 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive\\n\\n... [截断: 输出过长，省略 4369 字符] ...\\n\\n:    True\\n\\nSample 9:\\n  GT action (raw):       [0.2866, 0.1366, 0.0027, 0.0000, 0.1286, -0.0664, -1.0000]\\n  GT action (norm):      [0.2832, 0.0707, 0.0029, -0.1480, 0.3684, -0.7217, -1.0000]\\n  GT token IDs:          [31836 31863 31872 31891 31825 31964 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\n======================================================================\\nCHECK 2: Token-level exact match rate summary\\n======================================================================\\n\\nCorrect method (no-norm for exit layer):\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n  Top-5 match per dim:  [0.1 0.  0.  0.  0.  0.  0. ]\\n  Overall top-5 match:  0.0143\\n\\nBuggy method (always norm):\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n\\nAutoregressive generate:\\n  Exact match per dim:  [0. 0. 0. 0. 0. 0. 0.]\\n  Overall exact match:  0.0000\\n\\nR² (exit layer, 10 samples):\\n  Correct method: -11.6231\\n  Buggy method:   -11.6231\\n  AR generate:    -11.6231\\n\\n======================================================================\\nCHECK 4: Bin→continuous roundtrip verification\\n======================================================================\\nFull vocab size (config):  32064\\npad_to_multiple_of:        64\\nEffective vocab_size:      32000\\nn_action_bins:             256\\nBin edges:                 256 (range [-1.0000, 1.0000])\\nBin centers:               255 (range [-0.9961, 0.9961])\\n\\nToken -> bin_idx -> value examples:\\n  Token 31999 -> bin   0 -> value -0.9961\\n  Token 31872 -> bin 127 -> value 0.0000\\n  Token 31745 -> bin 254 -> value 0.9961\\n  Token 31745 -> bin 254 -> value 0.9961\\n\\nRoundtrip: GT action -> normalize -> tokenize -> de-tokenize:\\n  Sample 0: max error = 0.003922\\n    Norm:      [0.2183, -0.0675, -0.0000, -0.2810, 0.4887, -0.3999, -1.0000]\\n    Tokens:    [31844 31881 31872 31908 31810 31923 31999]\\n    Recovered: [0.2196, -0.0706, 0.0000, -0.2824, 0.4863, -0.4000, -0.9961]\\n  Sample 1: max error = 0.003922\\n    Norm:      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\n    Tokens:    [31819 31884 31872 31919 31856 31931 31999]\\n    Recovered: [0.4157, -0.0941, 0.0000, -0.3686, 0.1255, -0.4627, -0.9961]\\n  Sample 2: max error = 0.003922\\n    Norm:      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\n    Tokens:    [31863 31884 31880 31891 31900 31931 31999]\\n    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\n\\nCross-check with model.predict_action de-tokenization:\\n  model.vocab_size = 32000\\n  model.bin_centers shape = (255,)\\n  Test tokens:  [31900 31950 31800]\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\n  Match: True\\n\\nDataset statistics (libero_goal):\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\n  Mask:  [True, True, True, True, True, True, False]\\n\\n======================================================================\\nALL 4 CHECKS COMPLETE\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results are very revealing. Let me summarize:
+
+## CHECK 3: Double-norm bug
+- **hidden_states[32] IS POST-norm** (confirmed)
+- `lm_head(hs)` vs model logits: max diff = 0.0625 (very small, consistent with bfloat16 precision)
+- `lm_head(norm(hs))` vs model logits: max diff = 1.3125 (significant!)
+- **But** the argmax token is the same for all 3 methods: 31935
+
+
+- The double-norm doesn't change the argmax in this case
+
+## CHECK 1: The REAL problem
+- **ALL 10 samples predict token 31935 for ALL 7 action dimensions** — both with teacher-forcing and autoregressive generation
+- Token 31935 maps to bin 64, which corresponds to a value around -0.4941
+- The model is stuck outputting the same token regardless of position or sample, even when using autoregressive generation without any teacher-forcing context contamination
+- This suggests a fundamental issue with how the model is learning to generate action tokens
+
+## CHECK 2: Token-level match
+- Nearly zero exact match performance (0%) and minimal top-5 accuracy (1.4%)
+- R² = -11.6231 across all evaluation methods, confirming the predictions are essentially random noise relative to the targets
+
+## CHECK 4: Roundtrip
+- The quantization roundtrip error is negligible at 0.003922, and the de-tokenization logic matches the model's own implementation
+- No issues with the token-to-value conversion pipeline
+
+## Key insight
+The core problem isn't the double-norm issue—it's that the model is fundamentally broken, always predicting the same constant token regardless of input. This points to either a corrupted checkpoint, incomplete fine-tuning, or a transformers library version mismatch (the model expects 4.40.1 but the server is running 5.x).
+
+The version incompatibility is the smoking gun. Between transformers 4.x and 5.x, there are likely significant architectural changes affecting how LlamaModel processes hidden states, executes the forward pass, handles token embeddings, and implements RMSNorm. The fact that every position outputs token 31935 suggests the model weights aren't loading correctly into the new transformer architecture, or there's a fundamental incompatibility preventing proper inference.
+
+But wait—982 weights loaded successfully and the L2 norms look reasonable at 114.8 for the exit layer. Let me decode what token 31935 actually represents: it maps to approximately -0.4941, which corresponds to the 64th bin center in a 256-bin quantization scheme from -1 to 1. This isn't a random output—it's a deterministic, specific value the model consistently produces, which points to either incomplete fine-tuning or a version incompatibility causing degenerate outputs.
+
+The previous action_head_decoding.py script reported R² = -2.89 for the exit layer, and our new check gets R² = -11.62, likely because we only sampled 10 examples versus their larger dataset. The core problem remains: all layers predict the same constant token 31935 regardless of context, and this isn't a double-norm artifact—it's a transformers version mismatch (4.40.1 to 5.9.0) producing these degenerate outputs. I should verify whether this is also happening in the teacher-forcing positions before reporting.
+
+Looking at the teacher-forcing setup, we extract hidden states from positions seq_len-8 to seq_len-2 to predict action tokens 0-6, but the model outputs 31935 at all these positions. The autoregressive generation also produces 31935 for all 7 tokens without any teacher-forcing, which confirms the issue is with the model itself rather than the decoding pipeline. The transformers version mismatch is almost certainly the culprit—the model was built for 4.40.1 but the server runs 5.9.0, and major version changes can significantly alter LlamaModel architecture including weight key names and norm placement. I'll compile the full findings now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "47501ccf-bd2d-41b6-81fb-5521858fb11c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2gNLXWqGn7YejC3etmgSY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3995,
+      "cache_read_input_tokens": 100258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3995
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106_
+
+4 项检查全部完成。以下是完整诊断结果。
+
+---
+
+## 完整诊断结果
+
+### CHECK 3: Double-norm bug — **确认存在，但非主因**
+
+```
+hidden_states[32] IS POST-norm (已经过 RMSNorm)
+  lm_head(hs) vs model logits:       max=0.0625  ← 几乎一致 (bfloat16 精度)
+  lm_head(norm(hs)) vs model logits: max=1.3125  ← 显著偏差
+
+L2 norms:
+  hs[ 0]: raw=1.1,   after_norm=118.7
+  hs[31]: raw=193.3,  after_norm=114.9
+  hs[32]: raw=114.8,  after_norm=120.1  ← 已经是 post-norm，再 norm 变化不大
+```
+
+**结论**: `hidden_states[32]` 确实是 post-norm 的（HuggingFace LlamaModel 在返回 `all_hidden_states` 最后一个元素前已经过 `model.norm`）。原始脚本对所有层统一做 `lm_head(norm(hs))`，exit layer 被 double-norm。**但在当前情况下，double-norm 并不改变 argmax token（两种方法都输出 31935）**。
+
+### CHECK 1 & 2: Exit layer 预测 — **模型输出完全退化**
+
+**所有 10 个样本、所有 7 个 action 维度，无论 teacher-forcing 还是 autoregressive，model 都只输出 token 31935（=-0.4941）。**
+
+```
+Sample 0:  GT=[31844 31881 31872 31908 31810 31923 31999]
+           Pred=[31935 31935 31935 31935 31935 31935 31935]  (all methods)
+Sample 1:  GT=[31819 31884 31872 31919 31856 31931 31999]
+           Pred=[31935 31935 31935 31935 31935 31935 31935]
+...
+Sample 9:  GT=[31836 31863 31872 31891 31825 31964 31999]
+           Pred=[31935 31935 31935 31935 31935 31935 31935]
+
+Exact match:  0.0000 (ALL methods)
+Top-5 match:  0.0143
+R²:           -11.6231 (ALL methods — correct/buggy/autoregressive 都一样)
+```
+
+### CHECK 4: Bin→continuous 反量化 — **无 bug**
+
+```
+Roundtrip max error: 0.003922 (仅 bin 量化误差)
+De-tokenization 与 model.predict_action 一致: True
+```
+
+---
+
+## 根因分析
+
+**Double-norm 不是主因。** 主因是 **transformers 版本不兼容**：
+
+```
+Expected: transformers==4.40.1, tokenizers==0.19.1
+Got:      transformers==5.9.0,  tokenizers==0.22.2
+```
+
+模型在所有输入下都坍缩到同一个 token（31935 = -0.4941），包括自回归生成也是如此。这说明模型权重在 transformers 5.9.0 下没有被正确加载或推理行为已改变。LlamaModel 在 4.x → 5.x 之间有显著架构变化。
+
+**建议下一步**: 降级 transformers 到 4.40.1 后重新运行验证，或者在正确版本环境中跑 `model.predict_action()` 确认模型本身推理正常。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "uuid": "29c84ae6-c4e9-4883-851a-1a1097ca3fd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2gNLXWqGn7YejC3etmgSY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3995,
+      "cache_read_input_tokens": 100258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3995
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 107_
+
+4 项检查全部完成。以下是完整诊断结果。
+
+---
+
+## 完整诊断结果
+
+### CHECK 3: Double-norm bug — **确认存在，但非主因**
+
+```
+hidden_states[32] IS POST-norm (已经过 RMSNorm)
+  lm_head(hs) vs model logits:       max=0.0625  ← 几乎一致 (bfloat16 精度)
+  lm_head(norm(hs)) vs model logits: max=1.3125  ← 显著偏差
+
+L2 norms:
+  hs[ 0]: raw=1.1,   after_norm=118.7
+  hs[31]: raw=193.3,  after_norm=114.9
+  hs[32]: raw=114.8,  after_norm=120.1  ← 已经是 post-norm，再 norm 变化不大
+```
+
+**结论**: `hidden_states[32]` 确实是 post-norm 的（HuggingFace LlamaModel 在返回 `all_hidden_states` 最后一个元素前已经过 `model.norm`）。原始脚本对所有层统一做 `lm_head(norm(hs))`，exit layer 被 double-norm。**但在当前情况下，double-norm 并不改变 argmax token（两种方法都输出 31935）**。
+
+### CHECK 1 & 2: Exit layer 预测 — **模型输出完全退化**
+
+**所有 10 个样本、所有 7 个 action 维度，无论 teacher-forcing 还是 autoregressive，model 都只输出 token 31935（=-0.4941）。**
+
+```
+Sample 0:  GT=[31844 31881 31872 31908 31810 31923 31999]
+           Pred=[31935 31935 31935 31935 31935 31935 31935]  (all methods)
+Sample 1:  GT=[31819 31884 31872 31919 31856 31931 31999]
+           Pred=[31935 31935 31935 31935 31935 31935 31935]
+...
+Sample 9:  GT=[31836 31863 31872 31891 31825 31964 31999]
+           Pred=[31935 31935 31935 31935 31935 31935 31935]
+
+Exact match:  0.0000 (ALL methods)
+Top-5 match:  0.0143
+R²:           -11.6231 (ALL methods — correct/buggy/autoregressive 都一样)
+```
+
+### CHECK 4: Bin→continuous 反量化 — **无 bug**
+
+```
+Roundtrip max error: 0.003922 (仅 bin 量化误差)
+De-tokenization 与 model.predict_action 一致: True
+```
+
+---
+
+## 根因分析
+
+**Double-norm 不是主因。** 主因是 **transformers 版本不兼容**：
+
+```
+Expected: transformers==4.40.1, tokenizers==0.19.1
+Got:      transformers==5.9.0,  tokenizers==0.22.2
+```
+
+模型在所有输入下都坍缩到同一个 token（31935 = -0.4941），包括自回归生成也是如此。这说明模型权重在 transformers 5.9.0 下没有被正确加载或推理行为已改变。LlamaModel 在 4.x → 5.x 之间有显著架构变化。
+
+**建议下一步**: 降级 transformers 到 4.40.1 后重新运行验证，或者在正确版本环境中跑 `model.predict_action()` 确认模型本身推理正常。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 728894,
+  "duration_api_ms": 660461,
+  "num_turns": 41,
+  "stop_reason": "end_turn",
+  "session_id": "f354af71-a130-491d-9790-cf5c68b15460",
+  "total_cost_usd": 2.5747605000000005,
+  "usage": {
+    "input_tokens": 33,
+    "cache_creation_input_tokens": 92412,
+    "cache_read_input_tokens": 1897509,
+    "output_tokens": 41789,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 92412,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2366,
+        "cache_read_input_tokens": 100258,
+        "cache_creation_input_tokens": 3995,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3995
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3451,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003541,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 33,
+      "outputTokens": 41789,
+      "cacheReadInputTokens": 1897509,
+      "cacheCreationInputTokens": 92412,
+      "webSearchRequests": 0,
+      "costUSD": 2.5712195,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "6f84ca20-4226-4a7b-aca8-8d96826812f8"
+}
+```
+
+</details>
+
+---

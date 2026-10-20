@@ -1,0 +1,17 @@
+{
+  "exp_id": "phi3v_probe_untrained",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:04:38.888Z",
+    "updated_at": "2026-05-19T18:39:21.028Z",
+    "hypothesis": "Base Phi-3-mini-4k-instruct (untrained VLA) already encodes instruction identity at the last-preaction token position due to pre-existing instruction tuning, but not at image tokens.",
+    "parent": "phi3v_attention_untrained",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T18:39:21.296285+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,33 @@
+{
+  "exp_id": "mvp2_action_probe",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:10:18.939Z",
+    "updated_at": "2026-05-15T17:29:19.489Z",
+    "hypothesis": "VLA trained model hidden states encode action prediction knowledge (next action a_{t+1}) that untrained VLA and DINO-V2 lack. Gates: G1 R²>0.3, G2 Δ(trained-untrained)>0.15, G3 Δ(trained-DINO)>0.15",
+    "parent": "mvp_001",
+    "metrics": {
+      "copy_baseline_R2": 0.975,
+      "copy_baseline_per_task_mean_R2": 0.972,
+      "random_frame_baseline_R2": -0.91,
+      "random_frame_per_task_mean_R2": -0.977,
+      "copy_baseline_per_dim_R2": {
+        "dx": 0.979,
+        "dy": 0.988,
+        "dz": 0.982,
+        "drx": 0.971,
+        "dry": 0.966,
+        "drz": 0.991,
+        "grip": 0.949
+      },
+      "note": "LIBERO action autocorrelation very high — copy a_t predicts a_{t+1} at R²=0.975. Action probe R² must be interpreted relative to this ceiling. Key comparison remains trained-vs-untrained Δ, not absolute R²."
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T17:29:19.556187+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "exp_id": "phi3v_untrained_seed_expansion",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:42:59.261Z",
+    "updated_at": "2026-05-20T11:46:49.880Z",
+    "hypothesis": "Expanding Phi3V untrained R² probe from 5 to 15 seeds will tighten confidence intervals on the untrained profile (early peak at L4, monotonic decline), aligning statistical power with the other 3 conditions in the 2×2 matrix (all 15 seeds) and eliminating asymmetric seed count as a reviewer concern.",
+    "parent": "phi3v_r2_untrained_probe",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T11:19:19.135Z",
+      "finished_at": "2026-05-20T11:46:49.350Z",
+      "training_hours": 0.46
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/phi3v_untrained_seed_expansion.py\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "452350",
+      "log_path": "~/runs/vla-ssd/phi3v_untrained_seed_expansion.log",
+      "submitted_at": "2026-05-20T11:22:22.328Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks x 50 demos",
+      "model_name": "Phi3V-Untrained-Base (TracVLA-Phi3V arch + Phi-3-mini-4k-instruct LLM weights)",
+      "seed": "5,6,7,8,9,10,11,12,13,14",
+      "output_dir": "/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion/",
+      "checkpoint_source": "TracVLA: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/ + Base: /root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct",
+      "eval_data": "LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 10 seeds (5-14) MLP R² probe",
+      "feature_dir": "/root/autodl-tmp/vla-ssd/features/phi3v_untrained_libero_goal/"
+    }
+  },
+  "timestamp": "2026-05-20T11:46:50.114193+00:00",
+  "trigger": "update_registry"
+}

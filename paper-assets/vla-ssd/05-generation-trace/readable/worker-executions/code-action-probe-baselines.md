@@ -1,0 +1,1135 @@
+# code action probe baselines
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 22
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_code_action-probe-baselines_20260515T141645.log`
+- **Structured JSON:** [`2d651aacce608068695b.json`](../../sessions/2d/2d651aacce608068695b.json)
+
+## Before a recorded user message
+
+22 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "bd8d6e7f-dc81-4f8f-9efe-61cfa4324f59",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778857200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ced3d010-306e-4b63-afd0-0e2cb32b8827",
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+我来实现这两个 trivial baseline。先检查服务器环境和数据情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "5daffe5d-b71d-4ef7-a5e3-5cb19ab08ead",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yjhZxLemQnVwtjZEudoSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11933,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11933
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Nrr7x9DtYcWFZiv1fvmRSg`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "f8dae7af-5ffa-41a7-8ee2-8285cd2c84cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yjhZxLemQnVwtjZEudoSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11933,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11933
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T14:16:58.472Z_
+
+<details><summary>↩ Tool result · `toolu_01Nrr7x9DtYcWFZiv1fvmRSg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "fbb0090e-51f5-4486-93f9-8b9a13886f17",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the server environment and data structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "5afe2247-5f33-440b-946d-d672827032af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5noZuvnYjwEaZEk3uYCMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 23774,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TEXkxYbRviW5CuhBNG3Ank`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_10/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "e1e531ff-6096-4720-b6ed-2bd22e231b2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5noZuvnYjwEaZEk3uYCMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 23774,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T14:17:03.527Z_
+
+<details><summary>↩ Tool result · `toolu_01TEXkxYbRviW5CuhBNG3Ank`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_demo.hdf5\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_demo.hdf5\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_demo.hdf5\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove_demo.hdf5\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_demo.hdf5\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_demo.hdf5\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_demo.hdf5\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_demo.hdf5\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_demo.hdf5\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "09fe82ba-aecb-4480-baee-dc07af4abd54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_demo.hdf5\\\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_demo.hdf5\\\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_demo.hdf5\\\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove_demo.hdf5\\\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_demo.hdf5\\\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_demo.hdf5\\\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_demo.hdf5\\\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_demo.hdf5\\\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_demo.hdf5\\\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_demo.hdf5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_demo.hdf5\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_demo.hdf5\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_demo.hdf5\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove_demo.hdf5\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_demo.hdf5\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_demo.hdf5\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_demo.hdf5\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_demo.hdf5\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_demo.hdf5\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VnWne8VUQESjuXVGz9Cw5r`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py, numpy as np; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_demo.hdf5','r'); d=f['data']; print('demos:', len(d)); k=list(d.keys())[0]; print('keys:', list(d[k].keys())); a=d[k]['actions'][()]; print('actions shape:', a.shape, 'dtype:', a.dtype); f.close()\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "e901c23b-09d5-4664-b179-51e46c7dff6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5noZuvnYjwEaZEk3uYCMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 23774,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T14:17:04.844Z_
+
+<details><summary>↩ Tool result · `toolu_01VnWne8VUQESjuXVGz9Cw5r`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "7e2e5fe3-df60-41f2-8926-5005da60f848",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The read_only command blocked the semicolon. Let me check the data structure with a single python command.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "4d587836-4da6-48ce-b5e4-332042410165",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoSjQQn7x5w1acXLKKHnpj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1052,
+      "cache_read_input_tokens": 24674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+10 个 task 文件都在。用 ssh_execute 检查数据结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "7a85ff7c-fc6e-45fb-beb3-5fb61a64d79d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoSjQQn7x5w1acXLKKHnpj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1052,
+      "cache_read_input_tokens": 24674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Wdxs8imGiK3swqoVjA2Zhk`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport h5py, numpy as np\nf=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_demo.hdf5','r')\nd=f['data']\nprint('demos:', len(d))\nk=list(d.keys())[0]\nprint('keys:', list(d[k].keys()))\na=d[k]['actions'][()]\nprint('actions shape:', a.shape, 'dtype:', a.dtype)\nprint('first 3 actions:', a[:3])\nf.close()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "ced6dca4-5552-4c89-a469-97ca10a1ba83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoSjQQn7x5w1acXLKKHnpj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1052,
+      "cache_read_input_tokens": 24674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T14:17:11.245Z_
+
+<details><summary>↩ Tool result · `toolu_01Wdxs8imGiK3swqoVjA2Zhk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"demos: 50\\nkeys: ['actions', 'dones', 'obs', 'rewards', 'robot_states', 'states']\\nactions shape: (388, 7) dtype: float64\\nfirst 3 actions: [[ 0.05357143 -0.38839286 -0.          0.01392857  0.06964286 -0.00642857\\n  -1.        ]\\n [ 0.05625    -0.38035714 -0.          0.01285714  0.06857143 -0.00642857\\n  -1.        ]\\n [ 0.05089286 -0.39642857 -0.          0.015       0.06857143 -0.00964286\\n  -1.        ]]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "557932e5-8c75-4108-9bde-838ab12638ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"demos: 50\\\\nkeys: ['actions', 'dones', 'obs', 'rewards', 'robot_states', 'states']\\\\nactions shape: (388, 7) dtype: float64\\\\nfirst 3 actions: [[ 0.05357143 -0.38839286 -0.          0.01392857  0.06964286 -0.00642857\\\\n  -1.        ]\\\\n [ 0.05625    -0.38035714 -0.          0.01285714  0.06857143 -0.00642857\\\\n  -1.        ]\\\\n [ 0.05089286 -0.39642857 -0.          0.015       0.06857143 -0.00964286\\\\n  -1.        ]]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"demos: 50\\nkeys: ['actions', 'dones', 'obs', 'rewards', 'robot_states', 'states']\\nactions shape: (388, 7) dtype: float64\\nfirst 3 actions: [[ 0.05357143 -0.38839286 -0.          0.01392857  0.06964286 -0.00642857\\n  -1.        ]\\n [ 0.05625    -0.38035714 -0.          0.01285714  0.06857143 -0.00642857\\n  -1.        ]\\n [ 0.05089286 -0.39642857 -0.          0.015       0.06857143 -0.00964286\\n  -1.        ]]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+数据结构确认。现在写脚本并上传运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "9518345a-156e-4ec2-b7f8-04bf1177f049",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LZXEUXcraSAL6egWfsDdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 619,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 619
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Argx52kcDUwE1UySGzSCEo`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/action_baselines.py << 'PYEOF'\nimport h5py, numpy as np, json, os, glob\nfrom sklearn.metrics import r2_score\n\ndef load_all_actions(data_dir):\n    task_actions = {}\n    for fpath in sorted(glob.glob(os.path.join(data_dir, \"*_demo.hdf5\"))):\n        task_name = os.path.basename(fpath).replace(\"_demo.hdf5\", \"\")\n        with h5py.File(fpath, \"r\") as f:\n            demos = []\n            for k in sorted(f[\"data\"].keys(), key=lambda x: int(x.split(\"_\")[1])):\n                demos.append(f[\"data\"][k][\"actions\"][()])\n            task_actions[task_name] = demos\n    return task_actions\n\ndef compute_r2(all_pred, all_target):\n    all_pred = np.concatenate(all_pred, axis=0)\n    all_target = np.concatenate(all_target, axis=0)\n    per_dim = []\n    for d in range(all_pred.shape[1]):\n        per_dim.append(r2_score(all_target[:, d], all_pred[:, d]))\n    overall = r2_score(all_target, all_pred, multioutput=\"uniform_average\")\n    return per_dim, overall\n\ndef copy_baseline(actions_by_task):\n    results = {}\n    all_pred, all_target = [], []\n    for task, demos in actions_by_task.items():\n        task_pred, task_target = [], []\n        for actions in demos:\n            pred = actions[:-1]   # a_t\n            target = actions[1:]  # a_{t+1}\n            task_pred.append(pred)\n            task_target.append(target)\n        per_dim, overall = compute_r2(task_pred, task_target)\n        results[task] = {\"per_dim_r2\": per_dim, \"overall_r2\": overall}\n        all_pred.extend(task_pred)\n        all_target.extend(task_target)\n    global_per_dim, global_overall = compute_r2(all_pred, all_target)\n    per_task_mean = np.mean([v[\"overall_r2\"] for v in results.values()])\n    return {\n        \"per_task\": results,\n        \"global_per_dim_r2\": global_per_dim,\n        \"global_overall_r2\": global_overall,\n        \"per_task_mean_r2\": float(per_task_mean),\n    }\n\ndef random_frame_baseline(actions_by_task, seed=42):\n    rng = np.random.RandomState(seed)\n    results = {}\n    all_pred, all_target = [], []\n    for task, demos in actions_by_task.items():\n        task_pred, task_target = [], []\n        for actions in demos:\n            T = len(actions)\n            target = actions[1:]  # a_{t+1}, length T-1\n            rand_idx = rng.randint(0, T, size=T - 1)\n            pred = actions[rand_idx]\n            task_pred.append(pred)\n            task_target.append(target)\n        per_dim, overall = compute_r2(task_pred, task_target)\n        results[task] = {\"per_dim_r2\": per_dim, \"overall_r2\": overall}\n        all_pred.extend(task_pred)\n        all_target.extend(task_target)\n    global_per_dim, global_overall = compute_r2(all_pred, all_target)\n    per_task_mean = np.mean([v[\"overall_r2\"] for v in results.values()])\n    return {\n        \"per_task\": results,\n        \"global_per_dim_r2\": global_per_dim,\n        \"global_overall_r2\": global_overall,\n        \"per_task_mean_r2\": float(per_task_mean),\n    }\n\ndef print_table(copy_res, rand_res):\n    dim_names = [\"dx\", \"dy\", \"dz\", \"drx\", \"dry\", \"drz\", \"grip\"]\n    print(\"\\n\" + \"=\" * 80)\n    print(\"ACTION PREDICTION BASELINES\")\n    print(\"=\" * 80)\n    \n    print(f\"\\n{'Metric':<12} \", end=\"\")\n    for d in dim_names:\n        print(f\"{d:>8}\", end=\"\")\n    print(f\"  {'overall':>8}\")\n    print(\"-\" * 80)\n    \n    print(f\"{'Copy':<12} \", end=\"\")\n    for v in copy_res[\"global_per_dim_r2\"]:\n        print(f\"{v:>8.4f}\", end=\"\")\n    print(f\"  {copy_res['global_overall_r2']:>8.4f}\")\n    \n    print(f\"{'Random':<12} \", end=\"\")\n    for v in rand_res[\"global_per_dim_r2\"]:\n        print(f\"{v:>8.4f}\", end=\"\")\n    print(f\"  {rand_res['global_overall_r2']:>8.4f}\")\n    \n    print(f\"\\n{'Metric':<20} {'Copy':>10} {'Random':>10}\")\n    print(\"-\" * 42)\n    print(f\"{'Global Overall R²':<20} {copy_res['global_overall_r2']:>10.4f} {rand_res['global_overall_r2']:>10.4f}\")\n    print(f\"{'Per-Task Mean R²':<20} {copy_res['per_task_mean_r2']:>10.4f} {rand_res['per_task_mean_r2']:>10.4f}\")\n    \n    print(f\"\\n{'Task':<85} {'Copy R²':>8} {'Rand R²':>8}\")\n    print(\"-\" * 103)\n    for task in sorted(copy_res[\"per_task\"].keys()):\n        short = task[:82] + \"...\" if len(task) > 85 else task\n        c = copy_res[\"per_task\"][task][\"overall_r2\"]\n        r = rand_res[\"per_task\"][task][\"overall_r2\"]\n        print(f\"{short:<85} {c:>8.4f} {r:>8.4f}\")\n\nif __name__ == \"__main__\":\n    data_dir = \"/root/autodl-tmp/vla-ssd/data/libero/libero_10/\"\n    print(\"Loading actions from LIBERO-10...\")\n    actions = load_all_actions(data_dir)\n    print(f\"Loaded {len(actions)} tasks, {sum(len(v) for v in actions.values())} demos total\")\n\n    print(\"Computing copy baseline...\")\n    copy_results = copy_baseline(actions)\n\n    print(\"Computing random-frame baseline...\")\n    random_results = random_frame_baseline(actions)\n\n    print_table(copy_results, random_results)\n\n    out_dir = \"/root/autodl-tmp/vla-ssd/results/\"\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"action_baselines.json\")\n    with open(out_path, \"w\") as f:\n        json.dump({\"copy_baseline\": copy_results, \"random_frame_baseline\": random_results}, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\nPYEOF\necho \"Script written.\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "6f97f2f0-d8f0-478e-a6f4-fdc613f87ea2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LZXEUXcraSAL6egWfsDdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 619,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 619
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T14:17:35.208Z_
+
+<details><summary>↩ Tool result · `toolu_01Argx52kcDUwE1UySGzSCEo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "7407fec3-ac71-44ea-9f75-5aa2a8666c8a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+脚本已写入。运行它。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "2b8b006c-7763-4efd-bb61-cd5ab9ddfbcd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RDtojyHSYw8UpDiPcNaSyi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2073,
+      "cache_read_input_tokens": 26345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2073
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01S7bJfeT6H8pLM16UFmsu43`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 action_baselines.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "095ed69c-4e66-40c1-9518-af16a6fda4cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RDtojyHSYw8UpDiPcNaSyi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2073,
+      "cache_read_input_tokens": 26345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2073
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T14:17:41.270Z_
+
+<details><summary>↩ Tool result · `toolu_01S7bJfeT6H8pLM16UFmsu43`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading actions from LIBERO-10...\\nLoaded 10 tasks, 500 demos total\\nComputing copy baseline...\\nComputing random-frame baseline...\\n\\n================================================================================\\nACTION PREDICTION BASELINES\\n================================================================================\\n\\nMetric             dx      dy      dz     drx     dry     drz    grip   overall\\n--------------------------------------------------------------------------------\\nCopy           0.9792  0.9878  0.9820  0.9708  0.9657  0.9914  0.9490    0.9751\\nRandom        -0.9673 -0.9465 -0.9762 -0.8907 -0.9610 -0.7391 -0.8892   -0.9100\\n\\nMetric                     Copy     Random\\n------------------------------------------\\nGlobal Overall R²        0.9751    -0.9100\\nPer-Task Mean R²         0.9720    -0.9771\\n\\nTask                                                                                   Copy R²  Rand R²\\n-------------------------------------------------------------------------------------------------------\\nKITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it                             0.9738  -0.9714\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it      0.9786  -0.9742\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it               0.9766  -0.9765\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove                                          0.9829  -0.9852\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket    0.9608  -0.9967\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket        0.9666  -0.9692\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket           0.9606  -0.9763\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_whit...   0.9634  -0.9747\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to...   0.9754  -0.9973\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy         0.9818  -0.9494\\n\\nResults saved to /root/autodl-tmp/vla-ssd/results/action_baselines.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "0b951c00-e1ed-4b98-b734-db754f18ab24",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading actions from LIBERO-10...\\\\nLoaded 10 tasks, 500 demos total\\\\nComputing copy baseline...\\\\nComputing random-frame baseline...\\\\n\\\\n================================================================================\\\\nACTION PREDICTION BASELINES\\\\n================================================================================\\\\n\\\\nMetric             dx      dy      dz     drx     dry     drz    grip   overall\\\\n--------------------------------------------------------------------------------\\\\nCopy           0.9792  0.9878  0.9820  0.9708  0.9657  0.9914  0.9490    0.9751\\\\nRandom        -0.9673 -0.9465 -0.9762 -0.8907 -0.9610 -0.7391 -0.8892   -0.9100\\\\n\\\\nMetric                     Copy     Random\\\\n------------------------------------------\\\\nGlobal Overall R²        0.9751    -0.9100\\\\nPer-Task Mean R²         0.9720    -0.9771\\\\n\\\\nTask                                                                                   Copy R²  Rand R²\\\\n-------------------------------------------------------------------------------------------------------\\\\nKITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it                             0.9738  -0.9714\\\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it      0.9786  -0.9742\\\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it               0.9766  -0.9765\\\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove                                          0.9829  -0.9852\\\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket    0.9608  -0.9967\\\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket        0.9666  -0.9692\\\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket           0.9606  -0.9763\\\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_whit...   0.9634  -0.9747\\\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to...   0.9754  -0.9973\\\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy         0.9818  -0.9494\\\\n\\\\nResults saved to /root/autodl-tmp/vla-ssd/results/action_baselines.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading actions from LIBERO-10...\\nLoaded 10 tasks, 500 demos total\\nComputing copy baseline...\\nComputing random-frame baseline...\\n\\n================================================================================\\nACTION PREDICTION BASELINES\\n================================================================================\\n\\nMetric             dx      dy      dz     drx     dry     drz    grip   overall\\n--------------------------------------------------------------------------------\\nCopy           0.9792  0.9878  0.9820  0.9708  0.9657  0.9914  0.9490    0.9751\\nRandom        -0.9673 -0.9465 -0.9762 -0.8907 -0.9610 -0.7391 -0.8892   -0.9100\\n\\nMetric                     Copy     Random\\n------------------------------------------\\nGlobal Overall R²        0.9751    -0.9100\\nPer-Task Mean R²         0.9720    -0.9771\\n\\nTask                                                                                   Copy R²  Rand R²\\n-------------------------------------------------------------------------------------------------------\\nKITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it                             0.9738  -0.9714\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it      0.9786  -0.9742\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it               0.9766  -0.9765\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove                                          0.9829  -0.9852\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket    0.9608  -0.9967\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket        0.9666  -0.9692\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket           0.9606  -0.9763\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_whit...   0.9634  -0.9747\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to...   0.9754  -0.9973\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy         0.9818  -0.9494\\n\\nResults saved to /root/autodl-tmp/vla-ssd/results/action_baselines.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+运行完成。结果：
+
+### Action Prediction Baselines
+
+| Metric | Copy Baseline | Random-Frame Baseline |
+|---|---|---|
+| **Global Overall R²** | **0.9751** | **-0.9100** |
+| **Per-Task Mean R²** | **0.9720** | **-0.9771** |
+
+**Per-dim R² (Copy baseline):**
+
+| dx | dy | dz | drx | dry | drz | grip |
+|---|---|---|---|---|---|---|
+| 0.979 | 0.988 | 0.982 | 0.971 | 0.966 | 0.991 | 0.949 |
+
+**关键结论：**
+
+1. **Copy baseline R² = 0.975** — 极高，证实 Director 的担忧：LIBERO 轨迹 action 自相关非常强，相邻帧 action 几乎相同。这意味着 **action prediction probe 的 R² 必须显著超过 0.975 才能说明 hidden state 编码了超越简单时序自相关的信息**。
+2. **Random-frame baseline R² ≈ -0.9** — 如预期，随机帧毫无预测力（负 R² 说明比 predict-mean 还差）。
+3. 所有 10 个 task 的 copy baseline R² 都在 0.96–0.98 之间，非常一致。
+
+结果已保存到 `/root/autodl-tmp/vla-ssd/results/action_baselines.json`，脚本在 `/root/vla-ssd/action_baselines.py`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "uuid": "6300f7fa-6c18-4b49-bec5-2d2774007b16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011APxGWEG2qQ1gBP1id5nCi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 28418,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1107
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 22_
+
+运行完成。结果：
+
+### Action Prediction Baselines
+
+| Metric | Copy Baseline | Random-Frame Baseline |
+|---|---|---|
+| **Global Overall R²** | **0.9751** | **-0.9100** |
+| **Per-Task Mean R²** | **0.9720** | **-0.9771** |
+
+**Per-dim R² (Copy baseline):**
+
+| dx | dy | dz | drx | dry | drz | grip |
+|---|---|---|---|---|---|---|
+| 0.979 | 0.988 | 0.982 | 0.971 | 0.966 | 0.991 | 0.949 |
+
+**关键结论：**
+
+1. **Copy baseline R² = 0.975** — 极高，证实 Director 的担忧：LIBERO 轨迹 action 自相关非常强，相邻帧 action 几乎相同。这意味着 **action prediction probe 的 R² 必须显著超过 0.975 才能说明 hidden state 编码了超越简单时序自相关的信息**。
+2. **Random-frame baseline R² ≈ -0.9** — 如预期，随机帧毫无预测力（负 R² 说明比 predict-mean 还差）。
+3. 所有 10 个 task 的 copy baseline R² 都在 0.96–0.98 之间，非常一致。
+
+结果已保存到 `/root/autodl-tmp/vla-ssd/results/action_baselines.json`，脚本在 `/root/vla-ssd/action_baselines.py`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 56853,
+  "duration_api_ms": 55055,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "ea963fca-f580-4b64-bc63-8e31fad03a24",
+  "total_cost_usd": 0.268372,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 17684,
+    "cache_read_input_tokens": 140778,
+    "output_tokens": 3421,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17684,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 439,
+        "cache_read_input_tokens": 28418,
+        "cache_creation_input_tokens": 1107,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1107
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1798,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001883,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 3421,
+      "cacheReadInputTokens": 140778,
+      "cacheCreationInputTokens": 17684,
+      "webSearchRequests": 0,
+      "costUSD": 0.266489,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1263795f-4aff-4d5f-9e87-ca6354f745b8"
+}
+```
+
+</details>
+
+---

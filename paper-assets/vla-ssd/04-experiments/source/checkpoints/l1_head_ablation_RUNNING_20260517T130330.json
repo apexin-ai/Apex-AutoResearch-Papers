@@ -1,0 +1,38 @@
+{
+  "exp_id": "l1_head_ablation",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:59:16.298Z",
+    "updated_at": "2026-05-17T13:03:30.788Z",
+    "hypothesis": "L1 instruction-dominant heads (24/32 with >50% text attention) are causally necessary for instruction routing: ablating their instruction attention should collapse downstream instruction classification accuracy from ~100% to near-chance, while ablating non-dominant heads (control) should have minimal effect. This upgrades C2 (front-loaded routing) from correlational to partially causal.",
+    "notes": "D057. 3 conditions: (A) ablate all 24 dominant heads, (B) ablate 8 non-dominant heads (control), (C) no ablation (baseline, existing data). Also graduated: top-5 strongest heads. Monkey-patch layers[1].self_attn.forward, zero instruction token positions after softmax + renormalize. Extract features at L1/L8/L16/L31, run cross-instruction 10-way classifier + action probe R². GPU: westd-19183 cuda:0, ~1.5-2 GPU·h.",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T12:00:40.435Z"
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_head_ablation.py --output /root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json",
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "pid": "890188",
+      "log_path": "~/runs/vla-ssd/l1_head_ablation.log",
+      "submitted_at": "2026-05-17T12:49:49.786Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero_goal/",
+      "data_count": "500 (10 tasks × 5 demos × 10 instructions)",
+      "model_name": "openvla-7b (trained)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-17T13:03:30.953537+00:00",
+  "trigger": "update_registry"
+}

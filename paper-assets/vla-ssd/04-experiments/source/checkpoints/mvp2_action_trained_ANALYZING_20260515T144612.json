@@ -1,0 +1,50 @@
+{
+  "exp_id": "mvp2_action_trained",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:17:43.720Z",
+    "updated_at": "2026-05-15T14:46:12.938Z",
+    "hypothesis": "VLA trained model 33-layer action prediction sweep: per-layer R² distribution reveals where action knowledge is encoded. Gate G1: R²>0.3, G2: Δ(trained-untrained)>0.15",
+    "parent": "mvp2_action_probe",
+    "spec": {
+      "command": "python scripts/train_probes.py --probe_type action_prediction --features_dir .../features/trained/ --output_dir .../results/trained/ --data_dir .../data/libero/libero_10/ --gpu 0",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "613335",
+      "log_path": "~/runs/vla-ssd/mvp2_action_trained.log",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/trained/ + /root/autodl-tmp/vla-ssd/data/libero/libero_10/",
+      "data_count": "10 tasks x 50 demos, 33 layers x 4096 dim features + 7-dim actions",
+      "model_name": "MLP action probe (4096->256->7), trained on openvla-7b features",
+      "seed": 42,
+      "checkpoint_source": "openvla-trained-extract",
+      "eval_data": "/root/autodl-tmp/vla-ssd/features/trained/ (10 tasks x 50 demos H5) + actions from /root/autodl-tmp/vla-ssd/data/libero/libero_10/"
+    },
+    "metrics": {
+      "best_layer": 19,
+      "per_task_mean_R2": 0.6831,
+      "overall_R2": 0.677,
+      "gripper_accuracy": 0.8989,
+      "per_dim_R2_at_best": {
+        "dx": 0.5885,
+        "dy": 0.7629,
+        "dz": 0.5854,
+        "drx": 0.3712,
+        "dry": 0.1649,
+        "drz": 0.6654,
+        "gripper": 0.6815
+      },
+      "layers_stable_range": "0.45-0.68 (31/33 layers > untrained)",
+      "layer_stability": "high — smooth R² curve across all 33 layers"
+    },
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/trained/action_prediction/",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T14:46:12.970993+00:00",
+  "trigger": "update_registry"
+}

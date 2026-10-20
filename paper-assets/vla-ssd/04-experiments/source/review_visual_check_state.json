@@ -1,0 +1,112 @@
+{
+  "status": "done",
+  "started_at": "2026-05-27T00:51:39.154558+00:00",
+  "completed_at": "2026-05-27T00:56:36.916573+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无视觉锚点——仅 Title/Author/Abstract。第一个 display item（Figure 1，3-panel 分析框架图）出现在 page 2 顶部。对分析类论文可接受，但若能将 Figure 1 提至 page 1 底部可增强审稿人第一印象"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 三面板（VLA sequence structure / Three analysis methods / Finding classification）传达方法论框架而非核心结果。Caption 详细且自包含。面板内文字偏小但 150dpi 下仍可读。颜色编码清晰"
+    },
+    {
+      "severity": "warning",
+      "dimension": "pages 3-4",
+      "message": "连续两页纯文本（Related Work 尾部 + Method §3.1-3.3），无任何 display item。此段非数学推导密集区，建议考虑将方法概念图或伪代码提前至此区域打破视觉单调"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 2（Cross-architecture evaluation matrix）全宽热力图/表格混合体。灰色（未评测 checkpoint）与红色（负向）编码清晰。单元格内数字字号较小但可辨认。booktabs 风格表头"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "视觉密度佳——Figure 3（全宽 3-panel 线图）在上方，Figure 4（单栏小图）在右下。Figure 4 尺寸偏小，axis label 和 legend 字号约为正文的 60%，接近可读性下限"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 1 + Table 2 同页。两表均使用 booktabs 风格，精度统一，排版整洁。Table 2 的 \"Empty ranks first in N/S metric\" 脚注信息量大但字号较小"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 5（散点图 + 回归线）单栏放置。图例清晰，axis label 可读。与文字段落交替节奏好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Discussion/Conclusion 约占页面上半部，References 从下半部开始。主文正好 9 页，空间利用合理"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 10-12",
+      "message": "References 排版正常。未发现 [?] 未解析引用。格式统一（author 缩写一致）。Page 12 底部有 \"Use of Generative AI\" 声明，符合 CoRL 要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "Appendix 起始页。Table 3（Architecture Summary）清晰。Section A.1-A.2 布局紧凑"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 16",
+      "message": "Figure 6（3-panel 相似性矩阵：RSA / Linear CKA / RBF Kernel CKA）。热力图颜色梯度清晰，但 axis tick label（层编号）字号偏小"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 21",
+      "message": "Figure 12（3-panel 预训练 LLM 表征诊断热力图）。y 轴标签（层名称列表）字号极小（约 5-6pt），在打印版上可能难以辨读"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 22",
+      "message": "Figure 14（Functional Probe R² Heatmap）y 轴有大量文字标签（per-source labels），字号约 5pt，低于正文 70% 的可读性基准。建议放大或简化标签"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 29",
+      "message": "Figure 18（Cross-instruction 10-way classification accuracy）线图清晰，trained/reference/Llama-2 三条线区分度好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 30",
+      "message": "Figure 19（两面板 instruction-dominant heads 柱状图）。全宽双面板布局合理，颜色编码一致（trained vs. untrained）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 31",
+      "message": "Figure 20（instruction-dominant head fractions 柱状图）+ Figure 21（L1 attention 分布图）。两图堆叠，页面密度高但布局清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 37",
+      "message": "Table 29（Per-layer action prediction B²）大型数值表，跨全页。数字密集但精度统一（3 位小数），使用 booktabs 风格。字号偏小但尚可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 40",
+      "message": "Figure 23（ΔB² across training pathways 散点图）+ Table 30（Methodological precedent 对比表）+ Figure 24（NLP finetuning controls 3-panel 线图）。单页 3 个 display item，密度极高但排列有序"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 41",
+      "message": "Figure 25（Claim-evidence scope summary 流程图）使用 Finding→Evidence→Limitation 三层结构。颜色编码清晰（绿/蓝/红）。Table 32（structural diversity 对比）布局整洁"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 42",
+      "message": "最后一页约 55% 填充。Table 33（Convergent evidence across three analytical methods）在页面上半部，下方留白较多。附录末页可接受"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 2,
+    "info": 18
+  }
+}

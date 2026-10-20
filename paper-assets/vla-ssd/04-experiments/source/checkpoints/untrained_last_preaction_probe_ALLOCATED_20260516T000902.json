@@ -1,0 +1,14 @@
+{
+  "exp_id": "untrained_last_preaction_probe",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:08:56.469Z",
+    "updated_at": "2026-05-16T00:09:02.458Z"
+  },
+  "timestamp": "2026-05-16T00:09:02.554044+00:00",
+  "trigger": "update_registry"
+}

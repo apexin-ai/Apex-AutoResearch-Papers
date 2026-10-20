@@ -1,0 +1,17 @@
+{
+  "exp_id": "behavioral_pilot_v2",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:40:18.951Z",
+    "updated_at": "2026-05-18T12:05:57.962Z",
+    "hypothesis": "Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.",
+    "parent": "behavioral_pilot_w4",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-18T12:05:58.151148+00:00",
+  "trigger": "update_registry"
+}

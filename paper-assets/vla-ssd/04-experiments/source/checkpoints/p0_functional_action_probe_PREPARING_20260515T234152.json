@@ -1,0 +1,55 @@
+{
+  "exp_id": "p0_functional_action_probe",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:21:52.011Z",
+    "updated_at": "2026-05-15T23:41:52.094Z",
+    "hypothesis": "P0 BLOCKING Functional Validation: Action prediction probe on SigLIP+projector output features. If projector R² ≥ LLM best layer (0.683) → smoking gun functional validation. If < LLM but > DINO (0.676) → partial. If ≤ DINO → degradation claim needs reeval. Also tests image_mean aggregation from LLM hidden states.",
+    "metrics": {
+      "projector": {
+        "mean_R2": 0.7063,
+        "overall_R2": 0.7169,
+        "grip_acc": 0.9221
+      },
+      "vla_trained_image_mean_L19": {
+        "mean_R2": 0.6832,
+        "overall_R2": 0.6961,
+        "grip_acc": 0.9182
+      },
+      "vla_trained_image_mean_L23": {
+        "mean_R2": 0.5736,
+        "overall_R2": 0.59,
+        "grip_acc": 0.8924
+      },
+      "llm_last_preaction_L19": {
+        "mean_R2": 0.7309,
+        "overall_R2": 0.7397,
+        "grip_acc": 0.9184
+      },
+      "untrained_image_mean_L0": {
+        "mean_R2": 0.7136,
+        "overall_R2": 0.7234,
+        "grip_acc": 0.9218
+      },
+      "bootstrap_proj_vs_llm": {
+        "delta": -0.0246,
+        "ci_95": [
+          -0.04,
+          -0.009
+        ],
+        "p_value": 0.0014
+      },
+      "gate_original_0683": "PASS (0.7063 >= 0.683)",
+      "gate_corrected_vs_llm_lg": "FAIL (0.7063 < 0.7309, CI excludes 0, p=0.0014)",
+      "critical_finding": "LLM last_preaction L19 (0.7309) significantly > projector (0.7063). LLM ADDS functional action prediction capacity on LIBERO-Goal. RSA geometric degradation ≠ functional degradation.",
+      "result_path": "/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T23:41:52.202537+00:00",
+  "trigger": "update_registry"
+}

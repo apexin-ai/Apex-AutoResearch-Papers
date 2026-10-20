@@ -1,0 +1,14 @@
+{
+  "exp_id": "d041_method_b_rsa",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:04:24.314Z",
+    "updated_at": "2026-05-16T05:04:24.314Z"
+  },
+  "timestamp": "2026-05-16T05:04:24.457605+00:00",
+  "trigger": "update_registry"
+}

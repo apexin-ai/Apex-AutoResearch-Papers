@@ -1,0 +1,17 @@
+{
+  "exp_id": "phi3v_probe_trained",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:04:38.161Z",
+    "updated_at": "2026-05-19T18:16:57.462Z",
+    "hypothesis": "The C1 readout pattern (last_preaction 100% instruction classification + image_mean at chance) observed in trained OpenVLA also holds in trained TracVLA-Phi3V, indicating this is a general VLA property rather than architecture-specific.",
+    "parent": "phi3v_attention_trained",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T18:16:57.679600+00:00",
+  "trigger": "update_registry"
+}

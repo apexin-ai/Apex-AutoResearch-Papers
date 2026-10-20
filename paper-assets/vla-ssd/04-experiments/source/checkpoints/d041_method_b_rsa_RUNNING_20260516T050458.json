@@ -1,0 +1,26 @@
+{
+  "exp_id": "d041_method_b_rsa",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:04:24.314Z",
+    "updated_at": "2026-05-16T05:04:58.519Z",
+    "hypothesis": "Unified Method B RSA across all VLA conditions (6 conditions × 33 layers, trained/untrained × with_inst/no_inst, plus baselines). Foundation for paper Table 1. Method B: within-task pairing, cosine rep distance, euclidean action distance, N_SAMPLE=20, Spearman, 50 demos/task.",
+    "spec": {
+      "command": "python rsa_unified_vla.py + rsa_definitive_recalc.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/trained_libero_goal/ + untrained + baselines",
+      "data_count": "50 demos/task × 10 tasks",
+      "model_name": "OpenVLA-7B trained/untrained + DINO/CLIP/SigLIP baselines",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/rsa/rsa_definitive.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T05:04:58.637977+00:00",
+  "trigger": "update_registry"
+}

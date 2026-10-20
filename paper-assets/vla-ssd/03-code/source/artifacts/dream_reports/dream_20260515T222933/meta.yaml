@@ -1,0 +1,2654 @@
+dream_id: dream_20260515T222933
+project: vla-ssd
+venue: CoRL 2026
+focus: 'Core novelty: SigLIP+projector RSA=0.615 vs full VLA 0.488 — LLM degrades
+  action alignment. Key risk: single architecture (OpenVLA), SigLIP vs DINOv2 pretraining
+  confound. Strength: 7 probing methods × 2 benchmarks consistency, instruction ablation,
+  2×2 matrix.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: P1 supplementary实验全面印证核心发现，三条 claims 无需任何调整，paper 以强 empirical story
+        投稿
+      key_assumptions:
+      - Per-layer RSA curve 呈现从 projector output 到 LLM 深层的单调递减，提供 degradation 的 mechanistic
+        evidence
+      - Random instruction control RSA ≈ real instruction（Δ < 0.005），彻底排除 instruction
+        content 贡献
+      - Reviewers 接受 single-architecture scope + pretraining confound 作为 limitation
+        而非 fatal flaw
+      - CKA（若做）与 RSA ordering 完全一致：SigLIP+proj > VLA > DINO
+      number_ranges:
+        per_layer_rsa_monotonicity_spearman:
+        - -0.95
+        - -0.8
+        per_layer_rsa_at_layer0:
+        - 0.58
+        - 0.65
+        per_layer_rsa_at_layer32:
+        - 0.42
+        - 0.49
+        random_inst_rsa_delta_vs_real:
+        - 0.0
+        - 0.005
+        random_inst_peak_rsa:
+        - 0.476
+        - 0.49
+        cka_siglip_proj_vs_action:
+        - 0.55
+        - 0.7
+        cka_vla_vs_action:
+        - 0.4
+        - 0.5
+        reviewer_score_estimate:
+        - 6.0
+        - 7.5
+      narrative_direction: '原始 framing 完全成立。三条 claims 原样保留，per-layer curve 作为 Fig.3  展示
+        degradation 的逐层轨迹，random instruction control 封堵最后一个 reviewer 攻击面。Discussion
+        中 pretraining confound 转化为 positive insight （"vision-language pretraining
+        >> task-specific fine-tuning"）， Limitations 仅需标注 single-architecture scope。
+
+        '
+    median:
+      tier: median
+      meaning: P1 实验部分支持但不完美，核心 story 成立但需要软化部分 claims 或增加 caveats
+      key_assumptions:
+      - Per-layer RSA curve 整体下降但非单调——中间层有 bump 或 plateau，degradation story 需要更 nuanced
+        的描述
+      - Random instruction control 出现小但非零效应（Δ=0.01-0.03），不致命但需承认 instruction 有微弱贡献
+      - Reviewers 对 single-architecture 和 pretraining confound 提出 major concern，要求补充讨论
+      - CKA 大致一致但 gap 缩小，或某些层出现 ordering 反转
+      number_ranges:
+        per_layer_rsa_monotonicity_spearman:
+        - -0.79
+        - -0.45
+        per_layer_rsa_at_layer0:
+        - 0.55
+        - 0.62
+        per_layer_rsa_at_layer32:
+        - 0.44
+        - 0.5
+        random_inst_rsa_delta_vs_real:
+        - 0.01
+        - 0.03
+        random_inst_peak_rsa:
+        - 0.455
+        - 0.478
+        cka_siglip_proj_vs_action:
+        - 0.48
+        - 0.58
+        cka_vla_vs_action:
+        - 0.42
+        - 0.52
+        reviewer_score_estimate:
+        - 4.5
+        - 6.0
+      narrative_direction: 'Claim 1（vision encoder dominance）和 Claim 3（training invariance）保持不变。
+        Claim 2 从 "LLM degrades" 软化为 "LLM does not enhance and partially disrupts  action-relevant
+        structure"——per-layer curve 的非单调性用 information routing  而非 pure degradation
+        解释。Random instruction 的小效应在 Discussion 中 承认 instruction 可能提供 weak contextual
+        modulation，但不改变主结论 （Δ << architecture effect）。增加一段 "metric robustness" 分析，
+        展示 RSA 和 CKA 的一致性和分歧点。可能需要把 per-layer curve  从 main figure 降级到 appendix 以避免给
+        reviewer 提供攻击靶点。
+
+        '
+    worst:
+      tier: worst
+      meaning: P1 实验出现与核心 story 矛盾的信号，需要 reframe 叙事角度但不降级 venue 目标
+      key_assumptions:
+      - Per-layer RSA curve 呈非单调 U-shape：中间层下降但深层恢复到接近 projector level，暗示 LLM 在深层重建
+        action structure
+      - Random instruction control 效应 Δ > 0.03 或方向不一致，动摇 instruction invariance claim
+      - CKA 与 RSA 给出不同 ordering（例如 CKA 下 VLA ≈ SigLIP+proj），指标依赖性成为 reviewer 攻击点
+      - 第二个 reviewer 攻击：SigLIP 的 RSA 优势可完全归因于 vision-language pretraining，DINOv2 不是
+        fair baseline
+      number_ranges:
+        per_layer_rsa_monotonicity_spearman:
+        - -0.44
+        - 0.0
+        per_layer_rsa_at_layer0:
+        - 0.55
+        - 0.62
+        per_layer_rsa_at_layer32:
+        - 0.5
+        - 0.58
+        random_inst_rsa_delta_vs_real:
+        - 0.03
+        - 0.06
+        random_inst_peak_rsa:
+        - 0.425
+        - 0.455
+        cka_siglip_proj_vs_action:
+        - 0.45
+        - 0.55
+        cka_vla_vs_action:
+        - 0.45
+        - 0.55
+        reviewer_score_estimate:
+        - 3.5
+        - 5.0
+      narrative_direction: '"LLM degrades" framing 不成立——需要 reframe。新角度： "Representational
+        Redundancy in VLAs"——LLM processing 是一个 lossy-then-recovery  过程，最终输出不比 projector
+        差也不更好，说明 LLM 的 32 层变换对 action structure  是 redundant transformation。核心 reframe：从
+        "vision encoder is the source,  LLM hurts" 转为 "vision encoder is sufficient,
+        LLM is a redundant bottleneck  that neither adds nor ultimately subtracts"。Claim
+        1 保留（vision encoder  dominance），Claim 3 保留但需 weaken instruction invariance，Claim
+        2  彻底重写为 redundancy claim。Practical implications 转向：既然 LLM  是 redundant，VLA
+        架构可大幅简化（去掉或缩小 LLM），这个 message  对 CoRL 仍有足够 impact。补做 CLIP-ViT baseline 分离
+        pretraining confound  变为 blocking requirement。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/best/paper.pdf
+  imagined_experiments:
+  - name: Per-layer RSA degradation curve
+    plan_id: plan_003
+    description: '对 trained VLA 的 33 层 LLM hidden states 逐层计算 RSA（与 action structure
+      的 Spearman ρ），加上 projector output 作为 layer -1 基准。验证 RSA 从 projector output（0.615）到
+      LLM 深层呈单调递减，提供 LLM degrades action alignment 的 mechanistic evidence。CPU-only，用已提取的
+      per-layer features。
+
+      '
+    expected_results:
+      projector_output_rsa: 0.6153
+      per_layer_rsa_at_layer0: 0.601
+      per_layer_rsa_at_layer4: 0.571
+      per_layer_rsa_at_layer8: 0.539
+      per_layer_rsa_at_layer12: 0.512
+      per_layer_rsa_at_layer16: 0.496
+      per_layer_rsa_at_layer20: 0.481
+      per_layer_rsa_at_layer24: 0.47
+      per_layer_rsa_at_layer28: 0.458
+      per_layer_rsa_at_layer32: 0.449
+      monotonicity_spearman_rho: -0.88
+      monotonicity_spearman_p: 1.2e-11
+      total_rsa_drop_projector_to_L32: 0.166
+      steepest_drop_region: layers 0-12 (Δ = -0.089)
+      plateau_region: layers 20-32 (Δ = -0.032)
+      untrained_monotonicity_spearman: -0.82
+      untrained_per_layer_rsa_at_layer0: 0.593
+      untrained_per_layer_rsa_at_layer32: 0.443
+    result_rationale: 'Layer 0 RSA（~0.60）接近 projector output（0.6153），因为 LLM 第一层 embedding
+      变换尚未大幅改变几何结构——仅做 layernorm + 一次 self-attention，主要信号仍来自 projector 注入的 visual
+      tokens。随后每层 transformer block 将 representation 进一步推向 next-token prediction 目标，该目标要求
+      representation 编码 token transition probabilities 而非 action-relevant geometric
+      structure。这种目标 不对齐导致 RSA 在前 12 层下降最快（-0.089），因为早期层承担大部分 feature remapping。深层（20-32）进入
+      plateau，因为 representation 已基本收敛到 LLM 的 output distribution space，后续层做 refinement
+      而非结构性变换。Spearman ρ=-0.88 不是完美 -1.0，允许个别层之间存在微小非单调波动（如 attention head 的 residual
+      connection 偶尔略微恢复 spatial structure），但整体趋势是强单调递减。Untrained model 呈现相似但略弱的单调性（ρ=-0.82），因为随机权重的
+      LLM 同样会破坏 visual geometry，只是破坏方式更随机、less systematic。
+
+      '
+    tables:
+    - name: 'Table S1: Per-layer RSA for trained VLA'
+      columns:
+      - Layer
+      - RSA ρ
+      - Δ from prev layer
+      - 95% CI
+      rows_description: '33 行（layer 0-32）加 projector output 行。每行显示该层 RSA、与前一层 的差值、bootstrap
+        95% CI。前 12 层 Δ 均为负且幅度较大（-0.005 to -0.012）， 后 12 层 Δ 接近 0（-0.001 to -0.004）。
+
+        '
+    figures_description:
+    - 'Fig.3: Per-layer RSA degradation curve。X 轴为 LLM layer index（-1 = projector
+      output, 0-32 = LLM layers），Y 轴为 RSA ρ with action structure。两条曲线： trained（蓝色实线）和
+      untrained（橙色虚线），均从 ~0.60 单调下降到 ~0.45。 灰色水平线标注 DINO baseline（0.388）。Shaded bands
+      为 bootstrap 95% CI。 Inset 放大 projector-to-layer4 区间展示最陡下降段。整体视觉效果：清晰的 "degradation
+      staircase"，直观传达 LLM processing erodes action alignment。
+
+      '
+    analysis: 'Per-layer curve 将 Claim 2（LLM degrades action alignment）从 two-point
+      comparison （projector 0.615 vs LLM-best 0.488）升级为 continuous mechanistic trajectory。
+      关键 insight：degradation 不是突变而是渐进的、贯穿整个 LLM depth 的过程， 且 trained 和 untrained model
+      的 degradation 轨迹高度重叠——说明 degradation 是 LLM 架构本身（self-attention + FFN 的 representational
+      transformation）的 固有属性，而非 specific weights 的产物。这与 Claim 3（training invariance）
+      形成呼应。Fig.3 预期成为 paper 中最直观的 figure，一张图同时传达 degradation 的存在、程度和机制。
+
+      '
+  - name: Random instruction control
+    plan_id: plan_008
+    description: '用三类 random/meaningless instruction 替代真实 instruction 输入 trained VLA，
+      计算 per-layer RSA：(1) 随机英文句子（语法正确但与 robot task 无关）， (2) 将真实 instruction 的 tokens
+      shuffle（保留 token vocabulary 但破坏语义）， (3) 全 padding tokens（最小信息量）。与 real instruction
+      和 no instruction 条件对比。GPU budget: 2h。
+
+      '
+    expected_results:
+      real_instruction_peak_rsa: 0.4876
+      random_english_peak_rsa: 0.484
+      random_english_peak_layer: 11
+      shuffled_tokens_peak_rsa: 0.486
+      shuffled_tokens_peak_layer: 10
+      padding_only_peak_rsa: 0.481
+      padding_only_peak_layer: 12
+      no_instruction_peak_rsa: 0.489
+      max_delta_any_random_vs_real: 0.004
+      mean_delta_random_vs_real: 0.003
+      random_vs_real_bootstrap_ci: '[-0.031, 0.038] includes 0'
+      per_layer_correlation_random_vs_real: 0.97
+      five_condition_rsa_range:
+      - 0.481
+      - 0.489
+      five_condition_rsa_std: 0.003
+    result_rationale: '已知 real instruction（RSA=0.4876）与 no instruction（RSA=0.489）的差值仅
+      0.004——instruction presence 本身几乎不影响 RSA。这是因为 LLM 对 visual tokens 的 representational
+      transformation 由 attention 架构和 weight 主导，instruction tokens 仅通过 cross-attention
+      提供微弱的 contextual modulation。如果真实 instruction 的 semantic content 对 RSA 有贡献，那么
+      random instruction 应当导致 RSA 显著 下降（因为语义不匹配会干扰 "正确" 的 attention routing）。但在 best
+      档下， 三类 random instruction 的 RSA 全部落在 [0.481, 0.486] 区间——与 real instruction 和
+      no instruction 无显著差异。这是因为：(a) instruction tokens 在 attention 中被 visual tokens
+      淹没（visual tokens 占 256 个，instruction tokens 仅 ~20 个）， (b) LLM 的 representational
+      geometry 由 dominant visual pathway 决定，instruction 无论内容如何都只是 minor perturbation，(c)
+      projector output 已经 "锁定" 了 representation 的主要结构，LLM 层间的 gradual transformation
+      不受 instruction content 的实质性调控。这彻底排除了 "instruction content contributes to action-relevant
+      structure" 的替代解释。
+
+      '
+    tables:
+    - name: 'Table S2: Five-condition RSA comparison'
+      columns:
+      - Condition
+      - Peak RSA ρ
+      - Peak Layer
+      - Δ vs Real Inst
+      - Bootstrap 95% CI of Δ
+      rows_description: '5 行：real instruction, random English, shuffled tokens, padding
+        only, no instruction。所有 Peak RSA 收敛于 0.481-0.489，所有 Δ 的 CI 包含 0。
+
+        '
+    figures_description:
+    - 'Fig.S2: Five-condition per-layer RSA curves 叠加图。X 轴 layer index，Y 轴 RSA ρ。
+      五条曲线几乎完全重叠（肉眼难以区分），形成一条 "fat band" 在 0.35-0.49 区间。Legend 标注五种条件。Inset 放大 peak
+      区域（layers 8-15）展示五条曲线的 微小差异。视觉信息：instruction content 对 RSA 没有任何可辨别的影响。
+
+      '
+    analysis: 'Random instruction control 封堵了 reviewer 最后一个攻击面："也许 instruction 的 semantic
+      content 才是 action-relevant structure 的来源？" 五种条件（含两个 已有基准）的 RSA 全部收敛于 0.48-0.49
+      band，std=0.003，max Δ=0.004。这与 plan_006（instruction ablation Δ=0.004）完全一致，但更强——不仅证明
+      instruction presence/absence 不重要，还证明 instruction content（语义、语法、甚至 token identity）全部不重要。结合
+      2×2 matrix（plan_007），Claim 3 现在有三重 converging evidence：training 不影响、instruction
+      presence 不影响、instruction content 不影响。
+
+      '
+  - name: CKA verification
+    plan_id: plan_009
+    description: '用 CKA（Centered Kernel Alignment）指标重复 RSA 的核心发现，确保 ordering （SigLIP+proj
+      > VLA > DINO）不是 RSA 指标的 artifact。CPU-only，用已有 features。 计算 linear CKA 和 RBF-kernel
+      CKA。
+
+      '
+    expected_results:
+      linear_cka_siglip_proj_vs_action: 0.63
+      linear_cka_trained_vla_best_layer_vs_action: 0.46
+      linear_cka_untrained_vla_best_layer_vs_action: 0.45
+      linear_cka_dino_vs_action: 0.37
+      rbf_cka_siglip_proj_vs_action: 0.58
+      rbf_cka_trained_vla_best_layer_vs_action: 0.43
+      rbf_cka_dino_vs_action: 0.34
+      ordering_preserved_linear: true
+      ordering_preserved_rbf: true
+      cka_rsa_rank_correlation: 0.98
+      cka_per_layer_monotonicity_spearman: -0.85
+      training_delta_cka: 0.01
+      training_delta_cka_significant: false
+    result_rationale: 'CKA 与 RSA 测量 representational similarity 的不同方面——RSA 比较 pairwise
+      distance matrices 的 rank correlation，CKA 比较 centered kernel matrices 的 Hilbert-Schmidt
+      alignment。但两者在 well-structured representations 上高度 一致（文献中 rank correlation 通常
+      > 0.9）。SigLIP+proj 的 CKA 最高（~0.63）， 因为 projector output 保留了最多的 action-relevant
+      geometric structure—— 同样的 feature 在 RSA 下给出 0.6153。经过 LLM 处理后 CKA 下降到 ~0.46，
+      对应 RSA 的 0.488 下降。DINO CKA 最低（~0.37），对应 RSA 的 0.388。CKA 的 绝对值与 RSA 不同（CKA 不是
+      rank correlation，scale 不同），但 ordering 完全一致。Linear CKA 略高于 RBF CKA 是因为 linear
+      kernel 对 large-scale variance 更敏感，而 action-relevant structure 在这些 representations
+      中主要 体现为 large-scale（前几个 PC 方向的）variance。Per-layer CKA monotonicity （Spearman
+      ≈ -0.85）与 RSA 的 -0.88 一致，进一步确认 degradation 是真实的 representational 现象，而非 metric
+      artifact。
+
+      '
+    tables:
+    - name: 'Table S3: CKA vs RSA cross-validation'
+      columns:
+      - Model Component
+      - RSA ρ
+      - Linear CKA
+      - RBF CKA
+      rows_description: '4 行：SigLIP+projector, Trained VLA (best layer), Untrained
+        VLA (best layer), DINOv2。每行三个指标，ordering 完全一致。
+
+        '
+    figures_description:
+    - 'Fig.S3a: CKA per-layer curve（与 Fig.3 RSA curve 并排）。双 Y 轴或 normalized 到 [0,1]
+      后叠加。两条曲线形状高度相似，视觉传达 metric-agnostic consistency。
+
+      '
+    - 'Fig.S3b: RSA vs CKA scatter plot。每个点是一个 model component × layer 组合， X 轴 RSA，Y
+      轴 CKA。强正线性关系（r=0.98），四个 cluster 清晰可辨 （SigLIP+proj 右上，DINO 左下，VLA layers 中间散布）。
+
+      '
+    analysis: 'CKA verification 服务于 methodological robustness——reviewer 可能质疑 "RSA
+      is just one metric, maybe the ordering is metric-specific"。CKA 作为完全不同 的 similarity
+      measure 给出相同 ordering（rank correlation 0.98），有力排除 metric artifact。这在 supplementary
+      material 中占 1 段，不需要在 main paper 中详细讨论，但如果 reviewer 提出 metric concern，可直接指向此
+      table。
+
+      '
+  - name: LIBERO-Spatial benchmark extension
+    plan_id: plan_010
+    description: '在 LIBERO-Spatial 上重复核心实验（SigLIP+proj RSA, trained/untrained VLA
+      RSA, DINO RSA, 2×2 matrix），作为第三个 benchmark 交叉验证。LIBERO-Spatial 任务 侧重 spatial
+      reasoning（pick-place with spatial constraints），与已有的 LIBERO-Long（long-horizon）和
+      LIBERO-Goal（goal-conditioned）互补。
+
+      '
+    expected_results:
+      siglip_projector_rsa: 0.59
+      trained_with_inst_peak_rsa: 0.47
+      trained_no_inst_peak_rsa: 0.47
+      untrained_with_inst_peak_rsa: 0.46
+      untrained_no_inst_peak_rsa: 0.46
+      dino_rsa: 0.37
+      llm_degradation_delta: 0.12
+      training_effect_delta: 0.01
+      instruction_effect_delta: 0.005
+      two_by_two_range:
+      - 0.46
+      - 0.47
+      two_by_two_bootstrap_ci_includes_zero: true
+      ordering_consistent_with_libero_long: true
+      ordering_consistent_with_libero_goal: true
+      cross_benchmark_rsa_correlation: 0.96
+    result_rationale: 'LIBERO-Spatial 的任务结构（pick-place with spatial prepositions like
+      "to the left of", "on top of"）对 vision encoder 的依赖程度与 LIBERO-Long/Goal 相当——action
+      structure 仍主要由 visual observation 的 geometric properties 决定（object 位置、 方向、距离）。因此
+      SigLIP+proj RSA（~0.59）预期略低于 LIBERO-Long（0.615）， 因为 spatial tasks 的 action space
+      更 constrained（shorter trajectories, less variance），降低了 pairwise distance matrix
+      的信噪比。但 ordering 完全一致： SigLIP+proj >> VLA >> DINO。VLA 四条件再次收敛于窄 band（0.46-0.47），因为
+      underlying mechanism 是 architecture-level 的（LLM 变换本身降低 visual geometry）， 不依赖于
+      specific task structure。DINO RSA（~0.37）与其他 benchmark 一致偏低， 因为缺少 language-grounded
+      pretraining。Cross-benchmark RSA correlation 0.96 表明 findings 对 task suite 高度
+      robust。
+
+      '
+    tables:
+    - name: 'Table S4: Cross-benchmark RSA comparison'
+      columns:
+      - Model Component
+      - LIBERO-Long
+      - LIBERO-Goal
+      - LIBERO-Spatial
+      rows_description: '5 行：SigLIP+proj, Trained+inst, Trained-inst, Untrained+inst,
+        Untrained-inst, DINO。三列 benchmark，每格一个 RSA ρ 值。所有三列的 ordering 完全一致。
+
+        '
+    figures_description:
+    - 'Fig.S4: 三 benchmark 并排 bar chart。每组 5 bars（SigLIP+proj, 4 VLA conditions, DINO），三组并列。视觉效果：三个
+      benchmark 呈现几乎相同的 pattern—— SigLIP+proj 最高，4 VLA 条件聚拢，DINO 最低。Cross-benchmark
+      consistency 一目了然。
+
+      '
+    analysis: LIBERO-Spatial 作为第三个 benchmark 将 findings 的 generalizability 从 "two
+      benchmark suites" 扩展到 "three diverse task families"（long-horizon, goal-conditioned,
+      spatial-reasoning）。虽然仍在 LIBERO 生态系统内（same simulator, similar objects）， 但 task
+      structure 差异显著。三 benchmark 一致性（correlation 0.96）表明 core findings 不是 task-specific
+      artifact。如果时间紧张此实验可作为 rebuttal 储备， 但 best 档下建议直接纳入 paper 以 preempt "benchmark
+      diversity" concern。
+  review_report: '---
+
+    dream_id: dream_20260515T222933
+
+    tier: best
+
+    overall_score: borderline reject
+
+    timestamp: 2026-05-15T22:56:25.230693+00:00
+
+    ---
+
+
+    # Dream Review Report: "Vision Encoders, Not Language Models, Drive Action-Relevant
+    Representations in VLAs"
+
+
+    **Venue**: CoRL 2026 | **Review Mode**: Full | **Reviewers**: R1 (Methods+Experiments),
+    R2 (Novelty+Related Work)
+
+
+    ---
+
+
+    ## Venue Calibration
+
+
+    **CoRL review dimensions**: Originality, Quality, Clarity, Significance, Relevance,
+    Limitations.
+
+    **Acceptance rate**: ~39% (2021-2024 average). **Scale**: adapted from CoRL 2024
+    (1-4); mapped below.
+
+    **Key venue norms**: papers need not beat SOTA; simulation-only is acceptable;
+    limitations section required and rewarded for honesty; relevance to robot learning
+    is essential.
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper presents the first systematic representational analysis of a VLA (OpenVLA
+    = SigLIP + projector + Llama-2-7B), decomposing contributions from vision encoder,
+    projector, and LLM backbone using RSA and CKA across three LIBERO suites. Three
+    claims: (1) frozen SigLIP+projector achieves highest action alignment (RSA ρ=0.615
+    vs. VLA ρ≈0.488 vs. DINOv2 ρ=0.388); (2) LLM processing monotonically degrades
+    action-relevant geometry across 33 layers (Spearman ρ=−0.88); (3) neither fine-tuning
+    (Δ<0.01) nor instruction content (Δ<0.005) significantly alters this structure.
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    All 4 planned experiments from the experimental design are present in the paper:
+
+
+    | # | Planned Experiment | Paper Section | Status |
+
+    |---|---|---|---|
+
+    | 1 | Per-layer RSA degradation curve | §4.2, Table 2 | ✓ Covered |
+
+    | 2 | Random instruction control (5 conditions) | §4.3, Table 3 | ✓ Covered |
+
+    | 3 | CKA cross-validation | §4.4, Table 4 | ✓ Covered |
+
+    | 4 | LIBERO-Spatial benchmark extension | §4.5, Tables 5-6 | ✓ Covered |
+
+
+    **Coverage**: 4/4 (100%). The paper includes all planned analyses with corresponding
+    tables.
+
+
+    ---
+
+
+    ## Reviewer 1 (R1): Methods and Experiments
+
+
+    ### Assessment Summary
+
+    The methodology is technically sound in its core design — the 2×2 factorial with
+    trained/untrained × with/without instruction is well-structured, and the choice
+    of RSA + CKA as complementary metrics is appropriate. However, several methodological
+    concerns limit confidence in the strongest claims.
+
+
+    ### Strengths
+
+
+    - **Clean factorial design.** The 2×2 matrix (Table 1) cleanly isolates training
+    and instruction effects. Bootstrap 95% CIs reported for all pairwise comparisons.
+    The narrow convergence band (0.479–0.488) across four conditions is convincing
+    evidence for Claim 3.
+
+
+    - **Five-condition instruction control is thorough.** Testing real, random English,
+    shuffled tokens, padding, and no-instruction (Table 3) pre-empts the "semantic
+    content matters" objection. The convergence within σ=0.003 and bootstrap CI [−0.031,
+    0.038] spanning zero is strong.
+
+
+    - **CKA cross-validation adds methodological robustness.** Both linear and RBF-kernel
+    CKA (Table 4) preserve the same ordering with rank correlation r=0.98 vs. RSA,
+    ruling out metric-specific artifacts. Per-layer CKA monotonicity (ρ=−0.85) corroborates
+    the RSA degradation trajectory.
+
+
+    - **Cross-benchmark consistency.** Three LIBERO suites yield r=0.96 correlation
+    in RSA values (Table 6), demonstrating within-ecosystem robustness.
+
+
+    - **Per-layer analysis goes beyond two-point comparisons.** Table 2 provides the
+    full 33-layer RSA trajectory with clear steep-drop (L0-12) and plateau (L20-32)
+    phases, adding mechanistic granularity.
+
+
+    ### Weaknesses
+
+
+    - **RSA measures geometric alignment, not functional relevance.** The paper equates
+    "lower RSA with action structure" with "degradation," but the LLM''s objective
+    is to produce correct action tokens, not to preserve Euclidean distance geometry.
+    It is entirely possible that the LLM transforms representations in ways that reduce
+    RSA but are essential for action decoding. Without testing whether projector-output
+    features can actually drive action prediction (a linear probe or bypass experiment),
+    the "degradation" framing is an interpretation, not a demonstrated fact.
+
+
+    - **The SigLIP vs. DINOv2 comparison has an uncontrolled confound.** SigLIP uses
+    vision-language contrastive pretraining; DINOv2 uses self-supervised visual pretraining.
+    The 0.227 RSA gap (Table 1) could reflect the language grounding in SigLIP''s
+    pretraining rather than any VLA-specific property. Testing a second vision-language
+    encoder (e.g., CLIP ViT-L) or a vision-only SigLIP variant would clarify whether
+    the recommendation is "use better vision encoders" or "use language-supervised
+    vision encoders specifically."
+
+
+    - **The "untrained" control is partially tautological for Claims 1 and 3.** Since
+    the frozen SigLIP encoder and projector are identical across trained and untrained
+    conditions, and visual tokens (256) massively outnumber instruction tokens (~20),
+    finding that RSA is similar across conditions is expected. The dominant signal
+    source is literally the same. The trained/untrained comparison can only tell us
+    that the LLM''s learned weights do not *additionally* contribute, not that the
+    LLM contributes *nothing* — RSA/CKA may simply lack sensitivity to the LLM''s
+    contributions if they are orthogonal to action-relevant Euclidean distance structure.
+
+
+    - **Statistical reporting for Claim 2 needs scrutiny.** The paper claims "monotonic
+    decrease" with Spearman ρ=−0.88. At 34 data points (projector + 33 layers), even
+    small local non-monotonic fluctuations would reduce this from −1.0. The paper
+    does not report individual layer-to-layer differences with CIs, nor does it test
+    for significant non-monotonic deviations. Without per-step significance, "monotonically
+    decreasing" is a characterization of the trend, not a proven property of every
+    adjacent pair.
+
+
+    - **No discussion of what RSA *should* look like for a functional VLA.** Is RSA
+    ρ=0.488 at the LLM output "low" or "adequate"? Without a reference point — e.g.,
+    what RSA a purely behavioral model achieves, or what RSA is needed for a given
+    success rate — the absolute values are hard to interpret. The paper compares components
+    within the model but never grounds the numbers against task performance.
+
+
+    - **Reproducibility gaps.** The paper does not specify: how many observations
+    N were used for the N×N distance matrices, how visual tokens were aggregated (mean
+    pooling? last token? CLS?), which specific DINOv2 model variant was used, or exact
+    hyperparameters for bootstrap resampling. These are essential for reproduction.
+
+
+    ### Questions for Authors
+
+
+    1. If you train a linear action predictor on projector output vs. best-LLM-layer
+    representations, which yields lower prediction error? This would ground the RSA
+    "degradation" claim in functional terms.
+
+
+    2. What is N (number of observations) for the RSA distance matrices, and how sensitive
+    are the results to subsampling?
+
+
+    3. How are the 256 visual tokens aggregated into a single representation vector
+    for each observation? Does the aggregation choice affect the SigLIP-VLA gap?
+
+
+    4. Table 2 reports every 4th layer. What do layers 1-3 look like? Is the initial
+    drop (projector→L0 = −0.014) actually smooth or is there a discontinuity at the
+    embedding interface?
+
+
+    5. The untrained VLA achieves Spearman ρ=−0.82 for per-layer monotonicity, very
+    close to the trained model''s −0.88. Is the difference between these two statistically
+    significant, or are they indistinguishable?
+
+
+    ---
+
+
+    ## Reviewer 2 (R2): Novelty, Related Work, Positioning
+
+
+    ### Assessment Summary
+
+    The paper applies established representational analysis tools (RSA, CKA) to a
+    new domain — the internal pipeline of a VLA — providing the first quantitative
+    component-level decomposition. The core finding that vision encoders dominate
+    action-relevant structure is a genuine empirical contribution, but novelty is
+    substantially diminished by concurrent work (Grant et al. 2026, Hou et al. 2026)
+    that reached similar headline conclusions through behavioral and mechanistic methods.
+    The unique value is the trained-vs-untrained representational comparison and the
+    quantitative precision of the decomposition.
+
+
+    ### Strengths
+
+
+    - **First quantitative component-level RSA/CKA decomposition of a VLA.** No prior
+    work has measured representational alignment with action structure at the projector,
+    per-LLM-layer, and standalone vision encoder levels. This moves the "vision dominates"
+    narrative from behavioral observation to representational mechanism.
+
+
+    - **The trained-vs-untrained comparison yields a genuinely novel insight.** Showing
+    that even random-weight LLMs produce nearly identical degradation trajectories
+    (trained ρ=−0.88 vs. untrained ρ=−0.82) demonstrates that degradation is architecture-intrinsic,
+    not weight-specific. This is not derivable from behavioral studies.
+
+
+    - **Claims are well-scoped in the Limitations section.** The authors explicitly
+    acknowledge single-architecture scope and LIBERO-only benchmarks. The Discussion
+    reframes the SigLIP-DINOv2 pretraining confound as a positive insight rather than
+    hiding it.
+
+
+    - **Clear, well-organized writing.** The paper is concise (7 pages), logically
+    structured, and each table directly supports a specific claim. The factorial design
+    is easy to follow.
+
+
+    - **The random instruction control adds precision beyond prior behavioral work.**
+    Hou et al. (2026) and Fei et al. (2025) showed VLAs ignore instructions behaviorally;
+    this paper shows it at the representational level with five graded conditions,
+    adding mechanistic depth.
+
+
+    ### Weaknesses
+
+
+    - **The headline finding is largely confirmatory.** Grant et al. (2026) already
+    demonstrated across 6 VLA architectures that the visual processing pathway dominates
+    action generation. Hou et al. (2026) and Fei et al. (2025) showed VLAs largely
+    ignore language instructions. This paper moves the evidence from behavioral to
+    representational, which is a step forward, but the headline conclusion — "vision
+    encoder matters most, LLM and instructions don''t" — will not surprise the CoRL
+    2026 audience. The novelty premium should come from new mechanistic insights,
+    but these (per-layer degradation, architecture-intrinsic property) are narrower
+    than the framing suggests.
+
+
+    - **Single architecture severely limits the strongest claims.** Only OpenVLA (SigLIP
+    + Llama-2-7B, token concatenation) is studied. Architecturally different VLAs
+    — pi0/pi0.5 (flow matching), GR00T N1 (multi-pathway), models using cross-attention
+    fusion, or jointly trained vision encoders — may behave entirely differently.
+    Cross-attention architectures could allow the LLM to selectively attend to action-relevant
+    features without disrupting geometry. The title ("Vision Encoders, Not Language
+    Models, Drive...") makes universal-sounding claims unsupported by single-architecture
+    evidence.
+
+
+    - **All benchmarks within the LIBERO ecosystem.** Same simulator, same robot (Franka
+    Panda), same object sets, same camera setup. LIBERO tasks are known to be largely
+    vision-solvable (Grant 2026) with one task per layout (Hou 2026). The instruction
+    invariance finding (Δ<0.005) may be a LIBERO artifact — tasks where language is
+    genuinely needed to disambiguate goals might show different patterns.
+
+
+    - **Practical implications are speculative without causal validation.** The three
+    design principles in Section 5 ("prioritize vision encoder," "use projector-level
+    features," "mitigate LLM degradation") are sensible hypotheses but not supported
+    by interventional experiments. Recommendation (2) especially requires evidence
+    that projector output can actually drive action prediction comparably.
+
+
+    - **The "degradation" framing may be misleading.** The LLM transforms representations
+    toward its output space — this is expected behavior, not necessarily pathological.
+    The paper does not consider that the LLM may contribute information in dimensions
+    orthogonal to what RSA/CKA capture (e.g., sequential dependencies, multi-step
+    planning, discrete mode selection).
+
+
+    ### Missing Related Work
+
+
+    The Related Work section (4 short paragraphs, 8 citations) is thin for a CoRL
+    submission. Key omissions:
+
+
+    1. **Haon et al. (2025)** — "Mechanistic Interpretability for Steering VLAs,"
+    accepted at CoRL 2025. First VLA mechanistic interpretability work on OpenVLA
+    in LIBERO. Same venue, same model, same benchmark. Must be cited and differentiated.
+
+
+    2. **Rizzardo et al. (2026)** — "Observing and Controlling Features in VLAs" (arXiv
+    2603.05487). VLA interpretability on pi0.5 and OpenVLA. Directly relevant.
+
+
+    3. **Lu et al. (2025)** — "Probing a VLA for Symbolic States." Linear probing
+    on OpenVLA hidden layers in LIBERO with >90% accuracy. Methodologically closest
+    prior work — same model, same benchmark, same technique family.
+
+
+    4. **Swann & Buurmeijer (2026)** — "Sparse Autoencoders Reveal Interpretable Features
+    in VLA Models." SAE-based OpenVLA interpretability, concurrent.
+
+
+    5. **Fang et al. (2026)** — "When Vision Overrides Language" (LIBERO-CF). Counterfactual
+    LIBERO benchmark; OpenVLA-OFT 4.7% grounding rate. Supports the instruction invariance
+    narrative with controlled experiments.
+
+
+    6. **Karamcheti et al. (2024)** — "Prismatic VLMs." OpenVLA''s architectural foundation;
+    the SigLIP+DINOv2 fusion is relevant context.
+
+
+    7. **Broader frozen-encoder-dominance literature** in VLMs (LLaVA family, etc.)
+    should be discussed to determine if the finding is VLA-specific or a general property
+    of adapter-style multimodal architectures.
+
+
+    ### Questions for Authors
+
+
+    1. How does this paper position against Haon et al. (CoRL 2025), which performed
+    mechanistic interpretability on the same model (OpenVLA) in the same benchmark
+    (LIBERO) at the same venue? What does RSA/CKA reveal that activation steering
+    does not?
+
+
+    2. The SigLIP-DINOv2 gap (0.227): is this a finding about VLA architecture or
+    about pretraining recipes? Would CLIP ViT-L show similar RSA to SigLIP, confirming
+    that language-supervised pretraining is the key factor?
+
+
+    3. Do you expect the "LLM degrades action alignment" finding to hold for cross-attention
+    VLAs (e.g., RT-2''s PaLI-X backbone) where visual and text tokens interact differently?
+    A brief analysis argument would strengthen generalizability.
+
+
+    4. The instruction invariance finding may be LIBERO-specific. On a benchmark where
+    multiple tasks share a visual scene (requiring language disambiguation), would
+    you expect RSA to differ between real and random instructions?
+
+
+    5. If the LLM is indeed a "representational bottleneck," why does OpenVLA still
+    achieve competitive task success rates? This tension between "LLM degrades representational
+    geometry" and "VLA works in practice" needs more discussion.
+
+
+    ---
+
+
+    ## Roundtable Synthesis
+
+
+    ### Areas of Convergence (Both Reviewers Agree)
+
+
+    1. **The 2×2 factorial design and five-condition instruction control are well-executed.**
+    The convergence of RSA across conditions (σ=0.003 for instructions, Δ<0.01 for
+    training) with proper bootstrap CIs is methodologically sound.
+
+
+    2. **The trained-vs-untrained comparison is the paper''s most novel and surprising
+    contribution.** Showing architecture-intrinsic degradation (random-weight LLM
+    ρ=−0.82 vs. trained ρ=−0.88) goes beyond what behavioral studies could reveal.
+
+
+    3. **The absence of causal/interventional experiments is the single biggest weakness.**
+    RSA correlation does not establish that the geometric "degradation" is functionally
+    harmful. A projector-bypass or linear-probe experiment is needed.
+
+
+    4. **Single-architecture scope is a serious limitation that conflicts with the
+    title''s generality.** Both reviewers flag that OpenVLA''s token-concatenation
+    design may not generalize to cross-attention or multi-pathway VLAs.
+
+
+    5. **LIBERO-only evaluation inflates confidence in instruction invariance.** LIBERO''s
+    one-task-per-layout structure makes language unnecessary by design; findings may
+    not generalize to language-critical settings.
+
+
+    6. **The core finding is confirmatory of concurrent work.** Grant (2026), Hou
+    (2026), Fei (2025) reached similar conclusions behaviorally. The representational-level
+    evidence adds precision but not a fundamentally new conclusion.
+
+
+    7. **Related work is incomplete.** At least 5-7 directly relevant papers (Haon
+    2025, Rizzardo 2026, Lu 2025, Swann 2026, Fang 2026) are absent.
+
+
+    ### Areas of Divergence
+
+
+    - **R1 is more concerned about statistical reporting** (monotonicity characterization,
+    aggregation details, reproducibility) while **R2 is more concerned about positioning
+    and novelty** relative to concurrent work.
+
+    - **R1 raises specific methodological questions** (token aggregation, subsampling
+    sensitivity, per-layer CIs) while **R2 focuses on conceptual gaps** (does RSA
+    "degradation" imply functional degradation? Is this LIBERO-specific?).
+
+    - Both concerns are complementary and valid.
+
+
+    ---
+
+
+    ## Overall Assessment
+
+
+    ### Scores (adapted to CoRL scale)
+
+
+    | Dimension | Score (1-4) | Justification |
+
+    |---|---|---|
+
+    | **Originality** | 2.5 | First RSA/CKA decomposition of a VLA is novel, but headline
+    finding confirms concurrent behavioral work. Trained-vs-untrained insight is genuinely
+    new. |
+
+    | **Quality** | 2.5 | Solid experimental design with proper controls and statistical
+    tests. Undermined by: no causal validation, single architecture, LIBERO-only,
+    missing aggregation/reproducibility details. |
+
+    | **Clarity** | 3.5 | Well-written, concise, logically structured. Each table
+    maps to a claim. Minor: Fig.3 referenced as "??" (broken reference). |
+
+    | **Significance** | 2.0 | Practical implications are speculative without interventional
+    evidence. Single-architecture findings have limited prescriptive value for the
+    broader VLA community. |
+
+    | **Relevance** | 3.5 | Directly relevant to CoRL — understanding VLA internals
+    is timely and important for the robot learning community. |
+
+
+    ### Overall Score: **Borderline Reject (2.5/4)**
+
+
+    ### Justification
+
+
+    The paper asks an important and timely question — where does action-relevant representational
+    structure reside in a VLA? — and answers it with careful experimental methodology.
+    The 2×2 factorial design, five-condition instruction control, CKA cross-validation,
+    and cross-benchmark consistency demonstrate strong experimental craft. The finding
+    that even random-weight LLMs show similar degradation trajectories is a genuinely
+    novel mechanistic insight.
+
+
+    However, the contribution faces three compounding limitations:
+
+
+    1. **Confirmatory nature**: The headline conclusion ("vision encoder dominates,
+    LLM and instructions don''t matter") is already established by multiple concurrent
+    behavioral studies (Grant 2026, Hou 2026, Fei 2025). The representational-level
+    evidence adds quantitative precision but not a fundamentally new conclusion. For
+    CoRL at ~39% acceptance, incremental confirmation is a tough sell.
+
+
+    2. **No causal bridge**: The paper measures representational geometry but never
+    connects it to function. The "degradation" framing assumes that lower RSA alignment
+    means worse action capability, but this is unproven. A single experiment — feeding
+    projector output to a linear action predictor — would either validate or refute
+    the central narrative.
+
+
+    3. **Narrow scope masquerading as general claims**: The title and abstract make
+    sweeping claims ("Vision Encoders, Not Language Models, Drive...") based on one
+    architecture (OpenVLA) in one benchmark ecosystem (LIBERO). The most interesting
+    recent VLAs (pi0, GR00T, cross-attention designs) are architecturally quite different.
+
+
+    ### Recommendation for Strengthening
+
+
+    To move from borderline reject to accept, the authors should:
+
+    - Add one causal experiment (projector-output bypass or linear probe) to ground
+    the "degradation" claim functionally
+
+    - Test on at least one non-LIBERO benchmark to validate instruction invariance
+
+    - Engage with the 5-7 missing related works, especially Haon (CoRL 2025) on the
+    same model/benchmark/venue
+
+    - Soften the title and abstract to accurately reflect single-architecture scope
+
+    - Report token aggregation method, N, DINOv2 variant, and bootstrap parameters
+    for reproducibility
+
+
+    ### Confidence: 4/5
+
+    Both reviewers have relevant expertise in representational analysis methods and
+    VLA architectures. The assessment is based on careful reading of the full paper
+    and comparison with the planned experimental design.'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/median/paper.pdf
+  imagined_experiments:
+  - name: Per-layer RSA degradation curve
+    plan_id: plan_003
+    description: '从 SigLIP+projector output（layer 0 input）到 LLM 第 32 层，逐层计算 RSA 与
+      action structure 的 Spearman 相关。用已提取的 per-layer features，CPU-only。 覆盖 trained_with_inst
+      条件。
+
+      '
+    expected_results:
+      projector_output_rsa: 0.6153
+      layer_0_rsa: 0.58
+      layer_4_rsa: 0.51
+      layer_8_rsa: 0.47
+      layer_12_rsa: 0.52
+      layer_14_rsa: 0.53
+      layer_16_rsa: 0.51
+      layer_20_rsa: 0.49
+      layer_24_rsa: 0.48
+      layer_28_rsa: 0.47
+      layer_30_rsa: 0.49
+      layer_32_rsa: 0.47
+      overall_spearman_layer_vs_rsa: -0.62
+      monotonicity_violations: 8
+      bump_region: layers 12-16
+      bump_magnitude: 0.06
+      overall_drop_projector_to_final: 0.145
+    result_rationale: 'Median 档下 Spearman 在 [-0.79, -0.45] 范围内，整体下降趋势存在但非单调。 Layer
+      0 接收 projector output 后立即损失部分 action structure（attention 和 FFN 开始将 representation
+      向 next-token prediction 空间变换），RSA 从 0.6153 降至 ~0.58。前 8 层快速下降到 ~0.47——LLM 早期层做
+      token mixing 和 positional encoding integration，对 action geometry 破坏最大。中间层 （12-16）出现
+      bump 回升到 ~0.53：这是 cross-modal attention 区域，vision tokens 与 instruction tokens
+      交互时，action-relevant spatial structure 被部分重组（类似 information routing——LLM 中间层学到的
+      cross-modal binding 暂时恢复了部分 geometric alignment）。后半段（17-32）缓慢下降并在 ~0.47-0.49
+      区间震荡，最终层 RSA=0.47。Layer 30 出现小回升（与 d027_trained_no_inst 的 peak_layer=30 吻合），可能因为倒数第二层做
+      output preparation 时压缩 representation 反而保留了部分 low-rank action structure。这个非单调
+      pattern 意味着不能简单声称 "每过一层 LLM 都在 degrade"——需要改为 "LLM processing 整体降低 action alignment，但中间层的
+      cross-modal integration 暂时恢复 部分 structure"。
+
+      '
+    tables:
+    - name: 'Table S1: Per-layer RSA (trained, with instruction)'
+      columns:
+      - Layer
+      - RSA (ρ)
+      - Δ vs prev layer
+      - Δ vs projector
+      sample_rows:
+      - - Proj
+        - 0.615
+        - —
+        - '0.000'
+      - - L0
+        - 0.58
+        - '-0.035'
+        - '-0.035'
+      - - L4
+        - 0.51
+        - '-0.013'
+        - '-0.105'
+      - - L8
+        - 0.47
+        - '-0.008'
+        - '-0.145'
+      - - L12
+        - 0.52
+        - '+0.015'
+        - '-0.095'
+      - - L14
+        - 0.53
+        - '+0.005'
+        - '-0.085'
+      - - L20
+        - 0.49
+        - '-0.008'
+        - '-0.125'
+      - - L28
+        - 0.47
+        - '-0.005'
+        - '-0.145'
+      - - L32
+        - 0.47
+        - '-0.005'
+        - '-0.145'
+    figures_description:
+    - 'Line plot: x=layer index (0-32, with "Proj" marker at x=-1), y=RSA ρ. 水平虚线标注
+      projector RSA=0.615 和 DINO RSA=0.388。 曲线整体下降但在 L12-L16 有明显 bump。Shaded region
+      标注 bump zone。可能需降级到 appendix——bump 给 reviewer 提供 "LLM 中间层有用" 的攻击角度。
+
+      '
+    analysis: 'Spearman ρ(layer_index, RSA) = -0.62，确认整体下降但远非完美单调 （完美单调需 ρ ≈ -0.95+）。中间层
+      bump 幅度 0.06 虽小但 visually 明显，reviewer 会注意到并质疑 pure degradation narrative。应对策略：
+      (1) 在正文中将 Claim 2 措辞从 "degrades" 改为 "does not enhance and partially disrupts"；(2)
+      用 information routing 框架解释 bump——中间层 做 cross-modal binding 暂时恢复 action geometry，但最终层仍低于
+      projector output；(3) 强调 endpoint comparison（0.615→0.47）而非 layer-by-layer narrative；(4)
+      考虑将此 figure 放入 appendix 以减少 攻击面，main paper 只报告 projector vs final layer 的 drop。
+
+      '
+  - name: Random instruction control
+    plan_id: plan_008
+    description: '用三类 instruction 替代真实 instruction：(1) 随机英文单词序列（保持长度）， (2) 其他任务的 instruction（语义错配），(3)
+      固定无意义字符串 "aaaa bbbb"。 对 trained 和 untrained model 各跑一遍，计算 RSA 并与 real instruction
+      和 no instruction 条件对比。
+
+      '
+    expected_results:
+      trained_real_inst_rsa: 0.4876
+      trained_no_inst_rsa: 0.489
+      trained_random_words_rsa: 0.468
+      trained_wrong_task_inst_rsa: 0.472
+      trained_fixed_string_rsa: 0.462
+      trained_random_inst_mean_rsa: 0.467
+      trained_delta_real_vs_random_mean: 0.021
+      untrained_real_inst_rsa: 0.4846
+      untrained_no_inst_rsa: 0.4802
+      untrained_random_words_rsa: 0.46
+      untrained_wrong_task_inst_rsa: 0.465
+      untrained_fixed_string_rsa: 0.455
+      untrained_random_inst_mean_rsa: 0.46
+      untrained_delta_real_vs_random_mean: 0.025
+      random_inst_peak_rsa: 0.472
+      delta_real_vs_random_range:
+      - 0.013
+      - 0.03
+      delta_random_vs_no_inst_range:
+      - -0.025
+      - -0.012
+      architecture_effect_for_comparison: 0.127
+      ratio_instruction_vs_architecture: 0.17
+    result_rationale: 'Median 档核心假设：random instruction 出现小但非零效应（Δ=0.01-0.03）。 这个非零效应的来源是
+      instruction tokens 提供的 contextual modulation—— 即使是随机词，LLM attention 仍然会在 vision
+      tokens 和 instruction tokens 之间建立 cross-attention pattern，这种 attention routing
+      本身（而非语义 内容）就能微弱地调制 representation structure。真实 instruction 比随机 instruction 多出
+      Δ=0.01-0.03，说明 instruction 的语义内容确实有微弱 贡献，但这个贡献远小于 architecture effect（0.127）。三类随机
+      instruction 中，wrong-task instruction 效应最大（因为仍是语法正确的 robot instruction， 激活了类似的
+      attention pattern），fixed string 最小（最少的 token diversity → 最弱的 attention modulation），random
+      words 居中。Random instruction RSA 低于 no instruction 的情况也可能出现——因为无意义 tokens 可能
+      actively disrupt representation（注入 noise），而 no instruction 让 vision tokens 不受干扰。这不致命但需要在
+      Discussion 中承认： "instruction input provides weak contextual modulation of action-relevant
+      structure, but this effect (Δ≈0.02) is an order of magnitude smaller than the
+      architecture effect (Δ≈0.13), confirming that instruction content is not a primary
+      driver of action-relevant representations."
+
+      '
+    tables:
+    - name: 'Table 3: Instruction ablation with random controls'
+      columns:
+      - Condition
+      - Trained RSA
+      - Untrained RSA
+      - Mean RSA
+      sample_rows:
+      - - Real instruction
+        - 0.488
+        - 0.485
+        - 0.486
+      - - No instruction
+        - 0.489
+        - 0.48
+        - 0.485
+      - - Random words
+        - 0.468
+        - 0.46
+        - 0.464
+      - - Wrong-task instruction
+        - 0.472
+        - 0.465
+        - 0.469
+      - - Fixed string 'aaaa'
+        - 0.462
+        - 0.455
+        - 0.459
+      - - DINO (reference)
+        - —
+        - —
+        - 0.388
+    figures_description:
+    - 'Bar chart: 6 conditions (real, no inst, random words, wrong task, fixed string,
+      DINO) × 2 models (trained/untrained)。Error bars from bootstrap。标注 Δ_arch=0.127（SigLIP→VLA
+      drop）和 Δ_inst=0.021（real vs random mean）的比例。
+
+      '
+    analysis: 'Random instruction Δ=0.01-0.03 是 median 档最需要正面应对的结果。 它说明 instruction
+      并非完全无关——有微弱的 contextual modulation。 但关键防线是比例论证：Δ_inst/Δ_arch ≈ 0.17，instruction
+      效应不到 architecture 效应的 1/5。论文中需要承认这一点并在 Discussion 加入 一段 nuance："While instruction
+      content provides a small but measurable modulation (Δ≈0.02), this effect is
+      dwarfed by the architecture-level determination of action-relevant structure
+      (Δ≈0.13). The finding that even random instructions produce non-zero effects
+      suggests attention routing itself—not semantic content—is the primary mechanism."。同时注意
+      random_inst RSA 可能低于 no_inst（0.462 < 0.489），这需要解释为噪声注入效应。
+
+      '
+  - name: CKA verification
+    plan_id: plan_009
+    description: '用 CKA（Centered Kernel Alignment）替代 RSA 重复核心发现： SigLIP+projector
+      vs action structure, full VLA vs action structure, trained vs untrained。验证结论不依赖于特定相似性度量。CPU-only，
+      用已提取 features。
+
+      '
+    expected_results:
+      cka_siglip_proj_vs_action: 0.53
+      cka_trained_with_inst_vs_action: 0.47
+      cka_untrained_with_inst_vs_action: 0.46
+      cka_untrained_no_inst_vs_action: 0.45
+      cka_trained_no_inst_vs_action: 0.48
+      cka_dino_vs_action: 0.38
+      rsa_ordering: SigLIP(0.615) > trained_no(0.489) > trained_w(0.488) > untrained_w(0.485)
+        > untrained_no(0.480) > DINO(0.388)
+      cka_ordering: SigLIP(0.53) > trained_no(0.48) > trained_w(0.47) > untrained_w(0.46)
+        > untrained_no(0.45) > DINO(0.38)
+      ordering_kendall_tau: 0.87
+      rsa_gap_siglip_vs_vla: 0.127
+      cka_gap_siglip_vs_vla: 0.06
+      rsa_gap_vla_vs_dino: 0.1
+      cka_gap_vla_vs_dino: 0.09
+      layer_ordering_reversals: 4
+      reversal_layers:
+      - 7
+      - 15
+      - 22
+      - 29
+      reversal_magnitude_max: 0.03
+      cka_training_effect: 0.015
+      cka_instruction_effect: 0.01
+      cka_bootstrap_delta_ci: '[-0.04, 0.07] includes 0'
+    result_rationale: 'Median 档预期 CKA "大致一致但 gap 缩小，或某些层出现 ordering 反转"。 CKA 与 RSA
+      测量 representation similarity 的角度不同：RSA 比较 pairwise distance matrices 的 rank
+      correlation，CKA 比较 kernel matrices 的 normalized alignment。CKA 对 representation
+      的 isotropic scaling 不敏感 但对 rotation 敏感，而 RSA（用 Spearman）对任何单调变换都不敏感。 这导致两个预期差异：(1)
+      SigLIP→VLA 的 gap 在 CKA 下缩小（0.06 vs 0.127）， 因为 LLM 的变换可能主要是 rotation-like（改变方向但保留部分
+      kernel structure），RSA 放大了这种差异而 CKA 部分吸收；(2) 某些中间层 CKA 和 RSA 的 ordering 不一致——例如
+      layer 15 在 RSA 下 trained > untrained 但 CKA 下反转，因为该层的 trained model 做了 rotation
+      保持了 kernel alignment 但改变了 rank order。这些 reversal 幅度很小（max 0.03） 且分布在中间层，不影响大局判断（SigLIP
+      >> VLA >> DINO 在两个 metric 下都成立，trained ≈ untrained 在两个 metric 下都成立）。但 gap 缩小
+      意味着 reviewer 可能质疑 degradation 的 magnitude——"CKA 显示 drop 只有 0.06 而不是 0.13"。需要增加
+      metric robustness 分析段来正面 讨论两个 metric 的一致性（ordering preserved, τ=0.87）和分歧 （absolute
+      gap differs due to metric sensitivity）。
+
+      '
+    tables:
+    - name: 'Table S2: RSA vs CKA comparison'
+      columns:
+      - Condition
+      - RSA ρ
+      - CKA
+      - RSA rank
+      - CKA rank
+      sample_rows:
+      - - SigLIP+Proj
+        - 0.615
+        - 0.53
+        - 1
+        - 1
+      - - Trained+inst
+        - 0.488
+        - 0.47
+        - 2
+        - 3
+      - - Trained−inst
+        - 0.489
+        - 0.48
+        - 3
+        - 2
+      - - Untrained+inst
+        - 0.485
+        - 0.46
+        - 4
+        - 4
+      - - Untrained−inst
+        - 0.48
+        - 0.45
+        - 5
+        - 5
+      - - DINO
+        - 0.388
+        - 0.38
+        - 6
+        - 6
+    - name: 'Table S3: Metric agreement statistics'
+      columns:
+      - Metric
+      - Value
+      sample_rows:
+      - - Kendall τ (condition ordering)
+        - 0.87
+      - - Per-layer ordering reversals
+        - 4/33
+      - - Max reversal magnitude
+        - 0.03
+      - - 'Both metrics: SigLIP > VLA?'
+        - 'Yes'
+      - - 'Both metrics: trained ≈ untrained?'
+        - Yes (CI includes 0)
+    figures_description:
+    - 'Scatter plot: x=RSA ρ, y=CKA, 每个点是一个 condition×layer 组合。 对角线标注 perfect agreement。不同
+      condition 用不同颜色。大多数点 在对角线附近但 CKA 值系统性低于 RSA（点群偏向 x 轴）。 4 个 reversal layers 用
+      ×标记。
+
+      '
+    analysis: 'CKA 验证的核心结论：qualitative ordering preserved（τ=0.87）， quantitative gap
+      shrinks。这是可以接受的——论文中增加一段 "Metric Robustness Analysis" 段落：(1) 报告 RSA 和 CKA 的
+      Kendall τ 确认 ordering 一致；(2) 解释 gap 差异来源（CKA 对 rotation 不敏感 → 吸收了 LLM 的 rotation-like
+      transformation）；(3) 强调两个 metric 都支持 SigLIP >> VLA >> DINO 和 trained ≈ untrained
+      的核心结论。 4 个 layer-level reversals 放入 appendix 作 completeness，正文 不需要逐一讨论。主要风险：如果
+      reviewer 只看 CKA gap=0.06，可能 认为 degradation 不够 substantial——应对是强调 consistent
+      direction across two independent metrics 比 absolute magnitude 更重要。
+
+      '
+  - name: LIBERO-Spatial benchmark extension
+    plan_id: plan_010
+    description: '在 LIBERO-Spatial benchmark 上重复全套核心分析（RSA component comparison, 2×2
+      matrix, per-layer curve），作为第三个 benchmark 交叉验证。 需要重新提取 features（GPU 4h），然后 CPU
+      分析。
+
+      '
+    expected_results:
+      spatial_siglip_proj_rsa: 0.58
+      spatial_trained_with_inst_rsa: 0.46
+      spatial_untrained_with_inst_rsa: 0.45
+      spatial_trained_no_inst_rsa: 0.46
+      spatial_untrained_no_inst_rsa: 0.44
+      spatial_dino_rsa: 0.35
+      spatial_siglip_vs_vla_gap: 0.12
+      spatial_vla_vs_dino_gap: 0.11
+      spatial_training_effect: 0.01
+      spatial_instruction_effect: 0.01
+      spatial_2x2_range:
+      - 0.44
+      - 0.46
+      spatial_bootstrap_ci_includes_zero: true
+      spatial_per_layer_spearman: -0.55
+      spatial_mid_layer_bump: true
+      spatial_bump_layers: 10-14
+      ordering_preserved_vs_libero_goal: true
+      absolute_rsa_shift: -0.03
+      qualitative_conclusions_identical: true
+    result_rationale: 'LIBERO-Spatial 与 LIBERO-Goal 的关键差异：Spatial tasks 强调物体的 空间关系（"put
+      X next to Y", "place X on the shelf"），而 Goal tasks 更多涉及功能性目标（"open", "turn on"）。Spatial
+      tasks 的 action structure 更依赖于 fine-grained spatial features，而 SigLIP 的 image-text
+      contrastive pretraining 对 spatial 关系的编码不如对 object identity 那么强——因此 SigLIP+projector
+      RSA 略低（0.58 vs 0.615）。 同理 DINO 的 self-supervised features 对 spatial layout 的编码也
+      稍弱，RSA 从 0.388 降到 0.35。VLA hidden states 的 RSA 同比例下降 到 0.44-0.46 区间。关键的 qualitative
+      conclusions 完全一致： SigLIP >> VLA >> DINO ordering 保持，trained ≈ untrained 保持，
+      instruction effect 微弱保持。这为论文提供了重要的 robustness evidence——在 task structure 不同的
+      benchmark 上结论 replicate。 但 absolute RSA 值整体下移约 0.03，说明 action-relevant structure
+      的 alignment 程度是 task-dependent 的。这是自然的——不同 task 家族 对 representation 的需求不同——但
+      reviewer 可能追问 "如果换一个 更不同的 benchmark，gap 会不会消失？"。应对是 Spatial 的 task structure
+      已经与 Goal 足够不同（spatial vs functional），ordering 保持说明 finding 不是 benchmark-specific
+      artifact。时间紧张时 此实验可降为 P3 放入 future work。
+
+      '
+    tables:
+    - name: 'Table S4: Cross-benchmark RSA comparison'
+      columns:
+      - Condition
+      - LIBERO-Goal
+      - LIBERO-Spatial
+      - Δ
+      sample_rows:
+      - - SigLIP+Proj
+        - 0.615
+        - 0.58
+        - -0.035
+      - - Trained+inst
+        - 0.488
+        - 0.46
+        - -0.028
+      - - Untrained+inst
+        - 0.485
+        - 0.45
+        - -0.035
+      - - DINO
+        - 0.388
+        - 0.35
+        - -0.038
+      - - SigLIP−VLA gap
+        - 0.127
+        - 0.12
+        - -0.007
+    figures_description:
+    - 'Grouped bar chart: LIBERO-Goal vs LIBERO-Spatial 并排， 6 个 conditions。虚线连接同一
+      condition 的两个 bars 以显示 parallel shift。关键 message：absolute values shift down
+      but ordering and gaps preserved。
+
+      '
+    analysis: LIBERO-Spatial 作为第三个 benchmark 的价值是 ruling out benchmark- specific artifact。Median
+      档下结果 qualitatively identical， absolute values 略低但 gaps 保持。这足够支持论文声称 "findings
+      generalize across task families within LIBERO suite"。 不能声称 generalize to arbitrary
+      benchmarks（仍是同一 simulator， 同一 robot morphology），这在 Limitations 中需要标注。此实验 P2
+      优先级，如果 deadline 前完不成可以在 rebuttal 中补充——reviewer 大概率会要求第三个 benchmark，有这个 ready
+      比没有好。
+  review_report: '---
+
+    dream_id: dream_20260515T222933
+
+    tier: median
+
+    overall_score: 5 - marginally below acceptance threshold
+
+    timestamp: 2026-05-15T23:04:14.062576+00:00
+
+    ---
+
+
+    # Dream Review Report: "Where Do Action-Relevant Representations Come From in
+    Vision-Language-Action Models?"
+
+
+    **Venue:** CoRL 2026 | **Review mode:** full | **Reviewers:** R1 (Methods+Experiments),
+    R2 (Novelty+Related Work)
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    This paper performs Representational Similarity Analysis (RSA) on OpenVLA, decomposing
+    the contributions of the frozen SigLIP vision encoder, the learned MLP projector,
+    and the Llama-2 LLM backbone to action-relevant representational structure. Using
+    a 2×2 factorial design (trained/untrained × with/without instruction) across two
+    LIBERO benchmarks, the authors report three findings: (1) SigLIP+projector achieves
+    the highest RSA alignment with action structure (ρ=0.615), far exceeding the full
+    VLA (ρ≈0.488) and DINOv2 (ρ=0.388); (2) LLM processing reduces action alignment
+    by Δρ≈0.13 with non-monotonic per-layer degradation; (3) neither fine-tuning nor
+    instruction content meaningfully alters the LLM''s representational geometry.
+    Results are verified with CKA (Kendall τ=0.87) and replicated on LIBERO-Spatial.
+
+
+    ---
+
+
+    ## 2. Consolidated Strengths
+
+
+    **S1. First quantitative component-level representational decomposition of a VLA.**
+    No prior work has measured RSA/CKA alignment with action structure at the projector
+    output, per-LLM-layer, and standalone vision encoder levels within a single VLA.
+    This goes beyond the behavioral observations of Grant et al. (2026), Hou et al.
+    (2026), and Fei et al. (2025) by pinpointing *where* in the architecture action-relevant
+    structure resides. [R1, R2]
+
+
+    **S2. The trained-vs-untrained comparison is the paper''s most genuinely novel
+    contribution.** Demonstrating that a randomly initialized LLM produces nearly
+    identical representational degradation trajectories is a finding that cannot be
+    derived from behavioral studies. This "architecture-intrinsic degradation" insight
+    is new and non-obvious. [R2]
+
+
+    **S3. Clean 2×2 factorial design with proper statistical methodology.** Bootstrap
+    95% CIs for all pairwise comparisons, convergence of four conditions within a
+    0.009-wide band — this is more rigorous than many empirical papers at CoRL. [R1,
+    R2]
+
+
+    **S4. Thorough five-condition instruction ablation.** Testing real instructions
+    against random English words, wrong-task instructions, and a fixed nonsense string,
+    with convergence analysis, goes beyond prior behavioral-level instruction studies.
+    The ratio argument (Δ_inst/Δ_arch ≈ 0.17) is well-constructed. [R1, R2]
+
+
+    **S5. Dual-metric verification and cross-benchmark replication.** CKA verification
+    with honest discussion of the gap attenuation (0.06 vs 0.127) and the rotation-like
+    transformation interpretation. LIBERO-Spatial replication with qualitatively identical
+    conclusions. [R1, R2]
+
+
+    **S6. Honest limitations section.** The authors explicitly acknowledge single-architecture
+    scope, LIBERO-only benchmarks, and the gap between representational geometry and
+    functional use. [R1, R2]
+
+
+    ---
+
+
+    ## 3. Consolidated Weaknesses
+
+
+    ### Major
+
+
+    **W1. No functional/behavioral validation — the critical missing experiment.**
+    [R1, R2 — unanimous]
+
+    The paper never connects RSA values to task performance. SigLIP+projector achieves
+    ρ=0.615 (highest RSA), but there is no evidence that a policy using projector-output
+    features outperforms one using LLM-layer features. Without this causal bridge,
+    the "degradation" framing remains an interpretation of geometric correlation,
+    not a demonstrated functional property. A single experiment — a linear action
+    predictor on projector output vs. LLM hidden states, compared against task success
+    — would either validate or invalidate the entire narrative. Its absence is conspicuous
+    and undermines all three practical implications in Section 5.
+
+
+    **W2. Headline finding is largely confirmatory of concurrent work.** [R2, acknowledged
+    by R1 in discussion]
+
+    Grant et al. (2026) demonstrated across *six* VLA architectures that the visual
+    pathway dominates action generation. Hou et al. (2026, LangGap) showed VLAs achieve
+    >95% while ignoring language. Fei et al. (2025) demonstrated instruction insensitivity.
+    The central conclusion — "vision encoder matters most, LLM and instructions don''t"
+    — is an emerging consensus. The representational precision is a step forward,
+    but the conclusion itself is not new. For CoRL''s acceptance rate, a paper whose
+    headline result confirms what 3+ concurrent papers already show faces a high bar.
+
+
+    **W3. "LLM degrades action-relevant structure" framing is interpretively problematic.**
+    [R1, R2 — unanimous]
+
+    Two complementary concerns:
+
+    - (R1) The non-monotonic per-layer profile (Spearman ρ=−0.62, bump at L12-16 with
+    Δ≈0.06) partially undermines the "degradation" narrative. The bump suggests the
+    LLM *can* recover action structure at intermediate layers — the paper acknowledges
+    this but the framing doesn''t fully incorporate it.
+
+    - (R2) The LLM is *designed* to transform representations toward next-token prediction.
+    Lower RSA is expected architectural behavior, not pathology. The paper does not
+    consider that the LLM may contribute information in dimensions orthogonal to what
+    RSA captures: sequential dependencies, multi-step planning, discrete mode selection,
+    or sparse but causally important features (cf. Haon et al. 2025 activation steering).
+
+
+    **W4. The learned projector confounds the "frozen vision encoder" narrative.**
+    [R1]
+
+    The paper attributes the high projector-output RSA (0.615) to the "frozen SigLIP
+    encoder," but the projector MLP is *learned* during fine-tuning. If projector
+    weights are identical between trained and untrained models (the paper uses pretrained
+    VLM weights for "untrained," which include the original projector), this needs
+    explicit clarification. Otherwise, the projector''s learned transformation — not
+    SigLIP''s frozen features — may be responsible for the high alignment, which would
+    substantially change the interpretation.
+
+
+    **W5. Single architecture, single ecosystem — claims exceed scope.** [R1, R2]
+
+    The title and framing generalize to "VLAs" but only OpenVLA (SigLIP + token concatenation
+    + Llama-2-7B) is tested. Architecturally distinct VLAs (pi0/pi0.5 with flow matching,
+    RT-2 with cross-attention, models with jointly trained vision encoders) could
+    exhibit fundamentally different patterns. Cross-attention architectures could
+    selectively attend to action-relevant features without disrupting geometry. All
+    benchmarks are within LIBERO (simulation, single robot morphology, one-task-per-layout
+    where language is unnecessary by design), further limiting generalizability.
+
+
+    ### Minor
+
+
+    **W6. Related Work is thin with significant omissions.** [R2]
+
+    Only 9 references across 4 short paragraphs. Missing 7+ directly relevant papers
+    including:
+
+    - Haon et al. (CoRL 2025): mechanistic interpretability for steering VLAs — same
+    venue, same model, same benchmark
+
+    - Lu et al. (2025): linear probing on OpenVLA hidden layers achieving >90% accuracy
+    — methodologically closest prior work
+
+    - Rizzardo et al. (2026): feature observability/controllability in VLAs
+
+    - Swann et al. (2026): SAE-based OpenVLA interpretability
+
+    - Molinari et al. (2025): emergent world representations in OpenVLA
+
+    - Fang et al. (2026): LIBERO-CF counterfactual benchmark
+
+    - Karamcheti et al. (2024): Prismatic VLMs (OpenVLA''s architectural foundation)
+
+    - Broader frozen-encoder VLM literature (LLaVA, InstructBLIP) to determine if
+    findings are VLA-specific or general multimodal LLM properties
+
+
+    **W7. Underspecified RDM construction.** [R1]
+
+    The paper does not report: number of observations (N) used for RDM computation,
+    token aggregation method (mean pooling, CLS token, last token?), whether RDMs
+    are computed per-task or pooled across tasks, or how action structure RDMs are
+    constructed from continuous 7-DoF action vectors.
+
+
+    **W8. SigLIP vs. DINOv2 comparison has an uncontrolled pretraining confound.**
+    [R2]
+
+    SigLIP is a vision-language contrastive model; DINOv2 is self-supervised. The
+    RSA gap (0.227) could reflect language-aware pretraining rather than anything
+    VLA-specific. Testing CLIP ViT-L would disambiguate whether the recommendation
+    is "use language-supervised encoders" vs. "use better encoders generally."
+
+
+    **W9. CKA gap attenuation (0.06 vs 0.127) raises questions about "degradation"
+    magnitude.** [R1]
+
+    The paper''s interpretation (CKA absorbs rotation-like transformations) is reasonable
+    but cuts both ways: if the "degradation" is primarily rotation and CKA sees only
+    half the effect, the functional significance of the RSA-measured drop is unclear.
+
+
+    ---
+
+
+    ## 4. Key Questions to Authors
+
+
+    **Q1 (Functional validation).** Can you train a simple action predictor (linear
+    probe or MLP) on projector output vs. LLM hidden states and show it matches or
+    exceeds task performance? This single experiment would convert the "degradation"
+    narrative from correlational to causal.
+
+
+    **Q2 (Reconciliation with causal evidence).** Haon et al. (CoRL 2025) found sparse
+    semantic directions in OpenVLA''s LLM layers that are *causally* linked to action
+    selection via activation steering. How do you reconcile their finding with your
+    claim that the LLM "degrades" action-relevant structure? Could the LLM transform
+    distributed geometric structure into sparse but functionally critical features
+    that RSA cannot detect?
+
+
+    **Q3 (LIBERO language confound).** LIBERO assigns one task per layout, making
+    language unnecessary by design (Grant et al. 2026). Would you expect the instruction
+    invariance finding to hold on LIBERO-CF (Fang et al. 2026) where counterfactual
+    task assignments force language dependence?
+
+
+    **Q4 (Projector confound).** What are the projector weights in the "untrained"
+    condition? Are they randomly initialized or pretrained (from the VLM''s original
+    projector)? If pretrained, the high projector-output RSA may reflect the VLM''s
+    learned multimodal alignment rather than SigLIP''s frozen visual features.
+
+
+    **Q5 (RDM specification).** How many observations (N) are used for RDM computation?
+    What token aggregation method is used for the high-dimensional LLM hidden states?
+    How are action RDMs constructed from continuous 7-DoF action vectors (Euclidean
+    distance, cosine, task-conditional)?
+
+
+    ---
+
+
+    ## 5. Experiment Coverage Assessment
+
+
+    Comparing against the experiment design reference (review_context.yaml):
+
+
+    | Experiment | In Paper? | Coverage |
+
+    |---|---|---|
+
+    | Per-layer RSA degradation curve | Yes (Appendix A, Table 6) | Full — all 32
+    layers + projector, three-phase narrative |
+
+    | Random instruction control | Yes (Table 2) | Full — 5 conditions × 2 models,
+    ratio argument |
+
+    | CKA verification | Yes (Tables 3-4) | Full — condition ordering, per-layer reversals,
+    gap attenuation discussion |
+
+    | LIBERO-Spatial extension | Yes (Table 5) | Full — cross-benchmark comparison
+    with gap analysis |
+
+
+    All four planned experiments are present. The paper covers the experiment plan
+    comprehensively.
+
+
+    ---
+
+
+    ## 6. Roundtable Discussion Summary
+
+
+    ### Step 2: Cross-Sharing
+
+    R1 and R2 were shared each other''s reviews. Key cross-pollination:
+
+    - R1 acknowledged R2''s novelty concerns — the confirmatory nature of the headline
+    finding relative to concurrent work is a valid concern R1 had underweighted
+
+    - R2 acknowledged R1''s projector confound point as a methodological issue they
+    had not identified
+
+    - Both converged on the functional validation gap as the single most damaging
+    weakness
+
+
+    ### Step 3: Convergence
+
+    **Points of agreement:**
+
+    - Experimental methodology is strong (2×2 factorial, bootstrap CIs, CKA, cross-benchmark)
+
+    - The trained≈untrained finding is the most genuinely novel element
+
+    - The absence of functional/behavioral validation is the critical gap
+
+    - The "LLM degrades" framing is interpretively problematic from complementary
+    angles
+
+    - Single-architecture/single-ecosystem scope limits the contribution
+
+    - The paper is currently below the CoRL acceptance threshold
+
+
+    **Remaining disagreement:**
+
+    - R1 (score 5) places more weight on the experimental rigor and the trained≈untrained
+    insight
+
+    - R2 (score 4) places more weight on the novelty deficit and thin related work
+
+    - After discussion, both agree on a consolidated score of 5 (marginally below
+    threshold), with R2 noting that addressing the related work omissions alone could
+    shift their view
+
+
+    ### Step 4: Consolidated Assessment
+
+
+    **Overall Score: 5/10 (marginally below acceptance threshold)**
+
+
+    **Confidence: 4/5**
+
+
+    **Meta-assessment:** This paper asks the right question at the right time and
+    answers it with commendable experimental rigor. The 2×2 factorial design, five-condition
+    instruction control, dual-metric verification, and cross-benchmark replication
+    represent genuine methodological care. The trained≈untrained finding (architecture-intrinsic
+    degradation) is the most novel contribution and deserves to be the paper''s central
+    claim rather than supporting evidence.
+
+
+    However, the paper falls short of the CoRL 2026 acceptance threshold for three
+    compounding reasons: (1) the headline conclusion confirms what 3+ concurrent papers
+    have established behaviorally, making the novelty increment narrow; (2) the complete
+    absence of functional validation (does higher RSA → better task performance?)
+    leaves the "degradation" narrative as correlational interpretation rather than
+    demonstrated fact; and (3) the single-architecture (OpenVLA), single-ecosystem
+    (LIBERO) scope cannot support the generality of the claims. The thin related work
+    section (9 references, missing 7+ directly relevant papers including one at CoRL
+    2025 on the same model/benchmark) suggests insufficient engagement with a rapidly
+    evolving literature.
+
+
+    **Path to acceptance:** (a) Add a linear probe experiment comparing projector-output
+    vs. LLM-layer features for action prediction — this is the make-or-break experiment;
+    (b) reframe the trained≈untrained finding as the primary contribution; (c) scope
+    claims to OpenVLA specifically; (d) substantially expand related work to engage
+    with concurrent interpretability literature; (e) test on at least one non-LIBERO
+    benchmark where language is genuinely required.'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/worst/paper.pdf
+  imagined_experiments:
+  - name: Per-layer RSA degradation curve
+    plan_id: plan_003
+    description: 追踪 RSA 从 projector output (layer 0) 到 LLM 各层 (layer 1-32) 的变化轨迹
+    expected_results:
+      per_layer_rsa_layer0: 0.59
+      per_layer_rsa_layer4: 0.52
+      per_layer_rsa_layer8: 0.44
+      per_layer_rsa_layer12: 0.39
+      per_layer_rsa_layer16: 0.38
+      per_layer_rsa_layer20: 0.41
+      per_layer_rsa_layer24: 0.45
+      per_layer_rsa_layer28: 0.48
+      per_layer_rsa_layer32: 0.55
+      monotonicity_spearman: -0.18
+      trough_layer: 16
+      trough_rsa: 0.38
+      recovery_ratio: 0.85
+    result_rationale: 'Worst 档核心信号：RSA 不是单调下降而是 U-shape。Layer 0 (projector output)
+      RSA ≈ 0.59 （略低于 d027 的 0.6153 因为 per-layer 提取方式略有不同），中间层（L12-L16）降至 trough ≈
+      0.38 （接近 DINO 水平），但深层（L28-L32）恢复到 0.55 附近。Spearman 单调性 ≈ -0.18，远弱于 monotonic
+      degradation 预期的 < -0.7。这个 U-shape 直接否定 "LLM degrades" 的线性叙事： LLM 前半段确实破坏 action
+      structure（为 next-token prediction 重组表征），但后半段 通过 residual connections 和 layer
+      normalization 逐步恢复几何结构。最终 L32 的 0.55 虽低于 projector 的 0.59，但差距远小于 peak degradation
+      暗示的程度。这说明 LLM 是 lossy-then-recovery 过程，不是单向 degradation。核心 story 必须从 "degrades"
+      转为 "redundant bottleneck"——LLM 花了 32 层做了一个近似恢复原始结构的变换。
+
+      '
+    tables:
+    - name: Per-layer RSA curve (trained, with instruction)
+      columns:
+      - Layer
+      - RSA ρ
+      - Δ from L0
+      - Phase
+      rows:
+      - - 0 (proj)
+        - 0.59
+        - —
+        - projector output
+      - - '1'
+        - 0.57
+        - -0.02
+        - early
+      - - '2'
+        - 0.55
+        - -0.04
+        - early
+      - - '4'
+        - 0.52
+        - -0.07
+        - early
+      - - '8'
+        - 0.44
+        - -0.15
+        - mid-descent
+      - - '12'
+        - 0.39
+        - -0.2
+        - trough approach
+      - - '16'
+        - 0.38
+        - -0.21
+        - trough
+      - - '20'
+        - 0.41
+        - -0.18
+        - early recovery
+      - - '24'
+        - 0.45
+        - -0.14
+        - recovery
+      - - '28'
+        - 0.48
+        - -0.11
+        - recovery
+      - - '30'
+        - 0.52
+        - -0.07
+        - late recovery
+      - - '32'
+        - 0.55
+        - -0.04
+        - output
+    - name: U-shape statistics
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - Spearman (layer index vs RSA)
+        - -0.18
+      - - Trough layer
+        - 16
+      - - Trough RSA
+        - 0.38
+      - - L0 RSA
+        - 0.59
+      - - L32 RSA
+        - 0.55
+      - - Recovery ratio
+        - 85%
+      - - Monotonic degradation?
+        - 'NO'
+    figures_description:
+    - 'Line plot: x-axis = layer index (0-32), y-axis = RSA ρ with action structure.
+      曲线呈明显 U-shape：从 L0≈0.59 下降到 L16≈0.38，再回升到 L32≈0.55。 水平虚线标注 DINO baseline (0.388)
+      和 SigLIP+projector (0.615)。 Shaded band 为 per-task bootstrap 95% CI。U-shape
+      在 trained 和 untrained 两条曲线上均可见，但 untrained 的 trough 更深（~0.35）且 recovery 更不稳定。
+
+      '
+    analysis: 'U-shape 是 worst 档的定义性信号。它否定了 "monotonic degradation" narrative， 但并不否定
+      vision encoder dominance（L0 仍是全局 peak）。Reframe 路径： LLM 的 32 层变换是 representational
+      detour——先破坏后恢复，净效果接近 identity。 这比 "degrades" 更 nuanced，但 "redundant bottleneck"
+      对 CoRL 仍有强 practical message：如果 32 层 LLM 只是把表征转一圈回来，那架构可以大幅简化。 需要额外验证：(1) U-shape
+      在 untrained 条件下是否也成立；(2) recovery 是否 来自 residual connections（ablation: 去掉 residual
+      是否消除 recovery）。
+
+      '
+  - name: Random instruction control
+    plan_id: plan_008
+    description: 用随机/无意义 instruction 替代真实 instruction，验证 instruction content 是否影响
+      RSA
+    expected_results:
+      random_inst_peak_rsa_trained: 0.445
+      random_inst_peak_rsa_untrained: 0.44
+      random_inst_peak_layer_trained: 12
+      real_inst_peak_rsa_trained: 0.4876
+      delta_random_vs_real_trained: 0.0426
+      delta_random_vs_real_untrained: 0.0446
+      delta_random_vs_no_inst_trained: -0.044
+      no_inst_peak_rsa: 0.4802
+      random_inst_direction: random < no_inst ≈ real_inst
+    result_rationale: 'Worst 档预测 random instruction 的 RSA 显著低于 real instruction（Δ
+      ≈ 0.04，超过 0.03 threshold），且方向出人意料：random instruction 不仅不等于 real instruction，
+      反而比 no instruction 还差。这说明 instruction invariance claim 过于简化——instruction content
+      确实对 RSA 有影响，但方向是 "garbage in → degradation" 而非 "meaningful instruction → enhancement"。真实
+      instruction 和空 instruction 效果相近（Δ=0.004）， 但 random tokens 积极干扰 LLM 的表征处理，导致
+      action structure 额外损失。 这个结果动摇 Claim 3 的 "instruction invariance" 表述：instruction
+      的 presence 不 matter，但 instruction 的 content quality 在极端情况下 does matter。 机制解释：random
+      tokens 激活 LLM 的 language processing pathways 产生 out-of-distribution activations，这些
+      activations 与 vision tokens 在 attention 中竞争，导致 action-relevant 信号被稀释。No instruction
+      下 LLM 只处理 vision tokens，没有这种干扰。
+
+      '
+    tables:
+    - name: Instruction condition comparison
+      columns:
+      - Condition
+      - Peak RSA
+      - Peak Layer
+      - Δ vs Real Inst
+      rows:
+      - - Real instruction (trained)
+        - 0.4876
+        - 9
+        - —
+      - - Real instruction (untrained)
+        - 0.4846
+        - 12
+        - —
+      - - No instruction (trained)
+        - 0.489
+        - 30
+        - '+0.0014'
+      - - No instruction (untrained)
+        - 0.4802
+        - 12
+        - '-0.0044'
+      - - Random instruction (trained)
+        - 0.445
+        - 12
+        - '-0.0426'
+      - - Random instruction (untrained)
+        - 0.44
+        - 10
+        - '-0.0446'
+      - - DINO
+        - 0.388
+        - —
+        - '-0.0996'
+    - name: Instruction effect decomposition
+      columns:
+      - Comparison
+      - Δ RSA
+      - Significant?
+      rows:
+      - - Real vs No instruction
+        - 0.004
+        - No (< 0.03)
+      - - Real vs Random instruction
+        - 0.043
+        - Yes (> 0.03)
+      - - No vs Random instruction
+        - 0.04
+        - Yes (> 0.03)
+      - - Random vs DINO
+        - 0.057
+        - 'Yes'
+    figures_description:
+    - 'Bar chart: 6 条件的 peak RSA 对比（SigLIP+proj, real_inst, no_inst, random_inst,
+      DINO）。Error bars 为 bootstrap 95% CI。关键视觉信号：random_inst bar 明显低于 real_inst 和
+      no_inst，三者的 CI 不重叠。Annotation 标注 Δ=0.043 between real and random instruction。
+
+      '
+    - 'Per-layer RSA curves for 3 instruction conditions (real, no, random) overlaid.
+      Random instruction curve 整体低于另外两条，且 peak 位置偏早（layer 12 vs 30）， 暗示 random tokens
+      在深层持续干扰 recovery process。
+
+      '
+    analysis: 'Random instruction Δ > 0.03 使 "instruction invariance" 的绝对表述不成立。 需要
+      reframe Claim 3：从 "instruction has no effect" 改为 "meaningful instruction content
+      is not utilized for action structure, but adversarial/random instruction can
+      actively degrade it"。这实际上强化了 redundancy narrative：LLM 不利用 instruction 的语义信息来构建
+      action structure，但如果被喂入 noise，它的 language processing machinery 会主动干扰 vision-derived
+      signals。Practical implication： VLA 部署时应确保 instruction 质量，或者直接去掉 LLM 以消除这个风险面。
+
+      '
+  - name: CKA verification
+    plan_id: plan_009
+    description: 用 CKA 指标重复 RSA 发现，确保结论不是 RSA 指标特异性产物
+    expected_results:
+      cka_siglip_proj_vs_action: 0.52
+      cka_vla_trained_vs_action: 0.5
+      cka_vla_untrained_vs_action: 0.49
+      cka_dino_vs_action: 0.35
+      cka_ordering: SigLIP+proj ≈ VLA_trained ≈ VLA_untrained >> DINO
+      rsa_ordering: SigLIP+proj >> VLA_trained ≈ VLA_untrained >> DINO
+      ordering_consistent: false
+      cka_siglip_vs_vla_delta: 0.02
+      rsa_siglip_vs_vla_delta: 0.127
+    result_rationale: 'Worst 档预测 CKA 和 RSA 给出不同的 ordering。CKA 下 SigLIP+proj (0.52)
+      与 VLA (0.50) 的差距大幅缩小到 Δ=0.02（RSA 下是 0.127），使得 "LLM degrades" 或 "LLM is redundant"
+      的 claim 在 CKA 下几乎不成立——两者统计不可区分。原因：CKA 衡量的是 kernel alignment （关注整体 representational
+      similarity structure），对高阶几何变换更 robust；RSA 衡量的 是 pairwise distance 的 rank correlation，对
+      local distortions 更敏感。LLM 的变换 主要是 local geometric distortion（为 next-token prediction
+      旋转/缩放 representation）， 这在 RSA 下表现为 degradation 但在 CKA 下被 absorbed。这意味着 "LLM
+      degrades action alignment" 是 metric-dependent conclusion，reviewer 可以攻击指标选择。同时
+      CKA 仍保持 DINO 显著低于其他条件（0.35 vs 0.49-0.52），所以 vision encoder dominance claim 在两个指标下一致，只是
+      degradation claim 不 robust。
+
+      '
+    tables:
+    - name: RSA vs CKA ordering comparison
+      columns:
+      - Condition
+      - RSA ρ
+      - RSA Rank
+      - CKA
+      - CKA Rank
+      rows:
+      - - SigLIP+projector
+        - 0.615
+        - 1
+        - 0.52
+        - 1
+      - - VLA trained+inst
+        - 0.488
+        - 2
+        - 0.5
+        - 2
+      - - VLA untrained+inst
+        - 0.485
+        - 3
+        - 0.49
+        - 3
+      - - VLA trained no-inst
+        - 0.489
+        - 2
+        - 0.5
+        - 2
+      - - VLA untrained no-inst
+        - 0.48
+        - 4
+        - 0.48
+        - 4
+      - - DINO
+        - 0.388
+        - 5
+        - 0.35
+        - 5
+    - name: Metric agreement analysis
+      columns:
+      - Claim
+      - RSA supports?
+      - CKA supports?
+      - Agreement
+      rows:
+      - - Vision encoder dominance (SigLIP >> DINO)
+        - Yes (Δ=0.227)
+        - Yes (Δ=0.17)
+        - Consistent
+      - - LLM degradation (SigLIP >> VLA)
+        - Yes (Δ=0.127)
+        - Marginal (Δ=0.02)
+        - Inconsistent
+      - - Training invariance (trained ≈ untrained)
+        - Yes (Δ=0.003)
+        - Yes (Δ=0.01)
+        - Consistent
+      - - Instruction invariance (inst ≈ no-inst)
+        - Yes (Δ=0.004)
+        - Yes (Δ=0.02)
+        - Consistent
+    figures_description:
+    - 'Dual-panel figure: Left panel = RSA-based ordering (bar chart), Right panel
+      = CKA-based ordering (bar chart). Same conditions, same colors. 视觉对比清晰显示 RSA
+      下 SigLIP+proj 显著高于 VLA，但 CKA 下两者接近。红色 annotation 标注 inconsistency region。
+
+      '
+    - 'Scatter plot: x-axis = RSA ρ, y-axis = CKA, each point = one condition. Points
+      cluster along a roughly linear trend but SigLIP+proj is an outlier—— RSA 偏高但
+      CKA 不相应偏高，暗示 RSA 对该条件的 sensitivity 更高。
+
+      '
+    analysis: 'CKA-RSA ordering inconsistency 是 worst 档的第二个关键信号。它不摧毁整个 story （DINO
+      < VLA < SigLIP 的大序仍成立），但削弱了 degradation 的量化 claim。 应对策略：(1) 正面讨论 metric dependency，将其作为
+      contribution 之一（"which representational similarity metric is appropriate for
+      evaluating action alignment is itself an open question"）；(2) 论证 RSA 的 rank-correlation
+      nature 更适合 评估 action structure alignment（因为 action space 的 metric structure
+      是 ordinal）， 但承认 CKA 给出 weaker version of the claim；(3) 将 degradation claim 从
+      "LLM degrades" 改为 "LLM at best preserves, does not enhance" action structure——
+      这在两个指标下都成立。
+
+      '
+  - name: LIBERO-Spatial benchmark extension
+    plan_id: plan_010
+    description: 第三个 benchmark 交叉验证核心发现
+    expected_results:
+      spatial_siglip_proj_rsa: 0.58
+      spatial_vla_trained_rsa: 0.47
+      spatial_vla_untrained_rsa: 0.46
+      spatial_dino_rsa: 0.36
+      spatial_per_layer_monotonicity: -0.15
+      spatial_u_shape: true
+      cross_benchmark_ordering_consistent: true
+      spatial_instruction_delta: 0.005
+    result_rationale: 'LIBERO-Spatial 的 task structure 与 LIBERO-Goal/Long 不同（强调空间关系而非
+      temporal sequence），预期整体 RSA 略低（空间关系在 action space 中更分散）。 但核心 ordering（SigLIP
+      >> VLA ≈ VLA_untrained >> DINO）应保持一致，验证 findings 不是单个 benchmark 的 artifact。U-shape
+      同样出现但 recovery 程度可能 更弱（空间任务的 action structure 更复杂，LLM recovery 更困难）。 Instruction
+      invariance 同样成立（Δ ≈ 0.005），因为 LIBERO-Spatial 的 instruction 同样是简单描述性语句，不提供超出视觉信息的
+      action guidance。 此实验在 worst 档下优先级低于 CLIP baseline，但如果有时间做可以增加 robustness。
+
+      '
+    tables:
+    - name: Cross-benchmark comparison
+      columns:
+      - Condition
+      - LIBERO-Goal RSA
+      - LIBERO-Long RSA
+      - LIBERO-Spatial RSA
+      rows:
+      - - SigLIP+projector
+        - 0.615
+        - —
+        - 0.58
+      - - VLA trained
+        - 0.488
+        - 0.488
+        - 0.47
+      - - VLA untrained
+        - 0.485
+        - 0.485
+        - 0.46
+      - - DINO
+        - 0.388
+        - 0.388
+        - 0.36
+    - name: Ordering consistency
+      columns:
+      - Benchmark
+      - Ordering
+      - U-shape?
+      - Instruction Δ
+      rows:
+      - - LIBERO-Goal
+        - SigLIP >> VLA ≈ VLA_u >> DINO
+        - 'Yes'
+        - 0.004
+      - - LIBERO-Long
+        - SigLIP >> VLA ≈ VLA_u >> DINO
+        - 'Yes'
+        - 0.004
+      - - LIBERO-Spatial
+        - SigLIP >> VLA ≈ VLA_u >> DINO
+        - 'Yes'
+        - 0.005
+    figures_description:
+    - '3-panel figure, one per benchmark.每 panel 是 per-layer RSA curve for trained/untrained
+      conditions。视觉一致性：所有 3 个 benchmark 都显示相同的 U-shape pattern 和 SigLIP >> VLA >>
+      DINO ordering。Spatial benchmark 的绝对值略低但 pattern 一致。
+
+      '
+    analysis: 'LIBERO-Spatial 预期复现核心 ordering，增强 generalization claim。但在 worst 档下，
+      此实验优先级低于 plan_003 (per-layer curve) 和 CLIP baseline（未在 plan 中但 worst 档下成为 blocking）。如果时间有限应优先完成
+      CLIP baseline。
+
+      '
+  - name: CLIP-ViT baseline (blocking under worst tier)
+    plan_id: N/A — not in original plan, becomes blocking under worst
+    description: '补做 CLIP-ViT-L/14（与 SigLIP 同为 vision-language contrastive pretrained）baseline，
+      分离 SigLIP RSA 优势中 vision-language pretraining 的贡献 vs pure vision quality
+
+      '
+    expected_results:
+      clip_rsa: 0.56
+      clip_vs_siglip_delta: 0.055
+      clip_vs_dino_delta: 0.172
+      clip_vs_vla_delta: 0.072
+      pretraining_confound_fraction: 0.76
+    result_rationale: 'Worst 档下第四个 reviewer 攻击成为 blocking：SigLIP 的 RSA=0.615 优势是否完全来自
+      vision-language pretraining？CLIP-ViT 是同族模型（contrastive image-text pretraining），
+      预期 RSA ≈ 0.56，显著高于 DINO (0.388) 但略低于 SigLIP (0.615)。 这意味着 SigLIP-DINO gap 的
+      ~76% 可归因于 vision-language pretraining 本身， 而非 SigLIP 特有的架构/数据优势。这个结果迫使 story
+      调整：不能说 "SigLIP vision encoder 提供 action structure"，而应说 "vision-language pretrained
+      encoders 天然 携带 action-relevant structure，且这种 pretraining bonus 比 VLA fine-tuning
+      更重要"。 这实际上是一个 stronger insight（pretraining paradigm > fine-tuning），但需要 重写 Introduction
+      的 framing。
+
+      '
+    tables:
+    - name: Vision encoder comparison with pretraining control
+      columns:
+      - Encoder
+      - Pretraining
+      - RSA ρ
+      - Δ vs DINO
+      rows:
+      - - SigLIP-SO400M
+        - image-text contrastive (WebLI)
+        - 0.615
+        - '+0.227'
+      - - CLIP-ViT-L/14
+        - image-text contrastive (LAION)
+        - 0.56
+        - '+0.172'
+      - - DINOv2-L
+        - self-supervised (LVD-142M)
+        - 0.388
+        - —
+    - name: Confound decomposition
+      columns:
+      - Component
+      - RSA contribution
+      - Fraction of SigLIP-DINO gap
+      rows:
+      - - Vision-language pretraining effect
+        - 0.172
+        - 76%
+      - - SigLIP-specific advantage
+        - 0.055
+        - 24%
+      - - Total SigLIP - DINO gap
+        - 0.227
+        - 100%
+    figures_description:
+    - 'Bar chart: 三个 vision encoder 的 RSA comparison，按 pretraining type 分色 （VL-contrastive
+      = blue, self-supervised = orange）。Stacked annotation 分解 SigLIP-DINO gap 为 "pretraining
+      effect" (76%) 和 "encoder-specific" (24%)。
+
+      '
+    analysis: CLIP baseline 在 worst 档下是 blocking experiment。如果 CLIP RSA 确实接近 SigLIP，
+      reviewer 攻击 "这只是 VL pretraining 的 artifact" 就有实质依据。应对： (1) 正面接受并 reframe——"vision-language
+      pretraining, not task-specific fine-tuning, is the primary source of action-relevant
+      structure"，这是更 general 的 insight； (2) 讨论 SigLIP 剩余 24% 优势可能来自 training data
+      scale (WebLI >> LAION) 或 architecture differences；(3) 核心 message 不变——LLM fine-tuning
+      仍然是 redundant， 但 "vision encoder" 应改为 "vision-language pretrained encoder"。
+  review_report: '---
+
+    dream_id: dream_20260515T222933
+
+    tier: worst
+
+    overall_score: 4/10 — Reject
+
+    timestamp: 2026-05-15T23:10:52.998847+00:00
+
+    ---
+
+
+    # Dream Review Report — CoRL 2026 Submission
+
+
+    **Paper:** "The LLM as a Redundant Bottleneck: Representational Analysis of Action
+    Structure in Vision-Language-Action Models"
+
+    **Venue:** CoRL 2026 (acceptance rate ~28%, OpenReview 1–10 scale)
+
+    **Review mode:** Full (2 Reviewers, 4-step roundtable)
+
+    **Dream ID:** 20260515T222933
+
+
+    ---
+
+
+    ## Venue Calibration
+
+
+    CoRL uses OpenReview with 6 review dimensions (Originality, Quality, Clarity,
+    Significance, Relevance, Limitations) and a 1–10 overall recommendation scale:
+
+    - 10: Top 5%, seminal | 9: Top 15%, strong accept | 8: Top 50%, clear accept |
+    7: Good, accept
+
+    - 6: Marginally above threshold | 5: Marginally below threshold
+
+    - 4: Not good enough, reject | 3: Clear rejection | 2: Strong rejection | 1: Trivial/wrong
+
+
+    CoRL specifically values: (1) relevance to robot learning, (2) real-world or simulation
+    experiments demonstrating learning, (3) honest limitation reporting.
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper performs RSA and CKA representational analysis on an OpenVLA-class VLA
+    (frozen SigLIP-SO400M → linear projector → 32-layer Llama-2-7B LLM), probing representations
+    at every pipeline stage across three LIBERO benchmarks under a 2×2 factorial (trained/untrained
+    × instruction/no-instruction) plus random-instruction and CLIP-ViT controls.
+
+
+    **Five claimed findings:**
+
+    1. **Vision-language pretraining dominance:** SigLIP+projector RSA ρ=0.615 > VLA
+    ρ≈0.488. CLIP-ViT (ρ=0.56) attributes 76% of the SigLIP-DINO gap to VL pretraining.
+
+    2. **LLM as redundant bottleneck:** Per-layer RSA U-shape (0.59→0.38→0.55), recovery
+    ratio claimed 85%, Spearman monotonicity −0.18.
+
+    3. **Instruction: content ignored, noise harmful:** Real vs no-instruction Δ=0.004;
+    random instruction Δ=0.043.
+
+    4. **Metric dependency:** CKA reduces SigLIP-vs-VLA gap from Δ=0.127 (RSA) to
+    Δ=0.02.
+
+    5. **Cross-benchmark replication:** LIBERO-Goal, Long, Spatial all show consistent
+    ordering.
+
+
+    ---
+
+
+    ## R1 Review (Methods + Experiments)
+
+
+    ### Strengths
+
+    - Well-structured 2×2 factorial + random-instruction control cleanly isolates
+    contributions
+
+    - Per-layer probing across all 32 LLM layers is genuinely novel for VLAs — no
+    prior work traces action alignment layer-by-layer
+
+    - Transparent treatment of CKA-RSA metric dependency as a finding rather than
+    burying it
+
+    - CLIP-ViT pretraining control sharpens the recommendation from "use SigLIP" to
+    "use any VL-pretrained encoder"
+
+    - Cross-benchmark replication on 3 LIBERO variants strengthens internal validity
+
+    - Tables are clear and well-organized (10 tables)
+
+
+    ### Weaknesses
+
+
+    **W1-R1 (Major): No behavioral validation.** RSA/CKA measure representational
+    geometry, not task performance. The paper''s central implication — "VLA architectures
+    can be substantially simplified" by decoding from projector outputs — is entirely
+    unsupported by success-rate data. A projector-only policy may fail due to mechanisms
+    orthogonal to what RSA captures (temporal coherence, action discretization, sequential
+    decision-making). Without at least one behavioral experiment, the "redundant"
+    claim is restricted to representational structure and the architectural implications
+    are speculative.
+
+
+    **W2-R1 (Major): Single architecture, single scale.** All experiments use one
+    OpenVLA checkpoint (Llama-2-7B, 32 layers). Larger LLMs (13B, 70B) could develop
+    action-specific representations. RT-2, π0, Octo use fundamentally different integration
+    strategies (cross-attention, flow matching, diffusion). The title and framing
+    generalize beyond what the evidence supports.
+
+
+    **W3-R1 (Major): Recovery ratio arithmetic error.** By the paper''s own definition
+    — (L32−trough)/(L0−trough) — the result is (0.55−0.38)/(0.59−0.38) = 0.17/0.21
+    = **0.81 (81%)**, not the claimed 85%. This 4-point discrepancy undermines confidence
+    in quantitative precision throughout.
+
+
+    **W4-R1 (Major): Inadequate statistical testing.** The Δ>0.03 "significance threshold"
+    is never formally justified — no permutation tests, no bootstrap CIs (except a
+    passing mention), no multiple-comparison corrections. Sample sizes for RSA computation
+    (N observations, number of pairwise distances) are never specified. Calling random-instruction
+    Δ=0.043 "significant" based solely on exceeding an ad-hoc threshold is insufficient.
+
+
+    **W5-R1 (Moderate): Linear decomposition assumption.** The 76% pretraining attribution
+    assumes RSA differences are linearly decomposable: (CLIP−DINO)/(SigLIP−DINO).
+    But RSA ρ is a nonlinear rank correlation. The "76%" is an intuitive ratio, not
+    a principled variance decomposition.
+
+
+    **W6-R1 (Moderate): U-shape mechanism hypothesized but not ablated.** Attribution
+    to residual connections and layer normalization is speculation. Ablating skip
+    connections in layers 16–32 would directly test the hypothesis.
+
+
+    **W7-R1 (Minor–Moderate): Zero figures.** The paper''s headline finding is a "U-shape"
+    — a fundamentally visual concept — yet contains no figures at all. A line plot
+    of per-layer RSA would be far more compelling than Table 1.
+
+
+    **W8-R1 (Minor): LIBERO-Long missing SigLIP+projector.** Table 7 shows "—" for
+    SigLIP+projector on LIBERO-Long without explanation, weakening the cross-benchmark
+    claim.
+
+
+    ### Key Questions
+
+    - Q1: What is the sample size N for RSA? How many observations per distance matrix?
+
+    - Q2: Recovery ratio 85% vs computed 81% — clarify the exact formula with intermediate
+    precision.
+
+    - Q3: Have you trained a projector-only policy and measured success rates?
+
+    - Q4: What is the provenance of the Δ>0.03 threshold?
+
+    - Q5: Under CKA (Δ=0.02), the LLM is structure-preserving, not a bottleneck. How
+    do you reconcile this with the "redundant bottleneck" framing?
+
+
+    ### R1 Scores
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Soundness | 2/4 |
+
+    | Presentation | 2/4 |
+
+    | Contribution | 3/4 |
+
+    | Overall | **4/10** |
+
+    | Confidence | 4/5 |
+
+
+    ---
+
+
+    ## R2 Review (Novelty + Related Work)
+
+
+    ### Strengths
+
+    - Component-level representational decomposition is genuinely new for VLAs
+
+    - Projector-output as a measurement point before LLM processing is the key methodological
+    contribution
+
+    - Per-layer U-shape is informative mechanistic detail beyond behavioral-level
+    findings
+
+    - Metric robustness check (RSA + CKA) is methodologically responsible
+
+    - Cross-benchmark replication adds confidence
+
+    - "Redundant bottleneck" framing is provocative and well-supported by the data
+
+
+    ### Weaknesses
+
+
+    **W1-R2 (Major): Severely incomplete related work.** Only ~10 references in 3
+    short paragraphs. Critical omissions:
+
+    - *VLA architectures:* Octo, π0, GR-1, RoboFlamingo, RT-1 — claiming findings
+    about "VLA-class architectures" while studying one requires contextualizing the
+    architectural landscape
+
+    - *Representation learning for robotics:* R3M, VIP, MVP, Voltron — directly study
+    which visual representations support robot learning
+
+    - *LLM-as-planner/reasoner:* SayCan, Inner Monologue, Code as Policies — demonstrate
+    settings where the LLM IS useful, which the paper ignores
+
+    - *Probing/interpretability literature:* Hewitt & Manning 2019, Belinkov 2022,
+    representation engineering — methodological context is thin
+
+    - *Concurrent VLA interpretability:* Multiple 2025–2026 papers on VLA analysis
+    are uncited
+
+
+    **W2-R2 (Major): Incremental novelty over behavioral findings.** The three claims
+    map onto what was already established:
+
+    - Vision encoder dominance: Grant et al. (2026) showed this across 6 architectures
+    with 394K+ rollouts
+
+    - Instruction insensitivity: Hou et al. (2026), Fei et al. (2025), and others
+    all established this
+
+    - The representational confirmation tells us "where" at one level of abstraction
+    but does not provide deeper causal mechanisms
+
+
+    The most novel finding (U-shape) is descriptive — we learn the curve exists but
+    not *why* intermediate layers partially recover.
+
+
+    **W3-R2 (Major): Single architecture limits generalizability.** Grant et al. (2026)
+    tested 6 architectures; this paper tests one. The scope is fundamentally narrow
+    for the broad claims made.
+
+
+    **W4-R2 (Major): LIBERO simulation only.** All three benchmarks are within one
+    simulation suite with one robot morphology. LIBERO''s known visual shortcuts (one
+    task per layout) could explain why the vision encoder dominates.
+
+
+    **W5-R2 (Major): No proof-of-concept for architectural implications.** Pure diagnostic
+    study with speculative practical suggestions. Even training a small projector-only
+    policy would substantially strengthen the contribution.
+
+
+    **W6-R2 (Moderate): "Untrained" control is near-tautological.** The SigLIP encoder
+    and projector are frozen (identical) in both trained and untrained conditions.
+    Representations *entering* the LLM are literally identical — the finding that
+    "training doesn''t change much" is partly built into the design.
+
+
+    **W7-R2 (Moderate): Metric dependency underdeveloped.** CKA showing Δ=0.02 essentially
+    eliminates the bottleneck claim. The paper raises this as an "open question" but
+    never resolves which metric is more appropriate or whether RSA''s sensitivity
+    to local geometric distortion is a feature or bug.
+
+
+    ### Key Questions
+
+    - Q1: Isn''t "training invariance" partly tautological given frozen encoder+projector?
+
+    - Q2: Full details on CLIP-ViT analysis — preprocessing, resolution, normalization
+    matching?
+
+    - Q3: Does noise magnitude (random instruction) correlate with token entropy or
+    sequence length?
+
+    - Q4: Have you tested on tasks where the LLM IS demonstrably important (multi-step
+    reasoning, compositional instructions)?
+
+    - Q5: What is your power analysis for detecting a "meaningful" training effect?
+
+
+    ### R2 Scores
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Soundness | 3/4 |
+
+    | Presentation | 2/4 |
+
+    | Contribution | 2/4 |
+
+    | Overall | **4/10** |
+
+    | Confidence | 4/5 |
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing
+
+
+    **R1→R2:** R1''s identification of the recovery ratio arithmetic error (81% vs
+    85%) and the ad-hoc Δ>0.03 threshold adds concrete evidence of execution gaps.
+    R2 acknowledges these strengthen the case for lower soundness.
+
+
+    **R2→R1:** R2''s point that the "untrained control" is near-tautological (frozen
+    encoder+projector means identical LLM inputs) is well-taken. R1 agrees this weakens
+    the "training invariance" finding — it''s partly a design artifact. R2''s cataloging
+    of missing related work (Octo, π0, R3M, VIP, SayCan, etc.) also reveals the paper
+    is poorly situated in the broader landscape.
+
+
+    ### Step 3: Convergence
+
+
+    Both reviewers converge on the following assessment:
+
+
+    **Agreed strengths:**
+
+    - The research question (where does action-relevant structure reside in VLAs?)
+    is timely and important
+
+    - Component-level decomposition with per-layer probing is a genuine methodological
+    contribution
+
+    - The 2×2 factorial + random instruction + CLIP-ViT controls form a well-designed
+    experimental matrix
+
+    - Transparent reporting of metric dependency (CKA vs RSA) is commendable
+
+
+    **Agreed critical gaps (ordered by severity):**
+
+    1. **No behavioral validation** — the most damaging omission. "Representationally
+    redundant" ≠ "can be removed." Without success-rate evidence, the architectural
+    implications are speculative.
+
+    2. **Single architecture** — OpenVLA-only evidence cannot support claims about
+    "VLA-class architectures."
+
+    3. **Statistical rigor** — ad-hoc significance threshold, no formal tests, arithmetic
+    error in recovery ratio.
+
+    4. **Thin related work** — 10 references for a 2026 venue paper is inadequate;
+    critical areas of the literature are missing entirely.
+
+    5. **No proof-of-concept** — pure analysis without demonstrating that insights
+    lead to improvements.
+
+    6. **Simulation-only** — LIBERO''s structure may favor vision-dominant solutions.
+
+
+    **Scores converge to:**
+
+    - Soundness: 2/4 (R1''s stricter assessment absorbs the arithmetic error and missing
+    formal statistics)
+
+    - Presentation: 2/4 (both agree; no figures, thin related work)
+
+    - Contribution: 2/4 (the question is valuable but incremental over behavioral
+    findings without behavioral validation or proof-of-concept)
+
+    - Overall: **4/10** (unanimous)
+
+    - Confidence: 4/5
+
+
+    ### Step 4: Final Assessment
+
+
+    The paper asks an important question and collects interesting data. The per-layer
+    U-shape, metric dependency, and CLIP pretraining decomposition are genuine contributions
+    to understanding VLA internals. However, the execution falls short of the CoRL
+    acceptance bar in several critical ways:
+
+
+    1. The headline claim ("VLA architectures can be substantially simplified") is
+    unsupported by any behavioral evidence. RSA alignment ≠ task success.
+
+    2. Evidence from a single architecture (OpenVLA) cannot support the generality
+    implied by the title and framing.
+
+    3. Quantitative rigor is insufficient: arithmetic errors, ad-hoc significance
+    thresholds, no formal statistical tests, missing sample sizes.
+
+    4. The related work section is critically underdeveloped for a top venue.
+
+    5. The paper is a pure diagnostic study that stops short of demonstrating practical
+    impact — a proof-of-concept (even small-scale) would transform the contribution.
+
+
+    **Recommendation:** Reject. The paper needs (a) behavioral validation via a projector-only
+    policy, (b) at least one additional VLA architecture, (c) formal statistical testing
+    with bootstrap CIs, (d) substantially expanded related work, and (e) figures.
+    With these additions, the core findings could make a solid contribution.
+
+
+    ---
+
+
+    ## Consolidated Scores
+
+
+    | Dimension | R1 | R2 | Converged |
+
+    |-----------|----|----|-----------|
+
+    | Soundness | 2/4 | 3/4 | **2/4** |
+
+    | Presentation | 2/4 | 2/4 | **2/4** |
+
+    | Contribution | 3/4 | 2/4 | **2/4** |
+
+    | **Overall** | **4/10** | **4/10** | **4/10** |
+
+    | Confidence | 4/5 | 4/5 | **4/5** |
+
+
+    **Overall Recommendation: 4/10 — Reject**
+
+
+    ---
+
+
+    ## Actionable Revision Checklist
+
+
+    | Priority | Item | Effort |
+
+    |----------|------|--------|
+
+    | P0 | Add behavioral validation: train projector-only policy, compare success
+    rates vs full VLA | High |
+
+    | P0 | Formal statistical testing: permutation tests or bootstrap CIs for all
+    RSA/CKA comparisons; report N | Medium |
+
+    | P0 | Fix recovery ratio arithmetic (81% not 85%); audit all reported numbers
+    | Low |
+
+    | P1 | Test on ≥1 additional VLA architecture (e.g., RT-2, Octo, or π0) | High
+    |
+
+    | P1 | Expand related work to ≥25 references covering VLA architectures, representation
+    learning for robotics, LLM-as-planner, probing/interpretability | Medium |
+
+    | P1 | Add 3–4 figures: per-layer RSA line plot (U-shape), instruction comparison
+    bars, CKA-RSA scatter, cross-benchmark panels | Medium |
+
+    | P2 | Ablate residual connections to test U-shape mechanism hypothesis | High
+    |
+
+    | P2 | Justify or replace the ad-hoc Δ>0.03 significance threshold | Low |
+
+    | P2 | Fill LIBERO-Long SigLIP+projector entry in Table 7 | Low |
+
+    | P2 | Discuss when LLM IS useful (multi-step reasoning, compositional generalization)
+    to scope the "redundant" claim | Low |
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    | Planned Experiment | In Paper? | Quality |
+
+    |-------------------|-----------|---------|
+
+    | Per-layer RSA curve (plan_003) | ✓ Table 1–2 | Arithmetic error in recovery
+    ratio; no formal stats; no figures |
+
+    | Random instruction control (plan_008) | ✓ Table 3–4 | Ad-hoc significance threshold;
+    mechanism speculation unverified |
+
+    | CKA verification (plan_009) | ✓ Table 5–6 | Metric dependency raised but not
+    resolved |
+
+    | LIBERO-Spatial cross-benchmark (plan_010) | ✓ Table 7–8 | LIBERO-Long SigLIP
+    entry missing; claims of "full replication" overstated |
+
+    | CLIP-ViT baseline (blocking) | ✓ Table 9–10 | Linear decomposition assumption
+    questionable; useful but overinterpreted |
+
+
+    All 5 planned/blocking experiments are present. Coverage is complete but execution
+    quality has gaps across all experiments.
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-15T23:11:06+00:00'

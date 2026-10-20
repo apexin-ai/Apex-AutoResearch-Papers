@@ -1,0 +1,40 @@
+{
+  "exp_id": "phi3v_r2_action_probe",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T01:24:49.759Z",
+    "updated_at": "2026-05-20T03:04:43.299Z",
+    "hypothesis": "TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.",
+    "parent": "r2_probe_seed_expansion",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T01:25:36.493Z"
+    },
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_r2_action_probe.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks x 50 demos",
+      "model_name": "TracVLA-Phi3V",
+      "seed": "0-4",
+      "gpu": "cuda:0",
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/",
+      "eval_data": "libero_goal 10 tasks x 50 demos",
+      "log_path": "/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log",
+      "checkpoint_path": "N/A (probe experiment)",
+      "output_path": "/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T03:02:19.207Z"
+  },
+  "timestamp": "2026-05-20T03:04:43.560158+00:00",
+  "trigger": "update_registry"
+}

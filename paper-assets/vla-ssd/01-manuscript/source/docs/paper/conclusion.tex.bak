@@ -1,0 +1,8 @@
+\paragraph{Conclusion.}
+We analyzed three VLA architectures (OpenVLA, TracVLA, NORA) across four LIBERO task suites, comparing trained and reference checkpoints to decompose VLA fine-tuning into training-associated and inherited representational effects.
+Two training-associated effects are consistent across two VLM-to-VLA transitions: $R^2$ exit collapse, where action-relevant information encoded at intermediate layers is selectively less decodable at exit layers (6/6 cells, sign test $p = 0.016$), and counterfactual sensitivity, where all trained models respond to instruction perturbation (Cohen's $d \geq 0.45$ across eight tested cells).
+Exit collapse is consistently observed across all tested VLM-to-VLA conditions (6/6 cells, $\Delta R^2 = 0.156$--$0.455$), but does not re-emerge in VLA-to-VLA fine-tuning (0/4 standard cells, $\Delta R^2 = 0.033$--$0.086$); three NLP finetuning controls on the same backbones (all $\Delta R^2 = 0.000$) are consistent with this effect being specific to action-oriented training.
+In contrast, L1 instruction-dominant attention is inherited from base-model pretraining: one backbone (Phi-3-Vision) saturates at 32/32 heads before any action training.
+Metric incomparability between trained (action MSE) and reference (cosine distance) conditions precludes quantifying counterfactual amplification factors.
+Extending this framework to flow-matching and diffusion VLAs with cross-attention, to benchmarks with richer language grounding, and to intermediate training checkpoints are priorities for future work.
+Code and data will be released upon acceptance.

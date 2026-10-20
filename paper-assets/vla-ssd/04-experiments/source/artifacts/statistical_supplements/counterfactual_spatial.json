@@ -1,0 +1,120 @@
+{
+  "config": {
+    "experiment": "counterfactual_instruction_spatial",
+    "conditions": ["wrong", "empty", "shuffled", "paraphrased"],
+    "n_tasks": 10,
+    "n_demos_per_task": 10,
+    "n_timesteps_per_demo": 50,
+    "model": "openvla-7b",
+    "unnorm_key": "bridge_orig",
+    "seed": 42,
+    "suite": "libero_spatial",
+    "task_names": [
+      "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate",
+      "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate"
+    ],
+    "note": "wrong instructions use other spatial tasks (same object/action, different spatial reference)"
+  },
+  "ranking_by_cohens_d": [
+    {"condition": "empty", "cohens_d": 0.9422, "paired_mse_mean": 0.06594, "token_divergence_rate": 0.9137, "kl_divergence_mean": 9.0296},
+    {"condition": "wrong", "cohens_d": 0.8514, "paired_mse_mean": 0.05804, "token_divergence_rate": 0.8652, "kl_divergence_mean": 6.9572},
+    {"condition": "shuffled", "cohens_d": 0.8328, "paired_mse_mean": 0.05700, "token_divergence_rate": 0.8767, "kl_divergence_mean": 7.7587},
+    {"condition": "paraphrased", "cohens_d": 0.8057, "paired_mse_mean": 0.05471, "token_divergence_rate": 0.7990, "kl_divergence_mean": 5.9157}
+  ],
+  "global_metrics_detail": {
+    "wrong": {
+      "paired_mse": {"mean": 0.05804, "std": 0.06816, "t_stat": 60.205, "p_value": 0.0, "cohens_d": 0.8514, "ci_95": [0.8237, 0.8792]},
+      "token_divergence_rate": 0.8652,
+      "kl_divergence_mean": 6.9572,
+      "n_samples": 5000
+    },
+    "empty": {
+      "paired_mse": {"mean": 0.06594, "std": 0.06998, "t_stat": 66.622, "p_value": 0.0, "cohens_d": 0.9422, "ci_95": [0.9144, 0.9699]},
+      "token_divergence_rate": 0.9137,
+      "kl_divergence_mean": 9.0296,
+      "n_samples": 5000
+    },
+    "shuffled": {
+      "paired_mse": {"mean": 0.05700, "std": 0.06843, "t_stat": 58.888, "p_value": 0.0, "cohens_d": 0.8328, "ci_95": [0.8051, 0.8605]},
+      "token_divergence_rate": 0.8767,
+      "kl_divergence_mean": 7.7587,
+      "n_samples": 5000
+    },
+    "paraphrased": {
+      "paired_mse": {"mean": 0.05471, "std": 0.06790, "t_stat": 56.970, "p_value": 0.0, "cohens_d": 0.8057, "ci_95": [0.7780, 0.8334]},
+      "token_divergence_rate": 0.7990,
+      "kl_divergence_mean": 5.9157,
+      "n_samples": 5000
+    }
+  },
+  "per_task_cohens_d": {
+    "wrong": {
+      "between_the_plate_and_the_ramekin": {"cohens_d": 0.9537, "ci_95": [0.8659, 1.0416], "mse_mean": 0.066410, "token_div_rate": 0.8837},
+      "from_table_center": {"cohens_d": 0.7478, "ci_95": [0.6600, 0.8357], "mse_mean": 0.048018, "token_div_rate": 0.8477},
+      "in_the_top_drawer_of_the_wooden_cabinet": {"cohens_d": 0.8402, "ci_95": [0.7524, 0.9281], "mse_mean": 0.057719, "token_div_rate": 0.8506},
+      "next_to_the_cookie_box": {"cohens_d": 0.9220, "ci_95": [0.8342, 1.0099], "mse_mean": 0.064521, "token_div_rate": null},
+      "next_to_the_plate": {"cohens_d": 0.8011, "ci_95": [0.7132, 0.8889], "mse_mean": 0.054547, "token_div_rate": null},
+      "next_to_the_ramekin": {"cohens_d": 0.9718, "ci_95": [0.8839, 1.0597], "mse_mean": 0.066824, "token_div_rate": null},
+      "on_the_cookie_box": {"cohens_d": 0.7704, "ci_95": [0.6825, 0.8583], "mse_mean": 0.050291, "token_div_rate": null},
+      "on_the_ramekin": {"cohens_d": 0.8840, "ci_95": [0.7961, 0.9718], "mse_mean": 0.059934, "token_div_rate": null},
+      "on_the_stove": {"cohens_d": 0.8603, "ci_95": [0.7725, 0.9482], "mse_mean": 0.059635, "token_div_rate": null},
+      "on_the_wooden_cabinet": {"cohens_d": 0.7795, "ci_95": [0.6916, 0.8673], "mse_mean": 0.052525, "token_div_rate": null}
+    },
+    "empty": {
+      "between_the_plate_and_the_ramekin": {"cohens_d": 0.9293, "ci_95": [0.8414, 1.0172], "mse_mean": 0.065116},
+      "from_table_center": {"cohens_d": 0.9175, "ci_95": [0.8296, 1.0054], "mse_mean": 0.064163},
+      "in_the_top_drawer_of_the_wooden_cabinet": {"cohens_d": 1.2396, "ci_95": [1.1517, 1.3275], "mse_mean": 0.085796},
+      "next_to_the_cookie_box": {"cohens_d": 0.9433, "ci_95": [0.8555, 1.0312], "mse_mean": 0.066486},
+      "next_to_the_plate": {"cohens_d": 0.6382, "ci_95": [0.5504, 0.7261], "mse_mean": 0.040350},
+      "next_to_the_ramekin": {"cohens_d": 0.8861, "ci_95": [0.7982, 0.9739], "mse_mean": 0.061748},
+      "on_the_cookie_box": {"cohens_d": 0.8670, "ci_95": [0.7791, 0.9548], "mse_mean": 0.059199},
+      "on_the_ramekin": {"cohens_d": 0.8438, "ci_95": [0.7559, 0.9316], "mse_mean": 0.057708},
+      "on_the_stove": {"cohens_d": 1.0900, "ci_95": [1.0021, 1.1778], "mse_mean": 0.076660},
+      "on_the_wooden_cabinet": {"cohens_d": 1.1853, "ci_95": [1.0975, 1.2732], "mse_mean": 0.082195}
+    },
+    "shuffled": {
+      "between_the_plate_and_the_ramekin": {"cohens_d": 1.0011, "ci_95": [0.9132, 1.0890], "mse_mean": 0.070393},
+      "from_table_center": {"cohens_d": 0.7502, "ci_95": [0.6623, 0.8380], "mse_mean": 0.049722},
+      "in_the_top_drawer_of_the_wooden_cabinet": {"cohens_d": 0.6815, "ci_95": [0.5936, 0.7694], "mse_mean": 0.044356},
+      "next_to_the_cookie_box": {"cohens_d": 0.9646, "ci_95": [0.8767, 1.0525], "mse_mean": 0.068049},
+      "next_to_the_plate": {"cohens_d": 0.9239, "ci_95": [0.8361, 1.0118], "mse_mean": 0.064587},
+      "next_to_the_ramekin": {"cohens_d": 0.7833, "ci_95": [0.6954, 0.8712], "mse_mean": 0.053053},
+      "on_the_cookie_box": {"cohens_d": 0.8316, "ci_95": [0.7438, 0.9195], "mse_mean": 0.056043},
+      "on_the_ramekin": {"cohens_d": 1.0331, "ci_95": [0.9453, 1.1210], "mse_mean": 0.071141},
+      "on_the_stove": {"cohens_d": 0.8014, "ci_95": [0.7136, 0.8893], "mse_mean": 0.054950},
+      "on_the_wooden_cabinet": {"cohens_d": 0.6154, "ci_95": [0.5276, 0.7033], "mse_mean": 0.037686}
+    },
+    "paraphrased": {
+      "between_the_plate_and_the_ramekin": {"cohens_d": 0.9123, "ci_95": [0.8244, 1.0001], "mse_mean": 0.063853},
+      "from_table_center": {"cohens_d": 0.7577, "ci_95": [0.6698, 0.8455], "mse_mean": 0.050716},
+      "in_the_top_drawer_of_the_wooden_cabinet": {"cohens_d": 0.7258, "ci_95": [0.6380, 0.8137], "mse_mean": 0.048071},
+      "next_to_the_cookie_box": {"cohens_d": 0.8058, "ci_95": [0.7179, 0.8937], "mse_mean": 0.055225},
+      "next_to_the_plate": {"cohens_d": 0.8178, "ci_95": [0.7299, 0.9057], "mse_mean": 0.056283},
+      "next_to_the_ramekin": {"cohens_d": 1.0024, "ci_95": [0.9146, 1.0903], "mse_mean": 0.069698},
+      "on_the_cookie_box": {"cohens_d": 0.7257, "ci_95": [0.6379, 0.8136], "mse_mean": 0.046803},
+      "on_the_ramekin": {"cohens_d": 0.7065, "ci_95": [0.6186, 0.7944], "mse_mean": 0.045957},
+      "on_the_stove": {"cohens_d": 0.9194, "ci_95": [0.8315, 1.0073], "mse_mean": 0.064219},
+      "on_the_wooden_cabinet": {"cohens_d": 0.7124, "ci_95": [0.6246, 0.8003], "mse_mean": 0.046323}
+    }
+  },
+  "cross_task_variance": {
+    "wrong": {"values": [0.9537, 0.7478, 0.8402, 0.9220, 0.8011, 0.9718, 0.7704, 0.8840, 0.8603, 0.7795], "mean": 0.8531, "std": 0.0790, "min": 0.7478, "max": 0.9718, "cv": 0.0926},
+    "empty": {"values": [0.9293, 0.9175, 1.2396, 0.9433, 0.6382, 0.8861, 0.8670, 0.8438, 1.0900, 1.1853], "mean": 0.9540, "std": 0.1763, "min": 0.6382, "max": 1.2396, "cv": 0.1848},
+    "shuffled": {"values": [1.0011, 0.7502, 0.6815, 0.9646, 0.9239, 0.7833, 0.8316, 1.0331, 0.8014, 0.6154], "mean": 0.8386, "std": 0.1391, "min": 0.6154, "max": 1.0331, "cv": 0.1659},
+    "paraphrased": {"values": [0.9123, 0.7577, 0.7258, 0.8058, 0.8178, 1.0024, 0.7257, 0.7065, 0.9194, 0.7124], "mean": 0.8086, "std": 0.1036, "min": 0.7065, "max": 1.0024, "cv": 0.1282}
+  },
+  "cross_task_summary": {
+    "wrong": {"cohens_d_mean_std": "0.853 +/- 0.079", "cohens_d_range": "[0.748, 0.972]", "cohens_d_cv": "0.093", "mse_mean_std": "0.058042 +/- 0.006654"},
+    "empty": {"cohens_d_mean_std": "0.954 +/- 0.176", "cohens_d_range": "[0.638, 1.240]", "cohens_d_cv": "0.185", "mse_mean_std": "0.065942 +/- 0.013179"},
+    "shuffled": {"cohens_d_mean_std": "0.839 +/- 0.139", "cohens_d_range": "[0.615, 1.033]", "cohens_d_cv": "0.166", "mse_mean_std": "0.056998 +/- 0.011380"},
+    "paraphrased": {"cohens_d_mean_std": "0.809 +/- 0.104", "cohens_d_range": "[0.707, 1.002]", "cohens_d_cv": "0.128", "mse_mean_std": "0.054715 +/- 0.008634"}
+  }
+}

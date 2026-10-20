@@ -1,0 +1,76 @@
+# director / loop_11.md
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_11.md`
+- **Structured JSON:** [`6c0292d4e682a1e831b8.json`](../../sessions/6c/6c0292d4e682a1e831b8.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 11
+reason: max_messages
+updated: '2026-05-26T16:53:21+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 只能用 westd-19183 上已分配的 2× RTX PRO 6000（gpu_ids 白名单内），不得使用其他服务器/GPU
+- GPU 释放请求已提交 Manager 5 次未回复——不要自行释放，等 Manager 或用户确认
+- 用户是唯一能操作 OpenReview 提交的人——Agent 无浏览器/账号访问权限，不要尝试代劳
+- Abstract DDL (5/26) 已过，作者列表提交后不可修改——如用户已提交，不要建议修改作者
+- n=9 behavioral correlation 是设计硬约束（D107），五种扩展方案均统计不合法——不要再提议扩展 n
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-19183 (connect.westd.seetacloud.com)，工作目录 /root/vla-ssd
+- 论文本地路径：projects/vla-ssd/artifacts/_project/paper/（main.tex + appendix.tex + figures/）
+- GPU：2× RTX PRO 6000，当前 0% 利用率，无活跃进程
+- 活跃 cron：无
+- Worker：无活跃 Worker（Type 3 字体修复 Worker 已取消）
+
+### 3. 📊 当前状态
+论文 v14 终稿就绪，等待用户操作 Paper DDL 5/29 提交。
+
+本轮完成的全部工作：
+- 7 项 appendix 补强（A: NLP control 图, B: label permutation, C: cross-arch L1, D: power analysis, E: BayesianVLA 引用, F: training dynamics 图, G: methodological precedent 表）
+- §4.6 L1 ablation specificity caveat（Reviewer warning 级修复）
+- Proofreading + notation 一致性扫描（全 PASS）
+- Camera-ready QA（CoRL 2026 模板合规）
+- References 格式清理（and others/arXiv/venue/pages）
+- Type 3 字体修复（文本字体全清除，21 个 mathtext glyph 残留，CoRL 可接受）
+- Reviewer 逐条审查 17 个 negative（D110：无需重试）
+- Reviewer story 最终审视（claim-evidence alignment 良好）
+
+Registry：无 RUNNING/PREPARING 实验。107 success / 17 negative / 7 failed / 154 total。
+等待中：无 Worker 回调，无 Cron，等用户回复提交状态。
+
+### 4. 📋 待办（条件触发式）
+- 用户回复确认 abstract 已提交 → 记录到 decisions.yaml，更新 ROADMAP
+- 用户回复未提交 abstract → 确认 paper DDL 5/29 直接提交是否可行（CoRL 允许）
+- 用户提供作者列表/提交需求 → 立即协助准备 metadata
+- 5/27 或 5/28 用户仍无回复 → 发提交提醒（每天一次，5/29 早上最后催）
+- Manager 回复 GPU 释放 → 确认释放
+- 用户要求加实验 → Reviewer 已确认无高 ROI 实验（D110），但用户指令优先
+- 收到审稿报告（Review Director 回传）→ Read review-report-action.skill.md，按协议处理
+
+### 5. 🎯 战略上下文
+- 核心结论：VLM→VLA 微调产生 exit collapse（ΔR²=0.156-0.455），VLA→VLA 无 collapse，NLP controls ΔR²=0.000。L1 attention 是继承的非训练产物。
+- 决策链：D104（不跑 behavioral ablation）→ D107（n=9 硬约束终结）→ D108（GPU 无可行实验）→ D109（abstract DDL 收口）→ D110（17 negative 无需重试）
+- Reviewer 内部评估：CoRL 2026 中稿率 45-60% (MEDIUM-HIGH)
+- 最易判断错的事：不要因为"论文就绪"就认为还能加实验提分——Reviewer 已做过天花板审查（Q1-Q9 逐条评分），剩余改进全在写作层面且已完成。GPU 空置是正确决策不是失职。
+- 容易踩的坑：用户可能长时间不回复——不要过度催促（已催 7+ 次），保持每天一次提醒节奏即可
+
+
+---

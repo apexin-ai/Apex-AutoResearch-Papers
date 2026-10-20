@@ -1,0 +1,12 @@
+rsa_definitive.json — Computation completed, Worker failed during reporting.
+Data saved at: /root/autodl-tmp/vla-ssd/results/rsa/rsa_definitive.json
+Runtime: 1814s
+
+Summary (from log):
+dino_cls                          0.6915  CI [0.641, 0.740]
+vla_trained_last_preaction L12    0.6425  CI [0.564, 0.715]
+fused_backbone                    0.6336  CI [0.542, 0.716]
+dino_patch_mean                   0.6307  CI [0.547, 0.701]
+vla_trained_image_mean L12        0.6282  CI [0.535, 0.713]
+
+All values consistent with unified_rsa_results.json and rsa_dino_standalone.json.

@@ -1,0 +1,18 @@
+Remote path: /root/autodl-tmp/vla-ssd/results/groundtruth_action_error.json (server: westd-19183)
+
+SUMMARY:
+Condition               MSE vs GT    MAE vs GT        d_MSE        d_MAE
+------------------------------------------------------------------------
+original                 0.497950     0.393460            0            0
+top24_ablated            0.496887     0.393294    -0.001063    -0.000166
+bottom24_ablated         0.506128     0.396317    +0.008177    +0.002857
+
+Grouped errors:
+Condition               Trans MSE      Rot MSE     Grip MSE
+------------------------------------------------------------
+original                 0.181912     0.010304     2.909002
+top24_ablated            0.182069     0.010320     2.901043
+bottom24_ablated         0.181968     0.010330     2.965999
+
+Wilcoxon p-values (top24): MSE p=0.519, MAE p=0.943 (NOT significant)
+Conclusion: NEGATIVE - ablating instruction-dominant heads does NOT increase GT error

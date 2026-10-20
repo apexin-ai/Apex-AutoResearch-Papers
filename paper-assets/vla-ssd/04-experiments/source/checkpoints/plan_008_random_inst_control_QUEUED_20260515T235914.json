@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_008_random_inst_control",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:57:16.908Z",
+    "updated_at": "2026-05-15T23:59:14.724Z",
+    "hypothesis": "Plan_008 (Claim 3): Random instruction control. Replace real instruction with random gibberish (random_s0) or word-shuffled version (shuffled). If RSA ≈ normal instruction (0.488) → instruction content irrelevant, supports invariance. If RSA drops significantly → instruction content matters."
+  },
+  "timestamp": "2026-05-15T23:59:14.848223+00:00",
+  "trigger": "update_registry"
+}

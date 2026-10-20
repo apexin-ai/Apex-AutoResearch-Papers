@@ -1,0 +1,15 @@
+{
+  "exp_id": "clustered_bootstrap_reanalysis_v1",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:09:44.635Z",
+    "updated_at": "2026-05-22T15:09:54.263Z",
+    "hypothesis": "Clustered bootstrap (demo-level) reanalysis of R² Δ will produce wider but still significant CIs compared to original aggregate probing, confirming that R² exit collapse is robust to temporal leakage correction. Addresses reviewer concern about N=63,228 nested dependencies."
+  },
+  "timestamp": "2026-05-22T15:09:54.542283+00:00",
+  "trigger": "update_registry"
+}

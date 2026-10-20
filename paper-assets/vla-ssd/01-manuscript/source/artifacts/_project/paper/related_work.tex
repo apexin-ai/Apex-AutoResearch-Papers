@@ -1,0 +1,44 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\subsection{Vision-Language-Action Models}
+
+VLAs repurpose pretrained vision-language models as robotic policies by fine-tuning them on demonstration data.
+RT-2~\cite{brohan2023_rt2} established the paradigm by showing that a large vision-language model can be directly fine-tuned to output robotic actions tokenized as text, transferring web-scale knowledge to manipulation tasks.
+OpenVLA~\cite{kim2024_openvla} made this architecture open-source, building on the Prismatic VLM framework~\cite{karamcheti2024} with a frozen SigLIP encoder~\cite{zhai2023_siglip} and a Llama-2 backbone.
+$\pi_0$~\cite{black2024_pi0} departed from autoregressive action decoding in favor of flow matching, while retaining the frozen-encoder-plus-LLM structure.
+A common architectural choice across these models is to freeze the vision encoder and fine-tune only the LLM and projector, embedding an implicit assumption: fine-tuning injects action-relevant knowledge into the LLM.
+Our work tests this assumption directly at the representational level and finds that it does not hold---action-relevant geometric structure originates in the vision encoder and is routed, not created, by fine-tuning.
+
+\subsection{Understanding VLA Representations}
+
+A growing body of work investigates how VLAs process information internally.
+Haon et al.~\cite{haon2025} performed the first mechanistic interpretability study of VLAs, identifying causally relevant attention heads and demonstrating activation steering for behavior modification.
+Grant et al.~\cite{grant2026} showed across six VLA architectures that the visual pathway dominates action generation, with language stream ablations causing minimal behavioral degradation---a behavioral-level finding consistent with our representational-level observation of vision encoder dominance.
+Swann et al.~\cite{swann2026} applied sparse autoencoders to OpenVLA, discovering interpretable monosemantic features at the individual-neuron level.
+Rizzardo et al.~\cite{rizzardo2026} characterized VLA representations through the lens of observability and controllability, measuring how well internal features predict and steer downstream behavior.
+Molinari et al.~\cite{molinari2025} probed OpenVLA for world-model properties, finding that the model encodes spatial and physical state information in its intermediate representations.
+
+These studies illuminate different facets of VLA internals but leave a gap that our work addresses.
+Grant et al.\ operate at the behavioral level (input ablations and output measurements) without examining representation geometry.
+Swann et al.\ and Molinari et al.\ analyze individual features or semantic properties without quantifying how much action-relevant structure each architectural component contributes.
+Haon et al.\ identify causal mechanisms but do not decompose where the underlying representations originate.
+No prior work compares trained and untrained models to isolate training's contribution, and none reports the geometric-functional dissociation we observe between vision-language and vision-only encoders.
+
+\subsection{Representational Analysis Methods}
+
+Our methodology draws on a toolkit developed across neuroscience and deep learning.
+Representational Similarity Analysis (RSA)~\cite{kriegeskorte2008}, originally designed to compare neural recordings with computational models, quantifies geometric alignment between representation spaces via pairwise dissimilarity correlations.
+Centered Kernel Alignment (CKA)~\cite{kornblith2019} provides a complementary global measure invariant to orthogonal transformations, enabling comparison of representations across architectures and dimensionalities.
+Linear probing~\cite{alain2017} assesses the functional content of representations by training lightweight decoders on frozen activations; Belinkov~\cite{belinkov2022} surveys its extensive use in NLP for analyzing linguistic structure at each layer of pretrained models.
+
+These tools have been widely applied to vision models and language models in isolation, but their joint application to VLA pipelines---where vision, language, and action spaces intersect---is largely unexplored.
+We combine RSA, CKA, and probing in a factorial design to provide the first systematic representational decomposition of a VLA, measuring both geometric alignment and functional decodability across all architectural components and training conditions.
+The multi-metric approach proves essential: we show that linear CKA and RSA can produce divergent rankings of the same representations (Section~\ref{sec:vision_dominance}), underscoring the need for methodological plurality in representation analysis.
+
+\subsection{Vision-Language Pretraining}
+
+The vision encoders in modern VLAs inherit their representations from large-scale pretraining.
+CLIP~\cite{radford2021_clip} and SigLIP~\cite{zhai2023_siglip} learn visual features aligned to language through contrastive objectives on image-text pairs, while DINOv2~\cite{oquab2024_dinov2} learns from self-supervised vision objectives without language supervision.
+Prior work has shown that these pretraining paradigms produce qualitatively different representation geometries, but their downstream consequences for action-relevant structure in VLAs have not been characterized.
+Our finding of a geometric-functional dissociation---VL-pretrained encoders achieve substantially higher geometric alignment with the action space than DINOv2 yet comparable functional decodability---provides the first direct evidence that language-grounded pretraining shapes the geometry, but not the information content, of action-relevant visual representations.

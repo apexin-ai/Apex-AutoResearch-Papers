@@ -1,0 +1,15 @@
+\section{Related Work}\label{sec:related_work}
+
+\paragraph{Vision-language-action models.}
+VLAs fine-tune LLMs on robot demonstrations~\cite{brohan2023_rt2,kim2024_openvla,karamcheti2024}, assuming fine-tuning injects action-relevant knowledge.
+We test this assumption at the representational level.
+
+\paragraph{Behavioral and mechanistic analysis.}
+Behavioral studies show VLAs rely disproportionately on visual input, with language instructions largely ignored~\cite{grant2026,hou2026,fei2025}.
+Mechanistic work has identified sparse semantic directions linked to action selection~\cite{haon2025}, memorized sequences via sparse autoencoders~\cite{swann2026,buurmeijer2026}, and probed for symbolic states and world models~\cite{lu2025,molinari2025}.
+\cite{fang2025} showed fine-tuning erodes VLM reasoning.
+These studies analyze individual components; we provide a systematic per-layer decomposition with trained-vs-untrained controls absent from prior work, revealing a non-monotonic transformation profile invisible to whole-model analyses.
+
+\paragraph{Representation analysis.}
+We adopt RSA~\cite{kriegeskorte2008} and MLP probes~\cite{alain2017,belinkov2022} as geometric and functional metrics, with CKA~\cite{kornblith2019} in the appendix.
+We compare self-supervised (DINOv2~\cite{oquab2024_dinov2}), VL-pretrained (CLIP~\cite{radford2021_clip}), and fused (DinoSigLIP~\cite{zhai2023_siglip}) encoders at matched ViT-L/14 scale to test whether language grounding contributes to action-relevant structure.

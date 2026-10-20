@@ -1,0 +1,77 @@
+{
+  "exp_id": "phi3v_r2_seed_expansion",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:16:58.882Z",
+    "updated_at": "2026-05-20T09:45:34.681Z",
+    "hypothesis": "Expanding TracVLA-Phi3V R2 action probe from 5 to 15 seeds will yield tighter confidence intervals and enable fair statistical comparison with OpenVLA's 15-seed R2 profiles across all 33 layers.",
+    "parent": "phi3v_r2_action_probe",
+    "server": "westd-19183",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T09:17:44.047Z",
+      "finished_at": "2026-05-20T09:37:50.653Z",
+      "training_hours": 0.34
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python /root/vla-ssd/scripts/phi3v_r2_seed_expansion.py\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "442197",
+      "log_path": "~/runs/vla-ssd/phi3v_r2_seed_expansion.log",
+      "submitted_at": "2026-05-20T09:21:20.011Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks x 50 demos",
+      "model_name": "TracVLA-Phi3V (trained)",
+      "seed": "6,7,8,9,10,11,12,13,14,15",
+      "output_dir": "/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/",
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/",
+      "eval_data": "LIBERO-Goal 10 tasks, 50 demos each, last-preaction hidden states, 33 layers x 10 seeds (6-15) MLP R² probe"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T09:37:54.109499+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "peak_layer": 11,
+      "peak_r2": 0.634,
+      "peak_r2_std": 0.009,
+      "peak_r2_ci95": [
+        0.629,
+        0.639
+      ],
+      "l0_r2": -0.33,
+      "l32_r2": 0.551,
+      "plateau_mean_L10_L17": 0.631,
+      "mean_ci95_halfwidth_5seed": 0.0101,
+      "mean_ci95_halfwidth_15seed": 0.0053,
+      "ci_narrowing_pct": 47.5,
+      "n_seeds": 15,
+      "n_layers": 33,
+      "openvla_peak_r2": 0.637,
+      "openvla_peak_layer": 9,
+      "cross_arch_peak_delta": 0.003,
+      "inverted_u_confirmed": true,
+      "total_time_min": 16.2
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T09:45:34.905529+00:00",
+  "trigger": "update_registry"
+}

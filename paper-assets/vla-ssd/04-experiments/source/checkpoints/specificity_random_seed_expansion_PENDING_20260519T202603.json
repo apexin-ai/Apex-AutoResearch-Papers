@@ -1,0 +1,16 @@
+{
+  "exp_id": "specificity_random_seed_expansion",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:23:42.838Z",
+    "updated_at": "2026-05-19T20:26:02.846Z",
+    "hypothesis": "Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.",
+    "parent": "random_subset_ablation"
+  },
+  "timestamp": "2026-05-19T20:26:03.160607+00:00",
+  "trigger": "update_registry"
+}

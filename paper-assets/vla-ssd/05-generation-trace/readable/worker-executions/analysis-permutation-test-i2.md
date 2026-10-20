@@ -1,0 +1,2198 @@
+# analysis permutation test I2
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_analysis_permutation_test_I2_20260518T150757.log`
+- **Structured JSON:** [`a83a9470373925cf4392.json`](../../sessions/a8/a83a9470373925cf4392.json)
+
+## Before a recorded user message
+
+43 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "770c767d-72e2-48e8-b469-2f764d3dbb8c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779132000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2d6db04b-4353-4513-a468-6427dfe0a0c6",
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the relevant JSON files on the server to understand the data structure, then write and run the permutation test script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "349a2fcb-641c-49f0-8825-73890605ba48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SgfJVL95zuCZ6HRxsL2dqK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12953,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12953
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先看原始数据结构，再写脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "f2f4df63-ba8c-4ebe-98f1-7f0b43d2f6e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SgfJVL95zuCZ6HRxsL2dqK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12953,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12953
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JT4BFyXMzhuDPKjiQZwPtN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "95b96266-0579-47ed-a5ad-9c6d1fdfb35d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SgfJVL95zuCZ6HRxsL2dqK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12953,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12953
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T15:08:11.602Z_
+
+<details><summary>↩ Tool result · `toolu_01JT4BFyXMzhuDPKjiQZwPtN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "df457f5b-f7b9-4ced-96da-bb82bb8600e1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KoA7PyjkiZ2bfzYqfr7Tqe`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "15c7436f-cf24-490c-afe8-42a4461d7b22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYDmPh1Hnd4S2ir6bdhdfJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1222,
+      "cache_read_input_tokens": 24794,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1222
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EHEDw9yMZkXFfZFwrZadrQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_control.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "995dbd35-712a-4bf7-878b-302dab2c2b24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYDmPh1Hnd4S2ir6bdhdfJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1222,
+      "cache_read_input_tokens": 24794,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1222
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T15:08:16.120Z_
+
+<details><summary>↩ Tool result · `toolu_01KoA7PyjkiZ2bfzYqfr7Tqe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 5,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 5000,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"ablation\\\": \\\"L1_dominant_24_heads_zeroed\\\",\\n    \\\"ablated_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\"\\n  },\\n  \\\"main_metrics\\\": {\\n    \\\"paired_action_mse\\\": {\\n      \\\"mean\\\": 0.04164548042967141,\\n      \\\"std\\\": 0.06394581517413622,\\n      \\\"t_stat\\\": 32.55658746950337,\\n      \\\"p_value\\\": 3.9875267301509806e-194,\\n      \\\"cohens_d\\\": 0.6511317493798869\\n    },\\n    \\\"per_dim_action_shift\\\": {\\n      \\\"means\\\": [\\n        0.0018907630960015738,\\n        0.0053060349467249435,\\n        0.007621298928714849,\\n        0.02059210950341174,\\n        0.030713564767946917,\\n        0.033881929667518705,\\n        0.2907168627450989\\n      ],\\n      \\\"stds\\\": [\\n        0.003945774709271799,\\n        0.007996728850961761,\\n        0.00855598404937074,\\n        0.02115830546884926,\\n        0.02858547485740179,\\n        0.037737860644735575,\\n        0.44894904084862064\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.7230285714285715\\n  },\\n  \\\"secondary_metrics\\\": {\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 5.07937479019165,\\n      \\\"std\\\": 4.961368560791016,\\n      \\\"per_token_position\\\": [\\n        0.29015398025512695,\\n        3.0104427337646484,\\n        5.949150562286377,\\n        7.421013832092285,\\n        8.960497856140137,\\n        8.479713439941406,\\n        1.4446604251861572\\n      ]\\n    },\\n    \\\"mse_vs_gt_baseline\\\": {\\n      \\\"mean\\\": 0.43176415822445635,\\n      \\\"std\\\": 0.22077793994025996,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"mse_vs_gt_ablated\\\": {\\n      \\\"mean\\\": 0.4357406635106642,\\n      \\\"std\\\": 0.2235285616028443,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"wilcoxon_p\\\": 0.0\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.02242838426504113,\\n        \\\"std\\\": 0.051757195878257986,\\n        \\\"t_stat\\\": 9.680048252096263,\\n        \\\"p_value\\\": 2.0038975148954835e-20,\\n        \\\"cohens_d\\\": 0.4329049183349495\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0014037795379863059,\\n          0.004451050012665628,\\n          0.006329343725828563,\\n          0.019142500603928258,\\n          0.030247070985899276,\\n          0.03025989703622987,\\n          0.15281568627450998\\n        ],\\n        \\\"stds\\\": [\\n          0.00311317121105672,\\n          0.007885665398470972,\\n          0.008240969667318977,\\n          0.019615421748166623,\\n          0.028676831314892466,\\n          0.033095946085946286,\\n          0.3590890901162581\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.664,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.503225326538086,\\n        \\\"std\\\": 4.8421173095703125\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04458787875675457,\\n        \\\"std\\\": 0.0648704634241749,\\n        \\\"t_stat\\\": 15.353948651915177,\\n        \\\"p_value\\\": 7.46250518536467e-44,\\n        \\\"cohens_d\\\": 0.6866494581638973\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0017330280210831573,\\n          0.005302538340663201,\\n          0.007163902512666055,\\n          0.020680235506992665,\\n          0.03485707990039093,\\n          0.03459241025841939,\\n          0.3118901960784321\\n        ],\\n        \\\"stds\\\": [\\n          0.0037620949894889076,\\n          0.00825352063013232,\\n          0.007593216730760563,\\n          0.020277157204501794,\\n          0.03162330967091224,\\n          0.038133676245909076,\\n          0.4570695648337024\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7094285714285714,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 5.153635501861572,\\n        \\\"std\\\": 5.071208477020264\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04681500022487693,\\n        \\\"std\\\": 0.06645561015488266,\\n        \\\"t_stat\\\": 15.736337189550586,\\n        \\\"p_value\\\": 1.3382496765371354e-45,\\n        \\\"cohens_d\\\": 0.7037503934432828\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.002803980288112861,\\n          0.0054708934473395275,\\n          0.007187286787515175,\\n          0.018410671617669166,\\n          0.02898102668941719,\\n          0.02812265279046228,\\n          0.3252549019607852\\n        ],\\n        \\\"stds\\\": [\\n          0.0057296098847649055,\\n          0.007560437193942133,\\n          0.007359340564353495,\\n          0.018759688881726206,\\n          0.028137334353327288,\\n          0.02949191003799571,\\n          0.46658065445606245\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7385714285714285,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 5.972511291503906,\\n        \\\"std\\\": 5.5687432289123535\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04585327669100103,\\n        \\\"std\\\": 0.06512121324514131,\\n        \\\"t_stat\\\": 15.728893275695137,\\n        \\\"p_value\\\": 1.4476730761513222e-45,\\n        \\\"cohens_d\\\": 0.7034174914950824\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0016636890063005333,\\n          0.0052034678355805915,\\n          0.00747777144619647,\\n          0.020320068361922777,\\n          0.028729157559535055,\\n          0.035562712698805565,\\n          0.3252549019607849\\n        ],\\n        \\\"stds\\\": [\\n          0.00306018861719437,\\n          0.008431160867942903,\\n          0.008048276555242978,\\n          0.021654913911754142,\\n          0.026055373152750017,\\n          0.03568682198764817,\\n          0.4582868723436793\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7365714285714285,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.935613632202148,\\n        \\\"std\\\": 4.755918502807617\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.048542862210683366,\\n        \\\"std\\\": 0.06656781244085376,\\n        \\\"t_stat\\\": 16.28963552846279,\\n        \\\"p_value\\\": 3.759600472033675e-48,\\n        \\\"cohens_d\\\": 0.7284946473958375\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0018493386265249795,\\n          0.00610222509737575,\\n          0.009948190171367981,\\n          0.024407071426545815,\\n          0.030753488704492044,\\n          0.04087197555367618,\\n          0.338368627450981\\n        ],\\n        \\\"stds\\\": [\\n          0.003264664633536739,\\n          0.0077321877439992396,\\n          0.010677892843435068,\\n          0.024496624444718028,\\n          0.027718819464147733,\\n          0.048263969493824666,\\n          0.46698264708631304\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7665714285714286,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.831889629364014,\\n        \\\"std\\\": 4.366452693939209\\n      },\\n      \\\"n_samples\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "d99493a7-4f28-4e09-aa7e-d9883022d3f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_tasks\\\\\\\": 5,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"total_forward_passes\\\\\\\": 5000,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n    \\\\\\\"ablation\\\\\\\": \\\\\\\"L1_dominant_24_heads_zeroed\\\\\\\",\\\\n    \\\\\\\"ablated_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\"\\\\n  },\\\\n  \\\\\\\"main_metrics\\\\\\\": {\\\\n    \\\\\\\"paired_action_mse\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.04164548042967141,\\\\n      \\\\\\\"std\\\\\\\": 0.06394581517413622,\\\\n      \\\\\\\"t_stat\\\\\\\": 32.55658746950337,\\\\n      \\\\\\\"p_value\\\\\\\": 3.9875267301509806e-194,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.6511317493798869\\\\n    },\\\\n    \\\\\\\"per_dim_action_shift\\\\\\\": {\\\\n      \\\\\\\"means\\\\\\\": [\\\\n        0.0018907630960015738,\\\\n        0.0053060349467249435,\\\\n        0.007621298928714849,\\\\n        0.02059210950341174,\\\\n        0.030713564767946917,\\\\n        0.033881929667518705,\\\\n        0.2907168627450989\\\\n      ],\\\\n      \\\\\\\"stds\\\\\\\": [\\\\n        0.003945774709271799,\\\\n        0.007996728850961761,\\\\n        0.00855598404937074,\\\\n        0.02115830546884926,\\\\n        0.02858547485740179,\\\\n        0.037737860644735575,\\\\n        0.44894904084862064\\\\n      ],\\\\n      \\\\\\\"dim_names\\\\\\\": [\\\\n        \\\\\\\"dx\\\\\\\",\\\\n        \\\\\\\"dy\\\\\\\",\\\\n        \\\\\\\"dz\\\\\\\",\\\\n        \\\\\\\"rx\\\\\\\",\\\\n        \\\\\\\"ry\\\\\\\",\\\\n        \\\\\\\"rz\\\\\\\",\\\\n        \\\\\\\"gripper\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"token_divergence_rate\\\\\\\": 0.7230285714285715\\\\n  },\\\\n  \\\\\\\"secondary_metrics\\\\\\\": {\\\\n    \\\\\\\"kl_divergence\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 5.07937479019165,\\\\n      \\\\\\\"std\\\\\\\": 4.961368560791016,\\\\n      \\\\\\\"per_token_position\\\\\\\": [\\\\n        0.29015398025512695,\\\\n        3.0104427337646484,\\\\n        5.949150562286377,\\\\n        7.421013832092285,\\\\n        8.960497856140137,\\\\n        8.479713439941406,\\\\n        1.4446604251861572\\\\n      ]\\\\n    },\\\\n    \\\\\\\"mse_vs_gt_baseline\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.43176415822445635,\\\\n      \\\\\\\"std\\\\\\\": 0.22077793994025996,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"OOD, secondary\\\\\\\"\\\\n    },\\\\n    \\\\\\\"mse_vs_gt_ablated\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4357406635106642,\\\\n      \\\\\\\"std\\\\\\\": 0.2235285616028443,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"OOD, secondary\\\\\\\"\\\\n    },\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.02242838426504113,\\\\n        \\\\\\\"std\\\\\\\": 0.051757195878257986,\\\\n        \\\\\\\"t_stat\\\\\\\": 9.680048252096263,\\\\n        \\\\\\\"p_value\\\\\\\": 2.0038975148954835e-20,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.4329049183349495\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0014037795379863059,\\\\n          0.004451050012665628,\\\\n          0.006329343725828563,\\\\n          0.019142500603928258,\\\\n          0.030247070985899276,\\\\n          0.03025989703622987,\\\\n          0.15281568627450998\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.00311317121105672,\\\\n          0.007885665398470972,\\\\n          0.008240969667318977,\\\\n          0.019615421748166623,\\\\n          0.028676831314892466,\\\\n          0.033095946085946286,\\\\n          0.3590890901162581\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.664,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 4.503225326538086,\\\\n        \\\\\\\"std\\\\\\\": 4.8421173095703125\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04458787875675457,\\\\n        \\\\\\\"std\\\\\\\": 0.0648704634241749,\\\\n        \\\\\\\"t_stat\\\\\\\": 15.353948651915177,\\\\n        \\\\\\\"p_value\\\\\\\": 7.46250518536467e-44,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.6866494581638973\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0017330280210831573,\\\\n          0.005302538340663201,\\\\n          0.007163902512666055,\\\\n          0.020680235506992665,\\\\n          0.03485707990039093,\\\\n          0.03459241025841939,\\\\n          0.3118901960784321\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.0037620949894889076,\\\\n          0.00825352063013232,\\\\n          0.007593216730760563,\\\\n          0.020277157204501794,\\\\n          0.03162330967091224,\\\\n          0.038133676245909076,\\\\n          0.4570695648337024\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7094285714285714,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 5.153635501861572,\\\\n        \\\\\\\"std\\\\\\\": 5.071208477020264\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04681500022487693,\\\\n        \\\\\\\"std\\\\\\\": 0.06645561015488266,\\\\n        \\\\\\\"t_stat\\\\\\\": 15.736337189550586,\\\\n        \\\\\\\"p_value\\\\\\\": 1.3382496765371354e-45,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.7037503934432828\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.002803980288112861,\\\\n          0.0054708934473395275,\\\\n          0.007187286787515175,\\\\n          0.018410671617669166,\\\\n          0.02898102668941719,\\\\n          0.02812265279046228,\\\\n          0.3252549019607852\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.0057296098847649055,\\\\n          0.007560437193942133,\\\\n          0.007359340564353495,\\\\n          0.018759688881726206,\\\\n          0.028137334353327288,\\\\n          0.02949191003799571,\\\\n          0.46658065445606245\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7385714285714285,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 5.972511291503906,\\\\n        \\\\\\\"std\\\\\\\": 5.5687432289123535\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04585327669100103,\\\\n        \\\\\\\"std\\\\\\\": 0.06512121324514131,\\\\n        \\\\\\\"t_stat\\\\\\\": 15.728893275695137,\\\\n        \\\\\\\"p_value\\\\\\\": 1.4476730761513222e-45,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.7034174914950824\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0016636890063005333,\\\\n          0.0052034678355805915,\\\\n          0.00747777144619647,\\\\n          0.020320068361922777,\\\\n          0.028729157559535055,\\\\n          0.035562712698805565,\\\\n          0.3252549019607849\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.00306018861719437,\\\\n          0.008431160867942903,\\\\n          0.008048276555242978,\\\\n          0.021654913911754142,\\\\n          0.026055373152750017,\\\\n          0.03568682198764817,\\\\n          0.4582868723436793\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7365714285714285,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 4.935613632202148,\\\\n        \\\\\\\"std\\\\\\\": 4.755918502807617\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.048542862210683366,\\\\n        \\\\\\\"std\\\\\\\": 0.06656781244085376,\\\\n        \\\\\\\"t_stat\\\\\\\": 16.28963552846279,\\\\n        \\\\\\\"p_value\\\\\\\": 3.759600472033675e-48,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.7284946473958375\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0018493386265249795,\\\\n          0.00610222509737575,\\\\n          0.009948190171367981,\\\\n          0.024407071426545815,\\\\n          0.030753488704492044,\\\\n          0.04087197555367618,\\\\n          0.338368627450981\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.003264664633536739,\\\\n          0.0077321877439992396,\\\\n          0.010677892843435068,\\\\n          0.024496624444718028,\\\\n          0.027718819464147733,\\\\n          0.048263969493824666,\\\\n          0.46698264708631304\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7665714285714286,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 4.831889629364014,\\\\n        \\\\\\\"std\\\\\\\": 4.366452693939209\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 5,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 5000,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"ablation\\\": \\\"L1_dominant_24_heads_zeroed\\\",\\n    \\\"ablated_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\"\\n  },\\n  \\\"main_metrics\\\": {\\n    \\\"paired_action_mse\\\": {\\n      \\\"mean\\\": 0.04164548042967141,\\n      \\\"std\\\": 0.06394581517413622,\\n      \\\"t_stat\\\": 32.55658746950337,\\n      \\\"p_value\\\": 3.9875267301509806e-194,\\n      \\\"cohens_d\\\": 0.6511317493798869\\n    },\\n    \\\"per_dim_action_shift\\\": {\\n      \\\"means\\\": [\\n        0.0018907630960015738,\\n        0.0053060349467249435,\\n        0.007621298928714849,\\n        0.02059210950341174,\\n        0.030713564767946917,\\n        0.033881929667518705,\\n        0.2907168627450989\\n      ],\\n      \\\"stds\\\": [\\n        0.003945774709271799,\\n        0.007996728850961761,\\n        0.00855598404937074,\\n        0.02115830546884926,\\n        0.02858547485740179,\\n        0.037737860644735575,\\n        0.44894904084862064\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.7230285714285715\\n  },\\n  \\\"secondary_metrics\\\": {\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 5.07937479019165,\\n      \\\"std\\\": 4.961368560791016,\\n      \\\"per_token_position\\\": [\\n        0.29015398025512695,\\n        3.0104427337646484,\\n        5.949150562286377,\\n        7.421013832092285,\\n        8.960497856140137,\\n        8.479713439941406,\\n        1.4446604251861572\\n      ]\\n    },\\n    \\\"mse_vs_gt_baseline\\\": {\\n      \\\"mean\\\": 0.43176415822445635,\\n      \\\"std\\\": 0.22077793994025996,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"mse_vs_gt_ablated\\\": {\\n      \\\"mean\\\": 0.4357406635106642,\\n      \\\"std\\\": 0.2235285616028443,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"wilcoxon_p\\\": 0.0\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.02242838426504113,\\n        \\\"std\\\": 0.051757195878257986,\\n        \\\"t_stat\\\": 9.680048252096263,\\n        \\\"p_value\\\": 2.0038975148954835e-20,\\n        \\\"cohens_d\\\": 0.4329049183349495\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0014037795379863059,\\n          0.004451050012665628,\\n          0.006329343725828563,\\n          0.019142500603928258,\\n          0.030247070985899276,\\n          0.03025989703622987,\\n          0.15281568627450998\\n        ],\\n        \\\"stds\\\": [\\n          0.00311317121105672,\\n          0.007885665398470972,\\n          0.008240969667318977,\\n          0.019615421748166623,\\n          0.028676831314892466,\\n          0.033095946085946286,\\n          0.3590890901162581\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.664,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.503225326538086,\\n        \\\"std\\\": 4.8421173095703125\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04458787875675457,\\n        \\\"std\\\": 0.0648704634241749,\\n        \\\"t_stat\\\": 15.353948651915177,\\n        \\\"p_value\\\": 7.46250518536467e-44,\\n        \\\"cohens_d\\\": 0.6866494581638973\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0017330280210831573,\\n          0.005302538340663201,\\n          0.007163902512666055,\\n          0.020680235506992665,\\n          0.03485707990039093,\\n          0.03459241025841939,\\n          0.3118901960784321\\n        ],\\n        \\\"stds\\\": [\\n          0.0037620949894889076,\\n          0.00825352063013232,\\n          0.007593216730760563,\\n          0.020277157204501794,\\n          0.03162330967091224,\\n          0.038133676245909076,\\n          0.4570695648337024\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7094285714285714,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 5.153635501861572,\\n        \\\"std\\\": 5.071208477020264\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04681500022487693,\\n        \\\"std\\\": 0.06645561015488266,\\n        \\\"t_stat\\\": 15.736337189550586,\\n        \\\"p_value\\\": 1.3382496765371354e-45,\\n        \\\"cohens_d\\\": 0.7037503934432828\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.002803980288112861,\\n          0.0054708934473395275,\\n          0.007187286787515175,\\n          0.018410671617669166,\\n          0.02898102668941719,\\n          0.02812265279046228,\\n          0.3252549019607852\\n        ],\\n        \\\"stds\\\": [\\n          0.0057296098847649055,\\n          0.007560437193942133,\\n          0.007359340564353495,\\n          0.018759688881726206,\\n          0.028137334353327288,\\n          0.02949191003799571,\\n          0.46658065445606245\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7385714285714285,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 5.972511291503906,\\n        \\\"std\\\": 5.5687432289123535\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04585327669100103,\\n        \\\"std\\\": 0.06512121324514131,\\n        \\\"t_stat\\\": 15.728893275695137,\\n        \\\"p_value\\\": 1.4476730761513222e-45,\\n        \\\"cohens_d\\\": 0.7034174914950824\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0016636890063005333,\\n          0.0052034678355805915,\\n          0.00747777144619647,\\n          0.020320068361922777,\\n          0.028729157559535055,\\n          0.035562712698805565,\\n          0.3252549019607849\\n        ],\\n        \\\"stds\\\": [\\n          0.00306018861719437,\\n          0.008431160867942903,\\n          0.008048276555242978,\\n          0.021654913911754142,\\n          0.026055373152750017,\\n          0.03568682198764817,\\n          0.4582868723436793\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7365714285714285,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.935613632202148,\\n        \\\"std\\\": 4.755918502807617\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.048542862210683366,\\n        \\\"std\\\": 0.06656781244085376,\\n        \\\"t_stat\\\": 16.28963552846279,\\n        \\\"p_value\\\": 3.759600472033675e-48,\\n        \\\"cohens_d\\\": 0.7284946473958375\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0018493386265249795,\\n          0.00610222509737575,\\n          0.009948190171367981,\\n          0.024407071426545815,\\n          0.030753488704492044,\\n          0.04087197555367618,\\n          0.338368627450981\\n        ],\\n        \\\"stds\\\": [\\n          0.003264664633536739,\\n          0.0077321877439992396,\\n          0.010677892843435068,\\n          0.024496624444718028,\\n          0.027718819464147733,\\n          0.048263969493824666,\\n          0.46698264708631304\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7665714285714286,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.831889629364014,\\n        \\\"std\\\": 4.366452693939209\\n      },\\n      \\\"n_samples\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RCWmRnzDGJTcDqcyx4owit`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "d4c48dc3-6cff-4fdf-9e8c-5d64d5237291",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYDmPh1Hnd4S2ir6bdhdfJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1222,
+      "cache_read_input_tokens": 24794,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1222
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T15:08:16.654Z_
+
+<details><summary>↩ Tool result · `toolu_01EHEDw9yMZkXFfZFwrZadrQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 5,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 5000,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"ablation\\\": \\\"L1_non_instruction_8_heads_zeroed\\\",\\n    \\\"ablated_heads\\\": [\\n      3,\\n      5,\\n      6,\\n      9,\\n      13,\\n      21,\\n      24,\\n      28\\n    ],\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\"\\n  },\\n  \\\"main_metrics\\\": {\\n    \\\"paired_action_mse\\\": {\\n      \\\"mean\\\": 0.020093372221880637,\\n      \\\"std\\\": 0.04889599971931895,\\n      \\\"t_stat\\\": 20.54294140707697,\\n      \\\"p_value\\\": 8.851982198642056e-87,\\n      \\\"cohens_d\\\": 0.41085882813313845\\n    },\\n    \\\"per_dim_action_shift\\\": {\\n      \\\"means\\\": [\\n        0.00037120977075240174,\\n        0.001246604812974087,\\n        0.002426664148676048,\\n        0.007850111136374748,\\n        0.013872630138848839,\\n        0.01783035501084426,\\n        0.1407215686274514\\n      ],\\n      \\\"stds\\\": [\\n        0.0018871390276948216,\\n        0.004219931004787625,\\n        0.00600886986156851,\\n        0.01622055322496688,\\n        0.02414395054091184,\\n        0.030538640156342656,\\n        0.3441443717682476\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.2925142857142857\\n  },\\n  \\\"secondary_metrics\\\": {\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 1.691450834274292,\\n      \\\"std\\\": 3.701838731765747,\\n      \\\"per_token_position\\\": [\\n        0.011307689361274242,\\n        0.5246278047561646,\\n        1.4290825128555298,\\n        2.279294490814209,\\n        3.3201327323913574,\\n        3.7208805084228516,\\n        0.5548322200775146\\n      ]\\n    },\\n    \\\"mse_vs_gt_baseline\\\": {\\n      \\\"mean\\\": 0.433760356962498,\\n      \\\"std\\\": 0.2198284309697211,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"mse_vs_gt_ablated\\\": {\\n      \\\"mean\\\": 0.43652462814657594,\\n      \\\"std\\\": 0.21984099172631003,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"wilcoxon_p\\\": 8.000159982427838e-235\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.007133332455020577,\\n        \\\"std\\\": 0.02994118270760059,\\n        \\\"t_stat\\\": 5.32198672028994,\\n        \\\"p_value\\\": 1.5536368760852971e-07,\\n        \\\"cohens_d\\\": 0.2380064816304481\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0001963859838036929,\\n          0.0008288251405603735,\\n          0.0015771394259351129,\\n          0.006503443626581443,\\n          0.012518431646908034,\\n          0.014954262528078223,\\n          0.04988235294117647\\n        ],\\n        \\\"stds\\\": [\\n          0.0011179039872916045,\\n          0.0036641602615599443,\\n          0.004722199124961375,\\n          0.013953278698035776,\\n          0.0245548925646996,\\n          0.02645160097622669,\\n          0.2132719634911738\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.2397142857142857,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.2619584798812866,\\n        \\\"std\\\": 3.1675429344177246\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.025767534875524224,\\n        \\\"std\\\": 0.054102494165005094,\\n        \\\"t_stat\\\": 10.639123701265728,\\n        \\\"p_value\\\": 5.797907817194421e-24,\\n        \\\"cohens_d\\\": 0.47579607633240106\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0006012363604377296,\\n          0.0014361985638772722,\\n          0.0024828903384243733,\\n          0.008245528682877023,\\n          0.015598469570307168,\\n          0.01723012140818669,\\n          0.18109803921568668\\n        ],\\n        \\\"stds\\\": [\\n          0.0027029498679715077,\\n          0.004511426732047961,\\n          0.005765585894804657,\\n          0.016412794212901156,\\n          0.026270179147011234,\\n          0.027999205853874342,\\n          0.380992281812193\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.30428571428571427,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.8625798225402832,\\n        \\\"std\\\": 3.9057505130767822\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.021266135590629908,\\n        \\\"std\\\": 0.05042171648275438,\\n        \\\"t_stat\\\": 9.421525443457744,\\n        \\\"p_value\\\": 1.6524961937762348e-19,\\n        \\\"cohens_d\\\": 0.42134342685795934\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.00042855984620486954,\\n          0.0014226006514149539,\\n          0.002402344502832959,\\n          0.007612043207860453,\\n          0.014364578779767542,\\n          0.016453234736648253,\\n          0.14741960784313757\\n        ],\\n        \\\"stds\\\": [\\n          0.0022126452881866708,\\n          0.004209957939699607,\\n          0.005451413455208746,\\n          0.014859603331756701,\\n          0.023226430875984257,\\n          0.025804516474419663,\\n          0.3537074369550698\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.3062857142857143,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.9873331785202026,\\n        \\\"std\\\": 4.2078471183776855\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.022709678208836997,\\n        \\\"std\\\": 0.05126131732750677,\\n        \\\"t_stat\\\": 9.896268973768173,\\n        \\\"p_value\\\": 3.333775566953047e-21,\\n        \\\"cohens_d\\\": 0.4425746029707292\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.00027780340761296874,\\n          0.0008599060833313877,\\n          0.002564475475120192,\\n          0.007365545835525372,\\n          0.013181597706970046,\\n          0.01896119253937402,\\n          0.1611764705882354\\n        ],\\n        \\\"stds\\\": [\\n          0.0013829406987154746,\\n          0.0030996120667191275,\\n          0.006155639165535401,\\n          0.01585197265890449,\\n          0.021339857549586397,\\n          0.033096785195496796,\\n          0.3613080171760149\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.29942857142857143,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.6783169507980347,\\n        \\\"std\\\": 3.653597116470337\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.023590179979391477,\\n        \\\"std\\\": 0.052343678230777804,\\n        \\\"t_stat\\\": 10.067399191163961,\\n        \\\"p_value\\\": 7.915776276802366e-22,\\n        \\\"cohens_d\\\": 0.4502277789527875\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0003520632557027477,\\n          0.0016854936256864468,\\n          0.0031064710010675805,\\n          0.009523994329029423,\\n          0.01370007299029126,\\n          0.021552963841933816,\\n          0.1640313725490198\\n        ],\\n        \\\"stds\\\": [\\n          0.001531875037613679,\\n          0.005229252962801645,\\n          0.007495002547156565,\\n          0.019346882248412398,\\n          0.024923249693831282,\\n          0.03731574025746046,\\n          0.36741750566337644\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.31285714285714283,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.6670658588409424,\\n        \\\"std\\\": 3.4457249641418457\\n      },\\n      \\\"n_samples\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "067ff0c7-9ade-4e92-86ab-dcd781256672",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_tasks\\\\\\\": 5,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"total_forward_passes\\\\\\\": 5000,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n    \\\\\\\"ablation\\\\\\\": \\\\\\\"L1_non_instruction_8_heads_zeroed\\\\\\\",\\\\n    \\\\\\\"ablated_heads\\\\\\\": [\\\\n      3,\\\\n      5,\\\\n      6,\\\\n      9,\\\\n      13,\\\\n      21,\\\\n      24,\\\\n      28\\\\n    ],\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\"\\\\n  },\\\\n  \\\\\\\"main_metrics\\\\\\\": {\\\\n    \\\\\\\"paired_action_mse\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.020093372221880637,\\\\n      \\\\\\\"std\\\\\\\": 0.04889599971931895,\\\\n      \\\\\\\"t_stat\\\\\\\": 20.54294140707697,\\\\n      \\\\\\\"p_value\\\\\\\": 8.851982198642056e-87,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.41085882813313845\\\\n    },\\\\n    \\\\\\\"per_dim_action_shift\\\\\\\": {\\\\n      \\\\\\\"means\\\\\\\": [\\\\n        0.00037120977075240174,\\\\n        0.001246604812974087,\\\\n        0.002426664148676048,\\\\n        0.007850111136374748,\\\\n        0.013872630138848839,\\\\n        0.01783035501084426,\\\\n        0.1407215686274514\\\\n      ],\\\\n      \\\\\\\"stds\\\\\\\": [\\\\n        0.0018871390276948216,\\\\n        0.004219931004787625,\\\\n        0.00600886986156851,\\\\n        0.01622055322496688,\\\\n        0.02414395054091184,\\\\n        0.030538640156342656,\\\\n        0.3441443717682476\\\\n      ],\\\\n      \\\\\\\"dim_names\\\\\\\": [\\\\n        \\\\\\\"dx\\\\\\\",\\\\n        \\\\\\\"dy\\\\\\\",\\\\n        \\\\\\\"dz\\\\\\\",\\\\n        \\\\\\\"rx\\\\\\\",\\\\n        \\\\\\\"ry\\\\\\\",\\\\n        \\\\\\\"rz\\\\\\\",\\\\n        \\\\\\\"gripper\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"token_divergence_rate\\\\\\\": 0.2925142857142857\\\\n  },\\\\n  \\\\\\\"secondary_metrics\\\\\\\": {\\\\n    \\\\\\\"kl_divergence\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 1.691450834274292,\\\\n      \\\\\\\"std\\\\\\\": 3.701838731765747,\\\\n      \\\\\\\"per_token_position\\\\\\\": [\\\\n        0.011307689361274242,\\\\n        0.5246278047561646,\\\\n        1.4290825128555298,\\\\n        2.279294490814209,\\\\n        3.3201327323913574,\\\\n        3.7208805084228516,\\\\n        0.5548322200775146\\\\n      ]\\\\n    },\\\\n    \\\\\\\"mse_vs_gt_baseline\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.433760356962498,\\\\n      \\\\\\\"std\\\\\\\": 0.2198284309697211,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"OOD, secondary\\\\\\\"\\\\n    },\\\\n    \\\\\\\"mse_vs_gt_ablated\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.43652462814657594,\\\\n      \\\\\\\"std\\\\\\\": 0.21984099172631003,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"OOD, secondary\\\\\\\"\\\\n    },\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 8.000159982427838e-235\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.007133332455020577,\\\\n        \\\\\\\"std\\\\\\\": 0.02994118270760059,\\\\n        \\\\\\\"t_stat\\\\\\\": 5.32198672028994,\\\\n        \\\\\\\"p_value\\\\\\\": 1.5536368760852971e-07,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.2380064816304481\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0001963859838036929,\\\\n          0.0008288251405603735,\\\\n          0.0015771394259351129,\\\\n          0.006503443626581443,\\\\n          0.012518431646908034,\\\\n          0.014954262528078223,\\\\n          0.04988235294117647\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.0011179039872916045,\\\\n          0.0036641602615599443,\\\\n          0.004722199124961375,\\\\n          0.013953278698035776,\\\\n          0.0245548925646996,\\\\n          0.02645160097622669,\\\\n          0.2132719634911738\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.2397142857142857,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.2619584798812866,\\\\n        \\\\\\\"std\\\\\\\": 3.1675429344177246\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.025767534875524224,\\\\n        \\\\\\\"std\\\\\\\": 0.054102494165005094,\\\\n        \\\\\\\"t_stat\\\\\\\": 10.639123701265728,\\\\n        \\\\\\\"p_value\\\\\\\": 5.797907817194421e-24,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.47579607633240106\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0006012363604377296,\\\\n          0.0014361985638772722,\\\\n          0.0024828903384243733,\\\\n          0.008245528682877023,\\\\n          0.015598469570307168,\\\\n          0.01723012140818669,\\\\n          0.18109803921568668\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.0027029498679715077,\\\\n          0.004511426732047961,\\\\n          0.005765585894804657,\\\\n          0.016412794212901156,\\\\n          0.026270179147011234,\\\\n          0.027999205853874342,\\\\n          0.380992281812193\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.30428571428571427,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.8625798225402832,\\\\n        \\\\\\\"std\\\\\\\": 3.9057505130767822\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.021266135590629908,\\\\n        \\\\\\\"std\\\\\\\": 0.05042171648275438,\\\\n        \\\\\\\"t_stat\\\\\\\": 9.421525443457744,\\\\n        \\\\\\\"p_value\\\\\\\": 1.6524961937762348e-19,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.42134342685795934\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.00042855984620486954,\\\\n          0.0014226006514149539,\\\\n          0.002402344502832959,\\\\n          0.007612043207860453,\\\\n          0.014364578779767542,\\\\n          0.016453234736648253,\\\\n          0.14741960784313757\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.0022126452881866708,\\\\n          0.004209957939699607,\\\\n          0.005451413455208746,\\\\n          0.014859603331756701,\\\\n          0.023226430875984257,\\\\n          0.025804516474419663,\\\\n          0.3537074369550698\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.3062857142857143,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.9873331785202026,\\\\n        \\\\\\\"std\\\\\\\": 4.2078471183776855\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.022709678208836997,\\\\n        \\\\\\\"std\\\\\\\": 0.05126131732750677,\\\\n        \\\\\\\"t_stat\\\\\\\": 9.896268973768173,\\\\n        \\\\\\\"p_value\\\\\\\": 3.333775566953047e-21,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.4425746029707292\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.00027780340761296874,\\\\n          0.0008599060833313877,\\\\n          0.002564475475120192,\\\\n          0.007365545835525372,\\\\n          0.013181597706970046,\\\\n          0.01896119253937402,\\\\n          0.1611764705882354\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.0013829406987154746,\\\\n          0.0030996120667191275,\\\\n          0.006155639165535401,\\\\n          0.01585197265890449,\\\\n          0.021339857549586397,\\\\n          0.033096785195496796,\\\\n          0.3613080171760149\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.29942857142857143,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.6783169507980347,\\\\n        \\\\\\\"std\\\\\\\": 3.653597116470337\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.023590179979391477,\\\\n        \\\\\\\"std\\\\\\\": 0.052343678230777804,\\\\n        \\\\\\\"t_stat\\\\\\\": 10.067399191163961,\\\\n        \\\\\\\"p_value\\\\\\\": 7.915776276802366e-22,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.4502277789527875\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0003520632557027477,\\\\n          0.0016854936256864468,\\\\n          0.0031064710010675805,\\\\n          0.009523994329029423,\\\\n          0.01370007299029126,\\\\n          0.021552963841933816,\\\\n          0.1640313725490198\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.001531875037613679,\\\\n          0.005229252962801645,\\\\n          0.007495002547156565,\\\\n          0.019346882248412398,\\\\n          0.024923249693831282,\\\\n          0.03731574025746046,\\\\n          0.36741750566337644\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.31285714285714283,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.6670658588409424,\\\\n        \\\\\\\"std\\\\\\\": 3.4457249641418457\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 5,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 5000,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"ablation\\\": \\\"L1_non_instruction_8_heads_zeroed\\\",\\n    \\\"ablated_heads\\\": [\\n      3,\\n      5,\\n      6,\\n      9,\\n      13,\\n      21,\\n      24,\\n      28\\n    ],\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\"\\n  },\\n  \\\"main_metrics\\\": {\\n    \\\"paired_action_mse\\\": {\\n      \\\"mean\\\": 0.020093372221880637,\\n      \\\"std\\\": 0.04889599971931895,\\n      \\\"t_stat\\\": 20.54294140707697,\\n      \\\"p_value\\\": 8.851982198642056e-87,\\n      \\\"cohens_d\\\": 0.41085882813313845\\n    },\\n    \\\"per_dim_action_shift\\\": {\\n      \\\"means\\\": [\\n        0.00037120977075240174,\\n        0.001246604812974087,\\n        0.002426664148676048,\\n        0.007850111136374748,\\n        0.013872630138848839,\\n        0.01783035501084426,\\n        0.1407215686274514\\n      ],\\n      \\\"stds\\\": [\\n        0.0018871390276948216,\\n        0.004219931004787625,\\n        0.00600886986156851,\\n        0.01622055322496688,\\n        0.02414395054091184,\\n        0.030538640156342656,\\n        0.3441443717682476\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.2925142857142857\\n  },\\n  \\\"secondary_metrics\\\": {\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 1.691450834274292,\\n      \\\"std\\\": 3.701838731765747,\\n      \\\"per_token_position\\\": [\\n        0.011307689361274242,\\n        0.5246278047561646,\\n        1.4290825128555298,\\n        2.279294490814209,\\n        3.3201327323913574,\\n        3.7208805084228516,\\n        0.5548322200775146\\n      ]\\n    },\\n    \\\"mse_vs_gt_baseline\\\": {\\n      \\\"mean\\\": 0.433760356962498,\\n      \\\"std\\\": 0.2198284309697211,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"mse_vs_gt_ablated\\\": {\\n      \\\"mean\\\": 0.43652462814657594,\\n      \\\"std\\\": 0.21984099172631003,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"wilcoxon_p\\\": 8.000159982427838e-235\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.007133332455020577,\\n        \\\"std\\\": 0.02994118270760059,\\n        \\\"t_stat\\\": 5.32198672028994,\\n        \\\"p_value\\\": 1.5536368760852971e-07,\\n        \\\"cohens_d\\\": 0.2380064816304481\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0001963859838036929,\\n          0.0008288251405603735,\\n          0.0015771394259351129,\\n          0.006503443626581443,\\n          0.012518431646908034,\\n          0.014954262528078223,\\n          0.04988235294117647\\n        ],\\n        \\\"stds\\\": [\\n          0.0011179039872916045,\\n          0.0036641602615599443,\\n          0.004722199124961375,\\n          0.013953278698035776,\\n          0.0245548925646996,\\n          0.02645160097622669,\\n          0.2132719634911738\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.2397142857142857,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.2619584798812866,\\n        \\\"std\\\": 3.1675429344177246\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.025767534875524224,\\n        \\\"std\\\": 0.054102494165005094,\\n        \\\"t_stat\\\": 10.639123701265728,\\n        \\\"p_value\\\": 5.797907817194421e-24,\\n        \\\"cohens_d\\\": 0.47579607633240106\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0006012363604377296,\\n          0.0014361985638772722,\\n          0.0024828903384243733,\\n          0.008245528682877023,\\n          0.015598469570307168,\\n          0.01723012140818669,\\n          0.18109803921568668\\n        ],\\n        \\\"stds\\\": [\\n          0.0027029498679715077,\\n          0.004511426732047961,\\n          0.005765585894804657,\\n          0.016412794212901156,\\n          0.026270179147011234,\\n          0.027999205853874342,\\n          0.380992281812193\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.30428571428571427,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.8625798225402832,\\n        \\\"std\\\": 3.9057505130767822\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.021266135590629908,\\n        \\\"std\\\": 0.05042171648275438,\\n        \\\"t_stat\\\": 9.421525443457744,\\n        \\\"p_value\\\": 1.6524961937762348e-19,\\n        \\\"cohens_d\\\": 0.42134342685795934\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.00042855984620486954,\\n          0.0014226006514149539,\\n          0.002402344502832959,\\n          0.007612043207860453,\\n          0.014364578779767542,\\n          0.016453234736648253,\\n          0.14741960784313757\\n        ],\\n        \\\"stds\\\": [\\n          0.0022126452881866708,\\n          0.004209957939699607,\\n          0.005451413455208746,\\n          0.014859603331756701,\\n          0.023226430875984257,\\n          0.025804516474419663,\\n          0.3537074369550698\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.3062857142857143,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.9873331785202026,\\n        \\\"std\\\": 4.2078471183776855\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.022709678208836997,\\n        \\\"std\\\": 0.05126131732750677,\\n        \\\"t_stat\\\": 9.896268973768173,\\n        \\\"p_value\\\": 3.333775566953047e-21,\\n        \\\"cohens_d\\\": 0.4425746029707292\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.00027780340761296874,\\n          0.0008599060833313877,\\n          0.002564475475120192,\\n          0.007365545835525372,\\n          0.013181597706970046,\\n          0.01896119253937402,\\n          0.1611764705882354\\n        ],\\n        \\\"stds\\\": [\\n          0.0013829406987154746,\\n          0.0030996120667191275,\\n          0.006155639165535401,\\n          0.01585197265890449,\\n          0.021339857549586397,\\n          0.033096785195496796,\\n          0.3613080171760149\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.29942857142857143,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.6783169507980347,\\n        \\\"std\\\": 3.653597116470337\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.023590179979391477,\\n        \\\"std\\\": 0.052343678230777804,\\n        \\\"t_stat\\\": 10.067399191163961,\\n        \\\"p_value\\\": 7.915776276802366e-22,\\n        \\\"cohens_d\\\": 0.4502277789527875\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0003520632557027477,\\n          0.0016854936256864468,\\n          0.0031064710010675805,\\n          0.009523994329029423,\\n          0.01370007299029126,\\n          0.021552963841933816,\\n          0.1640313725490198\\n        ],\\n        \\\"stds\\\": [\\n          0.001531875037613679,\\n          0.005229252962801645,\\n          0.007495002547156565,\\n          0.019346882248412398,\\n          0.024923249693831282,\\n          0.03731574025746046,\\n          0.36741750566337644\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.31285714285714283,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 1.6670658588409424,\\n        \\\"std\\\": 3.4457249641418457\\n      },\\n      \\\"n_samples\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T15:08:17.184Z_
+
+<details><summary>↩ Tool result · `toolu_01RCWmRnzDGJTcDqcyx4owit`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"temporal_coherence_proxy\\\": {\\n    \\\"method\\\": \\\"proxy (per-dim CV + cross-task I^2)\\\",\\n    \\\"note\\\": \\\"Exact within-demo autocorrelation requires per-timestep trajectory data not saved in JSON. These are indirect proxies.\\\",\\n    \\\"per_dim_cv\\\": [\\n      {\\n        \\\"dim\\\": \\\"dx\\\",\\n        \\\"inst_mean_shift\\\": 0.0018907630960015738,\\n        \\\"inst_std_shift\\\": 0.003945774709271799,\\n        \\\"inst_cv\\\": 2.0868689036802075,\\n        \\\"ctrl_mean_shift\\\": 0.00037120977075240174,\\n        \\\"ctrl_std_shift\\\": 0.0018871390276948216,\\n        \\\"ctrl_cv\\\": 5.083753651930542\\n      },\\n      {\\n        \\\"dim\\\": \\\"dy\\\",\\n        \\\"inst_mean_shift\\\": 0.0053060349467249435,\\n        \\\"inst_std_shift\\\": 0.007996728850961761,\\n        \\\"inst_cv\\\": 1.5071006752222016,\\n        \\\"ctrl_mean_shift\\\": 0.001246604812974087,\\n        \\\"ctrl_std_shift\\\": 0.004219931004787625,\\n        \\\"ctrl_cv\\\": 3.385139348788431\\n      },\\n      {\\n        \\\"dim\\\": \\\"dz\\\",\\n        \\\"inst_mean_shift\\\": 0.007621298928714849,\\n        \\\"inst_std_shift\\\": 0.00855598404937074,\\n        \\\"inst_cv\\\": 1.1226411835303123,\\n        \\\"ctrl_mean_shift\\\": 0.002426664148676048,\\n        \\\"ctrl_std_shift\\\": 0.00600886986156851,\\n        \\\"ctrl_cv\\\": 2.476185204634461\\n      },\\n      {\\n        \\\"dim\\\": \\\"rx\\\",\\n        \\\"inst_mean_shift\\\": 0.02059210950341174,\\n        \\\"inst_std_shift\\\": 0.02115830546884926,\\n        \\\"inst_cv\\\": 1.027495772851427,\\n        \\\"ctrl_mean_shift\\\": 0.007850111136374748,\\n        \\\"ctrl_std_shift\\\": 0.01622055322496688,\\n        \\\"ctrl_cv\\\": 2.066283259329457\\n      },\\n      {\\n        \\\"dim\\\": \\\"ry\\\",\\n        \\\"inst_mean_shift\\\": 0.030713564767946917,\\n        \\\"inst_std_shift\\\": 0.02858547485740179,\\n        \\\"inst_cv\\\": 0.9307117253687847,\\n        \\\"ctrl_mean_shift\\\": 0.013872630138848839,\\n        \\\"ctrl_std_shift\\\": 0.02414395054091184,\\n        \\\"ctrl_cv\\\": 1.7404018055162627\\n      },\\n      {\\n        \\\"dim\\\": \\\"rz\\\",\\n        \\\"inst_mean_shift\\\": 0.033881929667518705,\\n        \\\"inst_std_shift\\\": 0.037737860644735575,\\n        \\\"inst_cv\\\": 1.1138049401275218,\\n        \\\"ctrl_mean_shift\\\": 0.01783035501084426,\\n        \\\"ctrl_std_shift\\\": 0.030538640156342656,\\n        \\\"ctrl_cv\\\": 1.7127331529725198\\n      },\\n      {\\n        \\\"dim\\\": \\\"gripper\\\",\\n        \\\"inst_mean_shift\\\": 0.2907168627450989,\\n        \\\"inst_std_shift\\\": 0.44894904084862064,\\n        \\\"inst_cv\\\": 1.5442827657446896,\\n        \\\"ctrl_mean_shift\\\": 0.1407215686274514,\\n        \\\"ctrl_std_shift\\\": 0.3441443717682476,\\n        \\\"ctrl_cv\\\": 2.4455694683118625\\n      }\\n    ],\\n    \\\"mean_cv_6d_continuous_dims\\\": {\\n      \\\"instruction_ablation\\\": 1.2981038667967424,\\n      \\\"control_ablation\\\": 2.744082737195279,\\n      \\\"interpretation\\\": \\\"Higher CV = more variable perturbation across samples, suggesting less structured/temporally-coherent effect\\\"\\n    },\\n    \\\"cross_task_heterogeneity\\\": {\\n      \\\"instruction_ablation\\\": {\\n        \\\"per_task_d\\\": [\\n          0.4329049183349495,\\n          0.6866494581638973,\\n          0.7037503934432828,\\n          0.7034174914950824,\\n          0.7284946473958375\\n        ],\\n        \\\"cochrans_Q\\\": 30.185978451019746,\\n        \\\"Q_p_value\\\": 4.485747093996295e-06,\\n        \\\"I_squared\\\": 0.867488144984584\\n      },\\n      \\\"control_ablation\\\": {\\n        \\\"per_task_d\\\": [\\n          0.2380064816304481,\\n          0.47579607633240106,\\n          0.42134342685795934,\\n          0.4425746029707292,\\n          0.4502277789527875\\n        ],\\n        \\\"cochrans_Q\\\": 18.310845703542412,\\n        \\\"Q_p_value\\\": 0.0010728731762008614,\\n        \\\"I_squared\\\": 0.781550231771864\\n      },\\n      \\\"task_names\\\": [\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n        \\\"put_the_bowl_on_the_plate\\\",\\n        \\\"put_the_bowl_on_the_stove\\\"\\n      ],\\n      \\\"interpretation\\\": \\\"Higher I^2 = more between-task variance relative to total, suggesting task-dependent effect\\\"\\n    }\\n  },\\n  \\\"bootstrap_per_head_ci\\\": {\\n    \\\"method\\\": \\\"parametric_bootstrap_gamma\\\",\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"seed\\\": 42,\\n    \\\"n_samples_per_condition\\\": 2500,\\n    \\\"gamma_params\\\": {\\n      \\\"instruction\\\": {\\n        \\\"shape\\\": 0.42414221194854906,\\n        \\\"scale\\\": 0.09818754006668699\\n      },\\n      \\\"control\\\": {\\n        \\\"shape\\\": 0.16887252567210784,\\n        \\\"scale\\\": 0.11898544266990493\\n      }\\n    },\\n    \\\"observed\\\": {\\n      \\\"instruction_24h\\\": {\\n        \\\"total_d\\\": 0.6511317493798869,\\n        \\\"per_head_d\\\": 0.027135917284202813,\\n        \\\"n_heads\\\": 24\\n      },\\n      \\\"control_8h\\\": {\\n        \\\"total_d\\\": 0.41085882813313845,\\n        \\\"per_head_d\\\": 0.05136762807086363,\\n        \\\"n_heads\\\": 8\\n      },\\n      \\\"diff_ctrl_minus_inst\\\": 0.02423171078666082\\n    },\\n    \\\"bootstrap_results\\\": {\\n      \\\"per_head_d_instruction\\\": {\\n        \\\"mean\\\": 0.02717584808751383,\\n        \\\"std\\\": 0.0006986124646816243,\\n        \\\"ci_95\\\": [\\n          0.02578734682439464,\\n          0.02853318009122678\\n        ]\\n      },\\n      \\\"per_head_d_control\\\": {\\n        \\\"mean\\\": 0.051537006526841504,\\n        \\\"std\\\": 0.001889741524515462,\\n        \\\"ci_95\\\": [\\n          0.047769964750471745,\\n          0.05510304847837396\\n        ]\\n      },\\n      \\\"difference_ctrl_minus_inst\\\": {\\n        \\\"mean\\\": 0.024361158439327676,\\n        \\\"std\\\": 0.00201815203185669,\\n        \\\"ci_95\\\": [\\n          0.020324321167494802,\\n          0.0281196933408234\\n        ],\\n        \\\"ci_99\\\": [\\n          0.018868057234539902,\\n          0.029316523351893487\\n        ],\\n        \\\"excludes_zero_95\\\": true,\\n        \\\"excludes_zero_99\\\": true\\n      }\\n    },\\n    \\\"task_level_paired_test\\\": {\\n      \\\"per_task_per_head_d_instruction\\\": [\\n        0.018037704930622896,\\n        0.02861039409016239,\\n        0.029322933060136783,\\n        0.029309062145628433,\\n        0.030353943641493228\\n      ],\\n      \\\"per_task_per_head_d_control\\\": [\\n        0.029750810203806013,\\n        0.05947450954155013,\\n        0.05266792835724492,\\n        0.05532182537134115,\\n        0.056278472369098435\\n      ],\\n      \\\"per_task_diff\\\": [\\n        0.011713105273183116,\\n        0.030864115451387744,\\n        0.023344995297108134,\\n        0.026012763225712717,\\n        0.025924528727605207\\n      ],\\n      \\\"task_names\\\": [\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n        \\\"put_the_bowl_on_the_plate\\\",\\n        \\\"put_the_bowl_on_the_stove\\\"\\n      ],\\n      \\\"paired_t_stat\\\": 7.3563196709740994,\\n      \\\"paired_p_value\\\": 0.0018189247198124175,\\n      \\\"mean_diff\\\": 0.023571901594999382,\\n      \\\"all_positive\\\": true,\\n      \\\"note\\\": \\\"Low power (n=5 tasks), but direction is consistent\\\"\\n    },\\n    \\\"conclusion\\\": \\\"Per-head effect significantly differs: control heads have 0.02436 higher per-head d than instruction heads (95% CI [0.02032, 0.02812]). Each non-instruction head individually contributes more to action disruption than each instruction head, but instruction heads achieve larger total effect through collective action (24 vs 8 heads).\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "cd70ac86-782f-4718-9151-5fae14ed0c9c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"temporal_coherence_proxy\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"proxy (per-dim CV + cross-task I^2)\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Exact within-demo autocorrelation requires per-timestep trajectory data not saved in JSON. These are indirect proxies.\\\\\\\",\\\\n    \\\\\\\"per_dim_cv\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"dx\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.0018907630960015738,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.003945774709271799,\\\\n        \\\\\\\"inst_cv\\\\\\\": 2.0868689036802075,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.00037120977075240174,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.0018871390276948216,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 5.083753651930542\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"dy\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.0053060349467249435,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.007996728850961761,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.5071006752222016,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.001246604812974087,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.004219931004787625,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 3.385139348788431\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"dz\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.007621298928714849,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.00855598404937074,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.1226411835303123,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.002426664148676048,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.00600886986156851,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 2.476185204634461\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"rx\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.02059210950341174,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.02115830546884926,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.027495772851427,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.007850111136374748,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.01622055322496688,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 2.066283259329457\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"ry\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.030713564767946917,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.02858547485740179,\\\\n        \\\\\\\"inst_cv\\\\\\\": 0.9307117253687847,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.013872630138848839,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.02414395054091184,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 1.7404018055162627\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"rz\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.033881929667518705,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.037737860644735575,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.1138049401275218,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.01783035501084426,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.030538640156342656,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 1.7127331529725198\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"gripper\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.2907168627450989,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.44894904084862064,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.5442827657446896,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.1407215686274514,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.3441443717682476,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 2.4455694683118625\\\\n      }\\\\n    ],\\\\n    \\\\\\\"mean_cv_6d_continuous_dims\\\\\\\": {\\\\n      \\\\\\\"instruction_ablation\\\\\\\": 1.2981038667967424,\\\\n      \\\\\\\"control_ablation\\\\\\\": 2.744082737195279,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"Higher CV = more variable perturbation across samples, suggesting less structured/temporally-coherent effect\\\\\\\"\\\\n    },\\\\n    \\\\\\\"cross_task_heterogeneity\\\\\\\": {\\\\n      \\\\\\\"instruction_ablation\\\\\\\": {\\\\n        \\\\\\\"per_task_d\\\\\\\": [\\\\n          0.4329049183349495,\\\\n          0.6866494581638973,\\\\n          0.7037503934432828,\\\\n          0.7034174914950824,\\\\n          0.7284946473958375\\\\n        ],\\\\n        \\\\\\\"cochrans_Q\\\\\\\": 30.185978451019746,\\\\n        \\\\\\\"Q_p_value\\\\\\\": 4.485747093996295e-06,\\\\n        \\\\\\\"I_squared\\\\\\\": 0.867488144984584\\\\n      },\\\\n      \\\\\\\"control_ablation\\\\\\\": {\\\\n        \\\\\\\"per_task_d\\\\\\\": [\\\\n          0.2380064816304481,\\\\n          0.47579607633240106,\\\\n          0.42134342685795934,\\\\n          0.4425746029707292,\\\\n          0.4502277789527875\\\\n        ],\\\\n        \\\\\\\"cochrans_Q\\\\\\\": 18.310845703542412,\\\\n        \\\\\\\"Q_p_value\\\\\\\": 0.0010728731762008614,\\\\n        \\\\\\\"I_squared\\\\\\\": 0.781550231771864\\\\n      },\\\\n      \\\\\\\"task_names\\\\\\\": [\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"Higher I^2 = more between-task variance relative to total, suggesting task-dependent effect\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_per_head_ci\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"parametric_bootstrap_gamma\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_samples_per_condition\\\\\\\": 2500,\\\\n    \\\\\\\"gamma_params\\\\\\\": {\\\\n      \\\\\\\"instruction\\\\\\\": {\\\\n        \\\\\\\"shape\\\\\\\": 0.42414221194854906,\\\\n        \\\\\\\"scale\\\\\\\": 0.09818754006668699\\\\n      },\\\\n      \\\\\\\"control\\\\\\\": {\\\\n        \\\\\\\"shape\\\\\\\": 0.16887252567210784,\\\\n        \\\\\\\"scale\\\\\\\": 0.11898544266990493\\\\n      }\\\\n    },\\\\n    \\\\\\\"observed\\\\\\\": {\\\\n      \\\\\\\"instruction_24h\\\\\\\": {\\\\n        \\\\\\\"total_d\\\\\\\": 0.6511317493798869,\\\\n        \\\\\\\"per_head_d\\\\\\\": 0.027135917284202813,\\\\n        \\\\\\\"n_heads\\\\\\\": 24\\\\n      },\\\\n      \\\\\\\"control_8h\\\\\\\": {\\\\n        \\\\\\\"total_d\\\\\\\": 0.41085882813313845,\\\\n        \\\\\\\"per_head_d\\\\\\\": 0.05136762807086363,\\\\n        \\\\\\\"n_heads\\\\\\\": 8\\\\n      },\\\\n      \\\\\\\"diff_ctrl_minus_inst\\\\\\\": 0.02423171078666082\\\\n    },\\\\n    \\\\\\\"bootstrap_results\\\\\\\": {\\\\n      \\\\\\\"per_head_d_instruction\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.02717584808751383,\\\\n        \\\\\\\"std\\\\\\\": 0.0006986124646816243,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.02578734682439464,\\\\n          0.02853318009122678\\\\n        ]\\\\n      },\\\\n      \\\\\\\"per_head_d_control\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.051537006526841504,\\\\n        \\\\\\\"std\\\\\\\": 0.001889741524515462,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.047769964750471745,\\\\n          0.05510304847837396\\\\n        ]\\\\n      },\\\\n      \\\\\\\"difference_ctrl_minus_inst\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.024361158439327676,\\\\n        \\\\\\\"std\\\\\\\": 0.00201815203185669,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.020324321167494802,\\\\n          0.0281196933408234\\\\n        ],\\\\n        \\\\\\\"ci_99\\\\\\\": [\\\\n          0.018868057234539902,\\\\n          0.029316523351893487\\\\n        ],\\\\n        \\\\\\\"excludes_zero_95\\\\\\\": true,\\\\n        \\\\\\\"excludes_zero_99\\\\\\\": true\\\\n      }\\\\n    },\\\\n    \\\\\\\"task_level_paired_test\\\\\\\": {\\\\n      \\\\\\\"per_task_per_head_d_instruction\\\\\\\": [\\\\n        0.018037704930622896,\\\\n        0.02861039409016239,\\\\n        0.029322933060136783,\\\\n        0.029309062145628433,\\\\n        0.030353943641493228\\\\n      ],\\\\n      \\\\\\\"per_task_per_head_d_control\\\\\\\": [\\\\n        0.029750810203806013,\\\\n        0.05947450954155013,\\\\n        0.05266792835724492,\\\\n        0.05532182537134115,\\\\n        0.056278472369098435\\\\n      ],\\\\n      \\\\\\\"per_task_diff\\\\\\\": [\\\\n        0.011713105273183116,\\\\n        0.030864115451387744,\\\\n        0.023344995297108134,\\\\n        0.026012763225712717,\\\\n        0.025924528727605207\\\\n      ],\\\\n      \\\\\\\"task_names\\\\\\\": [\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n        \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n        \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n        \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n        \\\\\\\"put_the_bowl_on_the_stove\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"paired_t_stat\\\\\\\": 7.3563196709740994,\\\\n      \\\\\\\"paired_p_value\\\\\\\": 0.0018189247198124175,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.023571901594999382,\\\\n      \\\\\\\"all_positive\\\\\\\": true,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"Low power (n=5 tasks), but direction is consistent\\\\\\\"\\\\n    },\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"Per-head effect significantly differs: control heads have 0.02436 higher per-head d than instruction heads (95% CI [0.02032, 0.02812]). Each non-instruction head individually contributes more to action disruption than each instruction head, but instruction heads achieve larger total effect through collective action (24 vs 8 heads).\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"temporal_coherence_proxy\\\": {\\n    \\\"method\\\": \\\"proxy (per-dim CV + cross-task I^2)\\\",\\n    \\\"note\\\": \\\"Exact within-demo autocorrelation requires per-timestep trajectory data not saved in JSON. These are indirect proxies.\\\",\\n    \\\"per_dim_cv\\\": [\\n      {\\n        \\\"dim\\\": \\\"dx\\\",\\n        \\\"inst_mean_shift\\\": 0.0018907630960015738,\\n        \\\"inst_std_shift\\\": 0.003945774709271799,\\n        \\\"inst_cv\\\": 2.0868689036802075,\\n        \\\"ctrl_mean_shift\\\": 0.00037120977075240174,\\n        \\\"ctrl_std_shift\\\": 0.0018871390276948216,\\n        \\\"ctrl_cv\\\": 5.083753651930542\\n      },\\n      {\\n        \\\"dim\\\": \\\"dy\\\",\\n        \\\"inst_mean_shift\\\": 0.0053060349467249435,\\n        \\\"inst_std_shift\\\": 0.007996728850961761,\\n        \\\"inst_cv\\\": 1.5071006752222016,\\n        \\\"ctrl_mean_shift\\\": 0.001246604812974087,\\n        \\\"ctrl_std_shift\\\": 0.004219931004787625,\\n        \\\"ctrl_cv\\\": 3.385139348788431\\n      },\\n      {\\n        \\\"dim\\\": \\\"dz\\\",\\n        \\\"inst_mean_shift\\\": 0.007621298928714849,\\n        \\\"inst_std_shift\\\": 0.00855598404937074,\\n        \\\"inst_cv\\\": 1.1226411835303123,\\n        \\\"ctrl_mean_shift\\\": 0.002426664148676048,\\n        \\\"ctrl_std_shift\\\": 0.00600886986156851,\\n        \\\"ctrl_cv\\\": 2.476185204634461\\n      },\\n      {\\n        \\\"dim\\\": \\\"rx\\\",\\n        \\\"inst_mean_shift\\\": 0.02059210950341174,\\n        \\\"inst_std_shift\\\": 0.02115830546884926,\\n        \\\"inst_cv\\\": 1.027495772851427,\\n        \\\"ctrl_mean_shift\\\": 0.007850111136374748,\\n        \\\"ctrl_std_shift\\\": 0.01622055322496688,\\n        \\\"ctrl_cv\\\": 2.066283259329457\\n      },\\n      {\\n        \\\"dim\\\": \\\"ry\\\",\\n        \\\"inst_mean_shift\\\": 0.030713564767946917,\\n        \\\"inst_std_shift\\\": 0.02858547485740179,\\n        \\\"inst_cv\\\": 0.9307117253687847,\\n        \\\"ctrl_mean_shift\\\": 0.013872630138848839,\\n        \\\"ctrl_std_shift\\\": 0.02414395054091184,\\n        \\\"ctrl_cv\\\": 1.7404018055162627\\n      },\\n      {\\n        \\\"dim\\\": \\\"rz\\\",\\n        \\\"inst_mean_shift\\\": 0.033881929667518705,\\n        \\\"inst_std_shift\\\": 0.037737860644735575,\\n        \\\"inst_cv\\\": 1.1138049401275218,\\n        \\\"ctrl_mean_shift\\\": 0.01783035501084426,\\n        \\\"ctrl_std_shift\\\": 0.030538640156342656,\\n        \\\"ctrl_cv\\\": 1.7127331529725198\\n      },\\n      {\\n        \\\"dim\\\": \\\"gripper\\\",\\n        \\\"inst_mean_shift\\\": 0.2907168627450989,\\n        \\\"inst_std_shift\\\": 0.44894904084862064,\\n        \\\"inst_cv\\\": 1.5442827657446896,\\n        \\\"ctrl_mean_shift\\\": 0.1407215686274514,\\n        \\\"ctrl_std_shift\\\": 0.3441443717682476,\\n        \\\"ctrl_cv\\\": 2.4455694683118625\\n      }\\n    ],\\n    \\\"mean_cv_6d_continuous_dims\\\": {\\n      \\\"instruction_ablation\\\": 1.2981038667967424,\\n      \\\"control_ablation\\\": 2.744082737195279,\\n      \\\"interpretation\\\": \\\"Higher CV = more variable perturbation across samples, suggesting less structured/temporally-coherent effect\\\"\\n    },\\n    \\\"cross_task_heterogeneity\\\": {\\n      \\\"instruction_ablation\\\": {\\n        \\\"per_task_d\\\": [\\n          0.4329049183349495,\\n          0.6866494581638973,\\n          0.7037503934432828,\\n          0.7034174914950824,\\n          0.7284946473958375\\n        ],\\n        \\\"cochrans_Q\\\": 30.185978451019746,\\n        \\\"Q_p_value\\\": 4.485747093996295e-06,\\n        \\\"I_squared\\\": 0.867488144984584\\n      },\\n      \\\"control_ablation\\\": {\\n        \\\"per_task_d\\\": [\\n          0.2380064816304481,\\n          0.47579607633240106,\\n          0.42134342685795934,\\n          0.4425746029707292,\\n          0.4502277789527875\\n        ],\\n        \\\"cochrans_Q\\\": 18.310845703542412,\\n        \\\"Q_p_value\\\": 0.0010728731762008614,\\n        \\\"I_squared\\\": 0.781550231771864\\n      },\\n      \\\"task_names\\\": [\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n        \\\"put_the_bowl_on_the_plate\\\",\\n        \\\"put_the_bowl_on_the_stove\\\"\\n      ],\\n      \\\"interpretation\\\": \\\"Higher I^2 = more between-task variance relative to total, suggesting task-dependent effect\\\"\\n    }\\n  },\\n  \\\"bootstrap_per_head_ci\\\": {\\n    \\\"method\\\": \\\"parametric_bootstrap_gamma\\\",\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"seed\\\": 42,\\n    \\\"n_samples_per_condition\\\": 2500,\\n    \\\"gamma_params\\\": {\\n      \\\"instruction\\\": {\\n        \\\"shape\\\": 0.42414221194854906,\\n        \\\"scale\\\": 0.09818754006668699\\n      },\\n      \\\"control\\\": {\\n        \\\"shape\\\": 0.16887252567210784,\\n        \\\"scale\\\": 0.11898544266990493\\n      }\\n    },\\n    \\\"observed\\\": {\\n      \\\"instruction_24h\\\": {\\n        \\\"total_d\\\": 0.6511317493798869,\\n        \\\"per_head_d\\\": 0.027135917284202813,\\n        \\\"n_heads\\\": 24\\n      },\\n      \\\"control_8h\\\": {\\n        \\\"total_d\\\": 0.41085882813313845,\\n        \\\"per_head_d\\\": 0.05136762807086363,\\n        \\\"n_heads\\\": 8\\n      },\\n      \\\"diff_ctrl_minus_inst\\\": 0.02423171078666082\\n    },\\n    \\\"bootstrap_results\\\": {\\n      \\\"per_head_d_instruction\\\": {\\n        \\\"mean\\\": 0.02717584808751383,\\n        \\\"std\\\": 0.0006986124646816243,\\n        \\\"ci_95\\\": [\\n          0.02578734682439464,\\n          0.02853318009122678\\n        ]\\n      },\\n      \\\"per_head_d_control\\\": {\\n        \\\"mean\\\": 0.051537006526841504,\\n        \\\"std\\\": 0.001889741524515462,\\n        \\\"ci_95\\\": [\\n          0.047769964750471745,\\n          0.05510304847837396\\n        ]\\n      },\\n      \\\"difference_ctrl_minus_inst\\\": {\\n        \\\"mean\\\": 0.024361158439327676,\\n        \\\"std\\\": 0.00201815203185669,\\n        \\\"ci_95\\\": [\\n          0.020324321167494802,\\n          0.0281196933408234\\n        ],\\n        \\\"ci_99\\\": [\\n          0.018868057234539902,\\n          0.029316523351893487\\n        ],\\n        \\\"excludes_zero_95\\\": true,\\n        \\\"excludes_zero_99\\\": true\\n      }\\n    },\\n    \\\"task_level_paired_test\\\": {\\n      \\\"per_task_per_head_d_instruction\\\": [\\n        0.018037704930622896,\\n        0.02861039409016239,\\n        0.029322933060136783,\\n        0.029309062145628433,\\n        0.030353943641493228\\n      ],\\n      \\\"per_task_per_head_d_control\\\": [\\n        0.029750810203806013,\\n        0.05947450954155013,\\n        0.05266792835724492,\\n        0.05532182537134115,\\n        0.056278472369098435\\n      ],\\n      \\\"per_task_diff\\\": [\\n        0.011713105273183116,\\n        0.030864115451387744,\\n        0.023344995297108134,\\n        0.026012763225712717,\\n        0.025924528727605207\\n      ],\\n      \\\"task_names\\\": [\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n        \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n        \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n        \\\"put_the_bowl_on_the_plate\\\",\\n        \\\"put_the_bowl_on_the_stove\\\"\\n      ],\\n      \\\"paired_t_stat\\\": 7.3563196709740994,\\n      \\\"paired_p_value\\\": 0.0018189247198124175,\\n      \\\"mean_diff\\\": 0.023571901594999382,\\n      \\\"all_positive\\\": true,\\n      \\\"note\\\": \\\"Low power (n=5 tasks), but direction is consistent\\\"\\n    },\\n    \\\"conclusion\\\": \\\"Per-head effect significantly differs: control heads have 0.02436 higher per-head d than instruction heads (95% CI [0.02032, 0.02812]). Each non-instruction head individually contributes more to action disruption than each instruction head, but instruction heads achieve larger total effect through collective action (24 vs 8 heads).\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me understand the structure:
+
+**Instruction ablation (24 heads):**
+- per_dim CV for 6 continuous dims (dx, dy, dz, rx, ry, rz): [2.087, 1.507, 1.123, 1.027, 0.931, 1.114] → mean = 1.298
+- per_task Cohen's d: [0.433, 0.687, 0.704, 0.703, 0.728] → I² = 0.867
+
+
+**Control ablation (8 heads):**
+- per_dim CV for 6 continuous dims: [5.084, 3.385, 2.476, 2.066, 1.740, 1.713] → mean = 2.744
+- per_task Cohen's d: [0.238, 0.476, 0.421, 0.443, 0.450] → I² = 0.782
+
+For the permutation test, I need to think about what I'm actually testing here. I have 32 heads total split between instruction and control groups, but my data is aggregated at the per-dimension and per-task level rather than per-head. The permutation test needs to account for this structure.
+
+Since the ablation was done at the group level—zeroing out all 24 instruction heads together and all 8 control heads together—I can't shuffle individual heads. Instead, I should be testing whether the observed difference between groups could arise by chance if the heads were randomly assigned to instruction versus control groups. But without per-head data, I need to think about what exactly I'm permuting and what null hypothesis I'm testing.
+
+For the CV values, I have 7 per-dimension measurements for each condition, so I could permute at the dimension level. For I², I'm working with 5 per-task Cohen's d values. The key insight is that I have paired observations—each dimension or task has both an instruction and control measurement—so I can shuffle the labels within each pair to test whether the difference is significant.
+
+But looking back at the task requirements, it's asking me to conceptually reconstruct what would happen if we randomly split the 32 heads into groups of 24 and 8. The problem is I don't actually have per-head data in the JSON, only aggregated summaries. So I need to think about whether I can simulate this split or if I should work with what's available.
+
+For the CV test, I have 7 dimensions with per-dimension statistics for instruction and control conditions. The permutation approach would be to randomly shuffle which dimensions belong to which group and recalculate the pooled CV difference. For the I² test, I'd need the per-task Cohen's d values (5 for instruction, 5 for control) to assess heterogeneity across tasks. values (7 inst + 7 ctrl) and randomly assign 7 to "inst" and 7 to "ctrl", compute mean CV for each group, and look at the difference.
+
+Wait, but that doesn't account for the paired structure. Let me think again...
+
+Actually, for the permutation test on CV:
+- We have 7 dims × 2 conditions = 14 CV values
+- Under the null hypothesis, the inst/ctrl labels don't matter
+- So we can randomly permute which 7 of the 14 CV values belong to "inst" group
+- But this breaks the paired structure
+
+Better approach for a paired permutation test:
+- For each of the 7 dimensions, randomly swap the inst/ctrl labels (with probability 0.5)
+- Compute the mean CV difference
+- Repeat 10000 times
+
+For I²:
+- We have 5 per-task Cohen's d for each condition
+- I² is a measure of heterogeneity computed from these d values
+
+For the I² permutation test, I need to respect the task structure too—I can't just pool all 10 d values and randomly reassign them since they come from different tasks. Instead, for each of the 5 tasks, I'll randomly swap which d value goes to the inst versus ctrl group, then recompute I² for each group and compare the difference to the observed one.
+
+With only 2^5 = 32 possible permutations for the I² test and 2^7 = 128 for the CV test (if treating each dimension independently), the minimum achievable p-value is quite limited—around 0.03 for I² and 0.008 for CV. But given the small sample sizes, this is what we're working with.
+
+Actually, I'm realizing I may have misunderstood the task. Let me re-read what's being asked about permuting the heads...
+
+The task mentions combining the 32 heads (24 instruction + 8 control) for permutation, but we don't actually have per-head effect data. We only have the aggregate effect of ablating all instruction heads together and all control heads together. Since ablating multiple heads simultaneously involves interactions, I can't decompose this into individual head effects.
+
+So the permutation test really needs to work at the task or dimension level instead. But let me think about this differently—maybe I can use the heterogeneity in Cohen's d values across the 5 tasks. Under the null hypothesis, the instruction and control ablations should produce similarly heterogeneous effect sizes across tasks. I could permute which task effects belong to which group and see if the I² difference holds up.
+
+For the I² calculation, I need Cochran's Q statistic weighted by inverse variance, then apply the formula to get the heterogeneity percentage. Let me code this up now.
+
+Writing the permutation test script... matching the original analysis, I'll use the unweighted version:
+Q = Σ (d_i - d_bar)^2 / var_i
+
+Actually, looking at the original data, they used Cochran's Q directly. Let me compute it the same way.
+
+Hmm, I don't know the exact formula they used. Let me just use the standard I² calculation:
+- Q = Σ w_i (d_i - d_weighted)^2 where w_i = 1/var_i
+- But we don't have individual study variances
+
+Actually, for a simpler approach, since the original analysis already computed Cochran's Q and I², and these are based on the 5 per-task d values, let me just write code that:
+1. Takes a set of 5 d values
+2. Computes Q and I² using the same method
+3. Permutes and recomputes
+
+Now I'm looking at the actual data to reverse-engineer the Q computation. For the Instruction condition with d = [0.433, 0.687, 0.704, 0.703, 0.728] and Q = 30.19, I can work backwards using the standard meta-analysis formula where Q equals the sum of weighted squared deviations from the weighted mean, with weights based on the inverse of each task's sampling variance. Since each task has n=500 samples, I can estimate the standard error and derive the weights from there. Now I'm calculating Q using the sum of squared deviations from the mean across the five effect sizes, which gives me a very small value that results in I² being clamped to zero—indicating no heterogeneity with equal weighting.
+
+Since that doesn't match the reported results, I need to work with proper inverse-variance weights based on standard errors. For paired data like this, the standard error depends on the sample size, correlation between baseline and ablated measurements, and the effect size itself. Let me try using inverse-variance weighting where each study's weight is one over its squared standard error, which should give me the heterogeneity estimate they're reporting. Writing the meta-analysis script... I'm extracting the coefficient of variation values for both instruction and control conditions across the six continuous dimensions, then pulling the per-task Cohen's d values to compute Cochran's Q and I² heterogeneity statistics for each ablation condition.
+
+Now I'm printing out the observed metrics alongside their expected values to verify the extraction worked correctly, then calculating the differences between control and instruction conditions to see how they diverge on both the CV and heterogeneity measures.
+
+Setting up a permutation test for the CV differences by enumerating all 64 possible ways to swap the instruction and control values across the six dimensions, then computing what the null distribution of CV differences would look like under random assignment. Still writing permutation logic...
+
+Now I'm computing the p-value by comparing the observed I² difference against the null distribution of all 32 permutations, then printing out the summary statistics and significance test result. But I should reconsider whether this exact permutation approach is actually the right way to handle this problem.
+
+For the CV test, the null hypothesis is that the coefficient of variation values are exchangeable between groups regardless of assignment—so within each dimension I can swap the inst and ctrl values, giving 2^6 = 64 possible permutations. The observed difference is 1.446, and I count how many permutations yield a difference at least that large.
+
+For the I² test, the same logic applies: the null is that I² values don't depend on group assignment, so within each task the d values are exchangeable, yielding 2^5 = 32 permutations. However, there's a subtlety I'm realizing—I² is a function of the heterogeneity among the d values within a group, so swapping individual d values between groups changes the heterogeneity structure in a way that might not properly reflect the null distribution.
+
+The resolution of these tests is limited by the number of permutations: the minimum one-sided p-value is about 0.016 for CV and 0.031 for I². I should also reconsider whether to include all 7 dimensions for the CV test (including gripper) since the original data has 7 values per group, which would give 2^7 = 128 permutations and better resolution.
+
+The task mentions permuting 32 heads into 24+8 groups, but we don't have per-head data—only group-level statistics. I could generate surrogate per-head data consistent with the observed group statistics and then permute at the head level, though this would require assumptions about the per-head effect distribution. Let me check if there's already per-head information in the bootstrap results section that I can work with. I'm realizing I'm overcomplicating this—the per-head d values I calculated are already what I need. For the permutation test, the honest approach is to run a paired test on the task-level d values directly, since I can't observe individual head contributions separately. I should focus on that paired permutation test and use the bootstrap confidence intervals from the gamma distribution fit as a secondary validation, then note where the limitations are. 新计算 CV 和 I²
+   - 构建 null distribution
+   - 观察值在 null distribution 中的位置 → p-value
+
+3. 如果原始 JSON 中没有 per-head 数据（只有汇总），需要从概念上重构：
+   - CV 和 I² 是基于 per-dimension 和 per-task 的 Cohen's d 计算的
+   - 需要 per-task Cohen's d（instruction 5 个值，control 5 个值）来计算 I²
+   - 需要 per-dim action shift（instruction 7 个值，control 7 个值）来计算 CV
+   - 这些数据在 JSON 文件中应该有
+
+我意识到简单地将 10 个 d 值随机分成两组 5 个来计算 I² 的差异是有问题的，因为这样可能会把同一个任务的两个 d 值分到同一组，这在逻辑上不合理。配对排列方法（在每个任务/维度内随机交换）才是正确的做法。现在我需要重新思考"32 heads → 24+8 split"在观察数据中的含义。 We have per-sample paired MSE data across 2500 samples (500 per task × 5 tasks), but only summary statistics are available in the JSON, not the raw data itself. So I'll implement both approaches: an exact permutation test on the per-dimension CV and per-task d values, and a parametric bootstrap using the fitted gamma distributions to simulate per-head d values and then permute those. Let me start coding this up, beginning with the gamma parameters from the extended analysis.
+
+Actually, I'm realizing the gamma parameters describe the MSE distribution across samples, not the per-head d distribution, so they won't directly help with the per-head permutation test. I'll focus on Approach A—the exact paired permutation test—since that's the proper nonparametric method given the data structure we have.
+
+Now I need to verify my I² calculation matches the observed values. Let me work through the instruction per-task d values and check the heterogeneity statistics against the observed Q and I² values.
+
+Computing standard errors and weights for each task...
+
+Now I'm calculating the weighted average across all tasks, which comes out to about 0.648, then computing the Q statistic to measure heterogeneity by summing the squared deviations weighted by inverse variance.
+
+The calculation gives me Q ≈ 14.19, but the observed value is 30.186—so this approach isn't matching the data. I'm reconsidering whether the standard error formula I used is correct, especially since this might be a within-subject design where the correlation between paired measurements matters. Without knowing that correlation, I'm stuck, so I'm wondering if maybe they simply used equal weights instead.
+
+Let me try assuming uniform weights where the sampling variance is simplified to 2/n, giving me w_i = 250 for each effect size. Computing the weighted mean and then the heterogeneity statistic...
+
+Calculating Q with squared deviations...
+
+That's still not matching 30.186. Let me reconsider—if I use w_i = n_i directly instead, where n_i = 500 samples per task, then Q = 500 × 0.06032 ≈ 30.16, which matches. So the weighting scheme is simply the sample size itself, and the heterogeneity statistic follows from the sum of sample sizes times the squared deviations from the weighted mean.
+
+Now I'm calculating the exact values by taking each effect size, subtracting the overall mean of 0.6510, squaring the differences, and summing them up to verify the formula works. Now I'm verifying the formula works for the control group by calculating the mean effect size and then computing the sum of squared deviations from that mean to get Q, which I can then use to calculate I².
+
+Writing the Python script... Still loading and processing data...
+
+Now I'm computing the mean coefficients of variation across the first six days for both conditions, then extracting the per-task Cohen's d values to calculate heterogeneity metrics. After verifying these observed values match the expected benchmarks, I'm calculating the differences in CV and I² between control and instruction ablations to establish my test statistics.
+
+For the permutation test on CV, I'm generating all 64 possible pairwise swaps across the six dimensions and computing the null distribution of CV differences by randomly reassigning which condition gets which dimension's values.
+
+Now I'm finishing the p-value calculation and printing out the results—the observed difference, the null distribution statistics, and whether it's significant at the 0.05 level. Then I'm extending the same permutation test to all seven dimensions to see if the pattern holds. Writing permutation test logic... I'm finishing the p-value calculation and then moving into a Monte Carlo permutation test with 10,000 iterations to get higher resolution on the null distribution by randomly shuffling all the d values between groups. Printing the Monte Carlo permutation test results with the null distribution statistics and p-values for both CV and I², then saving everything to a results dictionary that captures the test method, descriptions, and detailed outputs for each metric. Building the results structure...
+
+I'm finishing up the JSON output by adding the Monte Carlo p-value for the two-sided test, then saving everything to a file. But I should reconsider the direction of the one-sided test for the coefficient of variation—I need to verify whether control should indeed show higher variability than the intervention, since that affects how I'm interpreting the statistical direction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "978601b5-e8aa-4f17-8a70-e5aea9dcf7f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UboQCPiWfZVXZdVKoN339j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10805,
+      "cache_read_input_tokens": 26016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+数据结构清晰。per-dim CV 和 per-task Cohen's d 都有，可以做精确配对置换检验。写脚本并运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "b61ce48b-3d28-4dff-a135-4202c66abc85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UboQCPiWfZVXZdVKoN339j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10805,
+      "cache_read_input_tokens": 26016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01GJ4qXpV1CcEFiGkWjZPHXV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/permutation_test_I2.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Permutation test for CV and I^2 differences between instruction and control ablation.\n\nTests whether the observed CV and I^2 differences could arise from random\ngroup assignment, using exact paired permutation (swap labels within each\ndimension/task pair).\n\"\"\"\n\nimport json\nimport numpy as np\nfrom itertools import product\n\n\ndef compute_I2(d_values, n_per_task=500):\n    \"\"\"Cochran's Q and I^2 using w_i = n weights (matches original analysis).\"\"\"\n    d = np.array(d_values, dtype=np.float64)\n    k = len(d)\n    d_mean = d.mean()\n    Q = n_per_task * np.sum((d - d_mean) ** 2)\n    I2 = max(0.0, (Q - (k - 1)) / Q) if Q > 0 else 0.0\n    return Q, I2\n\n\nwith open(\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\") as f:\n    ext = json.load(f)\n\n# ---------- extract data ----------\nper_dim_cv = ext[\"temporal_coherence_proxy\"][\"per_dim_cv\"]\ninst_cvs_7d = [d[\"inst_cv\"] for d in per_dim_cv]\nctrl_cvs_7d = [d[\"ctrl_cv\"] for d in per_dim_cv]\ninst_cvs_6d = inst_cvs_7d[:6]\nctrl_cvs_6d = ctrl_cvs_7d[:6]\n\ncross_task = ext[\"temporal_coherence_proxy\"][\"cross_task_heterogeneity\"]\ninst_ds = cross_task[\"instruction_ablation\"][\"per_task_d\"]\nctrl_ds = cross_task[\"control_ablation\"][\"per_task_d\"]\n\n# ---------- observed values ----------\nobs_cv_inst = np.mean(inst_cvs_6d)\nobs_cv_ctrl = np.mean(ctrl_cvs_6d)\n_, obs_I2_inst = compute_I2(inst_ds)\n_, obs_I2_ctrl = compute_I2(ctrl_ds)\n\nobs_cv_diff = obs_cv_ctrl - obs_cv_inst   # ctrl > inst\nobs_I2_diff = obs_I2_inst - obs_I2_ctrl    # inst > ctrl\n\nprint(\"=== Observed ===\")\nprint(f\"CV  inst={obs_cv_inst:.4f}  ctrl={obs_cv_ctrl:.4f}  diff={obs_cv_diff:.4f}\")\nprint(f\"I2  inst={obs_I2_inst:.4f}  ctrl={obs_I2_ctrl:.4f}  diff={obs_I2_diff:.4f}\")\n\n# ==========================================================\n# 1. Exact paired permutation — CV (6 continuous dims, 2^6=64)\n# ==========================================================\nn_dims = len(inst_cvs_6d)\ncv_null = []\nfor perm in product([False, True], repeat=n_dims):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_6d[i]); pc.append(inst_cvs_6d[i])\n        else:\n            pi.append(inst_cvs_6d[i]); pc.append(ctrl_cvs_6d[i])\n    cv_null.append(np.mean(pc) - np.mean(pi))\ncv_null = np.array(cv_null)\np_cv_exact = np.mean(cv_null >= obs_cv_diff)\n\nprint(f\"\\n--- CV exact paired permutation (2^{n_dims}={2**n_dims}) ---\")\nprint(f\"Null: mean={cv_null.mean():.4f} std={cv_null.std():.4f}\")\nprint(f\"Observed={obs_cv_diff:.4f}  p={p_cv_exact:.6f}  sig={p_cv_exact<0.05}\")\n\n# sensitivity: 7 dims\ncv_null_7d = []\nfor perm in product([False, True], repeat=7):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_7d[i]); pc.append(inst_cvs_7d[i])\n        else:\n            pi.append(inst_cvs_7d[i]); pc.append(ctrl_cvs_7d[i])\n    cv_null_7d.append(np.mean(pc) - np.mean(pi))\ncv_null_7d = np.array(cv_null_7d)\nobs_cv_diff_7d = np.mean(ctrl_cvs_7d) - np.mean(inst_cvs_7d)\np_cv_7d = np.mean(cv_null_7d >= obs_cv_diff_7d)\nprint(f\"[7d sensitivity] diff={obs_cv_diff_7d:.4f}  p={p_cv_7d:.6f}\")\n\n# ==========================================================\n# 2. Exact paired permutation — I^2 (5 tasks, 2^5=32)\n# ==========================================================\nn_tasks = len(inst_ds)\nI2_null = []\nfor perm in product([False, True], repeat=n_tasks):\n    pi_d, pc_d = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi_d.append(ctrl_ds[i]); pc_d.append(inst_ds[i])\n        else:\n            pi_d.append(inst_ds[i]); pc_d.append(ctrl_ds[i])\n    _, i2_pi = compute_I2(pi_d)\n    _, i2_pc = compute_I2(pc_d)\n    I2_null.append(i2_pi - i2_pc)\nI2_null = np.array(I2_null)\np_I2_exact = np.mean(I2_null >= obs_I2_diff)\n\nprint(f\"\\n--- I^2 exact paired permutation (2^{n_tasks}={2**n_tasks}) ---\")\nprint(f\"Null: mean={I2_null.mean():.4f} std={I2_null.std():.4f}\")\nprint(f\"Observed={obs_I2_diff:.4f}  p={p_I2_exact:.6f}  sig={p_I2_exact<0.05}\")\n\n# ==========================================================\n# 3. Monte-Carlo unpaired permutation (10k) for higher resolution\n# ==========================================================\nrng = np.random.default_rng(42)\nN_MC = 10_000\n\n# CV: pool 12 values, split 6+6\nall_cvs = inst_cvs_6d + ctrl_cvs_6d\nmc_cv = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(12)\n    mc_cv[k] = np.mean([all_cvs[i] for i in idx[6:]]) - np.mean([all_cvs[i] for i in idx[:6]])\np_cv_mc = float(np.mean(mc_cv >= obs_cv_diff))\n\n# I^2: pool 10 d-values, split 5+5\nall_ds = inst_ds + ctrl_ds\nmc_I2 = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(10)\n    g1 = [all_ds[i] for i in idx[:5]]\n    g2 = [all_ds[i] for i in idx[5:]]\n    _, i2_1 = compute_I2(g1)\n    _, i2_2 = compute_I2(g2)\n    mc_I2[k] = i2_1 - i2_2\np_I2_mc = float(np.mean(np.abs(mc_I2) >= abs(obs_I2_diff)))\n\nprint(f\"\\n--- Monte-Carlo unpaired ({N_MC} iterations) ---\")\nprint(f\"CV:  null mean={mc_cv.mean():.4f} std={mc_cv.std():.4f}  p={p_cv_mc:.4f}\")\nprint(f\"I^2: null mean={mc_I2.mean():.4f} std={mc_I2.std():.4f}  p(two-sided)={p_I2_mc:.4f}\")\n\n# ==========================================================\n# Build output\n# ==========================================================\nconclusion_parts = []\nif p_cv_exact < 0.05:\n    conclusion_parts.append(\n        f\"CV difference significant (exact paired p={p_cv_exact:.4f}): \"\n        f\"instruction CV ({obs_cv_inst:.2f}) < control CV ({obs_cv_ctrl:.2f}), \"\n        f\"instruction heads produce more uniform perturbation across action dims.\"\n    )\nelse:\n    conclusion_parts.append(\n        f\"CV difference not significant at alpha=0.05 (exact paired p={p_cv_exact:.4f}).\"\n    )\n\nif p_I2_exact < 0.05:\n    conclusion_parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f}). \"\n        f\"Limited resolution with 2^5=32 permutations.\"\n    )\nelse:\n    conclusion_parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f}). \"\n        f\"Limited resolution with 2^5=32 permutations.\"\n    )\n\nconclusion_parts.append(\n    f\"MC unpaired: CV p={p_cv_mc:.4f}, I^2 p(two-sided)={p_I2_mc:.4f}.\"\n)\n\nconclusion = \" \".join(conclusion_parts)\nprint(f\"\\nConclusion: {conclusion}\")\n\nresults = {\n    \"method\": \"exact_paired_permutation_test\",\n    \"data_source\": {\n        \"instruction_ablation\": \"24 heads, per-dim CV from 6 continuous dims, per-task d from 5 tasks\",\n        \"control_ablation\": \"8 heads, same dimensions and tasks\",\n    },\n    \"observed\": {\n        \"cv_inst\": float(obs_cv_inst),\n        \"cv_ctrl\": float(obs_cv_ctrl),\n        \"cv_diff_ctrl_minus_inst\": float(obs_cv_diff),\n        \"I2_inst\": float(obs_I2_inst),\n        \"I2_ctrl\": float(obs_I2_ctrl),\n        \"I2_diff_inst_minus_ctrl\": float(obs_I2_diff),\n    },\n    \"cv_test_exact_paired\": {\n        \"n_dims\": n_dims,\n        \"n_permutations\": 2 ** n_dims,\n        \"null_mean\": float(cv_null.mean()),\n        \"null_std\": float(cv_null.std()),\n        \"p_value_one_sided\": float(p_cv_exact),\n        \"significant_005\": bool(p_cv_exact < 0.05),\n    },\n    \"cv_test_7d_sensitivity\": {\n        \"observed_diff\": float(obs_cv_diff_7d),\n        \"p_value\": float(p_cv_7d),\n    },\n    \"I2_test_exact_paired\": {\n        \"n_tasks\": n_tasks,\n        \"n_permutations\": 2 ** n_tasks,\n        \"null_mean\": float(I2_null.mean()),\n        \"null_std\": float(I2_null.std()),\n        \"p_value_one_sided\": float(p_I2_exact),\n        \"significant_005\": bool(p_I2_exact < 0.05),\n        \"note\": f\"Min possible p = 1/{2**n_tasks} = {1/2**n_tasks:.4f}\",\n    },\n    \"monte_carlo_unpaired\": {\n        \"n_iterations\": N_MC,\n        \"seed\": 42,\n        \"cv_p_value\": float(p_cv_mc),\n        \"I2_p_value_two_sided\": float(p_I2_mc),\n    },\n    \"conclusion\": conclusion,\n}\n\nout = \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\"\nwith open(out, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved to {out}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "a65cd1be-1d5c-4d02-b962-48d26a680a71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UboQCPiWfZVXZdVKoN339j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10805,
+      "cache_read_input_tokens": 26016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T15:12:10.588Z_
+
+<details><summary>↩ Tool result · `toolu_01GJ4qXpV1CcEFiGkWjZPHXV`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/permutation_test_I2.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "0e6a91a9-b503-4d43-8ec7-39468a5f843a",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/permutation_test_I2.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Permutation test for CV and I^2 differences between instruction and control ablation.\n\nTests whether the observed CV and I^2 differences could arise from random\ngroup assignment, using exact paired permutation (swap labels within each\ndimension/task pair).\n\"\"\"\n\nimport json\nimport numpy as np\nfrom itertools import product\n\n\ndef compute_I2(d_values, n_per_task=500):\n    \"\"\"Cochran's Q and I^2 using w_i = n weights (matches original analysis).\"\"\"\n    d = np.array(d_values, dtype=np.float64)\n    k = len(d)\n    d_mean = d.mean()\n    Q = n_per_task * np.sum((d - d_mean) ** 2)\n    I2 = max(0.0, (Q - (k - 1)) / Q) if Q > 0 else 0.0\n    return Q, I2\n\n\nwith open(\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\") as f:\n    ext = json.load(f)\n\n# ---------- extract data ----------\nper_dim_cv = ext[\"temporal_coherence_proxy\"][\"per_dim_cv\"]\ninst_cvs_7d = [d[\"inst_cv\"] for d in per_dim_cv]\nctrl_cvs_7d = [d[\"ctrl_cv\"] for d in per_dim_cv]\ninst_cvs_6d = inst_cvs_7d[:6]\nctrl_cvs_6d = ctrl_cvs_7d[:6]\n\ncross_task = ext[\"temporal_coherence_proxy\"][\"cross_task_heterogeneity\"]\ninst_ds = cross_task[\"instruction_ablation\"][\"per_task_d\"]\nctrl_ds = cross_task[\"control_ablation\"][\"per_task_d\"]\n\n# ---------- observed values ----------\nobs_cv_inst = np.mean(inst_cvs_6d)\nobs_cv_ctrl = np.mean(ctrl_cvs_6d)\n_, obs_I2_inst = compute_I2(inst_ds)\n_, obs_I2_ctrl = compute_I2(ctrl_ds)\n\nobs_cv_diff = obs_cv_ctrl - obs_cv_inst   # ctrl > inst\nobs_I2_diff = obs_I2_inst - obs_I2_ctrl    # inst > ctrl\n\nprint(\"=== Observed ===\")\nprint(f\"CV  inst={obs_cv_inst:.4f}  ctrl={obs_cv_ctrl:.4f}  diff={obs_cv_diff:.4f}\")\nprint(f\"I2  inst={obs_I2_inst:.4f}  ctrl={obs_I2_ctrl:.4f}  diff={obs_I2_diff:.4f}\")\n\n# ==========================================================\n# 1. Exact paired permutation — CV (6 continuous dims, 2^6=64)\n# ==========================================================\nn_dims = len(inst_cvs_6d)\ncv_null = []\nfor perm in product([False, True], repeat=n_dims):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_6d[i]); pc.append(inst_cvs_6d[i])\n        else:\n            pi.append(inst_cvs_6d[i]); pc.append(ctrl_cvs_6d[i])\n    cv_null.append(np.mean(pc) - np.mean(pi))\ncv_null = np.array(cv_null)\np_cv_exact = np.mean(cv_null >= obs_cv_diff)\n\nprint(f\"\\n--- CV exact paired permutation (2^{n_dims}={2**n_dims}) ---\")\nprint(f\"Null: mean={cv_null.mean():.4f} std={cv_null.std():.4f}\")\nprint(f\"Observed={obs_cv_diff:.4f}  p={p_cv_exact:.6f}  sig={p_cv_exact<0.05}\")\n\n# sensitivity: 7 dims\ncv_null_7d = []\nfor perm in product([False, True], repeat=7):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_7d[i]); pc.append(inst_cvs_7d[i])\n        else:\n            pi.append(inst_cvs_7d[i]); pc.append(ctrl_cvs_7d[i])\n    cv_null_7d.append(np.mean(pc) - np.mean(pi))\ncv_null_7d = np.array(cv_null_7d)\nobs_cv_diff_7d = np.mean(ctrl_cvs_7d) - np.mean(inst_cvs_7d)\np_cv_7d = np.mean(cv_null_7d >= obs_cv_diff_7d)\nprint(f\"[7d sensitivity] diff={obs_cv_diff_7d:.4f}  p={p_cv_7d:.6f}\")\n\n# ==========================================================\n# 2. Exact paired permutation — I^2 (5 tasks, 2^5=32)\n# ==========================================================\nn_tasks = len(inst_ds)\nI2_null = []\nfor perm in product([False, True], repeat=n_tasks):\n    pi_d, pc_d = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi_d.append(ctrl_ds[i]); pc_d.append(inst_ds[i])\n        else:\n            pi_d.append(inst_ds[i]); pc_d.append(ctrl_ds[i])\n    _, i2_pi = compute_I2(pi_d)\n    _, i2_pc = compute_I2(pc_d)\n    I2_null.append(i2_pi - i2_pc)\nI2_null = np.array(I2_null)\np_I2_exact = np.mean(I2_null >= obs_I2_diff)\n\nprint(f\"\\n--- I^2 exact paired permutation (2^{n_tasks}={2**n_tasks}) ---\")\nprint(f\"Null: mean={I2_null.mean():.4f} std={I2_null.std():.4f}\")\nprint(f\"Observed={obs_I2_diff:.4f}  p={p_I2_exact:.6f}  sig={p_I2_exact<0.05}\")\n\n# ==========================================================\n# 3. Monte-Carlo unpaired permutation (10k) for higher resolution\n# ==========================================================\nrng = np.random.default_rng(42)\nN_MC = 10_000\n\n# CV: pool 12 values, split 6+6\nall_cvs = inst_cvs_6d + ctrl_cvs_6d\nmc_cv = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(12)\n    mc_cv[k] = np.mean([all_cvs[i] for i in idx[6:]]) - np.mean([all_cvs[i] for i in idx[:6]])\np_cv_mc = float(np.mean(mc_cv >= obs_cv_diff))\n\n# I^2: pool 10 d-values, split 5+5\nall_ds = inst_ds + ctrl_ds\nmc_I2 = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(10)\n    g1 = [all_ds[i] for i in idx[:5]]\n    g2 = [all_ds[i] for i in idx[5:]]\n    _, i2_1 = compute_I2(g1)\n    _, i2_2 = compute_I2(g2)\n    mc_I2[k] = i2_1 - i2_2\np_I2_mc = float(np.mean(np.abs(mc_I2) >= abs(obs_I2_diff)))\n\nprint(f\"\\n--- Monte-Carlo unpaired ({N_MC} iterations) ---\")\nprint(f\"CV:  null mean={mc_cv.mean():.4f} std={mc_cv.std():.4f}  p={p_cv_mc:.4f}\")\nprint(f\"I^2: null mean={mc_I2.mean():.4f} std={mc_I2.std():.4f}  p(two-sided)={p_I2_mc:.4f}\")\n\n# ==========================================================\n# Build output\n# ==========================================================\nconclusion_parts = []\nif p_cv_exact < 0.05:\n    conclusion_parts.append(\n        f\"CV difference significant (exact paired p={p_cv_exact:.4f}): \"\n        f\"instruction CV ({obs_cv_inst:.2f}) < control CV ({obs_cv_ctrl:.2f}), \"\n        f\"instruction heads produce more uniform perturbation across action dims.\"\n    )\nelse:\n    conclusion_parts.append(\n        f\"CV difference not significant at alpha=0.05 (exact paired p={p_cv_exact:.4f}).\"\n    )\n\nif p_I2_exact < 0.05:\n    conclusion_parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f}). \"\n        f\"Limited resolution with 2^5=32 permutations.\"\n    )\nelse:\n    conclusion_parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f}). \"\n        f\"Limited resolution with 2^5=32 permutations.\"\n    )\n\nconclusion_parts.append(\n    f\"MC unpaired: CV p={p_cv_mc:.4f}, I^2 p(two-sided)={p_I2_mc:.4f}.\"\n)\n\nconclusion = \" \".join(conclusion_parts)\nprint(f\"\\nConclusion: {conclusion}\")\n\nresults = {\n    \"method\": \"exact_paired_permutation_test\",\n    \"data_source\": {\n        \"instruction_ablation\": \"24 heads, per-dim CV from 6 continuous dims, per-task d from 5 tasks\",\n        \"control_ablation\": \"8 heads, same dimensions and tasks\",\n    },\n    \"observed\": {\n        \"cv_inst\": float(obs_cv_inst),\n        \"cv_ctrl\": float(obs_cv_ctrl),\n        \"cv_diff_ctrl_minus_inst\": float(obs_cv_diff),\n        \"I2_inst\": float(obs_I2_inst),\n        \"I2_ctrl\": float(obs_I2_ctrl),\n        \"I2_diff_inst_minus_ctrl\": float(obs_I2_diff),\n    },\n    \"cv_test_exact_paired\": {\n        \"n_dims\": n_dims,\n        \"n_permutations\": 2 ** n_dims,\n        \"null_mean\": float(cv_null.mean()),\n        \"null_std\": float(cv_null.std()),\n        \"p_value_one_sided\": float(p_cv_exact),\n        \"significant_005\": bool(p_cv_exact < 0.05),\n    },\n    \"cv_test_7d_sensitivity\": {\n        \"observed_diff\": float(obs_cv_diff_7d),\n        \"p_value\": float(p_cv_7d),\n    },\n    \"I2_test_exact_paired\": {\n        \"n_tasks\": n_tasks,\n        \"n_permutations\": 2 ** n_tasks,\n        \"null_mean\": float(I2_null.mean()),\n        \"null_std\": float(I2_null.std()),\n        \"p_value_one_sided\": float(p_I2_exact),\n        \"significant_005\": bool(p_I2_exact < 0.05),\n        \"note\": f\"Min possible p = 1/{2**n_tasks} = {1/2**n_tasks:.4f}\",\n    },\n    \"monte_carlo_unpaired\": {\n        \"n_iterations\": N_MC,\n        \"seed\": 42,\n        \"cv_p_value\": float(p_cv_mc),\n        \"I2_p_value_two_sided\": float(p_I2_mc),\n    },\n    \"conclusion\": conclusion,\n}\n\nout = \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\"\nwith open(out, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved to {out}\")\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019WeCUZvbU6YzZg5dZryw5y`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/permutation_test_I2.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Permutation test for CV and I^2 differences between instruction and control ablation.\n\nTests whether the observed CV and I^2 differences could arise from random\ngroup assignment, using exact paired permutation (swap labels within each\ndimension/task pair).\n\"\"\"\n\nimport json\nimport numpy as np\nfrom itertools import product\n\n\ndef compute_I2(d_values, n_per_task=500):\n    \"\"\"Cochran's Q and I^2 using w_i = n weights (matches original analysis).\"\"\"\n    d = np.array(d_values, dtype=np.float64)\n    k = len(d)\n    d_mean = d.mean()\n    Q = n_per_task * np.sum((d - d_mean) ** 2)\n    I2 = max(0.0, (Q - (k - 1)) / Q) if Q > 0 else 0.0\n    return Q, I2\n\n\nwith open(\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\") as f:\n    ext = json.load(f)\n\n# ---------- extract data ----------\nper_dim_cv = ext[\"temporal_coherence_proxy\"][\"per_dim_cv\"]\ninst_cvs_7d = [d[\"inst_cv\"] for d in per_dim_cv]\nctrl_cvs_7d = [d[\"ctrl_cv\"] for d in per_dim_cv]\ninst_cvs_6d = inst_cvs_7d[:6]\nctrl_cvs_6d = ctrl_cvs_7d[:6]\n\ncross_task = ext[\"temporal_coherence_proxy\"][\"cross_task_heterogeneity\"]\ninst_ds = cross_task[\"instruction_ablation\"][\"per_task_d\"]\nctrl_ds = cross_task[\"control_ablation\"][\"per_task_d\"]\n\n# ---------- observed values ----------\nobs_cv_inst = np.mean(inst_cvs_6d)\nobs_cv_ctrl = np.mean(ctrl_cvs_6d)\n_, obs_I2_inst = compute_I2(inst_ds)\n_, obs_I2_ctrl = compute_I2(ctrl_ds)\n\nobs_cv_diff = obs_cv_ctrl - obs_cv_inst\nobs_I2_diff = obs_I2_inst - obs_I2_ctrl\n\nprint(\"=== Observed ===\")\nprint(f\"CV  inst={obs_cv_inst:.4f}  ctrl={obs_cv_ctrl:.4f}  diff={obs_cv_diff:.4f}\")\nprint(f\"I2  inst={obs_I2_inst:.4f}  ctrl={obs_I2_ctrl:.4f}  diff={obs_I2_diff:.4f}\")\n\n# ==========================================================\n# 1. Exact paired permutation - CV (6 continuous dims, 2^6=64)\n# ==========================================================\nn_dims = len(inst_cvs_6d)\ncv_null = []\nfor perm in product([False, True], repeat=n_dims):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_6d[i]); pc.append(inst_cvs_6d[i])\n        else:\n            pi.append(inst_cvs_6d[i]); pc.append(ctrl_cvs_6d[i])\n    cv_null.append(np.mean(pc) - np.mean(pi))\ncv_null = np.array(cv_null)\np_cv_exact = float(np.mean(cv_null >= obs_cv_diff))\n\nprint(f\"\\n--- CV exact paired permutation (2^{n_dims}={2**n_dims}) ---\")\nprint(f\"Null: mean={cv_null.mean():.4f} std={cv_null.std():.4f}\")\nprint(f\"Observed={obs_cv_diff:.4f}  p={p_cv_exact:.6f}  sig={p_cv_exact<0.05}\")\n\n# sensitivity: 7 dims\ncv_null_7d = []\nfor perm in product([False, True], repeat=7):\n    pi, pc = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi.append(ctrl_cvs_7d[i]); pc.append(inst_cvs_7d[i])\n        else:\n            pi.append(inst_cvs_7d[i]); pc.append(ctrl_cvs_7d[i])\n    cv_null_7d.append(np.mean(pc) - np.mean(pi))\ncv_null_7d = np.array(cv_null_7d)\nobs_cv_diff_7d = np.mean(ctrl_cvs_7d) - np.mean(inst_cvs_7d)\np_cv_7d = float(np.mean(cv_null_7d >= obs_cv_diff_7d))\nprint(f\"[7d sensitivity] diff={obs_cv_diff_7d:.4f}  p={p_cv_7d:.6f}\")\n\n# ==========================================================\n# 2. Exact paired permutation - I^2 (5 tasks, 2^5=32)\n# ==========================================================\nn_tasks = len(inst_ds)\nI2_null = []\nfor perm in product([False, True], repeat=n_tasks):\n    pi_d, pc_d = [], []\n    for i, swap in enumerate(perm):\n        if swap:\n            pi_d.append(ctrl_ds[i]); pc_d.append(inst_ds[i])\n        else:\n            pi_d.append(inst_ds[i]); pc_d.append(ctrl_ds[i])\n    _, i2_pi = compute_I2(pi_d)\n    _, i2_pc = compute_I2(pc_d)\n    I2_null.append(i2_pi - i2_pc)\nI2_null = np.array(I2_null)\np_I2_exact = float(np.mean(I2_null >= obs_I2_diff))\n\nprint(f\"\\n--- I^2 exact paired permutation (2^{n_tasks}={2**n_tasks}) ---\")\nprint(f\"Null: mean={I2_null.mean():.4f} std={I2_null.std():.4f}\")\nprint(f\"Observed={obs_I2_diff:.4f}  p={p_I2_exact:.6f}  sig={p_I2_exact<0.05}\")\n\n# ==========================================================\n# 3. Monte-Carlo unpaired permutation (10k)\n# ==========================================================\nrng = np.random.default_rng(42)\nN_MC = 10_000\n\nall_cvs = inst_cvs_6d + ctrl_cvs_6d\nmc_cv = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(12)\n    mc_cv[k] = np.mean([all_cvs[i] for i in idx[6:]]) - np.mean([all_cvs[i] for i in idx[:6]])\np_cv_mc = float(np.mean(mc_cv >= obs_cv_diff))\n\nall_ds = inst_ds + ctrl_ds\nmc_I2 = np.empty(N_MC)\nfor k in range(N_MC):\n    idx = rng.permutation(10)\n    g1 = [all_ds[i] for i in idx[:5]]\n    g2 = [all_ds[i] for i in idx[5:]]\n    _, i2_1 = compute_I2(g1)\n    _, i2_2 = compute_I2(g2)\n    mc_I2[k] = i2_1 - i2_2\np_I2_mc = float(np.mean(np.abs(mc_I2) >= abs(obs_I2_diff)))\n\nprint(f\"\\n--- Monte-Carlo unpaired ({N_MC} iterations) ---\")\nprint(f\"CV:  null mean={mc_cv.mean():.4f} std={mc_cv.std():.4f}  p={p_cv_mc:.4f}\")\nprint(f\"I^2: null mean={mc_I2.mean():.4f} std={mc_I2.std():.4f}  p(two-sided)={p_I2_mc:.4f}\")\n\n# ==========================================================\n# Build conclusion and save\n# ==========================================================\nparts = []\nif p_cv_exact < 0.05:\n    parts.append(\n        f\"CV difference significant (exact paired p={p_cv_exact:.4f}): \"\n        f\"instruction CV ({obs_cv_inst:.2f}) < control CV ({obs_cv_ctrl:.2f}), \"\n        f\"instruction heads produce more uniform perturbation across action dims.\"\n    )\nelse:\n    parts.append(f\"CV difference not significant (exact paired p={p_cv_exact:.4f}).\")\n\nif p_I2_exact < 0.05:\n    parts.append(\n        f\"I^2 difference significant (exact paired p={p_I2_exact:.4f}): \"\n        f\"instruction I^2 ({obs_I2_inst:.2f}) > control I^2 ({obs_I2_ctrl:.2f}).\"\n    )\nelse:\n    parts.append(\n        f\"I^2 difference not significant at alpha=0.05 (exact paired p={p_I2_exact:.4f}, \"\n        f\"min possible={1/2**n_tasks:.4f} with {2**n_tasks} permutations).\"\n    )\n\nparts.append(f\"MC unpaired: CV p={p_cv_mc:.4f}, I^2 p(two-sided)={p_I2_mc:.4f}.\")\nconclusion = \" \".join(parts)\nprint(f\"\\nConclusion: {conclusion}\")\n\nresults = {\n    \"method\": \"exact_paired_permutation_test\",\n    \"data_source\": {\n        \"instruction_ablation\": \"24 heads, per-dim CV from 6 continuous dims, per-task d from 5 tasks\",\n        \"control_ablation\": \"8 heads, same dimensions and tasks\",\n    },\n    \"observed\": {\n        \"cv_inst\": float(obs_cv_inst),\n        \"cv_ctrl\": float(obs_cv_ctrl),\n        \"cv_diff_ctrl_minus_inst\": float(obs_cv_diff),\n        \"I2_inst\": float(obs_I2_inst),\n        \"I2_ctrl\": float(obs_I2_ctrl),\n        \"I2_diff_inst_minus_ctrl\": float(obs_I2_diff),\n    },\n    \"cv_test_exact_paired\": {\n        \"n_dims\": n_dims,\n        \"n_permutations\": 2 ** n_dims,\n        \"null_mean\": float(cv_null.mean()),\n        \"null_std\": float(cv_null.std()),\n        \"p_value_one_sided\": float(p_cv_exact),\n        \"significant_005\": bool(p_cv_exact < 0.05),\n    },\n    \"cv_test_7d_sensitivity\": {\n        \"observed_diff\": float(obs_cv_diff_7d),\n        \"p_value\": float(p_cv_7d),\n    },\n    \"I2_test_exact_paired\": {\n        \"n_tasks\": n_tasks,\n        \"n_permutations\": 2 ** n_tasks,\n        \"null_mean\": float(I2_null.mean()),\n        \"null_std\": float(I2_null.std()),\n        \"p_value_one_sided\": float(p_I2_exact),\n        \"significant_005\": bool(p_I2_exact < 0.05),\n        \"note\": f\"Min possible p = 1/{2**n_tasks} = {1/2**n_tasks:.4f}\",\n    },\n    \"monte_carlo_unpaired\": {\n        \"n_iterations\": N_MC,\n        \"seed\": 42,\n        \"cv_p_value\": float(p_cv_mc),\n        \"I2_p_value_two_sided\": float(p_I2_mc),\n    },\n    \"conclusion\": conclusion,\n}\n\nout = \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\"\nwith open(out, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved to {out}\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "2bc8fb99-3361-4411-9486-01251a056c47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VjFvNZpNmt2WgUXqddk7nV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16246,
+      "cache_read_input_tokens": 36821,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16246
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T15:12:39.229Z_
+
+<details><summary>↩ Tool result · `toolu_019WeCUZvbU6YzZg5dZryw5y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "042c8b44-275e-4025-9518-6368c8651e8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01C7n2rYwddU3PwRrAohvJdr`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate base && cd /root/vla-ssd && python scripts/permutation_test_I2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "c0d9a6ea-9614-4882-95e7-9b5cd74eeffb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Epe81RRwLd8hKRunAsZ9t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3322,
+      "cache_read_input_tokens": 53067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3322
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T15:12:43.420Z_
+
+<details><summary>↩ Tool result · `toolu_01C7n2rYwddU3PwRrAohvJdr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Observed ===\\nCV  inst=1.2981  ctrl=2.7441  diff=1.4460\\nI2  inst=0.8675  ctrl=0.7816  diff=0.0859\\n\\n--- CV exact paired permutation (2^6=64) ---\\nNull: mean=-0.0000 std=0.6756\\nObserved=1.4460  p=0.015625  sig=True\\n[7d sensitivity] diff=1.3682  p=0.007812\\n\\n--- I^2 exact paired permutation (2^5=32) ---\\nNull: mean=0.0000 std=0.2468\\nObserved=0.0859  p=0.156250  sig=False\\n\\n--- Monte-Carlo unpaired (10000 iterations) ---\\nCV:  null mean=-0.0063 std=0.6844  p=0.0048\\nI^2: null mean=-0.0000 std=0.1042  p(two-sided)=0.1434\\n\\nConclusion: CV difference significant (exact paired p=0.0156): instruction CV (1.30) < control CV (2.74), instruction heads produce more uniform perturbation across action dims. I^2 difference not significant at alpha=0.05 (exact paired p=0.1562, min possible=0.0312 with 32 permutations). MC unpaired: CV p=0.0048, I^2 p(two-sided)=0.1434.\\n\\nSaved to /root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "9fc3290c-a7d9-4cfe-8f75-2abc3a871510",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Observed ===\\\\nCV  inst=1.2981  ctrl=2.7441  diff=1.4460\\\\nI2  inst=0.8675  ctrl=0.7816  diff=0.0859\\\\n\\\\n--- CV exact paired permutation (2^6=64) ---\\\\nNull: mean=-0.0000 std=0.6756\\\\nObserved=1.4460  p=0.015625  sig=True\\\\n[7d sensitivity] diff=1.3682  p=0.007812\\\\n\\\\n--- I^2 exact paired permutation (2^5=32) ---\\\\nNull: mean=0.0000 std=0.2468\\\\nObserved=0.0859  p=0.156250  sig=False\\\\n\\\\n--- Monte-Carlo unpaired (10000 iterations) ---\\\\nCV:  null mean=-0.0063 std=0.6844  p=0.0048\\\\nI^2: null mean=-0.0000 std=0.1042  p(two-sided)=0.1434\\\\n\\\\nConclusion: CV difference significant (exact paired p=0.0156): instruction CV (1.30) < control CV (2.74), instruction heads produce more uniform perturbation across action dims. I^2 difference not significant at alpha=0.05 (exact paired p=0.1562, min possible=0.0312 with 32 permutations). MC unpaired: CV p=0.0048, I^2 p(two-sided)=0.1434.\\\\n\\\\nSaved to /root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Observed ===\\nCV  inst=1.2981  ctrl=2.7441  diff=1.4460\\nI2  inst=0.8675  ctrl=0.7816  diff=0.0859\\n\\n--- CV exact paired permutation (2^6=64) ---\\nNull: mean=-0.0000 std=0.6756\\nObserved=1.4460  p=0.015625  sig=True\\n[7d sensitivity] diff=1.3682  p=0.007812\\n\\n--- I^2 exact paired permutation (2^5=32) ---\\nNull: mean=0.0000 std=0.2468\\nObserved=0.0859  p=0.156250  sig=False\\n\\n--- Monte-Carlo unpaired (10000 iterations) ---\\nCV:  null mean=-0.0063 std=0.6844  p=0.0048\\nI^2: null mean=-0.0000 std=0.1042  p(two-sided)=0.1434\\n\\nConclusion: CV difference significant (exact paired p=0.0156): instruction CV (1.30) < control CV (2.74), instruction heads produce more uniform perturbation across action dims. I^2 difference not significant at alpha=0.05 (exact paired p=0.1562, min possible=0.0312 with 32 permutations). MC unpaired: CV p=0.0048, I^2 p(two-sided)=0.1434.\\n\\nSaved to /root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Results are clear. Let me now update the registry with these results.
+
+Key findings:
+- **CV difference**: Significant (exact paired p=0.0156, MC p=0.0048). Instruction heads produce more uniform perturbation.
+- **I² difference**: Not significant (exact paired p=0.1562, MC p=0.1434). Limited resolution with only 32 permutations (min possible p=0.0312).
+
+Let me update the registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "02278019-9fcb-483b-bdd3-94e15f84f91c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015MLTHZYcdUa4dT61UFtYqU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 606,
+      "cache_read_input_tokens": 56389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 606
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+结果出来了。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "76940ccb-393a-4061-930f-b2935e8c90db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015MLTHZYcdUa4dT61UFtYqU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 606,
+      "cache_read_input_tokens": 56389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 606
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01NAWFvMgRPegvJ29aDie35t`</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "DONE",
+  "project": "vla-ssd",
+  "spec": {
+    "command": "python scripts/permutation_test_I2.py",
+    "server": "westd-19183",
+    "data_path": "/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json",
+    "data_count": "5 tasks x 2 conditions + 7 dims x 2 conditions",
+    "model_name": "n/a (statistical test)",
+    "seed": 42,
+    "checkpoint_path": "n/a",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "f424e1d2-7a52-4ce3-bbc5-9b2134b6248a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015MLTHZYcdUa4dT61UFtYqU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 606,
+      "cache_read_input_tokens": 56389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 606
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T15:12:51.837Z_
+
+<details><summary>↩ Tool result · `toolu_01NAWFvMgRPegvJ29aDie35t`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2572}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "7c9cf895-344d-45e5-bcba-66e4aa1b1cd5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2572}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2572}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012BtnAdyWitiSXYzqk5cdgv`</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": {
+    "command": "python scripts/permutation_test_I2.py",
+    "server": "westd-19183",
+    "data_path": "/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json",
+    "data_count": "5 tasks x 2 conditions + 7 dims x 2 conditions",
+    "model_name": "n/a (statistical test)",
+    "seed": 42,
+    "checkpoint_path": "n/a",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "8e0ca4f4-1947-460a-ba7a-622711a97dfd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TZVGdxN338DKsbw11AreuA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 598,
+      "cache_read_input_tokens": 56995,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 598
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T15:12:56.381Z_
+
+<details><summary>↩ Tool result · `toolu_012BtnAdyWitiSXYzqk5cdgv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2469}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "76fb7809-d434-4368-a0aa-5678f80fdd5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2469}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2469}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GwC7gDV9kAwzQBo4CLu4NR`</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "18183154-d04b-4391-9feb-b3b06a0afa4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E5bEMbM72Yxs5ueUgDds3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 360,
+      "cache_read_input_tokens": 57593,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 360
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T15:13:00.563Z_
+
+<details><summary>↩ Tool result · `toolu_01GwC7gDV9kAwzQBo4CLu4NR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:12:59.830Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9894}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "a2910c78-6d92-42e7-83d6-e71d4ab7e166",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"permutation_test_I2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:07:21.232Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:12:59.830Z\\\", \\\"hypothesis\\\": \\\"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\\\", \\\"parent\\\": \\\"action_trajectory_cpu_analysis\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9894}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:12:59.830Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9894}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01NNAUvhGjCZZxkHyz3ytZcb`</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": {
+    "command": "python scripts/permutation_test_I2.py",
+    "server": "westd-19183",
+    "data_path": "/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json",
+    "data_count": "5 tasks x 2 conditions + 7 dims x 2 conditions",
+    "model_name": "n/a (statistical test)",
+    "seed": 42,
+    "checkpoint_path": "n/a",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "4d9ae7fd-24ba-4486-81de-c302c2a6061e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MBdZfy6KJ1VoiAcDs457Vk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 370,
+      "cache_read_input_tokens": 57953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 370
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T15:13:05.247Z_
+
+<details><summary>↩ Tool result · `toolu_01NNAUvhGjCZZxkHyz3ytZcb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2613}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "f9bf0d70-7529-403d-b12f-fc49f3d53748",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2613}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2613}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PYUy2hSjB2QzPurQqzhHkd`</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": {
+    "command": "python scripts/permutation_test_I2.py",
+    "server": "westd-19183",
+    "data_path": "/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json",
+    "data_count": "5 tasks x 2 conditions + 7 dims x 2 conditions",
+    "model_name": "n/a (statistical test)",
+    "seed": 42,
+    "checkpoint_path": "n/a",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json",
+    "checkpoint_source": "n/a",
+    "eval_data": "action_trajectory_extended_analysis.json"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "ae20c019-780b-4445-888c-c7f34afa63a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119Wbg1DBVvMV1oqDt3tRfP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 375,
+      "cache_read_input_tokens": 58323,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 375
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T15:13:10.946Z_
+
+<details><summary>↩ Tool result · `toolu_01PYUy2hSjB2QzPurQqzhHkd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:10.312Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8786}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "f0370258-3327-4012-9021-9c687953c6bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"permutation_test_I2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:07:21.232Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:13:10.312Z\\\", \\\"hypothesis\\\": \\\"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\\\", \\\"parent\\\": \\\"action_trajectory_cpu_analysis\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/permutation_test_I2.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\\", \\\"data_count\\\": \\\"5 tasks x 2 conditions + 7 dims x 2 conditions\\\", \\\"model_name\\\": \\\"n/a (statistical test)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"n/a\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\\\", \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"action_trajectory_extended_analysis.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8786}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:10.312Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8786}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MQ1RRHcjKcg2c41hb8kByA`</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "metrics",
+  "value": {
+    "cv_exact_paired_p": 0.0156,
+    "cv_mc_unpaired_p": 0.0048,
+    "cv_7d_p": 0.0078,
+    "I2_exact_paired_p": 0.1562,
+    "I2_mc_unpaired_p": 0.1434,
+    "cv_null_mean": 0,
+    "cv_null_std": 0.6756,
+    "I2_null_mean": 0,
+    "I2_null_std": 0.2468
+  },
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "85b068c7-90c9-46c0-a7e4-168103fc34ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LLcqohXNLYDHX55ScSV5kv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 58698,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 748
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T15:13:16.496Z_
+
+<details><summary>↩ Tool result · `toolu_01MQ1RRHcjKcg2c41hb8kByA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:16.311Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}, \"metrics\": {\"cv_exact_paired_p\": 0.0156, \"cv_mc_unpaired_p\": 0.0048, \"cv_7d_p\": 0.0078, \"I2_exact_paired_p\": 0.1562, \"I2_mc_unpaired_p\": 0.1434, \"cv_null_mean\": 0, \"cv_null_std\": 0.6756, \"I2_null_mean\": 0, \"I2_null_std\": 0.2468}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4846}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "a46dd514-09df-4188-ab55-2180a013308c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"permutation_test_I2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:07:21.232Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:13:16.311Z\\\", \\\"hypothesis\\\": \\\"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\\\", \\\"parent\\\": \\\"action_trajectory_cpu_analysis\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/permutation_test_I2.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\\", \\\"data_count\\\": \\\"5 tasks x 2 conditions + 7 dims x 2 conditions\\\", \\\"model_name\\\": \\\"n/a (statistical test)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"n/a\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\\\", \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"action_trajectory_extended_analysis.json\\\"}, \\\"metrics\\\": {\\\"cv_exact_paired_p\\\": 0.0156, \\\"cv_mc_unpaired_p\\\": 0.0048, \\\"cv_7d_p\\\": 0.0078, \\\"I2_exact_paired_p\\\": 0.1562, \\\"I2_mc_unpaired_p\\\": 0.1434, \\\"cv_null_mean\\\": 0, \\\"cv_null_std\\\": 0.6756, \\\"I2_null_mean\\\": 0, \\\"I2_null_std\\\": 0.2468}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4846}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:16.311Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}, \"metrics\": {\"cv_exact_paired_p\": 0.0156, \"cv_mc_unpaired_p\": 0.0048, \"cv_7d_p\": 0.0078, \"I2_exact_paired_p\": 0.1562, \"I2_mc_unpaired_p\": 0.1434, \"cv_null_mean\": 0, \"cv_null_std\": 0.6756, \"I2_null_mean\": 0, \"I2_null_std\": 0.2468}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4846}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EQaVwCrjpBrsomsgMyp7M8`</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "conclusion",
+  "value": "CV difference significant (exact paired p=0.0156, MC p=0.0048): instruction heads produce more uniform perturbation across action dims (CV 1.30 vs 2.74). I^2 difference not significant (exact paired p=0.1562, min possible=0.0312 with 2^5=32 permutations; MC p=0.1434). The I^2 test has limited statistical power due to only 5 tasks.",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "bf6e2063-e570-4849-9af7-eac34b8f3aba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LLcqohXNLYDHX55ScSV5kv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 58698,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 748
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T15:13:18.231Z_
+
+<details><summary>↩ Tool result · `toolu_01EQaVwCrjpBrsomsgMyp7M8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'CV difference significant (exact paired p=0.0156, MC p=0.0048): instruction heads produce more uniform perturbation across action dims (CV 1.30 vs 2.74). I^2 difference not significant (exact paired p=0.1562, min possible=0.0312 with 2^5=32 permutations; MC p=0.1434). The I^2 test has limited statistical power due to only 5 tasks.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.3433}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "162ccefb-5274-4940-8588-7ecf03d50551",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'CV difference significant (exact paired p=0.0156, MC p=0.0048): instruction heads produce more uniform perturbation across action dims (CV 1.30 vs 2.74). I^2 difference not significant (exact paired p=0.1562, min possible=0.0312 with 2^5=32 permutations; MC p=0.1434). The I^2 test has limited statistical power due to only 5 tasks.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3433}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'CV difference significant (exact paired p=0.0156, MC p=0.0048): instruction heads produce more uniform perturbation across action dims (CV 1.30 vs 2.74). I^2 difference not significant (exact paired p=0.1562, min possible=0.0312 with 2^5=32 permutations; MC p=0.1434). The I^2 test has limited statistical power due to only 5 tasks.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.3433}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Ny1gCj2U3RJdrAHh3bgic4`</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "2fad678a-a319-4deb-868c-188700c1682f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121W7Jx5GQoqvnJvwxLTY3T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1280,
+      "cache_read_input_tokens": 59446,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1280
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T15:13:21.923Z_
+
+<details><summary>↩ Tool result · `toolu_01Ny1gCj2U3RJdrAHh3bgic4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:21.745Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}, \"metrics\": {\"cv_exact_paired_p\": 0.0156, \"cv_mc_unpaired_p\": 0.0048, \"cv_7d_p\": 0.0078, \"I2_exact_paired_p\": 0.1562, \"I2_mc_unpaired_p\": 0.1434, \"cv_null_mean\": 0, \"cv_null_std\": 0.6756, \"I2_null_mean\": 0, \"I2_null_std\": 0.2468}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4151}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "b2deb24f-6033-46d0-83d4-d813e4ef3554",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"permutation_test_I2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:07:21.232Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:13:21.745Z\\\", \\\"hypothesis\\\": \\\"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\\\", \\\"parent\\\": \\\"action_trajectory_cpu_analysis\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/permutation_test_I2.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\\", \\\"data_count\\\": \\\"5 tasks x 2 conditions + 7 dims x 2 conditions\\\", \\\"model_name\\\": \\\"n/a (statistical test)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"n/a\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\\\", \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"action_trajectory_extended_analysis.json\\\"}, \\\"metrics\\\": {\\\"cv_exact_paired_p\\\": 0.0156, \\\"cv_mc_unpaired_p\\\": 0.0048, \\\"cv_7d_p\\\": 0.0078, \\\"I2_exact_paired_p\\\": 0.1562, \\\"I2_mc_unpaired_p\\\": 0.1434, \\\"cv_null_mean\\\": 0, \\\"cv_null_std\\\": 0.6756, \\\"I2_null_mean\\\": 0, \\\"I2_null_std\\\": 0.2468}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4151}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:21.745Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}, \"metrics\": {\"cv_exact_paired_p\": 0.0156, \"cv_mc_unpaired_p\": 0.0048, \"cv_7d_p\": 0.0078, \"I2_exact_paired_p\": 0.1562, \"I2_mc_unpaired_p\": 0.1434, \"cv_null_mean\": 0, \"cv_null_std\": 0.6756, \"I2_null_mean\": 0, \"I2_null_std\": 0.2468}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4151}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01X5J3JzgJNmHUVFRhrMJgJY`</summary>
+
+```json
+{
+  "exp_id": "permutation_test_I2",
+  "field": "status",
+  "value": "DONE",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "b8333855-4a72-48f5-bd9a-9960eba7e141",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XuUnXRTG5WDQkppnXvrCo1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 60726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T15:13:26.146Z_
+
+<details><summary>↩ Tool result · `toolu_01X5J3JzgJNmHUVFRhrMJgJY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:25.536Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}, \"metrics\": {\"cv_exact_paired_p\": 0.0156, \"cv_mc_unpaired_p\": 0.0048, \"cv_7d_p\": 0.0078, \"I2_exact_paired_p\": 0.1562, \"I2_mc_unpaired_p\": 0.1434, \"cv_null_mean\": 0, \"cv_null_std\": 0.6756, \"I2_null_mean\": 0, \"I2_null_std\": 0.2468}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T15:13:25.536Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8588}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "9d73dc9a-4d31-4bc8-be1d-99bfcaa6fa11",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"permutation_test_I2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:07:21.232Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:13:25.536Z\\\", \\\"hypothesis\\\": \\\"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\\\", \\\"parent\\\": \\\"action_trajectory_cpu_analysis\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/permutation_test_I2.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\\", \\\"data_count\\\": \\\"5 tasks x 2 conditions + 7 dims x 2 conditions\\\", \\\"model_name\\\": \\\"n/a (statistical test)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"n/a\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\\\", \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"action_trajectory_extended_analysis.json\\\"}, \\\"metrics\\\": {\\\"cv_exact_paired_p\\\": 0.0156, \\\"cv_mc_unpaired_p\\\": 0.0048, \\\"cv_7d_p\\\": 0.0078, \\\"I2_exact_paired_p\\\": 0.1562, \\\"I2_mc_unpaired_p\\\": 0.1434, \\\"cv_null_mean\\\": 0, \\\"cv_null_std\\\": 0.6756, \\\"I2_null_mean\\\": 0, \\\"I2_null_std\\\": 0.2468}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T15:13:25.536Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8588}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"permutation_test_I2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:07:21.232Z\", \"updated_at\": \"2026-05-18T15:13:25.536Z\", \"hypothesis\": \"Permutation test validates that observed CV difference (instruction 1.30 vs control 2.74) and I² difference (instruction 0.87 vs control 0.78) are not explained by random head assignment. Shuffling head labels 1000x and recomputing metrics produces null distribution; observed values should fall in extreme tail (p < 0.05).\", \"parent\": \"action_trajectory_cpu_analysis\", \"spec\": {\"command\": \"python scripts/permutation_test_I2.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\", \"data_count\": \"5 tasks x 2 conditions + 7 dims x 2 conditions\", \"model_name\": \"n/a (statistical test)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json\", \"checkpoint_source\": \"n/a\", \"eval_data\": \"action_trajectory_extended_analysis.json\"}, \"metrics\": {\"cv_exact_paired_p\": 0.0156, \"cv_mc_unpaired_p\": 0.0048, \"cv_7d_p\": 0.0078, \"I2_exact_paired_p\": 0.1562, \"I2_mc_unpaired_p\": 0.1434, \"cv_null_mean\": 0, \"cv_null_std\": 0.6756, \"I2_null_mean\": 0, \"I2_null_std\": 0.2468}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T15:13:25.536Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8588}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+结果：
+
+| 指标 | 精确配对置换 p | MC 非配对 p |
+|------|--------------|------------|
+| **CV** (ctrl 2.74 vs inst 1.30) | **0.0156** | **0.0048** |
+| **I²** (inst 0.87 vs ctrl 0.78) | 0.1562 | 0.1434 |
+
+**CV 差异显著**：instruction heads 在所有 6 个连续 action 维度上一致地产生更低 CV（更均匀的扰动），精确置换 p=0.0156（2^6=64 种排列中仅 1 种 >= 观测值）。7 维（含 gripper）时 p=0.0078 更强。
+
+**I² 差异不显著**：精确置换仅 32 种排列（2^5），最小可能 p=0.0312，分辨率不足以在 α=0.05 下检测 0.086 的 I² 差距。MC 非配对检验同样不显著（p=0.14）。这是统计功效不足（5 个 task），不代表效应不存在。
+
+结果已保存至 `/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json`，registry 已更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "uuid": "72a35227-58d1-41e5-9778-be74f21920d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgHrcS728cMgQevsUd8LtN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 61436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 768
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 43_
+
+结果：
+
+| 指标 | 精确配对置换 p | MC 非配对 p |
+|------|--------------|------------|
+| **CV** (ctrl 2.74 vs inst 1.30) | **0.0156** | **0.0048** |
+| **I²** (inst 0.87 vs ctrl 0.78) | 0.1562 | 0.1434 |
+
+**CV 差异显著**：instruction heads 在所有 6 个连续 action 维度上一致地产生更低 CV（更均匀的扰动），精确置换 p=0.0156（2^6=64 种排列中仅 1 种 >= 观测值）。7 维（含 gripper）时 p=0.0078 更强。
+
+**I² 差异不显著**：精确置换仅 32 种排列（2^5），最小可能 p=0.0312，分辨率不足以在 α=0.05 下检测 0.086 的 I² 差距。MC 非配对检验同样不显著（p=0.14）。这是统计功效不足（5 个 task），不代表效应不存在。
+
+结果已保存至 `/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json`，registry 已更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 330138,
+  "duration_api_ms": 325060,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "f172545f-7f83-4ad6-8692-2393660a2d0e",
+  "total_cost_usd": 1.2207627500000002,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 50363,
+    "cache_read_input_tokens": 680098,
+    "output_tokens": 22570,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 50363,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 369,
+        "cache_read_input_tokens": 61436,
+        "cache_creation_input_tokens": 768,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 768
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1525,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001605,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 22570,
+      "cacheReadInputTokens": 680098,
+      "cacheCreationInputTokens": 50363,
+      "webSearchRequests": 0,
+      "costUSD": 1.2191577500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "217b43c8-f423-46d6-b430-03b4fc3c7de2"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,1295 @@
+issues:
+# ============================================================
+# Legacy issues (Rounds 1-14) — status unchanged unless re-raised
+# ============================================================
+- id: R1-N1-old
+  summary: "Untrained baseline 无法隔离 VLA fine-tuning vs Llama-2 语言预训练的贡献"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "三条件数据完整整合。"
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-N2-old
+  summary: "单一模型 Title/Abstract 使用复数 'VLAs' 构成 overclaim"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "Title 改为单数。"
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-N4-old
+  summary: "Design implications 完全基于 correlational evidence"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "Abstract 使用 hedge 语气。"
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-N3-old
+  summary: "RSA best-vs-best selection bias"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "Same-layer comparison 为 primary evidence。"
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R2-N1-old
+  summary: "Neo et al. (ICLR 2025) 未引用"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "已引用。"
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R2-W1-old
+  summary: "Related Work 引用覆盖度不足"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "引用数量达标。"
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-W1-old
+  summary: "'Instruction-blind' claim 过强"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "MLP probe 双重验证。"
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-W2-old
+  summary: "CKA 反转 RSA 排序处理不充分"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "Method 新增 'Why RSA over CKA'。"
+  resolution_round: 2
+  mentions: []
+  action_items: []
+- id: R3-N1-old
+  summary: "Limitations 格式"
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "改为 subsection。"
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R3-N2-old
+  summary: "em-dash AI 写作标志"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "零残留。"
+  resolution_round: 2
+  mentions: []
+  action_items: []
+- id: R3-W5-old
+  summary: "无 code/data 释放声明"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: "Conclusion 加声明。"
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R4-N1
+  summary: "C1 是 causal mask 必然结果 + probe trivially easy"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 14
+  resolution: "Abstract 'confirms expected' + 'consistent with causal attention mask' + 'framework sanity check' 三重降格。Contribution (iii) 定位为 methodology validation。全文一致。"
+  resolution_round: 13
+  mentions:
+    - round: 9
+      reviewers: [1, 2]
+      note: "R9-W2: C1 在 Abstract/Introduction 占比失衡。"
+    - round: 10
+      reviewers: [1, 2]
+      note: "RESOLVED。降格处理到位。"
+    - round: 12
+      reviewers: [2, 3]
+      note: "复发。R2-N1: 虽已降为 sanity check，但 Title 和 Abstract 仍将架构约束呈现为核心贡献。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "RESOLVED。三重降格处理精准。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "交叉讨论后共识降为 should-fix。"
+    - round: 15
+      reviewers: []
+      note: "R15 fresh review 未再提出此问题。"
+  action_items: []
+- id: R4-N2
+  summary: "RSA inverted-U metric-dependent，CKA 反转"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 14
+  resolution: "C3 降为 qualified observation + §4.4 CKA 正文讨论。"
+  resolution_round: 8
+  mentions:
+    - round: 14
+      reviewers: [1, 2]
+      note: "R1-W3 再次提出 RSA vs CKA 反转处理不足。R2 部分 REBUT。"
+    - round: 15
+      reviewers: []
+      note: "R15 未直接再提。"
+  action_items: []
+- id: R4-N3
+  summary: "L1 ablation 使用 5 demos"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  resolution: "改用 50 demos (N=63,228)。"
+  resolution_round: 5
+  mentions: []
+  action_items: []
+- id: R4-W1
+  summary: "RSA best-vs-best n.s. 未标注"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  resolution: "已标注。"
+  resolution_round: 5
+  mentions: []
+  action_items: []
+- id: R4-W2
+  summary: "缺乏多重比较校正"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  resolution: "FDR 已应用。"
+  resolution_round: 5
+  mentions: []
+  action_items: []
+- id: R4-W3
+  summary: "Probe N 未报告，MLP capacity 控制不充分"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 7
+  resolution: "Demo-level split 完全消除时间泄漏。"
+  resolution_round: 7
+  mentions: []
+  action_items: []
+- id: R4-W4
+  summary: "Frozen encoder confound"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  resolution: "Introduction + Discussion 说明。"
+  resolution_round: 5
+  mentions: []
+  action_items: []
+- id: R9-N1
+  summary: "单一模型(OpenVLA-7B)单一基准(LIBERO)，无法支撑 VLA 通用性"
+  category: experiment
+  severity: critical
+  status: wont_fix
+  first_raised_round: 9
+  last_seen_round: 17
+  mentions:
+    - round: 9
+      reviewers: [1, 2]
+      note: "双方 AGREE critical。"
+    - round: 14
+      reviewers: [1, 2, 3]
+      note: "R14 fresh review 再次提出。"
+    - round: 15
+      reviewers: [1, 2, 3]
+      note: "R15 三位 Reviewer 均再次提出。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "R16 确认 Limitations 已承认 LIBERO-only。结构性局限不变。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R17 两位均确认结构性局限已充分承认。R1 列为残余限制。R2 在评分中扣 -0.5。"
+  action_items: []
+  resolution: "Claims 已限定为 'causal-decoder VLAs'。Limitations 明确承认 LIBERO-only。结构性局限不变。"
+  resolution_round: null
+- id: R9-N2
+  summary: "所有分析均为 open-loop，无 closed-loop 机器人评估"
+  category: experiment
+  severity: critical
+  status: wont_fix
+  first_raised_round: 9
+  last_seen_round: 17
+  mentions:
+    - round: 9
+      reviewers: [1, 2]
+      note: "双方 AGREE critical。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "PARTIALLY_RESOLVED。'orthogonal contribution' 措辞仍需修改。"
+    - round: 14
+      reviewers: [1, 2, 3]
+      note: "R14 fresh review 以最高优先级再次提出。"
+    - round: 15
+      reviewers: [2, 3]
+      note: "R2 REBUT R3 的 must-fix 判定，但同意需要至少一个 behavioral validation。"
+    - round: 16
+      reviewers: [2]
+      note: "R16-N3: 主文 Limitations 未显式提及 closed-loop 缺失。Appendix 有但主文遗漏。R1 AGREE。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R17 主文 Limitations 已加 open-loop 显式声明。两位均确认结构性局限已充分承认。"
+  action_items:
+    - round: 16
+      action: "在主文 Limitations 加一句：'All analyses are open-loop; closed-loop behavioral validation is left for future work.'"
+      assigned_to: research_director
+      status: done
+  resolution: "结构性局限。主文 Limitations 已加显式 open-loop 声明（R17 patch）。"
+  resolution_round: null
+- id: R9-N3
+  summary: "'Causal' 术语在 observational open-loop 分析中使用不当"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: "Discussion 'Causal' → 'Interventional'；§4.3 heading 改为 'Open-loop functional sensitivity'。"
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-N4
+  summary: "Ablation 使 R² 增加的 paradox 未充分解释"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 11
+  resolution: "Discussion 加 information-computation dissociation 解释。"
+  resolution_round: 11
+  mentions: []
+  action_items: []
+- id: R9-N5
+  summary: "Counterfactual 的 'semantic distance' 概念未定义"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: "改用 Jaccard token overlap / token novelty。"
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-N6
+  summary: "N=10 tasks 的 RSA bootstrap 统计功效不足 / sign test N=6 power 极低"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 16
+  resolution: "R16 全面转向 effect-size + CI 框架，sign test 在主文中已移除。ΔR² > 0.10 阈值 + 95% CI (MCCV n=1000) 为主要报告方式。阈值敏感性分析 (0.08/0.10/0.20) 确认分组稳健。"
+  resolution_round: 16
+  mentions:
+    - round: 11
+      reviewers: [1]
+      note: "RESOLVED（加了 power limitation 声明）。"
+    - round: 14
+      reviewers: [1, 2, 3]
+      note: "R14 升级为 critical。TOST 等价检验。"
+    - round: 15
+      reviewers: [1, 2, 3]
+      note: "R15 核心统计问题。sign test N=6 power 极低。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "R16 RESOLVED。Sign test 废弃，effect-size + CI 替代。R1 称 '根本性升级'，R2 AGREE。"
+  action_items: []
+- id: R9-W1
+  summary: "CoRL scope fit 有限：纯 representational analysis，无物理机器人实验"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 9
+  last_seen_round: 17
+  resolution: ""
+  resolution_round: null
+  mentions:
+    - round: 13
+      reviewers: [1, 2]
+      note: "PARTIALLY_RESOLVED。Writing-level 改善但核心缺陷无法通过写作修复。"
+    - round: 14
+      reviewers: [1, 2, 3]
+      note: "三位均以最高优先级提出。"
+    - round: 15
+      reviewers: [2, 3]
+      note: "R3 维持 must-fix。R2 REBUT。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "R16 论文定位为 'complementary representational analysis'。R2 认为 scope fit 由 AC 判断。R1 未直接评论但给分 7/10 隐含 scope 可接受。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R17 R1 给 7.5/10 隐含 scope 可接受。R2 在评分中扣 -0.5 for scope/LIBERO-only。由 AC 判断。"
+  action_items: []
+- id: R9-W2
+  summary: "C1 在 Abstract/Introduction/Contributions 中占比失衡"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: "C1 降为末句 sanity check。"
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-W3
+  summary: "Vision representation 训练效果微弱，framing 未充分反映"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: "§4.4 标题改为 'Training primarily enhances readout decodability'。"
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-W4
+  summary: "Cohen's d 独立性假设违反 / Table 2 混合 metric"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 17
+  resolution: "R17 Table 2 仅含 Cohen's d（OpenVLA + TracVLA），NORA cosine distance 分离至 §4.4.2。R16 主文 caveat + 脚注。两位 R17 Reviewer 均判 RESOLVED（改进）。"
+  resolution_round: 17
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "RESOLVED（新增 trajectory-level d）。"
+    - round: 14
+      reviewers: [1, 2, 3]
+      note: "R1 重提 paired data 应用 paired effect size。"
+    - round: 15
+      reviewers: [1, 2, 3]
+      note: "Table 2 将 Cohen's d 和 cosine distance 并列暗示可比性。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。主文 caveat + 脚注 + §4.4 讨论。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "进一步改进。Table 2 仅含同一 metric（Cohen's d）。NORA cosine distance 独立讨论。"
+  action_items: []
+- id: R9-W5
+  summary: "Pretrained Llama-2 base 的 9/32 heads 可能因 text in-distribution bias"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: "Discussion 新增替代解释承认。"
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-W6
+  summary: "Specificity control 效果有限(d ratio 1.08×)"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 14
+  resolution: "四组 matched-size 比较，framing 'distributed routing'。"
+  resolution_round: 11
+  mentions: []
+  action_items: []
+- id: R9-W7
+  summary: "N=63,228 观测的独立性——有效独立单元远小于报告值"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 16
+  resolution: "R16 demo-level MCCV (n=1000) 解决 trajectory 内依赖。R² inflation 量化（0.75-0.8 → 0.4-0.6）。Peak layer fixed from full-data split。两位 Reviewer 均判 RESOLVED。"
+  resolution_round: 16
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "RESOLVED（§4.1 新增 N_eff 说明）。"
+    - round: 15
+      reviewers: [1, 2, 3]
+      note: "R15 升级为 critical。三层嵌套依赖。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。Demo-level splitting 充分解决 single-cell inference 的依赖问题。"
+  action_items: []
+- id: R9-I1
+  summary: "缺失引用：Octo (Ghosh et al. 2024)"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: "references.bib 新增。"
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-I2
+  summary: "Häon et al. 2025 的 sparse semantic directions 与 L1 routing heads 的关系未讨论"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 11
+  resolution: "Discussion 加 where/what 互补连接。"
+  resolution_round: 11
+  mentions: []
+  action_items: []
+- id: R9-I3
+  summary: "多处小问题：Table 1 caption、脚注、accessed date"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: "已修复。"
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R10-Q1
+  summary: "Per-task MSE breakdown：消融后 MSE 不变是否存在 task-level cancellation"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 11
+  resolution: "Appendix 加 per-task breakdown。"
+  resolution_round: 11
+  mentions: []
+  action_items: []
+- id: R12-N1
+  summary: "因果 overclaiming：Title 'Routes' 暗示因果机制"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 13
+  resolution: "Title 'Routes'→'Reorganizes'，全文 'routing'→'redistributes'，零残留。"
+  resolution_round: 13
+  mentions: []
+  action_items: []
+- id: R12-N2
+  summary: "正文超出 CoRL 8 页限制"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 16
+  resolution: "R16 Discussion+Conclusion 合并为单一 section，所有 setlength 移除。R2 确认正文 ≤8 页，References 从 page 9 开始。"
+  resolution_round: 16
+  mentions:
+    - round: 14
+      reviewers: [3]
+      note: "R3-N1 critical: 正文约 8.7 页。"
+    - round: 15
+      reviewers: [2, 3]
+      note: "R15 Conclusion 溢出到第 9 页。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。合并 Discussion+Conclusion，移除 setlength。正文 ≤8 页。"
+  action_items: []
+- id: R12-N3
+  summary: "Abstract/Introduction 信息过载"
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 16
+  resolution: "R16 Abstract 从 ~220 词精简至 ~137 词，3-finding 结构。定量结果精简至关键数字。与 Introduction 重复度显著降低。"
+  resolution_round: 16
+  mentions:
+    - round: 14
+      reviewers: [3]
+      note: "R3-N2: Abstract 含 15+ 定量结果。"
+    - round: 15
+      reviewers: [2, 3]
+      note: "R3-W2: Abstract ~220 词。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。137 词，清晰 3-finding 结构。"
+  action_items: []
+- id: R12-W1
+  summary: "无首页 teaser figure"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 15
+  resolution: "Figure 1 已在 page 2 (Introduction)。"
+  resolution_round: 15
+  mentions: []
+  action_items: []
+- id: R12-W2
+  summary: "层编号 off-by-one"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 15
+  resolution: "L0-L31/L35 编号已修复。"
+  resolution_round: 15
+  mentions: []
+  action_items: []
+- id: R12-W3
+  summary: "多条引用使用 arXiv preprint 而非已发表版本"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 16
+  mentions:
+    - round: 15
+      reviewers: [3]
+      note: "R3-M4: 部分 arXiv 引用可能已有正式出版版本。"
+    - round: 16
+      reviewers: [2]
+      note: "R16 STILL_OPEN (minor)。touvron2023, black2024_pi0 仍为 arXiv。R1 AGREE minor。"
+  action_items:
+    - round: 16
+      action: "Camera-ready 前检查 touvron2023, black2024_pi0 等是否有正式发表版本并更新"
+      assigned_to: research_director
+      status: done
+  resolution: "black2024_pi0 更新为 RSS 2025。touvron2023 (Llama 2) 无正式会议发表。"
+  resolution_round: 17
+- id: R12-W4
+  summary: "缺失重要 related work"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 13
+  resolution: "6/6 缺失引用全部补齐。"
+  resolution_round: 13
+  mentions: []
+  action_items: []
+- id: R12-W5
+  summary: "与 Grant et al. 和 Häon et al. 的区分不够清晰"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 14
+  resolution: "Related Work 加显式 what-vs-where 对比段落。"
+  resolution_round: 13
+  mentions: []
+  action_items: []
+- id: R12-W6
+  summary: "FDR 多重比较校正细节不足"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 14
+  resolution: "BH 方法 + α=0.05 + 33-layer family per metric 完整报告。"
+  resolution_round: 13
+  mentions: []
+  action_items: []
+- id: R12-I1
+  summary: "术语不一致：readout token vs last_preaction"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 16
+  resolution: "R16 全文统一为 'readout token'（15+ 处）和 'readout position'（2 处）。last_preaction 零出现。首次定义在 introduction.tex:6。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [3]
+      note: "R3-M1: readout token 与 last_preaction 仍交替使用。"
+    - round: 16
+      reviewers: [2]
+      note: "RESOLVED。统一为 readout token。"
+  action_items: []
+- id: R12-I2
+  summary: "Limitations 未作为独立 section"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 15
+  resolution: "已改为 subsection。R16 在 Discussion and Conclusion 内作为 paragraph。"
+  resolution_round: 15
+  mentions: []
+  action_items: []
+- id: R12-DIV1
+  summary: "Title 'Language Routes' 是否误导"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 13
+  resolution: "Title 'Routes'→'Reorganizes' 消除误导。R16 进一步改为 'Changes'。"
+  resolution_round: 13
+  mentions: []
+  action_items: []
+- id: R13-W1
+  summary: "'Orthogonal contribution' 措辞对 closed-loop validation 过于 dismissive"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 16
+  resolution: "R16 'orthogonal' 零出现，全部替换为 'complementary'（6 处）。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: []
+      note: "R15 未直接提及。R14 修改为 'complementary and necessary evidence'。"
+    - round: 16
+      reviewers: [2]
+      note: "RESOLVED。'orthogonal' 零残留。"
+  action_items: []
+- id: R13-I1
+  summary: "附录 'robust attractor' 措辞较主文更强"
+  category: framing
+  severity: info
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 16
+  resolution: "R14 修改为 'consistent convergence pattern'。R16 未复发。"
+  resolution_round: 14
+  mentions:
+    - round: 16
+      reviewers: []
+      note: "R16 未提及，视为已修复。"
+  action_items: []
+- id: R13-I2
+  summary: "Spacing 压缩激进 / setlength 违规"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 16
+  resolution: "R16 所有 7 条 setlength 全局间距修改已移除。仅余表格内 tabcolsep 调整（标准 LaTeX，非模板违规）。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [2, 3]
+      note: "R15 升级为 critical。R3-N3: 7 条 setlength 违反 CoRL 格式。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。setlength 全部移除。"
+  action_items: []
+- id: R14-N1
+  summary: "'Convergent reorganization' claim 从 N=2 同类架构得出，证据不足"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 16
+  resolution: "R16 标题改为 'How VLA Fine-Tuning Changes Instruction Routing: A Cross-Architecture Analysis'。R17 进一步改为纯描述性标题。Limitations 显式标注 N=2。'converge' 仅在描述性上下文中使用，附 'qualitative pattern' 限定词。"
+  resolution_round: 16
+  mentions:
+    - round: 14
+      reviewers: [1, 2, 3]
+      note: "三位 AGREE。"
+    - round: 15
+      reviewers: [1, 2, 3]
+      note: "R15 核心问题。标题 'One Routing Pattern' overclaim。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。标题从 declarative claim 改为 descriptive analysis framing。N=2 显式标注。"
+  action_items: []
+- id: R14-W1
+  summary: "Counterfactual instruction analysis 仅用 3/10 tasks，ρ=1.0 在 n=4 条件下仅 marginal"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+    - round: 15
+      reviewers: []
+      note: "R15 未直接再提。"
+    - round: 16
+      reviewers: []
+      note: "R16 未提及。"
+    - round: 17
+      reviewers: []
+      note: "R17 未提及。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+- id: R14-W2
+  summary: "单一训练 checkpoint 分析——动态性语言（'creates'/'induces'/'stabilizes'）需改为静态描述"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 17
+  mentions:
+    - round: 15
+      reviewers: [1, 2, 3]
+      note: "R1-W2 + R2-W4 + R3 AGREE: 'emerge'/'reshape' 等动态性语言需改为静态描述。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "PARTIALLY RESOLVED。标题和主要 claims 已改用中性语言。但正文仍有 3-5 处动态表述。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "RESOLVED。标题完全静态化。全文 'associated with'/'correlational'。唯一残余 'develop' 在 observational 语境下可接受。两位均判 RESOLVED。"
+  action_items:
+    - round: 16
+      action: "Camera-ready 将残余 'creates'/'induces'/'stabilizes' 改为 'is associated with'/'corresponds to'/'differs between'"
+      assigned_to: research_director
+      status: done
+  resolution: "R17 标题改为纯描述性。全文动态语言清理完成。grep 确认 'creates'/'induces'/'stabilizes' 零残留。"
+  resolution_round: 17
+- id: R14-W3
+  summary: "缺失引用：Aghajanyan et al. (ACL 2021) + Kumar et al. (NeurIPS 2022)"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 15
+  resolution: "已添加到 references.bib 并在 Related Work 中引用。"
+  resolution_round: 15
+  mentions: []
+  action_items: []
+- id: R14-I1
+  summary: "Footnote 1 两个 pipeline R² 值差异未解释"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions: []
+  action_items: []
+  resolution: ""
+  resolution_round: null
+- id: R14-I2
+  summary: "Leave-one-out p ≤ 0.083 不应表述为 'robust'"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions: []
+  action_items: []
+  resolution: ""
+  resolution_round: null
+- id: R14-I3
+  summary: "Permutation test 仅 1,000 shuffles（建议 ≥10,000）"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions: []
+  action_items: []
+  resolution: ""
+  resolution_round: null
+- id: R14-W4
+  summary: "GenAI disclosure 排版位置异常（References 后、Appendix 前）"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 16
+  resolution: "R16 位于 appendix.tex 开头，References 之后 Appendix 正文之前。R2 判定位置合理。"
+  resolution_round: 16
+  mentions:
+    - round: 16
+      reviewers: [2]
+      note: "RESOLVED。位置合理。"
+  action_items: []
+- id: R14-W5
+  summary: "Appendix resizebox 可能压缩字体至不可读"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 15
+  mentions:
+    - round: 16
+      reviewers: []
+      note: "R16 未详细检查。"
+    - round: 17
+      reviewers: []
+      note: "R17 未提及。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+- id: R14-W6
+  summary: "setlength float spacing 修改可能与 corl_2026 package 冲突"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 16
+  resolution: "R16 所有 setlength 已移除。合并入 R13-I2 一并解决。"
+  resolution_round: 16
+  mentions: []
+  action_items: []
+- id: R14-W7
+  summary: "Table 2 caption 缩写 'immed./gradual/incid.' 未解释"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 16
+  resolution: "R16 Table 2 重新设计，caption 包含 6 个脚注标记均有完整解释。旧缩写不再出现。"
+  resolution_round: 16
+  mentions:
+    - round: 16
+      reviewers: [2]
+      note: "RESOLVED。脚注完整。"
+  action_items: []
+- id: R14-DIV1
+  summary: "MLP probe capacity：R1 认为过大，R3 认为已充分回应"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 16
+  resolution: "R16 method.tex 主文新增一句确认 linear probe 结果一致性，引用 Appendix A.13。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [1, 2, 3]
+      note: "Linear probe 应提升至主文。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。主文一句话确认 linear probe 一致性。"
+  action_items: []
+# ============================================================
+# Issues from Round 15 — updated with R17 status
+# ============================================================
+- id: R15-N1
+  summary: "N=63,228 伪重复：三层嵌套依赖导致 CI 系统性偏窄"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "R16 demo-level MCCV (n=1000) 解决 trajectory 内依赖。量化 CI inflation（R² 0.75-0.8 → 0.4-0.6）。Peak layer fixed from full-data split。Table 2 新增 per-cell 95% CI。两位 Reviewer 均判 RESOLVED。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [1, 2, 3]
+      note: "R15 提出。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。Demo-level splitting 充分解决 single-cell inference 依赖。"
+  action_items: []
+- id: R15-N2
+  summary: "NLP control 存在但方法细节严重不足——仅 Discussion 一句话"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "R16 experiments.tex §4.2 新增完整 'NLP finetuning control' 段落：Llama-2-7b-chat, SFT+RLHF, 无 action head, R²=0.155±0.001, ΔR²=0.000。与 VLM-to-VLA 显式对比。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [2, 3]
+      note: "R15 提出。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。完整段落，实验设计+定量结果+对比。"
+  action_items: []
+- id: R15-N3
+  summary: "与并发工作（Swann 2026, Fang 2026）新颖性区分不足；Fang et al. 2026 未引用"
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "R16 Related Work 新增 'Concurrent work.' 段落，Fang 2026 已引用 (arXiv:2602.17659)。Behavioral vs representational 区分系统。Introduction 新增并发工作定位句。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [2, 3]
+      note: "R15 提出。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。Systematic differentiation。"
+  action_items: []
+- id: R15-N4
+  summary: "模板间距违规：格式 hack 修改 corl_2026 模板间距/margin"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 17
+  resolution: ""
+  resolution_round: null
+  mentions:
+    - round: 15
+      reviewers: [2, 3]
+      note: "R15 提出。7 条 setlength 命令。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。所有 setlength 移除。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "RECURRED via different mechanism。discussion.tex line 1: \\enlargethispage{12\\baselineskip}（模板自身仅用 2\\baselineskip，作者用量为 6 倍）。额外容纳 ~12 行 Discussion 内容。R2 发现，R1 交叉回应中确认。两位均判 Should-Fix。R1 指出性质不同（单页标准命令 vs 全局模板参数修改），但效果相同——容纳超出 8 页限制的内容。"
+  action_items:
+    - round: 17
+      action: "删除 \\enlargethispage{12\\baselineskip}，将 Practical implications 精简至 3-4 行或移入 Appendix"
+      assigned_to: research_director
+      status: pending
+- id: R15-W1
+  summary: "对 CoRL 受众可读性门槛偏高：NLP 术语未充分解释"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "R16 每个核心分析工具（R² probes, ΔR² threshold, L1 attention, counterfactual perturbation, readout token）均有 1-2 句直觉解释。RSA/CKA 降级到 appendix-only 角色。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [2, 3]
+      note: "R15 提出。"
+    - round: 16
+      reviewers: [2]
+      note: "RESOLVED。直觉解释充分，对非 NLP 读者友好。"
+  action_items: []
+- id: R15-W2
+  summary: "论文定位模糊：confirmatory vs discovery，语言不一致"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "R16 统一为 empirical observational study with decomposition framework。'We identify'/'We discover' 零出现。语言一致：'Three findings stand out' / 'Our analysis reveals' / 'compatible with'。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [2, 3]
+      note: "R15 提出。"
+    - round: 16
+      reviewers: [2]
+      note: "RESOLVED。定位统一。"
+  action_items: []
+- id: R15-W3
+  summary: "Cohen's d ≥ 0.45 标注为 'substantial' 但仅为 medium effect"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "R16 改为 'medium-to-large (d = 0.45-1.97)'。R17 进一步收窄为 'd = 0.45-1.52'（仅 Cohen's d）。'substantial' 仅用于 ΔR² > 0.10，不再用于 Cohen's d。术语分离清晰。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [2, 3]
+      note: "R15 提出。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "RESOLVED。符合 Cohen (1988) 惯例。"
+  action_items: []
+- id: R15-W4
+  summary: "TOST 等价边界 δ=0.30 过于宽松且缺乏 justification"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "R16 TOST δ 从 0.30 收紧至 0.10。两个 one-sided tests p<0.001。90% CI [-0.009, 0.009] 完全落入 [-0.10, 0.10]。R1 判 LARGELY RESOLVED，R2 AGREE。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [1, 2]
+      note: "R15 提出。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "LARGELY RESOLVED → RESOLVED。δ=0.10 合理。"
+  action_items: []
+- id: R15-W5
+  summary: "Cross-Benchmark Validation 标题名不副实：实为 LIBERO 内部 Cross-Suite"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "R16 Appendix 标题改为 'Cross-Suite Validation within LIBERO: Spatial'。'Cross-Benchmark' 不再出现于任何 section 标题。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [1, 2, 3]
+      note: "R15 提出。"
+    - round: 16
+      reviewers: [2]
+      note: "RESOLVED。"
+  action_items: []
+- id: R15-W6
+  summary: "Discussion/Conclusion 重复消耗页面空间"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "R16 合并为 Section 5 'Discussion and Conclusion'（4 个 paragraph: Synthesis, VLM-to-VLA vs VLA-to-VLA, Limitations, Conclusion）。无重复。Discussion 深度提升（transition-type 分析、early-exit inference、ρ=0.583 correlation）。"
+  resolution_round: 16
+  mentions:
+    - round: 15
+      reviewers: [3]
+      note: "R15 提出。"
+    - round: 16
+      reviewers: [2]
+      note: "RESOLVED。合并消除重复，深度提升。"
+  action_items: []
+- id: R15-I1
+  summary: "Keywords 行是否为 CoRL 2026 模板要求"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 15
+  last_seen_round: 16
+  mentions:
+    - round: 16
+      reviewers: [2]
+      note: "corl_2026 模板支持 \\keywords 命令。保留无害。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+- id: R15-I2
+  summary: "Figure 1 panels 密集，子图标签偏小"
+  category: format
+  severity: info
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 16
+  mentions:
+    - round: 16
+      reviewers: [2]
+      note: "PARTIALLY_RESOLVED。Caption 从 15 行缩至 3 行。Figure 本身仍密集但 caption 已改善。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+- id: R15-I3
+  summary: "Pages 3-5 纯文本区域缺乏视觉锚点"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 15
+  last_seen_round: 17
+  mentions:
+    - round: 16
+      reviewers: [2]
+      note: "STILL_OPEN。Page 3 有 Table 1，但 pages 4-5 仍为纯文本。视觉审查同样指出 pages 4-5 和 page 7 文本密集。"
+    - round: 17
+      reviewers: []
+      note: "R17 视觉审查 warning：pages 3-4 连续纯文本。一致。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+- id: R15-I4
+  summary: "主体仅 4 个 display items 对 empirical analysis 论文偏少"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 16
+  mentions:
+    - round: 16
+      reviewers: [2]
+      note: "R16 正文 5 个 display items（增加 1）。仍偏少但改善。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+# ============================================================
+# Issues from Round 16 — updated with R17 status
+# ============================================================
+- id: R16-N1
+  summary: "NLP control 仅覆盖 Llama-2 backbone，未覆盖 Phi-3/Qwen2.5"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 17
+  mentions:
+    - round: 16
+      reviewers: [1, 2]
+      note: "两位均判 minor。Single-backbone control 已足以排除 generic artifact，但理想应覆盖所有 backbone。R1 指出跨架构一致性本身提供部分 specificity evidence。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "RESOLVED。NLP control 扩展至 3/3 backbone（Llama-2-7b-chat, Phi-3-mini-4k-instruct, Qwen2.5-3B-Instruct）。ΔR² = 0.000-0.008。两位均判 RESOLVED。"
+  action_items:
+    - round: 16
+      action: "Camera-ready 在 Limitations 加一句注明 NLP control 仅覆盖一个 backbone"
+      assigned_to: research_director
+      status: done
+  resolution: "R17 扩展至 3 个 NLP controls，覆盖全部 VLA backbone 家族。Qwen2.5 匹配不完美已在脚注标注。"
+  resolution_round: 17
+- id: R16-N2
+  summary: "Table 2 脚注视觉密度高（6 种标记）"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+    - round: 16
+      reviewers: [1, 2]
+      note: "两位均判 minor cosmetic。R1 建议将 metric 类型升级为列内标识（'d'/'cos'）。"
+    - round: 17
+      reviewers: []
+      note: "R17 未直接提及。Table 2 已改为仅含 Cohen's d（部分缓解），但脚注数量未减。"
+  action_items:
+    - round: 16
+      action: "考虑将 metric 类型从脚注改为列内标识，减少认知负荷"
+      assigned_to: research_director
+      status: pending
+  resolution: ""
+  resolution_round: null
+- id: R16-N3
+  summary: "主文 Limitations 未显式提及 closed-loop validation 缺失"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+    - round: 16
+      reviewers: [2]
+      note: "R2 发现，R1 AGREE。Appendix 有覆盖但主文 Limitations 遗漏。"
+  action_items:
+    - round: 16
+      action: "主文 Limitations 加一句：'All analyses are open-loop; closed-loop behavioral validation is left for future work.'"
+      assigned_to: research_director
+      status: done
+  resolution: "主文 Limitations 已加 open-loop 显式声明。"
+  resolution_round: 17
+# ============================================================
+# New issues from Round 17
+# ============================================================
+- id: R17-N1
+  summary: "Permutation test (p=0.008) 的 scheme 描述不足：未说明 shuffle 对象、次数、test statistic"
+  category: method
+  severity: info
+  status: resolved
+  resolution: "A.37 补充 4 句：shuffle transition-type 标签、10,000 permutations、gap test statistic、p=0.008。Reviewer 独立验证通过。"
+  resolution_round: 17
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+    - round: 17
+      reviewers: [1, 2]
+      note: "R1 初审发现，R2 交叉回应 AGREE。p=0.008 方向正确，但 A.37 应补充 2-3 句说明 permutation procedure。两位均判 minor。"
+  action_items:
+    - round: 17
+      action: "Appendix A.37 补充 permutation scheme 细节：shuffle transition-type 标签、10000 permutations、gap test statistic"
+      assigned_to: main_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+- id: R17-N2
+  summary: "Practical implications 中 checkpoint selection 基于 non-significant correlation (ρ=0.583, p=0.10, n=9)"
+  category: framing
+  severity: info
+  status: resolved
+  resolution: "Discussion + Limitations 两处均标注 'non-significant at conventional levels'。"
+  resolution_round: 17
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+    - round: 17
+      reviewers: [1, 2]
+      note: "R1 初审发现，R2 交叉回应 AGREE。Hedging 充分（'suggest...each requiring independent validation'），不构成 overclaim。但建议标注 'non-significant at conventional levels'。两位均判 minor。"
+  action_items:
+    - round: 17
+      action: "在 checkpoint selection 讨论中明确标注 'non-significant at conventional levels'"
+      assigned_to: main_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+- id: R17-N3
+  summary: "标题信息量降低（trade-off，非错误）"
+  category: writing
+  severity: info
+  status: wont_fix
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+    - round: 17
+      reviewers: [1, 2]
+      note: "R1 初审提出（negligible），R2 交叉回应 AGREE。R17 标题更安全（无 overclaim 风险），但信息量较低。合理 trade-off，不需要修改。"
+  action_items: []
+  resolution: "合理的安全性-信息量 trade-off。两位均同意不需要修改。"
+  resolution_round: 17
+- id: R17-N4
+  summary: "\\enlargethispage{12\\baselineskip} 格式违规——discussion.tex line 1，page 8 margin 变形"
+  category: format
+  severity: warning
+  status: resolved
+  resolution: "删除 \\enlargethispage + 精简 Practical Implications 至 5 句 + 详细论述移入 Appendix Extended Practical Implications。正文 ≤8 页无格式 hack。"
+  resolution_round: 17
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+    - round: 17
+      reviewers: [1, 2]
+      note: "R2 初审发现并判为 R15-N4 复发。R1 交叉回应 AGREE 构成格式违规，但判为 Should-Fix（非 Critical regression）。CoRL 模板自身仅用 2\\baselineskip，作者用量为 6 倍。额外容纳 ~12 行 Discussion 内容。两位共识：Should-Fix，conditional acceptance 条件。"
+  action_items:
+    - round: 17
+      action: "删除 \\enlargethispage{12\\baselineskip}，精简 Practical implications 至 5 句 + 移入 Appendix Extended Practical Implications"
+      assigned_to: main_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+- id: R17-N5
+  summary: "discussion.tex:14 'replacing costly rollout evaluation' overclaim——基于 non-significant correlation"
+  category: framing
+  severity: warning
+  status: resolved
+  resolution: "replacing → supplementing + 内联 evidence qualification (ρ=0.583, p=0.10, n=9) + observed 限定。"
+  resolution_round: 17
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+    - round: 17
+      reviewers: [1]
+      note: "R1 在交叉回应中审查源码时发现。ρ=0.583, p=0.10, n=9 是 non-significant correlation，不足以支撑 'replacing' 表述。建议改为 'supplementing' 或 'complementing'。Should-Fix。"
+  action_items:
+    - round: 17
+      action: "discussion.tex:14 'replacing' → 'supplementing' with inline evidence qualification"
+      assigned_to: main_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null

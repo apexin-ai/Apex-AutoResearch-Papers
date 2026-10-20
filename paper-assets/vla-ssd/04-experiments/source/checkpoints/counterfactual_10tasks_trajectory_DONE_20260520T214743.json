@@ -1,0 +1,52 @@
+{
+  "exp_id": "counterfactual_10tasks_trajectory",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:47:06.255Z",
+    "updated_at": "2026-05-20T21:47:43.769Z",
+    "hypothesis": "Trajectory-level aggregation of 10-task counterfactual results will show amplified Cohen's d compared to token-level, as consistent per-timestep effects compound at the demo/trajectory level (bootstrap B=10000).",
+    "parent": "counterfactual_10tasks",
+    "conclusion": "success",
+    "metrics": {
+      "trajectory_cohens_d": {
+        "wrong": 3.798,
+        "empty": 3.438,
+        "shuffled": 2.595,
+        "paraphrased": 2.131
+      },
+      "token_cohens_d": {
+        "wrong": 0.844,
+        "empty": 0.968,
+        "shuffled": 0.625,
+        "paraphrased": 0.697
+      },
+      "inflation_factor": {
+        "wrong": 4.5,
+        "empty": 3.6,
+        "shuffled": 4.2,
+        "paraphrased": 3.1
+      },
+      "bootstrap_B": 10000,
+      "n_demos": 30
+    },
+    "spec": {
+      "command": "python counterfactual_trajectory_aggregate.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/",
+      "data_count": 5000,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "counterfactual_10tasks",
+      "eval_data": "10 tasks x 10 demos x 50 timesteps x 4 conditions",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/trajectory_level_cohens_d.json",
+      "log_path": "~/runs/vla-ssd/counterfactual_10tasks_trajectory.log"
+    },
+    "completed_at": "2026-05-20T21:47:43.769Z"
+  },
+  "timestamp": "2026-05-20T21:47:43.992196+00:00",
+  "trigger": "update_registry"
+}

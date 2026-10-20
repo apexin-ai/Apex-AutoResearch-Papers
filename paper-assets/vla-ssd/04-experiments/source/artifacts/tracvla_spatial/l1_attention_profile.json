@@ -1,0 +1,43 @@
+{
+  "per_head": {
+    "head_0": {"instruction_ratio_mean": 0.7255, "instruction_ratio_std": 0.0065, "category": "instruction_dominant"},
+    "head_1": {"instruction_ratio_mean": 0.8409, "instruction_ratio_std": 0.0135, "category": "instruction_dominant"},
+    "head_2": {"instruction_ratio_mean": 0.4895, "instruction_ratio_std": 0.0263, "category": "mixed"},
+    "head_3": {"instruction_ratio_mean": 0.5168, "instruction_ratio_std": 0.0025, "category": "instruction_dominant"},
+    "head_4": {"instruction_ratio_mean": 0.7425, "instruction_ratio_std": 0.009, "category": "instruction_dominant"},
+    "head_5": {"instruction_ratio_mean": 0.5738, "instruction_ratio_std": 0.0169, "category": "instruction_dominant"},
+    "head_6": {"instruction_ratio_mean": 0.5294, "instruction_ratio_std": 0.0332, "category": "instruction_dominant"},
+    "head_7": {"instruction_ratio_mean": 0.5927, "instruction_ratio_std": 0.0199, "category": "instruction_dominant"},
+    "head_8": {"instruction_ratio_mean": 0.941, "instruction_ratio_std": 0.0052, "category": "instruction_dominant"},
+    "head_9": {"instruction_ratio_mean": 0.78, "instruction_ratio_std": 0.0044, "category": "instruction_dominant"},
+    "head_10": {"instruction_ratio_mean": 0.6199, "instruction_ratio_std": 0.0185, "category": "instruction_dominant"},
+    "head_11": {"instruction_ratio_mean": 0.6874, "instruction_ratio_std": 0.0156, "category": "instruction_dominant"},
+    "head_12": {"instruction_ratio_mean": 0.6584, "instruction_ratio_std": 0.0212, "category": "instruction_dominant"},
+    "head_13": {"instruction_ratio_mean": 0.4454, "instruction_ratio_std": 0.0034, "category": "mixed"},
+    "head_14": {"instruction_ratio_mean": 0.7339, "instruction_ratio_std": 0.0221, "category": "instruction_dominant"},
+    "head_15": {"instruction_ratio_mean": 0.5906, "instruction_ratio_std": 0.0142, "category": "instruction_dominant"},
+    "head_16": {"instruction_ratio_mean": 0.6972, "instruction_ratio_std": 0.0212, "category": "instruction_dominant"},
+    "head_17": {"instruction_ratio_mean": 0.6434, "instruction_ratio_std": 0.015, "category": "instruction_dominant"},
+    "head_18": {"instruction_ratio_mean": 0.5569, "instruction_ratio_std": 0.0144, "category": "instruction_dominant"},
+    "head_19": {"instruction_ratio_mean": 0.896, "instruction_ratio_std": 0.0079, "category": "instruction_dominant"},
+    "head_20": {"instruction_ratio_mean": 0.8591, "instruction_ratio_std": 0.0023, "category": "instruction_dominant"},
+    "head_21": {"instruction_ratio_mean": 0.6724, "instruction_ratio_std": 0.0079, "category": "instruction_dominant"},
+    "head_22": {"instruction_ratio_mean": 0.4737, "instruction_ratio_std": 0.0109, "category": "mixed"},
+    "head_23": {"instruction_ratio_mean": 0.7867, "instruction_ratio_std": 0.0102, "category": "instruction_dominant"},
+    "head_24": {"instruction_ratio_mean": 0.5219, "instruction_ratio_std": 0.0191, "category": "instruction_dominant"},
+    "head_25": {"instruction_ratio_mean": 0.5682, "instruction_ratio_std": 0.0034, "category": "instruction_dominant"},
+    "head_26": {"instruction_ratio_mean": 0.9109, "instruction_ratio_std": 0.0039, "category": "instruction_dominant"},
+    "head_27": {"instruction_ratio_mean": 0.6725, "instruction_ratio_std": 0.0124, "category": "instruction_dominant"},
+    "head_28": {"instruction_ratio_mean": 0.8064, "instruction_ratio_std": 0.0113, "category": "instruction_dominant"},
+    "head_29": {"instruction_ratio_mean": 0.8321, "instruction_ratio_std": 0.0025, "category": "instruction_dominant"},
+    "head_30": {"instruction_ratio_mean": 0.6089, "instruction_ratio_std": 0.02, "category": "instruction_dominant"},
+    "head_31": {"instruction_ratio_mean": 0.618, "instruction_ratio_std": 0.0198, "category": "instruction_dominant"}
+  },
+  "summary": {
+    "instruction_dominant": 29,
+    "image_dominant": 0,
+    "mixed": 3,
+    "instruction_dominant_heads": [0,1,3,4,5,6,7,8,9,10,11,12,14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,31],
+    "image_dominant_heads": []
+  }
+}

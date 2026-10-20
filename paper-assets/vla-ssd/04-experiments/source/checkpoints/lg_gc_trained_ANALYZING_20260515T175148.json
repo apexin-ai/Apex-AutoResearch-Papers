@@ -1,0 +1,39 @@
+{
+  "exp_id": "lg_gc_trained",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:42:55.296Z",
+    "updated_at": "2026-05-15T17:51:48.186Z",
+    "hypothesis": "Goal classification probe on trained VLA LIBERO-Goal features (33 layers). Gate G1-GC: best-layer acc > 40%. Core evidence for instruction encoding in VLA representations.",
+    "server": "westd-19183",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T17:43:12.537Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/trained_libero_goal/ --output_dir /root/autodl-tmp/vla-ssd/results/trained_libero_goal/ --probe_type goal_classification --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ --gpu 0\"",
+      "finished_at": "2026-05-15T17:51:48.066Z",
+      "training_hours": 0.14
+    },
+    "spec": {
+      "command": "python scripts/train_probes.py --features_dir .../trained_libero_goal/ --output_dir .../results/trained_libero_goal/ --probe_type goal_classification --data_dir .../libero_goal/ --gpu 0",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/trained_libero_goal/",
+      "data_count": "10 tasks x 50 demos x 33 layers",
+      "model_name": "GoalClassificationProbe MLP (4096→256→10), trained VLA features",
+      "seed": 42,
+      "checkpoint_source": "lg_extract_trained",
+      "eval_data": "/root/autodl-tmp/vla-ssd/features/trained_libero_goal/ + /root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/",
+      "log_path": "~/runs/vla-ssd/lg_gc_trained.log"
+    },
+    "pid": "634360",
+    "log_path": "~/runs/vla-ssd/lg_gc_trained.log"
+  },
+  "timestamp": "2026-05-15T17:51:48.262576+00:00",
+  "trigger": "update_registry"
+}

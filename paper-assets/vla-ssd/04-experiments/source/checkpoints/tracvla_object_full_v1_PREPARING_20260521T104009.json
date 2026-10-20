@@ -1,0 +1,14 @@
+{
+  "exp_id": "tracvla_object_full_v1",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:40:08.778Z",
+    "updated_at": "2026-05-21T10:40:08.778Z"
+  },
+  "timestamp": "2026-05-21T10:40:09.032441+00:00",
+  "trigger": "update_registry"
+}

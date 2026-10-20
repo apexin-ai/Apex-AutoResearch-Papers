@@ -1,0 +1,81 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023rt2,kim2024openvla,karamcheti2024prismatic}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{brohan2023rt2,kim2024openvla}
+\citation{karamcheti2024prismatic}
+\citation{kriegeskorte2008rsa}
+\citation{kornblith2019cka}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Behavioral Analysis of VLAs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mechanistic Interpretability of VLAs.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representational Analysis Methods.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fine-Tuning and Representation Quality.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Architecture Under Study}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Representational Similarity Analysis (RSA)}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Functional Action Probes}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Centered Kernel Alignment (CKA)}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Evaluation Benchmarks}{3}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Vision Encoder Dominance with Encoder-Specific Effects}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp-encoder}{{4.1}{3}{Vision Encoder Dominance with Encoder-Specific Effects}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces RSA with action structure (image\_mean aggregation, LIBERO-Goal). SigLIP's frozen projector output provides the strongest geometric alignment, exceeding all LLM conditions and both encoder controls.}}{4}{table.caption.6}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:rsa-main}{{1}{4}{RSA with action structure (image\_mean aggregation, LIBERO-Goal). SigLIP's frozen projector output provides the strongest geometric alignment, exceeding all LLM conditions and both encoder controls}{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Decomposition of encoder pretraining contributions. VL pretraining adds geometric alignment (RSA) but not functional information ($R^2$), while SigLIP's recipe adds both.}}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:encoder-decomposition}{{2}{4}{Decomposition of encoder pretraining contributions. VL pretraining adds geometric alignment (RSA) but not functional information ($R^2$), while SigLIP's recipe adds both}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}LLM Degrades Geometry but Routes Information}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp-degradation}{{4.2}{4}{LLM Degrades Geometry but Routes Information}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-layer RSA degradation.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RSA vs.\ CKA dissociation.}{4}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Functional action probe $R^2$ (LIBERO-Goal). The LLM degrades distributed image-token representations but concentrates action information into the readout token. Readout concentration is training-dependent.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:probe}{{3}{5}{Functional action probe $R^2$ (LIBERO-Goal). The LLM degrades distributed image-token representations but concentrates action information into the readout token. Readout concentration is training-dependent}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-layer RSA summary across conditions. All conditions show sharp initial drop with non-monotonic partial recovery. All layers remain above DINOv2 baseline (0.388).}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:perlayer}{{4}{5}{Per-layer RSA summary across conditions. All conditions show sharp initial drop with non-monotonic partial recovery. All layers remain above DINOv2 baseline (0.388)}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Training Teaches Routing, Not Creating}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp-routing}{{4.3}{5}{Training Teaches Routing, Not Creating}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Instruction content invariance.}{5}{table.caption.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weight analysis confirms architectural grounding.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Benchmark Validation: LIBERO-Spatial}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp-spatial}{{4.4}{5}{Cross-Benchmark Validation: LIBERO-Spatial}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RSA vs.\ CKA ordering comparison. The reversal reflects differential sensitivity to local geometry vs.\ global structure.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:cka}{{5}{6}{RSA vs.\ CKA ordering comparison. The reversal reflects differential sensitivity to local geometry vs.\ global structure}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $2\times 2$ Training $\times $ Instruction RSA matrix (image\_mean, LIBERO-Goal). All four conditions converge within a narrow band. Training effect is not statistically significant.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:2x2}{{6}{6}{$2\times 2$ Training $\times $ Instruction RSA matrix (image\_mean, LIBERO-Goal). All four conditions converge within a narrow band. Training effect is not statistically significant}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Probing Consistency Across Methods}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp-consistency}{{4.5}{6}{Probing Consistency Across Methods}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What fine-tuning actually learns.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pretraining recipe matters.}{6}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Instruction content invariance (trained VLA, LIBERO-Goal). RSA is stable across normal, random, shuffled, and empty instruction conditions.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:instruction}{{7}{7}{Instruction content invariance (trained VLA, LIBERO-Goal). RSA is stable across normal, random, shuffled, and empty instruction conditions}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces LIBERO-Spatial cross-benchmark validation. All orderings are preserved with 15--18\% RSA reduction and 35--45\% effect size reduction, consistent with the spatial nature of the task structure.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:spatial-rsa}{{8}{7}{LIBERO-Spatial cross-benchmark validation. All orderings are preserved with 15--18\% RSA reduction and 35--45\% effect size reduction, consistent with the spatial nature of the task structure}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Geometric vs.\ global structure.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representational basis for instruction insensitivity.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{brohan2023rt2}{{1}{2023}{{Brohan et~al.}}{{}}}
+\bibcite{fang2025finetune}{{2}{2025}{{Fang}}{{}}}
+\bibcite{fei2025liberoplus}{{3}{2025}{{Fei et~al.}}{{}}}
+\bibcite{grant2026visual}{{4}{2026}{{Grant et~al.}}{{}}}
+\bibcite{haon2025steering}{{5}{2025}{{Haon et~al.}}{{}}}
+\bibcite{hou2026langgap}{{6}{2026}{{Hou}}{{}}}
+\bibcite{karamcheti2024prismatic}{{7}{2024}{{Karamcheti et~al.}}{{}}}
+\bibcite{kim2024openvla}{{8}{2024}{{Kim et~al.}}{{}}}
+\bibcite{kornblith2019cka}{{9}{2019}{{Kornblith et~al.}}{{}}}
+\bibcite{kriegeskorte2008rsa}{{10}{2008}{{Kriegeskorte et~al.}}{{}}}
+\bibcite{lu2025probing}{{11}{2025}{{Lu et~al.}}{{}}}
+\bibcite{molinari2025world}{{12}{2025}{{Molinari et~al.}}{{}}}
+\bibcite{rizzardo2026feature}{{13}{2026}{{Rizzardo et~al.}}{{}}}
+\bibcite{shahbazi2021metrics}{{14}{2021}{{Shahbazi et~al.}}{{}}}
+\bibcite{swann2026sae}{{15}{2026}{{Swann et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Readout concentration cross-benchmark comparison. The effect is preserved on LIBERO-Spatial with reduced magnitude (44\% reduction) but remains statistically significant.}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:spatial-readout}{{9}{8}{Readout concentration cross-benchmark comparison. The effect is preserved on LIBERO-Spatial with reduced magnitude (44\% reduction) but remains statistically significant}{table.caption.18}{}}
+\gdef \@abspage@last{8}

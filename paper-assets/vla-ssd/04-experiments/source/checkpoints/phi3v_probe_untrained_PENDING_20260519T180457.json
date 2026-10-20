@@ -1,0 +1,16 @@
+{
+  "exp_id": "phi3v_probe_untrained",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:04:38.888Z",
+    "updated_at": "2026-05-19T18:04:57.533Z",
+    "hypothesis": "Base Phi-3-instruct (untrained VLA) shows non-trivial instruction classification accuracy due to inherited instruction tuning, but lower than trained TracVLA — quantifying how much VLA training adds to readout quality beyond what instruction tuning provides.",
+    "parent": "phi3v_attention_untrained"
+  },
+  "timestamp": "2026-05-19T18:04:57.741282+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,47 @@
+{
+  "exp_id": "phi3v_attention_trained",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:46:40.348Z",
+    "updated_at": "2026-05-19T17:54:01.274Z",
+    "hypothesis": "TracVLA-Phi3V (trained VLA with Phi-3-mini backbone) exhibits L1 instruction-dominant attention routing pattern similar to OpenVLA-7B, demonstrating that instruction routing is a general VLA property not specific to Llama-2 backbone.",
+    "parent": "libero_finetuned_attention",
+    "server": "westd-19183",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-19T17:47:48.262Z"
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_attention_profile.py",
+      "server": "westd-19183",
+      "data_path": "LIBERO-Goal (5 tasks)",
+      "data_count": "5 tasks x 1 demo frame",
+      "model_name": "tracevla-phi3v (trace-ai/tracevla-phi3v)",
+      "seed": "N/A (deterministic inference)",
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/",
+      "eval_data": "LIBERO-Goal demo frames"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "L1_instruction_dominant": 32,
+      "L1_mean_text_attn": 0.7348,
+      "L2_instruction_dominant": 32,
+      "L2_mean_text_attn": 0.7807,
+      "L31_instruction_dominant": 18,
+      "L31_mean_text_attn": 0.6478,
+      "n_tasks": 5,
+      "n_img_tokens": 313
+    },
+    "checkpoint_path": "N/A (analysis only)",
+    "log_path": "westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json",
+    "completed_at": "2026-05-19T17:54:01.274Z"
+  },
+  "timestamp": "2026-05-19T17:54:01.513206+00:00",
+  "trigger": "update_registry"
+}

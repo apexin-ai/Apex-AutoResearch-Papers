@@ -1,0 +1,1393 @@
+# debug action probe status
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_debug_action_probe_status_20260517T155241.log`
+- **Structured JSON:** [`f1c982a7dd84813e2d58.json`](../../sessions/f1/f1c982a7dd84813e2d58.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d9614f6f-cadc-447f-9899-5bbdbcaf832d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779040200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a47b6eba-d60f-4070-bace-ea5da3434077",
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check experiment results on a remote server. I need to use SSH to execute commands on the server westd-19183. Let me use the MCP tools for SSH execution.
+
+Let me first load the SSH tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "441a2882-2dd0-4bdd-9ce5-be660cb48f88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011g9QQhJTzGSXLxc9YCco2g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12435,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12435
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Rufa1T2XBoF9gY2ZYehn6K`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "bf3fbcdb-b116-4c06-acf8-2960e3f1173a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011g9QQhJTzGSXLxc9YCco2g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12435,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12435
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T15:52:55.687Z_
+
+<details><summary>↩ Tool result · `toolu_01Rufa1T2XBoF9gY2ZYehn6K`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "98de0869-702f-4da6-89cc-46a9ec29046f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+执行检查命令。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "37e5f7f3-02cf-4cb7-b93d-f1a5a80d5ee3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQvb3xaJEiNQUDzLtnS8qP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 24276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QtuiQmSi8Z1sPCJ7NCRmBs`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux | grep l1_ablation_action_probe",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "52b144b4-6e58-49e0-b644-d0315920bc2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQvb3xaJEiNQUDzLtnS8qP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 24276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018Q3me8CZPDXGyopu5DgDKF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "7b70ddd8-2995-4241-a909-1a06adc6e28c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQvb3xaJEiNQUDzLtnS8qP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 24276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T15:53:07.178Z_
+
+<details><summary>↩ Tool result · `toolu_01QtuiQmSi8Z1sPCJ7NCRmBs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     899444  0.0  0.0   4364  3240 ?        Ss   23:53   0:00 bash -c ps aux | grep l1_ablation_action_probe\\nroot     899446  0.0  0.0   3472  1600 ?        S    23:53   0:00 grep l1_ablation_action_probe\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "7130e519-ede7-47f5-83f5-2ea5b7c2e3f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     899444  0.0  0.0   4364  3240 ?        Ss   23:53   0:00 bash -c ps aux | grep l1_ablation_action_probe\\\\nroot     899446  0.0  0.0   3472  1600 ?        S    23:53   0:00 grep l1_ablation_action_probe\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     899444  0.0  0.0   4364  3240 ?        Ss   23:53   0:00 bash -c ps aux | grep l1_ablation_action_probe\\nroot     899446  0.0  0.0   3472  1600 ?        S    23:53   0:00 grep l1_ablation_action_probe\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T15:53:08.836Z_
+
+<details><summary>↩ Tool result · `toolu_018Q3me8CZPDXGyopu5DgDKF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 9213 May 17 23:08 /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "8b6c3914-aaac-442c-9585-ba7c6bc8013c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 9213 May 17 23:08 /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 9213 May 17 23:08 /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+进程已结束，结果文件存在（9213 bytes，生成于 May 17 23:08）。读取 JSON 内容并检查 GPU 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "318ed16c-55d3-46ee-83c1-25e0b0b997e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBieftzp4iZUdEdmfL97MY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 25011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012jfaqe72hiZE7KFiT9eacX`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "30ae0518-b0fa-416c-ae39-8244cad26349",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBieftzp4iZUdEdmfL97MY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 25011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TB2KcDnDGykonKVNQsoV47`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "nvidia-smi",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "48c2c456-f6a6-4048-9bb1-eb6f3015eddc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBieftzp4iZUdEdmfL97MY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 25011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T15:53:15.790Z_
+
+<details><summary>↩ Tool result · `toolu_012jfaqe72hiZE7KFiT9eacX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"action_probe_R2\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": 0.2558,\\n      \\\"L8\\\": 0.4401,\\n      \\\"L13\\\": 0.524\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": 0.3627,\\n      \\\"L8\\\": 0.4496,\\n      \\\"L13\\\": 0.5194\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": 0.3747,\\n      \\\"L8\\\": 0.4449,\\n      \\\"L13\\\": 0.5184\\n    }\\n  },\\n  \\\"detailed_results\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.2558,\\n        \\\"overall_R2\\\": 0.3857,\\n        \\\"per_dim_R2\\\": [\\n          0.4238,\\n          0.3276,\\n          0.2074,\\n          0.2759,\\n          0.3123,\\n          0.5627,\\n          0.4338\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.1971,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.2649,\\n          \\\"push the plate to the front of the stove\\\": 0.1901,\\n          \\\"put the bowl on the plate\\\": 0.3754,\\n          \\\"put the bowl on the stove\\\": 0.2352,\\n          \\\"put the bowl on top of the cabinet\\\": 0.2561,\\n          \\\"put the cream cheese in the bowl\\\": 0.186,\\n          \\\"put the wine bottle on the rack\\\": 0.1894,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.2789,\\n          \\\"turn on the stove\\\": 0.3854\\n        },\\n        \\\"epochs_trained\\\": 50,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.4401,\\n        \\\"overall_R2\\\": 0.5241,\\n        \\\"per_dim_R2\\\": [\\n          0.5479,\\n          0.5721,\\n          0.359,\\n          0.5499,\\n          0.2719,\\n          0.667,\\n          0.5588\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4532,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.3757,\\n          \\\"push the plate to the front of the stove\\\": 0.3358,\\n          \\\"put the bowl on the plate\\\": 0.4371,\\n          \\\"put the bowl on the stove\\\": 0.396,\\n          \\\"put the bowl on top of the cabinet\\\": 0.4519,\\n          \\\"put the cream cheese in the bowl\\\": 0.3797,\\n          \\\"put the wine bottle on the rack\\\": 0.3917,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.4624,\\n          \\\"turn on the stove\\\": 0.7171\\n        },\\n        \\\"epochs_trained\\\": 27,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean_R2\\\": 0.524,\\n        \\\"overall_R2\\\": 0.6061,\\n        \\\"per_dim_R2\\\": [\\n          0.587,\\n          0.6881,\\n          0.4503,\\n          0.5939,\\n          0.2486,\\n          0.6611,\\n          0.6437\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.5686,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.5466,\\n          \\\"push the plate to the front of the stove\\\": 0.4092,\\n          \\\"put the bowl on the plate\\\": 0.3887,\\n          \\\"put the bowl on the stove\\\": 0.5352,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6587,\\n          \\\"put the cream cheese in the bowl\\\": 0.5835,\\n          \\\"put the wine bottle on the rack\\\": 0.4304,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.3856,\\n          \\\"turn on the stove\\\": 0.7336\\n        },\\n        \\\"epochs_trained\\\": 18,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      }\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.3627,\\n        \\\"overall_R2\\\": 0.4805,\\n        \\\"per_dim_R2\\\": [\\n          0.4962,\\n          0.4212,\\n          0.3563,\\n          0.382,\\n          0.3174,\\n          0.6372,\\n          0.5189\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.2211,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.3403,\\n          \\\"push the plate to the front of the stove\\\": 0.1968,\\n          \\\"put the bowl on the plate\\\": 0.474,\\n          \\\"put the bowl on the stove\\\": 0.395,\\n          \\\"put the bowl on top of the cabinet\\\": 0.4567,\\n          \\\"put the cream cheese in the bowl\\\": 0.3454,\\n          \\\"put the wine bottle on the rack\\\": 0.424,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.3529,\\n          \\\"turn on the stove\\\": 0.4213\\n        },\\n        \\\"epochs_trained\\\": 50,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.4496,\\n        \\\"overall_R2\\n\\n... [截断: 输出过长，省略 1213 字符] ...\\n\\n,\\n          \\\"push the plate to the front of the stove\\\": 0.4578,\\n          \\\"put the bowl on the plate\\\": 0.3919,\\n          \\\"put the bowl on the stove\\\": 0.5135,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6405,\\n          \\\"put the cream cheese in the bowl\\\": 0.5285,\\n          \\\"put the wine bottle on the rack\\\": 0.3943,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.4917,\\n          \\\"turn on the stove\\\": 0.8184\\n        },\\n        \\\"epochs_trained\\\": 16,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.3747,\\n        \\\"overall_R2\\\": 0.492,\\n        \\\"per_dim_R2\\\": [\\n          0.5003,\\n          0.4346,\\n          0.3441,\\n          0.3893,\\n          0.2718,\\n          0.6236,\\n          0.5387\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.1426,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.3482,\\n          \\\"push the plate to the front of the stove\\\": 0.2116,\\n          \\\"put the bowl on the plate\\\": 0.4781,\\n          \\\"put the bowl on the stove\\\": 0.3982,\\n          \\\"put the bowl on top of the cabinet\\\": 0.4722,\\n          \\\"put the cream cheese in the bowl\\\": 0.3489,\\n          \\\"put the wine bottle on the rack\\\": 0.4197,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.39,\\n          \\\"turn on the stove\\\": 0.5379\\n        },\\n        \\\"epochs_trained\\\": 50,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.4449,\\n        \\\"overall_R2\\\": 0.5301,\\n        \\\"per_dim_R2\\\": [\\n          0.5404,\\n          0.6055,\\n          0.3632,\\n          0.5476,\\n          0.2741,\\n          0.6614,\\n          0.5644\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.3953,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.3704,\\n          \\\"push the plate to the front of the stove\\\": 0.3693,\\n          \\\"put the bowl on the plate\\\": 0.4327,\\n          \\\"put the bowl on the stove\\\": 0.4237,\\n          \\\"put the bowl on top of the cabinet\\\": 0.4573,\\n          \\\"put the cream cheese in the bowl\\\": 0.4089,\\n          \\\"put the wine bottle on the rack\\\": 0.4087,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.4746,\\n          \\\"turn on the stove\\\": 0.7081\\n        },\\n        \\\"epochs_trained\\\": 33,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean_R2\\\": 0.5184,\\n        \\\"overall_R2\\\": 0.6029,\\n        \\\"per_dim_R2\\\": [\\n          0.5884,\\n          0.684,\\n          0.4604,\\n          0.573,\\n          0.2161,\\n          0.6815,\\n          0.6361\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.5962,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.5647,\\n          \\\"push the plate to the front of the stove\\\": 0.4236,\\n          \\\"put the bowl on the plate\\\": 0.3524,\\n          \\\"put the bowl on the stove\\\": 0.5306,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6513,\\n          \\\"put the cream cheese in the bowl\\\": 0.5582,\\n          \\\"put the wine bottle on the rack\\\": 0.4244,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.3537,\\n          \\\"turn on the stove\\\": 0.729\\n        },\\n        \\\"epochs_trained\\\": 18,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"probe\\\": \\\"MLP(4096,256,7)\\\",\\n    \\\"optimizer\\\": \\\"Adam lr=0.001\\\",\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"batch_size\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action a_{t+1} from feature at time t\\\",\\n    \\\"normalization\\\": \\\"z-score (train mean/std)\\\",\\n    \\\"split\\\": \\\"80/20 per-task by demo index\\\",\\n    \\\"readout_layers\\\": [\\n      1,\\n      8,\\n      13\\n    ],\\n    \\\"demos_per_task\\\": 5,\\n    \\\"n_tasks\\\": 10,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    \\\"instruction_heads_24\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "ccabf411-c45a-4a99-bca8-c80911bf7feb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"action_probe_R2\\\\\\\": {\\\\n    \\\\\\\"baseline\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.2558,\\\\n      \\\\\\\"L8\\\\\\\": 0.4401,\\\\n      \\\\\\\"L13\\\\\\\": 0.524\\\\n    },\\\\n    \\\\\\\"ablate_all24\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.3627,\\\\n      \\\\\\\"L8\\\\\\\": 0.4496,\\\\n      \\\\\\\"L13\\\\\\\": 0.5194\\\\n    },\\\\n    \\\\\\\"ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.3747,\\\\n      \\\\\\\"L8\\\\\\\": 0.4449,\\\\n      \\\\\\\"L13\\\\\\\": 0.5184\\\\n    }\\\\n  },\\\\n  \\\\\\\"detailed_results\\\\\\\": {\\\\n    \\\\\\\"baseline\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.2558,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.3857,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.4238,\\\\n          0.3276,\\\\n          0.2074,\\\\n          0.2759,\\\\n          0.3123,\\\\n          0.5627,\\\\n          0.4338\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.1971,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.2649,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.1901,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.3754,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.2352,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.2561,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.186,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.1894,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.2789,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.3854\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 50,\\\\n        \\\\\\\"n_train\\\\\\\": 5312,\\\\n        \\\\\\\"n_val\\\\\\\": 1294\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.4401,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.5241,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.5479,\\\\n          0.5721,\\\\n          0.359,\\\\n          0.5499,\\\\n          0.2719,\\\\n          0.667,\\\\n          0.5588\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.4532,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.3757,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.3358,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.4371,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.396,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.4519,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.3797,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.3917,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.4624,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.7171\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 27,\\\\n        \\\\\\\"n_train\\\\\\\": 5312,\\\\n        \\\\\\\"n_val\\\\\\\": 1294\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.524,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6061,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.587,\\\\n          0.6881,\\\\n          0.4503,\\\\n          0.5939,\\\\n          0.2486,\\\\n          0.6611,\\\\n          0.6437\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.5686,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.5466,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.4092,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.3887,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.5352,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6587,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.5835,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.4304,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.3856,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.7336\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 18,\\\\n        \\\\\\\"n_train\\\\\\\": 5312,\\\\n        \\\\\\\"n_val\\\\\\\": 1294\\\\n      }\\\\n    },\\\\n    \\\\\\\"ablate_all24\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.3627,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.4805,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.4962,\\\\n          0.4212,\\\\n          0.3563,\\\\n          0.382,\\\\n          0.3174,\\\\n          0.6372,\\\\n          0.5189\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.2211,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.3403,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.1968,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.474,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.395,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.4567,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.3454,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.424,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.3529,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.4213\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 50,\\\\n        \\\\\\\"n_train\\\\\\\": 5312,\\\\n        \\\\\\\"n_val\\\\\\\": 1294\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.4496,\\\\n        \\\\\\\"overall_R2\\\\n\\\\n... [截断: 输出过长，省略 1213 字符] ...\\\\n\\\\n,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.4578,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.3919,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.5135,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6405,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.5285,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.3943,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.4917,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.8184\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 16,\\\\n        \\\\\\\"n_train\\\\\\\": 5312,\\\\n        \\\\\\\"n_val\\\\\\\": 1294\\\\n      }\\\\n    },\\\\n    \\\\\\\"ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.3747,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.492,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.5003,\\\\n          0.4346,\\\\n          0.3441,\\\\n          0.3893,\\\\n          0.2718,\\\\n          0.6236,\\\\n          0.5387\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.1426,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.3482,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.2116,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.4781,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.3982,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.4722,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.3489,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.4197,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.39,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.5379\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 50,\\\\n        \\\\\\\"n_train\\\\\\\": 5312,\\\\n        \\\\\\\"n_val\\\\\\\": 1294\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.4449,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.5301,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.5404,\\\\n          0.6055,\\\\n          0.3632,\\\\n          0.5476,\\\\n          0.2741,\\\\n          0.6614,\\\\n          0.5644\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.3953,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.3704,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.3693,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.4327,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.4237,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.4573,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.4089,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.4087,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.4746,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.7081\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 33,\\\\n        \\\\\\\"n_train\\\\\\\": 5312,\\\\n        \\\\\\\"n_val\\\\\\\": 1294\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.5184,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6029,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.5884,\\\\n          0.684,\\\\n          0.4604,\\\\n          0.573,\\\\n          0.2161,\\\\n          0.6815,\\\\n          0.6361\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.5962,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.5647,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.4236,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.3524,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.5306,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6513,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.5582,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.4244,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.3537,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.729\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 18,\\\\n        \\\\\\\"n_train\\\\\\\": 5312,\\\\n        \\\\\\\"n_val\\\\\\\": 1294\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"probe\\\\\\\": \\\\\\\"MLP(4096,256,7)\\\\\\\",\\\\n    \\\\\\\"optimizer\\\\\\\": \\\\\\\"Adam lr=0.001\\\\\\\",\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action a_{t+1} from feature at time t\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score (train mean/std)\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20 per-task by demo index\\\\\\\",\\\\n    \\\\\\\"readout_layers\\\\\\\": [\\\\n      1,\\\\n      8,\\\\n      13\\\\n    ],\\\\n    \\\\\\\"demos_per_task\\\\\\\": 5,\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    \\\\\\\"instruction_heads_24\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"action_probe_R2\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": 0.2558,\\n      \\\"L8\\\": 0.4401,\\n      \\\"L13\\\": 0.524\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": 0.3627,\\n      \\\"L8\\\": 0.4496,\\n      \\\"L13\\\": 0.5194\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": 0.3747,\\n      \\\"L8\\\": 0.4449,\\n      \\\"L13\\\": 0.5184\\n    }\\n  },\\n  \\\"detailed_results\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.2558,\\n        \\\"overall_R2\\\": 0.3857,\\n        \\\"per_dim_R2\\\": [\\n          0.4238,\\n          0.3276,\\n          0.2074,\\n          0.2759,\\n          0.3123,\\n          0.5627,\\n          0.4338\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.1971,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.2649,\\n          \\\"push the plate to the front of the stove\\\": 0.1901,\\n          \\\"put the bowl on the plate\\\": 0.3754,\\n          \\\"put the bowl on the stove\\\": 0.2352,\\n          \\\"put the bowl on top of the cabinet\\\": 0.2561,\\n          \\\"put the cream cheese in the bowl\\\": 0.186,\\n          \\\"put the wine bottle on the rack\\\": 0.1894,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.2789,\\n          \\\"turn on the stove\\\": 0.3854\\n        },\\n        \\\"epochs_trained\\\": 50,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.4401,\\n        \\\"overall_R2\\\": 0.5241,\\n        \\\"per_dim_R2\\\": [\\n          0.5479,\\n          0.5721,\\n          0.359,\\n          0.5499,\\n          0.2719,\\n          0.667,\\n          0.5588\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4532,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.3757,\\n          \\\"push the plate to the front of the stove\\\": 0.3358,\\n          \\\"put the bowl on the plate\\\": 0.4371,\\n          \\\"put the bowl on the stove\\\": 0.396,\\n          \\\"put the bowl on top of the cabinet\\\": 0.4519,\\n          \\\"put the cream cheese in the bowl\\\": 0.3797,\\n          \\\"put the wine bottle on the rack\\\": 0.3917,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.4624,\\n          \\\"turn on the stove\\\": 0.7171\\n        },\\n        \\\"epochs_trained\\\": 27,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean_R2\\\": 0.524,\\n        \\\"overall_R2\\\": 0.6061,\\n        \\\"per_dim_R2\\\": [\\n          0.587,\\n          0.6881,\\n          0.4503,\\n          0.5939,\\n          0.2486,\\n          0.6611,\\n          0.6437\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.5686,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.5466,\\n          \\\"push the plate to the front of the stove\\\": 0.4092,\\n          \\\"put the bowl on the plate\\\": 0.3887,\\n          \\\"put the bowl on the stove\\\": 0.5352,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6587,\\n          \\\"put the cream cheese in the bowl\\\": 0.5835,\\n          \\\"put the wine bottle on the rack\\\": 0.4304,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.3856,\\n          \\\"turn on the stove\\\": 0.7336\\n        },\\n        \\\"epochs_trained\\\": 18,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      }\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.3627,\\n        \\\"overall_R2\\\": 0.4805,\\n        \\\"per_dim_R2\\\": [\\n          0.4962,\\n          0.4212,\\n          0.3563,\\n          0.382,\\n          0.3174,\\n          0.6372,\\n          0.5189\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.2211,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.3403,\\n          \\\"push the plate to the front of the stove\\\": 0.1968,\\n          \\\"put the bowl on the plate\\\": 0.474,\\n          \\\"put the bowl on the stove\\\": 0.395,\\n          \\\"put the bowl on top of the cabinet\\\": 0.4567,\\n          \\\"put the cream cheese in the bowl\\\": 0.3454,\\n          \\\"put the wine bottle on the rack\\\": 0.424,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.3529,\\n          \\\"turn on the stove\\\": 0.4213\\n        },\\n        \\\"epochs_trained\\\": 50,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.4496,\\n        \\\"overall_R2\\n\\n... [截断: 输出过长，省略 1213 字符] ...\\n\\n,\\n          \\\"push the plate to the front of the stove\\\": 0.4578,\\n          \\\"put the bowl on the plate\\\": 0.3919,\\n          \\\"put the bowl on the stove\\\": 0.5135,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6405,\\n          \\\"put the cream cheese in the bowl\\\": 0.5285,\\n          \\\"put the wine bottle on the rack\\\": 0.3943,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.4917,\\n          \\\"turn on the stove\\\": 0.8184\\n        },\\n        \\\"epochs_trained\\\": 16,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.3747,\\n        \\\"overall_R2\\\": 0.492,\\n        \\\"per_dim_R2\\\": [\\n          0.5003,\\n          0.4346,\\n          0.3441,\\n          0.3893,\\n          0.2718,\\n          0.6236,\\n          0.5387\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.1426,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.3482,\\n          \\\"push the plate to the front of the stove\\\": 0.2116,\\n          \\\"put the bowl on the plate\\\": 0.4781,\\n          \\\"put the bowl on the stove\\\": 0.3982,\\n          \\\"put the bowl on top of the cabinet\\\": 0.4722,\\n          \\\"put the cream cheese in the bowl\\\": 0.3489,\\n          \\\"put the wine bottle on the rack\\\": 0.4197,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.39,\\n          \\\"turn on the stove\\\": 0.5379\\n        },\\n        \\\"epochs_trained\\\": 50,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.4449,\\n        \\\"overall_R2\\\": 0.5301,\\n        \\\"per_dim_R2\\\": [\\n          0.5404,\\n          0.6055,\\n          0.3632,\\n          0.5476,\\n          0.2741,\\n          0.6614,\\n          0.5644\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.3953,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.3704,\\n          \\\"push the plate to the front of the stove\\\": 0.3693,\\n          \\\"put the bowl on the plate\\\": 0.4327,\\n          \\\"put the bowl on the stove\\\": 0.4237,\\n          \\\"put the bowl on top of the cabinet\\\": 0.4573,\\n          \\\"put the cream cheese in the bowl\\\": 0.4089,\\n          \\\"put the wine bottle on the rack\\\": 0.4087,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.4746,\\n          \\\"turn on the stove\\\": 0.7081\\n        },\\n        \\\"epochs_trained\\\": 33,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean_R2\\\": 0.5184,\\n        \\\"overall_R2\\\": 0.6029,\\n        \\\"per_dim_R2\\\": [\\n          0.5884,\\n          0.684,\\n          0.4604,\\n          0.573,\\n          0.2161,\\n          0.6815,\\n          0.6361\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.5962,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.5647,\\n          \\\"push the plate to the front of the stove\\\": 0.4236,\\n          \\\"put the bowl on the plate\\\": 0.3524,\\n          \\\"put the bowl on the stove\\\": 0.5306,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6513,\\n          \\\"put the cream cheese in the bowl\\\": 0.5582,\\n          \\\"put the wine bottle on the rack\\\": 0.4244,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.3537,\\n          \\\"turn on the stove\\\": 0.729\\n        },\\n        \\\"epochs_trained\\\": 18,\\n        \\\"n_train\\\": 5312,\\n        \\\"n_val\\\": 1294\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"probe\\\": \\\"MLP(4096,256,7)\\\",\\n    \\\"optimizer\\\": \\\"Adam lr=0.001\\\",\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"batch_size\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action a_{t+1} from feature at time t\\\",\\n    \\\"normalization\\\": \\\"z-score (train mean/std)\\\",\\n    \\\"split\\\": \\\"80/20 per-task by demo index\\\",\\n    \\\"readout_layers\\\": [\\n      1,\\n      8,\\n      13\\n    ],\\n    \\\"demos_per_task\\\": 5,\\n    \\\"n_tasks\\\": 10,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    \\\"instruction_heads_24\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T15:53:17.894Z_
+
+<details><summary>↩ Tool result · `toolu_01TB2KcDnDGykonKVNQsoV47`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Sun May 17 23:53:17 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   28C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   29C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "7f6259b3-265c-403f-81c0-65f6c535b365",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sun May 17 23:53:17 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   28C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   29C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes found                                                             |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Sun May 17 23:53:17 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   28C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   29C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated for the ablate_all24 L8 and L13 sections. Let me get the missing part. But actually, looking at the summary section at the top, I have the key numbers. Let me also try to get the truncated portion.
+
+Actually, looking more carefully, the truncated part is in the middle of ablate_all24's detailed results. I have:
+- ablate_all24 L1: complete
+- ablate_all24 L8: starts but truncated at overall_R2
+- ablate_all24 L13: partially visible (the per_task_R2 section)
+
+
+- ablate_all32: complete for all layers
+
+Let me retrieve the missing sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "4d5a3f79-b25e-4928-9f52-4bb17699c676",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYAdg28YPg24Ye4KZqpvbr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4859,
+      "cache_read_input_tokens": 25591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4859
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+ablate_all24 的 L8/L13 详细数据被截断，补取中间部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "9fe3c6bb-7f1a-402d-af67-a9295e009c80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYAdg28YPg24Ye4KZqpvbr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4859,
+      "cache_read_input_tokens": 25591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4859
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Xyy8QqWr5v6EgjChBmASan`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json') as f:\n    d = json.load(f)\nfor cond in ['ablate_all24']:\n    for layer in ['L8','L13']:\n        r = d['detailed_results'][cond][layer]\n        print(f'{cond} {layer}:')\n        print(f'  mean_R2={r[\\\"mean_R2\\\"]}, overall_R2={r[\\\"overall_R2\\\"]}')\n        print(f'  per_dim_R2={r[\\\"per_dim_R2\\\"]}')\n        print(f'  per_task_R2:')\n        for t,v in r['per_task_R2'].items():\n            print(f'    {t}: {v}')\n        print(f'  epochs_trained={r[\\\"epochs_trained\\\"]}')\n\"",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "e54339e0-14c3-4c2f-8bdd-aabd69a11819",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYAdg28YPg24Ye4KZqpvbr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4859,
+      "cache_read_input_tokens": 25591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4859
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T15:53:33.855Z_
+
+<details><summary>↩ Tool result · `toolu_01Xyy8QqWr5v6EgjChBmASan`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 3.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "d8092767-be99-448d-a83d-d6d2bcfca391",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 3.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NgEUkqTyoweBordii4mEi9`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && conda run -n vla-ssd python -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json') as f:\n    d = json.load(f)\nfor cond in ['ablate_all24']:\n    for layer in ['L8','L13']:\n        r = d['detailed_results'][cond][layer]\n        print(f'{cond} {layer}:')\n        print(f'  mean_R2={r[\\\"mean_R2\\\"]}, overall_R2={r[\\\"overall_R2\\\"]}')\n        print(f'  per_dim_R2={r[\\\"per_dim_R2\\\"]}')\n        for t,v in r['per_task_R2'].items():\n            print(f'    {t}: {v}')\n        print(f'  epochs={r[\\\"epochs_trained\\\"]}')\n\"",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "85f924e0-1ebe-486f-8812-b3e602d63ca6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSWSaoWAKMtqBxH855QAJh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 30450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 642
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T15:53:44.609Z_
+
+<details><summary>↩ Tool result · `toolu_01NgEUkqTyoweBordii4mEi9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: conda: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 5.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "c74ce8c5-9365-47d0-bddc-00b60bb94989",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: conda: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: conda: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 5.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Lb68FhhJpGi1DYFSwexeyr`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "which python; /root/miniconda3/bin/python -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json') as f:\n    d = json.load(f)\nfor cond in ['ablate_all24']:\n    for layer in ['L8','L13']:\n        r = d['detailed_results'][cond][layer]\n        print(f'{cond} {layer}:')\n        print(f'  mean_R2={r[\\\"mean_R2\\\"]}, overall_R2={r[\\\"overall_R2\\\"]}')\n        print(f'  per_dim_R2={r[\\\"per_dim_R2\\\"]}')\n        for t,v in r['per_task_R2'].items():\n            print(f'    {t}: {v}')\n        print(f'  epochs={r[\\\"epochs_trained\\\"]}')\n\"",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "b30727b2-5d34-436f-9f4f-62e93f248491",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q95AK8f1e2gcx25BXYjkwg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 535,
+      "cache_read_input_tokens": 31092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 535
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T15:53:50.262Z_
+
+<details><summary>↩ Tool result · `toolu_01Lb68FhhJpGi1DYFSwexeyr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ablate_all24 L8:\\n  mean_R2=0.4496, overall_R2=0.5364\\n  per_dim_R2=[0.5406, 0.5977, 0.377, 0.5583, 0.2681, 0.6702, 0.5718]\\n    open the middle drawer of the cabinet: 0.3808\\n    open the top drawer and put the bowl inside: 0.388\\n    push the plate to the front of the stove: 0.3505\\n    put the bowl on the plate: 0.4295\\n    put the bowl on the stove: 0.443\\n    put the bowl on top of the cabinet: 0.4702\\n    put the cream cheese in the bowl: 0.4111\\n    put the wine bottle on the rack: 0.3958\\n    put the wine bottle on top of the cabinet: 0.4901\\n    turn on the stove: 0.7365\\n  epochs=33\\nablate_all24 L13:\\n  mean_R2=0.5194, overall_R2=0.6053\\n  per_dim_R2=[0.6025, 0.6668, 0.4552, 0.5792, 0.2541, 0.6685, 0.6408]\\n    open the middle drawer of the cabinet: 0.4178\\n    open the top drawer and put the bowl inside: 0.5401\\n    push the plate to the front of the stove: 0.4578\\n    put the bowl on the plate: 0.3919\\n    put the bowl on the stove: 0.5135\\n    put the bowl on top of the cabinet: 0.6405\\n    put the cream cheese in the bowl: 0.5285\\n    put the wine bottle on the rack: 0.3943\\n    put the wine bottle on top of the cabinet: 0.4917\\n    turn on the stove: 0.8184\\n  epochs=16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "ed1bf013-aaeb-4d51-95c2-52bfe7d7fbba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablate_all24 L8:\\\\n  mean_R2=0.4496, overall_R2=0.5364\\\\n  per_dim_R2=[0.5406, 0.5977, 0.377, 0.5583, 0.2681, 0.6702, 0.5718]\\\\n    open the middle drawer of the cabinet: 0.3808\\\\n    open the top drawer and put the bowl inside: 0.388\\\\n    push the plate to the front of the stove: 0.3505\\\\n    put the bowl on the plate: 0.4295\\\\n    put the bowl on the stove: 0.443\\\\n    put the bowl on top of the cabinet: 0.4702\\\\n    put the cream cheese in the bowl: 0.4111\\\\n    put the wine bottle on the rack: 0.3958\\\\n    put the wine bottle on top of the cabinet: 0.4901\\\\n    turn on the stove: 0.7365\\\\n  epochs=33\\\\nablate_all24 L13:\\\\n  mean_R2=0.5194, overall_R2=0.6053\\\\n  per_dim_R2=[0.6025, 0.6668, 0.4552, 0.5792, 0.2541, 0.6685, 0.6408]\\\\n    open the middle drawer of the cabinet: 0.4178\\\\n    open the top drawer and put the bowl inside: 0.5401\\\\n    push the plate to the front of the stove: 0.4578\\\\n    put the bowl on the plate: 0.3919\\\\n    put the bowl on the stove: 0.5135\\\\n    put the bowl on top of the cabinet: 0.6405\\\\n    put the cream cheese in the bowl: 0.5285\\\\n    put the wine bottle on the rack: 0.3943\\\\n    put the wine bottle on top of the cabinet: 0.4917\\\\n    turn on the stove: 0.8184\\\\n  epochs=16\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ablate_all24 L8:\\n  mean_R2=0.4496, overall_R2=0.5364\\n  per_dim_R2=[0.5406, 0.5977, 0.377, 0.5583, 0.2681, 0.6702, 0.5718]\\n    open the middle drawer of the cabinet: 0.3808\\n    open the top drawer and put the bowl inside: 0.388\\n    push the plate to the front of the stove: 0.3505\\n    put the bowl on the plate: 0.4295\\n    put the bowl on the stove: 0.443\\n    put the bowl on top of the cabinet: 0.4702\\n    put the cream cheese in the bowl: 0.4111\\n    put the wine bottle on the rack: 0.3958\\n    put the wine bottle on top of the cabinet: 0.4901\\n    turn on the stove: 0.7365\\n  epochs=33\\nablate_all24 L13:\\n  mean_R2=0.5194, overall_R2=0.6053\\n  per_dim_R2=[0.6025, 0.6668, 0.4552, 0.5792, 0.2541, 0.6685, 0.6408]\\n    open the middle drawer of the cabinet: 0.4178\\n    open the top drawer and put the bowl inside: 0.5401\\n    push the plate to the front of the stove: 0.4578\\n    put the bowl on the plate: 0.3919\\n    put the bowl on the stove: 0.5135\\n    put the bowl on top of the cabinet: 0.6405\\n    put the cream cheese in the bowl: 0.5285\\n    put the wine bottle on the rack: 0.3943\\n    put the wine bottle on top of the cabinet: 0.4917\\n    turn on the stove: 0.8184\\n  epochs=16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+全部数据已收集。以下是完整报告：
+
+---
+
+## 1. 进程状态
+`l1_ablation_action_probe` **无运行进程**（已结束）。
+
+## 2. 结果文件
+`action_probe_results.json` — 9213 bytes，生成于 **May 17 23:08**。
+
+## 3. Action Probe R² 完整结果
+
+### 汇总（mean_R²）
+
+| Condition | L1 | L8 | L13 |
+|---|---|---|---|
+| **baseline** | 0.2558 | 0.4401 | 0.5240 |
+| **ablate_all24** | 0.3627 (+0.107) | 0.4496 (+0.010) | 0.5194 (−0.005) |
+| **ablate_all32** | 0.3747 (+0.119) | 0.4449 (+0.005) | 0.5184 (−0.006) |
+
+### Detailed — baseline
+
+**L1** (mean=0.2558, overall=0.3857, epochs=50):
+- per_dim: [0.4238, 0.3276, 0.2074, 0.2759, 0.3123, 0.5627, 0.4338]
+- per_task: open middle drawer 0.1971, open top drawer+bowl 0.2649, push plate 0.1901, bowl on plate 0.3754, bowl on stove 0.2352, bowl on cabinet 0.2561, cream cheese in bowl 0.1860, wine on rack 0.1894, wine on cabinet 0.2789, turn on stove 0.3854
+
+**L8** (mean=0.4401, overall=0.5241, epochs=27):
+- per_dim: [0.5479, 0.5721, 0.3590, 0.5499, 0.2719, 0.6670, 0.5588]
+- per_task: open middle drawer 0.4532, open top drawer+bowl 0.3757, push plate 0.3358, bowl on plate 0.4371, bowl on stove 0.3960, bowl on cabinet 0.4519, cream cheese in bowl 0.3797, wine on rack 0.3917, wine on cabinet 0.4624, turn on stove 0.7171
+
+**L13** (mean=0.5240, overall=0.6061, epochs=18):
+- per_dim: [0.5870, 0.6881, 0.4503, 0.5939, 0.2486, 0.6611, 0.6437]
+- per_task: open middle drawer 0.5686, open top drawer+bowl 0.5466, push plate 0.4092, bowl on plate 0.3887, bowl on stove 0.5352, bowl on cabinet 0.6587, cream cheese in bowl 0.5835, wine on rack 0.4304, wine on cabinet 0.3856, turn on stove 0.7336
+
+### Detailed — ablate_all24
+
+**L1** (mean=0.3627, overall=0.4805, epochs=50):
+- per_dim: [0.4962, 0.4212, 0.3563, 0.3820, 0.3174, 0.6372, 0.5189]
+- per_task: open middle drawer 0.2211, open top drawer+bowl 0.3403, push plate 0.1968, bowl on plate 0.4740, bowl on stove 0.3950, bowl on cabinet 0.4567, cream cheese in bowl 0.3454, wine on rack 0.4240, wine on cabinet 0.3529, turn on stove 0.4213
+
+**L8** (mean=0.4496, overall=0.5364, epochs=33):
+- per_dim: [0.5406, 0.5977, 0.3770, 0.5583, 0.2681, 0.6702, 0.5718]
+- per_task: open middle drawer 0.3808, open top drawer+bowl 0.3880, push plate 0.3505, bowl on plate 0.4295, bowl on stove 0.4430, bowl on cabinet 0.4702, cream cheese in bowl 0.4111, wine on rack 0.3958, wine on cabinet 0.4901, turn on stove 0.7365
+
+**L13** (mean=0.5194, overall=0.6053, epochs=16):
+- per_dim: [0.6025, 0.6668, 0.4552, 0.5792, 0.2541, 0.6685, 0.6408]
+- per_task: open middle drawer 0.4178, open top drawer+bowl 0.5401, push plate 0.4578, bowl on plate 0.3919, bowl on stove 0.5135, bowl on cabinet 0.6405, cream cheese in bowl 0.5285, wine on rack 0.3943, wine on cabinet 0.4917, turn on stove 0.8184
+
+### Detailed — ablate_all32
+
+**L1** (mean=0.3747, overall=0.4920, epochs=50):
+- per_dim: [0.5003, 0.4346, 0.3441, 0.3893, 0.2718, 0.6236, 0.5387]
+- per_task: open middle drawer 0.1426, open top drawer+bowl 0.3482, push plate 0.2116, bowl on plate 0.4781, bowl on stove 0.3982, bowl on cabinet 0.4722, cream cheese in bowl 0.3489, wine on rack 0.4197, wine on cabinet 0.3900, turn on stove 0.5379
+
+**L8** (mean=0.4449, overall=0.5301, epochs=33):
+- per_dim: [0.5404, 0.6055, 0.3632, 0.5476, 0.2741, 0.6614, 0.5644]
+- per_task: open middle drawer 0.3953, open top drawer+bowl 0.3704, push plate 0.3693, bowl on plate 0.4327, bowl on stove 0.4237, bowl on cabinet 0.4573, cream cheese in bowl 0.4089, wine on rack 0.4087, wine on cabinet 0.4746, turn on stove 0.7081
+
+**L13** (mean=0.5184, overall=0.6029, epochs=18):
+- per_dim: [0.5884, 0.6840, 0.4604, 0.5730, 0.2161, 0.6815, 0.6361]
+- per_task: open middle drawer 0.5962, open top drawer+bowl 0.5647, push plate 0.4236, bowl on plate 0.3524, bowl on stove 0.5306, bowl on cabinet 0.6513, cream cheese in bowl 0.5582, wine on rack 0.4244, wine on cabinet 0.3537, turn on stove 0.7290
+
+### Metadata
+- Probe: MLP(4096, 256, 7)
+- Optimizer: Adam lr=0.001, epochs=50, patience=5, batch=256, seed=42
+- Target: next_action a_{t+1} from feature at time t
+- Normalization: z-score (train mean/std)
+- Split: 80/20 per-task by demo index (n_train=5312, n_val=1294)
+- Readout layers: [1, 8, 13], demos_per_task=5, n_tasks=10
+- Checkpoint: openvla-7b
+- instruction_heads_24: [0,1,2,4,7,8,10,11,12,14,15,16,17,18,19,20,22,23,25,26,27,29,30,31]
+
+## 5. GPU 状态
+2× NVIDIA RTX PRO 6000 Black (98GB each), 均空闲（0% util, 0MiB memory, 28-29°C）。
+
+---
+
+**关键发现**：ablation 后 L1 的 action R² 显著上升（+0.107/+0.119），但 L8 和 L13 几乎不变。移除 instruction heads 后 L1 的 action 信息反而增加，说明这些 heads 在 L1 主要承载 instruction 信息而非 action 信息，ablation 释放了 capacity 给 action 编码。深层 action 表征不受影响。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "uuid": "8a6460e3-add2-4e52-a824-792a5d1b4b5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MgiRf1WDGaKM3nbRBuZoos",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 913,
+      "cache_read_input_tokens": 31627,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 913
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 26_
+
+全部数据已收集。以下是完整报告：
+
+---
+
+## 1. 进程状态
+`l1_ablation_action_probe` **无运行进程**（已结束）。
+
+## 2. 结果文件
+`action_probe_results.json` — 9213 bytes，生成于 **May 17 23:08**。
+
+## 3. Action Probe R² 完整结果
+
+### 汇总（mean_R²）
+
+| Condition | L1 | L8 | L13 |
+|---|---|---|---|
+| **baseline** | 0.2558 | 0.4401 | 0.5240 |
+| **ablate_all24** | 0.3627 (+0.107) | 0.4496 (+0.010) | 0.5194 (−0.005) |
+| **ablate_all32** | 0.3747 (+0.119) | 0.4449 (+0.005) | 0.5184 (−0.006) |
+
+### Detailed — baseline
+
+**L1** (mean=0.2558, overall=0.3857, epochs=50):
+- per_dim: [0.4238, 0.3276, 0.2074, 0.2759, 0.3123, 0.5627, 0.4338]
+- per_task: open middle drawer 0.1971, open top drawer+bowl 0.2649, push plate 0.1901, bowl on plate 0.3754, bowl on stove 0.2352, bowl on cabinet 0.2561, cream cheese in bowl 0.1860, wine on rack 0.1894, wine on cabinet 0.2789, turn on stove 0.3854
+
+**L8** (mean=0.4401, overall=0.5241, epochs=27):
+- per_dim: [0.5479, 0.5721, 0.3590, 0.5499, 0.2719, 0.6670, 0.5588]
+- per_task: open middle drawer 0.4532, open top drawer+bowl 0.3757, push plate 0.3358, bowl on plate 0.4371, bowl on stove 0.3960, bowl on cabinet 0.4519, cream cheese in bowl 0.3797, wine on rack 0.3917, wine on cabinet 0.4624, turn on stove 0.7171
+
+**L13** (mean=0.5240, overall=0.6061, epochs=18):
+- per_dim: [0.5870, 0.6881, 0.4503, 0.5939, 0.2486, 0.6611, 0.6437]
+- per_task: open middle drawer 0.5686, open top drawer+bowl 0.5466, push plate 0.4092, bowl on plate 0.3887, bowl on stove 0.5352, bowl on cabinet 0.6587, cream cheese in bowl 0.5835, wine on rack 0.4304, wine on cabinet 0.3856, turn on stove 0.7336
+
+### Detailed — ablate_all24
+
+**L1** (mean=0.3627, overall=0.4805, epochs=50):
+- per_dim: [0.4962, 0.4212, 0.3563, 0.3820, 0.3174, 0.6372, 0.5189]
+- per_task: open middle drawer 0.2211, open top drawer+bowl 0.3403, push plate 0.1968, bowl on plate 0.4740, bowl on stove 0.3950, bowl on cabinet 0.4567, cream cheese in bowl 0.3454, wine on rack 0.4240, wine on cabinet 0.3529, turn on stove 0.4213
+
+**L8** (mean=0.4496, overall=0.5364, epochs=33):
+- per_dim: [0.5406, 0.5977, 0.3770, 0.5583, 0.2681, 0.6702, 0.5718]
+- per_task: open middle drawer 0.3808, open top drawer+bowl 0.3880, push plate 0.3505, bowl on plate 0.4295, bowl on stove 0.4430, bowl on cabinet 0.4702, cream cheese in bowl 0.4111, wine on rack 0.3958, wine on cabinet 0.4901, turn on stove 0.7365
+
+**L13** (mean=0.5194, overall=0.6053, epochs=16):
+- per_dim: [0.6025, 0.6668, 0.4552, 0.5792, 0.2541, 0.6685, 0.6408]
+- per_task: open middle drawer 0.4178, open top drawer+bowl 0.5401, push plate 0.4578, bowl on plate 0.3919, bowl on stove 0.5135, bowl on cabinet 0.6405, cream cheese in bowl 0.5285, wine on rack 0.3943, wine on cabinet 0.4917, turn on stove 0.8184
+
+### Detailed — ablate_all32
+
+**L1** (mean=0.3747, overall=0.4920, epochs=50):
+- per_dim: [0.5003, 0.4346, 0.3441, 0.3893, 0.2718, 0.6236, 0.5387]
+- per_task: open middle drawer 0.1426, open top drawer+bowl 0.3482, push plate 0.2116, bowl on plate 0.4781, bowl on stove 0.3982, bowl on cabinet 0.4722, cream cheese in bowl 0.3489, wine on rack 0.4197, wine on cabinet 0.3900, turn on stove 0.5379
+
+**L8** (mean=0.4449, overall=0.5301, epochs=33):
+- per_dim: [0.5404, 0.6055, 0.3632, 0.5476, 0.2741, 0.6614, 0.5644]
+- per_task: open middle drawer 0.3953, open top drawer+bowl 0.3704, push plate 0.3693, bowl on plate 0.4327, bowl on stove 0.4237, bowl on cabinet 0.4573, cream cheese in bowl 0.4089, wine on rack 0.4087, wine on cabinet 0.4746, turn on stove 0.7081
+
+**L13** (mean=0.5184, overall=0.6029, epochs=18):
+- per_dim: [0.5884, 0.6840, 0.4604, 0.5730, 0.2161, 0.6815, 0.6361]
+- per_task: open middle drawer 0.5962, open top drawer+bowl 0.5647, push plate 0.4236, bowl on plate 0.3524, bowl on stove 0.5306, bowl on cabinet 0.6513, cream cheese in bowl 0.5582, wine on rack 0.4244, wine on cabinet 0.3537, turn on stove 0.7290
+
+### Metadata
+- Probe: MLP(4096, 256, 7)
+- Optimizer: Adam lr=0.001, epochs=50, patience=5, batch=256, seed=42
+- Target: next_action a_{t+1} from feature at time t
+- Normalization: z-score (train mean/std)
+- Split: 80/20 per-task by demo index (n_train=5312, n_val=1294)
+- Readout layers: [1, 8, 13], demos_per_task=5, n_tasks=10
+- Checkpoint: openvla-7b
+- instruction_heads_24: [0,1,2,4,7,8,10,11,12,14,15,16,17,18,19,20,22,23,25,26,27,29,30,31]
+
+## 5. GPU 状态
+2× NVIDIA RTX PRO 6000 Black (98GB each), 均空闲（0% util, 0MiB memory, 28-29°C）。
+
+---
+
+**关键发现**：ablation 后 L1 的 action R² 显著上升（+0.107/+0.119），但 L8 和 L13 几乎不变。移除 instruction heads 后 L1 的 action 信息反而增加，说明这些 heads 在 L1 主要承载 instruction 信息而非 action 信息，ablation 释放了 capacity 给 action 编码。深层 action 表征不受影响。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 96932,
+  "duration_api_ms": 72864,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "241cecf9-016c-447b-bf10-6631206513dc",
+  "total_cost_usd": 0.32277374999999997,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 20699,
+    "cache_read_input_tokens": 179888,
+    "output_tokens": 4092,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 20699,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2228,
+        "cache_read_input_tokens": 31627,
+        "cache_creation_input_tokens": 913,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 913
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1036,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001111,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 4092,
+      "cacheReadInputTokens": 179888,
+      "cacheCreationInputTokens": 20699,
+      "webSearchRequests": 0,
+      "costUSD": 0.32166275,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "09316091-b765-4828-b415-58fe5c6b770f"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,26 @@
+{
+  "exp_id": "closedloop_diagnosis",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:07:32.792Z",
+    "updated_at": "2026-05-19T17:08:30.360Z",
+    "hypothesis": "SR=0/3 in behavioral smoketest is caused by pipeline bugs (image preprocessing, action normalization), not model quality. Fixing these bugs will yield non-zero success rate.",
+    "conclusion": "negative",
+    "spec": {
+      "command": "diagnostic pipeline - 6 bugs found and fixed",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": 9,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 0,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/",
+      "log_path": "/root/vla-ssd/scripts/sr_official_pipeline.py"
+    }
+  },
+  "timestamp": "2026-05-19T17:08:30.555428+00:00",
+  "trigger": "update_registry"
+}

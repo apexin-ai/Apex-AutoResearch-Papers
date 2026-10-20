@@ -1,0 +1,18 @@
+Full-layer R² scan results (plan_011)
+Server path: /root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json
+Script: /root/vla-ssd/scripts/fulllayer_action_probe.py
+Runtime: 19.5 min on cuda:0 + cuda:1
+
+Peak R² by condition:
+- Trained image_mean: L8, R²=0.6553 (RSA peak L12 — 4-layer offset)
+- Trained last_preaction: L13, R²=0.6779 (RSA peak L12 — near-aligned)
+- Untrained image_mean: L0, R²=0.6403 (RSA peak L0 — aligned)
+- Untrained last_preaction: L32, R²=0.6093 (RSA peak L1 — maximally divergent)
+
+Bootstrap best-vs-best (trained vs untrained):
+- image_mean: Δ=+0.0149, p=0.006 (sig)
+- last_preaction: Δ=+0.0686, p=0.0001 (sig)
+
+Bootstrap same-layer:
+- image_mean L8: Δ=+0.1229, p=0.0001
+- last_preaction L13: Δ=+1.0071, p=0.0001 (untrained L13 R²≈-0.33, collapsed layer)

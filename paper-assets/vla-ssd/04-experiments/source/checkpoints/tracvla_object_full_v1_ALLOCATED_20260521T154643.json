@@ -1,0 +1,100 @@
+{
+  "exp_id": "tracvla_object_full_v1",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:40:08.778Z",
+    "updated_at": "2026-05-21T15:46:42.766Z",
+    "hypothesis": "TraceVLA (Phi-3-mini) on LIBERO-Object shows the convergent entry-exit routing pattern when fine-tuned. Cross-suite validation extending TraceVLA from Goal/Spatial to Object.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py --conditions trained untrained\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "551317",
+      "log_path": "~/runs/vla-ssd/tracvla_object_full_v1.log",
+      "submitted_at": "2026-05-21T10:40:30.746Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "Trained condition completed (147 min). Untrained FAILED: same flash_attn config issue. Script UNTRAINED_CKPT changed from hub to local phi3v-base. Config fixed. Untrained rerun needed → tracvla_object_untrained_v1",
+    "metrics": {
+      "trained_only_NO_UNTRAINED": true,
+      "r2_probing": {
+        "image_mean": {
+          "L0": 0.7458,
+          "L4": 0.7531,
+          "L8": 0.7562,
+          "L12": 0.7589,
+          "L16": 0.7687,
+          "L20": 0.7728,
+          "L24": 0.762,
+          "L28": 0.7661,
+          "L31": 0.7483,
+          "PEAK": "0.7757 @ L22"
+        },
+        "last_preaction": {
+          "L0": 0.6214,
+          "L4": 0.729,
+          "L8": 0.7506,
+          "L12": 0.7418,
+          "L16": 0.7544,
+          "L20": 0.7354,
+          "L24": 0.6605,
+          "L28": 0.5039,
+          "L31": 0.4699,
+          "PEAK": "0.7636 @ L9"
+        }
+      },
+      "l1_attention": {
+        "instruction_dominant": 30,
+        "total_heads": 32,
+        "top3": [
+          [
+            "head_8",
+            0.939
+          ],
+          [
+            "head_26",
+            0.92
+          ],
+          [
+            "head_19",
+            0.901
+          ]
+        ]
+      },
+      "cross_instruction_classification": {
+        "L0_image_mean": 1,
+        "L0_last_preaction": 0.858,
+        "L1+_all": 1
+      },
+      "counterfactual_ranking": [
+        {
+          "condition": "empty",
+          "cohens_d": 1.2117
+        },
+        {
+          "condition": "shuffled",
+          "cohens_d": 1.1643
+        },
+        {
+          "condition": "wrong",
+          "cohens_d": 1.0595
+        },
+        {
+          "condition": "paraphrased",
+          "cohens_d": 0.9711
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T15:46:43.024638+00:00",
+  "trigger": "update_registry"
+}

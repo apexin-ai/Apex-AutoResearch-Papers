@@ -1,0 +1,1409 @@
+# code l1 head ablation v3
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/chats/worker_code_l1_head_ablation_v3_20260517T124429.jsonl`
+- **Structured JSON:** [`c1beea4cec5e81d878d0.json`](../../sessions/c1/c1beea4cec5e81d878d0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+49 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T12:49:56.972141+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T12:49:56.972486+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T12:49:56.972670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"class LlamaAttention\" /root/miniconda3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"class LlamaAttention\" /root/miniconda3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T12:49:56.972803+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero_goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T12:49:56.972958+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/scripts -name \"*cross_instruction*\" -o -name \"*extract*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/vla-ssd/scripts -name \"*cross_instruction*\" -o -name \"*extract*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T12:49:56.973151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"197:class LlamaAttention(nn.Module):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T12:49:56.973287+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/vla-ssd/data/libero_goal/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T12:49:56.973438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/extract_features.py\\n/root/vla-ssd/scripts/extract_dinov2.py\\n/root/vla-ssd/scripts/__pycache__/extract_features.cpython-312.pyc\\n/root/vla-ssd/scripts/extract_subtask_labels.py\\n/root/vla-ssd/scripts/run_no_inst_extraction.sh\\n/root/vla-ssd/scripts/extract_siglip_features.py\\n/root/vla-ssd/scripts/extract_features_rand_inst.py\\n/root/vla-ssd/scripts/extract_clip_features.py\\n/root/vla-ssd/scripts/extract_features_clip.py\\n/root/vla-ssd/scripts/extract_fused_backbone.py\\n/root/vla-ssd/scripts/instruction_conditional_extract.py\\n/root/vla-ssd/scripts/cross_instruction_classify.py\\n/root/vla-ssd/scripts/cross_instruction_extract_dense.py\\n/root/vla-ssd/scripts/cross_instruction_loocv.py\\n/root/vla-ssd/scripts/cross_instruction_classify_dense.py\\n/root/vla-ssd/scripts/cross_instruction_mlp_controls.py\\n/root/vla-ssd/scripts/cross_instruction_extract_layers.py\\n/root/vla-ssd/scripts/cross_instruction_classify_full.py\\n/root/vla-ssd/scripts/cross_instruction_classify_spatial.py\\n/root/vla-ssd/scripts/run_spatial_extract.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T12:49:56.973618+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp -name \"*.hdf5\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/autodl-tmp -name \"*.hdf5\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T12:49:56.973745+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/vla-ssd/scripts/cross_instruction_extract_layers.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -100 /root/vla-ssd/scripts/cross_instruction_extract_layers.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T12:49:56.973905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_10/KITCHEN_SCENE8_put_both_moka_pots_on_the_stove_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_10/LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_10/LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_10/LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_90/KITCHEN_SCENE10_close_the_top_drawer_of_the_cabinet_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_90/KITCHEN_SCENE10_put_the_black_bowl_in_the_top_drawer_of_the_cabinet_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_90/KITCHEN_SCENE10_put_the_butter_at_the_front_in_the_top_drawer_of_the_cabinet_and_close_it_demo.hdf5\\n/root/autodl-tmp/vla-ssd/data/libero/libero_90/KITCHEN_SCENE10_put_the_butter_at_the_back_in_the_top_drawer_of_the_cabinet_and_close_it_demo.hdf5\\n/root/autodl-tmp/v
+…[truncated 2773 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T12:49:56.974101+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +197 /root/miniconda3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -n +197 /root/miniconda3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T12:49:56.974306+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"cross_instruction_extract_layers.py — Arbitrary layer range cross-instruction feature extraction.\\n\\nBased on cross_instruction_extract_dense.py but supports --layers argument (e.g., \\\"9-31\\\").\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport os\\nimport re\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom PIL import Image\\nfrom tqdm import tqdm\\n\\nNUM_IMAGE_TOKENS = 256\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Arbitrary layer range cross-instruction feature extraction\\\"\\n    )\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\")\\n    p.add_argument(\\\"--output_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--frames_per_demo\\\", type=int, default=1)\\n    p.add_argument(\\\"--max_demos\\\", type=int, default=50)\\n    p.add_argument(\\\"--condition\\\", choices=[\\\"trained\\\", \\\"untrained\\\", \\\"llama2base\\\"], default=\\\"trained\\\")\\n    p.add_argument(\\\"--layers\\\", type=str, required=True,\\n                   help=\\\"Layer range, e.g. '9-31' or '9-20'\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    return p.parse_args()\\n\\n\\ndef parse_layer_range(layers_str):\\n    parts = layers_str.split(\\\"-\\\")\\n    if len(parts) == 2:\\n        return list(range(int(parts[0]), int(parts[1]) + 1))\\n    return [int(x) for x in layers_str.split(\\\",\\\")]\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    return stem.replace(\\\
+…[truncated 2474 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T12:49:56.974578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"class LlamaAttention(nn.Module):\\n    \\\"\\\"\\\"Multi-headed attention from 'Attention Is All You Need' paper\\\"\\\"\\\"\\n\\n    def __init__(self, config: LlamaConfig, layer_idx: int):\\n        super().__init__()\\n        self.config = config\\n        self.layer_idx = layer_idx\\n        self.head_dim = getattr(config, \\\"head_dim\\\", config.hidden_size // config.num_attention_heads)\\n        self.num_key_value_groups = config.num_attention_heads // config.num_key_value_heads\\n        self.scaling = self.head_dim**-0.5\\n        self.attention_dropout = config.attention_dropout\\n        self.is_causal = True\\n\\n        self.q_proj = nn.Linear(\\n            config.hidden_size, config.num_attention_heads * self.head_dim, bias=config.attention_bias\\n        )\\n        self.k_proj = nn.Linear(\\n            config.hidden_size, config.num_key_value_heads * self.head_dim, bias=config.attention_bias\\n        )\\n        self.v_proj = nn.Linear(\\n            config.hidden_size, config.num_key_value_heads * self.head_dim, bias=config.attention_bias\\n        )\\n        self.o_proj = nn.Linear(\\n            config.num_attention_heads * self.head_dim, config.hidden_size, bias=config.attention_bias\\n        )\\n\\n    @deprecate_kwarg(\\\"past_key_value\\\", new_name=\\\"past_key_values\\\", version=\\\"4.58\\\")\\n    def forward(\\n        self,\\n        hidden_states: torch.Tensor,\\n        position_embeddings: tuple[torch.Tensor, torch.Tensor],\\n        attention_mask: Optional[torch.Tensor],\\n        past_key_values: Optional[Cache] = None,\\n        cache_position: Optional[torch.LongTensor] = None,\\n        **kwargs: Unpack[TransformersKwargs],\\n    ) -> tuple[torch.Tensor, torch.Tensor]:\\n        input_shape = hidden_states.shape[:-1]\\n        hidden_shape = (*input_shape, -1, self.head_dim)\\n\\n        query_states = self.q_proj(hidden_states).view(hidden_shape).transpose(1, 2)\\n 
+…[truncated 6808 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T12:49:56.974774+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def eager_attention_forward\" /root/miniconda3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"def eager_attention_forward\" /root/miniconda3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T12:49:56.974906+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def eager_attention_forward\" /root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"def eager_attention_forward\" /root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T12:49:56.975053+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +100 /root/vla-ssd/scripts/cross_instruction_extract_layers.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -n +100 /root/vla-ssd/scripts/cross_instruction_extract_layers.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T12:49:56.975185+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"171:def eager_attention_forward(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T12:49:56.975311+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T12:49:56.975495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n    model = model.to(device).eval()\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\n    print(f\\\"Model loaded: {n_params:.1f}B params on {device}\\\")\\n    return model, processor\\n\\n\\ndef sample_frame_indices(demo_length, frames_per_demo):\\n    if frames_per_demo == 1:\\n        return [demo_length // 2]\\n    indices = np.linspace(0, demo_length - 1, frames_per_demo, dtype=int).tolist()\\n    return indices\\n\\n\\n@torch.no_grad()\\ndef extract_features_single(model, processor, image, instruction, device, layer_indices):\\n    prompt = f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n    inputs = processor(text=[prompt], images=[image], return_tensors=\\\"pt\\\")\\n    inputs = {k: v.to(device) for k, v in inputs.items()}\\n\\n    with torch.amp.autocast(\\\"cuda\\\", dtype=torch.bfloat16):\\n        out = model(**inputs, output_hidden_states=True)\\n    hs = out.hidden_states\\n\\n    image_mean = torch.stack([hs[li][:, 1:1+NUM_IMAGE_TOKENS, :].mean(dim=1).squeeze(0) for li in layer_indices])\\n    last_preaction = torch.stack([hs[li][:, -1, :].squeeze(0) for li in layer_indices])\\n\\n    image_mean = image_mean.cpu().half().numpy()\\n    last_preaction = last_preaction.cpu().half().numpy()\\n\\n    del out, hs, inputs\\n    return image_mean, last_preaction\\n\\n\\ndef main():\\n    args = parse_args()\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\")\\n    dry_run = getattr(args, 'dry_run', False)\\n    layer_indices = parse_layer_range(args.layers)\\n\\n    output_filename = f\\\"{args.condition}_cross_inst_L{layer_indices[0]}-L{layer_indices[-1]}.h5\\\"\\n    output_path = os.path.join(args.output_dir, output_filename)\\n\\n    print(f\\\"=== Cross-Instruction Feature Extraction (L{layer_indices[0]}-L{layer_indices[-1]}) ===\\\")\\n    print(f\\\"condition={args.condition}, gpu={args.gpu}, frames_per_demo={args.frames_per_demo}\\\")\\n    pri
+…[truncated 4016 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T12:49:56.975676+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -196 /root/miniconda3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -196 /root/miniconda3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T12:49:56.975804+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(list(f['data'].keys())[:10])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(list(f['data'].keys())[:10])\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T12:49:56.976057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# coding=utf-8\\n# Copyright 2022 EleutherAI and the HuggingFace Inc. team. All rights reserved.\\n#\\n# This code is based on EleutherAI's GPT-NeoX library and the GPT-NeoX\\n# and OPT implementations in this library. It has been modified from its\\n# original forms to accommodate minor architectural differences compared\\n# to GPT-NeoX and OPT used by the Meta AI team that trained the model.\\n#\\n# Licensed under the Apache License, Version 2.0 (the \\\"License\\\");\\n# you may not use this file except in compliance with the License.\\n# You may obtain a copy of the License at\\n#\\n#     http://www.apache.org/licenses/LICENSE-2.0\\n#\\n# Unless required by applicable law or agreed to in writing, software\\n# distributed under the License is distributed on an \\\"AS IS\\\" BASIS,\\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\\n# See the License for the specific language governing permissions and\\n# limitations under the License.\\nfrom typing import Callable, Optional, Union\\n\\nimport torch\\nfrom torch import nn\\n\\nfrom ...activations import ACT2FN\\nfrom ...cache_utils import Cache, DynamicCache\\nfrom ...generation import GenerationMixin\\nfrom ...integrations import use_kernel_forward_from_hub\\nfrom ...masking_utils import create_causal_mask\\nfrom ...modeling_layers import (\\n    GenericForQuestionAnswering,\\n    GenericForSequenceClassification,\\n    GenericForTokenClassification,\\n    GradientCheckpointingLayer,\\n)\\nfrom ...modeling_outputs import (\\n    BaseModelOutputWithPast,\\n    CausalLMOutputWithPast,\\n)\\nfrom ...modeling_rope_utils import ROPE_INIT_FUNCTIONS, dynamic_rope_update\\nfrom ...modeling_utils import ALL_ATTENTION_FUNCTIONS, PreTrainedModel\\nfrom ...processing_utils import Unpack\\nfrom ...utils import TransformersKwargs, auto_docstring, can_return_tuple, logging\\nfrom ...utils.deprecation import deprecate_kwarg\\nfrom ...utils.generic
+…[truncated 6710 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T12:49:56.976219+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T12:49:56.976373+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(list(f['data'].keys())[:10]); print(f['data/demo_0/obs/agentview_rgb'].shape)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(list(f['data'].keys())[:10]); print(f['data/demo_0/obs/agentview_rgb'].shape)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T12:49:56.976501+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T12:49:56.976620+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(list(f['data'].keys())[:10]); print(f['data/demo_0/obs/agentview_rgb'].shape)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(list(f['data'].keys())[:10]); print(f['data/demo_0/obs/agentview_rgb'].shape)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T12:49:56.976750+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import h5py; f=h5py.File(\\\\'/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5\\\\',\\\\'r\\\\'); print(list(f[\\\\'data\\\\'].keys())[:10]); print(f[\\\\'data/demo_0/obs/agentview_rgb\\\\'].shape)\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T12:49:56.976871+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "/root/miniconda3/bin/python3.12 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(list(f['data'].keys())[:10]); print(f['data/demo_0/obs/agentview_rgb'].shape)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "/root/miniconda3/bin/python3.12 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5','r'); print(list(f['data'].keys())[:10]); print(f['data/demo_0/obs/agentview_rgb'].shape)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T12:49:56.977011+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T12:49:56.977134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"['demo_0', 'demo_1', 'demo_10', 'demo_11', 'demo_12', 'demo_13', 'demo_14', 'demo_15', 'demo_16', 'demo_17']\\n(155, 128, 128, 3)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T12:49:56.977255+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T12:49:56.977456+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/openvla-7b/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/openvla-7b/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T12:49:56.977602+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results -name \"*head*\" -o -name \"*attention*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/autodl-tmp/vla-ssd/results -name \"*head*\" -o -name \"*attention*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T12:49:56.977727+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/openvla-7b/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T12:49:56.977858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/output_head_analysis.json\\n/root/autodl-tmp/vla-ssd/results/figure_data/fig_output_head.json\\n/root/autodl-tmp/vla-ssd/results/attention\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T12:49:56.978030+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-17T12:49:56.978152+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T12:49:56.978429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"task_idx\\\": 0,\\n    \\\"instruction\\\": \\\"open the middle drawer of the cabinet\\\",\\n    \\\"frame\\\": 25,\\n    \\\"demo_length\\\": 138,\\n    \\\"seq_len\\\": 278,\\n    \\\"n_heads\\\": 32,\\n    \\\"token_regions\\\": {\\n      \\\"bos\\\": [\\n        0,\\n        1\\n      ],\\n      \\\"image\\\": [\\n        1,\\n        257\\n      ],\\n      \\\"text\\\": [\\n        257,\\n        278\\n      ]\\n    },\\n    \\\"per_head_attn_to_bos\\\": [\\n      0.08935546875,\\n      0.154296875,\\n      0.142578125,\\n      0.3125,\\n      0.3046875,\\n      0.220703125,\\n      0.333984375,\\n      0.173828125,\\n      0.039306640625,\\n      0.2890625,\\n      0.18359375,\\n      0.1357421875,\\n      0.275390625,\\n      0.298828125,\\n      0.06982421875,\\n      0.2197265625,\\n      0.287109375,\\n      0.1484375,\\n      0.197265625,\\n      0.1923828125,\\n      0.263671875,\\n      0.326171875,\\n      0.054443359375,\\n      0.32421875,\\n      0.1494140625,\\n      0.119140625,\\n      0.255859375,\\n      0.2041015625,\\n      0.27734375,\\n      0.1787109375,\\n      0.24609375,\\n      0.26953125\\n    ],\\n    \\\"per_head_attn_to_image\\\": [\\n      0.0574946403503418,\\n      0.3106822967529297,\\n      0.17505455017089844,\\n      0.21628761291503906,\\n      0.10892319679260254,\\n      0.28108787536621094,\\n      0.27071666717529297,\\n      0.25562381744384766,\\n      0.3794422149658203,\\n      0.25929808616638184,\\n      0.10125207901000977,\\n      0.2944908142089844,\\n      0.1888284683227539,\\n      0.29132843017578125,\\n      0.2331991195678711,\\n      0.16911745071411133,\\n      0.1858682632446289,\\n      0.30002617835998535,\\n      0.2845458984375,\\n      0.16628265380859375,\\n      0.18448543548583984,\\n      0.2150888442993164,\\n      0.1400303840637207,\\n      0.10273563861846924,\\n      0.4841022491455078,\\n      0.11098432540893555,\
+…[truncated 7331 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T12:49:56.978596+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadded_tokens.json\\nconfig.json\\nconfiguration_prismatic.py\\ngeneration_config.json\\nmodel-00001-of-00003.safetensors\\nmodel-00002-of-00003.safetensors\\nmodel-00003-of-00003.safetensors\\nmodel.safetensors.index.json\\nmodeling_prismatic.py\\npreprocessor_config.json\\nprocessing_prismatic.py\\nprocessor_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T12:49:56.978825+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "mkdir -p /root/autodl-tmp/vla-ssd/results/l1_head_ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "mkdir -p /root/autodl-tmp/vla-ssd/results/l1_head_ablation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T12:49:56.978984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T12:49:56.979153+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/l1_head_ablation.py << 'SCRIPT_EOF'\n\"\"\"L1 Head Ablation: Zero out instruction attention for specific heads in Layer 1,\nthen measure cross-instruction classification accuracy at multiple readout layers.\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport os\nimport time\n\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom PIL import Image\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.preprocessing import StandardScaler\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\n\n# From prior L1 attention analysis: intersection of instruction-attending heads across all tasks\nINSTRUCTION_HEADS_24 = [0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 22, 23, 25, 26, 27, 29, 30, 31]\n# Complement: heads NOT consistently attending to instruction\nCONTROL_HEADS_8 = [3, 5, 6, 9, 13, 21, 24, 28]\n\nREADOUT_LAYERS = [1, 8, 16, 31]\n\n\ndef parse_args():\n    p = argparse.ArgumentParser()\n    p.add_argument(\"--model_path\", default=\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\")\n    p.add_argument(\"--data_dir\", default=\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\")\n    p.add_argument(\"--output\", default=\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json\")\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--demos_per_task\", type=int, default=5)\n    p.add_argument(\"--num_samples\", type=int, default=None,\n                   help=\"Limit total samples for dry-run (e.g. 2)\")\n    return p.parse_args()\n\n\ndef task_desc_from_filename(fname):\n    stem = Path(fname).stem.replace(\"_demo\", \"\")\n    return stem.replace(\"_\", \" \")\n\n\ndef install_ablation_hook(model, heads_to_ablate):\n    \"\"\"Monkey-patch eager_attention_forward to ablate specified heads on layer 1.\"\"\"\n    import transformers.models.llama.modeling_llama as llama_mod\n    from transformers.models.llama.modeling_llama import repeat_kv\n\n    layer1_attn = model.language_model.model.layers[1].self_attn\n    layer1_attn._ablate_heads = heads_to_ablate\n\n    original_fn = llama_mod.eager_attention_forward\n\n    def ablated_eager_attention_forward(module, query, key, value, attention_mask,\n                                        scaling, dropout=0.0, **kwargs):\n        key_states = repeat_kv(key, module.num_key_value_groups)\n        value_states = repeat_kv(value, module.num_key_value_groups)\n\n        attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling\n        if attention_mask is not None:\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\n            attn_weights = attn_weights + causal_mask\n\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)\n        attn_weights = nn.functional.dropout(attn_weights, p=dropout, training=module.training)\n\n        if hasattr(module, '_ablate_heads') and module._ablate_heads is not None:\n            seq_len = attn_weights.shape[-1]\n            if INST_START < seq_len:\n                attn_weights[:, module._ablate_heads, :, INST_START:] = 0.0\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\n                attn_weights = attn_weights / row_sums\n\n        attn_output = torch.matmul(attn_weights, value_states)\n        attn_output = attn_output.transpose(1, 2).contiguous()\n        return attn_output, attn_weights\n\n    llama_mod.eager_attention_forward = ablated_eager_attention_forward\n    return original_fn\n\n\ndef remove_ablation_hook(model, original_fn):\n    \"\"\"Restore original eager_attention_forward.\"\"\"\n    import transformers.models.llama.modeling_llama as llama_mod\n    llama_mod.eager_attention_forward = original_fn\n    layer1_attn = model.language_model.model.layers[1].self_attn\n    layer1_attn._ablate_heads = None\n\n\ndef load_model(model_path, device):\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    processor = AutoProcessor.from_pretrained(\n        model_path, trust_remote_code=True, local_files_only=True\n    )\n    model = AutoModelForVision2Seq.from_pretrained(\n        model_path,\n        torch_dtype=torch.float16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        attn_implementation=\"eager\",\n        local_files_only=True,\n    )\n    model = model.to(device).eval()\n    print(f\"Model loaded on {device}\")\n    return model, processor\n\n\n@torch.no_grad()\ndef extract_features(model, processor, images, instructions, device):\n    \"\"\"Extract last-token features at readout layers for all image x instruction combinations.\n    \n    Returns: dict[layer_idx] -> np array (n_images * n_instructions, hidden_dim)\n             labels: np array of task_ids repeated for each instruction\n             demo_indices: which demo each sample came from\n    \"\"\"\n    features = {l: [] for l in READOUT_LAYERS}\n    hooks = []\n    hook_outputs = {}\n\n    def make_hook(layer_idx):\n        def hook_fn(module, input, output):\n            if isinstance(output, tuple):\n                hidden = output[0]\n            else:\n                hidden = output\n            hook_outputs[layer_idx] = hidden[:, -1, :].detach().cpu().float()\n        return hook_fn\n\n    for l in READOUT_LAYERS:\n        h = model.language_model.model.layers[l].register_forward_hook(make_hook(l))\n        hooks.append(h)\n\n    try:\n        for img_idx, (image, task_idx, demo_idx) in enumerate(images):\n            for inst_idx, instruction in enumerate(instructions):\n                prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n                inputs = processor(text=[prompt], images=[image], return_tensors=\"pt\")\n                inputs = {k: v.to(device) for k, v in inputs.items()}\n\n                with torch.amp.autocast(\"cuda\", dtype=torch.float16):\n                    model(**inputs)\n\n                for l in READOUT_LAYERS:\n                    features[l].append(hook_outputs[l].squeeze(0).numpy())\n\n                del inputs\n                hook_outputs.clear()\n\n            if (img_idx + 1) % 10 == 0:\n                print(f\"  Processed {img_idx + 1}/{len(images)} images\")\n    finally:\n        for h in hooks:\n            h.remove()\n\n    for l in READOUT_LAYERS:\n        features[l] = np.array(features[l])\n\n    return features\n\n\ndef classify(features, labels, demo_indices, n_tasks, n_instructions):\n    \"\"\"10-way classification. Split: demos 0-2 train, demos 3-4 test.\"\"\"\n    n_images = len(demo_indices)\n    train_mask = np.array([d < 3 for d in demo_indices])\n    test_mask = ~train_mask\n\n    # Expand masks for all instructions\n    train_mask_full = np.repeat(train_mask, n_instructions)\n    test_mask_full = np.repeat(test_mask, n_instructions)\n\n    # Labels: task_id repeated for each instruction\n    labels_full = np.repeat(labels, n_instructions)\n\n    results = {}\n    for l in READOUT_LAYERS:\n        X = features[l]\n        X_train = X[train_mask_full]\n        X_test = X[test_mask_full]\n        y_train = labels_full[train_mask_full]\n        y_test = labels_full[test_mask_full]\n\n        if len(np.unique(y_train)) < 2 or len(np.unique(y_test)) < 2:\n            results[f\"L{l}\"] = -1.0\n            continue\n\n        scaler = StandardScaler()\n        X_train_s = scaler.fit_transform(X_train)\n        X_test_s = scaler.transform(X_test)\n\n        clf = LogisticRegression(max_iter=2000, C=1.0, random_state=42)\n        clf.fit(X_train_s, y_train)\n        acc = clf.score(X_test_s, y_test)\n        results[f\"L{l}\"] = round(float(acc), 4)\n\n    return results\n\n\ndef main():\n    args = parse_args()\n    device = torch.device(f\"cuda:{args.gpu}\")\n    dry_run = args.num_samples is not None\n\n    print(\"=== L1 Head Ablation Experiment ===\")\n    print(f\"Model: {args.model_path}\")\n    print(f\"Data: {args.data_dir}\")\n    print(f\"Output: {args.output}\")\n    if dry_run:\n        print(f\"*** DRY RUN: {args.num_samples} samples ***\")\n\n    # Load data\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \"*.hdf5\")))\n    n_tasks = len(hdf5_files)\n    instructions = [task_desc_from_filename(f) for f in hdf5_files]\n    print(f\"Tasks: {n_tasks}\")\n    for i, inst in enumerate(instructions):\n        print(f\"  [{i}] {inst}\")\n\n    # Collect images: (image, task_idx, demo_idx_within_task)\n    images = []\n    labels = []\n    demo_indices = []\n    demos_per_task = args.demos_per_task\n\n    for task_idx, hdf5_path in enumerate(hdf5_files):\n        f = h5py.File(hdf5_path, \"r\")\n        data = f[\"data\"]\n        demo_keys = sorted(data.keys(), key=lambda x: int(x.split(\"_\")[1]))\n        demo_keys = demo_keys[:demos_per_task]\n\n        for local_demo_idx, dk in enumerate(demo_keys):\n            img_data = data[dk][\"obs\"][\"agentview_rgb\"][0]  # frame 0\n            img = Image.fromarray(img_data)\n            images.append((img, task_idx, local_demo_idx))\n            labels.append(task_idx)\n            demo_indices.append(local_demo_idx)\n\n        f.close()\n\n    labels = np.array(labels)\n    demo_indices = np.array(demo_indices)\n    print(f\"Total images: {len(images)}\")\n\n    if dry_run:\n        images = images[:args.num_samples]\n        labels = labels[:args.num_samples]\n        demo_indices = demo_indices[:args.num_samples]\n        n_instructions_use = min(2, n_tasks)\n        instructions_use = instructions[:n_instructions_use]\n    else:\n        instructions_use = instructions\n        n_instructions_use = n_tasks\n\n    # Load model\n    model, processor = load_model(args.model_path, device)\n\n    # Get original function reference before any patching\n    import transformers.models.llama.modeling_llama as llama_mod\n    original_eager_fn = llama_mod.eager_attention_forward\n\n    conditions = {\n        \"baseline\": None,\n        \"ablate_all24\": INSTRUCTION_HEADS_24,\n        \"ablate_control8\": CONTROL_HEADS_8,\n    }\n\n    all_results = {}\n\n    for cond_name, heads in conditions.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"Condition: {cond_name} (heads={heads})\")\n        print(f\"{'='*60}\")\n        t0 = time.time()\n\n        if heads is not None:\n            install_ablation_hook(model, heads)\n        else:\n            # Ensure no ablation\n            model.language_model.model.layers[1].self_attn._ablate_heads = None\n            llama_mod.eager_attention_forward = original_eager_fn\n\n        features = extract_features(model, processor, images, instructions_use, device)\n        acc_results = classify(features, labels, demo_indices, n_tasks, n_instructions_use)\n\n        elapsed = time.time() - t0\n        print(f\"  Results: {acc_results}\")\n        print(f\"  Time: {elapsed:.1f}s\")\n\n        all_results[cond_name] = acc_results\n\n        # Restore original\n        remove_ablation_hook(model, original_eager_fn)\n\n        del features\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    # Save results\n    output = {\n        \"conditions\": all_results,\n        \"metadata\": {\n            \"num_images\": len(images),\n            \"num_tasks\": n_tasks,\n            \"num_instructions\": n_instructions_use,\n            \"demos_per_task\": args.demos_per_task,\n            \"readout_layers\": READOUT_LAYERS,\n            \"instruction_heads_24\": INSTRUCTION_HEADS_24,\n            \"control_heads_8\": CONTROL_HEADS_8,\n            \"checkpoint\": args.model_path,\n            \"train_demos\": \"0-2\",\n            \"test_demos\": \"3-4\",\n        }\n    }\n\n    os.makedirs(os.path.dirname(args.output), exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {args.output}\")\n    print(json.dumps(output, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/l1_head_ablation.py << 'SCRIPT_EOF'\n\"\"\"L1 Head Ablation: Zero out instruction attention for specific heads in Layer 1,\nthen measure cross-instruction classification accuracy at multiple readout layers.\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport os\nimport time\n\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom PIL import Image\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.preprocessing import StandardScaler\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS  # BOS(1) + image(256) = 257\n\n# From prior L1 attention analysis: intersection of instruction-attending heads across all tasks\nINSTRUCTION_HEADS_24 = [0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 22, 23, 25, 26, 27, 29, 30, 31]\n# Complement: heads NOT consistently attending to instruction\nCONTROL_HEADS_8 = [3, 5, 6, 9, 13, 21, 24, 28]\n\nREADOUT_LAYERS = [1, 8, 16, 31]\n\n\ndef parse_args():\n    p = argparse.ArgumentParser()\n    p.add_argument(\"--model_path\", default=\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\")\n    p.add_argument(\"--data_dir\", default=\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\")\n    p.add_argument(\"--output\", default=\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json\")\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--demos_per_task\", type=int, default=5)\n    p.add_argument(\"--num_samples\", type=int, default=None,\n                   help=\"Limit total samples for dry-run (e.g. 2)\")\n    return p.parse_args()\n\n\ndef task_desc_from_filename(fname):\n    stem = Path(fname).stem.replace(\"_demo\", \"\")\n    return stem.replace(\"_\", \" \")\n\n\ndef install_ablation_hook(model, heads_to_ablate):\n    \"\"\"Monkey-patch eager_attention_forward to ablate specified heads on layer 1.\"\"\"\n    import transformers.models.llama.modeling_llama as llama_mod\n    from transformers.models.llama.modeling_llama import repeat_kv\n\n    layer1_attn = model.language_model.model.layers[1].self_attn\n    layer1_attn._ablate_heads = heads_to_ablate\n\n    original_fn = llama_mod.eager_attention_forward\n\n    def ablated_eager_attention_forward(module, query, key, value, attention_mask,\n                                        scaling, dropout=0.0, **kwargs):\n        key_states = repeat_kv(key, module.num_key_value_groups)\n        value_states = repeat_kv(value, module.num_key_value_groups)\n\n        attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling\n        if attention_mask is not None:\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\n            attn_weights = attn_weights + causal_mask\n\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)\n        attn_weights = nn.functional.dropout(attn_weights, p=dropout, training=module.training)\n\n        if hasattr(module, '_ablate_heads') and module._ablate_heads is not None:\n            seq_len = attn_weights.shape[-1]\n            if INST_START < seq_len:\n                attn_weights[:, module._ablate_heads, :, INST_START:] = 0.0\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\n                attn_weights = attn_weights / row_sums\n\n        attn_output = torch.matmul(attn_weights, value_states)\n        attn_output = attn_output.transpose(1, 2).contiguous()\n        return attn_output, attn_weights\n\n    llama_mod.eager_attention_forward = ablated_eager_attention_forward\n    return original_fn\n\n\ndef remove_ablation_hook(model, original_fn):\n    \"\"\"Restore original eager_attention_forward.\"\"\"\n    import transformers.models.llama.modeling_llama as llama_mod\n    llama_mod.eager_attention_forward = original_fn\n    layer1_attn = model.language_model.model.layers[1].self_attn\n    layer1_attn._ablate_heads = None\n\n\ndef load_model(model_path, device):\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n\n    processor = AutoProcessor.from_pretrained(\n        model_path, trust_remote_code=True, local_files_only=True\n    )\n    model = AutoModelForVision2Seq.from_pretrained(\n        model_path,\n        torch_dtype=torch.float16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        attn_implementation=\"eager\",\n        local_files_only=True,\n    )\n    model = model.to(device).eval()\n    print(f\"Model loaded on {device}\")\n    return model, processor\n\n\n@torch.no_grad()\ndef extract_features(model, processor, images, instructions, device):\n    \"\"\"Extract last-token features at readout layers for all image x instruction combinations.\n    \n    Returns: dict[layer_idx] -> np array (n_images * n_instructions, hidden_dim)\n             labels: np array of task_ids repeated for each instruction\n             demo_indices: which demo each sample came from\n    \"\"\"\n    features = {l: [] for l in READOUT_LAYERS}\n    hooks = []\n    hook_outputs = {}\n\n    def make_hook(layer_idx):\n        def hook_fn(module, input, output):\n            if isinstance(output, tuple):\n                hidden = output[0]\n            else:\n                hidden = output\n            hook_outputs[layer_idx] = hidden[:, -1, :].detach().cpu().float()\n        return hook_fn\n\n    for l in READOUT_LAYERS:\n        h = model.language_model.model.layers[l].register_forward_hook(make_hook(l))\n        hooks.append(h)\n\n    try:\n        for img_idx, (image, task_idx, demo_idx) in enumerate(images):\n            for inst_idx, instruction in enumerate(instructions):\n                prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n                inputs = processor(text=[prompt], images=[image], return_tensors=\"pt\")\n                inputs = {k: v.to(device) for k, v in inputs.items()}\n\n                with torch.amp.autocast(\"cuda\", dtype=torch.float16):\n                    model(**inputs)\n\n                for l in READOUT_LAYERS:\n                    features[l].append(hook_outputs[l].squeeze(0).numpy())\n\n                del inputs\n                hook_outputs.clear()\n\n            if (img_idx + 1) % 10 == 0:\n                print(f\"  Processed {img_idx + 1}/{len(images)} images\")\n    finally:\n        for h in hooks:\n            h.remove()\n\n    for l in READOUT_LAYERS:\n        features[l] = np.array(features[l])\n\n    return features\n\n\ndef classify(features, labels, demo_indices, n_tasks, n_instructions):\n    \"\"\"10-way classification. Split: demos 0-2 train, demos 3-4 test.\"\"\"\n    n_images = len(demo_indices)\n    train_mask = np.array([d < 3 for d in demo_indices])\n    test_mask = ~train_mask\n\n    # Expand masks for all instructions\n    train_mask_full = np.repeat(train_mask, n_instructions)\n    test_mask_full = np.repeat(test_mask, n_instructions)\n\n    # Labels: task_id repeated for each instruction\n    labels_full = np.repeat(labels, n_instructions)\n\n    results = {}\n    for l in READOUT_LAYERS:\n        X = features[l]\n        X_train = X[train_mask_full]\n        X_test = X[test_mask_full]\n        y_train = labels_full[train_mask_full]\n        y_test = labels_full[test_mask_full]\n\n        if len(np.unique(y_train)) < 2 or len(np.unique(y_test)) < 2:\n            results[f\"L{l}\"] = -1.0\n            continue\n\n        scaler = StandardScaler()\n        X_train_s = scaler.fit_transform(X_train)\n        X_test_s = scaler.transform(X_test)\n\n        clf = LogisticRegression(max_iter=2000, C=1.0, random_state=42)\n        clf.fit(X_train_s, y_train)\n        acc = clf.score(X_test_s, y_test)\n        results[f\"L{l}\"] = round(float(acc), 4)\n\n    return results\n\n\ndef main():\n    args = parse_args()\n    device = torch.device(f\"cuda:{args.gpu}\")\n    dry_run = args.num_samples is not None\n\n    print(\"=== L1 Head Ablation Experiment ===\")\n    print(f\"Model: {args.model_path}\")\n    print(f\"Data: {args.data_dir}\")\n    print(f\"Output: {args.output}\")\n    if dry_run:\n        print(f\"*** DRY RUN: {args.num_samples} samples ***\")\n\n    # Load data\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \"*.hdf5\")))\n    n_tasks = len(hdf5_files)\n    instructions = [task_desc_from_filename(f) for f in hdf5_files]\n    print(f\"Tasks: {n_tasks}\")\n    for i, inst in enumerate(instructions):\n        print(f\"  [{i}] {inst}\")\n\n    # Collect images: (image, task_idx, demo_idx_within_task)\n    images = []\n    labels = []\n    demo_indices = []\n    demos_per_task = args.demos_per_task\n\n    for task_idx, hdf5_path in enumerate(hdf5_files):\n        f = h5py.File(hdf5_path, \"r\")\n        data = f[\"data\"]\n        demo_keys = sorted(data.keys(), key=lambda x: int(x.split(\"_\")[1]))\n        demo_keys = demo_keys[:demos_per_task]\n\n        for local_demo_idx, dk in enumerate(demo_keys):\n            img_data = data[dk][\"obs\"][\"agentview_rgb\"][0]  # frame 0\n            img = Image.fromarray(img_data)\n            images.append((img, task_idx, local_demo_idx))\n            labels.append(task_idx)\n            demo_indices.append(local_demo_idx)\n\n        f.close()\n\n    labels = np.array(labels)\n    demo_indices = np.array(demo_indices)\n    print(f\"Total images: {len(images)}\")\n\n    if dry_run:\n        images = images[:args.num_samples]\n        labels = labels[:args.num_samples]\n        demo_indices = demo_indices[:args.num_samples]\n        n_instructions_use = min(2, n_tasks)\n        instructions_use = instructions[:n_instructions_use]\n    else:\n        instructions_use = instructions\n        n_instructions_use = n_tasks\n\n    # Load model\n    model, processor = load_model(args.model_path, device)\n\n    # Get original function reference before any patching\n    import transformers.models.llama.modeling_llama as llama_mod\n    original_eager_fn = llama_mod.eager_attention_forward\n\n    conditions = {\n        \"baseline\": None,\n        \"ablate_all24\": INSTRUCTION_HEADS_24,\n        \"ablate_control8\": CONTROL_HEADS_8,\n    }\n\n    all_results = {}\n\n    for cond_name, heads in conditions.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"Condition: {cond_name} (heads={heads})\")\n        print(f\"{'='*60}\")\n        t0 = time.time()\n\n        if heads is not None:\n            install_ablation_hook(model, heads)\n        else:\n            # Ensure no ablation\n            model.language_model.model.layers[1].self_attn._ablate_heads = None\n            llama_mod.eager_attention_forward = original_eager_fn\n\n        features = extract_features(model, processor, images, instructions_use, device)\n        acc_results = classify(features, labels, demo_indices, n_tasks, n_instructions_use)\n\n        elapsed = time.time() - t0\n        print(f\"  Results: {acc_results}\")\n        print(f\"  Time: {elapsed:.1f}s\")\n\n        all_results[cond_name] = acc_results\n\n        # Restore original\n        remove_ablation_hook(model, original_eager_fn)\n\n        del features\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    # Save results\n    output = {\n        \"conditions\": all_results,\n        \"metadata\": {\n            \"num_images\": len(images),\n            \"num_tasks\": n_tasks,\n            \"num_instructions\": n_instructions_use,\n            \"demos_per_task\": args.demos_per_task,\n            \"readout_layers\": READOUT_LAYERS,\n            \"instruction_heads_24\": INSTRUCTION_HEADS_24,\n            \"control_heads_8\": CONTROL_HEADS_8,\n            \"checkpoint\": args.model_path,\n            \"train_demos\": \"0-2\",\n            \"test_demos\": \"3-4\",\n        }\n    }\n\n    os.makedirs(os.path.dirname(args.output), exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {args.output}\")\n    print(json.dumps(output, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T12:49:56.979382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T12:49:56.979520+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_head_ablation.py --num_samples 2 --output /root/autodl-tmp/vla-ssd/results/l1_head_ablation/test_results.json 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_head_ablation.py --num_samples 2 --output /root/autodl-tmp/vla-ssd/results/l1_head_ablation/test_results.json 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T12:49:56.979708+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\n/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.\\n  warnings.warn(\\n`torch_dtype` is deprecated! Use `dtype` instead!\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.57.6` and `tokenizers==0.22.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n=== L1 Head Ablation Experiment ===\\nModel: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\nData: /root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\nOutput: /root/autodl-tmp/vla-ssd/results/l1_head_ablation/test_results.json\\n*** DRY RUN: 2 samples ***\\nTasks: 10\\n  [0] open the middle drawer of the cabinet\\n  [1] open the top drawer and put the bowl inside\\n  [2] push the plate to the front of the stove\\n  [3] put the bowl on the plate\\n  [4] put the bowl on the stove\\n  [5] put the bowl on top of the cabinet\\n  [6] put the cream cheese in the bowl\\n  [7] put the wine bottle on the rack\\n  [8] put the wine bottle on top of the cabinet\\n  [9] turn on the stove\\nTotal images: 50\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.79it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  8.12it/s]\\nModel loaded on cuda:0\\n\\n============================================================\\nCondition: baseline (heads=None)\\n============================
+…[truncated 2250 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T12:49:56.979886+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "gpu_ids": "['cuda:0']",
+  "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_head_ablation.py --output /root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json",
+  "exp_id": "l1_head_ablation",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "westd-19183",
+    "gpu_ids": "['cuda:0']",
+    "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_head_ablation.py --output /root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json",
+    "exp_id": "l1_head_ablation",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T12:49:56.980049+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"890188\", \"log_file\": \"~/runs/vla-ssd/l1_head_ablation.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-19183\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"l1_head_ablation\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-17T12:49:56.980223+00:00_
+
+Job submitted successfully.
+
+- **Script**: `/root/vla-ssd/scripts/l1_head_ablation.py`
+- **Job**: `l1_head_ablation` (tmux session, log at `~/runs/vla-ssd/l1_head_ablation.log`)
+- **Output**: `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json`
+
+实验设计：
+- 3 conditions: `baseline` (no ablation), `ablate_all24` (24 instruction-attending heads zeroed), `ablate_control8` (8 non-instruction heads zeroed)
+- 50 images (10 tasks × 5 demos × frame 0) × 10 instructions = 500 forward passes/condition
+- Features extracted at layers [1, 8, 16, 31], 10-way task classification (train on demos 0-2, test on demos 3-4)
+- 预计运行 25-30 分钟
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_l1_head_ablation_v3_20260517T124429"
+}
+```
+
+</details>
+
+---

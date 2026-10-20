@@ -1,0 +1,14 @@
+{
+  "exp_id": "p0_functional_action_delta_probe",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:21:52.667Z",
+    "updated_at": "2026-05-15T23:21:52.667Z"
+  },
+  "timestamp": "2026-05-15T23:21:52.756229+00:00",
+  "trigger": "update_registry"
+}

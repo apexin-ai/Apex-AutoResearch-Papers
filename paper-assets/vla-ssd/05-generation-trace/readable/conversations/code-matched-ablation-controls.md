@@ -1,0 +1,2104 @@
+# code matched ablation controls
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/chats/worker_code_matched_ablation_controls_20260519T032640.jsonl`
+- **Structured JSON:** [`77e2a8f4ace4add34779.json`](../../sessions/77/77e2a8f4ace4add34779.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+73 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T03:35:49.375905+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T03:35:49.376338+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T03:35:49.376549+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/action_trajectory_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/action_trajectory_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T03:35:49.376689+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T03:35:49.377175+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Open-loop action trajectory analysis: baseline vs L1-ablated on LIBERO demo observations.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom scipy import stats\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\n# ── Config ──────────────────────────────────────────────────────────────────\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\n\\nINSTRUCTION_HEADS_24 = [\\n    0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20,\\n    22, 23, 25, 26, 27, 29, 30, 31,\\n]\\n\\nDIM_NAMES = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"]\\n\\n\\n# ── Model loading ───────────────────────────────────────────────────────────\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n    ).to(\\\"cuda:0\\\").eval()\\n    return model, processor\\n\\n\\n# ── Manual autoregressive generation (bypasses generate() DynamicCache bug) ─\\ndef predict_action_with_logits(model, input_ids, pixel_values, unnorm_key):\\n    action_dim = model.get_action_dim(unnorm_key)\\n   
+…[truncated 7113 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T03:35:49.377656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Specificity control: ablate L1 bottom-24 instruction-attention heads.\\nCompares with top-24 ablation (d=0.65) to test whether disruption is\\nspecific to instruction-dominant heads or a generic effect of ablating\\nany 24 heads.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom scipy import stats\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\n# ── Config ──────────────────────────────────────────────────────────────────\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\n\\n# Bottom-24 heads sorted by instruction attention fraction (ascending).\\n# Includes control-8 [3,5,6,9,13,21,24,28] plus next 16 lowest.\\nBOTTOM_HEADS_24 = [\\n    1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 20,\\n    21, 23, 24, 26, 28, 29, 30, 31,\\n]\\n\\nTOP_24_COHENS_D = 0.65\\n\\nDIM_NAMES = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"]\\n\\n\\n# ── Model loading ───────────────────────────────────────────────────────────\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_m
+…[truncated 7146 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T03:35:49.377870+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/scripts/ -name \"*random*\" -o -name \"*matched*\" -o -name \"*control*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/vla-ssd/scripts/ -name \"*random*\" -o -name \"*matched*\" -o -name \"*control*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T03:35:49.378082+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"attention_decomposition*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"attention_decomposition*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T03:35:49.378244+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/shuffled_token_control.py\\n/root/vla-ssd/scripts/rsa_instruction_control.py\\n/root/vla-ssd/scripts/cross_instruction_mlp_controls.py\\n/root/vla-ssd/scripts/l1_ablation_action_probe_control8.py\\n/root/vla-ssd/scripts/random_subset_ablation.py\\n/root/vla-ssd/scripts/action_trajectory_control.py\\n/root/vla-ssd/scripts/specificity_control_action.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T03:35:49.378384+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T03:35:49.378537+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention_decomposition.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/attention_decomposition.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T03:35:49.378662+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/random_subset_ablation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/random_subset_ablation.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T03:35:49.379186+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"attention_decomposition\\\",\\n  \\\"layer\\\": 1,\\n  \\\"n_samples_trained\\\": 5,\\n  \\\"token_groups\\\": {\\n    \\\"instruction\\\": \\\"text instruction tokens\\\",\\n    \\\"vision\\\": \\\"image patch tokens (256 SigLIP patches)\\\",\\n    \\\"bos_sink\\\": \\\"BOS token (attention sink)\\\"\\n  },\\n  \\\"trained\\\": {\\n    \\\"per_head_attention_fractions\\\": {\\n      \\\"head_0\\\": {\\n        \\\"instruction\\\": 0.857,\\n        \\\"vision\\\": 0.0564,\\n        \\\"bos_sink\\\": 0.0869\\n      },\\n      \\\"head_1\\\": {\\n        \\\"instruction\\\": 0.545,\\n        \\\"vision\\\": 0.3082,\\n        \\\"bos_sink\\\": 0.1471\\n      },\\n      \\\"head_2\\\": {\\n        \\\"instruction\\\": 0.6945,\\n        \\\"vision\\\": 0.1602,\\n        \\\"bos_sink\\\": 0.1457\\n      },\\n      \\\"head_3\\\": {\\n        \\\"instruction\\\": 0.4727,\\n        \\\"vision\\\": 0.2145,\\n        \\\"bos_sink\\\": 0.3129\\n      },\\n      \\\"head_4\\\": {\\n        \\\"instruction\\\": 0.5854,\\n        \\\"vision\\\": 0.1121,\\n        \\\"bos_sink\\\": 0.3023\\n      },\\n      \\\"head_5\\\": {\\n        \\\"instruction\\\": 0.508,\\n        \\\"vision\\\": 0.2772,\\n        \\\"bos_sink\\\": 0.2148\\n      },\\n      \\\"head_6\\\": {\\n        \\\"instruction\\\": 0.407,\\n        \\\"vision\\\": 0.2614,\\n        \\\"bos_sink\\\": 0.3316\\n      },\\n      \\\"head_7\\\": {\\n        \\\"instruction\\\": 0.5737,\\n        \\\"vision\\\": 0.2477,\\n        \\\"bos_sink\\\": 0.1783\\n      },\\n      \\\"head_8\\\": {\\n        \\\"instruction\\\": 0.5893,\\n        \\\"vision\\\": 0.3746,\\n        \\\"bos_sink\\\": 0.0361\\n      },\\n      \\\"head_9\\\": {\\n        \\\"instruction\\\": 0.4561,\\n        \\\"vision\\\": 0.2484,\\n        \\\"bos_sink\\\": 0.2957\\n      },\\n      \\\"head_10\\\": {\\n        \\\"instruction\\\": 0.7164,\\n        \\\"vision\\\": 0
+…[truncated 8559 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T03:35:49.379410+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -200 /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -200 /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T03:35:49.379701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Random-subset ablation: verify dominant-24 head ablation effect is specific.\\n\\nStrategy:\\n  Phase 1 (GPU): Single forward pass to cache attention intermediates at layer 1.\\n  Phase 2 (GPU, float16): Reconstruct L1 features for each ablation pattern using\\n    mixed-precision (autocast) to match the original experiment's numerical behavior.\\n  Phase 3 (CPU): Train probes, compute statistics, generate plot.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\nNUM_HEADS = 32\\nHEAD_DIM = 128\\nHIDDEN_SIZE = 4096\\nINTERMEDIATE_SIZE = 11008\\n\\nINSTRUCTION_HEADS_24 = [0,1,2,4,7,8,10,11,12,14,15,16,17,18,19,20,22,23,25,26,27,29,30,31]\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nHIDDEN_DIM = 256\\nN_RANDOM = 20\\nN_ABLATE = 24\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"/root/autodl-tmp/vla-ssd/results/random_subset_ablation.json\\\")\\n    p.add_argument(\\\"--fig_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/results/figures/\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--demos_per_task\\\", type=int, default=50)\\n    p.add_argument(\\\"--n_random\\\", type=int, default=N_RANDOM)\\n    return p.parse_args()\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    return stem.replace(\\\"
+…[truncated 7199 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T03:35:49.380149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Specificity control: ablate L1 bottom-24 instruction-attention heads.\\nCompares with top-24 ablation (d=0.65) to test whether disruption is\\nspecific to instruction-dominant heads or a generic effect of ablating\\nany 24 heads.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom scipy import stats\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\n# ── Config ──────────────────────────────────────────────────────────────────\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\n\\n# Bottom-24 heads sorted by instruction attention fraction (ascending).\\n# Includes control-8 [3,5,6,9,13,21,24,28] plus next 16 lowest.\\nBOTTOM_HEADS_24 = [\\n    1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 20,\\n    21, 23, 24, 26, 28, 29, 30, 31,\\n]\\n\\nTOP_24_COHENS_D = 0.65\\n\\nDIM_NAMES = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"]\\n\\n\\n# ── Model loading ───────────────────────────────────────────────────────────\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_m
+…[truncated 6269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T03:35:49.380364+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"n_tasks\\|n_demos\\|n_timesteps\\|def main\\|def kl_div\\|def compute\" /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"n_tasks\\|n_demos\\|n_timesteps\\|def main\\|def kl_div\\|def compute\" /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T03:35:49.380575+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T03:35:49.380818+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T03:35:49.380982+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T03:35:49.381115+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"n_tasks\\|n_demos\\|n_timesteps\\|def main\\|def kl_div\\|def compute\" /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"n_tasks\\|n_demos\\|n_timesteps\\|def main\\|def kl_div\\|def compute\" /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T03:35:49.381249+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T03:35:49.381370+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"n_tasks\\|n_demos\\|n_timesteps\" /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"n_tasks\\|n_demos\\|n_timesteps\" /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T03:35:49.381583+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T03:35:49.381792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"n_tasks\" /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"n_tasks\" /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T03:35:49.381999+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"210:def get_task_files(n_tasks):\\n212:    return hdf5_files[:n_tasks]\\n256:    n_tasks = 1 if args.dry_run else 3\\n268:    task_files = get_task_files(n_tasks)\\n269:    print(f\\\"Tasks ({n_tasks}): {[os.path.basename(f) for f in task_files]}\\\")\\n287:        print(f\\\"\\\\n[Task {task_idx+1}/{n_tasks}] {task_name}\\\")\\n340:                        eta = (n_tasks * n_demos * n_timesteps * 2 - total_passes) / rate\\n407:            \\\"n_tasks\\\": n_tasks,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T03:35:49.382142+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"n_demos\" /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"n_demos\" /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T03:35:49.382266+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"n_timesteps\" /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"n_timesteps\" /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T03:35:49.382390+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"257:    n_demos = 1 if args.dry_run else 10\\n270:    print(f\\\"Config: {n_demos} demos/task, {n_timesteps} timesteps/demo\\\")\\n300:            for demo_idx in range(n_demos):\\n340:                        eta = (n_tasks * n_demos * n_timesteps * 2 - total_passes) / rate\\n408:            \\\"n_demos_per_task\\\": n_demos,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T03:35:49.382530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"258:    n_timesteps = 2 if args.dry_run else 50\\n270:    print(f\\\"Config: {n_demos} demos/task, {n_timesteps} timesteps/demo\\\")\\n304:                n_steps = min(n_timesteps, len(actions_data))\\n340:                        eta = (n_tasks * n_demos * n_timesteps * 2 - total_passes) / rate\\n409:            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T03:35:49.382679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -400 /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -400 /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T03:35:49.382908+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Specificity control: ablate L1 bottom-24 instruction-attention heads.\\nCompares with top-24 ablation (d=0.65) to test whether disruption is\\nspecific to instruction-dominant heads or a generic effect of ablating\\nany 24 heads.\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom scipy import stats\\n\\nnp.random.seed(42)\\ntorch.manual_seed(42)\\n\\n# ── Config ──────────────────────────────────────────────────────────────────\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\n\\n# Bottom-24 heads sorted by instruction attention fraction (ascending).\\n# Includes control-8 [3,5,6,9,13,21,24,28] plus next 16 lowest.\\nBOTTOM_HEADS_24 = [\\n    1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 20,\\n    21, 23, 24, 26, 28, 29, 30, 31,\\n]\\n\\nTOP_24_COHENS_D = 0.65\\n\\nDIM_NAMES = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"]\\n\\n\\n# ── Model loading ───────────────────────────────────────────────────────────\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_m
+…[truncated 6831 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T03:35:49.383131+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +200 /root/vla-ssd/scripts/specificity_control_action.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -n +200 /root/vla-ssd/scripts/specificity_control_action.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T03:35:49.383539+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# ── KL divergence ───────────────────────────────────────────────────────────\\ndef compute_kl_divergence(logits_p, logits_q):\\n    log_p = F.log_softmax(logits_p, dim=-1)\\n    log_q = F.log_softmax(logits_q, dim=-1)\\n    p = F.softmax(logits_p, dim=-1)\\n    kl = (p * (log_p - log_q)).sum(dim=-1)\\n    return kl.numpy()\\n\\n\\n# ── Helpers ─────────────────────────────────────────────────────────────────\\ndef get_task_files(n_tasks):\\n    hdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \\\"*.hdf5\\\")))\\n    return hdf5_files[:n_tasks]\\n\\n\\ndef get_language_instruction(hdf5_path):\\n    with h5py.File(hdf5_path, \\\"r\\\") as f:\\n        info = json.loads(f[\\\"data\\\"].attrs[\\\"problem_info\\\"])\\n    return info[\\\"language_instruction\\\"]\\n\\n\\ndef compute_task_metrics(task_b, task_a, task_b_ids, task_a_ids, task_kls):\\n    paired_mse = np.mean((task_b - task_a) ** 2, axis=1)\\n    t_res = stats.ttest_1samp(paired_mse, 0)\\n    cohens_d = np.mean(paired_mse) / (np.std(paired_mse, ddof=1) + 1e-12)\\n\\n    per_dim_shift = np.abs(task_b - task_a)\\n    token_div = np.mean(task_b_ids != task_a_ids)\\n\\n    return {\\n        \\\"paired_mse\\\": {\\n            \\\"mean\\\": float(np.mean(paired_mse)),\\n            \\\"std\\\": float(np.std(paired_mse)),\\n            \\\"t_stat\\\": float(t_res.statistic),\\n            \\\"p_value\\\": float(t_res.pvalue),\\n            \\\"cohens_d\\\": float(cohens_d),\\n        },\\n        \\\"per_dim_shift\\\": {\\n            \\\"means\\\": [float(x) for x in np.mean(per_dim_shift, axis=0)],\\n            \\\"stds\\\": [float(x) for x in np.std(per_dim_shift, axis=0)],\\n        },\\n        \\\"token_divergence_rate\\\": float(token_div),\\n        \\\"kl_divergence\\\": {\\n            \\\"mean\\\": float(np.mean(task_kls)),\\n            \\\"std\\\": float(np.std(task_kls)),\\n        },\\n        \\\"n_samples\\\": int(len(task_b)),\\n    
+…[truncated 7204 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T03:35:49.383822+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "submit training job",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T03:35:49.384005+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T03:35:49.384155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "which python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "which python3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T03:35:49.384312+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T03:35:49.384475+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "submit job training",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "submit job training",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T03:35:49.384619+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T03:35:49.385346+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/matched_ablation_controls.py",
+  "content": "\"\"\"Matched-size ablation controls: random-24 and image-dominant-24 heads.\n\nTwo ablation control experiments for action trajectory specificity analysis:\n1. Random-24: 5 seeds, each randomly selecting 24/32 L1 heads\n2. Image-dominant-24: top-24 heads by vision attention fraction\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport math\nimport os\nimport sys\nimport time\n\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom scipy import stats\n\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\"\nUNNORM_KEY = \"bridge_orig\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\nDECOMP_PATH = \"/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\"\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS\nNUM_HEADS = 32\nN_ABLATE = 24\n\nRANDOM_SEEDS = [42, 123, 456, 789, 1024]\nINSTRUCTION_DOMINANT_24_TRAJ_D = 0.65\nDIM_NAMES = [\"dx\", \"dy\", \"dz\", \"rx\", \"ry\", \"rz\", \"gripper\"]\n\n\ndef load_model():\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        attn_implementation=\"eager\",\n    ).to(\"cuda:0\").eval()\n    return model, processor\n\n\ndef predict_action(model, input_ids, pixel_values, unnorm_key):\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    for _ in range(action_dim):\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device,\n            dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\n    )\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high = np.array(action_norm_stats[\"q99\"])\n    action_low = np.array(action_norm_stats[\"q01\"])\n    action = np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n    return action, predicted_action_token_ids\n\n\ndef install_ablation_hook(model):\n    from transformers.models.llama.modeling_llama import apply_rotary_pos_emb, repeat_kv\n\n    layer_attn = model.language_model.model.layers[1].self_attn\n    layer_attn._ablate_heads = None\n    original_forward = layer_attn.forward\n\n    def ablated_forward(\n        hidden_states,\n        attention_mask=None,\n        position_ids=None,\n        past_key_value=None,\n        output_attentions=False,\n        use_cache=False,\n        cache_position=None,\n        **kwargs,\n    ):\n        bsz, q_len, _ = hidden_states.size()\n        query_states = layer_attn.q_proj(hidden_states)\n        key_states = layer_attn.k_proj(hidden_states)\n        value_states = layer_attn.v_proj(hidden_states)\n\n        query_states = query_states.view(bsz, q_len, layer_attn.num_heads, layer_attn.head_dim).transpose(1, 2)\n        key_states = key_states.view(bsz, q_len, layer_attn.num_key_value_heads, layer_attn.head_dim).transpose(1, 2)\n        value_states = value_states.view(bsz, q_len, layer_attn.num_key_value_heads, layer_attn.head_dim).transpose(1, 2)\n\n        pkv = getattr(layer_attn, \"past_key_value\", past_key_value)\n        cos, sin = layer_attn.rotary_emb(value_states, position_ids)\n        query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)\n\n        if pkv is not None:\n            cache_kwargs = {\"sin\": sin, \"cos\": cos, \"cache_position\": cache_position}\n            key_states, value_states = pkv.update(key_states, value_states, layer_attn.layer_idx, cache_kwargs)\n\n        key_states = repeat_kv(key_states, layer_attn.num_key_value_groups)\n        value_states = repeat_kv(value_states, layer_attn.num_key_value_groups)\n\n        attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) / math.sqrt(layer_attn.head_dim)\n        if attention_mask is not None:\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\n            attn_weights = attn_weights + causal_mask\n\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\n        attn_weights = nn.functional.dropout(attn_weights, p=layer_attn.attention_dropout, training=layer_attn.training)\n\n        if layer_attn._ablate_heads is not None:\n            kv_len = attn_weights.shape[-1]\n            if INST_START < kv_len:\n                attn_weights[:, layer_attn._ablate_heads, :, INST_START:] = 0.0\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\n                attn_weights = attn_weights / row_sums\n\n        attn_output = torch.matmul(attn_weights, value_states)\n        attn_output = attn_output.transpose(1, 2).contiguous()\n        attn_output = attn_output.reshape(bsz, q_len, layer_attn.hidden_size)\n        attn_output = layer_attn.o_proj(attn_output)\n\n        if not output_attentions:\n            attn_weights = None\n        return attn_output, attn_weights, pkv\n\n    layer_attn.forward = ablated_forward\n    return original_forward, layer_attn\n\n\ndef remove_ablation_hook(layer_attn, original_forward):\n    layer_attn._ablate_heads = None\n    layer_attn.forward = original_forward\n\n\ndef get_task_files(n_tasks):\n    hdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*.hdf5\")))\n    return hdf5_files[:n_tasks]\n\n\ndef get_language_instruction(hdf5_path):\n    with h5py.File(hdf5_path, \"r\") as f:\n        info = json.loads(f[\"data\"].attrs[\"problem_info\"])\n    return info[\"language_instruction\"]\n\n\ndef get_image_dominant_heads(n=24):\n    with open(DECOMP_PATH) as f:\n        decomp = json.load(f)\n    fracs = decomp[\"trained\"][\"per_head_attention_fractions\"]\n    vision_by_head = {}\n    for i in range(NUM_HEADS):\n        vision_by_head[i] = fracs[f\"head_{i}\"][\"vision\"]\n    sorted_heads = sorted(range(NUM_HEADS), key=lambda h: vision_by_head[h], reverse=True)\n    top_n = sorted(sorted_heads[:n])\n    top_n_fracs = [vision_by_head[h] for h in top_n]\n    return top_n, top_n_fracs\n\n\ndef get_random_heads(seed, n=24):\n    rng = np.random.RandomState(seed)\n    return sorted(rng.choice(NUM_HEADS, size=n, replace=False).tolist())\n\n\ndef compute_cohens_d_and_ci(baseline_actions, ablated_actions, baseline_ids, ablated_ids, gt_actions):\n    all_b = np.array(baseline_actions)\n    all_a = np.array(ablated_actions)\n    all_b_ids = np.array(baseline_ids)\n    all_a_ids = np.array(ablated_ids)\n    all_gt = np.array(gt_actions)\n\n    paired_mse = np.mean((all_b - all_a) ** 2, axis=1)\n    traj_d = float(np.mean(paired_mse) / (np.std(paired_mse, ddof=1) + 1e-12))\n\n    token_diff = (all_b_ids != all_a_ids).astype(float)\n    per_sample_token_div = np.mean(token_diff, axis=1)\n    token_d = float(np.mean(per_sample_token_div) / (np.std(per_sample_token_div, ddof=1) + 1e-12))\n\n    n_boot = 1000\n    rng = np.random.RandomState(42)\n    n = len(paired_mse)\n    boot_ds = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_mse = paired_mse[idx]\n        d = float(np.mean(boot_mse) / (np.std(boot_mse, ddof=1) + 1e-12))\n        boot_ds.append(d)\n    traj_ci = [float(np.percentile(boot_ds, 2.5)), float(np.percentile(boot_ds, 97.5))]\n\n    mse_gt_baseline = float(np.mean(np.mean((all_b - all_gt) ** 2, axis=1)))\n    mse_gt_ablated = float(np.mean(np.mean((all_a - all_gt) ** 2, axis=1)))\n\n    return {\n        \"token_d\": token_d,\n        \"traj_d\": traj_d,\n        \"traj_ci\": traj_ci,\n        \"token_divergence_rate\": float(np.mean(all_b_ids != all_a_ids)),\n        \"paired_mse_mean\": float(np.mean(paired_mse)),\n        \"paired_mse_std\": float(np.std(paired_mse)),\n        \"mse_gt_baseline\": mse_gt_baseline,\n        \"mse_gt_ablated\": mse_gt_ablated,\n        \"n_samples\": len(all_b),\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Matched-size ablation controls\")\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    n_tasks = 1 if args.dry_run else 3\n    n_demos = 1 if args.dry_run else 10\n    n_timesteps = 2 if args.dry_run else 50\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n\n    random_head_sets = {seed: get_random_heads(seed, N_ABLATE) for seed in RANDOM_SEEDS}\n    image_dom_heads, image_dom_fracs = get_image_dominant_heads(N_ABLATE)\n\n    print(\"=== Matched-Size Ablation Controls ===\")\n    print(f\"Config: {n_tasks} tasks, {n_demos} demos/task, {n_timesteps} steps/demo\")\n    print(f\"Random seeds: {RANDOM_SEEDS}\")\n    for seed, heads in random_head_sets.items():\n        print(f\"  Seed {seed}: {heads}\")\n    print(f\"Image-dominant-24: {image_dom_heads}\")\n    print(f\"  Vision fractions: {[round(v, 4) for v in image_dom_fracs]}\")\n\n    print(\"\\nLoading model...\")\n    model, processor = load_model()\n    print(\"Model loaded.\")\n\n    original_forward, layer1_attn = install_ablation_hook(model)\n\n    task_files = get_task_files(n_tasks)\n    print(f\"Tasks ({n_tasks}): {[os.path.basename(f) for f in task_files]}\")\n\n    baseline_actions = []\n    baseline_ids = []\n    gt_actions_all = []\n\n    conditions = [f\"random_{s}\" for s in RANDOM_SEEDS] + [\"image_dominant\"]\n    cond_heads = {f\"random_{s}\": random_head_sets[s] for s in RANDOM_SEEDS}\n    cond_heads[\"image_dominant\"] = image_dom_heads\n\n    cond_actions = {c: [] for c in conditions}\n    cond_ids = {c: [] for c in conditions}\n\n    total_passes = 0\n    t_start = time.time()\n    n_conditions = len(conditions)\n    total_expected = n_tasks * n_demos * n_timesteps * (1 + n_conditions)\n\n    for task_idx, hdf5_path in enumerate(task_files):\n        task_name = os.path.basename(hdf5_path).replace(\"_demo.hdf5\", \"\")\n        instruction = get_language_instruction(hdf5_path)\n        print(f\"\\n[Task {task_idx+1}/{n_tasks}] {task_name}\")\n        print(f\"  Instruction: {instruction}\")\n\n        prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n\n        with h5py.File(hdf5_path, \"r\") as f:\n            for demo_idx in range(n_demos):\n                demo_key = f\"data/demo_{demo_idx}\"\n                actions_data = f[f\"{demo_key}/actions\"][:]\n                images_data = f[f\"{demo_key}/obs/agentview_rgb\"][:]\n                n_steps = min(n_timesteps, len(actions_data))\n\n                for step_idx in range(n_steps):\n                    image_np = images_data[step_idx]\n                    gt_action = actions_data[step_idx]\n\n                    img = Image.fromarray(image_np)\n                    inputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n                    input_ids = inputs[\"input_ids\"]\n                    pixel_values = inputs[\"pixel_values\"]\n\n                    layer1_attn._ablate_heads = None\n                    b_action, b_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\n                    baseline_actions.append(b_action)\n                    baseline_ids.append(b_ids)\n                    gt_actions_all.append(gt_action)\n                    total_passes += 1\n\n                    for cond in conditions:\n                        layer1_attn._ablate_heads = cond_heads[cond]\n                        a_action, a_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\n                        cond_actions[cond].append(a_action)\n                        cond_ids[cond].append(a_ids)\n                        total_passes += 1\n\n                    torch.cuda.empty_cache()\n\n                    if total_passes % (7 * 20) == 0:\n                        elapsed = time.time() - t_start\n                        rate = total_passes / elapsed\n                        eta = (total_expected - total_passes) / rate\n                        print(\n                            f\"  [{total_passes}/{total_expected} passes, \"\n                            f\"{elapsed:.0f}s, {rate:.1f} pass/s, ETA {eta:.0f}s]\"\n                        )\n\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    remove_ablation_hook(layer1_attn, original_forward)\n\n    print(\"\\nComputing metrics...\")\n\n    random_per_seed = []\n    for seed in RANDOM_SEEDS:\n        cond = f\"random_{seed}\"\n        m = compute_cohens_d_and_ci(\n            baseline_actions, cond_actions[cond],\n            baseline_ids, cond_ids[cond],\n            gt_actions_all,\n        )\n        random_per_seed.append({\n            \"seed\": seed,\n            \"heads\": random_head_sets[seed],\n            \"token_d\": m[\"token_d\"],\n            \"traj_d\": m[\"traj_d\"],\n            \"traj_ci\": m[\"traj_ci\"],\n            \"mse_gt_baseline\": m[\"mse_gt_baseline\"],\n            \"mse_gt_ablated\": m[\"mse_gt_ablated\"],\n        })\n        print(f\"  Random seed={seed}: token_d={m['token_d']:.3f}, traj_d={m['traj_d']:.3f}\")\n\n    random_token_ds = [r[\"token_d\"] for r in random_per_seed]\n    random_traj_ds = [r[\"traj_d\"] for r in random_per_seed]\n\n    img_m = compute_cohens_d_and_ci(\n        baseline_actions, cond_actions[\"image_dominant\"],\n        baseline_ids, cond_ids[\"image_dominant\"],\n        gt_actions_all,\n    )\n    print(f\"  Image-dominant: token_d={img_m['token_d']:.3f}, traj_d={img_m['traj_d']:.3f}\")\n\n    output = {\n        \"random_24\": {\n            \"seeds\": RANDOM_SEEDS,\n            \"per_seed\": random_per_seed,\n            \"mean_token_d\": float(np.mean(random_token_ds)),\n            \"std_token_d\": float(np.std(random_token_ds, ddof=1)),\n            \"mean_traj_d\": float(np.mean(random_traj_ds)),\n            \"std_traj_d\": float(np.std(random_traj_ds, ddof=1)),\n        },\n        \"image_dominant_24\": {\n            \"heads\": image_dom_heads,\n            \"image_attn_fractions\": image_dom_fracs,\n            \"token_d\": img_m[\"token_d\"],\n            \"traj_d\": img_m[\"traj_d\"],\n            \"traj_ci\": img_m[\"traj_ci\"],\n            \"mse_gt_baseline\": img_m[\"mse_gt_baseline\"],\n            \"mse_gt_ablated\": img_m[\"mse_gt_ablated\"],\n        },\n        \"comparison\": {\n            \"instruction_dominant_24_traj_d\": INSTRUCTION_DOMINANT_24_TRAJ_D,\n            \"random_24_mean_traj_d\": float(np.mean(random_traj_ds)),\n            \"random_24_std_traj_d\": float(np.std(random_traj_ds, ddof=1)),\n            \"image_dominant_24_traj_d\": img_m[\"traj_d\"],\n        },\n        \"config\": {\n            \"n_tasks\": n_tasks,\n            \"n_demos_per_task\": n_demos,\n            \"n_timesteps_per_demo\": n_timesteps,\n            \"total_forward_passes\": total_passes,\n            \"model\": \"openvla-7b\",\n            \"unnorm_key\": UNNORM_KEY,\n        },\n    }\n\n    elapsed_total = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"Done. {total_passes} forward passes in {elapsed_total:.0f}s\")\n    print(f\"Random-24 mean traj_d: {np.mean(random_traj_ds):.3f} +/- {np.std(random_traj_ds, ddof=1):.3f}\")\n    print(f\"Image-dominant-24 traj_d: {img_m['traj_d']:.3f}\")\n    print(f\"Instruction-dominant-24 traj_d (reference): {INSTRUCTION_DOMINANT_24_TRAJ_D}\")\n\n    out_path = os.path.join(RESULTS_DIR, \"matched_ablation_controls.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/matched_ablation_controls.py",
+    "content": "\"\"\"Matched-size ablation controls: random-24 and image-dominant-24 heads.\n\nTwo ablation control experiments for action trajectory specificity analysis:\n1. Random-24: 5 seeds, each randomly selecting 24/32 L1 heads\n2. Image-dominant-24: top-24 heads by vision attention fraction\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport math\nimport os\nimport sys\nimport time\n\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom scipy import stats\n\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\"\nUNNORM_KEY = \"bridge_orig\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\nDECOMP_PATH = \"/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\"\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS\nNUM_HEADS = 32\nN_ABLATE = 24\n\nRANDOM_SEEDS = [42, 123, 456, 789, 1024]\nINSTRUCTION_DOMINANT_24_TRAJ_D = 0.65\nDIM_NAMES = [\"dx\", \"dy\", \"dz\", \"rx\", \"ry\", \"rz\", \"gripper\"]\n\n\ndef load_model():\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        attn_implementation=\"eager\",\n    ).to(\"cuda:0\").eval()\n    return model, processor\n\n\ndef predict_action(model, input_ids, pixel_values, unnorm_key):\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    for _ in range(action_dim):\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device,\n            dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\n    )\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high = np.array(action_norm_stats[\"q99\"])\n    action_low = np.array(action_norm_stats[\"q01\"])\n    action = np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n    return action, predicted_action_token_ids\n\n\ndef install_ablation_hook(model):\n    from transformers.models.llama.modeling_llama import apply_rotary_pos_emb, repeat_kv\n\n    layer_attn = model.language_model.model.layers[1].self_attn\n    layer_attn._ablate_heads = None\n    original_forward = layer_attn.forward\n\n    def ablated_forward(\n        hidden_states,\n        attention_mask=None,\n        position_ids=None,\n        past_key_value=None,\n        output_attentions=False,\n        use_cache=False,\n        cache_position=None,\n        **kwargs,\n    ):\n        bsz, q_len, _ = hidden_states.size()\n        query_states = layer_attn.q_proj(hidden_states)\n        key_states = layer_attn.k_proj(hidden_states)\n        value_states = layer_attn.v_proj(hidden_states)\n\n        query_states = query_states.view(bsz, q_len, layer_attn.num_heads, layer_attn.head_dim).transpose(1, 2)\n        key_states = key_states.view(bsz, q_len, layer_attn.num_key_value_heads, layer_attn.head_dim).transpose(1, 2)\n        value_states = value_states.view(bsz, q_len, layer_attn.num_key_value_heads, layer_attn.head_dim).transpose(1, 2)\n\n        pkv = getattr(layer_attn, \"past_key_value\", past_key_value)\n        cos, sin = layer_attn.rotary_emb(value_states, position_ids)\n        query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)\n\n        if pkv is not None:\n            cache_kwargs = {\"sin\": sin, \"cos\": cos, \"cache_position\": cache_position}\n            key_states, value_states = pkv.update(key_states, value_states, layer_attn.layer_idx, cache_kwargs)\n\n        key_states = repeat_kv(key_states, layer_attn.num_key_value_groups)\n        value_states = repeat_kv(value_states, layer_attn.num_key_value_groups)\n\n        attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) / math.sqrt(layer_attn.head_dim)\n        if attention_mask is not None:\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\n            attn_weights = attn_weights + causal_mask\n\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\n        attn_weights = nn.functional.dropout(attn_weights, p=layer_attn.attention_dropout, training=layer_attn.training)\n\n        if layer_attn._ablate_heads is not None:\n            kv_len = attn_weights.shape[-1]\n            if INST_START < kv_len:\n                attn_weights[:, layer_attn._ablate_heads, :, INST_START:] = 0.0\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\n                attn_weights = attn_weights / row_sums\n\n        attn_output = torch.matmul(attn_weights, value_states)\n        attn_output = attn_output.transpose(1, 2).contiguous()\n        attn_output = attn_output.reshape(bsz, q_len, layer_attn.hidden_size)\n        attn_output = layer_attn.o_proj(attn_output)\n\n        if not output_attentions:\n            attn_weights = None\n        return attn_output, attn_weights, pkv\n\n    layer_attn.forward = ablated_forward\n    return original_forward, layer_attn\n\n\ndef remove_ablation_hook(layer_attn, original_forward):\n    layer_attn._ablate_heads = None\n    layer_attn.forward = original_forward\n\n\ndef get_task_files(n_tasks):\n    hdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*.hdf5\")))\n    return hdf5_files[:n_tasks]\n\n\ndef get_language_instruction(hdf5_path):\n    with h5py.File(hdf5_path, \"r\") as f:\n        info = json.loads(f[\"data\"].attrs[\"problem_info\"])\n    return info[\"language_instruction\"]\n\n\ndef get_image_dominant_heads(n=24):\n    with open(DECOMP_PATH) as f:\n        decomp = json.load(f)\n    fracs = decomp[\"trained\"][\"per_head_attention_fractions\"]\n    vision_by_head = {}\n    for i in range(NUM_HEADS):\n        vision_by_head[i] = fracs[f\"head_{i}\"][\"vision\"]\n    sorted_heads = sorted(range(NUM_HEADS), key=lambda h: vision_by_head[h], reverse=True)\n    top_n = sorted(sorted_heads[:n])\n    top_n_fracs = [vision_by_head[h] for h in top_n]\n    return top_n, top_n_fracs\n\n\ndef get_random_heads(seed, n=24):\n    rng = np.random.RandomState(seed)\n    return sorted(rng.choice(NUM_HEADS, size=n, replace=False).tolist())\n\n\ndef compute_cohens_d_and_ci(baseline_actions, ablated_actions, baseline_ids, ablated_ids, gt_actions):\n    all_b = np.array(baseline_actions)\n    all_a = np.array(ablated_actions)\n    all_b_ids = np.array(baseline_ids)\n    all_a_ids = np.array(ablated_ids)\n    all_gt = np.array(gt_actions)\n\n    paired_mse = np.mean((all_b - all_a) ** 2, axis=1)\n    traj_d = float(np.mean(paired_mse) / (np.std(paired_mse, ddof=1) + 1e-12))\n\n    token_diff = (all_b_ids != all_a_ids).astype(float)\n    per_sample_token_div = np.mean(token_diff, axis=1)\n    token_d = float(np.mean(per_sample_token_div) / (np.std(per_sample_token_div, ddof=1) + 1e-12))\n\n    n_boot = 1000\n    rng = np.random.RandomState(42)\n    n = len(paired_mse)\n    boot_ds = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_mse = paired_mse[idx]\n        d = float(np.mean(boot_mse) / (np.std(boot_mse, ddof=1) + 1e-12))\n        boot_ds.append(d)\n    traj_ci = [float(np.percentile(boot_ds, 2.5)), float(np.percentile(boot_ds, 97.5))]\n\n    mse_gt_baseline = float(np.mean(np.mean((all_b - all_gt) ** 2, axis=1)))\n    mse_gt_ablated = float(np.mean(np.mean((all_a - all_gt) ** 2, axis=1)))\n\n    return {\n        \"token_d\": token_d,\n        \"traj_d\": traj_d,\n        \"traj_ci\": traj_ci,\n        \"token_divergence_rate\": float(np.mean(all_b_ids != all_a_ids)),\n        \"paired_mse_mean\": float(np.mean(paired_mse)),\n        \"paired_mse_std\": float(np.std(paired_mse)),\n        \"mse_gt_baseline\": mse_gt_baseline,\n        \"mse_gt_ablated\": mse_gt_ablated,\n        \"n_samples\": len(all_b),\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Matched-size ablation controls\")\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    n_tasks = 1 if args.dry_run else 3\n    n_demos = 1 if args.dry_run else 10\n    n_timesteps = 2 if args.dry_run else 50\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n\n    random_head_sets = {seed: get_random_heads(seed, N_ABLATE) for seed in RANDOM_SEEDS}\n    image_dom_heads, image_dom_fracs = get_image_dominant_heads(N_ABLATE)\n\n    print(\"=== Matched-Size Ablation Controls ===\")\n    print(f\"Config: {n_tasks} tasks, {n_demos} demos/task, {n_timesteps} steps/demo\")\n    print(f\"Random seeds: {RANDOM_SEEDS}\")\n    for seed, heads in random_head_sets.items():\n        print(f\"  Seed {seed}: {heads}\")\n    print(f\"Image-dominant-24: {image_dom_heads}\")\n    print(f\"  Vision fractions: {[round(v, 4) for v in image_dom_fracs]}\")\n\n    print(\"\\nLoading model...\")\n    model, processor = load_model()\n    print(\"Model loaded.\")\n\n    original_forward, layer1_attn = install_ablation_hook(model)\n\n    task_files = get_task_files(n_tasks)\n    print(f\"Tasks ({n_tasks}): {[os.path.basename(f) for f in task_files]}\")\n\n    baseline_actions = []\n    baseline_ids = []\n    gt_actions_all = []\n\n    conditions = [f\"random_{s}\" for s in RANDOM_SEEDS] + [\"image_dominant\"]\n    cond_heads = {f\"random_{s}\": random_head_sets[s] for s in RANDOM_SEEDS}\n    cond_heads[\"image_dominant\"] = image_dom_heads\n\n    cond_actions = {c: [] for c in conditions}\n    cond_ids = {c: [] for c in conditions}\n\n    total_passes = 0\n    t_start = time.time()\n    n_conditions = len(conditions)\n    total_expected = n_tasks * n_demos * n_timesteps * (1 + n_conditions)\n\n    for task_idx, hdf5_path in enumerate(task_files):\n        task_name = os.path.basename(hdf5_path).replace(\"_demo.hdf5\", \"\")\n        instruction = get_language_instruction(hdf5_path)\n        print(f\"\\n[Task {task_idx+1}/{n_tasks}] {task_name}\")\n        print(f\"  Instruction: {instruction}\")\n\n        prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n\n        with h5py.File(hdf5_path, \"r\") as f:\n            for demo_idx in range(n_demos):\n                demo_key = f\"data/demo_{demo_idx}\"\n                actions_data = f[f\"{demo_key}/actions\"][:]\n                images_data = f[f\"{demo_key}/obs/agentview_rgb\"][:]\n                n_steps = min(n_timesteps, len(actions_data))\n\n                for step_idx in range(n_steps):\n                    image_np = images_data[step_idx]\n                    gt_action = actions_data[step_idx]\n\n                    img = Image.fromarray(image_np)\n                    inputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n                    input_ids = inputs[\"input_ids\"]\n                    pixel_values = inputs[\"pixel_values\"]\n\n                    layer1_attn._ablate_heads = None\n                    b_action, b_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\n                    baseline_actions.append(b_action)\n                    baseline_ids.append(b_ids)\n                    gt_actions_all.append(gt_action)\n                    total_passes += 1\n\n                    for cond in conditions:\n                        layer1_attn._ablate_heads = cond_heads[cond]\n                        a_action, a_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\n                        cond_actions[cond].append(a_action)\n                        cond_ids[cond].append(a_ids)\n                        total_passes += 1\n\n                    torch.cuda.empty_cache()\n\n                    if total_passes % (7 * 20) == 0:\n                        elapsed = time.time() - t_start\n                        rate = total_passes / elapsed\n                        eta = (total_expected - total_passes) / rate\n                        print(\n                            f\"  [{total_passes}/{total_expected} passes, \"\n                            f\"{elapsed:.0f}s, {rate:.1f} pass/s, ETA {eta:.0f}s]\"\n                        )\n\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    remove_ablation_hook(layer1_attn, original_forward)\n\n    print(\"\\nComputing metrics...\")\n\n    random_per_seed = []\n    for seed in RANDOM_SEEDS:\n        cond = f\"random_{seed}\"\n        m = compute_cohens_d_and_ci(\n            baseline_actions, cond_actions[cond],\n            baseline_ids, cond_ids[cond],\n            gt_actions_all,\n        )\n        random_per_seed.append({\n            \"seed\": seed,\n            \"heads\": random_head_sets[seed],\n            \"token_d\": m[\"token_d\"],\n            \"traj_d\": m[\"traj_d\"],\n            \"traj_ci\": m[\"traj_ci\"],\n            \"mse_gt_baseline\": m[\"mse_gt_baseline\"],\n            \"mse_gt_ablated\": m[\"mse_gt_ablated\"],\n        })\n        print(f\"  Random seed={seed}: token_d={m['token_d']:.3f}, traj_d={m['traj_d']:.3f}\")\n\n    random_token_ds = [r[\"token_d\"] for r in random_per_seed]\n    random_traj_ds = [r[\"traj_d\"] for r in random_per_seed]\n\n    img_m = compute_cohens_d_and_ci(\n        baseline_actions, cond_actions[\"image_dominant\"],\n        baseline_ids, cond_ids[\"image_dominant\"],\n        gt_actions_all,\n    )\n    print(f\"  Image-dominant: token_d={img_m['token_d']:.3f}, traj_d={img_m['traj_d']:.3f}\")\n\n    output = {\n        \"random_24\": {\n            \"seeds\": RANDOM_SEEDS,\n            \"per_seed\": random_per_seed,\n            \"mean_token_d\": float(np.mean(random_token_ds)),\n            \"std_token_d\": float(np.std(random_token_ds, ddof=1)),\n            \"mean_traj_d\": float(np.mean(random_traj_ds)),\n            \"std_traj_d\": float(np.std(random_traj_ds, ddof=1)),\n        },\n        \"image_dominant_24\": {\n            \"heads\": image_dom_heads,\n            \"image_attn_fractions\": image_dom_fracs,\n            \"token_d\": img_m[\"token_d\"],\n            \"traj_d\": img_m[\"traj_d\"],\n            \"traj_ci\": img_m[\"traj_ci\"],\n            \"mse_gt_baseline\": img_m[\"mse_gt_baseline\"],\n            \"mse_gt_ablated\": img_m[\"mse_gt_ablated\"],\n        },\n        \"comparison\": {\n            \"instruction_dominant_24_traj_d\": INSTRUCTION_DOMINANT_24_TRAJ_D,\n            \"random_24_mean_traj_d\": float(np.mean(random_traj_ds)),\n            \"random_24_std_traj_d\": float(np.std(random_traj_ds, ddof=1)),\n            \"image_dominant_24_traj_d\": img_m[\"traj_d\"],\n        },\n        \"config\": {\n            \"n_tasks\": n_tasks,\n            \"n_demos_per_task\": n_demos,\n            \"n_timesteps_per_demo\": n_timesteps,\n            \"total_forward_passes\": total_passes,\n            \"model\": \"openvla-7b\",\n            \"unnorm_key\": UNNORM_KEY,\n        },\n    }\n\n    elapsed_total = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"Done. {total_passes} forward passes in {elapsed_total:.0f}s\")\n    print(f\"Random-24 mean traj_d: {np.mean(random_traj_ds):.3f} +/- {np.std(random_traj_ds, ddof=1):.3f}\")\n    print(f\"Image-dominant-24 traj_d: {img_m['traj_d']:.3f}\")\n    print(f\"Instruction-dominant-24 traj_d (reference): {INSTRUCTION_DOMINANT_24_TRAJ_D}\")\n\n    out_path = os.path.join(RESULTS_DIR, \"matched_ablation_controls.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T03:35:49.385854+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/matched_ablation_controls.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T03:35:49.386131+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/matched_ablation_controls.py << 'SCRIPT_EOF'\n\"\"\"Matched-size ablation controls: random-24 and image-dominant-24 heads.\n\nTwo ablation control experiments for action trajectory specificity analysis:\n1. Random-24: 5 seeds, each randomly selecting 24/32 L1 heads\n2. Image-dominant-24: top-24 heads by vision attention fraction\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport math\nimport os\nimport sys\nimport time\n\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom scipy import stats\n\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\"\nUNNORM_KEY = \"bridge_orig\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\nDECOMP_PATH = \"/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\"\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS\nNUM_HEADS = 32\nN_ABLATE = 24\n\nRANDOM_SEEDS = [42, 123, 456, 789, 1024]\nINSTRUCTION_DOMINANT_24_TRAJ_D = 0.65\nDIM_NAMES = [\"dx\", \"dy\", \"dz\", \"rx\", \"ry\", \"rz\", \"gripper\"]\n\n\ndef load_model():\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        attn_implementation=\"eager\",\n    ).to(\"cuda:0\").eval()\n    return model, processor\n\n\ndef predict_action(model, input_ids, pixel_values, unnorm_key):\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    for _ in range(action_dim):\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device,\n            dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\n    )\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high = np.array(action_norm_stats[\"q99\"])\n    action_low = np.array(action_norm_stats[\"q01\"])\n    action = np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n    return action, predicted_action_token_ids\n\n\ndef install_ablation_hook(model):\n    from transformers.models.llama.modeling_llama import apply_rotary_pos_emb, repeat_kv\n\n    layer_attn = model.language_model.model.layers[1].self_attn\n    layer_attn._ablate_heads = None\n    original_forward = layer_attn.forward\n\n    def ablated_forward(\n        hidden_states,\n        attention_mask=None,\n        position_ids=None,\n        past_key_value=None,\n        output_attentions=False,\n        use_cache=False,\n        cache_position=None,\n        **kwargs,\n    ):\n        bsz, q_len, _ = hidden_states.size()\n        query_states = layer_attn.q_proj(hidden_states)\n        key_states = layer_attn.k_proj(hidden_states)\n        value_states = layer_attn.v_proj(hidden_states)\n\n        query_states = query_states.view(bsz, q_len, layer_attn.num_heads, layer_attn.head_dim).transpose(1, 2)\n        key_states = key_states.view(bsz, q_len, layer_attn.num_key_value_heads, layer_attn.head_dim).transpose(1, 2)\n        value_states = value_states.view(bsz, q_len, layer_attn.num_key_value_heads, layer_attn.head_dim).transpose(1, 2)\n\n        pkv = getattr(layer_attn, \"past_key_value\", past_key_value)\n        cos, sin = layer_attn.rotary_emb(value_states, position_ids)\n        query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)\n\n        if pkv is not None:\n            cache_kwargs = {\"sin\": sin, \"cos\": cos, \"cache_position\": cache_position}\n            key_states, value_states = pkv.update(key_states, value_states, layer_attn.layer_idx, cache_kwargs)\n\n        key_states = repeat_kv(key_states, layer_attn.num_key_value_groups)\n        value_states = repeat_kv(value_states, layer_attn.num_key_value_groups)\n\n        attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) / math.sqrt(layer_attn.head_dim)\n        if attention_mask is not None:\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\n            attn_weights = attn_weights + causal_mask\n\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\n        attn_weights = nn.functional.dropout(attn_weights, p=layer_attn.attention_dropout, training=layer_attn.training)\n\n        if layer_attn._ablate_heads is not None:\n            kv_len = attn_weights.shape[-1]\n            if INST_START < kv_len:\n                attn_weights[:, layer_attn._ablate_heads, :, INST_START:] = 0.0\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\n                attn_weights = attn_weights / row_sums\n\n        attn_output = torch.matmul(attn_weights, value_states)\n        attn_output = attn_output.transpose(1, 2).contiguous()\n        attn_output = attn_output.reshape(bsz, q_len, layer_attn.hidden_size)\n        attn_output = layer_attn.o_proj(attn_output)\n\n        if not output_attentions:\n            attn_weights = None\n        return attn_output, attn_weights, pkv\n\n    layer_attn.forward = ablated_forward\n    return original_forward, layer_attn\n\n\ndef remove_ablation_hook(layer_attn, original_forward):\n    layer_attn._ablate_heads = None\n    layer_attn.forward = original_forward\n\n\ndef get_task_files(n_tasks):\n    hdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*.hdf5\")))\n    return hdf5_files[:n_tasks]\n\n\ndef get_language_instruction(hdf5_path):\n    with h5py.File(hdf5_path, \"r\") as f:\n        info = json.loads(f[\"data\"].attrs[\"problem_info\"])\n    return info[\"language_instruction\"]\n\n\ndef get_image_dominant_heads(n=24):\n    with open(DECOMP_PATH) as f:\n        decomp = json.load(f)\n    fracs = decomp[\"trained\"][\"per_head_attention_fractions\"]\n    vision_by_head = {}\n    for i in range(NUM_HEADS):\n        vision_by_head[i] = fracs[f\"head_{i}\"][\"vision\"]\n    sorted_heads = sorted(range(NUM_HEADS), key=lambda h: vision_by_head[h], reverse=True)\n    top_n = sorted(sorted_heads[:n])\n    top_n_fracs = [vision_by_head[h] for h in top_n]\n    return top_n, top_n_fracs\n\n\ndef get_random_heads(seed, n=24):\n    rng = np.random.RandomState(seed)\n    return sorted(rng.choice(NUM_HEADS, size=n, replace=False).tolist())\n\n\ndef compute_cohens_d_and_ci(baseline_actions, ablated_actions, baseline_ids, ablated_ids, gt_actions):\n    all_b = np.array(baseline_actions)\n    all_a = np.array(ablated_actions)\n    all_b_ids = np.array(baseline_ids)\n    all_a_ids = np.array(ablated_ids)\n    all_gt = np.array(gt_actions)\n\n    paired_mse = np.mean((all_b - all_a) ** 2, axis=1)\n    traj_d = float(np.mean(paired_mse) / (np.std(paired_mse, ddof=1) + 1e-12))\n\n    token_diff = (all_b_ids != all_a_ids).astype(float)\n    per_sample_token_div = np.mean(token_diff, axis=1)\n    token_d = float(np.mean(per_sample_token_div) / (np.std(per_sample_token_div, ddof=1) + 1e-12))\n\n    n_boot = 1000\n    rng = np.random.RandomState(42)\n    n = len(paired_mse)\n    boot_ds = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_mse = paired_mse[idx]\n        d = float(np.mean(boot_mse) / (np.std(boot_mse, ddof=1) + 1e-12))\n        boot_ds.append(d)\n    traj_ci = [float(np.percentile(boot_ds, 2.5)), float(np.percentile(boot_ds, 97.5))]\n\n    mse_gt_baseline = float(np.mean(np.mean((all_b - all_gt) ** 2, axis=1)))\n    mse_gt_ablated = float(np.mean(np.mean((all_a - all_gt) ** 2, axis=1)))\n\n    return {\n        \"token_d\": token_d,\n        \"traj_d\": traj_d,\n        \"traj_ci\": traj_ci,\n        \"token_divergence_rate\": float(np.mean(all_b_ids != all_a_ids)),\n        \"paired_mse_mean\": float(np.mean(paired_mse)),\n        \"paired_mse_std\": float(np.std(paired_mse)),\n        \"mse_gt_baseline\": mse_gt_baseline,\n        \"mse_gt_ablated\": mse_gt_ablated,\n        \"n_samples\": len(all_b),\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Matched-size ablation controls\")\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    n_tasks = 1 if args.dry_run else 3\n    n_demos = 1 if args.dry_run else 10\n    n_timesteps = 2 if args.dry_run else 50\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n\n    random_head_sets = {seed: get_random_heads(seed, N_ABLATE) for seed in RANDOM_SEEDS}\n    image_dom_heads, image_dom_fracs = get_image_dominant_heads(N_ABLATE)\n\n    print(\"=== Matched-Size Ablation Controls ===\")\n    print(f\"Config: {n_tasks} tasks, {n_demos} demos/task, {n_timesteps} steps/demo\")\n    print(f\"Random seeds: {RANDOM_SEEDS}\")\n    for seed, heads in random_head_sets.items():\n        print(f\"  Seed {seed}: {heads}\")\n    print(f\"Image-dominant-24: {image_dom_heads}\")\n    print(f\"  Vision fractions: {[round(v, 4) for v in image_dom_fracs]}\")\n\n    print(\"\\nLoading model...\")\n    model, processor = load_model()\n    print(\"Model loaded.\")\n\n    original_forward, layer1_attn = install_ablation_hook(model)\n\n    task_files = get_task_files(n_tasks)\n    print(f\"Tasks ({n_tasks}): {[os.path.basename(f) for f in task_files]}\")\n\n    baseline_actions = []\n    baseline_ids = []\n    gt_actions_all = []\n\n    conditions = [f\"random_{s}\" for s in RANDOM_SEEDS] + [\"image_dominant\"]\n    cond_heads = {f\"random_{s}\": random_head_sets[s] for s in RANDOM_SEEDS}\n    cond_heads[\"image_dominant\"] = image_dom_heads\n\n    cond_actions = {c: [] for c in conditions}\n    cond_ids = {c: [] for c in conditions}\n\n    total_passes = 0\n    t_start = time.time()\n    n_conditions = len(conditions)\n    total_expected = n_tasks * n_demos * n_timesteps * (1 + n_conditions)\n\n    for task_idx, hdf5_path in enumerate(task_files):\n        task_name = os.path.basename(hdf5_path).replace(\"_demo.hdf5\", \"\")\n        instruction = get_language_instruction(hdf5_path)\n        print(f\"\\n[Task {task_idx+1}/{n_tasks}] {task_name}\")\n        print(f\"  Instruction: {instruction}\")\n\n        prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n\n        with h5py.File(hdf5_path, \"r\") as f:\n            for demo_idx in range(n_demos):\n                demo_key = f\"data/demo_{demo_idx}\"\n                actions_data = f[f\"{demo_key}/actions\"][:]\n                images_data = f[f\"{demo_key}/obs/agentview_rgb\"][:]\n                n_steps = min(n_timesteps, len(actions_data))\n\n                for step_idx in range(n_steps):\n                    image_np = images_data[step_idx]\n                    gt_action = actions_data[step_idx]\n\n                    img = Image.fromarray(image_np)\n                    inputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n                    input_ids = inputs[\"input_ids\"]\n                    pixel_values = inputs[\"pixel_values\"]\n\n                    layer1_attn._ablate_heads = None\n                    b_action, b_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\n                    baseline_actions.append(b_action)\n                    baseline_ids.append(b_ids)\n                    gt_actions_all.append(gt_action)\n                    total_passes += 1\n\n                    for cond in conditions:\n                        layer1_attn._ablate_heads = cond_heads[cond]\n                        a_action, a_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\n                        cond_actions[cond].append(a_action)\n                        cond_ids[cond].append(a_ids)\n                        total_passes += 1\n\n                    torch.cuda.empty_cache()\n\n                    if total_passes % (7 * 20) == 0:\n                        elapsed = time.time() - t_start\n                        rate = total_passes / elapsed\n                        eta = (total_expected - total_passes) / rate\n                        print(\n                            f\"  [{total_passes}/{total_expected} passes, \"\n                            f\"{elapsed:.0f}s, {rate:.1f} pass/s, ETA {eta:.0f}s]\"\n                        )\n\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    remove_ablation_hook(layer1_attn, original_forward)\n\n    print(\"\\nComputing metrics...\")\n\n    random_per_seed = []\n    for seed in RANDOM_SEEDS:\n        cond = f\"random_{seed}\"\n        m = compute_cohens_d_and_ci(\n            baseline_actions, cond_actions[cond],\n            baseline_ids, cond_ids[cond],\n            gt_actions_all,\n        )\n        random_per_seed.append({\n            \"seed\": seed,\n            \"heads\": random_head_sets[seed],\n            \"token_d\": m[\"token_d\"],\n            \"traj_d\": m[\"traj_d\"],\n            \"traj_ci\": m[\"traj_ci\"],\n            \"mse_gt_baseline\": m[\"mse_gt_baseline\"],\n            \"mse_gt_ablated\": m[\"mse_gt_ablated\"],\n        })\n        print(f\"  Random seed={seed}: token_d={m['token_d']:.3f}, traj_d={m['traj_d']:.3f}\")\n\n    random_token_ds = [r[\"token_d\"] for r in random_per_seed]\n    random_traj_ds = [r[\"traj_d\"] for r in random_per_seed]\n\n    img_m = compute_cohens_d_and_ci(\n        baseline_actions, cond_actions[\"image_dominant\"],\n        baseline_ids, cond_ids[\"image_dominant\"],\n        gt_actions_all,\n    )\n    print(f\"  Image-dominant: token_d={img_m['token_d']:.3f}, traj_d={img_m['traj_d']:.3f}\")\n\n    output = {\n        \"random_24\": {\n            \"seeds\": RANDOM_SEEDS,\n            \"per_seed\": random_per_seed,\n            \"mean_token_d\": float(np.mean(random_token_ds)),\n            \"std_token_d\": float(np.std(random_token_ds, ddof=1)),\n            \"mean_traj_d\": float(np.mean(random_traj_ds)),\n            \"std_traj_d\": float(np.std(random_traj_ds, ddof=1)),\n        },\n        \"image_dominant_24\": {\n            \"heads\": image_dom_heads,\n            \"image_attn_fractions\": image_dom_fracs,\n            \"token_d\": img_m[\"token_d\"],\n            \"traj_d\": img_m[\"traj_d\"],\n            \"traj_ci\": img_m[\"traj_ci\"],\n            \"mse_gt_baseline\": img_m[\"mse_gt_baseline\"],\n            \"mse_gt_ablated\": img_m[\"mse_gt_ablated\"],\n        },\n        \"comparison\": {\n            \"instruction_dominant_24_traj_d\": INSTRUCTION_DOMINANT_24_TRAJ_D,\n            \"random_24_mean_traj_d\": float(np.mean(random_traj_ds)),\n            \"random_24_std_traj_d\": float(np.std(random_traj_ds, ddof=1)),\n            \"image_dominant_24_traj_d\": img_m[\"traj_d\"],\n        },\n        \"config\": {\n            \"n_tasks\": n_tasks,\n            \"n_demos_per_task\": n_demos,\n            \"n_timesteps_per_demo\": n_timesteps,\n            \"total_forward_passes\": total_passes,\n            \"model\": \"openvla-7b\",\n            \"unnorm_key\": UNNORM_KEY,\n        },\n    }\n\n    elapsed_total = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"Done. {total_passes} forward passes in {elapsed_total:.0f}s\")\n    print(f\"Random-24 mean traj_d: {np.mean(random_traj_ds):.3f} +/- {np.std(random_traj_ds, ddof=1):.3f}\")\n    print(f\"Image-dominant-24 traj_d: {img_m['traj_d']:.3f}\")\n    print(f\"Instruction-dominant-24 traj_d (reference): {INSTRUCTION_DOMINANT_24_TRAJ_D}\")\n\n    out_path = os.path.join(RESULTS_DIR, \"matched_ablation_controls.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written successfully\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/matched_ablation_controls.py << 'SCRIPT_EOF'\n\"\"\"Matched-size ablation controls: random-24 and image-dominant-24 heads.\n\nTwo ablation control experiments for action trajectory specificity analysis:\n1. Random-24: 5 seeds, each randomly selecting 24/32 L1 heads\n2. Image-dominant-24: top-24 heads by vision attention fraction\n\"\"\"\n\nimport argparse\nimport gc\nimport glob\nimport json\nimport math\nimport os\nimport sys\nimport time\n\nsys.path.insert(0, \"/root/autodl-tmp/LIBERO\")\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom scipy import stats\n\nMODEL_PATH = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\"\nUNNORM_KEY = \"bridge_orig\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nRESULTS_DIR = \"/root/autodl-tmp/vla-ssd/results\"\nDECOMP_PATH = \"/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\"\n\nNUM_IMAGE_TOKENS = 256\nINST_START = 1 + NUM_IMAGE_TOKENS\nNUM_HEADS = 32\nN_ABLATE = 24\n\nRANDOM_SEEDS = [42, 123, 456, 789, 1024]\nINSTRUCTION_DOMINANT_24_TRAJ_D = 0.65\nDIM_NAMES = [\"dx\", \"dy\", \"dz\", \"rx\", \"ry\", \"rz\", \"gripper\"]\n\n\ndef load_model():\n    from transformers import AutoModelForVision2Seq, AutoProcessor\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    model = AutoModelForVision2Seq.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        low_cpu_mem_usage=True,\n        attn_implementation=\"eager\",\n    ).to(\"cuda:0\").eval()\n    return model, processor\n\n\ndef predict_action(model, input_ids, pixel_values, unnorm_key):\n    action_dim = model.get_action_dim(unnorm_key)\n    if not torch.all(input_ids[:, -1] == 29871):\n        input_ids = torch.cat(\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\n            dim=1,\n        )\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_ids,\n            attention_mask=torch.ones_like(input_ids),\n            pixel_values=pixel_values,\n            past_key_values=None,\n            use_cache=True,\n        )\n    past_key_values = outputs.past_key_values\n    next_token_logits = outputs.logits[:, -1, :]\n\n    generated_ids = []\n    for _ in range(action_dim):\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\n        generated_ids.append(next_token.squeeze().item())\n        attn_mask = torch.ones(\n            (1, past_key_values[0][0].shape[2] + 1),\n            device=input_ids.device,\n            dtype=input_ids.dtype,\n        )\n        with torch.no_grad():\n            outputs = model(\n                input_ids=next_token,\n                attention_mask=attn_mask,\n                pixel_values=None,\n                past_key_values=past_key_values,\n                use_cache=True,\n            )\n        past_key_values = outputs.past_key_values\n        next_token_logits = outputs.logits[:, -1, :]\n\n    predicted_action_token_ids = np.array(generated_ids)\n    discretized_actions = model.vocab_size - predicted_action_token_ids\n    discretized_actions = np.clip(\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\n    )\n    normalized_actions = model.bin_centers[discretized_actions]\n    action_norm_stats = model.get_action_stats(unnorm_key)\n    mask = action_norm_stats.get(\"mask\", np.ones_like(action_norm_stats[\"q01\"], dtype=bool))\n    action_high = np.array(action_norm_stats[\"q99\"])\n    action_low = np.array(action_norm_stats[\"q01\"])\n    action = np.where(\n        mask,\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\n        normalized_actions,\n    )\n    return action, predicted_action_token_ids\n\n\ndef install_ablation_hook(model):\n    from transformers.models.llama.modeling_llama import apply_rotary_pos_emb, repeat_kv\n\n    layer_attn = model.language_model.model.layers[1].self_attn\n    layer_attn._ablate_heads = None\n    original_forward = layer_attn.forward\n\n    def ablated_forward(\n        hidden_states,\n        attention_mask=None,\n        position_ids=None,\n        past_key_value=None,\n        output_attentions=False,\n        use_cache=False,\n        cache_position=None,\n        **kwargs,\n    ):\n        bsz, q_len, _ = hidden_states.size()\n        query_states = layer_attn.q_proj(hidden_states)\n        key_states = layer_attn.k_proj(hidden_states)\n        value_states = layer_attn.v_proj(hidden_states)\n\n        query_states = query_states.view(bsz, q_len, layer_attn.num_heads, layer_attn.head_dim).transpose(1, 2)\n        key_states = key_states.view(bsz, q_len, layer_attn.num_key_value_heads, layer_attn.head_dim).transpose(1, 2)\n        value_states = value_states.view(bsz, q_len, layer_attn.num_key_value_heads, layer_attn.head_dim).transpose(1, 2)\n\n        pkv = getattr(layer_attn, \"past_key_value\", past_key_value)\n        cos, sin = layer_attn.rotary_emb(value_states, position_ids)\n        query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)\n\n        if pkv is not None:\n            cache_kwargs = {\"sin\": sin, \"cos\": cos, \"cache_position\": cache_position}\n            key_states, value_states = pkv.update(key_states, value_states, layer_attn.layer_idx, cache_kwargs)\n\n        key_states = repeat_kv(key_states, layer_attn.num_key_value_groups)\n        value_states = repeat_kv(value_states, layer_attn.num_key_value_groups)\n\n        attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) / math.sqrt(layer_attn.head_dim)\n        if attention_mask is not None:\n            causal_mask = attention_mask[:, :, :, :key_states.shape[-2]]\n            attn_weights = attn_weights + causal_mask\n\n        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\n        attn_weights = nn.functional.dropout(attn_weights, p=layer_attn.attention_dropout, training=layer_attn.training)\n\n        if layer_attn._ablate_heads is not None:\n            kv_len = attn_weights.shape[-1]\n            if INST_START < kv_len:\n                attn_weights[:, layer_attn._ablate_heads, :, INST_START:] = 0.0\n                row_sums = attn_weights.sum(dim=-1, keepdim=True).clamp(min=1e-9)\n                attn_weights = attn_weights / row_sums\n\n        attn_output = torch.matmul(attn_weights, value_states)\n        attn_output = attn_output.transpose(1, 2).contiguous()\n        attn_output = attn_output.reshape(bsz, q_len, layer_attn.hidden_size)\n        attn_output = layer_attn.o_proj(attn_output)\n\n        if not output_attentions:\n            attn_weights = None\n        return attn_output, attn_weights, pkv\n\n    layer_attn.forward = ablated_forward\n    return original_forward, layer_attn\n\n\ndef remove_ablation_hook(layer_attn, original_forward):\n    layer_attn._ablate_heads = None\n    layer_attn.forward = original_forward\n\n\ndef get_task_files(n_tasks):\n    hdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*.hdf5\")))\n    return hdf5_files[:n_tasks]\n\n\ndef get_language_instruction(hdf5_path):\n    with h5py.File(hdf5_path, \"r\") as f:\n        info = json.loads(f[\"data\"].attrs[\"problem_info\"])\n    return info[\"language_instruction\"]\n\n\ndef get_image_dominant_heads(n=24):\n    with open(DECOMP_PATH) as f:\n        decomp = json.load(f)\n    fracs = decomp[\"trained\"][\"per_head_attention_fractions\"]\n    vision_by_head = {}\n    for i in range(NUM_HEADS):\n        vision_by_head[i] = fracs[f\"head_{i}\"][\"vision\"]\n    sorted_heads = sorted(range(NUM_HEADS), key=lambda h: vision_by_head[h], reverse=True)\n    top_n = sorted(sorted_heads[:n])\n    top_n_fracs = [vision_by_head[h] for h in top_n]\n    return top_n, top_n_fracs\n\n\ndef get_random_heads(seed, n=24):\n    rng = np.random.RandomState(seed)\n    return sorted(rng.choice(NUM_HEADS, size=n, replace=False).tolist())\n\n\ndef compute_cohens_d_and_ci(baseline_actions, ablated_actions, baseline_ids, ablated_ids, gt_actions):\n    all_b = np.array(baseline_actions)\n    all_a = np.array(ablated_actions)\n    all_b_ids = np.array(baseline_ids)\n    all_a_ids = np.array(ablated_ids)\n    all_gt = np.array(gt_actions)\n\n    paired_mse = np.mean((all_b - all_a) ** 2, axis=1)\n    traj_d = float(np.mean(paired_mse) / (np.std(paired_mse, ddof=1) + 1e-12))\n\n    token_diff = (all_b_ids != all_a_ids).astype(float)\n    per_sample_token_div = np.mean(token_diff, axis=1)\n    token_d = float(np.mean(per_sample_token_div) / (np.std(per_sample_token_div, ddof=1) + 1e-12))\n\n    n_boot = 1000\n    rng = np.random.RandomState(42)\n    n = len(paired_mse)\n    boot_ds = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_mse = paired_mse[idx]\n        d = float(np.mean(boot_mse) / (np.std(boot_mse, ddof=1) + 1e-12))\n        boot_ds.append(d)\n    traj_ci = [float(np.percentile(boot_ds, 2.5)), float(np.percentile(boot_ds, 97.5))]\n\n    mse_gt_baseline = float(np.mean(np.mean((all_b - all_gt) ** 2, axis=1)))\n    mse_gt_ablated = float(np.mean(np.mean((all_a - all_gt) ** 2, axis=1)))\n\n    return {\n        \"token_d\": token_d,\n        \"traj_d\": traj_d,\n        \"traj_ci\": traj_ci,\n        \"token_divergence_rate\": float(np.mean(all_b_ids != all_a_ids)),\n        \"paired_mse_mean\": float(np.mean(paired_mse)),\n        \"paired_mse_std\": float(np.std(paired_mse)),\n        \"mse_gt_baseline\": mse_gt_baseline,\n        \"mse_gt_ablated\": mse_gt_ablated,\n        \"n_samples\": len(all_b),\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Matched-size ablation controls\")\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    n_tasks = 1 if args.dry_run else 3\n    n_demos = 1 if args.dry_run else 10\n    n_timesteps = 2 if args.dry_run else 50\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n\n    random_head_sets = {seed: get_random_heads(seed, N_ABLATE) for seed in RANDOM_SEEDS}\n    image_dom_heads, image_dom_fracs = get_image_dominant_heads(N_ABLATE)\n\n    print(\"=== Matched-Size Ablation Controls ===\")\n    print(f\"Config: {n_tasks} tasks, {n_demos} demos/task, {n_timesteps} steps/demo\")\n    print(f\"Random seeds: {RANDOM_SEEDS}\")\n    for seed, heads in random_head_sets.items():\n        print(f\"  Seed {seed}: {heads}\")\n    print(f\"Image-dominant-24: {image_dom_heads}\")\n    print(f\"  Vision fractions: {[round(v, 4) for v in image_dom_fracs]}\")\n\n    print(\"\\nLoading model...\")\n    model, processor = load_model()\n    print(\"Model loaded.\")\n\n    original_forward, layer1_attn = install_ablation_hook(model)\n\n    task_files = get_task_files(n_tasks)\n    print(f\"Tasks ({n_tasks}): {[os.path.basename(f) for f in task_files]}\")\n\n    baseline_actions = []\n    baseline_ids = []\n    gt_actions_all = []\n\n    conditions = [f\"random_{s}\" for s in RANDOM_SEEDS] + [\"image_dominant\"]\n    cond_heads = {f\"random_{s}\": random_head_sets[s] for s in RANDOM_SEEDS}\n    cond_heads[\"image_dominant\"] = image_dom_heads\n\n    cond_actions = {c: [] for c in conditions}\n    cond_ids = {c: [] for c in conditions}\n\n    total_passes = 0\n    t_start = time.time()\n    n_conditions = len(conditions)\n    total_expected = n_tasks * n_demos * n_timesteps * (1 + n_conditions)\n\n    for task_idx, hdf5_path in enumerate(task_files):\n        task_name = os.path.basename(hdf5_path).replace(\"_demo.hdf5\", \"\")\n        instruction = get_language_instruction(hdf5_path)\n        print(f\"\\n[Task {task_idx+1}/{n_tasks}] {task_name}\")\n        print(f\"  Instruction: {instruction}\")\n\n        prompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\n\n        with h5py.File(hdf5_path, \"r\") as f:\n            for demo_idx in range(n_demos):\n                demo_key = f\"data/demo_{demo_idx}\"\n                actions_data = f[f\"{demo_key}/actions\"][:]\n                images_data = f[f\"{demo_key}/obs/agentview_rgb\"][:]\n                n_steps = min(n_timesteps, len(actions_data))\n\n                for step_idx in range(n_steps):\n                    image_np = images_data[step_idx]\n                    gt_action = actions_data[step_idx]\n\n                    img = Image.fromarray(image_np)\n                    inputs = processor(prompt, img).to(\"cuda:0\", dtype=torch.bfloat16)\n                    input_ids = inputs[\"input_ids\"]\n                    pixel_values = inputs[\"pixel_values\"]\n\n                    layer1_attn._ablate_heads = None\n                    b_action, b_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\n                    baseline_actions.append(b_action)\n                    baseline_ids.append(b_ids)\n                    gt_actions_all.append(gt_action)\n                    total_passes += 1\n\n                    for cond in conditions:\n                        layer1_attn._ablate_heads = cond_heads[cond]\n                        a_action, a_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\n                        cond_actions[cond].append(a_action)\n                        cond_ids[cond].append(a_ids)\n                        total_passes += 1\n\n                    torch.cuda.empty_cache()\n\n                    if total_passes % (7 * 20) == 0:\n                        elapsed = time.time() - t_start\n                        rate = total_passes / elapsed\n                        eta = (total_expected - total_passes) / rate\n                        print(\n                            f\"  [{total_passes}/{total_expected} passes, \"\n                            f\"{elapsed:.0f}s, {rate:.1f} pass/s, ETA {eta:.0f}s]\"\n                        )\n\n        gc.collect()\n        torch.cuda.empty_cache()\n\n    remove_ablation_hook(layer1_attn, original_forward)\n\n    print(\"\\nComputing metrics...\")\n\n    random_per_seed = []\n    for seed in RANDOM_SEEDS:\n        cond = f\"random_{seed}\"\n        m = compute_cohens_d_and_ci(\n            baseline_actions, cond_actions[cond],\n            baseline_ids, cond_ids[cond],\n            gt_actions_all,\n        )\n        random_per_seed.append({\n            \"seed\": seed,\n            \"heads\": random_head_sets[seed],\n            \"token_d\": m[\"token_d\"],\n            \"traj_d\": m[\"traj_d\"],\n            \"traj_ci\": m[\"traj_ci\"],\n            \"mse_gt_baseline\": m[\"mse_gt_baseline\"],\n            \"mse_gt_ablated\": m[\"mse_gt_ablated\"],\n        })\n        print(f\"  Random seed={seed}: token_d={m['token_d']:.3f}, traj_d={m['traj_d']:.3f}\")\n\n    random_token_ds = [r[\"token_d\"] for r in random_per_seed]\n    random_traj_ds = [r[\"traj_d\"] for r in random_per_seed]\n\n    img_m = compute_cohens_d_and_ci(\n        baseline_actions, cond_actions[\"image_dominant\"],\n        baseline_ids, cond_ids[\"image_dominant\"],\n        gt_actions_all,\n    )\n    print(f\"  Image-dominant: token_d={img_m['token_d']:.3f}, traj_d={img_m['traj_d']:.3f}\")\n\n    output = {\n        \"random_24\": {\n            \"seeds\": RANDOM_SEEDS,\n            \"per_seed\": random_per_seed,\n            \"mean_token_d\": float(np.mean(random_token_ds)),\n            \"std_token_d\": float(np.std(random_token_ds, ddof=1)),\n            \"mean_traj_d\": float(np.mean(random_traj_ds)),\n            \"std_traj_d\": float(np.std(random_traj_ds, ddof=1)),\n        },\n        \"image_dominant_24\": {\n            \"heads\": image_dom_heads,\n            \"image_attn_fractions\": image_dom_fracs,\n            \"token_d\": img_m[\"token_d\"],\n            \"traj_d\": img_m[\"traj_d\"],\n            \"traj_ci\": img_m[\"traj_ci\"],\n            \"mse_gt_baseline\": img_m[\"mse_gt_baseline\"],\n            \"mse_gt_ablated\": img_m[\"mse_gt_ablated\"],\n        },\n        \"comparison\": {\n            \"instruction_dominant_24_traj_d\": INSTRUCTION_DOMINANT_24_TRAJ_D,\n            \"random_24_mean_traj_d\": float(np.mean(random_traj_ds)),\n            \"random_24_std_traj_d\": float(np.std(random_traj_ds, ddof=1)),\n            \"image_dominant_24_traj_d\": img_m[\"traj_d\"],\n        },\n        \"config\": {\n            \"n_tasks\": n_tasks,\n            \"n_demos_per_task\": n_demos,\n            \"n_timesteps_per_demo\": n_timesteps,\n            \"total_forward_passes\": total_passes,\n            \"model\": \"openvla-7b\",\n            \"unnorm_key\": UNNORM_KEY,\n        },\n    }\n\n    elapsed_total = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"Done. {total_passes} forward passes in {elapsed_total:.0f}s\")\n    print(f\"Random-24 mean traj_d: {np.mean(random_traj_ds):.3f} +/- {np.std(random_traj_ds, ddof=1):.3f}\")\n    print(f\"Image-dominant-24 traj_d: {img_m['traj_d']:.3f}\")\n    print(f\"Instruction-dominant-24 traj_d (reference): {INSTRUCTION_DOMINANT_24_TRAJ_D}\")\n\n    out_path = os.path.join(RESULTS_DIR, \"matched_ablation_controls.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written successfully\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T03:35:49.386574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T03:35:49.386741+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/matched_ablation_controls.py --dry-run 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/matched_ablation_controls.py --dry-run 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T03:35:49.386888+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T03:35:49.387044+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/bin/activate && python scripts/matched_ablation_controls.py --dry-run 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/bin/activate && python scripts/matched_ablation_controls.py --dry-run 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T03:35:49.387210+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Matched-Size Ablation Controls ===\\nConfig: 1 tasks, 1 demos/task, 2 steps/demo\\nRandom seeds: [42, 123, 456, 789, 1024]\\n  Seed 42: [0, 1, 2, 3, 4, 5, 8, 9, 11, 12, 13, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 29, 30]\\n  Seed 123: [0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 31]\\n  Seed 456: [0, 1, 2, 3, 4, 6, 7, 8, 9, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 28, 29, 30, 31]\\n  Seed 789: [0, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 16, 17, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31]\\n  Seed 1024: [0, 2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24, 26, 28, 30, 31]\\nImage-dominant-24: [1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 28, 29, 30, 31]\\n  Vision fractions: [0.3082, 0.1602, 0.2145, 0.2772, 0.2614, 0.2477, 0.3746, 0.2484, 0.2916, 0.1904, 0.274, 0.2122, 0.154, 0.1761, 0.2941, 0.2678, 0.1879, 0.2149, 0.47, 0.1719, 0.2081, 0.2185, 0.2094, 0.172]\\n\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.79it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.30it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.82it/s]\\nModel loaded.\\nTasks (1): ['open_the_middle_drawer_of_the_cabinet_demo.hdf5']\\n\\n[Task 1/1] open_the_middle_drawer_of_the_cabinet\\n  Instruction: open the middle drawer of the cabinet\\n\\nComputing metrics...\\n  Random seed=42: token_d=6.364, traj_d=0.708\\n  Random seed=123: token_d=2.828, traj_d=0.707\\n  Random seed=456: token_d=3.536, traj_d=0.707\\n  Random seed=789: token_d=2.828, traj_d=0.707\\n  Random seed=1024: token_d=6.364, traj_d=0.707\\n  Image-dominant: token_d=1.650, traj_d=0.707\\n\\n============================================================\\nDone. 14 forward passes in 3s\\nRandom-24 mean traj_d: 0.707 +/- 0.000\\nImage-dominant-2
+…[truncated 257 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T03:35:49.387383+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tmux new-session -d -s matched_ablation 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log' && echo \"tmux session started\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tmux new-session -d -s matched_ablation 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log' && echo \"tmux session started\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T03:35:49.387536+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"tmux session started\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T03:35:49.387677+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "matched_ablation_controls",
+  "field": "hypothesis",
+  "value": "Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "matched_ablation_controls",
+    "field": "hypothesis",
+    "value": "Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T03:35:49.387814+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"matched_ablation_controls\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:06.797Z\", \"updated_at\": \"2026-05-19T03:34:53.610Z\", \"parent\": \"specificity_control_action\", \"hypothesis\": \"Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5182}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T03:35:49.387962+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "matched_ablation_controls",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': '3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total', 'model_name': 'openvla-7b', 'seed': '42,123,456,789,1024 (random-24); deterministic (image-dominant-24)', 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b', 'log_path': '/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log', 'checkpoint_path': 'N/A (inference-only)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "matched_ablation_controls",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': '3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total', 'model_name': 'openvla-7b', 'seed': '42,123,456,789,1024 (random-24); deterministic (image-dominant-24)', 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b', 'log_path': '/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log', 'checkpoint_path': 'N/A (inference-only)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T03:35:49.388119+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4419}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T03:35:49.388247+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "matched_ablation_controls",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "matched_ablation_controls",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T03:35:49.388382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"matched_ablation_controls\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:06.797Z\", \"updated_at\": \"2026-05-19T03:35:04.494Z\", \"parent\": \"specificity_control_action\", \"hypothesis\": \"Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9793}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T03:35:49.388517+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "matched_ablation_controls",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': '3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total', 'model_name': 'openvla-7b', 'seed': '42,123,456,789,1024 (random-24); deterministic (image-dominant-24)', 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b', 'log_path': '/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log', 'checkpoint_path': 'N/A (inference-only)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "matched_ablation_controls",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': '3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total', 'model_name': 'openvla-7b', 'seed': '42,123,456,789,1024 (random-24); deterministic (image-dominant-24)', 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b', 'log_path': '/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log', 'checkpoint_path': 'N/A (inference-only)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T03:35:49.388656+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.3023}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T03:35:49.388784+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "matched_ablation_controls",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "vla-ssd",
+  "spec": "{'command': 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': '3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total', 'model_name': 'openvla-7b', 'seed': '42,123,456,789,1024 (random-24); deterministic (image-dominant-24)', 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b', 'eval_data': 'LIBERO libero_goal 3 tasks, 10 demos each, 50 timesteps', 'log_path': '/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log', 'checkpoint_path': 'N/A (inference-only)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "matched_ablation_controls",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "vla-ssd",
+    "spec": "{'command': 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal', 'data_count': '3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total', 'model_name': 'openvla-7b', 'seed': '42,123,456,789,1024 (random-24); deterministic (image-dominant-24)', 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b', 'eval_data': 'LIBERO libero_goal 3 tasks, 10 demos each, 50 timesteps', 'log_path': '/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log', 'checkpoint_path': 'N/A (inference-only)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T03:35:49.388961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"matched_ablation_controls\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T03:26:06.797Z\", \"updated_at\": \"2026-05-19T03:35:16.309Z\", \"parent\": \"specificity_control_action\", \"hypothesis\": \"Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\", \"data_count\": \"3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total\", \"model_name\": \"openvla-7b\", \"seed\": \"42,123,456,789,1024 (random-24); deterministic (image-dominant-24)\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\", \"eval_data\": \"LIBERO libero_goal 3 tasks, 10 demos each, 50 timesteps\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log\", \"checkpoint_path\": \"N/A (inference-only)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9608}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T03:35:49.389122+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -5 /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -5 /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T03:35:49.389296+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Image-dominant-24: [1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 28, 29, 30, 31]\\n  Vision fractions: [0.3082, 0.1602, 0.2145, 0.2772, 0.2614, 0.2477, 0.3746, 0.2484, 0.2916, 0.1904, 0.274, 0.2122, 0.154, 0.1761, 0.2941, 0.2678, 0.1879, 0.2149, 0.47, 0.1719, 0.2081, 0.2185, 0.2094, 0.172]\\n\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.71it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.05it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.59it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T03:35:49.389688+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T03:35:49.389877+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Seed 42: [0, 1, 2, 3, 4, 5, 8, 9, 11, 12, 13, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 29, 30]\\n  Seed 123: [0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 31]\\n  Seed 456: [0, 1, 2, 3, 4, 6, 7, 8, 9, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 28, 29, 30, 31]\\n  Seed 789: [0, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 16, 17, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31]\\n  Seed 1024: [0, 2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24, 26, 28, 30, 31]\\nImage-dominant-24: [1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 28, 29, 30, 31]\\n  Vision fractions: [0.3082, 0.1602, 0.2145, 0.2772, 0.2614, 0.2477, 0.3746, 0.2484, 0.2916, 0.1904, 0.274, 0.2122, 0.154, 0.1761, 0.2941, 0.2678, 0.1879, 0.2149, 0.47, 0.1719, 0.2081, 0.2185, 0.2094, 0.172]\\n\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.71it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.05it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.59it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T03:35:49.390103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -5 /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -5 /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T03:35:49.390256+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Image-dominant-24: [1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 28, 29, 30, 31]\\n  Vision fractions: [0.3082, 0.1602, 0.2145, 0.2772, 0.2614, 0.2477, 0.3746, 0.2484, 0.2916, 0.1904, 0.274, 0.2122, 0.154, 0.1761, 0.2941, 0.2678, 0.1879, 0.2149, 0.47, 0.1719, 0.2081, 0.2185, 0.2094, 0.172]\\n\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.71it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.05it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.59it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T03:35:49.390422+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -8 /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -8 /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T03:35:49.390568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Seed 456: [0, 1, 2, 3, 4, 6, 7, 8, 9, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 28, 29, 30, 31]\\n  Seed 789: [0, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 16, 17, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31]\\n  Seed 1024: [0, 2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24, 26, 28, 30, 31]\\nImage-dominant-24: [1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 28, 29, 30, 31]\\n  Vision fractions: [0.3082, 0.1602, 0.2145, 0.2772, 0.2614, 0.2477, 0.3746, 0.2484, 0.2916, 0.1904, 0.274, 0.2122, 0.154, 0.1761, 0.2941, 0.2678, 0.1879, 0.2149, 0.47, 0.1719, 0.2081, 0.2185, 0.2094, 0.172]\\n\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.71it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.05it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.59it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T03:35:49.390998+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /proc -maxdepth 2 -name cmdline -exec grep -l \"matched_ablation\" {} \\;"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /proc -maxdepth 2 -name cmdline -exec grep -l \"matched_ablation\" {} \\;"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T03:35:49.391465+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-19T03:35:49.391617+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tmux list-sessions 2>&1 && nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tmux list-sessions 2>&1 && nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-19T03:35:49.391775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"matched_ablation: 1 windows (created Tue May 19 11:34:47 2026)\\n98582, python, 15472 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_matched_ablation_controls_20260519T032640",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-19T03:35:49.391964+00:00_
+
+Job is running: tmux session `matched_ablation` active, python process using 15.5 GB on GPU. The model is loaded and processing data (log output is likely buffered by `tee`).
+
+**Summary:**
+- Script: `/root/vla-ssd/scripts/matched_ablation_controls.py`
+- tmux session: `matched_ablation` on westd-19183, cuda:0
+- 10,500 total forward passes (1 baseline + 5 random seeds + 1 image-dominant per sample, 1500 samples)
+- Results will be saved to `/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json`
+- Log: `/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log`
+- Registry: `matched_ablation_controls` set to RUNNING
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_matched_ablation_controls_20260519T032640"
+}
+```
+
+</details>
+
+---

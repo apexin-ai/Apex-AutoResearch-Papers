@@ -1,0 +1,2350 @@
+# code action head sanity check
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 0
+- **Tool calls:** 40
+- **Original source:** `logs/chats/worker_code_action_head_sanity_check_20260526T195505.jsonl`
+- **Structured JSON:** [`36b8ab000ffd5e58e2d4.json`](../../sessions/36/36b8ab000ffd5e58e2d4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+81 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-26T20:07:24.136589+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-26T20:07:24.137135+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-26T20:07:24.137381+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westd-19183"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westd-19183"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-26T20:07:24.137537+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-26T20:07:24.137669+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/ /root/autodl-tmp/vla-ssd/results/action_head_decoding/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/vla-ssd/ /root/autodl-tmp/vla-ssd/results/action_head_decoding/ 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T20:07:24.137798+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-26T20:07:24.137949+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-26T20:07:24.138103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/data/libero/libero_goal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T20:07:24.138247+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\nadded_tokens.json\\nconfig.json\\nconfiguration_prismatic.py\\ndataset_statistics.json\\ngeneration_config.json\\nmodel-00001-of-00004.safetensors\\nmodel-00002-of-00004.safetensors\\nmodel-00003-of-00004.safetensors\\nmodel-00004-of-00004.safetensors\\nmodel.safetensors.index.json\\nmodeling_prismatic.py\\npreprocessor_config.json\\nprocessing_prismatic.py\\nprocessor_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T20:07:24.138387+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"open_the_middle_drawer_of_the_cabinet_demo.hdf5\\nopen_the_top_drawer_and_put_the_bowl_inside_demo.hdf5\\npush_the_plate_to_the_front_of_the_stove_demo.hdf5\\nput_the_bowl_on_the_plate_demo.hdf5\\nput_the_bowl_on_the_stove_demo.hdf5\\nput_the_bowl_on_top_of_the_cabinet_demo.hdf5\\nput_the_cream_cheese_in_the_bowl_demo.hdf5\\nput_the_wine_bottle_on_the_rack_demo.hdf5\\nput_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5\\nturn_on_the_stove_demo.hdf5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-26T20:07:24.138525+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/vla-ssd/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-26T20:07:24.138661+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\naction_baselines.py\\nartifacts\\nbootstrap_training_effect.py\\nbranch_split_rsa_results.json\\ncheckpoints\\ndata\\ndebug_verify.log\\nfeatures\\nlibero_closedloop_probe.py\\nlogs\\nloocv_output.log\\npaper\\npaper_figures\\npca_linear_probe_gc.py\\nquick_verify.log\\nquick_verify2.log\\nresults\\nrsa_analysis.py\\nrsa_analysis_no_inst.py\\nrsa_image_mean.py\\nrsa_image_mean_no_inst.py\\nrsa_no_instruction.py\\nscripts\\nsr_validation.log\\nsr_validation2.log\\nsr_validation3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-26T20:07:24.138786+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T20:07:24.138907+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-26T20:07:24.139069+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/dataset_statistics.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/dataset_statistics.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T20:07:24.139241+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"libero_goal\\\": {\\n    \\\"action\\\": {\\n      \\\"mean\\\": [\\n        0.04721052572131157,\\n        0.028835246339440346,\\n        -0.1485840231180191,\\n        -0.0025010062381625175,\\n        0.026408178731799126,\\n        0.027379808947443962,\\n        0.6299911737442017\\n      ],\\n      \\\"std\\\": [\\n        0.3968801498413086,\\n        0.3473387360572815,\\n        0.49239858984947205,\\n        0.055331431329250336,\\n        0.07844757288694382,\\n        0.10008802264928818,\\n        0.48270025849342346\\n      ],\\n      \\\"max\\\": [\\n        0.9375,\\n        0.9375,\\n        0.9375,\\n        0.3557142913341522,\\n        0.375,\\n        0.375,\\n        1.0\\n      ],\\n      \\\"min\\\": [\\n        -0.9375,\\n        -0.9375,\\n        -0.9375,\\n        -0.2582142949104309,\\n        -0.375,\\n        -0.2871428430080414,\\n        0.0\\n      ],\\n      \\\"q01\\\": [\\n        -0.8785714507102966,\\n        -0.7553571462631226,\\n        -0.9375,\\n        -0.1510714292526245,\\n        -0.1639285683631897,\\n        -0.13777500048279764,\\n        0.0\\n      ],\\n      \\\"q99\\\": [\\n        0.9375,\\n        0.9107142686843872,\\n        0.9375,\\n        0.20357142388820648,\\n        0.26357144117355347,\\n        0.375,\\n        1.0\\n      ],\\n      \\\"mask\\\": [\\n        true,\\n        true,\\n        true,\\n        true,\\n        true,\\n        true,\\n        false\\n      ]\\n    },\\n    \\\"proprio\\\": {\\n      \\\"mean\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"std\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"max\\\": [\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      \\\"min\\\": [\\
+…[truncated 588 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-26T20:07:24.139419+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/vla-ssd/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/vla-ssd/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-26T20:07:24.139565+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"trained_dryrun\\ntrained_dryrun_pca1024\\ntrained_pca1024\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-26T20:07:24.139701+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/processing_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/processing_prismatic.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-26T20:07:24.139961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nprocessing_prismatic.py\\n\\nHuggingFace-style preprocessor definitions for Prismatic VLMs, inheriting from `ProcessorMixin`. Default configuration\\nspecifies `siglip-224px+7b`.\\n\\\"\\\"\\\"\\n\\nfrom typing import Any, ClassVar, List, Optional, Tuple, Union\\n\\nimport timm.data\\nimport torch\\nimport torchvision.transforms.functional as TVF\\nfrom PIL import Image\\nfrom torchvision.transforms import CenterCrop, Compose, Normalize, Resize, ToTensor\\nfrom transformers import PreTrainedTokenizerBase\\nfrom transformers.image_processing_utils import BatchFeature, ImageProcessingMixin\\nfrom transformers.processing_utils import ProcessorMixin\\ntry:\\n    from transformers.tokenization_utils import PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy\\nexcept ImportError:\\n    from enum import Enum\\n    try:\\n        from transformers.utils import PaddingStrategy\\n    except ImportError:\\n        class PaddingStrategy(Enum):\\n            LONGEST = \\\"longest\\\"\\n            MAX_LENGTH = \\\"max_length\\\"\\n            DO_NOT_PAD = \\\"do_not_pad\\\"\\n    try:\\n        from transformers.utils import TruncationStrategy\\n    except ImportError:\\n        class TruncationStrategy(Enum):\\n            ONLY_FIRST = \\\"only_first\\\"\\n            ONLY_SECOND = \\\"only_second\\\"\\n            LONGEST_FIRST = \\\"longest_first\\\"\\n            DO_NOT_TRUNCATE = \\\"do_not_truncate\\\"\\n    PreTokenizedInput = list\\n    TextInput = str\\nfrom transformers.utils import TensorType\\n\\n\\n# === Image Processing ===\\ndef letterbox_pad_transform(image: Image.Image, padding_fill_value: Tuple[int, int, int]) -> Image.Image:\\n    \\\"\\\"\\\"Given a PIL.Image, pad to square by adding a symmetric border around the height/width.\\\"\\\"\\\"\\n    (w, h), max_wh = image.size, max(image.size)\\n    horizontal_pad, vertical_pad = int((max_wh - w) / 2), int((max_wh - h) / 2)\\n    
+…[truncated 6750 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-26T20:07:24.140162+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/results/ -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/vla-ssd/results/ -name \"*.py\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T20:07:24.140300+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-26T20:07:24.140423+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-26T20:07:24.140618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"_name_or_path\\\": \\\"openvla/openvla-7b\\\",\\n  \\\"arch_specifier\\\": \\\"no-align+fused-gelu-mlp\\\",\\n  \\\"architectures\\\": [\\n    \\\"OpenVLAForActionPrediction\\\"\\n  ],\\n  \\\"auto_map\\\": {\\n    \\\"AutoConfig\\\": \\\"configuration_prismatic.OpenVLAConfig\\\",\\n    \\\"AutoModelForVision2Seq\\\": \\\"modeling_prismatic.OpenVLAForActionPrediction\\\"\\n  },\\n  \\\"hf_llm_id\\\": \\\"meta-llama/Llama-2-7b-hf\\\",\\n  \\\"image_resize_strategy\\\": \\\"resize-naive\\\",\\n  \\\"image_sizes\\\": [\\n    224,\\n    224\\n  ],\\n  \\\"llm_backbone_id\\\": \\\"llama2-7b-pure\\\",\\n  \\\"llm_max_length\\\": 2048,\\n  \\\"model_type\\\": \\\"openvla\\\",\\n  \\\"n_action_bins\\\": 256,\\n  \\\"norm_stats\\\": {\\n    \\\"libero_goal\\\": {\\n      \\\"action\\\": {\\n        \\\"mean\\\": [\\n          0.04721052572131157,\\n          0.028835246339440346,\\n          -0.1485840231180191,\\n          -0.0025010062381625175,\\n          0.026408178731799126,\\n          0.027379808947443962,\\n          0.6299911737442017\\n        ],\\n        \\\"std\\\": [\\n          0.3968801498413086,\\n          0.3473387360572815,\\n          0.49239858984947205,\\n          0.055331431329250336,\\n          0.07844757288694382,\\n          0.10008802264928818,\\n          0.48270025849342346\\n        ],\\n        \\\"max\\\": [\\n          0.9375,\\n          0.9375,\\n          0.9375,\\n          0.3557142913341522,\\n          0.375,\\n          0.375,\\n          1.0\\n        ],\\n        \\\"min\\\": [\\n          -0.9375,\\n          -0.9375,\\n          -0.9375,\\n          -0.2582142949104309,\\n          -0.375,\\n          -0.2871428430080414,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          -0.8785714507102966,\\n          -0.7553571462631226,\\n          -0.9375,\\n          -0.1510714292526245,\\n          -0.1639285683631897,\\n          -0.13777500048279764,\\n 
+…[truncated 2295 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-26T20:07:24.140828+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/scripts/ -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/vla-ssd/scripts/ -name \"*.py\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-26T20:07:24.141167+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/extract_features.py\\n/root/vla-ssd/scripts/extract_dinov2.py\\n/root/vla-ssd/scripts/__init__.py\\n/root/vla-ssd/scripts/train_probes.py\\n/root/vla-ssd/scripts/analyze_results.py\\n/root/vla-ssd/scripts/init_untrained.py\\n/root/vla-ssd/scripts/verify_shard.py\\n/root/vla-ssd/scripts/test_forward.py\\n/root/vla-ssd/scripts/post_download_pipeline.py\\n/root/vla-ssd/scripts/plot_ood_diagnostics.py\\n/root/vla-ssd/scripts/quick_verify.py\\n/root/vla-ssd/scripts/extract_subtask_labels.py\\n/root/vla-ssd/scripts/subtask_auc_dinov2.py\\n/root/vla-ssd/scripts/analyze_mvp_DEPRECATED.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe.py\\n/root/vla-ssd/scripts/analyze_action_probes.py\\n/root/vla-ssd/scripts/plot_action_probes.py\\n/root/vla-ssd/scripts/sr_debug.py\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\n/root/vla-ssd/scripts/behavioral_pilot.py\\n/root/vla-ssd/scripts/visual_similarity_gate.py\\n/root/vla-ssd/scripts/plot_full_32layer_attention.py\\n/root/vla-ssd/scripts/analyze_timestep_accuracy.py\\n/root/vla-ssd/scripts/plot_timestep_accuracy.py\\n/root/vla-ssd/scripts/shuffled_token_control.py\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\n/root/vla-ssd/scripts/extract_siglip_features.py\\n/root/vla-ssd/scripts/rsa_siglip_only.py\\n/root/vla-ssd/scripts/perlayer_degradation.py\\n/root/vla-ssd/scripts/extract_features_rand_inst.py\\n/root/vla-ssd/scripts/rsa_instruction_control.py\\n/root/vla-ssd/scripts/action_probe_projector.py\\n/root/vla-ssd/scripts/run_action_delta_all.py\\n/root/vla-ssd/scripts/dino_action_probe.py\\n/root/vla-ssd/scripts/action_probe_v2.py\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\n/root/vla-ssd/scripts/cka_verification.py\\n/root/vla-ssd/scripts/extract_clip_features.py\\n/root/vla-ssd/scripts/extract_features_clip.py\\n/root/vla-ssd/scripts/rsa_clip.py\\n/root/vla-ssd/scripts/
+…[truncated 6053 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-26T20:07:24.141431+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/action_head_decoding.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/action_head_decoding.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-26T20:07:24.141622+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/diagnose_autoreg.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/diagnose_autoreg.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-26T20:07:24.142027+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Action-Head Decoding: apply frozen LM head to each layer's hidden state.\\n\\nTeacher forcing with ground truth action tokens. Compare decoded actions\\nagainst ground truth to get per-layer R², then compare with independent\\nprobe R² to distinguish genuine information collapse from format specialization.\\n\\\"\\\"\\\"\\n\\nimport os, json, time, glob\\nimport numpy as np\\nimport torch\\nimport h5py\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nOUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/action_head_decoding\\\"\\nPROBE_JSON = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_DEMOS = 50\\nFRAMES_PER_DEMO = 10\\nN_HIDDEN = 33\\nACTION_DIM = 7\\nN_ACTION_BINS = 256\\nEMPTY_TOKEN = 29871\\n\\nos.makedirs(OUT_DIR, exist_ok=True)\\n\\n\\ndef task_desc_from_filename(fname):\\n    return Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    print(f\\\"Model: {sum(p.numel() for p in model.parameters())/1e9:.1f}B on {device}\\\")\\n    return model, proc\\n\\n\\ndef get_codec(model):\\n    stats = mode
+…[truncated 7194 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-26T20:07:24.142280+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/diagnose_mini2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/vla-ssd/scripts/diagnose_mini2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-26T20:07:24.142606+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Test autoregressive action decoding with per-layer hidden state extraction.\\\"\\\"\\\"\\nimport os, numpy as np, torch, h5py, glob\\nfrom pathlib import Path\\nfrom PIL import Image\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\nN_HIDDEN = 33; ACTION_DIM = 7; N_ACTION_BINS = 256; EMPTY_TOKEN = 29871\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    return model, proc\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vs = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    bc = (bins[:-1]+bins[1:])/2.0\\n    return dict(q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n                mask=np.array(stats[\\\"mask\\\"]), vocab_size=vs, bins=bins,\\n                bin_centers=bc)\\n\\ndef raw_to_norm(a, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(a-c[\\\"q01\\\"])/(c[\\\"q99\\\"]-c[\\\"q01\\\"]+1e-8)-1, a)\\n    return np.clip(n, -1, 1)\\n\\ndef norm_to_tokens(n, c):\\n    idx = np.clip(np.digitize(n, c[\\\"bins\\\"])-1, 0, N_ACTION_BINS-2)\\n    return c[\\\"vocab_size\\\"]-1-idx\\n\\ndef tokens_to_norm(t, c):\\n    d = np.clip(c[\\\"vocab_s
+…[truncated 4897 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-26T20:07:24.142993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Minimal test: run decode_layers on 3 samples and check exit layer.\\\"\\\"\\\"\\nimport os, numpy as np, torch, h5py, glob\\nfrom pathlib import Path\\nfrom PIL import Image\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\nN_HIDDEN = 33; ACTION_DIM = 7; N_ACTION_BINS = 256; EMPTY_TOKEN = 29871\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    return model, proc\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vs = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    return dict(q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n                mask=np.array(stats[\\\"mask\\\"]), vocab_size=vs,\\n                bins=bins, bin_centers=(bins[:-1]+bins[1:])/2.0)\\n\\ndef raw_to_norm(a, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(a-c[\\\"q01\\\"])/(c[\\\"q99\\\"]-c[\\\"q01\\\"]+1e-8)-1, a)\\n    return np.clip(n, -1, 1)\\n\\ndef norm_to_tokens(n, c):\\n    idx = np.clip(np.digitize(n, c[\\\"bins\\\"])-1, 0, N_ACTION_BINS-2)\\n    return c[\\\"vocab_size\\\"]-1-idx\\n\\ndef tokens_to_norm(t, c):\\n    d = np.clip(c[\\\"vocab_size\\\"]-t-1, 0, len(c[
+…[truncated 4393 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-26T20:07:24.143275+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"hidden_states\\|output_hidden\\|def forward\\|class OpenVLA\\|language_model\\|lm_head\\|\\.norm\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"hidden_states\\|output_hidden\\|def forward\\|class OpenVLA\\|language_model\\|lm_head\\|\\.norm\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-26T20:07:24.143486+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-26T20:07:24.143703+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -50 /root/vla-ssd/scripts/diagnose_exit_layer.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -50 /root/vla-ssd/scripts/diagnose_exit_layer.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-26T20:07:24.143966+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Diagnose why action-head decoding gives negative R² at the exit layer.\\\"\\\"\\\"\\nimport os, json, numpy as np, torch, h5py\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nCKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nDEVICE = \\\"cuda:0\\\"\\nN_ACTION_BINS = 256\\nEMPTY_TOKEN = 29871\\nACTION_DIM = 7\\n\\ndef load_model(ckpt, device):\\n    from transformers import AutoProcessor\\n    from transformers.dynamic_module_utils import get_class_from_dynamic_module\\n    proc = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, local_files_only=True)\\n    ModelClass = get_class_from_dynamic_module(\\n        \\\"modeling_prismatic.OpenVLAForActionPrediction\\\", ckpt)\\n    model = ModelClass.from_pretrained(\\n        ckpt, dtype=torch.bfloat16, low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\", local_files_only=True,\\n    ).to(device).eval()\\n    return model, proc\\n\\ndef get_codec(model):\\n    stats = model.norm_stats[\\\"libero_goal\\\"][\\\"action\\\"]\\n    vocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\\n    bins = np.linspace(-1, 1, N_ACTION_BINS)\\n    return dict(\\n        q01=np.array(stats[\\\"q01\\\"]), q99=np.array(stats[\\\"q99\\\"]),\\n        mask=np.array(stats[\\\"mask\\\"]), vocab_size=vocab_size,\\n        bins=bins, bin_centers=(bins[:-1] + bins[1:]) / 2.0,\\n    )\\n\\ndef raw_to_norm(action, c):\\n    n = np.where(c[\\\"mask\\\"], 2*(action - c[\\\"q01\\\"])/(c[\\\"q99\\\"] - c[\\\"q01\\\"] + 1e-8) - 1, action)\\n    return np.clip(n, -1, 1)\\n\\ndef norm_to_tokens(norm_action, c):\\n    idx = np.clip(np.digitize(norm_action, c[\\\"bins\\\"]) - 1, 0, N_ACTION_BINS - 2)\\n    return c[\\\"vocab_size\\\"] - 1 - idx\\n\\ndef tokens_t
+…[truncated 315 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-26T20:07:24.144336+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def generate\\|def predict_action\\|def forward\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"def generate\\|def predict_action\\|def forward\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-26T20:07:24.144543+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-26T20:07:24.144734+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -200 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -200 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-26T20:07:24.145086+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nmodeling_prismatic.py\\n\\nCore HuggingFace-style PrismaticPreTrainedModel and PrismaticForConditionalGeneration class definitions, inheriting\\nfrom the default `transformers.PretrainedModel`. Meant to be standalone and self-contained, but exactly replicate the\\nlogic in `prismatic.models.vlms.prismatic.py`.\\n\\nNote =>> for the time being, not adding the custom HF \\\"docstring\\\" formatting.\\n\\nReferences [LLaVa, IDEFICS-2]:\\n    => https://github.com/huggingface/transformers/blob/main/src/transformers/models/llava/modeling_llava.py\\n    => https://github.com/huggingface/transformers/blob/main/src/transformers/models/idefics2/modeling_idefics2.py\\n\\\"\\\"\\\"\\n\\nimport logging\\nfrom dataclasses import dataclass\\nfrom functools import partial\\nfrom typing import Any, Callable, ClassVar, Dict, List, Optional, Tuple, Union\\n\\nimport numpy as np\\nimport timm\\nimport tokenizers\\nimport torch\\nimport torch.nn as nn\\nimport transformers\\nfrom timm.models.vision_transformer import LayerScale\\nfrom transformers import AutoModelForCausalLM, PretrainedConfig, PreTrainedModel\\nfrom transformers.modeling_outputs import ModelOutput\\n\\nfrom .configuration_prismatic import OpenVLAConfig, PrismaticConfig\\n\\n# Get Logger\\nlogger = logging.getLogger(__name__)\\n\\n\\n# === PyTorch/HuggingFace Default IGNORE_INDEX (for CrossEntropyLoss labels)\\nIGNORE_INDEX = -100\\n\\n\\n# === Utility Functions for Monkey-Patching ===\\ndef unpack_tuple(fn: Callable[[Any], Tuple[Any]]) -> Callable[[Any], Any]:\\n    def wrapper(*args: Any, **kwargs: Any) -> Any:\\n        result = fn(*args, **kwargs)\\n        return result[0] if isinstance(result, (tuple, list)) else result\\n\\n    return wrapper\\n\\n\\n# HF Transformers overwrites parameters with names containing `gamma`; we're going to patch VisionBackbone.LayerScale.\\n#   =>> TIMM :: https://github.com/huggingface/pytorch-image-models/blob/ma
+…[truncated 6676 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-26T20:07:24.145329+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def forward\\|def generate\\|def predict_action\\|class OpenVLA\\|class Prismatic\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"def forward\\|def generate\\|def predict_action\\|class OpenVLA\\|class Prismatic\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-26T20:07:24.145528+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-26T20:07:24.145715+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def forward\\|def generate\\|def predict_action\\|class OpenVLA\\|class Prismatic\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -n \"def forward\\|def generate\\|def predict_action\\|class OpenVLA\\|class Prismatic\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-26T20:07:24.145912+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"63:class PrismaticVisionBackbone(nn.Module):\\n114:    def forward(self, pixel_values: torch.Tensor) -> torch.Tensor:\\n127:class PrismaticProjector(nn.Module):\\n146:    def forward(self, img_patches: torch.Tensor) -> torch.Tensor:\\n163:class PrismaticCausalLMOutputWithPast(ModelOutput):\\n176:class PrismaticPreTrainedModel(PreTrainedModel):\\n213:class PrismaticForConditionalGeneration(PrismaticPreTrainedModel):\\n291:    def forward(\\n497:class OpenVLAForActionPrediction(PrismaticForConditionalGeneration):\\n511:    def predict_action(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-26T20:07:24.146123+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +291 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -n +291 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/modeling_prismatic.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-26T20:07:24.146449+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    def forward(\\n        self,\\n        input_ids: Optional[torch.LongTensor] = None,\\n        attention_mask: Optional[torch.Tensor] = None,\\n        pixel_values: Optional[torch.FloatTensor] = None,\\n        labels: Optional[torch.LongTensor] = None,\\n        inputs_embeds: Optional[torch.FloatTensor] = None,\\n        past_key_values: Optional[List[torch.FloatTensor]] = None,\\n        use_cache: Optional[bool] = None,\\n        output_attentions: Optional[bool] = None,\\n        output_hidden_states: Optional[bool] = None,\\n        output_projector_features: Optional[bool] = None,\\n        return_dict: Optional[bool] = None,\\n    ) -> Union[Tuple, PrismaticCausalLMOutputWithPast]:\\n        \\\"\\\"\\\"Run a forward pass through the VLM, returning a PrismaticCausalLMOutputWithPast instance.\\\"\\\"\\\"\\n        output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions\\n        output_hidden_states = (\\n            output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states\\n        )\\n        output_projector_features = output_projector_features if output_projector_features is not None else False\\n        return_dict = return_dict if return_dict is not None else self.config.use_return_dict\\n\\n        # Respect `use_cache` only if not training (even if `gradient_checkpointing` is off)\\n        use_cache = use_cache and not self.training\\n\\n        # Instantiate Placeholder for Projector Features\\n        projected_patch_embeddings = None\\n\\n        # Note :: We only support forward passes with the following cases:\\n        #   => Cached Generation :: (input_ids.shape[1] == 1) and (past_key_values is not None)\\n        #   => Unimodal Forward :: (pixel_values is None)\\n        #   => Multimodal Forward :: (pixel_values is not None) and (input_ids/embeds.shape[0] == pixel_values.shape[0])\\n\\n        
+…[truncated 6738 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-26T20:07:24.146982+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/sanity_check.py << 'PYEOF'\n\"\"\"Action-Head Decoding Sanity Check: 4 diagnostics on 10 samples.\"\"\"\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport torch, json, glob, h5py\nimport numpy as np\nfrom PIL import Image\nfrom pathlib import Path\n\nCKPT = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nDEVICE = \"cuda:0\"\nN_ACTION_BINS = 256\nEMPTY_TOKEN = 29871\nACTION_DIM = 7\nN_SAMPLES = 10\n\n# ─── Load model ───\nprint(\"Loading model...\")\nfrom transformers import AutoProcessor\nfrom transformers.dynamic_module_utils import get_class_from_dynamic_module\n\nproc = AutoProcessor.from_pretrained(CKPT, trust_remote_code=True, local_files_only=True)\nModelClass = get_class_from_dynamic_module(\n    \"modeling_prismatic.OpenVLAForActionPrediction\", CKPT)\nmodel = ModelClass.from_pretrained(\n    CKPT, dtype=torch.bfloat16, low_cpu_mem_usage=True,\n    attn_implementation=\"eager\", local_files_only=True,\n).to(DEVICE).eval()\nprint(f\"Model loaded: {sum(p.numel() for p in model.parameters())/1e9:.1f}B params\")\n\n# ─── Codec ───\nstats = model.norm_stats[\"libero_goal\"][\"action\"]\nvocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\nbins = np.linspace(-1, 1, N_ACTION_BINS)\nbin_centers = (bins[:-1] + bins[1:]) / 2.0\nq01 = np.array(stats[\"q01\"])\nq99 = np.array(stats[\"q99\"])\nmask_arr = np.array(stats[\"mask\"])\n\ndef raw_to_norm(action):\n    n = np.where(mask_arr, 2*(action - q01)/(q99 - q01 + 1e-8) - 1, action)\n    return np.clip(n, -1, 1)\n\ndef norm_to_tokens(norm_action):\n    idx = np.clip(np.digitize(norm_action, bins) - 1, 0, N_ACTION_BINS - 2)\n    return vocab_size - 1 - idx\n\ndef tokens_to_norm(token_ids):\n    d = np.clip(vocab_size - token_ids - 1, 0, len(bin_centers) - 1)\n    return bin_centers[d]\n\nnorm_fn = model.language_model.model.norm\nlm_head = model.language_model.lm_head\n\n# ─── Load samples ───\nhdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*_demo.hdf5\")))\nsamples = []\nfor hf_path in hdf5_files:\n    task = Path(hf_path).stem.replace(\"_demo\", \"\").replace(\"_\", \" \")\n    prompt = f\"In: What action should the robot take to {task}?\\nOut:\"\n    with h5py.File(hf_path, \"r\") as hf:\n        dk = sorted(hf[\"data\"].keys(), key=lambda x: int(x.split(\"_\")[1]))[0]\n        imgs = np.array(hf[f\"data/{dk}/obs/agentview_rgb\"])\n        acts = np.array(hf[f\"data/{dk}/actions\"])\n    samples.append((prompt, Image.fromarray(imgs[0]), acts[0]))\n    if len(samples) >= N_SAMPLES:\n        break\n\nprint(f\"Loaded {len(samples)} samples from {len(hdf5_files)} tasks\")\nprint(f\"Effective vocab_size: {vocab_size}\")\naction_lo = vocab_size - N_ACTION_BINS + 1\naction_hi = vocab_size - 1\nprint(f\"Action token range: [{action_lo}, {action_hi}]\")\n\ndef build_tf_input(prompt, img, gt_action):\n    \"\"\"Build teacher-forcing input with GT action tokens appended.\"\"\"\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    inp = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\n    if inp[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    act_ids = torch.tensor(gt_toks, dtype=torch.long, device=DEVICE).unsqueeze(0)\n    inp[\"input_ids\"] = torch.cat([inp[\"input_ids\"], act_ids], dim=1)\n    if \"attention_mask\" in inp:\n        inp[\"attention_mask\"] = torch.cat([\n            inp[\"attention_mask\"],\n            torch.ones(1, ACTION_DIM, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n        ], dim=1)\n    return inp, gt_norm, gt_toks\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 3: Double-norm bug (most critical — run first)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 3: Double-norm bug verification\")\nprint(\"=\"*70)\n\ninp, _, _ = build_tf_input(*samples[0])\nwith torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n    out = model(**inp, output_hidden_states=True)\n\nn_hs = len(out.hidden_states)\nprint(f\"Number of hidden states: {n_hs}\")\nfor idx in [0, 1, n_hs-2, n_hs-1]:\n    print(f\"  hidden_states[{idx}] shape: {out.hidden_states[idx].shape}\")\n\nlast_pos = out.hidden_states[0].shape[1] - 2\nhs_exit = out.hidden_states[n_hs-1][0, last_pos, :]\n\n# Three methods:\nlogits_no_norm = lm_head(hs_exit.unsqueeze(0)).float()[0]\nlogits_with_norm = lm_head(norm_fn(hs_exit.unsqueeze(0))).float()[0]\nlogits_model = out.logits[0, last_pos, :].float()\n\ndiff_no_norm = (logits_no_norm - logits_model).abs().max().item()\ndiff_with_norm = (logits_with_norm - logits_model).abs().max().item()\nmean_diff_no = (logits_no_norm - logits_model).abs().mean().item()\nmean_diff_with = (logits_with_norm - logits_model).abs().mean().item()\n\nprint(f\"\\nmodel.language_model.model.norm type: {type(norm_fn)}\")\nprint(f\"hidden_states[{n_hs-1}] (exit) L2 norm:  {hs_exit.float().norm().item():.4f}\")\nprint(f\"After applying norm, L2 norm:            {norm_fn(hs_exit.unsqueeze(0)).float().norm().item():.4f}\")\n\nprint(f\"\\nLogits comparison at position {last_pos}:\")\nprint(f\"  lm_head(hs) vs model logits:       max={diff_no_norm:.6f}, mean={mean_diff_no:.6f}\")\nprint(f\"  lm_head(norm(hs)) vs model logits: max={diff_with_norm:.6f}, mean={mean_diff_with:.6f}\")\n\nif diff_no_norm < 0.1 and diff_no_norm < diff_with_norm:\n    IS_POST_NORM = True\n    print(\"  >>> FINDING: hidden_states[-1] is POST-norm\")\n    print(\"  >>> Applying norm again = DOUBLE-NORM BUG!\")\n    print(\"  >>> FIX: For exit layer, use lm_head(hs) directly\")\nelif diff_with_norm < 0.1 and diff_with_norm < diff_no_norm:\n    IS_POST_NORM = False\n    print(\"  >>> FINDING: hidden_states[-1] is PRE-norm\")\n    print(\"  >>> Current code (apply norm) is correct\")\nelse:\n    IS_POST_NORM = None\n    print(\"  >>> INCONCLUSIVE — both methods have significant diff\")\n\n# Argmax comparison\ntok_no_norm = logits_no_norm.argmax().item()\ntok_with_norm = logits_with_norm.argmax().item()\ntok_model = logits_model.argmax().item()\nprint(f\"\\nArgmax token at exit layer:\")\nprint(f\"  lm_head(hs):       {tok_no_norm}  (is_action={action_lo <= tok_no_norm <= action_hi})\")\nprint(f\"  lm_head(norm(hs)): {tok_with_norm}  (is_action={action_lo <= tok_with_norm <= action_hi})\")\nprint(f\"  model logits:      {tok_model}  (is_action={action_lo <= tok_model <= action_hi})\")\n\n# Check ALL layers: which are pre-norm, which are post-norm?\nprint(f\"\\nL2 norms across all hidden_states:\")\nfor li in [0, 1, 8, 16, 24, 31, 32]:\n    if li < n_hs:\n        h = out.hidden_states[li][0, last_pos, :]\n        hn = norm_fn(h.unsqueeze(0))[0]\n        print(f\"  hs[{li:2d}]: raw_norm={h.float().norm().item():.1f}, \"\n              f\"after_norm={hn.float().norm().item():.1f}\")\n\ndel out, inp\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 1 & 2: Exit layer predictions (10 samples)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 1: Exit layer prediction vs ground truth (teacher forcing)\")\nprint(\"=\"*70)\n\nall_gt_toks = []\nall_pred_correct = []\nall_pred_buggy = []\nall_gen_toks = []\nall_top5 = []\n\nfor i, (prompt, img, gt_action) in enumerate(samples):\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    \n    # Teacher-forcing\n    inp, _, _ = build_tf_input(prompt, img, gt_action)\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        out = model(**inp, output_hidden_states=True)\n    \n    seq_len = out.hidden_states[0].shape[1]\n    positions = list(range(seq_len - ACTION_DIM - 1, seq_len - 1))\n    hs_exit = out.hidden_states[n_hs-1][0, positions, :]  # [7, D]\n    \n    # Correct method (based on Check 3)\n    if IS_POST_NORM:\n        logits_c = lm_head(hs_exit).float()\n    else:\n        logits_c = lm_head(norm_fn(hs_exit)).float()\n    pred_c = logits_c.argmax(dim=-1).cpu().numpy()\n    \n    # Buggy method (always apply norm)\n    logits_b = lm_head(norm_fn(hs_exit)).float()\n    pred_b = logits_b.argmax(dim=-1).cpu().numpy()\n    \n    # Model's own logits\n    pred_model = out.logits[0, positions, :].float().argmax(dim=-1).cpu().numpy()\n    \n    # Top-5\n    top5_ids = logits_c.topk(5, dim=-1).indices.cpu().numpy()\n    top5_hit = np.array([gt_toks[d] in top5_ids[d] for d in range(ACTION_DIM)])\n    \n    # model.generate()\n    inp_gen = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp_gen = {k: v.to(DEVICE) for k, v in inp_gen.items()}\n    if inp_gen[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp_gen[\"input_ids\"] = torch.cat([\n            inp_gen[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp_gen:\n            inp_gen[\"attention_mask\"] = torch.cat([\n                inp_gen[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp_gen[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        gen_out = model.generate(**inp_gen, max_new_tokens=ACTION_DIM, do_sample=False)\n    gen_toks = gen_out[0, -ACTION_DIM:].cpu().numpy()\n    \n    all_gt_toks.append(gt_toks)\n    all_pred_correct.append(pred_c)\n    all_pred_buggy.append(pred_b)\n    all_gen_toks.append(gen_toks)\n    all_top5.append(top5_hit)\n    \n    print(f\"\\nSample {i}:\")\n    print(f\"  GT action (raw):       [{', '.join(f'{x:.4f}' for x in gt_action)}]\")\n    print(f\"  GT action (norm):      [{', '.join(f'{x:.4f}' for x in gt_norm)}]\")\n    print(f\"  GT token IDs:          {gt_toks}\")\n    print(f\"  Exit layer (L{n_hs-1}, correct={'no-norm' if IS_POST_NORM else 'with-norm'}):\")\n    print(f\"    Argmax token IDs:    {pred_c}\")\n    print(f\"    De-tokenized:        [{', '.join(f'{x:.4f}' for x in tokens_to_norm(pred_c))}]\")\n    print(f\"    Match GT tokens?:    {(pred_c == gt_toks).tolist()}\")\n    print(f\"    Top-5 match?:        {top5_hit.tolist()}\")\n    print(f\"  Buggy (always norm):   {pred_b}\")\n    print(f\"  Model logits argmax:   {pred_model}\")\n    print(f\"  model.generate():      {gen_toks}\")\n    print(f\"    Generated action:    [{', '.join(f'{x:.4f}' for x in tokens_to_norm(gen_toks))}]\")\n    print(f\"  Correct==Model:        {np.array_equal(pred_c, pred_model)}\")\n    print(f\"  Gen[0]==Correct[0]:    {gen_toks[0] == pred_c[0]}\")\n    \n    del out, inp, inp_gen, gen_out\n    torch.cuda.empty_cache()\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 2: Token-level exact match rate\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 2: Token-level exact match rate summary\")\nprint(\"=\"*70)\n\ngt_a = np.array(all_gt_toks)\npc = np.array(all_pred_correct)\npb = np.array(all_pred_buggy)\nga = np.array(all_gen_toks)\nt5 = np.array(all_top5)\n\nem_c = (pc == gt_a)\nem_b = (pb == gt_a)\nem_g = (ga == gt_a)\n\nprint(f\"\\nCorrect method ({'no-norm' if IS_POST_NORM else 'with-norm'} for exit layer):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_c.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_c.mean():.4f}\")\nprint(f\"  Top-5 match per dim:  {np.array2string(t5.mean(axis=0).astype(float), precision=3)}\")\nprint(f\"  Overall top-5 match:  {t5.mean():.4f}\")\n\nprint(f\"\\nBuggy method (always norm):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_b.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_b.mean():.4f}\")\n\nprint(f\"\\nmodel.generate():\")\nprint(f\"  Exact match per dim:  {np.array2string(em_g.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_g.mean():.4f}\")\n\n# R² on these 10 samples\ngt_norm_all = np.array([raw_to_norm(s[2]) for s in samples])\npn_c = np.array([tokens_to_norm(t) for t in pc])\npn_b = np.array([tokens_to_norm(t) for t in pb])\ngn_a = np.array([tokens_to_norm(t) for t in ga])\n\nss_tot = np.sum((gt_norm_all - gt_norm_all.mean(0))**2)\nr2_c = 1 - np.sum((pn_c - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_b = 1 - np.sum((pn_b - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_g = 1 - np.sum((gn_a - gt_norm_all)**2) / (ss_tot + 1e-12)\n\nprint(f\"\\nR² (exit layer, 10 samples):\")\nprint(f\"  Correct method: {r2_c:.4f}\")\nprint(f\"  Buggy method:   {r2_b:.4f}\")\nprint(f\"  Generate:       {r2_g:.4f}\")\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 4: Bin→continuous roundtrip\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 4: Bin→continuous roundtrip verification\")\nprint(\"=\"*70)\n\nfull_vocab = model.config.text_config.vocab_size\nprint(f\"Full vocab size (config):  {full_vocab}\")\nprint(f\"pad_to_multiple_of:        {model.config.pad_to_multiple_of}\")\nprint(f\"Effective vocab_size:      {vocab_size}\")\nprint(f\"n_action_bins:             {N_ACTION_BINS}\")\nprint(f\"Bin edges:                 {len(bins)} (range [{bins[0]:.4f}, {bins[-1]:.4f}])\")\nprint(f\"Bin centers:               {len(bin_centers)} (range [{bin_centers[0]:.4f}, {bin_centers[-1]:.4f}])\")\n\nprint(f\"\\nToken → bin_idx → value examples:\")\nfor tok in [vocab_size-1, vocab_size-128, vocab_size-255, vocab_size-256+1]:\n    bi = vocab_size - 1 - tok\n    if 0 <= bi < len(bin_centers):\n        print(f\"  Token {tok} → bin {bi:3d} → value {bin_centers[bi]:.4f}\")\n    else:\n        print(f\"  Token {tok} → bin {bi:3d} → OUT OF RANGE\")\n\nprint(f\"\\nRoundtrip: GT action → normalize → tokenize → de-tokenize:\")\nfor i in range(min(3, len(samples))):\n    gn = raw_to_norm(samples[i][2])\n    gt = norm_to_tokens(gn)\n    rec = tokens_to_norm(gt)\n    print(f\"  Sample {i}: max error = {np.abs(gn - rec).max():.6f}\")\n    print(f\"    Norm:      [{', '.join(f'{x:.4f}' for x in gn)}]\")\n    print(f\"    Tokens:    {gt}\")\n    print(f\"    Recovered: [{', '.join(f'{x:.4f}' for x in rec)}]\")\n\n# Cross-check with model's own de-tokenization\nprint(f\"\\nCross-check with model.predict_action's de-tokenization:\")\nprint(f\"  model.vocab_size = {model.vocab_size}\")\nprint(f\"  model.bin_centers shape = {model.bin_centers.shape}\")\ntest_toks = np.array([31900, 31950, 31800])\nour_decode = tokens_to_norm(test_toks)\nmodel_decode = model.bin_centers[np.clip(model.vocab_size - test_toks - 1, 0, model.bin_centers.shape[0] - 1)]\nprint(f\"  Test tokens:  {test_toks}\")\nprint(f\"  Our decode:   {our_decode}\")\nprint(f\"  Model decode: {model_decode}\")\nprint(f\"  Match: {np.allclose(our_decode, model_decode)}\")\n\nprint(f\"\\nDataset statistics (libero_goal):\")\nprint(f\"  Mean:  [{', '.join(f'{x:.4f}' for x in stats['mean'])}]\")\nprint(f\"  Std:   [{', '.join(f'{x:.4f}' for x in stats['std'])}]\")\nprint(f\"  q01:   [{', '.join(f'{x:.4f}' for x in stats['q01'])}]\")\nprint(f\"  q99:   [{', '.join(f'{x:.4f}' for x in stats['q99'])}]\")\nprint(f\"  Mask:  {stats['mask']}\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"ALL 4 CHECKS COMPLETE\")\nprint(\"=\"*70)\nPYEOF\necho \"Script written successfully\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/sanity_check.py << 'PYEOF'\n\"\"\"Action-Head Decoding Sanity Check: 4 diagnostics on 10 samples.\"\"\"\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport torch, json, glob, h5py\nimport numpy as np\nfrom PIL import Image\nfrom pathlib import Path\n\nCKPT = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nDEVICE = \"cuda:0\"\nN_ACTION_BINS = 256\nEMPTY_TOKEN = 29871\nACTION_DIM = 7\nN_SAMPLES = 10\n\n# ─── Load model ───\nprint(\"Loading model...\")\nfrom transformers import AutoProcessor\nfrom transformers.dynamic_module_utils import get_class_from_dynamic_module\n\nproc = AutoProcessor.from_pretrained(CKPT, trust_remote_code=True, local_files_only=True)\nModelClass = get_class_from_dynamic_module(\n    \"modeling_prismatic.OpenVLAForActionPrediction\", CKPT)\nmodel = ModelClass.from_pretrained(\n    CKPT, dtype=torch.bfloat16, low_cpu_mem_usage=True,\n    attn_implementation=\"eager\", local_files_only=True,\n).to(DEVICE).eval()\nprint(f\"Model loaded: {sum(p.numel() for p in model.parameters())/1e9:.1f}B params\")\n\n# ─── Codec ───\nstats = model.norm_stats[\"libero_goal\"][\"action\"]\nvocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\nbins = np.linspace(-1, 1, N_ACTION_BINS)\nbin_centers = (bins[:-1] + bins[1:]) / 2.0\nq01 = np.array(stats[\"q01\"])\nq99 = np.array(stats[\"q99\"])\nmask_arr = np.array(stats[\"mask\"])\n\ndef raw_to_norm(action):\n    n = np.where(mask_arr, 2*(action - q01)/(q99 - q01 + 1e-8) - 1, action)\n    return np.clip(n, -1, 1)\n\ndef norm_to_tokens(norm_action):\n    idx = np.clip(np.digitize(norm_action, bins) - 1, 0, N_ACTION_BINS - 2)\n    return vocab_size - 1 - idx\n\ndef tokens_to_norm(token_ids):\n    d = np.clip(vocab_size - token_ids - 1, 0, len(bin_centers) - 1)\n    return bin_centers[d]\n\nnorm_fn = model.language_model.model.norm\nlm_head = model.language_model.lm_head\n\n# ─── Load samples ───\nhdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*_demo.hdf5\")))\nsamples = []\nfor hf_path in hdf5_files:\n    task = Path(hf_path).stem.replace(\"_demo\", \"\").replace(\"_\", \" \")\n    prompt = f\"In: What action should the robot take to {task}?\\nOut:\"\n    with h5py.File(hf_path, \"r\") as hf:\n        dk = sorted(hf[\"data\"].keys(), key=lambda x: int(x.split(\"_\")[1]))[0]\n        imgs = np.array(hf[f\"data/{dk}/obs/agentview_rgb\"])\n        acts = np.array(hf[f\"data/{dk}/actions\"])\n    samples.append((prompt, Image.fromarray(imgs[0]), acts[0]))\n    if len(samples) >= N_SAMPLES:\n        break\n\nprint(f\"Loaded {len(samples)} samples from {len(hdf5_files)} tasks\")\nprint(f\"Effective vocab_size: {vocab_size}\")\naction_lo = vocab_size - N_ACTION_BINS + 1\naction_hi = vocab_size - 1\nprint(f\"Action token range: [{action_lo}, {action_hi}]\")\n\ndef build_tf_input(prompt, img, gt_action):\n    \"\"\"Build teacher-forcing input with GT action tokens appended.\"\"\"\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    inp = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\n    if inp[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    act_ids = torch.tensor(gt_toks, dtype=torch.long, device=DEVICE).unsqueeze(0)\n    inp[\"input_ids\"] = torch.cat([inp[\"input_ids\"], act_ids], dim=1)\n    if \"attention_mask\" in inp:\n        inp[\"attention_mask\"] = torch.cat([\n            inp[\"attention_mask\"],\n            torch.ones(1, ACTION_DIM, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n        ], dim=1)\n    return inp, gt_norm, gt_toks\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 3: Double-norm bug (most critical — run first)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 3: Double-norm bug verification\")\nprint(\"=\"*70)\n\ninp, _, _ = build_tf_input(*samples[0])\nwith torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n    out = model(**inp, output_hidden_states=True)\n\nn_hs = len(out.hidden_states)\nprint(f\"Number of hidden states: {n_hs}\")\nfor idx in [0, 1, n_hs-2, n_hs-1]:\n    print(f\"  hidden_states[{idx}] shape: {out.hidden_states[idx].shape}\")\n\nlast_pos = out.hidden_states[0].shape[1] - 2\nhs_exit = out.hidden_states[n_hs-1][0, last_pos, :]\n\n# Three methods:\nlogits_no_norm = lm_head(hs_exit.unsqueeze(0)).float()[0]\nlogits_with_norm = lm_head(norm_fn(hs_exit.unsqueeze(0))).float()[0]\nlogits_model = out.logits[0, last_pos, :].float()\n\ndiff_no_norm = (logits_no_norm - logits_model).abs().max().item()\ndiff_with_norm = (logits_with_norm - logits_model).abs().max().item()\nmean_diff_no = (logits_no_norm - logits_model).abs().mean().item()\nmean_diff_with = (logits_with_norm - logits_model).abs().mean().item()\n\nprint(f\"\\nmodel.language_model.model.norm type: {type(norm_fn)}\")\nprint(f\"hidden_states[{n_hs-1}] (exit) L2 norm:  {hs_exit.float().norm().item():.4f}\")\nprint(f\"After applying norm, L2 norm:            {norm_fn(hs_exit.unsqueeze(0)).float().norm().item():.4f}\")\n\nprint(f\"\\nLogits comparison at position {last_pos}:\")\nprint(f\"  lm_head(hs) vs model logits:       max={diff_no_norm:.6f}, mean={mean_diff_no:.6f}\")\nprint(f\"  lm_head(norm(hs)) vs model logits: max={diff_with_norm:.6f}, mean={mean_diff_with:.6f}\")\n\nif diff_no_norm < 0.1 and diff_no_norm < diff_with_norm:\n    IS_POST_NORM = True\n    print(\"  >>> FINDING: hidden_states[-1] is POST-norm\")\n    print(\"  >>> Applying norm again = DOUBLE-NORM BUG!\")\n    print(\"  >>> FIX: For exit layer, use lm_head(hs) directly\")\nelif diff_with_norm < 0.1 and diff_with_norm < diff_no_norm:\n    IS_POST_NORM = False\n    print(\"  >>> FINDING: hidden_states[-1] is PRE-norm\")\n    print(\"  >>> Current code (apply norm) is correct\")\nelse:\n    IS_POST_NORM = None\n    print(\"  >>> INCONCLUSIVE — both methods have significant diff\")\n\n# Argmax comparison\ntok_no_norm = logits_no_norm.argmax().item()\ntok_with_norm = logits_with_norm.argmax().item()\ntok_model = logits_model.argmax().item()\nprint(f\"\\nArgmax token at exit layer:\")\nprint(f\"  lm_head(hs):       {tok_no_norm}  (is_action={action_lo <= tok_no_norm <= action_hi})\")\nprint(f\"  lm_head(norm(hs)): {tok_with_norm}  (is_action={action_lo <= tok_with_norm <= action_hi})\")\nprint(f\"  model logits:      {tok_model}  (is_action={action_lo <= tok_model <= action_hi})\")\n\n# Check ALL layers: which are pre-norm, which are post-norm?\nprint(f\"\\nL2 norms across all hidden_states:\")\nfor li in [0, 1, 8, 16, 24, 31, 32]:\n    if li < n_hs:\n        h = out.hidden_states[li][0, last_pos, :]\n        hn = norm_fn(h.unsqueeze(0))[0]\n        print(f\"  hs[{li:2d}]: raw_norm={h.float().norm().item():.1f}, \"\n              f\"after_norm={hn.float().norm().item():.1f}\")\n\ndel out, inp\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 1 & 2: Exit layer predictions (10 samples)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 1: Exit layer prediction vs ground truth (teacher forcing)\")\nprint(\"=\"*70)\n\nall_gt_toks = []\nall_pred_correct = []\nall_pred_buggy = []\nall_gen_toks = []\nall_top5 = []\n\nfor i, (prompt, img, gt_action) in enumerate(samples):\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    \n    # Teacher-forcing\n    inp, _, _ = build_tf_input(prompt, img, gt_action)\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        out = model(**inp, output_hidden_states=True)\n    \n    seq_len = out.hidden_states[0].shape[1]\n    positions = list(range(seq_len - ACTION_DIM - 1, seq_len - 1))\n    hs_exit = out.hidden_states[n_hs-1][0, positions, :]  # [7, D]\n    \n    # Correct method (based on Check 3)\n    if IS_POST_NORM:\n        logits_c = lm_head(hs_exit).float()\n    else:\n        logits_c = lm_head(norm_fn(hs_exit)).float()\n    pred_c = logits_c.argmax(dim=-1).cpu().numpy()\n    \n    # Buggy method (always apply norm)\n    logits_b = lm_head(norm_fn(hs_exit)).float()\n    pred_b = logits_b.argmax(dim=-1).cpu().numpy()\n    \n    # Model's own logits\n    pred_model = out.logits[0, positions, :].float().argmax(dim=-1).cpu().numpy()\n    \n    # Top-5\n    top5_ids = logits_c.topk(5, dim=-1).indices.cpu().numpy()\n    top5_hit = np.array([gt_toks[d] in top5_ids[d] for d in range(ACTION_DIM)])\n    \n    # model.generate()\n    inp_gen = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp_gen = {k: v.to(DEVICE) for k, v in inp_gen.items()}\n    if inp_gen[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp_gen[\"input_ids\"] = torch.cat([\n            inp_gen[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp_gen:\n            inp_gen[\"attention_mask\"] = torch.cat([\n                inp_gen[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp_gen[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        gen_out = model.generate(**inp_gen, max_new_tokens=ACTION_DIM, do_sample=False)\n    gen_toks = gen_out[0, -ACTION_DIM:].cpu().numpy()\n    \n    all_gt_toks.append(gt_toks)\n    all_pred_correct.append(pred_c)\n    all_pred_buggy.append(pred_b)\n    all_gen_toks.append(gen_toks)\n    all_top5.append(top5_hit)\n    \n    print(f\"\\nSample {i}:\")\n    print(f\"  GT action (raw):       [{', '.join(f'{x:.4f}' for x in gt_action)}]\")\n    print(f\"  GT action (norm):      [{', '.join(f'{x:.4f}' for x in gt_norm)}]\")\n    print(f\"  GT token IDs:          {gt_toks}\")\n    print(f\"  Exit layer (L{n_hs-1}, correct={'no-norm' if IS_POST_NORM else 'with-norm'}):\")\n    print(f\"    Argmax token IDs:    {pred_c}\")\n    print(f\"    De-tokenized:        [{', '.join(f'{x:.4f}' for x in tokens_to_norm(pred_c))}]\")\n    print(f\"    Match GT tokens?:    {(pred_c == gt_toks).tolist()}\")\n    print(f\"    Top-5 match?:        {top5_hit.tolist()}\")\n    print(f\"  Buggy (always norm):   {pred_b}\")\n    print(f\"  Model logits argmax:   {pred_model}\")\n    print(f\"  model.generate():      {gen_toks}\")\n    print(f\"    Generated action:    [{', '.join(f'{x:.4f}' for x in tokens_to_norm(gen_toks))}]\")\n    print(f\"  Correct==Model:        {np.array_equal(pred_c, pred_model)}\")\n    print(f\"  Gen[0]==Correct[0]:    {gen_toks[0] == pred_c[0]}\")\n    \n    del out, inp, inp_gen, gen_out\n    torch.cuda.empty_cache()\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 2: Token-level exact match rate\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 2: Token-level exact match rate summary\")\nprint(\"=\"*70)\n\ngt_a = np.array(all_gt_toks)\npc = np.array(all_pred_correct)\npb = np.array(all_pred_buggy)\nga = np.array(all_gen_toks)\nt5 = np.array(all_top5)\n\nem_c = (pc == gt_a)\nem_b = (pb == gt_a)\nem_g = (ga == gt_a)\n\nprint(f\"\\nCorrect method ({'no-norm' if IS_POST_NORM else 'with-norm'} for exit layer):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_c.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_c.mean():.4f}\")\nprint(f\"  Top-5 match per dim:  {np.array2string(t5.mean(axis=0).astype(float), precision=3)}\")\nprint(f\"  Overall top-5 match:  {t5.mean():.4f}\")\n\nprint(f\"\\nBuggy method (always norm):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_b.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_b.mean():.4f}\")\n\nprint(f\"\\nmodel.generate():\")\nprint(f\"  Exact match per dim:  {np.array2string(em_g.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_g.mean():.4f}\")\n\n# R² on these 10 samples\ngt_norm_all = np.array([raw_to_norm(s[2]) for s in samples])\npn_c = np.array([tokens_to_norm(t) for t in pc])\npn_b = np.array([tokens_to_norm(t) for t in pb])\ngn_a = np.array([tokens_to_norm(t) for t in ga])\n\nss_tot = np.sum((gt_norm_all - gt_norm_all.mean(0))**2)\nr2_c = 1 - np.sum((pn_c - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_b = 1 - np.sum((pn_b - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_g = 1 - np.sum((gn_a - gt_norm_all)**2) / (ss_tot + 1e-12)\n\nprint(f\"\\nR² (exit layer, 10 samples):\")\nprint(f\"  Correct method: {r2_c:.4f}\")\nprint(f\"  Buggy method:   {r2_b:.4f}\")\nprint(f\"  Generate:       {r2_g:.4f}\")\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 4: Bin→continuous roundtrip\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 4: Bin→continuous roundtrip verification\")\nprint(\"=\"*70)\n\nfull_vocab = model.config.text_config.vocab_size\nprint(f\"Full vocab size (config):  {full_vocab}\")\nprint(f\"pad_to_multiple_of:        {model.config.pad_to_multiple_of}\")\nprint(f\"Effective vocab_size:      {vocab_size}\")\nprint(f\"n_action_bins:             {N_ACTION_BINS}\")\nprint(f\"Bin edges:                 {len(bins)} (range [{bins[0]:.4f}, {bins[-1]:.4f}])\")\nprint(f\"Bin centers:               {len(bin_centers)} (range [{bin_centers[0]:.4f}, {bin_centers[-1]:.4f}])\")\n\nprint(f\"\\nToken → bin_idx → value examples:\")\nfor tok in [vocab_size-1, vocab_size-128, vocab_size-255, vocab_size-256+1]:\n    bi = vocab_size - 1 - tok\n    if 0 <= bi < len(bin_centers):\n        print(f\"  Token {tok} → bin {bi:3d} → value {bin_centers[bi]:.4f}\")\n    else:\n        print(f\"  Token {tok} → bin {bi:3d} → OUT OF RANGE\")\n\nprint(f\"\\nRoundtrip: GT action → normalize → tokenize → de-tokenize:\")\nfor i in range(min(3, len(samples))):\n    gn = raw_to_norm(samples[i][2])\n    gt = norm_to_tokens(gn)\n    rec = tokens_to_norm(gt)\n    print(f\"  Sample {i}: max error = {np.abs(gn - rec).max():.6f}\")\n    print(f\"    Norm:      [{', '.join(f'{x:.4f}' for x in gn)}]\")\n    print(f\"    Tokens:    {gt}\")\n    print(f\"    Recovered: [{', '.join(f'{x:.4f}' for x in rec)}]\")\n\n# Cross-check with model's own de-tokenization\nprint(f\"\\nCross-check with model.predict_action's de-tokenization:\")\nprint(f\"  model.vocab_size = {model.vocab_size}\")\nprint(f\"  model.bin_centers shape = {model.bin_centers.shape}\")\ntest_toks = np.array([31900, 31950, 31800])\nour_decode = tokens_to_norm(test_toks)\nmodel_decode = model.bin_centers[np.clip(model.vocab_size - test_toks - 1, 0, model.bin_centers.shape[0] - 1)]\nprint(f\"  Test tokens:  {test_toks}\")\nprint(f\"  Our decode:   {our_decode}\")\nprint(f\"  Model decode: {model_decode}\")\nprint(f\"  Match: {np.allclose(our_decode, model_decode)}\")\n\nprint(f\"\\nDataset statistics (libero_goal):\")\nprint(f\"  Mean:  [{', '.join(f'{x:.4f}' for x in stats['mean'])}]\")\nprint(f\"  Std:   [{', '.join(f'{x:.4f}' for x in stats['std'])}]\")\nprint(f\"  q01:   [{', '.join(f'{x:.4f}' for x in stats['q01'])}]\")\nprint(f\"  q99:   [{', '.join(f'{x:.4f}' for x in stats['q99'])}]\")\nprint(f\"  Mask:  {stats['mask']}\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"ALL 4 CHECKS COMPLETE\")\nprint(\"=\"*70)\nPYEOF\necho \"Script written successfully\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-26T20:07:24.147457+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-26T20:07:24.147695+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && nohup python scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && nohup python scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-26T20:07:24.147872+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 963815\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-26T20:07:24.148040+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -5 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -5 /tmp/sanity_check.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-26T20:07:24.148176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"nohup: failed to run command 'python': No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-26T20:07:24.148299+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "which python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "which python3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-26T20:07:24.148421+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-26T20:07:24.148538+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "which python3 && which python"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "which python3 && which python"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-26T20:07:24.148659+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python3 && which python'\\n\\nExit code: 1\\n\\nStdout:\\n\\n/usr/bin/python3\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-26T20:07:24.148784+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && nohup python3 scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && nohup python3 scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-26T20:07:24.148907+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 963853\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-26T20:07:24.149068+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/sanity_check.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-26T20:07:24.149193+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Traceback (most recent call last):\\n  File \\\"/root/vla-ssd/scripts/sanity_check.py\\\", line 6, in &lt;module>\\n    import torch, json, glob, h5py\\nModuleNotFoundError: No module named 'torch'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-26T20:07:24.149310+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/miniconda3/bin/python 2>/dev/null || ls /opt/conda/bin/python 2>/dev/null || find /root -name \"python\" -path \"*/bin/*\" -type f 2>/dev/null | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/miniconda3/bin/python 2>/dev/null || ls /opt/conda/bin/python 2>/dev/null || find /root -name \"python\" -path \"*/bin/*\" -type f 2>/dev/null | head -5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-26T20:07:24.149430+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-26T20:07:24.149543+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-26T20:07:24.149661+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 963870\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-26T20:07:24.149790+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -10 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -10 /tmp/sanity_check.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-26T20:07:24.149940+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nCHECK 1: Exit layer prediction vs ground truth (teacher forcing)\\n======================================================================\\nTraceback (most recent call last):\\n  File \\\"/root/vla-ssd/scripts/sanity_check.py\\\", line 230, in &lt;module>\\n    gen_out = model.generate(**inp_gen, max_new_tokens=ACTION_DIM, do_sample=False)\\n              ^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1965, in __getattr__\\n    raise AttributeError(\\nAttributeError: 'OpenVLAForActionPrediction' object has no attribute 'generate'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-26T20:07:24.150171+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /root/vla-ssd/scripts/sanity_check.py << 'PYEOF'\n\"\"\"Action-Head Decoding Sanity Check: 4 diagnostics on 10 samples.\"\"\"\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport torch, json, glob, h5py\nimport numpy as np\nfrom PIL import Image\nfrom pathlib import Path\n\nCKPT = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nDEVICE = \"cuda:0\"\nN_ACTION_BINS = 256\nEMPTY_TOKEN = 29871\nACTION_DIM = 7\nN_SAMPLES = 10\n\n# ─── Load model ───\nprint(\"Loading model...\")\nfrom transformers import AutoProcessor\nfrom transformers.dynamic_module_utils import get_class_from_dynamic_module\n\nproc = AutoProcessor.from_pretrained(CKPT, trust_remote_code=True, local_files_only=True)\nModelClass = get_class_from_dynamic_module(\n    \"modeling_prismatic.OpenVLAForActionPrediction\", CKPT)\nmodel = ModelClass.from_pretrained(\n    CKPT, dtype=torch.bfloat16, low_cpu_mem_usage=True,\n    attn_implementation=\"eager\", local_files_only=True,\n).to(DEVICE).eval()\nprint(f\"Model loaded: {sum(p.numel() for p in model.parameters())/1e9:.1f}B params\")\n\n# ─── Codec ───\nstats = model.norm_stats[\"libero_goal\"][\"action\"]\nvocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\nbins = np.linspace(-1, 1, N_ACTION_BINS)\nbin_centers = (bins[:-1] + bins[1:]) / 2.0\nq01 = np.array(stats[\"q01\"])\nq99 = np.array(stats[\"q99\"])\nmask_arr = np.array(stats[\"mask\"])\n\ndef raw_to_norm(action):\n    n = np.where(mask_arr, 2*(action - q01)/(q99 - q01 + 1e-8) - 1, action)\n    return np.clip(n, -1, 1)\n\ndef norm_to_tokens(norm_action):\n    idx = np.clip(np.digitize(norm_action, bins) - 1, 0, N_ACTION_BINS - 2)\n    return vocab_size - 1 - idx\n\ndef tokens_to_norm(token_ids):\n    d = np.clip(vocab_size - token_ids - 1, 0, len(bin_centers) - 1)\n    return bin_centers[d]\n\nnorm_fn = model.language_model.model.norm\nlm_head = model.language_model.lm_head\naction_lo = vocab_size - N_ACTION_BINS + 1\naction_hi = vocab_size - 1\n\n# ─── Load samples ───\nhdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*_demo.hdf5\")))\nsamples = []\nfor hf_path in hdf5_files:\n    task = Path(hf_path).stem.replace(\"_demo\", \"\").replace(\"_\", \" \")\n    prompt = f\"In: What action should the robot take to {task}?\\nOut:\"\n    with h5py.File(hf_path, \"r\") as hf:\n        dk = sorted(hf[\"data\"].keys(), key=lambda x: int(x.split(\"_\")[1]))[0]\n        imgs = np.array(hf[f\"data/{dk}/obs/agentview_rgb\"])\n        acts = np.array(hf[f\"data/{dk}/actions\"])\n    samples.append((prompt, Image.fromarray(imgs[0]), acts[0]))\n    if len(samples) >= N_SAMPLES:\n        break\n\nprint(f\"Loaded {len(samples)} samples from {len(hdf5_files)} tasks\")\nprint(f\"Effective vocab_size: {vocab_size}\")\nprint(f\"Action token range: [{action_lo}, {action_hi}]\")\n\ndef build_tf_input(prompt, img, gt_action):\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    inp = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\n    if inp[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    act_ids = torch.tensor(gt_toks, dtype=torch.long, device=DEVICE).unsqueeze(0)\n    inp[\"input_ids\"] = torch.cat([inp[\"input_ids\"], act_ids], dim=1)\n    if \"attention_mask\" in inp:\n        inp[\"attention_mask\"] = torch.cat([\n            inp[\"attention_mask\"],\n            torch.ones(1, ACTION_DIM, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n        ], dim=1)\n    return inp, gt_norm, gt_toks\n\n@torch.no_grad()\ndef autoregressive_generate(model, proc, prompt, img, norm_fn, lm_head):\n    \"\"\"Manual autoregressive generation (7 action tokens).\"\"\"\n    inp = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\n    if inp[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    \n    gen_tokens = []\n    for step in range(ACTION_DIM):\n        with torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n            out = model(**inp, output_hidden_states=False)\n        logits = out.logits[0, -1, :].float()\n        next_tok = logits.argmax().item()\n        gen_tokens.append(next_tok)\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[next_tok]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n        del out\n    return np.array(gen_tokens)\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 3: Double-norm bug (most critical — run first)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 3: Double-norm bug verification\")\nprint(\"=\"*70)\n\ninp, _, _ = build_tf_input(*samples[0])\nwith torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n    out = model(**inp, output_hidden_states=True)\n\nn_hs = len(out.hidden_states)\nprint(f\"Number of hidden states: {n_hs}\")\nfor idx in [0, 1, n_hs-2, n_hs-1]:\n    print(f\"  hidden_states[{idx}] shape: {out.hidden_states[idx].shape}\")\n\nlast_pos = out.hidden_states[0].shape[1] - 2\nhs_exit = out.hidden_states[n_hs-1][0, last_pos, :]\n\nlogits_no_norm = lm_head(hs_exit.unsqueeze(0)).float()[0]\nlogits_with_norm = lm_head(norm_fn(hs_exit.unsqueeze(0))).float()[0]\nlogits_model = out.logits[0, last_pos, :].float()\n\ndiff_no_norm = (logits_no_norm - logits_model).abs().max().item()\ndiff_with_norm = (logits_with_norm - logits_model).abs().max().item()\nmean_diff_no = (logits_no_norm - logits_model).abs().mean().item()\nmean_diff_with = (logits_with_norm - logits_model).abs().mean().item()\n\nprint(f\"\\nmodel.language_model.model.norm type: {type(norm_fn)}\")\nprint(f\"hidden_states[{n_hs-1}] (exit) L2 norm:  {hs_exit.float().norm().item():.4f}\")\nprint(f\"After applying norm, L2 norm:            {norm_fn(hs_exit.unsqueeze(0)).float().norm().item():.4f}\")\n\nprint(f\"\\nLogits comparison at position {last_pos}:\")\nprint(f\"  lm_head(hs) vs model logits:       max={diff_no_norm:.6f}, mean={mean_diff_no:.6f}\")\nprint(f\"  lm_head(norm(hs)) vs model logits: max={diff_with_norm:.6f}, mean={mean_diff_with:.6f}\")\n\nif diff_no_norm < 0.1 and diff_no_norm < diff_with_norm:\n    IS_POST_NORM = True\n    print(\"  >>> FINDING: hidden_states[-1] is POST-norm\")\n    print(\"  >>> Applying norm again = DOUBLE-NORM BUG!\")\n    print(\"  >>> FIX: For exit layer, use lm_head(hs) directly\")\nelif diff_with_norm < 0.1 and diff_with_norm < diff_no_norm:\n    IS_POST_NORM = False\n    print(\"  >>> FINDING: hidden_states[-1] is PRE-norm\")\n    print(\"  >>> Current code (apply norm) is correct\")\nelse:\n    IS_POST_NORM = None\n    print(\"  >>> INCONCLUSIVE — both methods have significant diff\")\n\ntok_no_norm = logits_no_norm.argmax().item()\ntok_with_norm = logits_with_norm.argmax().item()\ntok_model = logits_model.argmax().item()\nprint(f\"\\nArgmax token at exit layer:\")\nprint(f\"  lm_head(hs):       {tok_no_norm}  (is_action={action_lo <= tok_no_norm <= action_hi})\")\nprint(f\"  lm_head(norm(hs)): {tok_with_norm}  (is_action={action_lo <= tok_with_norm <= action_hi})\")\nprint(f\"  model logits:      {tok_model}  (is_action={action_lo <= tok_model <= action_hi})\")\n\nprint(f\"\\nL2 norms across all hidden_states:\")\nfor li in [0, 1, 8, 16, 24, 31, 32]:\n    if li < n_hs:\n        h = out.hidden_states[li][0, last_pos, :]\n        hn = norm_fn(h.unsqueeze(0))[0]\n        print(f\"  hs[{li:2d}]: raw_norm={h.float().norm().item():.1f}, \"\n              f\"after_norm={hn.float().norm().item():.1f}\")\n\ndel out, inp\ntorch.cuda.empty_cache()\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 1 & 2: Exit layer predictions (10 samples)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 1: Exit layer prediction vs ground truth (teacher forcing)\")\nprint(\"=\"*70)\n\nall_gt_toks = []\nall_pred_correct = []\nall_pred_buggy = []\nall_gen_toks = []\nall_top5 = []\n\nfor i, (prompt, img, gt_action) in enumerate(samples):\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    \n    inp, _, _ = build_tf_input(prompt, img, gt_action)\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        out = model(**inp, output_hidden_states=True)\n    \n    seq_len = out.hidden_states[0].shape[1]\n    positions = list(range(seq_len - ACTION_DIM - 1, seq_len - 1))\n    hs_exit = out.hidden_states[n_hs-1][0, positions, :]\n    \n    # Correct method (based on Check 3)\n    if IS_POST_NORM:\n        logits_c = lm_head(hs_exit).float()\n    else:\n        logits_c = lm_head(norm_fn(hs_exit)).float()\n    pred_c = logits_c.argmax(dim=-1).cpu().numpy()\n    \n    # Buggy method (always apply norm)\n    logits_b = lm_head(norm_fn(hs_exit)).float()\n    pred_b = logits_b.argmax(dim=-1).cpu().numpy()\n    \n    # Model's own logits\n    pred_model = out.logits[0, positions, :].float().argmax(dim=-1).cpu().numpy()\n    \n    # Top-5\n    top5_ids = logits_c.topk(5, dim=-1).indices.cpu().numpy()\n    top5_hit = np.array([gt_toks[d] in top5_ids[d] for d in range(ACTION_DIM)])\n    \n    del out, inp\n    torch.cuda.empty_cache()\n    \n    # Autoregressive generation (manual)\n    gen_toks = autoregressive_generate(model, proc, prompt, img, norm_fn, lm_head)\n    \n    all_gt_toks.append(gt_toks)\n    all_pred_correct.append(pred_c)\n    all_pred_buggy.append(pred_b)\n    all_gen_toks.append(gen_toks)\n    all_top5.append(top5_hit)\n    \n    print(f\"\\nSample {i}:\")\n    print(f\"  GT action (raw):       [{', '.join(f'{x:.4f}' for x in gt_action)}]\")\n    print(f\"  GT action (norm):      [{', '.join(f'{x:.4f}' for x in gt_norm)}]\")\n    print(f\"  GT token IDs:          {gt_toks}\")\n    print(f\"  Exit layer (L{n_hs-1}, correct={'no-norm' if IS_POST_NORM else 'with-norm'}):\")\n    print(f\"    Argmax token IDs:    {pred_c}\")\n    print(f\"    De-tokenized:        [{', '.join(f'{x:.4f}' for x in tokens_to_norm(pred_c))}]\")\n    print(f\"    Match GT tokens?:    {(pred_c == gt_toks).tolist()}\")\n    print(f\"    Top-5 match?:        {top5_hit.tolist()}\")\n    print(f\"  Buggy (always norm):   {pred_b}\")\n    print(f\"    De-tokenized:        [{', '.join(f'{x:.4f}' for x in tokens_to_norm(pred_b))}]\")\n    print(f\"  Model logits argmax:   {pred_model}\")\n    print(f\"  Autoregressive gen:    {gen_toks}\")\n    print(f\"    Generated action:    [{', '.join(f'{x:.4f}' for x in tokens_to_norm(gen_toks))}]\")\n    print(f\"  Correct==Model:        {np.array_equal(pred_c, pred_model)}\")\n    print(f\"  Gen[0]==Correct[0]:    {gen_toks[0] == pred_c[0]}\")\n    \n    torch.cuda.empty_cache()\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 2: Token-level exact match rate\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 2: Token-level exact match rate summary\")\nprint(\"=\"*70)\n\ngt_a = np.array(all_gt_toks)\npc = np.array(all_pred_correct)\npb = np.array(all_pred_buggy)\nga = np.array(all_gen_toks)\nt5 = np.array(all_top5)\n\nem_c = (pc == gt_a)\nem_b = (pb == gt_a)\nem_g = (ga == gt_a)\n\nprint(f\"\\nCorrect method ({'no-norm' if IS_POST_NORM else 'with-norm'} for exit layer):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_c.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_c.mean():.4f}\")\nprint(f\"  Top-5 match per dim:  {np.array2string(t5.mean(axis=0).astype(float), precision=3)}\")\nprint(f\"  Overall top-5 match:  {t5.mean():.4f}\")\n\nprint(f\"\\nBuggy method (always norm):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_b.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_b.mean():.4f}\")\n\nprint(f\"\\nAutoregressive generate:\")\nprint(f\"  Exact match per dim:  {np.array2string(em_g.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_g.mean():.4f}\")\n\n# R²\ngt_norm_all = np.array([raw_to_norm(s[2]) for s in samples])\npn_c = np.array([tokens_to_norm(t) for t in pc])\npn_b = np.array([tokens_to_norm(t) for t in pb])\ngn_a = np.array([tokens_to_norm(t) for t in ga])\n\nss_tot = np.sum((gt_norm_all - gt_norm_all.mean(0))**2)\nr2_c = 1 - np.sum((pn_c - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_b = 1 - np.sum((pn_b - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_g = 1 - np.sum((gn_a - gt_norm_all)**2) / (ss_tot + 1e-12)\n\nprint(f\"\\nR² (exit layer, {N_SAMPLES} samples):\")\nprint(f\"  Correct method: {r2_c:.4f}\")\nprint(f\"  Buggy method:   {r2_b:.4f}\")\nprint(f\"  AR generate:    {r2_g:.4f}\")\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 4: Bin→continuous roundtrip\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 4: Bin→continuous roundtrip verification\")\nprint(\"=\"*70)\n\nfull_vocab = model.config.text_config.vocab_size\nprint(f\"Full vocab size (config):  {full_vocab}\")\nprint(f\"pad_to_multiple_of:        {model.config.pad_to_multiple_of}\")\nprint(f\"Effective vocab_size:      {vocab_size}\")\nprint(f\"n_action_bins:             {N_ACTION_BINS}\")\nprint(f\"Bin edges:                 {len(bins)} (range [{bins[0]:.4f}, {bins[-1]:.4f}])\")\nprint(f\"Bin centers:               {len(bin_centers)} (range [{bin_centers[0]:.4f}, {bin_centers[-1]:.4f}])\")\n\nprint(f\"\\nToken -> bin_idx -> value examples:\")\nfor tok in [vocab_size-1, vocab_size-128, vocab_size-255, vocab_size-256+1]:\n    bi = vocab_size - 1 - tok\n    if 0 <= bi < len(bin_centers):\n        print(f\"  Token {tok} -> bin {bi:3d} -> value {bin_centers[bi]:.4f}\")\n    else:\n        print(f\"  Token {tok} -> bin {bi:3d} -> OUT OF RANGE\")\n\nprint(f\"\\nRoundtrip: GT action -> normalize -> tokenize -> de-tokenize:\")\nfor i in range(min(3, len(samples))):\n    gn = raw_to_norm(samples[i][2])\n    gt = norm_to_tokens(gn)\n    rec = tokens_to_norm(gt)\n    print(f\"  Sample {i}: max error = {np.abs(gn - rec).max():.6f}\")\n    print(f\"    Norm:      [{', '.join(f'{x:.4f}' for x in gn)}]\")\n    print(f\"    Tokens:    {gt}\")\n    print(f\"    Recovered: [{', '.join(f'{x:.4f}' for x in rec)}]\")\n\n# Cross-check with model's own de-tokenization\nprint(f\"\\nCross-check with model.predict_action de-tokenization:\")\nprint(f\"  model.vocab_size = {model.vocab_size}\")\nprint(f\"  model.bin_centers shape = {model.bin_centers.shape}\")\ntest_toks = np.array([31900, 31950, 31800])\nour_decode = tokens_to_norm(test_toks)\nmodel_decode = model.bin_centers[np.clip(model.vocab_size - test_toks - 1, 0, model.bin_centers.shape[0] - 1)]\nprint(f\"  Test tokens:  {test_toks}\")\nprint(f\"  Our decode:   {our_decode}\")\nprint(f\"  Model decode: {model_decode}\")\nprint(f\"  Match: {np.allclose(our_decode, model_decode)}\")\n\nprint(f\"\\nDataset statistics (libero_goal):\")\nprint(f\"  Mean:  [{', '.join(f'{x:.4f}' for x in stats['mean'])}]\")\nprint(f\"  Std:   [{', '.join(f'{x:.4f}' for x in stats['std'])}]\")\nprint(f\"  q01:   [{', '.join(f'{x:.4f}' for x in stats['q01'])}]\")\nprint(f\"  q99:   [{', '.join(f'{x:.4f}' for x in stats['q99'])}]\")\nprint(f\"  Mask:  {stats['mask']}\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"ALL 4 CHECKS COMPLETE\")\nprint(\"=\"*70)\nPYEOF\necho \"Script updated\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat > /root/vla-ssd/scripts/sanity_check.py << 'PYEOF'\n\"\"\"Action-Head Decoding Sanity Check: 4 diagnostics on 10 samples.\"\"\"\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\nos.environ[\"HDF5_USE_FILE_LOCKING\"] = \"FALSE\"\n\nimport torch, json, glob, h5py\nimport numpy as np\nfrom PIL import Image\nfrom pathlib import Path\n\nCKPT = \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\"\nDATA_DIR = \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\"\nDEVICE = \"cuda:0\"\nN_ACTION_BINS = 256\nEMPTY_TOKEN = 29871\nACTION_DIM = 7\nN_SAMPLES = 10\n\n# ─── Load model ───\nprint(\"Loading model...\")\nfrom transformers import AutoProcessor\nfrom transformers.dynamic_module_utils import get_class_from_dynamic_module\n\nproc = AutoProcessor.from_pretrained(CKPT, trust_remote_code=True, local_files_only=True)\nModelClass = get_class_from_dynamic_module(\n    \"modeling_prismatic.OpenVLAForActionPrediction\", CKPT)\nmodel = ModelClass.from_pretrained(\n    CKPT, dtype=torch.bfloat16, low_cpu_mem_usage=True,\n    attn_implementation=\"eager\", local_files_only=True,\n).to(DEVICE).eval()\nprint(f\"Model loaded: {sum(p.numel() for p in model.parameters())/1e9:.1f}B params\")\n\n# ─── Codec ───\nstats = model.norm_stats[\"libero_goal\"][\"action\"]\nvocab_size = model.config.text_config.vocab_size - model.config.pad_to_multiple_of\nbins = np.linspace(-1, 1, N_ACTION_BINS)\nbin_centers = (bins[:-1] + bins[1:]) / 2.0\nq01 = np.array(stats[\"q01\"])\nq99 = np.array(stats[\"q99\"])\nmask_arr = np.array(stats[\"mask\"])\n\ndef raw_to_norm(action):\n    n = np.where(mask_arr, 2*(action - q01)/(q99 - q01 + 1e-8) - 1, action)\n    return np.clip(n, -1, 1)\n\ndef norm_to_tokens(norm_action):\n    idx = np.clip(np.digitize(norm_action, bins) - 1, 0, N_ACTION_BINS - 2)\n    return vocab_size - 1 - idx\n\ndef tokens_to_norm(token_ids):\n    d = np.clip(vocab_size - token_ids - 1, 0, len(bin_centers) - 1)\n    return bin_centers[d]\n\nnorm_fn = model.language_model.model.norm\nlm_head = model.language_model.lm_head\naction_lo = vocab_size - N_ACTION_BINS + 1\naction_hi = vocab_size - 1\n\n# ─── Load samples ───\nhdf5_files = sorted(glob.glob(os.path.join(DATA_DIR, \"*_demo.hdf5\")))\nsamples = []\nfor hf_path in hdf5_files:\n    task = Path(hf_path).stem.replace(\"_demo\", \"\").replace(\"_\", \" \")\n    prompt = f\"In: What action should the robot take to {task}?\\nOut:\"\n    with h5py.File(hf_path, \"r\") as hf:\n        dk = sorted(hf[\"data\"].keys(), key=lambda x: int(x.split(\"_\")[1]))[0]\n        imgs = np.array(hf[f\"data/{dk}/obs/agentview_rgb\"])\n        acts = np.array(hf[f\"data/{dk}/actions\"])\n    samples.append((prompt, Image.fromarray(imgs[0]), acts[0]))\n    if len(samples) >= N_SAMPLES:\n        break\n\nprint(f\"Loaded {len(samples)} samples from {len(hdf5_files)} tasks\")\nprint(f\"Effective vocab_size: {vocab_size}\")\nprint(f\"Action token range: [{action_lo}, {action_hi}]\")\n\ndef build_tf_input(prompt, img, gt_action):\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    inp = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\n    if inp[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    act_ids = torch.tensor(gt_toks, dtype=torch.long, device=DEVICE).unsqueeze(0)\n    inp[\"input_ids\"] = torch.cat([inp[\"input_ids\"], act_ids], dim=1)\n    if \"attention_mask\" in inp:\n        inp[\"attention_mask\"] = torch.cat([\n            inp[\"attention_mask\"],\n            torch.ones(1, ACTION_DIM, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n        ], dim=1)\n    return inp, gt_norm, gt_toks\n\n@torch.no_grad()\ndef autoregressive_generate(model, proc, prompt, img, norm_fn, lm_head):\n    \"\"\"Manual autoregressive generation (7 action tokens).\"\"\"\n    inp = proc(text=prompt, images=img, return_tensors=\"pt\")\n    inp = {k: v.to(DEVICE) for k, v in inp.items()}\n    if inp[\"input_ids\"][0, -1].item() != EMPTY_TOKEN:\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[EMPTY_TOKEN]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n    \n    gen_tokens = []\n    for step in range(ACTION_DIM):\n        with torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n            out = model(**inp, output_hidden_states=False)\n        logits = out.logits[0, -1, :].float()\n        next_tok = logits.argmax().item()\n        gen_tokens.append(next_tok)\n        inp[\"input_ids\"] = torch.cat([\n            inp[\"input_ids\"],\n            torch.tensor([[next_tok]], dtype=torch.long, device=DEVICE)\n        ], dim=1)\n        if \"attention_mask\" in inp:\n            inp[\"attention_mask\"] = torch.cat([\n                inp[\"attention_mask\"],\n                torch.ones(1, 1, dtype=inp[\"attention_mask\"].dtype, device=DEVICE)\n            ], dim=1)\n        del out\n    return np.array(gen_tokens)\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 3: Double-norm bug (most critical — run first)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 3: Double-norm bug verification\")\nprint(\"=\"*70)\n\ninp, _, _ = build_tf_input(*samples[0])\nwith torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n    out = model(**inp, output_hidden_states=True)\n\nn_hs = len(out.hidden_states)\nprint(f\"Number of hidden states: {n_hs}\")\nfor idx in [0, 1, n_hs-2, n_hs-1]:\n    print(f\"  hidden_states[{idx}] shape: {out.hidden_states[idx].shape}\")\n\nlast_pos = out.hidden_states[0].shape[1] - 2\nhs_exit = out.hidden_states[n_hs-1][0, last_pos, :]\n\nlogits_no_norm = lm_head(hs_exit.unsqueeze(0)).float()[0]\nlogits_with_norm = lm_head(norm_fn(hs_exit.unsqueeze(0))).float()[0]\nlogits_model = out.logits[0, last_pos, :].float()\n\ndiff_no_norm = (logits_no_norm - logits_model).abs().max().item()\ndiff_with_norm = (logits_with_norm - logits_model).abs().max().item()\nmean_diff_no = (logits_no_norm - logits_model).abs().mean().item()\nmean_diff_with = (logits_with_norm - logits_model).abs().mean().item()\n\nprint(f\"\\nmodel.language_model.model.norm type: {type(norm_fn)}\")\nprint(f\"hidden_states[{n_hs-1}] (exit) L2 norm:  {hs_exit.float().norm().item():.4f}\")\nprint(f\"After applying norm, L2 norm:            {norm_fn(hs_exit.unsqueeze(0)).float().norm().item():.4f}\")\n\nprint(f\"\\nLogits comparison at position {last_pos}:\")\nprint(f\"  lm_head(hs) vs model logits:       max={diff_no_norm:.6f}, mean={mean_diff_no:.6f}\")\nprint(f\"  lm_head(norm(hs)) vs model logits: max={diff_with_norm:.6f}, mean={mean_diff_with:.6f}\")\n\nif diff_no_norm < 0.1 and diff_no_norm < diff_with_norm:\n    IS_POST_NORM = True\n    print(\"  >>> FINDING: hidden_states[-1] is POST-norm\")\n    print(\"  >>> Applying norm again = DOUBLE-NORM BUG!\")\n    print(\"  >>> FIX: For exit layer, use lm_head(hs) directly\")\nelif diff_with_norm < 0.1 and diff_with_norm < diff_no_norm:\n    IS_POST_NORM = False\n    print(\"  >>> FINDING: hidden_states[-1] is PRE-norm\")\n    print(\"  >>> Current code (apply norm) is correct\")\nelse:\n    IS_POST_NORM = None\n    print(\"  >>> INCONCLUSIVE — both methods have significant diff\")\n\ntok_no_norm = logits_no_norm.argmax().item()\ntok_with_norm = logits_with_norm.argmax().item()\ntok_model = logits_model.argmax().item()\nprint(f\"\\nArgmax token at exit layer:\")\nprint(f\"  lm_head(hs):       {tok_no_norm}  (is_action={action_lo <= tok_no_norm <= action_hi})\")\nprint(f\"  lm_head(norm(hs)): {tok_with_norm}  (is_action={action_lo <= tok_with_norm <= action_hi})\")\nprint(f\"  model logits:      {tok_model}  (is_action={action_lo <= tok_model <= action_hi})\")\n\nprint(f\"\\nL2 norms across all hidden_states:\")\nfor li in [0, 1, 8, 16, 24, 31, 32]:\n    if li < n_hs:\n        h = out.hidden_states[li][0, last_pos, :]\n        hn = norm_fn(h.unsqueeze(0))[0]\n        print(f\"  hs[{li:2d}]: raw_norm={h.float().norm().item():.1f}, \"\n              f\"after_norm={hn.float().norm().item():.1f}\")\n\ndel out, inp\ntorch.cuda.empty_cache()\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 1 & 2: Exit layer predictions (10 samples)\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 1: Exit layer prediction vs ground truth (teacher forcing)\")\nprint(\"=\"*70)\n\nall_gt_toks = []\nall_pred_correct = []\nall_pred_buggy = []\nall_gen_toks = []\nall_top5 = []\n\nfor i, (prompt, img, gt_action) in enumerate(samples):\n    gt_norm = raw_to_norm(gt_action)\n    gt_toks = norm_to_tokens(gt_norm)\n    \n    inp, _, _ = build_tf_input(prompt, img, gt_action)\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        out = model(**inp, output_hidden_states=True)\n    \n    seq_len = out.hidden_states[0].shape[1]\n    positions = list(range(seq_len - ACTION_DIM - 1, seq_len - 1))\n    hs_exit = out.hidden_states[n_hs-1][0, positions, :]\n    \n    # Correct method (based on Check 3)\n    if IS_POST_NORM:\n        logits_c = lm_head(hs_exit).float()\n    else:\n        logits_c = lm_head(norm_fn(hs_exit)).float()\n    pred_c = logits_c.argmax(dim=-1).cpu().numpy()\n    \n    # Buggy method (always apply norm)\n    logits_b = lm_head(norm_fn(hs_exit)).float()\n    pred_b = logits_b.argmax(dim=-1).cpu().numpy()\n    \n    # Model's own logits\n    pred_model = out.logits[0, positions, :].float().argmax(dim=-1).cpu().numpy()\n    \n    # Top-5\n    top5_ids = logits_c.topk(5, dim=-1).indices.cpu().numpy()\n    top5_hit = np.array([gt_toks[d] in top5_ids[d] for d in range(ACTION_DIM)])\n    \n    del out, inp\n    torch.cuda.empty_cache()\n    \n    # Autoregressive generation (manual)\n    gen_toks = autoregressive_generate(model, proc, prompt, img, norm_fn, lm_head)\n    \n    all_gt_toks.append(gt_toks)\n    all_pred_correct.append(pred_c)\n    all_pred_buggy.append(pred_b)\n    all_gen_toks.append(gen_toks)\n    all_top5.append(top5_hit)\n    \n    print(f\"\\nSample {i}:\")\n    print(f\"  GT action (raw):       [{', '.join(f'{x:.4f}' for x in gt_action)}]\")\n    print(f\"  GT action (norm):      [{', '.join(f'{x:.4f}' for x in gt_norm)}]\")\n    print(f\"  GT token IDs:          {gt_toks}\")\n    print(f\"  Exit layer (L{n_hs-1}, correct={'no-norm' if IS_POST_NORM else 'with-norm'}):\")\n    print(f\"    Argmax token IDs:    {pred_c}\")\n    print(f\"    De-tokenized:        [{', '.join(f'{x:.4f}' for x in tokens_to_norm(pred_c))}]\")\n    print(f\"    Match GT tokens?:    {(pred_c == gt_toks).tolist()}\")\n    print(f\"    Top-5 match?:        {top5_hit.tolist()}\")\n    print(f\"  Buggy (always norm):   {pred_b}\")\n    print(f\"    De-tokenized:        [{', '.join(f'{x:.4f}' for x in tokens_to_norm(pred_b))}]\")\n    print(f\"  Model logits argmax:   {pred_model}\")\n    print(f\"  Autoregressive gen:    {gen_toks}\")\n    print(f\"    Generated action:    [{', '.join(f'{x:.4f}' for x in tokens_to_norm(gen_toks))}]\")\n    print(f\"  Correct==Model:        {np.array_equal(pred_c, pred_model)}\")\n    print(f\"  Gen[0]==Correct[0]:    {gen_toks[0] == pred_c[0]}\")\n    \n    torch.cuda.empty_cache()\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 2: Token-level exact match rate\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 2: Token-level exact match rate summary\")\nprint(\"=\"*70)\n\ngt_a = np.array(all_gt_toks)\npc = np.array(all_pred_correct)\npb = np.array(all_pred_buggy)\nga = np.array(all_gen_toks)\nt5 = np.array(all_top5)\n\nem_c = (pc == gt_a)\nem_b = (pb == gt_a)\nem_g = (ga == gt_a)\n\nprint(f\"\\nCorrect method ({'no-norm' if IS_POST_NORM else 'with-norm'} for exit layer):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_c.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_c.mean():.4f}\")\nprint(f\"  Top-5 match per dim:  {np.array2string(t5.mean(axis=0).astype(float), precision=3)}\")\nprint(f\"  Overall top-5 match:  {t5.mean():.4f}\")\n\nprint(f\"\\nBuggy method (always norm):\")\nprint(f\"  Exact match per dim:  {np.array2string(em_b.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_b.mean():.4f}\")\n\nprint(f\"\\nAutoregressive generate:\")\nprint(f\"  Exact match per dim:  {np.array2string(em_g.mean(axis=0), precision=3)}\")\nprint(f\"  Overall exact match:  {em_g.mean():.4f}\")\n\n# R²\ngt_norm_all = np.array([raw_to_norm(s[2]) for s in samples])\npn_c = np.array([tokens_to_norm(t) for t in pc])\npn_b = np.array([tokens_to_norm(t) for t in pb])\ngn_a = np.array([tokens_to_norm(t) for t in ga])\n\nss_tot = np.sum((gt_norm_all - gt_norm_all.mean(0))**2)\nr2_c = 1 - np.sum((pn_c - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_b = 1 - np.sum((pn_b - gt_norm_all)**2) / (ss_tot + 1e-12)\nr2_g = 1 - np.sum((gn_a - gt_norm_all)**2) / (ss_tot + 1e-12)\n\nprint(f\"\\nR² (exit layer, {N_SAMPLES} samples):\")\nprint(f\"  Correct method: {r2_c:.4f}\")\nprint(f\"  Buggy method:   {r2_b:.4f}\")\nprint(f\"  AR generate:    {r2_g:.4f}\")\n\n# ═══════════════════════════════════════════════════════════════════════\n# CHECK 4: Bin→continuous roundtrip\n# ═══════════════════════════════════════════════════════════════════════\nprint(\"\\n\" + \"=\"*70)\nprint(\"CHECK 4: Bin→continuous roundtrip verification\")\nprint(\"=\"*70)\n\nfull_vocab = model.config.text_config.vocab_size\nprint(f\"Full vocab size (config):  {full_vocab}\")\nprint(f\"pad_to_multiple_of:        {model.config.pad_to_multiple_of}\")\nprint(f\"Effective vocab_size:      {vocab_size}\")\nprint(f\"n_action_bins:             {N_ACTION_BINS}\")\nprint(f\"Bin edges:                 {len(bins)} (range [{bins[0]:.4f}, {bins[-1]:.4f}])\")\nprint(f\"Bin centers:               {len(bin_centers)} (range [{bin_centers[0]:.4f}, {bin_centers[-1]:.4f}])\")\n\nprint(f\"\\nToken -> bin_idx -> value examples:\")\nfor tok in [vocab_size-1, vocab_size-128, vocab_size-255, vocab_size-256+1]:\n    bi = vocab_size - 1 - tok\n    if 0 <= bi < len(bin_centers):\n        print(f\"  Token {tok} -> bin {bi:3d} -> value {bin_centers[bi]:.4f}\")\n    else:\n        print(f\"  Token {tok} -> bin {bi:3d} -> OUT OF RANGE\")\n\nprint(f\"\\nRoundtrip: GT action -> normalize -> tokenize -> de-tokenize:\")\nfor i in range(min(3, len(samples))):\n    gn = raw_to_norm(samples[i][2])\n    gt = norm_to_tokens(gn)\n    rec = tokens_to_norm(gt)\n    print(f\"  Sample {i}: max error = {np.abs(gn - rec).max():.6f}\")\n    print(f\"    Norm:      [{', '.join(f'{x:.4f}' for x in gn)}]\")\n    print(f\"    Tokens:    {gt}\")\n    print(f\"    Recovered: [{', '.join(f'{x:.4f}' for x in rec)}]\")\n\n# Cross-check with model's own de-tokenization\nprint(f\"\\nCross-check with model.predict_action de-tokenization:\")\nprint(f\"  model.vocab_size = {model.vocab_size}\")\nprint(f\"  model.bin_centers shape = {model.bin_centers.shape}\")\ntest_toks = np.array([31900, 31950, 31800])\nour_decode = tokens_to_norm(test_toks)\nmodel_decode = model.bin_centers[np.clip(model.vocab_size - test_toks - 1, 0, model.bin_centers.shape[0] - 1)]\nprint(f\"  Test tokens:  {test_toks}\")\nprint(f\"  Our decode:   {our_decode}\")\nprint(f\"  Model decode: {model_decode}\")\nprint(f\"  Match: {np.allclose(our_decode, model_decode)}\")\n\nprint(f\"\\nDataset statistics (libero_goal):\")\nprint(f\"  Mean:  [{', '.join(f'{x:.4f}' for x in stats['mean'])}]\")\nprint(f\"  Std:   [{', '.join(f'{x:.4f}' for x in stats['std'])}]\")\nprint(f\"  q01:   [{', '.join(f'{x:.4f}' for x in stats['q01'])}]\")\nprint(f\"  q99:   [{', '.join(f'{x:.4f}' for x in stats['q99'])}]\")\nprint(f\"  Mask:  {stats['mask']}\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"ALL 4 CHECKS COMPLETE\")\nprint(\"=\"*70)\nPYEOF\necho \"Script updated\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-26T20:07:24.150550+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-26T20:07:24.150695+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/sanity_check.py > /tmp/sanity_check.log 2>&1 &\necho \"PID: $!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-26T20:07:24.150826+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 964314\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.2}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-26T20:07:24.150997+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -20 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -20 /tmp/sanity_check.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-26T20:07:24.151152+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    Recovered: [0.0706, -0.0941, -0.0627, -0.1490, -0.2196, -0.4627, -0.9961]\\n\\nCross-check with model.predict_action de-tokenization:\\n  model.vocab_size = 32000\\n  model.bin_centers shape = (255,)\\n  Test tokens:  [31900 31950 31800]\\n  Our decode:   [-0.21960784 -0.61176471  0.56470588]\\n  Model decode: [-0.21960784 -0.61176471  0.56470588]\\n  Match: True\\n\\nDataset statistics (libero_goal):\\n  Mean:  [0.0472, 0.0288, -0.1486, -0.0025, 0.0264, 0.0274, 0.6300]\\n  Std:   [0.3969, 0.3473, 0.4924, 0.0553, 0.0784, 0.1001, 0.4827]\\n  q01:   [-0.8786, -0.7554, -0.9375, -0.1511, -0.1639, -0.1378, 0.0000]\\n  q99:   [0.9375, 0.9107, 0.9375, 0.2036, 0.2636, 0.3750, 1.0000]\\n  Mask:  [True, True, True, True, True, True, False]\\n\\n======================================================================\\nALL 4 CHECKS COMPLETE\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-26T20:07:24.151323+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /tmp/sanity_check.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-26T20:07:24.151563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\nExpected `transformers==4.40
+…[truncated 6425 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-26T20:07:24.151777+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -80 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "head -80 /tmp/sanity_check.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-26T20:07:24.151910+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -l /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "wc -l /tmp/sanity_check.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-26T20:07:24.152149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\n[transformers] PrismaticForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n[transformers] OpenVLAForActionPrediction has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\nExpected `transformers==4.40
+…[truncated 5184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-26T20:07:24.152314+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"305 /tmp/sanity_check.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-26T20:07:24.152441+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +80 /tmp/sanity_check.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "tail -n +80 /tmp/sanity_check.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-26T20:07:24.152659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Gen[0]==Correct[0]:    True\\n\\nSample 1:\\n  GT action (raw):       [0.4045, 0.0000, -0.0000, -0.0386, 0.0761, -0.0000, -1.0000]\\n  GT action (norm):      [0.4130, -0.0932, -0.0000, -0.3656, 0.1228, -0.4626, -1.0000]\\n  GT token IDs:          [31819 31884 31872 31919 31856 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935 31935 31935]\\n  Autoregressive gen:    [31935 31935 31935 31935 31935 31935 31935]\\n    Generated action:    [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Correct==Model:        True\\n  Gen[0]==Correct[0]:    True\\n\\nSample 2:\\n  GT action (raw):       [0.0964, 0.0000, -0.0563, 0.0000, 0.0021, -0.0000, -1.0000]\\n  GT action (norm):      [0.0737, -0.0932, -0.0600, -0.1480, -0.2231, -0.4626, -1.0000]\\n  GT token IDs:          [31863 31884 31880 31891 31900 31931 31999]\\n  Exit layer (L32, correct=no-norm):\\n    Argmax token IDs:    [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n    Match GT tokens?:    [False, False, False, False, False, False, False]\\n    Top-5 match?:        [False, False, False, False, False, False, False]\\n  Buggy (always norm):   [31935 31935 31935 31935 31935 31935 31935]\\n    De-tokenized:        [-0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941, -0.4941]\\n  Model logits argmax:   [31935 31935 31935 31935 31935
+…[truncated 6510 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_action_head_sanity_check_20260526T195505",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-26T20:07:24.152899+00:00_
+
+4 项检查全部完成。以下是完整诊断结果。
+
+---
+
+## 完整诊断结果
+
+### CHECK 3: Double-norm bug — **确认存在，但非主因**
+
+```
+hidden_states[32] IS POST-norm (已经过 RMSNorm)
+  lm_head(hs) vs model logits:       max=0.0625  ← 几乎一致 (bfloat16 精度)
+  lm_head(norm(hs)) vs model logits: max=1.3125  ← 显著偏差
+
+L2 norms:
+  hs[ 0]: raw=1.1,   after_norm=118.7
+  hs[31]: raw=193.3,  after_norm=114.9
+  hs[32]: raw=114.8,  after_norm=120.1  ← 已经是 post-norm，再 norm 变化不大
+```
+
+**结论**: `hidden_states[32]` 确实是 post-norm 的（HuggingFace LlamaModel 在返回 `all_hidden_states` 最后一个元素前已经过 `model.norm`）。原始脚本对所有层统一做 `lm_head(norm(hs))`，exit layer 被 double-norm。**但在当前情况下，double-norm 并不改变 argmax token（两种方法都输出 31935）**。
+
+### CHECK 1 & 2: Exit layer 预测 — **模型输出完全退化**
+
+**所有 10 个样本、所有 7 个 action 维度，无论 teacher-forcing 还是 autoregressive，model 都只输出 token 31935（=-0.4941）。**
+
+```
+Sample 0:  GT=[31844 31881 31872 31908 31810 31923 31999]
+           Pred=[31935 31935 31935 31935 31935 31935 31935]  (all methods)
+Sample 1:  GT=[31819 31884 31872 31919 31856 31931 31999]
+           Pred=[31935 31935 31935 31935 31935 31935 31935]
+...
+Sample 9:  GT=[31836 31863 31872 31891 31825 31964 31999]
+           Pred=[31935 31935 31935 31935 31935 31935 31935]
+
+Exact match:  0.0000 (ALL methods)
+Top-5 match:  0.0143
+R²:           -11.6231 (ALL methods — correct/buggy/autoregressive 都一样)
+```
+
+### CHECK 4: Bin→continuous 反量化 — **无 bug**
+
+```
+Roundtrip max error: 0.003922 (仅 bin 量化误差)
+De-tokenization 与 model.predict_action 一致: True
+```
+
+---
+
+## 根因分析
+
+**Double-norm 不是主因。** 主因是 **transformers 版本不兼容**：
+
+```
+Expected: transformers==4.40.1, tokenizers==0.19.1
+Got:      transformers==5.9.0,  tokenizers==0.22.2
+```
+
+模型在所有输入下都坍缩到同一个 token（31935 = -0.4941），包括自回归生成也是如此。这说明模型权重在 transformers 5.9.0 下没有被正确加载或推理行为已改变。LlamaModel 在 4.x → 5.x 之间有显著架构变化。
+
+**建议下一步**: 降级 transformers 到 4.40.1 后重新运行验证，或者在正确版本环境中跑 `model.predict_action()` 确认模型本身推理正常。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_action_head_sanity_check_20260526T195505"
+}
+```
+
+</details>
+
+---

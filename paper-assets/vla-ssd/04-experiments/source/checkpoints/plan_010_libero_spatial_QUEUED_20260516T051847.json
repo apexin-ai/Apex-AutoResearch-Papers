@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_010_libero_spatial",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:54:15.423Z",
+    "updated_at": "2026-05-16T05:18:47.022Z",
+    "hypothesis": "Cross-benchmark validation on LIBERO-Spatial: do the core patterns (C1 vision encoder dominance, C2 LLM inverted-U transformation, C3 training redistribution) replicate on a different LIBERO suite? Trained model is LIBERO-Goal fine-tuned (out-of-distribution for Spatial), testing generalization of representational structure."
+  },
+  "timestamp": "2026-05-16T05:18:47.167465+00:00",
+  "trigger": "update_registry"
+}

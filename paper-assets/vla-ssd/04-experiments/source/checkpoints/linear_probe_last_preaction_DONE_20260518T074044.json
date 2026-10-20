@@ -1,0 +1,66 @@
+{
+  "exp_id": "linear_probe_last_preaction",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:11:47.015Z",
+    "updated_at": "2026-05-18T07:40:44.628Z",
+    "hypothesis": "The inverted-U R2 curve and trained > untrained pattern observed with MLP probes at the last_preaction token position will persist with a linear probe (Linear(4096,7)), confirming these patterns are not artifacts of probe capacity.",
+    "parent": "plan_011_fulllayer_r2",
+    "server": "westd-19183",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-18T06:44:29.493Z"
+    },
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=1 python scripts/linear_probe_last_preaction.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/{trained,untrained}_libero_goal/",
+      "data_count": "10 tasks x 50 demos x 2 conditions x 33 layers",
+      "model_name": "Linear(4096,7)",
+      "seed": 42,
+      "checkpoint_source": "fulllayer_action_probe features (pre-extracted)",
+      "eval_data": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "checkpoint_path": "N/A (probe experiment)",
+      "log_path": "/root/autodl-tmp/vla-ssd/logs/linear_probe_last_preaction.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "readout": "last_preaction",
+      "probe_type": "linear",
+      "trained_peak_layer": 13,
+      "trained_peak_R2": 0.596,
+      "untrained_peak_layer": 1,
+      "untrained_peak_R2": 0.492,
+      "inverted_U_trained": true,
+      "trained_gt_untrained_at_peak": true,
+      "bootstrap_best_vs_best": {
+        "delta": 0.103,
+        "ci": [
+          0.056,
+          0.167
+        ],
+        "p": 0
+      },
+      "bootstrap_same_layer_trained_peak": {
+        "delta": 0.513,
+        "ci": [
+          0.314,
+          0.789
+        ],
+        "p": 0
+      },
+      "mlp_trained_peak_R2_L13": 0.678,
+      "linear_vs_mlp_gap_at_peak": -0.082,
+      "result_path": "/root/autodl-tmp/vla-ssd/results/linear_probe_last_preaction.json"
+    },
+    "completed_at": "2026-05-18T07:40:44.628Z"
+  },
+  "timestamp": "2026-05-18T07:40:44.785647+00:00",
+  "trigger": "update_registry"
+}

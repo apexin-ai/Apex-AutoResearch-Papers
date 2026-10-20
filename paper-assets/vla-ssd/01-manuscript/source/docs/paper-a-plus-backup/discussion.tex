@@ -1,0 +1,27 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Synthesis.}
+Our experiments reveal a coherent picture of how action-relevant structure flows through a VLA.
+The vision encoder is the \emph{source}: self-supervised DINOv2 achieves the highest geometric alignment ($\rho = 0.692$), exceeding all VLA internal representations.
+The LLM is a \emph{non-monotonic transformer}: early layers enhance alignment above the projector input, middle layers peak, and late layers degrade it---a pattern confirmed in both RSA and probe $R^2$.
+Training \emph{redistributes geometry but enhances decodability}: it shifts the RSA peak from L0 to L12 with at most a modest geometric gain ($\Delta = 0.017$--$0.023$, $3$--$4\%$ of baseline across two benchmarks), while substantially improving $R^2$ ($\Delta = +0.015$ to $+0.069$, $p \leq 0.006$)---redistribution dominates over creation.
+
+\paragraph{RSA--$R^2$ peak offset.}
+The $R^2$ plateau (L8--L16) encompasses and partially precedes the RSA peak (L12), indicating that maximal geometric alignment does not coincide with maximal decodability.
+Training causes these peaks to converge on LIBERO-Goal (RSA L12, $R^2$ L13) but not on LIBERO-Spatial (6-layer gap), suggesting benchmark-specific alignment.
+
+\paragraph{Token-level functional specialization.}
+The cross-instruction probe reveals a strict division of labor: image tokens encode pure visual information (instruction classification at chance across all layers), while the readout token serves as a multimodal convergence point maintaining instruction identity from L1 onward.
+This specialization suggests that the LLM's value lies in signal preservation and routing rather than new computation: training effects on image\_mean metrics are modest ($\Delta \leq 1.7\%$), but effects on readout-token metrics are substantial (routing $+18$pp, attention $+46$pp; Appendix~\ref{sec:training_effect_summary}), confirming that training primarily reshapes readout-token information integration rather than visual representations.
+
+\paragraph{Implications for VLA design.}
+Vision encoder pretraining quality is the primary design lever; investing in stronger self-supervised encoders may yield larger gains than scaling the LLM.
+Representations from middle layers (L8--L13) at the readout token are preferable to the projector output or final layer, and instruction invariance ($|\Delta| < 0.006$) suggests instructions influence action selection through a mechanism other than modulating visual geometry~\cite{grant2026}.
+
+\paragraph{Limitations.}
+We study a single model family (OpenVLA-7B) on two LIBERO suites; generalization to other architectures (e.g., RT-2~\cite{brohan2023_rt2}, $\pi_0$~\cite{black2024_pi0}) and domains remains to be established.
+RSA does not establish causal contribution---high RSA does not guarantee that the representation is causally used by the policy.
+Cross-benchmark replication (LIBERO-Spatial $\Delta = 0.023$, $p < 0.001$) suggests the LIBERO-Goal RSA CI (incl.\ zero) reflects limited power rather than a true null, but the effect remains small ($3$--$4\%$ of baseline).
+The non-monotonic pattern is described at the level of layer-averaged RSA; individual tasks or action dimensions may show different profiles.
+Finally, our analyses characterize frozen representations post hoc; they do not address whether architectural interventions (e.g., early exit at L12) would alter the patterns we observe.

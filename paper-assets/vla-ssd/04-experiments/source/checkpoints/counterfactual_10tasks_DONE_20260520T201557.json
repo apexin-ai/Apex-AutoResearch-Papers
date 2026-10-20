@@ -1,0 +1,55 @@
+{
+  "exp_id": "counterfactual_10tasks",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:49:07.422Z",
+    "updated_at": "2026-05-20T20:15:57.414Z",
+    "hypothesis": "Counterfactual instruction sensitivity (wrong/empty/shuffled/paraphrased) observed in 3 LIBERO-Goal tasks generalizes to all 10 tasks with consistent effect ordering (empty > wrong > paraphrased > shuffled) and low cross-task variance in Cohen's d",
+    "spec": {
+      "command": "python scripts/counterfactual_instruction_10tasks.py",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "486952",
+      "log_path": "~/runs/vla-ssd/counterfactual_10tasks.log",
+      "submitted_at": "2026-05-20T18:50:54.497Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks x 10 demos x 50 timesteps = 5000 samples",
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json",
+      "wall_clock_seconds": 5102.9,
+      "gpu_hours": 1.42
+    },
+    "parent": "counterfactual_instruction",
+    "metrics": {
+      "global_cohens_d": {
+        "empty": 0.978,
+        "wrong": 0.924,
+        "shuffled": 0.763,
+        "paraphrased": 0.707
+      },
+      "cross_task_cv": {
+        "empty": 0.171,
+        "wrong": 0.274,
+        "shuffled": 0.185,
+        "paraphrased": 0.296
+      },
+      "effect_ordering": "empty > wrong > shuffled > paraphrased",
+      "n_tasks": 10,
+      "n_samples_per_condition": 5000
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T20:15:57.414Z"
+  },
+  "timestamp": "2026-05-20T20:15:57.626557+00:00",
+  "trigger": "update_registry"
+}

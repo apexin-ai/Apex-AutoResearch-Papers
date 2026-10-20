@@ -1,0 +1,28 @@
+Model: CLIP ViT-L/14 (openai)
+Best feature key: patch_mean
+Best RSA: 0.5572
+CI95: [0.4419, 0.6598]
+
+cls_token RSA: 0.5062, CI95: [0.3912, 0.6081]
+
+Per-task RSA (patch_mean):
+  open_middle_drawer: 0.6333
+  open_top_drawer_put_bowl: 0.7767
+  push_plate: 0.7833
+  put_bowl_plate: 0.5244
+  put_bowl_stove: 0.3199
+  put_bowl_cabinet: 0.5828
+  put_cream_cheese: 0.6369
+  put_wine_rack: 0.6035
+  put_wine_cabinet: 0.4762
+  turn_on_stove: 0.2350
+
+Comparison table:
+  SigLIP+projector: 0.615
+  CLIP ViT-L/14:    0.557
+  SigLIP only:      0.488
+  Trained VLA:      0.488
+  Untrained VLA:    0.485
+  DINO:             0.388
+
+Conclusion: Action-relevant structure is a general property of VL-pretrained encoders, not SigLIP-specific.

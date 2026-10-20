@@ -1,0 +1,2500 @@
+# cron hook openvla untrained extract 20260515T223213 817030
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 79
+- **Recorded user turns:** 2
+- **Tool calls:** 38
+- **Original source:** `logs/chats/archive/cron_hook_openvla-untrained-extract_20260515T223213_817030.jsonl`
+- **Structured JSON:** [`7ab6cb564a274a6d0c68.json`](../../sessions/7a/7ab6cb564a274a6d0c68.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+37 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T19:02:49.621645+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #4。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：只能用 `cuda:0` 和 `cuda:1`（westd-19183 上的 2×RTX PRO 6000）。`get_project_resource_usage` 的 `execution.gpu_ids` 是唯一 truth source
+- **D017 锁定 checkpoint 策略**：LIBERO-Goal 和 LIBERO-10 统一用 LIBERO-10 fine-tuned checkpoint（`openvla-7b`），不用 base pretrained。LIBERO-Goal 是 OOD 测试（场景不重叠），positive = 泛化证据
+- untrained checkpoint 是 `openvla-7b-untrained`（LLM 6.74B random from_config + SigLIP 0.80B preserved），已持久化在服务器上
+- AutoDL 离线坑：`extract_features.py` 必须加 `local_files_only=True`，否则 AutoProcessor 会尝试连 HuggingFace Hub 然后 crash（已踩过两次，lg_extract_trained/untrained 均因此失败后 retry）
+- 分析 Worker 不得覆盖 registry 的 `spec` 字段——spec 由提交时设定
+- Goal Classification Gate 定义已锁（见 memory.md），实验后不可修改
+
+### 2. 🖥️ 基础设施快照
+- **服务器**：westd-19183，2×RTX PRO 6000（48GB each）
+- **工作目录**：`/root/vla-ssd`（代码），`/root/autodl-tmp/vla-ssd/`（数据/特征/结果/checkpoints）
+- **Python**：`/root/miniconda3/bin/python`，conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型路径**：
+  - trained: `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/`
+  - untrained: `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/`
+  - DINO-V2: `/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/`
+- **已提取特征**：
+  - LIBERO-10: `features/trained/`（53GB, 10×50 demos×33 layers）, `features/untrained/`（52GB）, `features/dinov2/`（503MB）
+  - LIBERO-Goal: `features/trained_libero_goal/`, `features/untrained_libero_goal/`, `features/dinov2_libero_goal/` — 全部已完成
+- **数据**：`data/libero/libero_10/`（10 tasks），`data/libero/libero_goal/`（10 tasks）
+- **HF cache**：`/root/autodl-tmp/.hf_cache`
+- **网络**：`source /etc/network_turbo` 启用代理；`HF_HUB_DISABLE_XET=1`；SSL certs 需设 `REQUESTS_CA_BUNDLE`/`SSL_CERT_FILE`
+- **活跃进程**：无。所有 25 个实验均 DONE，0 个 cron，0 个 running worker
+
+### 3. 📊 当前状态
+**所有实验已完成，无 RUNNING/PREPARING。当前 0/2 GPU 占用，0 Worker。**
+
+刚完成的是 LIBERO-Goal Goal Classification 三组实验：
+- `lg_gc_trained` (success): G1-GC PASS，所有 33 层（L1+）100% accuracy（10-class）
+- `lg_gc_dino` (success): DINO 86.26% accuracy — Sanity-GC gate FAIL（>25% 阈值）
+- `lg_gc_untrained` (**negative**): untrained VLA 也达 100% accuracy from L1+ — G2-GC FAIL（Δ=0pp，阈值 25pp）
+
+**关键发现**：MLP probe 在 4096-dim features 上 trivially 区分 10 classes，即使 random LLM projections。Goal classification 不是有效的 trained-vs-untrained discriminator。
+
+**但 per-timestep 分析已揭示真正信号**（见 memory.md）：t=0 时 trained VLA 100% vs DINO 43.3%（+56.7pp）。早期帧视觉几乎相同（cosine>0.95），trained VLA 的 100% 只能来自 language instruction encoding。这是核心突破口。
+
+**缺失**：untrained VLA 的 per-timestep 曲线未跑——这是 G2-GC 的关键：如果 untrained t=0 远低于 trained t=0，则证明 LLM 训练（非仅 instruction 输入格式）的贡献。
+
+**未向 Director 汇报 lg_gc_untrained 的 negative 结论和 Framing 提案**——这是本 session 遗留的最重要待办。按 red-section skill，negative 结果必须先产出 Framing 调整提案 → Director 审批。
+
+### 4. 📋 待办（条件触发式）
+- **立即（新 session 启动后第一件事）**：向 Director 汇报 lg_gc_untrained negative + 产出 Framing 调整提案（全轨迹 GC 无效，但 per-timestep 分析揭示 t=0 DINO 43% vs trained 100% = +56.7pp 是真正信号）。提案核心：从 "全轨迹 goal classification" 转向 "early-frame instruction probing"
+- **Director 审批 Framing 后** → spawn Worker 跑 untrained VLA per-timestep goal classification 曲线（补全 G2-GC early-frame 对比）
+- **untrained per-timestep 结果出来后** → 如果 t=0 untrained << 100%（比如 ~43% 类似 DINO）→ G2-GC early-frame PASS，story 成立；如果 untrained t=0 也接近 100% → 说明 instruction 输入格式本身足够（非 LLM 训练的功劳），需要 deeper analysis
+- **两张 GPU 空闲中** → 汇报里向 Director 申请下一步实验的 GPU 分配
+
+### 5. 🎯 战略上下文
+**项目核心结论链**：
+- D007: LIBERO-10 temporal distance = vision-dominated（Δρ=0.043）
+- D014: LIBERO-10 action prediction = vision-dominated（DINO ≈ trained）
+- D015: Pivot to LIBERO-Goal（vision-ambiguous 场景）
+- D017: 用 LIBERO-10 fine-tuned checkpoint（OOD = 泛化证据）
+- 当前：全轨迹 GC trivially solved，但 **per-timestep 分析是突破口**
+
+**论文 Story（候选）**：LIBERO-10 negative + LIBERO-Goal early-frame positive = "VLA training matters when vision alone is insufficient"。Layer-wise + timestep-wise mechanistic depth 是 vs Grant et al. 2026 的差异化卖点。
+
+**最容易判断错的事**：
+1. 不要被全轨迹 GC 的 negative 吓到——per-timestep 分析已经找到了信号（t=0 +56.7pp vs DINO），问题只是 gate 定义需要更新为 early-frame
+2. 不要跳过 Framing 提案直接跑下一个实验——这是 L1 红线（"Negative 结果不得默默跑下一个实验"）
+3. untrained per-timestep 是 make-or-break：如果 untrained t=0 也是 100%，说明 instruction tokens 本身（不管 LLM 是否训练过）就足以做分类，这会严重削弱 story
+
+**时间压力**：CoRL abstract DDL May 26（11天），paper DDL May 29（14天）。ROADMAP 预留 7-9 天实际工作量，时间紧但可行。
+
+## 项目硬约束 (memory.md 节选)
+
+## 技术约束
+
+- RoPE 不构成 confound（独立 forward pass）
+- Bootstrap CI 必须 task-level 采样（10 tasks 的 per-task ρ）
+- Token 聚合：Primary = last pre-action token
+- 存储：根分区 ~30GB，大文件在 /root/autodl-tmp/vla-ssd/
+- 特征提取 I/O 优化：52x 加速（264→2 次 .cpu()/batch）
+- Untrained model: from_config() 重新初始化 LLM（6.74B random），保留 SigLIP（0.80B）
+- transformers 版本差异（4.40.1 vs 4.57.6），trained/untrained 同版本，对比有效
+- AutoDL: source /etc/network_turbo, HF_HUB_DISABLE_XET=1, SSL certs
+- 多 Worker 下载抢带宽，严格单进程下载
+- Worker 用 nohup 启动实验是 anti-pattern——必须用 submit_training_job（tmux+cron 监控）
+- **AutoDL 离线提取**: extract_features.py 的 AutoProcessor/AutoModel.from_pretrained() 在无网络时会尝试连 HuggingFace Hub 然后失败。修复：添加 `local_files_only=True` 参数。脚本有 skip 机制（已完成的 h5 不重复提取），retry 安全。
+- **分析 Worker 不得覆盖 spec 字段**（2026-05-15, Director 指令）：分析 Worker 只写 metrics/conclusion/notes，spec 由提交时设定，Worker 不可改。
+
+## 可查的历史
+前 8 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:openvla-untrained-extract",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T19:03:01.451450+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T19:03:01.451886+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T19:03:05.014613+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T19:03:05.517103+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T19:03:05.517994+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"lg_gc_untrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:51:49.753Z\", \"updated_at\": \"2026-05-15T18:03:31.246Z\", \"hypothesis\": \"Goal classification probe on untrained VLA LIBERO-Goal features (33 layers). Baseline for G2-GC gate: Δ(trained-untrained) best-layer acc > 25pp. Untrained VLA with random LLM should show lower goal classification accuracy.\", \"conclusion\": \"negative\", \"metrics\": {\"best_layer\": 1, \"best_accuracy\": 1, \"best_traj_accuracy\": 1, \"best_macro_f1\": 1, \"worst_layer\": 31, \"worst_accuracy\": 0.9971, \"n_classes\": 10, \"n_train\": 50880, \"n_val\": 12848, \"per_layer_accuracies\": {\"0\": 0.1582, \"1\": 1, \"2\": 1, \"3\": 1, \"4\": 1, \"5\": 1, \"6\": 1, \"7\": 1, \"8\": 1, \"9\": 1, \"10\": 0.9998, \"11\": 0.9998, \"12\": 0.9999, \"13\": 0.9999, \"14\": 0.9996, \"15\": 0.9996, \"16\": 0.9998, \"17\": 0.9994, \"18\": 0.9989, \"19\": 0.9992, \"20\": 0.9995, \"21\": 0.9993, \"22\": 0.9996, \"23\": 0.9991, \"24\": 0.9994, \"25\": 0.9988, \"26\": 0.9993, \"27\": 0.9993, \"28\": 0.9986, \"29\": 0.9984, \"30\": 0.9977, \"31\": 0.9971, \"32\": 0.9991}, \"gate_G2_GC\": \"FAIL\", \"gate_G2_GC_delta\": 0, \"gate_G2_GC_threshold\": 0.25, \"layer0_detail\": \"predicts_only_class1_acc_0.158_random_level\", \"comparison\": {\"trained_best_acc\": 1, \"untrained_best_acc\": 1, \"dino_best_acc\": 0.8626, \"delta_trained_untrained\": 0, \"delta_trained_dino\": 0.1374}, \"interpretation\": \"Untrained VLA (random LLM) achieves identical 100% goal classification from layer 1+. G2-GC FAIL: Δ=0pp (threshold 25pp). Goal classification is NOT a valid discriminator between trained and untrained VLA — the MLP probe on 4096-dim features trivially separates 10 classes even from random projections.\"}}, \"lg_gc_dino\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:53:30.361Z\", \"updated_at\": \"2026-05-15T18:00:37.784Z\", \"hypothesis\": \"DINO-V2 LIBERO-Goal goal cl
+…[truncated 16115 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T19:03:05.869554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T19:03:05.970556+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T19:03:05.970995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **lg_gc_untrained** (negative): Goal classification probe on untrained VLA LIBERO-Goal features (33 layers). Baseline for G2-GC gate: Δ(trained-untrained) best-layer acc > 25pp. Untrained VLA with random LLM should show lower goal classification accuracy.\\n- **lg_gc_dino** (success): DINO-V2 LIBERO-Goal goal classification probe (Sanity-GC gate). DINO acc must be ≤ 25% (10-class random=10%). If DINO > 25%, goals are visually distinguishable and experiment premise is challenged.\\n- **lg_dino_extract** (success): DINO-V2 LIBERO-Goal feature extraction — vision-only baseline for Goal Classification gate (Sanity-GC: DINO acc ≤ 25%)\\n\\n## 趋势\\n成功 17 / 负向 3 / 失败 0 / 共 25\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-19183: 无 GPU 信息\\n\\n## 告警\\n- mvp2_action_probe: 已被终止 — unknown\\n- lg_extract_trained_r2: 已被终止 — unknown\\n- lg_extract_untrained_r2: 已被终止 — unknown\\n- lg_extract_trained_r1: 已被终止 — unknown\\n- lg_extract_untrained_r1: 已被终止 — unknown\\n\", \"total_chars\": 1036, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T19:03:05.971224+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T19:03:06.021866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-15 16:07 UTC | 更新原因: D015: 选择 Option A (LIBERO-Goal pivot)，Reviewer+Director 一致，用户授权\\n\\n## 核心方向\\n\\nVLA 训练的表征贡献取决于 task structure：vision-sufficient 场景（LIBERO-10）中 vision encoder 主导，vision-ambiguous 场景（LIBERO-Goal）中 VLA 的 language grounding 才有机会体现。\\n\\n**论文 story（候选）**: LIBERO-10 negative + LIBERO-Goal positive 构成对比叙事 + layer-wise mechanistic depth（WHERE/HOW）。\\n\\n## 当前进展\\n\\n- **阶段**: MVP-2 完成 → Pivot to LIBERO-Goal（D015）\\n- **MVP-1 Temporal Distance**: G2 FAIL (Δρ=0.043), vision-dominated\\n- **MVP-2 Action Prediction**: G2 FAIL (ΔR²=0.067), G3 FAIL (Δ=0.007 vs DINO)\\n- **MVP-2 Action-Delta**: G3-delta FAIL (DINO 0.061 ≈ trained 0.059)\\n- **跨 MVP 一致发现**: layer stability（trained 31/33 层有效 vs untrained ~15/33）\\n- **方向决策**: Option A（Reviewer + Director 一致推荐，用户授权）\\n\\n## 近期任务\\n\\n- [ ] 确认 LIBERO-Goal 数据可获取 + 与 LIBERO-10 scene overlap\\n- [ ] 确认 OpenVLA checkpoint 在 LIBERO-Goal 上的 zero-shot 能力\\n- [ ] 如 zero-shot 差 → 预留 1 天 LIBERO-Goal fine-tune\\n- [ ] 特征提取：trained VLA + untrained VLA + DINO（双卡并行）\\n- [ ] Instruction-conditioned probing：same-scene/different-goal 设置\\n- [ ] DINO baseline sanity check（DINO 在 shared-scene goals 上 R² 是否下降）\\n- [ ] 分析 + 可视化 + 论文初稿\\n\\n## 时间线（CoRL 2026）\\n\\n| 里程碑 | 日期 | 剩余天数 |\\n|--------|------|---------|\\n| Abstract DDL | May 26 | 11 |\\n| Paper DDL | May 29 | 14 |\\n| 数据+pipeline 适配 | May 16 | - |\\n| 特征提取 | May 16-17 | - |\\n| Probing 实验 | May 17 | - |\\n| 分析+可视化 | May 17-18 | - |\\n| 论文初稿 | May 18-21 | - |\\n| Review+polish | May 21-25 | - |\\n\\n## GPU 预算\\n\\nwestd-19183: 2×RTX PRO 6000 | 当前 0/2 占用\\n\\n## 关键风险\\n\\n1. **[高] OpenVLA 未训练过 LIBERO-Goal** — 先检查 scene overlap，必要时 fine-tune\\n2. **[中] 视觉仍有微妙差异** — DINO per-goal R² sanity check\\n3. **[低] Pipeline 适配 bug** — 数据格式/key naming 兼容性\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 
+…[truncated 1557 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T19:03:19.323038+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "memory.md",
+  "max_chars": "20000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "memory.md",
+    "max_chars": "20000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T19:03:19.525339+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/memory.md\", \"content\": \"# VLA-SSD Project Memory\\n\\n## Per-Timestep Analysis 揭示 Language Grounding（2026-05-15，关键发现）\\n\\n全轨迹 Sanity-GC FAIL (DINO 86%) 被 per-timestep 分析解释：**late-frame visual divergence 掩盖了 early-frame 的真实信号**。\\n\\n| Timestep bin | Trained VLA (L1) | DINO-V2 | Δ |\\n|---|---|---|---|\\n| **bin 0 (t=0~10%)** | **100%** | **43.3%** | **+56.7pp** |\\n| bin 1 (10~20%) | 100% | 79.7% | +20.3pp |\\n| bin 5 (50~60%) | 100% | 90.4% | +9.6pp |\\n| bin 9 (90~100%) | 100% | 99.1% | +0.9pp |\\n\\n**解读**：t=0 时所有 tasks 视觉几乎相同（cosine>0.95），trained VLA 100% → 只能来自 language instruction encoding。DINO 43.3% → 初始场景有微弱视觉差异但远不够。Sanity-GC 应以 early-frame 为准。\\n\\n**缺失**：untrained VLA per-timestep 曲线（待 lg_gc_untrained 完成后补跑）。\\n\\n## Goal Classification Gate 定义（锁定，实验后不可修改）（2026-05-15, Director 指令）\\n\\n10-way 分类（10 个 LIBERO-Goal goal，chance = 10%）。与 action prediction gate 独立判定。\\n\\n| Gate | 条件 | 说明 |\\n|------|------|------|\\n| **Sanity-GC** | DINO best-layer accuracy ≤ 25% | 确认视觉歧义真实。>25% 说明执行过程视觉差异泄漏 goal identity |\\n| **G1-GC** | Trained VLA best-layer accuracy > 40% | VLA 在歧义场景中有意义地编码了 instruction |\\n| **G2-GC** | Δ(trained - DINO) accuracy > 25pp | Instruction conditioning 超越纯视觉 |\\n| **G3-GC** | Δ(trained - untrained) accuracy > 10pp | LLM 训练（非仅 instruction 输入格式）的贡献 |\\n\\n**Reviewer 注意**: DINO 可能通过 trajectory 后半段物体位移部分区分 goal。如 DINO > 25%，需检查 per-timestep accuracy 曲线——早期帧 ~10% 但后期显著升高 → 视觉执行差异泄漏，考虑只用前 30% 帧做分析。\\n\\n**实际发生**：DINO 全轨迹 86% > 25%，但 per-timestep 分析确认 t=0 仅 43.3%，late frames 撑高了整体。Gate 重新定义方向：以 early-frame accuracy 为准。\\n\\n## 文献关键发现：Vision Encoder Dominance 是已知现象（2026-05-15）\\n\\n14 篇论文调研确认，\\\"vision encoder dominates\\\" 不是我们独有的问题——Grant 2026, VLM4VLA 2025, LIBERO-Plus 2025 都独立验证。LIBERO 场景中 language 被几乎完全忽略（LIBERO-Plus: blank language input 下性能不变）。\\n\\n**突破口**：Grant et al. 2026 (arXiv:2603.19233) 发现 **LIBERO-Goal suite**（多个
+…[truncated 4557 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T19:03:19.575961+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T19:03:19.626833+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_900ace5c.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T19:03:23.341100+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T19:03:23.341527+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T19:03:26.453205+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T19:03:26.654201+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Glob",
+  "elapsed_ms": 200
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T19:03:29.316016+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T19:03:29.316717+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T19:03:43.879794+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T19:03:43.880460+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T19:03:46.793067+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T19:03:46.793462+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T19:03:46.944163+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westd-19183\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westd-19183\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"westd-19183\", \"gpu_id\": \"cuda:0\", \"idle_min\": null}, {\"server\": \"westd-19183\", \"gpu_id\": \"cuda:1\", \"idle_min\": null}], \"running_experiments\": [], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 2 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T19:03:47.044786+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [], \"total\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T19:04:48.308120+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "text": "[资源] GPU 分配 2 / 实际在跑 0 ⚠️ | Worker 池 0 (GPU 0 / CPU 0)\n\n## lg_gc_untrained: G2-GC FAIL — Framing 调整提案\n\n### 1. 原 Claim\nG2-GC gate: Δ(trained - untrained) best-layer accuracy > 25pp。LLM 训练使 VLA 更好地编码 goal identity。\n\n### 2. 实验结果\n- **trained VLA**: L1+ 全部 100% accuracy（10-class）\n- **untrained VLA (random LLM)**: L1+ 也全部 100% accuracy\n- **DINO-V2**: 86.26% accuracy\n- **G2-GC Δ = 0pp**（阈值 25pp）→ FAIL\n- **解释**: MLP probe 在 4096-dim features 上 trivially 区分 10 classes，即使 random LLM projections 也能做到。全轨迹 goal classification 不是有效的 trained-vs-untrained discriminator。\n\n### 3. 重新审视\n\n**这个结果挑战的 hypothesis**: \"VLA 训练让模型学会了 goal identity encoding\"——错。4096-dim 空间 + MLP probe 对 10-class 分类太过强大，random projection 就够了。\n\n**被忽略的变量**: **时间维度**。全轨迹聚合把 early-frame（视觉相同）和 late-frame（视觉分化）混在一起。per-timestep 分析已揭示真正信号：\n\n| Timestep | Trained VLA | DINO-V2 | Δ |\n|---|---|---|---|\n| **t=0 (0~10%)** | **100%** | **43.3%** | **+56.7pp** |\n| t=1 (10~20%) | 100% | 79.7% | +20.3pp |\n| t=5 (50~60%) | 100% | 90.4% | +9.6pp |\n| t=9 (90~100%) | 100% | 99.1% | +0.9pp |\n\nt=0 时所有 tasks 视觉几乎相同（cosine > 0.95），trained VLA 100% → **只能来自 language instruction encoding**。DINO 43.3% → 初始场景有微弱视觉差异但远不够。\n\n**已做实验的有效性**: LIBERO-10 的 temporal distance / action prediction negatives 仍然完全有效（vision-sufficient 场景）。LIBERO-Goal 特征提取（trained/untrained/DINO 六组）全部有效。只是 gate 判定需要从全轨迹切换到 early-frame。\n\n**关键缺失**: untrained VLA 的 per-timestep 曲线。这是 make-or-break：\n- 如果 untrained t=0 << 100%（类似 DINO ~43%）→ 证明 LLM 训练（非仅 instruction 输入格式）是 language grounding 的关键\n- 如果 untrained t=0 ≈ 100% → instruction tokens 本身的格式信息就够了，story 需要更深调整\n\n### 4. 新 Narrative 骨架（三选一）\n\n**Option A: Timestep-Resolved Instruction Probing（推荐）**\n\"VLA 训练的贡献取决于 task phase：early frames（视觉歧义最大时）language grounding 显著，late frames（视觉分化后）贡献消失。\" 核心图：per-timestep accuracy 曲线（trained VLA flat 100% vs DINO 从 43% 爬升到 99%），交叉点定义 \"language necessity window\"。\n\n**Option B: Conditional Contribution + Layer × Timestep Mechanistic Map**\n在 Option A 基础上加 layer 维度：不同层在不同 timestep 的 goal classification accuracy 热力图。trained vs untrained 的差异集中在哪些 layer × timestep 区域？比 Grant et al. 2026 多两个分析维度（layer-wise + timestep-wise）。\n\n**Option C: \"Encoded but Used Conditionally\"**\n直接对话 Grant et al. 的 \"encoded but not used\" paradox。我们的证据：instruction 确实被 encoded（t=0 100%），但 behavioral contribution 取决于 visual ambiguity。LIBERO-10（vision-sufficient）= not used；LIBERO-Goal early frames（vision-ambiguous）= used。统一框架解释 Grant 的 paradox。\n\n**推荐 Option B 或 C**：Option B 提供最强的 mechanistic depth（vs competitors），Option C 提供最强的 narrative hook（直接回应 Grant 的 paradox）。两者可以合并。\n\n### 5. 对论文各章节影响\n\n| 章节 | 影响 |\n|------|------|\n| Abstract | 需改：从 \"goal classification\" 改为 \"timestep-resolved instruction probing\" |\n| Intro | 中度改：加 Grant paradox 作为 motivation |\n| Method | 大改：加 per-timestep probing protocol，重新定义 gates |\n| Experiments | 大改：全轨迹 GC 降为 supplementary，per-timestep 升为主实验 |\n| Discussion | 大改：围绕 \"language necessity window\" 和 \"conditional contribution\" 重写 |\n| Conclusion | 中度改：claim 从 \"VLA encodes goals\" 改为 \"VLA instruction grounding is phase-dependent\" |\n\n### 6. 建议下一步实验（≥3 组）\n\n1. **untrained VLA per-timestep goal classification**（最高优先级，make-or-break）\n   - 已有特征（features/untrained_libero_goal/），只需跑分析脚本\n   - 预计 ~10 min GPU 时间\n   - 如果 t=0 untrained << trained → G2-GC early-frame PASS\n\n2. **Layer × Timestep heatmap（trained vs untrained vs DINO）**\n   - 33 层 × 10 timestep bins 的 goal classification accuracy\n   - 可视化 \"哪个 layer 在哪个时间点最能区分 goal\"\n   - trained 和 untrained 的差异热力图 = 论文核心 figure\n\n3. **Early-frame only probing（前 30% 帧）**\n   - 只用 t ≤ 30% 的帧做 goal classification\n   - 三组对比（trained / untrained / DINO）\n   - 这是 gate 重新定义后的正式实验\n\n4. **Instruction perturbation probe**（如果前面 positive）\n   - 用错误 instruction 的 feature（如果能生成）做分类\n   - 与 Grant et al. 的 behavioral intervention 形成 representation-level 对应\n\n### 请求\n\n1. **审批 Framing 调整方向**（A/B/C 或组合）\n2. **批准跑 untrained per-timestep 分析**（不需要 GPU，纯 CPU 分析，~10 min）——严格说这是 red-section 要求的 \"Framing 审批前不动 paper 但 GPU 可以跑其他矩阵格子\"，per-timestep 分析属于填已有格子\n3. 两张 GPU 当前空闲，建议分配给上述实验 2-3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "project": "vla-ssd",
+    "text": "[资源] GPU 分配 2 / 实际在跑 0 ⚠️ | Worker 池 0 (GPU 0 / CPU 0)\n\n## lg_gc_untrained: G2-GC FAIL — Framing 调整提案\n\n### 1. 原 Claim\nG2-GC gate: Δ(trained - untrained) best-layer accuracy > 25pp。LLM 训练使 VLA 更好地编码 goal identity。\n\n### 2. 实验结果\n- **trained VLA**: L1+ 全部 100% accuracy（10-class）\n- **untrained VLA (random LLM)**: L1+ 也全部 100% accuracy\n- **DINO-V2**: 86.26% accuracy\n- **G2-GC Δ = 0pp**（阈值 25pp）→ FAIL\n- **解释**: MLP probe 在 4096-dim features 上 trivially 区分 10 classes，即使 random LLM projections 也能做到。全轨迹 goal classification 不是有效的 trained-vs-untrained discriminator。\n\n### 3. 重新审视\n\n**这个结果挑战的 hypothesis**: \"VLA 训练让模型学会了 goal identity encoding\"——错。4096-dim 空间 + MLP probe 对 10-class 分类太过强大，random projection 就够了。\n\n**被忽略的变量**: **时间维度**。全轨迹聚合把 early-frame（视觉相同）和 late-frame（视觉分化）混在一起。per-timestep 分析已揭示真正信号：\n\n| Timestep | Trained VLA | DINO-V2 | Δ |\n|---|---|---|---|\n| **t=0 (0~10%)** | **100%** | **43.3%** | **+56.7pp** |\n| t=1 (10~20%) | 100% | 79.7% | +20.3pp |\n| t=5 (50~60%) | 100% | 90.4% | +9.6pp |\n| t=9 (90~100%) | 100% | 99.1% | +0.9pp |\n\nt=0 时所有 tasks 视觉几乎相同（cosine > 0.95），trained VLA 100% → **只能来自 language instruction encoding**。DINO 43.3% → 初始场景有微弱视觉差异但远不够。\n\n**已做实验的有效性**: LIBERO-10 的 temporal distance / action prediction negatives 仍然完全有效（vision-sufficient 场景）。LIBERO-Goal 特征提取（trained/untrained/DINO 六组）全部有效。只是 gate 判定需要从全轨迹切换到 early-frame。\n\n**关键缺失**: untrained VLA 的 per-timestep 曲线。这是 make-or-break：\n- 如果 untrained t=0 << 100%（类似 DINO ~43%）→ 证明 LLM 训练（非仅 instruction 输入格式）是 language grounding 的关键\n- 如果 untrained t=0 ≈ 100% → instruction tokens 本身的格式信息就够了，story 需要更深调整\n\n### 4. 新 Narrative 骨架（三选一）\n\n**Option A: Timestep-Resolved Instruction Probing（推荐）**\n\"VLA 训练的贡献取决于 task phase：early frames（视觉歧义最大时）language grounding 显著，late frames（视觉分化后）贡献消失。\" 核心图：per-timestep accuracy 曲线（trained VLA flat 100% vs DINO 从 43% 爬升到 99%），交叉点定义 \"language necessity window\"。\n\n**Option B: Conditional Contribution + Layer × Timestep Mechanistic Map**\n在 Option A 基础上加 layer 维度：不同层在不同 timestep 的 goal classification accuracy 热力图。trained vs untrained 的差异集中在哪些 layer × timestep 区域？比 Grant et al. 2026 多两个分析维度（layer-wise + timestep-wise）。\n\n**Option C: \"Encoded but Used Conditionally\"**\n直接对话 Grant et al. 的 \"encoded but not used\" paradox。我们的证据：instruction 确实被 encoded（t=0 100%），但 behavioral contribution 取决于 visual ambiguity。LIBERO-10（vision-sufficient）= not used；LIBERO-Goal early frames（vision-ambiguous）= used。统一框架解释 Grant 的 paradox。\n\n**推荐 Option B 或 C**：Option B 提供最强的 mechanistic depth（vs competitors），Option C 提供最强的 narrative hook（直接回应 Grant 的 paradox）。两者可以合并。\n\n### 5. 对论文各章节影响\n\n| 章节 | 影响 |\n|------|------|\n| Abstract | 需改：从 \"goal classification\" 改为 \"timestep-resolved instruction probing\" |\n| Intro | 中度改：加 Grant paradox 作为 motivation |\n| Method | 大改：加 per-timestep probing protocol，重新定义 gates |\n| Experiments | 大改：全轨迹 GC 降为 supplementary，per-timestep 升为主实验 |\n| Discussion | 大改：围绕 \"language necessity window\" 和 \"conditional contribution\" 重写 |\n| Conclusion | 中度改：claim 从 \"VLA encodes goals\" 改为 \"VLA instruction grounding is phase-dependent\" |\n\n### 6. 建议下一步实验（≥3 组）\n\n1. **untrained VLA per-timestep goal classification**（最高优先级，make-or-break）\n   - 已有特征（features/untrained_libero_goal/），只需跑分析脚本\n   - 预计 ~10 min GPU 时间\n   - 如果 t=0 untrained << trained → G2-GC early-frame PASS\n\n2. **Layer × Timestep heatmap（trained vs untrained vs DINO）**\n   - 33 层 × 10 timestep bins 的 goal classification accuracy\n   - 可视化 \"哪个 layer 在哪个时间点最能区分 goal\"\n   - trained 和 untrained 的差异热力图 = 论文核心 figure\n\n3. **Early-frame only probing（前 30% 帧）**\n   - 只用 t ≤ 30% 的帧做 goal classification\n   - 三组对比（trained / untrained / DINO）\n   - 这是 gate 重新定义后的正式实验\n\n4. **Instruction perturbation probe**（如果前面 positive）\n   - 用错误 instruction 的 feature（如果能生成）做分类\n   - 与 Grant et al. 的 behavioral intervention 形成 representation-level 对应\n\n### 请求\n\n1. **审批 Framing 调整方向**（A/B/C 或组合）\n2. **批准跑 untrained per-timestep 分析**（不需要 GPU，纯 CPU 分析，~10 min）——严格说这是 red-section 要求的 \"Framing 审批前不动 paper 但 GPU 可以跑其他矩阵格子\"，per-timestep 分析属于填已有格子\n3. 两张 GPU 当前空闲，建议分配给上述实验 2-3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T19:04:51.872468+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3564
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T19:05:18.443173+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "literature_map.yaml",
+  "max_chars": "20000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "literature_map.yaml",
+    "max_chars": "20000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T19:05:18.493853+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No literature_map.yaml found for 'vla-ssd'.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T19:05:29.041954+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T19:05:29.092529+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T19:06:10.592069+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "research:literature-gc-pertimestep",
+  "project": "vla-ssd",
+  "task_prompt": "## 任务：Narrow 文献搜索 — Goal Classification Probe 在高维特征空间的 failure modes + per-timestep probing 方法\n\n### 背景\n我们在 LIBERO-Goal（10 tasks 共享同一 kitchen scene，仅 goal/instruction 不同）上做 goal classification probing。发现 MLP probe 在 4096-dim VLA features 上 trivially 达到 100% accuracy（10-class），即使 random LLM projections（untrained VLA）也能做到。全轨迹 goal classification 不是有效的 trained-vs-untrained discriminator。\n\n但 per-timestep 分析揭示了真正信号：t=0（视觉几乎相同，cosine>0.95）时 trained VLA 100% vs DINO-V2 43.3%（+56.7pp），说明 early-frame goal classification 来自 language instruction encoding。\n\n### 搜索目标（三个方向）\n\n1. **高维特征空间中 linear/MLP probe 的 trivial classification 问题**\n   - 关键词: \"probing classifier\" + \"high dimensional\" + \"trivial separation\" / \"random features\" / \"probe selectivity\"\n   - 特别关注: Hewitt & Liang 2019 \"Designing and Interpreting Probes with Control Tasks\" 类的 probe design 文献\n   - 是否有人讨论过 random projection 也能达到高 accuracy 的问题及解决方案（如 selectivity, MDL probing, compression）\n\n2. **Per-timestep / temporal probing in VLA/VLM representations**\n   - 关键词: \"per-timestep probing\" + \"robot\" / \"VLA\" / \"temporal representation\"\n   - Grant et al. 2026 (arXiv:2603.19233) 已知，重点找其他做 temporal analysis 的工作\n   - 是否有人在 robot manipulation 领域做过类似的 timestep-resolved representation analysis\n\n3. **Goal/instruction encoding in VLA/VLM**\n   - 关键词: \"instruction encoding\" + \"VLA\" / \"vision-language-action\" + \"representation\"\n   - LIBERO-Plus (2025), VLM4VLA (2025) 已知\n   - 是否有其他工作研究 instruction 在 VLA hidden states 中的编码方式\n\n### 产出要求\n1. 用 `save_project_file(file=\"literature_map.yaml\")` 保存结果，格式：\n```yaml\n# VLA-SSD Literature Map\n# Updated: 2026-05-15\n\npapers:\n  - id: \"author_year_keyword\"\n    title: \"...\"\n    authors: \"...\"\n    venue: \"...\"\n    year: 2025\n    arxiv: \"arXiv:XXXX.XXXXX\"\n    category: \"probe-methodology\" | \"temporal-analysis\" | \"instruction-encoding\" | \"direct-competitor\" | \"background\"\n    role: \"method-component\" | \"evaluation\" | \"background\" | \"direct-competitor\"\n    key_finding: \"一句话核心发现\"\n    relevance: \"与我们工作的关系\"\n```\n2. 每篇论文必须有真实的 arXiv ID 或 venue（不能编造）\n3. 已知论文也要列入（Grant 2026, LIBERO-Plus 2025, VLM4VLA 2025, Hewitt & Liang 2019）\n4. 重点标注：有没有人已经做过 \"per-timestep goal classification\" 或类似分析——这直接影响 novelty\n\n### 搜索方法\n用 WebSearch 搜索 arXiv、Google Scholar、Semantic Scholar。每个方向至少搜 3 次不同关键词组合。找到论文后用 WebFetch 读 abstract 确认相关性。\n",
+  "tool_groups": "['knowledge']",
+  "context": "项目: vla-ssd. 核心方向: VLA 训练的表征贡献取决于 task structure。LIBERO-10 (vision-sufficient) = vision encoder dominates. LIBERO-Goal (vision-ambiguous) = VLA instruction grounding 有机会体现。当前发现: 全轨迹 GC trivially solved (100% for both trained/untrained), 但 per-timestep t=0 trained VLA 100% vs DINO 43.3%。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:literature-gc-pertimestep",
+    "project": "vla-ssd",
+    "task_prompt": "## 任务：Narrow 文献搜索 — Goal Classification Probe 在高维特征空间的 failure modes + per-timestep probing 方法\n\n### 背景\n我们在 LIBERO-Goal（10 tasks 共享同一 kitchen scene，仅 goal/instruction 不同）上做 goal classification probing。发现 MLP probe 在 4096-dim VLA features 上 trivially 达到 100% accuracy（10-class），即使 random LLM projections（untrained VLA）也能做到。全轨迹 goal classification 不是有效的 trained-vs-untrained discriminator。\n\n但 per-timestep 分析揭示了真正信号：t=0（视觉几乎相同，cosine>0.95）时 trained VLA 100% vs DINO-V2 43.3%（+56.7pp），说明 early-frame goal classification 来自 language instruction encoding。\n\n### 搜索目标（三个方向）\n\n1. **高维特征空间中 linear/MLP probe 的 trivial classification 问题**\n   - 关键词: \"probing classifier\" + \"high dimensional\" + \"trivial separation\" / \"random features\" / \"probe selectivity\"\n   - 特别关注: Hewitt & Liang 2019 \"Designing and Interpreting Probes with Control Tasks\" 类的 probe design 文献\n   - 是否有人讨论过 random projection 也能达到高 accuracy 的问题及解决方案（如 selectivity, MDL probing, compression）\n\n2. **Per-timestep / temporal probing in VLA/VLM representations**\n   - 关键词: \"per-timestep probing\" + \"robot\" / \"VLA\" / \"temporal representation\"\n   - Grant et al. 2026 (arXiv:2603.19233) 已知，重点找其他做 temporal analysis 的工作\n   - 是否有人在 robot manipulation 领域做过类似的 timestep-resolved representation analysis\n\n3. **Goal/instruction encoding in VLA/VLM**\n   - 关键词: \"instruction encoding\" + \"VLA\" / \"vision-language-action\" + \"representation\"\n   - LIBERO-Plus (2025), VLM4VLA (2025) 已知\n   - 是否有其他工作研究 instruction 在 VLA hidden states 中的编码方式\n\n### 产出要求\n1. 用 `save_project_file(file=\"literature_map.yaml\")` 保存结果，格式：\n```yaml\n# VLA-SSD Literature Map\n# Updated: 2026-05-15\n\npapers:\n  - id: \"author_year_keyword\"\n    title: \"...\"\n    authors: \"...\"\n    venue: \"...\"\n    year: 2025\n    arxiv: \"arXiv:XXXX.XXXXX\"\n    category: \"probe-methodology\" | \"temporal-analysis\" | \"instruction-encoding\" | \"direct-competitor\" | \"background\"\n    role: \"method-component\" | \"evaluation\" | \"background\" | \"direct-competitor\"\n    key_finding: \"一句话核心发现\"\n    relevance: \"与我们工作的关系\"\n```\n2. 每篇论文必须有真实的 arXiv ID 或 venue（不能编造）\n3. 已知论文也要列入（Grant 2026, LIBERO-Plus 2025, VLM4VLA 2025, Hewitt & Liang 2019）\n4. 重点标注：有没有人已经做过 \"per-timestep goal classification\" 或类似分析——这直接影响 novelty\n\n### 搜索方法\n用 WebSearch 搜索 arXiv、Google Scholar、Semantic Scholar。每个方向至少搜 3 次不同关键词组合。找到论文后用 WebFetch 读 abstract 确认相关性。\n",
+    "tool_groups": "['knowledge']",
+    "context": "项目: vla-ssd. 核心方向: VLA 训练的表征贡献取决于 task structure。LIBERO-10 (vision-sufficient) = vision encoder dominates. LIBERO-Goal (vision-ambiguous) = VLA instruction grounding 有机会体现。当前发现: 全轨迹 GC trivially solved (100% for both trained/untrained), 但 per-timestep t=0 trained VLA 100% vs DINO 43.3%。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T19:06:25.437674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_literature-gc-pertimestep_20260515T190611\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_research_literature-gc-pertimestep_20260515T190611.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_literature-gc-pertimestep_20260515T190611 started. Use get_worker_status('worker_research_literature-gc-pertimestep_20260515T190611') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 14845
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T19:06:27.797506+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:prep-untrained-pertimestep",
+  "project": "vla-ssd",
+  "task_prompt": "## 任务：准备 untrained VLA per-timestep goal classification 分析代码\n\n### 背景\n我们已经跑过 trained VLA 和 DINO-V2 的 per-timestep goal classification 分析，发现 t=0 时 trained VLA 100% vs DINO 43.3%。现在需要准备 untrained VLA 的同样分析，以确定 random LLM 在 t=0 时的 goal classification accuracy（make-or-break 实验）。\n\n### 你的任务\n1. **找到已有的 per-timestep 分析代码**：\n   - SSH 到 westd-19183，在 `/root/vla-ssd/` 下搜索 per-timestep goal classification 相关的脚本\n   - 可能的文件名: `goal_classify*.py`, `per_timestep*.py`, `analyze_gc*.py` 或在某个 notebook 里\n   - 用 `ssh_read_only` 查看代码，理解它是怎么做 per-timestep binning + per-bin accuracy 的\n\n2. **确认 untrained features 路径和格式**：\n   - untrained LIBERO-Goal features: `/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/`\n   - 确认 h5 文件结构（keys: image_mean, last_preaction; 33 layers; shape）\n   - 确认与 trained features 格式一致\n\n3. **准备运行命令**：\n   - 基于已有脚本，准备 untrained per-timestep 分析的完整命令\n   - 确保使用 conda base 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n   - 确保不需要网络（local_files_only 如果用到 HF）\n   - 输出应包含: 每个 timestep bin 的 accuracy, 按 layer 分解\n\n4. **产出**：写一份简短报告（用 save_project_file 存到 artifacts/ 或直接在回复中），包含：\n   - 找到的脚本路径和关键参数\n   - 准备好的完整运行命令（copy-paste 即可运行）\n   - 预估运行时间\n   - 任何需要注意的问题\n\n### 环境\n- 服务器: westd-19183\n- Python: `/root/miniconda3/bin/python`, conda base\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码目录: `/root/vla-ssd/`\n- 数据/特征目录: `/root/autodl-tmp/vla-ssd/`\n- 所有操作用 ssh_read_only，不要修改任何文件\n",
+  "tool_groups": "['ssh', 'knowledge']",
+  "context": "项目: vla-ssd. 服务器: westd-19183. 已完成的 per-timestep 分析: trained VLA per-timestep (t=0: 100%, DINO t=0: 43.3%). 特征路径: features/trained_libero_goal/, features/untrained_libero_goal/, features/dinov2_libero_goal/. 全部在 /root/autodl-tmp/vla-ssd/ 下。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:prep-untrained-pertimestep",
+    "project": "vla-ssd",
+    "task_prompt": "## 任务：准备 untrained VLA per-timestep goal classification 分析代码\n\n### 背景\n我们已经跑过 trained VLA 和 DINO-V2 的 per-timestep goal classification 分析，发现 t=0 时 trained VLA 100% vs DINO 43.3%。现在需要准备 untrained VLA 的同样分析，以确定 random LLM 在 t=0 时的 goal classification accuracy（make-or-break 实验）。\n\n### 你的任务\n1. **找到已有的 per-timestep 分析代码**：\n   - SSH 到 westd-19183，在 `/root/vla-ssd/` 下搜索 per-timestep goal classification 相关的脚本\n   - 可能的文件名: `goal_classify*.py`, `per_timestep*.py`, `analyze_gc*.py` 或在某个 notebook 里\n   - 用 `ssh_read_only` 查看代码，理解它是怎么做 per-timestep binning + per-bin accuracy 的\n\n2. **确认 untrained features 路径和格式**：\n   - untrained LIBERO-Goal features: `/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/`\n   - 确认 h5 文件结构（keys: image_mean, last_preaction; 33 layers; shape）\n   - 确认与 trained features 格式一致\n\n3. **准备运行命令**：\n   - 基于已有脚本，准备 untrained per-timestep 分析的完整命令\n   - 确保使用 conda base 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n   - 确保不需要网络（local_files_only 如果用到 HF）\n   - 输出应包含: 每个 timestep bin 的 accuracy, 按 layer 分解\n\n4. **产出**：写一份简短报告（用 save_project_file 存到 artifacts/ 或直接在回复中），包含：\n   - 找到的脚本路径和关键参数\n   - 准备好的完整运行命令（copy-paste 即可运行）\n   - 预估运行时间\n   - 任何需要注意的问题\n\n### 环境\n- 服务器: westd-19183\n- Python: `/root/miniconda3/bin/python`, conda base\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码目录: `/root/vla-ssd/`\n- 数据/特征目录: `/root/autodl-tmp/vla-ssd/`\n- 所有操作用 ssh_read_only，不要修改任何文件\n",
+    "tool_groups": "['ssh', 'knowledge']",
+    "context": "项目: vla-ssd. 服务器: westd-19183. 已完成的 per-timestep 分析: trained VLA per-timestep (t=0: 100%, DINO t=0: 43.3%). 特征路径: features/trained_libero_goal/, features/untrained_libero_goal/, features/dinov2_libero_goal/. 全部在 /root/autodl-tmp/vla-ssd/ 下。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-15T19:22:49.802759+00:00_
+
+派两个 Worker 并行：文献搜索（on-experiment-done 必做）+ untrained per-timestep 分析代码准备。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:openvla-untrained-extract"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+42 recorded events
+
+### User
+
+_source line 38 · 2026-05-15T22:30:14.139691+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:openvla-untrained-extract",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T22:30:23.699419+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T22:30:23.699785+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T22:30:26.411082+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "vla-ssd",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T22:30:26.913324+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T22:30:26.914381+00:00_
+
+Error: result (65,342 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T22:30:27.366286+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T22:30:27.366639+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T22:30:27.818698+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- lg_instruction_ablation: D021 Exp-1: Instruction Ablation. Extract LIBERO-Goal features with empty instruction (trained + untrained VLA), then run RSA. If instruction pathway is the source of action-relevant structure, RSA should collapse from ρ≈0.49 to <0.15. PASS: ρ<0.15; PARTIAL: 0.15<ρ<0.30; FAIL: ρ≥0.30.（排队等待 GPU）\\n- lg_output_head_analysis: D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences across layers. If training does \\\"shallow adaptation\\\", output head weight diff >> middle layer weight diff. Explains \\\"representations unchanged but behavior improved\\\".（排队等待 GPU）\\n\\n## 近期结论\\n- **d027_siglip_only_rsa** (success): D027 Exp-1 (SMOKING GUN): Extract SigLIP+projector output features (LLM input embeddings) from VLA architecture on LIBERO-Goal, run RSA. If SigLIP-only RSA ≈ 0.45-0.50 → confirms vision encoder is the source of action-relevant structure (LLM is passthrough). If RSA ≈ 0.39 (DINO level) → projector/LLM architecture contributes, need reanalysis.\\n- **d027_trained_no_inst_rsa** (success): D027 Exp-2: Extract trained VLA features with empty instruction on LIBERO-Goal, run RSA. Completes the 2×2 matrix (training × instruction). Expected: trained no-inst RSA ≈ untrained no-inst (0.4802), further confirming training is irrelevant to representational structure.\\n- **d021_instruction_ablation** (negative): D021 Exp-1 (HARD GATE): Instruction Ablation on untrained VLA. Replace instruction with empty string, extract LIBERO-Goal features, run RSA. Gate (D023 relative): PASS = no-inst RSA significantly below with-inst (Δ>0.10, bootstrap CI excludes 0) AND no-inst RSA ≤ DINO RSA + 0.05. FAIL = no-inst RSA ≥ with-inst RSA − 0.05. PASS → lock Option B. FAIL → fallback Option
+…[truncated 477 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T22:30:27.819249+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T22:30:28.321581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-15 22:29 UTC | 更新原因: D028: complete_mvp 完成，进入 research 阶段。paper_framing.md + experiment_plan.yaml 已写，Dream 已提交\\n\\n## 核心方向\\n\\n**\\\"Vision Encoder Dominance: The Architectural Source of Action-Relevant Representations in VLAs\\\"**（D028 确定）\\n\\n三个 Core Claims（详见 paper_framing.md）：\\n1. Action-relevant 表征源自 frozen SigLIP vision encoder（RSA 0.615 >> VLA 0.488 >> DINO 0.388）\\n2. LLM processing 降低 action alignment（degrader, 非 passthrough）\\n3. Training 和 instruction 均不改变表征结构（2×2 matrix 收敛）\\n\\n## 当前进展\\n\\n- **阶段**: Research — post-MVP kickoff 完成，Dream 模拟中\\n- **MVP 结果**: 原假设（training 注入知识）系统性否定 → pivot 到 Vision Encoder Dominance\\n- **P0 实验全部完成**: 7 probing methods × 2 benchmarks + SigLIP-only RSA smoking gun + instruction ablation + 2×2 matrix + output head analysis\\n- **P1 待做**: per-layer RSA degradation curve（CPU）、random instruction control（2h GPU）\\n- **Dream**: `dream_20260515T222933` pending，等回调后决定是否调整 framing/plan\\n\\n## 近期任务\\n\\n- [ ] 等 Dream 完成 → 分析审稿报告 → 决定是否调整 framing/plan\\n- [ ] Dream 通过后批准 P1 实验（per-layer degradation curve + random instruction control）\\n- [ ] 启动 Paper Agent（Full Draft 模式，CoRL 2026）\\n- [ ] P1 实验结果补入论文\\n\\n## 时间线（CoRL 2026）\\n\\n| 里程碑 | 日期 | 剩余天数 |\\n|--------|------|---------|\\n| Abstract DDL | May 26 | 11 |\\n| Paper DDL | May 29 | 14 |\\n| Dream 完成 | May 15-16 | 0-1 |\\n| P1 实验完成 | May 16-17 | 1-2 |\\n| Paper Agent Full Draft | May 17-20 | 2-5 |\\n| Review + Iteration | May 20-28 | 5-13 |\\n\\n## GPU 预算\\n\\nwestd-19183: 2×RTX PRO 6000 | 当前 0/2 占用（等 Dream 结果后派 P1 实验）\\nP0 已用 ~13h GPU | P1 需 ~2h GPU + CPU | P2 需 ~4h（时间允许）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D028 | 2026-05-15 | D028: SigLIP-only RSA smoking gun PASS (0.615 >> 0 | d027_siglip_only_rsa, d027_trained_no_inst_rsa, d021_in
+…[truncated 1385 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T22:30:28.322155+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "vla-ssd",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "vla-ssd",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T22:30:28.523254+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"vla-ssd\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/vla-ssd\", \"servers\": [\"westd-19183\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T22:30:28.523665+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "vla-ssd",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T22:30:28.624409+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ssh_d027-perlayer-rsa-noinst_20260515T222833\", \"task_type\": \"ssh:d027-perlayer-rsa-noinst\", \"project\": \"vla-ssd\", \"status\": \"running\", \"started_at\": \"2026-05-15T22:28:33.291705+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T22:30:36.756133+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\nprint(f'Total experiments: {len(exps)}')\nprint()\nfor exp in exps:\n    print(f\\\"{exp['exp_id']}: status={exp['status']}, conclusion={exp.get('conclusion','')}, hypothesis={exp.get('hypothesis','')[:80]}\\\")\n    if exp.get('spec'):\n        spec = exp['spec']\n        if spec.get('server'): print(f'  server: {spec[\\\"server\\\"]}')\n        if spec.get('command'): print(f'  command: {spec[\\\"command\\\"][:100]}')\n    if exp.get('metrics'):\n        print(f'  metrics: {json.dumps(exp[\\\"metrics\\\"])[:150]}')\n    print()\n\"",
+  "description": "Parse registry to get experiment summary"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\nprint(f'Total experiments: {len(exps)}')\nprint()\nfor exp in exps:\n    print(f\\\"{exp['exp_id']}: status={exp['status']}, conclusion={exp.get('conclusion','')}, hypothesis={exp.get('hypothesis','')[:80]}\\\")\n    if exp.get('spec'):\n        spec = exp['spec']\n        if spec.get('server'): print(f'  server: {spec[\\\"server\\\"]}')\n        if spec.get('command'): print(f'  command: {spec[\\\"command\\\"][:100]}')\n    if exp.get('metrics'):\n        print(f'  metrics: {json.dumps(exp[\\\"metrics\\\"])[:150]}')\n    print()\n\"",
+    "description": "Parse registry to get experiment summary"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T22:30:37.358645+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 9, in &lt;module>
+    print(f"{exp['exp_id']}: status={exp['status']}, conclusion={exp.get('conclusion','')}, hypothesis={exp.get('hypothesis','')[:80]}")
+             ~~~^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+Total experiments: 35
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Bash",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T22:30:37.810651+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "memory.md",
+  "max_chars": "8000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "memory.md",
+    "max_chars": "8000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T22:30:37.811056+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T22:30:37.961895+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T22:30:37.962415+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T22:30:43.535376+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps is a YAML string parsed as list - let me check the type\nprint(type(exps))\nif isinstance(exps, str):\n    print(exps[:500])\nelif isinstance(exps, list):\n    print(type(exps[0]))\n    if isinstance(exps[0], str):\n        print(exps[0][:200])\n    else:\n        print(json.dumps(exps[0], indent=2)[:300])\n\"",
+  "description": "Debug registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps is a YAML string parsed as list - let me check the type\nprint(type(exps))\nif isinstance(exps, str):\n    print(exps[:500])\nelif isinstance(exps, list):\n    print(type(exps[0]))\n    if isinstance(exps[0], str):\n        print(exps[0][:200])\n    else:\n        print(json.dumps(exps[0], indent=2)[:300])\n\"",
+    "description": "Debug registry data structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T22:30:43.736598+00:00_
+
+&lt;class 'dict'>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Bash",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T22:30:48.223752+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint('keys:', list(exps.keys())[:5])\nfirst_key = list(exps.keys())[0]\nprint('first:', first_key)\nprint(json.dumps(exps[first_key], indent=2)[:500])\n\"",
+  "description": "Debug registry dict structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint('keys:', list(exps.keys())[:5])\nfirst_key = list(exps.keys())[0]\nprint('first:', first_key)\nprint(json.dumps(exps[first_key], indent=2)[:500])\n\"",
+    "description": "Debug registry dict structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T22:30:48.377521+00:00_
+
+keys: ['d027_siglip_only_rsa', 'd027_trained_no_inst_rsa', 'd021_instruction_ablation', 'lg_instruction_ablation', 'lg_output_head_analysis']
+first: d027_siglip_only_rsa
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T22:10:53.129Z",
+  "updated_at": "2026-05-15T22:25:27.345Z",
+  "hypothesis": "D027 Exp-1 (SMOKING GUN): Extract SigLIP+projector output features (LLM input embeddings) from VLA architecture on LIBERO-Goal, run RSA. If SigLIP-only RSA \u2248 0.45-0.50 \u2192 confirms vision encoder is the source of action-relevant structure (LLM is passthrough). If RSA \u2248 0.39 (DINO level) \u2192 projector/LLM architecture contributes, need
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Bash",
+  "elapsed_ms": 153
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T22:30:54.193372+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, exp in exps.items():\n    status = exp.get('status','?')\n    conclusion = exp.get('conclusion','')\n    metrics_str = json.dumps(exp.get('metrics',{}))[:120] if exp.get('metrics') else ''\n    print(f'{eid}: {status} | {conclusion} | {metrics_str}')\n\"",
+  "description": "List all experiments with status and conclusion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-900ace5c/1830d25d-e0a5-48ca-acf1-6653daf126f6/tool-results/mcp-agent-ml-research-read_registry-1778884226771.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, exp in exps.items():\n    status = exp.get('status','?')\n    conclusion = exp.get('conclusion','')\n    metrics_str = json.dumps(exp.get('metrics',{}))[:120] if exp.get('metrics') else ''\n    print(f'{eid}: {status} | {conclusion} | {metrics_str}')\n\"",
+    "description": "List all experiments with status and conclusion"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T22:30:54.565062+00:00_
+
+d027_siglip_only_rsa: DONE | success | {"siglip_projector_rsa": 0.6153, "bootstrap_95_ci": [0.5257, 0.6954], "comparison": {"siglip_projector": 0.6153, "traine
+d027_trained_no_inst_rsa: DONE | success | {"trained_no_inst_peak_rsa": 0.489, "trained_no_inst_peak_layer": 30, "full_2x2_matrix": {"trained_with_inst": 0.4876, "
+d021_instruction_ablation: DONE | negative | {"no_inst_untrained_peak_rsa": 0.4802, "with_inst_untrained_peak_rsa": 0.4846, "with_inst_trained_peak_rsa": 0.4876, "di
+lg_instruction_ablation: QUEUED | killed | 
+lg_output_head_analysis: QUEUED | killed | 
+d021_output_head_analysis: DONE | negative | {"group_summary": {"vision": {"count": 685, "mean_rel_change": 0, "cos_sim": 1, "verdict": "IDENTICAL"}, "projector": {"
+lg_rsa_analysis: DONE | negative | {"trained_peak_rsa": 0.4876, "trained_peak_layer": 9, "untrained_peak_rsa": 0.4846, "untrained_peak_layer": 12, "dino_rs
+lg_shuffled_token_control: DONE | killed | 
+lg_pca1024_linear_pertimestep: DONE | negative | {"bin_0_trained": 0.9992, "bin_0_untrained": 1, "bin_0_dino": 0.354, "bin_0_delta_TU": -0.0008, "overall_trained": 0.999
+lg_gc_trained_frame0: DONE | success | {"trained_best_layer": 3, "trained_best_acc": 1, "trained_best_f1": 1, "untrained_best_layer": 2, "untrained_best_acc": 
+lg_gc_untrained: DONE | negative | {"best_layer": 1, "best_accuracy": 1, "best_traj_accuracy": 1, "best_macro_f1": 1, "worst_layer": 31, "worst_accuracy": 
+lg_gc_dino: DONE | success | {"best_accuracy": 0.8626, "best_traj_accuracy": 1, "best_macro_f1": 0.8412, "n_classes": 10, "num_layers": 1, "feature_d
+lg_dino_extract: DONE | success | {"tasks_completed": 10, "tasks_total": 10, "demos_per_task": 50, "total_frames": 63728, "feature_dim": 1024, "dtype": "f
+lg_gc_trained: DONE | success | {"best_layer": 1, "best_accuracy": 1, "best_traj_accuracy": 1, "best_macro_f1": 1, "n_classes": 10, "n_train": 50880, "n
+lg_extract_untrained: DONE | success | {"tasks_completed": "10/10", "feature_dim": 4096, "num_layers": 33, "dtyp
+…[truncated 2744 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "Bash",
+  "elapsed_ms": 371
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T22:30:54.628292+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "memory.md",
+  "max_chars": "8000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "memory.md",
+    "max_chars": "8000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T22:30:54.628856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/memory.md\", \"content\": \"# VLA-SSD Project Memory\\n\\n## SMOKING GUN 确认：SigLIP+Projector RSA = 0.6153（2026-05-15）\\n\\n**d027_siglip_only_rsa 结果**: SigLIP+projector 直接输出（不过 LLM）的 RSA = 0.6153 [95% CI: 0.5257, 0.6954]。\\n\\n**关键发现：LLM 降低 action alignment（不是 passthrough）**：\\n- SigLIP+projector: **0.6153**\\n- Full VLA（任何条件）: ~0.48-0.49\\n- DINO: 0.388\\n\\nLLM 不仅没增强 action-relevant structure，反而将 RSA 从 0.615 降到 ~0.488（约 20% 下降）。这比 \\\"passthrough\\\" 更强——是 \\\"degradation\\\"。\\n\\n**机制解释**: SigLIP image-text 预训练产生的 visual features 天然具有强 action-relevant 结构。Projector 保持这一结构（cos_sim=1.0 frozen）。LLM 的高维 token mixing 稀释了这种结构（trained 和 untrained LLM 稀释程度一致）。\\n\\n## 完整 2×2 Matrix + SigLIP-only（2026-05-15）\\n\\n| 条件 | RSA | 备注 |\\n|------|-----|------|\\n| **SigLIP+Projector (no LLM)** | **0.6153** | smoking gun |\\n| Trained with-inst | 0.4876 | L9 peak |\\n| Trained no-inst | 0.489 | L30 peak |\\n| Untrained with-inst | 0.4846 | L12 peak |\\n| Untrained no-inst | 0.4802 | — |\\n| DINO | 0.388 | — |\\n\\n**结论**: 所有 4 个 full VLA 条件收敛在 0.48-0.49 band。SigLIP-only 显著高于 full VLA。Training 和 instruction 均无 meaningful effect。\\n\\n## Instruction Ablation FAIL — Option B 被否证（2026-05-15）\\n\\n**d021_instruction_ablation 结果**: no-inst untrained RSA = 0.4802 ≈ with-inst 0.4846（Δ=0.0044 << 0.10 阈值）。去掉 instruction text 不影响 action-relevant 表征结构。Option B 被明确否证。\\n\\n## Output Head Analysis 发现（2026-05-15，d021_output_head_analysis = negative）\\n\\n**Vision backbone + Projector 在 trained 和 untrained 之间完全一致**（rel_change=0, cos_sim=1.0）。这是 trained ≈ untrained 表征结构相似的因果机制。\\n\\n**Shallow adaptation FAIL**: LLM 权重变化均匀分布 32 层（1.22-1.37），output head 并不特殊（1.12x ratio vs 3x 阈值）。\\n\\n**Caveat**: trained vs untrained 比较的是 pretrained Llama + fine-tune vs random init，不是 fine-tuned vs pre-fine-tuning。\\n\\n## RSA Temporal Phase 差异（2026-05-15）\\n\\n| Phase | Trained | Untrained | DI
+…[truncated 1549 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T22:30:58.696077+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__poll_cron,mcp__agent-ml-research__get_worker_status",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__poll_cron,mcp__agent-ml-research__get_worker_status",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T22:30:58.696557+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T22:31:01.561072+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "vla-ssd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T22:31:02.414743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"SigLIP+Projector RSA vs Full VLA vs DINO — 证明 action-relevant 结构源自 frozen vision encoder\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": \"d027_siglip_only_rsa\", \"status\": \"DONE\", \"result\": \"RSA=0.615 >> VLA 0.488 >> DINO 0.388\", \"conclusion\": \"success\", \"metrics\": {\"siglip_projector_rsa\": 0.6153, \"bootstrap_95_ci\": [0.5257, 0.6954], \"comparison\": {\"siglip_projector\": 0.6153, \"trained_with_inst\": 0.4876, \"untrained_with_inst\": 0.4846, \"untrained_no_inst\": 0.4802, \"trained_no_inst\": 0.489, \"dino\": 0.388}, \"llm_degradation\": \"LLM reduces RSA from 0.615 (projector output) to ~0.488 (LLM hidden states)\", \"gate_judgment\": \"PASS — SigLIP+projector RSA=0.6153 >> 0.45-0.50 threshold. Vision encoder is the source of action-relevant structure. LLM is not passthrough but actually degrades action alignment.\"}}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"DINO baseline RSA — standalone vision model 参照\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [], \"registry_id\": \"dinov2_baseline\", \"status\": \"DONE\", \"result\": \"RSA=0.388\", \"conclusion\": \"success\", \"metrics\": {\"temporal_distance_rho\": 0.833, \"temporal_distance_rho_pooled\": 0.833, \"per_task_rho_mean\": 0.9008, \"per_task_rho_range\": [0.41, 0.68], \"per_task_n_pairs\": 500, \"R2\": 0.687, \"MAE\": 0.127, \"feature_dim\": 1024, \"num_layers\": 1, \"probe_type\": \"mlp_adam_early_stopping\", \"training_time_seconds\": 7.5, \"note\": \"pooled ρ=0.833 inflated by cross-task variance; per-task mean ρ=0.9008 is correct comparison baseline (updated per D005/D006)\", \"subtask_macro_auc\": 0.9717, \"subtask_auc_per_predicate\": {\"subtask_0\": 0.9694, \"subtask_1\": 0.9739}, \"subtask_labels\": \"auto-extracted from MuJoCo state transitions (2 subtasks per task)\", \"subtask_probe_type\": \"sklearn_lo
+…[truncated 5422 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 853
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T22:31:02.567071+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ssh_d027-perlayer-rsa-noinst_20260515T222833",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ssh_d027-perlayer-rsa-noinst_20260515T222833",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T22:31:02.718007+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_d027-perlayer-rsa-noinst_20260515T222833\", \"status\": \"running\", \"task_type\": \"ssh:d027-perlayer-rsa-noinst\", \"project\": \"vla-ssd\", \"started_at\": \"2026-05-15T22:28:33.291705+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"register_artifact\", \"register_artifact\", \"ssh_read_only\", \"register_artifact\", \"register_artifact\"], \"last_text\": \"source_path 是远程路径，需要用 content 方式注册。读取 JSON 数据。\", \"turn_count\": 11}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-15T22:31:06.431045+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__check_job_status",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__check_job_status",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T22:31:06.481820+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T22:31:09.993070+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "paper_framing.md",
+  "max_chars": "5000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "paper_framing.md",
+    "max_chars": "5000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T22:31:10.495014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/paper_framing.md\", \"content\": \"# Paper Framing — vla-ssd\\n\\n## Target Venue\\n- Primary: CoRL 2026\\n- Deadline: Abstract May 26, Paper May 29\\n- Format: 8 pages + references\\n\\n## Core Claims (3 条)\\n\\n1. **Vision Encoder Dominance**: VLA 中 action-relevant 表征结构由 frozen vision encoder（SigLIP）决定。SigLIP+projector 的 RSA 与 action structure 的相关性（ρ=0.615）远高于完整 VLA（ρ≈0.488）和 standalone vision model（DINOv2 ρ=0.388）。\\n2. **LLM Degrades Action Alignment**: LLM processing 降低而非增强 action-relevant 几何结构（0.615→0.488）。这一 degradation 在 trained/untrained、with/without instruction 四种条件下一致发生。\\n3. **Training and Instruction Invariance**: VLA task-specific fine-tuning（Δ<0.01）和 instruction input（Δ<0.005）均不显著改变 LLM hidden state 中的 action-relevant 表征结构。2×2 matrix（training × instruction）四格收敛于 0.48-0.49。\\n\\n## Story Spine\\n\\n- **Problem**: VLAs 通过 fine-tuning LLM on robot data 实现 impressive performance，但 action-relevant 表征从何而来？业界隐性假设 fine-tuning 注入 new representational knowledge，但无系统性验证。\\n- **Existing approaches & gaps**: Grant et al. 2026 从 behavioral level 发现 visual pathway dominates，但未做 representational decomposition。无人测量过 VLA 各组件（vision encoder / projector / LLM）对 action-relevant 表征结构的独立贡献。\\n- **Our framing**: 首次对 VLA 进行系统性 representational analysis——7 种 probing 方法 × 2 benchmarks × 组件级分解，定量揭示 action-relevant 结构的来源。发现 LLM 不仅不贡献，反而 degrades vision encoder 提供的 action alignment。\\n- **Headline result**: \\\"SigLIP+projector representations achieve RSA ρ=0.615 with action structure, while the full VLA only achieves ρ≈0.488 regardless of training or instruction — the LLM degrades rather than enhances action-relevant representations.\\\"\\n\\n## Anticipated Reviewer Concerns & Responses\\n\\n### C1: 单一 VLA 架构（OpenVLA）泛化性\\n- **应对**: Scope 明确限定为 \\\"OpenVLA-class architecture\\\"。OpenVLA 是最广泛使用的开源 VLA 之一，findings 对该架构族直接适用。Discussion 中讨论扩展到其他架构的预期。\\n- **实验**: 无需
+…[truncated 2486 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 501
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-15T22:31:10.646129+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "decisions.yaml",
+  "max_chars": "5000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "vla-ssd",
+    "file": "decisions.yaml",
+    "max_chars": "5000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T22:31:10.747204+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/decisions.yaml\", \"content\": \"_next_id: 29\\ndecisions:\\n- id: D001\\n  date: 2026-05-15 11:03 UTC\\n  summary: MVP 三分支判定标准校准：ρ下限0.3→0.5, Δρ加bootstrap CI, subtask gate加DINO baseline对比\\n  rationale: Reviewer 审查发现四项校准缺陷：(1) ρ>0.3 下限过低（DINO-V2 已达0.833，0.3只挡彻底失败）→ 提至0.5；(2)\\n    Δρ>0.1 仅为点估计缺统计检验 → 追加 bootstrapped 95% CI must exclude 0；(3) subtask_AUC>0.7\\n    无 baseline 锚点（不知道 DINO-V2 能做到多少）→ 增加条件 subtask_AUC > DINO_subtask_AUC + 0.05；(4)\\n    layer profile 不入正式判定但作为 mandatory supplementary analysis。修改后标准更严谨，降低 false positive\\n    PASS 风险。\\n  related_experiments:\\n  - exp_id: dino-v2-baseline\\n    role: baseline\\n    result: ρ=0.833\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-15 12:02 UTC\\n  summary: MVP 判定全面切换到 per-task mean ρ，弃用 pooled ρ\\n  rationale: Reviewer 指出 pooled ρ 受 cross-task variance 膨胀（DINO pooled=0.833 vs per-task\\n    mean=0.554）。pooled-vs-pooled 虽对称但偏严（可能 false negative）。切换 per-task mean 与 task-level\\n    bootstrap CI 方法论一致，且是更公平的 apples-to-apples 比较。影响：VLA≥DINO gate 从 ρ≥0.833 变为 per-task\\n    mean≥0.554；ρ>0.5 下限同样改为 per-task mean。\\n  related_experiments:\\n  - exp_id: dinov2_baseline\\n    role: baseline\\n    result: pooled ρ=0.833, per-task mean=0.554\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-15 12:31 UTC\\n  summary: 移除 subtask AUC gate，MVP 判定简化为纯 temporal distance (ρ) 路径\\n  rationale: DINO-V2 subtask AUC = 0.9717，Path B 要求 VLA > DINO + 0.05 = 1.0217，数学不可达（AUC\\n    上限 1.0）。根因：subtask 间视觉差异大，任何强视觉编码器都能高 AUC 区分——subtask discrimination 不是 VLA 的差异化能力。Temporal\\n    distance（连续进度信号）才是 VLA 可能独有的编码维度。简化后判定：PASS 需 VLA_ρ ≥ DINO_ρ (0.833)；CONDITIONAL\\n    需 Δρ > 0.1 但 VLA_ρ < DINO_ρ；FAIL 需 ρ ≤ 0.5 或 Δρ ≤ 0.1。Subtask AUC 保留为补充分析，不参与\\n    gate。\\n  related_experiments:\\n  - exp_id: dinov2_baseline\\n    role: trigger\\n    result: subtask AUC 0.9717 使 Path B 数学不可达\\n  depends_on:\\n  - D001\\n- id:
+…[truncated 3525 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:openvla-untrained-extract",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-15T22:32:13.810531+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 只能用 **cuda:0, cuda:1** on **westd-19183**（config whitelist），其他 GPU 不存在也不可用
+- **westd-19183 无外网**：所有 HF/AutoProcessor 调用必须 `local_files_only=True`，不能 pip install、不能 git clone
+- Untrained model = `from_config()` 重新初始化 LLM（6.74B random），**保留 SigLIP（0.80B frozen）**——不是随机初始化全模型
+- 分析 Worker **不得覆盖** registry 中已有的 spec 字段
+- 存储：根分区 ~30GB，大文件必须在 `/root/autodl-tmp/vla-ssd/`
+- Instruction ablation 已修复 bug：`if args.task_instruction:` 对空字符串返回 False，代码已改为显式检查
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-19183，工作目录 `/root/vla-ssd`
+- **Python**: 需 detect_image 确认（aml-train 镜像用 conda：`/root/miniconda3/bin/python`）
+- **模型 checkpoint**: LIBERO-10 fine-tuned OpenVLA（D017 决策：统一用此 checkpoint，LIBERO-Goal 是 OOD 测试）
+- **已提取 features 缓存**: 服务器上有 trained/untrained/DINO 的 33 层 per-layer features + SigLIP+projector features，**CPU-only 实验可直接复用**
+- **W&B**: 本项目主要是 probing/RSA 分析，非长训练，多数实验无 W&B run
+- **活跃进程**: 无训练进程在跑（所有 P0 DONE，0/2 GPU 占用）
+- **活跃 Worker**: `worker_ssh_d027-perlayer-rsa-noinst_20260515T222833`（turn 11，正在注册 artifacts——per-layer RSA no-inst 分析）
+- **活跃 Cron**: 0（reconcile 确认）
+- **Dream**: `dream_20260515T222933` pending，等回调
+
+### 3. 📊 当前状态
+**刚完成**: D028 complete_mvp — SigLIP-only RSA smoking gun PASS (0.615 >> 0.488 >> 0.388)，确立 "Vision Encoder Dominance" framing，paper_framing.md + experiment_plan.yaml 已写好。
+
+**Registry**: 35 实验全 DONE（20 success / 7 negative / 0 failed / 几个 killed）。无 RUNNING/PREPARING 实验。
+
+**正在等待**:
+1. Worker `d027-perlayer-rsa-noinst`（turn 11）— 在做 per-layer RSA degradation curve（no-inst 条件），即将完成。这是 plan_003 (P1) 的一部分数据。
+2. Dream `dream_20260515T222933` — 模拟审稿，决定是否调整 framing/plan。**Dream 回调到手后才能批准 P1 实验和启动 Paper Agent。**
+
+**关键数字（truth source = registry）**:
+- SigLIP+Projector RSA = 0.6153 [CI: 0.5257, 0.6954]
+- Trained with-inst = 0.4876, Trained no-inst = 0.489
+- Untrained with-inst = 0.4846, Untrained no-inst = 0.4802
+- DINO = 0.388
+- 2×2 Bootstrap Δ CI = [-0.058, 0.072] includes 0
+
+### 4. 📋 待办（条件触发式）
+- **Worker `d027-perlayer-rsa-noinst` 完成** → 读产出，更新 registry（如有新实验 ID），刷新 report.md。这给出 no-inst 条件下的 per-layer degradation curve，与 with-inst 对比。
+- **Dream 回调到达** → 读审稿模拟报告 → 若无 critical 问题：批准 P1 实验（plan_003 per-layer degradation curve 剩余部分 + plan_008 random instruction control）→ 派 Worker 执行 → 启动 Paper Agent（Full Draft 模式，CoRL 2026）
+- **Dream 报告指出 framing 问题** → 按 red-section skill 产出 Framing 调整提案 → 向 Director 汇报等决策
+- **P1 实验完成** → 结果补入论文 → 进入 Review + Iteration 阶段（May 20-28 窗口）
+- **GPU 闲置超过 1h** → 向 Director 汇报并建议启动 P2 实验（plan_009 CKA verification 或 plan_010 LIBERO-Spatial）
+
+### 5. 🎯 战略上下文
+**核心结论链**: MVP temporal distance G2 FAIL → Action probing G2 FAIL → Goal classification G3 FAIL → RSA G2 FAIL → 连续 4 轮 negative 触发 D021 pivot → "Architecture Trumps Training" (Option B) → Instruction ablation FAIL（否证 Option B）→ D027 pivot to Option A2 "Vision Encoder Dominance" → **SigLIP-only smoking gun PASS (D028)**。经历 7 次 negative 后锁定最终 framing。
+
+**最容易判断错的事**:
+1. **不要混淆 "trained vs untrained"**: 这里 untrained = random init LLM + frozen SigLIP，不是完全随机模型。SigLIP 始终 frozen，所以 trained ≈ untrained 是因为共享 SigLIP。
+2. **per-layer RSA 的 "peak layer" 不稳定**: trained peak 在 L9/L19（不同方法），untrained 在 L1/L12/L32。不要过度解读 peak layer 位置，关注 peak RSA 值的 band 收敛。
+3. **Dream 是关键门控**: 不要在 Dream 回调前批准 P1 或启动写论文。Dream 可能要求调整 claim 强度或补实验。
+4. **时间紧迫**: Abstract DDL May 26（11天），Paper DDL May 29（14天）。Dream 通过后应立即全速铺 P1 + Paper Agent 并行。
+5. **14 篇文献已确认 vision encoder dominance 在 behavioral level 是已知的**——我们的 novelty 在于 representational level 的定量分解 + LLM degradation 发现。不要在论文中 overclaim novelty。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:openvla-untrained-extract"
+}
+```
+
+</details>
+
+---

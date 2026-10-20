@@ -1,0 +1,15 @@
+{
+  "exp_id": "d027_trained_no_inst_rsa",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:10:55.271Z",
+    "updated_at": "2026-05-15T22:10:59.258Z",
+    "hypothesis": "D027 Exp-2: Extract trained VLA features with empty instruction on LIBERO-Goal, run RSA. Completes the 2×2 matrix (training × instruction). Expected: trained no-inst RSA ≈ untrained no-inst (0.4802), further confirming training is irrelevant to representational structure."
+  },
+  "timestamp": "2026-05-15T22:10:59.330399+00:00",
+  "trigger": "update_registry"
+}

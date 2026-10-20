@@ -1,0 +1,8562 @@
+# diagnose openvla long pipeline v1
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 184
+- **Recorded user turns:** 0
+- **Tool calls:** 64
+- **Original source:** `logs/workers/worker_diagnose_openvla_long_pipeline_v1_20260521T160330.log`
+- **Structured JSON:** [`bd78dbe64383b52d6b6c.json`](../../sessions/bd/bd78dbe64383b52d6b6c.json)
+
+## Before a recorded user message
+
+184 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2c823fb8-8961-42e0-9814-9a1cef6eba61",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779394800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e169a219-8c57-4ad8-8062-2ad8bd8d27a5",
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by SSHing to the server to diagnose and fix the issue. I need to:
+
+1. Look at the successful pipeline scripts to see how they handle unnorm_key
+2. Look at the Long pipeline script to find the bug
+3. Fix it
+4. Check if Phase 1-5 outputs exist for incremental re-run
+
+Let me load the SSH tools first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "539fcdc5-6a5c-4784-a9aa-59385549df88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGsinVD55jYksLhcyw5EMV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11815,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11815
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先加载 SSH 工具，然后并行查看成功脚本和 Long 脚本的相关代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "265b6756-39f7-47ac-a498-eaf12ebb5b01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGsinVD55jYksLhcyw5EMV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11815,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11815
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WX7bh1FbtbRHpRUzRTNowv`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "0d981904-1baa-4540-9a19-d39f98021e7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGsinVD55jYksLhcyw5EMV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11815,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11815
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T16:03:42.012Z_
+
+<details><summary>↩ Tool result · `toolu_01WX7bh1FbtbRHpRUzRTNowv`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "7b8791bd-7652-481d-85d1-7bf9278ce8c7",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me look at the successful pipeline scripts and the Long pipeline script in parallel to compare them.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "37b99f37-a446-4836-b8e2-ce6da636a7e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gs1SaA9yq3MapHMizzytXk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 23656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1007
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WjPoyPnWgAQ57aRFEnNMCw`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"UNNORM\\|unnorm_key\\|get_action_stats\\|norm_stats\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "e4c538fe-f4c3-4d96-8ba0-e5f8ef91caf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gs1SaA9yq3MapHMizzytXk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 23656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1007
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T16:03:47.942Z_
+
+<details><summary>↩ Tool result · `toolu_01WjPoyPnWgAQ57aRFEnNMCw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "b5424990-b5d8-4a29-b01f-31973075f69d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MAgiXUT4591r3r9vTxkXE5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"UNNORM\\|unnorm_key\\|get_action_stats\\|norm_stats\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "ab6e70db-1cca-4add-b690-26074023d5a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gs1SaA9yq3MapHMizzytXk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 23656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1007
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T16:03:48.909Z_
+
+<details><summary>↩ Tool result · `toolu_01MAgiXUT4591r3r9vTxkXE5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "c0ac2d04-c206-4c16-8ab3-93f3a18fc965",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011cbUTXqb5nSnwciLFUiVHN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"UNNORM\\|unnorm_key\\|get_action_stats\\|norm_stats\" /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "fcf770f2-11c9-41d4-8259-60aa10429239",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gs1SaA9yq3MapHMizzytXk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 23656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1007
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T16:03:49.456Z_
+
+<details><summary>↩ Tool result · `toolu_011cbUTXqb5nSnwciLFUiVHN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "2a6cb0f8-5c0e-4854-b9c5-431b49bde50c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` pipe character is blocked in read-only mode. Let me use grep without pipe - the `\|` in grep is not a shell metacharacter but grep's internal OR. Let me try with `-E` flag and proper syntax.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "2618846f-e2e4-455a-8e45-bd38c8c49c1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U3U4E1zMC9Z1eN2zGYqD9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 775
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+管道不允许，换用 grep -E 不带管道。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "ab4e57f1-5f7f-4c3d-b3e6-bd2f892d1282",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U3U4E1zMC9Z1eN2zGYqD9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 775
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NRqEQGW6Ay42q3Nk5VayKV`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -nE \"UNNORM|unnorm_key|get_action_stats|norm_stats\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "c98a38f2-3bf9-442b-9e99-53ac5527e6f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U3U4E1zMC9Z1eN2zGYqD9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 775
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T16:03:54.780Z_
+
+<details><summary>↩ Tool result · `toolu_01NRqEQGW6Ay42q3Nk5VayKV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "b1d00cab-7a00-4626-b0da-d853878ba083",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SpK99SCK3rV7ECwZgL8tyB`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -nE \"UNNORM|unnorm_key|get_action_stats|norm_stats\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "c728eed0-f8e3-4095-9d0a-a8a575ac9a5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U3U4E1zMC9Z1eN2zGYqD9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 775
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T16:03:55.741Z_
+
+<details><summary>↩ Tool result · `toolu_01SpK99SCK3rV7ECwZgL8tyB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "8426a3f5-bd0e-4c7b-93e3-10cdd6ad8f99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PBs19wGHjkk68Y5yfh2qYL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -nE \"UNNORM|unnorm_key|get_action_stats|norm_stats\" /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "d6b22cf2-2f06-474b-b3fc-9388ca48790d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U3U4E1zMC9Z1eN2zGYqD9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 775
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T16:03:56.324Z_
+
+<details><summary>↩ Tool result · `toolu_01PBs19wGHjkk68Y5yfh2qYL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "f18d9c86-4f55-41e4-a641-a485a8155e19",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` character in the regex pattern `-E "UNNORM|unnorm_key|..."` is being treated as a shell metacharacter. I need to escape it or use a different approach. Let me try using grep with `-e` for multiple patterns, or quoting the pattern differently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "102c8d31-c4f7-40c9-a5f7-9725a3aa0cdc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g5fZDuEzWNHPgfoEJCBEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 25438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+Pattern 中的 `|` 被当作 shell 管道符了。换多次 grep 或用 `-e` 分别搜。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "dc0f0e54-a9e4-40c0-972e-7afaa85ae173",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g5fZDuEzWNHPgfoEJCBEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 25438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HskgS64rWKnMFB9CMyFvin`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"UNNORM\" /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "74c923c8-c6b9-4fd0-a887-5ad26448dce6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g5fZDuEzWNHPgfoEJCBEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 25438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018v8PDv94qSK54AG7TrtwZo`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"UNNORM\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "51df3fed-2c51-4019-a88d-cc07cf7c4067",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g5fZDuEzWNHPgfoEJCBEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 25438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T2yixdqxTJ9VsnYUJtobk5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"UNNORM\" /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "6cd932fd-6fb3-4317-890f-d726bcbd401d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014g5fZDuEzWNHPgfoEJCBEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 25438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T16:04:03.511Z_
+
+<details><summary>↩ Tool result · `toolu_01HskgS64rWKnMFB9CMyFvin`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "3638f151-ee7c-4fad-815f-4774a7b75070",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T16:04:04.116Z_
+
+<details><summary>↩ Tool result · `toolu_018v8PDv94qSK54AG7TrtwZo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"33:UNNORM = \\\"libero_10\\\"\\n125:    stats = model.get_action_stats(UNNORM)\\n318:            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "5208dbb6-baa5-4ebe-96c1-23d2e70d7920",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:UNNORM = \\\\\\\"libero_10\\\\\\\"\\\\n125:    stats = model.get_action_stats(UNNORM)\\\\n318:            \\\\\\\"unnorm_key\\\\\\\": UNNORM, \\\\\\\"seed\\\\\\\": 42,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"33:UNNORM = \\\"libero_10\\\"\\n125:    stats = model.get_action_stats(UNNORM)\\n318:            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T16:04:04.705Z_
+
+<details><summary>↩ Tool result · `toolu_01T2yixdqxTJ9VsnYUJtobk5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"33:UNNORM = \\\"libero_object\\\"\\n114:    stats = model.get_action_stats(UNNORM)\\n307:            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "f921a265-c6b4-422b-b13a-f356eac24d02",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:UNNORM = \\\\\\\"libero_object\\\\\\\"\\\\n114:    stats = model.get_action_stats(UNNORM)\\\\n307:            \\\\\\\"unnorm_key\\\\\\\": UNNORM, \\\\\\\"seed\\\\\\\": 42,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"33:UNNORM = \\\"libero_object\\\"\\n114:    stats = model.get_action_stats(UNNORM)\\n307:            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings so far:
+
+- **Long pipeline**: `UNNORM = "libero_10"` (line 33)
+- **Object pipeline**: `UNNORM = "libero_object"` (line 33)
+- Goal pipeline file doesn't exist at that path
+
+The Long pipeline uses `UNNORM = "libero_10"` — but the error says `unnorm_key not in norm_stats`. Let me check what the goal and spatial scripts use, and also check the actual norm_stats keys in the model.
+
+Let me first find where the goal/spatial scripts actually are.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "9812390d-9c3c-4a94-9e06-acd6e9b5b10f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125pwfzAL4K1muunLdkYmfn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1016,
+      "cache_read_input_tokens": 26257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Long 脚本用 `UNNORM = "libero_10"`，Object 脚本用 `UNNORM = "libero_object"`。Goal 脚本路径不对，先找到它，同时看模型的 norm_stats keys。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "b5239374-f1f3-4152-8d81-bb6ef344ed68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125pwfzAL4K1muunLdkYmfn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1016,
+      "cache_read_input_tokens": 26257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015ikV7cQLcHsk8TmfdUXYbV`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts -name \"*goal*pipeline*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "fe80e4be-22b9-4d9c-9077-a8f285b1bcfe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125pwfzAL4K1muunLdkYmfn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1016,
+      "cache_read_input_tokens": 26257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QnYwgoz8kHn9GpxFCniXJi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts -name \"*spatial*pipeline*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "162e78c1-5b4e-4dad-8cb3-5c83cc5cc4cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125pwfzAL4K1muunLdkYmfn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1016,
+      "cache_read_input_tokens": 26257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T16:04:13.828Z_
+
+<details><summary>↩ Tool result · `toolu_015ikV7cQLcHsk8TmfdUXYbV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py.bak\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "86075b7f-157e-4e43-99fe-07ff6c1396f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py.bak\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py.bak\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016no4Ecx8i4UZMkMtjLwXpC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts -name \"*pipeline*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "a557075b-1bb8-432b-b75e-be8e37634060",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125pwfzAL4K1muunLdkYmfn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1016,
+      "cache_read_input_tokens": 26257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T16:04:14.414Z_
+
+<details><summary>↩ Tool result · `toolu_01QnYwgoz8kHn9GpxFCniXJi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "fafb6326-9c7a-4ae5-9e5b-4d54b95541f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T16:04:15.017Z_
+
+<details><summary>↩ Tool result · `toolu_016no4Ecx8i4UZMkMtjLwXpC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py.bak\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "28224702-cc51-4328-be0e-fab1f29b5a78",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py.bak\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py.bak\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no `libero_goal_full_pipeline.py` or `libero_spatial_full_pipeline.py` — they seem to have been replaced with `nora_` and `tracvla_` variants. But there is `libero_object_full_pipeline.py` which I already checked (uses `UNNORM = "libero_object"`).
+
+Let me also check `libero_object_untrained_full_pipeline.py` since the task mentions "OpenVLA Object untrained" had the same bug before. And let me check what UNNORM key the `tracvla_long_full_pipeline.py` uses for comparison.
+ 
+Actually, I should look directly at the model's norm_stats to see what keys are actually available rather than just inferring from the pipeline files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "d47b63dc-6216-4dae-a763-3c3ac78d5a9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BZ8xXGoHGVtdf7ubYn9CJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 27273,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+没有 `libero_goal_full_pipeline.py`，只有 `nora_`/`tracvla_` 变体。让我看 tracvla_goal 和 object_untrained 的 UNNORM 设置，同时检查模型的 norm_stats keys。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "d8e304c1-7470-42a9-838d-7fd4e0cd232f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BZ8xXGoHGVtdf7ubYn9CJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 27273,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HcB2ToLrAybrHfHUyDnXdR`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"UNNORM\" /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "58d9b182-41ef-4f06-8870-718ee2e6409a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BZ8xXGoHGVtdf7ubYn9CJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 27273,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XhgxQhZ8aoGBb4NU6qj71f`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"UNNORM\" /root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "3638cb27-b5a3-42b2-82b1-6ecacb408a45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BZ8xXGoHGVtdf7ubYn9CJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 27273,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T16:04:24.616Z_
+
+<details><summary>↩ Tool result · `toolu_01HcB2ToLrAybrHfHUyDnXdR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "58386adc-059f-4644-967f-583f5abbe947",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0192ZjNpZFsEB5rrtNAzWkgY`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"UNNORM\" /root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "255781a2-96df-4cb2-af7c-ff1535c77ba0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BZ8xXGoHGVtdf7ubYn9CJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 27273,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T16:04:25.207Z_
+
+<details><summary>↩ Tool result · `toolu_01XhgxQhZ8aoGBb4NU6qj71f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"32:UNNORM = \\\"bridge_orig\\\"\\n113:    stats = model.get_action_stats(UNNORM)\\n306:            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "d3f4cc1c-979c-4bb5-a3c7-080659bf064a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32:UNNORM = \\\\\\\"bridge_orig\\\\\\\"\\\\n113:    stats = model.get_action_stats(UNNORM)\\\\n306:            \\\\\\\"unnorm_key\\\\\\\": UNNORM, \\\\\\\"seed\\\\\\\": 42,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"32:UNNORM = \\\"bridge_orig\\\"\\n113:    stats = model.get_action_stats(UNNORM)\\n306:            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T16:04:25.813Z_
+
+<details><summary>↩ Tool result · `toolu_0192ZjNpZFsEB5rrtNAzWkgY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "ad8753aa-c440-47b5-a95c-7465e1becdf5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+
+- **Long pipeline (trained)**: `UNNORM = "libero_10"` 
+- **Object pipeline (trained)**: `UNNORM = "libero_object"`
+- **Object pipeline (untrained)**: `UNNORM = "bridge_orig"`
+
+The untrained version uses `"bridge_orig"` because the untrained (base) OpenVLA model was trained on OXE datasets, and its norm_stats contain OXE keys like `bridge_orig`, not LIBERO-specific keys.
+
+The trained/fine-tuned model (`openvla-7b-oft-finetuned-libero-10`) - wait, let me re-read the error. The error says:
+
+
+AssertionError: unnorm_key not in norm_stats
+
+And the model is `openvla-7b-oft-finetuned-libero-10` with norm_stats containing OXE dataset keys (bridge_orig, fractal20220817_data, etc.). There's a contradiction here. If the model is fine-tuned on LIBERO-10, it should have `libero_10` in its norm_stats. Unless the fine-tuning process didn't update norm_stats...
+
+So the fine-tuned model's norm_stats only contains OXE keys, and the UNNORM key `"libero_10"` isn't in there. The Object untrained case used `"bridge_orig"` as a workaround. But this is the trained model, yet it still only has OXE keys. The Object trained pipeline uses `UNNORM = "libero_object"`, but the Long pipeline crashes with `"libero_10"` not in norm_stats...
+
+Actually, I think I see what's happening. Phase 6 is counterfactual analysis, which uses both the trained and untrained models. The crash occurs when the untrained base model is loaded with `UNNORM = "libero_10"` - the base model's norm_stats doesn't have this key. Let me check the Long pipeline's counterfactual section to see how it's structured.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "28f61d44-c8bb-4e1b-a299-6e0394663116",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkWRC5JxPYhacdBQwC2gAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 28522,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 964
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+关键发现：Object untrained 脚本用 `UNNORM = "bridge_orig"`。这证实了 bug：counterfactual 分析用的是 base/untrained 模型，它的 norm_stats 只有 OXE keys。让我看 Long pipeline 的 counterfactual 部分具体怎么调用的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "a9d85b17-0c4b-4b44-bdea-8da6601cd63f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkWRC5JxPYhacdBQwC2gAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 28522,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 964
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SjAJTY3wEKRdZaoRwXzC2N`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -50 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "f49c8605-2414-466a-ac4d-cdfe713840af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkWRC5JxPYhacdBQwC2gAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 28522,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 964
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KZvRkGY6A4X2u3AFjvY1nr`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "sed -n '100,140p' /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "48dca17f-8cf5-49ed-a346-dd32d9553cfd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkWRC5JxPYhacdBQwC2gAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 28522,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 964
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T16:04:46.239Z_
+
+<details><summary>↩ Tool result · `toolu_01SjAJTY3wEKRdZaoRwXzC2N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM = \\\"libero_10\\\"\\n\\nTASKS = [\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\",\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\",\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\",\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\",\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\",\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\",\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"turn on the stove and put the moka pot on it\\\",\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\",\\n    \\\"put the yellow and white mug in the microwave and close it\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "fead44a3-0a26-4aee-91a9-6d65f15dc975",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. RSA: representational similarity across conditions\\\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nAll results -> RESULTS_DIR/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nUNNORM = \\\\\\\"libero_10\\\\\\\"\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\",\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [\\\\n    \\\\\\\"turn on the stove and put the moka pot on it\\\\\\\",\\\\n    \\\\\\\"put the black bowl in the bottom drawer of the cabinet and close it\\\\\\\",\\\\n    \\\\\\\"put the yellow and white mug in the microwave and close it\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM = \\\"libero_10\\\"\\n\\nTASKS = [\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\",\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\",\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\",\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\",\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\",\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\",\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"turn on the stove and put the moka pot on it\\\",\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\",\\n    \\\"put the yellow and white mug in the microwave and close it\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T16:04:46.252Z_
+
+<details><summary>↩ Tool result · `toolu_01KZvRkGY6A4X2u3AFjvY1nr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "3614beeb-1319-4be0-a82d-84bff69abfb8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the generate_action function and the counterfactual section. I'll use head with offset or tail.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "25b62f1c-2770-484b-92b0-892a4e03f646",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KopgoMPwEhPkCEoMHTAoAA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2373,
+      "cache_read_input_tokens": 29486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2373
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012FrhBqw9bWmDDqkfiCdwKP`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -145 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "0fa7b205-919d-4642-ba84-454d21a7f188",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KopgoMPwEhPkCEoMHTAoAA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2373,
+      "cache_read_input_tokens": 29486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2373
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T16:04:51.916Z_
+
+<details><summary>↩ Tool result · `toolu_012FrhBqw9bWmDDqkfiCdwKP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM = \\\"libero_10\\\"\\n\\nTASKS = [\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\",\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\",\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\",\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\",\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\",\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\",\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"turn on the stove and put the moka pot on it\\\",\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\",\\n    \\\"put the yellow and white mug in the microwave and close it\\\",\\n    \\\"put both moka pots on the stove\\\",\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\",\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\",\\n    \\\"put both the cream cheese box and the butter in the basket\\\",\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\",\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\",\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\",\\n]\\nPARAPHRASES = [\\n    \\\"switch on the stove and place the moka pot on it\\\",\\n    \\\"place the black bowl in the bottom drawer of the cabinet and shut it\\\",\\n    \\\"place the yellow and white mug in the microwave and shut it\\\",\\n    \\\"put both of the moka pots on the stove\\\",\\n    \\\"place the alphabet soup and cream cheese box into the basket\\\",\\n    \\\"place the alphabet soup and tomato sauce into the basket\\\",\\n    \\\"place the cream cheese box and butter into the basket\\\",\\n    \\\"place the white mug on the left plate and the yellow white mug on the right plate\\\",\\n    \\\"place the white mug on the plate and the chocolate pudding to the right of the plate\\\",\\n    \\\"grab the book and put it in the back section of the caddy\\\",\\n]\\n\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 4096\\nN_IMG_TOKENS = 256\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, image).to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            max_new_tokens=7, do_sample=False,\\n        )\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n\\n    vocab_size = model.vocab_size\\n    disc = np.clip(vocab_size - token_ids - 1, 0, model.bin_centers.shape[0] - 1)\\n    norm_act = model.bin_centers[disc]\\n\\n    stats = model.get_action_stats(UNNORM)\\n    mask = np.array(stats.get(\\\"mask\\\", [True] * 7))\\n    high, low = np.array(stats[\\\"q99\\\"]), np.array(stats[\\\"q01\\\"])\\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low, norm_act)\\n\\n    del inputs, gen_ids\\n    return action.astype(np.float64), token_ids\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: representation extraction\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "5ff8a214-c68d-4973-b17f-734f5905713c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. RSA: representational similarity across conditions\\\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nAll results -> RESULTS_DIR/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nUNNORM = \\\\\\\"libero_10\\\\\\\"\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\",\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\",\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\",\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [\\\\n    \\\\\\\"turn on the stove and put the moka pot on it\\\\\\\",\\\\n    \\\\\\\"put the black bowl in the bottom drawer of the cabinet and close it\\\\\\\",\\\\n    \\\\\\\"put the yellow and white mug in the microwave and close it\\\\\\\",\\\\n    \\\\\\\"put both moka pots on the stove\\\\\\\",\\\\n    \\\\\\\"put both the alphabet soup and the cream cheese box in the basket\\\\\\\",\\\\n    \\\\\\\"put both the alphabet soup and the tomato sauce in the basket\\\\\\\",\\\\n    \\\\\\\"put both the cream cheese box and the butter in the basket\\\\\\\",\\\\n    \\\\\\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\\\\\",\\\\n    \\\\\\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\\\\",\\\\n    \\\\\\\"pick up the book and place it in the back compartment of the caddy\\\\\\\",\\\\n]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"switch on the stove and place the moka pot on it\\\\\\\",\\\\n    \\\\\\\"place the black bowl in the bottom drawer of the cabinet and shut it\\\\\\\",\\\\n    \\\\\\\"place the yellow and white mug in the microwave and shut it\\\\\\\",\\\\n    \\\\\\\"put both of the moka pots on the stove\\\\\\\",\\\\n    \\\\\\\"place the alphabet soup and cream cheese box into the basket\\\\\\\",\\\\n    \\\\\\\"place the alphabet soup and tomato sauce into the basket\\\\\\\",\\\\n    \\\\\\\"place the cream cheese box and butter into the basket\\\\\\\",\\\\n    \\\\\\\"place the white mug on the left plate and the yellow white mug on the right plate\\\\\\\",\\\\n    \\\\\\\"place the white mug on the plate and the chocolate pudding to the right of the plate\\\\\\\",\\\\n    \\\\\\\"grab the book and put it in the back section of the caddy\\\\\\\",\\\\n]\\\\n\\\\nN_LAYERS = 32\\\\nN_HEADS = 32\\\\nHIDDEN = 4096\\\\nN_IMG_TOKENS = 256\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return f\\\\\\\"In: What action should the robot take to {instruction}?\\\\\\\\nOut:\\\\\\\"\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    prompt = make_prompt(instruction)\\\\n    inputs = processor(prompt, image).to(DEVICE)\\\\n    if \\\\\\\"pixel_values\\\\\\\" in inputs:\\\\n        inputs[\\\\\\\"pixel_values\\\\\\\"] = inputs[\\\\\\\"pixel_values\\\\\\\"].to(torch.bfloat16)\\\\n    return inputs\\\\n\\\\n\\\\ndef generate_action(model, processor, instruction, image):\\\\n    inputs = prepare_inputs(processor, instruction, image)\\\\n    input_ids = inputs[\\\\\\\"input_ids\\\\\\\"]\\\\n\\\\n    if not torch.all(input_ids[:, -1] == 29871):\\\\n        input_ids = torch.cat(\\\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\\\n        )\\\\n        if \\\\\\\"attention_mask\\\\\\\" in inputs:\\\\n            inputs[\\\\\\\"attention_mask\\\\\\\"] = torch.cat(\\\\n                (inputs[\\\\\\\"attention_mask\\\\\\\"],\\\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\\\\\"attention_mask\\\\\\\"].dtype)), dim=1\\\\n            )\\\\n    inputs[\\\\\\\"input_ids\\\\\\\"] = input_ids\\\\n\\\\n    with torch.no_grad():\\\\n        gen_ids = model.generate(\\\\n            inputs[\\\\\\\"input_ids\\\\\\\"],\\\\n            attention_mask=inputs.get(\\\\\\\"attention_mask\\\\\\\"),\\\\n            pixel_values=inputs.get(\\\\\\\"pixel_values\\\\\\\"),\\\\n            max_new_tokens=7, do_sample=False,\\\\n        )\\\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\\\n\\\\n    vocab_size = model.vocab_size\\\\n    disc = np.clip(vocab_size - token_ids - 1, 0, model.bin_centers.shape[0] - 1)\\\\n    norm_act = model.bin_centers[disc]\\\\n\\\\n    stats = model.get_action_stats(UNNORM)\\\\n    mask = np.array(stats.get(\\\\\\\"mask\\\\\\\", [True] * 7))\\\\n    high, low = np.array(stats[\\\\\\\"q99\\\\\\\"]), np.array(stats[\\\\\\\"q01\\\\\\\"])\\\\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low, norm_act)\\\\n\\\\n    del inputs, gen_ids\\\\n    return action.astype(np.float64), token_ids\\\\n\\\\n\\\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Phase 1: representation extraction\\\\\\\")\\\\n    total = n_tasks * n_demos * n_timesteps\\\\n\\\\n    reps = {\\\\n        l: {\\\\n            \\\\\\\"image_mean\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n            \\\\\\\"last_preaction\\\\\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\\\n        }\\\\n        for l in range(N_LAYERS)\\\\n    }\\\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Long Full Analysis Pipeline (Streaming)\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. RSA: representational similarity across conditions\\n  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nAll results -> RESULTS_DIR/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\n\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/libero_long\\\"\\nDEVICE = \\\"cuda:0\\\"\\nUNNORM = \\\"libero_10\\\"\\n\\nTASKS = [\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\",\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\",\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\",\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\",\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\",\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\",\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\",\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\",\\n]\\nINSTRUCTIONS = [\\n    \\\"turn on the stove and put the moka pot on it\\\",\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\",\\n    \\\"put the yellow and white mug in the microwave and close it\\\",\\n    \\\"put both moka pots on the stove\\\",\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\",\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\",\\n    \\\"put both the cream cheese box and the butter in the basket\\\",\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\",\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\",\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\",\\n]\\nPARAPHRASES = [\\n    \\\"switch on the stove and place the moka pot on it\\\",\\n    \\\"place the black bowl in the bottom drawer of the cabinet and shut it\\\",\\n    \\\"place the yellow and white mug in the microwave and shut it\\\",\\n    \\\"put both of the moka pots on the stove\\\",\\n    \\\"place the alphabet soup and cream cheese box into the basket\\\",\\n    \\\"place the alphabet soup and tomato sauce into the basket\\\",\\n    \\\"place the cream cheese box and butter into the basket\\\",\\n    \\\"place the white mug on the left plate and the yellow white mug on the right plate\\\",\\n    \\\"place the white mug on the plate and the chocolate pudding to the right of the plate\\\",\\n    \\\"grab the book and put it in the back section of the caddy\\\",\\n]\\n\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 4096\\nN_IMG_TOKENS = 256\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, image).to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef generate_action(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n    input_ids = inputs[\\\"input_ids\\\"]\\n\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)), dim=1\\n        )\\n        if \\\"attention_mask\\\" in inputs:\\n            inputs[\\\"attention_mask\\\"] = torch.cat(\\n                (inputs[\\\"attention_mask\\\"],\\n                 torch.ones(1, 1, device=DEVICE, dtype=inputs[\\\"attention_mask\\\"].dtype)), dim=1\\n            )\\n    inputs[\\\"input_ids\\\"] = input_ids\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            max_new_tokens=7, do_sample=False,\\n        )\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n\\n    vocab_size = model.vocab_size\\n    disc = np.clip(vocab_size - token_ids - 1, 0, model.bin_centers.shape[0] - 1)\\n    norm_act = model.bin_centers[disc]\\n\\n    stats = model.get_action_stats(UNNORM)\\n    mask = np.array(stats.get(\\\"mask\\\", [True] * 7))\\n    high, low = np.array(stats[\\\"q99\\\"]), np.array(stats[\\\"q01\\\"])\\n    action = np.where(mask, 0.5 * (norm_act + 1) * (high - low) + low, norm_act)\\n\\n    del inputs, gen_ids\\n    return action.astype(np.float64), token_ids\\n\\n\\ndef extract_features(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 1: representation extraction\\\")\\n    total = n_tasks * n_demos * n_timesteps\\n\\n    reps = {\\n        l: {\\n            \\\"image_mean\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n            \\\"last_preaction\\\": np.zeros((total, HIDDEN), dtype=np.float32),\\n        }\\n        for l in range(N_LAYERS)\\n    }\\n    actions_arr = np.zeros((total, 7), dtype=np.float32)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017XzEpAES8cA3tFiLhoXKFC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"counterfactual\\|phase_6\\|Phase 6\\|PHASE_6\\|def run_counterfactual\\|def counterfactual\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "696dcb96-874e-4974-923c-a995bc62036b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KopgoMPwEhPkCEoMHTAoAA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2373,
+      "cache_read_input_tokens": 29486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2373
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T16:04:52.409Z_
+
+<details><summary>↩ Tool result · `toolu_017XzEpAES8cA3tFiLhoXKFC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "34ed7654-dbdc-4ed9-aa0d-3bd394b54b30",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me find the counterfactual section using grep with separate patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "1a1f1233-554c-4ea9-a577-93da58ee4782",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwEZTd6yYy5bi4YS4gaU2P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2918,
+      "cache_read_input_tokens": 31859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2918
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YYTyoqWehrmoBkJ5ACdxAQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"counterfactual\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "ff215e22-bfd6-4d47-a4ff-ec579d071dee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwEZTd6yYy5bi4YS4gaU2P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2918,
+      "cache_read_input_tokens": 31859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2918
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T16:04:56.514Z_
+
+<details><summary>↩ Tool result · `toolu_01YYTyoqWehrmoBkJ5ACdxAQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"307:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n308:    log(\\\"Phase 6: counterfactual analysis\\\")\\n313:            \\\"experiment\\\": \\\"counterfactual_libero_long\\\",\\n408:                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n520:    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n628:        if not args.skip_counterfactual:\\n630:            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n631:            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n633:            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "a6c99bf7-d13f-4bf4-9ef9-1b81233d7c2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"307:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\\\n308:    log(\\\\\\\"Phase 6: counterfactual analysis\\\\\\\")\\\\n313:            \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_libero_long\\\\\\\",\\\\n408:                \\\\\\\"instruction_counterfactual\\\\\\\": _cf_instruction(ti, cond),\\\\n520:    p.add_argument(\\\\\\\"--skip-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n628:        if not args.skip_counterfactual:\\\\n630:            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n631:            with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n633:            log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"307:def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n308:    log(\\\"Phase 6: counterfactual analysis\\\")\\n313:            \\\"experiment\\\": \\\"counterfactual_libero_long\\\",\\n408:                \\\"instruction_counterfactual\\\": _cf_instruction(ti, cond),\\n520:    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n628:        if not args.skip_counterfactual:\\n630:            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n631:            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n633:            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017FvxFVsi2n7kJ9K3pPD8zz`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"Phase 6\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "38e4417c-63e0-4d52-88c3-a16c86847e57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwEZTd6yYy5bi4YS4gaU2P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2918,
+      "cache_read_input_tokens": 31859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2918
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T16:04:57.114Z_
+
+<details><summary>↩ Tool result · `toolu_017FvxFVsi2n7kJ9K3pPD8zz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"308:    log(\\\"Phase 6: counterfactual analysis\\\")\\n633:            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "329e81b1-64d4-47ae-afbe-5eaed77cb2dd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"308:    log(\\\\\\\"Phase 6: counterfactual analysis\\\\\\\")\\\\n633:            log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"308:    log(\\\"Phase 6: counterfactual analysis\\\")\\n633:            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to understand the issue better. The `generate_action` function (line 125) calls `model.get_action_stats(UNNORM)` where `UNNORM = "libero_10"`. 
+
+In Phase 6 counterfactual analysis, it uses BOTH the trained and untrained models. When the untrained (base) model (`openvla-7b`) is loaded, `model.get_action_stats("libero_10")` fails because the base model's norm_stats only contains OXE dataset keys.
+
+Wait, actually let me check - does the script use the UNTRAINED model in Phase 6? Let me look at the counterfactual function and also the main function that runs different phases.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "99b9d7f9-ee99-4c41-b425-a36baf0143b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KbsuKxXoSi5D2PrM4wnQvQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 774,
+      "cache_read_input_tokens": 34777,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 774
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UiJUqR3deHLdZoc1y9EHwb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +307 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "3172c54c-1468-4077-8834-0a21e1add8d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KbsuKxXoSi5D2PrM4wnQvQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 774,
+      "cache_read_input_tokens": 34777,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 774
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-21T16:05:04.976Z_
+
+<details><summary>↩ Tool result · `toolu_01UiJUqR3deHLdZoc1y9EHwb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 6: counterfactual analysis\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_libero_long\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks, \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"openvla-7b-finetuned-libero-object\\\",\\n            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        all_mses, all_tok_div = [], []\\n        per_task_mses = defaultdict(list)\\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\\n        per_task_correct = defaultdict(list)\\n        per_task_cf = defaultdict(list)\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n                    n_avail = hf[f\\\"data/demo_{di}/actions\\\"].shape[0]\\n                    for t in range(min(n_timesteps, n_avail)):\\n                        img = Image.fromarray(\\n                            hf[f\\\"data/demo_{di}/obs/agentview_rgb\\\"][t])\\n\\n                        c_act, c_tok = generate_action(\\n                            model, processor, INSTRUCTIONS[ti], img)\\n                        f_act, f_tok = generate_action(\\n                            model, processor, cf_instr, img)\\n\\n                        mse = float(np.mean((c_act - f_act) ** 2))\\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\\n\\n                        all_mses.append(mse)\\n                        all_tok_div.append(tok_div)\\n                        per_task_mses[ti].append(mse)\\n                        per_task_demo_mses[ti][di].append(mse)\\n                        per_task_correct[ti].append(c_act)\\n                        per_task_cf[ti].append(f_act)\\n\\n                        sample_n += 1\\n                        if sample_n % 200 == 0:\\n                            torch.cuda.empty_cache()\\n                            log(f\\\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\\\")\\n\\n        mse_arr = np.array(all_mses)\\n        global_d = float(mse_arr.mean() / mse_arr.std(ddof=1)) if mse_arr.std(ddof=1) > 0 else 0.0\\n\\n        ca_all = np.concatenate([np.array(per_task_correct[ti]) for ti in range(n_tasks)])\\n        cf_all = np.concatenate([np.array(per_task_cf[ti]) for ti in range(n_tasks)])\\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\\n\\n        cond_res = {\\n            \\\"global_metrics\\\": {\\n                \\\"paired_mse\\\": {\\n                    \\\"mean\\\": round(float(mse_arr.mean()), 6),\\n                    \\\"std\\\": round(float(mse_arr.std()), 6),\\n                    \\\"cohens_d\\\": round(global_d, 4),\\n                },\\n                \\\"per_dim_shift\\\": {\\n                    \\\"means\\\": [round(v, 6) for v in pdm],\\n                    \\\"stds\\\": [round(v, 6) for v in pds],\\n                    \\\"dim_names\\\": [\\\"dx\\\",\\\"dy\\\",\\\"dz\\\",\\\"rx\\\",\\\"ry\\\",\\\"rz\\\",\\\"gripper\\\"],\\n                },\\n                \\\"token_divergence_rate\\\": round(float(np.mean(all_tok_div)), 4),\\n                \\\"n_samples\\\": len(mse_arr),\\n            },\\n            \\\"per_task\\\": {},\\n            \\\"cross_task_variance\\\": {},\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_mses[ti])\\n            td = float(tm.mean() / tm.std(ddof=1)) if tm.std(ddof=1) > 0 else 0.0\\n            per_task_ds.append(td)\\n\\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\\n                          for di in range(n_demos)]\\n            da = np.array(demo_means)\\n            dd = float(da.mean() / da.std(ddof=1)) if da.std(ddof=1) > 0 else 0.0\\n\\n            entry = {\\n                \\n\\n... [截断: 输出过长，省略 5992 字符] ...\\n\\n= time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "cafed6a5-ded5-4b60-886d-9c586b2234c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\\\n    log(\\\\\\\"Phase 6: counterfactual analysis\\\\\\\")\\\\n    conditions = [\\\\\\\"wrong\\\\\\\", \\\\\\\"empty\\\\\\\", \\\\\\\"shuffled\\\\\\\", \\\\\\\"paraphrased\\\\\\\"]\\\\n\\\\n    all_res = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_libero_long\\\\\\\",\\\\n            \\\\\\\"conditions\\\\\\\": conditions,\\\\n            \\\\\\\"n_tasks\\\\\\\": n_tasks, \\\\\\\"n_demos_per_task\\\\\\\": n_demos,\\\\n            \\\\\\\"n_timesteps_per_demo\\\\\\\": n_timesteps,\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b-finetuned-libero-object\\\\\\\",\\\\n            \\\\\\\"unnorm_key\\\\\\\": UNNORM, \\\\\\\"seed\\\\\\\": 42,\\\\n            \\\\\\\"task_names\\\\\\\": TASKS[:n_tasks],\\\\n        }\\\\n    }\\\\n\\\\n    for cond in conditions:\\\\n        log(f\\\\\\\"  Condition: {cond}\\\\\\\")\\\\n        all_mses, all_tok_div = [], []\\\\n        per_task_mses = defaultdict(list)\\\\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\\\\n        per_task_correct = defaultdict(list)\\\\n        per_task_cf = defaultdict(list)\\\\n        sample_n = 0\\\\n\\\\n        for ti in range(n_tasks):\\\\n            cf_instr = _cf_instruction(ti, cond)\\\\n            hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[ti]}_demo.hdf5\\\\\\\")\\\\n\\\\n            with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n                for di in range(n_demos):\\\\n                    n_avail = hf[f\\\\\\\"data/demo_{di}/actions\\\\\\\"].shape[0]\\\\n                    for t in range(min(n_timesteps, n_avail)):\\\\n                        img = Image.fromarray(\\\\n                            hf[f\\\\\\\"data/demo_{di}/obs/agentview_rgb\\\\\\\"][t])\\\\n\\\\n                        c_act, c_tok = generate_action(\\\\n                            model, processor, INSTRUCTIONS[ti], img)\\\\n                        f_act, f_tok = generate_action(\\\\n                            model, processor, cf_instr, img)\\\\n\\\\n                        mse = float(np.mean((c_act - f_act) ** 2))\\\\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\\\\n\\\\n                        all_mses.append(mse)\\\\n                        all_tok_div.append(tok_div)\\\\n                        per_task_mses[ti].append(mse)\\\\n                        per_task_demo_mses[ti][di].append(mse)\\\\n                        per_task_correct[ti].append(c_act)\\\\n                        per_task_cf[ti].append(f_act)\\\\n\\\\n                        sample_n += 1\\\\n                        if sample_n % 200 == 0:\\\\n                            torch.cuda.empty_cache()\\\\n                            log(f\\\\\\\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\\\\\\\")\\\\n\\\\n        mse_arr = np.array(all_mses)\\\\n        global_d = float(mse_arr.mean() / mse_arr.std(ddof=1)) if mse_arr.std(ddof=1) > 0 else 0.0\\\\n\\\\n        ca_all = np.concatenate([np.array(per_task_correct[ti]) for ti in range(n_tasks)])\\\\n        cf_all = np.concatenate([np.array(per_task_cf[ti]) for ti in range(n_tasks)])\\\\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\\\\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\\\\n\\\\n        cond_res = {\\\\n            \\\\\\\"global_metrics\\\\\\\": {\\\\n                \\\\\\\"paired_mse\\\\\\\": {\\\\n                    \\\\\\\"mean\\\\\\\": round(float(mse_arr.mean()), 6),\\\\n                    \\\\\\\"std\\\\\\\": round(float(mse_arr.std()), 6),\\\\n                    \\\\\\\"cohens_d\\\\\\\": round(global_d, 4),\\\\n                },\\\\n                \\\\\\\"per_dim_shift\\\\\\\": {\\\\n                    \\\\\\\"means\\\\\\\": [round(v, 6) for v in pdm],\\\\n                    \\\\\\\"stds\\\\\\\": [round(v, 6) for v in pds],\\\\n                    \\\\\\\"dim_names\\\\\\\": [\\\\\\\"dx\\\\\\\",\\\\\\\"dy\\\\\\\",\\\\\\\"dz\\\\\\\",\\\\\\\"rx\\\\\\\",\\\\\\\"ry\\\\\\\",\\\\\\\"rz\\\\\\\",\\\\\\\"gripper\\\\\\\"],\\\\n                },\\\\n                \\\\\\\"token_divergence_rate\\\\\\\": round(float(np.mean(all_tok_div)), 4),\\\\n                \\\\\\\"n_samples\\\\\\\": len(mse_arr),\\\\n            },\\\\n            \\\\\\\"per_task\\\\\\\": {},\\\\n            \\\\\\\"cross_task_variance\\\\\\\": {},\\\\n        }\\\\n\\\\n        per_task_ds = []\\\\n        for ti in range(n_tasks):\\\\n            tm = np.array(per_task_mses[ti])\\\\n            td = float(tm.mean() / tm.std(ddof=1)) if tm.std(ddof=1) > 0 else 0.0\\\\n            per_task_ds.append(td)\\\\n\\\\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\\\\n                          for di in range(n_demos)]\\\\n            da = np.array(demo_means)\\\\n            dd = float(da.mean() / da.std(ddof=1)) if da.std(ddof=1) > 0 else 0.0\\\\n\\\\n            entry = {\\\\n                \\\\n\\\\n... [截断: 输出过长，省略 5992 字符] ...\\\\n\\\\n= time.time()\\\\n        model = AutoModelForVision2Seq.from_pretrained(\\\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\\\n        ).to(DEVICE).eval()\\\\n        import importlib.util, sys\\\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\\\n        mod = importlib.util.module_from_spec(spec)\\\\n        sys.modules['processing_prismatic'] = mod\\\\n        spec.loader.exec_module(mod)\\\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\\\n        log(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n        log(\\\\\\\"Validating token layout ...\\\\\\\")\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[0]}_demo.hdf5\\\\\\\")\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            img = Image.fromarray(hf[\\\\\\\"data/demo_0/obs/agentview_rgb\\\\\\\"][0])\\\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\\\n        log(f\\\\\\\"  input_ids shape: {inputs['input_ids'].shape}\\\\\\\")\\\\n        log(f\\\\\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\\\\\")\\\\n        with torch.no_grad():\\\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\\\n        hs0_shape = out.hidden_states[0].shape\\\\n        log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n        expected_seq = inputs[\\\\\\\"input_ids\\\\\\\"].shape[1] + N_IMG_TOKENS\\\\n        actual_seq = hs0_shape[1]\\\\n        if actual_seq != expected_seq:\\\\n            log(f\\\\\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\\\\\")\\\\n            log(f\\\\\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\\\\\")\\\\n            N_IMG_TOKENS = actual_seq - inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]\\\\n        log(f\\\\\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\\\\\")\\\\n        del out, inputs\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        t1 = time.time()\\\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n            model, processor, nt, nd, ns)\\\\n        log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n        if not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n        t3 = time.time()\\\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n        with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(attn_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n        del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n        t4 = time.time()\\\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n        with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(cls_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n        if not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\\\\\"rsa_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\\\\\")\\\\n\\\\n        del reps, actions, labels\\\\n\\\\n        if not args.skip_counterfactual:\\\\n            t5 = time.time()\\\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n            with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(cf_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def run_counterfactual(model, processor, n_tasks, n_demos, n_timesteps):\\n    log(\\\"Phase 6: counterfactual analysis\\\")\\n    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n\\n    all_res = {\\n        \\\"config\\\": {\\n            \\\"experiment\\\": \\\"counterfactual_libero_long\\\",\\n            \\\"conditions\\\": conditions,\\n            \\\"n_tasks\\\": n_tasks, \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"model\\\": \\\"openvla-7b-finetuned-libero-object\\\",\\n            \\\"unnorm_key\\\": UNNORM, \\\"seed\\\": 42,\\n            \\\"task_names\\\": TASKS[:n_tasks],\\n        }\\n    }\\n\\n    for cond in conditions:\\n        log(f\\\"  Condition: {cond}\\\")\\n        all_mses, all_tok_div = [], []\\n        per_task_mses = defaultdict(list)\\n        per_task_demo_mses = defaultdict(lambda: defaultdict(list))\\n        per_task_correct = defaultdict(list)\\n        per_task_cf = defaultdict(list)\\n        sample_n = 0\\n\\n        for ti in range(n_tasks):\\n            cf_instr = _cf_instruction(ti, cond)\\n            hdf5_path = os.path.join(DATA, f\\\"{TASKS[ti]}_demo.hdf5\\\")\\n\\n            with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n                for di in range(n_demos):\\n                    n_avail = hf[f\\\"data/demo_{di}/actions\\\"].shape[0]\\n                    for t in range(min(n_timesteps, n_avail)):\\n                        img = Image.fromarray(\\n                            hf[f\\\"data/demo_{di}/obs/agentview_rgb\\\"][t])\\n\\n                        c_act, c_tok = generate_action(\\n                            model, processor, INSTRUCTIONS[ti], img)\\n                        f_act, f_tok = generate_action(\\n                            model, processor, cf_instr, img)\\n\\n                        mse = float(np.mean((c_act - f_act) ** 2))\\n                        tok_div = int(not np.array_equal(c_tok, f_tok))\\n\\n                        all_mses.append(mse)\\n                        all_tok_div.append(tok_div)\\n                        per_task_mses[ti].append(mse)\\n                        per_task_demo_mses[ti][di].append(mse)\\n                        per_task_correct[ti].append(c_act)\\n                        per_task_cf[ti].append(f_act)\\n\\n                        sample_n += 1\\n                        if sample_n % 200 == 0:\\n                            torch.cuda.empty_cache()\\n                            log(f\\\"    {sample_n}/{n_tasks * n_demos * n_timesteps}\\\")\\n\\n        mse_arr = np.array(all_mses)\\n        global_d = float(mse_arr.mean() / mse_arr.std(ddof=1)) if mse_arr.std(ddof=1) > 0 else 0.0\\n\\n        ca_all = np.concatenate([np.array(per_task_correct[ti]) for ti in range(n_tasks)])\\n        cf_all = np.concatenate([np.array(per_task_cf[ti]) for ti in range(n_tasks)])\\n        pdm = np.abs(ca_all - cf_all).mean(0).tolist()\\n        pds = np.abs(ca_all - cf_all).std(0).tolist()\\n\\n        cond_res = {\\n            \\\"global_metrics\\\": {\\n                \\\"paired_mse\\\": {\\n                    \\\"mean\\\": round(float(mse_arr.mean()), 6),\\n                    \\\"std\\\": round(float(mse_arr.std()), 6),\\n                    \\\"cohens_d\\\": round(global_d, 4),\\n                },\\n                \\\"per_dim_shift\\\": {\\n                    \\\"means\\\": [round(v, 6) for v in pdm],\\n                    \\\"stds\\\": [round(v, 6) for v in pds],\\n                    \\\"dim_names\\\": [\\\"dx\\\",\\\"dy\\\",\\\"dz\\\",\\\"rx\\\",\\\"ry\\\",\\\"rz\\\",\\\"gripper\\\"],\\n                },\\n                \\\"token_divergence_rate\\\": round(float(np.mean(all_tok_div)), 4),\\n                \\\"n_samples\\\": len(mse_arr),\\n            },\\n            \\\"per_task\\\": {},\\n            \\\"cross_task_variance\\\": {},\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_mses[ti])\\n            td = float(tm.mean() / tm.std(ddof=1)) if tm.std(ddof=1) > 0 else 0.0\\n            per_task_ds.append(td)\\n\\n            demo_means = [float(np.mean(per_task_demo_mses[ti][di]))\\n                          for di in range(n_demos)]\\n            da = np.array(demo_means)\\n            dd = float(da.mean() / da.std(ddof=1)) if da.std(ddof=1) > 0 else 0.0\\n\\n            entry = {\\n                \\n\\n... [截断: 输出过长，省略 5992 字符] ...\\n\\n= time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the full picture. The key issue is in `main()` function. Let me look at it more carefully. I see it iterates over `conditions` (likely "trained" and "untrained") and loads models for each condition. When it loads the untrained model (openvla-7b), it still uses `UNNORM = "libero_10"`, which doesn't exist in the base model's norm_stats.
+
+Let me look at the main function more carefully to see the condition loop.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "54990197-8458-461a-bd25-a1fec8fb83d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013dyfxvYijoG1vNKy2GySty",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3618,
+      "cache_read_input_tokens": 35551,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011xEJL4AwAxxfSfBZJWMyqR`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def main\\|condition\\|TRAINED\\|UNTRAINED\\|ckpt\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "155415ed-412b-49ce-97de-6a59d3d86171",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013dyfxvYijoG1vNKy2GySty",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3618,
+      "cache_read_input_tokens": 35551,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T16:05:11.014Z_
+
+<details><summary>↩ Tool result · `toolu_011xEJL4AwAxxfSfBZJWMyqR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "61b98991-83a4-4d68-9e6f-8e2081561b6c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Di1YDrJtUMj8NARhguYDjH`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"def main\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "78246aa8-edf2-4f83-abc3-40138297c64b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PhuJZT6t8Gxj6QMcX6A3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 39169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ha8Hy8DJFnRByvDf3SBguA`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"condition\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "0094648a-f59b-4606-a1ac-e91e0151a881",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PhuJZT6t8Gxj6QMcX6A3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 39169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-21T16:05:17.816Z_
+
+<details><summary>↩ Tool result · `toolu_01Di1YDrJtUMj8NARhguYDjH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"515:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "a511899d-b7f9-4dac-8f28-08f85b6e2be7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"515:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"515:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017nyjDTgnLbM9uTSiThAo4u`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"ckpt\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "69c0fff3-82d1-44a4-8a37-977ceb6004b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PhuJZT6t8Gxj6QMcX6A3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 39169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-21T16:05:18.411Z_
+
+<details><summary>↩ Tool result · `toolu_01Ha8Hy8DJFnRByvDf3SBguA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"10:  5. RSA: representational similarity across conditions\\n11:  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n294:def _cf_instruction(task_idx, condition):\\n295:    if condition == \\\"wrong\\\":\\n297:    elif condition == \\\"empty\\\":\\n299:    elif condition == \\\"shuffled\\\":\\n303:    elif condition == \\\"paraphrased\\\":\\n309:    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n314:            \\\"conditions\\\": conditions,\\n323:    for cond in conditions:\\n426:    ranking = sorted(conditions,\\n430:        {\\\"condition\\\": c,\\n524:        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n530:    conditions = args.conditions\\n531:    log(f\\\"Pipeline conditions: {conditions}\\\")\\n535:    for condition in conditions:\\n536:        if condition == \\\"trained\\\":\\n539:        elif condition == \\\"untrained\\\":\\n543:            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n554:        log(f\\\"=== {condition.upper()} ===\\\")\\n635:        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "67be972b-accb-4c95-bc22-4b6f98211f4d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"10:  5. RSA: representational similarity across conditions\\\\n11:  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n294:def _cf_instruction(task_idx, condition):\\\\n295:    if condition == \\\\\\\"wrong\\\\\\\":\\\\n297:    elif condition == \\\\\\\"empty\\\\\\\":\\\\n299:    elif condition == \\\\\\\"shuffled\\\\\\\":\\\\n303:    elif condition == \\\\\\\"paraphrased\\\\\\\":\\\\n309:    conditions = [\\\\\\\"wrong\\\\\\\", \\\\\\\"empty\\\\\\\", \\\\\\\"shuffled\\\\\\\", \\\\\\\"paraphrased\\\\\\\"]\\\\n314:            \\\\\\\"conditions\\\\\\\": conditions,\\\\n323:    for cond in conditions:\\\\n426:    ranking = sorted(conditions,\\\\n430:        {\\\\\\\"condition\\\\\\\": c,\\\\n524:        \\\\\\\"--conditions\\\\\\\", nargs=\\\\\\\"+\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"],\\\\n530:    conditions = args.conditions\\\\n531:    log(f\\\\\\\"Pipeline conditions: {conditions}\\\\\\\")\\\\n535:    for condition in conditions:\\\\n536:        if condition == \\\\\\\"trained\\\\\\\":\\\\n539:        elif condition == \\\\\\\"untrained\\\\\\\":\\\\n543:            log(f\\\\\\\"  Unknown condition: {condition}, skipping\\\\\\\")\\\\n554:        log(f\\\\\\\"=== {condition.upper()} ===\\\\\\\")\\\\n635:        log(f\\\\\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"10:  5. RSA: representational similarity across conditions\\n11:  6. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n294:def _cf_instruction(task_idx, condition):\\n295:    if condition == \\\"wrong\\\":\\n297:    elif condition == \\\"empty\\\":\\n299:    elif condition == \\\"shuffled\\\":\\n303:    elif condition == \\\"paraphrased\\\":\\n309:    conditions = [\\\"wrong\\\", \\\"empty\\\", \\\"shuffled\\\", \\\"paraphrased\\\"]\\n314:            \\\"conditions\\\": conditions,\\n323:    for cond in conditions:\\n426:    ranking = sorted(conditions,\\n430:        {\\\"condition\\\": c,\\n524:        \\\"--conditions\\\", nargs=\\\"+\\\", choices=[\\\"trained\\\", \\\"untrained\\\"],\\n530:    conditions = args.conditions\\n531:    log(f\\\"Pipeline conditions: {conditions}\\\")\\n535:    for condition in conditions:\\n536:        if condition == \\\"trained\\\":\\n539:        elif condition == \\\"untrained\\\":\\n543:            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n554:        log(f\\\"=== {condition.upper()} ===\\\")\\n635:        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T16:05:19.019Z_
+
+<details><summary>↩ Tool result · `toolu_017nyjDTgnLbM9uTSiThAo4u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"537:            ckpt = TRAINED_CKPT\\n540:            ckpt = UNTRAINED_CKPT\\n556:        log(f\\\"Checkpoint: {ckpt}\\\")\\n562:            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n565:        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n569:        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "53ba5138-c196-49ba-b7d9-974ec29dbe58",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"537:            ckpt = TRAINED_CKPT\\\\n540:            ckpt = UNTRAINED_CKPT\\\\n556:        log(f\\\\\\\"Checkpoint: {ckpt}\\\\\\\")\\\\n562:            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\\\n565:        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\\\n569:        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"537:            ckpt = TRAINED_CKPT\\n540:            ckpt = UNTRAINED_CKPT\\n556:        log(f\\\"Checkpoint: {ckpt}\\\")\\n562:            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n565:        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n569:        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the full picture clearly. The main function iterates over conditions `["trained", "untrained"]`. For each condition:
+- `trained` → loads `TRAINED_CKPT` (openvla-7b-oft-finetuned-libero-10)
+- `untrained` → loads `UNTRAINED_CKPT` (openvla-7b)
+
+Both conditions run `generate_action` which calls `model.get_action_stats(UNNORM)` with `UNNORM = "libero_10"`.
+
+The base model (openvla-7b) doesn't have `"libero_10"` in its norm_stats, hence the crash.
+
+
+But the error message indicates the trained model also only has OXE keys in its norm_stats. That's strange since the task description says the trained model should have libero_10 keys. Let me reconsider what's actually in the trained model's norm_stats and whether there's a mismatch between what I'm expecting and what's actually available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "89bff4d5-cfcc-423b-9e32-4f13d38d48e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CywDCMWnSoLFVumgkFBnmf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1181,
+      "cache_read_input_tokens": 39522,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1181
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+让我看 main 函数中 trained/untrained 分支的完整逻辑，和模型的 norm_stats keys。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "659660cb-ee0a-4e21-b88f-ce166f105e9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CywDCMWnSoLFVumgkFBnmf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1181,
+      "cache_read_input_tokens": 39522,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1181
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XgpCsTeuVyWtUUeKSj1bdn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +530 /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "22545e4d-2d40-41ea-bb18-89960f8ec789",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CywDCMWnSoLFVumgkFBnmf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1181,
+      "cache_read_input_tokens": 39522,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1181
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-21T16:05:33.107Z_
+
+<details><summary>↩ Tool result · `toolu_01XgpCsTeuVyWtUUeKSj1bdn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n            results_dir = RESULTS_BASE\\n        elif condition == \\\"untrained\\\":\\n            ckpt = UNTRAINED_CKPT\\n            results_dir = RESULTS_BASE + \\\"_untrained\\\"\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        os.makedirs(results_dir, exist_ok=True)\\n\\n        nt = 2 if args.dry_run else len(TASKS)\\n        nd = 1 if args.dry_run else N_DEMOS\\n        ns = 2 if args.dry_run else N_TIMESTEPS\\n        nps = 2 if args.dry_run else N_PROBE_SEEDS\\n        cls_layers = [0, 8, 16, 24, 31] if args.dry_run else None\\n\\n        log(f\\\"=== {condition.upper()} ===\\\")\\n        log(f\\\"Config: tasks={nt} demos={nd} timesteps={ns} seeds={nps} dry_run={args.dry_run}\\\")\\n        log(f\\\"Checkpoint: {ckpt}\\\")\\n        log(f\\\"Output: {results_dir}\\\")\\n\\n        log(\\\"Loading model ...\\\")\\n        t0 = time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "ca5ded3f-2182-483e-8d44-d42e73c97edc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    conditions = args.conditions\\\\n    log(f\\\\\\\"Pipeline conditions: {conditions}\\\\\\\")\\\\n\\\\n    t_start = time.time()\\\\n\\\\n    for condition in conditions:\\\\n        if condition == \\\\\\\"trained\\\\\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n            results_dir = RESULTS_BASE\\\\n        elif condition == \\\\\\\"untrained\\\\\\\":\\\\n            ckpt = UNTRAINED_CKPT\\\\n            results_dir = RESULTS_BASE + \\\\\\\"_untrained\\\\\\\"\\\\n        else:\\\\n            log(f\\\\\\\"  Unknown condition: {condition}, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        os.makedirs(results_dir, exist_ok=True)\\\\n\\\\n        nt = 2 if args.dry_run else len(TASKS)\\\\n        nd = 1 if args.dry_run else N_DEMOS\\\\n        ns = 2 if args.dry_run else N_TIMESTEPS\\\\n        nps = 2 if args.dry_run else N_PROBE_SEEDS\\\\n        cls_layers = [0, 8, 16, 24, 31] if args.dry_run else None\\\\n\\\\n        log(f\\\\\\\"=== {condition.upper()} ===\\\\\\\")\\\\n        log(f\\\\\\\"Config: tasks={nt} demos={nd} timesteps={ns} seeds={nps} dry_run={args.dry_run}\\\\\\\")\\\\n        log(f\\\\\\\"Checkpoint: {ckpt}\\\\\\\")\\\\n        log(f\\\\\\\"Output: {results_dir}\\\\\\\")\\\\n\\\\n        log(\\\\\\\"Loading model ...\\\\\\\")\\\\n        t0 = time.time()\\\\n        model = AutoModelForVision2Seq.from_pretrained(\\\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\\\n        ).to(DEVICE).eval()\\\\n        import importlib.util, sys\\\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\\\n        mod = importlib.util.module_from_spec(spec)\\\\n        sys.modules['processing_prismatic'] = mod\\\\n        spec.loader.exec_module(mod)\\\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\\\n        log(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n        log(\\\\\\\"Validating token layout ...\\\\\\\")\\\\n        hdf5_path = os.path.join(DATA, f\\\\\\\"{TASKS[0]}_demo.hdf5\\\\\\\")\\\\n        with h5py.File(hdf5_path, \\\\\\\"r\\\\\\\") as hf:\\\\n            img = Image.fromarray(hf[\\\\\\\"data/demo_0/obs/agentview_rgb\\\\\\\"][0])\\\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\\\n        log(f\\\\\\\"  input_ids shape: {inputs['input_ids'].shape}\\\\\\\")\\\\n        log(f\\\\\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\\\\\")\\\\n        with torch.no_grad():\\\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\\\n        hs0_shape = out.hidden_states[0].shape\\\\n        log(f\\\\\\\"  hidden_states[0] shape: {hs0_shape}\\\\\\\")\\\\n        expected_seq = inputs[\\\\\\\"input_ids\\\\\\\"].shape[1] + N_IMG_TOKENS\\\\n        actual_seq = hs0_shape[1]\\\\n        if actual_seq != expected_seq:\\\\n            log(f\\\\\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\\\\\")\\\\n            log(f\\\\\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\\\\\")\\\\n            N_IMG_TOKENS = actual_seq - inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]\\\\n        log(f\\\\\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\\\\\")\\\\n        del out, inputs\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        t1 = time.time()\\\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n            model, processor, nt, nd, ns)\\\\n        log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\n\\\\n        if not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\n\\\\n        t3 = time.time()\\\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n        with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(attn_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\n\\\\n        del attn_ratio_sum, attn_ratio_sq_sum\\\\n\\\\n        t4 = time.time()\\\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n        with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(cls_res, f, indent=2)\\\\n        log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\n\\\\n        if not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\\\\\"rsa_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\\\\\")\\\\n\\\\n        del reps, actions, labels\\\\n\\\\n        if not args.skip_counterfactual:\\\\n            t5 = time.time()\\\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n            with open(os.path.join(results_dir, \\\\\\\"counterfactual_combined.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(cf_res, f, indent=2)\\\\n            log(f\\\\\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\\\\\")\\\\n\\\\n        log(f\\\\\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\\\\\")\\\\n\\\\n        del model, processor\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    log(f\\\\\\\"All done in {(time.time()-t_start)/60:.1f} min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    conditions = args.conditions\\n    log(f\\\"Pipeline conditions: {conditions}\\\")\\n\\n    t_start = time.time()\\n\\n    for condition in conditions:\\n        if condition == \\\"trained\\\":\\n            ckpt = TRAINED_CKPT\\n            results_dir = RESULTS_BASE\\n        elif condition == \\\"untrained\\\":\\n            ckpt = UNTRAINED_CKPT\\n            results_dir = RESULTS_BASE + \\\"_untrained\\\"\\n        else:\\n            log(f\\\"  Unknown condition: {condition}, skipping\\\")\\n            continue\\n\\n        os.makedirs(results_dir, exist_ok=True)\\n\\n        nt = 2 if args.dry_run else len(TASKS)\\n        nd = 1 if args.dry_run else N_DEMOS\\n        ns = 2 if args.dry_run else N_TIMESTEPS\\n        nps = 2 if args.dry_run else N_PROBE_SEEDS\\n        cls_layers = [0, 8, 16, 24, 31] if args.dry_run else None\\n\\n        log(f\\\"=== {condition.upper()} ===\\\")\\n        log(f\\\"Config: tasks={nt} demos={nd} timesteps={ns} seeds={nps} dry_run={args.dry_run}\\\")\\n        log(f\\\"Checkpoint: {ckpt}\\\")\\n        log(f\\\"Output: {results_dir}\\\")\\n\\n        log(\\\"Loading model ...\\\")\\n        t0 = time.time()\\n        model = AutoModelForVision2Seq.from_pretrained(\\n            ckpt, torch_dtype=torch.bfloat16, trust_remote_code=True\\n        ).to(DEVICE).eval()\\n        import importlib.util, sys\\n        spec = importlib.util.spec_from_file_location('processing_prismatic', os.path.join(ckpt, 'processing_prismatic.py'))\\n        mod = importlib.util.module_from_spec(spec)\\n        sys.modules['processing_prismatic'] = mod\\n        spec.loader.exec_module(mod)\\n        processor = mod.PrismaticProcessor.from_pretrained(ckpt, trust_remote_code=True)\\n        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n\\n        log(\\\"Validating token layout ...\\\")\\n        hdf5_path = os.path.join(DATA, f\\\"{TASKS[0]}_demo.hdf5\\\")\\n        with h5py.File(hdf5_path, \\\"r\\\") as hf:\\n            img = Image.fromarray(hf[\\\"data/demo_0/obs/agentview_rgb\\\"][0])\\n        inputs = prepare_inputs(processor, INSTRUCTIONS[0], img)\\n        log(f\\\"  input_ids shape: {inputs['input_ids'].shape}\\\")\\n        log(f\\\"  pixel_values shape: {inputs['pixel_values'].shape}\\\")\\n        with torch.no_grad():\\n            out = model(**inputs, output_hidden_states=True, output_attentions=True)\\n        hs0_shape = out.hidden_states[0].shape\\n        log(f\\\"  hidden_states[0] shape: {hs0_shape}\\\")\\n        expected_seq = inputs[\\\"input_ids\\\"].shape[1] + N_IMG_TOKENS\\n        actual_seq = hs0_shape[1]\\n        if actual_seq != expected_seq:\\n            log(f\\\"  WARNING: seq len mismatch: expected {expected_seq}, got {actual_seq}\\\")\\n            log(f\\\"  Adjusting N_IMG_TOKENS from {N_IMG_TOKENS} to {actual_seq - inputs['input_ids'].shape[1]}\\\")\\n            N_IMG_TOKENS = actual_seq - inputs[\\\"input_ids\\\"].shape[1]\\n        log(f\\\"  Token layout: BOS(1) + img({N_IMG_TOKENS}) + text({inputs['input_ids'].shape[1]-1})\\\")\\n        del out, inputs\\n        torch.cuda.empty_cache()\\n\\n        t1 = time.time()\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\n            model, processor, nt, nd, ns)\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\n\\n        if not args.skip_probing:\\n            t2 = time.time()\\n            probe_res = run_probing(reps, actions, nps)\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\n                json.dump(probe_res, f, indent=2)\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\n\\n        t3 = time.time()\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\n            json.dump(attn_res, f, indent=2)\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\n\\n        del attn_ratio_sum, attn_ratio_sq_sum\\n\\n        t4 = time.time()\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\n            json.dump(cls_res, f, indent=2)\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\n\\n        if not args.skip_rsa:\\n            t_rsa = time.time()\\n            rsa_res = run_rsa(reps, actions, labels)\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\n                json.dump(rsa_res, f, indent=2)\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\n\\n        del reps, actions, labels\\n\\n        if not args.skip_counterfactual:\\n            t5 = time.time()\\n            cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n            with open(os.path.join(results_dir, \\\"counterfactual_combined.json\\\"), \\\"w\\\") as f:\\n                json.dump(cf_res, f, indent=2)\\n            log(f\\\"Phase 6: {time.time()-t5:.1f}s -> counterfactual_combined.json\\\")\\n\\n        log(f\\\"  {condition} complete in {(time.time()-t0)/60:.1f} min\\\")\\n\\n        del model, processor\\n        torch.cuda.empty_cache()\\n\\n    log(f\\\"All done in {(time.time()-t_start)/60:.1f} min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. The pipeline runs `run_counterfactual(model, processor, nt, nd, ns)` for each condition (trained and untrained). The `generate_action` function always uses `UNNORM = "libero_10"` regardless of which model is loaded.
+
+The task says Phase 1-5 **trained** condition is completed but Phase 6 crashed. Looking at the task description again:
+> Phase 1-5 已完成（trained 条件），数据保存在服务器上，不要删除。untrained 条件完全未运行。
+
+
+The crash at Phase 6 reveals the real issue: the finetuned model (`openvla-7b-oft-finetuned-libero-10`) still carries OXE norm_stats and doesn't have `"libero_10"` in its norm_stats dictionary, so the hardcoded `UNNORM = "libero_10"` fails for the trained condition even though it works for untrained.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "fbbd9832-dbfe-4f52-956d-f5de52ffa006",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NnzXuP9xzLfEkPeghVpaD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2856,
+      "cache_read_input_tokens": 40703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+现在需要确认 trained 模型的 norm_stats 中实际有哪些 keys。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "2806a960-42ca-4340-a86f-601626d30f3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NnzXuP9xzLfEkPeghVpaD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2856,
+      "cache_read_input_tokens": 40703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MkwVJgdJdmgtp4xFzEZiL8`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10 -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "e22f5173-c4a2-4fbd-9178-784531378d9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NnzXuP9xzLfEkPeghVpaD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2856,
+      "cache_read_input_tokens": 40703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T16:05:43.013Z_
+
+<details><summary>↩ Tool result · `toolu_01MkwVJgdJdmgtp4xFzEZiL8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/lora_adapter/adapter_config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/added_tokens.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/generation_config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/dataset_statistics.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/model.safetensors.index.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/preprocessor_config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/processor_config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/special_tokens_map.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/tokenizer.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "30a624a8-8f05-42ba-a774-3f88f150defe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/added_tokens.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/generation_config.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/dataset_statistics.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/model.safetensors.index.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/preprocessor_config.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/processor_config.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/special_tokens_map.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/tokenizer.json\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/lora_adapter/adapter_config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/added_tokens.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/generation_config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/dataset_statistics.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/model.safetensors.index.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/preprocessor_config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/processor_config.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/special_tokens_map.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/tokenizer.json\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The norm_stats are likely in `dataset_statistics.json`. Let me check its keys.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "5bc8c6d0-3851-4d2e-86a8-d94cccbec1df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N1LPSsmU2wDh2SybdDBFJt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1030,
+      "cache_read_input_tokens": 43559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1030
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013Ut1LLsK7Sk2cR9GqXNSxT`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/dataset_statistics.json')); print(list(d.keys()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "77903112-abaf-40ef-aaf5-a555b482ca6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N1LPSsmU2wDh2SybdDBFJt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1030,
+      "cache_read_input_tokens": 43559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1030
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-21T16:05:47.568Z_
+
+<details><summary>↩ Tool result · `toolu_013Ut1LLsK7Sk2cR9GqXNSxT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "29df2442-f326-4d4d-a2ea-2ff8ecb75e79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GMSr89XVUzn1QrL3QXMdBx`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -20 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/dataset_statistics.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "ead9c91f-85c0-4a92-b816-b9d394299b15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015z2J4bMGZvAvsCvUn651uT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 280,
+      "cache_read_input_tokens": 44589,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 280
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-21T16:05:56.212Z_
+
+<details><summary>↩ Tool result · `toolu_01GMSr89XVUzn1QrL3QXMdBx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"libero_10_no_noops\\\": {\\n    \\\"action\\\": {\\n      \\\"mean\\\": [\\n        0.01820324920117855,\\n        0.05858374014496803,\\n        -0.05592384561896324,\\n        0.004626928828656673,\\n        0.00289608770981431,\\n        -0.007673131301999092,\\n        0.5457824468612671\\n      ],\\n      \\\"std\\\": [\\n        0.2825464606285095,\\n        0.35904666781425476,\\n        0.3673802614212036,\\n        0.03770702704787254,\\n        0.05429719388484955,\\n        0.08725254982709885,\\n        0.49815231561660767\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "8e566d3f-8d3e-48f9-b13d-27ea0cc10e1f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"libero_10_no_noops\\\\\\\": {\\\\n    \\\\\\\"action\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": [\\\\n        0.01820324920117855,\\\\n        0.05858374014496803,\\\\n        -0.05592384561896324,\\\\n        0.004626928828656673,\\\\n        0.00289608770981431,\\\\n        -0.007673131301999092,\\\\n        0.5457824468612671\\\\n      ],\\\\n      \\\\\\\"std\\\\\\\": [\\\\n        0.2825464606285095,\\\\n        0.35904666781425476,\\\\n        0.3673802614212036,\\\\n        0.03770702704787254,\\\\n        0.05429719388484955,\\\\n        0.08725254982709885,\\\\n        0.49815231561660767\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"libero_10_no_noops\\\": {\\n    \\\"action\\\": {\\n      \\\"mean\\\": [\\n        0.01820324920117855,\\n        0.05858374014496803,\\n        -0.05592384561896324,\\n        0.004626928828656673,\\n        0.00289608770981431,\\n        -0.007673131301999092,\\n        0.5457824468612671\\n      ],\\n      \\\"std\\\": [\\n        0.2825464606285095,\\n        0.35904666781425476,\\n        0.3673802614212036,\\n        0.03770702704787254,\\n        0.05429719388484955,\\n        0.08725254982709885,\\n        0.49815231561660767\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The key in the trained model's dataset_statistics.json is `"libero_10_no_noops"`, not `"libero_10"`. That's why `UNNORM = "libero_10"` fails — the actual key is `"libero_10_no_noops"`.
+
+Let me verify by checking all keys in that file. Also let me check if there are more keys.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "f5bafacd-20ad-4476-994b-5d1eca003e63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hScGyJWdYhgkPYqsJcGSu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 44869,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89_
+
+找到根因了。模型的 norm_stats key 是 `"libero_10_no_noops"`，不是 `"libero_10"`。
+
+让我确认完整 key 列表以及 untrained 模型的情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "834a48ab-86b2-475e-a1f2-a742eab2687a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hScGyJWdYhgkPYqsJcGSu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 44869,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013rZCT7cSweFZkKnZNFCkwQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"^\\s*\\\"[a-zA-Z]\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/dataset_statistics.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "0a627784-9b40-4ce2-9a4c-93383484aa7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hScGyJWdYhgkPYqsJcGSu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 44869,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QkVh59Pg5wEUo89RM9VaET`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -5 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/dataset_statistics.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "5c86b927-91f8-4a7e-abcf-500a2d939412",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hScGyJWdYhgkPYqsJcGSu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 44869,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-21T16:06:04.220Z_
+
+<details><summary>↩ Tool result · `toolu_013rZCT7cSweFZkKnZNFCkwQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2:  \\\"libero_10_no_noops\\\": {\\n3:    \\\"action\\\": {\\n4:      \\\"mean\\\": [\\n13:      \\\"std\\\": [\\n22:      \\\"max\\\": [\\n31:      \\\"min\\\": [\\n40:      \\\"q01\\\": [\\n49:      \\\"q99\\\": [\\n58:      \\\"mask\\\": [\\n68:    \\\"proprio\\\": {\\n69:      \\\"mean\\\": [\\n79:      \\\"std\\\": [\\n89:      \\\"max\\\": [\\n99:      \\\"min\\\": [\\n109:      \\\"q01\\\": [\\n119:      \\\"q99\\\": [\\n130:    \\\"num_transitions\\\": 101469,\\n131:    \\\"num_trajectories\\\": 379\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "80483b96-8a1a-427c-96f6-2f7f1389e1d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:  \\\\\\\"libero_10_no_noops\\\\\\\": {\\\\n3:    \\\\\\\"action\\\\\\\": {\\\\n4:      \\\\\\\"mean\\\\\\\": [\\\\n13:      \\\\\\\"std\\\\\\\": [\\\\n22:      \\\\\\\"max\\\\\\\": [\\\\n31:      \\\\\\\"min\\\\\\\": [\\\\n40:      \\\\\\\"q01\\\\\\\": [\\\\n49:      \\\\\\\"q99\\\\\\\": [\\\\n58:      \\\\\\\"mask\\\\\\\": [\\\\n68:    \\\\\\\"proprio\\\\\\\": {\\\\n69:      \\\\\\\"mean\\\\\\\": [\\\\n79:      \\\\\\\"std\\\\\\\": [\\\\n89:      \\\\\\\"max\\\\\\\": [\\\\n99:      \\\\\\\"min\\\\\\\": [\\\\n109:      \\\\\\\"q01\\\\\\\": [\\\\n119:      \\\\\\\"q99\\\\\\\": [\\\\n130:    \\\\\\\"num_transitions\\\\\\\": 101469,\\\\n131:    \\\\\\\"num_trajectories\\\\\\\": 379\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2:  \\\"libero_10_no_noops\\\": {\\n3:    \\\"action\\\": {\\n4:      \\\"mean\\\": [\\n13:      \\\"std\\\": [\\n22:      \\\"max\\\": [\\n31:      \\\"min\\\": [\\n40:      \\\"q01\\\": [\\n49:      \\\"q99\\\": [\\n58:      \\\"mask\\\": [\\n68:    \\\"proprio\\\": {\\n69:      \\\"mean\\\": [\\n79:      \\\"std\\\": [\\n89:      \\\"max\\\": [\\n99:      \\\"min\\\": [\\n109:      \\\"q01\\\": [\\n119:      \\\"q99\\\": [\\n130:    \\\"num_transitions\\\": 101469,\\n131:    \\\"num_trajectories\\\": 379\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-21T16:06:04.792Z_
+
+<details><summary>↩ Tool result · `toolu_01QkVh59Pg5wEUo89RM9VaET`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/dataset_statistics.json' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "b2a3952a-c6d3-4cf1-b76d-3ae3fe3a8fe8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/dataset_statistics.json' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/dataset_statistics.json' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture:
+
+1. The trained model (`openvla-7b-oft-finetuned-libero-10`) has exactly one key in `dataset_statistics.json`: `"libero_10_no_noops"` (not `"libero_10"`)
+2. The untrained model (`openvla-7b`) doesn't even have a `dataset_statistics.json` at the checked path
+
+Let me check the Object pipeline to confirm the pattern. The Object trained model uses `UNNORM = "libero_object"` — let me check if that's actually the key in its norm_stats, or if it also has `_no_noops`.
+
+
+So the fix is straightforward: change `UNNORM = "libero_10"` to `UNNORM = "libero_10_no_noops"` for the trained condition, and for the untrained base model I need to use `"bridge_orig"` like the Object pipeline does. But I'm noticing the Object pipeline has separate scripts for trained and untrained versions, while the Long pipeline tries to handle both in one script.
+
+The challenge is that `UNNORM` is a global variable that `generate_action` reads, so I need to either make it conditional based on which model is loaded or pass it as a parameter. The cleanest approach would be to define separate constants for each condition and swap them in before calling the function.
+
+Now I'm checking the Object pipeline to see how it handles this, and I need to verify the untrained model's path since it might differ from what I'm assuming.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "4703dcd6-1d17-47ff-b335-beab627d33af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VFhhRhpNa6uGRGukmvFisB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 45298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E4iN5zWGRTGwsSYjbEK754`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b -name \"dataset_statistics*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "9ecb8387-2482-4d48-817a-6248adf3ac0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VFhhRhpNa6uGRGukmvFisB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 45298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Sefy44a2L6oePZwCJdSGfe`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "050b10ed-78b4-49c4-8084-babf4fe8582e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VFhhRhpNa6uGRGukmvFisB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 45298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-21T16:06:21.937Z_
+
+<details><summary>↩ Tool result · `toolu_01E4iN5zWGRTGwsSYjbEK754`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "17d6faa5-84da-4178-83f0-9411f6222ae4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-21T16:06:22.487Z_
+
+<details><summary>↩ Tool result · `toolu_01Sefy44a2L6oePZwCJdSGfe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\nadded_tokens.json\\nconfig.json\\nconfiguration_prismatic.py\\ngeneration_config.json\\nmodel-00001-of-00003.safetensors\\nmodel-00002-of-00003.safetensors\\nmodel-00003-of-00003.safetensors\\nmodel.safetensors.index.json\\nmodeling_prismatic.py\\npreprocessor_config.json\\nprocessing_prismatic.py\\nprocessor_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "b6dba4d2-8356-42a3-97fa-00af16e4d87e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\n__pycache__\\\\nadded_tokens.json\\\\nconfig.json\\\\nconfiguration_prismatic.py\\\\ngeneration_config.json\\\\nmodel-00001-of-00003.safetensors\\\\nmodel-00002-of-00003.safetensors\\\\nmodel-00003-of-00003.safetensors\\\\nmodel.safetensors.index.json\\\\nmodeling_prismatic.py\\\\npreprocessor_config.json\\\\nprocessing_prismatic.py\\\\nprocessor_config.json\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer.model\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\nadded_tokens.json\\nconfig.json\\nconfiguration_prismatic.py\\ngeneration_config.json\\nmodel-00001-of-00003.safetensors\\nmodel-00002-of-00003.safetensors\\nmodel-00003-of-00003.safetensors\\nmodel.safetensors.index.json\\nmodeling_prismatic.py\\npreprocessor_config.json\\nprocessing_prismatic.py\\nprocessor_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The base model (openvla-7b) doesn't have a `dataset_statistics.json` file. So `get_action_stats()` must read from another source. Let me check how the modeling code handles norm_stats. It's probably in the model code (`modeling_prismatic.py`) or the model's config.
+
+Let me check how `get_action_stats` is implemented in the model.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "e952bdca-940b-4552-84f7-2446da511bae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017mbxrRtK6DPcPWecAv1ySn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1201,
+      "cache_read_input_tokens": 46222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1201
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016o2q8FxJg6fbrX6tP3z9Po`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"get_action_stats\\|norm_stats\\|dataset_statistics\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "4ce1db5d-d66e-42b1-b139-8f77c2476751",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017mbxrRtK6DPcPWecAv1ySn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1201,
+      "cache_read_input_tokens": 46222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1201
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-21T16:06:28.387Z_
+
+<details><summary>↩ Tool result · `toolu_016o2q8FxJg6fbrX6tP3z9Po`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "6b1b643f-fbf3-4dd7-986c-8fb4016bfee9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VnK5VsF9FBQHEXo7kUNAEM`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"get_action_stats\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "4a3d9d46-81ea-4543-a556-f2f1b160e6bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AAhWfGjc63F9ZTrCDMHsnz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 436,
+      "cache_read_input_tokens": 47423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 436
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017ME4UaJFvuJeJ4QdmTfMhf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"norm_stats\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "702c8199-3ebb-4d50-819d-a9a47987ed3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AAhWfGjc63F9ZTrCDMHsnz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 436,
+      "cache_read_input_tokens": 47423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 436
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-21T16:06:33.220Z_
+
+<details><summary>↩ Tool result · `toolu_01VnK5VsF9FBQHEXo7kUNAEM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"532:        action_norm_stats = self.get_action_stats(unnorm_key)\\n564:    def get_action_stats(self, unnorm_key: Optional[str] = None) -> Dict[str, Any]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "2e2d0cef-ecd9-4f0c-aa65-a44d8df0fd89",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"532:        action_norm_stats = self.get_action_stats(unnorm_key)\\\\n564:    def get_action_stats(self, unnorm_key: Optional[str] = None) -> Dict[str, Any]:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"532:        action_norm_stats = self.get_action_stats(unnorm_key)\\n564:    def get_action_stats(self, unnorm_key: Optional[str] = None) -> Dict[str, Any]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-21T16:06:33.763Z_
+
+<details><summary>↩ Tool result · `toolu_017ME4UaJFvuJeJ4QdmTfMhf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"502:        self.norm_stats = config.norm_stats\\n532:        action_norm_stats = self.get_action_stats(unnorm_key)\\n533:        mask = action_norm_stats.get(\\\"mask\\\", np.ones_like(action_norm_stats[\\\"q01\\\"], dtype=bool))\\n534:        action_high, action_low = np.array(action_norm_stats[\\\"q99\\\"]), np.array(action_norm_stats[\\\"q01\\\"])\\n544:    def _check_unnorm_key(norm_stats: Dict[str, Dict[str, Any]], unnorm_key: Optional[str]) -> str:\\n546:            assert len(norm_stats) == 1, (\\n549:                f\\\"used for un-normalizing actions: {norm_stats.keys()}\\\"\\n551:            unnorm_key = next(iter(norm_stats.keys()))\\n553:        assert unnorm_key in norm_stats, (\\n555:            f\\\"please choose from: {norm_stats.keys()}\\\"\\n561:        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n562:        return len(self.norm_stats[unnorm_key][\\\"action\\\"][\\\"q01\\\"])\\n566:        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n567:        return self.norm_stats[unnorm_key][\\\"action\\\"]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "8f07db8c-2024-4cdb-9cd1-05869eeb8d83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"502:        self.norm_stats = config.norm_stats\\\\n532:        action_norm_stats = self.get_action_stats(unnorm_key)\\\\n533:        mask = action_norm_stats.get(\\\\\\\"mask\\\\\\\", np.ones_like(action_norm_stats[\\\\\\\"q01\\\\\\\"], dtype=bool))\\\\n534:        action_high, action_low = np.array(action_norm_stats[\\\\\\\"q99\\\\\\\"]), np.array(action_norm_stats[\\\\\\\"q01\\\\\\\"])\\\\n544:    def _check_unnorm_key(norm_stats: Dict[str, Dict[str, Any]], unnorm_key: Optional[str]) -> str:\\\\n546:            assert len(norm_stats) == 1, (\\\\n549:                f\\\\\\\"used for un-normalizing actions: {norm_stats.keys()}\\\\\\\"\\\\n551:            unnorm_key = next(iter(norm_stats.keys()))\\\\n553:        assert unnorm_key in norm_stats, (\\\\n555:            f\\\\\\\"please choose from: {norm_stats.keys()}\\\\\\\"\\\\n561:        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\\\n562:        return len(self.norm_stats[unnorm_key][\\\\\\\"action\\\\\\\"][\\\\\\\"q01\\\\\\\"])\\\\n566:        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\\\n567:        return self.norm_stats[unnorm_key][\\\\\\\"action\\\\\\\"]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"502:        self.norm_stats = config.norm_stats\\n532:        action_norm_stats = self.get_action_stats(unnorm_key)\\n533:        mask = action_norm_stats.get(\\\"mask\\\", np.ones_like(action_norm_stats[\\\"q01\\\"], dtype=bool))\\n534:        action_high, action_low = np.array(action_norm_stats[\\\"q99\\\"]), np.array(action_norm_stats[\\\"q01\\\"])\\n544:    def _check_unnorm_key(norm_stats: Dict[str, Dict[str, Any]], unnorm_key: Optional[str]) -> str:\\n546:            assert len(norm_stats) == 1, (\\n549:                f\\\"used for un-normalizing actions: {norm_stats.keys()}\\\"\\n551:            unnorm_key = next(iter(norm_stats.keys()))\\n553:        assert unnorm_key in norm_stats, (\\n555:            f\\\"please choose from: {norm_stats.keys()}\\\"\\n561:        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n562:        return len(self.norm_stats[unnorm_key][\\\"action\\\"][\\\"q01\\\"])\\n566:        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n567:        return self.norm_stats[unnorm_key][\\\"action\\\"]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full mechanism. The model loads `norm_stats` from `config.norm_stats` (which comes from the model's `config.json`). The `get_action_stats` method calls `_check_unnorm_key`:
+
+1. If `unnorm_key` is None, it asserts there's exactly one key and uses that.
+2. If `unnorm_key` is provided, it asserts the key exists in `norm_stats`.
+
+So for the **trained** model, the norm_stats key is `"libero_10_no_noops"` (from dataset_statistics.json which is loaded into config). 
+
+The script passes `"libero_10"` which doesn't match. For the **untrained** model, norm_stats come from the base model's config.json with likely OXE dataset keys. Looking at the code, if `unnorm_key` is None and there's exactly one key, it auto-selects it—so for the trained model, passing `None` would work since it has only one key in its dataset_statistics.json. The untrained model would have multiple keys in its norm_stats, so I need to figure out which one to use.
+
+The simplest fix would be changing `UNNORM = "libero_10"` to `"libero_10_no_noops"`, but that won't work for the untrained model. Looking at the Object pipeline scripts, I need to check what key the trained Object model actually uses and whether the untrained Object model had the same issue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "e8284b3a-ed5d-4798-a09d-2efb426ac2ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tu3SpM4wDtzkTmuXNaMQY7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 47859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A3foR32qw7dW1X6Ma28ewD`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"norm_stats\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "e5691a65-6fe4-428b-a6f4-9e5b26f176ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tu3SpM4wDtzkTmuXNaMQY7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 47859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-21T16:06:49.744Z_
+
+<details><summary>↩ Tool result · `toolu_01A3foR32qw7dW1X6Ma28ewD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"20:  \\\"norm_stats\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "52c5fa8a-3590-4015-a331-87f2998e2917",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"20:  \\\\\\\"norm_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"20:  \\\"norm_stats\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fo41ZxP2nsDfyHcAomJVFn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +20 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "0b90659c-b35f-478b-aaac-1ad0da90c30c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SoXCMM5PPnxecyy6nA69bq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 746,
+      "cache_read_input_tokens": 48736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 746
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-21T16:06:53.649Z_
+
+<details><summary>↩ Tool result · `toolu_01Fo41ZxP2nsDfyHcAomJVFn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"norm_stats\\\": {\\n    \\\"austin_buds_dataset_converted_externally_to_rlds\\\": {\\n      \\\"action\\\": {\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n        ],\\n        \\\"max\\\": [\\n          1.0,\\n          1.0,\\n          1.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          1.0\\n        ],\\n        \\\"mean\\\": [\\n          -0.07678354531526566,\\n          0.0036849044263362885,\\n          0.05644911900162697,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.3510494828224182\\n        ],\\n        \\\"min\\\": [\\n          -1.0,\\n          -1.0,\\n          -1.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          -1.0,\\n          -0.9599999785423279,\\n          -0.8714285492897034,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          1.0,\\n          0.8600000143051147,\\n          1.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          1.0\\n        ],\\n        \\\"std\\\": [\\n          0.6367740631103516,\\n          0.37889179587364197,\\n          0.47796326875686646,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.47721168398857117\\n        ]\\n      },\\n      \\\"num_trajectories\\\": 50,\\n      \\\"num_transitions\\\": 34112,\\n      \\\"proprio\\\": {\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"std\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ]\\n      }\\n    },\\n    \\\"austin_sailor_dataset_converted_externally_to_rlds\\\": {\\n      \\\"action\\\": {\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n        ],\\n        \\\"max\\\": [\\n          1.0,\\n          1.0,\\n          1.0,\\n          0.0,\\n          0.0,\\n          0.375,\\n          1.0\\n        ],\\n        \\\"mean\\\": [\\n          0.011825348250567913,\\n          0.006461074110120535,\\n          0.06023626774549484,\\n          0.0,\\n          0.0,\\n          0.0016465914668515325,\\n          0.5260950326919556\\n        ],\\n        \\\"min\\\": [\\n          -1.0,\\n          -1.0,\\n          -1.0,\\n          0.0,\\n          0.0,\\n          -0.375,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          -1.0,\\n          -0.9828571677207947,\\n          -0.6000000238418579,\\n          0.0,\\n          0.0,\\n          -0.17249999940395355,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          1.0,\\n          0.9457142949104309,\\n          1.0,\\n          0.0,\\n          0.0,\\n          0.17892856895923615,\\n          1.0\\n        ],\\n        \\\"std\\\": [\\n          0.46348899602890015,\\n          0.41240179538726807,\\n          0.411862850189209,\\n          0.0,\\n          0.0,\\n          0.0578610822558403,\\n          0.49894046783447266\\n        ]\\n      },\\n      \\\"num_trajectories\\\": 240,\\n      \\\"num_transitions\\\": 353094,\\n      \\\"proprio\\\": {\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": \\n\\n... [截断: 输出过长，省略 52203 字符] ...\\n\\n       0.25607141852378845,\\n          1.0\\n        ],\\n        \\\"std\\\": [\\n          0.1875014752149582,\\n          0.4468473494052887,\\n          0.3792876601219177,\\n          0.14097853004932404,\\n          0.06453701853752136,\\n          0.11765272170305252,\\n          0.501045286655426\\n        ]\\n      },\\n      \\\"num_trajectories\\\": 1500,\\n      \\\"num_transitions\\\": 361883,\\n      \\\"proprio\\\": {\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"std\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ]\\n      }\\n    },\\n    \\\"viola\\\": {\\n      \\\"action\\\": {\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n        ],\\n        \\\"max\\\": [\\n          1.0,\\n          1.0,\\n          1.0,\\n          0.375,\\n          0.36321428418159485,\\n          0.375,\\n          1.0\\n        ],\\n        \\\"mean\\\": [\\n          0.04761844128370285,\\n          -0.029204415157437325,\\n          0.05586736649274826,\\n          -0.002618510741740465,\\n          0.006867344491183758,\\n          -0.01682133786380291,\\n          0.7323777675628662\\n        ],\\n        \\\"min\\\": [\\n          -1.0,\\n          -1.0,\\n          -1.0,\\n          -0.375,\\n          -0.375,\\n          -0.375,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          -0.9628571271896362,\\n          -1.0,\\n          -1.0,\\n          -0.26249998807907104,\\n          -0.21321429312229156,\\n          -0.3385714292526245,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.9114285707473755,\\n          0.868571400642395,\\n          1.0,\\n          0.2817857265472412,\\n          0.2239285707473755,\\n          0.3557142913341522,\\n          1.0\\n        ],\\n        \\\"std\\\": [\\n          0.39157867431640625,\\n          0.4076525568962097,\\n          0.40077948570251465,\\n          0.10023996233940125,\\n          0.0844319611787796,\\n          0.10375042259693146,\\n          0.44260647892951965\\n        ]\\n      },\\n      \\\"num_trajectories\\\": 150,\\n      \\\"num_transitions\\\": 76324,\\n      \\\"proprio\\\": {\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"std\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ]\\n      }\\n    }\\n  },\\n  \\\"output_projector_states\\\": false,\\n  \\\"pad_to_multiple_of\\\": 64,\\n  \\\"pad_token_id\\\": 32000,\\n  \\\"text_config\\\": {\\n    \\\"model_type\\\": \\\"llama\\\",\\n    \\\"pad_token_id\\\": 32000,\\n    \\\"torch_dtype\\\": \\\"bfloat16\\\",\\n    \\\"vocab_size\\\": 32064\\n  },\\n  \\\"timm_model_ids\\\": [\\n    \\\"vit_large_patch14_reg4_dinov2.lvd142m\\\",\\n    \\\"vit_so400m_patch14_siglip_224\\\"\\n  ],\\n  \\\"timm_override_act_layers\\\": [\\n    null,\\n    null\\n  ],\\n  \\\"torch_dtype\\\": \\\"bfloat16\\\",\\n  \\\"transformers_version\\\": \\\"4.40.1\\\",\\n  \\\"use_fused_vision_backbone\\\": true,\\n  \\\"vision_backbone_id\\\": \\\"dinosiglip-vit-so-224px\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "596355d0-94a0-467d-bb43-daa6f95859d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"norm_stats\\\\\\\": {\\\\n    \\\\\\\"austin_buds_dataset_converted_externally_to_rlds\\\\\\\": {\\\\n      \\\\\\\"action\\\\\\\": {\\\\n        \\\\\\\"mask\\\\\\\": [\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          false\\\\n        ],\\\\n        \\\\\\\"max\\\\\\\": [\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": [\\\\n          -0.07678354531526566,\\\\n          0.0036849044263362885,\\\\n          0.05644911900162697,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.3510494828224182\\\\n        ],\\\\n        \\\\\\\"min\\\\\\\": [\\\\n          -1.0,\\\\n          -1.0,\\\\n          -1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q01\\\\\\\": [\\\\n          -1.0,\\\\n          -0.9599999785423279,\\\\n          -0.8714285492897034,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q99\\\\\\\": [\\\\n          1.0,\\\\n          0.8600000143051147,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"std\\\\\\\": [\\\\n          0.6367740631103516,\\\\n          0.37889179587364197,\\\\n          0.47796326875686646,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.47721168398857117\\\\n        ]\\\\n      },\\\\n      \\\\\\\"num_trajectories\\\\\\\": 50,\\\\n      \\\\\\\"num_transitions\\\\\\\": 34112,\\\\n      \\\\\\\"proprio\\\\\\\": {\\\\n        \\\\\\\"max\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"min\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q01\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q99\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"std\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ]\\\\n      }\\\\n    },\\\\n    \\\\\\\"austin_sailor_dataset_converted_externally_to_rlds\\\\\\\": {\\\\n      \\\\\\\"action\\\\\\\": {\\\\n        \\\\\\\"mask\\\\\\\": [\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          false\\\\n        ],\\\\n        \\\\\\\"max\\\\\\\": [\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.375,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": [\\\\n          0.011825348250567913,\\\\n          0.006461074110120535,\\\\n          0.06023626774549484,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0016465914668515325,\\\\n          0.5260950326919556\\\\n        ],\\\\n        \\\\\\\"min\\\\\\\": [\\\\n          -1.0,\\\\n          -1.0,\\\\n          -1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          -0.375,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q01\\\\\\\": [\\\\n          -1.0,\\\\n          -0.9828571677207947,\\\\n          -0.6000000238418579,\\\\n          0.0,\\\\n          0.0,\\\\n          -0.17249999940395355,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q99\\\\\\\": [\\\\n          1.0,\\\\n          0.9457142949104309,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.17892856895923615,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"std\\\\\\\": [\\\\n          0.46348899602890015,\\\\n          0.41240179538726807,\\\\n          0.411862850189209,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0578610822558403,\\\\n          0.49894046783447266\\\\n        ]\\\\n      },\\\\n      \\\\\\\"num_trajectories\\\\\\\": 240,\\\\n      \\\\\\\"num_transitions\\\\\\\": 353094,\\\\n      \\\\\\\"proprio\\\\\\\": {\\\\n        \\\\\\\"max\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"min\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q01\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q99\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 52203 字符] ...\\\\n\\\\n       0.25607141852378845,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"std\\\\\\\": [\\\\n          0.1875014752149582,\\\\n          0.4468473494052887,\\\\n          0.3792876601219177,\\\\n          0.14097853004932404,\\\\n          0.06453701853752136,\\\\n          0.11765272170305252,\\\\n          0.501045286655426\\\\n        ]\\\\n      },\\\\n      \\\\\\\"num_trajectories\\\\\\\": 1500,\\\\n      \\\\\\\"num_transitions\\\\\\\": 361883,\\\\n      \\\\\\\"proprio\\\\\\\": {\\\\n        \\\\\\\"max\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"min\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q01\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q99\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"std\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ]\\\\n      }\\\\n    },\\\\n    \\\\\\\"viola\\\\\\\": {\\\\n      \\\\\\\"action\\\\\\\": {\\\\n        \\\\\\\"mask\\\\\\\": [\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          false\\\\n        ],\\\\n        \\\\\\\"max\\\\\\\": [\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.375,\\\\n          0.36321428418159485,\\\\n          0.375,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": [\\\\n          0.04761844128370285,\\\\n          -0.029204415157437325,\\\\n          0.05586736649274826,\\\\n          -0.002618510741740465,\\\\n          0.006867344491183758,\\\\n          -0.01682133786380291,\\\\n          0.7323777675628662\\\\n        ],\\\\n        \\\\\\\"min\\\\\\\": [\\\\n          -1.0,\\\\n          -1.0,\\\\n          -1.0,\\\\n          -0.375,\\\\n          -0.375,\\\\n          -0.375,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q01\\\\\\\": [\\\\n          -0.9628571271896362,\\\\n          -1.0,\\\\n          -1.0,\\\\n          -0.26249998807907104,\\\\n          -0.21321429312229156,\\\\n          -0.3385714292526245,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q99\\\\\\\": [\\\\n          0.9114285707473755,\\\\n          0.868571400642395,\\\\n          1.0,\\\\n          0.2817857265472412,\\\\n          0.2239285707473755,\\\\n          0.3557142913341522,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"std\\\\\\\": [\\\\n          0.39157867431640625,\\\\n          0.4076525568962097,\\\\n          0.40077948570251465,\\\\n          0.10023996233940125,\\\\n          0.0844319611787796,\\\\n          0.10375042259693146,\\\\n          0.44260647892951965\\\\n        ]\\\\n      },\\\\n      \\\\\\\"num_trajectories\\\\\\\": 150,\\\\n      \\\\\\\"num_transitions\\\\\\\": 76324,\\\\n      \\\\\\\"proprio\\\\\\\": {\\\\n        \\\\\\\"max\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"min\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q01\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"q99\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"std\\\\\\\": [\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"output_projector_states\\\\\\\": false,\\\\n  \\\\\\\"pad_to_multiple_of\\\\\\\": 64,\\\\n  \\\\\\\"pad_token_id\\\\\\\": 32000,\\\\n  \\\\\\\"text_config\\\\\\\": {\\\\n    \\\\\\\"model_type\\\\\\\": \\\\\\\"llama\\\\\\\",\\\\n    \\\\\\\"pad_token_id\\\\\\\": 32000,\\\\n    \\\\\\\"torch_dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n    \\\\\\\"vocab_size\\\\\\\": 32064\\\\n  },\\\\n  \\\\\\\"timm_model_ids\\\\\\\": [\\\\n    \\\\\\\"vit_large_patch14_reg4_dinov2.lvd142m\\\\\\\",\\\\n    \\\\\\\"vit_so400m_patch14_siglip_224\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"timm_override_act_layers\\\\\\\": [\\\\n    null,\\\\n    null\\\\n  ],\\\\n  \\\\\\\"torch_dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.40.1\\\\\\\",\\\\n  \\\\\\\"use_fused_vision_backbone\\\\\\\": true,\\\\n  \\\\\\\"vision_backbone_id\\\\\\\": \\\\\\\"dinosiglip-vit-so-224px\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"norm_stats\\\": {\\n    \\\"austin_buds_dataset_converted_externally_to_rlds\\\": {\\n      \\\"action\\\": {\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n        ],\\n        \\\"max\\\": [\\n          1.0,\\n          1.0,\\n          1.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          1.0\\n        ],\\n        \\\"mean\\\": [\\n          -0.07678354531526566,\\n          0.0036849044263362885,\\n          0.05644911900162697,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.3510494828224182\\n        ],\\n        \\\"min\\\": [\\n          -1.0,\\n          -1.0,\\n          -1.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          -1.0,\\n          -0.9599999785423279,\\n          -0.8714285492897034,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          1.0,\\n          0.8600000143051147,\\n          1.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          1.0\\n        ],\\n        \\\"std\\\": [\\n          0.6367740631103516,\\n          0.37889179587364197,\\n          0.47796326875686646,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.47721168398857117\\n        ]\\n      },\\n      \\\"num_trajectories\\\": 50,\\n      \\\"num_transitions\\\": 34112,\\n      \\\"proprio\\\": {\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"std\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ]\\n      }\\n    },\\n    \\\"austin_sailor_dataset_converted_externally_to_rlds\\\": {\\n      \\\"action\\\": {\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n        ],\\n        \\\"max\\\": [\\n          1.0,\\n          1.0,\\n          1.0,\\n          0.0,\\n          0.0,\\n          0.375,\\n          1.0\\n        ],\\n        \\\"mean\\\": [\\n          0.011825348250567913,\\n          0.006461074110120535,\\n          0.06023626774549484,\\n          0.0,\\n          0.0,\\n          0.0016465914668515325,\\n          0.5260950326919556\\n        ],\\n        \\\"min\\\": [\\n          -1.0,\\n          -1.0,\\n          -1.0,\\n          0.0,\\n          0.0,\\n          -0.375,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          -1.0,\\n          -0.9828571677207947,\\n          -0.6000000238418579,\\n          0.0,\\n          0.0,\\n          -0.17249999940395355,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          1.0,\\n          0.9457142949104309,\\n          1.0,\\n          0.0,\\n          0.0,\\n          0.17892856895923615,\\n          1.0\\n        ],\\n        \\\"std\\\": [\\n          0.46348899602890015,\\n          0.41240179538726807,\\n          0.411862850189209,\\n          0.0,\\n          0.0,\\n          0.0578610822558403,\\n          0.49894046783447266\\n        ]\\n      },\\n      \\\"num_trajectories\\\": 240,\\n      \\\"num_transitions\\\": 353094,\\n      \\\"proprio\\\": {\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": \\n\\n... [截断: 输出过长，省略 52203 字符] ...\\n\\n       0.25607141852378845,\\n          1.0\\n        ],\\n        \\\"std\\\": [\\n          0.1875014752149582,\\n          0.4468473494052887,\\n          0.3792876601219177,\\n          0.14097853004932404,\\n          0.06453701853752136,\\n          0.11765272170305252,\\n          0.501045286655426\\n        ]\\n      },\\n      \\\"num_trajectories\\\": 1500,\\n      \\\"num_transitions\\\": 361883,\\n      \\\"proprio\\\": {\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"std\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ]\\n      }\\n    },\\n    \\\"viola\\\": {\\n      \\\"action\\\": {\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n        ],\\n        \\\"max\\\": [\\n          1.0,\\n          1.0,\\n          1.0,\\n          0.375,\\n          0.36321428418159485,\\n          0.375,\\n          1.0\\n        ],\\n        \\\"mean\\\": [\\n          0.04761844128370285,\\n          -0.029204415157437325,\\n          0.05586736649274826,\\n          -0.002618510741740465,\\n          0.006867344491183758,\\n          -0.01682133786380291,\\n          0.7323777675628662\\n        ],\\n        \\\"min\\\": [\\n          -1.0,\\n          -1.0,\\n          -1.0,\\n          -0.375,\\n          -0.375,\\n          -0.375,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          -0.9628571271896362,\\n          -1.0,\\n          -1.0,\\n          -0.26249998807907104,\\n          -0.21321429312229156,\\n          -0.3385714292526245,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.9114285707473755,\\n          0.868571400642395,\\n          1.0,\\n          0.2817857265472412,\\n          0.2239285707473755,\\n          0.3557142913341522,\\n          1.0\\n        ],\\n        \\\"std\\\": [\\n          0.39157867431640625,\\n          0.4076525568962097,\\n          0.40077948570251465,\\n          0.10023996233940125,\\n          0.0844319611787796,\\n          0.10375042259693146,\\n          0.44260647892951965\\n        ]\\n      },\\n      \\\"num_trajectories\\\": 150,\\n      \\\"num_transitions\\\": 76324,\\n      \\\"proprio\\\": {\\n        \\\"max\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"mean\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"min\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q01\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"q99\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ],\\n        \\\"std\\\": [\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0,\\n          0.0\\n        ]\\n      }\\n    }\\n  },\\n  \\\"output_projector_states\\\": false,\\n  \\\"pad_to_multiple_of\\\": 64,\\n  \\\"pad_token_id\\\": 32000,\\n  \\\"text_config\\\": {\\n    \\\"model_type\\\": \\\"llama\\\",\\n    \\\"pad_token_id\\\": 32000,\\n    \\\"torch_dtype\\\": \\\"bfloat16\\\",\\n    \\\"vocab_size\\\": 32064\\n  },\\n  \\\"timm_model_ids\\\": [\\n    \\\"vit_large_patch14_reg4_dinov2.lvd142m\\\",\\n    \\\"vit_so400m_patch14_siglip_224\\\"\\n  ],\\n  \\\"timm_override_act_layers\\\": [\\n    null,\\n    null\\n  ],\\n  \\\"torch_dtype\\\": \\\"bfloat16\\\",\\n  \\\"transformers_version\\\": \\\"4.40.1\\\",\\n  \\\"use_fused_vision_backbone\\\": true,\\n  \\\"vision_backbone_id\\\": \\\"dinosiglip-vit-so-224px\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the base model's norm_stats contain OXE dataset keys like:
+- austin_buds_dataset_converted_externally_to_rlds
+- austin_sailor_dataset_converted_externally_to_rlds
+- bridge_orig (somewhere in there)
+- viola
+- etc.
+
+And the trained model has only `"libero_10_no_noops"`.
+
+Now let me check how the trained model loads norm_stats. The finetuned model has `dataset_statistics.json` - but how does it become `config.norm_stats`? Let me check the trained model's config.json.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "210f7e9e-9557-42ff-81ef-22f86897b46c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ECin8o57eWZUkNUiSfbEJe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3983,
+      "cache_read_input_tokens": 49482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RiGnRo6XwXG43C67C5bYNF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"norm_stats\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "e18d88f8-829e-40cd-b0fe-a4bbe732d7bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ECin8o57eWZUkNUiSfbEJe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3983,
+      "cache_read_input_tokens": 49482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-21T16:07:09.032Z_
+
+<details><summary>↩ Tool result · `toolu_01RiGnRo6XwXG43C67C5bYNF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"20:  \\\"norm_stats\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "6efedbb3-1055-4922-bad9-f8bf229ca2d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"20:  \\\\\\\"norm_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"20:  \\\"norm_stats\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PdbJ4gk6tf4b4gtsm8VM4f`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -30 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "2afeccdf-8c90-4829-a1fa-1bc885f49abb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTEKc4akKraVYxN3MpUbJo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 377,
+      "cache_read_input_tokens": 53465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 377
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-21T16:07:14.918Z_
+
+<details><summary>↩ Tool result · `toolu_01PdbJ4gk6tf4b4gtsm8VM4f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"arch_specifier\\\": \\\"no-align+fused-gelu-mlp\\\",\\n  \\\"architectures\\\": [\\n    \\\"OpenVLAForActionPrediction\\\"\\n  ],\\n  \\\"auto_map\\\": {\\n    \\\"AutoConfig\\\": \\\"configuration_prismatic.OpenVLAConfig\\\",\\n    \\\"AutoModelForVision2Seq\\\": \\\"modeling_prismatic.OpenVLAForActionPrediction\\\"\\n  },\\n  \\\"hf_llm_id\\\": \\\"meta-llama/Llama-2-7b-hf\\\",\\n  \\\"image_resize_strategy\\\": \\\"resize-naive\\\",\\n  \\\"image_sizes\\\": [\\n    224,\\n    224\\n  ],\\n  \\\"llm_backbone_id\\\": \\\"llama2-7b-pure\\\",\\n  \\\"llm_max_length\\\": 2048,\\n  \\\"model_type\\\": \\\"openvla\\\",\\n  \\\"n_action_bins\\\": 256,\\n  \\\"norm_stats\\\": {\\n    \\\"austin_buds_dataset_converted_externally_to_rlds\\\": {\\n      \\\"action\\\": {\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "b8d84614-3eb9-4efa-b1f7-fd930529019a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"arch_specifier\\\\\\\": \\\\\\\"no-align+fused-gelu-mlp\\\\\\\",\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"OpenVLAForActionPrediction\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auto_map\\\\\\\": {\\\\n    \\\\\\\"AutoConfig\\\\\\\": \\\\\\\"configuration_prismatic.OpenVLAConfig\\\\\\\",\\\\n    \\\\\\\"AutoModelForVision2Seq\\\\\\\": \\\\\\\"modeling_prismatic.OpenVLAForActionPrediction\\\\\\\"\\\\n  },\\\\n  \\\\\\\"hf_llm_id\\\\\\\": \\\\\\\"meta-llama/Llama-2-7b-hf\\\\\\\",\\\\n  \\\\\\\"image_resize_strategy\\\\\\\": \\\\\\\"resize-naive\\\\\\\",\\\\n  \\\\\\\"image_sizes\\\\\\\": [\\\\n    224,\\\\n    224\\\\n  ],\\\\n  \\\\\\\"llm_backbone_id\\\\\\\": \\\\\\\"llama2-7b-pure\\\\\\\",\\\\n  \\\\\\\"llm_max_length\\\\\\\": 2048,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"openvla\\\\\\\",\\\\n  \\\\\\\"n_action_bins\\\\\\\": 256,\\\\n  \\\\\\\"norm_stats\\\\\\\": {\\\\n    \\\\\\\"austin_buds_dataset_converted_externally_to_rlds\\\\\\\": {\\\\n      \\\\\\\"action\\\\\\\": {\\\\n        \\\\\\\"mask\\\\\\\": [\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          true,\\\\n          false\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"arch_specifier\\\": \\\"no-align+fused-gelu-mlp\\\",\\n  \\\"architectures\\\": [\\n    \\\"OpenVLAForActionPrediction\\\"\\n  ],\\n  \\\"auto_map\\\": {\\n    \\\"AutoConfig\\\": \\\"configuration_prismatic.OpenVLAConfig\\\",\\n    \\\"AutoModelForVision2Seq\\\": \\\"modeling_prismatic.OpenVLAForActionPrediction\\\"\\n  },\\n  \\\"hf_llm_id\\\": \\\"meta-llama/Llama-2-7b-hf\\\",\\n  \\\"image_resize_strategy\\\": \\\"resize-naive\\\",\\n  \\\"image_sizes\\\": [\\n    224,\\n    224\\n  ],\\n  \\\"llm_backbone_id\\\": \\\"llama2-7b-pure\\\",\\n  \\\"llm_max_length\\\": 2048,\\n  \\\"model_type\\\": \\\"openvla\\\",\\n  \\\"n_action_bins\\\": 256,\\n  \\\"norm_stats\\\": {\\n    \\\"austin_buds_dataset_converted_externally_to_rlds\\\": {\\n      \\\"action\\\": {\\n        \\\"mask\\\": [\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          true,\\n          false\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 116_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the trained model's `config.json` still has the OXE norm_stats from the base model, but the `dataset_statistics.json` has `"libero_10_no_noops"`. The model code likely loads `norm_stats` from `config.json` and possibly merges with `dataset_statistics.json`.
+
+Let me check how the finetuned model's `modeling_prismatic.py` loads norm_stats - does it merge the dataset_statistics.json into norm_stats?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "8a81dd19-0421-4d38-bc9b-ae541e1b15ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JyfJKZE442959xFgwxsvbx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 53842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 615
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TpzvA9hBM5umybM8esmxsC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"dataset_statistics\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "4251ee16-8de3-4a0a-97b4-d5d759a7a8e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JyfJKZE442959xFgwxsvbx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 53842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 615
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-21T16:07:21.538Z_
+
+<details><summary>↩ Tool result · `toolu_01TpzvA9hBM5umybM8esmxsC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "70dd19af-bec7-414b-b856-8aa0c67edfbe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011BMYHcmBPnjDFgo5ABMqGw`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"libero\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "d794bbf3-ec6c-4047-bf35-003c6d946a45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JyfJKZE442959xFgwxsvbx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 53842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 615
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-21T16:07:22.341Z_
+
+<details><summary>↩ Tool result · `toolu_011BMYHcmBPnjDFgo5ABMqGw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "6b76e9a6-783b-4104-b462-81044184ce81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 121_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the trained model's config.json doesn't have "libero" as a key in norm_stats. It still has the OXE dataset keys. And the dataset_statistics.json has `"libero_10_no_noops"`.
+
+Now let me check the modeling code to see how norm_stats is loaded. It might merge dataset_statistics.json into the config's norm_stats.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "4c6d4b52-82e7-44e5-b627-2a41a412698b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014QjCtkZTUYhNjjiULHtBaT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 590,
+      "cache_read_input_tokens": 54457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 590
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MDuThD7wiPpwUSmSmhbkos`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"dataset_statistics\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "9742cc17-6f87-4c48-84f4-eaf044b0bdc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014QjCtkZTUYhNjjiULHtBaT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 590,
+      "cache_read_input_tokens": 54457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 590
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-21T16:07:43.998Z_
+
+<details><summary>↩ Tool result · `toolu_01MDuThD7wiPpwUSmSmhbkos`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "c8f3c38b-cd33-42b2-904c-bd4a402e69e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 124_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The modeling_prismatic.py doesn't reference dataset_statistics. The norm_stats come entirely from `config.json`. So the trained model's norm_stats in config.json only contains OXE dataset keys — no `libero_10` or `libero_10_no_noops`.
+
+But that's weird - the dataset_statistics.json has `libero_10_no_noops`. Is that file used at all?
+
+Let me look at the modeling_prismatic.py more carefully to understand how get_action_stats works with the available norm_stats. The trained model's config.json has OXE keys, so `model.get_action_stats("libero_10")` fails because "libero_10" is not in the OXE norm_stats.
+ 
+Now I'm wondering where the Object pipeline gets its unnorm_key from — the Object model uses `libero_object` which must be in its config.json, but that's a different checkpoint than the LIBERO-10 trained model. The untrained Object pipeline works with `bridge_orig` because that's in the base model's OXE norm_stats. So for the LIBERO-10 trained model, I need to figure out what unnorm_key is actually available in its config.json.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "058fa881-0eac-4e42-8eb2-cdf8cce6f2fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SK6unyUPmBYyaYnt6nTPJZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 55047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 314
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SUDxPVBrWphY8HWacwX8Wq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +490 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/modeling_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "9b4304c6-27a1-47b5-b9ce-9a07706c6f7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SK6unyUPmBYyaYnt6nTPJZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 55047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 314
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-21T16:08:00.839Z_
+
+<details><summary>↩ Tool result · `toolu_01SUDxPVBrWphY8HWacwX8Wq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n    def _build_multimodal_labels(self, labels, projected_patch_embeddings):\\n        \\\"\\\"\\\"Build multimodal labels with IGNORE_INDEX for patch embeddings\\\"\\\"\\\"\\n        if labels is not None:\\n            projected_patch_labels = torch.full(\\n                (projected_patch_embeddings.shape[0], projected_patch_embeddings.shape[1]),\\n                fill_value=IGNORE_INDEX,\\n                dtype=labels.dtype,\\n                device=labels.device,\\n            )\\n            return torch.cat([labels[:, :1], projected_patch_labels, labels[:, 1:]], dim=1)\\n        return None\\n\\n    # === Core Prismatic VLM `forward()` Logic ===\\n    def forward(\\n        self,\\n        input_ids: Optional[torch.LongTensor] = None,\\n        attention_mask: Optional[torch.Tensor] = None,\\n        pixel_values: Optional[torch.FloatTensor] = None,\\n        labels: Optional[torch.LongTensor] = None,\\n        inputs_embeds: Optional[torch.FloatTensor] = None,\\n        past_key_values: Optional[List[torch.FloatTensor]] = None,\\n        use_cache: Optional[bool] = None,\\n        output_attentions: Optional[bool] = None,\\n        output_hidden_states: Optional[bool] = None,\\n        output_projector_features: Optional[bool] = None,\\n        return_dict: Optional[bool] = None,\\n        proprio=None,\\n        proprio_projector=None,\\n        noisy_actions=None,\\n        noisy_action_projector=None,\\n        diffusion_timestep_embeddings=None,\\n        use_film: bool = False,\\n    ) -> Union[Tuple, PrismaticCausalLMOutputWithPast]:\\n        \\\"\\\"\\\"Run a forward pass through the VLM, returning a PrismaticCausalLMOutputWithPast instance.\\\"\\\"\\\"\\n        output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions\\n        output_hidden_states = (\\n            output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states\\n        )\\n        output_projector_features = output_projector_features if output_projector_features is not None else False\\n        return_dict = return_dict if return_dict is not None else self.config.use_return_dict\\n\\n        # Respect `use_cache` only if not training (even if `gradient_checkpointing` is off)\\n        use_cache = use_cache and not self.training\\n\\n        # Instantiate Placeholder for Projector Features\\n        projected_patch_embeddings = None\\n\\n        # === Handle Generation with Cache (`input_ids.shape[1] == 1`) =>> requires `past_keys_values` ===\\n        if input_ids.shape[1] == 1:\\n            assert input_ids.shape[0] == 1, \\\"Generation is only currently supported for batch size of 1!\\\"\\n            assert past_key_values is not None, \\\"You must provide `past_key_values` during cached generation!\\\"\\n            assert labels is None, \\\"Unexpected key `labels` provided during cached generation!\\\"\\n\\n            language_model_output = self.language_model(\\n                input_ids=input_ids,\\n                attention_mask=None,\\n                position_ids=None,\\n                past_key_values=past_key_values,\\n                inputs_embeds=None,\\n                labels=None,\\n                use_cache=use_cache,\\n                output_attentions=output_attentions,\\n                output_hidden_states=output_hidden_states,\\n                return_dict=return_dict,\\n            )\\n\\n        # === Handle Unimodal Forward ===\\n        elif pixel_values is None:\\n            assert (input_ids is not None) and (inputs_embeds is None), \\\"Missing `input_ids` in language-only forward!\\\"\\n            assert past_key_values is None, \\\"Unexpected key `past_key_values` provided during language-only forward!\\\"\\n\\n            language_model_output = self.language_model(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                position_ids=None,\\n                past_key_values=None,\\n                inputs_embeds=None,\\n                labels=labels,\\n                use_cache=use_cache,\\n                output_attentions=output_attentions,\\n                output_hidden_states=output_hidden_state\\n\\n... [截断: 输出过长，省略 20566 字符] ...\\n\\nge_embeddings = input_embeddings[~all_actions_mask].reshape(\\n            input_embeddings.shape[0], -1, input_embeddings.shape[2]\\n        )\\n\\n        # Process vision features\\n        projected_patch_embeddings = self._process_vision_features(pixel_values, language_embeddings, use_film)\\n\\n        # Add proprioceptive features if provided\\n        use_proprio = proprio_projector is not None and proprio is not None\\n        if use_proprio:\\n            proprio = torch.Tensor(proprio).to(projected_patch_embeddings.device, dtype=projected_patch_embeddings.dtype)\\n            projected_patch_embeddings = self._process_proprio_features(\\n                projected_patch_embeddings, proprio, proprio_projector\\n            )\\n\\n        # Use diffusion if provided, otherwise use regression or discrete prediction\\n        use_diffusion = noisy_action_projector is not None and hasattr(action_head, \\\"noise_scheduler\\\")\\n\\n        # Calculate number of patches (including proprio token and/or diffusion timestep embedding if present)\\n        NUM_PATCHES = self.vision_backbone.get_num_patches() * self.vision_backbone.get_num_images_in_input()\\n        if use_proprio:\\n            NUM_PATCHES += 1\\n        if use_diffusion:\\n            NUM_PATCHES += 1\\n\\n        if use_diffusion:\\n            # Sample random noise with shape equal to output action, used as the starting state for reverse diffusion\\n            noise = torch.randn(\\n                size=(1, NUM_ACTIONS_CHUNK, ACTION_DIM), device=input_embeddings.device, dtype=input_embeddings.dtype\\n            )\\n\\n            # Run diffusion-based prediction\\n            normalized_actions, actions_hidden_states = self._run_diffusion_prediction(\\n                input_embeddings,\\n                all_actions_mask,\\n                noise,\\n                action_head,\\n                projected_patch_embeddings,\\n                labels,\\n                attention_mask,\\n                NUM_PATCHES,\\n                NUM_PROMPT_TOKENS,\\n                noisy_action_projector,\\n            )\\n        else:\\n            # Run regression or discrete token-based prediction\\n            normalized_actions, actions_hidden_states = self._regression_or_discrete_prediction(\\n                input_embeddings,\\n                all_actions_mask,\\n                projected_patch_embeddings,\\n                attention_mask,\\n                labels,\\n                NUM_PATCHES,\\n                NUM_PROMPT_TOKENS,\\n                action_head,\\n            )\\n\\n        # Unnormalize predicted actions\\n        actions = self._unnormalize_actions(normalized_actions, unnorm_key)\\n\\n        return actions, actions_hidden_states\\n\\n    @staticmethod\\n    def _check_unnorm_key(norm_stats: Dict[str, Dict[str, Any]], unnorm_key: Optional[str]) -> str:\\n        \\\"\\\"\\\"Validate and resolve the unnormalization key for action statistics\\\"\\\"\\\"\\n        if unnorm_key is None:\\n            assert len(norm_stats) == 1, (\\n                f\\\"Your model was trained on more than one dataset, \\\"\\n                f\\\"please pass a `unnorm_key` from the following options to choose the statistics \\\"\\n                f\\\"used for un-normalizing actions: {norm_stats.keys()}\\\"\\n            )\\n            unnorm_key = next(iter(norm_stats.keys()))\\n\\n        assert unnorm_key in norm_stats, (\\n            f\\\"The `unnorm_key` you chose is not in the set of available dataset statistics, \\\"\\n            f\\\"please choose from: {norm_stats.keys()}\\\"\\n        )\\n        return unnorm_key\\n\\n    def get_action_dim(self, unnorm_key: Optional[str] = None) -> int:\\n        \\\"\\\"\\\"Get the dimensionality of the policy's action space.\\\"\\\"\\\"\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n        return len(self.norm_stats[unnorm_key][\\\"action\\\"][\\\"min\\\"])\\n\\n    def get_action_stats(self, unnorm_key: Optional[str] = None) -> Dict[str, Any]:\\n        \\\"\\\"\\\"Get all the logged statistics for the given dataset.\\\"\\\"\\\"\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n        return self.norm_stats[unnorm_key][\\\"action\\\"]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "e642cee6-7e56-445c-bc7f-aa95be792db7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n    def _build_multimodal_labels(self, labels, projected_patch_embeddings):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Build multimodal labels with IGNORE_INDEX for patch embeddings\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        if labels is not None:\\\\n            projected_patch_labels = torch.full(\\\\n                (projected_patch_embeddings.shape[0], projected_patch_embeddings.shape[1]),\\\\n                fill_value=IGNORE_INDEX,\\\\n                dtype=labels.dtype,\\\\n                device=labels.device,\\\\n            )\\\\n            return torch.cat([labels[:, :1], projected_patch_labels, labels[:, 1:]], dim=1)\\\\n        return None\\\\n\\\\n    # === Core Prismatic VLM `forward()` Logic ===\\\\n    def forward(\\\\n        self,\\\\n        input_ids: Optional[torch.LongTensor] = None,\\\\n        attention_mask: Optional[torch.Tensor] = None,\\\\n        pixel_values: Optional[torch.FloatTensor] = None,\\\\n        labels: Optional[torch.LongTensor] = None,\\\\n        inputs_embeds: Optional[torch.FloatTensor] = None,\\\\n        past_key_values: Optional[List[torch.FloatTensor]] = None,\\\\n        use_cache: Optional[bool] = None,\\\\n        output_attentions: Optional[bool] = None,\\\\n        output_hidden_states: Optional[bool] = None,\\\\n        output_projector_features: Optional[bool] = None,\\\\n        return_dict: Optional[bool] = None,\\\\n        proprio=None,\\\\n        proprio_projector=None,\\\\n        noisy_actions=None,\\\\n        noisy_action_projector=None,\\\\n        diffusion_timestep_embeddings=None,\\\\n        use_film: bool = False,\\\\n    ) -> Union[Tuple, PrismaticCausalLMOutputWithPast]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Run a forward pass through the VLM, returning a PrismaticCausalLMOutputWithPast instance.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions\\\\n        output_hidden_states = (\\\\n            output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states\\\\n        )\\\\n        output_projector_features = output_projector_features if output_projector_features is not None else False\\\\n        return_dict = return_dict if return_dict is not None else self.config.use_return_dict\\\\n\\\\n        # Respect `use_cache` only if not training (even if `gradient_checkpointing` is off)\\\\n        use_cache = use_cache and not self.training\\\\n\\\\n        # Instantiate Placeholder for Projector Features\\\\n        projected_patch_embeddings = None\\\\n\\\\n        # === Handle Generation with Cache (`input_ids.shape[1] == 1`) =>> requires `past_keys_values` ===\\\\n        if input_ids.shape[1] == 1:\\\\n            assert input_ids.shape[0] == 1, \\\\\\\"Generation is only currently supported for batch size of 1!\\\\\\\"\\\\n            assert past_key_values is not None, \\\\\\\"You must provide `past_key_values` during cached generation!\\\\\\\"\\\\n            assert labels is None, \\\\\\\"Unexpected key `labels` provided during cached generation!\\\\\\\"\\\\n\\\\n            language_model_output = self.language_model(\\\\n                input_ids=input_ids,\\\\n                attention_mask=None,\\\\n                position_ids=None,\\\\n                past_key_values=past_key_values,\\\\n                inputs_embeds=None,\\\\n                labels=None,\\\\n                use_cache=use_cache,\\\\n                output_attentions=output_attentions,\\\\n                output_hidden_states=output_hidden_states,\\\\n                return_dict=return_dict,\\\\n            )\\\\n\\\\n        # === Handle Unimodal Forward ===\\\\n        elif pixel_values is None:\\\\n            assert (input_ids is not None) and (inputs_embeds is None), \\\\\\\"Missing `input_ids` in language-only forward!\\\\\\\"\\\\n            assert past_key_values is None, \\\\\\\"Unexpected key `past_key_values` provided during language-only forward!\\\\\\\"\\\\n\\\\n            language_model_output = self.language_model(\\\\n                input_ids=input_ids,\\\\n                attention_mask=attention_mask,\\\\n                position_ids=None,\\\\n                past_key_values=None,\\\\n                inputs_embeds=None,\\\\n                labels=labels,\\\\n                use_cache=use_cache,\\\\n                output_attentions=output_attentions,\\\\n                output_hidden_states=output_hidden_state\\\\n\\\\n... [截断: 输出过长，省略 20566 字符] ...\\\\n\\\\nge_embeddings = input_embeddings[~all_actions_mask].reshape(\\\\n            input_embeddings.shape[0], -1, input_embeddings.shape[2]\\\\n        )\\\\n\\\\n        # Process vision features\\\\n        projected_patch_embeddings = self._process_vision_features(pixel_values, language_embeddings, use_film)\\\\n\\\\n        # Add proprioceptive features if provided\\\\n        use_proprio = proprio_projector is not None and proprio is not None\\\\n        if use_proprio:\\\\n            proprio = torch.Tensor(proprio).to(projected_patch_embeddings.device, dtype=projected_patch_embeddings.dtype)\\\\n            projected_patch_embeddings = self._process_proprio_features(\\\\n                projected_patch_embeddings, proprio, proprio_projector\\\\n            )\\\\n\\\\n        # Use diffusion if provided, otherwise use regression or discrete prediction\\\\n        use_diffusion = noisy_action_projector is not None and hasattr(action_head, \\\\\\\"noise_scheduler\\\\\\\")\\\\n\\\\n        # Calculate number of patches (including proprio token and/or diffusion timestep embedding if present)\\\\n        NUM_PATCHES = self.vision_backbone.get_num_patches() * self.vision_backbone.get_num_images_in_input()\\\\n        if use_proprio:\\\\n            NUM_PATCHES += 1\\\\n        if use_diffusion:\\\\n            NUM_PATCHES += 1\\\\n\\\\n        if use_diffusion:\\\\n            # Sample random noise with shape equal to output action, used as the starting state for reverse diffusion\\\\n            noise = torch.randn(\\\\n                size=(1, NUM_ACTIONS_CHUNK, ACTION_DIM), device=input_embeddings.device, dtype=input_embeddings.dtype\\\\n            )\\\\n\\\\n            # Run diffusion-based prediction\\\\n            normalized_actions, actions_hidden_states = self._run_diffusion_prediction(\\\\n                input_embeddings,\\\\n                all_actions_mask,\\\\n                noise,\\\\n                action_head,\\\\n                projected_patch_embeddings,\\\\n                labels,\\\\n                attention_mask,\\\\n                NUM_PATCHES,\\\\n                NUM_PROMPT_TOKENS,\\\\n                noisy_action_projector,\\\\n            )\\\\n        else:\\\\n            # Run regression or discrete token-based prediction\\\\n            normalized_actions, actions_hidden_states = self._regression_or_discrete_prediction(\\\\n                input_embeddings,\\\\n                all_actions_mask,\\\\n                projected_patch_embeddings,\\\\n                attention_mask,\\\\n                labels,\\\\n                NUM_PATCHES,\\\\n                NUM_PROMPT_TOKENS,\\\\n                action_head,\\\\n            )\\\\n\\\\n        # Unnormalize predicted actions\\\\n        actions = self._unnormalize_actions(normalized_actions, unnorm_key)\\\\n\\\\n        return actions, actions_hidden_states\\\\n\\\\n    @staticmethod\\\\n    def _check_unnorm_key(norm_stats: Dict[str, Dict[str, Any]], unnorm_key: Optional[str]) -> str:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Validate and resolve the unnormalization key for action statistics\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        if unnorm_key is None:\\\\n            assert len(norm_stats) == 1, (\\\\n                f\\\\\\\"Your model was trained on more than one dataset, \\\\\\\"\\\\n                f\\\\\\\"please pass a `unnorm_key` from the following options to choose the statistics \\\\\\\"\\\\n                f\\\\\\\"used for un-normalizing actions: {norm_stats.keys()}\\\\\\\"\\\\n            )\\\\n            unnorm_key = next(iter(norm_stats.keys()))\\\\n\\\\n        assert unnorm_key in norm_stats, (\\\\n            f\\\\\\\"The `unnorm_key` you chose is not in the set of available dataset statistics, \\\\\\\"\\\\n            f\\\\\\\"please choose from: {norm_stats.keys()}\\\\\\\"\\\\n        )\\\\n        return unnorm_key\\\\n\\\\n    def get_action_dim(self, unnorm_key: Optional[str] = None) -> int:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Get the dimensionality of the policy's action space.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\\\n        return len(self.norm_stats[unnorm_key][\\\\\\\"action\\\\\\\"][\\\\\\\"min\\\\\\\"])\\\\n\\\\n    def get_action_stats(self, unnorm_key: Optional[str] = None) -> Dict[str, Any]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Get all the logged statistics for the given dataset.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\\\n        return self.norm_stats[unnorm_key][\\\\\\\"action\\\\\\\"]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n    def _build_multimodal_labels(self, labels, projected_patch_embeddings):\\n        \\\"\\\"\\\"Build multimodal labels with IGNORE_INDEX for patch embeddings\\\"\\\"\\\"\\n        if labels is not None:\\n            projected_patch_labels = torch.full(\\n                (projected_patch_embeddings.shape[0], projected_patch_embeddings.shape[1]),\\n                fill_value=IGNORE_INDEX,\\n                dtype=labels.dtype,\\n                device=labels.device,\\n            )\\n            return torch.cat([labels[:, :1], projected_patch_labels, labels[:, 1:]], dim=1)\\n        return None\\n\\n    # === Core Prismatic VLM `forward()` Logic ===\\n    def forward(\\n        self,\\n        input_ids: Optional[torch.LongTensor] = None,\\n        attention_mask: Optional[torch.Tensor] = None,\\n        pixel_values: Optional[torch.FloatTensor] = None,\\n        labels: Optional[torch.LongTensor] = None,\\n        inputs_embeds: Optional[torch.FloatTensor] = None,\\n        past_key_values: Optional[List[torch.FloatTensor]] = None,\\n        use_cache: Optional[bool] = None,\\n        output_attentions: Optional[bool] = None,\\n        output_hidden_states: Optional[bool] = None,\\n        output_projector_features: Optional[bool] = None,\\n        return_dict: Optional[bool] = None,\\n        proprio=None,\\n        proprio_projector=None,\\n        noisy_actions=None,\\n        noisy_action_projector=None,\\n        diffusion_timestep_embeddings=None,\\n        use_film: bool = False,\\n    ) -> Union[Tuple, PrismaticCausalLMOutputWithPast]:\\n        \\\"\\\"\\\"Run a forward pass through the VLM, returning a PrismaticCausalLMOutputWithPast instance.\\\"\\\"\\\"\\n        output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions\\n        output_hidden_states = (\\n            output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states\\n        )\\n        output_projector_features = output_projector_features if output_projector_features is not None else False\\n        return_dict = return_dict if return_dict is not None else self.config.use_return_dict\\n\\n        # Respect `use_cache` only if not training (even if `gradient_checkpointing` is off)\\n        use_cache = use_cache and not self.training\\n\\n        # Instantiate Placeholder for Projector Features\\n        projected_patch_embeddings = None\\n\\n        # === Handle Generation with Cache (`input_ids.shape[1] == 1`) =>> requires `past_keys_values` ===\\n        if input_ids.shape[1] == 1:\\n            assert input_ids.shape[0] == 1, \\\"Generation is only currently supported for batch size of 1!\\\"\\n            assert past_key_values is not None, \\\"You must provide `past_key_values` during cached generation!\\\"\\n            assert labels is None, \\\"Unexpected key `labels` provided during cached generation!\\\"\\n\\n            language_model_output = self.language_model(\\n                input_ids=input_ids,\\n                attention_mask=None,\\n                position_ids=None,\\n                past_key_values=past_key_values,\\n                inputs_embeds=None,\\n                labels=None,\\n                use_cache=use_cache,\\n                output_attentions=output_attentions,\\n                output_hidden_states=output_hidden_states,\\n                return_dict=return_dict,\\n            )\\n\\n        # === Handle Unimodal Forward ===\\n        elif pixel_values is None:\\n            assert (input_ids is not None) and (inputs_embeds is None), \\\"Missing `input_ids` in language-only forward!\\\"\\n            assert past_key_values is None, \\\"Unexpected key `past_key_values` provided during language-only forward!\\\"\\n\\n            language_model_output = self.language_model(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                position_ids=None,\\n                past_key_values=None,\\n                inputs_embeds=None,\\n                labels=labels,\\n                use_cache=use_cache,\\n                output_attentions=output_attentions,\\n                output_hidden_states=output_hidden_state\\n\\n... [截断: 输出过长，省略 20566 字符] ...\\n\\nge_embeddings = input_embeddings[~all_actions_mask].reshape(\\n            input_embeddings.shape[0], -1, input_embeddings.shape[2]\\n        )\\n\\n        # Process vision features\\n        projected_patch_embeddings = self._process_vision_features(pixel_values, language_embeddings, use_film)\\n\\n        # Add proprioceptive features if provided\\n        use_proprio = proprio_projector is not None and proprio is not None\\n        if use_proprio:\\n            proprio = torch.Tensor(proprio).to(projected_patch_embeddings.device, dtype=projected_patch_embeddings.dtype)\\n            projected_patch_embeddings = self._process_proprio_features(\\n                projected_patch_embeddings, proprio, proprio_projector\\n            )\\n\\n        # Use diffusion if provided, otherwise use regression or discrete prediction\\n        use_diffusion = noisy_action_projector is not None and hasattr(action_head, \\\"noise_scheduler\\\")\\n\\n        # Calculate number of patches (including proprio token and/or diffusion timestep embedding if present)\\n        NUM_PATCHES = self.vision_backbone.get_num_patches() * self.vision_backbone.get_num_images_in_input()\\n        if use_proprio:\\n            NUM_PATCHES += 1\\n        if use_diffusion:\\n            NUM_PATCHES += 1\\n\\n        if use_diffusion:\\n            # Sample random noise with shape equal to output action, used as the starting state for reverse diffusion\\n            noise = torch.randn(\\n                size=(1, NUM_ACTIONS_CHUNK, ACTION_DIM), device=input_embeddings.device, dtype=input_embeddings.dtype\\n            )\\n\\n            # Run diffusion-based prediction\\n            normalized_actions, actions_hidden_states = self._run_diffusion_prediction(\\n                input_embeddings,\\n                all_actions_mask,\\n                noise,\\n                action_head,\\n                projected_patch_embeddings,\\n                labels,\\n                attention_mask,\\n                NUM_PATCHES,\\n                NUM_PROMPT_TOKENS,\\n                noisy_action_projector,\\n            )\\n        else:\\n            # Run regression or discrete token-based prediction\\n            normalized_actions, actions_hidden_states = self._regression_or_discrete_prediction(\\n                input_embeddings,\\n                all_actions_mask,\\n                projected_patch_embeddings,\\n                attention_mask,\\n                labels,\\n                NUM_PATCHES,\\n                NUM_PROMPT_TOKENS,\\n                action_head,\\n            )\\n\\n        # Unnormalize predicted actions\\n        actions = self._unnormalize_actions(normalized_actions, unnorm_key)\\n\\n        return actions, actions_hidden_states\\n\\n    @staticmethod\\n    def _check_unnorm_key(norm_stats: Dict[str, Dict[str, Any]], unnorm_key: Optional[str]) -> str:\\n        \\\"\\\"\\\"Validate and resolve the unnormalization key for action statistics\\\"\\\"\\\"\\n        if unnorm_key is None:\\n            assert len(norm_stats) == 1, (\\n                f\\\"Your model was trained on more than one dataset, \\\"\\n                f\\\"please pass a `unnorm_key` from the following options to choose the statistics \\\"\\n                f\\\"used for un-normalizing actions: {norm_stats.keys()}\\\"\\n            )\\n            unnorm_key = next(iter(norm_stats.keys()))\\n\\n        assert unnorm_key in norm_stats, (\\n            f\\\"The `unnorm_key` you chose is not in the set of available dataset statistics, \\\"\\n            f\\\"please choose from: {norm_stats.keys()}\\\"\\n        )\\n        return unnorm_key\\n\\n    def get_action_dim(self, unnorm_key: Optional[str] = None) -> int:\\n        \\\"\\\"\\\"Get the dimensionality of the policy's action space.\\\"\\\"\\\"\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n        return len(self.norm_stats[unnorm_key][\\\"action\\\"][\\\"min\\\"])\\n\\n    def get_action_stats(self, unnorm_key: Optional[str] = None) -> Dict[str, Any]:\\n        \\\"\\\"\\\"Get all the logged statistics for the given dataset.\\\"\\\"\\\"\\n        unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n        return self.norm_stats[unnorm_key][\\\"action\\\"]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 127_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full picture:
+
+1. `self.norm_stats = config.norm_stats` (line 502 in the modeling code)
+2. The trained model's `config.json` has `norm_stats` with only OXE dataset keys (doesn't include `libero_10` or `libero_10_no_noops`)
+3. The `dataset_statistics.json` in the trained model's directory has `libero_10_no_noops` but isn't directly used by the model loading code (it's not merged into config.norm_stats)
+
+
+4. I need to verify whether OpenVLA's `from_pretrained` merges `dataset_statistics.json` into the config, and check if the Object model checkpoint has special handling or if its `config.json` was modified to include `libero_object` in norm_stats.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "3b5c9182-6f1b-4e64-9cd5-2fe3ba8013df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3wbtJoPLv5Z6hJR9qu8Y3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3182,
+      "cache_read_input_tokens": 55361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3182
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CcejTSP4DUATE4YqX3996Z`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/checkpoints -maxdepth 1 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "1494e3ef-4a6a-4e19-8431-3ba4e61b24ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3wbtJoPLv5Z6hJR9qu8Y3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3182,
+      "cache_read_input_tokens": 55361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3182
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-21T16:08:26.406Z_
+
+<details><summary>↩ Tool result · `toolu_01CcejTSP4DUATE4YqX3996Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/checkpoints\\n/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large\\n/root/autodl-tmp/vla-ssd/checkpoints/.lock\\n/root/autodl-tmp/vla-ssd/checkpoints/._____temp\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-phi3v\\n/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\n/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\n/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\n/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base-ms\\n/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\n/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "65b96cf8-6cbb-4ded-b58d-0d292b4b944f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints\\\\n/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large\\\\n/root/autodl-tmp/vla-ssd/checkpoints/.lock\\\\n/root/autodl-tmp/vla-ssd/checkpoints/._____temp\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-phi3v\\\\n/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\\n/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\\\n/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\n/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base-ms\\\\n/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\\\n/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/checkpoints\\n/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large\\n/root/autodl-tmp/vla-ssd/checkpoints/.lock\\n/root/autodl-tmp/vla-ssd/checkpoints/._____temp\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-phi3v\\n/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\n/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal\\n/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base\\n/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\n/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base-ms\\n/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial\\n/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MaKZtFuFBuRbYZqK6qY9Mu`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"libero_object\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "191443f2-abf8-47ce-b363-47dbd489a399",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3MT86UPf8N8s73qRyrsB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 58543,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-21T16:08:32.136Z_
+
+<details><summary>↩ Tool result · `toolu_01MaKZtFuFBuRbYZqK6qY9Mu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"22:    \\\"libero_object\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "bc93a3af-8b0f-46ac-9e1d-91f373e9cf7d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22:    \\\\\\\"libero_object\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"22:    \\\"libero_object\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 132_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the Object finetuned model (`openvla-7b-finetuned-libero-object`) has `"libero_object"` directly in its `config.json` norm_stats. This is a different model — it was finetuned with the standard OpenVLA method (not OFT), and it correctly updated the norm_stats in config.json.
+
+But the LIBERO-10 model (`openvla-7b-oft-finetuned-libero-10`) was finetuned with OFT (Orthogonal Fine-Tuning), and its config.json wasn't properly updated — it still has the OXE keys from the base model.
+
+
+The actual norm_stats for the trained model are stored in `dataset_statistics.json` under the `libero_10_no_noops` key, but they never got merged into `config.json`. I can either update the checkpoint's config.json directly, modify the pipeline to load and merge the dataset statistics after loading the model, or handle the unnormalization differently in the script. The core issue is that when the script calls `model.get_action_stats(UNNORM)` with `UNNORM = "libero_10"`, the model's norm_stats dictionary doesn't contain that key.
+
+The cleanest approach for the pipeline script is to load `dataset_statistics.json` after initializing the model and merge those statistics into `model.norm_stats`, then use `UNNORM = "libero_10_no_noops"` for the trained model while keeping `"bridge_orig"` for the untrained one. I notice the Object pipeline uses `UNNORM = "libero_object"`, so there's a pattern here where different datasets need their corresponding keys. because the `openvla-7b-finetuned-libero-object` model has this key in its config.json. And the Object untrained pipeline uses `UNNORM = "bridge_orig"` because the base model has OXE keys.
+
+So the Long pipeline needs a similar split:
+- Trained: need the correct key for the OFT model
+- Untrained: use `"bridge_orig"` (from OXE)
+
+For the trained OFT model, since its config.json doesn't have the LIBERO-10 stats, we need to either:
+a) Add them to config.json
+b) Manually load dataset_statistics.json and merge into model.norm_stats
+c) Pass `None` since `generate_action` only needs it for de-normalizing actions, and maybe we can handle it differently
+
+The cleanest approach is to make `UNNORM` conditional per model, load the dataset statistics after initializing the trained model and merge them into `model.norm_stats`, then set `UNNORM = "libero_10_no_noops"` for trained and `UNNORM = "bridge_orig"` for untrained. Since `generate_action` reads from the global `UNNORM` variable to fetch the action statistics, this setup ensures each model gets the right normalization stats.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "35ddd7d9-1f58-4a84-9ada-16d5a762ac8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013XWQm7tnsLMgRKEUVqDtZL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 59432,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 133_
+
+现在全清楚了。让我检查 Phase 1-5 输出文件是否完整，同时确认 `bridge_orig` 在 base 模型的 norm_stats 中。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "a8772abe-d5fa-41d6-8623-667060ed8945",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013XWQm7tnsLMgRKEUVqDtZL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 59432,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012241UhfDeLRmYHBCdoaQBE`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/libero_long/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "c3845397-11c5-40f2-9682-d28d2a8042c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013XWQm7tnsLMgRKEUVqDtZL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 59432,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JhkYowqrBacTDTbALv8d7A`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep \"bridge_orig\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "2c9bded8-d816-4549-be26-ccb0398e8ae8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013XWQm7tnsLMgRKEUVqDtZL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 59432,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-21T16:08:58.672Z_
+
+<details><summary>↩ Tool result · `toolu_012241UhfDeLRmYHBCdoaQBE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 40\\ndrwxr-xr-x  2 root root  159 May 21 23:59 .\\ndrwxr-xr-x 54 root root 8192 May 21 23:28 ..\\n-rw-r--r--  1 root root 6372 May 21 23:55 action_r2_probing.json\\n-rw-r--r--  1 root root 1727 May 21 23:59 cross_instruction_classification.json\\n-rw-r--r--  1 root root 4665 May 21 23:55 l1_attention_profile.json\\n-rw-r--r--  1 root root 7360 May 21 23:59 rsa_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "e076d40d-c7a7-4cbd-bfbc-ab8ee8852fd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40\\\\ndrwxr-xr-x  2 root root  159 May 21 23:59 .\\\\ndrwxr-xr-x 54 root root 8192 May 21 23:28 ..\\\\n-rw-r--r--  1 root root 6372 May 21 23:55 action_r2_probing.json\\\\n-rw-r--r--  1 root root 1727 May 21 23:59 cross_instruction_classification.json\\\\n-rw-r--r--  1 root root 4665 May 21 23:55 l1_attention_profile.json\\\\n-rw-r--r--  1 root root 7360 May 21 23:59 rsa_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 40\\ndrwxr-xr-x  2 root root  159 May 21 23:59 .\\ndrwxr-xr-x 54 root root 8192 May 21 23:28 ..\\n-rw-r--r--  1 root root 6372 May 21 23:55 action_r2_probing.json\\n-rw-r--r--  1 root root 1727 May 21 23:59 cross_instruction_classification.json\\n-rw-r--r--  1 root root 4665 May 21 23:55 l1_attention_profile.json\\n-rw-r--r--  1 root root 7360 May 21 23:59 rsa_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-21T16:08:59.213Z_
+
+<details><summary>↩ Tool result · `toolu_01JhkYowqrBacTDTbALv8d7A`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"bridge_orig\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "a9b6d1e0-ef32-4fd2-bb7e-d5d69ff25434",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"bridge_orig\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    \\\"bridge_orig\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 138_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Phase 1-5 trained output exists:
+- `action_r2_probing.json` (Phase 2)
+- `l1_attention_profile.json` (Phase 3)
+- `cross_instruction_classification.json` (Phase 4)
+- `rsa_analysis.json` (Phase 5)
+- Phase 1 (representation extraction) doesn't save to a separate file — it's used in-memory by Phase 2-5
+- No `counterfactual_combined.json` (Phase 6 crashed)
+
+The untrained results directory doesn't exist yet since "untrained 条件完全未运行".
+
+
+Looking at the pipeline code, Phase 6 actually generates its own actions independently rather than reusing the representations from Phase 1, which means it could theoretically run standalone without needing Phase 1's output.
+
+The CLI has skip flags for Phase 2 and Phase 5, but not for Phases 1, 3, or 4, so there's no straightforward way to skip the earlier phases without modifying the script. For the trained condition where Phase 1-5 results already exist, the simplest solution is just to re-run everything rather than trying to patch together a way to skip those phases.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "2ed04d28-1d5a-4a5b-9ab6-1f5da06a2746",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ELnVga69BfDeKPNuHFEYYR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1760,
+      "cache_read_input_tokens": 59651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1760
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011KxfPYMxPWqNNEfMBoFiAi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"add_argument\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "e04a9dbd-afed-4c02-8885-36f30427cedd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ELnVga69BfDeKPNuHFEYYR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1760,
+      "cache_read_input_tokens": 59651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1760
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-21T16:09:18.857Z_
+
+<details><summary>↩ Tool result · `toolu_011KxfPYMxPWqNNEfMBoFiAi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"518:    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n520:    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n521:    p.add_argument(\\\"--skip-rsa\\\", action=\\\"store_true\\\")\\n522:    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n523:    p.add_argument(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "cf7d508e-8185-45b7-8bc3-ed93db1a7ed7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"518:    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n520:    p.add_argument(\\\\\\\"--skip-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n521:    p.add_argument(\\\\\\\"--skip-rsa\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n522:    p.add_argument(\\\\\\\"--skip-probing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n523:    p.add_argument(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"518:    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n520:    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\n521:    p.add_argument(\\\"--skip-rsa\\\", action=\\\"store_true\\\")\\n522:    p.add_argument(\\\"--skip-probing\\\", action=\\\"store_true\\\")\\n523:    p.add_argument(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 141_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Available CLI flags:
+- `--dry-run`
+- `--skip-counterfactual`
+- `--skip-rsa`
+- `--skip-probing`
+- `--conditions` (trained, untrained)
+
+There's no flag to skip Phase 1/3/4. For the trained condition, we need Phase 6 only. Phase 1 is the expensive extraction step, and Phase 3/4 also run.
+
+The options:
+1. Add `--only-counterfactual` flag that skips Phase 1-5
+2. Re-run everything for trained (wasteful)
+
+
+3. Modify the script for this specific run
+
+Since Phase 6 is independent of Phase 1-5 and uses `generate_action` directly rather than extracted features, adding an `--only-counterfactual` flag would be the cleanest approach. Now I need to fix the UNNORM key issue—the trained model uses `"libero_10_no_noops"` from the dataset statistics merged into its norm_stats, while the untrained model uses `"bridge_orig"` from its base config. But the trained model's config.json doesn't actually contain that key, so I need to figure out where it's coming from.
+
+Let me check the configuration loading code to see if there's already a mechanism for merging dataset statistics into the model's normalization stats.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "15513a0a-9ace-4673-8839-f2f4248c1958",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G4cYo1GpZ83sVGQWcKVxhw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 61411,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 940
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 142_
+
+现在需要确认 trained model 加载后 `model.norm_stats` 是否自动包含 `libero_10_no_noops`。让我看 configuration 代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "d82119e0-bfc0-4aed-abdc-a3e285b0f3ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G4cYo1GpZ83sVGQWcKVxhw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 61411,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 940
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016cRBStdfJe8HqLMaC8bgiq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"norm_stats\" /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/configuration_prismatic.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "15287e96-3a64-4496-a930-7eb4cbc1efa3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G4cYo1GpZ83sVGQWcKVxhw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 61411,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 940
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-21T16:09:30.812Z_
+
+<details><summary>↩ Tool result · `toolu_016cRBStdfJe8HqLMaC8bgiq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"134:        norm_stats: Optional[Dict[str, Dict[str, Dict[str, Dict[str, List[float]]]]]] = None,\\n138:        self.norm_stats, self.n_action_bins = norm_stats, n_action_bins\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "dc7c93cd-9049-4a6a-8b4a-7a85b341ee3b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"134:        norm_stats: Optional[Dict[str, Dict[str, Dict[str, Dict[str, List[float]]]]]] = None,\\\\n138:        self.norm_stats, self.n_action_bins = norm_stats, n_action_bins\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"134:        norm_stats: Optional[Dict[str, Dict[str, Dict[str, Dict[str, List[float]]]]]] = None,\\n138:        self.norm_stats, self.n_action_bins = norm_stats, n_action_bins\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 145_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The config loads `norm_stats` from config.json. Since the OFT-finetuned model's config.json still has the base model's OXE norm_stats, `model.norm_stats` will have OXE keys.
+
+The `dataset_statistics.json` isn't automatically merged. We need to manually merge it.
+
+Let me write the fix. The approach:
+1. After loading the model, load `dataset_statistics.json` and merge its contents into `model.norm_stats`
+2. Make `UNNORM` a per-condition variable:
+   - Trained: `"libero_10_no_noops"` (from dataset_statistics.json)
+   - Untrained: `"bridge_orig"` (from base model's config.json)
+3. Add `--only-counterfactual` flag to allow skipping Phase 1-5 for incremental re-runs
+
+Now I'll implement this fix through ssh_execute.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "ec29120f-27a6-49f0-aea2-21d28a88ea0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171Ped6Yd4htJdcPi1C6PBv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 62351,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 146_
+
+完整诊断结论：
+
+1. **根因**：trained 模型 (`openvla-7b-oft-finetuned-libero-10`) 用 OFT 微调，`config.json` 仍保留 base 模型的 OXE norm_stats，不含 `libero_10`。正确的 key 在 `dataset_statistics.json` 中：`"libero_10_no_noops"`，但未被自动合并到 `model.norm_stats`。
+2. **untrained 条件**：base 模型有 OXE keys（含 `bridge_orig`），需用 `"bridge_orig"` 做 unnorm。
+3. **Phase 1-5 trained 已完成**（4个json文件都在），Phase 6 独立于 Phase 1-5（不依赖提取的特征），可以增量重跑。
+
+现在实施修复：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "0048841d-383c-4777-a0e0-d4499b3d95c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171Ped6Yd4htJdcPi1C6PBv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 62351,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015Xx7c4fQY6N5HxrHtHspen`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cp /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py.bak"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "eb4caa7e-49e3-4332-a8fa-4503e8bd0725",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171Ped6Yd4htJdcPi1C6PBv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 62351,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-21T16:09:43.250Z_
+
+<details><summary>↩ Tool result · `toolu_015Xx7c4fQY6N5HxrHtHspen`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "1bc952d2-be41-4b60-a613-04f7791d8c12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JYzuaPf7m5iCFAr16AxCug`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /tmp/fix_long_pipeline.py << 'PYTHON'\nimport re\n\nwith open('/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py', 'r') as f:\n    content = f.read()\n\n# Fix 1: Replace global UNNORM with per-condition constants\nold = 'UNNORM = \"libero_10\"'\nnew = 'UNNORM_TRAINED = \"libero_10_no_noops\"\\nUNNORM_UNTRAINED = \"bridge_orig\"\\nUNNORM = UNNORM_TRAINED  # will be set per-condition in main()'\ncontent = content.replace(old, new)\n\n# Fix 2: In the main() condition loop, set global UNNORM per-condition and merge dataset_statistics\n# Find the block where ckpt is set for each condition\nold_trained_block = '''        if condition == \"trained\":\n            ckpt = TRAINED_CKPT\n            results_dir = RESULTS_BASE\n        elif condition == \"untrained\":\n            ckpt = UNTRAINED_CKPT\n            results_dir = RESULTS_BASE + \"_untrained\"'''\n\nnew_trained_block = '''        if condition == \"trained\":\n            ckpt = TRAINED_CKPT\n            results_dir = RESULTS_BASE\n            UNNORM = UNNORM_TRAINED\n        elif condition == \"untrained\":\n            ckpt = UNTRAINED_CKPT\n            results_dir = RESULTS_BASE + \"_untrained\"\n            UNNORM = UNNORM_UNTRAINED'''\n\ncontent = content.replace(old_trained_block, new_trained_block)\n\n# Fix 3: After model loading, merge dataset_statistics.json into model.norm_stats for OFT models\n# Find the line \"log(f\"Model loaded in {time.time()-t0:.1f}s\")\"\nold_model_loaded = '        log(f\"Model loaded in {time.time()-t0:.1f}s\")'\nnew_model_loaded = '''        log(f\"Model loaded in {time.time()-t0:.1f}s\")\n\n        # Merge dataset_statistics.json into model.norm_stats (needed for OFT-finetuned models)\n        ds_path = os.path.join(ckpt, \"dataset_statistics.json\")\n        if os.path.exists(ds_path):\n            with open(ds_path, \"r\") as _f:\n                ds_stats = json.load(_f)\n            for k, v in ds_stats.items():\n                if k not in model.norm_stats:\n                    model.norm_stats[k] = v\n                    log(f\"  Merged norm_stats key: {k}\")'''\n\ncontent = content.replace(old_model_loaded, new_model_loaded)\n\n# Fix 4: Add --only-counterfactual flag for incremental re-runs\nold_args = '    p.add_argument(\"--skip-counterfactual\", action=\"store_true\")'\nnew_args = '''    p.add_argument(\"--skip-counterfactual\", action=\"store_true\")\n    p.add_argument(\"--only-counterfactual\", action=\"store_true\",\n                   help=\"Skip Phase 1-5, only run Phase 6 (counterfactual)\")'''\ncontent = content.replace(old_args, new_args)\n\n# Fix 5: Use --only-counterfactual to skip Phase 1-5\n# Wrap Phase 1-5 in a conditional\nold_phase1 = '''        t1 = time.time()\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\n            model, processor, nt, nd, ns)\n        log(f\"Phase 1: {time.time()-t1:.1f}s\")'''\n\nnew_phase1 = '''        if not args.only_counterfactual:\n            t1 = time.time()\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\n                model, processor, nt, nd, ns)\n            log(f\"Phase 1: {time.time()-t1:.1f}s\")'''\n\ncontent = content.replace(old_phase1, new_phase1)\n\n# Wrap Phase 2\nold_phase2 = '''        if not args.skip_probing:\n            t2 = time.time()\n            probe_res = run_probing(reps, actions, nps)\n            with open(os.path.join(results_dir, \"action_r2_probing.json\"), \"w\") as f:\n                json.dump(probe_res, f, indent=2)\n            log(f\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\")'''\n\nnew_phase2 = '''        if not args.only_counterfactual and not args.skip_probing:\n            t2 = time.time()\n            probe_res = run_probing(reps, actions, nps)\n            with open(os.path.join(results_dir, \"action_r2_probing.json\"), \"w\") as f:\n                json.dump(probe_res, f, indent=2)\n            log(f\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\")'''\n\ncontent = content.replace(old_phase2, new_phase2)\n\n# Wrap Phase 3\nold_phase3 = '''        t3 = time.time()\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\n        with open(os.path.join(results_dir, \"l1_attention_profile.json\"), \"w\") as f:\n            json.dump(attn_res, f, indent=2)\n        log(f\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\")\n\n        del attn_ratio_sum, attn_ratio_sq_sum'''\n\nnew_phase3 = '''        if not args.only_counterfactual:\n            t3 = time.time()\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\n            with open(os.path.join(results_dir, \"l1_attention_profile.json\"), \"w\") as f:\n                json.dump(attn_res, f, indent=2)\n            log(f\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\")\n\n            del attn_ratio_sum, attn_ratio_sq_sum'''\n\ncontent = content.replace(old_phase3, new_phase3)\n\n# Wrap Phase 4\nold_phase4 = '''        t4 = time.time()\n        cls_res = run_classification(reps, labels, layers=cls_layers)\n        with open(os.path.join(results_dir, \"cross_instruction_classification.json\"), \"w\") as f:\n            json.dump(cls_res, f, indent=2)\n        log(f\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\")'''\n\nnew_phase4 = '''        if not args.only_counterfactual:\n            t4 = time.time()\n            cls_res = run_classification(reps, labels, layers=cls_layers)\n            with open(os.path.join(results_dir, \"cross_instruction_classification.json\"), \"w\") as f:\n                json.dump(cls_res, f, indent=2)\n            log(f\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\")'''\n\ncontent = content.replace(old_phase4, new_phase4)\n\n# Wrap Phase 5\nold_phase5 = '''        if not args.skip_rsa:\n            t_rsa = time.time()\n            rsa_res = run_rsa(reps, actions, labels)\n            with open(os.path.join(results_dir, \"rsa_analysis.json\"), \"w\") as f:\n                json.dump(rsa_res, f, indent=2)\n            log(f\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\")\n\n        del reps, actions, labels'''\n\nnew_phase5 = '''        if not args.only_counterfactual and not args.skip_rsa:\n            t_rsa = time.time()\n            rsa_res = run_rsa(reps, actions, labels)\n            with open(os.path.join(results_dir, \"rsa_analysis.json\"), \"w\") as f:\n                json.dump(rsa_res, f, indent=2)\n            log(f\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\")\n\n        if not args.only_counterfactual:\n            del reps, actions, labels'''\n\ncontent = content.replace(old_phase5, new_phase5)\n\n# Also need to handle the token layout validation — skip it too in only-counterfactual mode?\n# No, keep it — it's fast and validates model loading.\n\nwith open('/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py', 'w') as f:\n    f.write(content)\n\nprint(\"Done. Verifying key changes...\")\n\n# Verify\nwith open('/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py', 'r') as f:\n    final = f.read()\n\nchecks = [\n    'UNNORM_TRAINED = \"libero_10_no_noops\"',\n    'UNNORM_UNTRAINED = \"bridge_orig\"',\n    'UNNORM = UNNORM_TRAINED',\n    'UNNORM = UNNORM_UNTRAINED',\n    'dataset_statistics.json',\n    '--only-counterfactual',\n    'args.only_counterfactual',\n]\nfor c in checks:\n    if c in final:\n        print(f\"  OK: {c}\")\n    else:\n        print(f\"  MISSING: {c}\")\nPYTHON\npython3 /tmp/fix_long_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "d585931a-517b-4e4d-8976-8ada1b6def74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195uyJ7WZHDk1v1CiDfEX7o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 795,
+      "cache_read_input_tokens": 63076,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 795
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-21T16:10:14.813Z_
+
+<details><summary>↩ Tool result · `toolu_01JYzuaPf7m5iCFAr16AxCug`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/fix_long_pipeline.py << \\\\'PYTHON\\\\'\\\\nimport re\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# Fix 1: Replace global UNNORM with per-condition constants\\\\nold = \\\\'UNNORM = \\\"libero_10\\\"\\\\'\\\\nnew = \\\\'UNNORM_TRAINED = \\\"libero_10_no_noops\\\"\\\\\\\\nUNNORM_UNTRAINED = \\\"bridge_orig\\\"\\\\\\\\nUNNORM = UNNORM_TRAINED  # will be set per-condition in main()\\\\'\\\\ncontent = content.replace(old, new)\\\\n\\\\n# Fix 2: In the main() condition loop, set global UNNORM per-condition and merge dataset_statistics\\\\n# Find the block where ckpt is set for each condition\\\\nold_trained_block = \\\\'\\\\'\\\\'        if condition == \\\"trained\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n            results_dir = RESULTS_BASE\\\\n        elif condition == \\\"untrained\\\":\\\\n            ckpt = UNTRAINED_CKPT\\\\n            results_dir = RESULTS_BASE + \\\"_untrained\\\"\\\\'\\\\'\\\\'\\\\n\\\\nnew_trained_block = \\\\'\\\\'\\\\'        if condition == \\\"trained\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n            results_dir = RESULTS_BASE\\\\n            UNNORM = UNNORM_TRAINED\\\\n        elif condition == \\\"untrained\\\":\\\\n            ckpt = UNTRAINED_CKPT\\\\n            results_dir = RESULTS_BASE + \\\"_untrained\\\"\\\\n            UNNORM = UNNORM_UNTRAINED\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_trained_block, new_trained_block)\\\\n\\\\n# Fix 3: After model loading, merge dataset_statistics.json into model.norm_stats for OFT models\\\\n# Find the line \\\"log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\\"\\\\nold_model_loaded = \\\\'        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\\\'\\\\nnew_model_loaded = \\\\'\\\\'\\\\'        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\\\n\\\\n        # Merge dataset_statistics.json into model.norm_stats (needed for OFT-finetuned models)\\\\n        ds_path = os.path.join(ckpt, \\\"dataset_statistics.json\\\")\\\\n        if os.path.exists(ds_path):\\\\n            with open(ds_path, \\\"r\\\") as _f:\\\\n                ds_stats = json.load(_f)\\\\n            for k, v in ds_stats.items():\\\\n                if k not in model.norm_stats:\\\\n                    model.norm_stats[k] = v\\\\n                    log(f\\\"  Merged norm_stats key: {k}\\\")\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_model_loaded, new_model_loaded)\\\\n\\\\n# Fix 4: Add --only-counterfactual flag for incremental re-runs\\\\nold_args = \\\\'    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\\\'\\\\nnew_args = \\\\'\\\\'\\\\'    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\\\n    p.add_argument(\\\"--only-counterfactual\\\", action=\\\"store_true\\\",\\\\n                   help=\\\"Skip Phase 1-5, only run Phase 6 (counterfactual)\\\")\\\\'\\\\'\\\\'\\\\ncontent = content.replace(old_args, new_args)\\\\n\\\\n# Fix 5: Use --only-counterfactual to skip Phase 1-5\\\\n# Wrap Phase 1-5 in a conditional\\\\nold_phase1 = \\\\'\\\\'\\\\'        t1 = time.time()\\\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n            model, processor, nt, nd, ns)\\\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase1 = \\\\'\\\\'\\\\'        if not args.only_counterfactual:\\\\n            t1 = time.time()\\\\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n                model, processor, nt, nd, ns)\\\\n            log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase1, new_phase1)\\\\n\\\\n# Wrap Phase 2\\\\nold_phase2 = \\\\'\\\\'\\\\'        if not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase2 = \\\\'\\\\'\\\\'        if not args.only_counterfactual and not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase2, new_phase2)\\\\n\\\\n# Wrap Phase 3\\\\nold_phase3 = \\\\'\\\\'\\\\'        t3 = time.time()\\\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\\\n            json.dump(attn_res, f, indent=2)\\\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\\\n\\\\n        del attn_ratio_sum, attn_ratio_sq_sum\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase3 = \\\\'\\\\'\\\\'        if not args.only_counterfactual:\\\\n            t3 = time.time()\\\\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n            with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(attn_res, f, indent=2)\\\\n            log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\\\n\\\\n            del attn_ratio_sum, attn_ratio_sq_sum\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase3, new_phase3)\\\\n\\\\n# Wrap Phase 4\\\\nold_phase4 = \\\\'\\\\'\\\\'        t4 = time.time()\\\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\\\n            json.dump(cls_res, f, indent=2)\\\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase4 = \\\\'\\\\'\\\\'        if not args.only_counterfactual:\\\\n            t4 = time.time()\\\\n            cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n            with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(cls_res, f, indent=2)\\\\n            log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase4, new_phase4)\\\\n\\\\n# Wrap Phase 5\\\\nold_phase5 = \\\\'\\\\'\\\\'        if not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\\\n\\\\n        del reps, actions, labels\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase5 = \\\\'\\\\'\\\\'        if not args.only_counterfactual and not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\\\n\\\\n        if not args.only_counterfactual:\\\\n            del reps, actions, labels\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase5, new_phase5)\\\\n\\\\n# Also need to handle the token layout validation — skip it too in only-counterfactual mode?\\\\n# No, keep it — it\\\\'s fast and validates model loading.\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\"Done. Verifying key changes...\\\")\\\\n\\\\n# Verify\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\', \\\\'r\\\\') as f:\\\\n    final = f.read()\\\\n\\\\nchecks = [\\\\n    \\\\'UNNORM_TRAINED = \\\"libero_10_no_noops\\\"\\\\',\\\\n    \\\\'UNNORM_UNTRAINED = \\\"bridge_orig\\\"\\\\',\\\\n    \\\\'UNNORM = UNNORM_TRAINED\\\\',\\\\n    \\\\'UNNORM = UNNORM_UNTRAINED\\\\',\\\\n    \\\\'dataset_statistics.json\\\\',\\\\n    \\\\'--only-counterfactual\\\\',\\\\n    \\\\'args.only_counterfactual\\\\',\\\\n]\\\\nfor c in checks:\\\\n    if c in final:\\\\n        print(f\\\"  OK: {c}\\\")\\\\n    else:\\\\n        print(f\\\"  MISSING: {c}\\\")\\\\nPYTHON\\\\npython3 /tmp/fix_long_pipeline.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 173: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "627aa461-9b39-4ac0-a53d-5aaef524f855",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat > /tmp/fix_long_pipeline.py << \\\\\\\\'PYTHON\\\\\\\\'\\\\\\\\nimport re\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# Fix 1: Replace global UNNORM with per-condition constants\\\\\\\\nold = \\\\\\\\'UNNORM = \\\\\\\"libero_10\\\\\\\"\\\\\\\\'\\\\\\\\nnew = \\\\\\\\'UNNORM_TRAINED = \\\\\\\"libero_10_no_noops\\\\\\\"\\\\\\\\\\\\\\\\nUNNORM_UNTRAINED = \\\\\\\"bridge_orig\\\\\\\"\\\\\\\\\\\\\\\\nUNNORM = UNNORM_TRAINED  # will be set per-condition in main()\\\\\\\\'\\\\\\\\ncontent = content.replace(old, new)\\\\\\\\n\\\\\\\\n# Fix 2: In the main() condition loop, set global UNNORM per-condition and merge dataset_statistics\\\\\\\\n# Find the block where ckpt is set for each condition\\\\\\\\nold_trained_block = \\\\\\\\'\\\\\\\\'\\\\\\\\'        if condition == \\\\\\\"trained\\\\\\\":\\\\\\\\n            ckpt = TRAINED_CKPT\\\\\\\\n            results_dir = RESULTS_BASE\\\\\\\\n        elif condition == \\\\\\\"untrained\\\\\\\":\\\\\\\\n            ckpt = UNTRAINED_CKPT\\\\\\\\n            results_dir = RESULTS_BASE + \\\\\\\"_untrained\\\\\\\"\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_trained_block = \\\\\\\\'\\\\\\\\'\\\\\\\\'        if condition == \\\\\\\"trained\\\\\\\":\\\\\\\\n            ckpt = TRAINED_CKPT\\\\\\\\n            results_dir = RESULTS_BASE\\\\\\\\n            UNNORM = UNNORM_TRAINED\\\\\\\\n        elif condition == \\\\\\\"untrained\\\\\\\":\\\\\\\\n            ckpt = UNTRAINED_CKPT\\\\\\\\n            results_dir = RESULTS_BASE + \\\\\\\"_untrained\\\\\\\"\\\\\\\\n            UNNORM = UNNORM_UNTRAINED\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_trained_block, new_trained_block)\\\\\\\\n\\\\\\\\n# Fix 3: After model loading, merge dataset_statistics.json into model.norm_stats for OFT models\\\\\\\\n# Find the line \\\\\\\"log(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\\\\"\\\\\\\\nold_model_loaded = \\\\\\\\'        log(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\\\\\'\\\\\\\\nnew_model_loaded = \\\\\\\\'\\\\\\\\'\\\\\\\\'        log(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\\\\\n\\\\\\\\n        # Merge dataset_statistics.json into model.norm_stats (needed for OFT-finetuned models)\\\\\\\\n        ds_path = os.path.join(ckpt, \\\\\\\"dataset_statistics.json\\\\\\\")\\\\\\\\n        if os.path.exists(ds_path):\\\\\\\\n            with open(ds_path, \\\\\\\"r\\\\\\\") as _f:\\\\\\\\n                ds_stats = json.load(_f)\\\\\\\\n            for k, v in ds_stats.items():\\\\\\\\n                if k not in model.norm_stats:\\\\\\\\n                    model.norm_stats[k] = v\\\\\\\\n                    log(f\\\\\\\"  Merged norm_stats key: {k}\\\\\\\")\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_model_loaded, new_model_loaded)\\\\\\\\n\\\\\\\\n# Fix 4: Add --only-counterfactual flag for incremental re-runs\\\\\\\\nold_args = \\\\\\\\'    p.add_argument(\\\\\\\"--skip-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\\\\\'\\\\\\\\nnew_args = \\\\\\\\'\\\\\\\\'\\\\\\\\'    p.add_argument(\\\\\\\"--skip-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\\\\\n    p.add_argument(\\\\\\\"--only-counterfactual\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\\\\\n                   help=\\\\\\\"Skip Phase 1-5, only run Phase 6 (counterfactual)\\\\\\\")\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\ncontent = content.replace(old_args, new_args)\\\\\\\\n\\\\\\\\n# Fix 5: Use --only-counterfactual to skip Phase 1-5\\\\\\\\n# Wrap Phase 1-5 in a conditional\\\\\\\\nold_phase1 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        t1 = time.time()\\\\\\\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\\\\\n            model, processor, nt, nd, ns)\\\\\\\\n        log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_phase1 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        if not args.only_counterfactual:\\\\\\\\n            t1 = time.time()\\\\\\\\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\\\\\n                model, processor, nt, nd, ns)\\\\\\\\n            log(f\\\\\\\"Phase 1: {time.time()-t1:.1f}s\\\\\\\")\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_phase1, new_phase1)\\\\\\\\n\\\\\\\\n# Wrap Phase 2\\\\\\\\nold_phase2 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        if not args.skip_probing:\\\\\\\\n            t2 = time.time()\\\\\\\\n            probe_res = run_probing(reps, actions, nps)\\\\\\\\n            with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\\\\\n                json.dump(probe_res, f, indent=2)\\\\\\\\n            log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_phase2 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        if not args.only_counterfactual and not args.skip_probing:\\\\\\\\n            t2 = time.time()\\\\\\\\n            probe_res = run_probing(reps, actions, nps)\\\\\\\\n            with open(os.path.join(results_dir, \\\\\\\"action_r2_probing.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\\\\\n                json.dump(probe_res, f, indent=2)\\\\\\\\n            log(f\\\\\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\\\\\")\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_phase2, new_phase2)\\\\\\\\n\\\\\\\\n# Wrap Phase 3\\\\\\\\nold_phase3 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        t3 = time.time()\\\\\\\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\\\\\n        with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\\\\\n            json.dump(attn_res, f, indent=2)\\\\\\\\n        log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\\\\\n\\\\\\\\n        del attn_ratio_sum, attn_ratio_sq_sum\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_phase3 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        if not args.only_counterfactual:\\\\\\\\n            t3 = time.time()\\\\\\\\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\\\\\n            with open(os.path.join(results_dir, \\\\\\\"l1_attention_profile.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\\\\\n                json.dump(attn_res, f, indent=2)\\\\\\\\n            log(f\\\\\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\\\\\")\\\\\\\\n\\\\\\\\n            del attn_ratio_sum, attn_ratio_sq_sum\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_phase3, new_phase3)\\\\\\\\n\\\\\\\\n# Wrap Phase 4\\\\\\\\nold_phase4 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        t4 = time.time()\\\\\\\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\\\\\\\n        with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\\\\\n            json.dump(cls_res, f, indent=2)\\\\\\\\n        log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_phase4 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        if not args.only_counterfactual:\\\\\\\\n            t4 = time.time()\\\\\\\\n            cls_res = run_classification(reps, labels, layers=cls_layers)\\\\\\\\n            with open(os.path.join(results_dir, \\\\\\\"cross_instruction_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\\\\\n                json.dump(cls_res, f, indent=2)\\\\\\\\n            log(f\\\\\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\\\\\")\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_phase4, new_phase4)\\\\\\\\n\\\\\\\\n# Wrap Phase 5\\\\\\\\nold_phase5 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        if not args.skip_rsa:\\\\\\\\n            t_rsa = time.time()\\\\\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\\\\\n            with open(os.path.join(results_dir, \\\\\\\"rsa_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\\\\\n                json.dump(rsa_res, f, indent=2)\\\\\\\\n            log(f\\\\\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\\\\\")\\\\\\\\n\\\\\\\\n        del reps, actions, labels\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_phase5 = \\\\\\\\'\\\\\\\\'\\\\\\\\'        if not args.only_counterfactual and not args.skip_rsa:\\\\\\\\n            t_rsa = time.time()\\\\\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\\\\\n            with open(os.path.join(results_dir, \\\\\\\"rsa_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\\\\\n                json.dump(rsa_res, f, indent=2)\\\\\\\\n            log(f\\\\\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\\\\\")\\\\\\\\n\\\\\\\\n        if not args.only_counterfactual:\\\\\\\\n            del reps, actions, labels\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old_phase5, new_phase5)\\\\\\\\n\\\\\\\\n# Also need to handle the token layout validation — skip it too in only-counterfactual mode?\\\\\\\\n# No, keep it — it\\\\\\\\'s fast and validates model loading.\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\n\\\\\\\\nprint(\\\\\\\"Done. Verifying key changes...\\\\\\\")\\\\\\\\n\\\\\\\\n# Verify\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    final = f.read()\\\\\\\\n\\\\\\\\nchecks = [\\\\\\\\n    \\\\\\\\'UNNORM_TRAINED = \\\\\\\"libero_10_no_noops\\\\\\\"\\\\\\\\',\\\\\\\\n    \\\\\\\\'UNNORM_UNTRAINED = \\\\\\\"bridge_orig\\\\\\\"\\\\\\\\',\\\\\\\\n    \\\\\\\\'UNNORM = UNNORM_TRAINED\\\\\\\\',\\\\\\\\n    \\\\\\\\'UNNORM = UNNORM_UNTRAINED\\\\\\\\',\\\\\\\\n    \\\\\\\\'dataset_statistics.json\\\\\\\\',\\\\\\\\n    \\\\\\\\'--only-counterfactual\\\\\\\\',\\\\\\\\n    \\\\\\\\'args.only_counterfactual\\\\\\\\',\\\\\\\\n]\\\\\\\\nfor c in checks:\\\\\\\\n    if c in final:\\\\\\\\n        print(f\\\\\\\"  OK: {c}\\\\\\\")\\\\\\\\n    else:\\\\\\\\n        print(f\\\\\\\"  MISSING: {c}\\\\\\\")\\\\\\\\nPYTHON\\\\\\\\npython3 /tmp/fix_long_pipeline.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 173: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/fix_long_pipeline.py << \\\\'PYTHON\\\\'\\\\nimport re\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# Fix 1: Replace global UNNORM with per-condition constants\\\\nold = \\\\'UNNORM = \\\"libero_10\\\"\\\\'\\\\nnew = \\\\'UNNORM_TRAINED = \\\"libero_10_no_noops\\\"\\\\\\\\nUNNORM_UNTRAINED = \\\"bridge_orig\\\"\\\\\\\\nUNNORM = UNNORM_TRAINED  # will be set per-condition in main()\\\\'\\\\ncontent = content.replace(old, new)\\\\n\\\\n# Fix 2: In the main() condition loop, set global UNNORM per-condition and merge dataset_statistics\\\\n# Find the block where ckpt is set for each condition\\\\nold_trained_block = \\\\'\\\\'\\\\'        if condition == \\\"trained\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n            results_dir = RESULTS_BASE\\\\n        elif condition == \\\"untrained\\\":\\\\n            ckpt = UNTRAINED_CKPT\\\\n            results_dir = RESULTS_BASE + \\\"_untrained\\\"\\\\'\\\\'\\\\'\\\\n\\\\nnew_trained_block = \\\\'\\\\'\\\\'        if condition == \\\"trained\\\":\\\\n            ckpt = TRAINED_CKPT\\\\n            results_dir = RESULTS_BASE\\\\n            UNNORM = UNNORM_TRAINED\\\\n        elif condition == \\\"untrained\\\":\\\\n            ckpt = UNTRAINED_CKPT\\\\n            results_dir = RESULTS_BASE + \\\"_untrained\\\"\\\\n            UNNORM = UNNORM_UNTRAINED\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_trained_block, new_trained_block)\\\\n\\\\n# Fix 3: After model loading, merge dataset_statistics.json into model.norm_stats for OFT models\\\\n# Find the line \\\"log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\\"\\\\nold_model_loaded = \\\\'        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\\\'\\\\nnew_model_loaded = \\\\'\\\\'\\\\'        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\\\n\\\\n        # Merge dataset_statistics.json into model.norm_stats (needed for OFT-finetuned models)\\\\n        ds_path = os.path.join(ckpt, \\\"dataset_statistics.json\\\")\\\\n        if os.path.exists(ds_path):\\\\n            with open(ds_path, \\\"r\\\") as _f:\\\\n                ds_stats = json.load(_f)\\\\n            for k, v in ds_stats.items():\\\\n                if k not in model.norm_stats:\\\\n                    model.norm_stats[k] = v\\\\n                    log(f\\\"  Merged norm_stats key: {k}\\\")\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_model_loaded, new_model_loaded)\\\\n\\\\n# Fix 4: Add --only-counterfactual flag for incremental re-runs\\\\nold_args = \\\\'    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\\\'\\\\nnew_args = \\\\'\\\\'\\\\'    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\\\\n    p.add_argument(\\\"--only-counterfactual\\\", action=\\\"store_true\\\",\\\\n                   help=\\\"Skip Phase 1-5, only run Phase 6 (counterfactual)\\\")\\\\'\\\\'\\\\'\\\\ncontent = content.replace(old_args, new_args)\\\\n\\\\n# Fix 5: Use --only-counterfactual to skip Phase 1-5\\\\n# Wrap Phase 1-5 in a conditional\\\\nold_phase1 = \\\\'\\\\'\\\\'        t1 = time.time()\\\\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n            model, processor, nt, nd, ns)\\\\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase1 = \\\\'\\\\'\\\\'        if not args.only_counterfactual:\\\\n            t1 = time.time()\\\\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\\\\n                model, processor, nt, nd, ns)\\\\n            log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase1, new_phase1)\\\\n\\\\n# Wrap Phase 2\\\\nold_phase2 = \\\\'\\\\'\\\\'        if not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase2 = \\\\'\\\\'\\\\'        if not args.only_counterfactual and not args.skip_probing:\\\\n            t2 = time.time()\\\\n            probe_res = run_probing(reps, actions, nps)\\\\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(probe_res, f, indent=2)\\\\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase2, new_phase2)\\\\n\\\\n# Wrap Phase 3\\\\nold_phase3 = \\\\'\\\\'\\\\'        t3 = time.time()\\\\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\\\n            json.dump(attn_res, f, indent=2)\\\\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\\\n\\\\n        del attn_ratio_sum, attn_ratio_sq_sum\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase3 = \\\\'\\\\'\\\\'        if not args.only_counterfactual:\\\\n            t3 = time.time()\\\\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\\\\n            with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(attn_res, f, indent=2)\\\\n            log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\\\\n\\\\n            del attn_ratio_sum, attn_ratio_sq_sum\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase3, new_phase3)\\\\n\\\\n# Wrap Phase 4\\\\nold_phase4 = \\\\'\\\\'\\\\'        t4 = time.time()\\\\n        cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\\\n            json.dump(cls_res, f, indent=2)\\\\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase4 = \\\\'\\\\'\\\\'        if not args.only_counterfactual:\\\\n            t4 = time.time()\\\\n            cls_res = run_classification(reps, labels, layers=cls_layers)\\\\n            with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(cls_res, f, indent=2)\\\\n            log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase4, new_phase4)\\\\n\\\\n# Wrap Phase 5\\\\nold_phase5 = \\\\'\\\\'\\\\'        if not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\\\n\\\\n        del reps, actions, labels\\\\'\\\\'\\\\'\\\\n\\\\nnew_phase5 = \\\\'\\\\'\\\\'        if not args.only_counterfactual and not args.skip_rsa:\\\\n            t_rsa = time.time()\\\\n            rsa_res = run_rsa(reps, actions, labels)\\\\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\\\\n                json.dump(rsa_res, f, indent=2)\\\\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\\\\n\\\\n        if not args.only_counterfactual:\\\\n            del reps, actions, labels\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_phase5, new_phase5)\\\\n\\\\n# Also need to handle the token layout validation — skip it too in only-counterfactual mode?\\\\n# No, keep it — it\\\\'s fast and validates model loading.\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\"Done. Verifying key changes...\\\")\\\\n\\\\n# Verify\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\', \\\\'r\\\\') as f:\\\\n    final = f.read()\\\\n\\\\nchecks = [\\\\n    \\\\'UNNORM_TRAINED = \\\"libero_10_no_noops\\\"\\\\',\\\\n    \\\\'UNNORM_UNTRAINED = \\\"bridge_orig\\\"\\\\',\\\\n    \\\\'UNNORM = UNNORM_TRAINED\\\\',\\\\n    \\\\'UNNORM = UNNORM_UNTRAINED\\\\',\\\\n    \\\\'dataset_statistics.json\\\\',\\\\n    \\\\'--only-counterfactual\\\\',\\\\n    \\\\'args.only_counterfactual\\\\',\\\\n]\\\\nfor c in checks:\\\\n    if c in final:\\\\n        print(f\\\"  OK: {c}\\\")\\\\n    else:\\\\n        print(f\\\"  MISSING: {c}\\\")\\\\nPYTHON\\\\npython3 /tmp/fix_long_pipeline.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 173: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 151_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The problem is that `python3` isn't in the default PATH. I need to activate conda first. Let me use the conda environment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "f63ee39c-042e-493e-83fe-1d7da9cfb0a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P4LkZfGuVQJeNHEtxjHGpY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6210,
+      "cache_read_input_tokens": 63871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6210
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 152_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EX8HM51qdkNQ6zqeBD4MLn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 --version"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "21b1d443-a0a0-4b06-82d2-5d4855514cec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P4LkZfGuVQJeNHEtxjHGpY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6210,
+      "cache_read_input_tokens": 63871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6210
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 153 · 2026-05-21T16:10:21.219Z_
+
+<details><summary>↩ Tool result · `toolu_01EX8HM51qdkNQ6zqeBD4MLn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Python 3.12.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "c0a7aa84-5242-4e83-a29e-3673a66c2b37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Python 3.12.3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Python 3.12.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 154_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, Python is available with conda. Now let me write the fix script and run it properly. Let me first write the script to a file, then run it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "55563a07-0f5a-4bb7-9c82-5bbb5d69a7b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsERQB7KnZEW8pH38oQr46",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 236,
+      "cache_read_input_tokens": 70081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 236
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LYWf18WhQ5H4J6upVuqGWx`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport os\n\npath = '/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py'\nwith open(path, 'r') as f:\n    content = f.read()\n\n# Fix 1: Replace global UNNORM\nold = 'UNNORM = \\\"libero_10\\\"'\nnew = 'UNNORM_TRAINED = \\\"libero_10_no_noops\\\"\\nUNNORM_UNTRAINED = \\\"bridge_orig\\\"\\nUNNORM = UNNORM_TRAINED'\nassert old in content, 'Fix 1: old string not found'\ncontent = content.replace(old, new)\nprint('Fix 1: UNNORM constants - OK')\n\n# Fix 2: Set UNNORM per-condition\nold2 = '''        if condition == \\\"trained\\\":\n            ckpt = TRAINED_CKPT\n            results_dir = RESULTS_BASE\n        elif condition == \\\"untrained\\\":\n            ckpt = UNTRAINED_CKPT\n            results_dir = RESULTS_BASE + \\\"_untrained\\\"'''\nnew2 = '''        if condition == \\\"trained\\\":\n            ckpt = TRAINED_CKPT\n            results_dir = RESULTS_BASE\n            UNNORM = UNNORM_TRAINED\n        elif condition == \\\"untrained\\\":\n            ckpt = UNTRAINED_CKPT\n            results_dir = RESULTS_BASE + \\\"_untrained\\\"\n            UNNORM = UNNORM_UNTRAINED'''\nassert old2 in content, 'Fix 2: old string not found'\ncontent = content.replace(old2, new2)\nprint('Fix 2: per-condition UNNORM - OK')\n\n# Fix 3: Merge dataset_statistics.json after model load\nold3 = '        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")'\nnew3 = '''        log(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\n\n        # Merge dataset_statistics.json into model.norm_stats (needed for OFT-finetuned models)\n        ds_path = os.path.join(ckpt, \\\"dataset_statistics.json\\\")\n        if os.path.exists(ds_path):\n            with open(ds_path, \\\"r\\\") as _f:\n                ds_stats = json.load(_f)\n            for k, v in ds_stats.items():\n                if k not in model.norm_stats:\n                    model.norm_stats[k] = v\n                    log(f\\\"  Merged norm_stats key: {k}\\\")'''\nassert old3 in content, 'Fix 3: old string not found'\ncontent = content.replace(old3, new3)\nprint('Fix 3: merge dataset_statistics - OK')\n\n# Fix 4: Add --only-counterfactual arg\nold4 = '    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")'\nnew4 = '''    p.add_argument(\\\"--skip-counterfactual\\\", action=\\\"store_true\\\")\n    p.add_argument(\\\"--only-counterfactual\\\", action=\\\"store_true\\\",\n                   help=\\\"Skip Phase 1-5, only run Phase 6 (counterfactual)\\\")'''\nassert old4 in content, 'Fix 4: old string not found'\ncontent = content.replace(old4, new4)\nprint('Fix 4: --only-counterfactual arg - OK')\n\nwith open(path, 'w') as f:\n    f.write(content)\nprint('Written successfully')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "7258ddfa-9da4-4b5d-8e3d-6277803d3180",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsERQB7KnZEW8pH38oQr46",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 236,
+      "cache_read_input_tokens": 70081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 236
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-21T16:10:34.324Z_
+
+<details><summary>↩ Tool result · `toolu_01LYWf18WhQ5H4J6upVuqGWx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fix 1: UNNORM constants - OK\\nFix 2: per-condition UNNORM - OK\\nFix 3: merge dataset_statistics - OK\\nFix 4: --only-counterfactual arg - OK\\nWritten successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "c4f7a518-1d9d-4aa8-9ae2-c81adfcf0321",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fix 1: UNNORM constants - OK\\\\nFix 2: per-condition UNNORM - OK\\\\nFix 3: merge dataset_statistics - OK\\\\nFix 4: --only-counterfactual arg - OK\\\\nWritten successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fix 1: UNNORM constants - OK\\nFix 2: per-condition UNNORM - OK\\nFix 3: merge dataset_statistics - OK\\nFix 4: --only-counterfactual arg - OK\\nWritten successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 157_
+
+现在添加 Phase 1-5 的 skip 逻辑：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "341e3079-9d52-47b1-aff5-17ca10818950",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iE72XQgsGXhhdHz7Gcya9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 70317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1188
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 158_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BmBfCavawayhzUz8tGbFn8`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\npath = '/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py'\nwith open(path, 'r') as f:\n    content = f.read()\n\n# Fix 5: Wrap Phase 1 extraction in only_counterfactual guard\nold = '''        t1 = time.time()\n        reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\n            model, processor, nt, nd, ns)\n        log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")'''\nnew = '''        if not args.only_counterfactual:\n            t1 = time.time()\n            reps, actions, labels, attn_ratio_sum, attn_ratio_sq_sum, attn_n = extract_features(\n                model, processor, nt, nd, ns)\n            log(f\\\"Phase 1: {time.time()-t1:.1f}s\\\")'''\nassert old in content, f'Fix 5 not found'\ncontent = content.replace(old, new)\nprint('Fix 5: Phase 1 guard - OK')\n\n# Fix 6: Wrap Phase 2\nold = '''        if not args.skip_probing:\n            t2 = time.time()\n            probe_res = run_probing(reps, actions, nps)\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\n                json.dump(probe_res, f, indent=2)\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")'''\nnew = '''        if not args.only_counterfactual and not args.skip_probing:\n            t2 = time.time()\n            probe_res = run_probing(reps, actions, nps)\n            with open(os.path.join(results_dir, \\\"action_r2_probing.json\\\"), \\\"w\\\") as f:\n                json.dump(probe_res, f, indent=2)\n            log(f\\\"Phase 2: {time.time()-t2:.1f}s -> action_r2_probing.json\\\")'''\nassert old in content, f'Fix 6 not found'\ncontent = content.replace(old, new)\nprint('Fix 6: Phase 2 guard - OK')\n\n# Fix 7: Wrap Phase 3\nold = '''        t3 = time.time()\n        attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\n        with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\n            json.dump(attn_res, f, indent=2)\n        log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\n\n        del attn_ratio_sum, attn_ratio_sq_sum'''\nnew = '''        if not args.only_counterfactual:\n            t3 = time.time()\n            attn_res = analyze_attention(attn_ratio_sum, attn_ratio_sq_sum, attn_n)\n            with open(os.path.join(results_dir, \\\"l1_attention_profile.json\\\"), \\\"w\\\") as f:\n                json.dump(attn_res, f, indent=2)\n            log(f\\\"Phase 3: {time.time()-t3:.1f}s -> l1_attention_profile.json\\\")\n\n            del attn_ratio_sum, attn_ratio_sq_sum'''\nassert old in content, f'Fix 7 not found'\ncontent = content.replace(old, new)\nprint('Fix 7: Phase 3 guard - OK')\n\n# Fix 8: Wrap Phase 4\nold = '''        t4 = time.time()\n        cls_res = run_classification(reps, labels, layers=cls_layers)\n        with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\n            json.dump(cls_res, f, indent=2)\n        log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")'''\nnew = '''        if not args.only_counterfactual:\n            t4 = time.time()\n            cls_res = run_classification(reps, labels, layers=cls_layers)\n            with open(os.path.join(results_dir, \\\"cross_instruction_classification.json\\\"), \\\"w\\\") as f:\n                json.dump(cls_res, f, indent=2)\n            log(f\\\"Phase 4: {time.time()-t4:.1f}s -> cross_instruction_classification.json\\\")'''\nassert old in content, f'Fix 8 not found'\ncontent = content.replace(old, new)\nprint('Fix 8: Phase 4 guard - OK')\n\n# Fix 9: Wrap Phase 5 and del\nold = '''        if not args.skip_rsa:\n            t_rsa = time.time()\n            rsa_res = run_rsa(reps, actions, labels)\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\n                json.dump(rsa_res, f, indent=2)\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\n\n        del reps, actions, labels'''\nnew = '''        if not args.only_counterfactual and not args.skip_rsa:\n            t_rsa = time.time()\n            rsa_res = run_rsa(reps, actions, labels)\n            with open(os.path.join(results_dir, \\\"rsa_analysis.json\\\"), \\\"w\\\") as f:\n                json.dump(rsa_res, f, indent=2)\n            log(f\\\"Phase 5: {time.time()-t_rsa:.1f}s -> rsa_analysis.json\\\")\n\n        if not args.only_counterfactual:\n            del reps, actions, labels'''\nassert old in content, f'Fix 9 not found'\ncontent = content.replace(old, new)\nprint('Fix 9: Phase 5 guard - OK')\n\nwith open(path, 'w') as f:\n    f.write(content)\nprint('All fixes applied successfully')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "1259b018-c462-4076-aacb-2d54902431c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iE72XQgsGXhhdHz7Gcya9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 70317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1188
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 159 · 2026-05-21T16:10:51.765Z_
+
+<details><summary>↩ Tool result · `toolu_01BmBfCavawayhzUz8tGbFn8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fix 5: Phase 1 guard - OK\\nFix 6: Phase 2 guard - OK\\nFix 7: Phase 3 guard - OK\\nFix 8: Phase 4 guard - OK\\nFix 9: Phase 5 guard - OK\\nAll fixes applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "26bb1ebe-9f06-4fe6-8d2b-acce5971eab6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fix 5: Phase 1 guard - OK\\\\nFix 6: Phase 2 guard - OK\\\\nFix 7: Phase 3 guard - OK\\\\nFix 8: Phase 4 guard - OK\\\\nFix 9: Phase 5 guard - OK\\\\nAll fixes applied successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fix 5: Phase 1 guard - OK\\nFix 6: Phase 2 guard - OK\\nFix 7: Phase 3 guard - OK\\nFix 8: Phase 4 guard - OK\\nFix 9: Phase 5 guard - OK\\nAll fixes applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 160_
+
+所有修复已应用。现在做 dry-run 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "8d39d9fa-ff59-461d-b9dc-ecfa3dd6774f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GKKrxSu7vGreaYhZdGBxZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1928,
+      "cache_read_input_tokens": 71505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1928
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EAHVa2TEbscgCWR92Sx3Un`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python3 scripts/libero_long_full_pipeline.py --dry-run --only-counterfactual --conditions trained 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "13a63e06-f38d-499d-a1b7-685fbf2167d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GKKrxSu7vGreaYhZdGBxZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1928,
+      "cache_read_input_tokens": 71505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1928
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-21T16:11:17.234Z_
+
+<details><summary>↩ Tool result · `toolu_01EAHVa2TEbscgCWR92Sx3Un`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[00:11:00] Pipeline conditions: ['trained']\\n[00:11:00] === TRAINED ===\\n[00:11:00] Config: tasks=2 demos=1 timesteps=2 seeds=2 dry_run=True\\n[00:11:00] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\n[00:11:00] Output: /root/autodl-tmp/vla-ssd/results/libero_long\\n[00:11:00] Loading model ...\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.90it/s]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  7.18it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.39it/s]\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\n[00:11:11] Model loaded in 10.5s\\n[00:11:11]   Merged norm_stats key: libero_10_no_noops\\n[00:11:11] Validating token layout ...\\n[00:11:11]   input_ids shape: torch.Size([1, 27])\\n[00:11:11]   pixel_values shape: torch.Size([1, 6, 224, 224])\\n`torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to eager attention. This warning can be removed using the argument `attn_implementation=\\\"eager\\\"` when loading the model.\\n[00:11:12]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\n[00:11:12]   Token layout: BOS(1) + img(256) + text(26)\\n[00:11:12] Phase 6: counterfactual analysis\\n[00:11:12]   Condition: wrong\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice\\n  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide\\n  ret = ret.dtype.type(ret / rcount)\\n[00:11:13]   wrong: global d=0.9563  cross-task mean=966.6715  token_div=1.000\\n[00:11:13]   Condition: empty\\n[00:11:14]   empty: global d=0.8736  cross-task mean=82.3366  token_div=1.000\\n[00:11:14]   Condition: shuffled\\n[00:11:15]   shuffled: global d=1.0393  cross-task mean=6.0696  token_div=1.000\\n[00:11:15]   Condition: paraphrased\\n[00:11:16]   paraphrased: global d=1.3599  cross-task mean=1.6971  token_div=0.750\\n[00:11:16] Phase 6: 4.2s -> counterfactual_combined.json\\n[00:11:16]   trained complete in 0.3 min\\n[00:11:16] All done in 0.3 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "20e3143f-ef6f-4be3-a1f7-94804a1c41bd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[00:11:00] Pipeline conditions: ['trained']\\\\n[00:11:00] === TRAINED ===\\\\n[00:11:00] Config: tasks=2 demos=1 timesteps=2 seeds=2 dry_run=True\\\\n[00:11:00] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\n[00:11:00] Output: /root/autodl-tmp/vla-ssd/results/libero_long\\\\n[00:11:00] Loading model ...\\\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.90it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  7.18it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.39it/s]\\\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\\\n[00:11:11] Model loaded in 10.5s\\\\n[00:11:11]   Merged norm_stats key: libero_10_no_noops\\\\n[00:11:11] Validating token layout ...\\\\n[00:11:11]   input_ids shape: torch.Size([1, 27])\\\\n[00:11:11]   pixel_values shape: torch.Size([1, 6, 224, 224])\\\\n`torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to eager attention. This warning can be removed using the argument `attn_implementation=\\\\\\\"eager\\\\\\\"` when loading the model.\\\\n[00:11:12]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\\\n[00:11:12]   Token layout: BOS(1) + img(256) + text(26)\\\\n[00:11:12] Phase 6: counterfactual analysis\\\\n[00:11:12]   Condition: wrong\\\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice\\\\n  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,\\\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide\\\\n  ret = ret.dtype.type(ret / rcount)\\\\n[00:11:13]   wrong: global d=0.9563  cross-task mean=966.6715  token_div=1.000\\\\n[00:11:13]   Condition: empty\\\\n[00:11:14]   empty: global d=0.8736  cross-task mean=82.3366  token_div=1.000\\\\n[00:11:14]   Condition: shuffled\\\\n[00:11:15]   shuffled: global d=1.0393  cross-task mean=6.0696  token_div=1.000\\\\n[00:11:15]   Condition: paraphrased\\\\n[00:11:16]   paraphrased: global d=1.3599  cross-task mean=1.6971  token_div=0.750\\\\n[00:11:16] Phase 6: 4.2s -> counterfactual_combined.json\\\\n[00:11:16]   trained complete in 0.3 min\\\\n[00:11:16] All done in 0.3 min\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 19.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[00:11:00] Pipeline conditions: ['trained']\\n[00:11:00] === TRAINED ===\\n[00:11:00] Config: tasks=2 demos=1 timesteps=2 seeds=2 dry_run=True\\n[00:11:00] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\n[00:11:00] Output: /root/autodl-tmp/vla-ssd/results/libero_long\\n[00:11:00] Loading model ...\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.90it/s]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  7.18it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.39it/s]\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\n[00:11:11] Model loaded in 10.5s\\n[00:11:11]   Merged norm_stats key: libero_10_no_noops\\n[00:11:11] Validating token layout ...\\n[00:11:11]   input_ids shape: torch.Size([1, 27])\\n[00:11:11]   pixel_values shape: torch.Size([1, 6, 224, 224])\\n`torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to eager attention. This warning can be removed using the argument `attn_implementation=\\\"eager\\\"` when loading the model.\\n[00:11:12]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\n[00:11:12]   Token layout: BOS(1) + img(256) + text(26)\\n[00:11:12] Phase 6: counterfactual analysis\\n[00:11:12]   Condition: wrong\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice\\n  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide\\n  ret = ret.dtype.type(ret / rcount)\\n[00:11:13]   wrong: global d=0.9563  cross-task mean=966.6715  token_div=1.000\\n[00:11:13]   Condition: empty\\n[00:11:14]   empty: global d=0.8736  cross-task mean=82.3366  token_div=1.000\\n[00:11:14]   Condition: shuffled\\n[00:11:15]   shuffled: global d=1.0393  cross-task mean=6.0696  token_div=1.000\\n[00:11:15]   Condition: paraphrased\\n[00:11:16]   paraphrased: global d=1.3599  cross-task mean=1.6971  token_div=0.750\\n[00:11:16] Phase 6: 4.2s -> counterfactual_combined.json\\n[00:11:16]   trained complete in 0.3 min\\n[00:11:16] All done in 0.3 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 163_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Dry-run succeeded. Key observations:
+
+1. `Merged norm_stats key: libero_10_no_noops` — the dataset_statistics.json was successfully merged
+2. Phase 6 ran without any AssertionError
+3. The `--only-counterfactual` flag correctly skipped Phase 1-5
+4. Results were written to `counterfactual_combined.json`
+
+Let me also verify the untrained condition works with a dry-run.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "25369445-2643-4d8f-acbc-2bc95aeb99e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NbupQuKy7dRarqW5LcwKGt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1377,
+      "cache_read_input_tokens": 73433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1377
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 164_
+
+Trained dry-run 成功，Phase 6 不再报错。验证 untrained 条件：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "2dcd5e42-c08c-4e58-9a13-043ae529fd75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NbupQuKy7dRarqW5LcwKGt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1377,
+      "cache_read_input_tokens": 73433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1377
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014zU9HGKxMTA2s3mEFNq5AB`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python3 scripts/libero_long_full_pipeline.py --dry-run --only-counterfactual --conditions untrained 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "1e05a2ab-e91f-410d-b5fe-7c5af2cda52e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NbupQuKy7dRarqW5LcwKGt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1377,
+      "cache_read_input_tokens": 73433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1377
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-21T16:11:39.858Z_
+
+<details><summary>↩ Tool result · `toolu_014zU9HGKxMTA2s3mEFNq5AB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"[00:11:27] Pipeline conditions: ['untrained']\\n[00:11:27] === UNTRAINED ===\\n[00:11:27] Config: tasks=2 demos=1 timesteps=2 seeds=2 dry_run=True\\n[00:11:27] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\n[00:11:27] Output: /root/autodl-tmp/vla-ssd/results/libero_long_untrained\\n[00:11:27] Loading model ...\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.65it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  8.20it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  7.62it/s]\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\n[00:11:38] Model loaded in 11.1s\\n[00:11:38] Validating token layout ...\\n[00:11:38]   input_ids shape: torch.Size([1, 27])\\n[00:11:38]   pixel_values shape: torch.Size([1, 6, 224, 224])\\n`torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to eager attention. This warning can be removed using the argument `attn_implementation=\\\"eager\\\"` when loading the model.\\n[00:11:38]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\n[00:11:38]   Token layout: BOS(1) + img(256) + text(26)\\n[00:11:38] Phase 6: counterfactual analysis\\n[00:11:38]   Condition: wrong\\nTraceback (most recent call last):\\n  File \\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\", line 664, in &lt;module>\\n    main()\\n  File \\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\", line 650, in main\\n    cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\", line 345, in run_counterfactual\\n    c_act, c_tok = generate_action(\\n                   ^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\", line 127, in generate_action\\n    stats = model.get_action_stats(UNNORM)\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/.cache/huggingface/modules/transformers_modules/openvla-7b/modeling_prismatic.py\\\", line 566, in get_action_stats\\n    unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/.cache/huggingface/modules/transformers_modules/openvla-7b/modeling_prismatic.py\\\", line 553, in _check_unnorm_key\\n    assert unnorm_key in norm_stats, (\\n           ^^^^^^^^^^^^^^^^^^^^^^^^\\nAssertionError: The `unnorm_key` you chose is not in the set of available dataset statistics, please choose from: dict_keys(['austin_buds_dataset_converted_externally_to_rlds', 'austin_sailor_dataset_converted_externally_to_rlds', 'austin_sirius_dataset_converted_externally_to_rlds', 'bc_z', 'berkeley_autolab_ur5', 'berkeley_cable_routing', 'berkeley_fanuc_manipulation', 'bridge_orig', 'cmu_stretch', 'dlr_edan_shared_control_converted_externally_to_rlds', 'dobbe', 'fmb_dataset', 'fractal20220817_data', 'furniture_bench_dataset_converted_externally_to_rlds', 'iamlab_cmu_pickup_insert_converted_externally_to_rlds', 'jaco_play', 'kuka', 'nyu_franka_play_dataset_converted_externally_to_rlds', 'roboturk', 'stanford_hydra_dataset_converted_externally_to_rlds', 'taco_play', 'toto', 'ucsd_kitchen_dataset_converted_externally_to_rlds', 'utaustin_mutex', 'viola'])\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 16.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "6ae1fda7-1545-486d-a4b6-12e3d0d5e7b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"[00:11:27] Pipeline conditions: ['untrained']\\\\n[00:11:27] === UNTRAINED ===\\\\n[00:11:27] Config: tasks=2 demos=1 timesteps=2 seeds=2 dry_run=True\\\\n[00:11:27] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\n[00:11:27] Output: /root/autodl-tmp/vla-ssd/results/libero_long_untrained\\\\n[00:11:27] Loading model ...\\\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.65it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  8.20it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  7.62it/s]\\\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\\\n[00:11:38] Model loaded in 11.1s\\\\n[00:11:38] Validating token layout ...\\\\n[00:11:38]   input_ids shape: torch.Size([1, 27])\\\\n[00:11:38]   pixel_values shape: torch.Size([1, 6, 224, 224])\\\\n`torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to eager attention. This warning can be removed using the argument `attn_implementation=\\\\\\\"eager\\\\\\\"` when loading the model.\\\\n[00:11:38]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\\\n[00:11:38]   Token layout: BOS(1) + img(256) + text(26)\\\\n[00:11:38] Phase 6: counterfactual analysis\\\\n[00:11:38]   Condition: wrong\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\\\\", line 664, in &lt;module>\\\\n    main()\\\\n  File \\\\\\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\\\\", line 650, in main\\\\n    cf_res = run_counterfactual(model, processor, nt, nd, ns)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\\\\", line 345, in run_counterfactual\\\\n    c_act, c_tok = generate_action(\\\\n                   ^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\\\\", line 127, in generate_action\\\\n    stats = model.get_action_stats(UNNORM)\\\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/.cache/huggingface/modules/transformers_modules/openvla-7b/modeling_prismatic.py\\\\\\\", line 566, in get_action_stats\\\\n    unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/.cache/huggingface/modules/transformers_modules/openvla-7b/modeling_prismatic.py\\\\\\\", line 553, in _check_unnorm_key\\\\n    assert unnorm_key in norm_stats, (\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^\\\\nAssertionError: The `unnorm_key` you chose is not in the set of available dataset statistics, please choose from: dict_keys(['austin_buds_dataset_converted_externally_to_rlds', 'austin_sailor_dataset_converted_externally_to_rlds', 'austin_sirius_dataset_converted_externally_to_rlds', 'bc_z', 'berkeley_autolab_ur5', 'berkeley_cable_routing', 'berkeley_fanuc_manipulation', 'bridge_orig', 'cmu_stretch', 'dlr_edan_shared_control_converted_externally_to_rlds', 'dobbe', 'fmb_dataset', 'fractal20220817_data', 'furniture_bench_dataset_converted_externally_to_rlds', 'iamlab_cmu_pickup_insert_converted_externally_to_rlds', 'jaco_play', 'kuka', 'nyu_franka_play_dataset_converted_externally_to_rlds', 'roboturk', 'stanford_hydra_dataset_converted_externally_to_rlds', 'taco_play', 'toto', 'ucsd_kitchen_dataset_converted_externally_to_rlds', 'utaustin_mutex', 'viola'])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 16.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"[00:11:27] Pipeline conditions: ['untrained']\\n[00:11:27] === UNTRAINED ===\\n[00:11:27] Config: tasks=2 demos=1 timesteps=2 seeds=2 dry_run=True\\n[00:11:27] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\n[00:11:27] Output: /root/autodl-tmp/vla-ssd/results/libero_long_untrained\\n[00:11:27] Loading model ...\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.65it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  8.20it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  7.62it/s]\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\n[00:11:38] Model loaded in 11.1s\\n[00:11:38] Validating token layout ...\\n[00:11:38]   input_ids shape: torch.Size([1, 27])\\n[00:11:38]   pixel_values shape: torch.Size([1, 6, 224, 224])\\n`torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to eager attention. This warning can be removed using the argument `attn_implementation=\\\"eager\\\"` when loading the model.\\n[00:11:38]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\n[00:11:38]   Token layout: BOS(1) + img(256) + text(26)\\n[00:11:38] Phase 6: counterfactual analysis\\n[00:11:38]   Condition: wrong\\nTraceback (most recent call last):\\n  File \\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\", line 664, in &lt;module>\\n    main()\\n  File \\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\", line 650, in main\\n    cf_res = run_counterfactual(model, processor, nt, nd, ns)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\", line 345, in run_counterfactual\\n    c_act, c_tok = generate_action(\\n                   ^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\", line 127, in generate_action\\n    stats = model.get_action_stats(UNNORM)\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/.cache/huggingface/modules/transformers_modules/openvla-7b/modeling_prismatic.py\\\", line 566, in get_action_stats\\n    unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/.cache/huggingface/modules/transformers_modules/openvla-7b/modeling_prismatic.py\\\", line 553, in _check_unnorm_key\\n    assert unnorm_key in norm_stats, (\\n           ^^^^^^^^^^^^^^^^^^^^^^^^\\nAssertionError: The `unnorm_key` you chose is not in the set of available dataset statistics, please choose from: dict_keys(['austin_buds_dataset_converted_externally_to_rlds', 'austin_sailor_dataset_converted_externally_to_rlds', 'austin_sirius_dataset_converted_externally_to_rlds', 'bc_z', 'berkeley_autolab_ur5', 'berkeley_cable_routing', 'berkeley_fanuc_manipulation', 'bridge_orig', 'cmu_stretch', 'dlr_edan_shared_control_converted_externally_to_rlds', 'dobbe', 'fmb_dataset', 'fractal20220817_data', 'furniture_bench_dataset_converted_externally_to_rlds', 'iamlab_cmu_pickup_insert_converted_externally_to_rlds', 'jaco_play', 'kuka', 'nyu_franka_play_dataset_converted_externally_to_rlds', 'roboturk', 'stanford_hydra_dataset_converted_externally_to_rlds', 'taco_play', 'toto', 'ucsd_kitchen_dataset_converted_externally_to_rlds', 'utaustin_mutex', 'viola'])\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 16.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 167_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The untrained model's `get_action_stats` is loaded from a cached version at `/root/.cache/huggingface/modules/transformers_modules/openvla-7b/modeling_prismatic.py` instead of the one in the checkpoint directory. The script loads the model with `trust_remote_code=True`, and the base model's modeling_prismatic.py is cached in HF cache.
+
+The issue is that the untrained model's `model.norm_stats` is loaded from its config.json which has OXE keys. The UNNORM for untrained is set to `"bridge_orig"` which IS in the list. Let me check — wait, looking at the error: 
+
+
+`bridge_orig` IS in the keys, but the error message says the chosen key is not in the set. So what key is actually being used? The traceback shows the global `UNNORM` variable is being passed to `model.get_action_stats()`, and I need to trace where that variable gets set in the condition block.
+
+Looking at the main() function, I see the issue — inside the loop, the code assigns `UNNORM = UNNORM_UNTRAINED` directly, but without the `global` keyword, this creates a local variable instead of modifying the global one. So when `get_action_stats()` is called later, it's still using whatever the original global `UNNORM` was set to, not the value from inside the loop. I see the root cause now — the original code had `UNNORM` as a module-level variable that `generate_action()` read directly, but my fix creates a local variable in `main()` that shadows it without actually changing what `generate_action()` sees. I need to either declare `global UNNORM` in `main()` before reassigning it, or refactor `generate_action()` to accept the unnorm key as a parameter instead of relying on the global.
+
+Option 1 is simpler and requires less refactoring, so I'll add the global declaration in `main()`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "50605467-ad34-4e35-bc1a-1e610d1b4208",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJgpdt6NuWL5YRW2mpBnWj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1841,
+      "cache_read_input_tokens": 74810,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1841
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 168_
+
+Python 作用域问题：`main()` 中赋值 `UNNORM` 创建的是局部变量，`generate_action()` 读的是全局。需要加 `global UNNORM`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "ef54bebf-7221-4554-b709-797497c68296",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJgpdt6NuWL5YRW2mpBnWj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1841,
+      "cache_read_input_tokens": 74810,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1841
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SjnzZUQYdTayxaBDHEHWku`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\npath = '/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py'\nwith open(path, 'r') as f:\n    content = f.read()\n\n# Add 'global UNNORM' at the start of main(), right after 'global N_IMG_TOKENS' if it exists,\n# or after the first line of main()\n# Let's find 'def main():' and add global UNNORM after it\nold = '    conditions = args.conditions'\nnew = '    global UNNORM\\n    conditions = args.conditions'\nassert old in content, 'target not found'\ncontent = content.replace(old, new, 1)\nprint('Fix: added global UNNORM in main()')\n\nwith open(path, 'w') as f:\n    f.write(content)\nprint('Written')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "d899657e-9514-401e-8778-906265d5102d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJgpdt6NuWL5YRW2mpBnWj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1841,
+      "cache_read_input_tokens": 74810,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1841
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-21T16:12:04.767Z_
+
+<details><summary>↩ Tool result · `toolu_01SjnzZUQYdTayxaBDHEHWku`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fix: added global UNNORM in main()\\nWritten\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "4b2d7723-e32a-44e8-b040-0af61d3dc45d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fix: added global UNNORM in main()\\\\nWritten\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fix: added global UNNORM in main()\\nWritten\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 171_
+
+重新验证 untrained 条件：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "b687640f-3598-425c-9f7d-8768d66eed20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5bBVF3E7vr19tCSAqT3c2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1588,
+      "cache_read_input_tokens": 76651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1588
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 172_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BD9gmQorhjTzbrXWawggXC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python3 scripts/libero_long_full_pipeline.py --dry-run --only-counterfactual --conditions untrained 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "afe6ff1a-2912-48e8-96fd-a51b115597a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5bBVF3E7vr19tCSAqT3c2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1588,
+      "cache_read_input_tokens": 76651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1588
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 173 · 2026-05-21T16:12:28.113Z_
+
+<details><summary>↩ Tool result · `toolu_01BD9gmQorhjTzbrXWawggXC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[00:12:11] Pipeline conditions: ['untrained']\\n[00:12:11] === UNTRAINED ===\\n[00:12:11] Config: tasks=2 demos=1 timesteps=2 seeds=2 dry_run=True\\n[00:12:11] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\n[00:12:11] Output: /root/autodl-tmp/vla-ssd/results/libero_long_untrained\\n[00:12:11] Loading model ...\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.62it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  8.17it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  7.58it/s]\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\n[00:12:22] Model loaded in 10.4s\\n[00:12:22] Validating token layout ...\\n[00:12:22]   input_ids shape: torch.Size([1, 27])\\n[00:12:22]   pixel_values shape: torch.Size([1, 6, 224, 224])\\n`torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to eager attention. This warning can be removed using the argument `attn_implementation=\\\"eager\\\"` when loading the model.\\n[00:12:22]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\n[00:12:22]   Token layout: BOS(1) + img(256) + text(26)\\n[00:12:22] Phase 6: counterfactual analysis\\n[00:12:22]   Condition: wrong\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice\\n  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide\\n  ret = ret.dtype.type(ret / rcount)\\n[00:12:24]   wrong: global d=0.8687  cross-task mean=0.7093  token_div=1.000\\n[00:12:24]   Condition: empty\\n[00:12:25]   empty: global d=1.4491  cross-task mean=2.6727  token_div=1.000\\n[00:12:25]   Condition: shuffled\\n[00:12:26]   shuffled: global d=2.1385  cross-task mean=8.3440  token_div=1.000\\n[00:12:26]   Condition: paraphrased\\n[00:12:27]   paraphrased: global d=0.8689  cross-task mean=0.7095  token_div=1.000\\n[00:12:27] Phase 6: 4.2s -> counterfactual_combined.json\\n[00:12:27]   untrained complete in 0.3 min\\n[00:12:27] All done in 0.3 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "fe375212-daf7-4941-946a-e41befac30ec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[00:12:11] Pipeline conditions: ['untrained']\\\\n[00:12:11] === UNTRAINED ===\\\\n[00:12:11] Config: tasks=2 demos=1 timesteps=2 seeds=2 dry_run=True\\\\n[00:12:11] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\n[00:12:11] Output: /root/autodl-tmp/vla-ssd/results/libero_long_untrained\\\\n[00:12:11] Loading model ...\\\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.62it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  8.17it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  7.58it/s]\\\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\\\n[00:12:22] Model loaded in 10.4s\\\\n[00:12:22] Validating token layout ...\\\\n[00:12:22]   input_ids shape: torch.Size([1, 27])\\\\n[00:12:22]   pixel_values shape: torch.Size([1, 6, 224, 224])\\\\n`torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to eager attention. This warning can be removed using the argument `attn_implementation=\\\\\\\"eager\\\\\\\"` when loading the model.\\\\n[00:12:22]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\\\n[00:12:22]   Token layout: BOS(1) + img(256) + text(26)\\\\n[00:12:22] Phase 6: counterfactual analysis\\\\n[00:12:22]   Condition: wrong\\\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice\\\\n  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,\\\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide\\\\n  ret = ret.dtype.type(ret / rcount)\\\\n[00:12:24]   wrong: global d=0.8687  cross-task mean=0.7093  token_div=1.000\\\\n[00:12:24]   Condition: empty\\\\n[00:12:25]   empty: global d=1.4491  cross-task mean=2.6727  token_div=1.000\\\\n[00:12:25]   Condition: shuffled\\\\n[00:12:26]   shuffled: global d=2.1385  cross-task mean=8.3440  token_div=1.000\\\\n[00:12:26]   Condition: paraphrased\\\\n[00:12:27]   paraphrased: global d=0.8689  cross-task mean=0.7095  token_div=1.000\\\\n[00:12:27] Phase 6: 4.2s -> counterfactual_combined.json\\\\n[00:12:27]   untrained complete in 0.3 min\\\\n[00:12:27] All done in 0.3 min\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 19.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[00:12:11] Pipeline conditions: ['untrained']\\n[00:12:11] === UNTRAINED ===\\n[00:12:11] Config: tasks=2 demos=1 timesteps=2 seeds=2 dry_run=True\\n[00:12:11] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\n[00:12:11] Output: /root/autodl-tmp/vla-ssd/results/libero_long_untrained\\n[00:12:11] Loading model ...\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.62it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  8.17it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  7.58it/s]\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\n[00:12:22] Model loaded in 10.4s\\n[00:12:22] Validating token layout ...\\n[00:12:22]   input_ids shape: torch.Size([1, 27])\\n[00:12:22]   pixel_values shape: torch.Size([1, 6, 224, 224])\\n`torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to eager attention. This warning can be removed using the argument `attn_implementation=\\\"eager\\\"` when loading the model.\\n[00:12:22]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\n[00:12:22]   Token layout: BOS(1) + img(256) + text(26)\\n[00:12:22] Phase 6: counterfactual analysis\\n[00:12:22]   Condition: wrong\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice\\n  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide\\n  ret = ret.dtype.type(ret / rcount)\\n[00:12:24]   wrong: global d=0.8687  cross-task mean=0.7093  token_div=1.000\\n[00:12:24]   Condition: empty\\n[00:12:25]   empty: global d=1.4491  cross-task mean=2.6727  token_div=1.000\\n[00:12:25]   Condition: shuffled\\n[00:12:26]   shuffled: global d=2.1385  cross-task mean=8.3440  token_div=1.000\\n[00:12:26]   Condition: paraphrased\\n[00:12:27]   paraphrased: global d=0.8689  cross-task mean=0.7095  token_div=1.000\\n[00:12:27] Phase 6: 4.2s -> counterfactual_combined.json\\n[00:12:27]   untrained complete in 0.3 min\\n[00:12:27] All done in 0.3 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 174_
+
+Trained 和 untrained 两个条件的 dry-run 都通过了。最后验证双条件一起跑也没问题：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "9b52bbca-9d5d-4141-ab0e-fd6e94d7e60c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ttjp2vvhVyMrdUXLSph42U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1336,
+      "cache_read_input_tokens": 78239,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1336
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QESzAyGBGwcmDEnGyqWPxL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python3 scripts/libero_long_full_pipeline.py --dry-run --only-counterfactual --conditions trained untrained 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "ebf4adc4-d6cc-4dd4-b1f6-142b92b88f55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ttjp2vvhVyMrdUXLSph42U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1336,
+      "cache_read_input_tokens": 78239,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1336
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 176 · 2026-05-21T16:13:03.032Z_
+
+<details><summary>↩ Tool result · `toolu_01QESzAyGBGwcmDEnGyqWPxL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python3 scripts/libero_long_full_pipeline.py --dry-run --only-counterfactual --conditions trained untrained 2>&1'\\n\\nStdout:\\n\\nLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  5.96it/s]\\nLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  6.67it/s]\\n[00:13:02] Model loaded in 10.4s\\n[00:13:02] Validating token layout ...\\n[00:13:02]   input_ids shape: torch.Size([1, 27])\\n[00:13:02]   pixel_values shape: torch.Size([1, 6, 224, 224])\\n[00:13:02]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\n[00:13:02]   Token layout: BOS(1) + img(256) + text(26)\\n[00:13:02] Phase 6: counterfactual analysis\\n[00:13:02]   Condition: wrong\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "5cb2ae13-4c0a-47ce-8b5e-6b1bc68a5da2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python3 scripts/libero_long_full_pipeline.py --dry-run --only-counterfactual --conditions trained untrained 2>&1'\\\\n\\\\nStdout:\\\\n\\\\nLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  5.96it/s]\\\\nLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  6.67it/s]\\\\n[00:13:02] Model loaded in 10.4s\\\\n[00:13:02] Validating token layout ...\\\\n[00:13:02]   input_ids shape: torch.Size([1, 27])\\\\n[00:13:02]   pixel_values shape: torch.Size([1, 6, 224, 224])\\\\n[00:13:02]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\\\n[00:13:02]   Token layout: BOS(1) + img(256) + text(26)\\\\n[00:13:02] Phase 6: counterfactual analysis\\\\n[00:13:02]   Condition: wrong\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python3 scripts/libero_long_full_pipeline.py --dry-run --only-counterfactual --conditions trained untrained 2>&1'\\n\\nStdout:\\n\\nLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  5.96it/s]\\nLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  6.67it/s]\\n[00:13:02] Model loaded in 10.4s\\n[00:13:02] Validating token layout ...\\n[00:13:02]   input_ids shape: torch.Size([1, 27])\\n[00:13:02]   pixel_values shape: torch.Size([1, 6, 224, 224])\\n[00:13:02]   hidden_states[0] shape: torch.Size([1, 283, 4096])\\n[00:13:02]   Token layout: BOS(1) + img(256) + text(26)\\n[00:13:02] Phase 6: counterfactual analysis\\n[00:13:02]   Condition: wrong\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 177_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The dual-condition run timed out at 30s because it needs to load two models sequentially and run Phase 6 for each. This is expected — each condition takes ~16-20s, and together they exceed the 30s default timeout.
+
+The first condition (trained) is running fine (loaded model, started Phase 6). The timeout is just a limitation of the SSH command timeout.
+
+This confirms the fix works for both conditions. Let me now also clean up the dry-run outputs that were generated during testing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "9e03b40f-2a58-4c56-a4d1-f1293352bc69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UbFsE1Zj9CY81KnNsshkfe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 634,
+      "cache_read_input_tokens": 79575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 634
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 178_
+
+超时是因为双条件需要加载两次模型（~20s 各），不影响正确性。单条件 dry-run 已分别验证通过。
+
+清理 dry-run 产生的测试文件：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "902050c1-19db-45d8-9b57-717d6360a321",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UbFsE1Zj9CY81KnNsshkfe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 634,
+      "cache_read_input_tokens": 79575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 634
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 179_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01STETBCzVEsoee8gd1kJCKQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/libero_long/counterfactual_combined.json /root/autodl-tmp/vla-ssd/results/libero_long_untrained/counterfactual_combined.json 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "3820e106-2451-4fd5-abf4-b444f1348f62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UbFsE1Zj9CY81KnNsshkfe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 634,
+      "cache_read_input_tokens": 79575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 634
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 180 · 2026-05-21T16:13:12.125Z_
+
+<details><summary>↩ Tool result · `toolu_01STETBCzVEsoee8gd1kJCKQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 8260 May 22 00:12 /root/autodl-tmp/vla-ssd/results/libero_long/counterfactual_combined.json\\n-rw-r--r-- 1 root root 8288 May 22 00:12 /root/autodl-tmp/vla-ssd/results/libero_long_untrained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "dd82432c-7eb1-4e2a-9d60-b71ff1a772dc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 8260 May 22 00:12 /root/autodl-tmp/vla-ssd/results/libero_long/counterfactual_combined.json\\\\n-rw-r--r-- 1 root root 8288 May 22 00:12 /root/autodl-tmp/vla-ssd/results/libero_long_untrained/counterfactual_combined.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 8260 May 22 00:12 /root/autodl-tmp/vla-ssd/results/libero_long/counterfactual_combined.json\\n-rw-r--r-- 1 root root 8288 May 22 00:12 /root/autodl-tmp/vla-ssd/results/libero_long_untrained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 181_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014DDxKWz2kw5Ajb9Ugexydi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "rm /root/autodl-tmp/vla-ssd/results/libero_long/counterfactual_combined.json /root/autodl-tmp/vla-ssd/results/libero_long_untrained/counterfactual_combined.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "c60fd0d8-4244-4d20-bc72-758d4d930a9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nfw9BeUwQJZziqXGhoy6W5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 80209,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 182 · 2026-05-21T16:13:15.717Z_
+
+<details><summary>↩ Tool result · `toolu_014DDxKWz2kw5Ajb9Ugexydi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "1e217d31-d831-491b-9844-318361d6e013",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 183_
+
+---
+
+## 修复总结
+
+### 修复内容
+
+**文件**：`/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py`（备份在 `.bak`）
+
+**改动 1 — UNNORM key 修复（根因）**：
+- `UNNORM = "libero_10"` → 拆为两个常量：
+  - `UNNORM_TRAINED = "libero_10_no_noops"` — trained 模型（OFT微调）的 `dataset_statistics.json` 中的实际 key
+  - `UNNORM_UNTRAINED = "bridge_orig"` — base 模型 `config.json` 中的 OXE key
+- `main()` 循环中按 condition 切换 `global UNNORM`
+
+**改动 2 — OFT 模型 norm_stats 合并**：
+- 加载模型后检测并合并 `dataset_statistics.json` 到 `model.norm_stats`，因为 OFT 微调模型的 `config.json` 未更新 norm_stats（仍是 base 模型的 OXE keys）
+
+**改动 3 — `--only-counterfactual` 增量重跑**：
+- 新增 CLI flag，跳过 Phase 1-5 直接执行 Phase 6
+
+### 根因分析
+
+Long pipeline 用的是 **OFT (Orthogonal Fine-Tuning)** 微调的模型 (`openvla-7b-oft-finetuned-libero-10`)。与标准微调不同，OFT 方式不更新 `config.json` 中的 `norm_stats`（仍保留 base 模型的 OXE dataset keys），而是将微调数据集的统计信息单独存在 `dataset_statistics.json` 中（key 为 `libero_10_no_noops`）。Object pipeline 用的是标准微调模型，其 `config.json` 直接包含 `libero_object` key，所以不受此影响。
+
+### 增量重跑结论
+
+**可以增量重跑**。Phase 1-5 trained 的 4 个输出文件完整存在。Phase 6 独立于 Phase 1-5（直接调用 `generate_action`，不依赖提取的特征）。使用 `--only-counterfactual --conditions trained` 只跑 trained Phase 6；untrained 需全量跑（Phase 1-6 全部未执行）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "uuid": "1c520b66-f0ec-44f4-be78-a863ca146c3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9NPXSRH9GGGbCDDkTdWR4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 80754,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 184_
+
+---
+
+## 修复总结
+
+### 修复内容
+
+**文件**：`/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py`（备份在 `.bak`）
+
+**改动 1 — UNNORM key 修复（根因）**：
+- `UNNORM = "libero_10"` → 拆为两个常量：
+  - `UNNORM_TRAINED = "libero_10_no_noops"` — trained 模型（OFT微调）的 `dataset_statistics.json` 中的实际 key
+  - `UNNORM_UNTRAINED = "bridge_orig"` — base 模型 `config.json` 中的 OXE key
+- `main()` 循环中按 condition 切换 `global UNNORM`
+
+**改动 2 — OFT 模型 norm_stats 合并**：
+- 加载模型后检测并合并 `dataset_statistics.json` 到 `model.norm_stats`，因为 OFT 微调模型的 `config.json` 未更新 norm_stats（仍是 base 模型的 OXE keys）
+
+**改动 3 — `--only-counterfactual` 增量重跑**：
+- 新增 CLI flag，跳过 Phase 1-5 直接执行 Phase 6
+
+### 根因分析
+
+Long pipeline 用的是 **OFT (Orthogonal Fine-Tuning)** 微调的模型 (`openvla-7b-oft-finetuned-libero-10`)。与标准微调不同，OFT 方式不更新 `config.json` 中的 `norm_stats`（仍保留 base 模型的 OXE dataset keys），而是将微调数据集的统计信息单独存在 `dataset_statistics.json` 中（key 为 `libero_10_no_noops`）。Object pipeline 用的是标准微调模型，其 `config.json` 直接包含 `libero_object` key，所以不受此影响。
+
+### 增量重跑结论
+
+**可以增量重跑**。Phase 1-5 trained 的 4 个输出文件完整存在。Phase 6 独立于 Phase 1-5（直接调用 `generate_action`，不依赖提取的特征）。使用 `--only-counterfactual --conditions trained` 只跑 trained Phase 6；untrained 需全量跑（Phase 1-6 全部未执行）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 597541,
+  "duration_api_ms": 493405,
+  "num_turns": 65,
+  "stop_reason": "end_turn",
+  "session_id": "83ec7eaf-382a-4a83-9779-ae568a351718",
+  "total_cost_usd": 2.1705170000000007,
+  "usage": {
+    "input_tokens": 49,
+    "cache_creation_input_tokens": 69130,
+    "cache_read_input_tokens": 2292835,
+    "output_tokens": 23604,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 69130,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 689,
+        "cache_read_input_tokens": 80754,
+        "cache_creation_input_tokens": 217,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 217
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1577,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016920000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 49,
+      "outputTokens": 23604,
+      "cacheReadInputTokens": 2292835,
+      "cacheCreationInputTokens": 69130,
+      "webSearchRequests": 0,
+      "costUSD": 2.1688250000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c0e47dd8-ccfa-4c1f-87da-b498207fc144"
+}
+```
+
+</details>
+
+---

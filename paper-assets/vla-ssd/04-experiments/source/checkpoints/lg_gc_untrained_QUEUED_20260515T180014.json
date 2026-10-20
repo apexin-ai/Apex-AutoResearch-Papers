@@ -1,0 +1,30 @@
+{
+  "exp_id": "lg_gc_untrained",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:51:49.753Z",
+    "updated_at": "2026-05-15T18:00:14.296Z",
+    "hypothesis": "Goal classification probe on untrained VLA LIBERO-Goal features (33 layers). Baseline for G2-GC gate: Δ(trained-untrained) best-layer acc > 25pp. Untrained VLA with random LLM should show lower goal classification accuracy.",
+    "spec": {
+      "command": "python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/untrained_libero_goal/ --output_dir /root/autodl-tmp/vla-ssd/results/untrained_libero_goal/ --probe_type goal_classification --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ --gpu 0",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/",
+      "data_count": "10 tasks x 50 demos x 33 layers x 4096 dim",
+      "model_name": "GoalClassificationProbe MLP (4096→256→10), untrained VLA features",
+      "seed": 42,
+      "checkpoint_source": "lg_extract_untrained",
+      "eval_data": "/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/ + /root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/",
+      "log_path": "~/runs/vla-ssd/lg_gc_untrained.log"
+    },
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "pid": 635369
+  },
+  "timestamp": "2026-05-15T18:00:14.355202+00:00",
+  "trigger": "update_registry"
+}

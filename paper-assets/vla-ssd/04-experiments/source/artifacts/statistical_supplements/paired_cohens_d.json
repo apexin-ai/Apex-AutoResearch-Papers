@@ -1,0 +1,68 @@
+{
+  "test": "Paired Cohen's d_z",
+  "formula": "d_z = mean(paired_diffs) / SD(paired_diffs, ddof=1)",
+  "comparisons": [
+    {
+      "comparison": "RSA_trained_vs_untrained_L12",
+      "d_z": 0.5461,
+      "mean_diff": 0.016508,
+      "sd_diff": 0.030227,
+      "paired_r": 0.9821,
+      "n_pairs": 10
+    },
+    {
+      "comparison": "L1_ablation_dominant24_vs_baseline",
+      "d_z": 1.1673,
+      "mean_diff": 0.03007,
+      "sd_diff": 0.02576,
+      "paired_r": 0.9826,
+      "n_pairs": 10
+    },
+    {
+      "comparison": "L1_ablation_random24_vs_baseline",
+      "d_z_mean": 1.8423,
+      "d_z_std": 0.3302,
+      "d_z_range": [
+        1.0792,
+        2.4246
+      ],
+      "n_iterations": 30,
+      "n_pairs_per_iter": 10
+    },
+    {
+      "comparison": "dose_response_32v4_paired_mse",
+      "d_z": 1.7917,
+      "mean_diff": 0.01481,
+      "sd_diff": 0.008266,
+      "paired_r": 0.9049,
+      "n_pairs": 3
+    },
+    {
+      "comparison": "dose_response_32v4_kl_divergence",
+      "d_z": 3.1538,
+      "mean_diff": 2.274943,
+      "sd_diff": 0.721333,
+      "paired_r": -0.1286,
+      "n_pairs": 3
+    },
+    {
+      "comparison": "RSA_normal_inst_vs_no_inst_L12",
+      "d_z": 0.0563,
+      "mean_diff": 0.008102,
+      "sd_diff": 0.14394,
+      "paired_r": 0.7112,
+      "n_pairs": 10
+    },
+    {
+      "comparison": "cross_arch_OpenVLA_L9_vs_Phi3V_L11",
+      "d_z": 0.4772,
+      "mean_diff": 0.003253,
+      "sd_diff": 0.006817,
+      "paired_r": 0.6983,
+      "n_pairs": 15
+    }
+  ],
+  "metadata": {
+    "computed_at": "2026-05-21T01:52:32.154592"
+  }
+}

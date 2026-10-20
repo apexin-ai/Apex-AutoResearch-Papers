@@ -1,0 +1,39 @@
+{
+  "exp_id": "behavioral_smoketest",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:26:07.290Z",
+    "updated_at": "2026-05-20T20:34:40.914Z",
+    "parent": "behavioral_pilot_w4",
+    "hypothesis": "Fine-tuned OpenVLA can successfully execute LIBERO-Goal tasks in closed-loop rollout on westd-19183, establishing a baseline success rate for subsequent ablation comparison.",
+    "spec": {
+      "command": "NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/LIBERO",
+      "data_count": "1 task x 3 ep",
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal",
+      "eval_data": "LIBERO-Goal task_id=0, 3 episodes"
+    },
+    "conclusion": "negative",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log",
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal",
+    "completed_at": "2026-05-19T04:23:38.652Z",
+    "notes": "baseline SR=0/3, checkpoint closed-loop performance insufficient. D074: C-2 closed-loop path formally abandoned.",
+    "metrics": {
+      "baseline_sr": 0,
+      "baseline_episodes": 3,
+      "baseline_avg_reward": 0,
+      "max_steps": 400,
+      "task": "open_the_middle_drawer_of_the_cabinet",
+      "ablated": null
+    }
+  },
+  "timestamp": "2026-05-20T20:34:41.173754+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,67 @@
+{
+  "exp_id": "openvla_goal_standardized_v1",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:28:34.686Z",
+    "updated_at": "2026-05-22T04:17:46.765Z",
+    "hypothesis": "OpenVLA (Llama-2-7B backbone) on LIBERO-Goal standardized 5-phase pipeline (R² probing, L1 attention, cross-instruction, RSA, counterfactual). Both trained (openvla-7b-finetuned-libero-goal) and untrained (openvla-7b OXE pretrained) conditions. Replaces earlier incomplete Goal data that lacked R² probing and untrained arm.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/libero_goal_full_pipeline.py --conditions trained untrained\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "591230",
+      "log_path": "~/runs/vla-ssd/openvla_goal_standardized_v1.log",
+      "submitted_at": "2026-05-22T00:33:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks x 10 demos x 50 timesteps",
+      "model_name": "openvla-7b-finetuned-libero-goal / openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b-finetuned-libero-goal (trained) + openvla-7b (untrained)",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/libero_goal_trained/, /root/autodl-tmp/vla-ssd/results/libero_goal_untrained/",
+      "wall_clock_seconds": 13486.8,
+      "gpu_hours": 3.75
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T04:09:43.222Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T04:09:47.719473+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "r2_trained_peak": 0.8693,
+      "r2_trained_exit": 0.8532,
+      "r2_trained_delta": -0.016,
+      "r2_untrained_peak": 0.8131,
+      "r2_untrained_exit": 0.7802,
+      "r2_untrained_delta": -0.056,
+      "r2_exit_collapse_confirmed": false,
+      "l1_trained_instr_dom": 23,
+      "l1_untrained_instr_dom": 26,
+      "l1_trained_mixed": 9,
+      "l1_untrained_mixed": 6,
+      "cf_trained_top": "wrong (d=1.182)",
+      "cf_untrained_top": "empty (d=0.978)",
+      "rsa_trained_L16": 0.607,
+      "rsa_untrained_L16": 0.605
+    },
+    "completed_at": "2026-05-22T04:17:46.765Z"
+  },
+  "timestamp": "2026-05-22T04:17:47.057835+00:00",
+  "trigger": "update_registry"
+}

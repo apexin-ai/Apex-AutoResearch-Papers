@@ -1,0 +1,180 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\label{sec:setup}
+
+We evaluate OpenVLA-7B~\cite{kim2024_openvla,karamcheti2024} on LIBERO-Goal~\cite{liu2023_libero} (10 tasks, 50 demonstrations each).
+Representations are extracted from six sources spanning the VLA pipeline (\S\ref{sec:repr_extraction}): DinoSigLIP+Projector, LLM image\_mean and readout tokens at each of 32 layers, DINOv2~\cite{oquab2024_dinov2} (\texttt{cls\_token}/\texttt{patch\_mean}), CLIP~\cite{radford2021_clip} (\texttt{patch\_mean}), and branch-split (DINOv2 1{,}024-D / SigLIP 1{,}152-D before fusion).
+The $2\times 2$ factorial design crosses training status (trained vs.\ untrained LLM, reinitializing 6.74B parameters) with instruction presence (\S\ref{sec:model_data}).
+RSA computes Spearman $\rho$ between cosine-distance representation RDMs and Euclidean-distance action RDMs, with 10{,}000 bootstrap CIs (\S\ref{sec:rsa}).
+MLP probes (input $\to$ 256 $\to$ 7; Adam, lr${}=10^{-3}$, 50 epochs, early stopping) report mean $R^2$ (\S\ref{sec:probes}).
+
+%------------------------------------------------------------------
+\subsection{Vision Encoder Dominance}
+\label{sec:vision_dominance}
+
+This experiment tests which pretrained vision encoders provide the strongest action-relevant geometric structure.
+
+Table~\ref{tab:rsa_overview} reports RSA $\rho$ between each representation source and the action space.
+The standalone DINOv2 \texttt{cls\_token} achieves the highest alignment of any representation source ($\rho = 0.692$), followed by the fused DinoSigLIP 2{,}176-D representation before projection ($\rho = 0.634$) and the DINOv2 \texttt{patch\_mean} ($\rho = 0.631$).
+CLIP ViT-L/14, a vision-language contrastive model, achieves the lowest alignment among pretrained encoders ($\rho = 0.557$; Figure~\ref{fig:rsa_bar}).
+
+\paragraph{Self-supervised pretraining dominates.}
+DINOv2, pretrained with self-supervised objectives alone, achieves $\rho = 0.692$---exceeding not only CLIP ($\rho = 0.557$) but also the VLA's own internal representations at their peaks (trained image\_mean: $0.628$; trained readout: $0.643$).
+This ordering---self-supervised $>$ VL-pretrained---is consistent with behavioral evidence of visual dominance in VLA policies~\cite{grant2026}.
+Functional probes corroborate the ranking: DINOv2 \texttt{cls\_token} achieves $R^2 = 0.634$, statistically indistinguishable from DinoSigLIP+Projector ($R^2 = 0.630$, $p = 0.557$, n.s.), while CLIP yields the lowest probe $R^2$ ($0.587$, $p < 0.001$ vs.\ DINOv2).
+
+\paragraph{Aggregation sensitivity.}
+Token aggregation interacts with pretraining objective in a non-trivial way.
+For DINOv2, \texttt{cls\_token} ($\rho = 0.692$) substantially exceeds \texttt{patch\_mean} ($0.631$); for CLIP, the direction reverses: \texttt{patch\_mean} ($0.557$) exceeds \texttt{cls\_token} ($0.543$).
+We therefore report each encoder's best-performing aggregation---DINOv2 \texttt{cls\_token} for RSA and CLIP \texttt{patch\_mean} for RSA---and use \texttt{cls\_token} for functional probes (both encoders), where it yields the most informative single-vector summary.
+
+\paragraph{Branch-split analysis.}
+The DINOv2 (1{,}024-D) and SigLIP (1{,}152-D) branches yield near-identical RSA ($0.619$ vs.\ $0.621$); fusion exceeds either ($0.634$), while the projector introduces modest compression loss ($0.634 \to 0.615$; Appendix~\ref{sec:branch_split_appendix}).
+CKA analysis reveals metric-dependent rankings that partially reverse the RSA ordering (Appendix~\ref{sec:metric_sensitivity_appendix}).
+
+\begin{table}[t]
+\centering
+\caption{Geometric (RSA $\rho$) and functional (probe $R^2$) alignment with the action space. Self-supervised DINOv2 achieves the highest RSA ($0.692$). Both trained readout and image\_mean exceed the projector in $R^2$, confirming the inverted-U extends to functional capacity. VLA rows show peak-layer values (RSA/R$^2$ peaks listed separately when they differ). 95\% CIs from 10{,}000 bootstrap resamples.}
+\label{tab:rsa_overview}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Source & RSA $\rho$ & $R^2$ & RSA Peak & $R^2$ Peak \\
+\midrule
+DINOv2 cls\_token & \textbf{0.692} & 0.634 & --- & --- \\
+VLA Trained readout & 0.643 & \textbf{0.678} & L12 & L13 \\
+Fused DinoSigLIP & 0.634 & --- & --- & --- \\
+VLA Trained image\_mean & 0.628 & 0.655 & L12 & L8--L10$^\dagger$ \\
+DinoSigLIP+Projector & 0.615 & 0.630 & --- & --- \\
+VLA Untrained image\_mean & 0.612 & 0.640 & L0 & L0 \\
+VLA Untrained readout & 0.626 & 0.609 & L1 & L32 \\
+CLIP ViT-L/14$^\ddagger$ & 0.557 & 0.587 & --- & --- \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^\dagger$$R^2$ peak region across 5 seeds ($0.655 \pm 0.002$; Appendix~\ref{sec:seed_sensitivity}).} \\
+\multicolumn{5}{l}{\footnotesize $^\ddagger$RSA uses \texttt{patch\_mean}; $R^2$ uses \texttt{cls\_token} (each encoder's best aggregation).}
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig2.pdf}
+\caption{RSA with the action space ($\rho$) across representation sources. Self-supervised DINOv2 \texttt{cls\_token} ($\rho{=}0.692$) achieves the highest geometric alignment, followed by fused DinoSigLIP ($0.634$) and the VLA trained image\_mean peak ($0.628$). CLIP ($0.557$) yields the weakest alignment among pretrained encoders. Error bars: 95\% bootstrap CIs.}
+\label{fig:rsa_bar}
+\end{figure}
+
+%------------------------------------------------------------------
+\subsection{Non-Monotonic LLM Transformation}
+\label{sec:llm_redistribution}
+
+This experiment tests how the LLM transforms the action-relevant structure inherited from the vision encoder across its 32 layers.
+
+\paragraph{Inverted-U pattern.}
+Figure~\ref{fig:layer_curves} reveals a non-monotonic trajectory for trained image\_mean RSA: $\rho$ begins at $0.612$ (L0, equal to the projector input), rises to a peak of $0.628$ at L12---\emph{above} the DinoSigLIP+Projector baseline ($0.615$)---then declines monotonically to $0.422$ at L32.
+The first 12 layers thus \emph{enhance} geometric alignment with the action space beyond the vision encoder input, while the remaining 20 layers progressively degrade it below the initial level.
+This non-monotonic profile contrasts sharply with the untrained control, which peaks at L0 ($\rho = 0.612$) and decays monotonically to $0.545$ at L32.
+
+\paragraph{Functional inverted-U.}
+The non-monotonic pattern extends beyond geometric alignment to functional capacity.
+Full-layer probe scans reveal that trained image\_mean $R^2$ peaks in the L8--L10 region ($0.655 \pm 0.002$ across seeds; Appendix~\ref{sec:seed_sensitivity}), exceeding the projector ($0.630$, $\Delta = +0.025$; Table~\ref{tab:rsa_overview}).
+Like RSA, functional capacity first rises in early layers, then degrades---confirming that the inverted-U is not a metric artifact but a genuine structural phenomenon.
+The $R^2$ plateau (L8--L16) encompasses and partially precedes the RSA peak (L12), suggesting that functional decodability peaks earlier than geometric alignment; we adopt ``early-to-middle layers (L8--L13)'' to capture the core of this range.\footnote{L0 $R^2 = 0.640$ slightly exceeds Projector $R^2 = 0.630$; L0 is the LLM input (projector output after embedding), and the $0.010$ difference reflects train/test split variation rather than a genuine representational difference.}
+
+\paragraph{Readout concentration.}
+The readout token (\texttt{last\_preaction}) concentrates action-relevant information beyond both the projector and distributed image tokens.
+Trained readout achieves peak RSA $\rho = 0.643$ at L12 and probe $R^2 = 0.678$ (L13), both exceeding DinoSigLIP+Projector ($R^2 = 0.630$, $\Delta = 0.048$; Table~\ref{tab:rsa_overview}, Figure~\ref{fig:probe_bars}).
+
+\paragraph{RSA--$R^2$ peak alignment.}
+Training causes geometric and functional peaks to converge: trained readout RSA peaks at L12, $R^2$ at L13 ($|\Delta_\text{layer}| = 1$).
+In contrast, untrained readout RSA peaks at L1 while $R^2$ peaks at L32---the maximum possible divergence.
+On LIBERO-Goal, this convergence suggests that training aligns geometric structure with functional capacity, though cross-benchmark analysis reveals this alignment may be benchmark-specific (\S\ref{sec:cross_benchmark}).
+
+The decline from L12 to L32 ($\rho$: $0.628 \to 0.422$) exceeds the untrained decay ($0.612 \to 0.545$), indicating that training actively redirects later layers away from action geometry, yielding a three-phase transformation: early refinement, mid-layer peak, and late degradation with concurrent readout concentration~\cite{haon2025}.
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig3.pdf}
+\caption{Per-layer RSA ($\rho$) with the action space across all 32 LLM layers. Trained image\_mean (solid blue) follows an inverted-U: L0 $= 0.612 \to$ L12 $= 0.628$ (peak, above Projector $0.615$) $\to$ L32 $= 0.422$. Untrained image\_mean (dashed blue) peaks at L0 and decays monotonically. Dashed horizontal lines: DINOv2 cls ($0.692$), Fused DinoSigLIP ($0.634$), Projector ($0.615$).}
+\label{fig:layer_curves}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig4.pdf}
+\caption{Functional probe $R^2$ for action prediction (best layer for each source). Both trained readout ($R^2{=}0.678$, L13) and trained image\_mean ($0.655$, L8) exceed the projector baseline ($0.630$), confirming the inverted-U extends to functional capacity. DINOv2 cls ($0.634$) is statistically indistinguishable from the projector ($p{=}0.557$).}
+\label{fig:probe_bars}
+\end{figure}
+
+%------------------------------------------------------------------
+\subsection{Training Redistributes Geometry, Enhances Decodability}
+\label{sec:training_routing}
+
+This experiment tests whether LLM training creates new action-relevant structure or redistributes pre-existing geometry, and whether geometric and functional metrics tell the same story.
+Figure~\ref{fig:factorial} shows the $2 \times 2$ factorial analysis; Table~\ref{tab:training_effects} reports bootstrap comparisons.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig5.pdf}
+\caption{\textbf{(a)}~Trained vs.\ untrained image\_mean RSA profiles. Training shifts the peak from L0 ($0.612$) to L12 ($0.628$), yielding a modest best-vs-best gain ($\Delta{=}+0.017$, $3\%$ of baseline). \textbf{(b)}~Instruction invariance: all conditions within $|\Delta|{<}0.006$, confirming visually grounded action geometry.}
+\label{fig:factorial}
+\end{figure}
+
+\paragraph{Peak shift with modest gain.}
+Training moves the image\_mean RSA peak from L0 to L12.
+The trained model peaks at L12 ($\rho = 0.628$); the untrained model peaks at L0 ($\rho = 0.612$): best-vs-best $\Delta = +0.017$ ($3\%$ of baseline; LIBERO-Spatial confirms with $\Delta = +0.023$, $4\%$, $p < 0.001$; \S\ref{sec:cross_benchmark}).
+This geometric gain is far smaller than the functional improvement ($R^2$ $\Delta = +0.015$ to $+0.069$), confirming that training primarily relocates and reformats action geometry rather than creating it.
+
+\paragraph{Same-layer effect.}
+At L12, training produces a large same-layer effect ($\Delta = +0.079$, $p < 0.0001$; trained $0.628$ vs.\ untrained $0.549$), confirming that training has a dramatic effect on \emph{where} action geometry peaks but only a modest effect on \emph{how high}.
+
+\paragraph{Modest geometry, large function.}
+A critical asymmetry emerges from comparing geometric and functional training effects.
+RSA best-vs-best yields at most a modest gain ($\Delta = 0.017$--$0.023$, $3$--$4\%$ of baseline across two benchmarks), while $R^2$ best-vs-best shows substantially larger improvements: image\_mean $\Delta = +0.015$ ($p = 0.006$), readout $\Delta = +0.069$ ($p < 0.0001$; Table~\ref{tab:training_effects}).
+The vision encoder provides the geometric ceiling; training reshapes the depth profile and improves how that geometry is formatted for downstream decoding.
+
+\paragraph{Untrained pathological layers.}
+Untrained readout $R^2$ reaches $\approx -0.33$ at L12--L29 (predictions worse than a constant-mean baseline), while untrained image\_mean $R^2$ drops below zero at L10--L11 ($R^2 = -0.33$, $-0.28$) before partially recovering at L12--L13.
+Training converts this pathological zone into the network's peak ($R^2 = 0.655$ in L8--L10), providing independent support for the redistribution interpretation.
+
+\paragraph{Cross-benchmark validation (LIBERO-Spatial).}
+\label{sec:cross_benchmark}
+To test generalization, we repeat the core analyses on LIBERO-Spatial (10 out-of-distribution tasks; full per-layer profiles in Appendix~\ref{sec:cross_benchmark_appendix}).
+The inverted-U replicates: trained image\_mean RSA peaks at L14 ($\rho = 0.691$), $R^2$ at L13 ($0.696$), with the peak shifting ${\sim}2$ layers deeper than LIBERO-Goal---consistent with increased task difficulty.
+Training produces a significant geometric gain (best-vs-best $\Delta = +0.023$, $p < 0.001$), confirming that the LIBERO-Goal effect ($\Delta = +0.017$, CI includes zero) reflects limited statistical power rather than a true null.
+However, RSA--$R^2$ peak convergence does not replicate: RSA peaks at L15 while $R^2$ peaks at L21 (6-layer gap vs.\ $|\Delta_\text{layer}| = 1$ on Goal), suggesting that peak alignment may be benchmark-specific.
+These findings are robust to distance metric choice, hold across all action dimensions, survive permutation testing, and replicate under halved demonstration counts (RSA profile $r = 0.970$; Appendix~\ref{sec:robustness_appendix}).
+
+\paragraph{Routing mechanism.}
+To test whether the LLM actively routes instruction information, we train a cross-instruction probe: given the same visual frame paired with each of 10 task instructions, we classify which instruction was present from per-layer activations.
+At the readout token, trained last\_preaction achieves $100\%$ accuracy from L1 through L31 (LOOCV: $100\% \pm 0.00$ across 10 folds; Appendix~\ref{sec:routing_appendix}), while the untrained model starts at $100\%$ (L1) but decays to $82\%$ by L31.
+Image\_mean tokens remain at chance ($10\%$) across all layers and conditions, confirming that instruction identity is never encoded in the visual stream.
+Training fundamentally reshapes readout-token attention: 25/32 heads learn to preferentially attend to instruction tokens (58\% attention to ${\sim}8\%$ of the sequence), whereas in the untrained model all heads attend overwhelmingly to image tokens (88\%; Appendix~\ref{sec:attention_pattern}).
+This deliberate routing creates a robust instruction signal maintained perfectly through L31 ($100\%$), while the untrained model's incidental routing (instruction embeddings are inherently distinguishable even with $12\%$ attention) produces a fragile signal that decays to $82\%$.
+
+\begin{table}[t]
+\centering
+\caption{Training effects on action-relevant structure (LIBERO-Goal; bootstrap, 10{,}000 resamples). RSA best-vs-best yields a modest geometric gain ($\Delta{=}+0.017$, $3\%$; LIBERO-Spatial: $+0.023$, $p{<}0.001$), while $R^2$ shows substantially larger functional gains.}
+\label{tab:training_effects}
+\small
+\begin{tabular}{lccc}
+\toprule
+Comparison & $\Delta$ & 95\% CI & $p$ \\
+\midrule
+\multicolumn{4}{l}{\emph{RSA ($\rho$)}} \\
+Best-vs-best image\_mean & $+$0.017 & incl.\ 0 & n.s. \\
+\quad (trained L12 vs.\ untrained L0) & & & \\
+Same-layer L12 image\_mean & $+$0.079 & excl.\ 0 & $<$0.0001 \\
+\quad (trained vs.\ untrained) & & & \\
+Instruction effect (max $|\Delta|$) & 0.006 & --- & n.s. \\
+\midrule
+\multicolumn{4}{l}{\emph{Probe $R^2$}} \\
+Best-vs-best image\_mean & $+$0.015 & excl.\ 0 & 0.006 \\
+\quad (trained L8 vs.\ untrained L0) & & & \\
+Best-vs-best readout & $+$0.069 & excl.\ 0 & $<$0.0001 \\
+\quad (trained L13 vs.\ untrained L32) & & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+

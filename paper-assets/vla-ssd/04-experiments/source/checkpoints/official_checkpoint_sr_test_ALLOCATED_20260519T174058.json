@@ -1,0 +1,16 @@
+{
+  "exp_id": "official_checkpoint_sr_test",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:40:46.356Z",
+    "updated_at": "2026-05-19T17:40:58.091Z",
+    "hypothesis": "Official OpenVLA checkpoint (not fine-tuned) achieves non-zero SR on LIBERO-Goal tasks, confirming the evaluation pipeline is correct and Path B failure is due to fine-tuning degradation rather than pipeline bugs.",
+    "parent": "closedloop_diagnosis"
+  },
+  "timestamp": "2026-05-19T17:40:58.307525+00:00",
+  "trigger": "update_registry"
+}

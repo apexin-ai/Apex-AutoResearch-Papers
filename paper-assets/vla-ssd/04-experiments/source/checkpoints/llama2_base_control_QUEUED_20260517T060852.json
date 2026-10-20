@@ -1,0 +1,16 @@
+{
+  "exp_id": "llama2_base_control",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:08:39.367Z",
+    "updated_at": "2026-05-17T06:08:51.988Z",
+    "hypothesis": "Instruction routing (25/32 heads attending to instruction tokens) is primarily learned through VLA fine-tuning, not inherited from language pretraining. Llama-2-7B base (no VLA training) injected into OpenVLA should show intermediate attention patterns between untrained-VLA (0/32 heads) and trained-VLA (25/32 heads), proving VLA training amplifies routing beyond pretraining baseline.",
+    "parent": "cross_inst_extract_trained"
+  },
+  "timestamp": "2026-05-17T06:08:52.137562+00:00",
+  "trigger": "update_registry"
+}

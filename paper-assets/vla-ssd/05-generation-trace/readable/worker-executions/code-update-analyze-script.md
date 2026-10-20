@@ -1,0 +1,2775 @@
+# code update analyze script
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/workers/worker_code_update-analyze-script_20260515T110435.log`
+- **Structured JSON:** [`36e537d79d474789c82d.json`](../../sessions/36/36e537d79d474789c82d.json)
+
+## Before a recorded user message
+
+59 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "95b7fe1f-893b-4de4-a56b-a9fc83124b04",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778860200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "457810af-6b0f-4a5a-9d39-11a9f6866c4b",
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me start by reading the current script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "c8418ad0-776c-485f-9738-7261c9ec5928",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WekK75abdVPcujAYefy9kk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11799,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11799
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KusaEpc1w4rMBgNKP65s1Y`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "5665dfb9-aa50-4b7d-8eb9-8983854f7773",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WekK75abdVPcujAYefy9kk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11799,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11799
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T11:04:47.823Z_
+
+<details><summary>↩ Tool result · `toolu_01KusaEpc1w4rMBgNKP65s1Y`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "8ff5e9b3-6ac5-404c-8992-2646f92fa07c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the current analyze_results.py file from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "e35d5b15-101a-464b-90e2-46409cb5be9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SPZaTahXWHPM31HsYQUvgr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 680,
+      "cache_read_input_tokens": 23640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 680
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014adomD5qW8KPo8Hin3zUkP`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "72686f76-4518-4967-b5e4-bab69c2f4c47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SPZaTahXWHPM31HsYQUvgr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 680,
+      "cache_read_input_tokens": 23640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 680
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T11:04:51.965Z_
+
+<details><summary>↩ Tool result · `toolu_014adomD5qW8KPo8Hin3zUkP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                marker=MARKERS.get(name, \\\"o\\\"),\\n                color=COLORS.get(name, \\\"#999\\\"),\\n                label=name, linewidth=2, markersize=5)\\n\\n    if oracle_rho is not None:\\n        ax.axhline(y=oracle_rho, color=COLORS[\\\"oracle\\\"],\\n                   linestyle=\\\"--\\\", label=f\\\"oracle (rho={oracle_rho:.3f})\\\", alpha=0.7)\\n\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Spearman rho\\\")\\n    ax.set_title(\\\"Temporal Distance Probe: Layer-wise Spearman rho\\\")\\n    ax.legend()\\n    ax.grid(True, alpha=0.3)\\n\\n    path = os.path.join(output_dir, \\\"layer_rho.png\\\")\\n    fig.savefig(path, dpi=150\\n\\n... [截断: 输出过长，省略 4916 字符] ...\\n\\nue\\n                break\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"PASS\\\"\\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"CONDITIONAL\\\"\\n    else:\\n        judgment = \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best rho = {best_rho:.4f} <= 0.3\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        reasons.append(f\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "ba212bfd-8b13-4ce4-8738-67138a0268c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"analyze_results.py — Compare probe results across models and visualize.\\\\n\\\\nInput:  Multiple result directories (from train_probes.py)\\\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\\\n\\\\nUsage:\\\\n  python analyze_results.py \\\\\\\\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\\\\\\\n    --output_dir results/analysis/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Analyze and compare probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--results_dirs\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", default=\\\\\\\"temporal_distance\\\\\\\",\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\"])\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_results_dirs(s):\\\\n    d = {}\\\\n    for entry in s.split(\\\\\\\",\\\\\\\"):\\\\n        name, path = entry.strip().split(\\\\\\\":\\\\\\\")\\\\n        d[name.strip()] = path.strip()\\\\n    return d\\\\n\\\\n\\\\ndef load_results(results_dir, probe_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load probe results from a directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probe_dir = os.path.join(results_dir, probe_type)\\\\n    summary_path = os.path.join(probe_dir, \\\\\\\"summary.json\\\\\\\")\\\\n    if os.path.exists(summary_path):\\\\n        with open(summary_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    results = {}\\\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\\\\\"layer_*.json\\\\\\\"))):\\\\n        with open(p) as f:\\\\n            m = json.load(f)\\\\n        key = m.get(\\\\\\\"layer\\\\\\\", Path(p).stem.replace(\\\\\\\"layer_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        results[str(key)] = m\\\\n    return {\\\\\\\"results\\\\\\\": results}\\\\n\\\\n\\\\ndef load_oracle(results_dirs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect oracle results from any provided directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for path in results_dirs.values():\\\\n        oracle_dir = os.path.join(path, \\\\\\\"oracle\\\\\\\")\\\\n        summary = os.path.join(oracle_dir, \\\\\\\"summary.json\\\\\\\")\\\\n        if os.path.exists(summary):\\\\n            with open(summary) as f:\\\\n                data = json.load(f)\\\\n            r = data.get(\\\\\\\"results\\\\\\\", {})\\\\n            if \\\\\\\"oracle\\\\\\\" in r:\\\\n                return r[\\\\\\\"oracle\\\\\\\"].get(\\\\\\\"spearman_rho\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef _sort_key(x):\\\\n    try:\\\\n        return (0, int(x))\\\\n    except ValueError:\\\\n        return (1, x)\\\\n\\\\n\\\\ndef extract_layer_metrics(data, metric=\\\\\\\"spearman_rho\\\\\\\"):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers, values = [], []\\\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\\\n        if k == \\\\\\\"oracle\\\\\\\":\\\\n            continue\\\\n        val = v.get(metric)\\\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\\\n            layers.append(int(k))\\\\n            values.append(float(val))\\\\n    return np.array(layers), np.array(values)\\\\n\\\\n\\\\n# ============================================================\\\\n# Plots\\\\n# ============================================================\\\\n\\\\nCOLORS = {\\\\n    \\\\\\\"trained\\\\\\\": \\\\\\\"#2196F3\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"#F44336\\\\\\\",\\\\n    \\\\\\\"dinov2\\\\\\\": \\\\\\\"#4CAF50\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"#FF9800\\\\\\\",\\\\n}\\\\nMARKERS = {\\\\\\\"trained\\\\\\\": \\\\\\\"o\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"s\\\\\\\", \\\\\\\"dinov2\\\\\\\": \\\\\\\"^\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"D\\\\\\\"}\\\\n\\\\n\\\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\\\n    fig, ax = plt.subplots(figsize=(10, 5))\\\\n\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(layers) == 0:\\\\n            continue\\\\n        ax.plot(layers, rhos,\\\\n                marker=MARKERS.get(name, \\\\\\\"o\\\\\\\"),\\\\n                color=COLORS.get(name, \\\\\\\"#999\\\\\\\"),\\\\n                label=name, linewidth=2, markersize=5)\\\\n\\\\n    if oracle_rho is not None:\\\\n        ax.axhline(y=oracle_rho, color=COLORS[\\\\\\\"oracle\\\\\\\"],\\\\n                   linestyle=\\\\\\\"--\\\\\\\", label=f\\\\\\\"oracle (rho={oracle_rho:.3f})\\\\\\\", alpha=0.7)\\\\n\\\\n    ax.set_xlabel(\\\\\\\"Layer\\\\\\\")\\\\n    ax.set_ylabel(\\\\\\\"Spearman rho\\\\\\\")\\\\n    ax.set_title(\\\\\\\"Temporal Distance Probe: Layer-wise Spearman rho\\\\\\\")\\\\n    ax.legend()\\\\n    ax.grid(True, alpha=0.3)\\\\n\\\\n    path = os.path.join(output_dir, \\\\\\\"layer_rho.png\\\\\\\")\\\\n    fig.savefig(path, dpi=150\\\\n\\\\n... [截断: 输出过长，省略 4916 字符] ...\\\\n\\\\nue\\\\n                break\\\\n\\\\n    criteria[\\\\\\\"vla_ge_dinov2\\\\\\\"] = vla_ge_dino\\\\n    criteria[\\\\\\\"subtask_auc_pass\\\\\\\"] = subtask_pass\\\\n    criteria[\\\\\\\"third_criterion\\\\\\\"] = vla_ge_dino or subtask_pass\\\\n\\\\n    if criteria[\\\\\\\"rho_pass\\\\\\\"] and criteria[\\\\\\\"delta_pass\\\\\\\"] and criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        judgment = \\\\\\\"PASS\\\\\\\"\\\\n    elif criteria[\\\\\\\"delta_pass\\\\\\\"] and not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        judgment = \\\\\\\"CONDITIONAL\\\\\\\"\\\\n    else:\\\\n        judgment = \\\\\\\"FAIL\\\\\\\"\\\\n\\\\n    reasons = []\\\\n    if not criteria[\\\\\\\"rho_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"best rho = {best_rho:.4f} <= 0.3\\\\\\\")\\\\n    if not criteria[\\\\\\\"delta_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\\\\\")\\\\n    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        reasons.append(\\\\\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\\\\\")\\\\n\\\\n    return dict(judgment=judgment, criteria=criteria,\\\\n                reasons=reasons if reasons else [\\\\\\\"All criteria met\\\\\\\"])\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    dirs = parse_results_dirs(args.results_dirs)\\\\n    print(f\\\\\\\"Loading results: {list(dirs.keys())}\\\\\\\")\\\\n\\\\n    all_data = {}\\\\n    for name, path in dirs.items():\\\\n        try:\\\\n            data = load_results(path, args.probe_type)\\\\n            all_data[name] = data\\\\n            n = len(data.get(\\\\\\\"results\\\\\\\", {}))\\\\n            print(f\\\\\\\"  {name}: {n} entries\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  {name}: FAILED ({e})\\\\\\\")\\\\n\\\\n    if not all_data:\\\\n        print(\\\\\\\"No data loaded.\\\\\\\")\\\\n        return\\\\n\\\\n    oracle_rho = load_oracle(dirs)\\\\n    if oracle_rho is not None:\\\\n        print(f\\\\\\\"Oracle rho: {oracle_rho:.4f}\\\\\\\")\\\\n\\\\n    # --- Comparison table ---\\\\n    print(\\\\\\\"\\\\\\\\n=== Layer-wise Spearman rho ===\\\\\\\")\\\\n    names = list(all_data.keys())\\\\n    header = [\\\\\\\"Layer\\\\\\\"] + names\\\\n    print(\\\\\\\" | \\\\\\\".join(f\\\\\\\"{h:>12}\\\\\\\" for h in header))\\\\n    print(\\\\\\\"-\\\\\\\" * (14 * len(header)))\\\\n\\\\n    all_layers = set()\\\\n    for data in all_data.values():\\\\n        layers, _ = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        all_layers.update(layers.tolist())\\\\n\\\\n    for layer in sorted(all_layers):\\\\n        row = [f\\\\\\\"{layer:>12}\\\\\\\"]\\\\n        for name in names:\\\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\\\\\"spearman_rho\\\\\\\")\\\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\\\n            val = lmap.get(layer, float(\\\\\\\"nan\\\\\\\"))\\\\n            row.append(f\\\\\\\"{val:>12.4f}\\\\\\\")\\\\n        print(\\\\\\\" | \\\\\\\".join(row))\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Best Layer ===\\\\\\\")\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            print(f\\\\\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\\\\\")\\\\n\\\\n    # --- Plots ---\\\\n    if args.probe_type == \\\\\\\"temporal_distance\\\\\\\":\\\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\\\n        plot_delta_rho(all_data, args.output_dir)\\\\n\\\\n    if args.probe_type == \\\\\\\"subtask_predicate\\\\\\\":\\\\n        for name, data in all_data.items():\\\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\\\n\\\\n    # --- Judgment ---\\\\n    judgment = compute_judgment(all_data)\\\\n    print(f\\\\\\\"\\\\\\\\n=== Judgment: {judgment['judgment']} ===\\\\\\\")\\\\n    for k, v in judgment[\\\\\\\"criteria\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n    for r in judgment[\\\\\\\"reasons\\\\\\\"]:\\\\n        print(f\\\\\\\"  >> {r}\\\\\\\")\\\\n\\\\n    # --- Save ---\\\\n    summary = dict(\\\\n        models=names,\\\\n        probe_type=args.probe_type,\\\\n        judgment=judgment,\\\\n    )\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\\\n    if oracle_rho is not None:\\\\n        summary[\\\\\\\"oracle_rho\\\\\\\"] = oracle_rho\\\\n\\\\n    with open(os.path.join(args.output_dir, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved {args.output_dir}/summary.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                marker=MARKERS.get(name, \\\"o\\\"),\\n                color=COLORS.get(name, \\\"#999\\\"),\\n                label=name, linewidth=2, markersize=5)\\n\\n    if oracle_rho is not None:\\n        ax.axhline(y=oracle_rho, color=COLORS[\\\"oracle\\\"],\\n                   linestyle=\\\"--\\\", label=f\\\"oracle (rho={oracle_rho:.3f})\\\", alpha=0.7)\\n\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Spearman rho\\\")\\n    ax.set_title(\\\"Temporal Distance Probe: Layer-wise Spearman rho\\\")\\n    ax.legend()\\n    ax.grid(True, alpha=0.3)\\n\\n    path = os.path.join(output_dir, \\\"layer_rho.png\\\")\\n    fig.savefig(path, dpi=150\\n\\n... [截断: 输出过长，省略 4916 字符] ...\\n\\nue\\n                break\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"PASS\\\"\\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"CONDITIONAL\\\"\\n    else:\\n        judgment = \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best rho = {best_rho:.4f} <= 0.3\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        reasons.append(f\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me get the full file. The middle portion was cut off. Let me read it in parts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "89a92467-debf-49b0-bc6e-763ca69ab7e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZj9zeRybLocRjHJcxzEdm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3535,
+      "cache_read_input_tokens": 24320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Output was truncated. Let me read the missing middle section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "c2b7be89-fcef-49f5-b889-10ab780cdc53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZj9zeRybLocRjHJcxzEdm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3535,
+      "cache_read_input_tokens": 24320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D29hDLHPq8NGmp4rWu7CrZ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -l /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "0885a160-cc38-44ec-bbf8-524bb2f4a768",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZj9zeRybLocRjHJcxzEdm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3535,
+      "cache_read_input_tokens": 24320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MdwcwgSnRQHMAfP7X3iQhL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -200 /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "f51a2fcd-0407-45b8-9df3-a6373c8ec0a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZj9zeRybLocRjHJcxzEdm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3535,
+      "cache_read_input_tokens": 24320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T11:04:56.320Z_
+
+<details><summary>↩ Tool result · `toolu_01D29hDLHPq8NGmp4rWu7CrZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"377 /root/vla-ssd/scripts/analyze_results.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "f57a38e8-ea5f-4fbd-93dd-d459277959f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"377 /root/vla-ssd/scripts/analyze_results.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"377 /root/vla-ssd/scripts/analyze_results.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T11:04:56.855Z_
+
+<details><summary>↩ Tool result · `toolu_01MdwcwgSnRQHMAfP7X3iQhL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                marker=MARKERS.get(name, \\\"o\\\"),\\n                color=COLORS.get(name, \\\"#999\\\"),\\n                label=name, linewidth=2, markersize=5)\\n\\n    if oracle_rho is not None:\\n        ax.axhline(y=oracle_rho, color=COLORS[\\\"oracle\\\"],\\n                   linestyle=\\\"--\\\", label=f\\\"oracle (rho={oracle_rho:.3f})\\\", alpha=0.7)\\n\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Spearman rho\\\")\\n    ax.set_title(\\\"Temporal Distance Probe: Layer-wise Spearman rho\\\")\\n    ax.legend()\\n    ax.grid(True, alpha=0.3)\\n\\n    path = os.path.join(output_dir, \\\"layer_rho.png\\\")\\n    fig.savefig(path, dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(path.replace(\\\".png\\\", \\\".pdf\\\"), bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"Saved {path}\\\")\\n\\n\\ndef plot_delta_rho(all_data, output_dir):\\n    if \\\"trained\\\" not in all_data or \\\"untrained\\\" not in all_data:\\n        print(\\\"Skipping delta-rho plot (need trained + untrained)\\\")\\n        return\\n\\n    l_tr, rho_tr = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n    l_un, rho_un = extract_layer_metrics(all_data[\\\"untrained\\\"], \\\"spearman_rho\\\")\\n\\n    tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\n    un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\n    common = sorted(set(l_tr.tolist()) & set(l_un.tolist()))\\n    if not common:\\n        return\\n\\n    layers = np.array(common)\\n    deltas = np.array([tr_map[l] - un_map[l] for l in common])\\n\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n    colors = [\\\"#2196F3\\\" if d >= 0 else \\\"#F44336\\\" for d in deltas]\\n    ax.bar(layers, deltas, color=colors, width=0.8)\\n    ax.axhline(y=0.1, color=\\\"green\\\", linestyle=\\\"--\\\", alpha=0.5, label=\\\"threshold=0.1\\\")\\n    ax.axhline(y=0, color=\\\"black\\\", linewidth=0.5)\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Delta-rho (trained - untrained)\\\")\\n    ax.set_title(\\\"Temporal Distance Probe: Delta-rho per Layer\\\")\\n    ax.legend()\\n    ax.grid(True, alpha=0.3)\\n\\n    path = os.path.join(output_dir, \\\"delta_rho.png\\\")\\n    fig.savefig(path, dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(path.replace(\\\".png\\\", \\\".pdf\\\"), bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"Saved {path}\\\")\\n\\n\\ndef plot_subtask_auc_heatmap(data, output_dir, name=\\\"trained\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers = sorted([int(k) for k in results if k != \\\"oracle\\\"])\\n    if not layers:\\n        return\\n\\n    pred_names = None\\n    for v in results.values():\\n        if \\\"predicate_names\\\" in v:\\n            pred_names = v[\\\"predicate_names\\\"]\\n            break\\n    if pred_names is None:\\n        return\\n\\n    n_pred = len(pred_names)\\n    heatmap = np.full((len(layers), n_pred), np.nan)\\n\\n    for li, layer in enumerate(layers):\\n        auc = results[str(layer)].get(\\\"auc_per_predicate\\\", {})\\n        for k in range(n_pred):\\n            val = auc.get(str(k), np.nan)\\n            heatmap[li, k] = val\\n\\n    fig, ax = plt.subplots(figsize=(max(8, n_pred), max(6, len(layers) * 0.3)))\\n    im = ax.imshow(heatmap, aspect=\\\"auto\\\", cmap=\\\"YlOrRd\\\", vmin=0.5, vmax=1.0)\\n    ax.set_xticks(range(n_pred))\\n    ax.set_xticklabels(pred_names, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_yticks(range(len(layers)))\\n    ax.set_yticklabels(layers)\\n    ax.set_xlabel(\\\"Predicate\\\")\\n    ax.set_ylabel(\\\"Layer\\\")\\n    ax.set_title(f\\\"Sub-task Predicate AUC ({name})\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "064c90ac-51ba-4c91-be3b-5642d861f0a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"analyze_results.py — Compare probe results across models and visualize.\\\\n\\\\nInput:  Multiple result directories (from train_probes.py)\\\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\\\n\\\\nUsage:\\\\n  python analyze_results.py \\\\\\\\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\\\\\\\n    --output_dir results/analysis/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Analyze and compare probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--results_dirs\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", default=\\\\\\\"temporal_distance\\\\\\\",\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\"])\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_results_dirs(s):\\\\n    d = {}\\\\n    for entry in s.split(\\\\\\\",\\\\\\\"):\\\\n        name, path = entry.strip().split(\\\\\\\":\\\\\\\")\\\\n        d[name.strip()] = path.strip()\\\\n    return d\\\\n\\\\n\\\\ndef load_results(results_dir, probe_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load probe results from a directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probe_dir = os.path.join(results_dir, probe_type)\\\\n    summary_path = os.path.join(probe_dir, \\\\\\\"summary.json\\\\\\\")\\\\n    if os.path.exists(summary_path):\\\\n        with open(summary_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    results = {}\\\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\\\\\"layer_*.json\\\\\\\"))):\\\\n        with open(p) as f:\\\\n            m = json.load(f)\\\\n        key = m.get(\\\\\\\"layer\\\\\\\", Path(p).stem.replace(\\\\\\\"layer_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        results[str(key)] = m\\\\n    return {\\\\\\\"results\\\\\\\": results}\\\\n\\\\n\\\\ndef load_oracle(results_dirs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect oracle results from any provided directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for path in results_dirs.values():\\\\n        oracle_dir = os.path.join(path, \\\\\\\"oracle\\\\\\\")\\\\n        summary = os.path.join(oracle_dir, \\\\\\\"summary.json\\\\\\\")\\\\n        if os.path.exists(summary):\\\\n            with open(summary) as f:\\\\n                data = json.load(f)\\\\n            r = data.get(\\\\\\\"results\\\\\\\", {})\\\\n            if \\\\\\\"oracle\\\\\\\" in r:\\\\n                return r[\\\\\\\"oracle\\\\\\\"].get(\\\\\\\"spearman_rho\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef _sort_key(x):\\\\n    try:\\\\n        return (0, int(x))\\\\n    except ValueError:\\\\n        return (1, x)\\\\n\\\\n\\\\ndef extract_layer_metrics(data, metric=\\\\\\\"spearman_rho\\\\\\\"):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers, values = [], []\\\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\\\n        if k == \\\\\\\"oracle\\\\\\\":\\\\n            continue\\\\n        val = v.get(metric)\\\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\\\n            layers.append(int(k))\\\\n            values.append(float(val))\\\\n    return np.array(layers), np.array(values)\\\\n\\\\n\\\\n# ============================================================\\\\n# Plots\\\\n# ============================================================\\\\n\\\\nCOLORS = {\\\\n    \\\\\\\"trained\\\\\\\": \\\\\\\"#2196F3\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"#F44336\\\\\\\",\\\\n    \\\\\\\"dinov2\\\\\\\": \\\\\\\"#4CAF50\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"#FF9800\\\\\\\",\\\\n}\\\\nMARKERS = {\\\\\\\"trained\\\\\\\": \\\\\\\"o\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"s\\\\\\\", \\\\\\\"dinov2\\\\\\\": \\\\\\\"^\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"D\\\\\\\"}\\\\n\\\\n\\\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\\\n    fig, ax = plt.subplots(figsize=(10, 5))\\\\n\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(layers) == 0:\\\\n            continue\\\\n        ax.plot(layers, rhos,\\\\n                marker=MARKERS.get(name, \\\\\\\"o\\\\\\\"),\\\\n                color=COLORS.get(name, \\\\\\\"#999\\\\\\\"),\\\\n                label=name, linewidth=2, markersize=5)\\\\n\\\\n    if oracle_rho is not None:\\\\n        ax.axhline(y=oracle_rho, color=COLORS[\\\\\\\"oracle\\\\\\\"],\\\\n                   linestyle=\\\\\\\"--\\\\\\\", label=f\\\\\\\"oracle (rho={oracle_rho:.3f})\\\\\\\", alpha=0.7)\\\\n\\\\n    ax.set_xlabel(\\\\\\\"Layer\\\\\\\")\\\\n    ax.set_ylabel(\\\\\\\"Spearman rho\\\\\\\")\\\\n    ax.set_title(\\\\\\\"Temporal Distance Probe: Layer-wise Spearman rho\\\\\\\")\\\\n    ax.legend()\\\\n    ax.grid(True, alpha=0.3)\\\\n\\\\n    path = os.path.join(output_dir, \\\\\\\"layer_rho.png\\\\\\\")\\\\n    fig.savefig(path, dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(path.replace(\\\\\\\".png\\\\\\\", \\\\\\\".pdf\\\\\\\"), bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n    print(f\\\\\\\"Saved {path}\\\\\\\")\\\\n\\\\n\\\\ndef plot_delta_rho(all_data, output_dir):\\\\n    if \\\\\\\"trained\\\\\\\" not in all_data or \\\\\\\"untrained\\\\\\\" not in all_data:\\\\n        print(\\\\\\\"Skipping delta-rho plot (need trained + untrained)\\\\\\\")\\\\n        return\\\\n\\\\n    l_tr, rho_tr = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n    l_un, rho_un = extract_layer_metrics(all_data[\\\\\\\"untrained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n\\\\n    tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\\\n    un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\\\n    common = sorted(set(l_tr.tolist()) & set(l_un.tolist()))\\\\n    if not common:\\\\n        return\\\\n\\\\n    layers = np.array(common)\\\\n    deltas = np.array([tr_map[l] - un_map[l] for l in common])\\\\n\\\\n    fig, ax = plt.subplots(figsize=(10, 5))\\\\n    colors = [\\\\\\\"#2196F3\\\\\\\" if d >= 0 else \\\\\\\"#F44336\\\\\\\" for d in deltas]\\\\n    ax.bar(layers, deltas, color=colors, width=0.8)\\\\n    ax.axhline(y=0.1, color=\\\\\\\"green\\\\\\\", linestyle=\\\\\\\"--\\\\\\\", alpha=0.5, label=\\\\\\\"threshold=0.1\\\\\\\")\\\\n    ax.axhline(y=0, color=\\\\\\\"black\\\\\\\", linewidth=0.5)\\\\n    ax.set_xlabel(\\\\\\\"Layer\\\\\\\")\\\\n    ax.set_ylabel(\\\\\\\"Delta-rho (trained - untrained)\\\\\\\")\\\\n    ax.set_title(\\\\\\\"Temporal Distance Probe: Delta-rho per Layer\\\\\\\")\\\\n    ax.legend()\\\\n    ax.grid(True, alpha=0.3)\\\\n\\\\n    path = os.path.join(output_dir, \\\\\\\"delta_rho.png\\\\\\\")\\\\n    fig.savefig(path, dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(path.replace(\\\\\\\".png\\\\\\\", \\\\\\\".pdf\\\\\\\"), bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n    print(f\\\\\\\"Saved {path}\\\\\\\")\\\\n\\\\n\\\\ndef plot_subtask_auc_heatmap(data, output_dir, name=\\\\\\\"trained\\\\\\\"):\\\\n    results = data.get(\\\\\\\"results\\\\\\\", {})\\\\n    layers = sorted([int(k) for k in results if k != \\\\\\\"oracle\\\\\\\"])\\\\n    if not layers:\\\\n        return\\\\n\\\\n    pred_names = None\\\\n    for v in results.values():\\\\n        if \\\\\\\"predicate_names\\\\\\\" in v:\\\\n            pred_names = v[\\\\\\\"predicate_names\\\\\\\"]\\\\n            break\\\\n    if pred_names is None:\\\\n        return\\\\n\\\\n    n_pred = len(pred_names)\\\\n    heatmap = np.full((len(layers), n_pred), np.nan)\\\\n\\\\n    for li, layer in enumerate(layers):\\\\n        auc = results[str(layer)].get(\\\\\\\"auc_per_predicate\\\\\\\", {})\\\\n        for k in range(n_pred):\\\\n            val = auc.get(str(k), np.nan)\\\\n            heatmap[li, k] = val\\\\n\\\\n    fig, ax = plt.subplots(figsize=(max(8, n_pred), max(6, len(layers) * 0.3)))\\\\n    im = ax.imshow(heatmap, aspect=\\\\\\\"auto\\\\\\\", cmap=\\\\\\\"YlOrRd\\\\\\\", vmin=0.5, vmax=1.0)\\\\n    ax.set_xticks(range(n_pred))\\\\n    ax.set_xticklabels(pred_names, rotation=45, ha=\\\\\\\"right\\\\\\\", fontsize=8)\\\\n    ax.set_yticks(range(len(layers)))\\\\n    ax.set_yticklabels(layers)\\\\n    ax.set_xlabel(\\\\\\\"Predicate\\\\\\\")\\\\n    ax.set_ylabel(\\\\\\\"Layer\\\\\\\")\\\\n    ax.set_title(f\\\\\\\"Sub-task Predicate AUC ({name})\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"analyze_results.py — Compare probe results across models and visualize.\\n\\nInput:  Multiple result directories (from train_probes.py)\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\n\\nUsage:\\n  python analyze_results.py \\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\n    --output_dir results/analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport glob\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Analyze and compare probe results\\\")\\n    p.add_argument(\\\"--results_dirs\\\", required=True,\\n                   help=\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True)\\n    p.add_argument(\\\"--probe_type\\\", default=\\\"temporal_distance\\\",\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\"])\\n    return p.parse_args()\\n\\n\\ndef parse_results_dirs(s):\\n    d = {}\\n    for entry in s.split(\\\",\\\"):\\n        name, path = entry.strip().split(\\\":\\\")\\n        d[name.strip()] = path.strip()\\n    return d\\n\\n\\ndef load_results(results_dir, probe_type):\\n    \\\"\\\"\\\"Load probe results from a directory.\\\"\\\"\\\"\\n    probe_dir = os.path.join(results_dir, probe_type)\\n    summary_path = os.path.join(probe_dir, \\\"summary.json\\\")\\n    if os.path.exists(summary_path):\\n        with open(summary_path) as f:\\n            return json.load(f)\\n\\n    results = {}\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\"layer_*.json\\\"))):\\n        with open(p) as f:\\n            m = json.load(f)\\n        key = m.get(\\\"layer\\\", Path(p).stem.replace(\\\"layer_\\\", \\\"\\\"))\\n        results[str(key)] = m\\n    return {\\\"results\\\": results}\\n\\n\\ndef load_oracle(results_dirs):\\n    \\\"\\\"\\\"Auto-detect oracle results from any provided directory.\\\"\\\"\\\"\\n    for path in results_dirs.values():\\n        oracle_dir = os.path.join(path, \\\"oracle\\\")\\n        summary = os.path.join(oracle_dir, \\\"summary.json\\\")\\n        if os.path.exists(summary):\\n            with open(summary) as f:\\n                data = json.load(f)\\n            r = data.get(\\\"results\\\", {})\\n            if \\\"oracle\\\" in r:\\n                return r[\\\"oracle\\\"].get(\\\"spearman_rho\\\")\\n    return None\\n\\n\\ndef _sort_key(x):\\n    try:\\n        return (0, int(x))\\n    except ValueError:\\n        return (1, x)\\n\\n\\ndef extract_layer_metrics(data, metric=\\\"spearman_rho\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers, values = [], []\\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\\n        if k == \\\"oracle\\\":\\n            continue\\n        val = v.get(metric)\\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\\n            layers.append(int(k))\\n            values.append(float(val))\\n    return np.array(layers), np.array(values)\\n\\n\\n# ============================================================\\n# Plots\\n# ============================================================\\n\\nCOLORS = {\\n    \\\"trained\\\": \\\"#2196F3\\\", \\\"untrained\\\": \\\"#F44336\\\",\\n    \\\"dinov2\\\": \\\"#4CAF50\\\", \\\"oracle\\\": \\\"#FF9800\\\",\\n}\\nMARKERS = {\\\"trained\\\": \\\"o\\\", \\\"untrained\\\": \\\"s\\\", \\\"dinov2\\\": \\\"^\\\", \\\"oracle\\\": \\\"D\\\"}\\n\\n\\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(layers) == 0:\\n            continue\\n        ax.plot(layers, rhos,\\n                marker=MARKERS.get(name, \\\"o\\\"),\\n                color=COLORS.get(name, \\\"#999\\\"),\\n                label=name, linewidth=2, markersize=5)\\n\\n    if oracle_rho is not None:\\n        ax.axhline(y=oracle_rho, color=COLORS[\\\"oracle\\\"],\\n                   linestyle=\\\"--\\\", label=f\\\"oracle (rho={oracle_rho:.3f})\\\", alpha=0.7)\\n\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Spearman rho\\\")\\n    ax.set_title(\\\"Temporal Distance Probe: Layer-wise Spearman rho\\\")\\n    ax.legend()\\n    ax.grid(True, alpha=0.3)\\n\\n    path = os.path.join(output_dir, \\\"layer_rho.png\\\")\\n    fig.savefig(path, dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(path.replace(\\\".png\\\", \\\".pdf\\\"), bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"Saved {path}\\\")\\n\\n\\ndef plot_delta_rho(all_data, output_dir):\\n    if \\\"trained\\\" not in all_data or \\\"untrained\\\" not in all_data:\\n        print(\\\"Skipping delta-rho plot (need trained + untrained)\\\")\\n        return\\n\\n    l_tr, rho_tr = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n    l_un, rho_un = extract_layer_metrics(all_data[\\\"untrained\\\"], \\\"spearman_rho\\\")\\n\\n    tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\n    un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\n    common = sorted(set(l_tr.tolist()) & set(l_un.tolist()))\\n    if not common:\\n        return\\n\\n    layers = np.array(common)\\n    deltas = np.array([tr_map[l] - un_map[l] for l in common])\\n\\n    fig, ax = plt.subplots(figsize=(10, 5))\\n    colors = [\\\"#2196F3\\\" if d >= 0 else \\\"#F44336\\\" for d in deltas]\\n    ax.bar(layers, deltas, color=colors, width=0.8)\\n    ax.axhline(y=0.1, color=\\\"green\\\", linestyle=\\\"--\\\", alpha=0.5, label=\\\"threshold=0.1\\\")\\n    ax.axhline(y=0, color=\\\"black\\\", linewidth=0.5)\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Delta-rho (trained - untrained)\\\")\\n    ax.set_title(\\\"Temporal Distance Probe: Delta-rho per Layer\\\")\\n    ax.legend()\\n    ax.grid(True, alpha=0.3)\\n\\n    path = os.path.join(output_dir, \\\"delta_rho.png\\\")\\n    fig.savefig(path, dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(path.replace(\\\".png\\\", \\\".pdf\\\"), bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"Saved {path}\\\")\\n\\n\\ndef plot_subtask_auc_heatmap(data, output_dir, name=\\\"trained\\\"):\\n    results = data.get(\\\"results\\\", {})\\n    layers = sorted([int(k) for k in results if k != \\\"oracle\\\"])\\n    if not layers:\\n        return\\n\\n    pred_names = None\\n    for v in results.values():\\n        if \\\"predicate_names\\\" in v:\\n            pred_names = v[\\\"predicate_names\\\"]\\n            break\\n    if pred_names is None:\\n        return\\n\\n    n_pred = len(pred_names)\\n    heatmap = np.full((len(layers), n_pred), np.nan)\\n\\n    for li, layer in enumerate(layers):\\n        auc = results[str(layer)].get(\\\"auc_per_predicate\\\", {})\\n        for k in range(n_pred):\\n            val = auc.get(str(k), np.nan)\\n            heatmap[li, k] = val\\n\\n    fig, ax = plt.subplots(figsize=(max(8, n_pred), max(6, len(layers) * 0.3)))\\n    im = ax.imshow(heatmap, aspect=\\\"auto\\\", cmap=\\\"YlOrRd\\\", vmin=0.5, vmax=1.0)\\n    ax.set_xticks(range(n_pred))\\n    ax.set_xticklabels(pred_names, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_yticks(range(len(layers)))\\n    ax.set_yticklabels(layers)\\n    ax.set_xlabel(\\\"Predicate\\\")\\n    ax.set_ylabel(\\\"Layer\\\")\\n    ax.set_title(f\\\"Sub-task Predicate AUC ({name})\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me get the rest of the file (lines 200-377).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "408aca94-0144-4a1c-b2f8-69ae69ceb0da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HRfNMXehcNnWrU6tYjAwjJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3368,
+      "cache_read_input_tokens": 27855,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3368
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0125tDoygM2yyqojZLQeGBQT`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -n +200 /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "6c1f02c5-4eb6-430d-9feb-545e7bbd836f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HRfNMXehcNnWrU6tYjAwjJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3368,
+      "cache_read_input_tokens": 27855,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3368
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T11:05:00.699Z_
+
+<details><summary>↩ Tool result · `toolu_0125tDoygM2yyqojZLQeGBQT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    ax.set_title(f\\\"Sub-task Predicate AUC ({name})\\\")\\n    fig.colorbar(im, ax=ax, label=\\\"AUC-ROC\\\")\\n\\n    path = os.path.join(output_dir, f\\\"subtask_auc_{name}.png\\\")\\n    fig.savefig(path, dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(path.replace(\\\".png\\\", \\\".pdf\\\"), bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"Saved {path}\\\")\\n\\n\\n# ============================================================\\n# Judgment\\n# ============================================================\\n\\ndef compute_judgment(all_data):\\n    \\\"\\\"\\\"PASS/FAIL based on three criteria.\\\"\\\"\\\"\\n    criteria = {}\\n\\n    # 1) best rho > 0.3\\n    if \\\"trained\\\" in all_data:\\n        _, rhos = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\\n        layers, _ = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\\n    else:\\n        best_rho, best_layer = 0.0, -1\\n\\n    criteria[\\\"best_rho\\\"] = best_rho\\n    criteria[\\\"best_layer\\\"] = best_layer\\n    criteria[\\\"rho_pass\\\"] = best_rho > 0.3\\n\\n    # 2) delta-rho > 0.1\\n    max_delta = 0.0\\n    if \\\"trained\\\" in all_data and \\\"untrained\\\" in all_data:\\n        l_tr, rho_tr = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        l_un, rho_un = extract_layer_metrics(all_data[\\\"untrained\\\"], \\\"spearman_rho\\\")\\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\n        common = set(l_tr.tolist()) & set(l_un.tolist())\\n        if common:\\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\\n\\n    criteria[\\\"max_delta_rho\\\"] = max_delta\\n    criteria[\\\"delta_pass\\\"] = max_delta > 0.1\\n\\n    # 3) VLA >= DINO-V2 OR sub-task AUC > 0.7\\n    vla_ge_dino = False\\n    if \\\"trained\\\" in all_data and \\\"dinov2\\\" in all_data:\\n        _, rho_vla = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        _, rho_dino = extract_layer_metrics(all_data[\\\"dinov2\\\"], \\\"spearman_rho\\\")\\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\\n\\n    subtask_pass = False\\n    for data in all_data.values():\\n        for v in data.get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_auc\\\"), (int, float)) and v[\\\"macro_auc\\\"] > 0.7:\\n                subtask_pass = True\\n                break\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"PASS\\\"\\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"CONDITIONAL\\\"\\n    else:\\n        judgment = \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best rho = {best_rho:.4f} <= 0.3\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        reasons.append(f\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "1a04f84e-439e-42ca-82ec-8fba78097425",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    ax.set_title(f\\\\\\\"Sub-task Predicate AUC ({name})\\\\\\\")\\\\n    fig.colorbar(im, ax=ax, label=\\\\\\\"AUC-ROC\\\\\\\")\\\\n\\\\n    path = os.path.join(output_dir, f\\\\\\\"subtask_auc_{name}.png\\\\\\\")\\\\n    fig.savefig(path, dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(path.replace(\\\\\\\".png\\\\\\\", \\\\\\\".pdf\\\\\\\"), bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n    print(f\\\\\\\"Saved {path}\\\\\\\")\\\\n\\\\n\\\\n# ============================================================\\\\n# Judgment\\\\n# ============================================================\\\\n\\\\ndef compute_judgment(all_data):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"PASS/FAIL based on three criteria.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    criteria = {}\\\\n\\\\n    # 1) best rho > 0.3\\\\n    if \\\\\\\"trained\\\\\\\" in all_data:\\\\n        _, rhos = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\\\\n        layers, _ = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\\\\n    else:\\\\n        best_rho, best_layer = 0.0, -1\\\\n\\\\n    criteria[\\\\\\\"best_rho\\\\\\\"] = best_rho\\\\n    criteria[\\\\\\\"best_layer\\\\\\\"] = best_layer\\\\n    criteria[\\\\\\\"rho_pass\\\\\\\"] = best_rho > 0.3\\\\n\\\\n    # 2) delta-rho > 0.1\\\\n    max_delta = 0.0\\\\n    if \\\\\\\"trained\\\\\\\" in all_data and \\\\\\\"untrained\\\\\\\" in all_data:\\\\n        l_tr, rho_tr = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        l_un, rho_un = extract_layer_metrics(all_data[\\\\\\\"untrained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\\\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\\\n        common = set(l_tr.tolist()) & set(l_un.tolist())\\\\n        if common:\\\\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\\\\n\\\\n    criteria[\\\\\\\"max_delta_rho\\\\\\\"] = max_delta\\\\n    criteria[\\\\\\\"delta_pass\\\\\\\"] = max_delta > 0.1\\\\n\\\\n    # 3) VLA >= DINO-V2 OR sub-task AUC > 0.7\\\\n    vla_ge_dino = False\\\\n    if \\\\\\\"trained\\\\\\\" in all_data and \\\\\\\"dinov2\\\\\\\" in all_data:\\\\n        _, rho_vla = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        _, rho_dino = extract_layer_metrics(all_data[\\\\\\\"dinov2\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\\\\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\\\\n\\\\n    subtask_pass = False\\\\n    for data in all_data.values():\\\\n        for v in data.get(\\\\\\\"results\\\\\\\", {}).values():\\\\n            if isinstance(v.get(\\\\\\\"macro_auc\\\\\\\"), (int, float)) and v[\\\\\\\"macro_auc\\\\\\\"] > 0.7:\\\\n                subtask_pass = True\\\\n                break\\\\n\\\\n    criteria[\\\\\\\"vla_ge_dinov2\\\\\\\"] = vla_ge_dino\\\\n    criteria[\\\\\\\"subtask_auc_pass\\\\\\\"] = subtask_pass\\\\n    criteria[\\\\\\\"third_criterion\\\\\\\"] = vla_ge_dino or subtask_pass\\\\n\\\\n    if criteria[\\\\\\\"rho_pass\\\\\\\"] and criteria[\\\\\\\"delta_pass\\\\\\\"] and criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        judgment = \\\\\\\"PASS\\\\\\\"\\\\n    elif criteria[\\\\\\\"delta_pass\\\\\\\"] and not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        judgment = \\\\\\\"CONDITIONAL\\\\\\\"\\\\n    else:\\\\n        judgment = \\\\\\\"FAIL\\\\\\\"\\\\n\\\\n    reasons = []\\\\n    if not criteria[\\\\\\\"rho_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"best rho = {best_rho:.4f} <= 0.3\\\\\\\")\\\\n    if not criteria[\\\\\\\"delta_pass\\\\\\\"]:\\\\n        reasons.append(f\\\\\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\\\\\")\\\\n    if not criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n        reasons.append(\\\\\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\\\\\")\\\\n\\\\n    return dict(judgment=judgment, criteria=criteria,\\\\n                reasons=reasons if reasons else [\\\\\\\"All criteria met\\\\\\\"])\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    dirs = parse_results_dirs(args.results_dirs)\\\\n    print(f\\\\\\\"Loading results: {list(dirs.keys())}\\\\\\\")\\\\n\\\\n    all_data = {}\\\\n    for name, path in dirs.items():\\\\n        try:\\\\n            data = load_results(path, args.probe_type)\\\\n            all_data[name] = data\\\\n            n = len(data.get(\\\\\\\"results\\\\\\\", {}))\\\\n            print(f\\\\\\\"  {name}: {n} entries\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  {name}: FAILED ({e})\\\\\\\")\\\\n\\\\n    if not all_data:\\\\n        print(\\\\\\\"No data loaded.\\\\\\\")\\\\n        return\\\\n\\\\n    oracle_rho = load_oracle(dirs)\\\\n    if oracle_rho is not None:\\\\n        print(f\\\\\\\"Oracle rho: {oracle_rho:.4f}\\\\\\\")\\\\n\\\\n    # --- Comparison table ---\\\\n    print(\\\\\\\"\\\\\\\\n=== Layer-wise Spearman rho ===\\\\\\\")\\\\n    names = list(all_data.keys())\\\\n    header = [\\\\\\\"Layer\\\\\\\"] + names\\\\n    print(\\\\\\\" | \\\\\\\".join(f\\\\\\\"{h:>12}\\\\\\\" for h in header))\\\\n    print(\\\\\\\"-\\\\\\\" * (14 * len(header)))\\\\n\\\\n    all_layers = set()\\\\n    for data in all_data.values():\\\\n        layers, _ = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        all_layers.update(layers.tolist())\\\\n\\\\n    for layer in sorted(all_layers):\\\\n        row = [f\\\\\\\"{layer:>12}\\\\\\\"]\\\\n        for name in names:\\\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\\\\\"spearman_rho\\\\\\\")\\\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\\\n            val = lmap.get(layer, float(\\\\\\\"nan\\\\\\\"))\\\\n            row.append(f\\\\\\\"{val:>12.4f}\\\\\\\")\\\\n        print(\\\\\\\" | \\\\\\\".join(row))\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Best Layer ===\\\\\\\")\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            print(f\\\\\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\\\\\")\\\\n\\\\n    # --- Plots ---\\\\n    if args.probe_type == \\\\\\\"temporal_distance\\\\\\\":\\\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\\\n        plot_delta_rho(all_data, args.output_dir)\\\\n\\\\n    if args.probe_type == \\\\\\\"subtask_predicate\\\\\\\":\\\\n        for name, data in all_data.items():\\\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\\\n\\\\n    # --- Judgment ---\\\\n    judgment = compute_judgment(all_data)\\\\n    print(f\\\\\\\"\\\\\\\\n=== Judgment: {judgment['judgment']} ===\\\\\\\")\\\\n    for k, v in judgment[\\\\\\\"criteria\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n    for r in judgment[\\\\\\\"reasons\\\\\\\"]:\\\\n        print(f\\\\\\\"  >> {r}\\\\\\\")\\\\n\\\\n    # --- Save ---\\\\n    summary = dict(\\\\n        models=names,\\\\n        probe_type=args.probe_type,\\\\n        judgment=judgment,\\\\n    )\\\\n    for name, data in all_data.items():\\\\n        layers, rhos = extract_layer_metrics(data, \\\\\\\"spearman_rho\\\\\\\")\\\\n        if len(rhos) > 0:\\\\n            bi = int(np.argmax(rhos))\\\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\\\n    if oracle_rho is not None:\\\\n        summary[\\\\\\\"oracle_rho\\\\\\\"] = oracle_rho\\\\n\\\\n    with open(os.path.join(args.output_dir, \\\\\\\"summary.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved {args.output_dir}/summary.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    ax.set_title(f\\\"Sub-task Predicate AUC ({name})\\\")\\n    fig.colorbar(im, ax=ax, label=\\\"AUC-ROC\\\")\\n\\n    path = os.path.join(output_dir, f\\\"subtask_auc_{name}.png\\\")\\n    fig.savefig(path, dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(path.replace(\\\".png\\\", \\\".pdf\\\"), bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"Saved {path}\\\")\\n\\n\\n# ============================================================\\n# Judgment\\n# ============================================================\\n\\ndef compute_judgment(all_data):\\n    \\\"\\\"\\\"PASS/FAIL based on three criteria.\\\"\\\"\\\"\\n    criteria = {}\\n\\n    # 1) best rho > 0.3\\n    if \\\"trained\\\" in all_data:\\n        _, rhos = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\\n        layers, _ = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\\n    else:\\n        best_rho, best_layer = 0.0, -1\\n\\n    criteria[\\\"best_rho\\\"] = best_rho\\n    criteria[\\\"best_layer\\\"] = best_layer\\n    criteria[\\\"rho_pass\\\"] = best_rho > 0.3\\n\\n    # 2) delta-rho > 0.1\\n    max_delta = 0.0\\n    if \\\"trained\\\" in all_data and \\\"untrained\\\" in all_data:\\n        l_tr, rho_tr = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        l_un, rho_un = extract_layer_metrics(all_data[\\\"untrained\\\"], \\\"spearman_rho\\\")\\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\n        common = set(l_tr.tolist()) & set(l_un.tolist())\\n        if common:\\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\\n\\n    criteria[\\\"max_delta_rho\\\"] = max_delta\\n    criteria[\\\"delta_pass\\\"] = max_delta > 0.1\\n\\n    # 3) VLA >= DINO-V2 OR sub-task AUC > 0.7\\n    vla_ge_dino = False\\n    if \\\"trained\\\" in all_data and \\\"dinov2\\\" in all_data:\\n        _, rho_vla = extract_layer_metrics(all_data[\\\"trained\\\"], \\\"spearman_rho\\\")\\n        _, rho_dino = extract_layer_metrics(all_data[\\\"dinov2\\\"], \\\"spearman_rho\\\")\\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\\n\\n    subtask_pass = False\\n    for data in all_data.values():\\n        for v in data.get(\\\"results\\\", {}).values():\\n            if isinstance(v.get(\\\"macro_auc\\\"), (int, float)) and v[\\\"macro_auc\\\"] > 0.7:\\n                subtask_pass = True\\n                break\\n\\n    criteria[\\\"vla_ge_dinov2\\\"] = vla_ge_dino\\n    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\\n    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"PASS\\\"\\n    elif criteria[\\\"delta_pass\\\"] and not criteria[\\\"third_criterion\\\"]:\\n        judgment = \\\"CONDITIONAL\\\"\\n    else:\\n        judgment = \\\"FAIL\\\"\\n\\n    reasons = []\\n    if not criteria[\\\"rho_pass\\\"]:\\n        reasons.append(f\\\"best rho = {best_rho:.4f} <= 0.3\\\")\\n    if not criteria[\\\"delta_pass\\\"]:\\n        reasons.append(f\\\"max delta-rho = {max_delta:.4f} <= 0.1\\\")\\n    if not criteria[\\\"third_criterion\\\"]:\\n        reasons.append(\\\"VLA < DINO-V2 AND no sub-task AUC > 0.7\\\")\\n\\n    return dict(judgment=judgment, criteria=criteria,\\n                reasons=reasons if reasons else [\\\"All criteria met\\\"])\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    dirs = parse_results_dirs(args.results_dirs)\\n    print(f\\\"Loading results: {list(dirs.keys())}\\\")\\n\\n    all_data = {}\\n    for name, path in dirs.items():\\n        try:\\n            data = load_results(path, args.probe_type)\\n            all_data[name] = data\\n            n = len(data.get(\\\"results\\\", {}))\\n            print(f\\\"  {name}: {n} entries\\\")\\n        except Exception as e:\\n            print(f\\\"  {name}: FAILED ({e})\\\")\\n\\n    if not all_data:\\n        print(\\\"No data loaded.\\\")\\n        return\\n\\n    oracle_rho = load_oracle(dirs)\\n    if oracle_rho is not None:\\n        print(f\\\"Oracle rho: {oracle_rho:.4f}\\\")\\n\\n    # --- Comparison table ---\\n    print(\\\"\\\\n=== Layer-wise Spearman rho ===\\\")\\n    names = list(all_data.keys())\\n    header = [\\\"Layer\\\"] + names\\n    print(\\\" | \\\".join(f\\\"{h:>12}\\\" for h in header))\\n    print(\\\"-\\\" * (14 * len(header)))\\n\\n    all_layers = set()\\n    for data in all_data.values():\\n        layers, _ = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        all_layers.update(layers.tolist())\\n\\n    for layer in sorted(all_layers):\\n        row = [f\\\"{layer:>12}\\\"]\\n        for name in names:\\n            layers, rhos = extract_layer_metrics(all_data[name], \\\"spearman_rho\\\")\\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\\n            val = lmap.get(layer, float(\\\"nan\\\"))\\n            row.append(f\\\"{val:>12.4f}\\\")\\n        print(\\\" | \\\".join(row))\\n\\n    print(\\\"\\\\n=== Best Layer ===\\\")\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            print(f\\\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\\\")\\n\\n    # --- Plots ---\\n    if args.probe_type == \\\"temporal_distance\\\":\\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\\n        plot_delta_rho(all_data, args.output_dir)\\n\\n    if args.probe_type == \\\"subtask_predicate\\\":\\n        for name, data in all_data.items():\\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\\n\\n    # --- Judgment ---\\n    judgment = compute_judgment(all_data)\\n    print(f\\\"\\\\n=== Judgment: {judgment['judgment']} ===\\\")\\n    for k, v in judgment[\\\"criteria\\\"].items():\\n        print(f\\\"  {k}: {v}\\\")\\n    for r in judgment[\\\"reasons\\\"]:\\n        print(f\\\"  >> {r}\\\")\\n\\n    # --- Save ---\\n    summary = dict(\\n        models=names,\\n        probe_type=args.probe_type,\\n        judgment=judgment,\\n    )\\n    for name, data in all_data.items():\\n        layers, rhos = extract_layer_metrics(data, \\\"spearman_rho\\\")\\n        if len(rhos) > 0:\\n            bi = int(np.argmax(rhos))\\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\\n    if oracle_rho is not None:\\n        summary[\\\"oracle_rho\\\"] = oracle_rho\\n\\n    with open(os.path.join(args.output_dir, \\\"summary.json\\\"), \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\nSaved {args.output_dir}/summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full file. Let me reconstruct it and plan the changes:
+
+The file is 377 lines. Key sections I need to modify:
+
+1. **`compute_judgment()`** (starts around line 213):
+   - Change `best_rho > 0.3` to `best_rho > 0.5` 
+   - Add bootstrap CI check for delta_rho
+   - Update subtask gate: old `VLA >= DINO-V2 OR subtask_AUC > 0.7` → new `VLA_ρ >= DINO_ρ OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)`
+   - Incorporate CI validation into the three-branch judgment logic and update the corresponding reason strings
+
+2. **Add `bootstrap_delta_rho()` function** before `compute_judgment()`
+
+3. **Add `plot_per_layer_rho_profile()` function** - three-line comparison (VLA trained / untrained / DINO-V2), DINO-V2 as horizontal line
+
+4. **Call the new plot from `main()`**
+
+I'll write out the complete updated file using a Python script to make these targeted modifications.
+
+Now I'm reconstructing the full file structure from what I've already read - the docstring, imports, argument parsing, directory and results loading functions, the oracle loading logic, sorting utilities, layer metrics extraction, color and marker definitions, and the existing plotting functions for layer rho, delta rho, and subtask AUC heatmaps.
+
+Looking at the remaining sections, I need to add the new `bootstrap_delta_rho()` and `plot_per_layer_rho_profile()` functions, then rewrite `compute_judgment()` with the updated logic before updating the main function to call these new plotting functions. Writing the Python script... I'm settling on writing a Python script to the server that reads the original file, applies all the necessary transformations, and writes it back—this avoids the fragility of trying to patch individual sections. The script needs to redefine the compute_judgment function to implement the three PASS/FAIL criteria, starting with checking if the best rho value exceeds 0.5.
+
+Continuing with the delta-rho calculation...
+
+Now I'm finding the maximum difference between trained and untrained rho values across their common layers, then using bootstrap resampling to compute a 95% confidence interval for that delta. If the confidence interval's lower bound exceeds zero, that passes the delta criterion of being greater than 0.1.
+
+Next I'm checking whether the VLA model's peak rho performance meets or exceeds DINO's, or alternatively whether a subtask AUC metric surpasses both a 0.7 threshold and DINO's subtask performance by at least 0.05. I'm storing the comparison results and pass/fail criteria, then determining the overall judgment based on whether rho, delta, and the third criterion are met—it's a PASS if all three pass, CONDITIONAL if delta passes but the third criterion doesn't, and FAIL otherwise. Now I'm building out the reasons list to explain which criteria weren't satisfied.
+
+Writing the visualization function... Finishing the plot configuration and saving the visualization to both PNG and PDF formats in the output directory.
+
+Now I need to write a Python script that handles all these transformations. I'm planning to write it directly to the server and execute it, but I'm noticing a potential mismatch in the data structure—the bootstrap function expects per-task best-layer ρ values, but the current code seems to be organized around per-layer metrics instead. I see that the common layers across the datasets serve as the observations for bootstrapping the mean difference in rho values. Now I'm writing a Python script that will read the file, make the necessary text replacements to update the bootstrap function, and write it back out, avoiding any escaping issues by constructing the full file content directly. Writing the transformation script... I'm going back through the exact function signatures and return statements to make sure my replacement strings match precisely. Rather than risk escaping issues with the raw content, I'll encode the entire update script in base64 and decode it directly during execution. Writing the analysis script... Continuing to build out the utility functions...
+
+I'm finishing up the function that loads layer results from JSON files, then moving into helper functions for loading oracle data and extracting metrics from the results.
+
+Now I'm setting up color and marker mappings for different model types, then starting to define the plotting function that will visualize layer-wise correlation scores.
+
+Building the plot visualization... Writing visualization code... Writing the heatmap visualization... Finishing the file path and saving the visualization in both PNG and PDF formats, then moving on to define a function that plots the per-layer correlation profile across different model variants.
+
+Still writing plotting code...
+
+Now I'm setting up a bootstrap resampling function to compute the difference in Spearman rho between trained and untrained models, sampling with replacement across multiple iterations to estimate the distribution of that delta.
+
+Then I'm defining a judgment function that evaluates whether the model passes based on three criteria, starting with checking if the best rho value across all layers exceeds 0.5.
+
+Now I'm moving to the second criterion, which compares the correlation improvement between trained and untrained models using bootstrap confidence intervals to determine if the delta-rho is statistically significant. I'm checking whether the trained model's maximum correlation exceeds DINO's, and also comparing their AUC scores on the subtask to see if the trained model performs significantly better. Then I'm extracting the best AUC values from both models' results to continue the comparison. Finishing the evaluation logic...
+
+I'm completing the criteria checks by combining the VLA and DinoV2 results with the earlier statistical tests, then determining the overall judgment based on whether the model passes all three criteria or just the delta test. Finally, I'm building out the reasons list to explain which specific criteria failed and why, pulling the exact threshold values and confidence interval bounds into the failure messages.
+
+Now I'm moving into the main execution flow where I parse command-line arguments, create the output directory, and load results from multiple experiment directories. I'm iterating through each directory to load the probe data and counting how many entries were successfully loaded, while catching any errors that occur during loading. Then I'm attempting to load oracle rho values to use as a baseline for comparison.
+
+Building the comparison table... Writing visualization and analysis code... I have the full updated file now and need to get it onto the server. I'm thinking through the best way to handle this—base64 encoding seems like the cleanest approach to avoid quoting issues. I could write it locally, encode it, then decode it on the server side via ssh_execute, or I could try writing the Python script directly through ssh with careful quote handling.
+
+Actually, using a heredoc with a single-quoted delimiter should work well here—it'll prevent any shell expansion of special characters. I'll construct the Python transformation script that reads the file, creates a backup, and applies the necessary string replacements.
+
+Writing the transformation script... Finishing the plot function by adding the DINO-V2 reference line with its rho value, then configuring the axes labels, title, and legend before saving the figure in both PNG and PDF formats.
+
+Now I'm inserting this new plotting function into the script right before the Judgment section, and then defining a bootstrap function to compute confidence intervals for the difference in rho values between trained and untrained models. Now I'm replacing the delta-rho comparison logic to calculate the maximum difference in Spearman rho values between trained and untrained models across common layers, which will be used to update the threshold criteria. I'm completing the dictionary mappings for trained and untrained rho values, then finding the common layers between them. For the shared layers, I'm calculating the maximum delta and running a bootstrap analysis to get the 95% confidence interval for the delta-rho difference, checking whether that interval excludes zero to validate the statistical significance of the improvement.
+
+Now I'm replacing the old delta calculation with the updated version, then moving on to handle the subtask gate criteria by comparing VLA performance against DINO-V2 and checking if the subtask AUC exceeds the 0.7 threshold. Extracting the Spearman correlation metrics from both the trained VLA model and DINO to compare their maximum values, then iterating through the results to find the best macro AUC scores for each model to evaluate the second criterion. I'm updating the threshold for the rho criterion from 0.3 to 0.5, and then refining the logic for when to report the delta-rho failure reason by checking if the value actually meets that threshold before appending the message. Finishing up the file write operation, then I'm checking whether the heredoc approach will handle the Python f-strings correctly—since I'm using a single-quoted delimiter, the shell won't expand anything, so as long as 'PYEOF' doesn't appear in the content itself, it should work fine. Now I need to trace through the original compute_judgment logic more carefully to make sure I'm handling the subtask_pass break statements correctly. I'm tracing through the old logic to understand what it was actually checking—it looks like it was iterating through all results and setting `subtask_pass` to `True` if any model's macro_auc exceeded 0.7, then breaking out of the loops. My replacement correctly shifts this to compare the VLA's subtask_auc specifically against DINO's performance instead. I see the issue now—the break only exits the inner loop, not the outer one, so the original code keeps iterating even after finding a match. I need to replace this entire section with logic that properly exits both loops once a subtask with AUC > 0.7 is found, then set the criteria flags accordingly. Checking the field names across both outputs to make sure they're consistent—they both show `criteria["vla_ge_dinov2"]`, so that's good. Now I need to verify the rest of my transformation script is working correctly.
+
+Looking at the reason strings I'm replacing: I'm updating the rho threshold from 0.3 to 0.5, adding a CI check to the delta reason, and changing the third criterion message. These replacements should cover all the necessary updates.
+
+For the heredoc, the f-strings with curly braces are safe since the delimiter is single-quoted, so the shell won't try to expand them. The only risk would be if 'PYEOF' appeared on its own line in the content, which it doesn't.
+
+I also notice that `plot_per_layer_rho_profile` should only run for the temporal_distance probe type, so I'm adding it right after `plot_delta_rho` in that conditional block.
+
+Now I need to write out the transformation carefully—the Python script uses 4-space indentation, and my replacement strings need to match the file content exactly, character for character, with spaces not tabs.
+
+Writing the transformation script... I'm working through the quoting problem with the heredoc approach—the Python script inside the heredoc uses triple single quotes as string delimiters, and I need to make sure the heredoc delimiter itself doesn't conflict with that. Looking at the original file content, there don't appear to be any triple single quotes, so wrapping it in `'''...'''` should work cleanly. I'm concerned the ssh_execute tool might not handle heredocs reliably, so let me try a base64 encoding approach instead—I'll encode the transformation script locally, send the encoded version to the server, then decode and execute it there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "5d39fc0e-f424-48dd-aaf2-3a5d97c8983c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5MBTTz7gy5KswyFnTDGR6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2924,
+      "cache_read_input_tokens": 31223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+377 行文件，已读取完整内容。现在构造更新后的完整文件并写入服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "9affeb39-1cd2-4e9f-9bab-0cc58b4a94a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5MBTTz7gy5KswyFnTDGR6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2924,
+      "cache_read_input_tokens": 31223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01KHxGAWBymP364iCcNkr4Dy`</summary>
+
+```json
+{
+  "file_path": "/tmp/analyze_results_new.py",
+  "content": "\"\"\"analyze_results.py — Compare probe results across models and visualize.\n\nInput:  Multiple result directories (from train_probes.py)\nOutput: Comparison tables, plots, PASS/FAIL judgment\n\nUsage:\n  python analyze_results.py \\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\n    --output_dir results/analysis/\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport glob\nfrom pathlib import Path\n\nimport numpy as np\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Analyze and compare probe results\")\n    p.add_argument(\"--results_dirs\", required=True,\n                   help=\"Comma-separated name:path pairs, e.g. trained:results/trained/\")\n    p.add_argument(\"--output_dir\", required=True)\n    p.add_argument(\"--probe_type\", default=\"temporal_distance\",\n                   choices=[\"temporal_distance\", \"subtask_predicate\"])\n    return p.parse_args()\n\n\ndef parse_results_dirs(s):\n    d = {}\n    for entry in s.split(\",\"):\n        name, path = entry.strip().split(\":\")\n        d[name.strip()] = path.strip()\n    return d\n\n\ndef load_results(results_dir, probe_type):\n    \"\"\"Load probe results from a directory.\"\"\"\n    probe_dir = os.path.join(results_dir, probe_type)\n    summary_path = os.path.join(probe_dir, \"summary.json\")\n    if os.path.exists(summary_path):\n        with open(summary_path) as f:\n            return json.load(f)\n\n    results = {}\n    for p in sorted(glob.glob(os.path.join(probe_dir, \"layer_*.json\"))):\n        with open(p) as f:\n            m = json.load(f)\n        key = m.get(\"layer\", Path(p).stem.replace(\"layer_\", \"\"))\n        results[str(key)] = m\n    return {\"results\": results}\n\n\ndef load_oracle(results_dirs):\n    \"\"\"Auto-detect oracle results from any provided directory.\"\"\"\n    for path in results_dirs.values():\n        oracle_dir = os.path.join(path, \"oracle\")\n        summary = os.path.join(oracle_dir, \"summary.json\")\n        if os.path.exists(summary):\n            with open(summary) as f:\n                data = json.load(f)\n            r = data.get(\"results\", {})\n            if \"oracle\" in r:\n                return r[\"oracle\"].get(\"spearman_rho\")\n    return None\n\n\ndef _sort_key(x):\n    try:\n        return (0, int(x))\n    except ValueError:\n        return (1, x)\n\n\ndef extract_layer_metrics(data, metric=\"spearman_rho\"):\n    results = data.get(\"results\", {})\n    layers, values = [], []\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\n        if k == \"oracle\":\n            continue\n        val = v.get(metric)\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\n            layers.append(int(k))\n            values.append(float(val))\n    return np.array(layers), np.array(values)\n\n\n# ============================================================\n# Plots\n# ============================================================\n\nCOLORS = {\n    \"trained\": \"#2196F3\", \"untrained\": \"#F44336\",\n    \"dinov2\": \"#4CAF50\", \"oracle\": \"#FF9800\",\n}\nMARKERS = {\"trained\": \"o\", \"untrained\": \"s\", \"dinov2\": \"^\", \"oracle\": \"D\"}\n\n\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\n    fig, ax = plt.subplots(figsize=(10, 5))\n\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(layers) == 0:\n            continue\n        ax.plot(layers, rhos,\n                marker=MARKERS.get(name, \"o\"),\n                color=COLORS.get(name, \"#999\"),\n                label=name, linewidth=2, markersize=5)\n\n    if oracle_rho is not None:\n        ax.axhline(y=oracle_rho, color=COLORS[\"oracle\"],\n                   linestyle=\"--\", label=f\"oracle (rho={oracle_rho:.3f})\", alpha=0.7)\n\n    ax.set_xlabel(\"Layer\")\n    ax.set_ylabel(\"Spearman rho\")\n    ax.set_title(\"Temporal Distance Probe: Layer-wise Spearman rho\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"layer_rho.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_delta_rho(all_data, output_dir):\n    if \"trained\" not in all_data or \"untrained\" not in all_data:\n        print(\"Skipping delta-rho plot (need trained + untrained)\")\n        return\n\n    l_tr, rho_tr = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n    l_un, rho_un = extract_layer_metrics(all_data[\"untrained\"], \"spearman_rho\")\n\n    tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\n    un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\n    common = sorted(set(l_tr.tolist()) & set(l_un.tolist()))\n    if not common:\n        return\n\n    layers = np.array(common)\n    deltas = np.array([tr_map[l] - un_map[l] for l in common])\n\n    fig, ax = plt.subplots(figsize=(10, 5))\n    colors = [\"#2196F3\" if d >= 0 else \"#F44336\" for d in deltas]\n    ax.bar(layers, deltas, color=colors, width=0.8)\n    ax.axhline(y=0.1, color=\"green\", linestyle=\"--\", alpha=0.5, label=\"threshold=0.1\")\n    ax.axhline(y=0, color=\"black\", linewidth=0.5)\n    ax.set_xlabel(\"Layer\")\n    ax.set_ylabel(\"Delta-rho (trained - untrained)\")\n    ax.set_title(\"Temporal Distance Probe: Delta-rho per Layer\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"delta_rho.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_subtask_auc_heatmap(data, output_dir, name=\"trained\"):\n    results = data.get(\"results\", {})\n    layers = sorted([int(k) for k in results if k != \"oracle\"])\n    if not layers:\n        return\n\n    pred_names = None\n    for v in results.values():\n        if \"predicate_names\" in v:\n            pred_names = v[\"predicate_names\"]\n            break\n    if pred_names is None:\n        return\n\n    n_pred = len(pred_names)\n    heatmap = np.full((len(layers), n_pred), np.nan)\n\n    for li, layer in enumerate(layers):\n        auc = results[str(layer)].get(\"auc_per_predicate\", {})\n        for k in range(n_pred):\n            val = auc.get(str(k), np.nan)\n            heatmap[li, k] = val\n\n    fig, ax = plt.subplots(figsize=(max(8, n_pred), max(6, len(layers) * 0.3)))\n    im = ax.imshow(heatmap, aspect=\"auto\", cmap=\"YlOrRd\", vmin=0.5, vmax=1.0)\n    ax.set_xticks(range(n_pred))\n    ax.set_xticklabels(pred_names, rotation=45, ha=\"right\", fontsize=8)\n    ax.set_yticks(range(len(layers)))\n    ax.set_yticklabels(layers)\n    ax.set_xlabel(\"Predicate\")\n    ax.set_ylabel(\"Layer\")\n    ax.set_title(f\"Sub-task Predicate AUC ({name})\")\n    fig.colorbar(im, ax=ax, label=\"AUC-ROC\")\n\n    path = os.path.join(output_dir, f\"subtask_auc_{name}.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_per_layer_rho_profile(all_data, output_dir):\n    fig, ax = plt.subplots(figsize=(10, 5))\n\n    for name in [\"trained\", \"untrained\"]:\n        if name not in all_data:\n            continue\n        layers, rhos = extract_layer_metrics(all_data[name], \"spearman_rho\")\n        if len(layers) == 0:\n            continue\n        ax.plot(layers, rhos,\n                marker=MARKERS.get(name, \"o\"),\n                color=COLORS.get(name, \"#999\"),\n                label=name, linewidth=2, markersize=5)\n\n    if \"dinov2\" in all_data:\n        _, rho_dino = extract_layer_metrics(all_data[\"dinov2\"], \"spearman_rho\")\n        if len(rho_dino) > 0:\n            dino_val = float(rho_dino.max())\n            ax.axhline(y=dino_val, color=COLORS.get(\"dinov2\", \"#4CAF50\"),\n                       linestyle=\"--\", linewidth=2,\n                       label=f\"DINO-V2 (rho={dino_val:.3f})\")\n\n    ax.set_xlabel(\"Layer Index\")\n    ax.set_ylabel(\"Spearman rho\")\n    ax.set_title(\"Per-layer rho Profile: VLA (trained/untrained) vs DINO-V2\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"per_layer_rho_profile.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\n# ============================================================\n# Judgment\n# ============================================================\n\ndef bootstrap_delta_rho(trained_rhos, untrained_rhos, n_bootstrap=1000, seed=42):\n    rng = np.random.RandomState(seed)\n    deltas = []\n    n = len(trained_rhos)\n    for _ in range(n_bootstrap):\n        idx = rng.choice(n, n, replace=True)\n        delta = np.mean(np.array(trained_rhos)[idx]) - np.mean(np.array(untrained_rhos)[idx])\n        deltas.append(delta)\n    deltas = sorted(deltas)\n    ci_lower = deltas[int(0.025 * n_bootstrap)]\n    ci_upper = deltas[int(0.975 * n_bootstrap)]\n    return np.mean(deltas), ci_lower, ci_upper\n\n\ndef compute_judgment(all_data):\n    \"\"\"PASS/FAIL based on three criteria (D001 calibration).\"\"\"\n    criteria = {}\n\n    # 1) best rho > 0.5\n    if \"trained\" in all_data:\n        layers, rhos = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\n    else:\n        best_rho, best_layer = 0.0, -1\n\n    criteria[\"best_rho\"] = best_rho\n    criteria[\"best_layer\"] = best_layer\n    criteria[\"rho_pass\"] = best_rho > 0.5\n\n    # 2) delta-rho > 0.1 with bootstrapped 95% CI excluding 0\n    max_delta = 0.0\n    delta_ci_lower = 0.0\n    delta_ci_upper = 0.0\n    ci_excludes_zero = False\n    if \"trained\" in all_data and \"untrained\" in all_data:\n        l_tr, rho_tr = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        l_un, rho_un = extract_layer_metrics(all_data[\"untrained\"], \"spearman_rho\")\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\n        common = set(l_tr.tolist()) & set(l_un.tolist())\n        if common:\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\n            trained_rhos = [tr_map[l] for l in sorted(common)]\n            untrained_rhos = [un_map[l] for l in sorted(common)]\n            _, delta_ci_lower, delta_ci_upper = bootstrap_delta_rho(\n                trained_rhos, untrained_rhos\n            )\n            ci_excludes_zero = delta_ci_lower > 0\n\n    criteria[\"max_delta_rho\"] = max_delta\n    criteria[\"delta_ci_lower\"] = delta_ci_lower\n    criteria[\"delta_ci_upper\"] = delta_ci_upper\n    criteria[\"ci_excludes_zero\"] = ci_excludes_zero\n    criteria[\"delta_pass\"] = max_delta > 0.1 and ci_excludes_zero\n\n    # 3) VLA_rho >= DINO_rho OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\n    vla_ge_dino = False\n    if \"trained\" in all_data and \"dinov2\" in all_data:\n        _, rho_vla = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        _, rho_dino = extract_layer_metrics(all_data[\"dinov2\"], \"spearman_rho\")\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\n\n    vla_best_auc = 0.0\n    dino_best_auc = 0.0\n    if \"trained\" in all_data:\n        for v in all_data[\"trained\"].get(\"results\", {}).values():\n            if isinstance(v.get(\"macro_auc\"), (int, float)):\n                vla_best_auc = max(vla_best_auc, v[\"macro_auc\"])\n    if \"dinov2\" in all_data:\n        for v in all_data[\"dinov2\"].get(\"results\", {}).values():\n            if isinstance(v.get(\"macro_auc\"), (int, float)):\n                dino_best_auc = max(dino_best_auc, v[\"macro_auc\"])\n    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\n\n    criteria[\"vla_ge_dinov2\"] = vla_ge_dino\n    criteria[\"vla_best_auc\"] = vla_best_auc\n    criteria[\"dino_best_auc\"] = dino_best_auc\n    criteria[\"subtask_auc_pass\"] = subtask_pass\n    criteria[\"third_criterion\"] = vla_ge_dino or subtask_pass\n\n    if criteria[\"rho_pass\"] and criteria[\"delta_pass\"] and criteria[\"third_criterion\"]:\n        judgment = \"PASS\"\n    elif criteria[\"delta_pass\"] and not criteria[\"third_criterion\"]:\n        judgment = \"CONDITIONAL\"\n    else:\n        judgment = \"FAIL\"\n\n    reasons = []\n    if not criteria[\"rho_pass\"]:\n        reasons.append(f\"best rho = {best_rho:.4f} <= 0.5\")\n    if not criteria[\"delta_pass\"]:\n        if max_delta <= 0.1:\n            reasons.append(f\"max delta-rho = {max_delta:.4f} <= 0.1\")\n        elif not ci_excludes_zero:\n            reasons.append(f\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\")\n    if not criteria[\"third_criterion\"]:\n        reasons.append(\"VLA < DINO-V2 AND subtask gate not met\")\n\n    return dict(judgment=judgment, criteria=criteria,\n                reasons=reasons if reasons else [\"All criteria met\"])\n\n\n# ============================================================\n# Main\n# ============================================================\n\ndef main():\n    args = parse_args()\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    dirs = parse_results_dirs(args.results_dirs)\n    print(f\"Loading results: {list(dirs.keys())}\")\n\n    all_data = {}\n    for name, path in dirs.items():\n        try:\n            data = load_results(path, args.probe_type)\n            all_data[name] = data\n            n = len(data.get(\"results\", {}))\n            print(f\"  {name}: {n} entries\")\n        except Exception as e:\n            print(f\"  {name}: FAILED ({e})\")\n\n    if not all_data:\n        print(\"No data loaded.\")\n        return\n\n    oracle_rho = load_oracle(dirs)\n    if oracle_rho is not None:\n        print(f\"Oracle rho: {oracle_rho:.4f}\")\n\n    # --- Comparison table ---\n    print(\"\\n=== Layer-wise Spearman rho ===\")\n    names = list(all_data.keys())\n    header = [\"Layer\"] + names\n    print(\" | \".join(f\"{h:>12}\" for h in header))\n    print(\"-\" * (14 * len(header)))\n\n    all_layers = set()\n    for data in all_data.values():\n        layers, _ = extract_layer_metrics(data, \"spearman_rho\")\n        all_layers.update(layers.tolist())\n\n    for layer in sorted(all_layers):\n        row = [f\"{layer:>12}\"]\n        for name in names:\n            layers, rhos = extract_layer_metrics(all_data[name], \"spearman_rho\")\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\n            val = lmap.get(layer, float(\"nan\"))\n            row.append(f\"{val:>12.4f}\")\n        print(\" | \".join(row))\n\n    print(\"\\n=== Best Layer ===\")\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(rhos) > 0:\n            bi = int(np.argmax(rhos))\n            print(f\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\")\n\n    # --- Plots ---\n    if args.probe_type == \"temporal_distance\":\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\n        plot_delta_rho(all_data, args.output_dir)\n        plot_per_layer_rho_profile(all_data, args.output_dir)\n\n    if args.probe_type == \"subtask_predicate\":\n        for name, data in all_data.items():\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\n\n    # --- Judgment ---\n    judgment = compute_judgment(all_data)\n    print(f\"\\n=== Judgment: {judgment['judgment']} ===\")\n    for k, v in judgment[\"criteria\"].items():\n        print(f\"  {k}: {v}\")\n    for r in judgment[\"reasons\"]:\n        print(f\"  >> {r}\")\n\n    # --- Save ---\n    summary = dict(\n        models=names,\n        probe_type=args.probe_type,\n        judgment=judgment,\n    )\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(rhos) > 0:\n            bi = int(np.argmax(rhos))\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\n    if oracle_rho is not None:\n        summary[\"oracle_rho\"] = oracle_rho\n\n    with open(os.path.join(args.output_dir, \"summary.json\"), \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"\\nSaved {args.output_dir}/summary.json\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "6d95cd75-53a9-4356-8709-6aa6aaf300c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5MBTTz7gy5KswyFnTDGR6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2924,
+      "cache_read_input_tokens": 31223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T11:09:39.310Z_
+
+<details><summary>↩ Tool result · `toolu_01KHxGAWBymP364iCcNkr4Dy`</summary>
+
+```text
+File created successfully at: /tmp/analyze_results_new.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "0a05b52a-5e89-4e3f-8907-86b4438e6a1c",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/tmp/analyze_results_new.py",
+    "content": "\"\"\"analyze_results.py — Compare probe results across models and visualize.\n\nInput:  Multiple result directories (from train_probes.py)\nOutput: Comparison tables, plots, PASS/FAIL judgment\n\nUsage:\n  python analyze_results.py \\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\n    --output_dir results/analysis/\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport glob\nfrom pathlib import Path\n\nimport numpy as np\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Analyze and compare probe results\")\n    p.add_argument(\"--results_dirs\", required=True,\n                   help=\"Comma-separated name:path pairs, e.g. trained:results/trained/\")\n    p.add_argument(\"--output_dir\", required=True)\n    p.add_argument(\"--probe_type\", default=\"temporal_distance\",\n                   choices=[\"temporal_distance\", \"subtask_predicate\"])\n    return p.parse_args()\n\n\ndef parse_results_dirs(s):\n    d = {}\n    for entry in s.split(\",\"):\n        name, path = entry.strip().split(\":\")\n        d[name.strip()] = path.strip()\n    return d\n\n\ndef load_results(results_dir, probe_type):\n    \"\"\"Load probe results from a directory.\"\"\"\n    probe_dir = os.path.join(results_dir, probe_type)\n    summary_path = os.path.join(probe_dir, \"summary.json\")\n    if os.path.exists(summary_path):\n        with open(summary_path) as f:\n            return json.load(f)\n\n    results = {}\n    for p in sorted(glob.glob(os.path.join(probe_dir, \"layer_*.json\"))):\n        with open(p) as f:\n            m = json.load(f)\n        key = m.get(\"layer\", Path(p).stem.replace(\"layer_\", \"\"))\n        results[str(key)] = m\n    return {\"results\": results}\n\n\ndef load_oracle(results_dirs):\n    \"\"\"Auto-detect oracle results from any provided directory.\"\"\"\n    for path in results_dirs.values():\n        oracle_dir = os.path.join(path, \"oracle\")\n        summary = os.path.join(oracle_dir, \"summary.json\")\n        if os.path.exists(summary):\n            with open(summary) as f:\n                data = json.load(f)\n            r = data.get(\"results\", {})\n            if \"oracle\" in r:\n                return r[\"oracle\"].get(\"spearman_rho\")\n    return None\n\n\ndef _sort_key(x):\n    try:\n        return (0, int(x))\n    except ValueError:\n        return (1, x)\n\n\ndef extract_layer_metrics(data, metric=\"spearman_rho\"):\n    results = data.get(\"results\", {})\n    layers, values = [], []\n    for k, v in sorted(results.items(), key=lambda x: _sort_key(x[0])):\n        if k == \"oracle\":\n            continue\n        val = v.get(metric)\n        if val is not None and not (isinstance(val, float) and np.isnan(val)):\n            layers.append(int(k))\n            values.append(float(val))\n    return np.array(layers), np.array(values)\n\n\n# ============================================================\n# Plots\n# ============================================================\n\nCOLORS = {\n    \"trained\": \"#2196F3\", \"untrained\": \"#F44336\",\n    \"dinov2\": \"#4CAF50\", \"oracle\": \"#FF9800\",\n}\nMARKERS = {\"trained\": \"o\", \"untrained\": \"s\", \"dinov2\": \"^\", \"oracle\": \"D\"}\n\n\ndef plot_layer_rho(all_data, oracle_rho, output_dir):\n    fig, ax = plt.subplots(figsize=(10, 5))\n\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(layers) == 0:\n            continue\n        ax.plot(layers, rhos,\n                marker=MARKERS.get(name, \"o\"),\n                color=COLORS.get(name, \"#999\"),\n                label=name, linewidth=2, markersize=5)\n\n    if oracle_rho is not None:\n        ax.axhline(y=oracle_rho, color=COLORS[\"oracle\"],\n                   linestyle=\"--\", label=f\"oracle (rho={oracle_rho:.3f})\", alpha=0.7)\n\n    ax.set_xlabel(\"Layer\")\n    ax.set_ylabel(\"Spearman rho\")\n    ax.set_title(\"Temporal Distance Probe: Layer-wise Spearman rho\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"layer_rho.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_delta_rho(all_data, output_dir):\n    if \"trained\" not in all_data or \"untrained\" not in all_data:\n        print(\"Skipping delta-rho plot (need trained + untrained)\")\n        return\n\n    l_tr, rho_tr = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n    l_un, rho_un = extract_layer_metrics(all_data[\"untrained\"], \"spearman_rho\")\n\n    tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\n    un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\n    common = sorted(set(l_tr.tolist()) & set(l_un.tolist()))\n    if not common:\n        return\n\n    layers = np.array(common)\n    deltas = np.array([tr_map[l] - un_map[l] for l in common])\n\n    fig, ax = plt.subplots(figsize=(10, 5))\n    colors = [\"#2196F3\" if d >= 0 else \"#F44336\" for d in deltas]\n    ax.bar(layers, deltas, color=colors, width=0.8)\n    ax.axhline(y=0.1, color=\"green\", linestyle=\"--\", alpha=0.5, label=\"threshold=0.1\")\n    ax.axhline(y=0, color=\"black\", linewidth=0.5)\n    ax.set_xlabel(\"Layer\")\n    ax.set_ylabel(\"Delta-rho (trained - untrained)\")\n    ax.set_title(\"Temporal Distance Probe: Delta-rho per Layer\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"delta_rho.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_subtask_auc_heatmap(data, output_dir, name=\"trained\"):\n    results = data.get(\"results\", {})\n    layers = sorted([int(k) for k in results if k != \"oracle\"])\n    if not layers:\n        return\n\n    pred_names = None\n    for v in results.values():\n        if \"predicate_names\" in v:\n            pred_names = v[\"predicate_names\"]\n            break\n    if pred_names is None:\n        return\n\n    n_pred = len(pred_names)\n    heatmap = np.full((len(layers), n_pred), np.nan)\n\n    for li, layer in enumerate(layers):\n        auc = results[str(layer)].get(\"auc_per_predicate\", {})\n        for k in range(n_pred):\n            val = auc.get(str(k), np.nan)\n            heatmap[li, k] = val\n\n    fig, ax = plt.subplots(figsize=(max(8, n_pred), max(6, len(layers) * 0.3)))\n    im = ax.imshow(heatmap, aspect=\"auto\", cmap=\"YlOrRd\", vmin=0.5, vmax=1.0)\n    ax.set_xticks(range(n_pred))\n    ax.set_xticklabels(pred_names, rotation=45, ha=\"right\", fontsize=8)\n    ax.set_yticks(range(len(layers)))\n    ax.set_yticklabels(layers)\n    ax.set_xlabel(\"Predicate\")\n    ax.set_ylabel(\"Layer\")\n    ax.set_title(f\"Sub-task Predicate AUC ({name})\")\n    fig.colorbar(im, ax=ax, label=\"AUC-ROC\")\n\n    path = os.path.join(output_dir, f\"subtask_auc_{name}.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\ndef plot_per_layer_rho_profile(all_data, output_dir):\n    fig, ax = plt.subplots(figsize=(10, 5))\n\n    for name in [\"trained\", \"untrained\"]:\n        if name not in all_data:\n            continue\n        layers, rhos = extract_layer_metrics(all_data[name], \"spearman_rho\")\n        if len(layers) == 0:\n            continue\n        ax.plot(layers, rhos,\n                marker=MARKERS.get(name, \"o\"),\n                color=COLORS.get(name, \"#999\"),\n                label=name, linewidth=2, markersize=5)\n\n    if \"dinov2\" in all_data:\n        _, rho_dino = extract_layer_metrics(all_data[\"dinov2\"], \"spearman_rho\")\n        if len(rho_dino) > 0:\n            dino_val = float(rho_dino.max())\n            ax.axhline(y=dino_val, color=COLORS.get(\"dinov2\", \"#4CAF50\"),\n                       linestyle=\"--\", linewidth=2,\n                       label=f\"DINO-V2 (rho={dino_val:.3f})\")\n\n    ax.set_xlabel(\"Layer Index\")\n    ax.set_ylabel(\"Spearman rho\")\n    ax.set_title(\"Per-layer rho Profile: VLA (trained/untrained) vs DINO-V2\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(output_dir, \"per_layer_rho_profile.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    fig.savefig(path.replace(\".png\", \".pdf\"), bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved {path}\")\n\n\n# ============================================================\n# Judgment\n# ============================================================\n\ndef bootstrap_delta_rho(trained_rhos, untrained_rhos, n_bootstrap=1000, seed=42):\n    rng = np.random.RandomState(seed)\n    deltas = []\n    n = len(trained_rhos)\n    for _ in range(n_bootstrap):\n        idx = rng.choice(n, n, replace=True)\n        delta = np.mean(np.array(trained_rhos)[idx]) - np.mean(np.array(untrained_rhos)[idx])\n        deltas.append(delta)\n    deltas = sorted(deltas)\n    ci_lower = deltas[int(0.025 * n_bootstrap)]\n    ci_upper = deltas[int(0.975 * n_bootstrap)]\n    return np.mean(deltas), ci_lower, ci_upper\n\n\ndef compute_judgment(all_data):\n    \"\"\"PASS/FAIL based on three criteria (D001 calibration).\"\"\"\n    criteria = {}\n\n    # 1) best rho > 0.5\n    if \"trained\" in all_data:\n        layers, rhos = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_rho = float(rhos.max()) if len(rhos) > 0 else 0.0\n        best_layer = int(layers[np.argmax(rhos)]) if len(rhos) > 0 else -1\n    else:\n        best_rho, best_layer = 0.0, -1\n\n    criteria[\"best_rho\"] = best_rho\n    criteria[\"best_layer\"] = best_layer\n    criteria[\"rho_pass\"] = best_rho > 0.5\n\n    # 2) delta-rho > 0.1 with bootstrapped 95% CI excluding 0\n    max_delta = 0.0\n    delta_ci_lower = 0.0\n    delta_ci_upper = 0.0\n    ci_excludes_zero = False\n    if \"trained\" in all_data and \"untrained\" in all_data:\n        l_tr, rho_tr = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        l_un, rho_un = extract_layer_metrics(all_data[\"untrained\"], \"spearman_rho\")\n        tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\n        un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\n        common = set(l_tr.tolist()) & set(l_un.tolist())\n        if common:\n            max_delta = max(tr_map[l] - un_map[l] for l in common)\n            trained_rhos = [tr_map[l] for l in sorted(common)]\n            untrained_rhos = [un_map[l] for l in sorted(common)]\n            _, delta_ci_lower, delta_ci_upper = bootstrap_delta_rho(\n                trained_rhos, untrained_rhos\n            )\n            ci_excludes_zero = delta_ci_lower > 0\n\n    criteria[\"max_delta_rho\"] = max_delta\n    criteria[\"delta_ci_lower\"] = delta_ci_lower\n    criteria[\"delta_ci_upper\"] = delta_ci_upper\n    criteria[\"ci_excludes_zero\"] = ci_excludes_zero\n    criteria[\"delta_pass\"] = max_delta > 0.1 and ci_excludes_zero\n\n    # 3) VLA_rho >= DINO_rho OR (subtask_AUC > 0.7 AND subtask_AUC > DINO_subtask_AUC + 0.05)\n    vla_ge_dino = False\n    if \"trained\" in all_data and \"dinov2\" in all_data:\n        _, rho_vla = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        _, rho_dino = extract_layer_metrics(all_data[\"dinov2\"], \"spearman_rho\")\n        if len(rho_vla) > 0 and len(rho_dino) > 0:\n            vla_ge_dino = float(rho_vla.max()) >= float(rho_dino.max())\n\n    vla_best_auc = 0.0\n    dino_best_auc = 0.0\n    if \"trained\" in all_data:\n        for v in all_data[\"trained\"].get(\"results\", {}).values():\n            if isinstance(v.get(\"macro_auc\"), (int, float)):\n                vla_best_auc = max(vla_best_auc, v[\"macro_auc\"])\n    if \"dinov2\" in all_data:\n        for v in all_data[\"dinov2\"].get(\"results\", {}).values():\n            if isinstance(v.get(\"macro_auc\"), (int, float)):\n                dino_best_auc = max(dino_best_auc, v[\"macro_auc\"])\n    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\n\n    criteria[\"vla_ge_dinov2\"] = vla_ge_dino\n    criteria[\"vla_best_auc\"] = vla_best_auc\n    criteria[\"dino_best_auc\"] = dino_best_auc\n    criteria[\"subtask_auc_pass\"] = subtask_pass\n    criteria[\"third_criterion\"] = vla_ge_dino or subtask_pass\n\n    if criteria[\"rho_pass\"] and criteria[\"delta_pass\"] and criteria[\"third_criterion\"]:\n        judgment = \"PASS\"\n    elif criteria[\"delta_pass\"] and not criteria[\"third_criterion\"]:\n        judgment = \"CONDITIONAL\"\n    else:\n        judgment = \"FAIL\"\n\n    reasons = []\n    if not criteria[\"rho_pass\"]:\n        reasons.append(f\"best rho = {best_rho:.4f} <= 0.5\")\n    if not criteria[\"delta_pass\"]:\n        if max_delta <= 0.1:\n            reasons.append(f\"max delta-rho = {max_delta:.4f} <= 0.1\")\n        elif not ci_excludes_zero:\n            reasons.append(f\"delta-rho CI [{delta_ci_lower:.4f}, {delta_ci_upper:.4f}] includes 0\")\n    if not criteria[\"third_criterion\"]:\n        reasons.append(\"VLA < DINO-V2 AND subtask gate not met\")\n\n    return dict(judgment=judgment, criteria=criteria,\n                reasons=reasons if reasons else [\"All criteria met\"])\n\n\n# ============================================================\n# Main\n# ============================================================\n\ndef main():\n    args = parse_args()\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    dirs = parse_results_dirs(args.results_dirs)\n    print(f\"Loading results: {list(dirs.keys())}\")\n\n    all_data = {}\n    for name, path in dirs.items():\n        try:\n            data = load_results(path, args.probe_type)\n            all_data[name] = data\n            n = len(data.get(\"results\", {}))\n            print(f\"  {name}: {n} entries\")\n        except Exception as e:\n            print(f\"  {name}: FAILED ({e})\")\n\n    if not all_data:\n        print(\"No data loaded.\")\n        return\n\n    oracle_rho = load_oracle(dirs)\n    if oracle_rho is not None:\n        print(f\"Oracle rho: {oracle_rho:.4f}\")\n\n    # --- Comparison table ---\n    print(\"\\n=== Layer-wise Spearman rho ===\")\n    names = list(all_data.keys())\n    header = [\"Layer\"] + names\n    print(\" | \".join(f\"{h:>12}\" for h in header))\n    print(\"-\" * (14 * len(header)))\n\n    all_layers = set()\n    for data in all_data.values():\n        layers, _ = extract_layer_metrics(data, \"spearman_rho\")\n        all_layers.update(layers.tolist())\n\n    for layer in sorted(all_layers):\n        row = [f\"{layer:>12}\"]\n        for name in names:\n            layers, rhos = extract_layer_metrics(all_data[name], \"spearman_rho\")\n            lmap = dict(zip(layers.tolist(), rhos.tolist()))\n            val = lmap.get(layer, float(\"nan\"))\n            row.append(f\"{val:>12.4f}\")\n        print(\" | \".join(row))\n\n    print(\"\\n=== Best Layer ===\")\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(rhos) > 0:\n            bi = int(np.argmax(rhos))\n            print(f\"  {name}: layer {layers[bi]} (rho={rhos[bi]:.4f})\")\n\n    # --- Plots ---\n    if args.probe_type == \"temporal_distance\":\n        plot_layer_rho(all_data, oracle_rho, args.output_dir)\n        plot_delta_rho(all_data, args.output_dir)\n        plot_per_layer_rho_profile(all_data, args.output_dir)\n\n    if args.probe_type == \"subtask_predicate\":\n        for name, data in all_data.items():\n            plot_subtask_auc_heatmap(data, args.output_dir, name)\n\n    # --- Judgment ---\n    judgment = compute_judgment(all_data)\n    print(f\"\\n=== Judgment: {judgment['judgment']} ===\")\n    for k, v in judgment[\"criteria\"].items():\n        print(f\"  {k}: {v}\")\n    for r in judgment[\"reasons\"]:\n        print(f\"  >> {r}\")\n\n    # --- Save ---\n    summary = dict(\n        models=names,\n        probe_type=args.probe_type,\n        judgment=judgment,\n    )\n    for name, data in all_data.items():\n        layers, rhos = extract_layer_metrics(data, \"spearman_rho\")\n        if len(rhos) > 0:\n            bi = int(np.argmax(rhos))\n            summary[name] = dict(best_layer=int(layers[bi]), best_rho=float(rhos[bi]))\n    if oracle_rho is not None:\n        summary[\"oracle_rho\"] = oracle_rho\n\n    with open(os.path.join(args.output_dir, \"summary.json\"), \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"\\nSaved {args.output_dir}/summary.json\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PZiQQcsfSapx6tbcxz2L5u`</summary>
+
+```json
+{
+  "command": "base64 /tmp/analyze_results_new.py | tr -d '\\n'",
+  "description": "Base64 encode the new file for transfer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "0ceb72f3-7b7c-4117-ac23-f798aee655bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ppy3pBvPjHZZfjoQ5uh3ky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23168,
+      "cache_read_input_tokens": 34147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23168
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T11:09:42.654Z_
+
+<details><summary>↩ Tool result · `toolu_01PZiQQcsfSapx6tbcxz2L5u`</summary>
+
+```text
+[ATTACHMENT_DATA_REDACTED]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "ff5f114c-5542-4130-809a-08c64fac4898",
+  "tool_use_result": {
+    "stdout": "[ATTACHMENT_DATA_REDACTED]",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the base64 encoded content. Now let me send it to the server. I'll backup the original file first, then write the new one.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "a60ba3cd-13c4-4993-87c9-7b9a6a97256f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WyA8RDyq2RPANAC6TD81G5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17538,
+      "cache_read_input_tokens": 57315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17538
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Now deploying the updated file to the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "efc6a0b9-aa0b-4111-b273-f8c1e8484022",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WyA8RDyq2RPANAC6TD81G5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17538,
+      "cache_read_input_tokens": 57315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17538
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SniQBoHsB65CD56eXdBsmA`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cp /root/vla-ssd/scripts/analyze_results.py /root/vla-ssd/scripts/analyze_results.py.bak && echo 'IiIiYW5hbHl6ZV9yZXN1bHRzLnB5IOKAlCBDb21wYXJlIHByb2JlIHJlc3VsdHMgYWNyb3NzIG1vZGVscyBhbmQgdmlzdWFsaXplLgoKSW5wdXQ6ICBNdWx0aXBsZSByZXN1bHQgZGlyZWN0b3JpZXMgKGZyb20gdHJhaW5fcHJvYmVzLnB5KQpPdXRwdXQ6IENvbXBhcmlzb24gdGFibGVzLCBwbG90cywgUEFTUy9GQUlMIGp1ZGdtZW50CgpVc2FnZToKICBweXRob24gYW5hbHl6ZV9yZXN1bHRzLnB5IFwKICAgIC0tcmVzdWx0c19kaXJzIHRyYWluZWQ6cmVzdWx0cy90cmFpbmVkLyx1bnRyYWluZWQ6cmVzdWx0cy91bnRyYWluZWQvLGRpbm92MjpyZXN1bHRzL2Rpbm92Mi8gXAogICAgLS1vdXRwdXRfZGlyIHJlc3VsdHMvYW5hbHlzaXMvCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBvcwppbXBvcnQgZ2xvYgpmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGgKCmltcG9ydCBudW1weSBhcyBucAoKaW1wb3J0IG1hdHBsb3RsaWIKbWF0cGxvdGxpYi51c2UoIkFnZyIpCmltcG9ydCBtYXRwbG90bGliLnB5cGxvdCBhcyBwbHQKCgpkZWYgcGFyc2VfYXJncygpOgogICAgcCA9IGFyZ3BhcnNlLkFyZ3VtZW50UGFyc2VyKGRlc2NyaXB0aW9uPSJBbmFseXplIGFuZCBjb21wYXJlIHByb2JlIHJlc3VsdHMiKQogICAgcC5hZGRfYXJndW1lbnQoIi0tcmVzdWx0c19kaXJzIiwgcmVxdWlyZWQ9VHJ1ZSwKICAgICAgICAgICAgICAgICAgIGhlbHA9IkNvbW1hLXNlcGFyYXRlZCBuYW1lOnBhdGggcGFpcnMsIGUuZy4gdHJhaW5lZDpyZXN1bHRzL3RyYWluZWQvIikKICAgIHAuYWRkX2FyZ3VtZW50KCItLW91dHB1dF9kaXIiLCByZXF1aXJlZD1UcnVlKQogICAgcC5hZGRfYXJndW1lbnQoIi0tcHJvYmVfdHlwZSIsIGRlZmF1bHQ9InRlbXBvcmFsX2Rpc3RhbmNlIiwKICAgICAgICAgICAgICAgICAgIGNob2ljZXM9WyJ0ZW1wb3JhbF9kaXN0YW5jZSIsICJzdWJ0YXNrX3ByZWRpY2F0ZSJdKQogICAgcmV0dXJuIHAucGFyc2VfYXJncygpCgoKZGVmIHBhcnNlX3Jlc3VsdHNfZGlycyhzKToKICAgIGQgPSB7fQogICAgZm9yIGVudHJ5IGluIHMuc3BsaXQoIiwiKToKICAgICAgICBuYW1lLCBwYXRoID0gZW50cnkuc3RyaXAoKS5zcGxpdCgiOiIpCiAgICAgICAgZFtuYW1lLnN0cmlwKCldID0gcGF0aC5zdHJpcCgpCiAgICByZXR1cm4gZAoKCmRlZiBsb2FkX3Jlc3VsdHMocmVzdWx0c19kaXIsIHByb2JlX3R5cGUpOgogICAgIiIiTG9hZCBwcm9iZSByZXN1bHRzIGZyb20gYSBkaXJlY3RvcnkuIiIiCiAgICBwcm9iZV9kaXIgPSBvcy5wYXRoLmpvaW4ocmVzdWx0c19kaXIsIHByb2JlX3R5cGUpCiAgICBzdW1tYXJ5X3BhdGggPSBvcy5wYXRoLmpvaW4ocHJvYmVfZGlyLCAic3VtbWFyeS5qc29uIikKICAgIGlmIG9zLnBhdGguZXhpc3RzKHN1bW1hcnlfcGF0aCk6CiAgICAgICAgd2l0aCBvcGVuKHN1bW1hcnlfcGF0aCkgYXMgZjoKICAgICAgICAgICAgcmV0dXJuIGpzb24ubG9hZChmKQoKICAgIHJlc3VsdHMgPSB7fQogICAgZm9yIHAgaW4gc29ydGVkKGdsb2IuZ2xvYihvcy5wYXRoLmpvaW4ocHJvYmVfZGlyLCAibGF5ZXJfKi5qc29uIikpKToKICAgICAgICB3aXRoIG9wZW4ocCkgYXMgZjoKICAgICAgICAgICAgbSA9IGpzb24ubG9hZChmKQogICAgICAgIGtleSA9IG0uZ2V0KCJsYXllciIsIFBhdGgocCkuc3RlbS5yZXBsYWNlKCJsYXllcl8iLCAiIikpCiAgICAgICAgcmVzdWx0c1tzdHIoa2V5KV0gPSBtCiAgICByZXR1cm4geyJyZXN1bHRzIjogcmVzdWx0c30KCgpkZWYgbG9hZF9vcmFjbGUocmVzdWx0c19kaXJzKToKICAgICIiIkF1dG8tZGV0ZWN0IG9yYWNsZSByZXN1bHRzIGZyb20gYW55IHByb3ZpZGVkIGRpcmVjdG9yeS4iIiIKICAgIGZvciBwYXRoIGluIHJlc3VsdHNfZGlycy52YWx1ZXMoKToKICAgICAgICBvcmFjbGVfZGlyID0gb3MucGF0aC5qb2luKHBhdGgsICJvcmFjbGUiKQogICAgICAgIHN1bW1hcnkgPSBvcy5wYXRoLmpvaW4ob3JhY2xlX2RpciwgInN1bW1hcnkuanNvbiIpCiAgICAgICAgaWYgb3MucGF0aC5leGlzdHMoc3VtbWFyeSk6CiAgICAgICAgICAgIHdpdGggb3BlbihzdW1tYXJ5KSBhcyBmOgogICAgICAgICAgICAgICAgZGF0YSA9IGpzb24ubG9hZChmKQogICAgICAgICAgICByID0gZGF0YS5nZXQoInJlc3VsdHMiLCB7fSkKICAgICAgICAgICAgaWYgIm9yYWNsZSIgaW4gcjoKICAgICAgICAgICAgICAgIHJldHVybiByWyJvcmFjbGUiXS5nZXQoInNwZWFybWFuX3JobyIpCiAgICByZXR1cm4gTm9uZQoKCmRlZiBfc29ydF9rZXkoeCk6CiAgICB0cnk6CiAgICAgICAgcmV0dXJuICgwLCBpbnQoeCkpCiAgICBleGNlcHQgVmFsdWVFcnJvcjoKICAgICAgICByZXR1cm4gKDEsIHgpCgoKZGVmIGV4dHJhY3RfbGF5ZXJfbWV0cmljcyhkYXRhLCBtZXRyaWM9InNwZWFybWFuX3JobyIpOgogICAgcmVzdWx0cyA9IGRhdGEuZ2V0KCJyZXN1bHRzIiwge30pCiAgICBsYXllcnMsIHZhbHVlcyA9IFtdLCBbXQogICAgZm9yIGssIHYgaW4gc29ydGVkKHJlc3VsdHMuaXRlbXMoKSwga2V5PWxhbWJkYSB4OiBfc29ydF9rZXkoeFswXSkpOgogICAgICAgIGlmIGsgPT0gIm9yYWNsZSI6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgdmFsID0gdi5nZXQobWV0cmljKQogICAgICAgIGlmIHZhbCBpcyBub3QgTm9uZSBhbmQgbm90IChpc2luc3RhbmNlKHZhbCwgZmxvYXQpIGFuZCBucC5pc25hbih2YWwpKToKICAgICAgICAgICAgbGF5ZXJzLmFwcGVuZChpbnQoaykpCiAgICAgICAgICAgIHZhbHVlcy5hcHBlbmQoZmxvYXQodmFsKSkKICAgIHJldHVybiBucC5hcnJheShsYXllcnMpLCBucC5hcnJheSh2YWx1ZXMpCgoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBQbG90cwojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKQ09MT1JTID0gewogICAgInRyYWluZWQiOiAiIzIxOTZGMyIsICJ1bnRyYWluZWQiOiAiI0Y0NDMzNiIsCiAgICAiZGlub3YyIjogIiM0Q0FGNTAiLCAib3JhY2xlIjogIiNGRjk4MDAiLAp9Ck1BUktFUlMgPSB7InRyYWluZWQiOiAibyIsICJ1bnRyYWluZWQiOiAicyIsICJkaW5vdjIiOiAiXiIsICJvcmFjbGUiOiAiRCJ9CgoKZGVmIHBsb3RfbGF5ZXJfcmhvKGFsbF9kYXRhLCBvcmFjbGVfcmhvLCBvdXRwdXRfZGlyKToKICAgIGZpZywgYXggPSBwbHQuc3VicGxvdHMoZmlnc2l6ZT0oMTAsIDUpKQoKICAgIGZvciBuYW1lLCBkYXRhIGluIGFsbF9kYXRhLml0ZW1zKCk6CiAgICAgICAgbGF5ZXJzLCByaG9zID0gZXh0cmFjdF9sYXllcl9tZXRyaWNzKGRhdGEsICJzcGVhcm1hbl9yaG8iKQogICAgICAgIGlmIGxlbihsYXllcnMpID09IDA6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgYXgucGxvdChsYXllcnMsIHJob3MsCiAgICAgICAgICAgICAgICBtYXJrZXI9TUFSS0VSUy5nZXQobmFtZSwgIm8iKSwKICAgICAgICAgICAgICAgIGNvbG9yPUNPTE9SUy5nZXQobmFtZSwgIiM5OTkiKSwKICAgICAgICAgICAgICAgIGxhYmVsPW5hbWUsIGxpbmV3aWR0aD0yLCBtYXJrZXJzaXplPTUpCgogICAgaWYgb3JhY2xlX3JobyBpcyBub3QgTm9uZToKICAgICAgICBheC5heGhsaW5lKHk9b3JhY2xlX3JobywgY29sb3I9Q09MT1JTWyJvcmFjbGUiXSwKICAgICAgICAgICAgICAgICAgIGxpbmVzdHlsZT0iLS0iLCBsYWJlbD1mIm9yYWNsZSAocmhvPXtvcmFjbGVfcmhvOi4zZn0pIiwgYWxwaGE9MC43KQoKICAgIGF4LnNldF94bGFiZWwoIkxheWVyIikKICAgIGF4LnNldF95bGFiZWwoIlNwZWFybWFuIHJobyIpCiAgICBheC5zZXRfdGl0bGUoIlRlbXBvcmFsIERpc3RhbmNlIFByb2JlOiBMYXllci13aXNlIFNwZWFybWFuIHJobyIpCiAgICBheC5sZWdlbmQoKQogICAgYXguZ3JpZChUcnVlLCBhbHBoYT0wLjMpCgogICAgcGF0aCA9IG9zLnBhdGguam9pbihvdXRwdXRfZGlyLCAibGF5ZXJfcmhvLnBuZyIpCiAgICBmaWcuc2F2ZWZpZyhwYXRoLCBkcGk9MTUwLCBiYm94X2luY2hlcz0idGlnaHQiKQogICAgZmlnLnNhdmVmaWcocGF0aC5yZXBsYWNlKCIucG5nIiwgIi5wZGYiKSwgYmJveF9pbmNoZXM9InRpZ2h0IikKICAgIHBsdC5jbG9zZShmaWcpCiAgICBwcmludChmIlNhdmVkIHtwYXRofSIpCgoKZGVmIHBsb3RfZGVsdGFfcmhvKGFsbF9kYXRhLCBvdXRwdXRfZGlyKToKICAgIGlmICJ0cmFpbmVkIiBub3QgaW4gYWxsX2RhdGEgb3IgInVudHJhaW5lZCIgbm90IGluIGFsbF9kYXRhOgogICAgICAgIHByaW50KCJTa2lwcGluZyBkZWx0YS1yaG8gcGxvdCAobmVlZCB0cmFpbmVkICsgdW50cmFpbmVkKSIpCiAgICAgICAgcmV0dXJuCgogICAgbF90ciwgcmhvX3RyID0gZXh0cmFjdF9sYXllcl9tZXRyaWNzKGFsbF9kYXRhWyJ0cmFpbmVkIl0sICJzcGVhcm1hbl9yaG8iKQogICAgbF91biwgcmhvX3VuID0gZXh0cmFjdF9sYXllcl9tZXRyaWNzKGFsbF9kYXRhWyJ1bnRyYWluZWQiXSwgInNwZWFybWFuX3JobyIpCgogICAgdHJfbWFwID0gZGljdCh6aXAobF90ci50b2xpc3QoKSwgcmhvX3RyLnRvbGlzdCgpKSkKICAgIHVuX21hcCA9IGRpY3QoemlwKGxfdW4udG9saXN0KCksIHJob191bi50b2xpc3QoKSkpCiAgICBjb21tb24gPSBzb3J0ZWQoc2V0KGxfdHIudG9saXN0KCkpICYgc2V0KGxfdW4udG9saXN0KCkpKQogICAgaWYgbm90IGNvbW1vbjoKICAgICAgICByZXR1cm4KCiAgICBsYXllcnMgPSBucC5hcnJheShjb21tb24pCiAgICBkZWx0YXMgPSBucC5hcnJheShbdHJfbWFwW2xdIC0gdW5fbWFwW2xdIGZvciBsIGluIGNvbW1vbl0pCgogICAgZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSgxMCwgNSkpCiAgICBjb2xvcnMgPSBbIiMyMTk2RjMiIGlmIGQgPj0gMCBlbHNlICIjRjQ0MzM2IiBmb3IgZCBpbiBkZWx0YXNdCiAgICBheC5iYXIobGF5ZXJzLCBkZWx0YXMsIGNvbG9yPWNvbG9ycywgd2lkdGg9MC44KQogICAgYXguYXhobGluZSh5PTAuMSwgY29sb3I9ImdyZWVuIiwgbGluZXN0eWxlPSItLSIsIGFscGhhPTAuNSwgbGFiZWw9InRocmVzaG9sZD0wLjEiKQogICAgYXguYXhobGluZSh5PTAsIGNvbG9yPSJibGFjayIsIGxpbmV3aWR0aD0wLjUpCiAgICBheC5zZXRfeGxhYmVsKCJMYXllciIpCiAgICBheC5zZXRfeWxhYmVsKCJEZWx0YS1yaG8gKHRyYWluZWQgLSB1bnRyYWluZWQpIikKICAgIGF4LnNldF90aXRsZSgiVGVtcG9yYWwgRGlzdGFuY2UgUHJvYmU6IERlbHRhLXJobyBwZXIgTGF5ZXIiKQogICAgYXgubGVnZW5kKCkKICAgIGF4LmdyaWQoVHJ1ZSwgYWxwaGE9MC4zKQoKICAgIHBhdGggPSBvcy5wYXRoLmpvaW4ob3V0cHV0X2RpciwgImRlbHRhX3Joby5wbmciKQogICAgZmlnLnNhdmVmaWcocGF0aCwgZHBpPTE1MCwgYmJveF9pbmNoZXM9InRpZ2h0IikKICAgIGZpZy5zYXZlZmlnKHBhdGgucmVwbGFjZSgiLnBuZyIsICIucGRmIiksIGJib3hfaW5jaGVzPSJ0aWdodCIpCiAgICBwbHQuY2xvc2UoZmlnKQogICAgcHJpbnQoZiJTYXZlZCB7cGF0aH0iKQoKCmRlZiBwbG90X3N1YnRhc2tfYXVjX2hlYXRtYXAoZGF0YSwgb3V0cHV0X2RpciwgbmFtZT0idHJhaW5lZCIpOgogICAgcmVzdWx0cyA9IGRhdGEuZ2V0KCJyZXN1bHRzIiwge30pCiAgICBsYXllcnMgPSBzb3J0ZWQoW2ludChrKSBmb3IgayBpbiByZXN1bHRzIGlmIGsgIT0gIm9yYWNsZSJdKQogICAgaWYgbm90IGxheWVyczoKICAgICAgICByZXR1cm4KCiAgICBwcmVkX25hbWVzID0gTm9uZQogICAgZm9yIHYgaW4gcmVzdWx0cy52YWx1ZXMoKToKICAgICAgICBpZiAicHJlZGljYXRlX25hbWVzIiBpbiB2OgogICAgICAgICAgICBwcmVkX25hbWVzID0gdlsicHJlZGljYXRlX25hbWVzIl0KICAgICAgICAgICAgYnJlYWsKICAgIGlmIHByZWRfbmFtZXMgaXMgTm9uZToKICAgICAgICByZXR1cm4KCiAgICBuX3ByZWQgPSBsZW4ocHJlZF9uYW1lcykKICAgIGhlYXRtYXAgPSBucC5mdWxsKChsZW4obGF5ZXJzKSwgbl9wcmVkKSwgbnAubmFuKQoKICAgIGZvciBsaSwgbGF5ZXIgaW4gZW51bWVyYXRlKGxheWVycyk6CiAgICAgICAgYXVjID0gcmVzdWx0c1tzdHIobGF5ZXIpXS5nZXQoImF1Y19wZXJfcHJlZGljYXRlIiwge30pCiAgICAgICAgZm9yIGsgaW4gcmFuZ2Uobl9wcmVkKToKICAgICAgICAgICAgdmFsID0gYXVjLmdldChzdHIoayksIG5wLm5hbikKICAgICAgICAgICAgaGVhdG1hcFtsaSwga10gPSB2YWwKCiAgICBmaWcsIGF4ID0gcGx0LnN1YnBsb3RzKGZpZ3NpemU9KG1heCg4LCBuX3ByZWQpLCBtYXgoNiwgbGVuKGxheWVycykgKiAwLjMpKSkKICAgIGltID0gYXguaW1zaG93KGhlYXRtYXAsIGFzcGVjdD0iYXV0byIsIGNtYXA9IllsT3JSZCIsIHZtaW49MC41LCB2bWF4PTEuMCkKICAgIGF4LnNldF94dGlja3MocmFuZ2Uobl9wcmVkKSkKICAgIGF4LnNldF94dGlja2xhYmVscyhwcmVkX25hbWVzLCByb3RhdGlvbj00NSwgaGE9InJpZ2h0IiwgZm9udHNpemU9OCkKICAgIGF4LnNldF95dGlja3MocmFuZ2UobGVuKGxheWVycykpKQogICAgYXguc2V0X3l0aWNrbGFiZWxzKGxheWVycykKICAgIGF4LnNldF94bGFiZWwoIlByZWRpY2F0ZSIpCiAgICBheC5zZXRfeWxhYmVsKCJMYXllciIpCiAgICBheC5zZXRfdGl0bGUoZiJTdWItdGFzayBQcmVkaWNhdGUgQVVDICh7bmFtZX0pIikKICAgIGZpZy5jb2xvcmJhcihpbSwgYXg9YXgsIGxhYmVsPSJBVUMtUk9DIikKCiAgICBwYXRoID0gb3MucGF0aC5qb2luKG91dHB1dF9kaXIsIGYic3VidGFza19hdWNfe25hbWV9LnBuZyIpCiAgICBmaWcuc2F2ZWZpZyhwYXRoLCBkcGk9MTUwLCBiYm94X2luY2hlcz0idGlnaHQiKQogICAgZmlnLnNhdmVmaWcocGF0aC5yZXBsYWNlKCIucG5nIiwgIi5wZGYiKSwgYmJveF9pbmNoZXM9InRpZ2h0IikKICAgIHBsdC5jbG9zZShmaWcpCiAgICBwcmludChmIlNhdmVkIHtwYXRofSIpCgoKZGVmIHBsb3RfcGVyX2xheWVyX3Job19wcm9maWxlKGFsbF9kYXRhLCBvdXRwdXRfZGlyKToKICAgIGZpZywgYXggPSBwbHQuc3VicGxvdHMoZmlnc2l6ZT0oMTAsIDUpKQoKICAgIGZvciBuYW1lIGluIFsidHJhaW5lZCIsICJ1bnRyYWluZWQiXToKICAgICAgICBpZiBuYW1lIG5vdCBpbiBhbGxfZGF0YToKICAgICAgICAgICAgY29udGludWUKICAgICAgICBsYXllcnMsIHJob3MgPSBleHRyYWN0X2xheWVyX21ldHJpY3MoYWxsX2RhdGFbbmFtZV0sICJzcGVhcm1hbl9yaG8iKQogICAgICAgIGlmIGxlbihsYXllcnMpID09IDA6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgYXgucGxvdChsYXllcnMsIHJob3MsCiAgICAgICAgICAgICAgICBtYXJrZXI9TUFSS0VSUy5nZXQobmFtZSwgIm8iKSwKICAgICAgICAgICAgICAgIGNvbG9yPUNPTE9SUy5nZXQobmFtZSwgIiM5OTkiKSwKICAgICAgICAgICAgICAgIGxhYmVsPW5hbWUsIGxpbmV3aWR0aD0yLCBtYXJrZXJzaXplPTUpCgogICAgaWYgImRpbm92MiIgaW4gYWxsX2RhdGE6CiAgICAgICAgXywgcmhvX2Rpbm8gPSBleHRyYWN0X2xheWVyX21ldHJpY3MoYWxsX2RhdGFbImRpbm92MiJdLCAic3BlYXJtYW5fcmhvIikKICAgICAgICBpZiBsZW4ocmhvX2Rpbm8pID4gMDoKICAgICAgICAgICAgZGlub192YWwgPSBmbG9hdChyaG9fZGluby5tYXgoKSkKICAgICAgICAgICAgYXguYXhobGluZSh5PWRpbm9fdmFsLCBjb2xvcj1DT0xPUlMuZ2V0KCJkaW5vdjIiLCAiIzRDQUY1MCIpLAogICAgICAgICAgICAgICAgICAgICAgIGxpbmVzdHlsZT0iLS0iLCBsaW5ld2lkdGg9MiwKICAgICAgICAgICAgICAgICAgICAgICBsYWJlbD1mIkRJTk8tVjIgKHJobz17ZGlub192YWw6LjNmfSkiKQoKICAgIGF4LnNldF94bGFiZWwoIkxheWVyIEluZGV4IikKICAgIGF4LnNldF95bGFiZWwoIlNwZWFybWFuIHJobyIpCiAgICBheC5zZXRfdGl0bGUoIlBlci1sYXllciByaG8gUHJvZmlsZTogVkxBICh0cmFpbmVkL3VudHJhaW5lZCkgdnMgRElOTy1WMiIpCiAgICBheC5sZWdlbmQoKQogICAgYXguZ3JpZChUcnVlLCBhbHBoYT0wLjMpCgogICAgcGF0aCA9IG9zLnBhdGguam9pbihvdXRwdXRfZGlyLCAicGVyX2xheWVyX3Job19wcm9maWxlLnBuZyIpCiAgICBmaWcuc2F2ZWZpZyhwYXRoLCBkcGk9MTUwLCBiYm94X2luY2hlcz0idGlnaHQiKQogICAgZmlnLnNhdmVmaWcocGF0aC5yZXBsYWNlKCIucG5nIiwgIi5wZGYiKSwgYmJveF9pbmNoZXM9InRpZ2h0IikKICAgIHBsdC5jbG9zZShmaWcpCiAgICBwcmludChmIlNhdmVkIHtwYXRofSIpCgoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBKdWRnbWVudAojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKZGVmIGJvb3RzdHJhcF9kZWx0YV9yaG8odHJhaW5lZF9yaG9zLCB1bnRyYWluZWRfcmhvcywgbl9ib290c3RyYXA9MTAwMCwgc2VlZD00Mik6CiAgICBybmcgPSBucC5yYW5kb20uUmFuZG9tU3RhdGUoc2VlZCkKICAgIGRlbHRhcyA9IFtdCiAgICBuID0gbGVuKHRyYWluZWRfcmhvcykKICAgIGZvciBfIGluIHJhbmdlKG5fYm9vdHN0cmFwKToKICAgICAgICBpZHggPSBybmcuY2hvaWNlKG4sIG4sIHJlcGxhY2U9VHJ1ZSkKICAgICAgICBkZWx0YSA9IG5wLm1lYW4obnAuYXJyYXkodHJhaW5lZF9yaG9zKVtpZHhdKSAtIG5wLm1lYW4obnAuYXJyYXkodW50cmFpbmVkX3Job3MpW2lkeF0pCiAgICAgICAgZGVsdGFzLmFwcGVuZChkZWx0YSkKICAgIGRlbHRhcyA9IHNvcnRlZChkZWx0YXMpCiAgICBjaV9sb3dlciA9IGRlbHRhc1tpbnQoMC4wMjUgKiBuX2Jvb3RzdHJhcCldCiAgICBjaV91cHBlciA9IGRlbHRhc1tpbnQoMC45NzUgKiBuX2Jvb3RzdHJhcCldCiAgICByZXR1cm4gbnAubWVhbihkZWx0YXMpLCBjaV9sb3dlciwgY2lfdXBwZXIKCgpkZWYgY29tcHV0ZV9qdWRnbWVudChhbGxfZGF0YSk6CiAgICAiIiJQQVNTL0ZBSUwgYmFzZWQgb24gdGhyZWUgY3JpdGVyaWEgKEQwMDEgY2FsaWJyYXRpb24pLiIiIgogICAgY3JpdGVyaWEgPSB7fQoKICAgICMgMSkgYmVzdCByaG8gPiAwLjUKICAgIGlmICJ0cmFpbmVkIiBpbiBhbGxfZGF0YToKICAgICAgICBsYXllcnMsIHJob3MgPSBleHRyYWN0X2xheWVyX21ldHJpY3MoYWxsX2RhdGFbInRyYWluZWQiXSwgInNwZWFybWFuX3JobyIpCiAgICAgICAgYmVzdF9yaG8gPSBmbG9hdChyaG9zLm1heCgpKSBpZiBsZW4ocmhvcykgPiAwIGVsc2UgMC4wCiAgICAgICAgYmVzdF9sYXllciA9IGludChsYXllcnNbbnAuYXJnbWF4KHJob3MpXSkgaWYgbGVuKHJob3MpID4gMCBlbHNlIC0xCiAgICBlbHNlOgogICAgICAgIGJlc3RfcmhvLCBiZXN0X2xheWVyID0gMC4wLCAtMQoKICAgIGNyaXRlcmlhWyJiZXN0X3JobyJdID0gYmVzdF9yaG8KICAgIGNyaXRlcmlhWyJiZXN0X2xheWVyIl0gPSBiZXN0X2xheWVyCiAgICBjcml0ZXJpYVsicmhvX3Bhc3MiXSA9IGJlc3RfcmhvID4gMC41CgogICAgIyAyKSBkZWx0YS1yaG8gPiAwLjEgd2l0aCBib290c3RyYXBwZWQgOTUlIENJIGV4Y2x1ZGluZyAwCiAgICBtYXhfZGVsdGEgPSAwLjAKICAgIGRlbHRhX2NpX2xvd2VyID0gMC4wCiAgICBkZWx0YV9jaV91cHBlciA9IDAuMAogICAgY2lfZXhjbHVkZXNfemVybyA9IEZhbHNlCiAgICBpZiAidHJhaW5lZCIgaW4gYWxsX2RhdGEgYW5kICJ1bnRyYWluZWQiIGluIGFsbF9kYXRhOgogICAgICAgIGxfdHIsIHJob190ciA9IGV4dHJhY3RfbGF5ZXJfbWV0cmljcyhhbGxfZGF0YVsidHJhaW5lZCJdLCAic3BlYXJtYW5fcmhvIikKICAgICAgICBsX3VuLCByaG9fdW4gPSBleHRyYWN0X2xheWVyX21ldHJpY3MoYWxsX2RhdGFbInVudHJhaW5lZCJdLCAic3BlYXJtYW5fcmhvIikKICAgICAgICB0cl9tYXAgPSBkaWN0KHppcChsX3RyLnRvbGlzdCgpLCByaG9fdHIudG9saXN0KCkpKQogICAgICAgIHVuX21hcCA9IGRpY3QoemlwKGxfdW4udG9saXN0KCksIHJob191bi50b2xpc3QoKSkpCiAgICAgICAgY29tbW9uID0gc2V0KGxfdHIudG9saXN0KCkpICYgc2V0KGxfdW4udG9saXN0KCkpCiAgICAgICAgaWYgY29tbW9uOgogICAgICAgICAgICBtYXhfZGVsdGEgPSBtYXgodHJfbWFwW2xdIC0gdW5fbWFwW2xdIGZvciBsIGluIGNvbW1vbikKICAgICAgICAgICAgdHJhaW5lZF9yaG9zID0gW3RyX21hcFtsXSBmb3IgbCBpbiBzb3J0ZWQoY29tbW9uKV0KICAgICAgICAgICAgdW50cmFpbmVkX3Job3MgPSBbdW5fbWFwW2xdIGZvciBsIGluIHNvcnRlZChjb21tb24pXQogICAgICAgICAgICBfLCBkZWx0YV9jaV9sb3dlciwgZGVsdGFfY2lfdXBwZXIgPSBib290c3RyYXBfZGVsdGFfcmhvKAogICAgICAgICAgICAgICAgdHJhaW5lZF9yaG9zLCB1bnRyYWluZWRfcmhvcwogICAgICAgICAgICApCiAgICAgICAgICAgIGNpX2V4Y2x1ZGVzX3plcm8gPSBkZWx0YV9jaV9sb3dlciA+IDAKCiAgICBjcml0ZXJpYVsibWF4X2RlbHRhX3JobyJdID0gbWF4X2RlbHRhCiAgICBjcml0ZXJpYVsiZGVsdGFfY2lfbG93ZXIiXSA9IGRlbHRhX2NpX2xvd2VyCiAgICBjcml0ZXJpYVsiZGVsdGFfY2lfdXBwZXIiXSA9IGRlbHRhX2NpX3VwcGVyCiAgICBjcml0ZXJpYVsiY2lfZXhjbHVkZXNfemVybyJdID0gY2lfZXhjbHVkZXNfemVybwogICAgY3JpdGVyaWFbImRlbHRhX3Bhc3MiXSA9IG1heF9kZWx0YSA+IDAuMSBhbmQgY2lfZXhjbHVkZXNfemVybwoKICAgICMgMykgVkxBX3JobyA+PSBESU5PX3JobyBPUiAoc3VidGFza19BVUMgPiAwLjcgQU5EIHN1YnRhc2tfQVVDID4gRElOT19zdWJ0YXNrX0FVQyArIDAuMDUpCiAgICB2bGFfZ2VfZGlubyA9IEZhbHNlCiAgICBpZiAidHJhaW5lZCIgaW4gYWxsX2RhdGEgYW5kICJkaW5vdjIiIGluIGFsbF9kYXRhOgogICAgICAgIF8sIHJob192bGEgPSBleHRyYWN0X2xheWVyX21ldHJpY3MoYWxsX2RhdGFbInRyYWluZWQiXSwgInNwZWFybWFuX3JobyIpCiAgICAgICAgXywgcmhvX2Rpbm8gPSBleHRyYWN0X2xheWVyX21ldHJpY3MoYWxsX2RhdGFbImRpbm92MiJdLCAic3BlYXJtYW5fcmhvIikKICAgICAgICBpZiBsZW4ocmhvX3ZsYSkgPiAwIGFuZCBsZW4ocmhvX2Rpbm8pID4gMDoKICAgICAgICAgICAgdmxhX2dlX2Rpbm8gPSBmbG9hdChyaG9fdmxhLm1heCgpKSA+PSBmbG9hdChyaG9fZGluby5tYXgoKSkKCiAgICB2bGFfYmVzdF9hdWMgPSAwLjAKICAgIGRpbm9fYmVzdF9hdWMgPSAwLjAKICAgIGlmICJ0cmFpbmVkIiBpbiBhbGxfZGF0YToKICAgICAgICBmb3IgdiBpbiBhbGxfZGF0YVsidHJhaW5lZCJdLmdldCgicmVzdWx0cyIsIHt9KS52YWx1ZXMoKToKICAgICAgICAgICAgaWYgaXNpbnN0YW5jZSh2LmdldCgibWFjcm9fYXVjIiksIChpbnQsIGZsb2F0KSk6CiAgICAgICAgICAgICAgICB2bGFfYmVzdF9hdWMgPSBtYXgodmxhX2Jlc3RfYXVjLCB2WyJtYWNyb19hdWMiXSkKICAgIGlmICJkaW5vdjIiIGluIGFsbF9kYXRhOgogICAgICAgIGZvciB2IGluIGFsbF9kYXRhWyJkaW5vdjIiXS5nZXQoInJlc3VsdHMiLCB7fSkudmFsdWVzKCk6CiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2Uodi5nZXQoIm1hY3JvX2F1YyIpLCAoaW50LCBmbG9hdCkpOgogICAgICAgICAgICAgICAgZGlub19iZXN0X2F1YyA9IG1heChkaW5vX2Jlc3RfYXVjLCB2WyJtYWNyb19hdWMiXSkKICAgIHN1YnRhc2tfcGFzcyA9IHZsYV9iZXN0X2F1YyA+IDAuNyBhbmQgdmxhX2Jlc3RfYXVjID4gZGlub19iZXN0X2F1YyArIDAuMDUKCiAgICBjcml0ZXJpYVsidmxhX2dlX2Rpbm92MiJdID0gdmxhX2dlX2Rpbm8KICAgIGNyaXRlcmlhWyJ2bGFfYmVzdF9hdWMiXSA9IHZsYV9iZXN0X2F1YwogICAgY3JpdGVyaWFbImRpbm9fYmVzdF9hdWMiXSA9IGRpbm9fYmVzdF9hdWMKICAgIGNyaXRlcmlhWyJzdWJ0YXNrX2F1Y19wYXNzIl0gPSBzdWJ0YXNrX3Bhc3MKICAgIGNyaXRlcmlhWyJ0aGlyZF9jcml0ZXJpb24iXSA9IHZsYV9nZV9kaW5vIG9yIHN1YnRhc2tfcGFzcwoKICAgIGlmIGNyaXRlcmlhWyJyaG9fcGFzcyJdIGFuZCBjcml0ZXJpYVsiZGVsdGFfcGFzcyJdIGFuZCBjcml0ZXJpYVsidGhpcmRfY3JpdGVyaW9uIl06CiAgICAgICAganVkZ21lbnQgPSAiUEFTUyIKICAgIGVsaWYgY3JpdGVyaWFbImRlbHRhX3Bhc3MiXSBhbmQgbm90IGNyaXRlcmlhWyJ0aGlyZF9jcml0ZXJpb24iXToKICAgICAgICBqdWRnbWVudCA9ICJDT05ESVRJT05BTCIKICAgIGVsc2U6CiAgICAgICAganVkZ21lbnQgPSAiRkFJTCIKCiAgICByZWFzb25zID0gW10KICAgIGlmIG5vdCBjcml0ZXJpYVsicmhvX3Bhc3MiXToKICAgICAgICByZWFzb25zLmFwcGVuZChmImJlc3QgcmhvID0ge2Jlc3RfcmhvOi40Zn0gPD0gMC41IikKICAgIGlmIG5vdCBjcml0ZXJpYVsiZGVsdGFfcGFzcyJdOgogICAgICAgIGlmIG1heF9kZWx0YSA8PSAwLjE6CiAgICAgICAgICAgIHJlYXNvbnMuYXBwZW5kKGYibWF4IGRlbHRhLXJobyA9IHttYXhfZGVsdGE6LjRmfSA8PSAwLjEiKQogICAgICAgIGVsaWYgbm90IGNpX2V4Y2x1ZGVzX3plcm86CiAgICAgICAgICAgIHJlYXNvbnMuYXBwZW5kKGYiZGVsdGEtcmhvIENJIFt7ZGVsdGFfY2lfbG93ZXI6LjRmfSwge2RlbHRhX2NpX3VwcGVyOi40Zn1dIGluY2x1ZGVzIDAiKQogICAgaWYgbm90IGNyaXRlcmlhWyJ0aGlyZF9jcml0ZXJpb24iXToKICAgICAgICByZWFzb25zLmFwcGVuZCgiVkxBIDwgRElOTy1WMiBBTkQgc3VidGFzayBnYXRlIG5vdCBtZXQiKQoKICAgIHJldHVybiBkaWN0KGp1ZGdtZW50PWp1ZGdtZW50LCBjcml0ZXJpYT1jcml0ZXJpYSwKICAgICAgICAgICAgICAgIHJlYXNvbnM9cmVhc29ucyBpZiByZWFzb25zIGVsc2UgWyJBbGwgY3JpdGVyaWEgbWV0Il0pCgoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBNYWluCiMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgpkZWYgbWFpbigpOgogICAgYXJncyA9IHBhcnNlX2FyZ3MoKQogICAgb3MubWFrZWRpcnMoYXJncy5vdXRwdXRfZGlyLCBleGlzdF9vaz1UcnVlKQoKICAgIGRpcnMgPSBwYXJzZV9yZXN1bHRzX2RpcnMoYXJncy5yZXN1bHRzX2RpcnMpCiAgICBwcmludChmIkxvYWRpbmcgcmVzdWx0czoge2xpc3QoZGlycy5rZXlzKCkpfSIpCgogICAgYWxsX2RhdGEgPSB7fQogICAgZm9yIG5hbWUsIHBhdGggaW4gZGlycy5pdGVtcygpOgogICAgICAgIHRyeToKICAgICAgICAgICAgZGF0YSA9IGxvYWRfcmVzdWx0cyhwYXRoLCBhcmdzLnByb2JlX3R5cGUpCiAgICAgICAgICAgIGFsbF9kYXRhW25hbWVdID0gZGF0YQogICAgICAgICAgICBuID0gbGVuKGRhdGEuZ2V0KCJyZXN1bHRzIiwge30pKQogICAgICAgICAgICBwcmludChmIiAge25hbWV9OiB7bn0gZW50cmllcyIpCiAgICAgICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgICAgICBwcmludChmIiAge25hbWV9OiBGQUlMRUQgKHtlfSkiKQoKICAgIGlmIG5vdCBhbGxfZGF0YToKICAgICAgICBwcmludCgiTm8gZGF0YSBsb2FkZWQuIikKICAgICAgICByZXR1cm4KCiAgICBvcmFjbGVfcmhvID0gbG9hZF9vcmFjbGUoZGlycykKICAgIGlmIG9yYWNsZV9yaG8gaXMgbm90IE5vbmU6CiAgICAgICAgcHJpbnQoZiJPcmFjbGUgcmhvOiB7b3JhY2xlX3JobzouNGZ9IikKCiAgICAjIC0tLSBDb21wYXJpc29uIHRhYmxlIC0tLQogICAgcHJpbnQoIlxuPT09IExheWVyLXdpc2UgU3BlYXJtYW4gcmhvID09PSIpCiAgICBuYW1lcyA9IGxpc3QoYWxsX2RhdGEua2V5cygpKQogICAgaGVhZGVyID0gWyJMYXllciJdICsgbmFtZXMKICAgIHByaW50KCIgfCAiLmpvaW4oZiJ7aDo+MTJ9IiBmb3IgaCBpbiBoZWFkZXIpKQogICAgcHJpbnQoIi0iICogKDE0ICogbGVuKGhlYWRlcikpKQoKICAgIGFsbF9sYXllcnMgPSBzZXQoKQogICAgZm9yIGRhdGEgaW4gYWxsX2RhdGEudmFsdWVzKCk6CiAgICAgICAgbGF5ZXJzLCBfID0gZXh0cmFjdF9sYXllcl9tZXRyaWNzKGRhdGEsICJzcGVhcm1hbl9yaG8iKQogICAgICAgIGFsbF9sYXllcnMudXBkYXRlKGxheWVycy50b2xpc3QoKSkKCiAgICBmb3IgbGF5ZXIgaW4gc29ydGVkKGFsbF9sYXllcnMpOgogICAgICAgIHJvdyA9IFtmIntsYXllcjo+MTJ9Il0KICAgICAgICBmb3IgbmFtZSBpbiBuYW1lczoKICAgICAgICAgICAgbGF5ZXJzLCByaG9zID0gZXh0cmFjdF9sYXllcl9tZXRyaWNzKGFsbF9kYXRhW25hbWVdLCAic3BlYXJtYW5fcmhvIikKICAgICAgICAgICAgbG1hcCA9IGRpY3QoemlwKGxheWVycy50b2xpc3QoKSwgcmhvcy50b2xpc3QoKSkpCiAgICAgICAgICAgIHZhbCA9IGxtYXAuZ2V0KGxheWVyLCBmbG9hdCgibmFuIikpCiAgICAgICAgICAgIHJvdy5hcHBlbmQoZiJ7dmFsOj4xMi40Zn0iKQogICAgICAgIHByaW50KCIgfCAiLmpvaW4ocm93KSkKCiAgICBwcmludCgiXG49PT0gQmVzdCBMYXllciA9PT0iKQogICAgZm9yIG5hbWUsIGRhdGEgaW4gYWxsX2RhdGEuaXRlbXMoKToKICAgICAgICBsYXllcnMsIHJob3MgPSBleHRyYWN0X2xheWVyX21ldHJpY3MoZGF0YSwgInNwZWFybWFuX3JobyIpCiAgICAgICAgaWYgbGVuKHJob3MpID4gMDoKICAgICAgICAgICAgYmkgPSBpbnQobnAuYXJnbWF4KHJob3MpKQogICAgICAgICAgICBwcmludChmIiAge25hbWV9OiBsYXllciB7bGF5ZXJzW2JpXX0gKHJobz17cmhvc1tiaV06LjRmfSkiKQoKICAgICMgLS0tIFBsb3RzIC0tLQogICAgaWYgYXJncy5wcm9iZV90eXBlID09ICJ0ZW1wb3JhbF9kaXN0YW5jZSI6CiAgICAgICAgcGxvdF9sYXllcl9yaG8oYWxsX2RhdGEsIG9yYWNsZV9yaG8sIGFyZ3Mub3V0cHV0X2RpcikKICAgICAgICBwbG90X2RlbHRhX3JobyhhbGxfZGF0YSwgYXJncy5vdXRwdXRfZGlyKQogICAgICAgIHBsb3RfcGVyX2xheWVyX3Job19wcm9maWxlKGFsbF9kYXRhLCBhcmdzLm91dHB1dF9kaXIpCgogICAgaWYgYXJncy5wcm9iZV90eXBlID09ICJzdWJ0YXNrX3ByZWRpY2F0ZSI6CiAgICAgICAgZm9yIG5hbWUsIGRhdGEgaW4gYWxsX2RhdGEuaXRlbXMoKToKICAgICAgICAgICAgcGxvdF9zdWJ0YXNrX2F1Y19oZWF0bWFwKGRhdGEsIGFyZ3Mub3V0cHV0X2RpciwgbmFtZSkKCiAgICAjIC0tLSBKdWRnbWVudCAtLS0KICAgIGp1ZGdtZW50ID0gY29tcHV0ZV9qdWRnbWVudChhbGxfZGF0YSkKICAgIHByaW50KGYiXG49PT0gSnVkZ21lbnQ6IHtqdWRnbWVudFsnanVkZ21lbnQnXX0gPT09IikKICAgIGZvciBrLCB2IGluIGp1ZGdtZW50WyJjcml0ZXJpYSJdLml0ZW1zKCk6CiAgICAgICAgcHJpbnQoZiIgIHtrfToge3Z9IikKICAgIGZvciByIGluIGp1ZGdtZW50WyJyZWFzb25zIl06CiAgICAgICAgcHJpbnQoZiIgID4+IHtyfSIpCgogICAgIyAtLS0gU2F2ZSAtLS0KICAgIHN1bW1hcnkgPSBkaWN0KAogICAgICAgIG1vZGVscz1uYW1lcywKICAgICAgICBwcm9iZV90eXBlPWFyZ3MucHJvYmVfdHlwZSwKICAgICAgICBqdWRnbWVudD1qdWRnbWVudCwKICAgICkKICAgIGZvciBuYW1lLCBkYXRhIGluIGFsbF9kYXRhLml0ZW1zKCk6CiAgICAgICAgbGF5ZXJzLCByaG9zID0gZXh0cmFjdF9sYXllcl9tZXRyaWNzKGRhdGEsICJzcGVhcm1hbl9yaG8iKQogICAgICAgIGlmIGxlbihyaG9zKSA+IDA6CiAgICAgICAgICAgIGJpID0gaW50KG5wLmFyZ21heChyaG9zKSkKICAgICAgICAgICAgc3VtbWFyeVtuYW1lXSA9IGRpY3QoYmVzdF9sYXllcj1pbnQobGF5ZXJzW2JpXSksIGJlc3RfcmhvPWZsb2F0KHJob3NbYmldKSkKICAgIGlmIG9yYWNsZV9yaG8gaXMgbm90IE5vbmU6CiAgICAgICAgc3VtbWFyeVsib3JhY2xlX3JobyJdID0gb3JhY2xlX3JobwoKICAgIHdpdGggb3Blbihvcy5wYXRoLmpvaW4oYXJncy5vdXRwdXRfZGlyLCAic3VtbWFyeS5qc29uIiksICJ3IikgYXMgZjoKICAgICAgICBqc29uLmR1bXAoc3VtbWFyeSwgZiwgaW5kZW50PTIpCiAgICBwcmludChmIlxuU2F2ZWQge2FyZ3Mub3V0cHV0X2Rpcn0vc3VtbWFyeS5qc29uIikKCgppZiBfX25hbWVfXyA9PSAiX19tYWluX18iOgogICAgbWFpbigpCg==' | base64 -d > /root/vla-ssd/scripts/analyze_results.py && echo \"WRITE_OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "d13a9b45-d9d9-4205-9f80-744832786131",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WyA8RDyq2RPANAC6TD81G5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17538,
+      "cache_read_input_tokens": 57315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17538
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T11:15:26.062Z_
+
+<details><summary>↩ Tool result · `toolu_01SniQBoHsB65CD56eXdBsmA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WRITE_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "ad999608-4742-4436-bd47-3f29daec01bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WRITE_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"WRITE_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+文件已写入。验证语法并检查关键改动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "dfc5d4dc-053d-404d-9133-c4e68871136c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CWr2FiMGKmHDqnBpEzsv8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17620,
+      "cache_read_input_tokens": 74853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17620
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qoh1x5ekaKDvKUJqWyjuwg`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import ast; ast.parse(open('/root/vla-ssd/scripts/analyze_results.py').read()); print('SYNTAX_OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "77d9c107-292e-4574-a6bd-12b33a961abb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CWr2FiMGKmHDqnBpEzsv8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17620,
+      "cache_read_input_tokens": 74853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17620
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T11:15:31.527Z_
+
+<details><summary>↩ Tool result · `toolu_01Qoh1x5ekaKDvKUJqWyjuwg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "c9c4819c-55eb-47af-a57c-4df7c8fadb45",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lbi6dPgkXuUYdHche4JQFY`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "wc -l /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "226c09a8-9b38-4c8c-b0b7-4a88442a554b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CWr2FiMGKmHDqnBpEzsv8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17620,
+      "cache_read_input_tokens": 74853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17620
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T11:15:32.904Z_
+
+<details><summary>↩ Tool result · `toolu_01Lbi6dPgkXuUYdHche4JQFY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"448 /root/vla-ssd/scripts/analyze_results.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "ceb048fe-e361-4859-af3a-35686a16e921",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"448 /root/vla-ssd/scripts/analyze_results.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"448 /root/vla-ssd/scripts/analyze_results.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AQstNy3WhZedCathBDcvYH`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"rho_pass\\|delta_pass\\|bootstrap_delta_rho\\|plot_per_layer_rho_profile\\|subtask_pass\\|0\\.5\\|0\\.3\\|ci_excludes_zero\\|dino_best_auc\\|vla_best_auc\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "5c57b0c7-0ebf-4641-a9e0-bdc45d512058",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CWr2FiMGKmHDqnBpEzsv8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17620,
+      "cache_read_input_tokens": 74853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17620
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T11:15:34.711Z_
+
+<details><summary>↩ Tool result · `toolu_01AQstNy3WhZedCathBDcvYH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "3d4a06b5-e11e-4329-bc3b-7e38cebc4d32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SvzwLpwETG1Ni44rFUcADb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import ast; ast.parse(open('/root/vla-ssd/scripts/analyze_results.py').read()); print('SYNTAX_OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "f1a9cd49-5228-4180-94e3-5d2a2bcad133",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156pmyrCQbSLCfz7VkJDP7Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 92473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 755
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T11:15:39.293Z_
+
+<details><summary>↩ Tool result · `toolu_01SvzwLpwETG1Ni44rFUcADb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "11d492f4-7708-4c65-a676-28a55130c2f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PseTbvquR5sUc5tVWBRePm`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"rho_pass\\|delta_pass\\|bootstrap_delta_rho\\|plot_per_layer_rho_profile\\|subtask_pass\\|ci_excludes_zero\\|dino_best_auc\\|vla_best_auc\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "5d659daa-d7ed-4622-b77f-bcc77b2ff083",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156pmyrCQbSLCfz7VkJDP7Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 92473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 755
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T11:15:39.598Z_
+
+<details><summary>↩ Tool result · `toolu_01PseTbvquR5sUc5tVWBRePm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "d1bc4a78-3d3e-4c9f-b477-77382052e59d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017NYCbU2wGKmLxA1uG2TRrS`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"rho_pass\\|delta_pass\\|bootstrap_delta_rho\\|plot_per_layer_rho_profile\\|ci_excludes_zero\\|dino_best_auc\\|vla_best_auc\\|0\\.5\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "1a228a39-4b2e-4e2f-8286-787773170b32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014dzp9A7zpK9bCEfE6JGTrq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 93228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 527
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T11:15:43.739Z_
+
+<details><summary>↩ Tool result · `toolu_017NYCbU2wGKmLxA1uG2TRrS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "0e03a4fb-16c2-4c7f-b121-9fbb62a3153c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ANH6NpBeubjebfy9Aey3mK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"rho_pass\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "4d061ce6-59c1-4424-85f6-dba2eb4eab8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fnf6zo9SWCVKaKPWa62i3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 93755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T11:15:47.480Z_
+
+<details><summary>↩ Tool result · `toolu_01ANH6NpBeubjebfy9Aey3mK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"277:    criteria[\\\"rho_pass\\\"] = best_rho > 0.5\\n331:    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n339:    if not criteria[\\\"rho_pass\\\"]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "00d3b910-9f0e-4f7f-b851-201511c32cd5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"277:    criteria[\\\\\\\"rho_pass\\\\\\\"] = best_rho > 0.5\\\\n331:    if criteria[\\\\\\\"rho_pass\\\\\\\"] and criteria[\\\\\\\"delta_pass\\\\\\\"] and criteria[\\\\\\\"third_criterion\\\\\\\"]:\\\\n339:    if not criteria[\\\\\\\"rho_pass\\\\\\\"]:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"277:    criteria[\\\"rho_pass\\\"] = best_rho > 0.5\\n331:    if criteria[\\\"rho_pass\\\"] and criteria[\\\"delta_pass\\\"] and criteria[\\\"third_criterion\\\"]:\\n339:    if not criteria[\\\"rho_pass\\\"]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012wHL6CwHKKSHLQrNiMkUZh`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"bootstrap_delta_rho\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "df86fc89-c34f-4ddc-9622-dc57f5de0b60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fnf6zo9SWCVKaKPWa62i3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 93755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T11:15:48.436Z_
+
+<details><summary>↩ Tool result · `toolu_012wHL6CwHKKSHLQrNiMkUZh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"249:def bootstrap_delta_rho(trained_rhos, untrained_rhos, n_bootstrap=1000, seed=42):\\n294:            _, delta_ci_lower, delta_ci_upper = bootstrap_delta_rho(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "5628f44c-7a62-402d-892a-d108b24cd2f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"249:def bootstrap_delta_rho(trained_rhos, untrained_rhos, n_bootstrap=1000, seed=42):\\\\n294:            _, delta_ci_lower, delta_ci_upper = bootstrap_delta_rho(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"249:def bootstrap_delta_rho(trained_rhos, untrained_rhos, n_bootstrap=1000, seed=42):\\n294:            _, delta_ci_lower, delta_ci_upper = bootstrap_delta_rho(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HbvpQ375ziS41RKc259Qhi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"plot_per_layer_rho_profile\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "1992091f-6e9f-49eb-a21c-38422838dc2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fnf6zo9SWCVKaKPWa62i3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 93755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0193jnCG7Txw6DhDETXRQgmd`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"ci_excludes_zero\\|vla_best_auc\\|dino_best_auc\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "a437466d-e7f9-4120-8de8-b1157bec3a40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fnf6zo9SWCVKaKPWa62i3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 93755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T11:15:49.468Z_
+
+<details><summary>↩ Tool result · `toolu_01HbvpQ375ziS41RKc259Qhi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"210:def plot_per_layer_rho_profile(all_data, output_dir):\\n414:        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "f22736ff-9d79-461a-86d8-892e007a4789",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"210:def plot_per_layer_rho_profile(all_data, output_dir):\\\\n414:        plot_per_layer_rho_profile(all_data, args.output_dir)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"210:def plot_per_layer_rho_profile(all_data, output_dir):\\n414:        plot_per_layer_rho_profile(all_data, args.output_dir)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T11:15:49.477Z_
+
+<details><summary>↩ Tool result · `toolu_0193jnCG7Txw6DhDETXRQgmd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "b4998d31-b05d-41b4-a879-76ba6c9fbc01",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PNqEL7VY7f6s2m6muc3FXZ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"ci_excludes_zero\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "73afef82-07f3-438c-a24e-c4ef800ba05c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KKtteTDSjsufzDwDmzUt62",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 94013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1130
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T11:15:53.437Z_
+
+<details><summary>↩ Tool result · `toolu_01PNqEL7VY7f6s2m6muc3FXZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"283:    ci_excludes_zero = False\\n297:            ci_excludes_zero = delta_ci_lower > 0\\n302:    criteria[\\\"ci_excludes_zero\\\"] = ci_excludes_zero\\n303:    criteria[\\\"delta_pass\\\"] = max_delta > 0.1 and ci_excludes_zero\\n344:        elif not ci_excludes_zero:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "95c359de-2a82-4e03-92ad-ce153d8a85f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"283:    ci_excludes_zero = False\\\\n297:            ci_excludes_zero = delta_ci_lower > 0\\\\n302:    criteria[\\\\\\\"ci_excludes_zero\\\\\\\"] = ci_excludes_zero\\\\n303:    criteria[\\\\\\\"delta_pass\\\\\\\"] = max_delta > 0.1 and ci_excludes_zero\\\\n344:        elif not ci_excludes_zero:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"283:    ci_excludes_zero = False\\n297:            ci_excludes_zero = delta_ci_lower > 0\\n302:    criteria[\\\"ci_excludes_zero\\\"] = ci_excludes_zero\\n303:    criteria[\\\"delta_pass\\\"] = max_delta > 0.1 and ci_excludes_zero\\n344:        elif not ci_excludes_zero:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013sDKiNpJH9Yb9TzUZZMLMQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"vla_best_auc\\|dino_best_auc\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "a96a49be-053d-4301-a0c2-56726167f0a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KKtteTDSjsufzDwDmzUt62",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 94013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1130
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T11:15:53.753Z_
+
+<details><summary>↩ Tool result · `toolu_013sDKiNpJH9Yb9TzUZZMLMQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "77b4f61d-ec88-41ff-8800-a80314aaa9a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xgt2TXgV6C5rnhViH3pMSv`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"vla_best_auc\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "692331c2-ff57-433f-8a6c-f0695b583340",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UhXr2AhmYhWQAcWbHozmm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 95143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T11:15:57.507Z_
+
+<details><summary>↩ Tool result · `toolu_01Xgt2TXgV6C5rnhViH3pMSv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"313:    vla_best_auc = 0.0\\n318:                vla_best_auc = max(vla_best_auc, v[\\\"macro_auc\\\"])\\n323:    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n326:    criteria[\\\"vla_best_auc\\\"] = vla_best_auc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "f9964a79-c342-4a76-8ca4-c5ec9e85587b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"313:    vla_best_auc = 0.0\\\\n318:                vla_best_auc = max(vla_best_auc, v[\\\\\\\"macro_auc\\\\\\\"])\\\\n323:    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\\\n326:    criteria[\\\\\\\"vla_best_auc\\\\\\\"] = vla_best_auc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"313:    vla_best_auc = 0.0\\n318:                vla_best_auc = max(vla_best_auc, v[\\\"macro_auc\\\"])\\n323:    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n326:    criteria[\\\"vla_best_auc\\\"] = vla_best_auc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mnt2bvvE8kYsA3gNzqBKtQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"subtask_pass\" /root/vla-ssd/scripts/analyze_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "d30065ff-eae4-4e55-b7c5-585a838c11b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UhXr2AhmYhWQAcWbHozmm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 95143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T11:15:58.136Z_
+
+<details><summary>↩ Tool result · `toolu_01Mnt2bvvE8kYsA3gNzqBKtQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"323:    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n328:    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n329:    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "e507a0c0-8fd8-4f85-bb34-d1ee103e940d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"323:    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\\\n328:    criteria[\\\\\\\"subtask_auc_pass\\\\\\\"] = subtask_pass\\\\n329:    criteria[\\\\\\\"third_criterion\\\\\\\"] = vla_ge_dino or subtask_pass\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"323:    subtask_pass = vla_best_auc > 0.7 and vla_best_auc > dino_best_auc + 0.05\\n328:    criteria[\\\"subtask_auc_pass\\\"] = subtask_pass\\n329:    criteria[\\\"third_criterion\\\"] = vla_ge_dino or subtask_pass\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+全部改动验证通过。汇总：
+
+| 改动 | 行号 | 状态 |
+|------|------|------|
+| ρ 下限 0.3→0.5 | L277 `best_rho > 0.5` | OK |
+| `bootstrap_delta_rho()` | L249 定义, L294 调用 | OK |
+| Δρ CI 排除 0 才 PASS | L303 `max_delta > 0.1 and ci_excludes_zero` | OK |
+| subtask gate: `vla_AUC > 0.7 AND > dino_AUC + 0.05` | L323 | OK |
+| `plot_per_layer_rho_profile()` | L210 定义, L414 调用 | OK |
+| 三分支判定逻辑 | L331-337 | OK |
+| 语法检查 | `ast.parse` SYNTAX_OK | OK |
+| 原文件备份 | `analyze_results.py.bak` | OK |
+
+文件从 377 行增长到 448 行（+71 行：bootstrap 函数、per-layer profile 图、更丰富的 criteria 字段）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "uuid": "f355858c-898d-4424-a441-b17851b187ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011GV8beeqY8KXSzmadXWP5c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 95688,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 629
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 59_
+
+全部改动验证通过。汇总：
+
+| 改动 | 行号 | 状态 |
+|------|------|------|
+| ρ 下限 0.3→0.5 | L277 `best_rho > 0.5` | OK |
+| `bootstrap_delta_rho()` | L249 定义, L294 调用 | OK |
+| Δρ CI 排除 0 才 PASS | L303 `max_delta > 0.1 and ci_excludes_zero` | OK |
+| subtask gate: `vla_AUC > 0.7 AND > dino_AUC + 0.05` | L323 | OK |
+| `plot_per_layer_rho_profile()` | L210 定义, L414 调用 | OK |
+| 三分支判定逻辑 | L331-337 | OK |
+| 语法检查 | `ast.parse` SYNTAX_OK | OK |
+| 原文件备份 | `analyze_results.py.bak` | OK |
+
+文件从 377 行增长到 448 行（+71 行：bootstrap 函数、per-layer profile 图、更丰富的 criteria 字段）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 681842,
+  "duration_api_ms": 679448,
+  "num_turns": 23,
+  "stop_reason": "end_turn",
+  "session_id": "8a918537-d8f5-4e7a-8603-30876d5f80eb",
+  "total_cost_usd": 2.041002,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 84476,
+    "cache_read_input_tokens": 849494,
+    "output_tokens": 43457,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 84476,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 327,
+        "cache_read_input_tokens": 95688,
+        "cache_creation_input_tokens": 629,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 629
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1660,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00177,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 43457,
+      "cacheReadInputTokens": 849494,
+      "cacheCreationInputTokens": 84476,
+      "webSearchRequests": 0,
+      "costUSD": 2.039232,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e13cdaf8-b5a0-474d-8ecc-cf732f2872e6"
+}
+```
+
+</details>
+
+---

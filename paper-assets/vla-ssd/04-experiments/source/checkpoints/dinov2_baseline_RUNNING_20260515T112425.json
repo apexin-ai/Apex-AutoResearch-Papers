@@ -1,0 +1,29 @@
+{
+  "exp_id": "dinov2_baseline",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:05:05.849Z",
+    "updated_at": "2026-05-15T11:24:25.976Z",
+    "spec": {
+      "command": "python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2/ --probe_type temporal_distance --gpu 0",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_10/",
+      "data_count": "10 tasks x 50 demos x ~250 timesteps = 138,090 frames",
+      "model_name": "DINO-V2 ViT-L/14 (facebook/dinov2-large, 304.4M params)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/dinov2/",
+      "feature_path": "/root/autodl-tmp/vla-ssd/features/dinov2/ (503MB, 10 .pt files)",
+      "probe_config": "Ridge regression, task-level 80/20 split, distance-stratified sampling (10 bins x 50 pairs/bin/traj)",
+      "feature_dim": 1024,
+      "feature_key": "cls_token",
+      "extraction_time": "795.8s, 174 fps, batch_size=32"
+    }
+  },
+  "timestamp": "2026-05-15T11:24:25.986527+00:00",
+  "trigger": "update_registry"
+}

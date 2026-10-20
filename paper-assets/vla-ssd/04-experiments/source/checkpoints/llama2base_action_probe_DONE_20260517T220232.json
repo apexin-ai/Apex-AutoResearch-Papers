@@ -1,0 +1,74 @@
+{
+  "exp_id": "llama2base_action_probe",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T20:54:26.047Z",
+    "updated_at": "2026-05-17T22:02:32.172Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/vla-ssd && CUDA_VISIBLE_DEVICES=1 python scripts/llama2base_action_probe.py\"",
+      "server": "westd-19183",
+      "gpu": "cuda:1",
+      "pid": "913312",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json",
+      "submitted_at": "2026-05-17T20:55:56.743Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero_goal/",
+      "data_count": "50 demos/task x 10 tasks",
+      "model_name": "meta-llama/Llama-2-7b-hf (via OpenVLA architecture)",
+      "seed": 42,
+      "checkpoint_path": "N/A (probe experiment, no checkpoint)",
+      "wall_clock_seconds": 3995.4,
+      "gpu_hours": 1.11
+    },
+    "hypothesis": "Llama-2 base (pretrained LLM, no VLA training) action R² follows the three-condition gradient: untrained < llama2base < trained, completing the C2 evidence chain for action encoding specialization.",
+    "reproduce": {
+      "finished_at": "2026-05-17T21:57:33.185Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T21:57:38.637406+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "L1_untrained_R2": 0.5546,
+      "L1_llama2base_R2": 0.6366,
+      "L1_trained_R2": 0.6331,
+      "peak_untrained": {
+        "layer": "L0",
+        "R2": 0.6403
+      },
+      "peak_llama2base": {
+        "layer": "L4",
+        "R2": 0.6447
+      },
+      "peak_trained": {
+        "layer": "L8",
+        "R2": 0.6553
+      },
+      "mean_all_untrained": 0.4491,
+      "mean_all_llama2base": 0.6014,
+      "mean_all_trained": 0.5849,
+      "mean_L2_L9_untrained": 0.5294,
+      "mean_L2_L9_llama2base": 0.6347,
+      "mean_L2_L9_trained": 0.6463,
+      "pattern_L2_L9": "U<L<T (19/21 layers)",
+      "pattern_L1": "U<L≈T (pretraining near ceiling)",
+      "pattern_late": "L>T (VLA repurposes late layers)",
+      "result_path": "/root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json"
+    },
+    "completed_at": "2026-05-17T22:02:32.172Z"
+  },
+  "timestamp": "2026-05-17T22:02:32.317011+00:00",
+  "trigger": "update_registry"
+}

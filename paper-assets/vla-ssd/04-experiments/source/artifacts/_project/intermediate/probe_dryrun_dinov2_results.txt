@@ -1,0 +1,8 @@
+probe_type: temporal_distance
+probe_model: mlp (256 hidden, ReLU)
+features: dinov2 (1 layer, 1024d)
+n_trajs: 500
+split: 400 train / 100 val
+pairs: 10000 train / 2500 val
+pooled_spearman_rho: 0.6094
+per_task_mean_rho: 0.6192

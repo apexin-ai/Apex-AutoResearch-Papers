@@ -1,0 +1,35 @@
+{
+  "exp_id": "mvp2_delta_untrained",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:42:59.680Z",
+    "updated_at": "2026-05-15T14:43:35.362Z",
+    "hypothesis": "Action-delta prediction (Δa = a_{t+1}-a_t) on untrained VLA. Baseline for G2-delta comparison — expected lower R² than trained",
+    "parent": "mvp2_action_probe",
+    "spec": {
+      "command": "python scripts/train_probes.py --probe_type action_delta --features_dir .../features/untrained/ --output_dir .../results/untrained/ --data_dir .../data/libero/libero_10/ --gpu 0",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "617923",
+      "log_path": "~/runs/vla-ssd/mvp2_delta_untrained.log",
+      "submitted_at": "2026-05-15T14:43:14.724Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/untrained/",
+      "data_count": "10 tasks x 50 demos, 33 layers x 4096 dim",
+      "model_name": "MLP action-delta probe (4096->256->7)",
+      "seed": 42,
+      "checkpoint_source": "openvla-untrained-extract",
+      "eval_data": "/root/autodl-tmp/vla-ssd/features/untrained/ + actions from libero_10"
+    }
+  },
+  "timestamp": "2026-05-15T14:43:35.394974+00:00",
+  "trigger": "update_registry"
+}

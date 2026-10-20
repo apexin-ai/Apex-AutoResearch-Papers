@@ -1,0 +1,975 @@
+issues:
+- id: R1-N1-old
+  summary: Untrained baseline 无法隔离 VLA fine-tuning vs Llama-2 语言预训练的贡献
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: 三条件数据完整整合。
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-N2-old
+  summary: 单一模型 Title/Abstract 使用复数 'VLAs' 构成 overclaim
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: Title 改为单数。
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-N4-old
+  summary: Design implications 完全基于 correlational evidence
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: Abstract 使用 hedge 语气。
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-N3-old
+  summary: RSA best-vs-best selection bias
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: Same-layer comparison 为 primary evidence。
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R2-N1-old
+  summary: Neo et al. (ICLR 2025) 未引用
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: 已引用。
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R2-W1-old
+  summary: Related Work 引用覆盖度不足
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: 引用数量达标。
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-W1-old
+  summary: '''Instruction-blind'' claim 过强'
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: MLP probe 双重验证。
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R1-W2-old
+  summary: CKA 反转 RSA 排序处理不充分
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: Method 新增 'Why RSA over CKA'。
+  resolution_round: 2
+  mentions: []
+  action_items: []
+- id: R3-N1-old
+  summary: Limitations 格式
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: 改为 subsection。
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R3-N2-old
+  summary: em-dash AI 写作标志
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: 零残留。
+  resolution_round: 2
+  mentions: []
+  action_items: []
+- id: R3-W5-old
+  summary: 无 code/data 释放声明
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: Conclusion 加声明。
+  resolution_round: 3
+  mentions: []
+  action_items: []
+- id: R4-N1
+  summary: C1 是 causal mask 必然结果 + probe trivially easy
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 14
+  resolution: Abstract 'confirms expected' + 'consistent with causal attention mask' + 'framework sanity check' 三重降格。Contribution (iii) 定位为 methodology validation。全文一致。
+  resolution_round: 13
+  mentions:
+  - round: 9
+    reviewers:
+    - 1
+    - 2
+    note: 'R9-W2: C1 在 Abstract/Introduction 占比失衡。'
+  - round: 10
+    reviewers:
+    - 1
+    - 2
+    note: RESOLVED。降格处理到位。
+  - round: 12
+    reviewers:
+    - 2
+    - 3
+    note: '复发。R2-N1: 虽已降为 sanity check，但 Title 和 Abstract 仍将架构约束呈现为核心贡献。'
+  - round: 13
+    reviewers:
+    - 1
+    - 2
+    note: RESOLVED。三重降格处理精准。
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R2 初审重提 Finding 3 trivial（N3 critical），但 R1 REBUT 区分三层：(a) image_mean at-chance 确实 trivial；(b) readout 三条件梯度非 trivial；(c) training asymmetry 非 causal mask 可预测。R2 接受反驳，降为 should-fix。共识：image_mean
+      部分是 sanity check，但 readout 梯度和 training asymmetry 是实质发现，Abstract 措辞需更精准区分。
+  action_items:
+  - round: 14
+    action: Abstract 'confirms expected functional specialization' 措辞应区分 trivial (image_mean) 和 non-trivial (readout gradient, training asymmetry) 部分
+    assigned_to: research_director
+    status: pending
+- id: R4-N2
+  summary: RSA inverted-U metric-dependent，CKA 反转
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 14
+  resolution: C3 降为 qualified observation + §4.4 CKA 正文讨论。
+  resolution_round: 8
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R1-W3 再次提出 RSA vs CKA 反转处理不足。R2 部分 REBUT（Appendix A.1 有更多讨论），但同意核心关切成立：metric 选择的 principled justification 不足，应讨论哪些 claim 对 metric robust vs sensitive。
+  action_items: []
+- id: R4-N3
+  summary: L1 ablation 使用 5 demos
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  resolution: 改用 50 demos (N=63,228)。
+  resolution_round: 5
+  mentions: []
+  action_items: []
+- id: R4-W1
+  summary: RSA best-vs-best n.s. 未标注
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  resolution: 已标注。
+  resolution_round: 5
+  mentions: []
+  action_items: []
+- id: R4-W2
+  summary: 缺乏多重比较校正
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  resolution: FDR 已应用。
+  resolution_round: 5
+  mentions: []
+  action_items: []
+- id: R4-W3
+  summary: Probe N 未报告，MLP capacity 控制不充分
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 7
+  resolution: Demo-level split 完全消除时间泄漏。
+  resolution_round: 7
+  mentions: []
+  action_items: []
+- id: R4-W4
+  summary: Frozen encoder confound
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  resolution: Introduction + Discussion 说明。
+  resolution_round: 5
+  mentions: []
+  action_items: []
+- id: R9-N1
+  summary: 单一模型(OpenVLA-7B)单一基准(LIBERO)，无法支撑 VLA 通用性
+  category: experiment
+  severity: critical
+  status: wont_fix
+  first_raised_round: 9
+  last_seen_round: 14
+  mentions:
+  - round: 9
+    reviewers:
+    - 1
+    - 2
+    note: 双方 AGREE critical。
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: 'R14 fresh review 再次提出。R1-W4 + R2-W4: LIBERO-only 的 tabletop manipulation 可能是多个发现的充分条件。双方 AGREE。补充新角度：LIBERO 的简单 action space（7-D, 短 horizon）可能驱动 inverted-U 和跨架构收敛。'
+  action_items:
+  - round: 10
+    action: Rebuttal 应对：causal mask 泛化 + testable predictions
+    assigned_to: research_director
+    status: pending
+  resolution: Claims 已限定为 'causal-decoder VLAs'。实验数据仍为 2 个架构，结构性局限不变。
+  resolution_round: null
+- id: R9-N2
+  summary: 所有分析均为 open-loop，无 closed-loop 机器人评估
+  category: experiment
+  severity: critical
+  status: wont_fix
+  first_raised_round: 9
+  last_seen_round: 14
+  mentions:
+  - round: 9
+    reviewers:
+    - 1
+    - 2
+    note: 双方 AGREE critical。
+  - round: 13
+    reviewers:
+    - 1
+    - 2
+    note: PARTIALLY_RESOLVED。'orthogonal contribution' 措辞仍需修改。
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    - 3
+    note: R14 fresh review 以最高优先级再次提出（R2-N1 critical）。R1 AGREE with nuance（Häon 的 steering 也是 open-loop intervention）。双方共识：至少验证一个 actionable implication（如 L1 entropy vs task failure 相关性）是低成本高收益的最低修改方案。
+      R3 AGREE，补充：ablation 后 MSE≈0 反而让人困惑——routing 的功能意义需要 closed-loop 验证。
+  action_items:
+  - round: 14
+    action: 验证至少一个 actionable implication（建议：在已有 LIBERO rollout 数据上计算 L1 attention entropy 与 task failure 的相关性）
+    assigned_to: research_director
+    status: pending
+  resolution: Open-loop 结构性局限不变。R14 建议了低成本验证方案。
+  resolution_round: null
+- id: R9-N3
+  summary: '''Causal'' 术语在 observational open-loop 分析中使用不当'
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: Discussion 'Causal' → 'Interventional'；§4.3 heading 改为 'Open-loop functional sensitivity'。
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-N4
+  summary: Ablation 使 R² 增加的 paradox 未充分解释
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 11
+  resolution: Discussion 加 information-computation dissociation 解释。
+  resolution_round: 11
+  mentions: []
+  action_items: []
+- id: R9-N5
+  summary: Counterfactual 的 'semantic distance' 概念未定义
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: 改用 Jaccard token overlap / token novelty。
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-N6
+  summary: N=10 tasks 的 RSA bootstrap 统计功效不足
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 9
+  last_seen_round: 14
+  resolution: ''
+  resolution_round: null
+  mentions:
+  - round: 11
+    reviewers:
+    - 1
+    note: RESOLVED（加了 power limitation 声明）。
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    - 3
+    note: R14 fresh review 升级为 critical（R1-N2）。R2 AGREE。新角度：(1) LIBERO-Goal Δ=+0.017 n.s. vs LIBERO-Spatial Δ=+0.023 p<0.001，差异仅 0.006 但显著性截然不同；(2) 跨架构 Δ=0.003 的 CI 重叠可能只反映 power 不足而非真正等价；(3) 建议用 TOST 等价性检验。
+      R3 AGREE：N=6 vs N=4 的 Mann-Whitney U p=0.033 在如此小 N 下解释力有限。
+  action_items:
+  - round: 14
+    action: 提供 power analysis（N=10 可检测的最小效应量）；对跨架构 convergence 考虑 TOST 等价性检验；加强 non-significant ≠ no effect 的 caveat
+    assigned_to: research_director
+    status: pending
+- id: R9-W1
+  summary: CoRL scope fit 有限：纯 representational analysis，无物理机器人实验
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 9
+  last_seen_round: 14
+  resolution: ''
+  resolution_round: null
+  mentions:
+  - round: 13
+    reviewers:
+    - 1
+    - 2
+    note: PARTIALLY_RESOLVED。Writing-level 改善但核心缺陷无法通过写作修复。
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    - 3
+    note: R14 fresh review 以最高优先级提出（R2-N1 critical，R1 AGREE with nuance）。与 Häon et al. CoRL 2025 对比：Häon 有 representation intervention → behavior change 实验，本文 implications 均未验证。双方共识：纯 open-loop 分析在 CoRL
+      的竞争力取决于 AC 对分析性工作的接受阈值；建议改投 ICML/NeurIPS interpretability track 或补充验证。 R3 强烈 AGREE：更适合 ICML/NeurIPS interpretability track。
+  action_items:
+  - round: 14
+    action: 最低方案：验证一个 implication；最佳方案：补充 closed-loop 评估；备选：改投 ML venue
+    assigned_to: research_director
+    status: pending
+- id: R9-W2
+  summary: C1 在 Abstract/Introduction/Contributions 中占比失衡
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: C1 降为末句 sanity check。
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-W3
+  summary: Vision representation 训练效果微弱，framing 未充分反映
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: §4.4 标题改为 'Training primarily enhances readout decodability'。
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-W4
+  summary: Cohen's d 独立性假设违反
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 9
+  last_seen_round: 14
+  resolution: ''
+  resolution_round: null
+  mentions:
+  - round: 10
+    reviewers:
+    - 1
+    - 2
+    note: RESOLVED（新增 trajectory-level d）。
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    - 3
+    note: 'R1 以 critical 重提（N1: paired data 应用 paired effect size）。R2 REBUT 偏差方向：paired d_z = mean_diff/SD_diff > standard d（因 SD_diff < SD_pooled），当前报告实际上是保守估计。技术分歧未完全解决，但双方同意应报告 paired d_z 和配对相关系数 r。降为
+      should-fix 级别。 R3 AGREE：token-level observations 有强时序相关性，主文报告 token-level d=0.65 可能高估。'
+  action_items:
+  - round: 14
+    action: 报告 paired Cohen's d_z 和配对相关系数 r（Table 5, Table 6, Appendix A.7）；在 Method 中讨论 paired vs independent d 的选择
+    assigned_to: research_director
+    status: pending
+- id: R9-W5
+  summary: Pretrained Llama-2 base 的 9/32 heads 可能因 text in-distribution bias
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: Discussion 新增替代解释承认。
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-W6
+  summary: Specificity control 效果有限(d ratio 1.08×)
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 14
+  resolution: 四组 matched-size 比较，framing 'distributed routing'。
+  resolution_round: 11
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R1-W2 再次提出 ablation 因果推断过度表述。R2 AGREE：ablation 证明 necessity 不证明 sufficiency，'control' 应改为 'contribute to'。但不升级 severity——论文的 framing 已从早期版本改善。
+  action_items: []
+- id: R9-W7
+  summary: N=63,228 观测的独立性——有效独立单元远小于报告值
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 12
+  resolution: §4.1 新增 N_eff 说明。
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-I1
+  summary: 缺失引用：Octo (Ghosh et al. 2024)
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: references.bib 新增。
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R9-I2
+  summary: Häon et al. 2025 的 sparse semantic directions 与 L1 routing heads 的关系未讨论
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 11
+  resolution: Discussion 加 where/what 互补连接。
+  resolution_round: 11
+  mentions: []
+  action_items: []
+- id: R9-I3
+  summary: 多处小问题：Table 1 caption、脚注、accessed date
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: 已修复。
+  resolution_round: 10
+  mentions: []
+  action_items: []
+- id: R10-Q1
+  summary: Per-task MSE breakdown：消融后 MSE 不变是否存在 task-level cancellation
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 11
+  resolution: Appendix 加 per-task breakdown。
+  resolution_round: 11
+  mentions: []
+  action_items: []
+- id: R12-N1
+  summary: 因果 overclaiming：Title 'Routes' 暗示因果机制
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 13
+  resolution: Title 'Routes'→'Reorganizes'，全文 'routing'→'redistributes'，零残留。
+  resolution_round: 13
+  mentions: []
+  action_items: []
+- id: R12-N2
+  summary: 正文超出 CoRL 8 页限制
+  category: format
+  severity: critical
+  status: open
+  first_raised_round: 12
+  last_seen_round: 14
+  resolution: ''
+  resolution_round: null
+  mentions:
+  - round: 14
+    reviewers:
+    - 3
+    note: 'R3-N1 critical: 正文约 8.7 页，超出 8 页限制约 0.7 页。Discussion + Conclusion 延伸到第 9 页。R13 声称已修复但 R14 fresh review 发现回归。'
+  action_items:
+  - round: 14
+    action: 将 Discussion Mechanistic interpretation 和 Functional stages 移至 Appendix，压缩 Introduction 重复内容
+    assigned_to: research_director
+    status: pending
+- id: R12-N3
+  summary: Abstract/Introduction 信息过载
+  category: writing
+  severity: critical
+  status: open
+  first_raised_round: 12
+  last_seen_round: 14
+  resolution: ''
+  resolution_round: null
+  mentions:
+  - round: 14
+    reviewers:
+    - 3
+    note: 'R3-N2 critical: Abstract 仍含 15+ 定量结果，Introduction 与 Abstract 80% 重复。R13 声称已修复但 R14 fresh review 发现回归。'
+  action_items:
+  - round: 14
+    action: Abstract 只保留 3 个核心发现的定性描述 + 1-2 个关键数字；Introduction 聚焦 motivation
+    assigned_to: research_director
+    status: pending
+- id: R12-W1
+  summary: 无首页 teaser figure
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 12
+  last_seen_round: 14
+  resolution: ''
+  resolution_round: null
+  mentions:
+  - round: 14
+    reviewers:
+    - 3
+    note: 'R3-W1: Figure 1 出现在 PDF page 6 而非 page 1。R13 声称新增 Figure 1 但 R14 发现仍不在首页。'
+  action_items: []
+- id: R12-W2
+  summary: 层编号 off-by-one
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 12
+  last_seen_round: 14
+  resolution: ''
+  resolution_round: null
+  mentions:
+  - round: 14
+    reviewers:
+    - 3
+    note: 'R3-W2: method.tex L26 ''L1--L31 the 32 transformer layers'' 仍有 off-by-one 错误（31 个索引 ≠ 32 层）。R13 声称已修复但 R14 发现回归。'
+  action_items: []
+- id: R12-W3
+  summary: 多条引用使用 arXiv preprint 而非已发表版本
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 12
+  last_seen_round: 14
+  mentions:
+  - round: 13
+    reviewers:
+    - 1
+    - 2
+    note: 3/3 已更新。仍有 belrose2023, padalkar2023 待更新。
+  - round: 14
+    reviewers:
+    - 2
+    - 3
+    note: R2-M1 再次提及：brohan2023 (RT-2)、belrose2023、black2024 (π₀) 需检查是否有正式版本。 R3-W3 独立发现同一问题并列出 6 条具体引用需更新（kim2024_openvla, karamcheti2024, touvron2023, belrose2023, padalkar2023, black2024_pi0）。
+  action_items:
+  - round: 14
+    action: 检查并更新所有可更新的 arXiv 引用至正式版本
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R12-W4
+  summary: 缺失重要 related work
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 13
+  resolution: 6/6 缺失引用全部补齐。
+  resolution_round: 13
+  mentions: []
+  action_items: []
+- id: R12-W5
+  summary: 与 Grant et al. 和 Häon et al. 的区分不够清晰
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 14
+  resolution: Related Work 加显式 what-vs-where 对比段落。
+  resolution_round: 13
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R2-W1 再次提出增量贡献不清晰。R1 AGREE with nuance（token-level 粒度和 multi-method convergence 设计是差异化）。建议增加明确 'what we add' 段落。
+  action_items: []
+- id: R12-W6
+  summary: FDR 多重比较校正细节不足
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 14
+  resolution: BH 方法 + α=0.05 + 33-layer family per metric 完整报告。
+  resolution_round: 13
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R1-W1 提出更深层关切：FDR 仅在每个 metric 的 33 层内，未对全局 family-wise error rate 校正。R2 AGREE 但指出这是 ML interpretability 文献常见做法，属 should-fix。
+  action_items:
+  - round: 14
+    action: 考虑在 Appendix 添加全局 Bonferroni-adjusted p-values 作为 robustness check
+    assigned_to: research_director
+    status: pending
+- id: R12-I1
+  summary: 术语不一致：readout token vs last_preaction
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 12
+  last_seen_round: 14
+  mentions:
+  - round: 13
+    reviewers:
+    - 1
+    - 2
+    note: PARTIALLY_RESOLVED。Table 1 的 'last_preaction' 建议 caption 加映射说明。
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    - 3
+    note: R1-Minor-1 再次提出。R2 AGREE。需统一术语。 R3-W5 独立发现同一问题：readout/last_preaction、instruction-dominant/dominant/instruction heads、7-D action vectors/actions 混用。
+  action_items:
+  - round: 14
+    action: 统一为 'readout token'，首次出现时定义；Table caption 加映射说明
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R12-I2
+  summary: Limitations 未作为独立 section
+  category: format
+  severity: info
+  status: in_progress
+  first_raised_round: 12
+  last_seen_round: 14
+  mentions:
+  - round: 13
+    reviewers:
+    - 1
+    - 2
+    note: PARTIALLY_RESOLVED。使用 paragraph 而非 subsection。
+  - round: 14
+    reviewers: []
+    note: 本轮未提及。R2-M6 确认 Limitations section 存在且满足 CoRL 要求。
+  - round: 14
+    reviewers:
+    - 3
+    note: 'R3-W4: Limitations 仍是 Discussion 的 paragraph 而非独立 section，不满足 CoRL 2026 要求。'
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R12-DIV1
+  summary: Title 'Language Routes' 是否误导
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 13
+  resolution: Title 'Routes'→'Reorganizes' 消除误导。
+  resolution_round: 13
+  mentions: []
+  action_items: []
+- id: R13-W1
+  summary: '''Orthogonal contribution'' 措辞对 closed-loop validation 过于 dismissive'
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 13
+  last_seen_round: 14
+  mentions:
+  - round: 13
+    reviewers:
+    - 1
+    - 2
+    note: 建议改为 'complementary and necessary next step'。
+  - round: 14
+    reviewers: []
+    note: 本轮未直接提及此具体措辞，但 R9-N2/R9-W1 的更广泛 scope fit 讨论涵盖了此问题。Discussion Section 5 仍含 'orthogonal contribution and a natural next step' 原文。
+  action_items:
+  - round: 13
+    action: '''orthogonal contribution'' 改为 ''complementary and necessary next step'''
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R13-I1
+  summary: 附录 'robust attractor' 措辞较主文更强
+  category: framing
+  severity: info
+  status: open
+  first_raised_round: 13
+  last_seen_round: 13
+  mentions:
+  - round: 14
+    reviewers: []
+    note: 本轮未直接提及，但 R14 对 convergent claim 的全面弱化建议涵盖此问题。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R13-I2
+  summary: Spacing 压缩激进
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 13
+  last_seen_round: 13
+  mentions:
+  - round: 14
+    reviewers: []
+    note: 本轮未提及。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R14-N1
+  summary: '''Convergent reorganization'' claim 从 N=2 同类架构得出，混杂变量过多，证据不足'
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    - 3
+    note: R1-N3 + R2-N2，双方 AGREE。OpenVLA 和 TraceVLA 共享 causal decoder + 32 layers + LIBERO + tokenized actions。Δ=0.003 的 mid-layer 收敛可能反映架构共性而非 VLA 训练通用规律。Exit-layer R² 差异 0.069 与 mid-layer Δ=0.003 形成矛盾。建议弱化为
+      'shared mid-layer specialization tendency' 或 'preliminary evidence'。 R3 完全 AGREE。
+  action_items:
+  - round: 14
+    action: 将 'convergent reorganization' 弱化为 'shared tendency' 或 'preliminary evidence for convergence'；精确界定收敛范围（仅 mid-layer，exit-layer 分歧）；讨论哪些混杂变量最可能解释收敛
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R14-W1
+  summary: Counterfactual instruction analysis 仅用 3/10 tasks，Spearman ρ=1.0 在 n=4 条件下 p=0.042 仅 marginal
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R1-W5 提出，R2 AGREE。3 tasks 选择 rationale 未报告，cross-task variance 未讨论。定性结论仍有 informative value，但不应用 ρ=1.0 支撑因果推断。
+  action_items:
+  - round: 14
+    action: 在全部 10 tasks 上复现 counterfactual 分析，或报告 3 tasks 选择 rationale 和 cross-task variance
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R14-W2
+  summary: 单一训练 checkpoint 分析——不同 training seed 可能产生不同表征结构
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R1-W6 提出，R2 AGREE（但指出这是 ML interpretability 普遍局限）。建议 Limitations 中明确讨论哪些发现对 training stochasticity robust vs sensitive。
+  action_items:
+  - round: 14
+    action: Limitations 中讨论 training seed variance 的潜在影响
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R14-W3
+  summary: 缺失引用：Aghajanyan et al. (ACL 2021) + Kumar et al. (NeurIPS 2022)
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R2 提出，R1 AGREE。Aghajanyan (intrinsic dimensionality of fine-tuning) 和 Kumar (fine-tuning distorts pretrained features) 与本文核心问题直接相关。
+  action_items:
+  - round: 14
+    action: 引用 Aghajanyan et al. (ACL 2021) 和 Kumar et al. (NeurIPS 2022)
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R14-I1
+  summary: Footnote 1 两个 pipeline R² 值差异未解释
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    note: R1-Minor-2。两个 pipeline 的差异是什么？读者无法判断哪组数字更可靠。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R14-I2
+  summary: Leave-one-out p ≤ 0.083 不应表述为 'robust'
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R1-Minor-5 提出，R2 AGREE。p=0.083 按任何常规标准不能称为 robust。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R14-I3
+  summary: Permutation test 仅 1,000 shuffles（建议 ≥10,000）
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R1-Minor-3 提出，R2 AGREE。效应极大（15-23 SD）所以不影响结论，但统计实践建议增加。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R14-W4
+  summary: GenAI disclosure 排版位置异常（References 后、Appendix 前）
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 3
+    note: 'R3-S6: Use of Generative AI 声明出现在 references 之后、appendix 之前的奇怪位置。建议移至论文末尾或 appendix 合适位置。'
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R14-W5
+  summary: Appendix resizebox 可能压缩字体至不可读
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 3
+    note: 'R3-S4: appendix.tex line 844 Table 17 的 resizebox 可能导致字体被压缩到不可读。建议使用 small/footnotesize。'
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R14-W6
+  summary: setlength float spacing 修改可能与 corl_2026 package 冲突
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 3
+    note: 'R3-S5: main.tex lines 16-20 的 setlength 调整可能在最终提交时与 corl_2026 package 默认值冲突。需确认这些修改是否被允许。'
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R14-W7
+  summary: Table 2 caption 缩写 'immed./gradual/incid.' 未解释
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 3
+    note: 'R3-S2: caption 中缩写未在 caption 内给出全称，不 standalone readable。'
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R14-DIV1
+  summary: MLP probe capacity：R1 认为过大，R3 认为已充分回应
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 3
+    note: R1-W5 认为 1.05M 参数 MLP probe capacity 过大。R3 REBUT：Appendix A.6 已用 linear probe 完整复现 inverted-U pattern（peak L14 R²=0.565），trained-untrained gap 更大（ΔR²=+0.324），充分 ruled out capacity concern。
+  action_items: []
+  resolution: ''
+  resolution_round: null

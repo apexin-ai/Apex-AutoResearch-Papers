@@ -1,0 +1,22 @@
+{
+  "exp_id": "untrained_last_preaction_probe",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:08:56.469Z",
+    "updated_at": "2026-05-16T00:09:07.337Z",
+    "spec": {
+      "command": "python scripts/action_probe.py --features untrained --feature_key last_preaction",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/untrained_libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-untrained",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T00:09:07.424982+00:00",
+  "trigger": "update_registry"
+}

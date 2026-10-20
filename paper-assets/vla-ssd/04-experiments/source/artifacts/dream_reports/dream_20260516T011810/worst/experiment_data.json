@@ -1,0 +1,410 @@
+[
+  {
+    "name": "SigLIP+Projector RSA vs Full VLA vs DINO",
+    "description": "SigLIP+Projector RSA 对比 Full VLA 和 DINO，证明 action-relevant 结构源自 frozen vision encoder",
+    "results": {
+      "siglip_projector_rsa": 0.615,
+      "trained_with_inst_rsa": 0.501,
+      "untrained_with_inst_rsa": 0.485,
+      "dino_rsa": 0.388
+    },
+    "tables": [
+      {
+        "title": "RSA Comparison (unchanged, but reinterpreted)",
+        "rows": [
+          {
+            "model": "SigLIP+Projector",
+            "rsa": 0.615,
+            "worst_interpretation": "SigLIP-specific, not VL-general"
+          },
+          {
+            "model": "VLA trained",
+            "rsa": 0.501,
+            "worst_interpretation": "LLM degradation holds regardless"
+          },
+          {
+            "model": "VLA untrained",
+            "rsa": 0.485,
+            "worst_interpretation": "Architecture-driven, training-invariant"
+          },
+          {
+            "model": "DINO",
+            "rsa": 0.388,
+            "worst_interpretation": "Vision-only baseline, may ≈ CLIP-ViT"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "数据本身不受影响。Worst 档的冲击来自 plan_012：CLIP-ViT 的位置决定 SigLIP 优势的归因。 Claim 1 必须从 \"VL pretraining produces geometric alignment\" 降级为 \"SigLIP provides highest geometric alignment in OpenVLA\"——一个 observation 而非 mechanism claim。\n\n\n此实验已完成，数据不变。但在 worst 档下，这些结果的解释力被 plan_012 CLIP-ViT 结果削弱： 如果 CLIP-ViT RSA ≈ 0.39（≈ DINO），则 SigLIP 的高 RSA 不来自 \"VL pretraining\" 大类， 而来自 SigLIP 特定训练配方（sigmoid loss + batch design）。 SigLIP 0.615 的优势变成一个 architecture-specific observation 而非 generalizable claim。 如果 CLIP-ViT RSA > 0.60（> SigLIP），则 RSA 与下游性能脱钩（OpenVLA 用 SigLIP 而非 CLIP， 说明高 RSA 不等于好的 VLA backbone），RSA 作为核心 metric 的 validity 被质疑。\n"
+  },
+  {
+    "name": "DINO baseline RSA",
+    "description": "Standalone vision model 参照基线",
+    "results": {
+      "dino_rsa": 0.388,
+      "dino_action_R2": 0.712
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "DINO 数据不变，但其角色从 \"vision-only 下界\" 变为 \"与 CLIP-ViT 共同构成 non-SigLIP cluster\"， 强化 metric dissociation narrative。\n\n\n已完成，数据不变。Worst 档下的关键重解读：DINO RSA=0.388 可能与 CLIP-ViT 接近（worst 预测 CLIP-ViT RSA ∈ [0.35, 0.42]）。这意味着 CLIP（VL-pretrained）和 DINO（self-supervised） 在 geometric alignment 上无显著差异，VL pretraining 不是 geometric alignment 的充分条件。 但 DINO 的 action R²=0.712 ≈ Projector 0.706 已说明 action information presence 与 geometric alignment 是不同维度——这个 dissociation 在 worst 档下反而更突出。\n"
+  },
+  {
+    "name": "Per-layer RSA degradation curve",
+    "description": "追踪 RSA 从 projector output 到 LLM 各层的衰减轨迹",
+    "results": {
+      "proj_rsa": 0.615,
+      "peak_llm_rsa": 0.488,
+      "proj_to_l1_drop_pct": "20-40%",
+      "total_degradation": 0.13
+    },
+    "tables": [
+      {
+        "title": "Per-layer RSA worst-tier role",
+        "rows": [
+          {
+            "metric": "Proj→L1 drop",
+            "value": "0.13-0.25",
+            "role": "Core evidence for Claim 2, unaffected by worst"
+          },
+          {
+            "metric": "Non-monotonic pattern",
+            "value": "yes",
+            "role": "Supports redistribution narrative"
+          },
+          {
+            "metric": "All LLM >> DINO",
+            "value": "yes",
+            "role": "Architecture matters even if VL-pretraining doesn't explain SigLIP"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst 档下此实验的价值反而上升——当 Claim 1 被降级时，Claim 2 的 LLM degradation + redistribution 成为论文核心贡献之一，per-layer curve 是其关键可视化证据。\n\n\n已完成，数据不变。Worst 档下，per-layer curve 的解释力不受 CLIP-ViT 结果影响： 无论 SigLIP 的 geometric advantage 来自何处，LLM 对 geometric alignment 的降解是确定的 （0.615→0.488）。这条证据直接支持 Claim 2（LLM redistributes），与 Claim 1 的 scope 缩减无关。 在重构方向 A 下，per-layer curve 升级为核心 figure（从 supporting 变为 main evidence）。\n"
+  },
+  {
+    "name": "Output head analysis",
+    "description": "确认 SigLIP+projector frozen，LLM 权重变化不传导到表征",
+    "results": {
+      "vision_projector_cos_sim": 1.0,
+      "llm_rel_change_range": [
+        1.22,
+        1.37
+      ],
+      "head_vs_llm_ratio": 1.12
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "此实验在 worst 档下对 Claim 3 的支持力不变。对 Claim 1 的支持从 \"frozen encoder is the source\" 变为 \"frozen encoder explains training invariance\"，scope 缩窄但逻辑链不断。\n\n\n已完成，数据不变。Worst 档下，\"SigLIP+projector frozen\" 的意义发生微妙变化： 原 narrative 是 \"frozen vision encoder 提供 action structure，所以 Claim 1 成立\"。 Worst 档下变为 \"frozen SigLIP 提供最高 geometric alignment，但这可能是 SigLIP-specific 而非 VL-pretraining-general\"。Frozen 属性本身仍解释 trained ≈ untrained（Claim 3）， 所以此实验对 routing-not-creating narrative 的支持不变。\n"
+  },
+  {
+    "name": "6 probing methods × 2 benchmarks",
+    "description": "系统性验证 trained ≈ untrained",
+    "results": {
+      "trained_vs_untrained_delta": "≈0 across all methods",
+      "all_methods_consistent": true
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Worst case 的保底叙事锚点。6 methods consistency 在任何档位下都是 strong evidence。\n\n\nOrphaned 但子实验已完成。数据支持 trained ≈ untrained。Worst 档下此结论不受威胁—— training invariance 是 Claim 3 的基础，与 CLIP-ViT 结果无关。即使 CLIP-ViT 打破 Claim 1， routing-not-creating 的证据链（trained ≈ untrained in distributed representations, trained >> untrained in readout concentration）完全独立。\n"
+  },
+  {
+    "name": "Instruction ablation",
+    "description": "去掉 instruction text 测 RSA 变化",
+    "results": {
+      "delta_with_vs_no_inst": 0.004,
+      "gate_judgment": "FAIL — instruction 无影响"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Instruction ablation 在所有三档下结论一致，是 Claim 3 最稳健的子证据之一。\n\n\n已完成，数据不变。Worst 档下 instruction invariance 仍成立且价值不变： 它直接支持 Claim 3 的 \"三重不变性\"（training + instruction presence + instruction content）， 与 vision encoder identity 无关。\n"
+  },
+  {
+    "name": "2×2 matrix (training × instruction)",
+    "description": "四条件全收敛验证",
+    "results": {
+      "four_cell_range": [
+        0.48,
+        0.49
+      ],
+      "bootstrap_ci_includes_0": true
+    },
+    "tables": [
+      {
+        "title": "2×2 Matrix (unchanged)",
+        "rows": [
+          {
+            "condition": "trained+inst",
+            "rsa": 0.488,
+            "worst_role": "Claim 3 core"
+          },
+          {
+            "condition": "trained-no_inst",
+            "rsa": 0.489,
+            "worst_role": "Claim 3 core"
+          },
+          {
+            "condition": "untrained+inst",
+            "rsa": 0.485,
+            "worst_role": "Claim 3 core"
+          },
+          {
+            "condition": "untrained-no_inst",
+            "rsa": 0.48,
+            "worst_role": "Claim 3 core"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst 档下，当 Claim 1 降级后，Claim 3 的 2×2 matrix 成为论文最 clean 的实验设计， 升级为 main figure 之一。\n\n\n已完成，数据不变。2×2 矩阵在 worst 档下仍是 Claim 3 的核心证据： 四个 cell 收敛在 0.48-0.49 band 内，bootstrap CI 包含 0。 这个结果不依赖 CLIP-ViT 的位置，因为它测量的是 VLA 内部 training/instruction 的效应， 而非跨 encoder 的比较。\n"
+  },
+  {
+    "name": "Random instruction control",
+    "description": "用随机/无意义 instruction 替代真实 instruction，验证 instruction content 不影响 RSA",
+    "results": {
+      "normal_rsa": 0.489,
+      "random_rsa": 0.484,
+      "shuffled_rsa": 0.483,
+      "empty_rsa": 0.472,
+      "max_absolute_delta": 0.017
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "与 plan_006、plan_007 共同构成 Claim 3 不可撼动的证据基础。Worst 档不影响。\n\n\n已完成，数据不变。四种 instruction 条件下 RSA 差异 < 0.02，完成三重不变性的第三重。 Worst 档下价值不变——instruction content invariance 是独立于 encoder identity 的发现。\n"
+  },
+  {
+    "name": "CKA verification",
+    "description": "用 CKA 指标重复 RSA 发现，确认或否认 metric dependency",
+    "results": {
+      "cka_ordering": "untrained > trained > projector > DINO (反转 RSA ordering)",
+      "cka_last_preaction": 0.127,
+      "rsa_cka_dissociation": true
+    },
+    "tables": [
+      {
+        "title": "Triple Metric Dissociation (worst-tier core contribution)",
+        "rows": [
+          {
+            "metric": "RSA (geometric)",
+            "ordering": "SigLIP > trained > untrained > DINO",
+            "captures": "local distance structure alignment"
+          },
+          {
+            "metric": "CKA (global)",
+            "ordering": "untrained > trained > SigLIP > DINO",
+            "captures": "global structure preservation"
+          },
+          {
+            "metric": "R² (functional)",
+            "ordering": "readout > DINO ≈ SigLIP > LLM_img_mean",
+            "captures": "action decodability"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst 档下 plan_009 从 P2 实验升级为核心贡献。Metric dissociation 在 best/mid 档是 limitation discussion，在 worst 档是 main finding。方向 B 的论文标题可能变为 \"No Single Metric Captures VLA Representation Quality: A Multi-Metric Dissociation Analysis\"。\n\n\n已完成。RSA-CKA dissociation 在 worst 档下的角色发生质变： 原本是 \"需要讨论的 limitation\"（metric dependency），worst 档下变成核心贡献之一。 如果选择重构方向 B（Metric Dissociation framing），CKA-RSA-R² 三重分离 本身就是方法论贡献：RSA 捕捉 geometric alignment（SigLIP wins），CKA 捕捉 global structure preservation（untrained wins），R² 捕捉 functional decodability（DINO ≈ SigLIP）。 三个 metric 三种排序 = 单一 metric 不足以评估 VLA 表征质量。 CLIP-ViT 如果 RSA > SigLIP 且 R² < SigLIP，则是第四个分离维度，进一步强化此论点。\n"
+  },
+  {
+    "name": "LIBERO-Spatial cross-benchmark",
+    "description": "第三个 benchmark 交叉验证所有 claims",
+    "results": {
+      "libero_spatial_siglip_rsa": 0.42,
+      "libero_spatial_trained_rsa": 0.38,
+      "libero_spatial_untrained_rsa": 0.4,
+      "libero_spatial_dino_rsa": 0.35,
+      "libero_spatial_training_delta_p": 0.02,
+      "libero_spatial_readout_delta": 0.01,
+      "ordering_reversal": true,
+      "training_invariance_broken": "possibly — p=0.02 < 0.05"
+    },
+    "tables": [
+      {
+        "title": "LIBERO-Spatial vs LIBERO-Goal Comparison (worst-tier)",
+        "rows": [
+          {
+            "metric": "SigLIP RSA",
+            "libero_goal": 0.615,
+            "libero_spatial": 0.42,
+            "delta": -0.195,
+            "interpretation": "Spatial tasks expose SigLIP weakness"
+          },
+          {
+            "metric": "Trained RSA",
+            "libero_goal": 0.501,
+            "libero_spatial": 0.38,
+            "delta": -0.121,
+            "interpretation": "Overall alignment drops"
+          },
+          {
+            "metric": "Untrained RSA",
+            "libero_goal": 0.485,
+            "libero_spatial": 0.4,
+            "delta": -0.085,
+            "interpretation": "Less degradation → ordering reversal"
+          },
+          {
+            "metric": "Training Δ p-value",
+            "libero_goal": 0.2,
+            "libero_spatial": 0.02,
+            "delta": "n/a",
+            "interpretation": "Invariance breaks at p<0.05"
+          },
+          {
+            "metric": "Readout Δ",
+            "libero_goal": 0.045,
+            "libero_spatial": 0.01,
+            "delta": -0.035,
+            "interpretation": "Routing is distribution-specific"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "LIBERO-Spatial 在 worst 档下对 Claim 3 造成最严重威胁。Training invariance 的 p<0.05 break 意味着 \"routing-not-creating\" 不是 universal statement，而是 in-distribution observation。 论文需要加 distribution-dependency qualification：\"Training teaches distribution-specific routing; distributed representations remain approximately invariant within the fine-tuning distribution.\" 这削弱了 Claim 3 的 generality 但不 falsify 它。 但如果 readout Δ 也缩小到 noise level（0.010, p>0.05），则 routing narrative 本身 受质疑——trained LLM 在 OOD 时既不 route 也不 create，只是 pass through。\n\n\nWorst 档核心预测：LIBERO-Spatial 的 action 空间结构与 LIBERO-Goal 不同（spatial reasoning vs goal-directed manipulation），可能导致： (1) SigLIP RSA 从 0.615 跌至 ~0.42——SigLIP 的 geometric alignment 在 spatial tasks 上远不如 goal tasks 突出，因为 SigLIP 的 VL pretraining 偏向 object-centric 而非 spatial。 (2) 排序反转：untrained RSA (0.40) > trained RSA (0.38)——random LLM 保留更多 spatial structure（因为 trained LLM 的 attention 被 LIBERO-Goal 的 fine-tuning 分布偏置， 对 out-of-distribution 的 spatial tasks 反而更差）。 (3) Training invariance 边缘打破：Δ=0.02, p≈0.02——CI 不包含 0 但效应小， 说明 training invariance 是 distribution-dependent 而非 architectural guarantee。 (4) Readout concentration delta 缩小到 0.010（vs LIBERO-Goal 的 0.045）， 因为 routing 是 task-specific learned behavior，out-of-distribution 时效果衰减。 综合：LIBERO-Spatial 不支持 clean Claim 3 narrative，需要加 distribution-dependency caveat。\n"
+  },
+  {
+    "name": "Functional action probe (three-way)",
+    "description": "Projector / LLM / DINO 三方 functional probe 对比",
+    "results": {
+      "projector_R2": 0.706,
+      "llm_image_mean_R2": 0.683,
+      "llm_readout_R2": 0.731,
+      "dino_R2": 0.712,
+      "untrained_readout_R2": 0.686,
+      "bootstrap_proj_vs_llm_p": 0.001
+    },
+    "tables": [
+      {
+        "title": "Functional Probe under Worst Tier",
+        "rows": [
+          {
+            "model": "SigLIP+Proj",
+            "R2": 0.706,
+            "worst_role": "≈ DINO, not special in R²"
+          },
+          {
+            "model": "DINO",
+            "R2": 0.712,
+            "worst_role": "≈ Proj, action info is generic"
+          },
+          {
+            "model": "LLM img_mean",
+            "R2": 0.683,
+            "worst_role": "Degradation confirmed, Claim 2 holds"
+          },
+          {
+            "model": "Trained readout",
+            "R2": 0.731,
+            "worst_role": "Routing confirmed, unaffected by worst"
+          },
+          {
+            "model": "Untrained readout",
+            "R2": 0.686,
+            "worst_role": "< Proj, training-dependent routing confirmed"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Functional probe 在 worst 档下反而提供 silver lining：即使 Claim 1 被降级， readout concentration（trained vs untrained）的 functional evidence 完全不受影响（p<0.0001）， 是 routing-not-creating narrative 的最强量化支撑。\n\n\nOrphaned 但子实验已完成，数据不变。Worst 档下 functional probe 的关键重解读： DINO R²=0.712 ≈ Projector R²=0.706 (p=0.22) 已经是 worst-direction 的证据—— action information presence 不区分 VL-pretrained 和 self-supervised encoder。 如果 CLIP-ViT R² 也 ≈ 0.70（与 DINO/SigLIP 同水平），则 \"所有 modern vision encoders 都包含足够的 action-relevant information\" 成为 finding，而非 SigLIP dominance。 如果 CLIP-ViT R² < 0.65（显著低于 DINO/SigLIP），则与 CLIP-ViT RSA > 0.60 形成 RSA-R² dissociation（高 geometric alignment 低 functional capacity）， 是方向 B metric dissociation 的核心证据。 Readout concentration（trained 0.731 >> untrained 0.686, p<0.0001）不受 worst 档影响， 仍是 Claim 2+3 的最强 functional evidence。\n"
+  },
+  {
+    "name": "CLIP-ViT pretraining control",
+    "description": "用 CLIP ViT-L 替代 SigLIP，区分 VL pretraining 贡献 vs SigLIP-specific 效应",
+    "results": {
+      "clip_vit_rsa_scenario_A": 0.39,
+      "clip_vit_rsa_scenario_B": 0.62,
+      "clip_vit_action_R2": 0.69,
+      "clip_vit_delta_R2": 0.09
+    },
+    "tables": [
+      {
+        "title": "CLIP-ViT Worst Scenario A: VL ≠ geometric alignment",
+        "rows": [
+          {
+            "model": "SigLIP",
+            "rsa": 0.615,
+            "R2": 0.706,
+            "interpretation": "SigLIP-specific, not VL-general"
+          },
+          {
+            "model": "CLIP-ViT",
+            "rsa": 0.39,
+            "R2": 0.69,
+            "interpretation": "VL pretraining ≠ geometric alignment"
+          },
+          {
+            "model": "DINO",
+            "rsa": 0.388,
+            "R2": 0.712,
+            "interpretation": "≈ CLIP-ViT in both metrics"
+          }
+        ]
+      },
+      {
+        "title": "CLIP-ViT Worst Scenario B: RSA-performance dissociation",
+        "rows": [
+          {
+            "model": "CLIP-ViT",
+            "rsa": 0.62,
+            "R2": 0.69,
+            "interpretation": "Highest RSA but not chosen for OpenVLA"
+          },
+          {
+            "model": "SigLIP",
+            "rsa": 0.615,
+            "R2": 0.706,
+            "interpretation": "Chosen for OpenVLA, slightly lower RSA"
+          },
+          {
+            "model": "DINO",
+            "rsa": 0.388,
+            "R2": 0.712,
+            "interpretation": "Lowest RSA, highest R²"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Plan_012 是 worst 档的定义性实验。无论场景 A 还是 B，Claim 1 都需要重写： 场景 A → \"SigLIP's sigmoid loss produces uniquely high geometric alignment, distinct from both contrastive VL (CLIP) and self-supervised (DINO) pretraining\"。 场景 B → \"High geometric alignment (RSA) does not predict VLA backbone suitability; metric selection critically shapes conclusions about representation quality\"。 两种场景下 Claim 2 和 Claim 3 不受影响——LLM degradation 和 routing-not-creating 不依赖 SigLIP 的 RSA 来源。Intro 和 framing 需要 ~2 天重写。 论文仍可投 CoRL 2026（接受 analysis/understanding 论文），但标题和 contribution statement 必须重构。\n\n\n这是 worst 档的 make-or-break 实验。两个 worst 场景：\n场景 A（CLIP-ViT RSA ≈ 0.39，接近 DINO 0.388）： CLIP ViT-L 的 contrastive pretraining（softmax cross-entropy, InfoNCE）与 DINO 的 self-supervised pretraining 产生类似的 geometric structure，RSA ≈ 0.39。 这直接说明 VL pretraining 不是 geometric alignment 的充分条件——CLIP 有 language supervision 但 geometric alignment 不比 DINO 好。SigLIP 的 RSA=0.615 来自其特定设计： sigmoid loss 移除了 softmax 的 cross-sample normalization，允许更 fine-grained 的 per-pair alignment，可能产生与 action 空间更匹配的 geometric structure。 但这是 architecture/loss-specific 的 insight，不是 VL pretraining 的 general claim。 此时 R² ≈ 0.69（与 DINO 0.712 和 Projector 0.706 在同一水平），说明 action information 是 generic 的，所有 strong vision encoders 都有。\n场景 B（CLIP-ViT RSA ≈ 0.62, > SigLIP 0.615）： CLIP ViT-L 的 RSA 竟然更高，但 OpenVLA 选择了 SigLIP 且实际 downstream performance 更好。这意味着 RSA 与 VLA task performance 脱钩——高 geometric alignment 不等于好 VLA。 RSA 作为核心 metric 的 validity 被质疑。需要解释为什么 OpenVLA 团队选 SigLIP 而非 CLIP （可能是 training efficiency / resolution / tokenizer 兼容性而非 representational 原因）。 此时论文必须转向方向 B：metric dissociation 本身是贡献，而非 RSA 的绝对值。\n"
+  },
+  {
+    "name": "Reviewer simulation (worst-tier consensus)",
+    "description": "模拟 worst 档下 reviewer 反应",
+    "results": {
+      "reviewer_score_median": 4,
+      "reviewer_score_range": [
+        3,
+        5
+      ],
+      "consensus": "scope narrow + metric dependency unresolved"
+    },
+    "tables": [
+      {
+        "title": "Worst-tier Reviewer Score Distribution",
+        "rows": [
+          {
+            "reviewer": "R1 (generalizability hawk)",
+            "score": 3,
+            "main_concern": "Single arch + CLIP-ViT undermines VL claim"
+          },
+          {
+            "reviewer": "R2 (methodology appreciator)",
+            "score": 5,
+            "main_concern": "Framing needs work but evidence is solid"
+          },
+          {
+            "reviewer": "R3 (scope clarity)",
+            "score": 4,
+            "main_concern": "Too many claims, pick one story"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Median score 4 = borderline reject/accept depending on AC disposition. 重构方向 A（routing-not-creating focus）更有可能获得 accept，因为证据集中且统计功效强。 方向 B（metric dissociation）风险更高——reviewer 可能认为是 negative result dressed up， 但如果执行得当（CKA-RSA-R² 三重分离作为方法论框架），也有 accept 路径。 关键：无论哪个方向，Claim 1 必须降级为 observation，否则 R1 的 score 会拖垮全文。\n\nWorst 档下预期 reviewer 反应： R1 (score 3): \"Single architecture (OpenVLA), single benchmark (LIBERO-Goal main results), and the CLIP-ViT result undermines the core VL-pretraining claim. What remains is observations specific to SigLIP in OpenVLA — not generalizable.\" R2 (score 5): \"The routing-not-creating finding (Claim 3) is novel and well-supported with strong statistics (p<0.0001). The metric dissociation (RSA vs CKA vs R²) is a useful methodological contribution. Paper needs better framing but the evidence is solid.\" R3 (score 4): \"Interesting analysis but the paper tries to do too much. Pick either the routing story OR the metric dissociation story and do it thoroughly. LIBERO-Spatial results (if included) weaken rather than strengthen the claims.\" AC synthesis: Borderline. Strong evidence for Claim 3, but Claim 1 overreach and metric dependency concern. Revision can fix if framing is tightened.\n"
+  }
+]

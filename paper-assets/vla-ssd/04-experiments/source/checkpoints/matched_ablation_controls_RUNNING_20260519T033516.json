@@ -1,0 +1,28 @@
+{
+  "exp_id": "matched_ablation_controls",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:26:06.797Z",
+    "updated_at": "2026-05-19T03:35:16.309Z",
+    "parent": "specificity_control_action",
+    "hypothesis": "Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.",
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal",
+      "data_count": "3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total",
+      "model_name": "openvla-7b",
+      "seed": "42,123,456,789,1024 (random-24); deterministic (image-dominant-24)",
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b",
+      "eval_data": "LIBERO libero_goal 3 tasks, 10 demos each, 50 timesteps",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log",
+      "checkpoint_path": "N/A (inference-only)"
+    }
+  },
+  "timestamp": "2026-05-19T03:35:16.499476+00:00",
+  "trigger": "update_registry"
+}

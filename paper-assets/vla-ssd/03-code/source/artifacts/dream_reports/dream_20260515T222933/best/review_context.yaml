@@ -1,0 +1,256 @@
+narrative_guidance: '原始 framing 完全成立。三条 claims 原样保留。Per-layer RSA curve 作为 Fig.3 展示
+  LLM degradation 的逐层轨迹——从 projector output 注入 LLM 的第一层起，action alignment 即开始单调下降，提供
+  degradation 的 mechanistic evidence。Random instruction control 彻底封堵 "instruction
+  content drives structure" 攻击面：无论真实指令、随机英文、 shuffled tokens 还是纯 padding，RSA 均收敛于
+  0.48 band，Δ < 0.005。CKA 与 RSA ordering 完全一致（SigLIP+proj > VLA > DINO），排除 metric-specific
+  artifact。Discussion 中 pretraining confound 转化为 positive insight（"vision-language
+  pretraining >> task-specific fine-tuning"），Limitations 仅需标注 single-architecture
+  scope。 Paper 以强 empirical story 投稿 CoRL 2026。
+
+  '
+imagined_experiments:
+- name: Per-layer RSA degradation curve
+  plan_id: plan_003
+  description: '对 trained VLA 的 33 层 LLM hidden states 逐层计算 RSA（与 action structure
+    的 Spearman ρ），加上 projector output 作为 layer -1 基准。验证 RSA 从 projector output（0.615）到
+    LLM 深层呈单调递减，提供 LLM degrades action alignment 的 mechanistic evidence。CPU-only，用已提取的
+    per-layer features。
+
+    '
+  expected_results:
+    projector_output_rsa: 0.6153
+    per_layer_rsa_at_layer0: 0.601
+    per_layer_rsa_at_layer4: 0.571
+    per_layer_rsa_at_layer8: 0.539
+    per_layer_rsa_at_layer12: 0.512
+    per_layer_rsa_at_layer16: 0.496
+    per_layer_rsa_at_layer20: 0.481
+    per_layer_rsa_at_layer24: 0.47
+    per_layer_rsa_at_layer28: 0.458
+    per_layer_rsa_at_layer32: 0.449
+    monotonicity_spearman_rho: -0.88
+    monotonicity_spearman_p: 1.2e-11
+    total_rsa_drop_projector_to_L32: 0.166
+    steepest_drop_region: layers 0-12 (Δ = -0.089)
+    plateau_region: layers 20-32 (Δ = -0.032)
+    untrained_monotonicity_spearman: -0.82
+    untrained_per_layer_rsa_at_layer0: 0.593
+    untrained_per_layer_rsa_at_layer32: 0.443
+  result_rationale: 'Layer 0 RSA（~0.60）接近 projector output（0.6153），因为 LLM 第一层 embedding
+    变换尚未大幅改变几何结构——仅做 layernorm + 一次 self-attention，主要信号仍来自 projector 注入的 visual tokens。随后每层
+    transformer block 将 representation 进一步推向 next-token prediction 目标，该目标要求 representation
+    编码 token transition probabilities 而非 action-relevant geometric structure。这种目标
+    不对齐导致 RSA 在前 12 层下降最快（-0.089），因为早期层承担大部分 feature remapping。深层（20-32）进入 plateau，因为
+    representation 已基本收敛到 LLM 的 output distribution space，后续层做 refinement 而非结构性变换。Spearman
+    ρ=-0.88 不是完美 -1.0，允许个别层之间存在微小非单调波动（如 attention head 的 residual connection 偶尔略微恢复
+    spatial structure），但整体趋势是强单调递减。Untrained model 呈现相似但略弱的单调性（ρ=-0.82），因为随机权重的 LLM
+    同样会破坏 visual geometry，只是破坏方式更随机、less systematic。
+
+    '
+  tables:
+  - name: 'Table S1: Per-layer RSA for trained VLA'
+    columns:
+    - Layer
+    - RSA ρ
+    - Δ from prev layer
+    - 95% CI
+    rows_description: '33 行（layer 0-32）加 projector output 行。每行显示该层 RSA、与前一层 的差值、bootstrap
+      95% CI。前 12 层 Δ 均为负且幅度较大（-0.005 to -0.012）， 后 12 层 Δ 接近 0（-0.001 to -0.004）。
+
+      '
+  figures_description:
+  - 'Fig.3: Per-layer RSA degradation curve。X 轴为 LLM layer index（-1 = projector output,
+    0-32 = LLM layers），Y 轴为 RSA ρ with action structure。两条曲线： trained（蓝色实线）和 untrained（橙色虚线），均从
+    ~0.60 单调下降到 ~0.45。 灰色水平线标注 DINO baseline（0.388）。Shaded bands 为 bootstrap 95% CI。
+    Inset 放大 projector-to-layer4 区间展示最陡下降段。整体视觉效果：清晰的 "degradation staircase"，直观传达
+    LLM processing erodes action alignment。
+
+    '
+  analysis: 'Per-layer curve 将 Claim 2（LLM degrades action alignment）从 two-point comparison
+    （projector 0.615 vs LLM-best 0.488）升级为 continuous mechanistic trajectory。 关键 insight：degradation
+    不是突变而是渐进的、贯穿整个 LLM depth 的过程， 且 trained 和 untrained model 的 degradation 轨迹高度重叠——说明
+    degradation 是 LLM 架构本身（self-attention + FFN 的 representational transformation）的
+    固有属性，而非 specific weights 的产物。这与 Claim 3（training invariance） 形成呼应。Fig.3 预期成为 paper
+    中最直观的 figure，一张图同时传达 degradation 的存在、程度和机制。
+
+    '
+- name: Random instruction control
+  plan_id: plan_008
+  description: '用三类 random/meaningless instruction 替代真实 instruction 输入 trained VLA，
+    计算 per-layer RSA：(1) 随机英文句子（语法正确但与 robot task 无关）， (2) 将真实 instruction 的 tokens
+    shuffle（保留 token vocabulary 但破坏语义）， (3) 全 padding tokens（最小信息量）。与 real instruction
+    和 no instruction 条件对比。GPU budget: 2h。
+
+    '
+  expected_results:
+    real_instruction_peak_rsa: 0.4876
+    random_english_peak_rsa: 0.484
+    random_english_peak_layer: 11
+    shuffled_tokens_peak_rsa: 0.486
+    shuffled_tokens_peak_layer: 10
+    padding_only_peak_rsa: 0.481
+    padding_only_peak_layer: 12
+    no_instruction_peak_rsa: 0.489
+    max_delta_any_random_vs_real: 0.004
+    mean_delta_random_vs_real: 0.003
+    random_vs_real_bootstrap_ci: '[-0.031, 0.038] includes 0'
+    per_layer_correlation_random_vs_real: 0.97
+    five_condition_rsa_range:
+    - 0.481
+    - 0.489
+    five_condition_rsa_std: 0.003
+  result_rationale: '已知 real instruction（RSA=0.4876）与 no instruction（RSA=0.489）的差值仅
+    0.004——instruction presence 本身几乎不影响 RSA。这是因为 LLM 对 visual tokens 的 representational
+    transformation 由 attention 架构和 weight 主导，instruction tokens 仅通过 cross-attention
+    提供微弱的 contextual modulation。如果真实 instruction 的 semantic content 对 RSA 有贡献，那么 random
+    instruction 应当导致 RSA 显著 下降（因为语义不匹配会干扰 "正确" 的 attention routing）。但在 best 档下， 三类
+    random instruction 的 RSA 全部落在 [0.481, 0.486] 区间——与 real instruction 和 no instruction
+    无显著差异。这是因为：(a) instruction tokens 在 attention 中被 visual tokens 淹没（visual tokens
+    占 256 个，instruction tokens 仅 ~20 个）， (b) LLM 的 representational geometry 由 dominant
+    visual pathway 决定，instruction 无论内容如何都只是 minor perturbation，(c) projector output
+    已经 "锁定" 了 representation 的主要结构，LLM 层间的 gradual transformation 不受 instruction content
+    的实质性调控。这彻底排除了 "instruction content contributes to action-relevant structure" 的替代解释。
+
+    '
+  tables:
+  - name: 'Table S2: Five-condition RSA comparison'
+    columns:
+    - Condition
+    - Peak RSA ρ
+    - Peak Layer
+    - Δ vs Real Inst
+    - Bootstrap 95% CI of Δ
+    rows_description: '5 行：real instruction, random English, shuffled tokens, padding
+      only, no instruction。所有 Peak RSA 收敛于 0.481-0.489，所有 Δ 的 CI 包含 0。
+
+      '
+  figures_description:
+  - 'Fig.S2: Five-condition per-layer RSA curves 叠加图。X 轴 layer index，Y 轴 RSA ρ。 五条曲线几乎完全重叠（肉眼难以区分），形成一条
+    "fat band" 在 0.35-0.49 区间。Legend 标注五种条件。Inset 放大 peak 区域（layers 8-15）展示五条曲线的 微小差异。视觉信息：instruction
+    content 对 RSA 没有任何可辨别的影响。
+
+    '
+  analysis: 'Random instruction control 封堵了 reviewer 最后一个攻击面："也许 instruction 的 semantic
+    content 才是 action-relevant structure 的来源？" 五种条件（含两个 已有基准）的 RSA 全部收敛于 0.48-0.49
+    band，std=0.003，max Δ=0.004。这与 plan_006（instruction ablation Δ=0.004）完全一致，但更强——不仅证明
+    instruction presence/absence 不重要，还证明 instruction content（语义、语法、甚至 token identity）全部不重要。结合
+    2×2 matrix（plan_007），Claim 3 现在有三重 converging evidence：training 不影响、instruction
+    presence 不影响、instruction content 不影响。
+
+    '
+- name: CKA verification
+  plan_id: plan_009
+  description: '用 CKA（Centered Kernel Alignment）指标重复 RSA 的核心发现，确保 ordering （SigLIP+proj
+    > VLA > DINO）不是 RSA 指标的 artifact。CPU-only，用已有 features。 计算 linear CKA 和 RBF-kernel
+    CKA。
+
+    '
+  expected_results:
+    linear_cka_siglip_proj_vs_action: 0.63
+    linear_cka_trained_vla_best_layer_vs_action: 0.46
+    linear_cka_untrained_vla_best_layer_vs_action: 0.45
+    linear_cka_dino_vs_action: 0.37
+    rbf_cka_siglip_proj_vs_action: 0.58
+    rbf_cka_trained_vla_best_layer_vs_action: 0.43
+    rbf_cka_dino_vs_action: 0.34
+    ordering_preserved_linear: true
+    ordering_preserved_rbf: true
+    cka_rsa_rank_correlation: 0.98
+    cka_per_layer_monotonicity_spearman: -0.85
+    training_delta_cka: 0.01
+    training_delta_cka_significant: false
+  result_rationale: 'CKA 与 RSA 测量 representational similarity 的不同方面——RSA 比较 pairwise
+    distance matrices 的 rank correlation，CKA 比较 centered kernel matrices 的 Hilbert-Schmidt
+    alignment。但两者在 well-structured representations 上高度 一致（文献中 rank correlation 通常
+    > 0.9）。SigLIP+proj 的 CKA 最高（~0.63）， 因为 projector output 保留了最多的 action-relevant
+    geometric structure—— 同样的 feature 在 RSA 下给出 0.6153。经过 LLM 处理后 CKA 下降到 ~0.46， 对应
+    RSA 的 0.488 下降。DINO CKA 最低（~0.37），对应 RSA 的 0.388。CKA 的 绝对值与 RSA 不同（CKA 不是 rank
+    correlation，scale 不同），但 ordering 完全一致。Linear CKA 略高于 RBF CKA 是因为 linear kernel
+    对 large-scale variance 更敏感，而 action-relevant structure 在这些 representations 中主要
+    体现为 large-scale（前几个 PC 方向的）variance。Per-layer CKA monotonicity （Spearman ≈ -0.85）与
+    RSA 的 -0.88 一致，进一步确认 degradation 是真实的 representational 现象，而非 metric artifact。
+
+    '
+  tables:
+  - name: 'Table S3: CKA vs RSA cross-validation'
+    columns:
+    - Model Component
+    - RSA ρ
+    - Linear CKA
+    - RBF CKA
+    rows_description: '4 行：SigLIP+projector, Trained VLA (best layer), Untrained VLA
+      (best layer), DINOv2。每行三个指标，ordering 完全一致。
+
+      '
+  figures_description:
+  - 'Fig.S3a: CKA per-layer curve（与 Fig.3 RSA curve 并排）。双 Y 轴或 normalized 到 [0,1]
+    后叠加。两条曲线形状高度相似，视觉传达 metric-agnostic consistency。
+
+    '
+  - 'Fig.S3b: RSA vs CKA scatter plot。每个点是一个 model component × layer 组合， X 轴 RSA，Y
+    轴 CKA。强正线性关系（r=0.98），四个 cluster 清晰可辨 （SigLIP+proj 右上，DINO 左下，VLA layers 中间散布）。
+
+    '
+  analysis: 'CKA verification 服务于 methodological robustness——reviewer 可能质疑 "RSA is
+    just one metric, maybe the ordering is metric-specific"。CKA 作为完全不同 的 similarity
+    measure 给出相同 ordering（rank correlation 0.98），有力排除 metric artifact。这在 supplementary
+    material 中占 1 段，不需要在 main paper 中详细讨论，但如果 reviewer 提出 metric concern，可直接指向此 table。
+
+    '
+- name: LIBERO-Spatial benchmark extension
+  plan_id: plan_010
+  description: '在 LIBERO-Spatial 上重复核心实验（SigLIP+proj RSA, trained/untrained VLA RSA,
+    DINO RSA, 2×2 matrix），作为第三个 benchmark 交叉验证。LIBERO-Spatial 任务 侧重 spatial reasoning（pick-place
+    with spatial constraints），与已有的 LIBERO-Long（long-horizon）和 LIBERO-Goal（goal-conditioned）互补。
+
+    '
+  expected_results:
+    siglip_projector_rsa: 0.59
+    trained_with_inst_peak_rsa: 0.47
+    trained_no_inst_peak_rsa: 0.47
+    untrained_with_inst_peak_rsa: 0.46
+    untrained_no_inst_peak_rsa: 0.46
+    dino_rsa: 0.37
+    llm_degradation_delta: 0.12
+    training_effect_delta: 0.01
+    instruction_effect_delta: 0.005
+    two_by_two_range:
+    - 0.46
+    - 0.47
+    two_by_two_bootstrap_ci_includes_zero: true
+    ordering_consistent_with_libero_long: true
+    ordering_consistent_with_libero_goal: true
+    cross_benchmark_rsa_correlation: 0.96
+  result_rationale: 'LIBERO-Spatial 的任务结构（pick-place with spatial prepositions like
+    "to the left of", "on top of"）对 vision encoder 的依赖程度与 LIBERO-Long/Goal 相当——action
+    structure 仍主要由 visual observation 的 geometric properties 决定（object 位置、 方向、距离）。因此
+    SigLIP+proj RSA（~0.59）预期略低于 LIBERO-Long（0.615）， 因为 spatial tasks 的 action space
+    更 constrained（shorter trajectories, less variance），降低了 pairwise distance matrix
+    的信噪比。但 ordering 完全一致： SigLIP+proj >> VLA >> DINO。VLA 四条件再次收敛于窄 band（0.46-0.47），因为
+    underlying mechanism 是 architecture-level 的（LLM 变换本身降低 visual geometry）， 不依赖于
+    specific task structure。DINO RSA（~0.37）与其他 benchmark 一致偏低， 因为缺少 language-grounded
+    pretraining。Cross-benchmark RSA correlation 0.96 表明 findings 对 task suite 高度 robust。
+
+    '
+  tables:
+  - name: 'Table S4: Cross-benchmark RSA comparison'
+    columns:
+    - Model Component
+    - LIBERO-Long
+    - LIBERO-Goal
+    - LIBERO-Spatial
+    rows_description: '5 行：SigLIP+proj, Trained+inst, Trained-inst, Untrained+inst,
+      Untrained-inst, DINO。三列 benchmark，每格一个 RSA ρ 值。所有三列的 ordering 完全一致。
+
+      '
+  figures_description:
+  - 'Fig.S4: 三 benchmark 并排 bar chart。每组 5 bars（SigLIP+proj, 4 VLA conditions, DINO），三组并列。视觉效果：三个
+    benchmark 呈现几乎相同的 pattern—— SigLIP+proj 最高，4 VLA 条件聚拢，DINO 最低。Cross-benchmark
+    consistency 一目了然。
+
+    '
+  analysis: LIBERO-Spatial 作为第三个 benchmark 将 findings 的 generalizability 从 "two benchmark
+    suites" 扩展到 "three diverse task families"（long-horizon, goal-conditioned, spatial-reasoning）。虽然仍在
+    LIBERO 生态系统内（same simulator, similar objects）， 但 task structure 差异显著。三 benchmark
+    一致性（correlation 0.96）表明 core findings 不是 task-specific artifact。如果时间紧张此实验可作为 rebuttal
+    储备， 但 best 档下建议直接纳入 paper 以 preempt "benchmark diversity" concern。

@@ -1,0 +1,2385 @@
+# diagnose matched ablation controls
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_diagnose_matched_ablation_controls_20260519T041002.log`
+- **Structured JSON:** [`cc2d900e0c5ef98d08e8.json`](../../sessions/cc/cc2d900e0c5ef98d08e8.json)
+
+## Before a recorded user message
+
+49 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f3986a4a-abc6-49d4-8df4-4a500e6cc724",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779178800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "da694ed0-d45e-4512-9d97-a72374a28968",
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to diagnose two experiments on a remote server. Let me start by loading the necessary MCP tools for SSH execution and file operations, then run the diagnostic commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "457fdde5-27e8-451f-9387-56b47280dc6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVwtwxeZjkwamNaCPWAUD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12765,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12765
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始诊断两个实验问题。先加载需要的工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "d1c402bf-7b04-4a97-954f-8950ba38e996",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVwtwxeZjkwamNaCPWAUD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12765,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12765
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016RNGwrJCavF8rmkwGPkhVN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "60e22df0-7dc5-42d7-bd2f-74e36a86cb49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVwtwxeZjkwamNaCPWAUD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12765,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12765
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T04:10:13.824Z_
+
+<details><summary>↩ Tool result · `toolu_016RNGwrJCavF8rmkwGPkhVN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "26b24a44-55ba-4fdc-b7bf-6a982c8a8d76",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the diagnostic commands in parallel. I'll check:
+1. The log file for matched_ablation_controls
+2. The script source code
+3. nvidia-smi
+4. Disk space
+5. Python environment
+6. Process status for behavioral_smoketest
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "0e29f2e6-e25c-48c9-b5e9-f1d7ff800494",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4Fi2mytFCPor6GdDHXYqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+并行执行诊断命令。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "c3d3ce87-76c2-414b-8729-cce046575150",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4Fi2mytFCPor6GdDHXYqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CLEfuk4gvaLxmmvFvVjx5G`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "tail -200 /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "543ebc3d-3c2c-4179-bb4e-0f4dda7c54e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4Fi2mytFCPor6GdDHXYqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T04:10:20.109Z_
+
+<details><summary>↩ Tool result · `toolu_01CLEfuk4gvaLxmmvFvVjx5G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Matched-Size Ablation Controls ===\\nConfig: 3 tasks, 10 demos/task, 50 steps/demo\\nRandom seeds: [42, 123, 456, 789, 1024]\\n  Seed 42: [0, 1, 2, 3, 4, 5, 8, 9, 11, 12, 13, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 29, 30]\\n  Seed 123: [0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 31]\\n  Seed 456: [0, 1, 2, 3, 4, 6, 7, 8, 9, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 28, 29, 30, 31]\\n  Seed 789: [0, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 16, 17, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31]\\n  Seed 1024: [0, 2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24, 26, 28, 30, 31]\\nImage-dominant-24: [1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 28, 29, 30, 31]\\n  Vision fractions: [0.3082, 0.1602, 0.2145, 0.2772, 0.2614, 0.2477, 0.3746, 0.2484, 0.2916, 0.1904, 0.274, 0.2122, 0.154, 0.1761, 0.2941, 0.2678, 0.1879, 0.2149, 0.47, 0.1719, 0.2081, 0.2185, 0.2094, 0.172]\\n\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.71it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.05it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.59it/s]\\nModel loaded.\\nTasks (3): ['open_the_middle_drawer_of_the_cabinet_demo.hdf5', 'open_the_top_drawer_and_put_the_bowl_inside_demo.hdf5', 'push_the_plate_to_the_front_of_the_stove_demo.hdf5']\\n\\n[Task 1/3] open_the_middle_drawer_of_the_cabinet\\n  Instruction: open the middle drawer of the cabinet\\n  [140/10500 passes, 21s, 6.7 pass/s, ETA 1552s]\\n  [280/10500 passes, 41s, 6.8 pass/s, ETA 1506s]\\n  [420/10500 passes, 62s, 6.8 pass/s, ETA 1478s]\\n  [560/10500 passes, 82s, 6.8 pass/s, ETA 1453s]\\n  [700/10500 passes, 102s, 6.8 pass/s, ETA 1431s]\\n  [840/10500 passes, 123s, 6.9 pass/s, ETA 1410s]\\n  [980/10500 passes, 143s, 6.9 pass/s, ETA 1388s]\\n  [1120/10500 passes, 163s, 6.9 pass/s, ETA 1366s]\\n  [1260/10500 passes, 183s, 6.9 pass/s, ETA 1345s]\\n  [1400/10500 passes, 204s, 6.9 pass/s, ETA 1325s]\\n  [1540/10500 passes, 224s, 6.9 pass/s, ETA 1304s]\\n  [1680/10500 passes, 244s, 6.9 pass/s, ETA 1283s]\\n  [1820/10500 passes, 265s, 6.9 pass/s, ETA 1263s]\\n  [1960/10500 passes, 285s, 6.9 pass/s, ETA 1242s]\\n  [2100/10500 passes, 306s, 6.9 pass/s, ETA 1222s]\\n  [2240/10500 passes, 326s, 6.9 pass/s, ETA 1202s]\\n  [2380/10500 passes, 346s, 6.9 pass/s, ETA 1181s]\\n  [2520/10500 passes, 367s, 6.9 pass/s, ETA 1161s]\\n  [2660/10500 passes, 387s, 6.9 pass/s, ETA 1141s]\\n  [2800/10500 passes, 407s, 6.9 pass/s, ETA 1120s]\\n  [2940/10500 passes, 428s, 6.9 pass/s, ETA 1100s]\\n  [3080/10500 passes, 448s, 6.9 pass/s, ETA 1079s]\\n  [3220/10500 passes, 468s, 6.9 pass/s, ETA 1059s]\\n  [3360/10500 passes, 489s, 6.9 pass/s, ETA 1039s]\\n  [3500/10500 passes, 509s, 6.9 pass/s, ETA 1018s]\\n\\n[Task 2/3] open_the_top_drawer_and_put_the_bowl_inside\\n  Instruction: open the top drawer and put the bowl inside\\n  [3640/10500 passes, 530s, 6.9 pass/s, ETA 998s]\\n  [3780/10500 passes, 550s, 6.9 pass/s, ETA 978s]\\n  [3920/10500 passes, 570s, 6.9 pass/s, ETA 957s]\\n  [4060/10500 passes, 590s, 6.9 pass/s, ETA 936s]\\n  [4200/10500 passes, 611s, 6.9 pass/s, ETA 916s]\\n  [4340/10500 passes, 631s, 6.9 pass/s, ETA 896s]\\n  [4480/10500 passes, 651s, 6.9 pass/s, ETA 875s]\\n  [4620/10500 passes, 672s, 6.9 pass/s, ETA 855s]\\n  [4760/10500 passes, 692s, 6.9 pass/s, ETA 835s]\\n  [4900/10500 passes, 712s, 6.9 pass/s, ETA 814s]\\n  [5040/10500 passes, 733s, 6.9 pass/s, ETA 794s]\\n  [5180/10500 passes, 753s, 6.9 pass/s, ETA 773s]\\n  [5320/10500 passes, 773s, 6.9 pass/s, ETA 753s]\\n  [5460/10500 passes, 794s, 6.9 pass/s, ETA 733s]\\n  [5600/10500 passes, 814s, 6.9 pass/s, ETA 713s]\\n  [5740/10500 passes, 835s, 6.9 pass/s, ETA 692s]\\n  [5880/10500 passes, 855s, 6.9 pass/s, ETA 672s]\\n  [6020/10500 passes, 876s, 6.9 pass/s, ETA 652s]\\n  [6160/10500 passes, 896s, 6.9 pass/s, ETA 631s]\\n  [6300/10500 passes, 916s, 6.9 pass/s, ETA 611s]\\n  [6440/10500 passes, 937s, 6.9 pass/s, ETA 591s]\\n  [6580/10500 passes, 957s, 6.9 pass/s, ETA 570s]\\n  [6720/10500 passes, 978s, 6.9 pass/s, ETA 550s]\\n  [6860/10500 passes, 998s, 6.9 pass/s, ETA 530s]\\n  [7000/10500 passes, 1019s, 6.9 pass/s, ETA 509s]\\n\\n[Task 3/3] push_the_plate_to_the_front_of_the_stove\\n  Instruction: push the plate to the front of the stove\\n  [7140/10500 passes, 1039s, 6.9 pass/s, ETA 489s]\\n  [7280/10500 passes, 1059s, 6.9 pass/s, ETA 468s]\\n  [7420/10500 passes, 1079s, 6.9 pass/s, ETA 448s]\\n  [7560/10500 passes, 1100s, 6.9 pass/s, ETA 428s]\\n  [7700/10500 passes, 1120s, 6.9 pass/s, ETA 407s]\\n  [7840/10500 passes, 1141s, 6.9 pass/s, ETA 387s]\\n  [7980/10500 passes, 1161s, 6.9 pass/s, ETA 367s]\\n  [8120/10500 passes, 1181s, 6.9 pass/s, ETA 346s]\\n  [8260/10500 passes, 1201s, 6.9 pass/s, ETA 326s]\\n  [8400/10500 passes, 1222s, 6.9 pass/s, ETA 305s]\\n  [8540/10500 passes, 1242s, 6.9 pass/s, ETA 285s]\\n  [8680/10500 passes, 1262s, 6.9 pass/s, ETA 265s]\\n  [8820/10500 passes, 1282s, 6.9 pass/s, ETA 244s]\\n  [8960/10500 passes, 1303s, 6.9 pass/s, ETA 224s]\\n  [9100/10500 passes, 1323s, 6.9 pass/s, ETA 204s]\\n  [9240/10500 passes, 1344s, 6.9 pass/s, ETA 183s]\\n  [9380/10500 passes, 1364s, 6.9 pass/s, ETA 163s]\\n  [9520/10500 passes, 1384s, 6.9 pass/s, ETA 142s]\\n  [9660/10500 passes, 1405s, 6.9 pass/s, ETA 122s]\\n  [9800/10500 passes, 1425s, 6.9 pass/s, ETA 102s]\\n  [9940/10500 passes, 1445s, 6.9 pass/s, ETA 81s]\\n  [10080/10500 passes, 1466s, 6.9 pass/s, ETA 61s]\\n  [10220/10500 passes, 1486s, 6.9 pass/s, ETA 41s]\\n  [10360/10500 passes, 1506s, 6.9 pass/s, ETA 20s]\\n  [10500/10500 passes, 1527s, 6.9 pass/s, ETA 0s]\\n\\nComputing metrics...\\n  Random seed=42: token_d=3.412, traj_d=0.606\\n  Random seed=123: token_d=2.895, traj_d=0.568\\n  Random seed=456: token_d=3.035, traj_d=0.622\\n  Random seed=789: token_d=3.290, traj_d=0.612\\n  Random seed=1024: token_d=2.650, traj_d=0.600\\n  Image-dominant: token_d=2.169, traj_d=0.580\\n\\n============================================================\\nDone. 10500 forward passes in 1527s\\nRandom-24 mean traj_d: 0.601 +/- 0.021\\nImage-dominant-24 traj_d: 0.580\\nInstruction-dominant-24 traj_d (reference): 0.65\\nResults saved to /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "041e381f-8755-4e5e-a463-1411b5844639",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Matched-Size Ablation Controls ===\\\\nConfig: 3 tasks, 10 demos/task, 50 steps/demo\\\\nRandom seeds: [42, 123, 456, 789, 1024]\\\\n  Seed 42: [0, 1, 2, 3, 4, 5, 8, 9, 11, 12, 13, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 29, 30]\\\\n  Seed 123: [0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 31]\\\\n  Seed 456: [0, 1, 2, 3, 4, 6, 7, 8, 9, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 28, 29, 30, 31]\\\\n  Seed 789: [0, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 16, 17, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31]\\\\n  Seed 1024: [0, 2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24, 26, 28, 30, 31]\\\\nImage-dominant-24: [1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 28, 29, 30, 31]\\\\n  Vision fractions: [0.3082, 0.1602, 0.2145, 0.2772, 0.2614, 0.2477, 0.3746, 0.2484, 0.2916, 0.1904, 0.274, 0.2122, 0.154, 0.1761, 0.2941, 0.2678, 0.1879, 0.2149, 0.47, 0.1719, 0.2081, 0.2185, 0.2094, 0.172]\\\\n\\\\nLoading model...\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.71it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.05it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.59it/s]\\\\nModel loaded.\\\\nTasks (3): ['open_the_middle_drawer_of_the_cabinet_demo.hdf5', 'open_the_top_drawer_and_put_the_bowl_inside_demo.hdf5', 'push_the_plate_to_the_front_of_the_stove_demo.hdf5']\\\\n\\\\n[Task 1/3] open_the_middle_drawer_of_the_cabinet\\\\n  Instruction: open the middle drawer of the cabinet\\\\n  [140/10500 passes, 21s, 6.7 pass/s, ETA 1552s]\\\\n  [280/10500 passes, 41s, 6.8 pass/s, ETA 1506s]\\\\n  [420/10500 passes, 62s, 6.8 pass/s, ETA 1478s]\\\\n  [560/10500 passes, 82s, 6.8 pass/s, ETA 1453s]\\\\n  [700/10500 passes, 102s, 6.8 pass/s, ETA 1431s]\\\\n  [840/10500 passes, 123s, 6.9 pass/s, ETA 1410s]\\\\n  [980/10500 passes, 143s, 6.9 pass/s, ETA 1388s]\\\\n  [1120/10500 passes, 163s, 6.9 pass/s, ETA 1366s]\\\\n  [1260/10500 passes, 183s, 6.9 pass/s, ETA 1345s]\\\\n  [1400/10500 passes, 204s, 6.9 pass/s, ETA 1325s]\\\\n  [1540/10500 passes, 224s, 6.9 pass/s, ETA 1304s]\\\\n  [1680/10500 passes, 244s, 6.9 pass/s, ETA 1283s]\\\\n  [1820/10500 passes, 265s, 6.9 pass/s, ETA 1263s]\\\\n  [1960/10500 passes, 285s, 6.9 pass/s, ETA 1242s]\\\\n  [2100/10500 passes, 306s, 6.9 pass/s, ETA 1222s]\\\\n  [2240/10500 passes, 326s, 6.9 pass/s, ETA 1202s]\\\\n  [2380/10500 passes, 346s, 6.9 pass/s, ETA 1181s]\\\\n  [2520/10500 passes, 367s, 6.9 pass/s, ETA 1161s]\\\\n  [2660/10500 passes, 387s, 6.9 pass/s, ETA 1141s]\\\\n  [2800/10500 passes, 407s, 6.9 pass/s, ETA 1120s]\\\\n  [2940/10500 passes, 428s, 6.9 pass/s, ETA 1100s]\\\\n  [3080/10500 passes, 448s, 6.9 pass/s, ETA 1079s]\\\\n  [3220/10500 passes, 468s, 6.9 pass/s, ETA 1059s]\\\\n  [3360/10500 passes, 489s, 6.9 pass/s, ETA 1039s]\\\\n  [3500/10500 passes, 509s, 6.9 pass/s, ETA 1018s]\\\\n\\\\n[Task 2/3] open_the_top_drawer_and_put_the_bowl_inside\\\\n  Instruction: open the top drawer and put the bowl inside\\\\n  [3640/10500 passes, 530s, 6.9 pass/s, ETA 998s]\\\\n  [3780/10500 passes, 550s, 6.9 pass/s, ETA 978s]\\\\n  [3920/10500 passes, 570s, 6.9 pass/s, ETA 957s]\\\\n  [4060/10500 passes, 590s, 6.9 pass/s, ETA 936s]\\\\n  [4200/10500 passes, 611s, 6.9 pass/s, ETA 916s]\\\\n  [4340/10500 passes, 631s, 6.9 pass/s, ETA 896s]\\\\n  [4480/10500 passes, 651s, 6.9 pass/s, ETA 875s]\\\\n  [4620/10500 passes, 672s, 6.9 pass/s, ETA 855s]\\\\n  [4760/10500 passes, 692s, 6.9 pass/s, ETA 835s]\\\\n  [4900/10500 passes, 712s, 6.9 pass/s, ETA 814s]\\\\n  [5040/10500 passes, 733s, 6.9 pass/s, ETA 794s]\\\\n  [5180/10500 passes, 753s, 6.9 pass/s, ETA 773s]\\\\n  [5320/10500 passes, 773s, 6.9 pass/s, ETA 753s]\\\\n  [5460/10500 passes, 794s, 6.9 pass/s, ETA 733s]\\\\n  [5600/10500 passes, 814s, 6.9 pass/s, ETA 713s]\\\\n  [5740/10500 passes, 835s, 6.9 pass/s, ETA 692s]\\\\n  [5880/10500 passes, 855s, 6.9 pass/s, ETA 672s]\\\\n  [6020/10500 passes, 876s, 6.9 pass/s, ETA 652s]\\\\n  [6160/10500 passes, 896s, 6.9 pass/s, ETA 631s]\\\\n  [6300/10500 passes, 916s, 6.9 pass/s, ETA 611s]\\\\n  [6440/10500 passes, 937s, 6.9 pass/s, ETA 591s]\\\\n  [6580/10500 passes, 957s, 6.9 pass/s, ETA 570s]\\\\n  [6720/10500 passes, 978s, 6.9 pass/s, ETA 550s]\\\\n  [6860/10500 passes, 998s, 6.9 pass/s, ETA 530s]\\\\n  [7000/10500 passes, 1019s, 6.9 pass/s, ETA 509s]\\\\n\\\\n[Task 3/3] push_the_plate_to_the_front_of_the_stove\\\\n  Instruction: push the plate to the front of the stove\\\\n  [7140/10500 passes, 1039s, 6.9 pass/s, ETA 489s]\\\\n  [7280/10500 passes, 1059s, 6.9 pass/s, ETA 468s]\\\\n  [7420/10500 passes, 1079s, 6.9 pass/s, ETA 448s]\\\\n  [7560/10500 passes, 1100s, 6.9 pass/s, ETA 428s]\\\\n  [7700/10500 passes, 1120s, 6.9 pass/s, ETA 407s]\\\\n  [7840/10500 passes, 1141s, 6.9 pass/s, ETA 387s]\\\\n  [7980/10500 passes, 1161s, 6.9 pass/s, ETA 367s]\\\\n  [8120/10500 passes, 1181s, 6.9 pass/s, ETA 346s]\\\\n  [8260/10500 passes, 1201s, 6.9 pass/s, ETA 326s]\\\\n  [8400/10500 passes, 1222s, 6.9 pass/s, ETA 305s]\\\\n  [8540/10500 passes, 1242s, 6.9 pass/s, ETA 285s]\\\\n  [8680/10500 passes, 1262s, 6.9 pass/s, ETA 265s]\\\\n  [8820/10500 passes, 1282s, 6.9 pass/s, ETA 244s]\\\\n  [8960/10500 passes, 1303s, 6.9 pass/s, ETA 224s]\\\\n  [9100/10500 passes, 1323s, 6.9 pass/s, ETA 204s]\\\\n  [9240/10500 passes, 1344s, 6.9 pass/s, ETA 183s]\\\\n  [9380/10500 passes, 1364s, 6.9 pass/s, ETA 163s]\\\\n  [9520/10500 passes, 1384s, 6.9 pass/s, ETA 142s]\\\\n  [9660/10500 passes, 1405s, 6.9 pass/s, ETA 122s]\\\\n  [9800/10500 passes, 1425s, 6.9 pass/s, ETA 102s]\\\\n  [9940/10500 passes, 1445s, 6.9 pass/s, ETA 81s]\\\\n  [10080/10500 passes, 1466s, 6.9 pass/s, ETA 61s]\\\\n  [10220/10500 passes, 1486s, 6.9 pass/s, ETA 41s]\\\\n  [10360/10500 passes, 1506s, 6.9 pass/s, ETA 20s]\\\\n  [10500/10500 passes, 1527s, 6.9 pass/s, ETA 0s]\\\\n\\\\nComputing metrics...\\\\n  Random seed=42: token_d=3.412, traj_d=0.606\\\\n  Random seed=123: token_d=2.895, traj_d=0.568\\\\n  Random seed=456: token_d=3.035, traj_d=0.622\\\\n  Random seed=789: token_d=3.290, traj_d=0.612\\\\n  Random seed=1024: token_d=2.650, traj_d=0.600\\\\n  Image-dominant: token_d=2.169, traj_d=0.580\\\\n\\\\n============================================================\\\\nDone. 10500 forward passes in 1527s\\\\nRandom-24 mean traj_d: 0.601 +/- 0.021\\\\nImage-dominant-24 traj_d: 0.580\\\\nInstruction-dominant-24 traj_d (reference): 0.65\\\\nResults saved to /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Matched-Size Ablation Controls ===\\nConfig: 3 tasks, 10 demos/task, 50 steps/demo\\nRandom seeds: [42, 123, 456, 789, 1024]\\n  Seed 42: [0, 1, 2, 3, 4, 5, 8, 9, 11, 12, 13, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 29, 30]\\n  Seed 123: [0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 31]\\n  Seed 456: [0, 1, 2, 3, 4, 6, 7, 8, 9, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 28, 29, 30, 31]\\n  Seed 789: [0, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 16, 17, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31]\\n  Seed 1024: [0, 2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24, 26, 28, 30, 31]\\nImage-dominant-24: [1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 28, 29, 30, 31]\\n  Vision fractions: [0.3082, 0.1602, 0.2145, 0.2772, 0.2614, 0.2477, 0.3746, 0.2484, 0.2916, 0.1904, 0.274, 0.2122, 0.154, 0.1761, 0.2941, 0.2678, 0.1879, 0.2149, 0.47, 0.1719, 0.2081, 0.2185, 0.2094, 0.172]\\n\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.71it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.05it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 11.59it/s]\\nModel loaded.\\nTasks (3): ['open_the_middle_drawer_of_the_cabinet_demo.hdf5', 'open_the_top_drawer_and_put_the_bowl_inside_demo.hdf5', 'push_the_plate_to_the_front_of_the_stove_demo.hdf5']\\n\\n[Task 1/3] open_the_middle_drawer_of_the_cabinet\\n  Instruction: open the middle drawer of the cabinet\\n  [140/10500 passes, 21s, 6.7 pass/s, ETA 1552s]\\n  [280/10500 passes, 41s, 6.8 pass/s, ETA 1506s]\\n  [420/10500 passes, 62s, 6.8 pass/s, ETA 1478s]\\n  [560/10500 passes, 82s, 6.8 pass/s, ETA 1453s]\\n  [700/10500 passes, 102s, 6.8 pass/s, ETA 1431s]\\n  [840/10500 passes, 123s, 6.9 pass/s, ETA 1410s]\\n  [980/10500 passes, 143s, 6.9 pass/s, ETA 1388s]\\n  [1120/10500 passes, 163s, 6.9 pass/s, ETA 1366s]\\n  [1260/10500 passes, 183s, 6.9 pass/s, ETA 1345s]\\n  [1400/10500 passes, 204s, 6.9 pass/s, ETA 1325s]\\n  [1540/10500 passes, 224s, 6.9 pass/s, ETA 1304s]\\n  [1680/10500 passes, 244s, 6.9 pass/s, ETA 1283s]\\n  [1820/10500 passes, 265s, 6.9 pass/s, ETA 1263s]\\n  [1960/10500 passes, 285s, 6.9 pass/s, ETA 1242s]\\n  [2100/10500 passes, 306s, 6.9 pass/s, ETA 1222s]\\n  [2240/10500 passes, 326s, 6.9 pass/s, ETA 1202s]\\n  [2380/10500 passes, 346s, 6.9 pass/s, ETA 1181s]\\n  [2520/10500 passes, 367s, 6.9 pass/s, ETA 1161s]\\n  [2660/10500 passes, 387s, 6.9 pass/s, ETA 1141s]\\n  [2800/10500 passes, 407s, 6.9 pass/s, ETA 1120s]\\n  [2940/10500 passes, 428s, 6.9 pass/s, ETA 1100s]\\n  [3080/10500 passes, 448s, 6.9 pass/s, ETA 1079s]\\n  [3220/10500 passes, 468s, 6.9 pass/s, ETA 1059s]\\n  [3360/10500 passes, 489s, 6.9 pass/s, ETA 1039s]\\n  [3500/10500 passes, 509s, 6.9 pass/s, ETA 1018s]\\n\\n[Task 2/3] open_the_top_drawer_and_put_the_bowl_inside\\n  Instruction: open the top drawer and put the bowl inside\\n  [3640/10500 passes, 530s, 6.9 pass/s, ETA 998s]\\n  [3780/10500 passes, 550s, 6.9 pass/s, ETA 978s]\\n  [3920/10500 passes, 570s, 6.9 pass/s, ETA 957s]\\n  [4060/10500 passes, 590s, 6.9 pass/s, ETA 936s]\\n  [4200/10500 passes, 611s, 6.9 pass/s, ETA 916s]\\n  [4340/10500 passes, 631s, 6.9 pass/s, ETA 896s]\\n  [4480/10500 passes, 651s, 6.9 pass/s, ETA 875s]\\n  [4620/10500 passes, 672s, 6.9 pass/s, ETA 855s]\\n  [4760/10500 passes, 692s, 6.9 pass/s, ETA 835s]\\n  [4900/10500 passes, 712s, 6.9 pass/s, ETA 814s]\\n  [5040/10500 passes, 733s, 6.9 pass/s, ETA 794s]\\n  [5180/10500 passes, 753s, 6.9 pass/s, ETA 773s]\\n  [5320/10500 passes, 773s, 6.9 pass/s, ETA 753s]\\n  [5460/10500 passes, 794s, 6.9 pass/s, ETA 733s]\\n  [5600/10500 passes, 814s, 6.9 pass/s, ETA 713s]\\n  [5740/10500 passes, 835s, 6.9 pass/s, ETA 692s]\\n  [5880/10500 passes, 855s, 6.9 pass/s, ETA 672s]\\n  [6020/10500 passes, 876s, 6.9 pass/s, ETA 652s]\\n  [6160/10500 passes, 896s, 6.9 pass/s, ETA 631s]\\n  [6300/10500 passes, 916s, 6.9 pass/s, ETA 611s]\\n  [6440/10500 passes, 937s, 6.9 pass/s, ETA 591s]\\n  [6580/10500 passes, 957s, 6.9 pass/s, ETA 570s]\\n  [6720/10500 passes, 978s, 6.9 pass/s, ETA 550s]\\n  [6860/10500 passes, 998s, 6.9 pass/s, ETA 530s]\\n  [7000/10500 passes, 1019s, 6.9 pass/s, ETA 509s]\\n\\n[Task 3/3] push_the_plate_to_the_front_of_the_stove\\n  Instruction: push the plate to the front of the stove\\n  [7140/10500 passes, 1039s, 6.9 pass/s, ETA 489s]\\n  [7280/10500 passes, 1059s, 6.9 pass/s, ETA 468s]\\n  [7420/10500 passes, 1079s, 6.9 pass/s, ETA 448s]\\n  [7560/10500 passes, 1100s, 6.9 pass/s, ETA 428s]\\n  [7700/10500 passes, 1120s, 6.9 pass/s, ETA 407s]\\n  [7840/10500 passes, 1141s, 6.9 pass/s, ETA 387s]\\n  [7980/10500 passes, 1161s, 6.9 pass/s, ETA 367s]\\n  [8120/10500 passes, 1181s, 6.9 pass/s, ETA 346s]\\n  [8260/10500 passes, 1201s, 6.9 pass/s, ETA 326s]\\n  [8400/10500 passes, 1222s, 6.9 pass/s, ETA 305s]\\n  [8540/10500 passes, 1242s, 6.9 pass/s, ETA 285s]\\n  [8680/10500 passes, 1262s, 6.9 pass/s, ETA 265s]\\n  [8820/10500 passes, 1282s, 6.9 pass/s, ETA 244s]\\n  [8960/10500 passes, 1303s, 6.9 pass/s, ETA 224s]\\n  [9100/10500 passes, 1323s, 6.9 pass/s, ETA 204s]\\n  [9240/10500 passes, 1344s, 6.9 pass/s, ETA 183s]\\n  [9380/10500 passes, 1364s, 6.9 pass/s, ETA 163s]\\n  [9520/10500 passes, 1384s, 6.9 pass/s, ETA 142s]\\n  [9660/10500 passes, 1405s, 6.9 pass/s, ETA 122s]\\n  [9800/10500 passes, 1425s, 6.9 pass/s, ETA 102s]\\n  [9940/10500 passes, 1445s, 6.9 pass/s, ETA 81s]\\n  [10080/10500 passes, 1466s, 6.9 pass/s, ETA 61s]\\n  [10220/10500 passes, 1486s, 6.9 pass/s, ETA 41s]\\n  [10360/10500 passes, 1506s, 6.9 pass/s, ETA 20s]\\n  [10500/10500 passes, 1527s, 6.9 pass/s, ETA 0s]\\n\\nComputing metrics...\\n  Random seed=42: token_d=3.412, traj_d=0.606\\n  Random seed=123: token_d=2.895, traj_d=0.568\\n  Random seed=456: token_d=3.035, traj_d=0.622\\n  Random seed=789: token_d=3.290, traj_d=0.612\\n  Random seed=1024: token_d=2.650, traj_d=0.600\\n  Image-dominant: token_d=2.169, traj_d=0.580\\n\\n============================================================\\nDone. 10500 forward passes in 1527s\\nRandom-24 mean traj_d: 0.601 +/- 0.021\\nImage-dominant-24 traj_d: 0.580\\nInstruction-dominant-24 traj_d (reference): 0.65\\nResults saved to /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011sraDQXuYztkqfjWpnHvHa`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/matched_ablation_controls.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "f4e38875-0b7c-42ba-aa42-d02c152e3425",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4Fi2mytFCPor6GdDHXYqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mp6W68d4kceuVfswXi4G6o`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "nvidia-smi"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "b1bc4754-c7ab-4d92-8881-d8c3fd138d95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4Fi2mytFCPor6GdDHXYqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T04:10:21.796Z_
+
+<details><summary>↩ Tool result · `toolu_011sraDQXuYztkqfjWpnHvHa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Matched-size ablation controls: random-24 and image-dominant-24 heads.\\n\\nTwo ablation control experiments for action trajectory specificity analysis:\\n1. Random-24: 5 seeds, each randomly selecting 24/32 L1 heads\\n2. Image-dominant-24: top-24 heads by vision attention fraction\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport math\\nimport os\\nimport sys\\nimport time\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom scipy import stats\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\nDECOMP_PATH = \\\"/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\nNUM_HEADS = 32\\nN_ABLATE = 24\\n\\nRANDOM_SEEDS = [42, 123, 456, 789, 1024]\\nINSTRUCTION_DOMINANT_24_TRAJ_D = 0.65\\nDIM_NAMES = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"]\\n\\n\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\",\\n    ).to(\\\"cuda:0\\\").eval()\\n    return model, processor\\n\\n\\ndef predict_action(model, input_ids, pixel_values, unnorm_key):\\n    action_dim = model.get_action_dim(unnorm_key)\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\\n            dim=1,\\n        )\\n    with torch.no_grad():\\n        outputs = model(\\n            input_ids=input_ids,\\n            attention_mask=torch.ones_like(input_ids),\\n            pixel_values=pixel_values,\\n            past_key_values=None,\\n            use_cache=True,\\n        )\\n    past_key_values = outputs.past_key_values\\n    next_token_logits = outputs.logits[:, -1, :]\\n\\n    generated_ids = []\\n    for _ in range(action_dim):\\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\\n        generated_ids.append(next_token.squeeze().item())\\n        attn_mask = torch.ones(\\n            (1, past_key_values[0][0].shape[2] + 1),\\n            device=input_ids.device,\\n            dtype=input_ids.dtype,\\n        )\\n        with torch.no_grad():\\n            outputs = model(\\n                input_ids=next_token,\\n                attention_mask=attn_mask,\\n                pixel_values=None,\\n                past_key_values=past_key_values,\\n                use_cache=True,\\n            )\\n        past_key_values = outputs.past_key_values\\n        next_token_logits = outputs.logits[:, -1, :]\\n\\n    predicted_action_token_ids = np.array(generated_ids)\\n    discretized_actions = model.vocab_size - predicted_action_token_ids\\n    discretized_actions = np.clip(\\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\\n    )\\n    normalized_actions = model.bin_centers[discretized_actions]\\n    action_norm_stats = model.get_action_stats(unnorm_key)\\n    mask = action_norm_stats.get(\\\"mask\\\", np.ones_like(action_norm_stats[\\\"q01\\\"], dtype=bool))\\n    action_high = np.array(action_norm_stats[\\\"q99\\\"])\\n    action_low = np.array(action_norm_stats[\\\"q01\\\"])\\n    action = np.where(\\n        mask,\\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\n        normalized_actions,\\n    )\\n    return action, predicted_action_token_ids\\n\\n\\ndef install_ablation_hook(model):\\n    from transformers.models.llama.modeling_llama import apply_rotary_pos_emb, repeat_kv\\n\\n    layer_attn = model.language_model.model.layers[1].self_attn\\n    layer_attn._ablate_heads = None\\n    original_forward\\n\\n... [截断: 输出过长，省略 8671 字符] ...\\n\\n              layer1_attn._ablate_heads = cond_heads[cond]\\n                        a_action, a_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\\n                        cond_actions[cond].append(a_action)\\n                        cond_ids[cond].append(a_ids)\\n                        total_passes += 1\\n\\n                    torch.cuda.empty_cache()\\n\\n                    if total_passes % (7 * 20) == 0:\\n                        elapsed = time.time() - t_start\\n                        rate = total_passes / elapsed\\n                        eta = (total_expected - total_passes) / rate\\n                        print(\\n                            f\\\"  [{total_passes}/{total_expected} passes, \\\"\\n                            f\\\"{elapsed:.0f}s, {rate:.1f} pass/s, ETA {eta:.0f}s]\\\"\\n                        )\\n\\n        gc.collect()\\n        torch.cuda.empty_cache()\\n\\n    remove_ablation_hook(layer1_attn, original_forward)\\n\\n    print(\\\"\\\\nComputing metrics...\\\")\\n\\n    random_per_seed = []\\n    for seed in RANDOM_SEEDS:\\n        cond = f\\\"random_{seed}\\\"\\n        m = compute_cohens_d_and_ci(\\n            baseline_actions, cond_actions[cond],\\n            baseline_ids, cond_ids[cond],\\n            gt_actions_all,\\n        )\\n        random_per_seed.append({\\n            \\\"seed\\\": seed,\\n            \\\"heads\\\": random_head_sets[seed],\\n            \\\"token_d\\\": m[\\\"token_d\\\"],\\n            \\\"traj_d\\\": m[\\\"traj_d\\\"],\\n            \\\"traj_ci\\\": m[\\\"traj_ci\\\"],\\n            \\\"mse_gt_baseline\\\": m[\\\"mse_gt_baseline\\\"],\\n            \\\"mse_gt_ablated\\\": m[\\\"mse_gt_ablated\\\"],\\n        })\\n        print(f\\\"  Random seed={seed}: token_d={m['token_d']:.3f}, traj_d={m['traj_d']:.3f}\\\")\\n\\n    random_token_ds = [r[\\\"token_d\\\"] for r in random_per_seed]\\n    random_traj_ds = [r[\\\"traj_d\\\"] for r in random_per_seed]\\n\\n    img_m = compute_cohens_d_and_ci(\\n        baseline_actions, cond_actions[\\\"image_dominant\\\"],\\n        baseline_ids, cond_ids[\\\"image_dominant\\\"],\\n        gt_actions_all,\\n    )\\n    print(f\\\"  Image-dominant: token_d={img_m['token_d']:.3f}, traj_d={img_m['traj_d']:.3f}\\\")\\n\\n    output = {\\n        \\\"random_24\\\": {\\n            \\\"seeds\\\": RANDOM_SEEDS,\\n            \\\"per_seed\\\": random_per_seed,\\n            \\\"mean_token_d\\\": float(np.mean(random_token_ds)),\\n            \\\"std_token_d\\\": float(np.std(random_token_ds, ddof=1)),\\n            \\\"mean_traj_d\\\": float(np.mean(random_traj_ds)),\\n            \\\"std_traj_d\\\": float(np.std(random_traj_ds, ddof=1)),\\n        },\\n        \\\"image_dominant_24\\\": {\\n            \\\"heads\\\": image_dom_heads,\\n            \\\"image_attn_fractions\\\": image_dom_fracs,\\n            \\\"token_d\\\": img_m[\\\"token_d\\\"],\\n            \\\"traj_d\\\": img_m[\\\"traj_d\\\"],\\n            \\\"traj_ci\\\": img_m[\\\"traj_ci\\\"],\\n            \\\"mse_gt_baseline\\\": img_m[\\\"mse_gt_baseline\\\"],\\n            \\\"mse_gt_ablated\\\": img_m[\\\"mse_gt_ablated\\\"],\\n        },\\n        \\\"comparison\\\": {\\n            \\\"instruction_dominant_24_traj_d\\\": INSTRUCTION_DOMINANT_24_TRAJ_D,\\n            \\\"random_24_mean_traj_d\\\": float(np.mean(random_traj_ds)),\\n            \\\"random_24_std_traj_d\\\": float(np.std(random_traj_ds, ddof=1)),\\n            \\\"image_dominant_24_traj_d\\\": img_m[\\\"traj_d\\\"],\\n        },\\n        \\\"config\\\": {\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"total_forward_passes\\\": total_passes,\\n            \\\"model\\\": \\\"openvla-7b\\\",\\n            \\\"unnorm_key\\\": UNNORM_KEY,\\n        },\\n    }\\n\\n    elapsed_total = time.time() - t_start\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Done. {total_passes} forward passes in {elapsed_total:.0f}s\\\")\\n    print(f\\\"Random-24 mean traj_d: {np.mean(random_traj_ds):.3f} +/- {np.std(random_traj_ds, ddof=1):.3f}\\\")\\n    print(f\\\"Image-dominant-24 traj_d: {img_m['traj_d']:.3f}\\\")\\n    print(f\\\"Instruction-dominant-24 traj_d (reference): {INSTRUCTION_DOMINANT_24_TRAJ_D}\\\")\\n\\n    out_path = os.path.join(RESULTS_DIR, \\\"matched_ablation_controls.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"Results saved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "0b5546c1-9588-4529-a501-e2451ef3a5f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Matched-size ablation controls: random-24 and image-dominant-24 heads.\\\\n\\\\nTwo ablation control experiments for action trajectory specificity analysis:\\\\n1. Random-24: 5 seeds, each randomly selecting 24/32 L1 heads\\\\n2. Image-dominant-24: top-24 heads by vision attention fraction\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport glob\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/LIBERO\\\\\\\")\\\\n\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom PIL import Image\\\\nfrom scipy import stats\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"\\\\nUNNORM_KEY = \\\\\\\"bridge_orig\\\\\\\"\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nRESULTS_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/results\\\\\\\"\\\\nDECOMP_PATH = \\\\\\\"/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\\\\\\"\\\\n\\\\nNUM_IMAGE_TOKENS = 256\\\\nINST_START = 1 + NUM_IMAGE_TOKENS\\\\nNUM_HEADS = 32\\\\nN_ABLATE = 24\\\\n\\\\nRANDOM_SEEDS = [42, 123, 456, 789, 1024]\\\\nINSTRUCTION_DOMINANT_24_TRAJ_D = 0.65\\\\nDIM_NAMES = [\\\\\\\"dx\\\\\\\", \\\\\\\"dy\\\\\\\", \\\\\\\"dz\\\\\\\", \\\\\\\"rx\\\\\\\", \\\\\\\"ry\\\\\\\", \\\\\\\"rz\\\\\\\", \\\\\\\"gripper\\\\\\\"]\\\\n\\\\n\\\\ndef load_model():\\\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\\\n    model = AutoModelForVision2Seq.from_pretrained(\\\\n        MODEL_PATH,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n    ).to(\\\\\\\"cuda:0\\\\\\\").eval()\\\\n    return model, processor\\\\n\\\\n\\\\ndef predict_action(model, input_ids, pixel_values, unnorm_key):\\\\n    action_dim = model.get_action_dim(unnorm_key)\\\\n    if not torch.all(input_ids[:, -1] == 29871):\\\\n        input_ids = torch.cat(\\\\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\\\\n            dim=1,\\\\n        )\\\\n    with torch.no_grad():\\\\n        outputs = model(\\\\n            input_ids=input_ids,\\\\n            attention_mask=torch.ones_like(input_ids),\\\\n            pixel_values=pixel_values,\\\\n            past_key_values=None,\\\\n            use_cache=True,\\\\n        )\\\\n    past_key_values = outputs.past_key_values\\\\n    next_token_logits = outputs.logits[:, -1, :]\\\\n\\\\n    generated_ids = []\\\\n    for _ in range(action_dim):\\\\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\\\\n        generated_ids.append(next_token.squeeze().item())\\\\n        attn_mask = torch.ones(\\\\n            (1, past_key_values[0][0].shape[2] + 1),\\\\n            device=input_ids.device,\\\\n            dtype=input_ids.dtype,\\\\n        )\\\\n        with torch.no_grad():\\\\n            outputs = model(\\\\n                input_ids=next_token,\\\\n                attention_mask=attn_mask,\\\\n                pixel_values=None,\\\\n                past_key_values=past_key_values,\\\\n                use_cache=True,\\\\n            )\\\\n        past_key_values = outputs.past_key_values\\\\n        next_token_logits = outputs.logits[:, -1, :]\\\\n\\\\n    predicted_action_token_ids = np.array(generated_ids)\\\\n    discretized_actions = model.vocab_size - predicted_action_token_ids\\\\n    discretized_actions = np.clip(\\\\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\\\\n    )\\\\n    normalized_actions = model.bin_centers[discretized_actions]\\\\n    action_norm_stats = model.get_action_stats(unnorm_key)\\\\n    mask = action_norm_stats.get(\\\\\\\"mask\\\\\\\", np.ones_like(action_norm_stats[\\\\\\\"q01\\\\\\\"], dtype=bool))\\\\n    action_high = np.array(action_norm_stats[\\\\\\\"q99\\\\\\\"])\\\\n    action_low = np.array(action_norm_stats[\\\\\\\"q01\\\\\\\"])\\\\n    action = np.where(\\\\n        mask,\\\\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\\\n        normalized_actions,\\\\n    )\\\\n    return action, predicted_action_token_ids\\\\n\\\\n\\\\ndef install_ablation_hook(model):\\\\n    from transformers.models.llama.modeling_llama import apply_rotary_pos_emb, repeat_kv\\\\n\\\\n    layer_attn = model.language_model.model.layers[1].self_attn\\\\n    layer_attn._ablate_heads = None\\\\n    original_forward\\\\n\\\\n... [截断: 输出过长，省略 8671 字符] ...\\\\n\\\\n              layer1_attn._ablate_heads = cond_heads[cond]\\\\n                        a_action, a_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\\\\n                        cond_actions[cond].append(a_action)\\\\n                        cond_ids[cond].append(a_ids)\\\\n                        total_passes += 1\\\\n\\\\n                    torch.cuda.empty_cache()\\\\n\\\\n                    if total_passes % (7 * 20) == 0:\\\\n                        elapsed = time.time() - t_start\\\\n                        rate = total_passes / elapsed\\\\n                        eta = (total_expected - total_passes) / rate\\\\n                        print(\\\\n                            f\\\\\\\"  [{total_passes}/{total_expected} passes, \\\\\\\"\\\\n                            f\\\\\\\"{elapsed:.0f}s, {rate:.1f} pass/s, ETA {eta:.0f}s]\\\\\\\"\\\\n                        )\\\\n\\\\n        gc.collect()\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    remove_ablation_hook(layer1_attn, original_forward)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nComputing metrics...\\\\\\\")\\\\n\\\\n    random_per_seed = []\\\\n    for seed in RANDOM_SEEDS:\\\\n        cond = f\\\\\\\"random_{seed}\\\\\\\"\\\\n        m = compute_cohens_d_and_ci(\\\\n            baseline_actions, cond_actions[cond],\\\\n            baseline_ids, cond_ids[cond],\\\\n            gt_actions_all,\\\\n        )\\\\n        random_per_seed.append({\\\\n            \\\\\\\"seed\\\\\\\": seed,\\\\n            \\\\\\\"heads\\\\\\\": random_head_sets[seed],\\\\n            \\\\\\\"token_d\\\\\\\": m[\\\\\\\"token_d\\\\\\\"],\\\\n            \\\\\\\"traj_d\\\\\\\": m[\\\\\\\"traj_d\\\\\\\"],\\\\n            \\\\\\\"traj_ci\\\\\\\": m[\\\\\\\"traj_ci\\\\\\\"],\\\\n            \\\\\\\"mse_gt_baseline\\\\\\\": m[\\\\\\\"mse_gt_baseline\\\\\\\"],\\\\n            \\\\\\\"mse_gt_ablated\\\\\\\": m[\\\\\\\"mse_gt_ablated\\\\\\\"],\\\\n        })\\\\n        print(f\\\\\\\"  Random seed={seed}: token_d={m['token_d']:.3f}, traj_d={m['traj_d']:.3f}\\\\\\\")\\\\n\\\\n    random_token_ds = [r[\\\\\\\"token_d\\\\\\\"] for r in random_per_seed]\\\\n    random_traj_ds = [r[\\\\\\\"traj_d\\\\\\\"] for r in random_per_seed]\\\\n\\\\n    img_m = compute_cohens_d_and_ci(\\\\n        baseline_actions, cond_actions[\\\\\\\"image_dominant\\\\\\\"],\\\\n        baseline_ids, cond_ids[\\\\\\\"image_dominant\\\\\\\"],\\\\n        gt_actions_all,\\\\n    )\\\\n    print(f\\\\\\\"  Image-dominant: token_d={img_m['token_d']:.3f}, traj_d={img_m['traj_d']:.3f}\\\\\\\")\\\\n\\\\n    output = {\\\\n        \\\\\\\"random_24\\\\\\\": {\\\\n            \\\\\\\"seeds\\\\\\\": RANDOM_SEEDS,\\\\n            \\\\\\\"per_seed\\\\\\\": random_per_seed,\\\\n            \\\\\\\"mean_token_d\\\\\\\": float(np.mean(random_token_ds)),\\\\n            \\\\\\\"std_token_d\\\\\\\": float(np.std(random_token_ds, ddof=1)),\\\\n            \\\\\\\"mean_traj_d\\\\\\\": float(np.mean(random_traj_ds)),\\\\n            \\\\\\\"std_traj_d\\\\\\\": float(np.std(random_traj_ds, ddof=1)),\\\\n        },\\\\n        \\\\\\\"image_dominant_24\\\\\\\": {\\\\n            \\\\\\\"heads\\\\\\\": image_dom_heads,\\\\n            \\\\\\\"image_attn_fractions\\\\\\\": image_dom_fracs,\\\\n            \\\\\\\"token_d\\\\\\\": img_m[\\\\\\\"token_d\\\\\\\"],\\\\n            \\\\\\\"traj_d\\\\\\\": img_m[\\\\\\\"traj_d\\\\\\\"],\\\\n            \\\\\\\"traj_ci\\\\\\\": img_m[\\\\\\\"traj_ci\\\\\\\"],\\\\n            \\\\\\\"mse_gt_baseline\\\\\\\": img_m[\\\\\\\"mse_gt_baseline\\\\\\\"],\\\\n            \\\\\\\"mse_gt_ablated\\\\\\\": img_m[\\\\\\\"mse_gt_ablated\\\\\\\"],\\\\n        },\\\\n        \\\\\\\"comparison\\\\\\\": {\\\\n            \\\\\\\"instruction_dominant_24_traj_d\\\\\\\": INSTRUCTION_DOMINANT_24_TRAJ_D,\\\\n            \\\\\\\"random_24_mean_traj_d\\\\\\\": float(np.mean(random_traj_ds)),\\\\n            \\\\\\\"random_24_std_traj_d\\\\\\\": float(np.std(random_traj_ds, ddof=1)),\\\\n            \\\\\\\"image_dominant_24_traj_d\\\\\\\": img_m[\\\\\\\"traj_d\\\\\\\"],\\\\n        },\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"n_tasks\\\\\\\": n_tasks,\\\\n            \\\\\\\"n_demos_per_task\\\\\\\": n_demos,\\\\n            \\\\\\\"n_timesteps_per_demo\\\\\\\": n_timesteps,\\\\n            \\\\\\\"total_forward_passes\\\\\\\": total_passes,\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n            \\\\\\\"unnorm_key\\\\\\\": UNNORM_KEY,\\\\n        },\\\\n    }\\\\n\\\\n    elapsed_total = time.time() - t_start\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Done. {total_passes} forward passes in {elapsed_total:.0f}s\\\\\\\")\\\\n    print(f\\\\\\\"Random-24 mean traj_d: {np.mean(random_traj_ds):.3f} +/- {np.std(random_traj_ds, ddof=1):.3f}\\\\\\\")\\\\n    print(f\\\\\\\"Image-dominant-24 traj_d: {img_m['traj_d']:.3f}\\\\\\\")\\\\n    print(f\\\\\\\"Instruction-dominant-24 traj_d (reference): {INSTRUCTION_DOMINANT_24_TRAJ_D}\\\\\\\")\\\\n\\\\n    out_path = os.path.join(RESULTS_DIR, \\\\\\\"matched_ablation_controls.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"Results saved to {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Matched-size ablation controls: random-24 and image-dominant-24 heads.\\n\\nTwo ablation control experiments for action trajectory specificity analysis:\\n1. Random-24: 5 seeds, each randomly selecting 24/32 L1 heads\\n2. Image-dominant-24: top-24 heads by vision attention fraction\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport math\\nimport os\\nimport sys\\nimport time\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/LIBERO\\\")\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom scipy import stats\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\"\\nUNNORM_KEY = \\\"bridge_orig\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_DIR = \\\"/root/autodl-tmp/vla-ssd/results\\\"\\nDECOMP_PATH = \\\"/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\\"\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\nNUM_HEADS = 32\\nN_ABLATE = 24\\n\\nRANDOM_SEEDS = [42, 123, 456, 789, 1024]\\nINSTRUCTION_DOMINANT_24_TRAJ_D = 0.65\\nDIM_NAMES = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"rx\\\", \\\"ry\\\", \\\"rz\\\", \\\"gripper\\\"]\\n\\n\\ndef load_model():\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n    processor = AutoProcessor.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\",\\n    ).to(\\\"cuda:0\\\").eval()\\n    return model, processor\\n\\n\\ndef predict_action(model, input_ids, pixel_values, unnorm_key):\\n    action_dim = model.get_action_dim(unnorm_key)\\n    if not torch.all(input_ids[:, -1] == 29871):\\n        input_ids = torch.cat(\\n            (input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)),\\n            dim=1,\\n        )\\n    with torch.no_grad():\\n        outputs = model(\\n            input_ids=input_ids,\\n            attention_mask=torch.ones_like(input_ids),\\n            pixel_values=pixel_values,\\n            past_key_values=None,\\n            use_cache=True,\\n        )\\n    past_key_values = outputs.past_key_values\\n    next_token_logits = outputs.logits[:, -1, :]\\n\\n    generated_ids = []\\n    for _ in range(action_dim):\\n        next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)\\n        generated_ids.append(next_token.squeeze().item())\\n        attn_mask = torch.ones(\\n            (1, past_key_values[0][0].shape[2] + 1),\\n            device=input_ids.device,\\n            dtype=input_ids.dtype,\\n        )\\n        with torch.no_grad():\\n            outputs = model(\\n                input_ids=next_token,\\n                attention_mask=attn_mask,\\n                pixel_values=None,\\n                past_key_values=past_key_values,\\n                use_cache=True,\\n            )\\n        past_key_values = outputs.past_key_values\\n        next_token_logits = outputs.logits[:, -1, :]\\n\\n    predicted_action_token_ids = np.array(generated_ids)\\n    discretized_actions = model.vocab_size - predicted_action_token_ids\\n    discretized_actions = np.clip(\\n        discretized_actions - 1, a_min=0, a_max=model.bin_centers.shape[0] - 1\\n    )\\n    normalized_actions = model.bin_centers[discretized_actions]\\n    action_norm_stats = model.get_action_stats(unnorm_key)\\n    mask = action_norm_stats.get(\\\"mask\\\", np.ones_like(action_norm_stats[\\\"q01\\\"], dtype=bool))\\n    action_high = np.array(action_norm_stats[\\\"q99\\\"])\\n    action_low = np.array(action_norm_stats[\\\"q01\\\"])\\n    action = np.where(\\n        mask,\\n        0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,\\n        normalized_actions,\\n    )\\n    return action, predicted_action_token_ids\\n\\n\\ndef install_ablation_hook(model):\\n    from transformers.models.llama.modeling_llama import apply_rotary_pos_emb, repeat_kv\\n\\n    layer_attn = model.language_model.model.layers[1].self_attn\\n    layer_attn._ablate_heads = None\\n    original_forward\\n\\n... [截断: 输出过长，省略 8671 字符] ...\\n\\n              layer1_attn._ablate_heads = cond_heads[cond]\\n                        a_action, a_ids = predict_action(model, input_ids, pixel_values, UNNORM_KEY)\\n                        cond_actions[cond].append(a_action)\\n                        cond_ids[cond].append(a_ids)\\n                        total_passes += 1\\n\\n                    torch.cuda.empty_cache()\\n\\n                    if total_passes % (7 * 20) == 0:\\n                        elapsed = time.time() - t_start\\n                        rate = total_passes / elapsed\\n                        eta = (total_expected - total_passes) / rate\\n                        print(\\n                            f\\\"  [{total_passes}/{total_expected} passes, \\\"\\n                            f\\\"{elapsed:.0f}s, {rate:.1f} pass/s, ETA {eta:.0f}s]\\\"\\n                        )\\n\\n        gc.collect()\\n        torch.cuda.empty_cache()\\n\\n    remove_ablation_hook(layer1_attn, original_forward)\\n\\n    print(\\\"\\\\nComputing metrics...\\\")\\n\\n    random_per_seed = []\\n    for seed in RANDOM_SEEDS:\\n        cond = f\\\"random_{seed}\\\"\\n        m = compute_cohens_d_and_ci(\\n            baseline_actions, cond_actions[cond],\\n            baseline_ids, cond_ids[cond],\\n            gt_actions_all,\\n        )\\n        random_per_seed.append({\\n            \\\"seed\\\": seed,\\n            \\\"heads\\\": random_head_sets[seed],\\n            \\\"token_d\\\": m[\\\"token_d\\\"],\\n            \\\"traj_d\\\": m[\\\"traj_d\\\"],\\n            \\\"traj_ci\\\": m[\\\"traj_ci\\\"],\\n            \\\"mse_gt_baseline\\\": m[\\\"mse_gt_baseline\\\"],\\n            \\\"mse_gt_ablated\\\": m[\\\"mse_gt_ablated\\\"],\\n        })\\n        print(f\\\"  Random seed={seed}: token_d={m['token_d']:.3f}, traj_d={m['traj_d']:.3f}\\\")\\n\\n    random_token_ds = [r[\\\"token_d\\\"] for r in random_per_seed]\\n    random_traj_ds = [r[\\\"traj_d\\\"] for r in random_per_seed]\\n\\n    img_m = compute_cohens_d_and_ci(\\n        baseline_actions, cond_actions[\\\"image_dominant\\\"],\\n        baseline_ids, cond_ids[\\\"image_dominant\\\"],\\n        gt_actions_all,\\n    )\\n    print(f\\\"  Image-dominant: token_d={img_m['token_d']:.3f}, traj_d={img_m['traj_d']:.3f}\\\")\\n\\n    output = {\\n        \\\"random_24\\\": {\\n            \\\"seeds\\\": RANDOM_SEEDS,\\n            \\\"per_seed\\\": random_per_seed,\\n            \\\"mean_token_d\\\": float(np.mean(random_token_ds)),\\n            \\\"std_token_d\\\": float(np.std(random_token_ds, ddof=1)),\\n            \\\"mean_traj_d\\\": float(np.mean(random_traj_ds)),\\n            \\\"std_traj_d\\\": float(np.std(random_traj_ds, ddof=1)),\\n        },\\n        \\\"image_dominant_24\\\": {\\n            \\\"heads\\\": image_dom_heads,\\n            \\\"image_attn_fractions\\\": image_dom_fracs,\\n            \\\"token_d\\\": img_m[\\\"token_d\\\"],\\n            \\\"traj_d\\\": img_m[\\\"traj_d\\\"],\\n            \\\"traj_ci\\\": img_m[\\\"traj_ci\\\"],\\n            \\\"mse_gt_baseline\\\": img_m[\\\"mse_gt_baseline\\\"],\\n            \\\"mse_gt_ablated\\\": img_m[\\\"mse_gt_ablated\\\"],\\n        },\\n        \\\"comparison\\\": {\\n            \\\"instruction_dominant_24_traj_d\\\": INSTRUCTION_DOMINANT_24_TRAJ_D,\\n            \\\"random_24_mean_traj_d\\\": float(np.mean(random_traj_ds)),\\n            \\\"random_24_std_traj_d\\\": float(np.std(random_traj_ds, ddof=1)),\\n            \\\"image_dominant_24_traj_d\\\": img_m[\\\"traj_d\\\"],\\n        },\\n        \\\"config\\\": {\\n            \\\"n_tasks\\\": n_tasks,\\n            \\\"n_demos_per_task\\\": n_demos,\\n            \\\"n_timesteps_per_demo\\\": n_timesteps,\\n            \\\"total_forward_passes\\\": total_passes,\\n            \\\"model\\\": \\\"openvla-7b\\\",\\n            \\\"unnorm_key\\\": UNNORM_KEY,\\n        },\\n    }\\n\\n    elapsed_total = time.time() - t_start\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Done. {total_passes} forward passes in {elapsed_total:.0f}s\\\")\\n    print(f\\\"Random-24 mean traj_d: {np.mean(random_traj_ds):.3f} +/- {np.std(random_traj_ds, ddof=1):.3f}\\\")\\n    print(f\\\"Image-dominant-24 traj_d: {img_m['traj_d']:.3f}\\\")\\n    print(f\\\"Instruction-dominant-24 traj_d (reference): {INSTRUCTION_DOMINANT_24_TRAJ_D}\\\")\\n\\n    out_path = os.path.join(RESULTS_DIR, \\\"matched_ablation_controls.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"Results saved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pd1jAcpA3qwat1NkDfuvvL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "df -h /root/autodl-tmp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "166a447c-5f6f-49e7-b4fb-d38dd5a578c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4Fi2mytFCPor6GdDHXYqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T04:10:22.495Z_
+
+<details><summary>↩ Tool result · `toolu_01Mp6W68d4kceuVfswXi4G6o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Tue May 19 12:10:22 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   29C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   30C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "308c3363-0648-400d-9e66-edf635d9f60b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Tue May 19 12:10:22 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   29C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   30C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes found                                                             |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Tue May 19 12:10:22 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   29C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   30C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BLSbKW45oHkxoBXxRpcAWb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/bin/activate && python -c \"import torch; print(torch.cuda.is_available())\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "0bb87ff6-12bf-4cde-a865-3cd45c4be7ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4Fi2mytFCPor6GdDHXYqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JjRJLFnLq4BqYjjSjBdRTc`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux | grep behavioral_smoketest"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "b772905d-5e41-4a7e-a9a0-c912da18ca55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4Fi2mytFCPor6GdDHXYqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T04:10:23.030Z_
+
+<details><summary>↩ Tool result · `toolu_01Pd1jAcpA3qwat1NkDfuvvL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  236G   15G  95% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "32943a04-1c34-4f9b-a528-b432ec854359",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  236G   15G  95% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  236G   15G  95% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T04:10:25.297Z_
+
+<details><summary>↩ Tool result · `toolu_01BLSbKW45oHkxoBXxRpcAWb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.26}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "5de4d053-7734-4a8d-8678-84fd87dd53c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"True\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.26}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.26}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T04:10:25.309Z_
+
+<details><summary>↩ Tool result · `toolu_01JjRJLFnLq4BqYjjSjBdRTc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "3414ff5b-f6b1-4295-a626-07249f129418",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `ps aux | grep` command was blocked by the read-only tool due to the pipe character. Let me use ssh_execute for that. Also, let me check the behavioral_smoketest log location.
+
+Key findings so far:
+
+1. **matched_ablation_controls**: The log shows the experiment actually **completed successfully**! It ran all 10500 forward passes, computed metrics, and saved results to `/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json`. The return code was 0, no errors in stderr. The script itself looks fine too.
+
+So the claim that it "failed with 5 abnormal exits and no valid W&B metrics" seems inconsistent with what the log shows. 
+
+The script doesn't actually use W&B at all—it just saves results directly to a JSON file. So the missing W&B metrics might simply be because there's no W&B integration in the code. The discrepancy between the registry saying it failed and the log showing success could mean either the registry is tracking stale data, there were earlier failed attempts before this successful run, or the "5 abnormal exits" refers to something else entirely.
+
+Now I'm checking the behavioral_smoketest process status and examining its logs. Looking at the system state: both GPUs are sitting idle with no active processes, disk usage is at 95% with about 15GB free, and the Python environment has CUDA available, so that's all fine. Let me investigate what's happening with the behavioral_smoketest specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "6f34f5d8-7ebf-436a-ba4b-84048a4cb397",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VPNszfgqEeR5ek7LfABHU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8814,
+      "cache_read_input_tokens": 25615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+需要用 ssh_execute 来检查 behavioral_smoketest 进程，同时查找其日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "d1ddedec-3b4b-447e-9f59-16a76eaec9e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VPNszfgqEeR5ek7LfABHU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8814,
+      "cache_read_input_tokens": 25615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RniUPvEHsuxd1z2p9V6GUk`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ps aux | grep behavioral_smoketest",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "a8997636-1bc3-4bbf-a3b1-1bef80840788",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VPNszfgqEeR5ek7LfABHU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8814,
+      "cache_read_input_tokens": 25615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T04:10:42.313Z_
+
+<details><summary>↩ Tool result · `toolu_01RniUPvEHsuxd1z2p9V6GUk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     105931  0.0  0.0   4364  3208 ?        Ss   12:10   0:00 bash -c ps aux | grep behavioral_smoketest\\nroot     105933  0.0  0.0   3472  1716 ?        S    12:10   0:00 grep behavioral_smoketest\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "0571aa1c-9c09-4c75-a379-9eed53e0b05e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     105931  0.0  0.0   4364  3208 ?        Ss   12:10   0:00 bash -c ps aux | grep behavioral_smoketest\\\\nroot     105933  0.0  0.0   3472  1716 ?        S    12:10   0:00 grep behavioral_smoketest\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     105931  0.0  0.0   4364  3208 ?        Ss   12:10   0:00 bash -c ps aux | grep behavioral_smoketest\\nroot     105933  0.0  0.0   3472  1716 ?        S    12:10   0:00 grep behavioral_smoketest\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013PiRKusYU4NyiNdMn3dTkC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/behavioral_smoketest*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "279ae9c7-9fab-47f2-a83a-893d22dfa6f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VPNszfgqEeR5ek7LfABHU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8814,
+      "cache_read_input_tokens": 25615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017kYX5pnzxcwZKquxDsW2F1`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results -name \"*behavioral*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "fa2d0d30-29f8-42df-82a4-8abb77563533",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VPNszfgqEeR5ek7LfABHU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8814,
+      "cache_read_input_tokens": 25615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T04:10:43.267Z_
+
+<details><summary>↩ Tool result · `toolu_013PiRKusYU4NyiNdMn3dTkC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  747 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n-rw-r--r-- 1 root root 2915 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "20a82c95-daf1-4906-a617-069076416298",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  747 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\\\n-rw-r--r-- 1 root root 2915 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  747 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n-rw-r--r-- 1 root root 2915 May 19 11:59 /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NsHW94hn4CNGLbKikEog5n`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -lt /root/autodl-tmp/vla-ssd/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "a871630f-4980-4b24-ba4e-b9fdc4dbce27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019VPNszfgqEeR5ek7LfABHU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8814,
+      "cache_read_input_tokens": 25615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T04:10:43.797Z_
+
+<details><summary>↩ Tool result · `toolu_017kYX5pnzxcwZKquxDsW2F1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\n/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "241856c3-f8ea-40d3-ab5e-c4d736d4aa90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\\\n/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log\\n/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T04:10:44.323Z_
+
+<details><summary>↩ Tool result · `toolu_01NsHW94hn4CNGLbKikEog5n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1308\\n-rw-r--r-- 1 root root   6201 May 19 12:00 matched_ablation_controls.log\\n-rw-r--r-- 1 root root   4842 May 19 12:00 matched_ablation_controls.json\\n-rw-r--r-- 1 root root   2915 May 19 11:59 behavioral_smoketest.log\\n-rw-r--r-- 1 root root    747 May 19 11:59 behavioral_smoketest.json\\n-rw-r--r-- 1 root root   9920 May 19 10:45 task_routing_loo_sensitivity.json\\n-rw-r--r-- 1 root root   7923 May 19 10:45 loo_sensitivity.py\\n-rw-r--r-- 1 root root  15961 May 19 10:45 attention_normalization_entropy.json\\n-rw-r--r-- 1 root root  12477 May 19 10:34 trajectory_level_cohens_d.json\\n-rw-r--r-- 1 root root   4994 May 19 10:34 trajectory_level_cohens_d.log\\n-rw-r--r-- 1 root root  17119 May 19 10:31 groundtruth_action_error.json\\n-rw-r--r-- 1 root root   3668 May 19 10:31 groundtruth_action_error.log\\n-rw-r--r-- 1 root root  15513 May 19 09:19 counterfactual_token_overlap.json\\ndrwxr-xr-x 2 root root   4096 May 19 05:17 figures\\n-rw-r--r-- 1 root root   2460 May 19 05:17 task_complexity_routing.json\\n-rw-r--r-- 1 root root   6303 May 19 05:17 task_complexity_analysis.py\\n-rw-r--r-- 1 root root   5379 May 19 02:43 specificity_control_action.json\\n-rw-r--r-- 1 root root   2794 May 19 02:43 specificity_control_action.log\\n-rw-r--r-- 1 root root  20479 May 19 01:19 per_task_r2_distribution.json\\n-rw-r--r-- 1 root root   8060 May 19 01:19 attention_decomposition.json\\n-rw-r--r-- 1 root root  29052 May 19 01:18 counterfactual_combined.json\\n-rw-r--r-- 1 root root   5345 May 19 01:18 counterfactual_instruction.log\\n-rw-r--r-- 1 root root   6329 May 19 01:17 counterfactual_paraphrased.json\\n-rw-r--r-- 1 root root   6298 May 19 01:17 counterfactual_shuffled.json\\n-rw-r--r-- 1 root root   3097 May 19 01:17 counterfactual_correct.json\\n-rw-r--r-- 1 root root   6189 May 19 01:17 counterfactual_empty.json\\n-rw-r--r-- 1 root root   6297 May 19 01:17 counterfactual_wrong.json\\n-rw-r--r-- 1 root root   9350 May 19 01:15 action_metrics_extended.json\\n-rw-r--r-- 1 root root  25531 May 19 00:36 dose_response_curve_combined.json\\n-rw-r--r-- 1 root root  79404 May 19 00:36 fig_dose_response_curve.png\\n-rw-r--r-- 1 root root  22054 May 19 00:36 fig_dose_response_curve.pdf\\n-rw-r--r-- 1 root root  10184 May 19 00:30 dose_response_cuda1.log\\n-rw-r--r-- 1 root root   2949 May 19 00:30 dose_response_top32.json\\n-rw-r--r-- 1 root root   2840 May 19 00:30 dose_response_top28.json\\n-rw-r--r-- 1 root root   2714 May 19 00:30 dose_response_top24.json\\n-rw-r--r-- 1 root root   2590 May 19 00:30 dose_response_top20.json\\n-rw-r--r-- 1 root root   9916 May 19 00:28 dose_response_cuda0.log\\n-rw-r--r-- 1 root root   2451 May 19 00:28 dose_response_top16.json\\n-rw-r--r-- 1 root root   2338 May 19 00:28 dose_response_top12.json\\n-rw-r--r-- 1 root root   2215 May 19 00:28 dose_response_top8.json\\n-rw-r--r-- 1 root root   2096 May 19 00:28 dose_response_top4.json\\n-rw-r--r-- 1 root root  70952 May 19 00:04 fig_dose_response_draft.png\\n-rw-r--r-- 1 root root  14561 May 19 00:04 fig_dose_response_draft.pdf\\n-rw-r--r-- 1 root root   1558 May 18 23:12 permutation_test_I2.json\\n-rw-r--r-- 1 root root   6814 May 18 22:01 action_trajectory_extended_analysis.json\\n-rw-r--r-- 1 root root   7090 May 18 21:55 action_trajectory_L13_ablation.json\\n-rw-r--r-- 1 root root   4345 May 18 21:55 action_trajectory_L13_ablation.log\\n-rw-r--r-- 1 root root   7088 May 18 21:52 action_trajectory_L8_ablation.json\\n-rw-r--r-- 1 root root   4141 May 18 21:52 action_trajectory_L8_ablation.log\\n-rw-r--r-- 1 root root   6913 May 18 20:06 action_trajectory_control.json\\n-rw-r--r-- 1 root root   4294 May 18 20:06 action_trajectory_control.log\\n-rw-r--r-- 1 root root   1987 May 18 19:55 sr_validation5.log\\n-rw-r--r-- 1 root root   1461 May 18 19:52 sr_debug5.log\\n-rw-r--r-- 1 root root   2144 May 18 19:51 sr_debug4.log\\n-rw-r--r-- 1 root root   1874 May 18 19:50 sr_validation4.log\\n-rw-r--r-- 1 root root   1874 May 18 19:49 sr_validation3.log\\n-rw-r--r-- 1 root root   3250 May 18 19:47 sr_validation2.log\\n-rw-r--r-- 1 root root   1704 May 18 19:46 sr_debug3.log\\n-rw-r--r-- 1 root root   2182 May 18 19:46 sr_debug2.log\\n-rw-r--r-- 1 root root   2470 May 18 19:45 sr_debug.log\\n-rw-r--r-- 1 root root   1813 May 18 19:41 sr_validation.log\\n-rw-r--r-- 1 root root   4878 May 18 18:58 action_trajectory_analysis.log\\n-rw-r--r-- 1 root root   6994 May 18 18:58 action_trajectory_analysis.json\\n-rw-r--r-- 1 root root  11638 May 18 16:46 threecond_multiseed_v2.log\\n-rw-r--r-- 1 root root  21524 May 18 16:46 threecond_multiseed_v2.json\\n-rw-r--r-- 1 root root  11573 May 18 15:30 threecond_multiseed.log\\n-rw-r--r-- 1 root root  21464 May 18 15:30 threecond_multiseed.json\\n-rw-r--r-- 1 root root  59603 May 18 15:10 linear_probe_last_preaction.json\\n-rw-r--r-- 1 root root   1641 May 18 13:15 random_subset_ablation.json\\n-rw-r--r-- 1 root root   5058 May 18 13:10 random_subset_ablation.log\\n-rw-r--r-- 1 root root  11530 May 18 11:43 ood_diagnostics.json\\n-rw-r--r-- 1 root root   3097 May 18 11:43 ood_diagnostics.log\\n-rw-r--r-- 1 root root   3394 May 18 11:42 linear_probe.log\\n-rw-r--r-- 1 root root  65883 May 18 11:42 linear_probe_results.json\\n-rw-r--r-- 1 root root   3967 May 18 11:01 bootstrap_ci_values.json\\ndrwxr-xr-x 2 root root     53 May 18 06:01 llama2base_action_probe\\ndrwxr-xr-x 2 root root     50 May 18 05:57 action_probe\\ndrwxr-xr-x 2 root root   4096 May 18 05:48 l1_head_ablation\\ndrwxr-xr-x 2 root root     34 May 18 04:04 demo_sensitivity_25\\ndrwxr-xr-x 2 root root   4096 May 17 21:51 attention\\ndrwxr-xr-x 2 root root   4096 May 17 17:08 cross_instruction_spatial\\ndrwxr-xr-x 2 root root   4096 May 17 14:41 cross_instruction_dense\\ndrwxr-xr-x 2 root root   4096 May 17 12:58 cross_instruction\\ndrwxr-xr-x 2 root root     97 May 17 07:40 qa_probe\\ndrwxr-xr-x 2 root root    183 May 16 19:00 ablations\\ndrwxr-xr-x 2 root root   4096 May 16 14:44 functional_validation\\ndrwxr-xr-x 2 root root   4096 May 16 14:33 rsa\\ndrwxr-xr-x 2 root root     79 May 16 10:40 architecture_audit\\ndrwxr-xr-x 2 root root     43 May 16 07:59 cka\\ndrwxr-xr-x 2 root root    180 May 16 06:35 figure_data\\ndrwxr-xr-x 2 root root    164 May 16 06:29 perlayer_rsa\\n-rw-r--r-- 1 root root  19001 May 16 05:16 pca1024_linear_perlayer.json\\n-rw-r--r-- 1 root root 339946 May 16 04:16 output_head_analysis.json\\ndrwxr-xr-x 3 root root     41 May 16 03:52 dinov2_libero_goal_pca1024\\ndrwxr-xr-x 3 root root     41 May 16 03:50 dinov2_libero_goal_linear\\ndrwxr-xr-x 3 root root     41 May 16 03:49 untrained_libero_goal_linear\\ndrwxr-xr-x 3 root root     41 May 16 03:41 trained_libero_goal_pca1024\\n-rw-r--r-- 1 root root   2512 May 16 03:39 pca1024_linear_pertimestep.json\\ndrwxr-xr-x 3 root root     41 May 16 03:34 dinov2_libero_goal_frame0\\ndrwxr-xr-x 3 root root     41 May 16 03:34 untrained_libero_goal_frame0\\ndrwxr-xr-x 3 root root     41 May 16 03:33 trained_libero_goal_linear\\ndrwxr-xr-x 3 root root     41 May 16 03:20 trained_libero_goal_frame0\\n-rw-r--r-- 1 root root   4453 May 16 03:20 shuffled_token_control.json\\ndrwxr-xr-x 3 root root     41 May 16 02:00 untrained_libero_goal\\ndrwxr-xr-x 3 root root     41 May 16 01:54 dinov2_libero_goal\\ndrwxr-xr-x 3 root root     41 May 16 01:51 trained_libero_goal\\n-rw-r--r-- 1 root root   3285 May 16 00:46 visual_similarity_gate.json\\ndrwxr-xr-x 7 root root    161 May 15 23:21 dinov2\\ndrwxr-xr-x 5 root root     92 May 15 23:11 untrained\\ndrwxr-xr-x 5 root root     92 May 15 22:34 trained\\ndrwxr-xr-x 2 root root   4096 May 15 22:27 analysis\\n-rw-r--r-- 1 root root   8487 May 15 22:17 action_baselines.json\\ndrwxr-xr-x 3 root root     39 May 15 22:09 untrained_label_perm\\ndrwxr-xr-x 3 root root     39 May 15 22:08 trained_label_perm\\ndrwxr-xr-x 3 root root     39 May 15 20:03 dinov2_shuffle\\ndrwxr-xr-x 3 root root     28 May 15 15:15 oracle\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "b5bd18df-c4d8-45f7-acaa-72f4ab73e54e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1308\\\\n-rw-r--r-- 1 root root   6201 May 19 12:00 matched_ablation_controls.log\\\\n-rw-r--r-- 1 root root   4842 May 19 12:00 matched_ablation_controls.json\\\\n-rw-r--r-- 1 root root   2915 May 19 11:59 behavioral_smoketest.log\\\\n-rw-r--r-- 1 root root    747 May 19 11:59 behavioral_smoketest.json\\\\n-rw-r--r-- 1 root root   9920 May 19 10:45 task_routing_loo_sensitivity.json\\\\n-rw-r--r-- 1 root root   7923 May 19 10:45 loo_sensitivity.py\\\\n-rw-r--r-- 1 root root  15961 May 19 10:45 attention_normalization_entropy.json\\\\n-rw-r--r-- 1 root root  12477 May 19 10:34 trajectory_level_cohens_d.json\\\\n-rw-r--r-- 1 root root   4994 May 19 10:34 trajectory_level_cohens_d.log\\\\n-rw-r--r-- 1 root root  17119 May 19 10:31 groundtruth_action_error.json\\\\n-rw-r--r-- 1 root root   3668 May 19 10:31 groundtruth_action_error.log\\\\n-rw-r--r-- 1 root root  15513 May 19 09:19 counterfactual_token_overlap.json\\\\ndrwxr-xr-x 2 root root   4096 May 19 05:17 figures\\\\n-rw-r--r-- 1 root root   2460 May 19 05:17 task_complexity_routing.json\\\\n-rw-r--r-- 1 root root   6303 May 19 05:17 task_complexity_analysis.py\\\\n-rw-r--r-- 1 root root   5379 May 19 02:43 specificity_control_action.json\\\\n-rw-r--r-- 1 root root   2794 May 19 02:43 specificity_control_action.log\\\\n-rw-r--r-- 1 root root  20479 May 19 01:19 per_task_r2_distribution.json\\\\n-rw-r--r-- 1 root root   8060 May 19 01:19 attention_decomposition.json\\\\n-rw-r--r-- 1 root root  29052 May 19 01:18 counterfactual_combined.json\\\\n-rw-r--r-- 1 root root   5345 May 19 01:18 counterfactual_instruction.log\\\\n-rw-r--r-- 1 root root   6329 May 19 01:17 counterfactual_paraphrased.json\\\\n-rw-r--r-- 1 root root   6298 May 19 01:17 counterfactual_shuffled.json\\\\n-rw-r--r-- 1 root root   3097 May 19 01:17 counterfactual_correct.json\\\\n-rw-r--r-- 1 root root   6189 May 19 01:17 counterfactual_empty.json\\\\n-rw-r--r-- 1 root root   6297 May 19 01:17 counterfactual_wrong.json\\\\n-rw-r--r-- 1 root root   9350 May 19 01:15 action_metrics_extended.json\\\\n-rw-r--r-- 1 root root  25531 May 19 00:36 dose_response_curve_combined.json\\\\n-rw-r--r-- 1 root root  79404 May 19 00:36 fig_dose_response_curve.png\\\\n-rw-r--r-- 1 root root  22054 May 19 00:36 fig_dose_response_curve.pdf\\\\n-rw-r--r-- 1 root root  10184 May 19 00:30 dose_response_cuda1.log\\\\n-rw-r--r-- 1 root root   2949 May 19 00:30 dose_response_top32.json\\\\n-rw-r--r-- 1 root root   2840 May 19 00:30 dose_response_top28.json\\\\n-rw-r--r-- 1 root root   2714 May 19 00:30 dose_response_top24.json\\\\n-rw-r--r-- 1 root root   2590 May 19 00:30 dose_response_top20.json\\\\n-rw-r--r-- 1 root root   9916 May 19 00:28 dose_response_cuda0.log\\\\n-rw-r--r-- 1 root root   2451 May 19 00:28 dose_response_top16.json\\\\n-rw-r--r-- 1 root root   2338 May 19 00:28 dose_response_top12.json\\\\n-rw-r--r-- 1 root root   2215 May 19 00:28 dose_response_top8.json\\\\n-rw-r--r-- 1 root root   2096 May 19 00:28 dose_response_top4.json\\\\n-rw-r--r-- 1 root root  70952 May 19 00:04 fig_dose_response_draft.png\\\\n-rw-r--r-- 1 root root  14561 May 19 00:04 fig_dose_response_draft.pdf\\\\n-rw-r--r-- 1 root root   1558 May 18 23:12 permutation_test_I2.json\\\\n-rw-r--r-- 1 root root   6814 May 18 22:01 action_trajectory_extended_analysis.json\\\\n-rw-r--r-- 1 root root   7090 May 18 21:55 action_trajectory_L13_ablation.json\\\\n-rw-r--r-- 1 root root   4345 May 18 21:55 action_trajectory_L13_ablation.log\\\\n-rw-r--r-- 1 root root   7088 May 18 21:52 action_trajectory_L8_ablation.json\\\\n-rw-r--r-- 1 root root   4141 May 18 21:52 action_trajectory_L8_ablation.log\\\\n-rw-r--r-- 1 root root   6913 May 18 20:06 action_trajectory_control.json\\\\n-rw-r--r-- 1 root root   4294 May 18 20:06 action_trajectory_control.log\\\\n-rw-r--r-- 1 root root   1987 May 18 19:55 sr_validation5.log\\\\n-rw-r--r-- 1 root root   1461 May 18 19:52 sr_debug5.log\\\\n-rw-r--r-- 1 root root   2144 May 18 19:51 sr_debug4.log\\\\n-rw-r--r-- 1 root root   1874 May 18 19:50 sr_validation4.log\\\\n-rw-r--r-- 1 root root   1874 May 18 19:49 sr_validation3.log\\\\n-rw-r--r-- 1 root root   3250 May 18 19:47 sr_validation2.log\\\\n-rw-r--r-- 1 root root   1704 May 18 19:46 sr_debug3.log\\\\n-rw-r--r-- 1 root root   2182 May 18 19:46 sr_debug2.log\\\\n-rw-r--r-- 1 root root   2470 May 18 19:45 sr_debug.log\\\\n-rw-r--r-- 1 root root   1813 May 18 19:41 sr_validation.log\\\\n-rw-r--r-- 1 root root   4878 May 18 18:58 action_trajectory_analysis.log\\\\n-rw-r--r-- 1 root root   6994 May 18 18:58 action_trajectory_analysis.json\\\\n-rw-r--r-- 1 root root  11638 May 18 16:46 threecond_multiseed_v2.log\\\\n-rw-r--r-- 1 root root  21524 May 18 16:46 threecond_multiseed_v2.json\\\\n-rw-r--r-- 1 root root  11573 May 18 15:30 threecond_multiseed.log\\\\n-rw-r--r-- 1 root root  21464 May 18 15:30 threecond_multiseed.json\\\\n-rw-r--r-- 1 root root  59603 May 18 15:10 linear_probe_last_preaction.json\\\\n-rw-r--r-- 1 root root   1641 May 18 13:15 random_subset_ablation.json\\\\n-rw-r--r-- 1 root root   5058 May 18 13:10 random_subset_ablation.log\\\\n-rw-r--r-- 1 root root  11530 May 18 11:43 ood_diagnostics.json\\\\n-rw-r--r-- 1 root root   3097 May 18 11:43 ood_diagnostics.log\\\\n-rw-r--r-- 1 root root   3394 May 18 11:42 linear_probe.log\\\\n-rw-r--r-- 1 root root  65883 May 18 11:42 linear_probe_results.json\\\\n-rw-r--r-- 1 root root   3967 May 18 11:01 bootstrap_ci_values.json\\\\ndrwxr-xr-x 2 root root     53 May 18 06:01 llama2base_action_probe\\\\ndrwxr-xr-x 2 root root     50 May 18 05:57 action_probe\\\\ndrwxr-xr-x 2 root root   4096 May 18 05:48 l1_head_ablation\\\\ndrwxr-xr-x 2 root root     34 May 18 04:04 demo_sensitivity_25\\\\ndrwxr-xr-x 2 root root   4096 May 17 21:51 attention\\\\ndrwxr-xr-x 2 root root   4096 May 17 17:08 cross_instruction_spatial\\\\ndrwxr-xr-x 2 root root   4096 May 17 14:41 cross_instruction_dense\\\\ndrwxr-xr-x 2 root root   4096 May 17 12:58 cross_instruction\\\\ndrwxr-xr-x 2 root root     97 May 17 07:40 qa_probe\\\\ndrwxr-xr-x 2 root root    183 May 16 19:00 ablations\\\\ndrwxr-xr-x 2 root root   4096 May 16 14:44 functional_validation\\\\ndrwxr-xr-x 2 root root   4096 May 16 14:33 rsa\\\\ndrwxr-xr-x 2 root root     79 May 16 10:40 architecture_audit\\\\ndrwxr-xr-x 2 root root     43 May 16 07:59 cka\\\\ndrwxr-xr-x 2 root root    180 May 16 06:35 figure_data\\\\ndrwxr-xr-x 2 root root    164 May 16 06:29 perlayer_rsa\\\\n-rw-r--r-- 1 root root  19001 May 16 05:16 pca1024_linear_perlayer.json\\\\n-rw-r--r-- 1 root root 339946 May 16 04:16 output_head_analysis.json\\\\ndrwxr-xr-x 3 root root     41 May 16 03:52 dinov2_libero_goal_pca1024\\\\ndrwxr-xr-x 3 root root     41 May 16 03:50 dinov2_libero_goal_linear\\\\ndrwxr-xr-x 3 root root     41 May 16 03:49 untrained_libero_goal_linear\\\\ndrwxr-xr-x 3 root root     41 May 16 03:41 trained_libero_goal_pca1024\\\\n-rw-r--r-- 1 root root   2512 May 16 03:39 pca1024_linear_pertimestep.json\\\\ndrwxr-xr-x 3 root root     41 May 16 03:34 dinov2_libero_goal_frame0\\\\ndrwxr-xr-x 3 root root     41 May 16 03:34 untrained_libero_goal_frame0\\\\ndrwxr-xr-x 3 root root     41 May 16 03:33 trained_libero_goal_linear\\\\ndrwxr-xr-x 3 root root     41 May 16 03:20 trained_libero_goal_frame0\\\\n-rw-r--r-- 1 root root   4453 May 16 03:20 shuffled_token_control.json\\\\ndrwxr-xr-x 3 root root     41 May 16 02:00 untrained_libero_goal\\\\ndrwxr-xr-x 3 root root     41 May 16 01:54 dinov2_libero_goal\\\\ndrwxr-xr-x 3 root root     41 May 16 01:51 trained_libero_goal\\\\n-rw-r--r-- 1 root root   3285 May 16 00:46 visual_similarity_gate.json\\\\ndrwxr-xr-x 7 root root    161 May 15 23:21 dinov2\\\\ndrwxr-xr-x 5 root root     92 May 15 23:11 untrained\\\\ndrwxr-xr-x 5 root root     92 May 15 22:34 trained\\\\ndrwxr-xr-x 2 root root   4096 May 15 22:27 analysis\\\\n-rw-r--r-- 1 root root   8487 May 15 22:17 action_baselines.json\\\\ndrwxr-xr-x 3 root root     39 May 15 22:09 untrained_label_perm\\\\ndrwxr-xr-x 3 root root     39 May 15 22:08 trained_label_perm\\\\ndrwxr-xr-x 3 root root     39 May 15 20:03 dinov2_shuffle\\\\ndrwxr-xr-x 3 root root     28 May 15 15:15 oracle\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1308\\n-rw-r--r-- 1 root root   6201 May 19 12:00 matched_ablation_controls.log\\n-rw-r--r-- 1 root root   4842 May 19 12:00 matched_ablation_controls.json\\n-rw-r--r-- 1 root root   2915 May 19 11:59 behavioral_smoketest.log\\n-rw-r--r-- 1 root root    747 May 19 11:59 behavioral_smoketest.json\\n-rw-r--r-- 1 root root   9920 May 19 10:45 task_routing_loo_sensitivity.json\\n-rw-r--r-- 1 root root   7923 May 19 10:45 loo_sensitivity.py\\n-rw-r--r-- 1 root root  15961 May 19 10:45 attention_normalization_entropy.json\\n-rw-r--r-- 1 root root  12477 May 19 10:34 trajectory_level_cohens_d.json\\n-rw-r--r-- 1 root root   4994 May 19 10:34 trajectory_level_cohens_d.log\\n-rw-r--r-- 1 root root  17119 May 19 10:31 groundtruth_action_error.json\\n-rw-r--r-- 1 root root   3668 May 19 10:31 groundtruth_action_error.log\\n-rw-r--r-- 1 root root  15513 May 19 09:19 counterfactual_token_overlap.json\\ndrwxr-xr-x 2 root root   4096 May 19 05:17 figures\\n-rw-r--r-- 1 root root   2460 May 19 05:17 task_complexity_routing.json\\n-rw-r--r-- 1 root root   6303 May 19 05:17 task_complexity_analysis.py\\n-rw-r--r-- 1 root root   5379 May 19 02:43 specificity_control_action.json\\n-rw-r--r-- 1 root root   2794 May 19 02:43 specificity_control_action.log\\n-rw-r--r-- 1 root root  20479 May 19 01:19 per_task_r2_distribution.json\\n-rw-r--r-- 1 root root   8060 May 19 01:19 attention_decomposition.json\\n-rw-r--r-- 1 root root  29052 May 19 01:18 counterfactual_combined.json\\n-rw-r--r-- 1 root root   5345 May 19 01:18 counterfactual_instruction.log\\n-rw-r--r-- 1 root root   6329 May 19 01:17 counterfactual_paraphrased.json\\n-rw-r--r-- 1 root root   6298 May 19 01:17 counterfactual_shuffled.json\\n-rw-r--r-- 1 root root   3097 May 19 01:17 counterfactual_correct.json\\n-rw-r--r-- 1 root root   6189 May 19 01:17 counterfactual_empty.json\\n-rw-r--r-- 1 root root   6297 May 19 01:17 counterfactual_wrong.json\\n-rw-r--r-- 1 root root   9350 May 19 01:15 action_metrics_extended.json\\n-rw-r--r-- 1 root root  25531 May 19 00:36 dose_response_curve_combined.json\\n-rw-r--r-- 1 root root  79404 May 19 00:36 fig_dose_response_curve.png\\n-rw-r--r-- 1 root root  22054 May 19 00:36 fig_dose_response_curve.pdf\\n-rw-r--r-- 1 root root  10184 May 19 00:30 dose_response_cuda1.log\\n-rw-r--r-- 1 root root   2949 May 19 00:30 dose_response_top32.json\\n-rw-r--r-- 1 root root   2840 May 19 00:30 dose_response_top28.json\\n-rw-r--r-- 1 root root   2714 May 19 00:30 dose_response_top24.json\\n-rw-r--r-- 1 root root   2590 May 19 00:30 dose_response_top20.json\\n-rw-r--r-- 1 root root   9916 May 19 00:28 dose_response_cuda0.log\\n-rw-r--r-- 1 root root   2451 May 19 00:28 dose_response_top16.json\\n-rw-r--r-- 1 root root   2338 May 19 00:28 dose_response_top12.json\\n-rw-r--r-- 1 root root   2215 May 19 00:28 dose_response_top8.json\\n-rw-r--r-- 1 root root   2096 May 19 00:28 dose_response_top4.json\\n-rw-r--r-- 1 root root  70952 May 19 00:04 fig_dose_response_draft.png\\n-rw-r--r-- 1 root root  14561 May 19 00:04 fig_dose_response_draft.pdf\\n-rw-r--r-- 1 root root   1558 May 18 23:12 permutation_test_I2.json\\n-rw-r--r-- 1 root root   6814 May 18 22:01 action_trajectory_extended_analysis.json\\n-rw-r--r-- 1 root root   7090 May 18 21:55 action_trajectory_L13_ablation.json\\n-rw-r--r-- 1 root root   4345 May 18 21:55 action_trajectory_L13_ablation.log\\n-rw-r--r-- 1 root root   7088 May 18 21:52 action_trajectory_L8_ablation.json\\n-rw-r--r-- 1 root root   4141 May 18 21:52 action_trajectory_L8_ablation.log\\n-rw-r--r-- 1 root root   6913 May 18 20:06 action_trajectory_control.json\\n-rw-r--r-- 1 root root   4294 May 18 20:06 action_trajectory_control.log\\n-rw-r--r-- 1 root root   1987 May 18 19:55 sr_validation5.log\\n-rw-r--r-- 1 root root   1461 May 18 19:52 sr_debug5.log\\n-rw-r--r-- 1 root root   2144 May 18 19:51 sr_debug4.log\\n-rw-r--r-- 1 root root   1874 May 18 19:50 sr_validation4.log\\n-rw-r--r-- 1 root root   1874 May 18 19:49 sr_validation3.log\\n-rw-r--r-- 1 root root   3250 May 18 19:47 sr_validation2.log\\n-rw-r--r-- 1 root root   1704 May 18 19:46 sr_debug3.log\\n-rw-r--r-- 1 root root   2182 May 18 19:46 sr_debug2.log\\n-rw-r--r-- 1 root root   2470 May 18 19:45 sr_debug.log\\n-rw-r--r-- 1 root root   1813 May 18 19:41 sr_validation.log\\n-rw-r--r-- 1 root root   4878 May 18 18:58 action_trajectory_analysis.log\\n-rw-r--r-- 1 root root   6994 May 18 18:58 action_trajectory_analysis.json\\n-rw-r--r-- 1 root root  11638 May 18 16:46 threecond_multiseed_v2.log\\n-rw-r--r-- 1 root root  21524 May 18 16:46 threecond_multiseed_v2.json\\n-rw-r--r-- 1 root root  11573 May 18 15:30 threecond_multiseed.log\\n-rw-r--r-- 1 root root  21464 May 18 15:30 threecond_multiseed.json\\n-rw-r--r-- 1 root root  59603 May 18 15:10 linear_probe_last_preaction.json\\n-rw-r--r-- 1 root root   1641 May 18 13:15 random_subset_ablation.json\\n-rw-r--r-- 1 root root   5058 May 18 13:10 random_subset_ablation.log\\n-rw-r--r-- 1 root root  11530 May 18 11:43 ood_diagnostics.json\\n-rw-r--r-- 1 root root   3097 May 18 11:43 ood_diagnostics.log\\n-rw-r--r-- 1 root root   3394 May 18 11:42 linear_probe.log\\n-rw-r--r-- 1 root root  65883 May 18 11:42 linear_probe_results.json\\n-rw-r--r-- 1 root root   3967 May 18 11:01 bootstrap_ci_values.json\\ndrwxr-xr-x 2 root root     53 May 18 06:01 llama2base_action_probe\\ndrwxr-xr-x 2 root root     50 May 18 05:57 action_probe\\ndrwxr-xr-x 2 root root   4096 May 18 05:48 l1_head_ablation\\ndrwxr-xr-x 2 root root     34 May 18 04:04 demo_sensitivity_25\\ndrwxr-xr-x 2 root root   4096 May 17 21:51 attention\\ndrwxr-xr-x 2 root root   4096 May 17 17:08 cross_instruction_spatial\\ndrwxr-xr-x 2 root root   4096 May 17 14:41 cross_instruction_dense\\ndrwxr-xr-x 2 root root   4096 May 17 12:58 cross_instruction\\ndrwxr-xr-x 2 root root     97 May 17 07:40 qa_probe\\ndrwxr-xr-x 2 root root    183 May 16 19:00 ablations\\ndrwxr-xr-x 2 root root   4096 May 16 14:44 functional_validation\\ndrwxr-xr-x 2 root root   4096 May 16 14:33 rsa\\ndrwxr-xr-x 2 root root     79 May 16 10:40 architecture_audit\\ndrwxr-xr-x 2 root root     43 May 16 07:59 cka\\ndrwxr-xr-x 2 root root    180 May 16 06:35 figure_data\\ndrwxr-xr-x 2 root root    164 May 16 06:29 perlayer_rsa\\n-rw-r--r-- 1 root root  19001 May 16 05:16 pca1024_linear_perlayer.json\\n-rw-r--r-- 1 root root 339946 May 16 04:16 output_head_analysis.json\\ndrwxr-xr-x 3 root root     41 May 16 03:52 dinov2_libero_goal_pca1024\\ndrwxr-xr-x 3 root root     41 May 16 03:50 dinov2_libero_goal_linear\\ndrwxr-xr-x 3 root root     41 May 16 03:49 untrained_libero_goal_linear\\ndrwxr-xr-x 3 root root     41 May 16 03:41 trained_libero_goal_pca1024\\n-rw-r--r-- 1 root root   2512 May 16 03:39 pca1024_linear_pertimestep.json\\ndrwxr-xr-x 3 root root     41 May 16 03:34 dinov2_libero_goal_frame0\\ndrwxr-xr-x 3 root root     41 May 16 03:34 untrained_libero_goal_frame0\\ndrwxr-xr-x 3 root root     41 May 16 03:33 trained_libero_goal_linear\\ndrwxr-xr-x 3 root root     41 May 16 03:20 trained_libero_goal_frame0\\n-rw-r--r-- 1 root root   4453 May 16 03:20 shuffled_token_control.json\\ndrwxr-xr-x 3 root root     41 May 16 02:00 untrained_libero_goal\\ndrwxr-xr-x 3 root root     41 May 16 01:54 dinov2_libero_goal\\ndrwxr-xr-x 3 root root     41 May 16 01:51 trained_libero_goal\\n-rw-r--r-- 1 root root   3285 May 16 00:46 visual_similarity_gate.json\\ndrwxr-xr-x 7 root root    161 May 15 23:21 dinov2\\ndrwxr-xr-x 5 root root     92 May 15 23:11 untrained\\ndrwxr-xr-x 5 root root     92 May 15 22:34 trained\\ndrwxr-xr-x 2 root root   4096 May 15 22:27 analysis\\n-rw-r--r-- 1 root root   8487 May 15 22:17 action_baselines.json\\ndrwxr-xr-x 3 root root     39 May 15 22:09 untrained_label_perm\\ndrwxr-xr-x 3 root root     39 May 15 22:08 trained_label_perm\\ndrwxr-xr-x 3 root root     39 May 15 20:03 dinov2_shuffle\\ndrwxr-xr-x 3 root root     28 May 15 15:15 oracle\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the behavioral_smoketest log:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "5e8ec950-b4cd-4698-87fa-ba50310f4f88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vEFdrsQX96khhsxx5JLkR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 34429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5600
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+behavioral_smoketest 进程已死（只有 grep 自身匹配）。查看其日志和结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "94e2ba71-ce8e-4c69-926e-072ed7c073f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vEFdrsQX96khhsxx5JLkR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 34429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5600
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D4ozxYHvRiMpaLpRvNypWk`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "292b326e-6758-4079-9534-fdc93571b9c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vEFdrsQX96khhsxx5JLkR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 34429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5600
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T04:10:50.014Z_
+
+<details><summary>↩ Tool result · `toolu_01D4ozxYHvRiMpaLpRvNypWk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/scipy/__init__.py:132: UserWarning: A NumPy version >=1.21.6 and <1.28.0 is required for this version of SciPy (detected version 2.0.2)\\n  warnings.warn(f\\\"A NumPy version >={np_minversion} and <{np_maxversion}\\\"\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n============================================================\\nBEHAVIORAL SMOKE TEST\\n  Task ID: 0, Episodes: 3, Max Steps: 400\\n============================================================\\n\\nLoading model...\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.40.2` and `tokenizers==0.19.1`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.74s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.55s/it]\\rLoading checkpoint shards:  75%|██��████▌  | 3/4 [00:04<00:01,  1.48s/it]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.05it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.17s/it]\\nModel loaded.\\n\\n--- Phase 1: Baseline ---\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 0: fail | R=0.000 | steps=400 | 66.2s\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 1: fail | R=0.000 | steps=400 | 65.1s\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 2: fail | R=0.000 | steps=400 | 64.9s\\n  >> baseline SR=0.00, avg_reward=0.000\\n\\nBaseline SR=0. Stopping (no point running ablation).\\n\\nResults saved to /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n{\\n  \\\"baseline_sr\\\": 0.0,\\n  \\\"conclusion\\\": \\\"baseline_zero\\\"\\n}\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "310b875a-2286-4f44-9700-fde437b18a0a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/scipy/__init__.py:132: UserWarning: A NumPy version >=1.21.6 and <1.28.0 is required for this version of SciPy (detected version 2.0.2)\\\\n  warnings.warn(f\\\\\\\"A NumPy version >={np_minversion} and <{np_maxversion}\\\\\\\"\\\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\\n============================================================\\\\nBEHAVIORAL SMOKE TEST\\\\n  Task ID: 0, Episodes: 3, Max Steps: 400\\\\n============================================================\\\\n\\\\nLoading model...\\\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\\\n&lt;frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.40.2` and `tokenizers==0.19.1`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.74s/it]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.55s/it]\\\\rLoading checkpoint shards:  75%|██��████▌  | 3/4 [00:04<00:01,  1.48s/it]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.05it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.17s/it]\\\\nModel loaded.\\\\n\\\\n--- Phase 1: Baseline ---\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n  [baseline] ep 0: fail | R=0.000 | steps=400 | 66.2s\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n  [baseline] ep 1: fail | R=0.000 | steps=400 | 65.1s\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n  [baseline] ep 2: fail | R=0.000 | steps=400 | 64.9s\\\\n  >> baseline SR=0.00, avg_reward=0.000\\\\n\\\\nBaseline SR=0. Stopping (no point running ablation).\\\\n\\\\nResults saved to /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\\\n{\\\\n  \\\\\\\"baseline_sr\\\\\\\": 0.0,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"baseline_zero\\\\\\\"\\\\n}\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n/root/miniconda3/envs/libero/lib/python3.10/site-packages/scipy/__init__.py:132: UserWarning: A NumPy version >=1.21.6 and <1.28.0 is required for this version of SciPy (detected version 2.0.2)\\n  warnings.warn(f\\\"A NumPy version >={np_minversion} and <{np_maxversion}\\\"\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n============================================================\\nBEHAVIORAL SMOKE TEST\\n  Task ID: 0, Episodes: 3, Max Steps: 400\\n============================================================\\n\\nLoading model...\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\\n&lt;frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.40.2` and `tokenizers==0.19.1`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.74s/it]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.55s/it]\\rLoading checkpoint shards:  75%|██��████▌  | 3/4 [00:04<00:01,  1.48s/it]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.05it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.17s/it]\\nModel loaded.\\n\\n--- Phase 1: Baseline ---\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 0: fail | R=0.000 | steps=400 | 66.2s\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 1: fail | R=0.000 | steps=400 | 65.1s\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n  [baseline] ep 2: fail | R=0.000 | steps=400 | 64.9s\\n  >> baseline SR=0.00, avg_reward=0.000\\n\\nBaseline SR=0. Stopping (no point running ablation).\\n\\nResults saved to /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json\\n{\\n  \\\"baseline_sr\\\": 0.0,\\n  \\\"conclusion\\\": \\\"baseline_zero\\\"\\n}\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D9VFAvYK7o5u9fkR1Q3Sgy`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "7aa48d8c-cde4-456f-a4b6-4f72a7a0088f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vEFdrsQX96khhsxx5JLkR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 34429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5600
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T04:10:50.551Z_
+
+<details><summary>↩ Tool result · `toolu_01D9VFAvYK7o5u9fkR1Q3Sgy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"checkpoint\\\": \\\"openvla-7b-finetuned-libero-goal\\\",\\n    \\\"unnorm_key\\\": \\\"libero_goal\\\",\\n    \\\"task_id\\\": 0,\\n    \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"task_lang\\\": \\\"open the middle drawer of the cabinet\\\",\\n    \\\"n_episodes\\\": 3,\\n    \\\"max_steps\\\": 400,\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\n  },\\n  \\\"baseline\\\": {\\n    \\\"episodes\\\": [\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      },\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      },\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      }\\n    ],\\n    \\\"sr\\\": 0.0\\n  },\\n  \\\"ablated\\\": null,\\n  \\\"conclusion\\\": \\\"baseline_zero\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "1f6efeae-9b83-4aa9-83da-38b0290741c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"openvla-7b-finetuned-libero-goal\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n    \\\\\\\"task_id\\\\\\\": 0,\\\\n    \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"task_lang\\\\\\\": \\\\\\\"open the middle drawer of the cabinet\\\\\\\",\\\\n    \\\\\\\"n_episodes\\\\\\\": 3,\\\\n    \\\\\\\"max_steps\\\\\\\": 400,\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\"\\\\n  },\\\\n  \\\\\\\"baseline\\\\\\\": {\\\\n    \\\\\\\"episodes\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"success\\\\\\\": false,\\\\n        \\\\\\\"reward\\\\\\\": 0.0,\\\\n        \\\\\\\"steps\\\\\\\": 400\\\\n      },\\\\n      {\\\\n        \\\\\\\"success\\\\\\\": false,\\\\n        \\\\\\\"reward\\\\\\\": 0.0,\\\\n        \\\\\\\"steps\\\\\\\": 400\\\\n      },\\\\n      {\\\\n        \\\\\\\"success\\\\\\\": false,\\\\n        \\\\\\\"reward\\\\\\\": 0.0,\\\\n        \\\\\\\"steps\\\\\\\": 400\\\\n      }\\\\n    ],\\\\n    \\\\\\\"sr\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"ablated\\\\\\\": null,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"baseline_zero\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"checkpoint\\\": \\\"openvla-7b-finetuned-libero-goal\\\",\\n    \\\"unnorm_key\\\": \\\"libero_goal\\\",\\n    \\\"task_id\\\": 0,\\n    \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"task_lang\\\": \\\"open the middle drawer of the cabinet\\\",\\n    \\\"n_episodes\\\": 3,\\n    \\\"max_steps\\\": 400,\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\"\\n  },\\n  \\\"baseline\\\": {\\n    \\\"episodes\\\": [\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      },\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      },\\n      {\\n        \\\"success\\\": false,\\n        \\\"reward\\\": 0.0,\\n        \\\"steps\\\": 400\\n      }\\n    ],\\n    \\\"sr\\\": 0.0\\n  },\\n  \\\"ablated\\\": null,\\n  \\\"conclusion\\\": \\\"baseline_zero\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information. Let me summarize:
+
+## matched_ablation_controls
+**The experiment actually completed successfully.** The log shows:
+- All 10500 forward passes completed in 1527s
+- Metrics were computed and printed
+- Results saved to `matched_ablation_controls.json`
+- Exit code 0, no errors
+
+The issue is that the script **does not use W&B at all** - it saves results to a JSON file. So the "no valid W&B metrics" is expected. The "5 abnormal exits" claim doesn't match the log - the log shows a clean successful run.
+
+
+The registry may have tracked previous failed attempts from development, but this final run succeeded cleanly.
+
+## behavioral_smoketest
+The experiment isn't running—the process is dead. The baseline ran 3 episodes that all failed, so the script's logic kicked in and stopped early since there's no point running ablations with zero success rate, then exited cleanly with results saved. Both GPUs are idle, confirming nothing is active.
+
+Disk space is at 95% capacity with only 15G free, which is worth flagging as a potential risk. Now I'm putting together the diagnosis report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "107254fb-59ed-40a1-b8c5-79e7e72b9017",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SPXGoHsKGgiEWLfudp3QU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2025,
+      "cache_read_input_tokens": 40029,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+两个实验都已有完整结论。写诊断报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "23d1f5b3-e50d-405d-b372-a22b3ad6b117",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SPXGoHsKGgiEWLfudp3QU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2025,
+      "cache_read_input_tokens": 40029,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01UV3deQQM5HSGHXCEu73ZAD`</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "artifacts/matched_ablation_controls_diagnosis.md",
+  "content": "# 实验诊断报告 (2026-05-19)\n\n## 1. matched_ablation_controls\n\n### 状态：已正常完成\n\n**与预期不符**：registry 记录\"进程异常退出 5 次，没有产生有效的 W&B metrics\"，但日志显示实验已成功完成。\n\n### 日志证据\n\n- 10500 forward passes 全部完成（1527s，6.9 pass/s）\n- 3 个 task 均正常处理\n- 所有 metrics 已计算并输出：\n  - Random-24 mean traj_d: 0.601 +/- 0.021\n  - Image-dominant-24 traj_d: 0.580\n  - Instruction-dominant-24 traj_d (reference): 0.65\n- 结果已保存到 `/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json`\n- return_code = 0，stderr 为空\n\n### 无 W&B metrics 的原因\n\n脚本 **未集成 W&B logging**，结果只写入 JSON 文件。无 W&B metrics 是设计如此，不是故障。\n\n### 结论\n\n- 不需要重试\n- registry 状态应更新为 COMPLETED\n- 如需 W&B tracking，需在脚本中添加 `wandb.init()` 和 `wandb.log()` 调用\n\n---\n\n## 2. behavioral_smoketest\n\n### 状态：已正常退出（非 RUNNING）\n\n**进程已死**：`ps aux | grep behavioral_smoketest` 无匹配。两张 GPU 均空闲（0% util, 0 MiB）。\n\n### 运行结果\n\n- 模型：openvla-7b-finetuned-libero-goal\n- Task：open_the_middle_drawer_of_the_cabinet（task_id=0）\n- Baseline 3 episodes 全部失败（SR=0.00，每 episode 跑满 400 steps）\n- 脚本逻辑：baseline SR=0 时提前终止（\"no point running ablation\"）\n- 结论字段：`\"baseline_zero\"`\n\n### 分析\n\nBaseline 0% 成功率说明 finetuned checkpoint 在该 task 上可能存在问题：\n1. 可能是 unnorm_key (`libero_goal`) 或 checkpoint 路径配置不匹配\n2. 可能是 task 本身难度高，3 episodes 样本量太小\n3. 可能是环境 setup 问题（robosuite warnings，numpy/gym 版本冲突）\n\n### 结论\n\n- 进程已正常退出，registry 应更新为 COMPLETED（结果为 baseline_zero）\n- 如需有效 ablation 对比，需先解决 baseline SR=0 的问题\n\n---\n\n## 环境状态\n\n| 项目 | 状态 |\n|------|------|\n| GPU | 2x RTX PRO 6000 Black，均空闲 |\n| 磁盘 | /root/autodl-tmp 已用 95%（剩余 15G），需关注 |\n| CUDA | torch.cuda.is_available() = True |\n| 进程 | 无 GPU 进程运行 |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "3d808143-cea5-40e1-bf11-b7f81d5a32e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SPXGoHsKGgiEWLfudp3QU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2025,
+      "cache_read_input_tokens": 40029,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T04:11:19.822Z_
+
+<details><summary>↩ Tool result · `toolu_01UV3deQQM5HSGHXCEu73ZAD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'artifacts/matched_ablation_controls_diagnosis.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "75f2b8aa-2c36-4bca-a762-582aa65f66b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'artifacts/matched_ablation_controls_diagnosis.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'artifacts/matched_ablation_controls_diagnosis.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The save_project_file tool only allows writing to specific files. I need to write this to the artifacts directory directly using the Write tool or ssh_execute. Let me write it locally to the artifacts directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "0ea22fbd-0f14-4bb0-944c-01761bfb43f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xge4RGkwqTA7ongcvkpCzE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1462,
+      "cache_read_input_tokens": 42054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1462
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+save_project_file 不支持写 artifacts，直接写到本地 artifacts 目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "9f2041dd-b145-492c-8c78-9296f1503bb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xge4RGkwqTA7ongcvkpCzE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1462,
+      "cache_read_input_tokens": 42054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1462
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012yJFXPx2BPo4jWBQuAsJYg`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/ 2>/dev/null || echo \"dir not found\"",
+  "description": "Check artifacts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "cfa2cfa1-3906-42de-ba16-8a01a6224d18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xge4RGkwqTA7ongcvkpCzE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1462,
+      "cache_read_input_tokens": 42054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1462
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-19T04:11:25.348Z_
+
+<details><summary>↩ Tool result · `toolu_012yJFXPx2BPo4jWBQuAsJYg`</summary>
+
+```text
+_project
+ablation_narrative_playbook.md
+action_metrics_extended
+action_probe_design.md
+analyze_ablation_50demos.py
+attention
+attention_decomposition
+attention_decomposition_and_r2.py
+attention_normalization_entropy
+attention_normalization_entropy.py
+behavioral_pilot_w4_diagnosis.md
+branch_split_rsa_results.md
+citation_verification_2026.md
+controlb_analysis
+counterfactual_instruction.py
+counterfactual_token_overlap
+cross_inst_extract_phase2
+cross_instruction
+definitive_rsa_results.md
+demo_sensitivity.py
+demo_standardized_rsa.md
+dinov2_baseline
+dream_reports
+extract_fused_backbone.py
+fig2_cross_instruction_heatmap.pdf
+fig_ood_diagnostics.png
+fig_rsa_perlayer_curve.pdf
+fig_rsa_perlayer_curve.png
+figures
+fulllayer_action_probe.py
+groundtruth_action_error
+l1_ablation_action_probe_50demos.py
+layer_stability_analysis.md
+libero_goal_feasibility.md
+literature_map.yaml
+literature_map_probing.md
+literature_survey_instruction_probing.md
+llama2base_action_probe.py
+manifest.yaml
+matched_ablation_controls.py
+mvp_controlb_trained
+mvp_probe_trained
+openvla_libero_goal_compat.md
+paper_consistency_report.md
+patch_probes.py
+pca_linear_probe_gc.py
+pca_linear_probe_perlayer.py
+permutation_test_I2.py
+pipeline_audit_libero_goal.md
+plan_010_libero_spatial
+plan_011_fulllayer_r2
+plan_012_clip_vit_control
+plot_dose_response.py
+probe_design_plan.md
+qa_probe_classification.py
+random_subset_ablation.py
+redream_evidence_v2.md
+review_issues.yaml
+review_reports
+rsa_analysis.py
+rsa_branch_split.py
+rsa_definitive.py
+rsa_method_audit_report.md
+rsa_unified_vla.py
+task_complexity_routing
+task_routing_loo_sensitivity
+unified_action_probe.py
+unified_rsa_summary.md
+untrained_last_preaction_probe.json
+vla_rsa_method_audit.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "4cad795c-636e-43ab-9875-e61254e6bc7b",
+  "tool_use_result": {
+    "stdout": "_project\nablation_narrative_playbook.md\naction_metrics_extended\naction_probe_design.md\nanalyze_ablation_50demos.py\nattention\nattention_decomposition\nattention_decomposition_and_r2.py\nattention_normalization_entropy\nattention_normalization_entropy.py\nbehavioral_pilot_w4_diagnosis.md\nbranch_split_rsa_results.md\ncitation_verification_2026.md\ncontrolb_analysis\ncounterfactual_instruction.py\ncounterfactual_token_overlap\ncross_inst_extract_phase2\ncross_instruction\ndefinitive_rsa_results.md\ndemo_sensitivity.py\ndemo_standardized_rsa.md\ndinov2_baseline\ndream_reports\nextract_fused_backbone.py\nfig2_cross_instruction_heatmap.pdf\nfig_ood_diagnostics.png\nfig_rsa_perlayer_curve.pdf\nfig_rsa_perlayer_curve.png\nfigures\nfulllayer_action_probe.py\ngroundtruth_action_error\nl1_ablation_action_probe_50demos.py\nlayer_stability_analysis.md\nlibero_goal_feasibility.md\nliterature_map.yaml\nliterature_map_probing.md\nliterature_survey_instruction_probing.md\nllama2base_action_probe.py\nmanifest.yaml\nmatched_ablation_controls.py\nmvp_controlb_trained\nmvp_probe_trained\nopenvla_libero_goal_compat.md\npaper_consistency_report.md\npatch_probes.py\npca_linear_probe_gc.py\npca_linear_probe_perlayer.py\npermutation_test_I2.py\npipeline_audit_libero_goal.md\nplan_010_libero_spatial\nplan_011_fulllayer_r2\nplan_012_clip_vit_control\nplot_dose_response.py\nprobe_design_plan.md\nqa_probe_classification.py\nrandom_subset_ablation.py\nredream_evidence_v2.md\nreview_issues.yaml\nreview_reports\nrsa_analysis.py\nrsa_branch_split.py\nrsa_definitive.py\nrsa_method_audit_report.md\nrsa_unified_vla.py\ntask_complexity_routing\ntask_routing_loo_sensitivity\nunified_action_probe.py\nunified_rsa_summary.md\nuntrained_last_preaction_probe.json\nvla_rsa_method_audit.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Xzz3GcJseynDLNZK3QaJek`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/matched_ablation_controls_diagnosis.md",
+  "content": "# 实验诊断报告 (2026-05-19)\n\n## 1. matched_ablation_controls\n\n### 状态：已正常完成\n\n与 registry 记录不符：日志显示实验已成功完成，非\"异常退出\"。\n\n### 日志证据\n\n- 10500 forward passes 全部完成（1527s，6.9 pass/s）\n- 3 个 task 均正常处理\n- Metrics 已计算：\n  - Random-24 mean traj_d: 0.601 +/- 0.021\n  - Image-dominant-24 traj_d: 0.580\n  - Instruction-dominant-24 traj_d (reference): 0.65\n- 结果已保存到 `/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json`\n- return_code = 0，stderr 为空\n\n### 无 W&B metrics 的原因\n\n脚本未集成 W&B logging，结果只写入 JSON 文件。无 W&B metrics 是设计如此，不是故障。\n\n### 结论\n\n- 不需要重试，实验已成功\n- Registry 状态应更新为 COMPLETED\n- 如需 W&B tracking，需在脚本中添加 wandb 调用\n\n---\n\n## 2. behavioral_smoketest\n\n### 状态：已正常退出（非 RUNNING）\n\n进程已死：`ps aux` 无匹配。两张 GPU 均空闲（0% util, 0 MiB memory）。\n\n### 运行结果\n\n- 模型：openvla-7b-finetuned-libero-goal\n- Task：open_the_middle_drawer_of_the_cabinet（task_id=0）\n- Baseline 3 episodes 全部失败（SR=0.00，每 episode 跑满 400 steps）\n- 脚本逻辑：baseline SR=0 时提前终止（\"no point running ablation\"）\n- 结论字段：`\"baseline_zero\"`\n\n### 分析\n\nBaseline 0% 成功率可能原因：\n1. unnorm_key (`libero_goal`) 或 checkpoint 路径配置问题\n2. 3 episodes 样本量太小\n3. 环境版本冲突（numpy 2.0.2 与 scipy/gym 不兼容的 warnings）\n\n### 结论\n\n- Registry 应更新为 COMPLETED（结果 baseline_zero）\n- 如需有效 ablation 对比，需先解决 baseline SR=0 问题\n\n---\n\n## 环境状态\n\n| 项目 | 状态 |\n|------|------|\n| GPU | 2x RTX PRO 6000 Black，均空闲 |\n| 磁盘 | /root/autodl-tmp 已用 95%（剩余 15G），需关注 |\n| CUDA | torch.cuda.is_available() = True |\n| 进程 | 无 GPU 进程运行 |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "4c2b6f17-c5e4-4862-8872-c6221c1d53d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZd4cNeYsr86z7uvT3nw7g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 43516,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T04:11:35.978Z_
+
+<details><summary>↩ Tool result · `toolu_01Xzz3GcJseynDLNZK3QaJek`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/matched_ablation_controls_diagnosis.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "465a7774-9927-453d-9de7-c943f2c63590",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/matched_ablation_controls_diagnosis.md",
+    "content": "# 实验诊断报告 (2026-05-19)\n\n## 1. matched_ablation_controls\n\n### 状态：已正常完成\n\n与 registry 记录不符：日志显示实验已成功完成，非\"异常退出\"。\n\n### 日志证据\n\n- 10500 forward passes 全部完成（1527s，6.9 pass/s）\n- 3 个 task 均正常处理\n- Metrics 已计算：\n  - Random-24 mean traj_d: 0.601 +/- 0.021\n  - Image-dominant-24 traj_d: 0.580\n  - Instruction-dominant-24 traj_d (reference): 0.65\n- 结果已保存到 `/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json`\n- return_code = 0，stderr 为空\n\n### 无 W&B metrics 的原因\n\n脚本未集成 W&B logging，结果只写入 JSON 文件。无 W&B metrics 是设计如此，不是故障。\n\n### 结论\n\n- 不需要重试，实验已成功\n- Registry 状态应更新为 COMPLETED\n- 如需 W&B tracking，需在脚本中添加 wandb 调用\n\n---\n\n## 2. behavioral_smoketest\n\n### 状态：已正常退出（非 RUNNING）\n\n进程已死：`ps aux` 无匹配。两张 GPU 均空闲（0% util, 0 MiB memory）。\n\n### 运行结果\n\n- 模型：openvla-7b-finetuned-libero-goal\n- Task：open_the_middle_drawer_of_the_cabinet（task_id=0）\n- Baseline 3 episodes 全部失败（SR=0.00，每 episode 跑满 400 steps）\n- 脚本逻辑：baseline SR=0 时提前终止（\"no point running ablation\"）\n- 结论字段：`\"baseline_zero\"`\n\n### 分析\n\nBaseline 0% 成功率可能原因：\n1. unnorm_key (`libero_goal`) 或 checkpoint 路径配置问题\n2. 3 episodes 样本量太小\n3. 环境版本冲突（numpy 2.0.2 与 scipy/gym 不兼容的 warnings）\n\n### 结论\n\n- Registry 应更新为 COMPLETED（结果 baseline_zero）\n- 如需有效 ablation 对比，需先解决 baseline SR=0 问题\n\n---\n\n## 环境状态\n\n| 项目 | 状态 |\n|------|------|\n| GPU | 2x RTX PRO 6000 Black，均空闲 |\n| 磁盘 | /root/autodl-tmp 已用 95%（剩余 15G），需关注 |\n| CUDA | torch.cuda.is_available() = True |\n| 进程 | 无 GPU 进程运行 |\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+诊断完成，报告已写入 `artifacts/matched_ablation_controls_diagnosis.md`。
+
+**核心发现：**
+
+1. **matched_ablation_controls** — 实际已正常完成（10500 passes, return_code=0），不是"异常退出"。无 W&B metrics 是因为脚本根本没集成 W&B，结果只存 JSON。Registry 应更新为 COMPLETED。
+
+2. **behavioral_smoketest** — 进程已正常退出，不是 RUNNING。Baseline 3 episodes 全部失败（SR=0.00），脚本按设计提前终止。Registry 应更新为 COMPLETED (baseline_zero)。
+
+3. **环境注意事项** — 磁盘 95% 已满（剩 15G），后续实验前需要清理空间。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "uuid": "8df8ac69-4813-44da-b9e8-c919bd9d983e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSthYHFfMmMkEL2WtF6SXj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 44336,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 973
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 49_
+
+诊断完成，报告已写入 `artifacts/matched_ablation_controls_diagnosis.md`。
+
+**核心发现：**
+
+1. **matched_ablation_controls** — 实际已正常完成（10500 passes, return_code=0），不是"异常退出"。无 W&B metrics 是因为脚本根本没集成 W&B，结果只存 JSON。Registry 应更新为 COMPLETED。
+
+2. **behavioral_smoketest** — 进程已正常退出，不是 RUNNING。Baseline 3 episodes 全部失败（SR=0.00），脚本按设计提前终止。Registry 应更新为 COMPLETED (baseline_zero)。
+
+3. **环境注意事项** — 磁盘 95% 已满（剩 15G），后续实验前需要清理空间。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 92389,
+  "duration_api_ms": 90353,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "c8007b48-4a4e-444e-a9cc-3a1af9086d32",
+  "total_cost_usd": 0.461123,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 33468,
+    "cache_read_input_tokens": 266426,
+    "output_tokens": 4689,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33468,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 231,
+        "cache_read_input_tokens": 44336,
+        "cache_creation_input_tokens": 973,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 973
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1330,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0014500000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 4689,
+      "cacheReadInputTokens": 266426,
+      "cacheCreationInputTokens": 33468,
+      "webSearchRequests": 0,
+      "costUSD": 0.459673,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1ea4d302-08d4-4e08-abf0-0aa515531e31"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,17 @@
+{
+  "exp_id": "counterfactual_10tasks_trajectory",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:47:06.255Z",
+    "updated_at": "2026-05-20T21:47:16.167Z",
+    "hypothesis": "Trajectory-level aggregation of 10-task counterfactual results will show amplified Cohen's d compared to token-level, as consistent per-timestep effects compound at the demo/trajectory level (bootstrap B=10000).",
+    "parent": "counterfactual_10tasks",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T21:47:16.417208+00:00",
+  "trigger": "update_registry"
+}

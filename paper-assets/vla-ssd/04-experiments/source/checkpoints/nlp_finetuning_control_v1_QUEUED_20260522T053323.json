@@ -1,0 +1,15 @@
+{
+  "exp_id": "nlp_finetuning_control_v1",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:02:18.987Z",
+    "updated_at": "2026-05-22T05:33:22.683Z",
+    "hypothesis": "NLP-finetuned Llama-2-7b-chat (text-only SFT, no action head) will NOT exhibit R² exit collapse because it lacks visuomotor grounding — the collapse is VLA-specific, not a general fine-tuning artifact."
+  },
+  "timestamp": "2026-05-22T05:33:23.005157+00:00",
+  "trigger": "update_registry"
+}

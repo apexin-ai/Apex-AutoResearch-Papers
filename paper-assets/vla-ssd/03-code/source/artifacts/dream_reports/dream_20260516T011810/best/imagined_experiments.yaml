@@ -1,0 +1,362 @@
+tier: best
+narrative_guidance: '原始 framing 完全成立。CLIP-ViT 作为独立 VL-pretrained encoder 落入 SigLIP
+  附近区间， 消除 SigLIP-specific confound，将 Claim 1 从 "SigLIP dominance" 升级为 "VL-pretrained
+  encoder dominance"。LIBERO-Spatial 全面复现核心排序和训练不变性，将所有 Claim 的 泛化范围从 single-benchmark
+  扩展到 cross-benchmark。CKA-RSA dissociation 在两个 benchmark 上均成立，作为第四个 finding 稳固。标题
+  "Where Do Actions Come From?" 可用。
+
+  '
+imagined_experiments:
+- name: CLIP-ViT Pretraining Control
+  plan_id: plan_012
+  description: '用 CLIP ViT-L/14 (OpenAI) 替代 SigLIP 作为 standalone vision encoder， 提取
+    LIBERO-Goal 相同 10 task 的特征，计算 RSA、CKA、functional probe R²， 与 SigLIP+Projector
+    和 DINO 三方对比。目的：区分 "VL pretraining 通用贡献" vs "SigLIP 特异性"。
+
+    '
+  expected_results:
+    clip_vit_rsa_pooled: 0.553
+    clip_vit_rsa_per_task_mean: 0.548
+    clip_vit_rsa_bootstrap_ci:
+    - 0.47
+    - 0.63
+    siglip_projector_rsa: 0.615
+    dino_rsa: 0.388
+    gap_clip_vs_siglip: -0.062
+    gap_clip_vs_dino: 0.165
+    bootstrap_clip_vs_siglip_delta: -0.062
+    bootstrap_clip_vs_siglip_ci:
+    - -0.14
+    - 0.02
+    bootstrap_clip_vs_siglip_p: 0.08
+    bootstrap_clip_vs_dino_delta: 0.165
+    bootstrap_clip_vs_dino_ci:
+    - 0.08
+    - 0.25
+    bootstrap_clip_vs_dino_p: 0.001
+    clip_vit_action_probe_R2: 0.695
+    clip_vit_action_delta_R2: 0.108
+    clip_vit_linear_cka: 0.076
+    clip_vit_rdm_cka: 0.248
+    rsa_ordering: SigLIP (0.615) > CLIP (0.553) > DINO (0.388)
+    probe_ordering: DINO (0.712) ≈ SigLIP (0.706) ≈ CLIP (0.695) >> LLM_img_mean (0.683)
+    cka_ordering: SigLIP (0.081) ≈ CLIP (0.076) > DINO (0.066)
+  result_rationale: 'CLIP ViT-L 与 SigLIP 同属 VL contrastive pretrained encoder 族，训练目标均为
+    image-text alignment（CLIP 用 softmax cross-entropy，SigLIP 用 sigmoid pairwise loss）。
+    两者在 ImageNet zero-shot 上表现接近（CLIP ViT-L ~75.5%, SigLIP ~78%），说明 learned visual
+    representation 质量相当。RSA 预测 CLIP 略低于 SigLIP（0.553 vs 0.615） 有两个原因：(1) SigLIP 的
+    sigmoid loss 更好地保留 fine-grained 距离结构（softmax 跨 batch normalization 会压缩 hard negative
+    的梯度信号），(2) OpenVLA 的 projector 是针对 SigLIP 输出空间训练的，CLIP 特征经过不同的 normalization 和
+    embedding space， 几何对齐自然略差。但 CLIP 远高于 DINO（+0.165）是因为 VL pretraining 赋予的 language
+    grounding 使 representation 空间的距离结构天然更贴近 task-conditioned action structure——action
+    空间由 language-described goals 划分，VL encoder 在 pretraining 时已学会按语义组织视觉特征。DINO 虽然
+    action R² 与 VL encoder 相当（self-supervised 特征包含充分的 positional/state 信息），但其几何结构按
+    visual similarity 而非 semantic similarity 组织，导致 RSA 低。CLIP vs SigLIP 的 bootstrap
+    CI 预计包含 0（p~0.08），说明两者差异不显著——这正是 best tier 所需： 证明 VL pretraining 是通用有效的，而非 SigLIP
+    特异的。
+
+    '
+  tables:
+  - title: 'Table: Vision Encoder RSA Comparison (LIBERO-Goal)'
+    columns:
+    - Model
+    - Pretraining
+    - RSA_ρ
+    - 95%_CI
+    - Action_R²
+    - Delta_R²
+    rows:
+    - - SigLIP+Proj
+      - VL (sigmoid)
+      - 0.615
+      - '[0.53, 0.70]'
+      - 0.706
+      - 0.118
+    - - CLIP_ViT-L
+      - VL (softmax)
+      - 0.553
+      - '[0.47, 0.63]'
+      - 0.695
+      - 0.108
+    - - DINOv2
+      - Self-supervised
+      - 0.388
+      - '[0.30, 0.47]'
+      - 0.712
+      - 0.1
+    - - VLA_img_mean_L23
+      - VL+FT
+      - 0.501
+      - '[0.42, 0.58]'
+      - 0.683
+      - 0.122
+  - title: 'Table: Pairwise Bootstrap Tests'
+    columns:
+    - Comparison
+    - Delta
+    - 95%_CI
+    - p_value
+    - Significant
+    rows:
+    - - CLIP_vs_SigLIP
+      - -0.062
+      - '[-0.14, 0.02]'
+      - 0.08
+      - 'No'
+    - - CLIP_vs_DINO
+      - 0.165
+      - '[0.08, 0.25]'
+      - 0.001
+      - 'Yes'
+    - - CLIP_vs_VLA_img_mean
+      - 0.052
+      - '[-0.03, 0.13]'
+      - 0.1
+      - 'No'
+  figures_description:
+  - 'Bar chart: RSA ρ 四组对比 (SigLIP / CLIP / VLA_img_mean / DINO)，含 bootstrap 95% CI
+    error bars。关键视觉信息：SigLIP 和 CLIP 的 CI 重叠，两者均显著高于 DINO。中间插入 VLA_img_mean 显示 LLM
+    degradation 效应。'
+  - 'Scatter plot (supplementary): CLIP ViT-L per-task RSA vs SigLIP per-task RSA，10
+    个点沿对角线分布，Pearson r > 0.85，说明两个 VL encoder 在 task 维度上行为一致。'
+  analysis: 'CLIP RSA=0.553 落入 best tier 预期的 [0.50, 0.60] 区间。与 SigLIP 的差异 不显著（p=0.08,
+    CI 包含 0），而与 DINO 差异高度显著（p=0.001）。这建立了一个 clean 的三级结构：VL-pretrained encoder 族 (SigLIP
+    ≈ CLIP, RSA ~0.55-0.62) >> Self-supervised (DINO, RSA ~0.39) >> LLM degraded (img_mean
+    ~0.50)。 Functional probe R² 的三方近似相等（DINO 0.712 ≈ SigLIP 0.706 ≈ CLIP 0.695） 再次确认
+    geometric-functional dissociation：action information 的存在（R²）不依赖 pretraining 方式，但几何对齐（RSA）依赖
+    VL pretraining。 论文 Claim 1 可从 "SigLIP dominance" 安全地泛化为 "VL-pretrained encoder
+    dominance"。 Discussion 中将 SigLIP vs CLIP 的微小差异归因于 loss function 差异（sigmoid vs
+    softmax） 和 OpenVLA projector 的 SigLIP-specific 训练，但强调这不影响主结论。
+
+    '
+- name: LIBERO-Spatial Cross-Benchmark Validation
+  plan_id: plan_010
+  description: '在 LIBERO-Spatial 的 10 个 task 上完整复现 LIBERO-Goal 的全部分析流程： (1) 四条件 RSA
+    (trained/untrained × with/no-inst image_mean)， (2) SigLIP+Projector RSA，(3) DINO
+    RSA， (4) per-layer degradation curve，(5) bootstrap CI on training effect， (6)
+    functional probe (projector / LLM img_mean / readout / untrained readout)， (7)
+    CKA verification。验证三条 Claim 跨 benchmark 泛化。
+
+    '
+  expected_results:
+    siglip_projector_rsa: 0.587
+    siglip_projector_rsa_ci:
+    - 0.5
+    - 0.67
+    trained_with_inst_image_mean_rsa: 0.482
+    trained_with_inst_peak_layer: 21
+    untrained_with_inst_image_mean_rsa: 0.468
+    untrained_with_inst_peak_layer: 20
+    trained_no_inst_image_mean_rsa: 0.479
+    untrained_no_inst_image_mean_rsa: 0.463
+    dino_rsa: 0.371
+    rsa_ordering: SigLIP (0.587) >> VLA_trained (0.482) ≈ VLA_untrained (0.468) >>
+      DINO (0.371)
+    ordering_matches_libero_goal: true
+    libero_goal_siglip_rsa: 0.615
+    libero_spatial_vs_goal_siglip_ratio: 0.955
+    libero_goal_gap_siglip_vs_vla: 0.114
+    libero_spatial_gap_siglip_vs_vla: 0.105
+    effect_size_within_15pct: true
+    training_delta_image_mean: 0.014
+    training_delta_bootstrap_ci:
+    - -0.04
+    - 0.06
+    training_delta_p: 0.22
+    training_delta_significant: false
+    instruction_delta_trained: -0.003
+    instruction_delta_untrained: 0.005
+    two_by_two_matrix:
+      trained_with_inst: 0.482
+      trained_no_inst: 0.479
+      untrained_with_inst: 0.468
+      untrained_no_inst: 0.463
+    two_by_two_band: '[0.46, 0.49]'
+    bootstrap_2x2_ci_includes_zero: true
+    proj_to_L1_drop_trained: 0.19
+    proj_to_L1_drop_untrained: 0.14
+    total_degradation: 0.105
+    pattern: non-monotonic, consistent with LIBERO-Goal
+    projector_action_R2: 0.688
+    trained_image_mean_best_R2: 0.662
+    trained_image_mean_best_layer: 18
+    trained_readout_best_R2: 0.715
+    trained_readout_best_layer: 18
+    untrained_readout_best_R2: 0.669
+    untrained_readout_best_layer: 31
+    bootstrap_proj_vs_img_mean:
+      delta: 0.026
+      ci:
+      - 0.012
+      - 0.041
+      p: 0.002
+    bootstrap_trained_vs_untrained_readout:
+      delta: 0.046
+      ci:
+      - 0.03
+      - 0.062
+      p: 0.0001
+    readout_concentration_confirmed: true
+    dino_action_R2: 0.693
+    dino_vs_proj_delta: 0.005
+    dino_vs_proj_p: 0.28
+    dino_approx_proj: true
+    geometric_functional_dissociation_rsa_gap: 0.216
+    cka_linear_trained_L21: 0.079
+    cka_linear_untrained_L20: 0.085
+    cka_linear_projector: 0.077
+    cka_linear_dino: 0.062
+    cka_ordering: untrained > trained > projector > DINO
+    cka_rsa_dissociation_replicated: true
+    cka_last_preaction_trained: 0.121
+    projector_delta_R2: 0.109
+    trained_delta_R2: 0.113
+    delta_probe_gap: -0.004
+    delta_probe_ci_includes_zero: true
+  result_rationale: 'LIBERO-Spatial 与 LIBERO-Goal 共享相同的 LIBERO kitchen 环境和物体集，但 task
+    定义侧重空间关系（"put X next to Y", "put X on top of Y"）而非目标状态差异。 这意味着：(1) 视觉场景相似度更高（物体相同，只是空间配置不同），action
+    空间的 task 间区分度可能略低，预期 RSA 绝对值略低于 LIBERO-Goal（SigLIP 0.587 vs 0.615， 差约 5%）；(2)
+    但相对排序不变——VL pretraining 赋予的 semantic geometric alignment 不依赖 task 定义方式，SigLIP
+    和 CLIP 在 spatial reasoning 上同样优于 DINO； (3) 训练不变性甚至可能更强——LIBERO-Spatial 的 action
+    分布更集中（主要是 pick-place 的空间变体），LLM 层面的 distributed representation 更难区分 trained/untrained。
+
+    Readout concentration 的 effect size 预期与 LIBERO-Goal 高度一致（Δ≈0.046）， 因为 readout
+    机制是 architecture-level 行为：self-attention 将 image token 信息 汇聚到 prediction position
+    的能力由训练学得，与具体 benchmark 的 task 定义无关。 Untrained readout R²=0.669 仍低于 projector 0.688，确认
+    redistribution requires training。
+
+    DINO 在 LIBERO-Spatial 上 action R² 同样接近 projector（0.693 vs 0.688）， 但 RSA gap 扩大（0.371
+    vs 0.587，gap=0.216 > LIBERO-Goal 的 0.227），因为 spatial task 更依赖 semantic layout
+    understanding，DINO 的 geometric structure 更不匹配。这进一步强化 geometric-functional dissociation。
+
+    CKA 排序反转在 LIBERO-Spatial 上同样复现（untrained > trained > projector > DINO）， 因为 CKA
+    捕捉的 global structure preservation 是 LLM 架构的固有属性，不依赖 benchmark。
+
+    '
+  tables:
+  - title: 'Table: RSA Cross-Benchmark Comparison'
+    columns:
+    - Model
+    - LIBERO-Goal_RSA
+    - LIBERO-Spatial_RSA
+    - Ratio
+    rows:
+    - - SigLIP+Proj
+      - 0.615
+      - 0.587
+      - 0.955
+    - - VLA_trained_img_mean
+      - 0.501
+      - 0.482
+      - 0.962
+    - - VLA_untrained_img_mean
+      - 0.485
+      - 0.468
+      - 0.965
+    - - DINO
+      - 0.388
+      - 0.371
+      - 0.956
+  - title: 'Table: 2×2 Matrix — LIBERO-Spatial'
+    columns:
+    - Condition
+    - with_inst
+    - no_inst
+    - Instruction_Δ
+    rows:
+    - - Trained
+      - 0.482
+      - 0.479
+      - -0.003
+    - - Untrained
+      - 0.468
+      - 0.463
+      - 0.005
+    - - Training_Δ
+      - 0.014
+      - 0.016
+      - ''
+  - title: 'Table: Functional Probe Cross-Benchmark'
+    columns:
+    - Model
+    - LIBERO-Goal_R²
+    - LIBERO-Spatial_R²
+    - Δ
+    rows:
+    - - SigLIP+Proj
+      - 0.706
+      - 0.688
+      - -0.018
+    - - Trained_img_mean
+      - 0.683
+      - 0.662
+      - -0.021
+    - - Trained_readout
+      - 0.731
+      - 0.715
+      - -0.016
+    - - Untrained_readout
+      - 0.686
+      - 0.669
+      - -0.017
+    - - DINO
+      - 0.712
+      - 0.693
+      - -0.019
+  - title: 'Table: Readout Concentration Bootstrap (LIBERO-Spatial)'
+    columns:
+    - Comparison
+    - Δ
+    - 95%_CI
+    - p_value
+    rows:
+    - - Proj_vs_img_mean_L18
+      - 0.026
+      - '[0.012, 0.041]'
+      - 0.002
+    - - Trained_vs_untrained_readout
+      - 0.046
+      - '[0.030, 0.062]'
+      - <0.0001
+    - - Training_effect_RSA
+      - 0.014
+      - '[-0.04, 0.06]'
+      - 0.22
+  figures_description:
+  - 'Paired bar chart: LIBERO-Goal vs LIBERO-Spatial RSA 四组对比（SigLIP / VLA trained
+    / VLA untrained / DINO），每组两根柱子（Goal 浅色, Spatial 深色），含 95% CI error bars。 关键视觉信息：两个
+    benchmark 的柱子高度几乎平行下移 ~5%，排序完全一致。
+
+    '
+  - 'Per-layer RSA degradation curve overlay: LIBERO-Goal (实线) vs LIBERO-Spatial (虚线)，
+    trained with-inst 条件。两条曲线形状高度吻合（Proj→L1 大幅下降，中间层非单调恢复）， Spatial 曲线整体偏低约 0.02。标注
+    projector baseline 水平线。
+
+    '
+  - 'Readout concentration scatter: x 轴 LIBERO-Goal (trained readout R² - untrained
+    readout R²), y 轴 LIBERO-Spatial 同指标，10 个 task 散点。Points 聚集在对角线右上方（正象限）， 说明 readout
+    concentration effect 在两个 benchmark 上 per-task 一致。
+
+    '
+  - 'CKA-RSA dissociation 双面板图 (supplementary): 左面板 LIBERO-Goal，右面板 LIBERO-Spatial，
+    每面板四组柱子（trained/untrained/proj/DINO），RSA 用蓝色、CKA 用橙色。 两面板均显示排序反转模式：RSA proj>trained>untrained>DINO，CKA
+    untrained>trained>proj>DINO。
+
+    '
+  analysis: 'LIBERO-Spatial 完整复现三条 Claim 的核心证据：
+
+    **Claim 1 (Vision Encoder Dominance)**: SigLIP RSA=0.587 >> VLA 0.482 >> DINO
+    0.371，排序一致，effect size 在 ±15% 内（ratio 0.955-0.965）。DINO ≈ Proj in R²（0.693 vs
+    0.688, p=0.28）但 RSA gap=0.216，geometric-functional dissociation 在第二个 benchmark
+    复现。
+
+    **Claim 2 (LLM Redistributes)**: Proj→L1 drop ~0.19（32%），per-layer 非单调模式一致。Readout
+    concentration confirmed：trained readout R²=0.715 > proj 0.688 > untrained readout
+    0.669。 CKA 排序反转复现。
+
+    **Claim 3 (Routing Without Creating)**: Training delta RSA=0.014, CI=[-0.04, 0.06],
+    p=0.22——不显著，invariance 成立。 2×2 matrix 全部落入 [0.46, 0.49] band。Readout Δ=0.046,
+    CI=[0.030, 0.062], p<0.0001——routing effect 高度显著且 effect size 与 LIBERO-Goal 几乎相同（0.045）。
+
+    所有核心数值的 cross-benchmark ratio 在 0.95-0.97 之间，说明 benchmark 选择 对绝对值有微小影响（LIBERO-Spatial
+    的空间任务区分度略低）但对结论无任何影响。 这为论文提供了 "replicated across benchmarks" 的泛化声明。'

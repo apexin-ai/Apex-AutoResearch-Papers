@@ -1,0 +1,16 @@
+{
+  "exp_id": "phi3v_r2_untrained_probe",
+  "project": "vla-ssd",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:43:51.225Z",
+    "updated_at": "2026-05-20T08:43:55.694Z",
+    "hypothesis": "Untrained Phi-3-mini base model's per-layer action R² profile lacks the inverted-U shape seen in trained TracVLA-Phi3V (peak L11, 0.634), demonstrating that VLA fine-tuning creates the mid-layer action encoding gradient rather than inheriting it from the pretrained LLM. This separates training effect from architecture effect in the cross-architecture R² comparison.",
+    "parent": "phi3v_r2_action_probe"
+  },
+  "timestamp": "2026-05-20T08:43:55.932564+00:00",
+  "trigger": "update_registry"
+}

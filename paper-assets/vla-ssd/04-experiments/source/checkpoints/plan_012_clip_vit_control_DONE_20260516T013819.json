@@ -1,0 +1,56 @@
+{
+  "exp_id": "plan_012_clip_vit_control",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:30:24.984Z",
+    "updated_at": "2026-05-16T01:38:19.559Z",
+    "spec": {
+      "command": "python scripts/extract_features_clip.py + python scripts/rsa_clip.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": "10 tasks x 50 demos = 63728 frames",
+      "model_name": "CLIP ViT-L/14 (openai)",
+      "seed": 42,
+      "checkpoint_path": "/root/vla-ssd/checkpoints/clip-vit-large-patch14/",
+      "log_path": "/tmp/clip_extract.log"
+    },
+    "metrics": {
+      "clip_peak_rsa": 0.5572,
+      "clip_peak_feature_key": "patch_mean",
+      "clip_cls_rsa": 0.5062,
+      "clip_patch_mean_rsa": 0.5572,
+      "clip_ci95": [
+        0.4419,
+        0.6598
+      ],
+      "per_task_patch_mean": {
+        "open_middle_drawer": 0.6333,
+        "open_top_drawer_put_bowl": 0.7767,
+        "push_plate": 0.7833,
+        "put_bowl_plate": 0.5244,
+        "put_bowl_stove": 0.3199,
+        "put_bowl_cabinet": 0.5828,
+        "put_cream_cheese": 0.6369,
+        "put_wine_rack": 0.6035,
+        "put_wine_cabinet": 0.4762,
+        "turn_on_stove": 0.235
+      },
+      "comparison": {
+        "siglip_projector": 0.615,
+        "clip": 0.5572,
+        "siglip_only": 0.4876,
+        "trained_vla": 0.4876,
+        "untrained_vla": 0.4846,
+        "dino": 0.388
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T01:38:19.559Z"
+  },
+  "timestamp": "2026-05-16T01:38:19.659027+00:00",
+  "trigger": "update_registry"
+}

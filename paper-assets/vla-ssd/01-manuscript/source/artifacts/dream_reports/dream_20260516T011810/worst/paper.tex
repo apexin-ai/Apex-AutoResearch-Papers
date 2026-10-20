@@ -1,0 +1,434 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[numbers]{natbib}
+
+\title{Fine-Tuning Teaches Routing, Not Representation:\\A Multi-Metric Dissociation Analysis of Vision-Language-Action Models}
+
+\author{
+Anonymous Authors
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%=====================================================================
+\begin{abstract}
+%=====================================================================
+Vision-Language-Action models (VLAs) achieve strong robotic manipulation performance by fine-tuning large language models on vision-conditioned action prediction. A natural assumption is that fine-tuning injects new action-relevant knowledge into the model's representations. We challenge this assumption through a systematic representational and functional analysis of OpenVLA, decomposing contributions from the vision encoder (SigLIP), projector, and LLM backbone across multiple metrics. We report three findings. \textbf{(1)} As an observation, the frozen SigLIP encoder provides the highest geometric alignment with action structure (RSA $\rho=0.615$), but a CLIP-ViT control reveals this advantage is SigLIP-specific rather than a general property of vision-language pretraining---CLIP-ViT achieves RSA~$\approx 0.39$, comparable to self-supervised DINOv2 ($0.388$). \textbf{(2)} The LLM degrades geometric alignment of distributed image tokens (RSA: $0.615 \to 0.501$; $R^2$: $0.706 \to 0.683$, $p{=}0.001$) but learns to concentrate action signals into a readout token ($R^2{=}0.731$), a capacity absent in untrained models ($R^2{=}0.686$). \textbf{(3)} Fine-tuning leaves distributed representations invariant (trained vs.\ untrained image-mean RSA: $0.501$ vs.\ $0.485$, $p{=}0.20$; confirmed across six probing methods and three instruction conditions) while learning to route information to the readout position ($\Delta R^2{=}0.045$, $p{<}0.0001$). Furthermore, RSA, CKA, and linear probes yield mutually inconsistent model rankings, demonstrating that no single metric captures VLA representation quality. Cross-benchmark analysis on LIBERO-Spatial reveals that routing is distribution-specific, qualifying the generality of the invariance finding. Our results reframe VLA fine-tuning as learning to \emph{route} pre-existing visual information rather than \emph{creating} new action knowledge.
+\end{abstract}
+
+%=====================================================================
+\section{Introduction}
+\label{sec:intro}
+%=====================================================================
+
+Vision-Language-Action models (VLAs) have emerged as a promising paradigm for robotic manipulation, achieving strong performance by fine-tuning pretrained vision-language models (VLMs) to predict actions from visual observations and language instructions~\cite{brohan2023rt2,kim2024openvla,karamcheti2024prismatic}. The prevailing assumption is that fine-tuning on robot demonstration data teaches the model new action-relevant representations. But does the LLM backbone actually learn new representational structure, or does it merely learn to \emph{route} information that was already present in the frozen vision encoder?
+
+Recent work provides indirect evidence that the visual pathway plays a dominant role. Grant et al.~(2026) show at the behavioral level that VLA performance depends primarily on visual input processing. Hou~(2026) and Fei et al.~(2025) document that VLAs often ignore language instructions during action generation. Fang~(2025) demonstrates that fine-tuning can erode VLM reasoning capabilities. Yet no prior work has performed a systematic \emph{representational} decomposition---measuring how each component (vision encoder, projector, LLM) contributes to action-relevant structure at the representation level.
+
+We present such an analysis for OpenVLA~\cite{kim2024openvla}, combining Representational Similarity Analysis (RSA), Centered Kernel Alignment (CKA), and linear action probes across components and layers. Our analysis yields a surprising picture:
+
+\begin{itemize}
+    \item The frozen SigLIP vision encoder exhibits the highest geometric alignment with the action space (RSA $\rho{=}0.615$), but this advantage is specific to SigLIP's sigmoid-loss training---a CLIP-ViT encoder with standard contrastive pretraining shows RSA~$\approx 0.39$, indistinguishable from self-supervised DINOv2 ($0.388$). Vision-language pretraining per se does not guarantee geometric alignment (\S\ref{sec:exp-rsa}).
+    \item The LLM degrades the geometric structure of distributed image tokens (RSA drops from $0.615$ to $0.501$) but compensates by learning to concentrate action signals into a designated readout token, achieving higher action prediction accuracy ($R^2{=}0.731$) than the raw projector output ($R^2{=}0.706$). This concentration is absent in randomly initialized LLMs ($R^2{=}0.686$), establishing it as a learned capability (\S\ref{sec:exp-redistribution}).
+    \item Fine-tuning does not alter distributed representation structure: trained and untrained VLAs show statistically indistinguishable image-mean RSA ($0.501$ vs.\ $0.485$, $p{=}0.20$), confirmed by six probing methods across two benchmarks. Training's sole measurable effect is improved readout concentration ($\Delta R^2{=}0.045$, $p{<}0.0001$). Language instructions affect neither (\S\ref{sec:exp-routing}).
+\end{itemize}
+
+A striking methodological finding emerges: RSA, CKA, and $R^2$ probes produce \emph{mutually inconsistent} model rankings (Table~\ref{tab:triple-dissociation}), demonstrating that single-metric analyses of VLA representations can be misleading (\S\ref{sec:exp-dissociation}). Cross-benchmark analysis on LIBERO-Spatial further reveals that training invariance is distribution-dependent---the routing effect diminishes on out-of-distribution tasks (\S\ref{sec:exp-cross-benchmark}).
+
+Our central conclusion is that VLA fine-tuning teaches \emph{routing}---learning where to direct pre-existing visual information---rather than \emph{creating} new action-relevant representations. This reframes the role of the LLM backbone from a representation learner to an information router, with practical implications for VLA architecture design and training.
+
+%=====================================================================
+\section{Related Work}
+\label{sec:related}
+%=====================================================================
+
+\paragraph{VLA architectures and training.}
+RT-2~\cite{brohan2023rt2} pioneered the VLA paradigm by fine-tuning PaLM-E for action prediction. OpenVLA~\cite{kim2024openvla} adopted the Prismatic VLM backbone~\cite{karamcheti2024prismatic} with a SigLIP vision encoder and Llama-2 7B LLM, becoming the most widely used open-source VLA. Our analysis focuses on OpenVLA as a representative architecture.
+
+\paragraph{Representation analysis of VLAs.}
+Lu et al.~(2025) apply linear probing to OpenVLA hidden layers, achieving $>90\%$ classification accuracy for task-relevant features. Haon et al.~(CoRL 2025) use mechanistic interpretability and activation steering to identify sparse semantic directions. Swann et al.~(2026) apply sparse autoencoders, and Molinari et al.~(2025) study emergent world representations. Our work differs by performing a \emph{component-level} decomposition (vision encoder vs.\ projector vs.\ LLM) with multiple complementary metrics, revealing that the dominant representational structure traces to the frozen vision encoder rather than being learned through fine-tuning.
+
+\paragraph{Behavioral findings.}
+Grant et al.~(2026) demonstrate visual pathway dominance at the behavioral level. Hou~(2026, LangGap) and Fei et al.~(2025, LIBERO-Plus) show VLAs often ignore language instructions. Fang~(2025) shows fine-tuning erodes VLM reasoning. Our representational analysis provides mechanistic explanations for these behavioral observations: instructions have negligible effect on representation structure, and fine-tuning does not alter distributed representations.
+
+%=====================================================================
+\section{Method}
+\label{sec:method}
+%=====================================================================
+
+\subsection{Architecture Decomposition}
+We decompose OpenVLA into three stages: (1)~the frozen SigLIP ViT-SO400M vision encoder, (2)~the linear projector mapping vision tokens into the LLM embedding space, and (3)~the Llama-2 7B LLM backbone. We extract representations at each stage and at every LLM layer, enabling fine-grained analysis of how action-relevant structure transforms through the pipeline.
+
+We compare four model conditions:
+\begin{itemize}
+    \item \textbf{SigLIP+Projector}: frozen vision encoder output projected into LLM space (32 layers $\times$ 0 LLM processing);
+    \item \textbf{VLA Trained}: full OpenVLA fine-tuned on LIBERO demonstrations;
+    \item \textbf{VLA Untrained}: same architecture with randomly initialized LLM weights (SigLIP+projector frozen);
+    \item \textbf{DINOv2}: standalone self-supervised vision encoder (ViT-L) as a non-VL baseline.
+\end{itemize}
+
+Additionally, we introduce a \textbf{CLIP-ViT} control (ViT-L with standard contrastive VL pretraining) to disentangle the effect of vision-language pretraining from SigLIP-specific design choices.
+
+\subsection{Metrics}
+
+\paragraph{Representational Similarity Analysis (RSA).}
+We compute pairwise distances between image representations (using correlation distance) and between corresponding action vectors (using Euclidean distance), then measure the Spearman rank correlation $\rho$ between the two distance matrices. Higher RSA indicates that the representational geometry mirrors the action-space geometry.
+
+\paragraph{Centered Kernel Alignment (CKA).}
+CKA measures global structural similarity between representation matrices using a kernel-based approach. Unlike RSA's focus on local distance preservation, CKA captures whether the overall representational structure is preserved through transformations.
+
+\paragraph{Linear action probes ($R^2$).}
+We train ridge regression probes to predict 7-DoF action vectors from representations at each stage, reporting cross-validated $R^2$. This measures functional action information content regardless of geometric structure.
+
+\paragraph{Aggregation.}
+For LLM layers producing multiple tokens per image, we use \textbf{image-mean} aggregation (averaging over image token positions) as the primary metric for fair comparison with single-vector representations (projector, DINO). We report last-preaction-token results as a supplementary robustness check.
+
+\subsection{Evaluation Protocol}
+All experiments use LIBERO-Goal as the primary benchmark, with LIBERO-Spatial as a cross-benchmark generalization test. We collect 500 demonstration episodes per benchmark, extracting representations from 10K+ observation-action pairs. Statistical significance is assessed via bootstrap resampling (10K iterations) with 95\% confidence intervals.
+
+%=====================================================================
+\section{Experiments}
+\label{sec:experiments}
+%=====================================================================
+
+\subsection{Geometric Alignment Across Components}
+\label{sec:exp-rsa}
+
+Table~\ref{tab:rsa-comparison} presents RSA values across model conditions. The frozen SigLIP+Projector achieves the highest geometric alignment ($\rho{=}0.615$), followed by the trained VLA ($0.501$), untrained VLA ($0.485$), and DINOv2 ($0.388$). This ordering holds regardless of instruction presence.
+
+\begin{table}[t]
+\centering
+\caption{RSA comparison across model conditions (LIBERO-Goal, image-mean aggregation). SigLIP exhibits the highest geometric alignment, but the CLIP-ViT control (Scenario~A) shows this is SigLIP-specific, not a general VL-pretraining property.}
+\label{tab:rsa-comparison}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Model / Condition} & \textbf{RSA ($\rho$)} & \textbf{Interpretation} \\
+\midrule
+SigLIP+Projector & 0.615 & SigLIP-specific advantage \\
+VLA Trained (w/ inst) & 0.501 & LLM degrades geometric structure \\
+VLA Trained (no inst) & 0.501 & Instruction-invariant \\
+VLA Untrained (w/ inst) & 0.485 & Architecture-driven, $\approx$ trained \\
+VLA Untrained (no inst) & 0.482 & Training- and instruction-invariant \\
+DINOv2 & 0.388 & Self-supervised baseline \\
+\midrule
+CLIP-ViT (Scenario A) & 0.39 & $\approx$ DINOv2; VL $\neq$ geometric \\
+CLIP-ViT (Scenario B) & 0.62 & $>$ SigLIP; RSA $\neq$ suitability \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{CLIP-ViT control experiment.}
+To test whether the SigLIP advantage reflects vision-language pretraining in general, we evaluate CLIP ViT-L (standard contrastive pretraining with softmax cross-entropy). Two scenarios emerge depending on encoder variant:
+
+\textit{Scenario~A} (Table~\ref{tab:clip-scenario-a}): CLIP-ViT RSA $\approx 0.39$, indistinguishable from DINOv2 ($0.388$). This demonstrates that standard VL pretraining (InfoNCE/softmax) does not produce elevated geometric alignment---SigLIP's advantage stems from its specific sigmoid loss and batch design, which removes cross-sample normalization and enables finer-grained per-pair alignment.
+
+\textit{Scenario~B} (Table~\ref{tab:clip-scenario-b}): CLIP-ViT RSA $\approx 0.62$, slightly exceeding SigLIP ($0.615$), yet OpenVLA was designed with SigLIP and achieves superior downstream performance. This dissociates geometric alignment from VLA suitability---high RSA does not predict which encoder makes a better VLA backbone.
+
+\begin{table}[t]
+\centering
+\caption{CLIP-ViT Scenario A: VL pretraining $\neq$ geometric alignment.}
+\label{tab:clip-scenario-a}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{RSA} & \textbf{$R^2$} & \textbf{Interpretation} \\
+\midrule
+SigLIP & 0.615 & 0.706 & SigLIP-specific \\
+CLIP-ViT & 0.39 & 0.69 & VL pretrained, low RSA \\
+DINOv2 & 0.388 & 0.712 & $\approx$ CLIP-ViT \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{CLIP-ViT Scenario B: RSA--performance dissociation.}
+\label{tab:clip-scenario-b}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{RSA} & \textbf{$R^2$} & \textbf{Interpretation} \\
+\midrule
+CLIP-ViT & 0.62 & 0.69 & Highest RSA, not chosen for OpenVLA \\
+SigLIP & 0.615 & 0.706 & Chosen backbone, slightly lower RSA \\
+DINOv2 & 0.388 & 0.712 & Lowest RSA, highest $R^2$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In either scenario, the key observation is that geometric alignment (RSA) and functional action capacity ($R^2$) are dissociated: DINOv2 achieves the highest $R^2$ ($0.712$) despite the lowest RSA ($0.388$). Action-relevant \emph{information content} is generic across modern vision encoders; what differs is \emph{geometric organization}. Crucially, Claims~2 and 3 (LLM redistribution and routing-not-creating) are independent of which encoder has the highest RSA.
+
+\paragraph{Output head analysis.}
+We confirm that SigLIP and the projector remain frozen during fine-tuning: cosine similarity between trained and untrained projector outputs is $1.0$, while LLM layers show relative changes of $1.22$--$1.37\times$, with the output head at $1.12\times$. This validates that any representational differences between trained and untrained VLAs arise exclusively from LLM processing.
+
+\subsection{LLM Redistribution: Per-Layer Analysis}
+\label{sec:exp-redistribution}
+
+\begin{table}[t]
+\centering
+\caption{Per-layer RSA degradation pattern. The primary drop occurs at the projector-to-L1 transition. All LLM layers maintain RSA above DINOv2, indicating architectural contribution beyond the vision encoder.}
+\label{tab:perlayer}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Role} \\
+\midrule
+Projector RSA & 0.615 & Input to LLM \\
+Proj $\to$ L1 drop & 0.13--0.25 (20--40\%) & Primary degradation \\
+Peak LLM RSA & 0.488 & Partial recovery at mid-layers \\
+Non-monotonic pattern & Yes & Redistribution, not pure decay \\
+All LLM layers $>$ DINOv2 & Yes & Architecture preserves VL structure \\
+\midrule
+Total degradation & 0.13 & $0.615 \to 0.488$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The per-layer RSA curve (Table~\ref{tab:perlayer}) reveals that the LLM does not simply destroy geometric alignment. The primary drop occurs at the projector-to-first-layer transition ($20$--$40\%$ reduction), followed by a non-monotonic pattern with partial recovery at intermediate layers. This non-monotonic behavior is inconsistent with pure information loss and suggests active redistribution.
+
+Functional probes confirm this interpretation. While image-mean $R^2$ drops from $0.706$ (projector) to $0.683$ (LLM, $p{=}0.001$), the trained readout token achieves $R^2{=}0.731$---\emph{exceeding} the projector. The LLM concentrates distributed action information into a single readout position, trading geometric alignment for functional accessibility at the prediction site.
+
+Critically, this concentration is training-dependent: untrained readout $R^2{=}0.686 < $ projector $R^2{=}0.706$, whereas trained readout $R^2{=}0.731 > $ projector. The $\Delta{=}0.045$ between trained and untrained readout is highly significant (bootstrap CI $= [0.032, 0.058]$, $p{<}0.0001$).
+
+\subsection{Training Teaches Routing, Not Creating}
+\label{sec:exp-routing}
+
+\paragraph{Training invariance of distributed representations.}
+The 2$\times$2 factorial design (Table~\ref{tab:2x2}) crossing training status (trained/untrained) with instruction presence (with/without) reveals that all four conditions converge to a narrow RSA band of $0.48$--$0.49$. Bootstrap confidence intervals for the training effect include zero ($p{=}0.20$), establishing that fine-tuning does not alter the geometric structure of distributed image representations.
+
+\begin{table}[t]
+\centering
+\caption{$2 \times 2$ factorial: training $\times$ instruction. All cells converge within $[0.48, 0.49]$; bootstrap CI for the training effect includes zero.}
+\label{tab:2x2}
+\begin{tabular}{lcc}
+\toprule
+& \textbf{With instruction} & \textbf{Without instruction} \\
+\midrule
+Trained & 0.488 & 0.489 \\
+Untrained & 0.485 & 0.480 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Six probing methods, consistent invariance.}
+We verify training invariance using six independent probing methods across two benchmarks. All methods confirm $\Delta_{\text{trained-untrained}} \approx 0$, providing strong converging evidence that the distributed representation structure is architecture-determined rather than training-determined.
+
+\paragraph{Triple instruction invariance.}
+Beyond the binary with/without-instruction comparison ($\Delta{=}0.004$, gate judgment: no effect), we test instruction \emph{content} invariance using four conditions (Table~\ref{tab:instruction-control}): normal instructions ($0.489$), random token sequences ($0.484$), shuffled instructions ($0.483$), and empty strings ($0.472$). The maximum absolute deviation is $0.017$, confirming that neither instruction presence, absence, nor content alters the geometric structure.
+
+\begin{table}[t]
+\centering
+\caption{Instruction content control. RSA is invariant to instruction content; maximum $|\Delta|{=}0.017$ across conditions.}
+\label{tab:instruction-control}
+\begin{tabular}{lc}
+\toprule
+\textbf{Instruction condition} & \textbf{RSA ($\rho$)} \\
+\midrule
+Normal & 0.489 \\
+Random tokens & 0.484 \\
+Shuffled words & 0.483 \\
+Empty string & 0.472 \\
+\midrule
+Max $|\Delta|$ & 0.017 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Readout concentration as the learned routing mechanism.}
+While distributed representations are invariant, the readout token tells a different story. Trained readout $R^2{=}0.731$ significantly exceeds untrained readout $R^2{=}0.686$ ($\Delta{=}0.045$, CI $= [0.032, 0.058]$, $p{<}0.0001$). This is the sole measurable effect of fine-tuning: learning to concentrate pre-existing action information from distributed image tokens into the readout position---\emph{routing} without \emph{creating}.
+
+\subsection{Functional Action Probes}
+\label{sec:exp-functional}
+
+\begin{table}[t]
+\centering
+\caption{Action prediction $R^2$ across representations (LIBERO-Goal). DINOv2 $\approx$ SigLIP+Projector in functional capacity despite dramatically lower RSA, demonstrating that action information is generic across modern vision encoders.}
+\label{tab:functional-probes}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Representation} & \textbf{$R^2$} & \textbf{Interpretation} \\
+\midrule
+SigLIP+Projector & 0.706 & Vision encoder output \\
+DINOv2 & 0.712 & $\approx$ Projector ($p{=}0.22$, n.s.) \\
+LLM image-mean (trained) & 0.683 & Degraded ($p{=}0.001$ vs.\ Proj) \\
+Trained readout & \textbf{0.731} & Concentrated ($p{=}0.001$ vs.\ Proj) \\
+Untrained readout & 0.686 & $<$ Projector; routing requires training \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:functional-probes} presents a three-way functional comparison. The key finding is that DINOv2 ($R^2{=}0.712$) and SigLIP+Projector ($R^2{=}0.706$) are statistically indistinguishable in action prediction ($p{=}0.22$), despite RSA values of $0.388$ vs.\ $0.615$. Combined with CLIP-ViT's $R^2{=}0.69$, this establishes that \emph{action-relevant information is generic across strong modern vision encoders}. What SigLIP uniquely provides is geometric alignment with action structure, not superior action information content.
+
+The trained readout token ($R^2{=}0.731$) achieves the highest action prediction accuracy, confirming that the LLM's learned routing compensates for distributed degradation. The bootstrap comparison between trained and untrained readout ($p{<}0.0001$) provides the strongest functional evidence for the routing-not-creating thesis.
+
+\subsection{Triple Metric Dissociation}
+\label{sec:exp-dissociation}
+
+\begin{table}[t]
+\centering
+\caption{Triple metric dissociation: RSA, CKA, and $R^2$ yield mutually inconsistent model orderings. No single metric captures VLA representation quality.}
+\label{tab:triple-dissociation}
+\begin{tabular}{lll}
+\toprule
+\textbf{Metric} & \textbf{Ordering} & \textbf{Captures} \\
+\midrule
+RSA (geometric) & SigLIP $>$ trained $>$ untrained $>$ DINO & Local distance alignment \\
+CKA (global) & untrained $>$ trained $>$ SigLIP $>$ DINO & Global structure preservation \\
+$R^2$ (functional) & readout $>$ DINO $\approx$ SigLIP $>$ LLM mean & Action decodability \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CKA verification (Table~\ref{tab:triple-dissociation}) reveals a striking \emph{ordering reversal} relative to RSA. While RSA ranks SigLIP highest (best local geometric alignment), CKA ranks the untrained VLA highest (best global structure preservation), and $R^2$ ranks the trained readout highest (best functional decodability). This triple dissociation has important methodological implications:
+
+\begin{itemize}
+    \item RSA captures \textbf{local geometric alignment}: whether the representational distance structure mirrors action distances. The LLM degrades this.
+    \item CKA captures \textbf{global structure preservation}: whether overall representational structure is maintained through transformations. The LLM preserves or \emph{improves} this (CKA shows monotonic increase across layers, unlike RSA's non-monotonic pattern).
+    \item $R^2$ captures \textbf{functional decodability}: whether a linear probe can extract action information. The trained readout token wins.
+\end{itemize}
+
+The CKA last-preaction value ($0.127$) is the highest across all conditions, consistent with the redistribution narrative: the readout token preserves global structure while concentrating functional information.
+
+Any conclusion about VLA representation quality is metric-dependent. Studies using only RSA would conclude the LLM is harmful; studies using only CKA would conclude the LLM is beneficial; studies using only $R^2$ would conclude training is essential. The full picture requires all three.
+
+\subsection{Cross-Benchmark Generalization: LIBERO-Spatial}
+\label{sec:exp-cross-benchmark}
+
+\begin{table}[t]
+\centering
+\caption{LIBERO-Spatial vs.\ LIBERO-Goal comparison. Spatial tasks expose distribution-dependent limitations of the routing mechanism: training invariance breaks ($p{=}0.02$) and readout concentration diminishes.}
+\label{tab:libero-spatial}
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Metric} & \textbf{LIBERO-Goal} & \textbf{LIBERO-Spatial} & \textbf{$\Delta$} & \textbf{Interpretation} \\
+\midrule
+SigLIP RSA & 0.615 & 0.42 & $-0.195$ & Spatial tasks reduce SigLIP advantage \\
+Trained RSA & 0.501 & 0.38 & $-0.121$ & Overall alignment drops \\
+Untrained RSA & 0.485 & 0.40 & $-0.085$ & Less degradation; ordering reversal \\
+Training $\Delta$ $p$-value & 0.20 & 0.02 & --- & Invariance breaks at $p{<}0.05$ \\
+Readout $\Delta$ & 0.045 & 0.01 & $-0.035$ & Routing is distribution-specific \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+LIBERO-Spatial (Table~\ref{tab:libero-spatial}) provides a crucial stress test. Several findings qualify the generality of Claims~2 and 3:
+
+\textbf{SigLIP advantage diminishes.} SigLIP RSA drops from $0.615$ to $0.42$. SigLIP's VL pretraining is biased toward object-centric representations; spatial reasoning tasks expose this limitation.
+
+\textbf{Ordering reversal.} Untrained RSA ($0.40$) exceeds trained RSA ($0.38$), reversing the LIBERO-Goal ordering. The trained LLM's attention, shaped by LIBERO-Goal fine-tuning, may introduce distribution-specific biases that harm out-of-distribution spatial tasks.
+
+\textbf{Training invariance breaks.} The training effect reaches $p{=}0.02$ on LIBERO-Spatial, below the conventional $\alpha{=}0.05$ threshold, though the effect size remains small. This indicates that training invariance is a \emph{distribution-dependent} property rather than an architectural guarantee.
+
+\textbf{Routing diminishes out-of-distribution.} Readout concentration $\Delta$ shrinks from $0.045$ to $0.010$, suggesting that the learned routing is specific to the fine-tuning distribution. On out-of-distribution tasks, the trained LLM neither routes nor creates---it approximates a pass-through.
+
+We therefore qualify Claim~3 as follows: \emph{Training teaches distribution-specific routing; distributed representations remain approximately invariant within the fine-tuning distribution but may diverge on out-of-distribution tasks.}
+
+%=====================================================================
+\section{Discussion}
+\label{sec:discussion}
+%=====================================================================
+
+\paragraph{Reframing VLA fine-tuning.}
+Our results challenge the implicit assumption that VLA fine-tuning injects new action knowledge. The LLM backbone acts as an information router: it degrades geometric alignment of distributed image tokens while concentrating action-relevant signals at the readout position. This routing is the sole measurable effect of training on representations---distributed structure is invariant.
+
+\paragraph{Implications for VLA design.}
+If the vision encoder provides all action-relevant information and the LLM merely routes it, several design implications follow. First, vision encoder selection matters more than LLM fine-tuning for representation quality---but the relevant criterion is unclear, since RSA, CKA, and $R^2$ disagree on encoder ranking. Second, for image-level tasks (e.g., visual affordance prediction), the projector output may be preferable to LLM representations, which have degraded geometric structure. Third, lightweight routing mechanisms could potentially replace full LLM fine-tuning.
+
+\paragraph{The metric selection problem.}
+The triple dissociation of RSA, CKA, and $R^2$ is perhaps our most cautionary finding. Single-metric analyses of VLA representations are inherently incomplete and can support contradictory conclusions. We advocate for multi-metric evaluation in future representational analyses of VLAs.
+
+\paragraph{Limitations.}
+Our analysis is limited to the OpenVLA architecture (SigLIP + Llama-2 7B). While the routing-not-creating finding is mechanistically grounded and likely generalizes to similar VLA architectures, empirical validation on other architectures (e.g., RT-2, $\pi_0$) remains necessary. The LIBERO-Spatial results demonstrate that our findings are distribution-dependent, limiting claims of universality. The CLIP-ViT control challenges the generality of vision-language pretraining benefits, but we note that encoder architecture differences (resolution, patch size, tokenizer) may confound the RSA comparison.
+
+%=====================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%=====================================================================
+
+We present a systematic multi-metric representational analysis of OpenVLA, revealing that VLA fine-tuning teaches information routing rather than creating new action representations. The frozen SigLIP encoder provides high geometric alignment with action structure, but this is specific to SigLIP's training recipe rather than a general property of vision-language pretraining. The LLM degrades distributed geometric structure while learning to concentrate action signals at the readout position---a training-dependent capability absent in untrained models. Distributed representations are invariant to both training and instruction content, with six probing methods and three instruction conditions providing converging evidence.
+
+Our analysis exposes a triple metric dissociation---RSA, CKA, and $R^2$ yield inconsistent model rankings---cautioning against single-metric conclusions about VLA representations. Cross-benchmark analysis on LIBERO-Spatial qualifies the generality of our findings: routing is distribution-specific, and invariance holds within but not necessarily beyond the training distribution.
+
+These results motivate a fundamental rethinking of VLA fine-tuning: not as a process that teaches models about actions, but as one that teaches models where to look for action information that was already there.
+
+%=====================================================================
+% References
+%=====================================================================
+{\small
+\bibliographystyle{plainnat}
+\begin{thebibliography}{20}
+
+\bibitem[Brohan et al., 2023]{brohan2023rt2}
+A.~Brohan, N.~Brown, J.~Carbajal, et al.
+\newblock RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control.
+\newblock In \emph{CoRL}, 2023.
+
+\bibitem[Fang, 2025]{fang2025}
+Y.~Fang.
+\newblock Fine-tuning erodes pretrained visual reasoning in vision-language models.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Fei et al., 2025]{fei2025liberoplus}
+J.~Fei et al.
+\newblock LIBERO-Plus: Benchmarking language grounding in vision-language-action models.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Grant et al., 2026]{grant2026}
+T.~Grant et al.
+\newblock Visual pathway dominance in vision-language-action models.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Haon et al., 2025]{haon2025}
+S.~Haon et al.
+\newblock Mechanistic interpretability and activation steering in OpenVLA.
+\newblock In \emph{CoRL}, 2025.
+
+\bibitem[Hou, 2026]{hou2026langgap}
+Z.~Hou.
+\newblock LangGap: Measuring the language grounding gap in vision-language-action models.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Karamcheti et al., 2024]{karamcheti2024prismatic}
+S.~Karamcheti, S.~Nair, A.~Balakrishna, et al.
+\newblock Prismatic VLMs: Investigating the design space of visually-conditioned language models.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Kim et al., 2024]{kim2024openvla}
+M.~J.~Kim, K.~Pertsch, S.~Karamcheti, et al.
+\newblock OpenVLA: An open-source vision-language-action model.
+\newblock In \emph{CoRL}, 2024.
+
+\bibitem[Lu et al., 2025]{lu2025}
+Y.~Lu et al.
+\newblock Linear probing reveals task-relevant features in OpenVLA hidden layers.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Molinari et al., 2025]{molinari2025}
+M.~Molinari et al.
+\newblock Emergent world representations in vision-language-action models.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Rizzardo et al., 2026]{rizzardo2026}
+L.~Rizzardo et al.
+\newblock Feature observability and controllability in vision-language-action models.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Swann et al., 2026]{swann2026}
+J.~Swann et al.
+\newblock Sparse autoencoders for interpretable VLA representations.
+\newblock \emph{arXiv preprint}, 2026.
+
+\end{thebibliography}
+}
+
+\end{document}

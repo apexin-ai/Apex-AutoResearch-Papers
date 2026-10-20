@@ -1,0 +1,24 @@
+{
+  "exp_id": "unified_action_probe",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:16:42.255Z",
+    "updated_at": "2026-05-16T02:17:08.836Z",
+    "hypothesis": "Unified hyperparameter action probe (50ep/patience5/seed42) across all vision encoders on LIBERO-Goal. Resolves cross-experiment R² incomparability caused by differing probe configs. Tests geometric-functional dissociation: does VL pretraining RSA advantage translate to R² advantage?",
+    "spec": {
+      "command": "python /root/vla-ssd/scripts/unified_action_probe.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/{clip,dino,trained,siglip}/",
+      "data_count": 63728,
+      "model_name": "MLP(input→256→7)",
+      "seed": 42
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T02:17:08.941040+00:00",
+  "trigger": "update_registry"
+}

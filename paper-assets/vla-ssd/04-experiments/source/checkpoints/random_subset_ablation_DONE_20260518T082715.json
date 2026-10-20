@@ -1,0 +1,43 @@
+{
+  "exp_id": "random_subset_ablation",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:25:38.132Z",
+    "updated_at": "2026-05-18T08:27:15.118Z",
+    "hypothesis": "Random subsets of 24 heads yield higher action R² increase than instruction-dominant 24 heads, indicating dominant heads serve dual routing-encoding function rather than pure capacity trade-off",
+    "parent": "ablation_50demos_main",
+    "spec": {
+      "command": "python scripts/random_subset_ablation.py --n_demos 50 --n_random 10 --output /root/autodl-tmp/vla-ssd/results/random_subset_ablation.json",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/trained_libero_goal/",
+      "data_count": "10 tasks x 50 demos",
+      "model_name": "ActionMLPProbe(4096->256->7) with L1 head ablation",
+      "seed": "10 random seeds for subset selection",
+      "checkpoint_source": "pre-extracted features from openvla-7b (trained)",
+      "eval_data": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/ (10 tasks, 50 demos, sequential split)",
+      "checkpoint_path": "N/A (probe experiment, no checkpoint saved)",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/random_subset_ablation.json"
+    },
+    "metrics": {
+      "baseline_r2": 0.517,
+      "dominant_24_delta": 0.042,
+      "random_24_mean_delta": 0.077,
+      "random_24_std_delta": 0.013,
+      "z_score": -2.73,
+      "p_value": 0.003,
+      "n_random_seeds": 10,
+      "interpretation": "dominant-24 heads NOT special - any 24/32 heads ablation produces similar or larger R² increase",
+      "result_path": "/root/autodl-tmp/vla-ssd/results/random_subset_ablation.json",
+      "figure_path": "/root/autodl-tmp/vla-ssd/results/figures/fig_random_subset_ablation.pdf"
+    },
+    "conclusion": "success",
+    "notes": "Plan C (D061) 核心证据。Dominant-24 heads 不具有特异性——10 组随机 24-head 子集的 R² 增量均高于 dominant-24（z=-2.73, p=0.003）。支持 dual routing-encoding function 解释。",
+    "completed_at": "2026-05-18T08:27:15.118Z"
+  },
+  "timestamp": "2026-05-18T08:27:15.274622+00:00",
+  "trigger": "update_registry"
+}

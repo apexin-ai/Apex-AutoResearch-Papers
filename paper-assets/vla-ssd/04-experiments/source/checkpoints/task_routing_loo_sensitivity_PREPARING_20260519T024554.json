@@ -1,0 +1,17 @@
+{
+  "exp_id": "task_routing_loo_sensitivity",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:59:31.610Z",
+    "updated_at": "2026-05-19T02:45:54.706Z",
+    "parent": "task_complexity_routing",
+    "hypothesis": "Task complexity grouping is robust: no single task removal or reassignment reverses the statistical significance of the complex vs simple routing dependence difference.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T02:45:54.936022+00:00",
+  "trigger": "update_registry"
+}

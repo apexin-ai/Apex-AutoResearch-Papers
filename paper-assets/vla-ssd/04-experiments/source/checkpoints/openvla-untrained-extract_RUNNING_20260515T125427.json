@@ -1,0 +1,38 @@
+{
+  "exp_id": "openvla-untrained-extract",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:07:29.551Z",
+    "updated_at": "2026-05-15T12:54:27.719Z",
+    "spec": {
+      "command": "python scripts/extract_features.py --model_path openvla-7b-untrained --output_dir features/untrained/ --gpu 0 --max_demos 50",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "28155",
+      "log_path": "~/runs/vla-ssd/openvla-untrained-extract.log",
+      "submitted_at": "2026-05-15T10:07:29.545Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_10/",
+      "data_count": "10 tasks x 50 demos x ~250 timesteps",
+      "model_name": "openvla/openvla-7b-untrained (LLM 6.74B random from_config, Vision 0.80B preserved)",
+      "seed": 42,
+      "notes": "transformers 版本差异: 模型期望 4.40.1, 实际 4.57.6。trained/untrained 使用同一版本，对比有效。"
+    },
+    "notes": "1. 当前 untrained checkpoint 未使用固定 seed（init_untrained.py 缺 torch.manual_seed），但 checkpoint 已持久化到 /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/，可复现。脚本已补 seed=42 供将来使用。2. 日志中 mode=trained 为 extract_features.py 默认值，实际使用的是 openvla-7b-untrained checkpoint（init_untrained.py 生成，LLM 6.74B random from_config, Vision 0.80B preserved）。功能正确，仅日志标注不准确。",
+    "reproduce": {
+      "finished_at": "2026-05-15T12:54:22.478Z"
+    },
+    "failure_reason": "EXIT_CODE=130 (SIGINT / Ctrl-C)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T12:54:27.731647+00:00",
+  "trigger": "update_registry"
+}

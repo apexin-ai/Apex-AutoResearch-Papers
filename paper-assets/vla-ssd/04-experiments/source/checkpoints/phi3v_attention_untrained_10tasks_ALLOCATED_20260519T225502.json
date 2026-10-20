@@ -1,0 +1,23 @@
+{
+  "exp_id": "phi3v_attention_untrained_10tasks",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:53:51.511Z",
+    "updated_at": "2026-05-19T22:55:02.212Z",
+    "hypothesis": "Expanding Phi3V untrained (base Phi-3-instruct) attention profile from 5 to 10 LIBERO-Goal tasks confirms the uniform ~28/32 routing pattern across all layers, paired with trained 10-task to show VLA training reshapes uniform→bookend at consistent task scale.",
+    "parent": "phi3v_attention_untrained",
+    "server": "westd-19183",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T22:54:39.022Z"
+    }
+  },
+  "timestamp": "2026-05-19T22:55:02.460820+00:00",
+  "trigger": "update_registry"
+}

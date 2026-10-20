@@ -1,0 +1,40 @@
+{
+  "exp_id": "mvp2_action_dino",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:22:11.911Z",
+    "updated_at": "2026-05-15T14:22:34.517Z",
+    "hypothesis": "DINO-V2 ViT-L/14 action prediction baseline (single cls_token layer) — establishes vision-only floor for Gate G3 comparison",
+    "parent": "mvp2_action_probe",
+    "conclusion": "success",
+    "metrics": {
+      "overall_R2": 0.6689,
+      "per_task_mean_R2": 0.6759,
+      "gripper_accuracy": 0.9001,
+      "epochs": 17,
+      "training_time_seconds": 7.3,
+      "num_layers": 1,
+      "feature_dim": 1024,
+      "feature_key": "cls_token",
+      "probe_type": "MLP action probe (1024->512->7)"
+    },
+    "spec": {
+      "command": "python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2/ --probe_type action_prediction --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_10/ --gpu 0",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/dinov2/",
+      "data_count": "10 tasks x 50 demos, 1 layer x 1024 dim",
+      "model_name": "DINO-V2 ViT-L/14 (facebook/dinov2-large)",
+      "seed": 42,
+      "checkpoint_source": "dinov2_baseline",
+      "eval_data": "/root/autodl-tmp/vla-ssd/features/dinov2/ (10 tasks H5) + /root/autodl-tmp/vla-ssd/data/libero/libero_10/ (actions)",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/dinov2/action_prediction/",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/dinov2/action_prediction/"
+    }
+  },
+  "timestamp": "2026-05-15T14:22:34.544868+00:00",
+  "trigger": "update_registry"
+}

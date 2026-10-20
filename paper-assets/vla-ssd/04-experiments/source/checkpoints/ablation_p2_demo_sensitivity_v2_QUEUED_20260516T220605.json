@@ -1,0 +1,54 @@
+{
+  "exp_id": "ablation_p2_demo_sensitivity_v2",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:34:16.651Z",
+    "updated_at": "2026-05-16T22:06:05.829Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/ablations/demo_sensitivity.py --gpu 0\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "722187",
+      "log_path": "~/runs/vla-ssd/ablation_p2_demo_sensitivity_v2.log",
+      "submitted_at": "2026-05-16T10:34:16.487Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Demo count sensitivity v2 (Method B fixed): subsample 25 from 50 demos/task, rerun RSA (correct Method B) + probe on trained_image_mean. Tests inverted-U stability under reduced data.",
+    "metrics": {
+      "rsa_profile_correlation": 0.9696,
+      "probe_profile_correlation": 0.8189,
+      "rsa_peak_50demos": {
+        "layer": 12,
+        "rsa": 0.6282
+      },
+      "rsa_peak_25demos": {
+        "layer": 12,
+        "rsa": 0.6059
+      },
+      "probe_peak_50demos": {
+        "layer": 9,
+        "r2": 0.6587
+      },
+      "probe_peak_25demos": {
+        "layer": 11,
+        "r2": 0.6088
+      },
+      "n_layers": 33,
+      "elapsed_seconds": 1583.8,
+      "conclusion_summary": "Inverted-U highly stable under halved data. RSA profile r=0.97, peak L12 unchanged. Probe profile r=0.82, peak shifts L9→L11 but shape preserved."
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/ablations/demo_sensitivity_25.json",
+    "log_path": "~/runs/vla-ssd/ablation_p2_demo_sensitivity_v2.log"
+  },
+  "timestamp": "2026-05-16T22:06:05.962905+00:00",
+  "trigger": "update_registry"
+}

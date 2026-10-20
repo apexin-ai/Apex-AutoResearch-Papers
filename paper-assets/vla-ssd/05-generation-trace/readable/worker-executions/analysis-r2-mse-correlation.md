@@ -1,0 +1,5388 @@
+# analysis r2 mse correlation
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 110
+- **Recorded user turns:** 0
+- **Tool calls:** 39
+- **Original source:** `logs/workers/worker_analysis_r2_mse_correlation_20260520T123229.log`
+- **Structured JSON:** [`860fd9d7d5674c714bc6.json`](../../sessions/86/860fd9d7d5674c714bc6.json)
+
+## Before a recorded user message
+
+110 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "04e226f6-5e29-4766-9b59-e0b4c9b6c1ad",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779298200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8e600ba3-c2ac-42ec-a337-2870880bc1d7",
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to analyze the correlation between probe R² scores and per-task action MSE data. Let me start by SSH-ing to the server to find the relevant data files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "815f6f2e-b594-42c9-8560-63112b561fd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JCN8mcfhQcKZDCasmGbUen",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11916,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11916
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始在服务器上搜索 per-task MSE 和 R² 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "abfded50-e44d-4746-9fe6-6e81f4158b58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JCN8mcfhQcKZDCasmGbUen",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11916,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11916
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KxarHFaLJmmXybHen39CJ7`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "2227fddd-73c6-42b5-988b-e81ae0361e13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JCN8mcfhQcKZDCasmGbUen",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11916,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11916
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T12:32:40.591Z_
+
+<details><summary>↩ Tool result · `toolu_01KxarHFaLJmmXybHen39CJ7`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "634cb97c-67d9-4a9d-8a16-a2d47ec36023",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YVwDL1V5UBhRk6rj4Xkgs7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ /root/vla-ssd/results/ -name \"*.json\" -path \"*mse*\" -o -name \"*.json\" -path \"*action_error*\" -o -name \"*.json\" -path \"*per_task*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "28d79ede-4769-487c-be1f-991fe41666fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013nY1E4WJCQYfcMzCzFGwsW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 23757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 751
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T12:32:44.191Z_
+
+<details><summary>↩ Tool result · `toolu_01YVwDL1V5UBhRk6rj4Xkgs7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b6496650-bf78-4a50-9abf-4dc39e0e486d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016hoXUg4ZxiQttcbEomo1Vz`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*r2*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "460502ef-8913-45bf-93eb-f32682559198",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013nY1E4WJCQYfcMzCzFGwsW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 23757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 751
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T12:32:45.634Z_
+
+<details><summary>↩ Tool result · `toolu_016hoXUg4ZxiQttcbEomo1Vz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "6732b034-5717-4349-a48c-fadb25964a1a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HQh4Dnr13dE7JnCF7KrJLx`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -path \"*ablation*\" -name \"*.json\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "2acbdc96-e339-4047-839b-1a1c564903f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013nY1E4WJCQYfcMzCzFGwsW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 23757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 751
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T12:32:46.159Z_
+
+<details><summary>↩ Tool result · `toolu_01HQh4Dnr13dE7JnCF7KrJLx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "c0bc751e-260b-4bd6-9590-076a4ef94e46",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011HxHAt9KAJ1UzVh89MarQN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -path \"*functional*\" -name \"*.json\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "74f06401-67a0-4a31-93e7-b0190a08d143",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013nY1E4WJCQYfcMzCzFGwsW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 23757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 751
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T12:32:46.477Z_
+
+<details><summary>↩ Tool result · `toolu_011HxHAt9KAJ1UzVh89MarQN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "cc9dac53-a98c-40de-9c62-6f3a44d5b8df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` redirect is being blocked. Let me remove those redirects.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "c32749a6-231c-40c7-ba7c-fbf5321981ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoqtaiwMpvPCERsJw6kZTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 24508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+重新搜索，去掉重定向符号。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "cea54af6-e351-4e67-b7e8-3e55a7587a5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoqtaiwMpvPCERsJw6kZTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 24508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016yMt9BpjbNmC93sny56nQ1`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*r2*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b958666e-04e2-48bc-abf5-c32bd5745c1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoqtaiwMpvPCERsJw6kZTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 24508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011GU84iYGwehLMpprUQQLPq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*ablation*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "03f99168-bd54-4a5e-ad5e-aaa85845fc8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoqtaiwMpvPCERsJw6kZTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 24508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T12:32:51.872Z_
+
+<details><summary>↩ Tool result · `toolu_016yMt9BpjbNmC93sny56nQ1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "bf75c486-6487-4996-aab8-7d671ddd4aa8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013Dwik1WNpjQSdw9mpqW8sf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*functional*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b1c450f5-cbda-4a1f-b630-c596d69cfe13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoqtaiwMpvPCERsJw6kZTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 24508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T12:32:52.410Z_
+
+<details><summary>↩ Tool result · `toolu_011GU84iYGwehLMpprUQQLPq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/rsa/perlayer_comparison_inst_ablation.json\\n/root/autodl-tmp/vla-ssd/results/ablations/rsa_cosine_metric.json\\n/root/autodl-tmp/vla-ssd/results/ablations/rsa_permutation_null.json\\n/root/autodl-tmp/vla-ssd/results/ablations/rsa_per_dof.json\\n/root/autodl-tmp/vla-ssd/results/ablations/probe_seed_robustness.json\\n/root/autodl-tmp/vla-ssd/results/ablations/demo_sensitivity_25.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/test_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/test_v2.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results_v2.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results_v3_all32.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/bootstrap_ci_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/ablation_50demos_combined.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\n/root/autodl-tmp/vla-ssd/results/random_subset_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json\\n/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "542ceb5d-52f3-4ebe-9425-ad9916b98bf8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/rsa/perlayer_comparison_inst_ablation.json\\\\n/root/autodl-tmp/vla-ssd/results/ablations/rsa_cosine_metric.json\\\\n/root/autodl-tmp/vla-ssd/results/ablations/rsa_permutation_null.json\\\\n/root/autodl-tmp/vla-ssd/results/ablations/rsa_per_dof.json\\\\n/root/autodl-tmp/vla-ssd/results/ablations/probe_seed_robustness.json\\\\n/root/autodl-tmp/vla-ssd/results/ablations/demo_sensitivity_25.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/test_results.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/test_v2.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results_v2.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results_v3_all32.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/bootstrap_ci_results.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/ablation_50demos_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\\n/root/autodl-tmp/vla-ssd/results/random_subset_ablation.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json\\\\n/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/rsa/perlayer_comparison_inst_ablation.json\\n/root/autodl-tmp/vla-ssd/results/ablations/rsa_cosine_metric.json\\n/root/autodl-tmp/vla-ssd/results/ablations/rsa_permutation_null.json\\n/root/autodl-tmp/vla-ssd/results/ablations/rsa_per_dof.json\\n/root/autodl-tmp/vla-ssd/results/ablations/probe_seed_robustness.json\\n/root/autodl-tmp/vla-ssd/results/ablations/demo_sensitivity_25.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/test_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/test_v2.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results_v2.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results_v3_all32.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/bootstrap_ci_results.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/ablation_50demos_combined.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\n/root/autodl-tmp/vla-ssd/results/random_subset_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json\\n/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T12:32:52.937Z_
+
+<details><summary>↩ Tool result · `toolu_013Dwik1WNpjQSdw9mpqW8sf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/patch_mean_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "190d16c9-cc1c-4f13-8010-747794cee3fb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/patch_mean_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/patch_mean_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018aZX8zJGHyPeRdtLSPWHUD`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*per_task*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "d2700bf8-ac06-49ac-846c-335338718589",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoqtaiwMpvPCERsJw6kZTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 24508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T12:32:53.559Z_
+
+<details><summary>↩ Tool result · `toolu_018aZX8zJGHyPeRdtLSPWHUD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "e397a394-0f16-4725-8582-084740824bc4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Eu16Mq5PBr9fmSnAz26Avg`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*mse*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "c655b136-e5bb-4f7f-b4a2-0d7fdc5948c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoqtaiwMpvPCERsJw6kZTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 24508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T12:32:54.078Z_
+
+<details><summary>↩ Tool result · `toolu_01Eu16Mq5PBr9fmSnAz26Avg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "8c70b382-f60d-4e83-b236-ad8fea62e4f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the key files:
+1. `/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json` - per-task MSE data
+2. `/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json` - per-task R² data
+
+Let me read both files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "429815c2-8675-438f-aced-4d8b360e0dd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kwA4jrT6Hmg3ckcAxiafD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2472,
+      "cache_read_input_tokens": 25459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+找到关键文件：`per_task_mse_breakdown.json` 和 `per_task_r2_distribution.json`。读取内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "2ec133f0-d2c4-4c75-9d33-efe177032edb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kwA4jrT6Hmg3ckcAxiafD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2472,
+      "cache_read_input_tokens": 25459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016vyhZAfphbEi1LyAjxAJnJ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "54db046a-ae19-4790-a6c8-782f944ebeea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kwA4jrT6Hmg3ckcAxiafD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2472,
+      "cache_read_input_tokens": 25459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T12:32:58.807Z_
+
+<details><summary>↩ Tool result · `toolu_016vyhZAfphbEi1LyAjxAJnJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"tasks\\\": [\\n    {\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.562126,\\n      \\\"top24_ablated_mse\\\": 0.54741,\\n      \\\"bottom24_ablated_mse\\\": 0.560036,\\n      \\\"delta_mse_top24\\\": -0.014716,\\n      \\\"delta_mse_bottom24\\\": -0.00209,\\n      \\\"delta_pct_top24\\\": -2.62,\\n      \\\"delta_pct_bottom24\\\": -0.37,\\n      \\\"wilcoxon_p_top24\\\": 0.351,\\n      \\\"wilcoxon_p_bottom24\\\": 0.7697\\n    },\\n    {\\n      \\\"task_name\\\": \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.548375,\\n      \\\"top24_ablated_mse\\\": 0.55811,\\n      \\\"bottom24_ablated_mse\\\": 0.557744,\\n      \\\"delta_mse_top24\\\": 0.009735,\\n      \\\"delta_mse_bottom24\\\": 0.009369,\\n      \\\"delta_pct_top24\\\": 1.78,\\n      \\\"delta_pct_bottom24\\\": 1.71,\\n      \\\"wilcoxon_p_top24\\\": 0.2735,\\n      \\\"wilcoxon_p_bottom24\\\": 0.887\\n    },\\n    {\\n      \\\"task_name\\\": \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.38335,\\n      \\\"top24_ablated_mse\\\": 0.385142,\\n      \\\"bottom24_ablated_mse\\\": 0.400603,\\n      \\\"delta_mse_top24\\\": 0.001792,\\n      \\\"delta_mse_bottom24\\\": 0.017253,\\n      \\\"delta_pct_top24\\\": 0.47,\\n      \\\"delta_pct_bottom24\\\": 4.5,\\n      \\\"wilcoxon_p_top24\\\": 0.4474,\\n      \\\"wilcoxon_p_bottom24\\\": 0.029\\n    }\\n  ],\\n  \\\"cancellation_analysis\\\": {\\n    \\\"top24\\\": {\\n      \\\"has_sign_mixing\\\": true,\\n      \\\"task_delta_signs\\\": [\\n        \\\"-\\\",\\n        \\\"+\\\",\\n        \\\"~0\\\"\\n      ],\\n      \\\"overall_delta\\\": -0.001063,\\n      \\\"any_task_significant\\\": false,\\n      \\\"pattern\\\": \\\"Weak sign mixing: drawer -0.015, bowl +0.010, plate +0.002. All per-task p > 0.27. Magnitudes 0.3-2.6% of baseline. Not meaningful cancellation.\\\"\\n    },\\n    \\\"bottom24\\\": {\\n      \\\"has_sign_mixing\\\": false,\\n      \\\"task_delta_signs\\\": [\\n        \\\"~0\\\",\\n        \\\"+\\\",\\n        \\\"+\\\"\\n      ],\\n      \\\"overall_delta\\\": 0.008177,\\n      \\\"any_task_significant\\\": true,\\n      \\\"pattern\\\": \\\"Mostly one-directional: drawer ~0 (-0.002), bowl +0.009 (p=0.89), plate +0.017 (p=0.029, only significant). No cancellation.\\\"\\n    },\\n    \\\"conclusion\\\": \\\"No meaningful task-level cancellation. Top-24 has weak sign mixing but all deltas non-significant. Bottom-24 is consistently non-negative. Near-zero overall delta reflects genuinely small per-task effects, not opposing large effects.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "997ed87c-53bd-44fc-8c15-40c662114175",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"tasks\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 500,\\\\n      \\\\\\\"original_mse\\\\\\\": 0.562126,\\\\n      \\\\\\\"top24_ablated_mse\\\\\\\": 0.54741,\\\\n      \\\\\\\"bottom24_ablated_mse\\\\\\\": 0.560036,\\\\n      \\\\\\\"delta_mse_top24\\\\\\\": -0.014716,\\\\n      \\\\\\\"delta_mse_bottom24\\\\\\\": -0.00209,\\\\n      \\\\\\\"delta_pct_top24\\\\\\\": -2.62,\\\\n      \\\\\\\"delta_pct_bottom24\\\\\\\": -0.37,\\\\n      \\\\\\\"wilcoxon_p_top24\\\\\\\": 0.351,\\\\n      \\\\\\\"wilcoxon_p_bottom24\\\\\\\": 0.7697\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 500,\\\\n      \\\\\\\"original_mse\\\\\\\": 0.548375,\\\\n      \\\\\\\"top24_ablated_mse\\\\\\\": 0.55811,\\\\n      \\\\\\\"bottom24_ablated_mse\\\\\\\": 0.557744,\\\\n      \\\\\\\"delta_mse_top24\\\\\\\": 0.009735,\\\\n      \\\\\\\"delta_mse_bottom24\\\\\\\": 0.009369,\\\\n      \\\\\\\"delta_pct_top24\\\\\\\": 1.78,\\\\n      \\\\\\\"delta_pct_bottom24\\\\\\\": 1.71,\\\\n      \\\\\\\"wilcoxon_p_top24\\\\\\\": 0.2735,\\\\n      \\\\\\\"wilcoxon_p_bottom24\\\\\\\": 0.887\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 500,\\\\n      \\\\\\\"original_mse\\\\\\\": 0.38335,\\\\n      \\\\\\\"top24_ablated_mse\\\\\\\": 0.385142,\\\\n      \\\\\\\"bottom24_ablated_mse\\\\\\\": 0.400603,\\\\n      \\\\\\\"delta_mse_top24\\\\\\\": 0.001792,\\\\n      \\\\\\\"delta_mse_bottom24\\\\\\\": 0.017253,\\\\n      \\\\\\\"delta_pct_top24\\\\\\\": 0.47,\\\\n      \\\\\\\"delta_pct_bottom24\\\\\\\": 4.5,\\\\n      \\\\\\\"wilcoxon_p_top24\\\\\\\": 0.4474,\\\\n      \\\\\\\"wilcoxon_p_bottom24\\\\\\\": 0.029\\\\n    }\\\\n  ],\\\\n  \\\\\\\"cancellation_analysis\\\\\\\": {\\\\n    \\\\\\\"top24\\\\\\\": {\\\\n      \\\\\\\"has_sign_mixing\\\\\\\": true,\\\\n      \\\\\\\"task_delta_signs\\\\\\\": [\\\\n        \\\\\\\"-\\\\\\\",\\\\n        \\\\\\\"+\\\\\\\",\\\\n        \\\\\\\"~0\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"overall_delta\\\\\\\": -0.001063,\\\\n      \\\\\\\"any_task_significant\\\\\\\": false,\\\\n      \\\\\\\"pattern\\\\\\\": \\\\\\\"Weak sign mixing: drawer -0.015, bowl +0.010, plate +0.002. All per-task p > 0.27. Magnitudes 0.3-2.6% of baseline. Not meaningful cancellation.\\\\\\\"\\\\n    },\\\\n    \\\\\\\"bottom24\\\\\\\": {\\\\n      \\\\\\\"has_sign_mixing\\\\\\\": false,\\\\n      \\\\\\\"task_delta_signs\\\\\\\": [\\\\n        \\\\\\\"~0\\\\\\\",\\\\n        \\\\\\\"+\\\\\\\",\\\\n        \\\\\\\"+\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"overall_delta\\\\\\\": 0.008177,\\\\n      \\\\\\\"any_task_significant\\\\\\\": true,\\\\n      \\\\\\\"pattern\\\\\\\": \\\\\\\"Mostly one-directional: drawer ~0 (-0.002), bowl +0.009 (p=0.89), plate +0.017 (p=0.029, only significant). No cancellation.\\\\\\\"\\\\n    },\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"No meaningful task-level cancellation. Top-24 has weak sign mixing but all deltas non-significant. Bottom-24 is consistently non-negative. Near-zero overall delta reflects genuinely small per-task effects, not opposing large effects.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"tasks\\\": [\\n    {\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.562126,\\n      \\\"top24_ablated_mse\\\": 0.54741,\\n      \\\"bottom24_ablated_mse\\\": 0.560036,\\n      \\\"delta_mse_top24\\\": -0.014716,\\n      \\\"delta_mse_bottom24\\\": -0.00209,\\n      \\\"delta_pct_top24\\\": -2.62,\\n      \\\"delta_pct_bottom24\\\": -0.37,\\n      \\\"wilcoxon_p_top24\\\": 0.351,\\n      \\\"wilcoxon_p_bottom24\\\": 0.7697\\n    },\\n    {\\n      \\\"task_name\\\": \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.548375,\\n      \\\"top24_ablated_mse\\\": 0.55811,\\n      \\\"bottom24_ablated_mse\\\": 0.557744,\\n      \\\"delta_mse_top24\\\": 0.009735,\\n      \\\"delta_mse_bottom24\\\": 0.009369,\\n      \\\"delta_pct_top24\\\": 1.78,\\n      \\\"delta_pct_bottom24\\\": 1.71,\\n      \\\"wilcoxon_p_top24\\\": 0.2735,\\n      \\\"wilcoxon_p_bottom24\\\": 0.887\\n    },\\n    {\\n      \\\"task_name\\\": \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n      \\\"n_samples\\\": 500,\\n      \\\"original_mse\\\": 0.38335,\\n      \\\"top24_ablated_mse\\\": 0.385142,\\n      \\\"bottom24_ablated_mse\\\": 0.400603,\\n      \\\"delta_mse_top24\\\": 0.001792,\\n      \\\"delta_mse_bottom24\\\": 0.017253,\\n      \\\"delta_pct_top24\\\": 0.47,\\n      \\\"delta_pct_bottom24\\\": 4.5,\\n      \\\"wilcoxon_p_top24\\\": 0.4474,\\n      \\\"wilcoxon_p_bottom24\\\": 0.029\\n    }\\n  ],\\n  \\\"cancellation_analysis\\\": {\\n    \\\"top24\\\": {\\n      \\\"has_sign_mixing\\\": true,\\n      \\\"task_delta_signs\\\": [\\n        \\\"-\\\",\\n        \\\"+\\\",\\n        \\\"~0\\\"\\n      ],\\n      \\\"overall_delta\\\": -0.001063,\\n      \\\"any_task_significant\\\": false,\\n      \\\"pattern\\\": \\\"Weak sign mixing: drawer -0.015, bowl +0.010, plate +0.002. All per-task p > 0.27. Magnitudes 0.3-2.6% of baseline. Not meaningful cancellation.\\\"\\n    },\\n    \\\"bottom24\\\": {\\n      \\\"has_sign_mixing\\\": false,\\n      \\\"task_delta_signs\\\": [\\n        \\\"~0\\\",\\n        \\\"+\\\",\\n        \\\"+\\\"\\n      ],\\n      \\\"overall_delta\\\": 0.008177,\\n      \\\"any_task_significant\\\": true,\\n      \\\"pattern\\\": \\\"Mostly one-directional: drawer ~0 (-0.002), bowl +0.009 (p=0.89), plate +0.017 (p=0.029, only significant). No cancellation.\\\"\\n    },\\n    \\\"conclusion\\\": \\\"No meaningful task-level cancellation. Top-24 has weak sign mixing but all deltas non-significant. Bottom-24 is consistently non-negative. Near-zero overall delta reflects genuinely small per-task effects, not opposing large effects.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J6mS9Bn5XmtqWt4WQbW58C`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "970fd3c7-fccb-4754-a015-89b96c239584",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kwA4jrT6Hmg3ckcAxiafD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2472,
+      "cache_read_input_tokens": 25459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T12:32:59.486Z_
+
+<details><summary>↩ Tool result · `toolu_01J6mS9Bn5XmtqWt4WQbW58C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"per_task_r2_distribution\\\",\\n  \\\"tasks\\\": [\\n    \\\"open the middle drawer of the cabinet\\\",\\n    \\\"open the top drawer and put the bowl inside\\\",\\n    \\\"push the plate to the front of the stove\\\",\\n    \\\"put the bowl on the plate\\\",\\n    \\\"put the bowl on the stove\\\",\\n    \\\"put the bowl on top of the cabinet\\\",\\n    \\\"put the cream cheese in the bowl\\\",\\n    \\\"put the wine bottle on the rack\\\",\\n    \\\"put the wine bottle on top of the cabinet\\\",\\n    \\\"turn on the stove\\\"\\n  ],\\n  \\\"n_tasks\\\": 10,\\n  \\\"mlp_probe_5demo\\\": {\\n    \\\"description\\\": \\\"MLP(4096,256,7) probe, 5 demos/task, per-task R2 distribution\\\",\\n    \\\"conditions\\\": {\\n      \\\"baseline\\\": {\\n        \\\"L1\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.1971,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.2649,\\n            \\\"push the plate to the front of the stove\\\": 0.1901,\\n            \\\"put the bowl on the plate\\\": 0.3754,\\n            \\\"put the bowl on the stove\\\": 0.2352,\\n            \\\"put the bowl on top of the cabinet\\\": 0.2561,\\n            \\\"put the cream cheese in the bowl\\\": 0.186,\\n            \\\"put the wine bottle on the rack\\\": 0.1894,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.2789,\\n            \\\"turn on the stove\\\": 0.3854\\n          },\\n          \\\"mean\\\": 0.2559,\\n          \\\"std\\\": 0.0701,\\n          \\\"min\\\": 0.186,\\n          \\\"max\\\": 0.3854,\\n          \\\"range\\\": 0.1994\\n        },\\n        \\\"L8\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.4532,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.3757,\\n            \\\"push the plate to the front of the stove\\\": 0.3358,\\n            \\\"put the bowl on the plate\\\": 0.4371,\\n            \\\"put the bowl on the stove\\\": 0.396,\\n            \\\"put the bowl on top of the cabinet\\\": 0.4519,\\n            \\\"put the cream cheese in the bowl\\\": 0.3797,\\n            \\\"put the wine bottle on the rack\\\": 0.3917,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.4624,\\n            \\\"turn on the stove\\\": 0.7171\\n          },\\n          \\\"mean\\\": 0.4401,\\n          \\\"std\\\": 0.1003,\\n          \\\"min\\\": 0.3358,\\n          \\\"max\\\": 0.7171,\\n          \\\"range\\\": 0.3813\\n        },\\n        \\\"L13\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.5686,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.5466,\\n            \\\"push the plate to the front of the stove\\\": 0.4092,\\n            \\\"put the bowl on the plate\\\": 0.3887,\\n            \\\"put the bowl on the stove\\\": 0.5352,\\n            \\\"put the bowl on top of the cabinet\\\": 0.6587,\\n            \\\"put the cream cheese in the bowl\\\": 0.5835,\\n            \\\"put the wine bottle on the rack\\\": 0.4304,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.3856,\\n            \\\"turn on the stove\\\": 0.7336\\n          },\\n          \\\"mean\\\": 0.524,\\n          \\\"std\\\": 0.113,\\n          \\\"min\\\": 0.3856,\\n          \\\"max\\\": 0.7336,\\n          \\\"range\\\": 0.348\\n        }\\n      },\\n      \\\"ablate_all24\\\": {\\n        \\\"L1\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.2211,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.3403,\\n            \\\"push the plate to the front of the stove\\\": 0.1968,\\n            \\\"put the bowl on the plate\\\": 0.474,\\n            \\\"put the bowl on the stove\\\": 0.395,\\n            \\\"put the bowl on top of the cabinet\\\": 0.4567,\\n            \\\"put the cream cheese in the bowl\\\": 0.3454,\\n            \\\"put the wine bottle on the rack\\\": 0.424,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.3529,\\n            \\\"turn on the stove\\\": 0.4213\\n          },\\n          \\\"mean\\\": 0.3628,\\n          \\\"std\\\": 0.0883,\\n          \\\"min\\\": 0.1968,\\n          \\\"max\\\": 0.474,\\n          \\\"range\\\": 0.2772\\n        },\\n        \\\"L8\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.3808,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.388,\\n            \\\"push the plate to the front of the stove\\\": 0.3505,\\n            \\\"put the bowl on the plate\\\": 0.4295,\\n            \\\"put the bowl on the s\\n\\n... [截断: 输出过长，省略 12479 字符] ...\\n\\nmin\\\": 0.3051,\\n        \\\"max\\\": 0.7094,\\n        \\\"range\\\": 0.4044,\\n        \\\"cv\\\": 0.2004\\n      },\\n      \\\"L9\\\": {\\n        \\\"mean\\\": 0.5596,\\n        \\\"std\\\": 0.1094,\\n        \\\"min\\\": 0.3064,\\n        \\\"max\\\": 0.7031,\\n        \\\"range\\\": 0.3967,\\n        \\\"cv\\\": 0.1955\\n      },\\n      \\\"L10\\\": {\\n        \\\"mean\\\": 0.5546,\\n        \\\"std\\\": 0.1112,\\n        \\\"min\\\": 0.2983,\\n        \\\"max\\\": 0.6995,\\n        \\\"range\\\": 0.4013,\\n        \\\"cv\\\": 0.2004\\n      },\\n      \\\"L11\\\": {\\n        \\\"mean\\\": 0.5437,\\n        \\\"std\\\": 0.1053,\\n        \\\"min\\\": 0.3174,\\n        \\\"max\\\": 0.6863,\\n        \\\"range\\\": 0.3688,\\n        \\\"cv\\\": 0.1937\\n      },\\n      \\\"L12\\\": {\\n        \\\"mean\\\": 0.5607,\\n        \\\"std\\\": 0.0986,\\n        \\\"min\\\": 0.3305,\\n        \\\"max\\\": 0.683,\\n        \\\"range\\\": 0.3526,\\n        \\\"cv\\\": 0.1759\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean\\\": 0.562,\\n        \\\"std\\\": 0.098,\\n        \\\"min\\\": 0.3328,\\n        \\\"max\\\": 0.6874,\\n        \\\"range\\\": 0.3546,\\n        \\\"cv\\\": 0.1743\\n      },\\n      \\\"L14\\\": {\\n        \\\"mean\\\": 0.5655,\\n        \\\"std\\\": 0.1047,\\n        \\\"min\\\": 0.3222,\\n        \\\"max\\\": 0.7068,\\n        \\\"range\\\": 0.3846,\\n        \\\"cv\\\": 0.1852\\n      },\\n      \\\"L15\\\": {\\n        \\\"mean\\\": 0.5608,\\n        \\\"std\\\": 0.103,\\n        \\\"min\\\": 0.3226,\\n        \\\"max\\\": 0.6962,\\n        \\\"range\\\": 0.3736,\\n        \\\"cv\\\": 0.1837\\n      },\\n      \\\"L16\\\": {\\n        \\\"mean\\\": 0.5487,\\n        \\\"std\\\": 0.1117,\\n        \\\"min\\\": 0.2769,\\n        \\\"max\\\": 0.6931,\\n        \\\"range\\\": 0.4163,\\n        \\\"cv\\\": 0.2036\\n      },\\n      \\\"L17\\\": {\\n        \\\"mean\\\": 0.5456,\\n        \\\"std\\\": 0.1069,\\n        \\\"min\\\": 0.3173,\\n        \\\"max\\\": 0.6898,\\n        \\\"range\\\": 0.3724,\\n        \\\"cv\\\": 0.1959\\n      },\\n      \\\"L18\\\": {\\n        \\\"mean\\\": 0.5437,\\n        \\\"std\\\": 0.1107,\\n        \\\"min\\\": 0.3023,\\n        \\\"max\\\": 0.6938,\\n        \\\"range\\\": 0.3915,\\n        \\\"cv\\\": 0.2036\\n      },\\n      \\\"L19\\\": {\\n        \\\"mean\\\": 0.5432,\\n        \\\"std\\\": 0.1066,\\n        \\\"min\\\": 0.3112,\\n        \\\"max\\\": 0.6944,\\n        \\\"range\\\": 0.3832,\\n        \\\"cv\\\": 0.1962\\n      },\\n      \\\"L20\\\": {\\n        \\\"mean\\\": 0.5558,\\n        \\\"std\\\": 0.1007,\\n        \\\"min\\\": 0.3353,\\n        \\\"max\\\": 0.6915,\\n        \\\"range\\\": 0.3563,\\n        \\\"cv\\\": 0.1812\\n      },\\n      \\\"L21\\\": {\\n        \\\"mean\\\": 0.5491,\\n        \\\"std\\\": 0.1083,\\n        \\\"min\\\": 0.3019,\\n        \\\"max\\\": 0.6887,\\n        \\\"range\\\": 0.3868,\\n        \\\"cv\\\": 0.1972\\n      },\\n      \\\"L22\\\": {\\n        \\\"mean\\\": 0.5466,\\n        \\\"std\\\": 0.1048,\\n        \\\"min\\\": 0.3103,\\n        \\\"max\\\": 0.6808,\\n        \\\"range\\\": 0.3704,\\n        \\\"cv\\\": 0.1918\\n      },\\n      \\\"L23\\\": {\\n        \\\"mean\\\": 0.5436,\\n        \\\"std\\\": 0.1088,\\n        \\\"min\\\": 0.3013,\\n        \\\"max\\\": 0.6896,\\n        \\\"range\\\": 0.3882,\\n        \\\"cv\\\": 0.2001\\n      },\\n      \\\"L24\\\": {\\n        \\\"mean\\\": 0.5362,\\n        \\\"std\\\": 0.1112,\\n        \\\"min\\\": 0.2948,\\n        \\\"max\\\": 0.6816,\\n        \\\"range\\\": 0.3868,\\n        \\\"cv\\\": 0.2074\\n      },\\n      \\\"L25\\\": {\\n        \\\"mean\\\": 0.5308,\\n        \\\"std\\\": 0.1114,\\n        \\\"min\\\": 0.304,\\n        \\\"max\\\": 0.6785,\\n        \\\"range\\\": 0.3746,\\n        \\\"cv\\\": 0.2098\\n      },\\n      \\\"L26\\\": {\\n        \\\"mean\\\": 0.5138,\\n        \\\"std\\\": 0.1233,\\n        \\\"min\\\": 0.2452,\\n        \\\"max\\\": 0.6601,\\n        \\\"range\\\": 0.4149,\\n        \\\"cv\\\": 0.24\\n      },\\n      \\\"L27\\\": {\\n        \\\"mean\\\": 0.5144,\\n        \\\"std\\\": 0.1198,\\n        \\\"min\\\": 0.2544,\\n        \\\"max\\\": 0.6607,\\n        \\\"range\\\": 0.4063,\\n        \\\"cv\\\": 0.2328\\n      },\\n      \\\"L28\\\": {\\n        \\\"mean\\\": 0.5057,\\n        \\\"std\\\": 0.1219,\\n        \\\"min\\\": 0.231,\\n        \\\"max\\\": 0.6573,\\n        \\\"range\\\": 0.4263,\\n        \\\"cv\\\": 0.241\\n      },\\n      \\\"L29\\\": {\\n        \\\"mean\\\": 0.5224,\\n        \\\"std\\\": 0.1466,\\n        \\\"min\\\": 0.1606,\\n        \\\"max\\\": 0.6754,\\n        \\\"range\\\": 0.5148,\\n        \\\"cv\\\": 0.2807\\n      },\\n      \\\"L30\\\": {\\n        \\\"mean\\\": 0.4785,\\n        \\\"std\\\": 0.1541,\\n        \\\"min\\\": 0.149,\\n        \\\"max\\\": 0.644,\\n        \\\"range\\\": 0.495,\\n        \\\"cv\\\": 0.3221\\n      },\\n      \\\"L31\\\": {\\n        \\\"mean\\\": 0.4702,\\n        \\\"std\\\": 0.1306,\\n        \\\"min\\\": 0.1724,\\n        \\\"max\\\": 0.6327,\\n        \\\"range\\\": 0.4603,\\n        \\\"cv\\\": 0.2778\\n      },\\n      \\\"L32\\\": {\\n        \\\"mean\\\": 0.4811,\\n        \\\"std\\\": 0.1432,\\n        \\\"min\\\": 0.1328,\\n        \\\"max\\\": 0.6418,\\n        \\\"range\\\": 0.509,\\n        \\\"cv\\\": 0.2977\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "5bd07b3f-61f2-40bd-927a-bc842a239d9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"per_task_r2_distribution\\\\\\\",\\\\n  \\\\\\\"tasks\\\\\\\": [\\\\n    \\\\\\\"open the middle drawer of the cabinet\\\\\\\",\\\\n    \\\\\\\"open the top drawer and put the bowl inside\\\\\\\",\\\\n    \\\\\\\"push the plate to the front of the stove\\\\\\\",\\\\n    \\\\\\\"put the bowl on the plate\\\\\\\",\\\\n    \\\\\\\"put the bowl on the stove\\\\\\\",\\\\n    \\\\\\\"put the bowl on top of the cabinet\\\\\\\",\\\\n    \\\\\\\"put the cream cheese in the bowl\\\\\\\",\\\\n    \\\\\\\"put the wine bottle on the rack\\\\\\\",\\\\n    \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\",\\\\n    \\\\\\\"turn on the stove\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_tasks\\\\\\\": 10,\\\\n  \\\\\\\"mlp_probe_5demo\\\\\\\": {\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"MLP(4096,256,7) probe, 5 demos/task, per-task R2 distribution\\\\\\\",\\\\n    \\\\\\\"conditions\\\\\\\": {\\\\n      \\\\\\\"baseline\\\\\\\": {\\\\n        \\\\\\\"L1\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.1971,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.2649,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.1901,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.3754,\\\\n            \\\\\\\"put the bowl on the stove\\\\\\\": 0.2352,\\\\n            \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.2561,\\\\n            \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.186,\\\\n            \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.1894,\\\\n            \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.2789,\\\\n            \\\\\\\"turn on the stove\\\\\\\": 0.3854\\\\n          },\\\\n          \\\\\\\"mean\\\\\\\": 0.2559,\\\\n          \\\\\\\"std\\\\\\\": 0.0701,\\\\n          \\\\\\\"min\\\\\\\": 0.186,\\\\n          \\\\\\\"max\\\\\\\": 0.3854,\\\\n          \\\\\\\"range\\\\\\\": 0.1994\\\\n        },\\\\n        \\\\\\\"L8\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.4532,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.3757,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.3358,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.4371,\\\\n            \\\\\\\"put the bowl on the stove\\\\\\\": 0.396,\\\\n            \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.4519,\\\\n            \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.3797,\\\\n            \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.3917,\\\\n            \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.4624,\\\\n            \\\\\\\"turn on the stove\\\\\\\": 0.7171\\\\n          },\\\\n          \\\\\\\"mean\\\\\\\": 0.4401,\\\\n          \\\\\\\"std\\\\\\\": 0.1003,\\\\n          \\\\\\\"min\\\\\\\": 0.3358,\\\\n          \\\\\\\"max\\\\\\\": 0.7171,\\\\n          \\\\\\\"range\\\\\\\": 0.3813\\\\n        },\\\\n        \\\\\\\"L13\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.5686,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.5466,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.4092,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.3887,\\\\n            \\\\\\\"put the bowl on the stove\\\\\\\": 0.5352,\\\\n            \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6587,\\\\n            \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.5835,\\\\n            \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.4304,\\\\n            \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.3856,\\\\n            \\\\\\\"turn on the stove\\\\\\\": 0.7336\\\\n          },\\\\n          \\\\\\\"mean\\\\\\\": 0.524,\\\\n          \\\\\\\"std\\\\\\\": 0.113,\\\\n          \\\\\\\"min\\\\\\\": 0.3856,\\\\n          \\\\\\\"max\\\\\\\": 0.7336,\\\\n          \\\\\\\"range\\\\\\\": 0.348\\\\n        }\\\\n      },\\\\n      \\\\\\\"ablate_all24\\\\\\\": {\\\\n        \\\\\\\"L1\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.2211,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.3403,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.1968,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.474,\\\\n            \\\\\\\"put the bowl on the stove\\\\\\\": 0.395,\\\\n            \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.4567,\\\\n            \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.3454,\\\\n            \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.424,\\\\n            \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.3529,\\\\n            \\\\\\\"turn on the stove\\\\\\\": 0.4213\\\\n          },\\\\n          \\\\\\\"mean\\\\\\\": 0.3628,\\\\n          \\\\\\\"std\\\\\\\": 0.0883,\\\\n          \\\\\\\"min\\\\\\\": 0.1968,\\\\n          \\\\\\\"max\\\\\\\": 0.474,\\\\n          \\\\\\\"range\\\\\\\": 0.2772\\\\n        },\\\\n        \\\\\\\"L8\\\\\\\": {\\\\n          \\\\\\\"per_task_R2\\\\\\\": {\\\\n            \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.3808,\\\\n            \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.388,\\\\n            \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.3505,\\\\n            \\\\\\\"put the bowl on the plate\\\\\\\": 0.4295,\\\\n            \\\\\\\"put the bowl on the s\\\\n\\\\n... [截断: 输出过长，省略 12479 字符] ...\\\\n\\\\nmin\\\\\\\": 0.3051,\\\\n        \\\\\\\"max\\\\\\\": 0.7094,\\\\n        \\\\\\\"range\\\\\\\": 0.4044,\\\\n        \\\\\\\"cv\\\\\\\": 0.2004\\\\n      },\\\\n      \\\\\\\"L9\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5596,\\\\n        \\\\\\\"std\\\\\\\": 0.1094,\\\\n        \\\\\\\"min\\\\\\\": 0.3064,\\\\n        \\\\\\\"max\\\\\\\": 0.7031,\\\\n        \\\\\\\"range\\\\\\\": 0.3967,\\\\n        \\\\\\\"cv\\\\\\\": 0.1955\\\\n      },\\\\n      \\\\\\\"L10\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5546,\\\\n        \\\\\\\"std\\\\\\\": 0.1112,\\\\n        \\\\\\\"min\\\\\\\": 0.2983,\\\\n        \\\\\\\"max\\\\\\\": 0.6995,\\\\n        \\\\\\\"range\\\\\\\": 0.4013,\\\\n        \\\\\\\"cv\\\\\\\": 0.2004\\\\n      },\\\\n      \\\\\\\"L11\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5437,\\\\n        \\\\\\\"std\\\\\\\": 0.1053,\\\\n        \\\\\\\"min\\\\\\\": 0.3174,\\\\n        \\\\\\\"max\\\\\\\": 0.6863,\\\\n        \\\\\\\"range\\\\\\\": 0.3688,\\\\n        \\\\\\\"cv\\\\\\\": 0.1937\\\\n      },\\\\n      \\\\\\\"L12\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5607,\\\\n        \\\\\\\"std\\\\\\\": 0.0986,\\\\n        \\\\\\\"min\\\\\\\": 0.3305,\\\\n        \\\\\\\"max\\\\\\\": 0.683,\\\\n        \\\\\\\"range\\\\\\\": 0.3526,\\\\n        \\\\\\\"cv\\\\\\\": 0.1759\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.562,\\\\n        \\\\\\\"std\\\\\\\": 0.098,\\\\n        \\\\\\\"min\\\\\\\": 0.3328,\\\\n        \\\\\\\"max\\\\\\\": 0.6874,\\\\n        \\\\\\\"range\\\\\\\": 0.3546,\\\\n        \\\\\\\"cv\\\\\\\": 0.1743\\\\n      },\\\\n      \\\\\\\"L14\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5655,\\\\n        \\\\\\\"std\\\\\\\": 0.1047,\\\\n        \\\\\\\"min\\\\\\\": 0.3222,\\\\n        \\\\\\\"max\\\\\\\": 0.7068,\\\\n        \\\\\\\"range\\\\\\\": 0.3846,\\\\n        \\\\\\\"cv\\\\\\\": 0.1852\\\\n      },\\\\n      \\\\\\\"L15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5608,\\\\n        \\\\\\\"std\\\\\\\": 0.103,\\\\n        \\\\\\\"min\\\\\\\": 0.3226,\\\\n        \\\\\\\"max\\\\\\\": 0.6962,\\\\n        \\\\\\\"range\\\\\\\": 0.3736,\\\\n        \\\\\\\"cv\\\\\\\": 0.1837\\\\n      },\\\\n      \\\\\\\"L16\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5487,\\\\n        \\\\\\\"std\\\\\\\": 0.1117,\\\\n        \\\\\\\"min\\\\\\\": 0.2769,\\\\n        \\\\\\\"max\\\\\\\": 0.6931,\\\\n        \\\\\\\"range\\\\\\\": 0.4163,\\\\n        \\\\\\\"cv\\\\\\\": 0.2036\\\\n      },\\\\n      \\\\\\\"L17\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5456,\\\\n        \\\\\\\"std\\\\\\\": 0.1069,\\\\n        \\\\\\\"min\\\\\\\": 0.3173,\\\\n        \\\\\\\"max\\\\\\\": 0.6898,\\\\n        \\\\\\\"range\\\\\\\": 0.3724,\\\\n        \\\\\\\"cv\\\\\\\": 0.1959\\\\n      },\\\\n      \\\\\\\"L18\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5437,\\\\n        \\\\\\\"std\\\\\\\": 0.1107,\\\\n        \\\\\\\"min\\\\\\\": 0.3023,\\\\n        \\\\\\\"max\\\\\\\": 0.6938,\\\\n        \\\\\\\"range\\\\\\\": 0.3915,\\\\n        \\\\\\\"cv\\\\\\\": 0.2036\\\\n      },\\\\n      \\\\\\\"L19\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5432,\\\\n        \\\\\\\"std\\\\\\\": 0.1066,\\\\n        \\\\\\\"min\\\\\\\": 0.3112,\\\\n        \\\\\\\"max\\\\\\\": 0.6944,\\\\n        \\\\\\\"range\\\\\\\": 0.3832,\\\\n        \\\\\\\"cv\\\\\\\": 0.1962\\\\n      },\\\\n      \\\\\\\"L20\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5558,\\\\n        \\\\\\\"std\\\\\\\": 0.1007,\\\\n        \\\\\\\"min\\\\\\\": 0.3353,\\\\n        \\\\\\\"max\\\\\\\": 0.6915,\\\\n        \\\\\\\"range\\\\\\\": 0.3563,\\\\n        \\\\\\\"cv\\\\\\\": 0.1812\\\\n      },\\\\n      \\\\\\\"L21\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5491,\\\\n        \\\\\\\"std\\\\\\\": 0.1083,\\\\n        \\\\\\\"min\\\\\\\": 0.3019,\\\\n        \\\\\\\"max\\\\\\\": 0.6887,\\\\n        \\\\\\\"range\\\\\\\": 0.3868,\\\\n        \\\\\\\"cv\\\\\\\": 0.1972\\\\n      },\\\\n      \\\\\\\"L22\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5466,\\\\n        \\\\\\\"std\\\\\\\": 0.1048,\\\\n        \\\\\\\"min\\\\\\\": 0.3103,\\\\n        \\\\\\\"max\\\\\\\": 0.6808,\\\\n        \\\\\\\"range\\\\\\\": 0.3704,\\\\n        \\\\\\\"cv\\\\\\\": 0.1918\\\\n      },\\\\n      \\\\\\\"L23\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5436,\\\\n        \\\\\\\"std\\\\\\\": 0.1088,\\\\n        \\\\\\\"min\\\\\\\": 0.3013,\\\\n        \\\\\\\"max\\\\\\\": 0.6896,\\\\n        \\\\\\\"range\\\\\\\": 0.3882,\\\\n        \\\\\\\"cv\\\\\\\": 0.2001\\\\n      },\\\\n      \\\\\\\"L24\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5362,\\\\n        \\\\\\\"std\\\\\\\": 0.1112,\\\\n        \\\\\\\"min\\\\\\\": 0.2948,\\\\n        \\\\\\\"max\\\\\\\": 0.6816,\\\\n        \\\\\\\"range\\\\\\\": 0.3868,\\\\n        \\\\\\\"cv\\\\\\\": 0.2074\\\\n      },\\\\n      \\\\\\\"L25\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5308,\\\\n        \\\\\\\"std\\\\\\\": 0.1114,\\\\n        \\\\\\\"min\\\\\\\": 0.304,\\\\n        \\\\\\\"max\\\\\\\": 0.6785,\\\\n        \\\\\\\"range\\\\\\\": 0.3746,\\\\n        \\\\\\\"cv\\\\\\\": 0.2098\\\\n      },\\\\n      \\\\\\\"L26\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5138,\\\\n        \\\\\\\"std\\\\\\\": 0.1233,\\\\n        \\\\\\\"min\\\\\\\": 0.2452,\\\\n        \\\\\\\"max\\\\\\\": 0.6601,\\\\n        \\\\\\\"range\\\\\\\": 0.4149,\\\\n        \\\\\\\"cv\\\\\\\": 0.24\\\\n      },\\\\n      \\\\\\\"L27\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5144,\\\\n        \\\\\\\"std\\\\\\\": 0.1198,\\\\n        \\\\\\\"min\\\\\\\": 0.2544,\\\\n        \\\\\\\"max\\\\\\\": 0.6607,\\\\n        \\\\\\\"range\\\\\\\": 0.4063,\\\\n        \\\\\\\"cv\\\\\\\": 0.2328\\\\n      },\\\\n      \\\\\\\"L28\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5057,\\\\n        \\\\\\\"std\\\\\\\": 0.1219,\\\\n        \\\\\\\"min\\\\\\\": 0.231,\\\\n        \\\\\\\"max\\\\\\\": 0.6573,\\\\n        \\\\\\\"range\\\\\\\": 0.4263,\\\\n        \\\\\\\"cv\\\\\\\": 0.241\\\\n      },\\\\n      \\\\\\\"L29\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5224,\\\\n        \\\\\\\"std\\\\\\\": 0.1466,\\\\n        \\\\\\\"min\\\\\\\": 0.1606,\\\\n        \\\\\\\"max\\\\\\\": 0.6754,\\\\n        \\\\\\\"range\\\\\\\": 0.5148,\\\\n        \\\\\\\"cv\\\\\\\": 0.2807\\\\n      },\\\\n      \\\\\\\"L30\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4785,\\\\n        \\\\\\\"std\\\\\\\": 0.1541,\\\\n        \\\\\\\"min\\\\\\\": 0.149,\\\\n        \\\\\\\"max\\\\\\\": 0.644,\\\\n        \\\\\\\"range\\\\\\\": 0.495,\\\\n        \\\\\\\"cv\\\\\\\": 0.3221\\\\n      },\\\\n      \\\\\\\"L31\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4702,\\\\n        \\\\\\\"std\\\\\\\": 0.1306,\\\\n        \\\\\\\"min\\\\\\\": 0.1724,\\\\n        \\\\\\\"max\\\\\\\": 0.6327,\\\\n        \\\\\\\"range\\\\\\\": 0.4603,\\\\n        \\\\\\\"cv\\\\\\\": 0.2778\\\\n      },\\\\n      \\\\\\\"L32\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4811,\\\\n        \\\\\\\"std\\\\\\\": 0.1432,\\\\n        \\\\\\\"min\\\\\\\": 0.1328,\\\\n        \\\\\\\"max\\\\\\\": 0.6418,\\\\n        \\\\\\\"range\\\\\\\": 0.509,\\\\n        \\\\\\\"cv\\\\\\\": 0.2977\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"per_task_r2_distribution\\\",\\n  \\\"tasks\\\": [\\n    \\\"open the middle drawer of the cabinet\\\",\\n    \\\"open the top drawer and put the bowl inside\\\",\\n    \\\"push the plate to the front of the stove\\\",\\n    \\\"put the bowl on the plate\\\",\\n    \\\"put the bowl on the stove\\\",\\n    \\\"put the bowl on top of the cabinet\\\",\\n    \\\"put the cream cheese in the bowl\\\",\\n    \\\"put the wine bottle on the rack\\\",\\n    \\\"put the wine bottle on top of the cabinet\\\",\\n    \\\"turn on the stove\\\"\\n  ],\\n  \\\"n_tasks\\\": 10,\\n  \\\"mlp_probe_5demo\\\": {\\n    \\\"description\\\": \\\"MLP(4096,256,7) probe, 5 demos/task, per-task R2 distribution\\\",\\n    \\\"conditions\\\": {\\n      \\\"baseline\\\": {\\n        \\\"L1\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.1971,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.2649,\\n            \\\"push the plate to the front of the stove\\\": 0.1901,\\n            \\\"put the bowl on the plate\\\": 0.3754,\\n            \\\"put the bowl on the stove\\\": 0.2352,\\n            \\\"put the bowl on top of the cabinet\\\": 0.2561,\\n            \\\"put the cream cheese in the bowl\\\": 0.186,\\n            \\\"put the wine bottle on the rack\\\": 0.1894,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.2789,\\n            \\\"turn on the stove\\\": 0.3854\\n          },\\n          \\\"mean\\\": 0.2559,\\n          \\\"std\\\": 0.0701,\\n          \\\"min\\\": 0.186,\\n          \\\"max\\\": 0.3854,\\n          \\\"range\\\": 0.1994\\n        },\\n        \\\"L8\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.4532,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.3757,\\n            \\\"push the plate to the front of the stove\\\": 0.3358,\\n            \\\"put the bowl on the plate\\\": 0.4371,\\n            \\\"put the bowl on the stove\\\": 0.396,\\n            \\\"put the bowl on top of the cabinet\\\": 0.4519,\\n            \\\"put the cream cheese in the bowl\\\": 0.3797,\\n            \\\"put the wine bottle on the rack\\\": 0.3917,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.4624,\\n            \\\"turn on the stove\\\": 0.7171\\n          },\\n          \\\"mean\\\": 0.4401,\\n          \\\"std\\\": 0.1003,\\n          \\\"min\\\": 0.3358,\\n          \\\"max\\\": 0.7171,\\n          \\\"range\\\": 0.3813\\n        },\\n        \\\"L13\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.5686,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.5466,\\n            \\\"push the plate to the front of the stove\\\": 0.4092,\\n            \\\"put the bowl on the plate\\\": 0.3887,\\n            \\\"put the bowl on the stove\\\": 0.5352,\\n            \\\"put the bowl on top of the cabinet\\\": 0.6587,\\n            \\\"put the cream cheese in the bowl\\\": 0.5835,\\n            \\\"put the wine bottle on the rack\\\": 0.4304,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.3856,\\n            \\\"turn on the stove\\\": 0.7336\\n          },\\n          \\\"mean\\\": 0.524,\\n          \\\"std\\\": 0.113,\\n          \\\"min\\\": 0.3856,\\n          \\\"max\\\": 0.7336,\\n          \\\"range\\\": 0.348\\n        }\\n      },\\n      \\\"ablate_all24\\\": {\\n        \\\"L1\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.2211,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.3403,\\n            \\\"push the plate to the front of the stove\\\": 0.1968,\\n            \\\"put the bowl on the plate\\\": 0.474,\\n            \\\"put the bowl on the stove\\\": 0.395,\\n            \\\"put the bowl on top of the cabinet\\\": 0.4567,\\n            \\\"put the cream cheese in the bowl\\\": 0.3454,\\n            \\\"put the wine bottle on the rack\\\": 0.424,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.3529,\\n            \\\"turn on the stove\\\": 0.4213\\n          },\\n          \\\"mean\\\": 0.3628,\\n          \\\"std\\\": 0.0883,\\n          \\\"min\\\": 0.1968,\\n          \\\"max\\\": 0.474,\\n          \\\"range\\\": 0.2772\\n        },\\n        \\\"L8\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.3808,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.388,\\n            \\\"push the plate to the front of the stove\\\": 0.3505,\\n            \\\"put the bowl on the plate\\\": 0.4295,\\n            \\\"put the bowl on the s\\n\\n... [截断: 输出过长，省略 12479 字符] ...\\n\\nmin\\\": 0.3051,\\n        \\\"max\\\": 0.7094,\\n        \\\"range\\\": 0.4044,\\n        \\\"cv\\\": 0.2004\\n      },\\n      \\\"L9\\\": {\\n        \\\"mean\\\": 0.5596,\\n        \\\"std\\\": 0.1094,\\n        \\\"min\\\": 0.3064,\\n        \\\"max\\\": 0.7031,\\n        \\\"range\\\": 0.3967,\\n        \\\"cv\\\": 0.1955\\n      },\\n      \\\"L10\\\": {\\n        \\\"mean\\\": 0.5546,\\n        \\\"std\\\": 0.1112,\\n        \\\"min\\\": 0.2983,\\n        \\\"max\\\": 0.6995,\\n        \\\"range\\\": 0.4013,\\n        \\\"cv\\\": 0.2004\\n      },\\n      \\\"L11\\\": {\\n        \\\"mean\\\": 0.5437,\\n        \\\"std\\\": 0.1053,\\n        \\\"min\\\": 0.3174,\\n        \\\"max\\\": 0.6863,\\n        \\\"range\\\": 0.3688,\\n        \\\"cv\\\": 0.1937\\n      },\\n      \\\"L12\\\": {\\n        \\\"mean\\\": 0.5607,\\n        \\\"std\\\": 0.0986,\\n        \\\"min\\\": 0.3305,\\n        \\\"max\\\": 0.683,\\n        \\\"range\\\": 0.3526,\\n        \\\"cv\\\": 0.1759\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean\\\": 0.562,\\n        \\\"std\\\": 0.098,\\n        \\\"min\\\": 0.3328,\\n        \\\"max\\\": 0.6874,\\n        \\\"range\\\": 0.3546,\\n        \\\"cv\\\": 0.1743\\n      },\\n      \\\"L14\\\": {\\n        \\\"mean\\\": 0.5655,\\n        \\\"std\\\": 0.1047,\\n        \\\"min\\\": 0.3222,\\n        \\\"max\\\": 0.7068,\\n        \\\"range\\\": 0.3846,\\n        \\\"cv\\\": 0.1852\\n      },\\n      \\\"L15\\\": {\\n        \\\"mean\\\": 0.5608,\\n        \\\"std\\\": 0.103,\\n        \\\"min\\\": 0.3226,\\n        \\\"max\\\": 0.6962,\\n        \\\"range\\\": 0.3736,\\n        \\\"cv\\\": 0.1837\\n      },\\n      \\\"L16\\\": {\\n        \\\"mean\\\": 0.5487,\\n        \\\"std\\\": 0.1117,\\n        \\\"min\\\": 0.2769,\\n        \\\"max\\\": 0.6931,\\n        \\\"range\\\": 0.4163,\\n        \\\"cv\\\": 0.2036\\n      },\\n      \\\"L17\\\": {\\n        \\\"mean\\\": 0.5456,\\n        \\\"std\\\": 0.1069,\\n        \\\"min\\\": 0.3173,\\n        \\\"max\\\": 0.6898,\\n        \\\"range\\\": 0.3724,\\n        \\\"cv\\\": 0.1959\\n      },\\n      \\\"L18\\\": {\\n        \\\"mean\\\": 0.5437,\\n        \\\"std\\\": 0.1107,\\n        \\\"min\\\": 0.3023,\\n        \\\"max\\\": 0.6938,\\n        \\\"range\\\": 0.3915,\\n        \\\"cv\\\": 0.2036\\n      },\\n      \\\"L19\\\": {\\n        \\\"mean\\\": 0.5432,\\n        \\\"std\\\": 0.1066,\\n        \\\"min\\\": 0.3112,\\n        \\\"max\\\": 0.6944,\\n        \\\"range\\\": 0.3832,\\n        \\\"cv\\\": 0.1962\\n      },\\n      \\\"L20\\\": {\\n        \\\"mean\\\": 0.5558,\\n        \\\"std\\\": 0.1007,\\n        \\\"min\\\": 0.3353,\\n        \\\"max\\\": 0.6915,\\n        \\\"range\\\": 0.3563,\\n        \\\"cv\\\": 0.1812\\n      },\\n      \\\"L21\\\": {\\n        \\\"mean\\\": 0.5491,\\n        \\\"std\\\": 0.1083,\\n        \\\"min\\\": 0.3019,\\n        \\\"max\\\": 0.6887,\\n        \\\"range\\\": 0.3868,\\n        \\\"cv\\\": 0.1972\\n      },\\n      \\\"L22\\\": {\\n        \\\"mean\\\": 0.5466,\\n        \\\"std\\\": 0.1048,\\n        \\\"min\\\": 0.3103,\\n        \\\"max\\\": 0.6808,\\n        \\\"range\\\": 0.3704,\\n        \\\"cv\\\": 0.1918\\n      },\\n      \\\"L23\\\": {\\n        \\\"mean\\\": 0.5436,\\n        \\\"std\\\": 0.1088,\\n        \\\"min\\\": 0.3013,\\n        \\\"max\\\": 0.6896,\\n        \\\"range\\\": 0.3882,\\n        \\\"cv\\\": 0.2001\\n      },\\n      \\\"L24\\\": {\\n        \\\"mean\\\": 0.5362,\\n        \\\"std\\\": 0.1112,\\n        \\\"min\\\": 0.2948,\\n        \\\"max\\\": 0.6816,\\n        \\\"range\\\": 0.3868,\\n        \\\"cv\\\": 0.2074\\n      },\\n      \\\"L25\\\": {\\n        \\\"mean\\\": 0.5308,\\n        \\\"std\\\": 0.1114,\\n        \\\"min\\\": 0.304,\\n        \\\"max\\\": 0.6785,\\n        \\\"range\\\": 0.3746,\\n        \\\"cv\\\": 0.2098\\n      },\\n      \\\"L26\\\": {\\n        \\\"mean\\\": 0.5138,\\n        \\\"std\\\": 0.1233,\\n        \\\"min\\\": 0.2452,\\n        \\\"max\\\": 0.6601,\\n        \\\"range\\\": 0.4149,\\n        \\\"cv\\\": 0.24\\n      },\\n      \\\"L27\\\": {\\n        \\\"mean\\\": 0.5144,\\n        \\\"std\\\": 0.1198,\\n        \\\"min\\\": 0.2544,\\n        \\\"max\\\": 0.6607,\\n        \\\"range\\\": 0.4063,\\n        \\\"cv\\\": 0.2328\\n      },\\n      \\\"L28\\\": {\\n        \\\"mean\\\": 0.5057,\\n        \\\"std\\\": 0.1219,\\n        \\\"min\\\": 0.231,\\n        \\\"max\\\": 0.6573,\\n        \\\"range\\\": 0.4263,\\n        \\\"cv\\\": 0.241\\n      },\\n      \\\"L29\\\": {\\n        \\\"mean\\\": 0.5224,\\n        \\\"std\\\": 0.1466,\\n        \\\"min\\\": 0.1606,\\n        \\\"max\\\": 0.6754,\\n        \\\"range\\\": 0.5148,\\n        \\\"cv\\\": 0.2807\\n      },\\n      \\\"L30\\\": {\\n        \\\"mean\\\": 0.4785,\\n        \\\"std\\\": 0.1541,\\n        \\\"min\\\": 0.149,\\n        \\\"max\\\": 0.644,\\n        \\\"range\\\": 0.495,\\n        \\\"cv\\\": 0.3221\\n      },\\n      \\\"L31\\\": {\\n        \\\"mean\\\": 0.4702,\\n        \\\"std\\\": 0.1306,\\n        \\\"min\\\": 0.1724,\\n        \\\"max\\\": 0.6327,\\n        \\\"range\\\": 0.4603,\\n        \\\"cv\\\": 0.2778\\n      },\\n      \\\"L32\\\": {\\n        \\\"mean\\\": 0.4811,\\n        \\\"std\\\": 0.1432,\\n        \\\"min\\\": 0.1328,\\n        \\\"max\\\": 0.6418,\\n        \\\"range\\\": 0.509,\\n        \\\"cv\\\": 0.2977\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The R² data was truncated. Let me understand what we have:
+
+**per_task_mse_breakdown.json**: Only has 3 tasks (open_the_middle_drawer, open_the_top_drawer_and_put_the_bowl_inside, push_the_plate_to_the_front_of_the_stove) with original_mse, top24_ablated_mse, bottom24_ablated_mse. This is an ablation analysis, not a simple per-task action MSE from evaluation.
+
+**per_task_r2_distribution.json**: Has 10 LIBERO-Goal tasks with per-task R² values across multiple layers (L1, L8, L13) and conditions (baseline, ablate_all24). 
+
+There's also a "25demo_trained" section with layer-by-layer data spanning L1 through L32. The core issue is that the MSE breakdown only covers 3 tasks while the R² distribution has 10 tasks, so they don't overlap completely. The MSE data appears to be from head ablation experiments showing how baseline performance changes when specific attention heads are removed, but I'm only seeing results for a subset of the tasks.
+
+I need to search through the other available files—particularly the action probe data and functional validation results—to find per-task MSE metrics that cover all 10 tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "e3a0fe11-1973-4e33-b3f9-78e0179d02db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBf1hNmLREj7ahUsiPq1NU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6327,
+      "cache_read_input_tokens": 27931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6327
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+MSE 数据只有 3 个 task，R² 有 10 个 task。需要找到完整的 per-task action MSE 数据。让我进一步搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "f48ba3f8-c6c2-4731-9885-2c7120f981b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBf1hNmLREj7ahUsiPq1NU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6327,
+      "cache_read_input_tokens": 27931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6327
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BhPSZh6syci22Q6P2eJhRp`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/l1_head_ablation/ablation_50demos_combined.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "6bfef1c3-4b5b-4548-b232-acc273f7a71c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBf1hNmLREj7ahUsiPq1NU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6327,
+      "cache_read_input_tokens": 27931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6327
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xn5BTnbf5hcNRTjxZWSiHE`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "7c275265-2e5a-4d06-b889-6564cbc15e4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBf1hNmLREj7ahUsiPq1NU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6327,
+      "cache_read_input_tokens": 27931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6327
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T12:33:20.016Z_
+
+<details><summary>↩ Tool result · `toolu_01BhPSZh6syci22Q6P2eJhRp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"means\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": 0.5567,\\n      \\\"L8\\\": 0.6199,\\n      \\\"L13\\\": 0.6763\\n    },\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": 0.5732,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6787\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": 0.6153,\\n      \\\"L8\\\": 0.6377,\\n      \\\"L13\\\": 0.6762\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": 0.5823,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6636\\n    }\\n  },\\n  \\\"bootstrap_ci\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": {\\n        \\\"ci_lo\\\": 0.5031997499999998,\\n        \\\"ci_hi\\\": 0.61418\\n      },\\n      \\\"L8\\\": {\\n        \\\"ci_lo\\\": 0.5679982499999999,\\n        \\\"ci_hi\\\": 0.67471\\n      },\\n      \\\"L13\\\": {\\n        \\\"ci_lo\\\": 0.6334595000000002,\\n        \\\"ci_hi\\\": 0.7226127499999998\\n      }\\n    },\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": {\\n        \\\"ci_lo\\\": 0.5152987500000001,\\n        \\\"ci_hi\\\": 0.6317999999999999\\n      },\\n      \\\"L8\\\": {\\n        \\\"ci_lo\\\": 0.5785172499999999,\\n        \\\"ci_hi\\\": 0.6834715\\n      },\\n      \\\"L13\\\": {\\n        \\\"ci_lo\\\": 0.63152,\\n        \\\"ci_hi\\\": 0.72624\\n      }\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"ci_lo\\\": 0.56369825,\\n        \\\"ci_hi\\\": 0.6666\\n      },\\n      \\\"L8\\\": {\\n        \\\"ci_lo\\\": 0.58909875,\\n        \\\"ci_hi\\\": 0.6888704999999999\\n      },\\n      \\\"L13\\\": {\\n        \\\"ci_lo\\\": 0.63306875,\\n        \\\"ci_hi\\\": 0.72317175\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"ci_lo\\\": 0.528179,\\n        \\\"ci_hi\\\": 0.6386010000000001\\n      },\\n      \\\"L8\\\": {\\n        \\\"ci_lo\\\": 0.5786582499999999,\\n        \\\"ci_hi\\\": 0.68366175\\n      },\\n      \\\"L13\\\": {\\n        \\\"ci_lo\\\": 0.62122925,\\n        \\\"ci_hi\\\": 0.70936025\\n      }\\n    }\\n  },\\n  \\\"diff_vs_baseline\\\": {\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"delta\\\": 0.05854999999999999,\\n        \\\"ci_lo\\\": 0.041999999999999926,\\n        \\\"ci_hi\\\": 0.07519024999999997,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"L8\\\": {\\n        \\\"delta\\\": 0.0177299999999998,\\n        \\\"ci_lo\\\": 0.008529749999999931,\\n        \\\"ci_hi\\\": 0.02770049999999994,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"L13\\\": {\\n        \\\"delta\\\": -0.000160000000000049,\\n        \\\"ci_lo\\\": -0.008709999999999888,\\n        \\\"ci_hi\\\": 0.008780250000000009,\\n        \\\"p\\\": 0.9556\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"delta\\\": 0.025579999999999936,\\n        \\\"ci_lo\\\": 0.015270000000000002,\\n        \\\"ci_hi\\\": 0.03698000000000001,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"L8\\\": {\\n        \\\"delta\\\": 0.011159999999999948,\\n        \\\"ci_lo\\\": -0.007510000000000017,\\n        \\\"ci_hi\\\": 0.028931000000000102,\\n        \\\"p\\\": 0.2394\\n      },\\n      \\\"L13\\\": {\\n        \\\"delta\\\": -0.012739999999999974,\\n        \\\"ci_lo\\\": -0.026109999999999974,\\n        \\\"ci_hi\\\": -0.0019797499999999867,\\n        \\\"p\\\": 0.0138\\n      }\\n    },\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": {\\n        \\\"delta\\\": 0.01647999999999994,\\n        \\\"ci_lo\\\": 0.004618999999999855,\\n        \\\"ci_hi\\\": 0.026859999999999887,\\n        \\\"p\\\": 0.0084\\n      },\\n      \\\"L8\\\": {\\n        \\\"delta\\\": 0.011089999999999933,\\n        \\\"ci_lo\\\": 0.0018097499999998685,\\n        \\\"ci_hi\\\": 0.02240999999999982,\\n        \\\"p\\\": 0.0166\\n      },\\n      \\\"L13\\\": {\\n        \\\"delta\\\": 0.0022999999999999687,\\n        \\\"ci_lo\\\": -0.007790250000000287,\\n        \\\"ci_hi\\\": 0.011329999999999955,\\n        \\\"p\\\": 0.6308\\n      }\\n    }\\n  },\\n  \\\"specificity_all24_vs_control8\\\": {\\n    \\\"L1\\\": {\\n      \\\"delta\\\": 0.04207000000000005,\\n      \\\"ci_lo\\\": 0.028569749999999984,\\n      \\\"ci_hi\\\": 0.05628999999999995,\\n      \\\"p\\\": 0.0\\n    },\\n    \\\"L8\\\": {\\n      \\\"delta\\\": 0.006639999999999868,\\n      \\\"ci_lo\\\": -0.0042802500000000574,\\n      \\\"ci_hi\\\": 0.018699999999999942,\\n      \\\"p\\\": 0.2516\\n    },\\n    \\\"L13\\\": {\\n      \\\"delta\\\": -0.0024600000000000177,\\n      \\\"ci_lo\\\": -0.016900250000000026,\\n      \\\"ci_hi\\\": 0.012950000000000022,\\n      \\\"p\\\": 0.7354\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"seed\\\": 42,\\n    \\\"conditions\\\": [\\n      \\\"baseline\\\",\\n      \\\"ablate_control8\\\",\\n      \\\"ablate_all24\\\",\\n      \\\"ablate_all32\\\"\\n    ],\\n    \\\"layers\\\": [\\n      \\\"L1\\\",\\n      \\\"L8\\\",\\n      \\\"L13\\\"\\n    ],\\n    \\\"source_files\\\": [\\n      \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\",\\n      \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "fb008e61-ff8b-419a-8c49-14c8851561aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"means\\\\\\\": {\\\\n    \\\\\\\"baseline\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.5567,\\\\n      \\\\\\\"L8\\\\\\\": 0.6199,\\\\n      \\\\\\\"L13\\\\\\\": 0.6763\\\\n    },\\\\n    \\\\\\\"ablate_control8\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.5732,\\\\n      \\\\\\\"L8\\\\\\\": 0.6311,\\\\n      \\\\\\\"L13\\\\\\\": 0.6787\\\\n    },\\\\n    \\\\\\\"ablate_all24\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.6153,\\\\n      \\\\\\\"L8\\\\\\\": 0.6377,\\\\n      \\\\\\\"L13\\\\\\\": 0.6762\\\\n    },\\\\n    \\\\\\\"ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.5823,\\\\n      \\\\\\\"L8\\\\\\\": 0.6311,\\\\n      \\\\\\\"L13\\\\\\\": 0.6636\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n    \\\\\\\"baseline\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5031997499999998,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.61418\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5679982499999999,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.67471\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6334595000000002,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7226127499999998\\\\n      }\\\\n    },\\\\n    \\\\\\\"ablate_control8\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5152987500000001,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6317999999999999\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5785172499999999,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6834715\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.63152,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.72624\\\\n      }\\\\n    },\\\\n    \\\\\\\"ablate_all24\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.56369825,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6666\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.58909875,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6888704999999999\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.63306875,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.72317175\\\\n      }\\\\n    },\\\\n    \\\\\\\"ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.528179,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6386010000000001\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5786582499999999,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.68366175\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.62122925,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.70936025\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"diff_vs_baseline\\\\\\\": {\\\\n    \\\\\\\"ablate_all24\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.05854999999999999,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.041999999999999926,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.07519024999999997,\\\\n        \\\\\\\"p\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.0177299999999998,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.008529749999999931,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.02770049999999994,\\\\n        \\\\\\\"p\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": -0.000160000000000049,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.008709999999999888,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.008780250000000009,\\\\n        \\\\\\\"p\\\\\\\": 0.9556\\\\n      }\\\\n    },\\\\n    \\\\\\\"ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.025579999999999936,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.015270000000000002,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.03698000000000001,\\\\n        \\\\\\\"p\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.011159999999999948,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.007510000000000017,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.028931000000000102,\\\\n        \\\\\\\"p\\\\\\\": 0.2394\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": -0.012739999999999974,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.026109999999999974,\\\\n        \\\\\\\"ci_hi\\\\\\\": -0.0019797499999999867,\\\\n        \\\\\\\"p\\\\\\\": 0.0138\\\\n      }\\\\n    },\\\\n    \\\\\\\"ablate_control8\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.01647999999999994,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.004618999999999855,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.026859999999999887,\\\\n        \\\\\\\"p\\\\\\\": 0.0084\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.011089999999999933,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.0018097499999998685,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.02240999999999982,\\\\n        \\\\\\\"p\\\\\\\": 0.0166\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"delta\\\\\\\": 0.0022999999999999687,\\\\n        \\\\\\\"ci_lo\\\\\\\": -0.007790250000000287,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.011329999999999955,\\\\n        \\\\\\\"p\\\\\\\": 0.6308\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"specificity_all24_vs_control8\\\\\\\": {\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.04207000000000005,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.028569749999999984,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.05628999999999995,\\\\n      \\\\\\\"p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"L8\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.006639999999999868,\\\\n      \\\\\\\"ci_lo\\\\\\\": -0.0042802500000000574,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.018699999999999942,\\\\n      \\\\\\\"p\\\\\\\": 0.2516\\\\n    },\\\\n    \\\\\\\"L13\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.0024600000000000177,\\\\n      \\\\\\\"ci_lo\\\\\\\": -0.016900250000000026,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.012950000000000022,\\\\n      \\\\\\\"p\\\\\\\": 0.7354\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"conditions\\\\\\\": [\\\\n      \\\\\\\"baseline\\\\\\\",\\\\n      \\\\\\\"ablate_control8\\\\\\\",\\\\n      \\\\\\\"ablate_all24\\\\\\\",\\\\n      \\\\\\\"ablate_all32\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"layers\\\\\\\": [\\\\n      \\\\\\\"L1\\\\\\\",\\\\n      \\\\\\\"L8\\\\\\\",\\\\n      \\\\\\\"L13\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"source_files\\\\\\\": [\\\\n      \\\\\\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\\\\\",\\\\n      \\\\\\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\\\\\\"\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"means\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": 0.5567,\\n      \\\"L8\\\": 0.6199,\\n      \\\"L13\\\": 0.6763\\n    },\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": 0.5732,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6787\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": 0.6153,\\n      \\\"L8\\\": 0.6377,\\n      \\\"L13\\\": 0.6762\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": 0.5823,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6636\\n    }\\n  },\\n  \\\"bootstrap_ci\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": {\\n        \\\"ci_lo\\\": 0.5031997499999998,\\n        \\\"ci_hi\\\": 0.61418\\n      },\\n      \\\"L8\\\": {\\n        \\\"ci_lo\\\": 0.5679982499999999,\\n        \\\"ci_hi\\\": 0.67471\\n      },\\n      \\\"L13\\\": {\\n        \\\"ci_lo\\\": 0.6334595000000002,\\n        \\\"ci_hi\\\": 0.7226127499999998\\n      }\\n    },\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": {\\n        \\\"ci_lo\\\": 0.5152987500000001,\\n        \\\"ci_hi\\\": 0.6317999999999999\\n      },\\n      \\\"L8\\\": {\\n        \\\"ci_lo\\\": 0.5785172499999999,\\n        \\\"ci_hi\\\": 0.6834715\\n      },\\n      \\\"L13\\\": {\\n        \\\"ci_lo\\\": 0.63152,\\n        \\\"ci_hi\\\": 0.72624\\n      }\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"ci_lo\\\": 0.56369825,\\n        \\\"ci_hi\\\": 0.6666\\n      },\\n      \\\"L8\\\": {\\n        \\\"ci_lo\\\": 0.58909875,\\n        \\\"ci_hi\\\": 0.6888704999999999\\n      },\\n      \\\"L13\\\": {\\n        \\\"ci_lo\\\": 0.63306875,\\n        \\\"ci_hi\\\": 0.72317175\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"ci_lo\\\": 0.528179,\\n        \\\"ci_hi\\\": 0.6386010000000001\\n      },\\n      \\\"L8\\\": {\\n        \\\"ci_lo\\\": 0.5786582499999999,\\n        \\\"ci_hi\\\": 0.68366175\\n      },\\n      \\\"L13\\\": {\\n        \\\"ci_lo\\\": 0.62122925,\\n        \\\"ci_hi\\\": 0.70936025\\n      }\\n    }\\n  },\\n  \\\"diff_vs_baseline\\\": {\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"delta\\\": 0.05854999999999999,\\n        \\\"ci_lo\\\": 0.041999999999999926,\\n        \\\"ci_hi\\\": 0.07519024999999997,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"L8\\\": {\\n        \\\"delta\\\": 0.0177299999999998,\\n        \\\"ci_lo\\\": 0.008529749999999931,\\n        \\\"ci_hi\\\": 0.02770049999999994,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"L13\\\": {\\n        \\\"delta\\\": -0.000160000000000049,\\n        \\\"ci_lo\\\": -0.008709999999999888,\\n        \\\"ci_hi\\\": 0.008780250000000009,\\n        \\\"p\\\": 0.9556\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"delta\\\": 0.025579999999999936,\\n        \\\"ci_lo\\\": 0.015270000000000002,\\n        \\\"ci_hi\\\": 0.03698000000000001,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"L8\\\": {\\n        \\\"delta\\\": 0.011159999999999948,\\n        \\\"ci_lo\\\": -0.007510000000000017,\\n        \\\"ci_hi\\\": 0.028931000000000102,\\n        \\\"p\\\": 0.2394\\n      },\\n      \\\"L13\\\": {\\n        \\\"delta\\\": -0.012739999999999974,\\n        \\\"ci_lo\\\": -0.026109999999999974,\\n        \\\"ci_hi\\\": -0.0019797499999999867,\\n        \\\"p\\\": 0.0138\\n      }\\n    },\\n    \\\"ablate_control8\\\": {\\n      \\\"L1\\\": {\\n        \\\"delta\\\": 0.01647999999999994,\\n        \\\"ci_lo\\\": 0.004618999999999855,\\n        \\\"ci_hi\\\": 0.026859999999999887,\\n        \\\"p\\\": 0.0084\\n      },\\n      \\\"L8\\\": {\\n        \\\"delta\\\": 0.011089999999999933,\\n        \\\"ci_lo\\\": 0.0018097499999998685,\\n        \\\"ci_hi\\\": 0.02240999999999982,\\n        \\\"p\\\": 0.0166\\n      },\\n      \\\"L13\\\": {\\n        \\\"delta\\\": 0.0022999999999999687,\\n        \\\"ci_lo\\\": -0.007790250000000287,\\n        \\\"ci_hi\\\": 0.011329999999999955,\\n        \\\"p\\\": 0.6308\\n      }\\n    }\\n  },\\n  \\\"specificity_all24_vs_control8\\\": {\\n    \\\"L1\\\": {\\n      \\\"delta\\\": 0.04207000000000005,\\n      \\\"ci_lo\\\": 0.028569749999999984,\\n      \\\"ci_hi\\\": 0.05628999999999995,\\n      \\\"p\\\": 0.0\\n    },\\n    \\\"L8\\\": {\\n      \\\"delta\\\": 0.006639999999999868,\\n      \\\"ci_lo\\\": -0.0042802500000000574,\\n      \\\"ci_hi\\\": 0.018699999999999942,\\n      \\\"p\\\": 0.2516\\n    },\\n    \\\"L13\\\": {\\n      \\\"delta\\\": -0.0024600000000000177,\\n      \\\"ci_lo\\\": -0.016900250000000026,\\n      \\\"ci_hi\\\": 0.012950000000000022,\\n      \\\"p\\\": 0.7354\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"seed\\\": 42,\\n    \\\"conditions\\\": [\\n      \\\"baseline\\\",\\n      \\\"ablate_control8\\\",\\n      \\\"ablate_all24\\\",\\n      \\\"ablate_all32\\\"\\n    ],\\n    \\\"layers\\\": [\\n      \\\"L1\\\",\\n      \\\"L8\\\",\\n      \\\"L13\\\"\\n    ],\\n    \\\"source_files\\\": [\\n      \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\",\\n      \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos_control8.json\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MkcmVoSSoEzAUdJBSRjAJF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "0e975c20-e1c6-43e1-bbe8-75726ad27cde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBf1hNmLREj7ahUsiPq1NU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6327,
+      "cache_read_input_tokens": 27931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6327
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T12:33:20.607Z_
+
+<details><summary>↩ Tool result · `toolu_01Xn5BTnbf5hcNRTjxZWSiHE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"action_probe_R2\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": 0.5567,\\n      \\\"L8\\\": 0.6199,\\n      \\\"L13\\\": 0.6763\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": 0.6153,\\n      \\\"L8\\\": 0.6377,\\n      \\\"L13\\\": 0.6762\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": 0.5823,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6636\\n    }\\n  },\\n  \\\"bootstrap_paired_CI\\\": {\\n    \\\"baseline_vs_ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"observed_diff\\\": 0.0585,\\n        \\\"CI_95\\\": [\\n          0.0418,\\n          0.0748\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.5567,\\n        \\\"baseline_CI_95\\\": [\\n          0.5038,\\n          0.6144\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6153,\\n        \\\"ablation_CI_95\\\": [\\n          0.5634,\\n          0.6664\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0218,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0714,\\n          \\\"push the plate to the front of the stove\\\": 0.0404,\\n          \\\"put the bowl on the plate\\\": 0.084,\\n          \\\"put the bowl on the stove\\\": 0.0704,\\n          \\\"put the bowl on top of the cabinet\\\": 0.0966,\\n          \\\"put the cream cheese in the bowl\\\": 0.0901,\\n          \\\"put the wine bottle on the rack\\\": 0.0533,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.041,\\n          \\\"turn on the stove\\\": 0.0165\\n        }\\n      },\\n      \\\"L8\\\": {\\n        \\\"observed_diff\\\": 0.0177,\\n        \\\"CI_95\\\": [\\n          0.0087,\\n          0.0276\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.62,\\n        \\\"baseline_CI_95\\\": [\\n          0.5675,\\n          0.6741\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6377,\\n        \\\"ablation_CI_95\\\": [\\n          0.5886,\\n          0.6888\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0241,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0284,\\n          \\\"push the plate to the front of the stove\\\": 0.0177,\\n          \\\"put the bowl on the plate\\\": -0.0029,\\n          \\\"put the bowl on the stove\\\": 0.0048,\\n          \\\"put the bowl on top of the cabinet\\\": -0.0019,\\n          \\\"put the cream cheese in the bowl\\\": 0.0131,\\n          \\\"put the wine bottle on the rack\\\": 0.0454,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.0389,\\n          \\\"turn on the stove\\\": 0.0097\\n        }\\n      },\\n      \\\"L13\\\": {\\n        \\\"observed_diff\\\": -0.0002,\\n        \\\"CI_95\\\": [\\n          -0.0086,\\n          0.0088\\n        ],\\n        \\\"p_value\\\": 0.9594,\\n        \\\"baseline_mean_R2\\\": 0.6764,\\n        \\\"baseline_CI_95\\\": [\\n          0.6342,\\n          0.7233\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6762,\\n        \\\"ablation_CI_95\\\": [\\n          0.6336,\\n          0.7242\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0287,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.004,\\n          \\\"push the plate to the front of the stove\\\": -0.0089,\\n          \\\"put the bowl on the plate\\\": -0.023,\\n          \\\"put the bowl on the stove\\\": -0.0001,\\n          \\\"put the bowl on top of the cabinet\\\": 0.0139,\\n          \\\"put the cream cheese in the bowl\\\": -0.0157,\\n          \\\"put the wine bottle on the rack\\\": -0.008,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.003,\\n          \\\"turn on the stove\\\": 0.0045\\n        }\\n      }\\n    },\\n    \\\"baseline_vs_ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"observed_diff\\\": 0.0256,\\n        \\\"CI_95\\\": [\\n          0.015,\\n          0.0372\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.5567,\\n        \\\"baseline_CI_95\\\": [\\n          0.5044,\\n          0.6145\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.5823,\\n        \\\"ablation_CI_95\\\": [\\n          0.5286,\\n          0.6386\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": -0.0041,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0231,\\n          \\\"push the plate to the front of the stove\\\": 0.0259,\\n          \\\"put the bowl on the plate\\\": 0.0172,\\n          \\\"put the bowl on the stove\\\": 0.0373,\\n     \\n\\n... [截断: 输出过长，省略 7209 字符] ...\\n\\n front of the stove\\\": 0.7023,\\n          \\\"put the bowl on the plate\\\": 0.6429,\\n          \\\"put the bowl on the stove\\\": 0.7257,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6737,\\n          \\\"put the cream cheese in the bowl\\\": 0.6036,\\n          \\\"put the wine bottle on the rack\\\": 0.5837,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6215,\\n          \\\"turn on the stove\\\": 0.8164\\n        },\\n        \\\"epochs_trained\\\": 15,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.5823,\\n        \\\"overall_R2\\\": 0.6499,\\n        \\\"per_dim_R2\\\": [\\n          0.6462,\\n          0.6666,\\n          0.5822,\\n          0.585,\\n          0.3929,\\n          0.7275,\\n          0.6667\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4415,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.6472,\\n          \\\"push the plate to the front of the stove\\\": 0.6405,\\n          \\\"put the bowl on the plate\\\": 0.5358,\\n          \\\"put the bowl on the stove\\\": 0.6225,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6036,\\n          \\\"put the cream cheese in the bowl\\\": 0.4779,\\n          \\\"put the wine bottle on the rack\\\": 0.5056,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.5878,\\n          \\\"turn on the stove\\\": 0.7608\\n        },\\n        \\\"epochs_trained\\\": 26,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.6311,\\n        \\\"overall_R2\\\": 0.6976,\\n        \\\"per_dim_R2\\\": [\\n          0.7162,\\n          0.7192,\\n          0.6459,\\n          0.5943,\\n          0.43,\\n          0.7504,\\n          0.7063\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4712,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.718,\\n          \\\"push the plate to the front of the stove\\\": 0.6135,\\n          \\\"put the bowl on the plate\\\": 0.621,\\n          \\\"put the bowl on the stove\\\": 0.6988,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6548,\\n          \\\"put the cream cheese in the bowl\\\": 0.5688,\\n          \\\"put the wine bottle on the rack\\\": 0.5551,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6234,\\n          \\\"turn on the stove\\\": 0.7866\\n        },\\n        \\\"epochs_trained\\\": 29,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean_R2\\\": 0.6636,\\n        \\\"overall_R2\\\": 0.716,\\n        \\\"per_dim_R2\\\": [\\n          0.7256,\\n          0.7414,\\n          0.6573,\\n          0.6028,\\n          0.4044,\\n          0.7548,\\n          0.7281\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.5587,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.7082,\\n          \\\"push the plate to the front of the stove\\\": 0.7152,\\n          \\\"put the bowl on the plate\\\": 0.6482,\\n          \\\"put the bowl on the stove\\\": 0.7134,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6656,\\n          \\\"put the cream cheese in the bowl\\\": 0.6003,\\n          \\\"put the wine bottle on the rack\\\": 0.592,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6241,\\n          \\\"turn on the stove\\\": 0.8104\\n        },\\n        \\\"epochs_trained\\\": 10,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"probe\\\": \\\"MLP(4096,256,7)\\\",\\n    \\\"optimizer\\\": \\\"Adam lr=0.001\\\",\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"batch_size\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action a_{t+1} from feature at time t\\\",\\n    \\\"normalization\\\": \\\"z-score (train mean/std)\\\",\\n    \\\"split\\\": \\\"80/20 per-task by demo index\\\",\\n    \\\"readout_layers\\\": [\\n      1,\\n      8,\\n      13\\n    ],\\n    \\\"demos_per_task\\\": 50,\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    \\\"instruction_heads_24\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "bc1272a3-13d2-4203-b4d8-9e7a8657ad21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"action_probe_R2\\\\\\\": {\\\\n    \\\\\\\"baseline\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.5567,\\\\n      \\\\\\\"L8\\\\\\\": 0.6199,\\\\n      \\\\\\\"L13\\\\\\\": 0.6763\\\\n    },\\\\n    \\\\\\\"ablate_all24\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.6153,\\\\n      \\\\\\\"L8\\\\\\\": 0.6377,\\\\n      \\\\\\\"L13\\\\\\\": 0.6762\\\\n    },\\\\n    \\\\\\\"ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": 0.5823,\\\\n      \\\\\\\"L8\\\\\\\": 0.6311,\\\\n      \\\\\\\"L13\\\\\\\": 0.6636\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_paired_CI\\\\\\\": {\\\\n    \\\\\\\"baseline_vs_ablate_all24\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"observed_diff\\\\\\\": 0.0585,\\\\n        \\\\\\\"CI_95\\\\\\\": [\\\\n          0.0418,\\\\n          0.0748\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"baseline_mean_R2\\\\\\\": 0.5567,\\\\n        \\\\\\\"baseline_CI_95\\\\\\\": [\\\\n          0.5038,\\\\n          0.6144\\\\n        ],\\\\n        \\\\\\\"ablation_mean_R2\\\\\\\": 0.6153,\\\\n        \\\\\\\"ablation_CI_95\\\\\\\": [\\\\n          0.5634,\\\\n          0.6664\\\\n        ],\\\\n        \\\\\\\"n_tasks\\\\\\\": 10,\\\\n        \\\\\\\"per_task_diffs\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.0218,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.0714,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.0404,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.084,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.0704,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.0966,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.0901,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.0533,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.041,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.0165\\\\n        }\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"observed_diff\\\\\\\": 0.0177,\\\\n        \\\\\\\"CI_95\\\\\\\": [\\\\n          0.0087,\\\\n          0.0276\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"baseline_mean_R2\\\\\\\": 0.62,\\\\n        \\\\\\\"baseline_CI_95\\\\\\\": [\\\\n          0.5675,\\\\n          0.6741\\\\n        ],\\\\n        \\\\\\\"ablation_mean_R2\\\\\\\": 0.6377,\\\\n        \\\\\\\"ablation_CI_95\\\\\\\": [\\\\n          0.5886,\\\\n          0.6888\\\\n        ],\\\\n        \\\\\\\"n_tasks\\\\\\\": 10,\\\\n        \\\\\\\"per_task_diffs\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.0241,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.0284,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.0177,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": -0.0029,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.0048,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": -0.0019,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.0131,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.0454,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.0389,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.0097\\\\n        }\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"observed_diff\\\\\\\": -0.0002,\\\\n        \\\\\\\"CI_95\\\\\\\": [\\\\n          -0.0086,\\\\n          0.0088\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 0.9594,\\\\n        \\\\\\\"baseline_mean_R2\\\\\\\": 0.6764,\\\\n        \\\\\\\"baseline_CI_95\\\\\\\": [\\\\n          0.6342,\\\\n          0.7233\\\\n        ],\\\\n        \\\\\\\"ablation_mean_R2\\\\\\\": 0.6762,\\\\n        \\\\\\\"ablation_CI_95\\\\\\\": [\\\\n          0.6336,\\\\n          0.7242\\\\n        ],\\\\n        \\\\\\\"n_tasks\\\\\\\": 10,\\\\n        \\\\\\\"per_task_diffs\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.0287,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.004,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": -0.0089,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": -0.023,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": -0.0001,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.0139,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": -0.0157,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": -0.008,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.003,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.0045\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"baseline_vs_ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"observed_diff\\\\\\\": 0.0256,\\\\n        \\\\\\\"CI_95\\\\\\\": [\\\\n          0.015,\\\\n          0.0372\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"baseline_mean_R2\\\\\\\": 0.5567,\\\\n        \\\\\\\"baseline_CI_95\\\\\\\": [\\\\n          0.5044,\\\\n          0.6145\\\\n        ],\\\\n        \\\\\\\"ablation_mean_R2\\\\\\\": 0.5823,\\\\n        \\\\\\\"ablation_CI_95\\\\\\\": [\\\\n          0.5286,\\\\n          0.6386\\\\n        ],\\\\n        \\\\\\\"n_tasks\\\\\\\": 10,\\\\n        \\\\\\\"per_task_diffs\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": -0.0041,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.0231,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.0259,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.0172,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.0373,\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 7209 字符] ...\\\\n\\\\n front of the stove\\\\\\\": 0.7023,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.6429,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.7257,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6737,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.6036,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.5837,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.6215,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.8164\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 15,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748\\\\n      }\\\\n    },\\\\n    \\\\\\\"ablate_all32\\\\\\\": {\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.5823,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6499,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.6462,\\\\n          0.6666,\\\\n          0.5822,\\\\n          0.585,\\\\n          0.3929,\\\\n          0.7275,\\\\n          0.6667\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.4415,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.6472,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.6405,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.5358,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.6225,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6036,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.4779,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.5056,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.5878,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.7608\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 26,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748\\\\n      },\\\\n      \\\\\\\"L8\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6311,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6976,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.7162,\\\\n          0.7192,\\\\n          0.6459,\\\\n          0.5943,\\\\n          0.43,\\\\n          0.7504,\\\\n          0.7063\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.4712,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.718,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.6135,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.621,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.6988,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6548,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.5688,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.5551,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.6234,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.7866\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 29,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748\\\\n      },\\\\n      \\\\\\\"L13\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6636,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.716,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": [\\\\n          0.7256,\\\\n          0.7414,\\\\n          0.6573,\\\\n          0.6028,\\\\n          0.4044,\\\\n          0.7548,\\\\n          0.7281\\\\n        ],\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"open the middle drawer of the cabinet\\\\\\\": 0.5587,\\\\n          \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": 0.7082,\\\\n          \\\\\\\"push the plate to the front of the stove\\\\\\\": 0.7152,\\\\n          \\\\\\\"put the bowl on the plate\\\\\\\": 0.6482,\\\\n          \\\\\\\"put the bowl on the stove\\\\\\\": 0.7134,\\\\n          \\\\\\\"put the bowl on top of the cabinet\\\\\\\": 0.6656,\\\\n          \\\\\\\"put the cream cheese in the bowl\\\\\\\": 0.6003,\\\\n          \\\\\\\"put the wine bottle on the rack\\\\\\\": 0.592,\\\\n          \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": 0.6241,\\\\n          \\\\\\\"turn on the stove\\\\\\\": 0.8104\\\\n        },\\\\n        \\\\\\\"epochs_trained\\\\\\\": 10,\\\\n        \\\\\\\"n_train\\\\\\\": 50480,\\\\n        \\\\\\\"n_val\\\\\\\": 12748\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"probe\\\\\\\": \\\\\\\"MLP(4096,256,7)\\\\\\\",\\\\n    \\\\\\\"optimizer\\\\\\\": \\\\\\\"Adam lr=0.001\\\\\\\",\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action a_{t+1} from feature at time t\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score (train mean/std)\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20 per-task by demo index\\\\\\\",\\\\n    \\\\\\\"readout_layers\\\\\\\": [\\\\n      1,\\\\n      8,\\\\n      13\\\\n    ],\\\\n    \\\\\\\"demos_per_task\\\\\\\": 50,\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    \\\\\\\"instruction_heads_24\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"action_probe_R2\\\": {\\n    \\\"baseline\\\": {\\n      \\\"L1\\\": 0.5567,\\n      \\\"L8\\\": 0.6199,\\n      \\\"L13\\\": 0.6763\\n    },\\n    \\\"ablate_all24\\\": {\\n      \\\"L1\\\": 0.6153,\\n      \\\"L8\\\": 0.6377,\\n      \\\"L13\\\": 0.6762\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": 0.5823,\\n      \\\"L8\\\": 0.6311,\\n      \\\"L13\\\": 0.6636\\n    }\\n  },\\n  \\\"bootstrap_paired_CI\\\": {\\n    \\\"baseline_vs_ablate_all24\\\": {\\n      \\\"L1\\\": {\\n        \\\"observed_diff\\\": 0.0585,\\n        \\\"CI_95\\\": [\\n          0.0418,\\n          0.0748\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.5567,\\n        \\\"baseline_CI_95\\\": [\\n          0.5038,\\n          0.6144\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6153,\\n        \\\"ablation_CI_95\\\": [\\n          0.5634,\\n          0.6664\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0218,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0714,\\n          \\\"push the plate to the front of the stove\\\": 0.0404,\\n          \\\"put the bowl on the plate\\\": 0.084,\\n          \\\"put the bowl on the stove\\\": 0.0704,\\n          \\\"put the bowl on top of the cabinet\\\": 0.0966,\\n          \\\"put the cream cheese in the bowl\\\": 0.0901,\\n          \\\"put the wine bottle on the rack\\\": 0.0533,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.041,\\n          \\\"turn on the stove\\\": 0.0165\\n        }\\n      },\\n      \\\"L8\\\": {\\n        \\\"observed_diff\\\": 0.0177,\\n        \\\"CI_95\\\": [\\n          0.0087,\\n          0.0276\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.62,\\n        \\\"baseline_CI_95\\\": [\\n          0.5675,\\n          0.6741\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6377,\\n        \\\"ablation_CI_95\\\": [\\n          0.5886,\\n          0.6888\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0241,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0284,\\n          \\\"push the plate to the front of the stove\\\": 0.0177,\\n          \\\"put the bowl on the plate\\\": -0.0029,\\n          \\\"put the bowl on the stove\\\": 0.0048,\\n          \\\"put the bowl on top of the cabinet\\\": -0.0019,\\n          \\\"put the cream cheese in the bowl\\\": 0.0131,\\n          \\\"put the wine bottle on the rack\\\": 0.0454,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.0389,\\n          \\\"turn on the stove\\\": 0.0097\\n        }\\n      },\\n      \\\"L13\\\": {\\n        \\\"observed_diff\\\": -0.0002,\\n        \\\"CI_95\\\": [\\n          -0.0086,\\n          0.0088\\n        ],\\n        \\\"p_value\\\": 0.9594,\\n        \\\"baseline_mean_R2\\\": 0.6764,\\n        \\\"baseline_CI_95\\\": [\\n          0.6342,\\n          0.7233\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.6762,\\n        \\\"ablation_CI_95\\\": [\\n          0.6336,\\n          0.7242\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.0287,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.004,\\n          \\\"push the plate to the front of the stove\\\": -0.0089,\\n          \\\"put the bowl on the plate\\\": -0.023,\\n          \\\"put the bowl on the stove\\\": -0.0001,\\n          \\\"put the bowl on top of the cabinet\\\": 0.0139,\\n          \\\"put the cream cheese in the bowl\\\": -0.0157,\\n          \\\"put the wine bottle on the rack\\\": -0.008,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.003,\\n          \\\"turn on the stove\\\": 0.0045\\n        }\\n      }\\n    },\\n    \\\"baseline_vs_ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"observed_diff\\\": 0.0256,\\n        \\\"CI_95\\\": [\\n          0.015,\\n          0.0372\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"baseline_mean_R2\\\": 0.5567,\\n        \\\"baseline_CI_95\\\": [\\n          0.5044,\\n          0.6145\\n        ],\\n        \\\"ablation_mean_R2\\\": 0.5823,\\n        \\\"ablation_CI_95\\\": [\\n          0.5286,\\n          0.6386\\n        ],\\n        \\\"n_tasks\\\": 10,\\n        \\\"per_task_diffs\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": -0.0041,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.0231,\\n          \\\"push the plate to the front of the stove\\\": 0.0259,\\n          \\\"put the bowl on the plate\\\": 0.0172,\\n          \\\"put the bowl on the stove\\\": 0.0373,\\n     \\n\\n... [截断: 输出过长，省略 7209 字符] ...\\n\\n front of the stove\\\": 0.7023,\\n          \\\"put the bowl on the plate\\\": 0.6429,\\n          \\\"put the bowl on the stove\\\": 0.7257,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6737,\\n          \\\"put the cream cheese in the bowl\\\": 0.6036,\\n          \\\"put the wine bottle on the rack\\\": 0.5837,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6215,\\n          \\\"turn on the stove\\\": 0.8164\\n        },\\n        \\\"epochs_trained\\\": 15,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      }\\n    },\\n    \\\"ablate_all32\\\": {\\n      \\\"L1\\\": {\\n        \\\"mean_R2\\\": 0.5823,\\n        \\\"overall_R2\\\": 0.6499,\\n        \\\"per_dim_R2\\\": [\\n          0.6462,\\n          0.6666,\\n          0.5822,\\n          0.585,\\n          0.3929,\\n          0.7275,\\n          0.6667\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4415,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.6472,\\n          \\\"push the plate to the front of the stove\\\": 0.6405,\\n          \\\"put the bowl on the plate\\\": 0.5358,\\n          \\\"put the bowl on the stove\\\": 0.6225,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6036,\\n          \\\"put the cream cheese in the bowl\\\": 0.4779,\\n          \\\"put the wine bottle on the rack\\\": 0.5056,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.5878,\\n          \\\"turn on the stove\\\": 0.7608\\n        },\\n        \\\"epochs_trained\\\": 26,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      },\\n      \\\"L8\\\": {\\n        \\\"mean_R2\\\": 0.6311,\\n        \\\"overall_R2\\\": 0.6976,\\n        \\\"per_dim_R2\\\": [\\n          0.7162,\\n          0.7192,\\n          0.6459,\\n          0.5943,\\n          0.43,\\n          0.7504,\\n          0.7063\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.4712,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.718,\\n          \\\"push the plate to the front of the stove\\\": 0.6135,\\n          \\\"put the bowl on the plate\\\": 0.621,\\n          \\\"put the bowl on the stove\\\": 0.6988,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6548,\\n          \\\"put the cream cheese in the bowl\\\": 0.5688,\\n          \\\"put the wine bottle on the rack\\\": 0.5551,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6234,\\n          \\\"turn on the stove\\\": 0.7866\\n        },\\n        \\\"epochs_trained\\\": 29,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      },\\n      \\\"L13\\\": {\\n        \\\"mean_R2\\\": 0.6636,\\n        \\\"overall_R2\\\": 0.716,\\n        \\\"per_dim_R2\\\": [\\n          0.7256,\\n          0.7414,\\n          0.6573,\\n          0.6028,\\n          0.4044,\\n          0.7548,\\n          0.7281\\n        ],\\n        \\\"per_task_R2\\\": {\\n          \\\"open the middle drawer of the cabinet\\\": 0.5587,\\n          \\\"open the top drawer and put the bowl inside\\\": 0.7082,\\n          \\\"push the plate to the front of the stove\\\": 0.7152,\\n          \\\"put the bowl on the plate\\\": 0.6482,\\n          \\\"put the bowl on the stove\\\": 0.7134,\\n          \\\"put the bowl on top of the cabinet\\\": 0.6656,\\n          \\\"put the cream cheese in the bowl\\\": 0.6003,\\n          \\\"put the wine bottle on the rack\\\": 0.592,\\n          \\\"put the wine bottle on top of the cabinet\\\": 0.6241,\\n          \\\"turn on the stove\\\": 0.8104\\n        },\\n        \\\"epochs_trained\\\": 10,\\n        \\\"n_train\\\": 50480,\\n        \\\"n_val\\\": 12748\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"probe\\\": \\\"MLP(4096,256,7)\\\",\\n    \\\"optimizer\\\": \\\"Adam lr=0.001\\\",\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"batch_size\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action a_{t+1} from feature at time t\\\",\\n    \\\"normalization\\\": \\\"z-score (train mean/std)\\\",\\n    \\\"split\\\": \\\"80/20 per-task by demo index\\\",\\n    \\\"readout_layers\\\": [\\n      1,\\n      8,\\n      13\\n    ],\\n    \\\"demos_per_task\\\": 50,\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    \\\"instruction_heads_24\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T12:33:21.142Z_
+
+<details><summary>↩ Tool result · `toolu_01MkcmVoSSoEzAUdJBSRjAJF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\"\\n  },\\n  \\\"projector\\\": {\\n    \\\"mean_R2\\\": 0.6298085182905198,\\n    \\\"overall_R2\\\": 0.6991766095161438,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6506892442703247,\\n      \\\"dy\\\": 0.7160145938396454,\\n      \\\"dz\\\": 0.6620165109634399,\\n      \\\"drx\\\": 0.549751490354538,\\n      \\\"dry\\\": 0.3786472678184509,\\n      \\\"drz\\\": 0.7263338565826416,\\n      \\\"gripper\\\": 0.7167081236839294\\n    },\\n    \\\"gripper_acc\\\": 0.9221054283024788,\\n    \\\"epochs_trained\\\": 22,\\n    \\\"val_loss\\\": 0.3606724441051483\\n  },\\n  \\\"dino_cls\\\": {\\n    \\\"mean_R2\\\": 0.6342984035611152,\\n    \\\"overall_R2\\\": 0.7012259066104889,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6640855669975281,\\n      \\\"dy\\\": 0.6851263046264648,\\n      \\\"dz\\\": 0.6625147461891174,\\n      \\\"drx\\\": 0.5797748863697052,\\n      \\\"dry\\\": 0.3829028606414795,\\n      \\\"drz\\\": 0.7384836375713348,\\n      \\\"gripper\\\": 0.7214260399341583\\n    },\\n    \\\"gripper_acc\\\": 0.9258707248195795,\\n    \\\"epochs_trained\\\": 17,\\n    \\\"val_loss\\\": 0.35598811507225037\\n  },\\n  \\\"clip_cls\\\": {\\n    \\\"mean_R2\\\": 0.5865547895431519,\\n    \\\"overall_R2\\\": 0.6602204144001007,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.41159433126449585,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6684410572052002,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5893205404281616,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5487157106399536,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6501100063323975,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6248729825019836,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6032691895961761,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.48588043451309204,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5819304883480072,\\n      \\\"turn_on_the_stove\\\": 0.7014131546020508\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6521816849708557,\\n      \\\"dy\\\": 0.6515396535396576,\\n      \\\"dz\\\": 0.5995787978172302,\\n      \\\"drx\\\": 0.4989588260650635,\\n      \\\"dry\\\": 0.36573320627212524,\\n      \\\"drz\\\": 0.6895537972450256,\\n      \\\"gripper\\\": 0.6803024709224701\\n    },\\n    \\\"gripper_acc\\\": 0.9072011295889552,\\n    \\\"epochs_trained\\\": 21,\\n    \\\"val_loss\\\": 0.3972415030002594\\n  },\\n  \\\"vla_image_mean_L19\\\": {\\n    \\\"mean_R2\\\": 0.598588165640831,\\n    \\\"overall_R2\\\": 0.6770166754722595,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4003335237503052,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7283858358860016,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5829597115516663,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5454415380954742,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6689810454845428,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6383338272571564,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5501567423343658,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5397705733776093,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5990277230739594,\\n      \\\"turn_on_the_stove\\\": 0.732491135597229\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6306567490100861,\\n      \\\"dy\\\": 0.6769898533821106,\\n      \\\"dz\\\": 0.629553884267807,\\n      \\\"drx\\\": 0.5495882034301758,\\n      \\\"dry\\\": 0.38391029834747314,\\n      \\\"drz\\\": 0.7279437780380249,\\n      \\\"gripper\\\": 0.6985472440719604\\n    },\\n    \\\"gripper_acc\\\": 0.9181832444304989,\\n    \\\"epochs_trained\\\": 26,\\n    \\\"val_loss\\\": 0.37492164969444275\\n  },\\n  \\\"vla_last_preaction_L19\\\": {\\n    \\\"mean_R2\\\": 0.6711319893598556,\\n    \\\"overall_R2\\\": 0.7233986854553223,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.6014720797538757,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7516207098960876,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.7096197605133057,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6417562663555145,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7298527657985687,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6630740761756897,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6076358258724213,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.577876627445221,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.627865731716156,\\n      \\\"turn_on_the_stove\\\": 0.8005460500717163\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.7355284988880157,\\n      \\\"dy\\\": 0.7502064555883408,\\n      \\\"dz\\\": 0.6814955770969391,\\n      \\\"drx\\\": 0.5960763096809387,\\n      \\\"dry\\\": 0.42453593015670776,\\n      \\\"drz\\\": 0.7456617653369904,\\n      \\\"gripper\\\": 0.7306763231754303\\n    },\\n    \\\"gripper_acc\\\": 0.9184185754628177,\\n    \\\"epochs_trained\\\": 9,\\n    \\\"val_loss\\\": 0.32443761825561523\\n  },\\n  \\\"bootstrap_pairwise\\\": {\\n    \\\"projector_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.004489885270595462,\\n      \\\"ci_95\\\": [\\n        -0.019630291834473675,\\n        0.010527572035789579\\n      ],\\n      \\\"p_value\\\": 0.557\\n    },\\n    \\\"projector_vs_clip_cls\\\": {\\n      \\\"delta\\\": 0.04325372874736788,\\n      \\\"ci_95\\\": [\\n        0.027332877293229127,\\n        0.059175393506884576\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"clip_cls_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.04774361401796334,\\n      \\\"ci_95\\\": [\\n        -0.06381510496139531,\\n        -0.029304770007729627\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_image_mean_L19\\\": {\\n      \\\"delta\\\": 0.03122035264968881,\\n      \\\"ci_95\\\": [\\n        0.013293082863092423,\\n        0.05182204544544222\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_last_preaction_L19\\\": {\\n      \\\"delta\\\": -0.04132347106933587,\\n      \\\"ci_95\\\": [\\n        -0.0696891056001187,\\n        -0.01466156482696543\\n      ],\\n      \\\"p_value\\\": 0.0016\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "75bd3753-64c2-4ded-94a8-0fd770412c44",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"lr\\\\\\\": 0.001,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"hidden\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\"\\\\n  },\\\\n  \\\\\\\"projector\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6298085182905198,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6991766095161438,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.49730074405670166,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7499217689037323,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5860892236232758,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5864041447639465,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6738172769546509,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6633979082107544,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6218974888324738,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5312090218067169,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6380730867385864,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7499745190143585\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6506892442703247,\\\\n      \\\\\\\"dy\\\\\\\": 0.7160145938396454,\\\\n      \\\\\\\"dz\\\\\\\": 0.6620165109634399,\\\\n      \\\\\\\"drx\\\\\\\": 0.549751490354538,\\\\n      \\\\\\\"dry\\\\\\\": 0.3786472678184509,\\\\n      \\\\\\\"drz\\\\\\\": 0.7263338565826416,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7167081236839294\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9221054283024788,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 22,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.3606724441051483\\\\n  },\\\\n  \\\\\\\"dino_cls\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6342984035611152,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.7012259066104889,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4813086986541748,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.713790625333786,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5821199119091034,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6170255541801453,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7149612605571747,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6578902006149292,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6068297922611237,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5611678063869476,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.6304799914360046,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7774101942777634\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6640855669975281,\\\\n      \\\\\\\"dy\\\\\\\": 0.6851263046264648,\\\\n      \\\\\\\"dz\\\\\\\": 0.6625147461891174,\\\\n      \\\\\\\"drx\\\\\\\": 0.5797748863697052,\\\\n      \\\\\\\"dry\\\\\\\": 0.3829028606414795,\\\\n      \\\\\\\"drz\\\\\\\": 0.7384836375713348,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7214260399341583\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9258707248195795,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 17,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.35598811507225037\\\\n  },\\\\n  \\\\\\\"clip_cls\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.5865547895431519,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6602204144001007,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.41159433126449585,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.6684410572052002,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5893205404281616,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5487157106399536,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6501100063323975,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6248729825019836,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6032691895961761,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.48588043451309204,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5819304883480072,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.7014131546020508\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6521816849708557,\\\\n      \\\\\\\"dy\\\\\\\": 0.6515396535396576,\\\\n      \\\\\\\"dz\\\\\\\": 0.5995787978172302,\\\\n      \\\\\\\"drx\\\\\\\": 0.4989588260650635,\\\\n      \\\\\\\"dry\\\\\\\": 0.36573320627212524,\\\\n      \\\\\\\"drz\\\\\\\": 0.6895537972450256,\\\\n      \\\\\\\"gripper\\\\\\\": 0.6803024709224701\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9072011295889552,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 21,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.3972415030002594\\\\n  },\\\\n  \\\\\\\"vla_image_mean_L19\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.598588165640831,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.6770166754722595,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.4003335237503052,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7283858358860016,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.5829597115516663,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.5454415380954742,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.6689810454845428,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6383338272571564,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.5501567423343658,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.5397705733776093,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.5990277230739594,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.732491135597229\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.6306567490100861,\\\\n      \\\\\\\"dy\\\\\\\": 0.6769898533821106,\\\\n      \\\\\\\"dz\\\\\\\": 0.629553884267807,\\\\n      \\\\\\\"drx\\\\\\\": 0.5495882034301758,\\\\n      \\\\\\\"dry\\\\\\\": 0.38391029834747314,\\\\n      \\\\\\\"drz\\\\\\\": 0.7279437780380249,\\\\n      \\\\\\\"gripper\\\\\\\": 0.6985472440719604\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9181832444304989,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 26,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.37492164969444275\\\\n  },\\\\n  \\\\\\\"vla_last_preaction_L19\\\\\\\": {\\\\n    \\\\\\\"mean_R2\\\\\\\": 0.6711319893598556,\\\\n    \\\\\\\"overall_R2\\\\\\\": 0.7233986854553223,\\\\n    \\\\\\\"per_task_R2\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": 0.6014720797538757,\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": 0.7516207098960876,\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": 0.7096197605133057,\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": 0.6417562663555145,\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": 0.7298527657985687,\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": 0.6630740761756897,\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": 0.6076358258724213,\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": 0.577876627445221,\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": 0.627865731716156,\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\": 0.8005460500717163\\\\n    },\\\\n    \\\\\\\"per_dim_R2\\\\\\\": {\\\\n      \\\\\\\"dx\\\\\\\": 0.7355284988880157,\\\\n      \\\\\\\"dy\\\\\\\": 0.7502064555883408,\\\\n      \\\\\\\"dz\\\\\\\": 0.6814955770969391,\\\\n      \\\\\\\"drx\\\\\\\": 0.5960763096809387,\\\\n      \\\\\\\"dry\\\\\\\": 0.42453593015670776,\\\\n      \\\\\\\"drz\\\\\\\": 0.7456617653369904,\\\\n      \\\\\\\"gripper\\\\\\\": 0.7306763231754303\\\\n    },\\\\n    \\\\\\\"gripper_acc\\\\\\\": 0.9184185754628177,\\\\n    \\\\\\\"epochs_trained\\\\\\\": 9,\\\\n    \\\\\\\"val_loss\\\\\\\": 0.32443761825561523\\\\n  },\\\\n  \\\\\\\"bootstrap_pairwise\\\\\\\": {\\\\n    \\\\\\\"projector_vs_dino_cls\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.004489885270595462,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.019630291834473675,\\\\n        0.010527572035789579\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.557\\\\n    },\\\\n    \\\\\\\"projector_vs_clip_cls\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.04325372874736788,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.027332877293229127,\\\\n        0.059175393506884576\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"clip_cls_vs_dino_cls\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.04774361401796334,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.06381510496139531,\\\\n        -0.029304770007729627\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"projector_vs_vla_image_mean_L19\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.03122035264968881,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.013293082863092423,\\\\n        0.05182204544544222\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"projector_vs_vla_last_preaction_L19\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": -0.04132347106933587,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.0696891056001187,\\\\n        -0.01466156482696543\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0016\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\"\\n  },\\n  \\\"projector\\\": {\\n    \\\"mean_R2\\\": 0.6298085182905198,\\n    \\\"overall_R2\\\": 0.6991766095161438,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.49730074405670166,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7499217689037323,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5860892236232758,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5864041447639465,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6738172769546509,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6633979082107544,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6218974888324738,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5312090218067169,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6380730867385864,\\n      \\\"turn_on_the_stove\\\": 0.7499745190143585\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6506892442703247,\\n      \\\"dy\\\": 0.7160145938396454,\\n      \\\"dz\\\": 0.6620165109634399,\\n      \\\"drx\\\": 0.549751490354538,\\n      \\\"dry\\\": 0.3786472678184509,\\n      \\\"drz\\\": 0.7263338565826416,\\n      \\\"gripper\\\": 0.7167081236839294\\n    },\\n    \\\"gripper_acc\\\": 0.9221054283024788,\\n    \\\"epochs_trained\\\": 22,\\n    \\\"val_loss\\\": 0.3606724441051483\\n  },\\n  \\\"dino_cls\\\": {\\n    \\\"mean_R2\\\": 0.6342984035611152,\\n    \\\"overall_R2\\\": 0.7012259066104889,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4813086986541748,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.713790625333786,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5821199119091034,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6170255541801453,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7149612605571747,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6578902006149292,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6068297922611237,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5611678063869476,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6304799914360046,\\n      \\\"turn_on_the_stove\\\": 0.7774101942777634\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6640855669975281,\\n      \\\"dy\\\": 0.6851263046264648,\\n      \\\"dz\\\": 0.6625147461891174,\\n      \\\"drx\\\": 0.5797748863697052,\\n      \\\"dry\\\": 0.3829028606414795,\\n      \\\"drz\\\": 0.7384836375713348,\\n      \\\"gripper\\\": 0.7214260399341583\\n    },\\n    \\\"gripper_acc\\\": 0.9258707248195795,\\n    \\\"epochs_trained\\\": 17,\\n    \\\"val_loss\\\": 0.35598811507225037\\n  },\\n  \\\"clip_cls\\\": {\\n    \\\"mean_R2\\\": 0.5865547895431519,\\n    \\\"overall_R2\\\": 0.6602204144001007,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.41159433126449585,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.6684410572052002,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5893205404281616,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5487157106399536,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6501100063323975,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6248729825019836,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6032691895961761,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.48588043451309204,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5819304883480072,\\n      \\\"turn_on_the_stove\\\": 0.7014131546020508\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6521816849708557,\\n      \\\"dy\\\": 0.6515396535396576,\\n      \\\"dz\\\": 0.5995787978172302,\\n      \\\"drx\\\": 0.4989588260650635,\\n      \\\"dry\\\": 0.36573320627212524,\\n      \\\"drz\\\": 0.6895537972450256,\\n      \\\"gripper\\\": 0.6803024709224701\\n    },\\n    \\\"gripper_acc\\\": 0.9072011295889552,\\n    \\\"epochs_trained\\\": 21,\\n    \\\"val_loss\\\": 0.3972415030002594\\n  },\\n  \\\"vla_image_mean_L19\\\": {\\n    \\\"mean_R2\\\": 0.598588165640831,\\n    \\\"overall_R2\\\": 0.6770166754722595,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.4003335237503052,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7283858358860016,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5829597115516663,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5454415380954742,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6689810454845428,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6383338272571564,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5501567423343658,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5397705733776093,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.5990277230739594,\\n      \\\"turn_on_the_stove\\\": 0.732491135597229\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6306567490100861,\\n      \\\"dy\\\": 0.6769898533821106,\\n      \\\"dz\\\": 0.629553884267807,\\n      \\\"drx\\\": 0.5495882034301758,\\n      \\\"dry\\\": 0.38391029834747314,\\n      \\\"drz\\\": 0.7279437780380249,\\n      \\\"gripper\\\": 0.6985472440719604\\n    },\\n    \\\"gripper_acc\\\": 0.9181832444304989,\\n    \\\"epochs_trained\\\": 26,\\n    \\\"val_loss\\\": 0.37492164969444275\\n  },\\n  \\\"vla_last_preaction_L19\\\": {\\n    \\\"mean_R2\\\": 0.6711319893598556,\\n    \\\"overall_R2\\\": 0.7233986854553223,\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.6014720797538757,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7516207098960876,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.7096197605133057,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6417562663555145,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.7298527657985687,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6630740761756897,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6076358258724213,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.577876627445221,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.627865731716156,\\n      \\\"turn_on_the_stove\\\": 0.8005460500717163\\n    },\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.7355284988880157,\\n      \\\"dy\\\": 0.7502064555883408,\\n      \\\"dz\\\": 0.6814955770969391,\\n      \\\"drx\\\": 0.5960763096809387,\\n      \\\"dry\\\": 0.42453593015670776,\\n      \\\"drz\\\": 0.7456617653369904,\\n      \\\"gripper\\\": 0.7306763231754303\\n    },\\n    \\\"gripper_acc\\\": 0.9184185754628177,\\n    \\\"epochs_trained\\\": 9,\\n    \\\"val_loss\\\": 0.32443761825561523\\n  },\\n  \\\"bootstrap_pairwise\\\": {\\n    \\\"projector_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.004489885270595462,\\n      \\\"ci_95\\\": [\\n        -0.019630291834473675,\\n        0.010527572035789579\\n      ],\\n      \\\"p_value\\\": 0.557\\n    },\\n    \\\"projector_vs_clip_cls\\\": {\\n      \\\"delta\\\": 0.04325372874736788,\\n      \\\"ci_95\\\": [\\n        0.027332877293229127,\\n        0.059175393506884576\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"clip_cls_vs_dino_cls\\\": {\\n      \\\"delta\\\": -0.04774361401796334,\\n      \\\"ci_95\\\": [\\n        -0.06381510496139531,\\n        -0.029304770007729627\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_image_mean_L19\\\": {\\n      \\\"delta\\\": 0.03122035264968881,\\n      \\\"ci_95\\\": [\\n        0.013293082863092423,\\n        0.05182204544544222\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"projector_vs_vla_last_preaction_L19\\\": {\\n      \\\"delta\\\": -0.04132347106933587,\\n      \\\"ci_95\\\": [\\n        -0.0696891056001187,\\n        -0.01466156482696543\\n      ],\\n      \\\"p_value\\\": 0.0016\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have rich per-task R² data from `unified_action_probe.json` and `action_probe_50demos.json`. The R² data has per-task values for 10 tasks.
+
+But I still need per-task action MSE from the actual model execution (behavioral outcomes), not probe results. The `per_task_mse_breakdown.json` only has 3 tasks and it's about ablation MSE.
+
+Wait, let me re-read the task. The user wants to correlate "per-task action MSE" with "per-task R² probe data". 
+
+I'm realizing the probe R² actually measures how well actions can be predicted from the model's representations, so it's directly related to action prediction quality. The MSE breakdown file has the model's actual action prediction error, but only for 3 tasks. I need to find evaluation results that contain per-task action MSE across all 10 tasks, or check if the probe validation loss itself can serve as the MSE metric I'm looking for.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b6171f19-4f3c-46b5-aa74-9a095070799d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQ1v91j8rDaCkJJLnsxmon",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11436,
+      "cache_read_input_tokens": 34258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11436
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+R² probe 数据齐全（10 tasks），但 per-task MSE breakdown 只有 3 tasks。让我搜索完整的 behavioral outcome 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "717a2aca-07da-4c18-96ba-0fce8a27636d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQ1v91j8rDaCkJJLnsxmon",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11436,
+      "cache_read_input_tokens": 34258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11436
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014vKAiyD1hhpdgeaBonKhiD`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*eval*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "c45a0823-b560-48ac-a1e7-81649f78ad63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQ1v91j8rDaCkJJLnsxmon",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11436,
+      "cache_read_input_tokens": 34258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11436
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T12:33:36.984Z_
+
+<details><summary>↩ Tool result · `toolu_014vKAiyD1hhpdgeaBonKhiD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "17751d36-be6f-43c2-bc75-e47d3c759c12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XUTjsqyEhKjrC7SsKTFpZH`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*success*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "8436c2d0-0041-4dce-8393-6b862bc2c7a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQ1v91j8rDaCkJJLnsxmon",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11436,
+      "cache_read_input_tokens": 34258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11436
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014ZmRohdzQ9c3QtBfn6vy5H`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "0c8da820-5e2b-4bf4-b357-9ad513b326cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQ1v91j8rDaCkJJLnsxmon",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11436,
+      "cache_read_input_tokens": 34258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11436
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T12:33:38.021Z_
+
+<details><summary>↩ Tool result · `toolu_01XUTjsqyEhKjrC7SsKTFpZH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "c08c3bca-e96c-4837-bff1-13d4e6442cd8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T12:33:38.546Z_
+
+<details><summary>↩ Tool result · `toolu_014ZmRohdzQ9c3QtBfn6vy5H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ablations\\naction_baselines.json\\naction_metrics_extended.json\\naction_probe\\naction_trajectory_L13_ablation.json\\naction_trajectory_L13_ablation.log\\naction_trajectory_L8_ablation.json\\naction_trajectory_L8_ablation.log\\naction_trajectory_analysis.json\\naction_trajectory_analysis.log\\naction_trajectory_control.json\\naction_trajectory_control.log\\naction_trajectory_cpu_analysis.json\\naction_trajectory_extended_analysis.json\\nanalysis\\narchitecture_audit\\nattention\\nattention_decomposition.json\\nattention_normalization_entropy.json\\nbootstrap_ci_values.json\\ncka\\ncounterfactual_combined.json\\ncounterfactual_correct.json\\ncounterfactual_empty.json\\ncounterfactual_instruction.log\\ncounterfactual_paraphrased.json\\ncounterfactual_shuffled.json\\ncounterfactual_token_overlap.json\\ncounterfactual_wrong.json\\ncross_instruction\\ncross_instruction_dense\\ncross_instruction_finetuned\\ncross_instruction_spatial\\ndemo_sensitivity_25\\ndinov2\\ndinov2_libero_goal\\ndinov2_libero_goal_frame0\\ndinov2_libero_goal_linear\\ndinov2_libero_goal_pca1024\\ndinov2_shuffle\\ndose_response_cuda0.log\\ndose_response_cuda1.log\\ndose_response_curve_combined.json\\ndose_response_top12.json\\ndose_response_top16.json\\ndose_response_top20.json\\ndose_response_top24.json\\ndose_response_top28.json\\ndose_response_top32.json\\ndose_response_top4.json\\ndose_response_top8.json\\nfig_dose_response_curve.pdf\\nfig_dose_response_curve.png\\nfig_dose_response_draft.pdf\\nfig_dose_response_draft.png\\nfigure_data\\nfigures\\nfinetuned_probe_profile.log\\nfunctional_validation\\ngroundtruth_action_error.json\\ngroundtruth_action_error.log\\nl1_head_ablation\\nlibero_finetuned_attention.log\\nlibero_finetuned_attention_profile.json\\nlibero_finetuned_probe_profile.json\\nlinear_probe.log\\nlinear_probe_last_preaction.json\\nlinear_probe_results.json\\nllama2base_action_probe\\nloo_sensitivity.py\\nmatched_ablation_controls.json\\nmatched_ablation_controls.log\\nood_diagnostics.json\\nood_diagnostics.log\\noracle\\noutput_head_analysis.json\\npca1024_linear_perlayer.json\\npca1024_linear_pertimestep.json\\nper_task_mse_breakdown.json\\nper_task_r2_distribution.json\\nperlayer_rsa\\npermutation_test_I2.json\\nphi3v_r2_seed_expansion\\nphi3v_r2_untrained_probe\\nphi3v_untrained_seed_expansion\\nqa_probe\\nrandom_subset_ablation.json\\nrandom_subset_ablation.log\\nrsa\\nshuffled_token_control.json\\nspecificity_control_action.json\\nspecificity_control_action.log\\nsr_corrected_3ep.json\\ntask_complexity_analysis.py\\ntask_complexity_routing.json\\ntask_routing_loo_sensitivity.json\\nthreecond_multiseed.json\\nthreecond_multiseed.log\\nthreecond_multiseed_v2.json\\nthreecond_multiseed_v2.log\\ntrained\\ntrained_label_perm\\ntrained_libero_goal\\ntrained_libero_goal_frame0\\ntrained_libero_goal_linear\\ntrained_libero_goal_pca1024\\ntrajectory_level_cohens_d.json\\ntrajectory_level_cohens_d.log\\nuntrained\\nuntrained_label_perm\\nuntrained_libero_goal\\nuntrained_libero_goal_frame0\\nuntrained_libero_goal_linear\\nvisual_similarity_gate.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "cb97c164-6648-4b71-b2a0-574b6a583042",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablations\\\\naction_baselines.json\\\\naction_metrics_extended.json\\\\naction_probe\\\\naction_trajectory_L13_ablation.json\\\\naction_trajectory_L13_ablation.log\\\\naction_trajectory_L8_ablation.json\\\\naction_trajectory_L8_ablation.log\\\\naction_trajectory_analysis.json\\\\naction_trajectory_analysis.log\\\\naction_trajectory_control.json\\\\naction_trajectory_control.log\\\\naction_trajectory_cpu_analysis.json\\\\naction_trajectory_extended_analysis.json\\\\nanalysis\\\\narchitecture_audit\\\\nattention\\\\nattention_decomposition.json\\\\nattention_normalization_entropy.json\\\\nbootstrap_ci_values.json\\\\ncka\\\\ncounterfactual_combined.json\\\\ncounterfactual_correct.json\\\\ncounterfactual_empty.json\\\\ncounterfactual_instruction.log\\\\ncounterfactual_paraphrased.json\\\\ncounterfactual_shuffled.json\\\\ncounterfactual_token_overlap.json\\\\ncounterfactual_wrong.json\\\\ncross_instruction\\\\ncross_instruction_dense\\\\ncross_instruction_finetuned\\\\ncross_instruction_spatial\\\\ndemo_sensitivity_25\\\\ndinov2\\\\ndinov2_libero_goal\\\\ndinov2_libero_goal_frame0\\\\ndinov2_libero_goal_linear\\\\ndinov2_libero_goal_pca1024\\\\ndinov2_shuffle\\\\ndose_response_cuda0.log\\\\ndose_response_cuda1.log\\\\ndose_response_curve_combined.json\\\\ndose_response_top12.json\\\\ndose_response_top16.json\\\\ndose_response_top20.json\\\\ndose_response_top24.json\\\\ndose_response_top28.json\\\\ndose_response_top32.json\\\\ndose_response_top4.json\\\\ndose_response_top8.json\\\\nfig_dose_response_curve.pdf\\\\nfig_dose_response_curve.png\\\\nfig_dose_response_draft.pdf\\\\nfig_dose_response_draft.png\\\\nfigure_data\\\\nfigures\\\\nfinetuned_probe_profile.log\\\\nfunctional_validation\\\\ngroundtruth_action_error.json\\\\ngroundtruth_action_error.log\\\\nl1_head_ablation\\\\nlibero_finetuned_attention.log\\\\nlibero_finetuned_attention_profile.json\\\\nlibero_finetuned_probe_profile.json\\\\nlinear_probe.log\\\\nlinear_probe_last_preaction.json\\\\nlinear_probe_results.json\\\\nllama2base_action_probe\\\\nloo_sensitivity.py\\\\nmatched_ablation_controls.json\\\\nmatched_ablation_controls.log\\\\nood_diagnostics.json\\\\nood_diagnostics.log\\\\noracle\\\\noutput_head_analysis.json\\\\npca1024_linear_perlayer.json\\\\npca1024_linear_pertimestep.json\\\\nper_task_mse_breakdown.json\\\\nper_task_r2_distribution.json\\\\nperlayer_rsa\\\\npermutation_test_I2.json\\\\nphi3v_r2_seed_expansion\\\\nphi3v_r2_untrained_probe\\\\nphi3v_untrained_seed_expansion\\\\nqa_probe\\\\nrandom_subset_ablation.json\\\\nrandom_subset_ablation.log\\\\nrsa\\\\nshuffled_token_control.json\\\\nspecificity_control_action.json\\\\nspecificity_control_action.log\\\\nsr_corrected_3ep.json\\\\ntask_complexity_analysis.py\\\\ntask_complexity_routing.json\\\\ntask_routing_loo_sensitivity.json\\\\nthreecond_multiseed.json\\\\nthreecond_multiseed.log\\\\nthreecond_multiseed_v2.json\\\\nthreecond_multiseed_v2.log\\\\ntrained\\\\ntrained_label_perm\\\\ntrained_libero_goal\\\\ntrained_libero_goal_frame0\\\\ntrained_libero_goal_linear\\\\ntrained_libero_goal_pca1024\\\\ntrajectory_level_cohens_d.json\\\\ntrajectory_level_cohens_d.log\\\\nuntrained\\\\nuntrained_label_perm\\\\nuntrained_libero_goal\\\\nuntrained_libero_goal_frame0\\\\nuntrained_libero_goal_linear\\\\nvisual_similarity_gate.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ablations\\naction_baselines.json\\naction_metrics_extended.json\\naction_probe\\naction_trajectory_L13_ablation.json\\naction_trajectory_L13_ablation.log\\naction_trajectory_L8_ablation.json\\naction_trajectory_L8_ablation.log\\naction_trajectory_analysis.json\\naction_trajectory_analysis.log\\naction_trajectory_control.json\\naction_trajectory_control.log\\naction_trajectory_cpu_analysis.json\\naction_trajectory_extended_analysis.json\\nanalysis\\narchitecture_audit\\nattention\\nattention_decomposition.json\\nattention_normalization_entropy.json\\nbootstrap_ci_values.json\\ncka\\ncounterfactual_combined.json\\ncounterfactual_correct.json\\ncounterfactual_empty.json\\ncounterfactual_instruction.log\\ncounterfactual_paraphrased.json\\ncounterfactual_shuffled.json\\ncounterfactual_token_overlap.json\\ncounterfactual_wrong.json\\ncross_instruction\\ncross_instruction_dense\\ncross_instruction_finetuned\\ncross_instruction_spatial\\ndemo_sensitivity_25\\ndinov2\\ndinov2_libero_goal\\ndinov2_libero_goal_frame0\\ndinov2_libero_goal_linear\\ndinov2_libero_goal_pca1024\\ndinov2_shuffle\\ndose_response_cuda0.log\\ndose_response_cuda1.log\\ndose_response_curve_combined.json\\ndose_response_top12.json\\ndose_response_top16.json\\ndose_response_top20.json\\ndose_response_top24.json\\ndose_response_top28.json\\ndose_response_top32.json\\ndose_response_top4.json\\ndose_response_top8.json\\nfig_dose_response_curve.pdf\\nfig_dose_response_curve.png\\nfig_dose_response_draft.pdf\\nfig_dose_response_draft.png\\nfigure_data\\nfigures\\nfinetuned_probe_profile.log\\nfunctional_validation\\ngroundtruth_action_error.json\\ngroundtruth_action_error.log\\nl1_head_ablation\\nlibero_finetuned_attention.log\\nlibero_finetuned_attention_profile.json\\nlibero_finetuned_probe_profile.json\\nlinear_probe.log\\nlinear_probe_last_preaction.json\\nlinear_probe_results.json\\nllama2base_action_probe\\nloo_sensitivity.py\\nmatched_ablation_controls.json\\nmatched_ablation_controls.log\\nood_diagnostics.json\\nood_diagnostics.log\\noracle\\noutput_head_analysis.json\\npca1024_linear_perlayer.json\\npca1024_linear_pertimestep.json\\nper_task_mse_breakdown.json\\nper_task_r2_distribution.json\\nperlayer_rsa\\npermutation_test_I2.json\\nphi3v_r2_seed_expansion\\nphi3v_r2_untrained_probe\\nphi3v_untrained_seed_expansion\\nqa_probe\\nrandom_subset_ablation.json\\nrandom_subset_ablation.log\\nrsa\\nshuffled_token_control.json\\nspecificity_control_action.json\\nspecificity_control_action.log\\nsr_corrected_3ep.json\\ntask_complexity_analysis.py\\ntask_complexity_routing.json\\ntask_routing_loo_sensitivity.json\\nthreecond_multiseed.json\\nthreecond_multiseed.log\\nthreecond_multiseed_v2.json\\nthreecond_multiseed_v2.log\\ntrained\\ntrained_label_perm\\ntrained_libero_goal\\ntrained_libero_goal_frame0\\ntrained_libero_goal_linear\\ntrained_libero_goal_pca1024\\ntrajectory_level_cohens_d.json\\ntrajectory_level_cohens_d.log\\nuntrained\\nuntrained_label_perm\\nuntrained_libero_goal\\nuntrained_libero_goal_frame0\\nuntrained_libero_goal_linear\\nvisual_similarity_gate.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see some interesting files. Let me check:
+- `groundtruth_action_error.json` - this might have per-task action error from the actual model
+- `action_metrics_extended.json` - extended action metrics
+- `action_baselines.json` - action baselines
+- `task_complexity_routing.json` - task complexity routing
+
+Let me read these.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "f922d161-96ef-4262-b7e5-0f411138ee06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019c7mUevWmVYLdJuxfTTKDe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 45694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LRi6SiExH7uovQUjMpTz2M`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/groundtruth_action_error.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "8c297ba4-244e-408f-8d82-1b3d8047214e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019c7mUevWmVYLdJuxfTTKDe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 45694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AE7u5aGKKRGHB3bi3tqFXf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_metrics_extended.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "aec74090-3fae-4c7b-b37d-5703a2431a67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019c7mUevWmVYLdJuxfTTKDe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 45694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T12:33:43.378Z_
+
+<details><summary>↩ Tool result · `toolu_01LRi6SiExH7uovQUjMpTz2M`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 3,\\n    \\\"n_demos\\\": 10,\\n    \\\"n_timesteps\\\": 50,\\n    \\\"total_passes\\\": 4500,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"top24_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"bottom24_heads\\\": [\\n      1,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      11,\\n      12,\\n      13,\\n      15,\\n      16,\\n      17,\\n      18,\\n      20,\\n      21,\\n      23,\\n      24,\\n      26,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"tasks\\\": [\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\"\\n    ],\\n    \\\"note\\\": \\\"GT actions in LIBERO native space; model outputs use bridge_orig unnorm. Delta metrics cancel domain bias.\\\"\\n  },\\n  \\\"global_metrics\\\": {\\n    \\\"original\\\": {\\n      \\\"mse\\\": {\\n        \\\"mean\\\": 0.4979501858383766,\\n        \\\"std\\\": 0.19915986474044517\\n      },\\n      \\\"mae\\\": {\\n        \\\"mean\\\": 0.39345952361320385,\\n        \\\"std\\\": 0.07798226709814308\\n      },\\n      \\\"per_dim_mse\\\": {\\n        \\\"dx\\\": 0.2740072594718719,\\n        \\\"dy\\\": 0.07590344138801013,\\n        \\\"dz\\\": 0.19582658825589758,\\n        \\\"rx\\\": 0.003480265722698624,\\n        \\\"ry\\\": 0.008375430813774083,\\n        \\\"rz\\\": 0.0190559315178063,\\n        \\\"gripper\\\": 2.909002383698577\\n      },\\n      \\\"per_dim_mae\\\": {\\n        \\\"dx\\\": 0.4093814824658402,\\n        \\\"dy\\\": 0.16898057072812067,\\n        \\\"dz\\\": 0.3319648472005221,\\n        \\\"rx\\\": 0.0422384544867191,\\n        \\\"ry\\\": 0.06850808566516088,\\n        \\\"rz\\\": 0.09566348618397216,\\n        \\\"gripper\\\": 1.6374797385620914\\n      },\\n      \\\"n_samples\\\": 1500\\n    },\\n    \\\"top24_ablated\\\": {\\n      \\\"mse\\\": {\\n        \\\"mean\\\": 0.496887283304691,\\n        \\\"std\\\": 0.20308387556097587\\n      },\\n      \\\"mae\\\": {\\n        \\\"mean\\\": 0.3932937539669046,\\n        \\\"std\\\": 0.08110782919482208\\n      },\\n      \\\"per_dim_mse\\\": {\\n        \\\"dx\\\": 0.27374306935748255,\\n        \\\"dy\\\": 0.07607066122870458,\\n        \\\"dz\\\": 0.19639438522698602,\\n        \\\"rx\\\": 0.003496515601945892,\\n        \\\"ry\\\": 0.008672266545919714,\\n        \\\"rz\\\": 0.018790650595353373,\\n        \\\"gripper\\\": 2.901043434576444\\n      },\\n      \\\"per_dim_mae\\\": {\\n        \\\"dx\\\": 0.40915403045055243,\\n        \\\"dy\\\": 0.168773266593586,\\n        \\\"dz\\\": 0.33257025785642264,\\n        \\\"rx\\\": 0.042644708626416734,\\n        \\\"ry\\\": 0.06932518370679247,\\n        \\\"rz\\\": 0.09568164099207829,\\n        \\\"gripper\\\": 1.6349071895424838\\n      },\\n      \\\"n_samples\\\": 1500\\n    },\\n    \\\"bottom24_ablated\\\": {\\n      \\\"mse\\\": {\\n        \\\"mean\\\": 0.5061275798116018,\\n        \\\"std\\\": 0.19940918097028348\\n      },\\n      \\\"mae\\\": {\\n        \\\"mean\\\": 0.39631667121187303,\\n        \\\"std\\\": 0.07895228992851558\\n      },\\n      \\\"per_dim_mse\\\": {\\n        \\\"dx\\\": 0.27381297016666667,\\n        \\\"dy\\\": 0.07589212956229466,\\n        \\\"dz\\\": 0.19620031232916313,\\n        \\\"rx\\\": 0.003428485792471555,\\n        \\\"ry\\\": 0.008609729586684937,\\n        \\\"rz\\\": 0.018950794822042837,\\n        \\\"gripper\\\": 2.965998636421889\\n      },\\n      \\\"per_dim_mae\\\": {\\n        \\\"dx\\\": 0.40921366152293476,\\n        \\\"dy\\\": 0.16879633407955008,\\n        \\\"dz\\\": 0.33271141067597165,\\n        \\\"rx\\\": 0.04237173935958469,\\n        \\\"ry\\\": 0.06896095515933691,\\n        \\\"rz\\\": 0.09566586565958936,\\n        \\\"gripper\\\": 1.656496732026144\\n      },\\n      \\\"n_samples\\\": 1500\\n    }\\n  },\\n  \\\"delta_tests\\\": {\\n    \\\"top24_ablated\\\": {\\n      \\\"delta_mse\\\": {\\n        \\\"mean\\\": -0.0010629025336855692,\\n        \\\"std\\\": 0.21542250745727612,\\n        \\\"median\\\": 4.382348636516875e-05,\\n        \\\"pct_increased\\\": 0.5173333333333333,\\n        \\\"wilcoxon_p\\\": 0.5186611406303435\\n      },\\n      \\\"delta_mae\\\": {\\n        \\\"mean\\\": -0.0001657696462991997,\\n        \\\"std\\\": 0.07332243820939507,\\n        \\\"median\\\": 0.0,\\n        \\\"pct_increased\\\": 0.49933333333333335,\\n        \\\"wilcoxon_p\\\": 0.9429113724291581\\n      },\\n      \\\"per_dim_delta\\\": {\\n        \\\"dx\\\": {\\n          \\\"delta_mse_mean\\\": -0.0002641901143893331,\\n\\n... [截断: 输出过长，省略 9119 字符] ...\\n\\n      \\\"mean\\\": 0.5577437629899133,\\n          \\\"std\\\": 0.20051176903986745\\n        },\\n        \\\"mae\\\": {\\n          \\\"mean\\\": 0.43630883085778993,\\n          \\\"std\\\": 0.08016806302345718\\n        },\\n        \\\"per_dim_mse\\\": [\\n          0.3287856717310683,\\n          0.18631028460927263,\\n          0.27343124986762896,\\n          0.0011343790713868606,\\n          0.0025751297797161395,\\n          0.0030025516680904567,\\n          3.1089670742022277\\n        ],\\n        \\\"per_dim_mae\\\": [\\n          0.45648449202480634,\\n          0.3550040648117399,\\n          0.43292905126658454,\\n          0.024930687984830564,\\n          0.03947670386182162,\\n          0.041117208211609683,\\n          1.7042196078431395\\n        ],\\n        \\\"n_samples\\\": 500\\n      },\\n      \\\"delta_top24_ablated\\\": {\\n        \\\"mean\\\": 0.009735478272047597,\\n        \\\"std\\\": 0.2389959578490417,\\n        \\\"median\\\": 4.114477100519709e-05,\\n        \\\"pct_increased\\\": 0.526,\\n        \\\"wilcoxon_p\\\": 0.2734967334398317\\n      },\\n      \\\"delta_bottom24_ablated\\\": {\\n        \\\"mean\\\": 0.00936903208005637,\\n        \\\"std\\\": 0.22212565685926966,\\n        \\\"median\\\": 0.0,\\n        \\\"pct_increased\\\": 0.46,\\n        \\\"wilcoxon_p\\\": 0.8869943681845762\\n      }\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"original\\\": {\\n        \\\"mse\\\": {\\n          \\\"mean\\\": 0.3833498860236831,\\n          \\\"std\\\": 0.20438222150924268\\n        },\\n        \\\"mae\\\": {\\n          \\\"mean\\\": 0.3552386307541109,\\n          \\\"std\\\": 0.0781660792808095\\n        },\\n        \\\"per_dim_mse\\\": [\\n          0.35721045981668964,\\n          0.03423282238793595,\\n          0.2946797269429943,\\n          0.0008005997529617483,\\n          0.0037797214434086386,\\n          0.0019486092304813992,\\n          1.9907972625913102\\n        ],\\n        \\\"per_dim_mae\\\": [\\n          0.48274558441045134,\\n          0.10557347426976237,\\n          0.4667267425618491,\\n          0.020782889576033005,\\n          0.04619470480586902,\\n          0.03394898043912538,\\n          1.3306980392156875\\n        ],\\n        \\\"n_samples\\\": 500\\n      },\\n      \\\"top24_ablated\\\": {\\n        \\\"mse\\\": {\\n          \\\"mean\\\": 0.385141875886578,\\n          \\\"std\\\": 0.21038096724265015\\n        },\\n        \\\"mae\\\": {\\n          \\\"mean\\\": 0.35598475279836655,\\n          \\\"std\\\": 0.08358012924487541\\n        },\\n        \\\"per_dim_mse\\\": [\\n          0.35716363812854707,\\n          0.03443027823778678,\\n          0.29556148573573326,\\n          0.0008123899011569563,\\n          0.003980837700137112,\\n          0.0020581885461308197,\\n          2.001986312956554\\n        ],\\n        \\\"per_dim_mae\\\": [\\n          0.4826661945712787,\\n          0.10507690465636475,\\n          0.4673935285462043,\\n          0.021329347062754304,\\n          0.047025960156029015,\\n          0.03412682479201382,\\n          1.3342745098039226\\n        ],\\n        \\\"n_samples\\\": 500\\n      },\\n      \\\"bottom24_ablated\\\": {\\n        \\\"mse\\\": {\\n          \\\"mean\\\": 0.4006029704213986,\\n          \\\"std\\\": 0.2143227889025656\\n        },\\n        \\\"mae\\\": {\\n          \\\"mean\\\": 0.36129013654053477,\\n          \\\"std\\\": 0.0833916124954229\\n        },\\n        \\\"per_dim_mse\\\": [\\n          0.35744760429463385,\\n          0.034284218454225614,\\n          0.2956299529491029,\\n          0.0008794371162683144,\\n          0.003804026435341098,\\n          0.002005126941280698,\\n          2.110170426758938\\n        ],\\n        \\\"per_dim_mae\\\": [\\n          0.4829275785522303,\\n          0.10521088059051055,\\n          0.4676448164358338,\\n          0.02204121658376312,\\n          0.04678086396706112,\\n          0.03388442318375709,\\n          1.3705411764705893\\n        ],\\n        \\\"n_samples\\\": 500\\n      },\\n      \\\"delta_top24_ablated\\\": {\\n        \\\"mean\\\": 0.0017919898628949236,\\n        \\\"std\\\": 0.2340873643698623,\\n        \\\"median\\\": 4.541231014609792e-05,\\n        \\\"pct_increased\\\": 0.516,\\n        \\\"wilcoxon_p\\\": 0.44741395493048897\\n      },\\n      \\\"delta_bottom24_ablated\\\": {\\n        \\\"mean\\\": 0.017253084397715508,\\n        \\\"std\\\": 0.24265752152651954,\\n        \\\"median\\\": 6.708926851513308e-05,\\n        \\\"pct_increased\\\": 0.52,\\n        \\\"wilcoxon_p\\\": 0.029028744734442734\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "603ac611-7c3c-4423-8d38-dc99a4b1029a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_tasks\\\\\\\": 3,\\\\n    \\\\\\\"n_demos\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps\\\\\\\": 50,\\\\n    \\\\\\\"total_passes\\\\\\\": 4500,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\",\\\\n    \\\\\\\"top24_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"bottom24_heads\\\\\\\": [\\\\n      1,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      11,\\\\n      12,\\\\n      13,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      20,\\\\n      21,\\\\n      23,\\\\n      24,\\\\n      26,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"tasks\\\\\\\": [\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"GT actions in LIBERO native space; model outputs use bridge_orig unnorm. Delta metrics cancel domain bias.\\\\\\\"\\\\n  },\\\\n  \\\\\\\"global_metrics\\\\\\\": {\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\\\\\"mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4979501858383766,\\\\n        \\\\\\\"std\\\\\\\": 0.19915986474044517\\\\n      },\\\\n      \\\\\\\"mae\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.39345952361320385,\\\\n        \\\\\\\"std\\\\\\\": 0.07798226709814308\\\\n      },\\\\n      \\\\\\\"per_dim_mse\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.2740072594718719,\\\\n        \\\\\\\"dy\\\\\\\": 0.07590344138801013,\\\\n        \\\\\\\"dz\\\\\\\": 0.19582658825589758,\\\\n        \\\\\\\"rx\\\\\\\": 0.003480265722698624,\\\\n        \\\\\\\"ry\\\\\\\": 0.008375430813774083,\\\\n        \\\\\\\"rz\\\\\\\": 0.0190559315178063,\\\\n        \\\\\\\"gripper\\\\\\\": 2.909002383698577\\\\n      },\\\\n      \\\\\\\"per_dim_mae\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.4093814824658402,\\\\n        \\\\\\\"dy\\\\\\\": 0.16898057072812067,\\\\n        \\\\\\\"dz\\\\\\\": 0.3319648472005221,\\\\n        \\\\\\\"rx\\\\\\\": 0.0422384544867191,\\\\n        \\\\\\\"ry\\\\\\\": 0.06850808566516088,\\\\n        \\\\\\\"rz\\\\\\\": 0.09566348618397216,\\\\n        \\\\\\\"gripper\\\\\\\": 1.6374797385620914\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 1500\\\\n    },\\\\n    \\\\\\\"top24_ablated\\\\\\\": {\\\\n      \\\\\\\"mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.496887283304691,\\\\n        \\\\\\\"std\\\\\\\": 0.20308387556097587\\\\n      },\\\\n      \\\\\\\"mae\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3932937539669046,\\\\n        \\\\\\\"std\\\\\\\": 0.08110782919482208\\\\n      },\\\\n      \\\\\\\"per_dim_mse\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.27374306935748255,\\\\n        \\\\\\\"dy\\\\\\\": 0.07607066122870458,\\\\n        \\\\\\\"dz\\\\\\\": 0.19639438522698602,\\\\n        \\\\\\\"rx\\\\\\\": 0.003496515601945892,\\\\n        \\\\\\\"ry\\\\\\\": 0.008672266545919714,\\\\n        \\\\\\\"rz\\\\\\\": 0.018790650595353373,\\\\n        \\\\\\\"gripper\\\\\\\": 2.901043434576444\\\\n      },\\\\n      \\\\\\\"per_dim_mae\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.40915403045055243,\\\\n        \\\\\\\"dy\\\\\\\": 0.168773266593586,\\\\n        \\\\\\\"dz\\\\\\\": 0.33257025785642264,\\\\n        \\\\\\\"rx\\\\\\\": 0.042644708626416734,\\\\n        \\\\\\\"ry\\\\\\\": 0.06932518370679247,\\\\n        \\\\\\\"rz\\\\\\\": 0.09568164099207829,\\\\n        \\\\\\\"gripper\\\\\\\": 1.6349071895424838\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 1500\\\\n    },\\\\n    \\\\\\\"bottom24_ablated\\\\\\\": {\\\\n      \\\\\\\"mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5061275798116018,\\\\n        \\\\\\\"std\\\\\\\": 0.19940918097028348\\\\n      },\\\\n      \\\\\\\"mae\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.39631667121187303,\\\\n        \\\\\\\"std\\\\\\\": 0.07895228992851558\\\\n      },\\\\n      \\\\\\\"per_dim_mse\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.27381297016666667,\\\\n        \\\\\\\"dy\\\\\\\": 0.07589212956229466,\\\\n        \\\\\\\"dz\\\\\\\": 0.19620031232916313,\\\\n        \\\\\\\"rx\\\\\\\": 0.003428485792471555,\\\\n        \\\\\\\"ry\\\\\\\": 0.008609729586684937,\\\\n        \\\\\\\"rz\\\\\\\": 0.018950794822042837,\\\\n        \\\\\\\"gripper\\\\\\\": 2.965998636421889\\\\n      },\\\\n      \\\\\\\"per_dim_mae\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.40921366152293476,\\\\n        \\\\\\\"dy\\\\\\\": 0.16879633407955008,\\\\n        \\\\\\\"dz\\\\\\\": 0.33271141067597165,\\\\n        \\\\\\\"rx\\\\\\\": 0.04237173935958469,\\\\n        \\\\\\\"ry\\\\\\\": 0.06896095515933691,\\\\n        \\\\\\\"rz\\\\\\\": 0.09566586565958936,\\\\n        \\\\\\\"gripper\\\\\\\": 1.656496732026144\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 1500\\\\n    }\\\\n  },\\\\n  \\\\\\\"delta_tests\\\\\\\": {\\\\n    \\\\\\\"top24_ablated\\\\\\\": {\\\\n      \\\\\\\"delta_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0010629025336855692,\\\\n        \\\\\\\"std\\\\\\\": 0.21542250745727612,\\\\n        \\\\\\\"median\\\\\\\": 4.382348636516875e-05,\\\\n        \\\\\\\"pct_increased\\\\\\\": 0.5173333333333333,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.5186611406303435\\\\n      },\\\\n      \\\\\\\"delta_mae\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0001657696462991997,\\\\n        \\\\\\\"std\\\\\\\": 0.07332243820939507,\\\\n        \\\\\\\"median\\\\\\\": 0.0,\\\\n        \\\\\\\"pct_increased\\\\\\\": 0.49933333333333335,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.9429113724291581\\\\n      },\\\\n      \\\\\\\"per_dim_delta\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": {\\\\n          \\\\\\\"delta_mse_mean\\\\\\\": -0.0002641901143893331,\\\\n\\\\n... [截断: 输出过长，省略 9119 字符] ...\\\\n\\\\n      \\\\\\\"mean\\\\\\\": 0.5577437629899133,\\\\n          \\\\\\\"std\\\\\\\": 0.20051176903986745\\\\n        },\\\\n        \\\\\\\"mae\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.43630883085778993,\\\\n          \\\\\\\"std\\\\\\\": 0.08016806302345718\\\\n        },\\\\n        \\\\\\\"per_dim_mse\\\\\\\": [\\\\n          0.3287856717310683,\\\\n          0.18631028460927263,\\\\n          0.27343124986762896,\\\\n          0.0011343790713868606,\\\\n          0.0025751297797161395,\\\\n          0.0030025516680904567,\\\\n          3.1089670742022277\\\\n        ],\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.45648449202480634,\\\\n          0.3550040648117399,\\\\n          0.43292905126658454,\\\\n          0.024930687984830564,\\\\n          0.03947670386182162,\\\\n          0.041117208211609683,\\\\n          1.7042196078431395\\\\n        ],\\\\n        \\\\\\\"n_samples\\\\\\\": 500\\\\n      },\\\\n      \\\\\\\"delta_top24_ablated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.009735478272047597,\\\\n        \\\\\\\"std\\\\\\\": 0.2389959578490417,\\\\n        \\\\\\\"median\\\\\\\": 4.114477100519709e-05,\\\\n        \\\\\\\"pct_increased\\\\\\\": 0.526,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.2734967334398317\\\\n      },\\\\n      \\\\\\\"delta_bottom24_ablated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.00936903208005637,\\\\n        \\\\\\\"std\\\\\\\": 0.22212565685926966,\\\\n        \\\\\\\"median\\\\\\\": 0.0,\\\\n        \\\\\\\"pct_increased\\\\\\\": 0.46,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.8869943681845762\\\\n      }\\\\n    },\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n      \\\\\\\"original\\\\\\\": {\\\\n        \\\\\\\"mse\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.3833498860236831,\\\\n          \\\\\\\"std\\\\\\\": 0.20438222150924268\\\\n        },\\\\n        \\\\\\\"mae\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.3552386307541109,\\\\n          \\\\\\\"std\\\\\\\": 0.0781660792808095\\\\n        },\\\\n        \\\\\\\"per_dim_mse\\\\\\\": [\\\\n          0.35721045981668964,\\\\n          0.03423282238793595,\\\\n          0.2946797269429943,\\\\n          0.0008005997529617483,\\\\n          0.0037797214434086386,\\\\n          0.0019486092304813992,\\\\n          1.9907972625913102\\\\n        ],\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.48274558441045134,\\\\n          0.10557347426976237,\\\\n          0.4667267425618491,\\\\n          0.020782889576033005,\\\\n          0.04619470480586902,\\\\n          0.03394898043912538,\\\\n          1.3306980392156875\\\\n        ],\\\\n        \\\\\\\"n_samples\\\\\\\": 500\\\\n      },\\\\n      \\\\\\\"top24_ablated\\\\\\\": {\\\\n        \\\\\\\"mse\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.385141875886578,\\\\n          \\\\\\\"std\\\\\\\": 0.21038096724265015\\\\n        },\\\\n        \\\\\\\"mae\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.35598475279836655,\\\\n          \\\\\\\"std\\\\\\\": 0.08358012924487541\\\\n        },\\\\n        \\\\\\\"per_dim_mse\\\\\\\": [\\\\n          0.35716363812854707,\\\\n          0.03443027823778678,\\\\n          0.29556148573573326,\\\\n          0.0008123899011569563,\\\\n          0.003980837700137112,\\\\n          0.0020581885461308197,\\\\n          2.001986312956554\\\\n        ],\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.4826661945712787,\\\\n          0.10507690465636475,\\\\n          0.4673935285462043,\\\\n          0.021329347062754304,\\\\n          0.047025960156029015,\\\\n          0.03412682479201382,\\\\n          1.3342745098039226\\\\n        ],\\\\n        \\\\\\\"n_samples\\\\\\\": 500\\\\n      },\\\\n      \\\\\\\"bottom24_ablated\\\\\\\": {\\\\n        \\\\\\\"mse\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.4006029704213986,\\\\n          \\\\\\\"std\\\\\\\": 0.2143227889025656\\\\n        },\\\\n        \\\\\\\"mae\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.36129013654053477,\\\\n          \\\\\\\"std\\\\\\\": 0.0833916124954229\\\\n        },\\\\n        \\\\\\\"per_dim_mse\\\\\\\": [\\\\n          0.35744760429463385,\\\\n          0.034284218454225614,\\\\n          0.2956299529491029,\\\\n          0.0008794371162683144,\\\\n          0.003804026435341098,\\\\n          0.002005126941280698,\\\\n          2.110170426758938\\\\n        ],\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.4829275785522303,\\\\n          0.10521088059051055,\\\\n          0.4676448164358338,\\\\n          0.02204121658376312,\\\\n          0.04678086396706112,\\\\n          0.03388442318375709,\\\\n          1.3705411764705893\\\\n        ],\\\\n        \\\\\\\"n_samples\\\\\\\": 500\\\\n      },\\\\n      \\\\\\\"delta_top24_ablated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0017919898628949236,\\\\n        \\\\\\\"std\\\\\\\": 0.2340873643698623,\\\\n        \\\\\\\"median\\\\\\\": 4.541231014609792e-05,\\\\n        \\\\\\\"pct_increased\\\\\\\": 0.516,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.44741395493048897\\\\n      },\\\\n      \\\\\\\"delta_bottom24_ablated\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.017253084397715508,\\\\n        \\\\\\\"std\\\\\\\": 0.24265752152651954,\\\\n        \\\\\\\"median\\\\\\\": 6.708926851513308e-05,\\\\n        \\\\\\\"pct_increased\\\\\\\": 0.52,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.029028744734442734\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 3,\\n    \\\"n_demos\\\": 10,\\n    \\\"n_timesteps\\\": 50,\\n    \\\"total_passes\\\": 4500,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"top24_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"bottom24_heads\\\": [\\n      1,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      11,\\n      12,\\n      13,\\n      15,\\n      16,\\n      17,\\n      18,\\n      20,\\n      21,\\n      23,\\n      24,\\n      26,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"tasks\\\": [\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\"\\n    ],\\n    \\\"note\\\": \\\"GT actions in LIBERO native space; model outputs use bridge_orig unnorm. Delta metrics cancel domain bias.\\\"\\n  },\\n  \\\"global_metrics\\\": {\\n    \\\"original\\\": {\\n      \\\"mse\\\": {\\n        \\\"mean\\\": 0.4979501858383766,\\n        \\\"std\\\": 0.19915986474044517\\n      },\\n      \\\"mae\\\": {\\n        \\\"mean\\\": 0.39345952361320385,\\n        \\\"std\\\": 0.07798226709814308\\n      },\\n      \\\"per_dim_mse\\\": {\\n        \\\"dx\\\": 0.2740072594718719,\\n        \\\"dy\\\": 0.07590344138801013,\\n        \\\"dz\\\": 0.19582658825589758,\\n        \\\"rx\\\": 0.003480265722698624,\\n        \\\"ry\\\": 0.008375430813774083,\\n        \\\"rz\\\": 0.0190559315178063,\\n        \\\"gripper\\\": 2.909002383698577\\n      },\\n      \\\"per_dim_mae\\\": {\\n        \\\"dx\\\": 0.4093814824658402,\\n        \\\"dy\\\": 0.16898057072812067,\\n        \\\"dz\\\": 0.3319648472005221,\\n        \\\"rx\\\": 0.0422384544867191,\\n        \\\"ry\\\": 0.06850808566516088,\\n        \\\"rz\\\": 0.09566348618397216,\\n        \\\"gripper\\\": 1.6374797385620914\\n      },\\n      \\\"n_samples\\\": 1500\\n    },\\n    \\\"top24_ablated\\\": {\\n      \\\"mse\\\": {\\n        \\\"mean\\\": 0.496887283304691,\\n        \\\"std\\\": 0.20308387556097587\\n      },\\n      \\\"mae\\\": {\\n        \\\"mean\\\": 0.3932937539669046,\\n        \\\"std\\\": 0.08110782919482208\\n      },\\n      \\\"per_dim_mse\\\": {\\n        \\\"dx\\\": 0.27374306935748255,\\n        \\\"dy\\\": 0.07607066122870458,\\n        \\\"dz\\\": 0.19639438522698602,\\n        \\\"rx\\\": 0.003496515601945892,\\n        \\\"ry\\\": 0.008672266545919714,\\n        \\\"rz\\\": 0.018790650595353373,\\n        \\\"gripper\\\": 2.901043434576444\\n      },\\n      \\\"per_dim_mae\\\": {\\n        \\\"dx\\\": 0.40915403045055243,\\n        \\\"dy\\\": 0.168773266593586,\\n        \\\"dz\\\": 0.33257025785642264,\\n        \\\"rx\\\": 0.042644708626416734,\\n        \\\"ry\\\": 0.06932518370679247,\\n        \\\"rz\\\": 0.09568164099207829,\\n        \\\"gripper\\\": 1.6349071895424838\\n      },\\n      \\\"n_samples\\\": 1500\\n    },\\n    \\\"bottom24_ablated\\\": {\\n      \\\"mse\\\": {\\n        \\\"mean\\\": 0.5061275798116018,\\n        \\\"std\\\": 0.19940918097028348\\n      },\\n      \\\"mae\\\": {\\n        \\\"mean\\\": 0.39631667121187303,\\n        \\\"std\\\": 0.07895228992851558\\n      },\\n      \\\"per_dim_mse\\\": {\\n        \\\"dx\\\": 0.27381297016666667,\\n        \\\"dy\\\": 0.07589212956229466,\\n        \\\"dz\\\": 0.19620031232916313,\\n        \\\"rx\\\": 0.003428485792471555,\\n        \\\"ry\\\": 0.008609729586684937,\\n        \\\"rz\\\": 0.018950794822042837,\\n        \\\"gripper\\\": 2.965998636421889\\n      },\\n      \\\"per_dim_mae\\\": {\\n        \\\"dx\\\": 0.40921366152293476,\\n        \\\"dy\\\": 0.16879633407955008,\\n        \\\"dz\\\": 0.33271141067597165,\\n        \\\"rx\\\": 0.04237173935958469,\\n        \\\"ry\\\": 0.06896095515933691,\\n        \\\"rz\\\": 0.09566586565958936,\\n        \\\"gripper\\\": 1.656496732026144\\n      },\\n      \\\"n_samples\\\": 1500\\n    }\\n  },\\n  \\\"delta_tests\\\": {\\n    \\\"top24_ablated\\\": {\\n      \\\"delta_mse\\\": {\\n        \\\"mean\\\": -0.0010629025336855692,\\n        \\\"std\\\": 0.21542250745727612,\\n        \\\"median\\\": 4.382348636516875e-05,\\n        \\\"pct_increased\\\": 0.5173333333333333,\\n        \\\"wilcoxon_p\\\": 0.5186611406303435\\n      },\\n      \\\"delta_mae\\\": {\\n        \\\"mean\\\": -0.0001657696462991997,\\n        \\\"std\\\": 0.07332243820939507,\\n        \\\"median\\\": 0.0,\\n        \\\"pct_increased\\\": 0.49933333333333335,\\n        \\\"wilcoxon_p\\\": 0.9429113724291581\\n      },\\n      \\\"per_dim_delta\\\": {\\n        \\\"dx\\\": {\\n          \\\"delta_mse_mean\\\": -0.0002641901143893331,\\n\\n... [截断: 输出过长，省略 9119 字符] ...\\n\\n      \\\"mean\\\": 0.5577437629899133,\\n          \\\"std\\\": 0.20051176903986745\\n        },\\n        \\\"mae\\\": {\\n          \\\"mean\\\": 0.43630883085778993,\\n          \\\"std\\\": 0.08016806302345718\\n        },\\n        \\\"per_dim_mse\\\": [\\n          0.3287856717310683,\\n          0.18631028460927263,\\n          0.27343124986762896,\\n          0.0011343790713868606,\\n          0.0025751297797161395,\\n          0.0030025516680904567,\\n          3.1089670742022277\\n        ],\\n        \\\"per_dim_mae\\\": [\\n          0.45648449202480634,\\n          0.3550040648117399,\\n          0.43292905126658454,\\n          0.024930687984830564,\\n          0.03947670386182162,\\n          0.041117208211609683,\\n          1.7042196078431395\\n        ],\\n        \\\"n_samples\\\": 500\\n      },\\n      \\\"delta_top24_ablated\\\": {\\n        \\\"mean\\\": 0.009735478272047597,\\n        \\\"std\\\": 0.2389959578490417,\\n        \\\"median\\\": 4.114477100519709e-05,\\n        \\\"pct_increased\\\": 0.526,\\n        \\\"wilcoxon_p\\\": 0.2734967334398317\\n      },\\n      \\\"delta_bottom24_ablated\\\": {\\n        \\\"mean\\\": 0.00936903208005637,\\n        \\\"std\\\": 0.22212565685926966,\\n        \\\"median\\\": 0.0,\\n        \\\"pct_increased\\\": 0.46,\\n        \\\"wilcoxon_p\\\": 0.8869943681845762\\n      }\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"original\\\": {\\n        \\\"mse\\\": {\\n          \\\"mean\\\": 0.3833498860236831,\\n          \\\"std\\\": 0.20438222150924268\\n        },\\n        \\\"mae\\\": {\\n          \\\"mean\\\": 0.3552386307541109,\\n          \\\"std\\\": 0.0781660792808095\\n        },\\n        \\\"per_dim_mse\\\": [\\n          0.35721045981668964,\\n          0.03423282238793595,\\n          0.2946797269429943,\\n          0.0008005997529617483,\\n          0.0037797214434086386,\\n          0.0019486092304813992,\\n          1.9907972625913102\\n        ],\\n        \\\"per_dim_mae\\\": [\\n          0.48274558441045134,\\n          0.10557347426976237,\\n          0.4667267425618491,\\n          0.020782889576033005,\\n          0.04619470480586902,\\n          0.03394898043912538,\\n          1.3306980392156875\\n        ],\\n        \\\"n_samples\\\": 500\\n      },\\n      \\\"top24_ablated\\\": {\\n        \\\"mse\\\": {\\n          \\\"mean\\\": 0.385141875886578,\\n          \\\"std\\\": 0.21038096724265015\\n        },\\n        \\\"mae\\\": {\\n          \\\"mean\\\": 0.35598475279836655,\\n          \\\"std\\\": 0.08358012924487541\\n        },\\n        \\\"per_dim_mse\\\": [\\n          0.35716363812854707,\\n          0.03443027823778678,\\n          0.29556148573573326,\\n          0.0008123899011569563,\\n          0.003980837700137112,\\n          0.0020581885461308197,\\n          2.001986312956554\\n        ],\\n        \\\"per_dim_mae\\\": [\\n          0.4826661945712787,\\n          0.10507690465636475,\\n          0.4673935285462043,\\n          0.021329347062754304,\\n          0.047025960156029015,\\n          0.03412682479201382,\\n          1.3342745098039226\\n        ],\\n        \\\"n_samples\\\": 500\\n      },\\n      \\\"bottom24_ablated\\\": {\\n        \\\"mse\\\": {\\n          \\\"mean\\\": 0.4006029704213986,\\n          \\\"std\\\": 0.2143227889025656\\n        },\\n        \\\"mae\\\": {\\n          \\\"mean\\\": 0.36129013654053477,\\n          \\\"std\\\": 0.0833916124954229\\n        },\\n        \\\"per_dim_mse\\\": [\\n          0.35744760429463385,\\n          0.034284218454225614,\\n          0.2956299529491029,\\n          0.0008794371162683144,\\n          0.003804026435341098,\\n          0.002005126941280698,\\n          2.110170426758938\\n        ],\\n        \\\"per_dim_mae\\\": [\\n          0.4829275785522303,\\n          0.10521088059051055,\\n          0.4676448164358338,\\n          0.02204121658376312,\\n          0.04678086396706112,\\n          0.03388442318375709,\\n          1.3705411764705893\\n        ],\\n        \\\"n_samples\\\": 500\\n      },\\n      \\\"delta_top24_ablated\\\": {\\n        \\\"mean\\\": 0.0017919898628949236,\\n        \\\"std\\\": 0.2340873643698623,\\n        \\\"median\\\": 4.541231014609792e-05,\\n        \\\"pct_increased\\\": 0.516,\\n        \\\"wilcoxon_p\\\": 0.44741395493048897\\n      },\\n      \\\"delta_bottom24_ablated\\\": {\\n        \\\"mean\\\": 0.017253084397715508,\\n        \\\"std\\\": 0.24265752152651954,\\n        \\\"median\\\": 6.708926851513308e-05,\\n        \\\"pct_increased\\\": 0.52,\\n        \\\"wilcoxon_p\\\": 0.029028744734442734\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T12:33:43.918Z_
+
+<details><summary>↩ Tool result · `toolu_01AE7u5aGKKRGHB3bi3tqFXf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"instruction_24h\\\": {\\n    \\\"per_dim_mae\\\": [\\n      0.0018907630960015738,\\n      0.0053060349467249435,\\n      0.007621298928714849,\\n      0.02059210950341174,\\n      0.030713564767946917,\\n      0.033881929667518705,\\n      0.2907168627450989\\n    ],\\n    \\\"per_dim_mae_std\\\": [\\n      0.003945774709271799,\\n      0.007996728850961761,\\n      0.00855598404937074,\\n      0.02115830546884926,\\n      0.02858547485740179,\\n      0.037737860644735575,\\n      0.44894904084862064\\n    ],\\n    \\\"per_dim_mae_labels\\\": [\\n      \\\"dx\\\",\\n      \\\"dy\\\",\\n      \\\"dz\\\",\\n      \\\"roll\\\",\\n      \\\"pitch\\\",\\n      \\\"yaw\\\",\\n      \\\"gripper\\\"\\n    ],\\n    \\\"cosine_similarity\\\": {\\n      \\\"status\\\": \\\"not_computable\\\",\\n      \\\"reason\\\": \\\"Raw per-sample action vectors not stored in JSON; only aggregated statistics available\\\"\\n    },\\n    \\\"per_task\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0014037795379863059,\\n          0.004451050012665628,\\n          0.006329343725828563,\\n          0.019142500603928258,\\n          0.030247070985899276,\\n          0.03025989703622987,\\n          0.15281568627450998\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.00311317121105672,\\n          0.007885665398470972,\\n          0.008240969667318977,\\n          0.019615421748166623,\\n          0.028676831314892466,\\n          0.033095946085946286,\\n          0.3590890901162581\\n        ]\\n      },\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0017330280210831573,\\n          0.005302538340663201,\\n          0.007163902512666055,\\n          0.020680235506992665,\\n          0.03485707990039093,\\n          0.03459241025841939,\\n          0.3118901960784321\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.0037620949894889076,\\n          0.00825352063013232,\\n          0.007593216730760563,\\n          0.020277157204501794,\\n          0.03162330967091224,\\n          0.038133676245909076,\\n          0.4570695648337024\\n        ]\\n      },\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.002803980288112861,\\n          0.0054708934473395275,\\n          0.007187286787515175,\\n          0.018410671617669166,\\n          0.02898102668941719,\\n          0.02812265279046228,\\n          0.3252549019607852\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.0057296098847649055,\\n          0.007560437193942133,\\n          0.007359340564353495,\\n          0.018759688881726206,\\n          0.028137334353327288,\\n          0.02949191003799571,\\n          0.46658065445606245\\n        ]\\n      },\\n      \\\"put_the_bowl_on_the_plate\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0016636890063005333,\\n          0.0052034678355805915,\\n          0.00747777144619647,\\n          0.020320068361922777,\\n          0.028729157559535055,\\n          0.035562712698805565,\\n          0.3252549019607849\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.00306018861719437,\\n          0.008431160867942903,\\n          0.008048276555242978,\\n          0.021654913911754142,\\n          0.026055373152750017,\\n          0.03568682198764817,\\n          0.4582868723436793\\n        ]\\n      },\\n      \\\"put_the_bowl_on_the_stove\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0018493386265249795,\\n          0.00610222509737575,\\n          0.009948190171367981,\\n          0.024407071426545815,\\n          0.030753488704492044,\\n          0.04087197555367618,\\n          0.338368627450981\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.003264664633536739,\\n          0.0077321877439992396,\\n          0.010677892843435068,\\n          0.024496624444718028,\\n          0.027718819464147733,\\n          0.048263969493824666,\\n          0.46698264708631304\\n        ]\\n      }\\n    }\\n  },\\n  \\\"control_8h\\\": {\\n    \\\"per_dim_mae\\\": [\\n      0.00037120977075240174,\\n      0.001246604812974087,\\n      0.002426664148676048,\\n      0.007850111136374748,\\n      0.013872630138848839,\\n      0.01783035501084426,\\n      0.1407215686274514\\n    ],\\n    \\\"per_dim_mae_std\\\": [\\n      0.0018871390276948216,\\n      0.004219931004787625,\\n      0.0060088698615\\n\\n... [截断: 输出过长，省略 1350 字符] ...\\n\\nmae_std\\\": [\\n          0.0027029498679715077,\\n          0.004511426732047961,\\n          0.005765585894804657,\\n          0.016412794212901156,\\n          0.026270179147011234,\\n          0.027999205853874342,\\n          0.380992281812193\\n        ]\\n      },\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.00042855984620486954,\\n          0.0014226006514149539,\\n          0.002402344502832959,\\n          0.007612043207860453,\\n          0.014364578779767542,\\n          0.016453234736648253,\\n          0.14741960784313757\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.0022126452881866708,\\n          0.004209957939699607,\\n          0.005451413455208746,\\n          0.014859603331756701,\\n          0.023226430875984257,\\n          0.025804516474419663,\\n          0.3537074369550698\\n        ]\\n      },\\n      \\\"put_the_bowl_on_the_plate\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.00027780340761296874,\\n          0.0008599060833313877,\\n          0.002564475475120192,\\n          0.007365545835525372,\\n          0.013181597706970046,\\n          0.01896119253937402,\\n          0.1611764705882354\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.0013829406987154746,\\n          0.0030996120667191275,\\n          0.006155639165535401,\\n          0.01585197265890449,\\n          0.021339857549586397,\\n          0.033096785195496796,\\n          0.3613080171760149\\n        ]\\n      },\\n      \\\"put_the_bowl_on_the_stove\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0003520632557027477,\\n          0.0016854936256864468,\\n          0.0031064710010675805,\\n          0.009523994329029423,\\n          0.01370007299029126,\\n          0.021552963841933816,\\n          0.1640313725490198\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.001531875037613679,\\n          0.005229252962801645,\\n          0.007495002547156565,\\n          0.019346882248412398,\\n          0.024923249693831282,\\n          0.03731574025746046,\\n          0.36741750566337644\\n        ]\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"per_dim_mae_ratio_inst_over_ctrl\\\": [\\n      5.093516510002425,\\n      4.256388946602951,\\n      3.1406484217739474,\\n      2.6231615254457865,\\n      2.2139684011279748,\\n      1.9002386462250485,\\n      2.0659012373202543\\n    ],\\n    \\\"per_dim_mae_ratio_labels\\\": [\\n      \\\"dx\\\",\\n      \\\"dy\\\",\\n      \\\"dz\\\",\\n      \\\"roll\\\",\\n      \\\"pitch\\\",\\n      \\\"yaw\\\",\\n      \\\"gripper\\\"\\n    ],\\n    \\\"cosine_sim_difference\\\": {\\n      \\\"status\\\": \\\"not_computable\\\",\\n      \\\"reason\\\": \\\"Raw per-sample action vectors not stored in JSON\\\"\\n    },\\n    \\\"summary\\\": {\\n      \\\"most_affected_dims_by_instruction_ablation\\\": [\\n        {\\n          \\\"dim\\\": \\\"dx\\\",\\n          \\\"ratio\\\": 5.094,\\n          \\\"inst_mae\\\": 0.001891,\\n          \\\"ctrl_mae\\\": 0.000371\\n        },\\n        {\\n          \\\"dim\\\": \\\"dy\\\",\\n          \\\"ratio\\\": 4.256,\\n          \\\"inst_mae\\\": 0.005306,\\n          \\\"ctrl_mae\\\": 0.001247\\n        },\\n        {\\n          \\\"dim\\\": \\\"dz\\\",\\n          \\\"ratio\\\": 3.141,\\n          \\\"inst_mae\\\": 0.007621,\\n          \\\"ctrl_mae\\\": 0.002427\\n        },\\n        {\\n          \\\"dim\\\": \\\"roll\\\",\\n          \\\"ratio\\\": 2.623,\\n          \\\"inst_mae\\\": 0.020592,\\n          \\\"ctrl_mae\\\": 0.00785\\n        },\\n        {\\n          \\\"dim\\\": \\\"pitch\\\",\\n          \\\"ratio\\\": 2.214,\\n          \\\"inst_mae\\\": 0.030714,\\n          \\\"ctrl_mae\\\": 0.013873\\n        },\\n        {\\n          \\\"dim\\\": \\\"gripper\\\",\\n          \\\"ratio\\\": 2.066,\\n          \\\"inst_mae\\\": 0.290717,\\n          \\\"ctrl_mae\\\": 0.140722\\n        },\\n        {\\n          \\\"dim\\\": \\\"yaw\\\",\\n          \\\"ratio\\\": 1.9,\\n          \\\"inst_mae\\\": 0.033882,\\n          \\\"ctrl_mae\\\": 0.01783\\n        }\\n      ],\\n      \\\"ratio_interpretation\\\": \\\"Values > 1 mean instruction-head ablation causes larger shift than control-head ablation on that dimension\\\"\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"source_files\\\": [\\n      \\\"action_trajectory_analysis.json\\\",\\n      \\\"action_trajectory_control.json\\\"\\n    ],\\n    \\\"note\\\": \\\"per_dim_mae extracted from per_dim_action_shift.means (mean absolute shift between baseline and ablated actions). Cosine similarity requires raw per-sample action vectors which were not saved.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "06a2d717-f632-405f-8da5-f17147d2a2ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"instruction_24h\\\\\\\": {\\\\n    \\\\\\\"per_dim_mae\\\\\\\": [\\\\n      0.0018907630960015738,\\\\n      0.0053060349467249435,\\\\n      0.007621298928714849,\\\\n      0.02059210950341174,\\\\n      0.030713564767946917,\\\\n      0.033881929667518705,\\\\n      0.2907168627450989\\\\n    ],\\\\n    \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n      0.003945774709271799,\\\\n      0.007996728850961761,\\\\n      0.00855598404937074,\\\\n      0.02115830546884926,\\\\n      0.02858547485740179,\\\\n      0.037737860644735575,\\\\n      0.44894904084862064\\\\n    ],\\\\n    \\\\\\\"per_dim_mae_labels\\\\\\\": [\\\\n      \\\\\\\"dx\\\\\\\",\\\\n      \\\\\\\"dy\\\\\\\",\\\\n      \\\\\\\"dz\\\\\\\",\\\\n      \\\\\\\"roll\\\\\\\",\\\\n      \\\\\\\"pitch\\\\\\\",\\\\n      \\\\\\\"yaw\\\\\\\",\\\\n      \\\\\\\"gripper\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"cosine_similarity\\\\\\\": {\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"not_computable\\\\\\\",\\\\n      \\\\\\\"reason\\\\\\\": \\\\\\\"Raw per-sample action vectors not stored in JSON; only aggregated statistics available\\\\\\\"\\\\n    },\\\\n    \\\\\\\"per_task\\\\\\\": {\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.0014037795379863059,\\\\n          0.004451050012665628,\\\\n          0.006329343725828563,\\\\n          0.019142500603928258,\\\\n          0.030247070985899276,\\\\n          0.03025989703622987,\\\\n          0.15281568627450998\\\\n        ],\\\\n        \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n          0.00311317121105672,\\\\n          0.007885665398470972,\\\\n          0.008240969667318977,\\\\n          0.019615421748166623,\\\\n          0.028676831314892466,\\\\n          0.033095946085946286,\\\\n          0.3590890901162581\\\\n        ]\\\\n      },\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": {\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.0017330280210831573,\\\\n          0.005302538340663201,\\\\n          0.007163902512666055,\\\\n          0.020680235506992665,\\\\n          0.03485707990039093,\\\\n          0.03459241025841939,\\\\n          0.3118901960784321\\\\n        ],\\\\n        \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n          0.0037620949894889076,\\\\n          0.00825352063013232,\\\\n          0.007593216730760563,\\\\n          0.020277157204501794,\\\\n          0.03162330967091224,\\\\n          0.038133676245909076,\\\\n          0.4570695648337024\\\\n        ]\\\\n      },\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.002803980288112861,\\\\n          0.0054708934473395275,\\\\n          0.007187286787515175,\\\\n          0.018410671617669166,\\\\n          0.02898102668941719,\\\\n          0.02812265279046228,\\\\n          0.3252549019607852\\\\n        ],\\\\n        \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n          0.0057296098847649055,\\\\n          0.007560437193942133,\\\\n          0.007359340564353495,\\\\n          0.018759688881726206,\\\\n          0.028137334353327288,\\\\n          0.02949191003799571,\\\\n          0.46658065445606245\\\\n        ]\\\\n      },\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": {\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.0016636890063005333,\\\\n          0.0052034678355805915,\\\\n          0.00747777144619647,\\\\n          0.020320068361922777,\\\\n          0.028729157559535055,\\\\n          0.035562712698805565,\\\\n          0.3252549019607849\\\\n        ],\\\\n        \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n          0.00306018861719437,\\\\n          0.008431160867942903,\\\\n          0.008048276555242978,\\\\n          0.021654913911754142,\\\\n          0.026055373152750017,\\\\n          0.03568682198764817,\\\\n          0.4582868723436793\\\\n        ]\\\\n      },\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": {\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.0018493386265249795,\\\\n          0.00610222509737575,\\\\n          0.009948190171367981,\\\\n          0.024407071426545815,\\\\n          0.030753488704492044,\\\\n          0.04087197555367618,\\\\n          0.338368627450981\\\\n        ],\\\\n        \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n          0.003264664633536739,\\\\n          0.0077321877439992396,\\\\n          0.010677892843435068,\\\\n          0.024496624444718028,\\\\n          0.027718819464147733,\\\\n          0.048263969493824666,\\\\n          0.46698264708631304\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"control_8h\\\\\\\": {\\\\n    \\\\\\\"per_dim_mae\\\\\\\": [\\\\n      0.00037120977075240174,\\\\n      0.001246604812974087,\\\\n      0.002426664148676048,\\\\n      0.007850111136374748,\\\\n      0.013872630138848839,\\\\n      0.01783035501084426,\\\\n      0.1407215686274514\\\\n    ],\\\\n    \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n      0.0018871390276948216,\\\\n      0.004219931004787625,\\\\n      0.0060088698615\\\\n\\\\n... [截断: 输出过长，省略 1350 字符] ...\\\\n\\\\nmae_std\\\\\\\": [\\\\n          0.0027029498679715077,\\\\n          0.004511426732047961,\\\\n          0.005765585894804657,\\\\n          0.016412794212901156,\\\\n          0.026270179147011234,\\\\n          0.027999205853874342,\\\\n          0.380992281812193\\\\n        ]\\\\n      },\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.00042855984620486954,\\\\n          0.0014226006514149539,\\\\n          0.002402344502832959,\\\\n          0.007612043207860453,\\\\n          0.014364578779767542,\\\\n          0.016453234736648253,\\\\n          0.14741960784313757\\\\n        ],\\\\n        \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n          0.0022126452881866708,\\\\n          0.004209957939699607,\\\\n          0.005451413455208746,\\\\n          0.014859603331756701,\\\\n          0.023226430875984257,\\\\n          0.025804516474419663,\\\\n          0.3537074369550698\\\\n        ]\\\\n      },\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": {\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.00027780340761296874,\\\\n          0.0008599060833313877,\\\\n          0.002564475475120192,\\\\n          0.007365545835525372,\\\\n          0.013181597706970046,\\\\n          0.01896119253937402,\\\\n          0.1611764705882354\\\\n        ],\\\\n        \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n          0.0013829406987154746,\\\\n          0.0030996120667191275,\\\\n          0.006155639165535401,\\\\n          0.01585197265890449,\\\\n          0.021339857549586397,\\\\n          0.033096785195496796,\\\\n          0.3613080171760149\\\\n        ]\\\\n      },\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": {\\\\n        \\\\\\\"per_dim_mae\\\\\\\": [\\\\n          0.0003520632557027477,\\\\n          0.0016854936256864468,\\\\n          0.0031064710010675805,\\\\n          0.009523994329029423,\\\\n          0.01370007299029126,\\\\n          0.021552963841933816,\\\\n          0.1640313725490198\\\\n        ],\\\\n        \\\\\\\"per_dim_mae_std\\\\\\\": [\\\\n          0.001531875037613679,\\\\n          0.005229252962801645,\\\\n          0.007495002547156565,\\\\n          0.019346882248412398,\\\\n          0.024923249693831282,\\\\n          0.03731574025746046,\\\\n          0.36741750566337644\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"per_dim_mae_ratio_inst_over_ctrl\\\\\\\": [\\\\n      5.093516510002425,\\\\n      4.256388946602951,\\\\n      3.1406484217739474,\\\\n      2.6231615254457865,\\\\n      2.2139684011279748,\\\\n      1.9002386462250485,\\\\n      2.0659012373202543\\\\n    ],\\\\n    \\\\\\\"per_dim_mae_ratio_labels\\\\\\\": [\\\\n      \\\\\\\"dx\\\\\\\",\\\\n      \\\\\\\"dy\\\\\\\",\\\\n      \\\\\\\"dz\\\\\\\",\\\\n      \\\\\\\"roll\\\\\\\",\\\\n      \\\\\\\"pitch\\\\\\\",\\\\n      \\\\\\\"yaw\\\\\\\",\\\\n      \\\\\\\"gripper\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"cosine_sim_difference\\\\\\\": {\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"not_computable\\\\\\\",\\\\n      \\\\\\\"reason\\\\\\\": \\\\\\\"Raw per-sample action vectors not stored in JSON\\\\\\\"\\\\n    },\\\\n    \\\\\\\"summary\\\\\\\": {\\\\n      \\\\\\\"most_affected_dims_by_instruction_ablation\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"dim\\\\\\\": \\\\\\\"dx\\\\\\\",\\\\n          \\\\\\\"ratio\\\\\\\": 5.094,\\\\n          \\\\\\\"inst_mae\\\\\\\": 0.001891,\\\\n          \\\\\\\"ctrl_mae\\\\\\\": 0.000371\\\\n        },\\\\n        {\\\\n          \\\\\\\"dim\\\\\\\": \\\\\\\"dy\\\\\\\",\\\\n          \\\\\\\"ratio\\\\\\\": 4.256,\\\\n          \\\\\\\"inst_mae\\\\\\\": 0.005306,\\\\n          \\\\\\\"ctrl_mae\\\\\\\": 0.001247\\\\n        },\\\\n        {\\\\n          \\\\\\\"dim\\\\\\\": \\\\\\\"dz\\\\\\\",\\\\n          \\\\\\\"ratio\\\\\\\": 3.141,\\\\n          \\\\\\\"inst_mae\\\\\\\": 0.007621,\\\\n          \\\\\\\"ctrl_mae\\\\\\\": 0.002427\\\\n        },\\\\n        {\\\\n          \\\\\\\"dim\\\\\\\": \\\\\\\"roll\\\\\\\",\\\\n          \\\\\\\"ratio\\\\\\\": 2.623,\\\\n          \\\\\\\"inst_mae\\\\\\\": 0.020592,\\\\n          \\\\\\\"ctrl_mae\\\\\\\": 0.00785\\\\n        },\\\\n        {\\\\n          \\\\\\\"dim\\\\\\\": \\\\\\\"pitch\\\\\\\",\\\\n          \\\\\\\"ratio\\\\\\\": 2.214,\\\\n          \\\\\\\"inst_mae\\\\\\\": 0.030714,\\\\n          \\\\\\\"ctrl_mae\\\\\\\": 0.013873\\\\n        },\\\\n        {\\\\n          \\\\\\\"dim\\\\\\\": \\\\\\\"gripper\\\\\\\",\\\\n          \\\\\\\"ratio\\\\\\\": 2.066,\\\\n          \\\\\\\"inst_mae\\\\\\\": 0.290717,\\\\n          \\\\\\\"ctrl_mae\\\\\\\": 0.140722\\\\n        },\\\\n        {\\\\n          \\\\\\\"dim\\\\\\\": \\\\\\\"yaw\\\\\\\",\\\\n          \\\\\\\"ratio\\\\\\\": 1.9,\\\\n          \\\\\\\"inst_mae\\\\\\\": 0.033882,\\\\n          \\\\\\\"ctrl_mae\\\\\\\": 0.01783\\\\n        }\\\\n      ],\\\\n      \\\\\\\"ratio_interpretation\\\\\\\": \\\\\\\"Values > 1 mean instruction-head ablation causes larger shift than control-head ablation on that dimension\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"source_files\\\\\\\": [\\\\n      \\\\\\\"action_trajectory_analysis.json\\\\\\\",\\\\n      \\\\\\\"action_trajectory_control.json\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"per_dim_mae extracted from per_dim_action_shift.means (mean absolute shift between baseline and ablated actions). Cosine similarity requires raw per-sample action vectors which were not saved.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"instruction_24h\\\": {\\n    \\\"per_dim_mae\\\": [\\n      0.0018907630960015738,\\n      0.0053060349467249435,\\n      0.007621298928714849,\\n      0.02059210950341174,\\n      0.030713564767946917,\\n      0.033881929667518705,\\n      0.2907168627450989\\n    ],\\n    \\\"per_dim_mae_std\\\": [\\n      0.003945774709271799,\\n      0.007996728850961761,\\n      0.00855598404937074,\\n      0.02115830546884926,\\n      0.02858547485740179,\\n      0.037737860644735575,\\n      0.44894904084862064\\n    ],\\n    \\\"per_dim_mae_labels\\\": [\\n      \\\"dx\\\",\\n      \\\"dy\\\",\\n      \\\"dz\\\",\\n      \\\"roll\\\",\\n      \\\"pitch\\\",\\n      \\\"yaw\\\",\\n      \\\"gripper\\\"\\n    ],\\n    \\\"cosine_similarity\\\": {\\n      \\\"status\\\": \\\"not_computable\\\",\\n      \\\"reason\\\": \\\"Raw per-sample action vectors not stored in JSON; only aggregated statistics available\\\"\\n    },\\n    \\\"per_task\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0014037795379863059,\\n          0.004451050012665628,\\n          0.006329343725828563,\\n          0.019142500603928258,\\n          0.030247070985899276,\\n          0.03025989703622987,\\n          0.15281568627450998\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.00311317121105672,\\n          0.007885665398470972,\\n          0.008240969667318977,\\n          0.019615421748166623,\\n          0.028676831314892466,\\n          0.033095946085946286,\\n          0.3590890901162581\\n        ]\\n      },\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0017330280210831573,\\n          0.005302538340663201,\\n          0.007163902512666055,\\n          0.020680235506992665,\\n          0.03485707990039093,\\n          0.03459241025841939,\\n          0.3118901960784321\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.0037620949894889076,\\n          0.00825352063013232,\\n          0.007593216730760563,\\n          0.020277157204501794,\\n          0.03162330967091224,\\n          0.038133676245909076,\\n          0.4570695648337024\\n        ]\\n      },\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.002803980288112861,\\n          0.0054708934473395275,\\n          0.007187286787515175,\\n          0.018410671617669166,\\n          0.02898102668941719,\\n          0.02812265279046228,\\n          0.3252549019607852\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.0057296098847649055,\\n          0.007560437193942133,\\n          0.007359340564353495,\\n          0.018759688881726206,\\n          0.028137334353327288,\\n          0.02949191003799571,\\n          0.46658065445606245\\n        ]\\n      },\\n      \\\"put_the_bowl_on_the_plate\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0016636890063005333,\\n          0.0052034678355805915,\\n          0.00747777144619647,\\n          0.020320068361922777,\\n          0.028729157559535055,\\n          0.035562712698805565,\\n          0.3252549019607849\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.00306018861719437,\\n          0.008431160867942903,\\n          0.008048276555242978,\\n          0.021654913911754142,\\n          0.026055373152750017,\\n          0.03568682198764817,\\n          0.4582868723436793\\n        ]\\n      },\\n      \\\"put_the_bowl_on_the_stove\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0018493386265249795,\\n          0.00610222509737575,\\n          0.009948190171367981,\\n          0.024407071426545815,\\n          0.030753488704492044,\\n          0.04087197555367618,\\n          0.338368627450981\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.003264664633536739,\\n          0.0077321877439992396,\\n          0.010677892843435068,\\n          0.024496624444718028,\\n          0.027718819464147733,\\n          0.048263969493824666,\\n          0.46698264708631304\\n        ]\\n      }\\n    }\\n  },\\n  \\\"control_8h\\\": {\\n    \\\"per_dim_mae\\\": [\\n      0.00037120977075240174,\\n      0.001246604812974087,\\n      0.002426664148676048,\\n      0.007850111136374748,\\n      0.013872630138848839,\\n      0.01783035501084426,\\n      0.1407215686274514\\n    ],\\n    \\\"per_dim_mae_std\\\": [\\n      0.0018871390276948216,\\n      0.004219931004787625,\\n      0.0060088698615\\n\\n... [截断: 输出过长，省略 1350 字符] ...\\n\\nmae_std\\\": [\\n          0.0027029498679715077,\\n          0.004511426732047961,\\n          0.005765585894804657,\\n          0.016412794212901156,\\n          0.026270179147011234,\\n          0.027999205853874342,\\n          0.380992281812193\\n        ]\\n      },\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.00042855984620486954,\\n          0.0014226006514149539,\\n          0.002402344502832959,\\n          0.007612043207860453,\\n          0.014364578779767542,\\n          0.016453234736648253,\\n          0.14741960784313757\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.0022126452881866708,\\n          0.004209957939699607,\\n          0.005451413455208746,\\n          0.014859603331756701,\\n          0.023226430875984257,\\n          0.025804516474419663,\\n          0.3537074369550698\\n        ]\\n      },\\n      \\\"put_the_bowl_on_the_plate\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.00027780340761296874,\\n          0.0008599060833313877,\\n          0.002564475475120192,\\n          0.007365545835525372,\\n          0.013181597706970046,\\n          0.01896119253937402,\\n          0.1611764705882354\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.0013829406987154746,\\n          0.0030996120667191275,\\n          0.006155639165535401,\\n          0.01585197265890449,\\n          0.021339857549586397,\\n          0.033096785195496796,\\n          0.3613080171760149\\n        ]\\n      },\\n      \\\"put_the_bowl_on_the_stove\\\": {\\n        \\\"per_dim_mae\\\": [\\n          0.0003520632557027477,\\n          0.0016854936256864468,\\n          0.0031064710010675805,\\n          0.009523994329029423,\\n          0.01370007299029126,\\n          0.021552963841933816,\\n          0.1640313725490198\\n        ],\\n        \\\"per_dim_mae_std\\\": [\\n          0.001531875037613679,\\n          0.005229252962801645,\\n          0.007495002547156565,\\n          0.019346882248412398,\\n          0.024923249693831282,\\n          0.03731574025746046,\\n          0.36741750566337644\\n        ]\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"per_dim_mae_ratio_inst_over_ctrl\\\": [\\n      5.093516510002425,\\n      4.256388946602951,\\n      3.1406484217739474,\\n      2.6231615254457865,\\n      2.2139684011279748,\\n      1.9002386462250485,\\n      2.0659012373202543\\n    ],\\n    \\\"per_dim_mae_ratio_labels\\\": [\\n      \\\"dx\\\",\\n      \\\"dy\\\",\\n      \\\"dz\\\",\\n      \\\"roll\\\",\\n      \\\"pitch\\\",\\n      \\\"yaw\\\",\\n      \\\"gripper\\\"\\n    ],\\n    \\\"cosine_sim_difference\\\": {\\n      \\\"status\\\": \\\"not_computable\\\",\\n      \\\"reason\\\": \\\"Raw per-sample action vectors not stored in JSON\\\"\\n    },\\n    \\\"summary\\\": {\\n      \\\"most_affected_dims_by_instruction_ablation\\\": [\\n        {\\n          \\\"dim\\\": \\\"dx\\\",\\n          \\\"ratio\\\": 5.094,\\n          \\\"inst_mae\\\": 0.001891,\\n          \\\"ctrl_mae\\\": 0.000371\\n        },\\n        {\\n          \\\"dim\\\": \\\"dy\\\",\\n          \\\"ratio\\\": 4.256,\\n          \\\"inst_mae\\\": 0.005306,\\n          \\\"ctrl_mae\\\": 0.001247\\n        },\\n        {\\n          \\\"dim\\\": \\\"dz\\\",\\n          \\\"ratio\\\": 3.141,\\n          \\\"inst_mae\\\": 0.007621,\\n          \\\"ctrl_mae\\\": 0.002427\\n        },\\n        {\\n          \\\"dim\\\": \\\"roll\\\",\\n          \\\"ratio\\\": 2.623,\\n          \\\"inst_mae\\\": 0.020592,\\n          \\\"ctrl_mae\\\": 0.00785\\n        },\\n        {\\n          \\\"dim\\\": \\\"pitch\\\",\\n          \\\"ratio\\\": 2.214,\\n          \\\"inst_mae\\\": 0.030714,\\n          \\\"ctrl_mae\\\": 0.013873\\n        },\\n        {\\n          \\\"dim\\\": \\\"gripper\\\",\\n          \\\"ratio\\\": 2.066,\\n          \\\"inst_mae\\\": 0.290717,\\n          \\\"ctrl_mae\\\": 0.140722\\n        },\\n        {\\n          \\\"dim\\\": \\\"yaw\\\",\\n          \\\"ratio\\\": 1.9,\\n          \\\"inst_mae\\\": 0.033882,\\n          \\\"ctrl_mae\\\": 0.01783\\n        }\\n      ],\\n      \\\"ratio_interpretation\\\": \\\"Values > 1 mean instruction-head ablation causes larger shift than control-head ablation on that dimension\\\"\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"source_files\\\": [\\n      \\\"action_trajectory_analysis.json\\\",\\n      \\\"action_trajectory_control.json\\\"\\n    ],\\n    \\\"note\\\": \\\"per_dim_mae extracted from per_dim_action_shift.means (mean absolute shift between baseline and ablated actions). Cosine similarity requires raw per-sample action vectors which were not saved.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XW7DfEKFD7LsP3CNB7PXq6`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_baselines.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "c0992340-b254-4bd2-b968-1922b2cddbb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019c7mUevWmVYLdJuxfTTKDe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 45694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T12:33:44.431Z_
+
+<details><summary>↩ Tool result · `toolu_01XW7DfEKFD7LsP3CNB7PXq6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"copy_baseline\\\": {\\n    \\\"per_task\\\": {\\n      \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9833366531356645,\\n          0.9887299561344475,\\n          0.9845505010161877,\\n          0.9733266800677457,\\n          0.9655171605739561,\\n          0.9860680191422142,\\n          0.9349032346873726\\n        ],\\n        \\\"overall_r2\\\": 0.9737760292510853\\n      },\\n      \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.97990959739998,\\n          0.9853026724483149,\\n          0.9832757770199817,\\n          0.9784709160091953,\\n          0.9683775261278218,\\n          0.991376799513957,\\n          0.9635978835978836\\n        ],\\n        \\\"overall_r2\\\": 0.9786158817310184\\n      },\\n      \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9811901353970697,\\n          0.9804987500646462,\\n          0.9708966495623188,\\n          0.9769552249312932,\\n          0.971385813467457,\\n          0.9935146063989967,\\n          0.9615538513086408\\n        ],\\n        \\\"overall_r2\\\": 0.9765707187329182\\n      },\\n      \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9852691303668937,\\n          0.9944626439681621,\\n          0.9863249178337707,\\n          0.9851900290158843,\\n          0.974531365086638,\\n          0.9957666334525208,\\n          0.9584796627750739\\n        ],\\n        \\\"overall_r2\\\": 0.9828606260712773\\n      },\\n      \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9694697805179923,\\n          0.9850500730416234,\\n          0.9807600770190139,\\n          0.9260058300955364,\\n          0.9499081482399251,\\n          0.9779741152815161,\\n          0.9362614443624747\\n        ],\\n        \\\"overall_r2\\\": 0.9607756383654381\\n      },\\n      \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.965555693290848,\\n          0.9887714462644437,\\n          0.9815696248233675,\\n          0.9495615279358698,\\n          0.9658551161996307,\\n          0.9749477937403888,\\n          0.9395985984850849\\n        ],\\n        \\\"overall_r2\\\": 0.9665514001056638\\n      },\\n      \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9712023549525219,\\n          0.9875124250488596,\\n          0.9817493278696938,\\n          0.9289520600937793,\\n          0.9522980056609792,\\n          0.9681510359779595,\\n          0.9339990508092849\\n        ],\\n        \\\"overall_r2\\\": 0.9605520372018682\\n      },\\n      \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9695212679822067,\\n          0.9877152756248605,\\n          0.9757548677302293,\\n          0.9480256211333624,\\n          0.9485038757076143,\\n          0.9795965995712622,\\n          0.9343449351052106\\n        ],\\n        \\\"overall_r2\\\": 0.9633517775506792\\n      },\\n      \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9881657041979341,\\n          0.9822799985423383,\\n          0.9832443293304719,\\n          0.9714656073513565,\\n          0.9748089833420391,\\n          0.9898420687036381,\\n          0.9377471365506621\\n        ],\\n        \\\"overall_r2\\\": 0.9753648325740603\\n      },\\n      \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9830724832709916,\\n          0.9852424815582906,\\n          0.988961804525081,\\n          0.9801835480688019,\\n          0.9704226993458563,\\n          0.9903104502443032,\\n          0.9746641651823442\\n        ],\\n        \\\"overall_r2\\\": 0.9818368045993814\\n      }\\n    },\\n    \\\"global_per_dim_r2\\\": [\\n      0.9791501810330538,\\n      0.9877892809933608,\\n      0.9820092821122295,\\n    \\n\\n... [截断: 输出过长，省略 487 字符] ...\\n\\n43534,\\n          -0.9886778134972851,\\n          -0.9684763482095955\\n        ],\\n        \\\"overall_r2\\\": -0.9714185593627127\\n      },\\n      \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9891247995570693,\\n          -0.9911398632416131,\\n          -1.0007340897016004,\\n          -0.9488902348194745,\\n          -0.9409607630160266,\\n          -0.9774617320497736,\\n          -0.9710675381263618\\n        ],\\n        \\\"overall_r2\\\": -0.9741970029303386\\n      },\\n      \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9849253800411575,\\n          -0.9713159265639235,\\n          -0.9923249016666469,\\n          -0.9779901273655656,\\n          -0.9780152619548554,\\n          -0.9371678753908099,\\n          -0.9940506941795118\\n        ],\\n        \\\"overall_r2\\\": -0.9765414524517604\\n      },\\n      \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.992331842934338,\\n          -1.00068396022596,\\n          -0.9968520842050594,\\n          -0.9802668260253535,\\n          -0.9711038360916939,\\n          -0.9938707471650425,\\n          -0.9609462123657968\\n        ],\\n        \\\"overall_r2\\\": -0.9851507870019102\\n      },\\n      \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9950072765765734,\\n          -1.0088020426734468,\\n          -0.9921982092720356,\\n          -1.0018308848539093,\\n          -0.9907718373170178,\\n          -1.0115817016863549,\\n          -0.9764965318919396\\n        ],\\n        \\\"overall_r2\\\": -0.996669783467393\\n      },\\n      \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9423542504781532,\\n          -0.9866154818006423,\\n          -0.9878837990063187,\\n          -0.9760700839992076,\\n          -0.9871842146180609,\\n          -0.9472084226750954,\\n          -0.9570054090832503\\n        ],\\n        \\\"overall_r2\\\": -0.969188808808638\\n      },\\n      \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9936718722353413,\\n          -1.0064673211358848,\\n          -0.9678690381862347,\\n          -0.9924595237937426,\\n          -0.9565976775077103,\\n          -0.9245708258889298,\\n          -0.9926735173888315\\n        ],\\n        \\\"overall_r2\\\": -0.9763299680195133\\n      },\\n      \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -1.0302014661624534,\\n          -1.0316134789982576,\\n          -0.9861176467168076,\\n          -0.9832646754141809,\\n          -0.9859585210087392,\\n          -0.8509793456301487,\\n          -0.9547161974837324\\n        ],\\n        \\\"overall_r2\\\": -0.9746930473448797\\n      },\\n      \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -1.0077056654944347,\\n          -0.975267975295308,\\n          -0.9930479677414776,\\n          -1.012536796230537,\\n          -0.9908483524402152,\\n          -1.0143789132717207,\\n          -0.9876449972752868\\n        ],\\n        \\\"overall_r2\\\": -0.9973472382499838\\n      },\\n      \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9544961969681187,\\n          -1.018262241751866,\\n          -0.9941389448184572,\\n          -0.791932548853453,\\n          -0.9197201119310059,\\n          -0.970847960398908,\\n          -0.9965631398462451\\n        ],\\n        \\\"overall_r2\\\": -0.9494230206525825\\n      }\\n    },\\n    \\\"global_per_dim_r2\\\": [\\n      -0.9672880239911394,\\n      -0.9465129182634497,\\n      -0.976205184665992,\\n      -0.8906595539729663,\\n      -0.9610178359124908,\\n      -0.7390639864748505,\\n      -0.8892462926812796\\n    ],\\n    \\\"global_overall_r2\\\": -0.9099991137074711,\\n    \\\"per_task_mean_r2\\\": -0.9770959668289713\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "71e2eca8-29e6-48a6-b6ab-c2c14aaeaecc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"copy_baseline\\\\\\\": {\\\\n    \\\\\\\"per_task\\\\\\\": {\\\\n      \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.9833366531356645,\\\\n          0.9887299561344475,\\\\n          0.9845505010161877,\\\\n          0.9733266800677457,\\\\n          0.9655171605739561,\\\\n          0.9860680191422142,\\\\n          0.9349032346873726\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9737760292510853\\\\n      },\\\\n      \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.97990959739998,\\\\n          0.9853026724483149,\\\\n          0.9832757770199817,\\\\n          0.9784709160091953,\\\\n          0.9683775261278218,\\\\n          0.991376799513957,\\\\n          0.9635978835978836\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9786158817310184\\\\n      },\\\\n      \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.9811901353970697,\\\\n          0.9804987500646462,\\\\n          0.9708966495623188,\\\\n          0.9769552249312932,\\\\n          0.971385813467457,\\\\n          0.9935146063989967,\\\\n          0.9615538513086408\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9765707187329182\\\\n      },\\\\n      \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.9852691303668937,\\\\n          0.9944626439681621,\\\\n          0.9863249178337707,\\\\n          0.9851900290158843,\\\\n          0.974531365086638,\\\\n          0.9957666334525208,\\\\n          0.9584796627750739\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9828606260712773\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.9694697805179923,\\\\n          0.9850500730416234,\\\\n          0.9807600770190139,\\\\n          0.9260058300955364,\\\\n          0.9499081482399251,\\\\n          0.9779741152815161,\\\\n          0.9362614443624747\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9607756383654381\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.965555693290848,\\\\n          0.9887714462644437,\\\\n          0.9815696248233675,\\\\n          0.9495615279358698,\\\\n          0.9658551161996307,\\\\n          0.9749477937403888,\\\\n          0.9395985984850849\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9665514001056638\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.9712023549525219,\\\\n          0.9875124250488596,\\\\n          0.9817493278696938,\\\\n          0.9289520600937793,\\\\n          0.9522980056609792,\\\\n          0.9681510359779595,\\\\n          0.9339990508092849\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9605520372018682\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.9695212679822067,\\\\n          0.9877152756248605,\\\\n          0.9757548677302293,\\\\n          0.9480256211333624,\\\\n          0.9485038757076143,\\\\n          0.9795965995712622,\\\\n          0.9343449351052106\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9633517775506792\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.9881657041979341,\\\\n          0.9822799985423383,\\\\n          0.9832443293304719,\\\\n          0.9714656073513565,\\\\n          0.9748089833420391,\\\\n          0.9898420687036381,\\\\n          0.9377471365506621\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9753648325740603\\\\n      },\\\\n      \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          0.9830724832709916,\\\\n          0.9852424815582906,\\\\n          0.988961804525081,\\\\n          0.9801835480688019,\\\\n          0.9704226993458563,\\\\n          0.9903104502443032,\\\\n          0.9746641651823442\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": 0.9818368045993814\\\\n      }\\\\n    },\\\\n    \\\\\\\"global_per_dim_r2\\\\\\\": [\\\\n      0.9791501810330538,\\\\n      0.9877892809933608,\\\\n      0.9820092821122295,\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 487 字符] ...\\\\n\\\\n43534,\\\\n          -0.9886778134972851,\\\\n          -0.9684763482095955\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.9714185593627127\\\\n      },\\\\n      \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          -0.9891247995570693,\\\\n          -0.9911398632416131,\\\\n          -1.0007340897016004,\\\\n          -0.9488902348194745,\\\\n          -0.9409607630160266,\\\\n          -0.9774617320497736,\\\\n          -0.9710675381263618\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.9741970029303386\\\\n      },\\\\n      \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          -0.9849253800411575,\\\\n          -0.9713159265639235,\\\\n          -0.9923249016666469,\\\\n          -0.9779901273655656,\\\\n          -0.9780152619548554,\\\\n          -0.9371678753908099,\\\\n          -0.9940506941795118\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.9765414524517604\\\\n      },\\\\n      \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          -0.992331842934338,\\\\n          -1.00068396022596,\\\\n          -0.9968520842050594,\\\\n          -0.9802668260253535,\\\\n          -0.9711038360916939,\\\\n          -0.9938707471650425,\\\\n          -0.9609462123657968\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.9851507870019102\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          -0.9950072765765734,\\\\n          -1.0088020426734468,\\\\n          -0.9921982092720356,\\\\n          -1.0018308848539093,\\\\n          -0.9907718373170178,\\\\n          -1.0115817016863549,\\\\n          -0.9764965318919396\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.996669783467393\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          -0.9423542504781532,\\\\n          -0.9866154818006423,\\\\n          -0.9878837990063187,\\\\n          -0.9760700839992076,\\\\n          -0.9871842146180609,\\\\n          -0.9472084226750954,\\\\n          -0.9570054090832503\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.969188808808638\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          -0.9936718722353413,\\\\n          -1.0064673211358848,\\\\n          -0.9678690381862347,\\\\n          -0.9924595237937426,\\\\n          -0.9565976775077103,\\\\n          -0.9245708258889298,\\\\n          -0.9926735173888315\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.9763299680195133\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          -1.0302014661624534,\\\\n          -1.0316134789982576,\\\\n          -0.9861176467168076,\\\\n          -0.9832646754141809,\\\\n          -0.9859585210087392,\\\\n          -0.8509793456301487,\\\\n          -0.9547161974837324\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.9746930473448797\\\\n      },\\\\n      \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          -1.0077056654944347,\\\\n          -0.975267975295308,\\\\n          -0.9930479677414776,\\\\n          -1.012536796230537,\\\\n          -0.9908483524402152,\\\\n          -1.0143789132717207,\\\\n          -0.9876449972752868\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.9973472382499838\\\\n      },\\\\n      \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n        \\\\\\\"per_dim_r2\\\\\\\": [\\\\n          -0.9544961969681187,\\\\n          -1.018262241751866,\\\\n          -0.9941389448184572,\\\\n          -0.791932548853453,\\\\n          -0.9197201119310059,\\\\n          -0.970847960398908,\\\\n          -0.9965631398462451\\\\n        ],\\\\n        \\\\\\\"overall_r2\\\\\\\": -0.9494230206525825\\\\n      }\\\\n    },\\\\n    \\\\\\\"global_per_dim_r2\\\\\\\": [\\\\n      -0.9672880239911394,\\\\n      -0.9465129182634497,\\\\n      -0.976205184665992,\\\\n      -0.8906595539729663,\\\\n      -0.9610178359124908,\\\\n      -0.7390639864748505,\\\\n      -0.8892462926812796\\\\n    ],\\\\n    \\\\\\\"global_overall_r2\\\\\\\": -0.9099991137074711,\\\\n    \\\\\\\"per_task_mean_r2\\\\\\\": -0.9770959668289713\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"copy_baseline\\\": {\\n    \\\"per_task\\\": {\\n      \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9833366531356645,\\n          0.9887299561344475,\\n          0.9845505010161877,\\n          0.9733266800677457,\\n          0.9655171605739561,\\n          0.9860680191422142,\\n          0.9349032346873726\\n        ],\\n        \\\"overall_r2\\\": 0.9737760292510853\\n      },\\n      \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.97990959739998,\\n          0.9853026724483149,\\n          0.9832757770199817,\\n          0.9784709160091953,\\n          0.9683775261278218,\\n          0.991376799513957,\\n          0.9635978835978836\\n        ],\\n        \\\"overall_r2\\\": 0.9786158817310184\\n      },\\n      \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9811901353970697,\\n          0.9804987500646462,\\n          0.9708966495623188,\\n          0.9769552249312932,\\n          0.971385813467457,\\n          0.9935146063989967,\\n          0.9615538513086408\\n        ],\\n        \\\"overall_r2\\\": 0.9765707187329182\\n      },\\n      \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9852691303668937,\\n          0.9944626439681621,\\n          0.9863249178337707,\\n          0.9851900290158843,\\n          0.974531365086638,\\n          0.9957666334525208,\\n          0.9584796627750739\\n        ],\\n        \\\"overall_r2\\\": 0.9828606260712773\\n      },\\n      \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9694697805179923,\\n          0.9850500730416234,\\n          0.9807600770190139,\\n          0.9260058300955364,\\n          0.9499081482399251,\\n          0.9779741152815161,\\n          0.9362614443624747\\n        ],\\n        \\\"overall_r2\\\": 0.9607756383654381\\n      },\\n      \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.965555693290848,\\n          0.9887714462644437,\\n          0.9815696248233675,\\n          0.9495615279358698,\\n          0.9658551161996307,\\n          0.9749477937403888,\\n          0.9395985984850849\\n        ],\\n        \\\"overall_r2\\\": 0.9665514001056638\\n      },\\n      \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9712023549525219,\\n          0.9875124250488596,\\n          0.9817493278696938,\\n          0.9289520600937793,\\n          0.9522980056609792,\\n          0.9681510359779595,\\n          0.9339990508092849\\n        ],\\n        \\\"overall_r2\\\": 0.9605520372018682\\n      },\\n      \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9695212679822067,\\n          0.9877152756248605,\\n          0.9757548677302293,\\n          0.9480256211333624,\\n          0.9485038757076143,\\n          0.9795965995712622,\\n          0.9343449351052106\\n        ],\\n        \\\"overall_r2\\\": 0.9633517775506792\\n      },\\n      \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9881657041979341,\\n          0.9822799985423383,\\n          0.9832443293304719,\\n          0.9714656073513565,\\n          0.9748089833420391,\\n          0.9898420687036381,\\n          0.9377471365506621\\n        ],\\n        \\\"overall_r2\\\": 0.9753648325740603\\n      },\\n      \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n        \\\"per_dim_r2\\\": [\\n          0.9830724832709916,\\n          0.9852424815582906,\\n          0.988961804525081,\\n          0.9801835480688019,\\n          0.9704226993458563,\\n          0.9903104502443032,\\n          0.9746641651823442\\n        ],\\n        \\\"overall_r2\\\": 0.9818368045993814\\n      }\\n    },\\n    \\\"global_per_dim_r2\\\": [\\n      0.9791501810330538,\\n      0.9877892809933608,\\n      0.9820092821122295,\\n    \\n\\n... [截断: 输出过长，省略 487 字符] ...\\n\\n43534,\\n          -0.9886778134972851,\\n          -0.9684763482095955\\n        ],\\n        \\\"overall_r2\\\": -0.9714185593627127\\n      },\\n      \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9891247995570693,\\n          -0.9911398632416131,\\n          -1.0007340897016004,\\n          -0.9488902348194745,\\n          -0.9409607630160266,\\n          -0.9774617320497736,\\n          -0.9710675381263618\\n        ],\\n        \\\"overall_r2\\\": -0.9741970029303386\\n      },\\n      \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9849253800411575,\\n          -0.9713159265639235,\\n          -0.9923249016666469,\\n          -0.9779901273655656,\\n          -0.9780152619548554,\\n          -0.9371678753908099,\\n          -0.9940506941795118\\n        ],\\n        \\\"overall_r2\\\": -0.9765414524517604\\n      },\\n      \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.992331842934338,\\n          -1.00068396022596,\\n          -0.9968520842050594,\\n          -0.9802668260253535,\\n          -0.9711038360916939,\\n          -0.9938707471650425,\\n          -0.9609462123657968\\n        ],\\n        \\\"overall_r2\\\": -0.9851507870019102\\n      },\\n      \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9950072765765734,\\n          -1.0088020426734468,\\n          -0.9921982092720356,\\n          -1.0018308848539093,\\n          -0.9907718373170178,\\n          -1.0115817016863549,\\n          -0.9764965318919396\\n        ],\\n        \\\"overall_r2\\\": -0.996669783467393\\n      },\\n      \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9423542504781532,\\n          -0.9866154818006423,\\n          -0.9878837990063187,\\n          -0.9760700839992076,\\n          -0.9871842146180609,\\n          -0.9472084226750954,\\n          -0.9570054090832503\\n        ],\\n        \\\"overall_r2\\\": -0.969188808808638\\n      },\\n      \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9936718722353413,\\n          -1.0064673211358848,\\n          -0.9678690381862347,\\n          -0.9924595237937426,\\n          -0.9565976775077103,\\n          -0.9245708258889298,\\n          -0.9926735173888315\\n        ],\\n        \\\"overall_r2\\\": -0.9763299680195133\\n      },\\n      \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -1.0302014661624534,\\n          -1.0316134789982576,\\n          -0.9861176467168076,\\n          -0.9832646754141809,\\n          -0.9859585210087392,\\n          -0.8509793456301487,\\n          -0.9547161974837324\\n        ],\\n        \\\"overall_r2\\\": -0.9746930473448797\\n      },\\n      \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -1.0077056654944347,\\n          -0.975267975295308,\\n          -0.9930479677414776,\\n          -1.012536796230537,\\n          -0.9908483524402152,\\n          -1.0143789132717207,\\n          -0.9876449972752868\\n        ],\\n        \\\"overall_r2\\\": -0.9973472382499838\\n      },\\n      \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n        \\\"per_dim_r2\\\": [\\n          -0.9544961969681187,\\n          -1.018262241751866,\\n          -0.9941389448184572,\\n          -0.791932548853453,\\n          -0.9197201119310059,\\n          -0.970847960398908,\\n          -0.9965631398462451\\n        ],\\n        \\\"overall_r2\\\": -0.9494230206525825\\n      }\\n    },\\n    \\\"global_per_dim_r2\\\": [\\n      -0.9672880239911394,\\n      -0.9465129182634497,\\n      -0.976205184665992,\\n      -0.8906595539729663,\\n      -0.9610178359124908,\\n      -0.7390639864748505,\\n      -0.8892462926812796\\n    ],\\n    \\\"global_overall_r2\\\": -0.9099991137074711,\\n    \\\"per_task_mean_r2\\\": -0.9770959668289713\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `action_baselines.json` is for LIBERO-Long tasks (KITCHEN_SCENE, LIVING_ROOM_SCENE, etc.), not LIBERO-Goal. Not directly useful for matching.
+
+The `groundtruth_action_error.json` has per-task MSE for 3 LIBERO-Goal tasks (model's prediction vs ground truth). The issue is it only has 3 tasks.
+
+Let me think about what data I actually have that can be used:
+
+**Option 1: Use the per-task R² from probes AND per-task MSE from the model**
+- R² probe data: 10 LIBERO-Goal tasks (from `per_task_r2_distribution.json` and `unified_action_probe.json`)
+
+
+- Model MSE: only 3 LIBERO-Goal tasks (from `groundtruth_action_error.json`)
+- Problem: only 3 overlapping tasks, not enough for meaningful correlation
+
+**Option 2: Use per-task R² from probes across different conditions/layers**
+- This would be R² vs R² which doesn't directly address "representational metrics predict behavioral outcomes"
+
+**Option 3: Check if there's a way to get per-task MSE for all 10 tasks**
+I should look through `action_trajectory_analysis.json` and `sr_corrected_3ep` to see if either contains per-task MSE data across all 10 tasks, which would give me enough overlap to actually test the correlation.
+
+Wait—success rates in `sr_corrected_3ep.json` are exactly what I need as a behavioral outcome metric to correlate against the representational measures.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b75c5a63-b989-4fee-b434-ae263b0a47d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPSFDRZ4BPnBJ2Ku6RDAVq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12212,
+      "cache_read_input_tokens": 47993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+MSE 数据只覆盖 3 个 task。让我检查 success rate 数据和其他 behavioral outcome 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b0708234-bef6-4ac0-a0c3-5b33eb8c122e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPSFDRZ4BPnBJ2Ku6RDAVq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12212,
+      "cache_read_input_tokens": 47993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xzn9LkgDjKRL3HWTpa5kx2`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/sr_corrected_3ep.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "224f6465-042b-4cd9-8f72-622d95afed6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPSFDRZ4BPnBJ2Ku6RDAVq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12212,
+      "cache_read_input_tokens": 47993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T12:33:58.469Z_
+
+<details><summary>↩ Tool result · `toolu_01Xzn9LkgDjKRL3HWTpa5kx2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": \\\"256x256_crop224_flip_native_predict\\\",\\n  \\\"task\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n  \\\"instruction\\\": \\\"open the middle drawer of the cabinet\\\",\\n  \\\"episodes\\\": [\\n    {\\n      \\\"success\\\": false,\\n      \\\"reward\\\": 0.0,\\n      \\\"steps\\\": 400\\n    },\\n    {\\n      \\\"success\\\": false,\\n      \\\"reward\\\": 0.0,\\n      \\\"steps\\\": 400\\n    },\\n    {\\n      \\\"success\\\": false,\\n      \\\"reward\\\": 0.0,\\n      \\\"steps\\\": 400\\n    }\\n  ],\\n  \\\"sr\\\": 0.0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "55009ca7-c40b-4e54-a923-689512064123",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": \\\\\\\"256x256_crop224_flip_native_predict\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n  \\\\\\\"instruction\\\\\\\": \\\\\\\"open the middle drawer of the cabinet\\\\\\\",\\\\n  \\\\\\\"episodes\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"reward\\\\\\\": 0.0,\\\\n      \\\\\\\"steps\\\\\\\": 400\\\\n    },\\\\n    {\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"reward\\\\\\\": 0.0,\\\\n      \\\\\\\"steps\\\\\\\": 400\\\\n    },\\\\n    {\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"reward\\\\\\\": 0.0,\\\\n      \\\\\\\"steps\\\\\\\": 400\\\\n    }\\\\n  ],\\\\n  \\\\\\\"sr\\\\\\\": 0.0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": \\\"256x256_crop224_flip_native_predict\\\",\\n  \\\"task\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n  \\\"instruction\\\": \\\"open the middle drawer of the cabinet\\\",\\n  \\\"episodes\\\": [\\n    {\\n      \\\"success\\\": false,\\n      \\\"reward\\\": 0.0,\\n      \\\"steps\\\": 400\\n    },\\n    {\\n      \\\"success\\\": false,\\n      \\\"reward\\\": 0.0,\\n      \\\"steps\\\": 400\\n    },\\n    {\\n      \\\"success\\\": false,\\n      \\\"reward\\\": 0.0,\\n      \\\"steps\\\": 400\\n    }\\n  ],\\n  \\\"sr\\\": 0.0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rmbs2k6KY4uju8ksqP5uKw`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/task_complexity_routing.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "58e95a51-a91c-4e9c-9934-6c9a0281a470",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPSFDRZ4BPnBJ2Ku6RDAVq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12212,
+      "cache_read_input_tokens": 47993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T12:33:59.369Z_
+
+<details><summary>↩ Tool result · `toolu_01Rmbs2k6KY4uju8ksqP5uKw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Task complexity x routing dependence analysis. delta_R2 = baseline_R2 - ablated_R2 (L1, ablate_all24). All negative: ablation increased R2. |delta_R2| measures sensitivity to instruction routing.\\\",\\n  \\\"tasks\\\": [\\n    {\\n      \\\"name\\\": \\\"put the wine bottle on the rack\\\",\\n      \\\"baseline_r2\\\": 0.1894,\\n      \\\"ablated_r2\\\": 0.424,\\n      \\\"delta_r2\\\": -0.2346,\\n      \\\"abs_delta_r2\\\": 0.2346,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the bowl on top of the cabinet\\\",\\n      \\\"baseline_r2\\\": 0.2561,\\n      \\\"ablated_r2\\\": 0.4567,\\n      \\\"delta_r2\\\": -0.2006,\\n      \\\"abs_delta_r2\\\": 0.2006,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the bowl on the stove\\\",\\n      \\\"baseline_r2\\\": 0.2352,\\n      \\\"ablated_r2\\\": 0.395,\\n      \\\"delta_r2\\\": -0.1598,\\n      \\\"abs_delta_r2\\\": 0.1598,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the cream cheese in the bowl\\\",\\n      \\\"baseline_r2\\\": 0.186,\\n      \\\"ablated_r2\\\": 0.3454,\\n      \\\"delta_r2\\\": -0.1594,\\n      \\\"abs_delta_r2\\\": 0.1594,\\n      \\\"group\\\": \\\"simple\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the bowl on the plate\\\",\\n      \\\"baseline_r2\\\": 0.3754,\\n      \\\"ablated_r2\\\": 0.474,\\n      \\\"delta_r2\\\": -0.0986,\\n      \\\"abs_delta_r2\\\": 0.0986,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"open the top drawer and put the bowl inside\\\",\\n      \\\"baseline_r2\\\": 0.2649,\\n      \\\"ablated_r2\\\": 0.3403,\\n      \\\"delta_r2\\\": -0.0754,\\n      \\\"abs_delta_r2\\\": 0.0754,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the wine bottle on top of the cabinet\\\",\\n      \\\"baseline_r2\\\": 0.2789,\\n      \\\"ablated_r2\\\": 0.3529,\\n      \\\"delta_r2\\\": -0.074,\\n      \\\"abs_delta_r2\\\": 0.074,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"turn on the stove\\\",\\n      \\\"baseline_r2\\\": 0.3854,\\n      \\\"ablated_r2\\\": 0.4213,\\n      \\\"delta_r2\\\": -0.0359,\\n      \\\"abs_delta_r2\\\": 0.0359,\\n      \\\"group\\\": \\\"simple\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"open the middle drawer of the cabinet\\\",\\n      \\\"baseline_r2\\\": 0.1971,\\n      \\\"ablated_r2\\\": 0.2211,\\n      \\\"delta_r2\\\": -0.024,\\n      \\\"abs_delta_r2\\\": 0.024,\\n      \\\"group\\\": \\\"simple\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"push the plate to the front of the stove\\\",\\n      \\\"baseline_r2\\\": 0.1901,\\n      \\\"ablated_r2\\\": 0.1968,\\n      \\\"delta_r2\\\": -0.0067,\\n      \\\"abs_delta_r2\\\": 0.0067,\\n      \\\"group\\\": \\\"simple\\\"\\n    }\\n  ],\\n  \\\"complex_mean\\\": 0.1405,\\n  \\\"complex_median\\\": 0.1292,\\n  \\\"simple_mean\\\": 0.0565,\\n  \\\"simple_median\\\": 0.0299,\\n  \\\"mann_whitney_U\\\": 21.0,\\n  \\\"p_value\\\": 0.0333,\\n  \\\"effect_ratio\\\": 2.49,\\n  \\\"n_complex\\\": 6,\\n  \\\"n_simple\\\": 4\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "a0b017e0-0c1d-4571-9539-61f1250e367b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Task complexity x routing dependence analysis. delta_R2 = baseline_R2 - ablated_R2 (L1, ablate_all24). All negative: ablation increased R2. |delta_R2| measures sensitivity to instruction routing.\\\\\\\",\\\\n  \\\\\\\"tasks\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"put the wine bottle on the rack\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.1894,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.424,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.2346,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.2346,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"complex\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"put the bowl on top of the cabinet\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.2561,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.4567,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.2006,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.2006,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"complex\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"put the bowl on the stove\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.2352,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.395,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.1598,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.1598,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"complex\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"put the cream cheese in the bowl\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.186,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.3454,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.1594,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.1594,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"simple\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"put the bowl on the plate\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.3754,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.474,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.0986,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.0986,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"complex\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"open the top drawer and put the bowl inside\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.2649,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.3403,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.0754,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.0754,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"complex\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.2789,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.3529,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.074,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.074,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"complex\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"turn on the stove\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.3854,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.4213,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.0359,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.0359,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"simple\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"open the middle drawer of the cabinet\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.1971,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.2211,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.024,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.024,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"simple\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"push the plate to the front of the stove\\\\\\\",\\\\n      \\\\\\\"baseline_r2\\\\\\\": 0.1901,\\\\n      \\\\\\\"ablated_r2\\\\\\\": 0.1968,\\\\n      \\\\\\\"delta_r2\\\\\\\": -0.0067,\\\\n      \\\\\\\"abs_delta_r2\\\\\\\": 0.0067,\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"simple\\\\\\\"\\\\n    }\\\\n  ],\\\\n  \\\\\\\"complex_mean\\\\\\\": 0.1405,\\\\n  \\\\\\\"complex_median\\\\\\\": 0.1292,\\\\n  \\\\\\\"simple_mean\\\\\\\": 0.0565,\\\\n  \\\\\\\"simple_median\\\\\\\": 0.0299,\\\\n  \\\\\\\"mann_whitney_U\\\\\\\": 21.0,\\\\n  \\\\\\\"p_value\\\\\\\": 0.0333,\\\\n  \\\\\\\"effect_ratio\\\\\\\": 2.49,\\\\n  \\\\\\\"n_complex\\\\\\\": 6,\\\\n  \\\\\\\"n_simple\\\\\\\": 4\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Task complexity x routing dependence analysis. delta_R2 = baseline_R2 - ablated_R2 (L1, ablate_all24). All negative: ablation increased R2. |delta_R2| measures sensitivity to instruction routing.\\\",\\n  \\\"tasks\\\": [\\n    {\\n      \\\"name\\\": \\\"put the wine bottle on the rack\\\",\\n      \\\"baseline_r2\\\": 0.1894,\\n      \\\"ablated_r2\\\": 0.424,\\n      \\\"delta_r2\\\": -0.2346,\\n      \\\"abs_delta_r2\\\": 0.2346,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the bowl on top of the cabinet\\\",\\n      \\\"baseline_r2\\\": 0.2561,\\n      \\\"ablated_r2\\\": 0.4567,\\n      \\\"delta_r2\\\": -0.2006,\\n      \\\"abs_delta_r2\\\": 0.2006,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the bowl on the stove\\\",\\n      \\\"baseline_r2\\\": 0.2352,\\n      \\\"ablated_r2\\\": 0.395,\\n      \\\"delta_r2\\\": -0.1598,\\n      \\\"abs_delta_r2\\\": 0.1598,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the cream cheese in the bowl\\\",\\n      \\\"baseline_r2\\\": 0.186,\\n      \\\"ablated_r2\\\": 0.3454,\\n      \\\"delta_r2\\\": -0.1594,\\n      \\\"abs_delta_r2\\\": 0.1594,\\n      \\\"group\\\": \\\"simple\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the bowl on the plate\\\",\\n      \\\"baseline_r2\\\": 0.3754,\\n      \\\"ablated_r2\\\": 0.474,\\n      \\\"delta_r2\\\": -0.0986,\\n      \\\"abs_delta_r2\\\": 0.0986,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"open the top drawer and put the bowl inside\\\",\\n      \\\"baseline_r2\\\": 0.2649,\\n      \\\"ablated_r2\\\": 0.3403,\\n      \\\"delta_r2\\\": -0.0754,\\n      \\\"abs_delta_r2\\\": 0.0754,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the wine bottle on top of the cabinet\\\",\\n      \\\"baseline_r2\\\": 0.2789,\\n      \\\"ablated_r2\\\": 0.3529,\\n      \\\"delta_r2\\\": -0.074,\\n      \\\"abs_delta_r2\\\": 0.074,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"turn on the stove\\\",\\n      \\\"baseline_r2\\\": 0.3854,\\n      \\\"ablated_r2\\\": 0.4213,\\n      \\\"delta_r2\\\": -0.0359,\\n      \\\"abs_delta_r2\\\": 0.0359,\\n      \\\"group\\\": \\\"simple\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"open the middle drawer of the cabinet\\\",\\n      \\\"baseline_r2\\\": 0.1971,\\n      \\\"ablated_r2\\\": 0.2211,\\n      \\\"delta_r2\\\": -0.024,\\n      \\\"abs_delta_r2\\\": 0.024,\\n      \\\"group\\\": \\\"simple\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"push the plate to the front of the stove\\\",\\n      \\\"baseline_r2\\\": 0.1901,\\n      \\\"ablated_r2\\\": 0.1968,\\n      \\\"delta_r2\\\": -0.0067,\\n      \\\"abs_delta_r2\\\": 0.0067,\\n      \\\"group\\\": \\\"simple\\\"\\n    }\\n  ],\\n  \\\"complex_mean\\\": 0.1405,\\n  \\\"complex_median\\\": 0.1292,\\n  \\\"simple_mean\\\": 0.0565,\\n  \\\"simple_median\\\": 0.0299,\\n  \\\"mann_whitney_U\\\": 21.0,\\n  \\\"p_value\\\": 0.0333,\\n  \\\"effect_ratio\\\": 2.49,\\n  \\\"n_complex\\\": 6,\\n  \\\"n_simple\\\": 4\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013MDAvXgKtCJHg91BbZ1oiH`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b0881e17-6814-4bd6-b90c-f0601a85e38e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPSFDRZ4BPnBJ2Ku6RDAVq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12212,
+      "cache_read_input_tokens": 47993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T12:34:00.053Z_
+
+<details><summary>↩ Tool result · `toolu_013MDAvXgKtCJHg91BbZ1oiH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 5,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 5000,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"ablation\\\": \\\"L1_dominant_24_heads_zeroed\\\",\\n    \\\"ablated_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\"\\n  },\\n  \\\"main_metrics\\\": {\\n    \\\"paired_action_mse\\\": {\\n      \\\"mean\\\": 0.04164548042967141,\\n      \\\"std\\\": 0.06394581517413622,\\n      \\\"t_stat\\\": 32.55658746950337,\\n      \\\"p_value\\\": 3.9875267301509806e-194,\\n      \\\"cohens_d\\\": 0.6511317493798869\\n    },\\n    \\\"per_dim_action_shift\\\": {\\n      \\\"means\\\": [\\n        0.0018907630960015738,\\n        0.0053060349467249435,\\n        0.007621298928714849,\\n        0.02059210950341174,\\n        0.030713564767946917,\\n        0.033881929667518705,\\n        0.2907168627450989\\n      ],\\n      \\\"stds\\\": [\\n        0.003945774709271799,\\n        0.007996728850961761,\\n        0.00855598404937074,\\n        0.02115830546884926,\\n        0.02858547485740179,\\n        0.037737860644735575,\\n        0.44894904084862064\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.7230285714285715\\n  },\\n  \\\"secondary_metrics\\\": {\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 5.07937479019165,\\n      \\\"std\\\": 4.961368560791016,\\n      \\\"per_token_position\\\": [\\n        0.29015398025512695,\\n        3.0104427337646484,\\n        5.949150562286377,\\n        7.421013832092285,\\n        8.960497856140137,\\n        8.479713439941406,\\n        1.4446604251861572\\n      ]\\n    },\\n    \\\"mse_vs_gt_baseline\\\": {\\n      \\\"mean\\\": 0.43176415822445635,\\n      \\\"std\\\": 0.22077793994025996,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"mse_vs_gt_ablated\\\": {\\n      \\\"mean\\\": 0.4357406635106642,\\n      \\\"std\\\": 0.2235285616028443,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"wilcoxon_p\\\": 0.0\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.02242838426504113,\\n        \\\"std\\\": 0.051757195878257986,\\n        \\\"t_stat\\\": 9.680048252096263,\\n        \\\"p_value\\\": 2.0038975148954835e-20,\\n        \\\"cohens_d\\\": 0.4329049183349495\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0014037795379863059,\\n          0.004451050012665628,\\n          0.006329343725828563,\\n          0.019142500603928258,\\n          0.030247070985899276,\\n          0.03025989703622987,\\n          0.15281568627450998\\n        ],\\n        \\\"stds\\\": [\\n          0.00311317121105672,\\n          0.007885665398470972,\\n          0.008240969667318977,\\n          0.019615421748166623,\\n          0.028676831314892466,\\n          0.033095946085946286,\\n          0.3590890901162581\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.664,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.503225326538086,\\n        \\\"std\\\": 4.8421173095703125\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04458787875675457,\\n        \\\"std\\\": 0.0648704634241749,\\n        \\\"t_stat\\\": 15.353948651915177,\\n        \\\"p_value\\\": 7.46250518536467e-44,\\n        \\\"cohens_d\\\": 0.6866494581638973\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0017330280210831573,\\n          0.005302538340663201,\\n          0.007163902512666055,\\n          0.020680235506992665,\\n          0.03485707990039093,\\n          0.03459241025841939,\\n          0.3118901960784321\\n        ],\\n        \\\"stds\\\": [\\n          0.0037620949894889076,\\n          0.00825352063013232,\\n          0.007593216730760563,\\n          0.020277157204501794,\\n          0.03162330967091224,\\n          0.038133676245909076,\\n          0.4570695648337024\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7094285714285714,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 5.153635501861572,\\n        \\\"std\\\": 5.071208477020264\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04681500022487693,\\n        \\\"std\\\": 0.06645561015488266,\\n        \\\"t_stat\\\": 15.736337189550586,\\n        \\\"p_value\\\": 1.3382496765371354e-45,\\n        \\\"cohens_d\\\": 0.7037503934432828\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.002803980288112861,\\n          0.0054708934473395275,\\n          0.007187286787515175,\\n          0.018410671617669166,\\n          0.02898102668941719,\\n          0.02812265279046228,\\n          0.3252549019607852\\n        ],\\n        \\\"stds\\\": [\\n          0.0057296098847649055,\\n          0.007560437193942133,\\n          0.007359340564353495,\\n          0.018759688881726206,\\n          0.028137334353327288,\\n          0.02949191003799571,\\n          0.46658065445606245\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7385714285714285,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 5.972511291503906,\\n        \\\"std\\\": 5.5687432289123535\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04585327669100103,\\n        \\\"std\\\": 0.06512121324514131,\\n        \\\"t_stat\\\": 15.728893275695137,\\n        \\\"p_value\\\": 1.4476730761513222e-45,\\n        \\\"cohens_d\\\": 0.7034174914950824\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0016636890063005333,\\n          0.0052034678355805915,\\n          0.00747777144619647,\\n          0.020320068361922777,\\n          0.028729157559535055,\\n          0.035562712698805565,\\n          0.3252549019607849\\n        ],\\n        \\\"stds\\\": [\\n          0.00306018861719437,\\n          0.008431160867942903,\\n          0.008048276555242978,\\n          0.021654913911754142,\\n          0.026055373152750017,\\n          0.03568682198764817,\\n          0.4582868723436793\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7365714285714285,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.935613632202148,\\n        \\\"std\\\": 4.755918502807617\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.048542862210683366,\\n        \\\"std\\\": 0.06656781244085376,\\n        \\\"t_stat\\\": 16.28963552846279,\\n        \\\"p_value\\\": 3.759600472033675e-48,\\n        \\\"cohens_d\\\": 0.7284946473958375\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0018493386265249795,\\n          0.00610222509737575,\\n          0.009948190171367981,\\n          0.024407071426545815,\\n          0.030753488704492044,\\n          0.04087197555367618,\\n          0.338368627450981\\n        ],\\n        \\\"stds\\\": [\\n          0.003264664633536739,\\n          0.0077321877439992396,\\n          0.010677892843435068,\\n          0.024496624444718028,\\n          0.027718819464147733,\\n          0.048263969493824666,\\n          0.46698264708631304\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7665714285714286,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.831889629364014,\\n        \\\"std\\\": 4.366452693939209\\n      },\\n      \\\"n_samples\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "0092f642-9b8d-4a74-a869-441c939255f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_tasks\\\\\\\": 5,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"total_forward_passes\\\\\\\": 5000,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n    \\\\\\\"ablation\\\\\\\": \\\\\\\"L1_dominant_24_heads_zeroed\\\\\\\",\\\\n    \\\\\\\"ablated_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\"\\\\n  },\\\\n  \\\\\\\"main_metrics\\\\\\\": {\\\\n    \\\\\\\"paired_action_mse\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.04164548042967141,\\\\n      \\\\\\\"std\\\\\\\": 0.06394581517413622,\\\\n      \\\\\\\"t_stat\\\\\\\": 32.55658746950337,\\\\n      \\\\\\\"p_value\\\\\\\": 3.9875267301509806e-194,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.6511317493798869\\\\n    },\\\\n    \\\\\\\"per_dim_action_shift\\\\\\\": {\\\\n      \\\\\\\"means\\\\\\\": [\\\\n        0.0018907630960015738,\\\\n        0.0053060349467249435,\\\\n        0.007621298928714849,\\\\n        0.02059210950341174,\\\\n        0.030713564767946917,\\\\n        0.033881929667518705,\\\\n        0.2907168627450989\\\\n      ],\\\\n      \\\\\\\"stds\\\\\\\": [\\\\n        0.003945774709271799,\\\\n        0.007996728850961761,\\\\n        0.00855598404937074,\\\\n        0.02115830546884926,\\\\n        0.02858547485740179,\\\\n        0.037737860644735575,\\\\n        0.44894904084862064\\\\n      ],\\\\n      \\\\\\\"dim_names\\\\\\\": [\\\\n        \\\\\\\"dx\\\\\\\",\\\\n        \\\\\\\"dy\\\\\\\",\\\\n        \\\\\\\"dz\\\\\\\",\\\\n        \\\\\\\"rx\\\\\\\",\\\\n        \\\\\\\"ry\\\\\\\",\\\\n        \\\\\\\"rz\\\\\\\",\\\\n        \\\\\\\"gripper\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"token_divergence_rate\\\\\\\": 0.7230285714285715\\\\n  },\\\\n  \\\\\\\"secondary_metrics\\\\\\\": {\\\\n    \\\\\\\"kl_divergence\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 5.07937479019165,\\\\n      \\\\\\\"std\\\\\\\": 4.961368560791016,\\\\n      \\\\\\\"per_token_position\\\\\\\": [\\\\n        0.29015398025512695,\\\\n        3.0104427337646484,\\\\n        5.949150562286377,\\\\n        7.421013832092285,\\\\n        8.960497856140137,\\\\n        8.479713439941406,\\\\n        1.4446604251861572\\\\n      ]\\\\n    },\\\\n    \\\\\\\"mse_vs_gt_baseline\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.43176415822445635,\\\\n      \\\\\\\"std\\\\\\\": 0.22077793994025996,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"OOD, secondary\\\\\\\"\\\\n    },\\\\n    \\\\\\\"mse_vs_gt_ablated\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4357406635106642,\\\\n      \\\\\\\"std\\\\\\\": 0.2235285616028443,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"OOD, secondary\\\\\\\"\\\\n    },\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.02242838426504113,\\\\n        \\\\\\\"std\\\\\\\": 0.051757195878257986,\\\\n        \\\\\\\"t_stat\\\\\\\": 9.680048252096263,\\\\n        \\\\\\\"p_value\\\\\\\": 2.0038975148954835e-20,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.4329049183349495\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0014037795379863059,\\\\n          0.004451050012665628,\\\\n          0.006329343725828563,\\\\n          0.019142500603928258,\\\\n          0.030247070985899276,\\\\n          0.03025989703622987,\\\\n          0.15281568627450998\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.00311317121105672,\\\\n          0.007885665398470972,\\\\n          0.008240969667318977,\\\\n          0.019615421748166623,\\\\n          0.028676831314892466,\\\\n          0.033095946085946286,\\\\n          0.3590890901162581\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.664,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 4.503225326538086,\\\\n        \\\\\\\"std\\\\\\\": 4.8421173095703125\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04458787875675457,\\\\n        \\\\\\\"std\\\\\\\": 0.0648704634241749,\\\\n        \\\\\\\"t_stat\\\\\\\": 15.353948651915177,\\\\n        \\\\\\\"p_value\\\\\\\": 7.46250518536467e-44,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.6866494581638973\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0017330280210831573,\\\\n          0.005302538340663201,\\\\n          0.007163902512666055,\\\\n          0.020680235506992665,\\\\n          0.03485707990039093,\\\\n          0.03459241025841939,\\\\n          0.3118901960784321\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.0037620949894889076,\\\\n          0.00825352063013232,\\\\n          0.007593216730760563,\\\\n          0.020277157204501794,\\\\n          0.03162330967091224,\\\\n          0.038133676245909076,\\\\n          0.4570695648337024\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7094285714285714,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 5.153635501861572,\\\\n        \\\\\\\"std\\\\\\\": 5.071208477020264\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04681500022487693,\\\\n        \\\\\\\"std\\\\\\\": 0.06645561015488266,\\\\n        \\\\\\\"t_stat\\\\\\\": 15.736337189550586,\\\\n        \\\\\\\"p_value\\\\\\\": 1.3382496765371354e-45,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.7037503934432828\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.002803980288112861,\\\\n          0.0054708934473395275,\\\\n          0.007187286787515175,\\\\n          0.018410671617669166,\\\\n          0.02898102668941719,\\\\n          0.02812265279046228,\\\\n          0.3252549019607852\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.0057296098847649055,\\\\n          0.007560437193942133,\\\\n          0.007359340564353495,\\\\n          0.018759688881726206,\\\\n          0.028137334353327288,\\\\n          0.02949191003799571,\\\\n          0.46658065445606245\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7385714285714285,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 5.972511291503906,\\\\n        \\\\\\\"std\\\\\\\": 5.5687432289123535\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04585327669100103,\\\\n        \\\\\\\"std\\\\\\\": 0.06512121324514131,\\\\n        \\\\\\\"t_stat\\\\\\\": 15.728893275695137,\\\\n        \\\\\\\"p_value\\\\\\\": 1.4476730761513222e-45,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.7034174914950824\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0016636890063005333,\\\\n          0.0052034678355805915,\\\\n          0.00747777144619647,\\\\n          0.020320068361922777,\\\\n          0.028729157559535055,\\\\n          0.035562712698805565,\\\\n          0.3252549019607849\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.00306018861719437,\\\\n          0.008431160867942903,\\\\n          0.008048276555242978,\\\\n          0.021654913911754142,\\\\n          0.026055373152750017,\\\\n          0.03568682198764817,\\\\n          0.4582868723436793\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7365714285714285,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 4.935613632202148,\\\\n        \\\\\\\"std\\\\\\\": 4.755918502807617\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.048542862210683366,\\\\n        \\\\\\\"std\\\\\\\": 0.06656781244085376,\\\\n        \\\\\\\"t_stat\\\\\\\": 16.28963552846279,\\\\n        \\\\\\\"p_value\\\\\\\": 3.759600472033675e-48,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.7284946473958375\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.0018493386265249795,\\\\n          0.00610222509737575,\\\\n          0.009948190171367981,\\\\n          0.024407071426545815,\\\\n          0.030753488704492044,\\\\n          0.04087197555367618,\\\\n          0.338368627450981\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.003264664633536739,\\\\n          0.0077321877439992396,\\\\n          0.010677892843435068,\\\\n          0.024496624444718028,\\\\n          0.027718819464147733,\\\\n          0.048263969493824666,\\\\n          0.46698264708631304\\\\n        ]\\\\n      },\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7665714285714286,\\\\n      \\\\\\\"kl_divergence\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 4.831889629364014,\\\\n        \\\\\\\"std\\\\\\\": 4.366452693939209\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 5,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 5000,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"ablation\\\": \\\"L1_dominant_24_heads_zeroed\\\",\\n    \\\"ablated_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\"\\n  },\\n  \\\"main_metrics\\\": {\\n    \\\"paired_action_mse\\\": {\\n      \\\"mean\\\": 0.04164548042967141,\\n      \\\"std\\\": 0.06394581517413622,\\n      \\\"t_stat\\\": 32.55658746950337,\\n      \\\"p_value\\\": 3.9875267301509806e-194,\\n      \\\"cohens_d\\\": 0.6511317493798869\\n    },\\n    \\\"per_dim_action_shift\\\": {\\n      \\\"means\\\": [\\n        0.0018907630960015738,\\n        0.0053060349467249435,\\n        0.007621298928714849,\\n        0.02059210950341174,\\n        0.030713564767946917,\\n        0.033881929667518705,\\n        0.2907168627450989\\n      ],\\n      \\\"stds\\\": [\\n        0.003945774709271799,\\n        0.007996728850961761,\\n        0.00855598404937074,\\n        0.02115830546884926,\\n        0.02858547485740179,\\n        0.037737860644735575,\\n        0.44894904084862064\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.7230285714285715\\n  },\\n  \\\"secondary_metrics\\\": {\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 5.07937479019165,\\n      \\\"std\\\": 4.961368560791016,\\n      \\\"per_token_position\\\": [\\n        0.29015398025512695,\\n        3.0104427337646484,\\n        5.949150562286377,\\n        7.421013832092285,\\n        8.960497856140137,\\n        8.479713439941406,\\n        1.4446604251861572\\n      ]\\n    },\\n    \\\"mse_vs_gt_baseline\\\": {\\n      \\\"mean\\\": 0.43176415822445635,\\n      \\\"std\\\": 0.22077793994025996,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"mse_vs_gt_ablated\\\": {\\n      \\\"mean\\\": 0.4357406635106642,\\n      \\\"std\\\": 0.2235285616028443,\\n      \\\"note\\\": \\\"OOD, secondary\\\"\\n    },\\n    \\\"wilcoxon_p\\\": 0.0\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.02242838426504113,\\n        \\\"std\\\": 0.051757195878257986,\\n        \\\"t_stat\\\": 9.680048252096263,\\n        \\\"p_value\\\": 2.0038975148954835e-20,\\n        \\\"cohens_d\\\": 0.4329049183349495\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0014037795379863059,\\n          0.004451050012665628,\\n          0.006329343725828563,\\n          0.019142500603928258,\\n          0.030247070985899276,\\n          0.03025989703622987,\\n          0.15281568627450998\\n        ],\\n        \\\"stds\\\": [\\n          0.00311317121105672,\\n          0.007885665398470972,\\n          0.008240969667318977,\\n          0.019615421748166623,\\n          0.028676831314892466,\\n          0.033095946085946286,\\n          0.3590890901162581\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.664,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.503225326538086,\\n        \\\"std\\\": 4.8421173095703125\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04458787875675457,\\n        \\\"std\\\": 0.0648704634241749,\\n        \\\"t_stat\\\": 15.353948651915177,\\n        \\\"p_value\\\": 7.46250518536467e-44,\\n        \\\"cohens_d\\\": 0.6866494581638973\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0017330280210831573,\\n          0.005302538340663201,\\n          0.007163902512666055,\\n          0.020680235506992665,\\n          0.03485707990039093,\\n          0.03459241025841939,\\n          0.3118901960784321\\n        ],\\n        \\\"stds\\\": [\\n          0.0037620949894889076,\\n          0.00825352063013232,\\n          0.007593216730760563,\\n          0.020277157204501794,\\n          0.03162330967091224,\\n          0.038133676245909076,\\n          0.4570695648337024\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7094285714285714,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 5.153635501861572,\\n        \\\"std\\\": 5.071208477020264\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04681500022487693,\\n        \\\"std\\\": 0.06645561015488266,\\n        \\\"t_stat\\\": 15.736337189550586,\\n        \\\"p_value\\\": 1.3382496765371354e-45,\\n        \\\"cohens_d\\\": 0.7037503934432828\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.002803980288112861,\\n          0.0054708934473395275,\\n          0.007187286787515175,\\n          0.018410671617669166,\\n          0.02898102668941719,\\n          0.02812265279046228,\\n          0.3252549019607852\\n        ],\\n        \\\"stds\\\": [\\n          0.0057296098847649055,\\n          0.007560437193942133,\\n          0.007359340564353495,\\n          0.018759688881726206,\\n          0.028137334353327288,\\n          0.02949191003799571,\\n          0.46658065445606245\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7385714285714285,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 5.972511291503906,\\n        \\\"std\\\": 5.5687432289123535\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.04585327669100103,\\n        \\\"std\\\": 0.06512121324514131,\\n        \\\"t_stat\\\": 15.728893275695137,\\n        \\\"p_value\\\": 1.4476730761513222e-45,\\n        \\\"cohens_d\\\": 0.7034174914950824\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0016636890063005333,\\n          0.0052034678355805915,\\n          0.00747777144619647,\\n          0.020320068361922777,\\n          0.028729157559535055,\\n          0.035562712698805565,\\n          0.3252549019607849\\n        ],\\n        \\\"stds\\\": [\\n          0.00306018861719437,\\n          0.008431160867942903,\\n          0.008048276555242978,\\n          0.021654913911754142,\\n          0.026055373152750017,\\n          0.03568682198764817,\\n          0.4582868723436793\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7365714285714285,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.935613632202148,\\n        \\\"std\\\": 4.755918502807617\\n      },\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.048542862210683366,\\n        \\\"std\\\": 0.06656781244085376,\\n        \\\"t_stat\\\": 16.28963552846279,\\n        \\\"p_value\\\": 3.759600472033675e-48,\\n        \\\"cohens_d\\\": 0.7284946473958375\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.0018493386265249795,\\n          0.00610222509737575,\\n          0.009948190171367981,\\n          0.024407071426545815,\\n          0.030753488704492044,\\n          0.04087197555367618,\\n          0.338368627450981\\n        ],\\n        \\\"stds\\\": [\\n          0.003264664633536739,\\n          0.0077321877439992396,\\n          0.010677892843435068,\\n          0.024496624444718028,\\n          0.027718819464147733,\\n          0.048263969493824666,\\n          0.46698264708631304\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 0.7665714285714286,\\n      \\\"kl_divergence\\\": {\\n        \\\"mean\\\": 4.831889629364014,\\n        \\\"std\\\": 4.366452693939209\\n      },\\n      \\\"n_samples\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have more data. `action_trajectory_analysis.json` has 5 tasks with per-task `paired_mse` (mean action shift when ablating instruction heads). This is a behavioral outcome - how much the model's actions change when instruction-processing heads are ablated.
+
+But I still only have 5 tasks. The R² data has 10 tasks.
+
+Let me think about what data pairs I can construct:
+
+**Data Source 1: per_task_r2_distribution.json** - baseline per-task R² for 10 tasks at L1, L8, L13 (5-demo probes)
+
+
+**Data Source 2: unified_action_probe.json** - per-task R² for 10 tasks across different feature sources with 50 demos
+**Data Source 3: action_probe_50demos.json** - per-task R² for 10 tasks comparing baseline versus ablation conditions
+**Data Source 4: action_trajectory_analysis.json** - per-task paired_mse for 5 tasks showing behavioral shift from ablation
+**Data Source 5: groundtruth_action_error.json** - per-task MSE measuring model versus ground truth performance for 3 tasks
+**Data Source 6: task_complexity_routing.json** - per-task R² delta between baseline and ablated versions for 10 tasks at L1
+
+The core challenge is figuring out what to correlate—I need representational metrics like probe R² scores against behavioral outcomes like action MSE or trajectory shifts, but the behavioral data only spans 3 to 5 tasks while the representational data covers 10. Let me figure out which tasks actually overlap across these datasets so I can find a meaningful correlation.
+
+The action trajectory analysis gives me paired MSE for 5 specific tasks: open_the_middle_drawer_of_the_cabinet, open_the_top_drawer_and_put_the_bowl_inside, push_the_plate_to_the_front_of_the_stove, put_the_bowl_on_the_plate, and put_the_bowl_on_the_stove. These are a subset of the 10 tasks with R² data, so a Spearman correlation with n=5 won't be particularly powerful but it's still worth trying. I could also look at the probe validation loss as a representational metric paired against per-task R², though that's comparing two aspects of the same probe rather than truly independent metrics. Let me check if the dose-response results have per-task breakdowns that might give me more data points to work with.
+
+Actually, I should just compute what I can with what's available. The strongest pairing would be the 5 tasks with per-task paired MSE from the action trajectory analysis against the same 5 tasks' per-task R² from either the per-task R² distribution or unified action probe. The hypothesis is that tasks with higher R² (better action representation) should show larger behavioral shifts when heads are ablated, suggesting instruction heads are critical for encoding task-specific actions. I need to think through the correlation direction carefully—if R² is more affected by ablation in certain tasks, that would indicate those tasks rely more heavily on the representational capacity being probed.
+
+Looking at the unified action probe data, I can compute the R² delta between baseline and ablate_all24 conditions for each task, which gives me the representational impact. Paired with the per-task paired MSE from action trajectory analysis, I'd expect tasks with larger R² changes to also show larger action shifts from ablation. I'm completing the list of L1 baseline differences and now looking at the paired MSE values from the trajectory analysis. I could compute a Spearman correlation between these R² deltas and the action shifts to see if they're measuring similar effects from the same ablation.
+
+Let me check if there's behavioral data across all 10 tasks in the counterfactual or dose response files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "9302c552-9951-4add-bf46-7cf53d2f63f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7jWVoq1LtffdC6jG39FcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6249,
+      "cache_read_input_tokens": 60205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+有 5 个 task 的 paired_mse 数据。让我检查是否有更完整的 behavioral outcome 覆盖 10 个 task。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "df7d05dc-f582-43a6-ba27-3041fe9423ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7jWVoq1LtffdC6jG39FcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6249,
+      "cache_read_input_tokens": 60205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012CEtk8DVYLT1VGLhLKNFHN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/results/dose_response_top24.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "e6bfa4ca-4643-4430-abf4-5080b6a15230",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7jWVoq1LtffdC6jG39FcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6249,
+      "cache_read_input_tokens": 60205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T12:34:41.200Z_
+
+<details><summary>↩ Tool result · `toolu_012CEtk8DVYLT1VGLhLKNFHN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"paired_mse\\\": {\\n    \\\"mean\\\": 0.03824194281111133,\\n    \\\"std\\\": 0.06259905907278887,\\n    \\\"t_stat\\\": 23.652277120477233,\\n    \\\"p_value\\\": 2.3124438825919607e-105,\\n    \\\"cohens_d\\\": 0.6106991692401877,\\n    \\\"ci_95\\\": [\\n      0.578472176208276,\\n      0.6453009849211714\\n    ]\\n  },\\n  \\\"per_dim_shift\\\": {\\n    \\\"dx\\\": {\\n      \\\"mean\\\": 0.0020264886255825254,\\n      \\\"std\\\": 0.004405586184913804\\n    },\\n    \\\"dy\\\": {\\n      \\\"mean\\\": 0.005078928224616185,\\n      \\\"std\\\": 0.007846833659519195\\n    },\\n    \\\"dz\\\": {\\n      \\\"mean\\\": 0.006839640568091587,\\n      \\\"std\\\": 0.0077200397198871834\\n    },\\n    \\\"rx\\\": {\\n      \\\"mean\\\": 0.01958227916286113,\\n      \\\"std\\\": 0.01961555474299405\\n    },\\n    \\\"ry\\\": {\\n      \\\"mean\\\": 0.03157563598838038,\\n      \\\"std\\\": 0.02905062348917955\\n    },\\n    \\\"rz\\\": {\\n      \\\"mean\\\": 0.030789641336462847,\\n      \\\"std\\\": 0.03250205074800802\\n    },\\n    \\\"gripper\\\": {\\n      \\\"mean\\\": 0.2655686274509804,\\n      \\\"std\\\": 0.43856135199571405\\n    }\\n  },\\n  \\\"token_divergence_rate\\\": 0.707047619047619,\\n  \\\"kl_divergence\\\": {\\n    \\\"mean\\\": 5.245793342590332,\\n    \\\"std\\\": 5.2173871994018555\\n  },\\n  \\\"n_samples\\\": 1500,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse_mean\\\": 0.022124778983381325,\\n      \\\"token_divergence_rate\\\": 0.6625714285714286,\\n      \\\"kl_mean\\\": 4.529465198516846,\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"paired_mse_mean\\\": 0.04530116625384769,\\n      \\\"token_divergence_rate\\\": 0.7148571428571429,\\n      \\\"kl_mean\\\": 5.16898250579834,\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"paired_mse_mean\\\": 0.04729988319610499,\\n      \\\"token_divergence_rate\\\": 0.7437142857142857,\\n      \\\"kl_mean\\\": 6.038931846618652,\\n      \\\"n_samples\\\": 500\\n    }\\n  },\\n  \\\"n_heads_ablated\\\": 24,\\n  \\\"heads_ablated\\\": [\\n    0,\\n    22,\\n    25,\\n    10,\\n    2,\\n    14,\\n    15,\\n    18,\\n    27,\\n    19,\\n    29,\\n    23,\\n    4,\\n    11,\\n    8,\\n    7,\\n    21,\\n    26,\\n    1,\\n    30,\\n    12,\\n    16,\\n    31,\\n    17\\n  ],\\n  \\\"heads_ablated_fracs\\\": [\\n    0.85430908203125,\\n    0.7316373189290365,\\n    0.7228291829427084,\\n    0.7139892578125,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "ea76aaba-ac9c-4cd6-87b5-446acc67927d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"paired_mse\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.03824194281111133,\\\\n    \\\\\\\"std\\\\\\\": 0.06259905907278887,\\\\n    \\\\\\\"t_stat\\\\\\\": 23.652277120477233,\\\\n    \\\\\\\"p_value\\\\\\\": 2.3124438825919607e-105,\\\\n    \\\\\\\"cohens_d\\\\\\\": 0.6106991692401877,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.578472176208276,\\\\n      0.6453009849211714\\\\n    ]\\\\n  },\\\\n  \\\\\\\"per_dim_shift\\\\\\\": {\\\\n    \\\\\\\"dx\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0020264886255825254,\\\\n      \\\\\\\"std\\\\\\\": 0.004405586184913804\\\\n    },\\\\n    \\\\\\\"dy\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.005078928224616185,\\\\n      \\\\\\\"std\\\\\\\": 0.007846833659519195\\\\n    },\\\\n    \\\\\\\"dz\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.006839640568091587,\\\\n      \\\\\\\"std\\\\\\\": 0.0077200397198871834\\\\n    },\\\\n    \\\\\\\"rx\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.01958227916286113,\\\\n      \\\\\\\"std\\\\\\\": 0.01961555474299405\\\\n    },\\\\n    \\\\\\\"ry\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.03157563598838038,\\\\n      \\\\\\\"std\\\\\\\": 0.02905062348917955\\\\n    },\\\\n    \\\\\\\"rz\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.030789641336462847,\\\\n      \\\\\\\"std\\\\\\\": 0.03250205074800802\\\\n    },\\\\n    \\\\\\\"gripper\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.2655686274509804,\\\\n      \\\\\\\"std\\\\\\\": 0.43856135199571405\\\\n    }\\\\n  },\\\\n  \\\\\\\"token_divergence_rate\\\\\\\": 0.707047619047619,\\\\n  \\\\\\\"kl_divergence\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 5.245793342590332,\\\\n    \\\\\\\"std\\\\\\\": 5.2173871994018555\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 1500,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.022124778983381325,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.6625714285714286,\\\\n      \\\\\\\"kl_mean\\\\\\\": 4.529465198516846,\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": {\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.04530116625384769,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7148571428571429,\\\\n      \\\\\\\"kl_mean\\\\\\\": 5.16898250579834,\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.04729988319610499,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7437142857142857,\\\\n      \\\\\\\"kl_mean\\\\\\\": 6.038931846618652,\\\\n      \\\\\\\"n_samples\\\\\\\": 500\\\\n    }\\\\n  },\\\\n  \\\\\\\"n_heads_ablated\\\\\\\": 24,\\\\n  \\\\\\\"heads_ablated\\\\\\\": [\\\\n    0,\\\\n    22,\\\\n    25,\\\\n    10,\\\\n    2,\\\\n    14,\\\\n    15,\\\\n    18,\\\\n    27,\\\\n    19,\\\\n    29,\\\\n    23,\\\\n    4,\\\\n    11,\\\\n    8,\\\\n    7,\\\\n    21,\\\\n    26,\\\\n    1,\\\\n    30,\\\\n    12,\\\\n    16,\\\\n    31,\\\\n    17\\\\n  ],\\\\n  \\\\\\\"heads_ablated_fracs\\\\\\\": [\\\\n    0.85430908203125,\\\\n    0.7316373189290365,\\\\n    0.7228291829427084,\\\\n    0.7139892578125,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"paired_mse\\\": {\\n    \\\"mean\\\": 0.03824194281111133,\\n    \\\"std\\\": 0.06259905907278887,\\n    \\\"t_stat\\\": 23.652277120477233,\\n    \\\"p_value\\\": 2.3124438825919607e-105,\\n    \\\"cohens_d\\\": 0.6106991692401877,\\n    \\\"ci_95\\\": [\\n      0.578472176208276,\\n      0.6453009849211714\\n    ]\\n  },\\n  \\\"per_dim_shift\\\": {\\n    \\\"dx\\\": {\\n      \\\"mean\\\": 0.0020264886255825254,\\n      \\\"std\\\": 0.004405586184913804\\n    },\\n    \\\"dy\\\": {\\n      \\\"mean\\\": 0.005078928224616185,\\n      \\\"std\\\": 0.007846833659519195\\n    },\\n    \\\"dz\\\": {\\n      \\\"mean\\\": 0.006839640568091587,\\n      \\\"std\\\": 0.0077200397198871834\\n    },\\n    \\\"rx\\\": {\\n      \\\"mean\\\": 0.01958227916286113,\\n      \\\"std\\\": 0.01961555474299405\\n    },\\n    \\\"ry\\\": {\\n      \\\"mean\\\": 0.03157563598838038,\\n      \\\"std\\\": 0.02905062348917955\\n    },\\n    \\\"rz\\\": {\\n      \\\"mean\\\": 0.030789641336462847,\\n      \\\"std\\\": 0.03250205074800802\\n    },\\n    \\\"gripper\\\": {\\n      \\\"mean\\\": 0.2655686274509804,\\n      \\\"std\\\": 0.43856135199571405\\n    }\\n  },\\n  \\\"token_divergence_rate\\\": 0.707047619047619,\\n  \\\"kl_divergence\\\": {\\n    \\\"mean\\\": 5.245793342590332,\\n    \\\"std\\\": 5.2173871994018555\\n  },\\n  \\\"n_samples\\\": 1500,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse_mean\\\": 0.022124778983381325,\\n      \\\"token_divergence_rate\\\": 0.6625714285714286,\\n      \\\"kl_mean\\\": 4.529465198516846,\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"paired_mse_mean\\\": 0.04530116625384769,\\n      \\\"token_divergence_rate\\\": 0.7148571428571429,\\n      \\\"kl_mean\\\": 5.16898250579834,\\n      \\\"n_samples\\\": 500\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"paired_mse_mean\\\": 0.04729988319610499,\\n      \\\"token_divergence_rate\\\": 0.7437142857142857,\\n      \\\"kl_mean\\\": 6.038931846618652,\\n      \\\"n_samples\\\": 500\\n    }\\n  },\\n  \\\"n_heads_ablated\\\": 24,\\n  \\\"heads_ablated\\\": [\\n    0,\\n    22,\\n    25,\\n    10,\\n    2,\\n    14,\\n    15,\\n    18,\\n    27,\\n    19,\\n    29,\\n    23,\\n    4,\\n    11,\\n    8,\\n    7,\\n    21,\\n    26,\\n    1,\\n    30,\\n    12,\\n    16,\\n    31,\\n    17\\n  ],\\n  \\\"heads_ablated_fracs\\\": [\\n    0.85430908203125,\\n    0.7316373189290365,\\n    0.7228291829427084,\\n    0.7139892578125,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013HKGhxSLAA2bXEDTWv2Km6`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/results/counterfactual_wrong.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "f5f9c6a0-6226-43a8-8cc6-c5dd66782a76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7jWVoq1LtffdC6jG39FcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6249,
+      "cache_read_input_tokens": 60205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DzJMkD1HiGXQKhLhWc7Ck8`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*trajectory*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "6d3404e5-d01f-4a75-9bed-3d1ed150b9dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7jWVoq1LtffdC6jG39FcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6249,
+      "cache_read_input_tokens": 60205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-20T12:34:42.151Z_
+
+<details><summary>↩ Tool result · `toolu_013HKGhxSLAA2bXEDTWv2Km6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"condition\\\": \\\"wrong\\\",\\n    \\\"n_tasks\\\": 3,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 4500,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"global_metrics\\\": {\\n    \\\"paired_mse\\\": {\\n      \\\"mean\\\": 0.058455487649789965,\\n      \\\"std\\\": 0.0692544663275485,\\n      \\\"t_stat\\\": 32.679719283343246,\\n      \\\"p_value\\\": 2.553799316363148e-177,\\n      \\\"cohens_d\\\": 0.8437867236086318\\n    },\\n    \\\"per_dim_shift\\\": {\\n      \\\"means\\\": [\\n        0.005727999085688126,\\n        0.008830657024934012,\\n        0.009574907858035737,\\n        0.025024379181098264,\\n        0.036198595620543346,\\n        0.03649755558156977,\\n        0.40730980392156996\\n      ],\\n      \\\"stds\\\": [\\n        0.005973560517632025,\\n        0.008550926475140793,\\n        0.00835720194565921,\\n        0.02166607415178352,\\n        0.031215809187679588,\\n        0.03229350224391563,\\n        0.4869811885544372\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.8951428571428571,\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 8.32552719116211,\\n      \\\"std\\\": 5.004848003387451,\\n      \\\"per_token_position\\\": [\\n        4.15487813949585,\\n        8.225351333618164,\\n        10.143592834472656,\\n        10.94106388092041,\\n        11.698100090026855,\\n        10.461137771606445,\\n        2.654557228088379\\n      ]\\n    },\\n    \\\"wilcoxon_p\\\": 1.0089211937209574e-246,\\n    \\\"n_samples\\\": 1500\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.06594631822934968,\\n        \\\"std\\\": 0.07059699792059548,\\n        \\\"t_stat\\\": 20.866739452274786,\\n        \\\"p_value\\\": 5.536462097480026e-70,\\n        \\\"cohens_d\\\": 0.9331889576680575\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.004409961340174951,\\n          0.008322569946580064,\\n          0.0083980725741474,\\n          0.024785119210023455,\\n          0.03182795169473394,\\n          0.033963809009664184,\\n          0.45916862745098175\\n        ],\\n        \\\"stds\\\": [\\n          0.004963287282741524,\\n          0.008346522923817323,\\n          0.007941980726539457,\\n          0.021492511427788696,\\n          0.028325233727294657,\\n          0.02980557707542075,\\n          0.49551821822264297\\n        ],\\n        \\\"dim_names\\\": [\\n          \\\"dx\\\",\\n          \\\"dy\\\",\\n          \\\"dz\\\",\\n          \\\"rx\\\",\\n          \\\"ry\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "ee0e5f3c-b1d7-4a60-abaa-6a5b975ee99d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"condition\\\\\\\": \\\\\\\"wrong\\\\\\\",\\\\n    \\\\\\\"n_tasks\\\\\\\": 3,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"total_forward_passes\\\\\\\": 4500,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"global_metrics\\\\\\\": {\\\\n    \\\\\\\"paired_mse\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.058455487649789965,\\\\n      \\\\\\\"std\\\\\\\": 0.0692544663275485,\\\\n      \\\\\\\"t_stat\\\\\\\": 32.679719283343246,\\\\n      \\\\\\\"p_value\\\\\\\": 2.553799316363148e-177,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8437867236086318\\\\n    },\\\\n    \\\\\\\"per_dim_shift\\\\\\\": {\\\\n      \\\\\\\"means\\\\\\\": [\\\\n        0.005727999085688126,\\\\n        0.008830657024934012,\\\\n        0.009574907858035737,\\\\n        0.025024379181098264,\\\\n        0.036198595620543346,\\\\n        0.03649755558156977,\\\\n        0.40730980392156996\\\\n      ],\\\\n      \\\\\\\"stds\\\\\\\": [\\\\n        0.005973560517632025,\\\\n        0.008550926475140793,\\\\n        0.00835720194565921,\\\\n        0.02166607415178352,\\\\n        0.031215809187679588,\\\\n        0.03229350224391563,\\\\n        0.4869811885544372\\\\n      ],\\\\n      \\\\\\\"dim_names\\\\\\\": [\\\\n        \\\\\\\"dx\\\\\\\",\\\\n        \\\\\\\"dy\\\\\\\",\\\\n        \\\\\\\"dz\\\\\\\",\\\\n        \\\\\\\"rx\\\\\\\",\\\\n        \\\\\\\"ry\\\\\\\",\\\\n        \\\\\\\"rz\\\\\\\",\\\\n        \\\\\\\"gripper\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"token_divergence_rate\\\\\\\": 0.8951428571428571,\\\\n    \\\\\\\"kl_divergence\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 8.32552719116211,\\\\n      \\\\\\\"std\\\\\\\": 5.004848003387451,\\\\n      \\\\\\\"per_token_position\\\\\\\": [\\\\n        4.15487813949585,\\\\n        8.225351333618164,\\\\n        10.143592834472656,\\\\n        10.94106388092041,\\\\n        11.698100090026855,\\\\n        10.461137771606445,\\\\n        2.654557228088379\\\\n      ]\\\\n    },\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 1.0089211937209574e-246,\\\\n    \\\\\\\"n_samples\\\\\\\": 1500\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06594631822934968,\\\\n        \\\\\\\"std\\\\\\\": 0.07059699792059548,\\\\n        \\\\\\\"t_stat\\\\\\\": 20.866739452274786,\\\\n        \\\\\\\"p_value\\\\\\\": 5.536462097480026e-70,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.9331889576680575\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.004409961340174951,\\\\n          0.008322569946580064,\\\\n          0.0083980725741474,\\\\n          0.024785119210023455,\\\\n          0.03182795169473394,\\\\n          0.033963809009664184,\\\\n          0.45916862745098175\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.004963287282741524,\\\\n          0.008346522923817323,\\\\n          0.007941980726539457,\\\\n          0.021492511427788696,\\\\n          0.028325233727294657,\\\\n          0.02980557707542075,\\\\n          0.49551821822264297\\\\n        ],\\\\n        \\\\\\\"dim_names\\\\\\\": [\\\\n          \\\\\\\"dx\\\\\\\",\\\\n          \\\\\\\"dy\\\\\\\",\\\\n          \\\\\\\"dz\\\\\\\",\\\\n          \\\\\\\"rx\\\\\\\",\\\\n          \\\\\\\"ry\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"condition\\\": \\\"wrong\\\",\\n    \\\"n_tasks\\\": 3,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 4500,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"global_metrics\\\": {\\n    \\\"paired_mse\\\": {\\n      \\\"mean\\\": 0.058455487649789965,\\n      \\\"std\\\": 0.0692544663275485,\\n      \\\"t_stat\\\": 32.679719283343246,\\n      \\\"p_value\\\": 2.553799316363148e-177,\\n      \\\"cohens_d\\\": 0.8437867236086318\\n    },\\n    \\\"per_dim_shift\\\": {\\n      \\\"means\\\": [\\n        0.005727999085688126,\\n        0.008830657024934012,\\n        0.009574907858035737,\\n        0.025024379181098264,\\n        0.036198595620543346,\\n        0.03649755558156977,\\n        0.40730980392156996\\n      ],\\n      \\\"stds\\\": [\\n        0.005973560517632025,\\n        0.008550926475140793,\\n        0.00835720194565921,\\n        0.02166607415178352,\\n        0.031215809187679588,\\n        0.03229350224391563,\\n        0.4869811885544372\\n      ],\\n      \\\"dim_names\\\": [\\n        \\\"dx\\\",\\n        \\\"dy\\\",\\n        \\\"dz\\\",\\n        \\\"rx\\\",\\n        \\\"ry\\\",\\n        \\\"rz\\\",\\n        \\\"gripper\\\"\\n      ]\\n    },\\n    \\\"token_divergence_rate\\\": 0.8951428571428571,\\n    \\\"kl_divergence\\\": {\\n      \\\"mean\\\": 8.32552719116211,\\n      \\\"std\\\": 5.004848003387451,\\n      \\\"per_token_position\\\": [\\n        4.15487813949585,\\n        8.225351333618164,\\n        10.143592834472656,\\n        10.94106388092041,\\n        11.698100090026855,\\n        10.461137771606445,\\n        2.654557228088379\\n      ]\\n    },\\n    \\\"wilcoxon_p\\\": 1.0089211937209574e-246,\\n    \\\"n_samples\\\": 1500\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.06594631822934968,\\n        \\\"std\\\": 0.07059699792059548,\\n        \\\"t_stat\\\": 20.866739452274786,\\n        \\\"p_value\\\": 5.536462097480026e-70,\\n        \\\"cohens_d\\\": 0.9331889576680575\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.004409961340174951,\\n          0.008322569946580064,\\n          0.0083980725741474,\\n          0.024785119210023455,\\n          0.03182795169473394,\\n          0.033963809009664184,\\n          0.45916862745098175\\n        ],\\n        \\\"stds\\\": [\\n          0.004963287282741524,\\n          0.008346522923817323,\\n          0.007941980726539457,\\n          0.021492511427788696,\\n          0.028325233727294657,\\n          0.02980557707542075,\\n          0.49551821822264297\\n        ],\\n        \\\"dim_names\\\": [\\n          \\\"dx\\\",\\n          \\\"dy\\\",\\n          \\\"dz\\\",\\n          \\\"rx\\\",\\n          \\\"ry\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T12:34:42.676Z_
+
+<details><summary>↩ Tool result · `toolu_01DzJMkD1HiGXQKhLhWc7Ck8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_control.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\n/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "a30e398f-c66f-4a12-a664-f83d575d23b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_control.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\\\n/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json\\\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_control.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\n/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json\\n/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the `action_trajectory_extended_analysis.json` which might have data for all 10 tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "e73927a9-b830-425c-b172-721036a1fb77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JcgRNu4epnza8zQ5n57tEn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5194,
+      "cache_read_input_tokens": 66454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5194
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ViELg9stfhr3MHn5VBJyNP`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -80 /root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "32bc775d-abb5-4449-b297-ab5e736e5b94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JcgRNu4epnza8zQ5n57tEn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5194,
+      "cache_read_input_tokens": 66454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5194
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-20T12:34:49.290Z_
+
+<details><summary>↩ Tool result · `toolu_01ViELg9stfhr3MHn5VBJyNP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"temporal_coherence_proxy\\\": {\\n    \\\"method\\\": \\\"proxy (per-dim CV + cross-task I^2)\\\",\\n    \\\"note\\\": \\\"Exact within-demo autocorrelation requires per-timestep trajectory data not saved in JSON. These are indirect proxies.\\\",\\n    \\\"per_dim_cv\\\": [\\n      {\\n        \\\"dim\\\": \\\"dx\\\",\\n        \\\"inst_mean_shift\\\": 0.0018907630960015738,\\n        \\\"inst_std_shift\\\": 0.003945774709271799,\\n        \\\"inst_cv\\\": 2.0868689036802075,\\n        \\\"ctrl_mean_shift\\\": 0.00037120977075240174,\\n        \\\"ctrl_std_shift\\\": 0.0018871390276948216,\\n        \\\"ctrl_cv\\\": 5.083753651930542\\n      },\\n      {\\n        \\\"dim\\\": \\\"dy\\\",\\n        \\\"inst_mean_shift\\\": 0.0053060349467249435,\\n        \\\"inst_std_shift\\\": 0.007996728850961761,\\n        \\\"inst_cv\\\": 1.5071006752222016,\\n        \\\"ctrl_mean_shift\\\": 0.001246604812974087,\\n        \\\"ctrl_std_shift\\\": 0.004219931004787625,\\n        \\\"ctrl_cv\\\": 3.385139348788431\\n      },\\n      {\\n        \\\"dim\\\": \\\"dz\\\",\\n        \\\"inst_mean_shift\\\": 0.007621298928714849,\\n        \\\"inst_std_shift\\\": 0.00855598404937074,\\n        \\\"inst_cv\\\": 1.1226411835303123,\\n        \\\"ctrl_mean_shift\\\": 0.002426664148676048,\\n        \\\"ctrl_std_shift\\\": 0.00600886986156851,\\n        \\\"ctrl_cv\\\": 2.476185204634461\\n      },\\n      {\\n        \\\"dim\\\": \\\"rx\\\",\\n        \\\"inst_mean_shift\\\": 0.02059210950341174,\\n        \\\"inst_std_shift\\\": 0.02115830546884926,\\n        \\\"inst_cv\\\": 1.027495772851427,\\n        \\\"ctrl_mean_shift\\\": 0.007850111136374748,\\n        \\\"ctrl_std_shift\\\": 0.01622055322496688,\\n        \\\"ctrl_cv\\\": 2.066283259329457\\n      },\\n      {\\n        \\\"dim\\\": \\\"ry\\\",\\n        \\\"inst_mean_shift\\\": 0.030713564767946917,\\n        \\\"inst_std_shift\\\": 0.02858547485740179,\\n        \\\"inst_cv\\\": 0.9307117253687847,\\n        \\\"ctrl_mean_shift\\\": 0.013872630138848839,\\n        \\\"ctrl_std_shift\\\": 0.02414395054091184,\\n        \\\"ctrl_cv\\\": 1.7404018055162627\\n      },\\n      {\\n        \\\"dim\\\": \\\"rz\\\",\\n        \\\"inst_mean_shift\\\": 0.033881929667518705,\\n        \\\"inst_std_shift\\\": 0.037737860644735575,\\n        \\\"inst_cv\\\": 1.1138049401275218,\\n        \\\"ctrl_mean_shift\\\": 0.01783035501084426,\\n        \\\"ctrl_std_shift\\\": 0.030538640156342656,\\n        \\\"ctrl_cv\\\": 1.7127331529725198\\n      },\\n      {\\n        \\\"dim\\\": \\\"gripper\\\",\\n        \\\"inst_mean_shift\\\": 0.2907168627450989,\\n        \\\"inst_std_shift\\\": 0.44894904084862064,\\n        \\\"inst_cv\\\": 1.5442827657446896,\\n        \\\"ctrl_mean_shift\\\": 0.1407215686274514,\\n        \\\"ctrl_std_shift\\\": 0.3441443717682476,\\n        \\\"ctrl_cv\\\": 2.4455694683118625\\n      }\\n    ],\\n    \\\"mean_cv_6d_continuous_dims\\\": {\\n      \\\"instruction_ablation\\\": 1.2981038667967424,\\n      \\\"control_ablation\\\": 2.744082737195279,\\n      \\\"interpretation\\\": \\\"Higher CV = more variable perturbation across samples, suggesting less structured/temporally-coherent effect\\\"\\n    },\\n    \\\"cross_task_heterogeneity\\\": {\\n      \\\"instruction_ablation\\\": {\\n        \\\"per_task_d\\\": [\\n          0.4329049183349495,\\n          0.6866494581638973,\\n          0.7037503934432828,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "bfe98f65-8b1d-4fd1-ab2c-3c27fb9ba5b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"temporal_coherence_proxy\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"proxy (per-dim CV + cross-task I^2)\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Exact within-demo autocorrelation requires per-timestep trajectory data not saved in JSON. These are indirect proxies.\\\\\\\",\\\\n    \\\\\\\"per_dim_cv\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"dx\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.0018907630960015738,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.003945774709271799,\\\\n        \\\\\\\"inst_cv\\\\\\\": 2.0868689036802075,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.00037120977075240174,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.0018871390276948216,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 5.083753651930542\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"dy\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.0053060349467249435,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.007996728850961761,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.5071006752222016,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.001246604812974087,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.004219931004787625,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 3.385139348788431\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"dz\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.007621298928714849,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.00855598404937074,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.1226411835303123,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.002426664148676048,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.00600886986156851,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 2.476185204634461\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"rx\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.02059210950341174,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.02115830546884926,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.027495772851427,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.007850111136374748,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.01622055322496688,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 2.066283259329457\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"ry\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.030713564767946917,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.02858547485740179,\\\\n        \\\\\\\"inst_cv\\\\\\\": 0.9307117253687847,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.013872630138848839,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.02414395054091184,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 1.7404018055162627\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"rz\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.033881929667518705,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.037737860644735575,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.1138049401275218,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.01783035501084426,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.030538640156342656,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 1.7127331529725198\\\\n      },\\\\n      {\\\\n        \\\\\\\"dim\\\\\\\": \\\\\\\"gripper\\\\\\\",\\\\n        \\\\\\\"inst_mean_shift\\\\\\\": 0.2907168627450989,\\\\n        \\\\\\\"inst_std_shift\\\\\\\": 0.44894904084862064,\\\\n        \\\\\\\"inst_cv\\\\\\\": 1.5442827657446896,\\\\n        \\\\\\\"ctrl_mean_shift\\\\\\\": 0.1407215686274514,\\\\n        \\\\\\\"ctrl_std_shift\\\\\\\": 0.3441443717682476,\\\\n        \\\\\\\"ctrl_cv\\\\\\\": 2.4455694683118625\\\\n      }\\\\n    ],\\\\n    \\\\\\\"mean_cv_6d_continuous_dims\\\\\\\": {\\\\n      \\\\\\\"instruction_ablation\\\\\\\": 1.2981038667967424,\\\\n      \\\\\\\"control_ablation\\\\\\\": 2.744082737195279,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"Higher CV = more variable perturbation across samples, suggesting less structured/temporally-coherent effect\\\\\\\"\\\\n    },\\\\n    \\\\\\\"cross_task_heterogeneity\\\\\\\": {\\\\n      \\\\\\\"instruction_ablation\\\\\\\": {\\\\n        \\\\\\\"per_task_d\\\\\\\": [\\\\n          0.4329049183349495,\\\\n          0.6866494581638973,\\\\n          0.7037503934432828,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"temporal_coherence_proxy\\\": {\\n    \\\"method\\\": \\\"proxy (per-dim CV + cross-task I^2)\\\",\\n    \\\"note\\\": \\\"Exact within-demo autocorrelation requires per-timestep trajectory data not saved in JSON. These are indirect proxies.\\\",\\n    \\\"per_dim_cv\\\": [\\n      {\\n        \\\"dim\\\": \\\"dx\\\",\\n        \\\"inst_mean_shift\\\": 0.0018907630960015738,\\n        \\\"inst_std_shift\\\": 0.003945774709271799,\\n        \\\"inst_cv\\\": 2.0868689036802075,\\n        \\\"ctrl_mean_shift\\\": 0.00037120977075240174,\\n        \\\"ctrl_std_shift\\\": 0.0018871390276948216,\\n        \\\"ctrl_cv\\\": 5.083753651930542\\n      },\\n      {\\n        \\\"dim\\\": \\\"dy\\\",\\n        \\\"inst_mean_shift\\\": 0.0053060349467249435,\\n        \\\"inst_std_shift\\\": 0.007996728850961761,\\n        \\\"inst_cv\\\": 1.5071006752222016,\\n        \\\"ctrl_mean_shift\\\": 0.001246604812974087,\\n        \\\"ctrl_std_shift\\\": 0.004219931004787625,\\n        \\\"ctrl_cv\\\": 3.385139348788431\\n      },\\n      {\\n        \\\"dim\\\": \\\"dz\\\",\\n        \\\"inst_mean_shift\\\": 0.007621298928714849,\\n        \\\"inst_std_shift\\\": 0.00855598404937074,\\n        \\\"inst_cv\\\": 1.1226411835303123,\\n        \\\"ctrl_mean_shift\\\": 0.002426664148676048,\\n        \\\"ctrl_std_shift\\\": 0.00600886986156851,\\n        \\\"ctrl_cv\\\": 2.476185204634461\\n      },\\n      {\\n        \\\"dim\\\": \\\"rx\\\",\\n        \\\"inst_mean_shift\\\": 0.02059210950341174,\\n        \\\"inst_std_shift\\\": 0.02115830546884926,\\n        \\\"inst_cv\\\": 1.027495772851427,\\n        \\\"ctrl_mean_shift\\\": 0.007850111136374748,\\n        \\\"ctrl_std_shift\\\": 0.01622055322496688,\\n        \\\"ctrl_cv\\\": 2.066283259329457\\n      },\\n      {\\n        \\\"dim\\\": \\\"ry\\\",\\n        \\\"inst_mean_shift\\\": 0.030713564767946917,\\n        \\\"inst_std_shift\\\": 0.02858547485740179,\\n        \\\"inst_cv\\\": 0.9307117253687847,\\n        \\\"ctrl_mean_shift\\\": 0.013872630138848839,\\n        \\\"ctrl_std_shift\\\": 0.02414395054091184,\\n        \\\"ctrl_cv\\\": 1.7404018055162627\\n      },\\n      {\\n        \\\"dim\\\": \\\"rz\\\",\\n        \\\"inst_mean_shift\\\": 0.033881929667518705,\\n        \\\"inst_std_shift\\\": 0.037737860644735575,\\n        \\\"inst_cv\\\": 1.1138049401275218,\\n        \\\"ctrl_mean_shift\\\": 0.01783035501084426,\\n        \\\"ctrl_std_shift\\\": 0.030538640156342656,\\n        \\\"ctrl_cv\\\": 1.7127331529725198\\n      },\\n      {\\n        \\\"dim\\\": \\\"gripper\\\",\\n        \\\"inst_mean_shift\\\": 0.2907168627450989,\\n        \\\"inst_std_shift\\\": 0.44894904084862064,\\n        \\\"inst_cv\\\": 1.5442827657446896,\\n        \\\"ctrl_mean_shift\\\": 0.1407215686274514,\\n        \\\"ctrl_std_shift\\\": 0.3441443717682476,\\n        \\\"ctrl_cv\\\": 2.4455694683118625\\n      }\\n    ],\\n    \\\"mean_cv_6d_continuous_dims\\\": {\\n      \\\"instruction_ablation\\\": 1.2981038667967424,\\n      \\\"control_ablation\\\": 2.744082737195279,\\n      \\\"interpretation\\\": \\\"Higher CV = more variable perturbation across samples, suggesting less structured/temporally-coherent effect\\\"\\n    },\\n    \\\"cross_task_heterogeneity\\\": {\\n      \\\"instruction_ablation\\\": {\\n        \\\"per_task_d\\\": [\\n          0.4329049183349495,\\n          0.6866494581638973,\\n          0.7037503934432828,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qkzm6hTM7BSvGgjjAfiXiE`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -80 /root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "180aa6ba-46d6-45a7-9242-6d52d08d15d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JcgRNu4epnza8zQ5n57tEn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5194,
+      "cache_read_input_tokens": 66454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5194
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-20T12:34:49.989Z_
+
+<details><summary>↩ Tool result · `toolu_01Qkzm6hTM7BSvGgjjAfiXiE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\\\",\\n  \\\"description\\\": \\\"Each demo's MSE is the mean of its 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\\\",\\n  \\\"n_timesteps_per_demo\\\": 50,\\n  \\\"results\\\": [\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_empty\\\",\\n      \\\"token_level_d\\\": 0.968,\\n      \\\"trajectory_level_d\\\": 3.4378,\\n      \\\"ci_lower\\\": 2.9209,\\n      \\\"ci_upper\\\": 4.4475,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.082062,\\n        0.068606,\\n        0.053453,\\n        0.091422,\\n        0.105778,\\n        0.087411,\\n        0.079496,\\n        0.080063,\\n        0.091432,\\n        0.088599,\\n        0.06874,\\n        0.097388,\\n        0.083217,\\n        0.083121,\\n        0.060285,\\n        0.088588,\\n        0.059896,\\n        0.08625,\\n        0.079877,\\n        0.060748,\\n        0.034709,\\n        0.048997,\\n        0.049401,\\n        0.043439,\\n        0.037609,\\n        0.049011,\\n        0.051957,\\n        0.068949,\\n        0.037481,\\n        0.048885\\n      ],\\n      \\\"inflation_factor\\\": 0.282\\n    },\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_paraphrased\\\",\\n      \\\"token_level_d\\\": 0.697,\\n      \\\"trajectory_level_d\\\": 2.1306,\\n      \\\"ci_lower\\\": 1.7399,\\n      \\\"ci_upper\\\": 2.8192,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.035076,\\n        0.010262,\\n        0.039509,\\n        0.017612,\\n        0.020804,\\n        0.02749,\\n        0.027929,\\n        0.009308,\\n        0.01489,\\n        0.023217,\\n        0.043261,\\n        0.037765,\\n        0.045553,\\n        0.040398,\\n        0.0658,\\n        0.057724,\\n        0.03967,\\n        0.04633,\\n        0.039834,\\n        0.037863,\\n        0.065927,\\n        0.074254,\\n        0.06597,\\n        0.080234,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "14ae65b1-c06a-492a-bc47-7e9e91974f7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Each demo's MSE is the mean of its 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\\\\\\\",\\\\n  \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"counterfactual_empty\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.968,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 3.4378,\\\\n      \\\\\\\"ci_lower\\\\\\\": 2.9209,\\\\n      \\\\\\\"ci_upper\\\\\\\": 4.4475,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.082062,\\\\n        0.068606,\\\\n        0.053453,\\\\n        0.091422,\\\\n        0.105778,\\\\n        0.087411,\\\\n        0.079496,\\\\n        0.080063,\\\\n        0.091432,\\\\n        0.088599,\\\\n        0.06874,\\\\n        0.097388,\\\\n        0.083217,\\\\n        0.083121,\\\\n        0.060285,\\\\n        0.088588,\\\\n        0.059896,\\\\n        0.08625,\\\\n        0.079877,\\\\n        0.060748,\\\\n        0.034709,\\\\n        0.048997,\\\\n        0.049401,\\\\n        0.043439,\\\\n        0.037609,\\\\n        0.049011,\\\\n        0.051957,\\\\n        0.068949,\\\\n        0.037481,\\\\n        0.048885\\\\n      ],\\\\n      \\\\\\\"inflation_factor\\\\\\\": 0.282\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual\\\\\\\",\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"counterfactual_paraphrased\\\\\\\",\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.697,\\\\n      \\\\\\\"trajectory_level_d\\\\\\\": 2.1306,\\\\n      \\\\\\\"ci_lower\\\\\\\": 1.7399,\\\\n      \\\\\\\"ci_upper\\\\\\\": 2.8192,\\\\n      \\\\\\\"n_demos\\\\\\\": 30,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.035076,\\\\n        0.010262,\\\\n        0.039509,\\\\n        0.017612,\\\\n        0.020804,\\\\n        0.02749,\\\\n        0.027929,\\\\n        0.009308,\\\\n        0.01489,\\\\n        0.023217,\\\\n        0.043261,\\\\n        0.037765,\\\\n        0.045553,\\\\n        0.040398,\\\\n        0.0658,\\\\n        0.057724,\\\\n        0.03967,\\\\n        0.04633,\\\\n        0.039834,\\\\n        0.037863,\\\\n        0.065927,\\\\n        0.074254,\\\\n        0.06597,\\\\n        0.080234,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\\\",\\n  \\\"description\\\": \\\"Each demo's MSE is the mean of its 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\\\",\\n  \\\"n_timesteps_per_demo\\\": 50,\\n  \\\"results\\\": [\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_empty\\\",\\n      \\\"token_level_d\\\": 0.968,\\n      \\\"trajectory_level_d\\\": 3.4378,\\n      \\\"ci_lower\\\": 2.9209,\\n      \\\"ci_upper\\\": 4.4475,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.082062,\\n        0.068606,\\n        0.053453,\\n        0.091422,\\n        0.105778,\\n        0.087411,\\n        0.079496,\\n        0.080063,\\n        0.091432,\\n        0.088599,\\n        0.06874,\\n        0.097388,\\n        0.083217,\\n        0.083121,\\n        0.060285,\\n        0.088588,\\n        0.059896,\\n        0.08625,\\n        0.079877,\\n        0.060748,\\n        0.034709,\\n        0.048997,\\n        0.049401,\\n        0.043439,\\n        0.037609,\\n        0.049011,\\n        0.051957,\\n        0.068949,\\n        0.037481,\\n        0.048885\\n      ],\\n      \\\"inflation_factor\\\": 0.282\\n    },\\n    {\\n      \\\"experiment\\\": \\\"counterfactual\\\",\\n      \\\"condition\\\": \\\"counterfactual_paraphrased\\\",\\n      \\\"token_level_d\\\": 0.697,\\n      \\\"trajectory_level_d\\\": 2.1306,\\n      \\\"ci_lower\\\": 1.7399,\\n      \\\"ci_upper\\\": 2.8192,\\n      \\\"n_demos\\\": 30,\\n      \\\"demo_mses\\\": [\\n        0.035076,\\n        0.010262,\\n        0.039509,\\n        0.017612,\\n        0.020804,\\n        0.02749,\\n        0.027929,\\n        0.009308,\\n        0.01489,\\n        0.023217,\\n        0.043261,\\n        0.037765,\\n        0.045553,\\n        0.040398,\\n        0.0658,\\n        0.057724,\\n        0.03967,\\n        0.04633,\\n        0.039834,\\n        0.037863,\\n        0.065927,\\n        0.074254,\\n        0.06597,\\n        0.080234,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The extended analysis and trajectory files don't have per-task behavioral data for all 10 tasks. Let me now look at the dose_response files more carefully - they might have per-task data.
+
+Actually, I also noticed that the `dose_response_top24.json` has per_task data for only 3 tasks.
+
+Let me also check the `action_trajectory_L8_ablation.json` and `action_trajectory_L13_ablation.json` which might have different layers' data.
+
+Actually, looking at this more carefully, here's what I can do:
+
+**Available paired data (5 tasks):**
+
+
+From the L1 ablation behavioral impact analysis, I'm seeing paired MSE and Cohen's d values for four tasks - the drawer and bowl tasks show moderate effect sizes around 0.43-0.70, while the plate task has a notably higher MSE but zero effect size.
+
+Now I'm cross-referencing the baseline L1 probe R² scores across different datasets to understand the model's predictive performance on each task, with values ranging from about 0.19 to 0.38 depending on the specific action. Now I'm pulling the per-task R² values for the vla_last_preaction_L19 condition across all the manipulation tasks, comparing how this model variant performs on each specific action compared to the projector baseline.
+
+I'm shifting to a different strategy here—using the R² deltas from the ablation study as my representational metric while pairing those with the behavioral outcomes from the paired MSE analysis, which gives me a clearer picture of how representation changes map to actual task performance differences. Now I'm looking at the baseline R² values across these same tasks and comparing them with the paired MSE metrics. With only five data points, I realize statistical significance will be challenging to establish—a Spearman correlation would need ρ≥0.9 just to reach p<0.05. Let me explore whether using higher layer ablations might reveal stronger patterns in the task-specific information. ation (paired_mse) - 5 tasks available, and per-task success rate from rollout - only 1 task available. Let me see if there are other evaluation results I'm missing. I'm also wondering if I can extract per-task validation loss from the probes themselves, since that would be an MSE metric on the validation set, though the probes are trained on all tasks together so the per-task breakdown might not be separately saved.
+
+There's another angle though - the per-task R² from the probe is a representational metric, and I could pair that with the per-task original MSE. The groundtruth_action_error.json is behavioral data, but only 3 tasks overlap there.
+
+Let me just compute what's feasible with what I have: correlate the 5-task per-task baseline R² against the per-task paired MSE to see representational versus behavioral shift, and also look at the R² delta across ablations versus behavioral shift. I'll pull multiple layers and representations from the unified action probe to get different perspectives on this. I'll write a script to run this analysis on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "d8037034-64f6-43c5-b46f-cce494f5dba1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AwhXV53JJvzvjy4jpXqiCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2806,
+      "cache_read_input_tokens": 71648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2806
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+数据盘点清楚了。Behavioral outcome 数据（paired_mse）只有 5 个 task，R² probe 有 10 个 task。我在服务器上直接计算 correlation。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "d0509a7a-568f-4f4d-b096-92331dc03b1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AwhXV53JJvzvjy4jpXqiCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2806,
+      "cache_read_input_tokens": 71648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2806
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013BBsXTbhsxB6S5qKmPqBck`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy.stats import spearmanr, kendalltau\n\n# ===== Load data =====\nwith open('/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json') as f:\n    traj = json.load(f)\n\nwith open('/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json') as f:\n    r2_dist = json.load(f)\n\nwith open('/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json') as f:\n    unified = json.load(f)\n\nwith open('/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json') as f:\n    ap50 = json.load(f)\n\n# ===== 5-task behavioral data =====\ntask_map = {\n    'open_the_middle_drawer_of_the_cabinet': 'open the middle drawer of the cabinet',\n    'open_the_top_drawer_and_put_the_bowl_inside': 'open the top drawer and put the bowl inside',\n    'push_the_plate_to_the_front_of_the_stove': 'push the plate to the front of the stove',\n    'put_the_bowl_on_the_plate': 'put the bowl on the plate',\n    'put_the_bowl_on_the_stove': 'put the bowl on the stove',\n}\n\n# Per-task behavioral: paired_mse and cohens_d from L1 instruction head ablation\ntasks_5 = list(task_map.keys())\npaired_mse = [traj['per_task'][t]['paired_mse']['mean'] for t in tasks_5]\ncohens_d = [traj['per_task'][t]['paired_mse']['cohens_d'] for t in tasks_5]\ntoken_div = [traj['per_task'][t]['token_divergence_rate'] for t in tasks_5]\nkl_div = [traj['per_task'][t]['kl_divergence']['mean'] for t in tasks_5]\n\n# Per-task R2 from baseline probes (5-demo, various layers)\ntasks_5_named = [task_map[t] for t in tasks_5]\nr2_baseline_L1 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L1']['per_task_R2'][t] for t in tasks_5_named]\nr2_baseline_L8 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L8']['per_task_R2'][t] for t in tasks_5_named]\nr2_baseline_L13 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L13']['per_task_R2'][t] for t in tasks_5_named]\n\n# Per-task R2 from 50-demo probes (various readout sources)\ntasks_5_under = list(task_map.keys())\nr2_projector = [unified['projector']['per_task_R2'][t] for t in tasks_5_under]\nr2_dino = [unified['dino_cls']['per_task_R2'][t] for t in tasks_5_under]\nr2_vla_last = [unified['vla_last_preaction_L19']['per_task_R2'][t] for t in tasks_5_under]\n\n# Per-task R2 delta from ablation (all 10 tasks available, use 5)\nr2_delta_L1 = [ap50['bootstrap_paired_CI']['baseline_vs_ablate_all24']['L1']['per_task_diffs'][t] for t in tasks_5_named]\nr2_delta_L8 = [ap50['bootstrap_paired_CI']['baseline_vs_ablate_all24']['L8']['per_task_diffs'][t] for t in tasks_5_named]\n\nprint('=' * 70)\nprint('RANK CORRELATION: Probe R2 vs Per-Task Behavioral Outcomes (n=5)')\nprint('=' * 70)\n\n# Helper\ndef report(name_x, name_y, x, y):\n    rho, p_rho = spearmanr(x, y)\n    tau, p_tau = kendalltau(x, y)\n    print(f'  {name_x} vs {name_y}:')\n    print(f'    Spearman rho={rho:.4f}, p={p_rho:.4f}  |  Kendall tau={tau:.4f}, p={p_tau:.4f}')\n    for i, t in enumerate(tasks_5):\n        short = t.replace('_', ' ')[:40]\n        print(f'      {short:40s}  x={x[i]:.4f}  y={y[i]:.4f}')\n    print()\n\nprint()\nprint('--- (A) Baseline Probe R2 vs Paired MSE (ablation behavioral shift) ---')\nreport('R2_baseline_L1_5demo', 'paired_mse', r2_baseline_L1, paired_mse)\nreport('R2_baseline_L8_5demo', 'paired_mse', r2_baseline_L8, paired_mse)\nreport('R2_baseline_L13_5demo', 'paired_mse', r2_baseline_L13, paired_mse)\nreport('R2_projector_50demo', 'paired_mse', r2_projector, paired_mse)\nreport('R2_dino_50demo', 'paired_mse', r2_dino, paired_mse)\nreport('R2_vla_last_preaction_L19', 'paired_mse', r2_vla_last, paired_mse)\n\nprint('--- (B) Baseline Probe R2 vs Cohen d (ablation effect size) ---')\nreport('R2_baseline_L1_5demo', 'cohens_d', r2_baseline_L1, cohens_d)\nreport('R2_vla_last_preaction_L19', 'cohens_d', r2_vla_last, cohens_d)\n\nprint('--- (C) R2 Delta (ablation representational impact) vs Paired MSE ---')\nreport('R2_delta_L1_ablation', 'paired_mse', r2_delta_L1, paired_mse)\nreport('R2_delta_L8_ablation', 'paired_mse', r2_delta_L8, paired_mse)\n\nprint('--- (D) Baseline Probe R2 vs Token Divergence Rate ---')\nreport('R2_baseline_L1_5demo', 'token_div_rate', r2_baseline_L1, token_div)\nreport('R2_vla_last_preaction_L19', 'token_div_rate', r2_vla_last, token_div)\n\nprint('--- (E) Baseline Probe R2 vs KL Divergence ---')\nreport('R2_baseline_L1_5demo', 'kl_divergence', r2_baseline_L1, kl_div)\n\n# ===== Also compute with all 10 tasks where we can =====\nprint('=' * 70)\nprint('FULL 10-TASK ANALYSIS (representational metrics only)')\nprint('=' * 70)\n\nall_10_tasks = r2_dist['tasks']\nr2_all10_L1 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L1']['per_task_R2'][t] for t in all_10_tasks]\nr2_all10_L8 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L8']['per_task_R2'][t] for t in all_10_tasks]\nr2_all10_L13 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L13']['per_task_R2'][t] for t in all_10_tasks]\n\n# R2 delta for all 10\nr2_delta_all10_L1 = [ap50['bootstrap_paired_CI']['baseline_vs_ablate_all24']['L1']['per_task_diffs'][t] for t in all_10_tasks]\n\n# All-10 unified probe R2\ntasks_10_under = [t.replace(' ', '_') for t in all_10_tasks]\nr2_proj_all10 = [unified['projector']['per_task_R2'][t] for t in tasks_10_under]\nr2_vla_all10 = [unified['vla_last_preaction_L19']['per_task_R2'][t] for t in tasks_10_under]\n\nprint()\nprint('--- Cross-layer R2 consistency (all 10 tasks) ---')\nreport_10 = lambda nx, ny, x, y: print(f'  {nx} vs {ny}: rho={spearmanr(x,y)[0]:.4f} (p={spearmanr(x,y)[1]:.4f}), tau={kendalltau(x,y)[0]:.4f} (p={kendalltau(x,y)[1]:.4f})')\nreport_10('R2_L1', 'R2_L8', r2_all10_L1, r2_all10_L8)\nreport_10('R2_L1', 'R2_L13', r2_all10_L1, r2_all10_L13)\nreport_10('R2_L8', 'R2_L13', r2_all10_L8, r2_all10_L13)\nreport_10('R2_projector', 'R2_vla_last_L19', r2_proj_all10, r2_vla_all10)\nreport_10('R2_L1', 'R2_delta_L1', r2_all10_L1, r2_delta_all10_L1)\n\nprint()\nprint('--- Per-task summary for all 10 tasks ---')\nprint(f'{\\\"Task\\\":50s} R2_L1  R2_L8  R2_L13  R2_proj  R2_vla  dR2_L1')\nfor i, t in enumerate(all_10_tasks):\n    short = t[:48]\n    print(f'{short:50s} {r2_all10_L1[i]:.3f}  {r2_all10_L8[i]:.3f}  {r2_all10_L13[i]:.3f}   {r2_proj_all10[i]:.3f}    {r2_vla_all10[i]:.3f}   {r2_delta_all10_L1[i]:.3f}')\n\n# Now try to also use 3-task MSE vs GT\nprint()\nprint('=' * 70)\nprint('3-TASK ANALYSIS: Probe R2 vs Model Action MSE (model-vs-GT)')\nprint('=' * 70)\nwith open('/root/autodl-tmp/vla-ssd/results/groundtruth_action_error.json') as f:\n    gt = json.load(f)\n\ntasks_3 = [t['task_name'] for t in gt['per_task']]\nmse_gt = [gt['per_task'][t]['original']['mse']['mean'] for t in tasks_3]\ntasks_3_named = [t.replace('_', ' ') for t in tasks_3]\nr2_3_L1 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L1']['per_task_R2'][t] for t in tasks_3_named]\nr2_3_L8 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L8']['per_task_R2'][t] for t in tasks_3_named]\nr2_3_L13 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L13']['per_task_R2'][t] for t in tasks_3_named]\nr2_3_proj = [unified['projector']['per_task_R2'][t] for t in tasks_3]\nr2_3_vla = [unified['vla_last_preaction_L19']['per_task_R2'][t] for t in tasks_3]\n\nprint()\nfor i in range(3):\n    print(f'  {tasks_3_named[i]:50s} MSE={mse_gt[i]:.4f}  R2_L1={r2_3_L1[i]:.4f}  R2_L13={r2_3_L13[i]:.4f}  R2_proj={r2_3_proj[i]:.4f}')\nprint()\nprint('  NOTE: n=3, correlation statistics not meaningful')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "bb185a04-82f6-4ced-96db-c02e08b5f102",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AwhXV53JJvzvjy4jpXqiCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2806,
+      "cache_read_input_tokens": 71648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2806
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-20T12:36:13.437Z_
+
+<details><summary>↩ Tool result · `toolu_013BBsXTbhsxB6S5qKmPqBck`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json, numpy as np\\\\nfrom scipy.stats import spearmanr, kendalltau\\\\n\\\\n# ===== Load data =====\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json\\\\') as f:\\\\n    traj = json.load(f)\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\\\') as f:\\\\n    r2_dist = json.load(f)\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\\\') as f:\\\\n    unified = json.load(f)\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\\') as f:\\\\n    ap50 = json.load(f)\\\\n\\\\n# ===== 5-task behavioral data =====\\\\ntask_map = {\\\\n    \\\\'open_the_middle_drawer_of_the_cabinet\\\\': \\\\'open the middle drawer of the cabinet\\\\',\\\\n    \\\\'open_the_top_drawer_and_put_the_bowl_inside\\\\': \\\\'open the top drawer and put the bowl inside\\\\',\\\\n    \\\\'push_the_plate_to_the_front_of_the_stove\\\\': \\\\'push the plate to the front of the stove\\\\',\\\\n    \\\\'put_the_bowl_on_the_plate\\\\': \\\\'put the bowl on the plate\\\\',\\\\n    \\\\'put_the_bowl_on_the_stove\\\\': \\\\'put the bowl on the stove\\\\',\\\\n}\\\\n\\\\n# Per-task behavioral: paired_mse and cohens_d from L1 instruction head ablation\\\\ntasks_5 = list(task_map.keys())\\\\npaired_mse = [traj[\\\\'per_task\\\\'][t][\\\\'paired_mse\\\\'][\\\\'mean\\\\'] for t in tasks_5]\\\\ncohens_d = [traj[\\\\'per_task\\\\'][t][\\\\'paired_mse\\\\'][\\\\'cohens_d\\\\'] for t in tasks_5]\\\\ntoken_div = [traj[\\\\'per_task\\\\'][t][\\\\'token_divergence_rate\\\\'] for t in tasks_5]\\\\nkl_div = [traj[\\\\'per_task\\\\'][t][\\\\'kl_divergence\\\\'][\\\\'mean\\\\'] for t in tasks_5]\\\\n\\\\n# Per-task R2 from baseline probes (5-demo, various layers)\\\\ntasks_5_named = [task_map[t] for t in tasks_5]\\\\nr2_baseline_L1 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L1\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_named]\\\\nr2_baseline_L8 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L8\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_named]\\\\nr2_baseline_L13 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L13\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_named]\\\\n\\\\n# Per-task R2 from 50-demo probes (various readout sources)\\\\ntasks_5_under = list(task_map.keys())\\\\nr2_projector = [unified[\\\\'projector\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_under]\\\\nr2_dino = [unified[\\\\'dino_cls\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_under]\\\\nr2_vla_last = [unified[\\\\'vla_last_preaction_L19\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_under]\\\\n\\\\n# Per-task R2 delta from ablation (all 10 tasks available, use 5)\\\\nr2_delta_L1 = [ap50[\\\\'bootstrap_paired_CI\\\\'][\\\\'baseline_vs_ablate_all24\\\\'][\\\\'L1\\\\'][\\\\'per_task_diffs\\\\'][t] for t in tasks_5_named]\\\\nr2_delta_L8 = [ap50[\\\\'bootstrap_paired_CI\\\\'][\\\\'baseline_vs_ablate_all24\\\\'][\\\\'L8\\\\'][\\\\'per_task_diffs\\\\'][t] for t in tasks_5_named]\\\\n\\\\nprint(\\\\'=\\\\' * 70)\\\\nprint(\\\\'RANK CORRELATION: Probe R2 vs Per-Task Behavioral Outcomes (n=5)\\\\')\\\\nprint(\\\\'=\\\\' * 70)\\\\n\\\\n# Helper\\\\ndef report(name_x, name_y, x, y):\\\\n    rho, p_rho = spearmanr(x, y)\\\\n    tau, p_tau = kendalltau(x, y)\\\\n    print(f\\\\'  {name_x} vs {name_y}:\\\\')\\\\n    print(f\\\\'    Spearman rho={rho:.4f}, p={p_rho:.4f}  |  Kendall tau={tau:.4f}, p={p_tau:.4f}\\\\')\\\\n    for i, t in enumerate(tasks_5):\\\\n        short = t.replace(\\\\'_\\\\', \\\\' \\\\')[:40]\\\\n        print(f\\\\'      {short:40s}  x={x[i]:.4f}  y={y[i]:.4f}\\\\')\\\\n    print()\\\\n\\\\nprint()\\\\nprint(\\\\'--- (A) Baseline Probe R2 vs Paired MSE (ablation behavioral shift) ---\\\\')\\\\nreport(\\\\'R2_baseline_L1_5demo\\\\', \\\\'paired_mse\\\\', r2_baseline_L1, paired_mse)\\\\nreport(\\\\'R2_baseline_L8_5demo\\\\', \\\\'paired_mse\\\\', r2_baseline_L8, paired_mse)\\\\nreport(\\\\'R2_baseline_L13_5demo\\\\', \\\\'paired_mse\\\\', r2_baseline_L13, paired_mse)\\\\nreport(\\\\'R2_projector_50demo\\\\', \\\\'paired_mse\\\\', r2_projector, paired_mse)\\\\nreport(\\\\'R2_dino_50demo\\\\', \\\\'paired_mse\\\\', r2_dino, paired_mse)\\\\nreport(\\\\'R2_vla_last_preaction_L19\\\\', \\\\'paired_mse\\\\', r2_vla_last, paired_mse)\\\\n\\\\nprint(\\\\'--- (B) Baseline Probe R2 vs Cohen d (ablation effect size) ---\\\\')\\\\nreport(\\\\'R2_baseline_L1_5demo\\\\', \\\\'cohens_d\\\\', r2_baseline_L1, cohens_d)\\\\nreport(\\\\'R2_vla_last_preaction_L19\\\\', \\\\'cohens_d\\\\', r2_vla_last, cohens_d)\\\\n\\\\nprint(\\\\'--- (C) R2 Delta (ablation representational impact) vs Paired MSE ---\\\\')\\\\nreport(\\\\'R2_delta_L1_ablation\\\\', \\\\'paired_mse\\\\', r2_delta_L1, paired_mse)\\\\nreport(\\\\'R2_delta_L8_ablation\\\\', \\\\'paired_mse\\\\', r2_delta_L8, paired_mse)\\\\n\\\\nprint(\\\\'--- (D) Baseline Probe R2 vs Token Divergence Rate ---\\\\')\\\\nreport(\\\\'R2_baseline_L1_5demo\\\\', \\\\'token_div_rate\\\\', r2_baseline_L1, token_div)\\\\nreport(\\\\'R2_vla_last_preaction_L19\\\\', \\\\'token_div_rate\\\\', r2_vla_last, token_div)\\\\n\\\\nprint(\\\\'--- (E) Baseline Probe R2 vs KL Divergence ---\\\\')\\\\nreport(\\\\'R2_baseline_L1_5demo\\\\', \\\\'kl_divergence\\\\', r2_baseline_L1, kl_div)\\\\n\\\\n# ===== Also compute with all 10 tasks where we can =====\\\\nprint(\\\\'=\\\\' * 70)\\\\nprint(\\\\'FULL 10-TASK ANALYSIS (representational metrics only)\\\\')\\\\nprint(\\\\'=\\\\' * 70)\\\\n\\\\nall_10_tasks = r2_dist[\\\\'tasks\\\\']\\\\nr2_all10_L1 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L1\\\\'][\\\\'per_task_R2\\\\'][t] for t in all_10_tasks]\\\\nr2_all10_L8 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L8\\\\'][\\\\'per_task_R2\\\\'][t] for t in all_10_tasks]\\\\nr2_all10_L13 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L13\\\\'][\\\\'per_task_R2\\\\'][t] for t in all_10_tasks]\\\\n\\\\n# R2 delta for all 10\\\\nr2_delta_all10_L1 = [ap50[\\\\'bootstrap_paired_CI\\\\'][\\\\'baseline_vs_ablate_all24\\\\'][\\\\'L1\\\\'][\\\\'per_task_diffs\\\\'][t] for t in all_10_tasks]\\\\n\\\\n# All-10 unified probe R2\\\\ntasks_10_under = [t.replace(\\\\' \\\\', \\\\'_\\\\') for t in all_10_tasks]\\\\nr2_proj_all10 = [unified[\\\\'projector\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_10_under]\\\\nr2_vla_all10 = [unified[\\\\'vla_last_preaction_L19\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_10_under]\\\\n\\\\nprint()\\\\nprint(\\\\'--- Cross-layer R2 consistency (all 10 tasks) ---\\\\')\\\\nreport_10 = lambda nx, ny, x, y: print(f\\\\'  {nx} vs {ny}: rho={spearmanr(x,y)[0]:.4f} (p={spearmanr(x,y)[1]:.4f}), tau={kendalltau(x,y)[0]:.4f} (p={kendalltau(x,y)[1]:.4f})\\\\')\\\\nreport_10(\\\\'R2_L1\\\\', \\\\'R2_L8\\\\', r2_all10_L1, r2_all10_L8)\\\\nreport_10(\\\\'R2_L1\\\\', \\\\'R2_L13\\\\', r2_all10_L1, r2_all10_L13)\\\\nreport_10(\\\\'R2_L8\\\\', \\\\'R2_L13\\\\', r2_all10_L8, r2_all10_L13)\\\\nreport_10(\\\\'R2_projector\\\\', \\\\'R2_vla_last_L19\\\\', r2_proj_all10, r2_vla_all10)\\\\nreport_10(\\\\'R2_L1\\\\', \\\\'R2_delta_L1\\\\', r2_all10_L1, r2_delta_all10_L1)\\\\n\\\\nprint()\\\\nprint(\\\\'--- Per-task summary for all 10 tasks ---\\\\')\\\\nprint(f\\\\'{\\\\\\\\\\\"Task\\\\\\\\\\\":50s} R2_L1  R2_L8  R2_L13  R2_proj  R2_vla  dR2_L1\\\\')\\\\nfor i, t in enumerate(all_10_tasks):\\\\n    short = t[:48]\\\\n    print(f\\\\'{short:50s} {r2_all10_L1[i]:.3f}  {r2_all10_L8[i]:.3f}  {r2_all10_L13[i]:.3f}   {r2_proj_all10[i]:.3f}    {r2_vla_all10[i]:.3f}   {r2_delta_all10_L1[i]:.3f}\\\\')\\\\n\\\\n# Now try to also use 3-task MSE vs GT\\\\nprint()\\\\nprint(\\\\'=\\\\' * 70)\\\\nprint(\\\\'3-TASK ANALYSIS: Probe R2 vs Model Action MSE (model-vs-GT)\\\\')\\\\nprint(\\\\'=\\\\' * 70)\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/groundtruth_action_error.json\\\\') as f:\\\\n    gt = json.load(f)\\\\n\\\\ntasks_3 = [t[\\\\'task_name\\\\'] for t in gt[\\\\'per_task\\\\']]\\\\nmse_gt = [gt[\\\\'per_task\\\\'][t][\\\\'original\\\\'][\\\\'mse\\\\'][\\\\'mean\\\\'] for t in tasks_3]\\\\ntasks_3_named = [t.replace(\\\\'_\\\\', \\\\' \\\\') for t in tasks_3]\\\\nr2_3_L1 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L1\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3_named]\\\\nr2_3_L8 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L8\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3_named]\\\\nr2_3_L13 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L13\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3_named]\\\\nr2_3_proj = [unified[\\\\'projector\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3]\\\\nr2_3_vla = [unified[\\\\'vla_last_preaction_L19\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3]\\\\n\\\\nprint()\\\\nfor i in range(3):\\\\n    print(f\\\\'  {tasks_3_named[i]:50s} MSE={mse_gt[i]:.4f}  R2_L1={r2_3_L1[i]:.4f}  R2_L13={r2_3_L13[i]:.4f}  R2_proj={r2_3_proj[i]:.4f}\\\\')\\\\nprint()\\\\nprint(\\\\'  NOTE: n=3, correlation statistics not meaningful\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nput the bowl on the stove                          0.235  0.396  0.535   0.674    0.730   0.070\\nput the bowl on top of the cabinet                 0.256  0.452  0.659   0.663    0.663   0.097\\nput the cream cheese in the bowl                   0.186  0.380  0.584   0.622    0.608   0.090\\nput the wine bottle on the rack                    0.189  0.392  0.430   0.531    0.578   0.053\\nput the wine bottle on top of the cabinet          0.279  0.462  0.386   0.638    0.628   0.041\\nturn on the stove                                  0.385  0.717  0.734   0.750    0.801   0.017\\n\\n======================================================================\\n3-TASK ANALYSIS: Probe R2 vs Model Action MSE (model-vs-GT)\\n======================================================================\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 131, in &lt;module>\\nTypeError: string indices must be integers, not 'str'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "82a943c4-7d62-4dac-a8ad-a5b02927af6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nimport json, numpy as np\\\\\\\\nfrom scipy.stats import spearmanr, kendalltau\\\\\\\\n\\\\\\\\n# ===== Load data =====\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json\\\\\\\\') as f:\\\\\\\\n    traj = json.load(f)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\\\\\\\') as f:\\\\\\\\n    r2_dist = json.load(f)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\\\\\\\') as f:\\\\\\\\n    unified = json.load(f)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\\\\\\') as f:\\\\\\\\n    ap50 = json.load(f)\\\\\\\\n\\\\\\\\n# ===== 5-task behavioral data =====\\\\\\\\ntask_map = {\\\\\\\\n    \\\\\\\\'open_the_middle_drawer_of_the_cabinet\\\\\\\\': \\\\\\\\'open the middle drawer of the cabinet\\\\\\\\',\\\\\\\\n    \\\\\\\\'open_the_top_drawer_and_put_the_bowl_inside\\\\\\\\': \\\\\\\\'open the top drawer and put the bowl inside\\\\\\\\',\\\\\\\\n    \\\\\\\\'push_the_plate_to_the_front_of_the_stove\\\\\\\\': \\\\\\\\'push the plate to the front of the stove\\\\\\\\',\\\\\\\\n    \\\\\\\\'put_the_bowl_on_the_plate\\\\\\\\': \\\\\\\\'put the bowl on the plate\\\\\\\\',\\\\\\\\n    \\\\\\\\'put_the_bowl_on_the_stove\\\\\\\\': \\\\\\\\'put the bowl on the stove\\\\\\\\',\\\\\\\\n}\\\\\\\\n\\\\\\\\n# Per-task behavioral: paired_mse and cohens_d from L1 instruction head ablation\\\\\\\\ntasks_5 = list(task_map.keys())\\\\\\\\npaired_mse = [traj[\\\\\\\\'per_task\\\\\\\\'][t][\\\\\\\\'paired_mse\\\\\\\\'][\\\\\\\\'mean\\\\\\\\'] for t in tasks_5]\\\\\\\\ncohens_d = [traj[\\\\\\\\'per_task\\\\\\\\'][t][\\\\\\\\'paired_mse\\\\\\\\'][\\\\\\\\'cohens_d\\\\\\\\'] for t in tasks_5]\\\\\\\\ntoken_div = [traj[\\\\\\\\'per_task\\\\\\\\'][t][\\\\\\\\'token_divergence_rate\\\\\\\\'] for t in tasks_5]\\\\\\\\nkl_div = [traj[\\\\\\\\'per_task\\\\\\\\'][t][\\\\\\\\'kl_divergence\\\\\\\\'][\\\\\\\\'mean\\\\\\\\'] for t in tasks_5]\\\\\\\\n\\\\\\\\n# Per-task R2 from baseline probes (5-demo, various layers)\\\\\\\\ntasks_5_named = [task_map[t] for t in tasks_5]\\\\\\\\nr2_baseline_L1 = [r2_dist[\\\\\\\\'mlp_probe_5demo\\\\\\\\'][\\\\\\\\'conditions\\\\\\\\'][\\\\\\\\'baseline\\\\\\\\'][\\\\\\\\'L1\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_5_named]\\\\\\\\nr2_baseline_L8 = [r2_dist[\\\\\\\\'mlp_probe_5demo\\\\\\\\'][\\\\\\\\'conditions\\\\\\\\'][\\\\\\\\'baseline\\\\\\\\'][\\\\\\\\'L8\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_5_named]\\\\\\\\nr2_baseline_L13 = [r2_dist[\\\\\\\\'mlp_probe_5demo\\\\\\\\'][\\\\\\\\'conditions\\\\\\\\'][\\\\\\\\'baseline\\\\\\\\'][\\\\\\\\'L13\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_5_named]\\\\\\\\n\\\\\\\\n# Per-task R2 from 50-demo probes (various readout sources)\\\\\\\\ntasks_5_under = list(task_map.keys())\\\\\\\\nr2_projector = [unified[\\\\\\\\'projector\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_5_under]\\\\\\\\nr2_dino = [unified[\\\\\\\\'dino_cls\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_5_under]\\\\\\\\nr2_vla_last = [unified[\\\\\\\\'vla_last_preaction_L19\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_5_under]\\\\\\\\n\\\\\\\\n# Per-task R2 delta from ablation (all 10 tasks available, use 5)\\\\\\\\nr2_delta_L1 = [ap50[\\\\\\\\'bootstrap_paired_CI\\\\\\\\'][\\\\\\\\'baseline_vs_ablate_all24\\\\\\\\'][\\\\\\\\'L1\\\\\\\\'][\\\\\\\\'per_task_diffs\\\\\\\\'][t] for t in tasks_5_named]\\\\\\\\nr2_delta_L8 = [ap50[\\\\\\\\'bootstrap_paired_CI\\\\\\\\'][\\\\\\\\'baseline_vs_ablate_all24\\\\\\\\'][\\\\\\\\'L8\\\\\\\\'][\\\\\\\\'per_task_diffs\\\\\\\\'][t] for t in tasks_5_named]\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'=\\\\\\\\' * 70)\\\\\\\\nprint(\\\\\\\\'RANK CORRELATION: Probe R2 vs Per-Task Behavioral Outcomes (n=5)\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'=\\\\\\\\' * 70)\\\\\\\\n\\\\\\\\n# Helper\\\\\\\\ndef report(name_x, name_y, x, y):\\\\\\\\n    rho, p_rho = spearmanr(x, y)\\\\\\\\n    tau, p_tau = kendalltau(x, y)\\\\\\\\n    print(f\\\\\\\\'  {name_x} vs {name_y}:\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'    Spearman rho={rho:.4f}, p={p_rho:.4f}  |  Kendall tau={tau:.4f}, p={p_tau:.4f}\\\\\\\\')\\\\\\\\n    for i, t in enumerate(tasks_5):\\\\\\\\n        short = t.replace(\\\\\\\\'_\\\\\\\\', \\\\\\\\' \\\\\\\\')[:40]\\\\\\\\n        print(f\\\\\\\\'      {short:40s}  x={x[i]:.4f}  y={y[i]:.4f}\\\\\\\\')\\\\\\\\n    print()\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'--- (A) Baseline Probe R2 vs Paired MSE (ablation behavioral shift) ---\\\\\\\\')\\\\\\\\nreport(\\\\\\\\'R2_baseline_L1_5demo\\\\\\\\', \\\\\\\\'paired_mse\\\\\\\\', r2_baseline_L1, paired_mse)\\\\\\\\nreport(\\\\\\\\'R2_baseline_L8_5demo\\\\\\\\', \\\\\\\\'paired_mse\\\\\\\\', r2_baseline_L8, paired_mse)\\\\\\\\nreport(\\\\\\\\'R2_baseline_L13_5demo\\\\\\\\', \\\\\\\\'paired_mse\\\\\\\\', r2_baseline_L13, paired_mse)\\\\\\\\nreport(\\\\\\\\'R2_projector_50demo\\\\\\\\', \\\\\\\\'paired_mse\\\\\\\\', r2_projector, paired_mse)\\\\\\\\nreport(\\\\\\\\'R2_dino_50demo\\\\\\\\', \\\\\\\\'paired_mse\\\\\\\\', r2_dino, paired_mse)\\\\\\\\nreport(\\\\\\\\'R2_vla_last_preaction_L19\\\\\\\\', \\\\\\\\'paired_mse\\\\\\\\', r2_vla_last, paired_mse)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'--- (B) Baseline Probe R2 vs Cohen d (ablation effect size) ---\\\\\\\\')\\\\\\\\nreport(\\\\\\\\'R2_baseline_L1_5demo\\\\\\\\', \\\\\\\\'cohens_d\\\\\\\\', r2_baseline_L1, cohens_d)\\\\\\\\nreport(\\\\\\\\'R2_vla_last_preaction_L19\\\\\\\\', \\\\\\\\'cohens_d\\\\\\\\', r2_vla_last, cohens_d)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'--- (C) R2 Delta (ablation representational impact) vs Paired MSE ---\\\\\\\\')\\\\\\\\nreport(\\\\\\\\'R2_delta_L1_ablation\\\\\\\\', \\\\\\\\'paired_mse\\\\\\\\', r2_delta_L1, paired_mse)\\\\\\\\nreport(\\\\\\\\'R2_delta_L8_ablation\\\\\\\\', \\\\\\\\'paired_mse\\\\\\\\', r2_delta_L8, paired_mse)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'--- (D) Baseline Probe R2 vs Token Divergence Rate ---\\\\\\\\')\\\\\\\\nreport(\\\\\\\\'R2_baseline_L1_5demo\\\\\\\\', \\\\\\\\'token_div_rate\\\\\\\\', r2_baseline_L1, token_div)\\\\\\\\nreport(\\\\\\\\'R2_vla_last_preaction_L19\\\\\\\\', \\\\\\\\'token_div_rate\\\\\\\\', r2_vla_last, token_div)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'--- (E) Baseline Probe R2 vs KL Divergence ---\\\\\\\\')\\\\\\\\nreport(\\\\\\\\'R2_baseline_L1_5demo\\\\\\\\', \\\\\\\\'kl_divergence\\\\\\\\', r2_baseline_L1, kl_div)\\\\\\\\n\\\\\\\\n# ===== Also compute with all 10 tasks where we can =====\\\\\\\\nprint(\\\\\\\\'=\\\\\\\\' * 70)\\\\\\\\nprint(\\\\\\\\'FULL 10-TASK ANALYSIS (representational metrics only)\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'=\\\\\\\\' * 70)\\\\\\\\n\\\\\\\\nall_10_tasks = r2_dist[\\\\\\\\'tasks\\\\\\\\']\\\\\\\\nr2_all10_L1 = [r2_dist[\\\\\\\\'mlp_probe_5demo\\\\\\\\'][\\\\\\\\'conditions\\\\\\\\'][\\\\\\\\'baseline\\\\\\\\'][\\\\\\\\'L1\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in all_10_tasks]\\\\\\\\nr2_all10_L8 = [r2_dist[\\\\\\\\'mlp_probe_5demo\\\\\\\\'][\\\\\\\\'conditions\\\\\\\\'][\\\\\\\\'baseline\\\\\\\\'][\\\\\\\\'L8\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in all_10_tasks]\\\\\\\\nr2_all10_L13 = [r2_dist[\\\\\\\\'mlp_probe_5demo\\\\\\\\'][\\\\\\\\'conditions\\\\\\\\'][\\\\\\\\'baseline\\\\\\\\'][\\\\\\\\'L13\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in all_10_tasks]\\\\\\\\n\\\\\\\\n# R2 delta for all 10\\\\\\\\nr2_delta_all10_L1 = [ap50[\\\\\\\\'bootstrap_paired_CI\\\\\\\\'][\\\\\\\\'baseline_vs_ablate_all24\\\\\\\\'][\\\\\\\\'L1\\\\\\\\'][\\\\\\\\'per_task_diffs\\\\\\\\'][t] for t in all_10_tasks]\\\\\\\\n\\\\\\\\n# All-10 unified probe R2\\\\\\\\ntasks_10_under = [t.replace(\\\\\\\\' \\\\\\\\', \\\\\\\\'_\\\\\\\\') for t in all_10_tasks]\\\\\\\\nr2_proj_all10 = [unified[\\\\\\\\'projector\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_10_under]\\\\\\\\nr2_vla_all10 = [unified[\\\\\\\\'vla_last_preaction_L19\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_10_under]\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'--- Cross-layer R2 consistency (all 10 tasks) ---\\\\\\\\')\\\\\\\\nreport_10 = lambda nx, ny, x, y: print(f\\\\\\\\'  {nx} vs {ny}: rho={spearmanr(x,y)[0]:.4f} (p={spearmanr(x,y)[1]:.4f}), tau={kendalltau(x,y)[0]:.4f} (p={kendalltau(x,y)[1]:.4f})\\\\\\\\')\\\\\\\\nreport_10(\\\\\\\\'R2_L1\\\\\\\\', \\\\\\\\'R2_L8\\\\\\\\', r2_all10_L1, r2_all10_L8)\\\\\\\\nreport_10(\\\\\\\\'R2_L1\\\\\\\\', \\\\\\\\'R2_L13\\\\\\\\', r2_all10_L1, r2_all10_L13)\\\\\\\\nreport_10(\\\\\\\\'R2_L8\\\\\\\\', \\\\\\\\'R2_L13\\\\\\\\', r2_all10_L8, r2_all10_L13)\\\\\\\\nreport_10(\\\\\\\\'R2_projector\\\\\\\\', \\\\\\\\'R2_vla_last_L19\\\\\\\\', r2_proj_all10, r2_vla_all10)\\\\\\\\nreport_10(\\\\\\\\'R2_L1\\\\\\\\', \\\\\\\\'R2_delta_L1\\\\\\\\', r2_all10_L1, r2_delta_all10_L1)\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'--- Per-task summary for all 10 tasks ---\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\\\\\\\\\":50s} R2_L1  R2_L8  R2_L13  R2_proj  R2_vla  dR2_L1\\\\\\\\')\\\\\\\\nfor i, t in enumerate(all_10_tasks):\\\\\\\\n    short = t[:48]\\\\\\\\n    print(f\\\\\\\\'{short:50s} {r2_all10_L1[i]:.3f}  {r2_all10_L8[i]:.3f}  {r2_all10_L13[i]:.3f}   {r2_proj_all10[i]:.3f}    {r2_vla_all10[i]:.3f}   {r2_delta_all10_L1[i]:.3f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Now try to also use 3-task MSE vs GT\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=\\\\\\\\' * 70)\\\\\\\\nprint(\\\\\\\\'3-TASK ANALYSIS: Probe R2 vs Model Action MSE (model-vs-GT)\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'=\\\\\\\\' * 70)\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/vla-ssd/results/groundtruth_action_error.json\\\\\\\\') as f:\\\\\\\\n    gt = json.load(f)\\\\\\\\n\\\\\\\\ntasks_3 = [t[\\\\\\\\'task_name\\\\\\\\'] for t in gt[\\\\\\\\'per_task\\\\\\\\']]\\\\\\\\nmse_gt = [gt[\\\\\\\\'per_task\\\\\\\\'][t][\\\\\\\\'original\\\\\\\\'][\\\\\\\\'mse\\\\\\\\'][\\\\\\\\'mean\\\\\\\\'] for t in tasks_3]\\\\\\\\ntasks_3_named = [t.replace(\\\\\\\\'_\\\\\\\\', \\\\\\\\' \\\\\\\\') for t in tasks_3]\\\\\\\\nr2_3_L1 = [r2_dist[\\\\\\\\'mlp_probe_5demo\\\\\\\\'][\\\\\\\\'conditions\\\\\\\\'][\\\\\\\\'baseline\\\\\\\\'][\\\\\\\\'L1\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_3_named]\\\\\\\\nr2_3_L8 = [r2_dist[\\\\\\\\'mlp_probe_5demo\\\\\\\\'][\\\\\\\\'conditions\\\\\\\\'][\\\\\\\\'baseline\\\\\\\\'][\\\\\\\\'L8\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_3_named]\\\\\\\\nr2_3_L13 = [r2_dist[\\\\\\\\'mlp_probe_5demo\\\\\\\\'][\\\\\\\\'conditions\\\\\\\\'][\\\\\\\\'baseline\\\\\\\\'][\\\\\\\\'L13\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_3_named]\\\\\\\\nr2_3_proj = [unified[\\\\\\\\'projector\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_3]\\\\\\\\nr2_3_vla = [unified[\\\\\\\\'vla_last_preaction_L19\\\\\\\\'][\\\\\\\\'per_task_R2\\\\\\\\'][t] for t in tasks_3]\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nfor i in range(3):\\\\\\\\n    print(f\\\\\\\\'  {tasks_3_named[i]:50s} MSE={mse_gt[i]:.4f}  R2_L1={r2_3_L1[i]:.4f}  R2_L13={r2_3_L13[i]:.4f}  R2_proj={r2_3_proj[i]:.4f}\\\\\\\\')\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'  NOTE: n=3, correlation statistics not meaningful\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nput the bowl on the stove                          0.235  0.396  0.535   0.674    0.730   0.070\\\\nput the bowl on top of the cabinet                 0.256  0.452  0.659   0.663    0.663   0.097\\\\nput the cream cheese in the bowl                   0.186  0.380  0.584   0.622    0.608   0.090\\\\nput the wine bottle on the rack                    0.189  0.392  0.430   0.531    0.578   0.053\\\\nput the wine bottle on top of the cabinet          0.279  0.462  0.386   0.638    0.628   0.041\\\\nturn on the stove                                  0.385  0.717  0.734   0.750    0.801   0.017\\\\n\\\\n======================================================================\\\\n3-TASK ANALYSIS: Probe R2 vs Model Action MSE (model-vs-GT)\\\\n======================================================================\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 131, in &lt;module>\\\\nTypeError: string indices must be integers, not 'str'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json, numpy as np\\\\nfrom scipy.stats import spearmanr, kendalltau\\\\n\\\\n# ===== Load data =====\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json\\\\') as f:\\\\n    traj = json.load(f)\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\\\') as f:\\\\n    r2_dist = json.load(f)\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\\\') as f:\\\\n    unified = json.load(f)\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json\\\\') as f:\\\\n    ap50 = json.load(f)\\\\n\\\\n# ===== 5-task behavioral data =====\\\\ntask_map = {\\\\n    \\\\'open_the_middle_drawer_of_the_cabinet\\\\': \\\\'open the middle drawer of the cabinet\\\\',\\\\n    \\\\'open_the_top_drawer_and_put_the_bowl_inside\\\\': \\\\'open the top drawer and put the bowl inside\\\\',\\\\n    \\\\'push_the_plate_to_the_front_of_the_stove\\\\': \\\\'push the plate to the front of the stove\\\\',\\\\n    \\\\'put_the_bowl_on_the_plate\\\\': \\\\'put the bowl on the plate\\\\',\\\\n    \\\\'put_the_bowl_on_the_stove\\\\': \\\\'put the bowl on the stove\\\\',\\\\n}\\\\n\\\\n# Per-task behavioral: paired_mse and cohens_d from L1 instruction head ablation\\\\ntasks_5 = list(task_map.keys())\\\\npaired_mse = [traj[\\\\'per_task\\\\'][t][\\\\'paired_mse\\\\'][\\\\'mean\\\\'] for t in tasks_5]\\\\ncohens_d = [traj[\\\\'per_task\\\\'][t][\\\\'paired_mse\\\\'][\\\\'cohens_d\\\\'] for t in tasks_5]\\\\ntoken_div = [traj[\\\\'per_task\\\\'][t][\\\\'token_divergence_rate\\\\'] for t in tasks_5]\\\\nkl_div = [traj[\\\\'per_task\\\\'][t][\\\\'kl_divergence\\\\'][\\\\'mean\\\\'] for t in tasks_5]\\\\n\\\\n# Per-task R2 from baseline probes (5-demo, various layers)\\\\ntasks_5_named = [task_map[t] for t in tasks_5]\\\\nr2_baseline_L1 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L1\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_named]\\\\nr2_baseline_L8 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L8\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_named]\\\\nr2_baseline_L13 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L13\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_named]\\\\n\\\\n# Per-task R2 from 50-demo probes (various readout sources)\\\\ntasks_5_under = list(task_map.keys())\\\\nr2_projector = [unified[\\\\'projector\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_under]\\\\nr2_dino = [unified[\\\\'dino_cls\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_under]\\\\nr2_vla_last = [unified[\\\\'vla_last_preaction_L19\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_5_under]\\\\n\\\\n# Per-task R2 delta from ablation (all 10 tasks available, use 5)\\\\nr2_delta_L1 = [ap50[\\\\'bootstrap_paired_CI\\\\'][\\\\'baseline_vs_ablate_all24\\\\'][\\\\'L1\\\\'][\\\\'per_task_diffs\\\\'][t] for t in tasks_5_named]\\\\nr2_delta_L8 = [ap50[\\\\'bootstrap_paired_CI\\\\'][\\\\'baseline_vs_ablate_all24\\\\'][\\\\'L8\\\\'][\\\\'per_task_diffs\\\\'][t] for t in tasks_5_named]\\\\n\\\\nprint(\\\\'=\\\\' * 70)\\\\nprint(\\\\'RANK CORRELATION: Probe R2 vs Per-Task Behavioral Outcomes (n=5)\\\\')\\\\nprint(\\\\'=\\\\' * 70)\\\\n\\\\n# Helper\\\\ndef report(name_x, name_y, x, y):\\\\n    rho, p_rho = spearmanr(x, y)\\\\n    tau, p_tau = kendalltau(x, y)\\\\n    print(f\\\\'  {name_x} vs {name_y}:\\\\')\\\\n    print(f\\\\'    Spearman rho={rho:.4f}, p={p_rho:.4f}  |  Kendall tau={tau:.4f}, p={p_tau:.4f}\\\\')\\\\n    for i, t in enumerate(tasks_5):\\\\n        short = t.replace(\\\\'_\\\\', \\\\' \\\\')[:40]\\\\n        print(f\\\\'      {short:40s}  x={x[i]:.4f}  y={y[i]:.4f}\\\\')\\\\n    print()\\\\n\\\\nprint()\\\\nprint(\\\\'--- (A) Baseline Probe R2 vs Paired MSE (ablation behavioral shift) ---\\\\')\\\\nreport(\\\\'R2_baseline_L1_5demo\\\\', \\\\'paired_mse\\\\', r2_baseline_L1, paired_mse)\\\\nreport(\\\\'R2_baseline_L8_5demo\\\\', \\\\'paired_mse\\\\', r2_baseline_L8, paired_mse)\\\\nreport(\\\\'R2_baseline_L13_5demo\\\\', \\\\'paired_mse\\\\', r2_baseline_L13, paired_mse)\\\\nreport(\\\\'R2_projector_50demo\\\\', \\\\'paired_mse\\\\', r2_projector, paired_mse)\\\\nreport(\\\\'R2_dino_50demo\\\\', \\\\'paired_mse\\\\', r2_dino, paired_mse)\\\\nreport(\\\\'R2_vla_last_preaction_L19\\\\', \\\\'paired_mse\\\\', r2_vla_last, paired_mse)\\\\n\\\\nprint(\\\\'--- (B) Baseline Probe R2 vs Cohen d (ablation effect size) ---\\\\')\\\\nreport(\\\\'R2_baseline_L1_5demo\\\\', \\\\'cohens_d\\\\', r2_baseline_L1, cohens_d)\\\\nreport(\\\\'R2_vla_last_preaction_L19\\\\', \\\\'cohens_d\\\\', r2_vla_last, cohens_d)\\\\n\\\\nprint(\\\\'--- (C) R2 Delta (ablation representational impact) vs Paired MSE ---\\\\')\\\\nreport(\\\\'R2_delta_L1_ablation\\\\', \\\\'paired_mse\\\\', r2_delta_L1, paired_mse)\\\\nreport(\\\\'R2_delta_L8_ablation\\\\', \\\\'paired_mse\\\\', r2_delta_L8, paired_mse)\\\\n\\\\nprint(\\\\'--- (D) Baseline Probe R2 vs Token Divergence Rate ---\\\\')\\\\nreport(\\\\'R2_baseline_L1_5demo\\\\', \\\\'token_div_rate\\\\', r2_baseline_L1, token_div)\\\\nreport(\\\\'R2_vla_last_preaction_L19\\\\', \\\\'token_div_rate\\\\', r2_vla_last, token_div)\\\\n\\\\nprint(\\\\'--- (E) Baseline Probe R2 vs KL Divergence ---\\\\')\\\\nreport(\\\\'R2_baseline_L1_5demo\\\\', \\\\'kl_divergence\\\\', r2_baseline_L1, kl_div)\\\\n\\\\n# ===== Also compute with all 10 tasks where we can =====\\\\nprint(\\\\'=\\\\' * 70)\\\\nprint(\\\\'FULL 10-TASK ANALYSIS (representational metrics only)\\\\')\\\\nprint(\\\\'=\\\\' * 70)\\\\n\\\\nall_10_tasks = r2_dist[\\\\'tasks\\\\']\\\\nr2_all10_L1 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L1\\\\'][\\\\'per_task_R2\\\\'][t] for t in all_10_tasks]\\\\nr2_all10_L8 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L8\\\\'][\\\\'per_task_R2\\\\'][t] for t in all_10_tasks]\\\\nr2_all10_L13 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L13\\\\'][\\\\'per_task_R2\\\\'][t] for t in all_10_tasks]\\\\n\\\\n# R2 delta for all 10\\\\nr2_delta_all10_L1 = [ap50[\\\\'bootstrap_paired_CI\\\\'][\\\\'baseline_vs_ablate_all24\\\\'][\\\\'L1\\\\'][\\\\'per_task_diffs\\\\'][t] for t in all_10_tasks]\\\\n\\\\n# All-10 unified probe R2\\\\ntasks_10_under = [t.replace(\\\\' \\\\', \\\\'_\\\\') for t in all_10_tasks]\\\\nr2_proj_all10 = [unified[\\\\'projector\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_10_under]\\\\nr2_vla_all10 = [unified[\\\\'vla_last_preaction_L19\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_10_under]\\\\n\\\\nprint()\\\\nprint(\\\\'--- Cross-layer R2 consistency (all 10 tasks) ---\\\\')\\\\nreport_10 = lambda nx, ny, x, y: print(f\\\\'  {nx} vs {ny}: rho={spearmanr(x,y)[0]:.4f} (p={spearmanr(x,y)[1]:.4f}), tau={kendalltau(x,y)[0]:.4f} (p={kendalltau(x,y)[1]:.4f})\\\\')\\\\nreport_10(\\\\'R2_L1\\\\', \\\\'R2_L8\\\\', r2_all10_L1, r2_all10_L8)\\\\nreport_10(\\\\'R2_L1\\\\', \\\\'R2_L13\\\\', r2_all10_L1, r2_all10_L13)\\\\nreport_10(\\\\'R2_L8\\\\', \\\\'R2_L13\\\\', r2_all10_L8, r2_all10_L13)\\\\nreport_10(\\\\'R2_projector\\\\', \\\\'R2_vla_last_L19\\\\', r2_proj_all10, r2_vla_all10)\\\\nreport_10(\\\\'R2_L1\\\\', \\\\'R2_delta_L1\\\\', r2_all10_L1, r2_delta_all10_L1)\\\\n\\\\nprint()\\\\nprint(\\\\'--- Per-task summary for all 10 tasks ---\\\\')\\\\nprint(f\\\\'{\\\\\\\\\\\"Task\\\\\\\\\\\":50s} R2_L1  R2_L8  R2_L13  R2_proj  R2_vla  dR2_L1\\\\')\\\\nfor i, t in enumerate(all_10_tasks):\\\\n    short = t[:48]\\\\n    print(f\\\\'{short:50s} {r2_all10_L1[i]:.3f}  {r2_all10_L8[i]:.3f}  {r2_all10_L13[i]:.3f}   {r2_proj_all10[i]:.3f}    {r2_vla_all10[i]:.3f}   {r2_delta_all10_L1[i]:.3f}\\\\')\\\\n\\\\n# Now try to also use 3-task MSE vs GT\\\\nprint()\\\\nprint(\\\\'=\\\\' * 70)\\\\nprint(\\\\'3-TASK ANALYSIS: Probe R2 vs Model Action MSE (model-vs-GT)\\\\')\\\\nprint(\\\\'=\\\\' * 70)\\\\nwith open(\\\\'/root/autodl-tmp/vla-ssd/results/groundtruth_action_error.json\\\\') as f:\\\\n    gt = json.load(f)\\\\n\\\\ntasks_3 = [t[\\\\'task_name\\\\'] for t in gt[\\\\'per_task\\\\']]\\\\nmse_gt = [gt[\\\\'per_task\\\\'][t][\\\\'original\\\\'][\\\\'mse\\\\'][\\\\'mean\\\\'] for t in tasks_3]\\\\ntasks_3_named = [t.replace(\\\\'_\\\\', \\\\' \\\\') for t in tasks_3]\\\\nr2_3_L1 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L1\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3_named]\\\\nr2_3_L8 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L8\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3_named]\\\\nr2_3_L13 = [r2_dist[\\\\'mlp_probe_5demo\\\\'][\\\\'conditions\\\\'][\\\\'baseline\\\\'][\\\\'L13\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3_named]\\\\nr2_3_proj = [unified[\\\\'projector\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3]\\\\nr2_3_vla = [unified[\\\\'vla_last_preaction_L19\\\\'][\\\\'per_task_R2\\\\'][t] for t in tasks_3]\\\\n\\\\nprint()\\\\nfor i in range(3):\\\\n    print(f\\\\'  {tasks_3_named[i]:50s} MSE={mse_gt[i]:.4f}  R2_L1={r2_3_L1[i]:.4f}  R2_L13={r2_3_L13[i]:.4f}  R2_proj={r2_3_proj[i]:.4f}\\\\')\\\\nprint()\\\\nprint(\\\\'  NOTE: n=3, correlation statistics not meaningful\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nput the bowl on the stove                          0.235  0.396  0.535   0.674    0.730   0.070\\nput the bowl on top of the cabinet                 0.256  0.452  0.659   0.663    0.663   0.097\\nput the cream cheese in the bowl                   0.186  0.380  0.584   0.622    0.608   0.090\\nput the wine bottle on the rack                    0.189  0.392  0.430   0.531    0.578   0.053\\nput the wine bottle on top of the cabinet          0.279  0.462  0.386   0.638    0.628   0.041\\nturn on the stove                                  0.385  0.717  0.734   0.750    0.801   0.017\\n\\n======================================================================\\n3-TASK ANALYSIS: Probe R2 vs Model Action MSE (model-vs-GT)\\n======================================================================\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 131, in &lt;module>\\nTypeError: string indices must be integers, not 'str'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The error is in the 3-task analysis. The `per_task` in groundtruth_action_error is a list, not a dict. Let me fix the script and also write it to a file instead of inline to avoid quoting issues. But first let me note what output we got before the error.
+
+Wait, the output was cut off too — I see only the tail part of the 10-task summary and the beginning of the 3-task section. The main results (sections A through E) were printed but not captured in the truncated output.
+
+Let me write the script to a file on the server and run it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b24d4c32-d752-441c-93f0-6069c0812499",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pWQu2wDAiKsPhzeZ2wYL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10391,
+      "cache_read_input_tokens": 74454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+脚本在 3-task 部分出错。让我把脚本写到文件执行，同时修复 bug。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "ead32a4d-1448-4688-b279-adbeaa32a98f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pWQu2wDAiKsPhzeZ2wYL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10391,
+      "cache_read_input_tokens": 74454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017E4pceQfWfs7BvLnGf6K5N`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /tmp/rank_corr.py << 'PYEOF'\nimport json, numpy as np\nfrom scipy.stats import spearmanr, kendalltau\n\n# ===== Load data =====\nwith open('/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json') as f:\n    traj = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json') as f:\n    r2_dist = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json') as f:\n    unified = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json') as f:\n    ap50 = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/groundtruth_action_error.json') as f:\n    gt = json.load(f)\n\n# ===== Task name mappings =====\ntask_map = {\n    'open_the_middle_drawer_of_the_cabinet': 'open the middle drawer of the cabinet',\n    'open_the_top_drawer_and_put_the_bowl_inside': 'open the top drawer and put the bowl inside',\n    'push_the_plate_to_the_front_of_the_stove': 'push the plate to the front of the stove',\n    'put_the_bowl_on_the_plate': 'put the bowl on the plate',\n    'put_the_bowl_on_the_stove': 'put the bowl on the stove',\n}\n\ntasks_5 = list(task_map.keys())\ntasks_5_named = [task_map[t] for t in tasks_5]\n\n# ===== 5-task behavioral data =====\npaired_mse = [traj['per_task'][t]['paired_mse']['mean'] for t in tasks_5]\ncohens_d = [traj['per_task'][t]['paired_mse']['cohens_d'] for t in tasks_5]\ntoken_div = [traj['per_task'][t]['token_divergence_rate'] for t in tasks_5]\nkl_div = [traj['per_task'][t]['kl_divergence']['mean'] for t in tasks_5]\n\n# ===== Per-task R2 (representational metrics) =====\nr2_L1 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L1']['per_task_R2'][t] for t in tasks_5_named]\nr2_L8 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L8']['per_task_R2'][t] for t in tasks_5_named]\nr2_L13 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L13']['per_task_R2'][t] for t in tasks_5_named]\nr2_proj = [unified['projector']['per_task_R2'][t] for t in tasks_5]\nr2_dino = [unified['dino_cls']['per_task_R2'][t] for t in tasks_5]\nr2_vla = [unified['vla_last_preaction_L19']['per_task_R2'][t] for t in tasks_5]\nr2_delta_L1 = [ap50['bootstrap_paired_CI']['baseline_vs_ablate_all24']['L1']['per_task_diffs'][t] for t in tasks_5_named]\nr2_delta_L8 = [ap50['bootstrap_paired_CI']['baseline_vs_ablate_all24']['L8']['per_task_diffs'][t] for t in tasks_5_named]\n\ndef report(name_x, name_y, x, y, show_data=True):\n    rho, p_rho = spearmanr(x, y)\n    tau, p_tau = kendalltau(x, y)\n    sig_s = '*' if p_rho < 0.05 else ''\n    sig_k = '*' if p_tau < 0.05 else ''\n    print(f'  {name_x} vs {name_y}:')\n    print(f'    Spearman rho={rho:+.4f} (p={p_rho:.4f}){sig_s}  |  Kendall tau={tau:+.4f} (p={p_tau:.4f}){sig_k}')\n    if show_data:\n        for i, t in enumerate(tasks_5):\n            short = t.replace('_', ' ')[:40]\n            print(f'      {short:40s}  x={x[i]:.4f}  y={y[i]:.4f}')\n    print()\n\nprint('=' * 70)\nprint('RANK CORRELATION: Probe R2 vs Behavioral Outcomes (n=5 tasks)')\nprint('=' * 70)\nprint()\n\nprint('--- (A) Baseline Probe R2 vs Paired MSE (ablation action shift) ---')\nreport('R2_baseline_L1_5demo', 'paired_mse', r2_L1, paired_mse)\nreport('R2_baseline_L8_5demo', 'paired_mse', r2_L8, paired_mse)\nreport('R2_baseline_L13_5demo', 'paired_mse', r2_L13, paired_mse)\nreport('R2_projector_50demo', 'paired_mse', r2_proj, paired_mse)\nreport('R2_dino_50demo', 'paired_mse', r2_dino, paired_mse)\nreport('R2_vla_last_L19_50demo', 'paired_mse', r2_vla, paired_mse)\n\nprint('--- (B) Baseline Probe R2 vs Cohen d (ablation effect size) ---')\nreport('R2_baseline_L1_5demo', 'cohens_d', r2_L1, cohens_d)\nreport('R2_projector_50demo', 'cohens_d', r2_proj, cohens_d)\nreport('R2_vla_last_L19_50demo', 'cohens_d', r2_vla, cohens_d)\n\nprint('--- (C) R2 Delta (abl. rep. impact) vs Paired MSE (abl. beh. impact) ---')\nreport('R2_delta_L1', 'paired_mse', r2_delta_L1, paired_mse)\nreport('R2_delta_L8', 'paired_mse', r2_delta_L8, paired_mse)\n\nprint('--- (D) Baseline Probe R2 vs Token Divergence Rate ---')\nreport('R2_baseline_L1_5demo', 'token_div_rate', r2_L1, token_div)\nreport('R2_vla_last_L19_50demo', 'token_div_rate', r2_vla, token_div)\n\nprint('--- (E) Baseline Probe R2 vs KL Divergence ---')\nreport('R2_baseline_L1_5demo', 'kl_divergence', r2_L1, kl_div)\n\n# ===== 10-task analysis =====\nprint('=' * 70)\nprint('FULL 10-TASK ANALYSIS (cross-representational consistency)')\nprint('=' * 70)\nall_10 = r2_dist['tasks']\nr2_10_L1 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L1']['per_task_R2'][t] for t in all_10]\nr2_10_L8 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L8']['per_task_R2'][t] for t in all_10]\nr2_10_L13 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L13']['per_task_R2'][t] for t in all_10]\nt10_under = [t.replace(' ', '_') for t in all_10]\nr2_10_proj = [unified['projector']['per_task_R2'][t] for t in t10_under]\nr2_10_vla = [unified['vla_last_preaction_L19']['per_task_R2'][t] for t in t10_under]\nr2_10_delta = [ap50['bootstrap_paired_CI']['baseline_vs_ablate_all24']['L1']['per_task_diffs'][t] for t in all_10]\n\ndef rep10(nx, ny, x, y):\n    rho, p = spearmanr(x, y)\n    tau, pt = kendalltau(x, y)\n    s = '*' if p < 0.05 else ''\n    print(f'  {nx} vs {ny}: rho={rho:+.4f} (p={p:.4f}){s}, tau={tau:+.4f} (p={pt:.4f})')\n\nprint()\nprint('--- Cross-layer/cross-source R2 consistency ---')\nrep10('R2_L1_5d', 'R2_L8_5d', r2_10_L1, r2_10_L8)\nrep10('R2_L1_5d', 'R2_L13_5d', r2_10_L1, r2_10_L13)\nrep10('R2_L8_5d', 'R2_L13_5d', r2_10_L8, r2_10_L13)\nrep10('R2_proj_50d', 'R2_vla_L19_50d', r2_10_proj, r2_10_vla)\nrep10('R2_L1_5d', 'R2_proj_50d', r2_10_L1, r2_10_proj)\nrep10('R2_L1_5d', 'R2_delta_L1', r2_10_L1, r2_10_delta)\nprint()\n\nprint('--- Per-task summary table (all 10 tasks) ---')\nhdr = f'{\"Task\":50s} R2_L1  R2_L8 R2_L13 R2_proj R2_vla dR2_L1'\nprint(hdr)\nfor i, t in enumerate(all_10):\n    s = t[:48]\n    print(f'{s:50s} {r2_10_L1[i]:.3f}  {r2_10_L8[i]:.3f}  {r2_10_L13[i]:.3f}  {r2_10_proj[i]:.3f}  {r2_10_vla[i]:.3f}  {r2_10_delta[i]:+.3f}')\n\n# ===== 3-task model-vs-GT MSE =====\nprint()\nprint('=' * 70)\nprint('3-TASK: Probe R2 vs Model-vs-GT Action MSE')\nprint('=' * 70)\n\ntasks_3_data = gt['per_task']  # this is a dict keyed by task name\ntasks_3 = list(tasks_3_data.keys())\nmse_3 = [tasks_3_data[t]['original']['mse']['mean'] for t in tasks_3]\ntasks_3_sp = [t.replace('_', ' ') for t in tasks_3]\nr2_3_L1 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L1']['per_task_R2'][t] for t in tasks_3_sp]\nr2_3_proj = [unified['projector']['per_task_R2'][t] for t in tasks_3]\nr2_3_vla = [unified['vla_last_preaction_L19']['per_task_R2'][t] for t in tasks_3]\n\nprint()\nfor i in range(3):\n    print(f'  {tasks_3_sp[i]:50s} MSE={mse_3[i]:.4f}  R2_L1={r2_3_L1[i]:.4f}  R2_proj={r2_3_proj[i]:.4f}  R2_vla={r2_3_vla[i]:.4f}')\nprint()\nprint('  n=3: correlation stats unreliable, showing data only.')\n\n# ===== Summary =====\nprint()\nprint('=' * 70)\nprint('SUMMARY')\nprint('=' * 70)\n\n# Count significant correlations\nsigs = []\npairs_A = [\n    ('R2_L1_5d', r2_L1, 'paired_mse', paired_mse),\n    ('R2_L8_5d', r2_L8, 'paired_mse', paired_mse),\n    ('R2_L13_5d', r2_L13, 'paired_mse', paired_mse),\n    ('R2_proj', r2_proj, 'paired_mse', paired_mse),\n    ('R2_dino', r2_dino, 'paired_mse', paired_mse),\n    ('R2_vla', r2_vla, 'paired_mse', paired_mse),\n    ('R2_L1_5d', r2_L1, 'cohens_d', cohens_d),\n    ('R2_proj', r2_proj, 'cohens_d', cohens_d),\n    ('R2_vla', r2_vla, 'cohens_d', cohens_d),\n    ('dR2_L1', r2_delta_L1, 'paired_mse', paired_mse),\n    ('dR2_L8', r2_delta_L8, 'paired_mse', paired_mse),\n]\nfor nx, x, ny, y in pairs_A:\n    rho, p = spearmanr(x, y)\n    sigs.append((nx, ny, rho, p))\n\nn_sig = sum(1 for _, _, _, p in sigs if p < 0.05)\nprint(f'  {n_sig}/{len(sigs)} correlations significant at p<0.05 (n=5 tasks)')\nprint()\nfor nx, ny, rho, p in sigs:\n    flag = '<-- SIG' if p < 0.05 else ''\n    print(f'  {nx:20s} vs {ny:12s}: rho={rho:+.3f} (p={p:.3f}) {flag}')\n\nprint()\nprint('  Minimum detectable |rho| for significance at p<0.05 (two-tailed, n=5): ~0.900')\nprint('  Power is very limited with n=5. Need n>=10 for moderate correlations.')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/rank_corr.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "8640a746-02f8-4665-86e7-4328cf1b35b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pWQu2wDAiKsPhzeZ2wYL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10391,
+      "cache_read_input_tokens": 74454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-20T12:37:01.940Z_
+
+<details><summary>↩ Tool result · `toolu_017E4pceQfWfs7BvLnGf6K5N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nRANK CORRELATION: Probe R2 vs Behavioral Outcomes (n=5 tasks)\\n======================================================================\\n\\n--- (A) Baseline Probe R2 vs Paired MSE (ablation action shift) ---\\n  R2_baseline_L1_5demo vs paired_mse:\\n    Spearman rho=-0.1000 (p=0.8729)  |  Kendall tau=+0.0000 (p=1.0000)\\n      open the middle drawer of the cabinet     x=0.1971  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.2649  y=0.0446\\n      push the plate to the front of the stove  x=0.1901  y=0.0468\\n      put the bowl on the plate                 x=0.3754  y=0.0459\\n      put the bowl on the stove                 x=0.2352  y=0.0485\\n\\n  R2_baseline_L8_5demo vs paired_mse:\\n    Spearman rho=-0.5000 (p=0.3910)  |  Kendall tau=-0.4000 (p=0.4833)\\n      open the middle drawer of the cabinet     x=0.4532  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.3757  y=0.0446\\n      push the plate to the front of the stove  x=0.3358  y=0.0468\\n      put the bowl on the plate                 x=0.4371  y=0.0459\\n      put the bowl on the stove                 x=0.3960  y=0.0485\\n\\n  R2_baseline_L13_5demo vs paired_mse:\\n    Spearman rho=-0.6000 (p=0.2848)  |  Kendall tau=-0.4000 (p=0.4833)\\n      open the middle drawer of the cabinet     x=0.5686  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.5466  y=0.0446\\n      push the plate to the front of the stove  x=0.4092  y=0.0468\\n      put the bowl on the plate                 x=0.3887  y=0.0459\\n      put the bowl on the stove                 x=0.5352  y=0.0485\\n\\n  R2_projector_50demo vs paired_mse:\\n    Spearman rho=+0.3000 (p=0.6238)  |  Kendall tau=+0.2000 (p=0.8167)\\n      open the middle drawer of the cabinet     x=0.4973  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.7499  y=0.0446\\n      push the plate to the front of the stove  x=0.5861  y=0.0468\\n      put the bowl on the plate                 x=0.5864  y=0.0459\\n      put the bowl on the stove                 x=0.6738  y=0.0485\\n\\n  R2_dino_50demo vs paired_mse:\\n    Spearman rho=+0.6000 (p=0.2848)  |  Kendall tau=+0.4000 (p=0.4833)\\n      open the middle drawer of the cabinet     x=0.4813  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.7138  y=0.0446\\n      push the plate to the front of the stove  x=0.5821  y=0.0468\\n      put the bowl on the plate                 x=0.6170  y=0.0459\\n      put the bowl on the stove                 x=0.7150  y=0.0485\\n\\n  R2_vla_last_L19_50demo vs paired_mse:\\n    Spearman rho=+0.4000 (p=0.5046)  |  Kendall tau=+0.4000 (p=0.4833)\\n      open the middle drawer of the cabinet     x=0.6015  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.7516  y=0.0446\\n      push the plate to the front of the stove  x=0.7096  y=0.0468\\n      put the bowl on the plate                 x=0.6418  y=0.0459\\n      put the bowl on the stove                 x=0.7299  y=0.0485\\n\\n--- (B) Baseline Probe R2 vs Cohen d (ablation effect size) ---\\n  R2_baseline_L1_5demo vs cohens_d:\\n    Spearman rho=-0.1000 (p=0.8729)  |  Kendall tau=+0.0000 (p=1.0000)\\n      open the middle drawer of the cabinet     x=0.1971  y=0.4329\\n      open the top drawer and put the bowl ins  x=0.2649  y=0.6866\\n      push the plate to the front of the stove  x=0.1901  y=0.7038\\n      put the bowl on the plate                 x=0.3754  y=0.7034\\n      put the bowl on the stove                 x=0.2352  y=0.7285\\n\\n  R2_projector_50demo vs cohens_d:\\n    Spearman rho=+0.3000 (p=0.6238)  |  Kendall tau=+0.2000 (p=0.8167)\\n      open the middle drawer of the cabinet     x=0.4973  y=0.4329\\n      open the top drawer and put the bowl ins  x=0.7499  y=0.6866\\n      push the plate to the front of the stove  x=0.5861  y=0.7038\\n      put the bowl on the plate                 x=0.5864  y=0.7034\\n      put the bowl on the stove                 x=0.6738  y=0.7285\\n\\n  R2_vla_last_L19_50demo vs cohens_d:\\n    Spearman rho=+0.4000 (p=0.5046)  |  Kendall tau=+0.4000 (p=0.4833)\\n   \\n\\n... [截断: 输出过长，省略 2105 字符] ...\\n\\nput the bowl on the plate                 x=0.6418  y=0.7366\\n      put the bowl on the stove                 x=0.7299  y=0.7666\\n\\n--- (E) Baseline Probe R2 vs KL Divergence ---\\n  R2_baseline_L1_5demo vs kl_divergence:\\n    Spearman rho=-0.1000 (p=0.8729)  |  Kendall tau=+0.0000 (p=1.0000)\\n      open the middle drawer of the cabinet     x=0.1971  y=4.5032\\n      open the top drawer and put the bowl ins  x=0.2649  y=5.1536\\n      push the plate to the front of the stove  x=0.1901  y=5.9725\\n      put the bowl on the plate                 x=0.3754  y=4.9356\\n      put the bowl on the stove                 x=0.2352  y=4.8319\\n\\n======================================================================\\nFULL 10-TASK ANALYSIS (cross-representational consistency)\\n======================================================================\\n\\n--- Cross-layer/cross-source R2 consistency ---\\n  R2_L1_5d vs R2_L8_5d: rho=+0.6121 (p=0.0600), tau=+0.4667 (p=0.0726)\\n  R2_L1_5d vs R2_L13_5d: rho=-0.0303 (p=0.9338), tau=-0.0222 (p=1.0000)\\n  R2_L8_5d vs R2_L13_5d: rho=+0.2121 (p=0.5563), tau=+0.1556 (p=0.6007)\\n  R2_proj_50d vs R2_vla_L19_50d: rho=+0.8303 (p=0.0029)*, tau=+0.6889 (p=0.0047)\\n  R2_L1_5d vs R2_proj_50d: rho=+0.5879 (p=0.0739), tau=+0.3778 (p=0.1557)\\n  R2_L1_5d vs R2_delta_L1: rho=-0.1636 (p=0.6515), tau=-0.1111 (p=0.7275)\\n\\n--- Per-task summary table (all 10 tasks) ---\\nTask                                               R2_L1  R2_L8 R2_L13 R2_proj R2_vla dR2_L1\\nopen the middle drawer of the cabinet              0.197  0.453  0.569  0.497  0.601  +0.022\\nopen the top drawer and put the bowl inside        0.265  0.376  0.547  0.750  0.752  +0.071\\npush the plate to the front of the stove           0.190  0.336  0.409  0.586  0.710  +0.040\\nput the bowl on the plate                          0.375  0.437  0.389  0.586  0.642  +0.084\\nput the bowl on the stove                          0.235  0.396  0.535  0.674  0.730  +0.070\\nput the bowl on top of the cabinet                 0.256  0.452  0.659  0.663  0.663  +0.097\\nput the cream cheese in the bowl                   0.186  0.380  0.584  0.622  0.608  +0.090\\nput the wine bottle on the rack                    0.189  0.392  0.430  0.531  0.578  +0.053\\nput the wine bottle on top of the cabinet          0.279  0.462  0.386  0.638  0.628  +0.041\\nturn on the stove                                  0.385  0.717  0.734  0.750  0.801  +0.017\\n\\n======================================================================\\n3-TASK: Probe R2 vs Model-vs-GT Action MSE\\n======================================================================\\n\\n  open the middle drawer of the cabinet              MSE=0.5621  R2_L1=0.1971  R2_proj=0.4973  R2_vla=0.6015\\n  open the top drawer and put the bowl inside        MSE=0.5484  R2_L1=0.2649  R2_proj=0.7499  R2_vla=0.7516\\n  push the plate to the front of the stove           MSE=0.3833  R2_L1=0.1901  R2_proj=0.5861  R2_vla=0.7096\\n\\n  n=3: correlation stats unreliable, showing data only.\\n\\n======================================================================\\nSUMMARY\\n======================================================================\\n  0/11 correlations significant at p<0.05 (n=5 tasks)\\n\\n  R2_L1_5d             vs paired_mse  : rho=-0.100 (p=0.873) \\n  R2_L8_5d             vs paired_mse  : rho=-0.500 (p=0.391) \\n  R2_L13_5d            vs paired_mse  : rho=-0.600 (p=0.285) \\n  R2_proj              vs paired_mse  : rho=+0.300 (p=0.624) \\n  R2_dino              vs paired_mse  : rho=+0.600 (p=0.285) \\n  R2_vla               vs paired_mse  : rho=+0.400 (p=0.505) \\n  R2_L1_5d             vs cohens_d    : rho=-0.100 (p=0.873) \\n  R2_proj              vs cohens_d    : rho=+0.300 (p=0.624) \\n  R2_vla               vs cohens_d    : rho=+0.400 (p=0.505) \\n  dR2_L1               vs paired_mse  : rho=+0.200 (p=0.747) \\n  dR2_L8               vs paired_mse  : rho=-0.600 (p=0.285) \\n\\n  Minimum detectable |rho| for significance at p<0.05 (two-tailed, n=5): ~0.900\\n  Power is very limited with n=5. Need n>=10 for moderate correlations.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "3729824a-6898-4783-a082-1b7d7b465e59",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nRANK CORRELATION: Probe R2 vs Behavioral Outcomes (n=5 tasks)\\\\n======================================================================\\\\n\\\\n--- (A) Baseline Probe R2 vs Paired MSE (ablation action shift) ---\\\\n  R2_baseline_L1_5demo vs paired_mse:\\\\n    Spearman rho=-0.1000 (p=0.8729)  |  Kendall tau=+0.0000 (p=1.0000)\\\\n      open the middle drawer of the cabinet     x=0.1971  y=0.0224\\\\n      open the top drawer and put the bowl ins  x=0.2649  y=0.0446\\\\n      push the plate to the front of the stove  x=0.1901  y=0.0468\\\\n      put the bowl on the plate                 x=0.3754  y=0.0459\\\\n      put the bowl on the stove                 x=0.2352  y=0.0485\\\\n\\\\n  R2_baseline_L8_5demo vs paired_mse:\\\\n    Spearman rho=-0.5000 (p=0.3910)  |  Kendall tau=-0.4000 (p=0.4833)\\\\n      open the middle drawer of the cabinet     x=0.4532  y=0.0224\\\\n      open the top drawer and put the bowl ins  x=0.3757  y=0.0446\\\\n      push the plate to the front of the stove  x=0.3358  y=0.0468\\\\n      put the bowl on the plate                 x=0.4371  y=0.0459\\\\n      put the bowl on the stove                 x=0.3960  y=0.0485\\\\n\\\\n  R2_baseline_L13_5demo vs paired_mse:\\\\n    Spearman rho=-0.6000 (p=0.2848)  |  Kendall tau=-0.4000 (p=0.4833)\\\\n      open the middle drawer of the cabinet     x=0.5686  y=0.0224\\\\n      open the top drawer and put the bowl ins  x=0.5466  y=0.0446\\\\n      push the plate to the front of the stove  x=0.4092  y=0.0468\\\\n      put the bowl on the plate                 x=0.3887  y=0.0459\\\\n      put the bowl on the stove                 x=0.5352  y=0.0485\\\\n\\\\n  R2_projector_50demo vs paired_mse:\\\\n    Spearman rho=+0.3000 (p=0.6238)  |  Kendall tau=+0.2000 (p=0.8167)\\\\n      open the middle drawer of the cabinet     x=0.4973  y=0.0224\\\\n      open the top drawer and put the bowl ins  x=0.7499  y=0.0446\\\\n      push the plate to the front of the stove  x=0.5861  y=0.0468\\\\n      put the bowl on the plate                 x=0.5864  y=0.0459\\\\n      put the bowl on the stove                 x=0.6738  y=0.0485\\\\n\\\\n  R2_dino_50demo vs paired_mse:\\\\n    Spearman rho=+0.6000 (p=0.2848)  |  Kendall tau=+0.4000 (p=0.4833)\\\\n      open the middle drawer of the cabinet     x=0.4813  y=0.0224\\\\n      open the top drawer and put the bowl ins  x=0.7138  y=0.0446\\\\n      push the plate to the front of the stove  x=0.5821  y=0.0468\\\\n      put the bowl on the plate                 x=0.6170  y=0.0459\\\\n      put the bowl on the stove                 x=0.7150  y=0.0485\\\\n\\\\n  R2_vla_last_L19_50demo vs paired_mse:\\\\n    Spearman rho=+0.4000 (p=0.5046)  |  Kendall tau=+0.4000 (p=0.4833)\\\\n      open the middle drawer of the cabinet     x=0.6015  y=0.0224\\\\n      open the top drawer and put the bowl ins  x=0.7516  y=0.0446\\\\n      push the plate to the front of the stove  x=0.7096  y=0.0468\\\\n      put the bowl on the plate                 x=0.6418  y=0.0459\\\\n      put the bowl on the stove                 x=0.7299  y=0.0485\\\\n\\\\n--- (B) Baseline Probe R2 vs Cohen d (ablation effect size) ---\\\\n  R2_baseline_L1_5demo vs cohens_d:\\\\n    Spearman rho=-0.1000 (p=0.8729)  |  Kendall tau=+0.0000 (p=1.0000)\\\\n      open the middle drawer of the cabinet     x=0.1971  y=0.4329\\\\n      open the top drawer and put the bowl ins  x=0.2649  y=0.6866\\\\n      push the plate to the front of the stove  x=0.1901  y=0.7038\\\\n      put the bowl on the plate                 x=0.3754  y=0.7034\\\\n      put the bowl on the stove                 x=0.2352  y=0.7285\\\\n\\\\n  R2_projector_50demo vs cohens_d:\\\\n    Spearman rho=+0.3000 (p=0.6238)  |  Kendall tau=+0.2000 (p=0.8167)\\\\n      open the middle drawer of the cabinet     x=0.4973  y=0.4329\\\\n      open the top drawer and put the bowl ins  x=0.7499  y=0.6866\\\\n      push the plate to the front of the stove  x=0.5861  y=0.7038\\\\n      put the bowl on the plate                 x=0.5864  y=0.7034\\\\n      put the bowl on the stove                 x=0.6738  y=0.7285\\\\n\\\\n  R2_vla_last_L19_50demo vs cohens_d:\\\\n    Spearman rho=+0.4000 (p=0.5046)  |  Kendall tau=+0.4000 (p=0.4833)\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 2105 字符] ...\\\\n\\\\nput the bowl on the plate                 x=0.6418  y=0.7366\\\\n      put the bowl on the stove                 x=0.7299  y=0.7666\\\\n\\\\n--- (E) Baseline Probe R2 vs KL Divergence ---\\\\n  R2_baseline_L1_5demo vs kl_divergence:\\\\n    Spearman rho=-0.1000 (p=0.8729)  |  Kendall tau=+0.0000 (p=1.0000)\\\\n      open the middle drawer of the cabinet     x=0.1971  y=4.5032\\\\n      open the top drawer and put the bowl ins  x=0.2649  y=5.1536\\\\n      push the plate to the front of the stove  x=0.1901  y=5.9725\\\\n      put the bowl on the plate                 x=0.3754  y=4.9356\\\\n      put the bowl on the stove                 x=0.2352  y=4.8319\\\\n\\\\n======================================================================\\\\nFULL 10-TASK ANALYSIS (cross-representational consistency)\\\\n======================================================================\\\\n\\\\n--- Cross-layer/cross-source R2 consistency ---\\\\n  R2_L1_5d vs R2_L8_5d: rho=+0.6121 (p=0.0600), tau=+0.4667 (p=0.0726)\\\\n  R2_L1_5d vs R2_L13_5d: rho=-0.0303 (p=0.9338), tau=-0.0222 (p=1.0000)\\\\n  R2_L8_5d vs R2_L13_5d: rho=+0.2121 (p=0.5563), tau=+0.1556 (p=0.6007)\\\\n  R2_proj_50d vs R2_vla_L19_50d: rho=+0.8303 (p=0.0029)*, tau=+0.6889 (p=0.0047)\\\\n  R2_L1_5d vs R2_proj_50d: rho=+0.5879 (p=0.0739), tau=+0.3778 (p=0.1557)\\\\n  R2_L1_5d vs R2_delta_L1: rho=-0.1636 (p=0.6515), tau=-0.1111 (p=0.7275)\\\\n\\\\n--- Per-task summary table (all 10 tasks) ---\\\\nTask                                               R2_L1  R2_L8 R2_L13 R2_proj R2_vla dR2_L1\\\\nopen the middle drawer of the cabinet              0.197  0.453  0.569  0.497  0.601  +0.022\\\\nopen the top drawer and put the bowl inside        0.265  0.376  0.547  0.750  0.752  +0.071\\\\npush the plate to the front of the stove           0.190  0.336  0.409  0.586  0.710  +0.040\\\\nput the bowl on the plate                          0.375  0.437  0.389  0.586  0.642  +0.084\\\\nput the bowl on the stove                          0.235  0.396  0.535  0.674  0.730  +0.070\\\\nput the bowl on top of the cabinet                 0.256  0.452  0.659  0.663  0.663  +0.097\\\\nput the cream cheese in the bowl                   0.186  0.380  0.584  0.622  0.608  +0.090\\\\nput the wine bottle on the rack                    0.189  0.392  0.430  0.531  0.578  +0.053\\\\nput the wine bottle on top of the cabinet          0.279  0.462  0.386  0.638  0.628  +0.041\\\\nturn on the stove                                  0.385  0.717  0.734  0.750  0.801  +0.017\\\\n\\\\n======================================================================\\\\n3-TASK: Probe R2 vs Model-vs-GT Action MSE\\\\n======================================================================\\\\n\\\\n  open the middle drawer of the cabinet              MSE=0.5621  R2_L1=0.1971  R2_proj=0.4973  R2_vla=0.6015\\\\n  open the top drawer and put the bowl inside        MSE=0.5484  R2_L1=0.2649  R2_proj=0.7499  R2_vla=0.7516\\\\n  push the plate to the front of the stove           MSE=0.3833  R2_L1=0.1901  R2_proj=0.5861  R2_vla=0.7096\\\\n\\\\n  n=3: correlation stats unreliable, showing data only.\\\\n\\\\n======================================================================\\\\nSUMMARY\\\\n======================================================================\\\\n  0/11 correlations significant at p<0.05 (n=5 tasks)\\\\n\\\\n  R2_L1_5d             vs paired_mse  : rho=-0.100 (p=0.873) \\\\n  R2_L8_5d             vs paired_mse  : rho=-0.500 (p=0.391) \\\\n  R2_L13_5d            vs paired_mse  : rho=-0.600 (p=0.285) \\\\n  R2_proj              vs paired_mse  : rho=+0.300 (p=0.624) \\\\n  R2_dino              vs paired_mse  : rho=+0.600 (p=0.285) \\\\n  R2_vla               vs paired_mse  : rho=+0.400 (p=0.505) \\\\n  R2_L1_5d             vs cohens_d    : rho=-0.100 (p=0.873) \\\\n  R2_proj              vs cohens_d    : rho=+0.300 (p=0.624) \\\\n  R2_vla               vs cohens_d    : rho=+0.400 (p=0.505) \\\\n  dR2_L1               vs paired_mse  : rho=+0.200 (p=0.747) \\\\n  dR2_L8               vs paired_mse  : rho=-0.600 (p=0.285) \\\\n\\\\n  Minimum detectable |rho| for significance at p<0.05 (two-tailed, n=5): ~0.900\\\\n  Power is very limited with n=5. Need n>=10 for moderate correlations.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nRANK CORRELATION: Probe R2 vs Behavioral Outcomes (n=5 tasks)\\n======================================================================\\n\\n--- (A) Baseline Probe R2 vs Paired MSE (ablation action shift) ---\\n  R2_baseline_L1_5demo vs paired_mse:\\n    Spearman rho=-0.1000 (p=0.8729)  |  Kendall tau=+0.0000 (p=1.0000)\\n      open the middle drawer of the cabinet     x=0.1971  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.2649  y=0.0446\\n      push the plate to the front of the stove  x=0.1901  y=0.0468\\n      put the bowl on the plate                 x=0.3754  y=0.0459\\n      put the bowl on the stove                 x=0.2352  y=0.0485\\n\\n  R2_baseline_L8_5demo vs paired_mse:\\n    Spearman rho=-0.5000 (p=0.3910)  |  Kendall tau=-0.4000 (p=0.4833)\\n      open the middle drawer of the cabinet     x=0.4532  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.3757  y=0.0446\\n      push the plate to the front of the stove  x=0.3358  y=0.0468\\n      put the bowl on the plate                 x=0.4371  y=0.0459\\n      put the bowl on the stove                 x=0.3960  y=0.0485\\n\\n  R2_baseline_L13_5demo vs paired_mse:\\n    Spearman rho=-0.6000 (p=0.2848)  |  Kendall tau=-0.4000 (p=0.4833)\\n      open the middle drawer of the cabinet     x=0.5686  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.5466  y=0.0446\\n      push the plate to the front of the stove  x=0.4092  y=0.0468\\n      put the bowl on the plate                 x=0.3887  y=0.0459\\n      put the bowl on the stove                 x=0.5352  y=0.0485\\n\\n  R2_projector_50demo vs paired_mse:\\n    Spearman rho=+0.3000 (p=0.6238)  |  Kendall tau=+0.2000 (p=0.8167)\\n      open the middle drawer of the cabinet     x=0.4973  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.7499  y=0.0446\\n      push the plate to the front of the stove  x=0.5861  y=0.0468\\n      put the bowl on the plate                 x=0.5864  y=0.0459\\n      put the bowl on the stove                 x=0.6738  y=0.0485\\n\\n  R2_dino_50demo vs paired_mse:\\n    Spearman rho=+0.6000 (p=0.2848)  |  Kendall tau=+0.4000 (p=0.4833)\\n      open the middle drawer of the cabinet     x=0.4813  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.7138  y=0.0446\\n      push the plate to the front of the stove  x=0.5821  y=0.0468\\n      put the bowl on the plate                 x=0.6170  y=0.0459\\n      put the bowl on the stove                 x=0.7150  y=0.0485\\n\\n  R2_vla_last_L19_50demo vs paired_mse:\\n    Spearman rho=+0.4000 (p=0.5046)  |  Kendall tau=+0.4000 (p=0.4833)\\n      open the middle drawer of the cabinet     x=0.6015  y=0.0224\\n      open the top drawer and put the bowl ins  x=0.7516  y=0.0446\\n      push the plate to the front of the stove  x=0.7096  y=0.0468\\n      put the bowl on the plate                 x=0.6418  y=0.0459\\n      put the bowl on the stove                 x=0.7299  y=0.0485\\n\\n--- (B) Baseline Probe R2 vs Cohen d (ablation effect size) ---\\n  R2_baseline_L1_5demo vs cohens_d:\\n    Spearman rho=-0.1000 (p=0.8729)  |  Kendall tau=+0.0000 (p=1.0000)\\n      open the middle drawer of the cabinet     x=0.1971  y=0.4329\\n      open the top drawer and put the bowl ins  x=0.2649  y=0.6866\\n      push the plate to the front of the stove  x=0.1901  y=0.7038\\n      put the bowl on the plate                 x=0.3754  y=0.7034\\n      put the bowl on the stove                 x=0.2352  y=0.7285\\n\\n  R2_projector_50demo vs cohens_d:\\n    Spearman rho=+0.3000 (p=0.6238)  |  Kendall tau=+0.2000 (p=0.8167)\\n      open the middle drawer of the cabinet     x=0.4973  y=0.4329\\n      open the top drawer and put the bowl ins  x=0.7499  y=0.6866\\n      push the plate to the front of the stove  x=0.5861  y=0.7038\\n      put the bowl on the plate                 x=0.5864  y=0.7034\\n      put the bowl on the stove                 x=0.6738  y=0.7285\\n\\n  R2_vla_last_L19_50demo vs cohens_d:\\n    Spearman rho=+0.4000 (p=0.5046)  |  Kendall tau=+0.4000 (p=0.4833)\\n   \\n\\n... [截断: 输出过长，省略 2105 字符] ...\\n\\nput the bowl on the plate                 x=0.6418  y=0.7366\\n      put the bowl on the stove                 x=0.7299  y=0.7666\\n\\n--- (E) Baseline Probe R2 vs KL Divergence ---\\n  R2_baseline_L1_5demo vs kl_divergence:\\n    Spearman rho=-0.1000 (p=0.8729)  |  Kendall tau=+0.0000 (p=1.0000)\\n      open the middle drawer of the cabinet     x=0.1971  y=4.5032\\n      open the top drawer and put the bowl ins  x=0.2649  y=5.1536\\n      push the plate to the front of the stove  x=0.1901  y=5.9725\\n      put the bowl on the plate                 x=0.3754  y=4.9356\\n      put the bowl on the stove                 x=0.2352  y=4.8319\\n\\n======================================================================\\nFULL 10-TASK ANALYSIS (cross-representational consistency)\\n======================================================================\\n\\n--- Cross-layer/cross-source R2 consistency ---\\n  R2_L1_5d vs R2_L8_5d: rho=+0.6121 (p=0.0600), tau=+0.4667 (p=0.0726)\\n  R2_L1_5d vs R2_L13_5d: rho=-0.0303 (p=0.9338), tau=-0.0222 (p=1.0000)\\n  R2_L8_5d vs R2_L13_5d: rho=+0.2121 (p=0.5563), tau=+0.1556 (p=0.6007)\\n  R2_proj_50d vs R2_vla_L19_50d: rho=+0.8303 (p=0.0029)*, tau=+0.6889 (p=0.0047)\\n  R2_L1_5d vs R2_proj_50d: rho=+0.5879 (p=0.0739), tau=+0.3778 (p=0.1557)\\n  R2_L1_5d vs R2_delta_L1: rho=-0.1636 (p=0.6515), tau=-0.1111 (p=0.7275)\\n\\n--- Per-task summary table (all 10 tasks) ---\\nTask                                               R2_L1  R2_L8 R2_L13 R2_proj R2_vla dR2_L1\\nopen the middle drawer of the cabinet              0.197  0.453  0.569  0.497  0.601  +0.022\\nopen the top drawer and put the bowl inside        0.265  0.376  0.547  0.750  0.752  +0.071\\npush the plate to the front of the stove           0.190  0.336  0.409  0.586  0.710  +0.040\\nput the bowl on the plate                          0.375  0.437  0.389  0.586  0.642  +0.084\\nput the bowl on the stove                          0.235  0.396  0.535  0.674  0.730  +0.070\\nput the bowl on top of the cabinet                 0.256  0.452  0.659  0.663  0.663  +0.097\\nput the cream cheese in the bowl                   0.186  0.380  0.584  0.622  0.608  +0.090\\nput the wine bottle on the rack                    0.189  0.392  0.430  0.531  0.578  +0.053\\nput the wine bottle on top of the cabinet          0.279  0.462  0.386  0.638  0.628  +0.041\\nturn on the stove                                  0.385  0.717  0.734  0.750  0.801  +0.017\\n\\n======================================================================\\n3-TASK: Probe R2 vs Model-vs-GT Action MSE\\n======================================================================\\n\\n  open the middle drawer of the cabinet              MSE=0.5621  R2_L1=0.1971  R2_proj=0.4973  R2_vla=0.6015\\n  open the top drawer and put the bowl inside        MSE=0.5484  R2_L1=0.2649  R2_proj=0.7499  R2_vla=0.7516\\n  push the plate to the front of the stove           MSE=0.3833  R2_L1=0.1901  R2_proj=0.5861  R2_vla=0.7096\\n\\n  n=3: correlation stats unreliable, showing data only.\\n\\n======================================================================\\nSUMMARY\\n======================================================================\\n  0/11 correlations significant at p<0.05 (n=5 tasks)\\n\\n  R2_L1_5d             vs paired_mse  : rho=-0.100 (p=0.873) \\n  R2_L8_5d             vs paired_mse  : rho=-0.500 (p=0.391) \\n  R2_L13_5d            vs paired_mse  : rho=-0.600 (p=0.285) \\n  R2_proj              vs paired_mse  : rho=+0.300 (p=0.624) \\n  R2_dino              vs paired_mse  : rho=+0.600 (p=0.285) \\n  R2_vla               vs paired_mse  : rho=+0.400 (p=0.505) \\n  R2_L1_5d             vs cohens_d    : rho=-0.100 (p=0.873) \\n  R2_proj              vs cohens_d    : rho=+0.300 (p=0.624) \\n  R2_vla               vs cohens_d    : rho=+0.400 (p=0.505) \\n  dR2_L1               vs paired_mse  : rho=+0.200 (p=0.747) \\n  dR2_L8               vs paired_mse  : rho=-0.600 (p=0.285) \\n\\n  Minimum detectable |rho| for significance at p<0.05 (two-tailed, n=5): ~0.900\\n  Power is very limited with n=5. Need n>=10 for moderate correlations.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full results. Let me also check if we can increase the sample size by using all 10 tasks in the dose-response or other experiments. Let me check if L8/L13 trajectory ablation files have more tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "c0e00b97-b60e-4986-9c70-e2085f09320f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTh7Hm96T1dgEQyz1EXuCm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7561,
+      "cache_read_input_tokens": 84845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7561
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+让我检查 L8/L13 trajectory ablation 是否覆盖更多 task。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b59f55ae-4c91-41bb-a884-f52f37a54016",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTh7Hm96T1dgEQyz1EXuCm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7561,
+      "cache_read_input_tokens": 84845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7561
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EqA16ADpZUHxFFZEUuBdXZ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json')); print('L8 tasks:', list(d.get('per_task',{}).keys())); print('keys:', list(d.keys())[:10])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "611447aa-3cd8-43b0-bbb9-a84dabb636ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTh7Hm96T1dgEQyz1EXuCm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7561,
+      "cache_read_input_tokens": 84845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7561
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-20T12:37:08.815Z_
+
+<details><summary>↩ Tool result · `toolu_01EqA16ADpZUHxFFZEUuBdXZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "13a83c3b-d080-45bc-941d-d0b612e61ea1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C3ttAC5my1PeosiwiwPtkf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json')); print('keys:', list(d.keys())[:15]); print('conditions:', [k for k in d.keys() if 'condition' in k.lower() or 'per_task' in k.lower()])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "e223bb38-d8cc-40a6-841f-f796e128973d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTh7Hm96T1dgEQyz1EXuCm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7561,
+      "cache_read_input_tokens": 84845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7561
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-20T12:37:10.242Z_
+
+<details><summary>↩ Tool result · `toolu_01C3ttAC5my1PeosiwiwPtkf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "525d14b6-ed14-4c12-856e-7ac9966c7fa9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FZ47FXCE7s7xvQqsrinsEk`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json')); print(list(d.get('per_task',{}).keys()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "e32472fd-f8c1-4707-adbb-85ff8de4e04f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ns5mwNrqPrEqtUjfAxBKCa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 665,
+      "cache_read_input_tokens": 92406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 665
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-20T12:37:13.725Z_
+
+<details><summary>↩ Tool result · `toolu_01FZ47FXCE7s7xvQqsrinsEk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "e7a4bd1b-1b94-4251-9d57-3ec066c1b468",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019hVBtzDexAXuyzMSTd12g9`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json')); print(list(d.keys())[:20])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "ef9b6d7b-4291-4e5c-a5a1-e42f96d4d6d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ns5mwNrqPrEqtUjfAxBKCa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 665,
+      "cache_read_input_tokens": 92406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 665
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-20T12:37:14.632Z_
+
+<details><summary>↩ Tool result · `toolu_019hVBtzDexAXuyzMSTd12g9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "89cbe7ba-5263-4c62-b19d-23dae54a1cbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The semicolons in Python are being blocked. Let me use ssh_execute for these reads since I need Python with semicolons.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "4dde03dc-f32a-4bef-ad0c-6df49fa91ef8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5tz6JqioktsT6hSVJdZZT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 618,
+      "cache_read_input_tokens": 93071,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015pEZQT7eZRJ59UQPWyrimV`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json'))\nprint('L8 keys:', list(d.keys())[:10])\nprint('L8 per_task:', list(d.get('per_task',{}).keys()))\nd2=json.load(open('/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json'))\nprint('L13 per_task:', list(d2.get('per_task',{}).keys()))\nd3=json.load(open('/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json'))\nprint('CF combined keys:', list(d3.keys())[:20])\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "f2a026d0-8fc7-4d66-b219-ba00a923effa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5tz6JqioktsT6hSVJdZZT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 618,
+      "cache_read_input_tokens": 93071,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-20T12:37:27.727Z_
+
+<details><summary>↩ Tool result · `toolu_015pEZQT7eZRJ59UQPWyrimV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"L8 keys: ['config', 'main_metrics', 'secondary_metrics', 'per_task']\\nL8 per_task: ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove']\\nL13 per_task: ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove']\\nCF combined keys: ['config', 'conditions', 'ranking_by_cohens_d']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "5235b842-8d62-4c85-813d-3c7678244db6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"L8 keys: ['config', 'main_metrics', 'secondary_metrics', 'per_task']\\\\nL8 per_task: ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove']\\\\nL13 per_task: ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove']\\\\nCF combined keys: ['config', 'conditions', 'ranking_by_cohens_d']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"L8 keys: ['config', 'main_metrics', 'secondary_metrics', 'per_task']\\nL8 per_task: ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove']\\nL13 per_task: ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove']\\nCF combined keys: ['config', 'conditions', 'ranking_by_cohens_d']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+L8 and L13 trajectory ablation also only have 5 tasks. The counterfactual_combined.json has different structure. Let me check if counterfactual data has per-task results for more tasks.
+
+Actually, I think I have enough data now. The fundamental limitation is clear: behavioral outcome data only covers 5 tasks, while R² probe data covers 10 tasks.
+
+Let me save the results to a file and write the summary. The key findings are:
+
+1. **0/11 correlations significant** at p<0.05 with n=5 tasks
+
+
+2. With only 5 tasks, I need a correlation around 0.9 to reach significance, which is why we're severely underpowered
+3. The point estimates swing dramatically depending on which R² metric I use, ranging from -0.6 to +0.6
+4. The projector versus VLA_last comparison shows decent consistency at ρ=0.83, p=0.003
+5. This analysis really needs behavioral data across all 10 tasks to be viable
+
+Now I'll save these results as a JSON artifact.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "0f67b47a-6ffb-400f-965b-619165efb985",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VXmPiCaduZdCY8c9qYqaek",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 93689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 664
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+所有 trajectory ablation 都只有 5 个 task。让我保存完整结果并汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "84e8c973-2e46-4860-8ab0-8bb2197f5bb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VXmPiCaduZdCY8c9qYqaek",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 93689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 664
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018UJ4wQ6vY9FZWJpYQUAFum`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat > /tmp/save_corr_results.py << 'PYEOF'\nimport json, numpy as np\nfrom scipy.stats import spearmanr, kendalltau\n\nwith open('/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json') as f:\n    traj = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json') as f:\n    r2_dist = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json') as f:\n    unified = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_50demos.json') as f:\n    ap50 = json.load(f)\n\ntask_map = {\n    'open_the_middle_drawer_of_the_cabinet': 'open the middle drawer of the cabinet',\n    'open_the_top_drawer_and_put_the_bowl_inside': 'open the top drawer and put the bowl inside',\n    'push_the_plate_to_the_front_of_the_stove': 'push the plate to the front of the stove',\n    'put_the_bowl_on_the_plate': 'put the bowl on the plate',\n    'put_the_bowl_on_the_stove': 'put the bowl on the stove',\n}\n\ntasks_5 = list(task_map.keys())\ntasks_5_named = [task_map[t] for t in tasks_5]\n\npaired_mse = [traj['per_task'][t]['paired_mse']['mean'] for t in tasks_5]\ncohens_d = [traj['per_task'][t]['paired_mse']['cohens_d'] for t in tasks_5]\ntoken_div = [traj['per_task'][t]['token_divergence_rate'] for t in tasks_5]\n\nr2_L1 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L1']['per_task_R2'][t] for t in tasks_5_named]\nr2_L8 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L8']['per_task_R2'][t] for t in tasks_5_named]\nr2_L13 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L13']['per_task_R2'][t] for t in tasks_5_named]\nr2_proj = [unified['projector']['per_task_R2'][t] for t in tasks_5]\nr2_dino = [unified['dino_cls']['per_task_R2'][t] for t in tasks_5]\nr2_vla = [unified['vla_last_preaction_L19']['per_task_R2'][t] for t in tasks_5]\nr2_delta_L1 = [ap50['bootstrap_paired_CI']['baseline_vs_ablate_all24']['L1']['per_task_diffs'][t] for t in tasks_5_named]\n\n# Build results\ndef corr(x, y):\n    rho, p_rho = spearmanr(x, y)\n    tau, p_tau = kendalltau(x, y)\n    return {'spearman_rho': round(rho, 4), 'spearman_p': round(p_rho, 4),\n            'kendall_tau': round(tau, 4), 'kendall_p': round(p_tau, 4)}\n\nresults = {\n    'analysis': 'Probe R2 vs Per-Task Behavioral Outcomes Rank Correlation',\n    'n_tasks_behavioral': 5,\n    'n_tasks_representational': 10,\n    'limitation': 'Only 5 tasks have both R2 and behavioral (paired_mse) data. With n=5, minimum |rho| for p<0.05 is ~0.9.',\n    'per_task_data': {},\n    'correlations': {},\n    'cross_representational_10task': {},\n}\n\nfor i, t in enumerate(tasks_5):\n    results['per_task_data'][t] = {\n        'paired_mse': round(paired_mse[i], 6),\n        'cohens_d': round(cohens_d[i], 4),\n        'token_divergence_rate': round(token_div[i], 4),\n        'R2_baseline_L1_5demo': round(r2_L1[i], 4),\n        'R2_baseline_L8_5demo': round(r2_L8[i], 4),\n        'R2_baseline_L13_5demo': round(r2_L13[i], 4),\n        'R2_projector_50demo': round(r2_proj[i], 4),\n        'R2_dino_50demo': round(r2_dino[i], 4),\n        'R2_vla_last_L19_50demo': round(r2_vla[i], 4),\n        'R2_delta_L1_ablation': round(r2_delta_L1[i], 4),\n    }\n\npairs = [\n    ('R2_L1_5d', r2_L1, 'paired_mse', paired_mse),\n    ('R2_L8_5d', r2_L8, 'paired_mse', paired_mse),\n    ('R2_L13_5d', r2_L13, 'paired_mse', paired_mse),\n    ('R2_proj_50d', r2_proj, 'paired_mse', paired_mse),\n    ('R2_dino_50d', r2_dino, 'paired_mse', paired_mse),\n    ('R2_vla_50d', r2_vla, 'paired_mse', paired_mse),\n    ('R2_L1_5d', r2_L1, 'cohens_d', cohens_d),\n    ('R2_proj_50d', r2_proj, 'cohens_d', cohens_d),\n    ('R2_delta_L1', r2_delta_L1, 'paired_mse', paired_mse),\n]\n\nfor nx, x, ny, y in pairs:\n    results['correlations'][f'{nx}_vs_{ny}'] = corr(x, y)\n\n# 10-task cross-representational\nall_10 = r2_dist['tasks']\nr2_10_L1 = [r2_dist['mlp_probe_5demo']['conditions']['baseline']['L1']['per_task_R2'][t] for t in all_10]\nt10_u = [t.replace(' ', '_') for t in all_10]\nr2_10_proj = [unified['projector']['per_task_R2'][t] for t in t10_u]\nr2_10_vla = [unified['vla_last_preaction_L19']['per_task_R2'][t] for t in t10_u]\n\nresults['cross_representational_10task'] = {\n    'R2_proj_vs_R2_vla': corr(r2_10_proj, r2_10_vla),\n    'note': 'Only cross-representational (not rep-vs-behavioral) can use all 10 tasks'\n}\n\nresults['conclusion'] = {\n    'significant_correlations': '0/9 at p<0.05',\n    'fundamental_issue': 'n=5 tasks gives almost no statistical power (need |rho|>0.9 for significance)',\n    'point_estimates': 'rho ranges from -0.6 to +0.6 depending on R2 metric, no consistent pattern',\n    'cross_rep_consistency': 'R2_projector vs R2_vla_last_L19: rho=0.83 (p=0.003) across 10 tasks — different probes agree on task difficulty ranking',\n    'recommendation': 'Cannot claim \"representational metrics predict behavioral outcomes\" with current data. Need per-task behavioral data for all 10 tasks, or use a benchmark suite with more tasks (e.g., LIBERO-Long has 10 additional tasks).'\n}\n\nout_path = '/root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json'\nwith open(out_path, 'w') as f:\n    json.dump(results, f, indent=2)\nprint(f'Saved to {out_path}')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/save_corr_results.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "b1ac23de-1def-4848-902b-213c9cd82565",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VXmPiCaduZdCY8c9qYqaek",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 93689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 664
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-20T12:38:07.607Z_
+
+<details><summary>↩ Tool result · `toolu_018UJ4wQ6vY9FZWJpYQUAFum`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "bd1e7a6d-158f-4726-a679-f885a583128c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved to /root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103_
+
+也检查下本地 artifacts 是否有额外数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "67a6176c-6338-4f5e-925c-33a7cccc8e00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018J1prCyFtednNqJn1Deic6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2705,
+      "cache_read_input_tokens": 94353,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2705
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Rp5pyB9V7cJcdWEbpoV4rk`</summary>
+
+```json
+{
+  "pattern": "**/vla-ssd/artifacts/*r2*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "d61fd5de-5d49-4e43-9c21-aad18ad0359a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018J1prCyFtednNqJn1Deic6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2705,
+      "cache_read_input_tokens": 94353,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2705
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-20T12:38:10.896Z_
+
+<details><summary>↩ Tool result · `toolu_01Rp5pyB9V7cJcdWEbpoV4rk`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "e813cbdf-1fa6-40e3-b46a-f33fdefcba05",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 15,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01S335862vaYpH57dxgj4gvn`</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "bc2a0a2a-6b0c-4282-835b-48f91f1119e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VyxsP5MkkHqow34dT95mef",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 97,
+      "cache_read_input_tokens": 97058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 97
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-20T12:38:14.515Z_
+
+<details><summary>↩ Tool result · `toolu_01S335862vaYpH57dxgj4gvn`</summary>
+
+```text
+artifacts/probe_design_plan.md
+artifacts/_project/intermediate/probe_dryrun_dinov2_results.txt
+artifacts/dinov2_baseline/data/dinov2_subtask_auc_results.txt
+artifacts/mvp_probe_trained/report/mvp_probe_analysis.md
+artifacts/_project/report/action_probe_design.md
+artifacts/action_probe_design.md
+artifacts/_project/report/literature_map_probing.md
+artifacts/literature_map_probing.md
+artifacts/_project/report/controlb_report.md
+artifacts/_project/report/controlb_analysis.md
+artifacts/mvp_controlb_trained/report/controlb_analysis.md
+artifacts/controlb_analysis/controlb_analysis.md
+artifacts/_project/report/libero_goal_feasibility.md
+artifacts/libero_goal_feasibility.md
+artifacts/_project/report/layer_stability_analysis.md
+artifacts/layer_stability_analysis.md
+artifacts/openvla_libero_goal_compat.md
+artifacts/pipeline_audit_libero_goal.md
+artifacts/patch_probes.py
+artifacts/_project/report/literature_survey_instruction_probing.md
+artifacts/literature_survey_instruction_probing.md
+artifacts/literature_map.yaml
+artifacts/pca_linear_probe_perlayer.py
+artifacts/pca_linear_probe_gc.py
+artifacts/rsa_analysis.py
+artifacts/_project/chart/perlayer_rsa_comparison_chart_info.txt
+artifacts/dream_reports/dream_20260515T222933/logs/phase1_attempt0.log
+artifacts/_project/data/perlayer_rsa_summary.txt
+artifacts/dream_reports/dream_20260515T222933/logs/phase2_best_attempt0.log
+artifacts/dream_reports/dream_20260515T222933/logs/phase2_median_attempt0.log
+artifacts/_project/intermediate/figure_data_manifest.txt
+artifacts/dream_reports/dream_20260515T222933/logs/phase2_worst_attempt0.log
+artifacts/dream_reports/dream_20260515T222933/best/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260515T222933/best/experiment_data.json
+artifacts/dream_reports/dream_20260515T222933/best/paper_framing.md
+artifacts/dream_reports/dream_20260515T222933/best/paper.tex
+artifacts/dream_reports/dream_20260515T222933/best/paper.aux
+artifacts/dream_reports/dream_20260515T222933/best/paper.out
+artifacts/dream_reports/dream_20260515T222933/best/paper.pdf
+artifacts/dream_reports/dream_20260515T222933/best/paper.log
+artifacts/dream_reports/dream_20260515T222933/logs/paper_agent_best.log
+artifacts/dream_reports/dream_20260515T222933/median/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260515T222933/median/experiment_data.json
+artifacts/dream_reports/dream_20260515T222933/median/paper_framing.md
+artifacts/_project/report/rsa_image_mean_validation.md
+artifacts/dream_reports/dream_20260515T222933/median/paper.tex
+artifacts/dream_reports/dream_20260515T222933/median/paper.aux
+artifacts/dream_reports/dream_20260515T222933/median/paper.out
+artifacts/dream_reports/dream_20260515T222933/median/paper.pdf
+artifacts/dream_reports/dream_20260515T222933/median/paper.log
+artifacts/dream_reports/dream_20260515T222933/logs/paper_agent_median.log
+artifacts/dream_reports/dream_20260515T222933/worst/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260515T222933/worst/experiment_data.json
+artifacts/dream_reports/dream_20260515T222933/worst/paper_framing.md
+artifacts/dream_reports/dream_20260515T222933/worst/paper.tex
+artifacts/dream_reports/dream_20260515T222933/worst/paper.aux
+artifacts/dream_reports/dream_20260515T222933/worst/paper.out
+artifacts/dream_reports/dream_20260515T222933/worst/paper.pdf
+artifacts/dream_reports/dream_20260515T222933/worst/paper.log
+artifacts/dream_reports/dream_20260515T222933/logs/paper_agent_worst.log
+artifacts/dream_reports/dream_20260515T222933/best/review_context.yaml
+artifacts/dream_reports/dream_20260515T222933/logs/orchestrator.log
+artifacts/_project/data/bootstrap_training_effect.json
+artifacts/dream_reports/dream_20260515T222933/best/review_report.md
+artifacts/dream_reports/dream_20260515T222933/logs/review_best.log
+artifacts/dream_reports/dream_20260515T222933/median/review_context.yaml
+artifacts/dream_reports/dream_20260515T222933/median/review_report.md
+artifacts/dream_reports/dream_20260515T222933/logs/review_median.log
+artifacts/dream_reports/dream_20260515T222933/worst/review_context.yaml
+artifacts/dream_reports/dream_20260515T222933/worst/review_report.md
+artifacts/dream_reports/dream_20260515T222933/logs/review_worst.log
+artifacts/dream_reports/dream_20260515T222933/meta.yaml
+artifacts/_project/data/action_probe_projector_summary.txt
+artifacts/_project/data/action_delta_probe_projector.json
+artifacts/_project/data/dino_action_probe.json
+artifacts/_project/data/cka_verification_summary.txt
+artifacts/_project/data/untrained_last_preaction_probe.json
+artifacts/untrained_last_preaction_probe.json
+artifacts/_project/report/redream_evidence_v2.md
+artifacts/redream_evidence_v2.md
+artifacts/dream_reports/dream_20260516T011810/logs/orchestrator.log
+artifacts/dream_reports/dream_20260516T011810/logs/phase1_attempt0.log
+artifacts/dream_reports/dream_20260516T011810/logs/phase2_best_attempt0.log
+artifacts/dream_reports/dream_20260516T011810/logs/phase2_median_attempt0.log
+artifacts/dream_reports/dream_20260516T011810/logs/phase2_worst_attempt0.log
+artifacts/dream_reports/dream_20260516T011810/best/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260516T011810/best/experiment_data.json
+artifacts/dream_reports/dream_20260516T011810/best/paper_framing.md
+artifacts/dream_reports/dream_20260516T011810/best/paper.tex
+artifacts/dream_reports/dream_20260516T011810/best/paper.aux
+artifacts/dream_reports/dream_20260516T011810/best/paper.out
+artifacts/dream_reports/dream_20260516T011810/best/paper.pdf
+artifacts/dream_reports/dream_20260516T011810/best/paper.log
+artifacts/dream_reports/dream_20260516T011810/logs/paper_agent_best.log
+artifacts/dream_reports/dream_20260516T011810/median/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260516T011810/median/experiment_data.json
+artifacts/dream_reports/dream_20260516T011810/median/paper_framing.md
+artifacts/dream_reports/dream_20260516T011810/median/paper.tex
+artifacts/dream_reports/dream_20260516T011810/median/paper.aux
+artifacts/dream_reports/dream_20260516T011810/median/paper.out
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "6c61a7b0-9eb0-42c5-822a-9724219daea8",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/probe_design_plan.md",
+      "artifacts/_project/intermediate/probe_dryrun_dinov2_results.txt",
+      "artifacts/dinov2_baseline/data/dinov2_subtask_auc_results.txt",
+      "artifacts/mvp_probe_trained/report/mvp_probe_analysis.md",
+      "artifacts/_project/report/action_probe_design.md",
+      "artifacts/action_probe_design.md",
+      "artifacts/_project/report/literature_map_probing.md",
+      "artifacts/literature_map_probing.md",
+      "artifacts/_project/report/controlb_report.md",
+      "artifacts/_project/report/controlb_analysis.md",
+      "artifacts/mvp_controlb_trained/report/controlb_analysis.md",
+      "artifacts/controlb_analysis/controlb_analysis.md",
+      "artifacts/_project/report/libero_goal_feasibility.md",
+      "artifacts/libero_goal_feasibility.md",
+      "artifacts/_project/report/layer_stability_analysis.md",
+      "artifacts/layer_stability_analysis.md",
+      "artifacts/openvla_libero_goal_compat.md",
+      "artifacts/pipeline_audit_libero_goal.md",
+      "artifacts/patch_probes.py",
+      "artifacts/_project/report/literature_survey_instruction_probing.md",
+      "artifacts/literature_survey_instruction_probing.md",
+      "artifacts/literature_map.yaml",
+      "artifacts/pca_linear_probe_perlayer.py",
+      "artifacts/pca_linear_probe_gc.py",
+      "artifacts/rsa_analysis.py",
+      "artifacts/_project/chart/perlayer_rsa_comparison_chart_info.txt",
+      "artifacts/dream_reports/dream_20260515T222933/logs/phase1_attempt0.log",
+      "artifacts/_project/data/perlayer_rsa_summary.txt",
+      "artifacts/dream_reports/dream_20260515T222933/logs/phase2_best_attempt0.log",
+      "artifacts/dream_reports/dream_20260515T222933/logs/phase2_median_attempt0.log",
+      "artifacts/_project/intermediate/figure_data_manifest.txt",
+      "artifacts/dream_reports/dream_20260515T222933/logs/phase2_worst_attempt0.log",
+      "artifacts/dream_reports/dream_20260515T222933/best/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260515T222933/best/experiment_data.json",
+      "artifacts/dream_reports/dream_20260515T222933/best/paper_framing.md",
+      "artifacts/dream_reports/dream_20260515T222933/best/paper.tex",
+      "artifacts/dream_reports/dream_20260515T222933/best/paper.aux",
+      "artifacts/dream_reports/dream_20260515T222933/best/paper.out",
+      "artifacts/dream_reports/dream_20260515T222933/best/paper.pdf",
+      "artifacts/dream_reports/dream_20260515T222933/best/paper.log",
+      "artifacts/dream_reports/dream_20260515T222933/logs/paper_agent_best.log",
+      "artifacts/dream_reports/dream_20260515T222933/median/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260515T222933/median/experiment_data.json",
+      "artifacts/dream_reports/dream_20260515T222933/median/paper_framing.md",
+      "artifacts/_project/report/rsa_image_mean_validation.md",
+      "artifacts/dream_reports/dream_20260515T222933/median/paper.tex",
+      "artifacts/dream_reports/dream_20260515T222933/median/paper.aux",
+      "artifacts/dream_reports/dream_20260515T222933/median/paper.out",
+      "artifacts/dream_reports/dream_20260515T222933/median/paper.pdf",
+      "artifacts/dream_reports/dream_20260515T222933/median/paper.log",
+      "artifacts/dream_reports/dream_20260515T222933/logs/paper_agent_median.log",
+      "artifacts/dream_reports/dream_20260515T222933/worst/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260515T222933/worst/experiment_data.json",
+      "artifacts/dream_reports/dream_20260515T222933/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260515T222933/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260515T222933/worst/paper.aux",
+      "artifacts/dream_reports/dream_20260515T222933/worst/paper.out",
+      "artifacts/dream_reports/dream_20260515T222933/worst/paper.pdf",
+      "artifacts/dream_reports/dream_20260515T222933/worst/paper.log",
+      "artifacts/dream_reports/dream_20260515T222933/logs/paper_agent_worst.log",
+      "artifacts/dream_reports/dream_20260515T222933/best/review_context.yaml",
+      "artifacts/dream_reports/dream_20260515T222933/logs/orchestrator.log",
+      "artifacts/_project/data/bootstrap_training_effect.json",
+      "artifacts/dream_reports/dream_20260515T222933/best/review_report.md",
+      "artifacts/dream_reports/dream_20260515T222933/logs/review_best.log",
+      "artifacts/dream_reports/dream_20260515T222933/median/review_context.yaml",
+      "artifacts/dream_reports/dream_20260515T222933/median/review_report.md",
+      "artifacts/dream_reports/dream_20260515T222933/logs/review_median.log",
+      "artifacts/dream_reports/dream_20260515T222933/worst/review_context.yaml",
+      "artifacts/dream_reports/dream_20260515T222933/worst/review_report.md",
+      "artifacts/dream_reports/dream_20260515T222933/logs/review_worst.log",
+      "artifacts/dream_reports/dream_20260515T222933/meta.yaml",
+      "artifacts/_project/data/action_probe_projector_summary.txt",
+      "artifacts/_project/data/action_delta_probe_projector.json",
+      "artifacts/_project/data/dino_action_probe.json",
+      "artifacts/_project/data/cka_verification_summary.txt",
+      "artifacts/_project/data/untrained_last_preaction_probe.json",
+      "artifacts/untrained_last_preaction_probe.json",
+      "artifacts/_project/report/redream_evidence_v2.md",
+      "artifacts/redream_evidence_v2.md",
+      "artifacts/dream_reports/dream_20260516T011810/logs/orchestrator.log",
+      "artifacts/dream_reports/dream_20260516T011810/logs/phase1_attempt0.log",
+      "artifacts/dream_reports/dream_20260516T011810/logs/phase2_best_attempt0.log",
+      "artifacts/dream_reports/dream_20260516T011810/logs/phase2_median_attempt0.log",
+      "artifacts/dream_reports/dream_20260516T011810/logs/phase2_worst_attempt0.log",
+      "artifacts/dream_reports/dream_20260516T011810/best/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260516T011810/best/experiment_data.json",
+      "artifacts/dream_reports/dream_20260516T011810/best/paper_framing.md",
+      "artifacts/dream_reports/dream_20260516T011810/best/paper.tex",
+      "artifacts/dream_reports/dream_20260516T011810/best/paper.aux",
+      "artifacts/dream_reports/dream_20260516T011810/best/paper.out",
+      "artifacts/dream_reports/dream_20260516T011810/best/paper.pdf",
+      "artifacts/dream_reports/dream_20260516T011810/best/paper.log",
+      "artifacts/dream_reports/dream_20260516T011810/logs/paper_agent_best.log",
+      "artifacts/dream_reports/dream_20260516T011810/median/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260516T011810/median/experiment_data.json",
+      "artifacts/dream_reports/dream_20260516T011810/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260516T011810/median/paper.tex",
+      "artifacts/dream_reports/dream_20260516T011810/median/paper.aux",
+      "artifacts/dream_reports/dream_20260516T011810/median/paper.out"
+    ],
+    "durationMs": 13,
+    "numFiles": 100,
+    "truncated": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 108_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No additional R² data in local artifacts that could help. The analysis is complete.
+
+Let me now prepare the comprehensive summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "ee04435f-71d8-4eed-b00f-ec257844b720",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQTT9dhXWh9mYxBFe7jBFe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2083,
+      "cache_read_input_tokens": 97155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2083
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109_
+
+## 汇报
+
+### 数据盘点
+
+| 数据类型 | 来源文件 | Task 覆盖 |
+|---------|---------|----------|
+| **Per-task R² (probe)** | `per_task_r2_distribution.json`, `unified_action_probe.json`, `action_probe_50demos.json` | **10 tasks** (LIBERO-Goal 全部) |
+| **Per-task paired MSE (ablation行为偏移)** | `action_trajectory_analysis.json` | **5 tasks** |
+| **Per-task model-vs-GT MSE** | `groundtruth_action_error.json` | **3 tasks** |
+| **Per-task success rate** | `sr_corrected_3ep.json` | **1 task** |
+
+**核心限制：behavioral outcome 数据最多只有 5 个 task。**
+
+### Correlation 结果 (n=5 tasks)
+
+**0/11 correlations 在 p<0.05 显著。**
+
+| Representational Metric | Behavioral Metric | Spearman ρ | p-value |
+|------------------------|-------------------|-----------|---------|
+| R²_L1 (5-demo) | paired_mse | -0.10 | 0.873 |
+| R²_L8 (5-demo) | paired_mse | -0.50 | 0.391 |
+| R²_L13 (5-demo) | paired_mse | -0.60 | 0.285 |
+| R²_projector (50-demo) | paired_mse | +0.30 | 0.624 |
+| R²_dino (50-demo) | paired_mse | +0.60 | 0.285 |
+| R²_vla_last_L19 (50-demo) | paired_mse | +0.40 | 0.505 |
+| R²_L1 (5-demo) | Cohen's d | -0.10 | 0.873 |
+| R²_projector | Cohen's d | +0.30 | 0.624 |
+| R²_vla_last_L19 | Cohen's d | +0.40 | 0.505 |
+| ΔR²_L1 (ablation) | paired_mse | +0.20 | 0.747 |
+| ΔR²_L8 (ablation) | paired_mse | -0.60 | 0.285 |
+
+### 10-task 交叉验证（representational only）
+
+唯一显著结果：**R²_projector vs R²_vla_last_L19: ρ=+0.83, p=0.003** — 不同 probe readout 对 task 难度排序高度一致。
+
+### 3-task model-vs-GT MSE（仅展示数据）
+
+| Task | Model MSE | R²_L1 | R²_proj | R²_vla |
+|------|-----------|-------|---------|--------|
+| open middle drawer | 0.562 | 0.197 | 0.497 | 0.601 |
+| top drawer + bowl | 0.548 | 0.265 | 0.750 | 0.752 |
+| push plate | 0.383 | 0.190 | 0.586 | 0.710 |
+
+MSE 最低的 push_plate 有中等 R² — 方向符合预期（低 MSE ↔ 高 R²），但 n=3 无法统计检验。
+
+### 结论
+
+**不能支持 "representational metrics predict behavioral outcomes" 的 claim。**
+
+- n=5 tasks 时，Spearman 检验需要 |ρ|≥0.9 才能达到 p<0.05，统计功效极低
+- 点估计在 -0.6 到 +0.6 之间摇摆，取决于选哪层/哪种 probe，无一致模式
+- 跨 representation 的一致性（ρ=0.83）表明 probe 本身可靠，但缺少足够的 behavioral 数据来做闭环
+
+### 要使这个分析可行
+
+需要 **per-task behavioral data 覆盖全部 10 个 task**。两个方案：
+1. **在全部 10 个 LIBERO-Goal task 上跑 `action_trajectory_analysis`**（当前只跑了 5 个）
+2. **扩展到 LIBERO-Long**（再加 10 个 task，提高 n 到 20）
+
+结果已保存至 `/root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "uuid": "9273f221-1ac1-4a5f-9326-e41e5e628fe2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQTT9dhXWh9mYxBFe7jBFe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2083,
+      "cache_read_input_tokens": 97155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2083
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 110_
+
+## 汇报
+
+### 数据盘点
+
+| 数据类型 | 来源文件 | Task 覆盖 |
+|---------|---------|----------|
+| **Per-task R² (probe)** | `per_task_r2_distribution.json`, `unified_action_probe.json`, `action_probe_50demos.json` | **10 tasks** (LIBERO-Goal 全部) |
+| **Per-task paired MSE (ablation行为偏移)** | `action_trajectory_analysis.json` | **5 tasks** |
+| **Per-task model-vs-GT MSE** | `groundtruth_action_error.json` | **3 tasks** |
+| **Per-task success rate** | `sr_corrected_3ep.json` | **1 task** |
+
+**核心限制：behavioral outcome 数据最多只有 5 个 task。**
+
+### Correlation 结果 (n=5 tasks)
+
+**0/11 correlations 在 p<0.05 显著。**
+
+| Representational Metric | Behavioral Metric | Spearman ρ | p-value |
+|------------------------|-------------------|-----------|---------|
+| R²_L1 (5-demo) | paired_mse | -0.10 | 0.873 |
+| R²_L8 (5-demo) | paired_mse | -0.50 | 0.391 |
+| R²_L13 (5-demo) | paired_mse | -0.60 | 0.285 |
+| R²_projector (50-demo) | paired_mse | +0.30 | 0.624 |
+| R²_dino (50-demo) | paired_mse | +0.60 | 0.285 |
+| R²_vla_last_L19 (50-demo) | paired_mse | +0.40 | 0.505 |
+| R²_L1 (5-demo) | Cohen's d | -0.10 | 0.873 |
+| R²_projector | Cohen's d | +0.30 | 0.624 |
+| R²_vla_last_L19 | Cohen's d | +0.40 | 0.505 |
+| ΔR²_L1 (ablation) | paired_mse | +0.20 | 0.747 |
+| ΔR²_L8 (ablation) | paired_mse | -0.60 | 0.285 |
+
+### 10-task 交叉验证（representational only）
+
+唯一显著结果：**R²_projector vs R²_vla_last_L19: ρ=+0.83, p=0.003** — 不同 probe readout 对 task 难度排序高度一致。
+
+### 3-task model-vs-GT MSE（仅展示数据）
+
+| Task | Model MSE | R²_L1 | R²_proj | R²_vla |
+|------|-----------|-------|---------|--------|
+| open middle drawer | 0.562 | 0.197 | 0.497 | 0.601 |
+| top drawer + bowl | 0.548 | 0.265 | 0.750 | 0.752 |
+| push plate | 0.383 | 0.190 | 0.586 | 0.710 |
+
+MSE 最低的 push_plate 有中等 R² — 方向符合预期（低 MSE ↔ 高 R²），但 n=3 无法统计检验。
+
+### 结论
+
+**不能支持 "representational metrics predict behavioral outcomes" 的 claim。**
+
+- n=5 tasks 时，Spearman 检验需要 |ρ|≥0.9 才能达到 p<0.05，统计功效极低
+- 点估计在 -0.6 到 +0.6 之间摇摆，取决于选哪层/哪种 probe，无一致模式
+- 跨 representation 的一致性（ρ=0.83）表明 probe 本身可靠，但缺少足够的 behavioral 数据来做闭环
+
+### 要使这个分析可行
+
+需要 **per-task behavioral data 覆盖全部 10 个 task**。两个方案：
+1. **在全部 10 个 LIBERO-Goal task 上跑 `action_trajectory_analysis`**（当前只跑了 5 个）
+2. **扩展到 LIBERO-Long**（再加 10 个 task，提高 n 到 20）
+
+结果已保存至 `/root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 361952,
+  "duration_api_ms": 355158,
+  "num_turns": 40,
+  "stop_reason": "end_turn",
+  "session_id": "44ffe784-ceca-47dc-87df-2a5311a988a0",
+  "total_cost_usd": 1.66519375,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 87397,
+    "cache_read_input_tokens": 1166779,
+    "output_tokens": 21346,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 87397,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1292,
+        "cache_read_input_tokens": 97155,
+        "cache_creation_input_tokens": 2083,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2083
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1678,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001808,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 21346,
+      "cacheReadInputTokens": 1166779,
+      "cacheCreationInputTokens": 87397,
+      "webSearchRequests": 0,
+      "costUSD": 1.66338575,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "11926ee0-a6b1-420e-8363-dda6fa15c127"
+}
+```
+
+</details>
+
+---

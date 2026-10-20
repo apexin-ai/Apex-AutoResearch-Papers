@@ -1,0 +1,160 @@
+experiments:
+- id: plan_001
+  claim: 1
+  description: SigLIP+Projector RSA vs Full VLA vs DINO — 证明 action-relevant 结构源自
+    frozen vision encoder
+  priority: P0
+  gpu_budget_hours: 1
+  deps: []
+  registry_id: d027_siglip_only_rsa
+  status: done
+  result: RSA=0.615 >> VLA 0.488 >> DINO 0.388
+- id: plan_002
+  claim: 1
+  description: DINO baseline RSA — standalone vision model 参照
+  priority: P0
+  gpu_budget_hours: 0.5
+  deps: []
+  registry_id: dinov2_baseline
+  status: done
+  result: RSA=0.388
+- id: plan_003
+  claim: 2
+  description: Per-layer RSA curve — 追踪 RSA 从 projector output 到 LLM 各层的变换轨迹
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  registry_id: plan_003_perlayer_degradation
+  status: done
+  result: 'D041 definitive: Trained image_mean inverted-U (L0=0.612→L12=0.628 peak→L32=0.422).
+    Untrained monotonic decay (L0=0.612→L32=0.545). Training shifts peak L0→L12.'
+- id: plan_004
+  claim: 2
+  description: Output head analysis — SigLIP+projector frozen 确认, LLM 权重变化不传导到表征
+  priority: P0
+  gpu_budget_hours: 0.5
+  deps: []
+  registry_id: d021_output_head_analysis
+  status: done
+  result: Projector frozen (cos_sim=1.0), LLM 32层 rel_change 均匀分布
+- id: plan_005
+  claim: 3
+  description: 6 probing methods × 2 benchmarks — 系统性验证 trained ≈ untrained
+  priority: P0
+  gpu_budget_hours: 8
+  deps: []
+  registry_id: mvp_probe_trained, mvp_probe_untrained, mvp2_action_trained, mvp2_action_untrained,
+    mvp2_action_dino, mvp2_delta_trained, mvp2_delta_untrained, mvp2_delta_dino, lg_rsa_analysis
+  status: done
+  result: 'All 6 methods consistent: trained ≈ untrained >> DINO'
+- id: plan_006
+  claim: 3
+  description: Instruction ablation — 去掉 instruction text 测 RSA 变化
+  priority: P0
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: d021_instruction_ablation
+  status: done
+  result: Δ=0.004 << 0.10 threshold, instruction has no effect
+- id: plan_007
+  claim: 3
+  description: 2×2 matrix (training × instruction) — 四条件全收敛
+  priority: P0
+  gpu_budget_hours: 1
+  deps:
+  - plan_006
+  registry_id: d027_trained_no_inst_rsa
+  status: done
+  result: All 4 cells ≈ 0.48-0.49, Bootstrap CI includes 0
+- id: plan_008
+  claim: 3
+  description: Random instruction control — 用随机/无意义 instruction 替代真实 instruction，验证
+    instruction content 不影响 RSA
+  priority: P1
+  gpu_budget_hours: 2
+  deps:
+  - plan_006
+  registry_id: plan_008_random_inst_control
+  status: done
+  result: 'All conditions within ±0.017: normal 0.489, random 0.484, shuffled 0.483,
+    empty 0.472. Instruction content invariant.'
+  note: 排除 trivial separability 攻击面 (D024). 三重不变性完备：training + instruction presence
+    + instruction content.
+- id: plan_011
+  claim:
+  - 1
+  - 2
+  - 3
+  description: Full-layer R² scan — 33 layers × 2 conditions × 2 aggregations = 132
+    probes，验证 R² per-layer curve 是否与 RSA inverted-U 一致
+  priority: P0
+  gpu_budget_hours: 1
+  deps:
+  - plan_001
+  registry_id: plan_011_fulllayer_r2
+  status: done
+  result: 'R² also inverted-U. Trained peaks: imgmean L8=0.655, lastpre L13=0.678
+    (both > proj 0.630). Training shifts R² peak and causes RSA-R² convergence. Untrained
+    L10-L13 pathological (R²≈0). Best-vs-best: imgmean Δ=+0.015 p=0.006, lastpre Δ=+0.069
+    p<0.0001.'
+- id: plan_012
+  claim:
+  - 1
+  - 2
+  description: CLIP-ViT pretraining control — 用 CLIP ViT-L 替代 SigLIP，区分 VL pretraining
+    贡献 vs encoder quality
+  priority: P1
+  gpu_budget_hours: 2
+  deps:
+  - plan_001
+  registry_id: plan_012_clip_vit_control
+  status: done
+  result: 'CLIP RSA=0.557, R²=0.587. D037 corrected: CLIP < DINO (0.631) in both dimensions.
+    VL pretraining does NOT improve over self-supervised.'
+  note: D037 invalidated 'VL pretraining dominance' interpretation. CLIP < DINO in
+    both RSA and R².
+- id: plan_013
+  claim:
+  - 1
+  description: Branch-split RSA — 从 DinoSigLIP fused backbone 分离 DINOv2 branch (1088d)
+    vs SigLIP branch (1088d) RSA，定量回答 fused backbone 中各组件对 action-aligned geometry
+    的贡献
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  - plan_012
+  registry_id: plan_013_branch_split
+  status: done
+  result: DINOv2 branch=0.619 ≈ SigLIP branch=0.621. Fused 2176d=0.634 > either branch.
+    Projector compresses 0.634→0.615. Both branches contribute equally.
+- id: plan_009
+  claim:
+  - 1
+  - 2
+  description: CKA verification — 用 CKA 指标重复 RSA 发现，确保不是指标依赖
+  priority: P2
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  registry_id: plan_009_cka_verification
+  status: done
+  result: 'PARTIAL: CKA ordering reversal vs RSA (untrained > trained > projector
+    > DINO). Hypothesis partially negated — CKA does NOT replicate RSA ordering. But
+    dissociation itself is a finding: RSA=geometric alignment (LLM degrades), CKA=global
+    structure (LLM preserves). last_preaction CKA=0.127 highest.'
+  note: CPU-only. RSA-CKA dissociation = new finding. Claim 2 must scope as 'geometric
+    degradation'.
+- id: plan_010
+  claim:
+  - 1
+  - 2
+  - 3
+  description: LIBERO-Spatial benchmark 扩展 — 第三个 benchmark 交叉验证
+  priority: P2
+  gpu_budget_hours: 4
+  deps: []
+  registry_id: plan010_action_probe_spatial
+  status: preparing
+  note: Director 批准启动。Data download + disk cleanup in progress.

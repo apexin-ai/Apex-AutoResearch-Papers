@@ -1,0 +1,28 @@
+{
+  "exp_id": "bootstrap_v3_cuda1",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:44:43.352Z",
+    "updated_at": "2026-05-26T16:55:57.016Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/vla-ssd && bash scripts/run_bootstrap_v3_cuda1.sh 2>&1 | tee logs/bootstrap_v3_cuda1.log\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "724291",
+      "log_path": "~/runs/vla-ssd/bootstrap_v3_cuda1.log",
+      "submitted_at": "2026-05-23T06:44:42.930Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-26T16:55:57.324640+00:00",
+  "trigger": "update_registry"
+}

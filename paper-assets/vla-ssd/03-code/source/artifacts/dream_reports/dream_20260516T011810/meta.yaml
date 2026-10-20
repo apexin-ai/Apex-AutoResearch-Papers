@@ -1,0 +1,2630 @@
+dream_id: dream_20260516T011810
+project: vla-ssd
+venue: ''
+focus: D030 Dream 后新增 8 项核心证据：(1) functional probe 三方对比 DINO≈Proj>LLM_img_mean, (2)
+  geometric-functional dissociation, (3) readout concentration training-dependent
+  (bootstrap p<0.0001), (4) CKA-RSA dissociation, (5) random/shuffled instruction
+  invariance. 三条 Claim 已完整定稿。重点评估：Claim 强度是否达 borderline accept+，narrative 一致性，reviewer
+  concern 覆盖度。
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: CLIP-ViT 控制实验确认 VL pretraining 是关键因子，LIBERO-Spatial 复现核心排序，三条 Claim
+        全强度成立
+      key_assumptions:
+      - CLIP-ViT RSA 落入 SigLIP 附近 (0.50-0.60)，证明 VL pretraining 通用有效而非 SigLIP 特异性
+      - LIBERO-Spatial 保持 SigLIP > VLA > DINO 排序，effect size 在 LIBERO-Goal 的 ±15%
+        内
+      - 训练不变性在 LIBERO-Spatial 复现 (bootstrap CI includes 0)
+      - Geometric-functional dissociation (DINO ≈ Proj in R², RSA gap 0.23) 被接受为方法论贡献
+      - Reviewer 接受 single-architecture scope + CKA-RSA dissociation 作为正面发现
+      number_ranges:
+        clip_vit_rsa:
+        - 0.5
+        - 0.6
+        libero_spatial_siglip_rsa:
+        - 0.55
+        - 0.65
+        libero_spatial_training_delta_p:
+        - 0.1
+        - 1.0
+        libero_spatial_readout_delta:
+        - 0.03
+        - 0.06
+        reviewer_score_median:
+        - 6
+        - 8
+      narrative_direction: '原始 framing 完全成立。三条 Claim 无需调整：(1) Vision encoder dominance
+        泛化至 VL-pretrained encoder 族， CLIP-ViT 作为独立验证消除 SigLIP-specific confound；(2)
+        LLM geometric degradation + readout concentration 跨 benchmark 复现；(3) Routing-without-creating
+        在两个 benchmark 上均成立。 CKA-RSA dissociation 升格为第四个 finding（geometric vs global
+        structure 分离）。 标题可用 "Where Do Actions Come From?" 的强叙事。
+
+        '
+    median:
+      tier: median
+      meaning: CLIP-ViT 结果存在 confound 但可控，LIBERO-Spatial 未完成或部分复现，需软化 Claim 1 并加限定词
+      key_assumptions:
+      - CLIP-ViT RSA 落入中间地带 (0.42-0.50)：高于 DINO 但显著低于 SigLIP，VL pretraining 有贡献但 SigLIP
+        有额外优势
+      - LIBERO-Spatial 未在 deadline 前完成，或排序保持但 effect size 缩小 30-50%
+      - Claim 2/3 的 readout concentration (Δ=0.045, p<0.0001) 不受影响——这是最强证据
+      - 至少一位 reviewer 质疑 single-architecture + single-benchmark 泛化性
+      - CKA-RSA dissociation 被一位 reviewer 视为 metric confusion 而非 finding
+      number_ranges:
+        clip_vit_rsa:
+        - 0.42
+        - 0.5
+        libero_spatial_siglip_rsa:
+        - 0.45
+        - 0.58
+        libero_spatial_training_delta_p:
+        - 0.03
+        - 0.15
+        libero_spatial_readout_delta:
+        - 0.015
+        - 0.035
+        reviewer_score_median:
+        - 4
+        - 6
+      narrative_direction: 'Claim 1 从 "vision encoder dominance" 软化为 "VL-pretrained
+        vision encoder dominance, with SigLIP showing strongest alignment"——承认 encoder
+        choice 影响 geometric alignment 程度，但核心论点（action structure 源自 frozen encoder
+        而非 LLM fine-tuning）不变。 Claim 2/3 保持原强度，readout concentration 作为 headline result
+        前置。 补充 CLIP-ViT 作为 partial control（VL pretraining > self-supervised，但 encoder
+        间差异存在）。 Discussion 增加 "pretraining recipe matters" 一段。论文重心从 "where actions
+        come from" 微调为 "what fine-tuning actually learns"——以 Claim 3 (routing-not-creating)
+        为核心卖点， Claim 1 降为支撑性 finding。Rebuttal 准备 LIBERO-Spatial 初步结果或 promise。
+
+        '
+    worst:
+      tier: worst
+      meaning: CLIP-ViT 打破 VL-pretraining 解释（RSA ≈ DINO 或 RSA > SigLIP），核心 framing
+        需重构
+      key_assumptions:
+      - CLIP-ViT RSA < 0.42（接近 DINO 0.388）：VL pretraining 不是充分条件，SigLIP 的 geometric
+        alignment 来自其特定训练配方而非 VL pretraining 大类
+      - 或 CLIP-ViT RSA > 0.60（> SigLIP）：说明 geometric alignment 与下游 action performance
+        脱钩，undermines RSA 作为核心 metric 的 validity
+      - LIBERO-Spatial 排序反转或训练不变性被打破（trained >> untrained, p<0.05）
+      - Reviewer 共识：scope 太窄 + metric dependency 未充分解决
+      number_ranges:
+        clip_vit_rsa:
+        - 0.35
+        - 0.42
+        libero_spatial_siglip_rsa:
+        - 0.35
+        - 0.5
+        libero_spatial_training_delta_p:
+        - 0.001
+        - 0.03
+        libero_spatial_readout_delta:
+        - 0.0
+        - 0.015
+        reviewer_score_median:
+        - 3
+        - 5
+      narrative_direction: 放弃 "vision encoder dominance" 作为 Claim 1。重构为两个替代 angle
+        之一： (A) "Architectural analysis" framing——聚焦 Claim 2+3（LLM redistribution
+        + routing-not-creating）， 这两条证据不依赖 CLIP-ViT 结果且统计功效强（p<0.0001）。Claim 1 降级为
+        observation（"SigLIP provides highest geometric alignment in OpenVLA"）而非 general
+        claim。标题改为 "Fine-Tuning Teaches Routing, Not Representation" 或类似。 (B) "Metric
+        dissociation" framing——如果 CLIP-ViT RSA > SigLIP 且 R² < SigLIP， 则 geometric-functional
+        dissociation 本身成为核心贡献：RSA 和 functional probe 捕捉不同维度， 单一 metric 不足以评估 VLA 表征质量。CKA-RSA-R²
+        三重分离作为方法论贡献。 两个 angle 均不降级 venue（CoRL 2026 接受 analysis/understanding 论文），但需要重写
+        intro 和 framing（~2 天工作量）。Claim 3 的 routing-not-creating 在任何场景下都成立， 是 worst
+        case 的保底叙事锚点。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260516T011810/best/paper.pdf
+  imagined_experiments:
+  - name: CLIP-ViT Pretraining Control
+    plan_id: plan_012
+    description: '用 CLIP ViT-L/14 (OpenAI) 替代 SigLIP 作为 standalone vision encoder，
+      提取 LIBERO-Goal 相同 10 task 的特征，计算 RSA、CKA、functional probe R²， 与 SigLIP+Projector
+      和 DINO 三方对比。目的：区分 "VL pretraining 通用贡献" vs "SigLIP 特异性"。
+
+      '
+    expected_results:
+      clip_vit_rsa_pooled: 0.553
+      clip_vit_rsa_per_task_mean: 0.548
+      clip_vit_rsa_bootstrap_ci:
+      - 0.47
+      - 0.63
+      siglip_projector_rsa: 0.615
+      dino_rsa: 0.388
+      gap_clip_vs_siglip: -0.062
+      gap_clip_vs_dino: 0.165
+      bootstrap_clip_vs_siglip_delta: -0.062
+      bootstrap_clip_vs_siglip_ci:
+      - -0.14
+      - 0.02
+      bootstrap_clip_vs_siglip_p: 0.08
+      bootstrap_clip_vs_dino_delta: 0.165
+      bootstrap_clip_vs_dino_ci:
+      - 0.08
+      - 0.25
+      bootstrap_clip_vs_dino_p: 0.001
+      clip_vit_action_probe_R2: 0.695
+      clip_vit_action_delta_R2: 0.108
+      clip_vit_linear_cka: 0.076
+      clip_vit_rdm_cka: 0.248
+      rsa_ordering: SigLIP (0.615) > CLIP (0.553) > DINO (0.388)
+      probe_ordering: DINO (0.712) ≈ SigLIP (0.706) ≈ CLIP (0.695) >> LLM_img_mean
+        (0.683)
+      cka_ordering: SigLIP (0.081) ≈ CLIP (0.076) > DINO (0.066)
+    result_rationale: 'CLIP ViT-L 与 SigLIP 同属 VL contrastive pretrained encoder 族，训练目标均为
+      image-text alignment（CLIP 用 softmax cross-entropy，SigLIP 用 sigmoid pairwise
+      loss）。 两者在 ImageNet zero-shot 上表现接近（CLIP ViT-L ~75.5%, SigLIP ~78%），说明 learned
+      visual representation 质量相当。RSA 预测 CLIP 略低于 SigLIP（0.553 vs 0.615） 有两个原因：(1)
+      SigLIP 的 sigmoid loss 更好地保留 fine-grained 距离结构（softmax 跨 batch normalization
+      会压缩 hard negative 的梯度信号），(2) OpenVLA 的 projector 是针对 SigLIP 输出空间训练的，CLIP 特征经过不同的
+      normalization 和 embedding space， 几何对齐自然略差。但 CLIP 远高于 DINO（+0.165）是因为 VL pretraining
+      赋予的 language grounding 使 representation 空间的距离结构天然更贴近 task-conditioned action
+      structure——action 空间由 language-described goals 划分，VL encoder 在 pretraining 时已学会按语义组织视觉特征。DINO
+      虽然 action R² 与 VL encoder 相当（self-supervised 特征包含充分的 positional/state 信息），但其几何结构按
+      visual similarity 而非 semantic similarity 组织，导致 RSA 低。CLIP vs SigLIP 的 bootstrap
+      CI 预计包含 0（p~0.08），说明两者差异不显著——这正是 best tier 所需： 证明 VL pretraining 是通用有效的，而非 SigLIP
+      特异的。
+
+      '
+    tables:
+    - title: 'Table: Vision Encoder RSA Comparison (LIBERO-Goal)'
+      columns:
+      - Model
+      - Pretraining
+      - RSA_ρ
+      - 95%_CI
+      - Action_R²
+      - Delta_R²
+      rows:
+      - - SigLIP+Proj
+        - VL (sigmoid)
+        - 0.615
+        - '[0.53, 0.70]'
+        - 0.706
+        - 0.118
+      - - CLIP_ViT-L
+        - VL (softmax)
+        - 0.553
+        - '[0.47, 0.63]'
+        - 0.695
+        - 0.108
+      - - DINOv2
+        - Self-supervised
+        - 0.388
+        - '[0.30, 0.47]'
+        - 0.712
+        - 0.1
+      - - VLA_img_mean_L23
+        - VL+FT
+        - 0.501
+        - '[0.42, 0.58]'
+        - 0.683
+        - 0.122
+    - title: 'Table: Pairwise Bootstrap Tests'
+      columns:
+      - Comparison
+      - Delta
+      - 95%_CI
+      - p_value
+      - Significant
+      rows:
+      - - CLIP_vs_SigLIP
+        - -0.062
+        - '[-0.14, 0.02]'
+        - 0.08
+        - 'No'
+      - - CLIP_vs_DINO
+        - 0.165
+        - '[0.08, 0.25]'
+        - 0.001
+        - 'Yes'
+      - - CLIP_vs_VLA_img_mean
+        - 0.052
+        - '[-0.03, 0.13]'
+        - 0.1
+        - 'No'
+    figures_description:
+    - 'Bar chart: RSA ρ 四组对比 (SigLIP / CLIP / VLA_img_mean / DINO)，含 bootstrap 95%
+      CI error bars。关键视觉信息：SigLIP 和 CLIP 的 CI 重叠，两者均显著高于 DINO。中间插入 VLA_img_mean 显示
+      LLM degradation 效应。'
+    - 'Scatter plot (supplementary): CLIP ViT-L per-task RSA vs SigLIP per-task RSA，10
+      个点沿对角线分布，Pearson r > 0.85，说明两个 VL encoder 在 task 维度上行为一致。'
+    analysis: 'CLIP RSA=0.553 落入 best tier 预期的 [0.50, 0.60] 区间。与 SigLIP 的差异 不显著（p=0.08,
+      CI 包含 0），而与 DINO 差异高度显著（p=0.001）。这建立了一个 clean 的三级结构：VL-pretrained encoder 族
+      (SigLIP ≈ CLIP, RSA ~0.55-0.62) >> Self-supervised (DINO, RSA ~0.39) >> LLM
+      degraded (img_mean ~0.50)。 Functional probe R² 的三方近似相等（DINO 0.712 ≈ SigLIP 0.706
+      ≈ CLIP 0.695） 再次确认 geometric-functional dissociation：action information 的存在（R²）不依赖
+      pretraining 方式，但几何对齐（RSA）依赖 VL pretraining。 论文 Claim 1 可从 "SigLIP dominance"
+      安全地泛化为 "VL-pretrained encoder dominance"。 Discussion 中将 SigLIP vs CLIP 的微小差异归因于
+      loss function 差异（sigmoid vs softmax） 和 OpenVLA projector 的 SigLIP-specific 训练，但强调这不影响主结论。
+
+      '
+  - name: LIBERO-Spatial Cross-Benchmark Validation
+    plan_id: plan_010
+    description: '在 LIBERO-Spatial 的 10 个 task 上完整复现 LIBERO-Goal 的全部分析流程： (1) 四条件
+      RSA (trained/untrained × with/no-inst image_mean)， (2) SigLIP+Projector RSA，(3)
+      DINO RSA， (4) per-layer degradation curve，(5) bootstrap CI on training effect，
+      (6) functional probe (projector / LLM img_mean / readout / untrained readout)，
+      (7) CKA verification。验证三条 Claim 跨 benchmark 泛化。
+
+      '
+    expected_results:
+      siglip_projector_rsa: 0.587
+      siglip_projector_rsa_ci:
+      - 0.5
+      - 0.67
+      trained_with_inst_image_mean_rsa: 0.482
+      trained_with_inst_peak_layer: 21
+      untrained_with_inst_image_mean_rsa: 0.468
+      untrained_with_inst_peak_layer: 20
+      trained_no_inst_image_mean_rsa: 0.479
+      untrained_no_inst_image_mean_rsa: 0.463
+      dino_rsa: 0.371
+      rsa_ordering: SigLIP (0.587) >> VLA_trained (0.482) ≈ VLA_untrained (0.468)
+        >> DINO (0.371)
+      ordering_matches_libero_goal: true
+      libero_goal_siglip_rsa: 0.615
+      libero_spatial_vs_goal_siglip_ratio: 0.955
+      libero_goal_gap_siglip_vs_vla: 0.114
+      libero_spatial_gap_siglip_vs_vla: 0.105
+      effect_size_within_15pct: true
+      training_delta_image_mean: 0.014
+      training_delta_bootstrap_ci:
+      - -0.04
+      - 0.06
+      training_delta_p: 0.22
+      training_delta_significant: false
+      instruction_delta_trained: -0.003
+      instruction_delta_untrained: 0.005
+      two_by_two_matrix:
+        trained_with_inst: 0.482
+        trained_no_inst: 0.479
+        untrained_with_inst: 0.468
+        untrained_no_inst: 0.463
+      two_by_two_band: '[0.46, 0.49]'
+      bootstrap_2x2_ci_includes_zero: true
+      proj_to_L1_drop_trained: 0.19
+      proj_to_L1_drop_untrained: 0.14
+      total_degradation: 0.105
+      pattern: non-monotonic, consistent with LIBERO-Goal
+      projector_action_R2: 0.688
+      trained_image_mean_best_R2: 0.662
+      trained_image_mean_best_layer: 18
+      trained_readout_best_R2: 0.715
+      trained_readout_best_layer: 18
+      untrained_readout_best_R2: 0.669
+      untrained_readout_best_layer: 31
+      bootstrap_proj_vs_img_mean:
+        delta: 0.026
+        ci:
+        - 0.012
+        - 0.041
+        p: 0.002
+      bootstrap_trained_vs_untrained_readout:
+        delta: 0.046
+        ci:
+        - 0.03
+        - 0.062
+        p: 0.0001
+      readout_concentration_confirmed: true
+      dino_action_R2: 0.693
+      dino_vs_proj_delta: 0.005
+      dino_vs_proj_p: 0.28
+      dino_approx_proj: true
+      geometric_functional_dissociation_rsa_gap: 0.216
+      cka_linear_trained_L21: 0.079
+      cka_linear_untrained_L20: 0.085
+      cka_linear_projector: 0.077
+      cka_linear_dino: 0.062
+      cka_ordering: untrained > trained > projector > DINO
+      cka_rsa_dissociation_replicated: true
+      cka_last_preaction_trained: 0.121
+      projector_delta_R2: 0.109
+      trained_delta_R2: 0.113
+      delta_probe_gap: -0.004
+      delta_probe_ci_includes_zero: true
+    result_rationale: 'LIBERO-Spatial 与 LIBERO-Goal 共享相同的 LIBERO kitchen 环境和物体集，但
+      task 定义侧重空间关系（"put X next to Y", "put X on top of Y"）而非目标状态差异。 这意味着：(1) 视觉场景相似度更高（物体相同，只是空间配置不同），action
+      空间的 task 间区分度可能略低，预期 RSA 绝对值略低于 LIBERO-Goal（SigLIP 0.587 vs 0.615， 差约 5%）；(2)
+      但相对排序不变——VL pretraining 赋予的 semantic geometric alignment 不依赖 task 定义方式，SigLIP
+      和 CLIP 在 spatial reasoning 上同样优于 DINO； (3) 训练不变性甚至可能更强——LIBERO-Spatial 的 action
+      分布更集中（主要是 pick-place 的空间变体），LLM 层面的 distributed representation 更难区分 trained/untrained。
+
+      Readout concentration 的 effect size 预期与 LIBERO-Goal 高度一致（Δ≈0.046）， 因为 readout
+      机制是 architecture-level 行为：self-attention 将 image token 信息 汇聚到 prediction position
+      的能力由训练学得，与具体 benchmark 的 task 定义无关。 Untrained readout R²=0.669 仍低于 projector
+      0.688，确认 redistribution requires training。
+
+      DINO 在 LIBERO-Spatial 上 action R² 同样接近 projector（0.693 vs 0.688）， 但 RSA gap
+      扩大（0.371 vs 0.587，gap=0.216 > LIBERO-Goal 的 0.227），因为 spatial task 更依赖 semantic
+      layout understanding，DINO 的 geometric structure 更不匹配。这进一步强化 geometric-functional
+      dissociation。
+
+      CKA 排序反转在 LIBERO-Spatial 上同样复现（untrained > trained > projector > DINO）， 因为 CKA
+      捕捉的 global structure preservation 是 LLM 架构的固有属性，不依赖 benchmark。
+
+      '
+    tables:
+    - title: 'Table: RSA Cross-Benchmark Comparison'
+      columns:
+      - Model
+      - LIBERO-Goal_RSA
+      - LIBERO-Spatial_RSA
+      - Ratio
+      rows:
+      - - SigLIP+Proj
+        - 0.615
+        - 0.587
+        - 0.955
+      - - VLA_trained_img_mean
+        - 0.501
+        - 0.482
+        - 0.962
+      - - VLA_untrained_img_mean
+        - 0.485
+        - 0.468
+        - 0.965
+      - - DINO
+        - 0.388
+        - 0.371
+        - 0.956
+    - title: 'Table: 2×2 Matrix — LIBERO-Spatial'
+      columns:
+      - Condition
+      - with_inst
+      - no_inst
+      - Instruction_Δ
+      rows:
+      - - Trained
+        - 0.482
+        - 0.479
+        - -0.003
+      - - Untrained
+        - 0.468
+        - 0.463
+        - 0.005
+      - - Training_Δ
+        - 0.014
+        - 0.016
+        - ''
+    - title: 'Table: Functional Probe Cross-Benchmark'
+      columns:
+      - Model
+      - LIBERO-Goal_R²
+      - LIBERO-Spatial_R²
+      - Δ
+      rows:
+      - - SigLIP+Proj
+        - 0.706
+        - 0.688
+        - -0.018
+      - - Trained_img_mean
+        - 0.683
+        - 0.662
+        - -0.021
+      - - Trained_readout
+        - 0.731
+        - 0.715
+        - -0.016
+      - - Untrained_readout
+        - 0.686
+        - 0.669
+        - -0.017
+      - - DINO
+        - 0.712
+        - 0.693
+        - -0.019
+    - title: 'Table: Readout Concentration Bootstrap (LIBERO-Spatial)'
+      columns:
+      - Comparison
+      - Δ
+      - 95%_CI
+      - p_value
+      rows:
+      - - Proj_vs_img_mean_L18
+        - 0.026
+        - '[0.012, 0.041]'
+        - 0.002
+      - - Trained_vs_untrained_readout
+        - 0.046
+        - '[0.030, 0.062]'
+        - <0.0001
+      - - Training_effect_RSA
+        - 0.014
+        - '[-0.04, 0.06]'
+        - 0.22
+    figures_description:
+    - 'Paired bar chart: LIBERO-Goal vs LIBERO-Spatial RSA 四组对比（SigLIP / VLA trained
+      / VLA untrained / DINO），每组两根柱子（Goal 浅色, Spatial 深色），含 95% CI error bars。 关键视觉信息：两个
+      benchmark 的柱子高度几乎平行下移 ~5%，排序完全一致。
+
+      '
+    - 'Per-layer RSA degradation curve overlay: LIBERO-Goal (实线) vs LIBERO-Spatial
+      (虚线)， trained with-inst 条件。两条曲线形状高度吻合（Proj→L1 大幅下降，中间层非单调恢复）， Spatial 曲线整体偏低约
+      0.02。标注 projector baseline 水平线。
+
+      '
+    - 'Readout concentration scatter: x 轴 LIBERO-Goal (trained readout R² - untrained
+      readout R²), y 轴 LIBERO-Spatial 同指标，10 个 task 散点。Points 聚集在对角线右上方（正象限）， 说明 readout
+      concentration effect 在两个 benchmark 上 per-task 一致。
+
+      '
+    - 'CKA-RSA dissociation 双面板图 (supplementary): 左面板 LIBERO-Goal，右面板 LIBERO-Spatial，
+      每面板四组柱子（trained/untrained/proj/DINO），RSA 用蓝色、CKA 用橙色。 两面板均显示排序反转模式：RSA proj>trained>untrained>DINO，CKA
+      untrained>trained>proj>DINO。
+
+      '
+    analysis: 'LIBERO-Spatial 完整复现三条 Claim 的核心证据：
+
+      **Claim 1 (Vision Encoder Dominance)**: SigLIP RSA=0.587 >> VLA 0.482 >> DINO
+      0.371，排序一致，effect size 在 ±15% 内（ratio 0.955-0.965）。DINO ≈ Proj in R²（0.693 vs
+      0.688, p=0.28）但 RSA gap=0.216，geometric-functional dissociation 在第二个 benchmark
+      复现。
+
+      **Claim 2 (LLM Redistributes)**: Proj→L1 drop ~0.19（32%），per-layer 非单调模式一致。Readout
+      concentration confirmed：trained readout R²=0.715 > proj 0.688 > untrained readout
+      0.669。 CKA 排序反转复现。
+
+      **Claim 3 (Routing Without Creating)**: Training delta RSA=0.014, CI=[-0.04,
+      0.06], p=0.22——不显著，invariance 成立。 2×2 matrix 全部落入 [0.46, 0.49] band。Readout
+      Δ=0.046, CI=[0.030, 0.062], p<0.0001——routing effect 高度显著且 effect size 与 LIBERO-Goal
+      几乎相同（0.045）。
+
+      所有核心数值的 cross-benchmark ratio 在 0.95-0.97 之间，说明 benchmark 选择 对绝对值有微小影响（LIBERO-Spatial
+      的空间任务区分度略低）但对结论无任何影响。 这为论文提供了 "replicated across benchmarks" 的泛化声明。'
+  review_report: '---
+
+    dream_id: dream_20260516T011810
+
+    tier: best
+
+    overall_score: weak accept
+
+    timestamp: 2026-05-16T01:46:41.482834+00:00
+
+    ---
+
+
+    # Dream Review Report: "Where Do Actions Come From?"
+
+
+    **dream_id:** 20260516T011810 | **review_mode:** full | **reviewers:** R1 (Methods+Experiments),
+    R2 (Novelty+Related Work)
+
+
+    ---
+
+
+    ## Consolidated Assessment
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |---|---|---|---|
+
+    | Overall Score | 4 (Weak Accept) | 4 (Weak Accept) | **4 (Weak Accept)** |
+
+    | Confidence | 4/5 | 4/5 | 4/5 |
+
+
+    **One-line verdict:** A methodologically rigorous empirical analysis with one
+    genuinely novel finding (geometric–functional dissociation) but limited by single-architecture
+    scope, partially confirmatory nature relative to concurrent work, and weak evidence
+    for the boldest claim (Claim 3).
+
+
+    ---
+
+
+    ## Summary of the Paper
+
+
+    The paper decomposes the representational structure of OpenVLA into contributions
+    from the frozen vision encoder (SigLIP), learned projector, and fine-tuned LLM
+    backbone. Using RSA, CKA, and functional action probes across two LIBERO benchmarks
+    and three standalone vision encoders (SigLIP, CLIP ViT-L, DINOv2), it establishes
+    three findings:
+
+
+    1. **VL-pretrained encoder dominance:** SigLIP+Projector achieves highest RSA
+    with action structure (ρ=0.615); CLIP ViT-L is statistically indistinguishable
+    (ρ=0.553, p=0.08); DINO significantly lower (ρ=0.388). Yet all encoders carry
+    comparable action information (R²≈0.70).
+
+    2. **LLM redistributes, training-dependently:** RSA degrades from projector to
+    LLM image tokens (0.615→0.501), but trained readout token exceeds the projector
+    (R²=0.731 vs 0.706). Untrained readout cannot achieve this (R²=0.686).
+
+    3. **Training routes, not creates:** Distributed RSA is training-invariant (0.501
+    vs 0.485, p=0.20) while readout concentration is training-dependent (ΔR²=0.045,
+    p<0.0001). Language instructions affect neither.
+
+
+    All findings reportedly replicate on LIBERO-Spatial (cross-benchmark ratios 0.95–0.97).
+
+
+    ---
+
+
+    ## Strengths
+
+
+    ### S1. Geometric–Functional Dissociation (Both Reviewers — Major Strength)
+
+    The most genuinely novel finding. DINO achieves action probe R² comparable to
+    SigLIP+Projector (0.712 vs 0.706, p=0.22) yet has vastly lower RSA (0.388 vs 0.615).
+    This clean separation between "information presence" and "geometric alignment
+    with action structure" has not been explicitly demonstrated in the VLA domain.
+    It reframes the role of VL pretraining as contributing geometric organization,
+    not information content — a conceptually crisp and practically relevant insight.
+
+
+    ### S2. Rigorous Experimental Design (R1)
+
+    The 2×2 factorial design ({trained, untrained} × {with, no instruction}) with
+    additional random/shuffled/empty instruction controls is thorough. The untrained
+    control (reinitializing LLM weights while preserving frozen encoder+projector)
+    cleanly isolates the LLM''s contribution. Bootstrap CIs (10,000 resamples) and
+    permutation-based p-values are appropriate for the non-parametric comparisons.
+
+
+    ### S3. Complementary Metrics (Both Reviewers)
+
+    The RSA–CKA–probe troika captures distinct aspects of representation structure
+    (local geometry, global structure, functional information). The CKA–RSA dissociation
+    (ordering reversal) is intellectually honest and adds depth: the LLM degrades
+    local distance alignment while preserving or improving global structural correspondence.
+
+
+    ### S4. CLIP Pretraining Control (R1)
+
+    The CLIP ViT-L/14 control experiment effectively generalizes Claim 1 from "SigLIP
+    dominance" to "VL-pretrained encoder dominance," establishing a three-tier structure:
+    VL-pretrained (ρ∼0.55–0.62) >> VLA backbone (ρ∼0.50) >> self-supervised (ρ∼0.39).
+
+
+    ### S5. Clear Practical Implications (R2)
+
+    The paper provides representational-level grounding for the emerging practical
+    consensus that vision encoder quality matters more than LLM scale for VLA performance.
+
+
+    ---
+
+
+    ## Weaknesses
+
+
+    ### W1. Single Architecture, Single Model Scale (Both — Major)
+
+    All claims are established on OpenVLA-7B only. The paper title ("Vision-Language-Action
+    Models" plural) overclaims relative to evidence from one model. Modern VLAs differ
+    architecturally: pi0/pi0.5 use flow matching with separate expert pathways, Octo
+    uses diffusion-based action heads, RT-2-X uses different scales. The "vision encoder
+    dominance" may not hold for architectures where the action pathway is structurally
+    separated from the VLM pathway. Testing even one additional architecture (Octo
+    is open-source) would substantially strengthen the claims.
+
+
+    **Recommendation:** Scope claims precisely to "OpenVLA-class autoregressive VLAs"
+    or test at least one additional architecture.
+
+
+    ### W2. Extreme "Untrained" Control (R2 — Major)
+
+    The "untrained" model uses a randomly-initialized LLM, not a base pretrained Llama-2.
+    This is an extreme comparison that conflates "VLA fine-tuning effect" with "language
+    pretraining + VLA fine-tuning effect." The frozen encoder+projector dominate input
+    regardless of LLM state, so similar early-layer representations are expected by
+    construction. A comparison with the base pretrained Llama-2 (language-only, no
+    action fine-tuning) would be far more informative for the "routing not creating"
+    claim.
+
+
+    **Impact on claims:** Makes the "training invariance" finding (Claim 3) less surprising
+    than presented. The null result may reflect projector-bottleneck constraints rather
+    than a deep principle about fine-tuning.
+
+
+    ### W3. Claim 3 Rests on a Null Result Without Equivalence Testing (Both — Major)
+
+    The claim "training does not change distributed representation structure" relies
+    on non-significance (p=0.20) with n=10 tasks and observed Δ=0.016. Statistical
+    power to detect a true small effect is very low. Absence of evidence ≠ evidence
+    of absence. The paper should report a Two One-Sided Tests (TOST) equivalence procedure
+    with a pre-specified margin (e.g., Δ < 0.05) to affirmatively establish equivalence.
+
+
+    ### W4. Partially Confirmatory of Concurrent Work (R2 — Moderate)
+
+    Grant et al. (2026) already established "visual pathway dominates" and "language
+    encoded but not used" across 6 VLA architectures with real-world deployment. This
+    paper confirms the same finding at a representational level but the incremental
+    novelty beyond Grant''s conclusions is limited to the geometric–functional dissociation.
+    The paper should more explicitly position its unique contribution relative to
+    Grant et al.
+
+
+    ### W5. OOD Confound (R1 — Moderate)
+
+    The trained model was fine-tuned on LIBERO-10 but analyzed on LIBERO-Goal (out-of-distribution).
+    The "training does not change representations" could alternatively be interpreted
+    as "training on LIBERO-10 does not transfer to LIBERO-Goal representations." Analyzing
+    on in-distribution data (LIBERO-10 itself) would control for this confound.
+
+
+    ### W6. Language Instruction Null Result Is Trivially Expected (R2 — Moderate)
+
+    In LIBERO, each scene uniquely determines the task, making instructions redundant.
+    The model learned to ignore instructions because they were uninformative in training.
+    This is not evidence that VLAs generally cannot use language — it is evidence
+    specific to this benchmark''s design. The paper should acknowledge this more explicitly.
+
+
+    ### W7. Missing Related Work Connections (R2 — Moderate)
+
+    Key missing references:
+
+    - **Aghajanyan et al. (2021)** "Intrinsic Dimensionality" — fine-tuning operates
+    in a low-dimensional subspace, a precursor to "routing not creating."
+
+    - **Voita et al. (2019)** on attention head pruning and information routing —
+    directly relevant to the "routing" claim.
+
+    - **Huh et al. (2024)** "Platonic Representation Hypothesis" — representation
+    convergence across modalities, relevant to why DINO and SigLIP have similar R².
+
+    - **Hewitt & Manning (2019)** — probe complexity concerns the authors themselves
+    identified but never formally addressed.
+
+    - Broader probing literature in NLP (Belinkov & Glass 2019 survey).
+
+
+    ### W8. No Probe Complexity Ablation (R1 — Minor)
+
+    The MLP probe (Linear-ReLU-Linear, 256 hidden units) is a specific capacity choice.
+    A linear probe baseline would clarify whether differences reflect information
+    content or probe overfitting. This concern (Hewitt & Manning 2019) was identified
+    during development but not addressed in the paper.
+
+
+    ### W9. Cross-Benchmark Replication Limitations (Both — Minor)
+
+    LIBERO-Spatial and LIBERO-Goal share the same simulator, visual style, and related
+    task structures. True generalization claims would require a different simulator
+    or real-world data. The "cross-benchmark ratios 0.95–0.97" may reflect benchmark
+    similarity rather than finding robustness.
+
+
+    ### W10. Copy Baseline and Autocorrelation (R1 — Minor)
+
+    A copy baseline (a_{t+1} = a_t) achieves R²=0.97 due to trajectory smoothness,
+    compressing the meaningful signal range. The absolute R² values (~0.70) may be
+    substantially inflated by temporal autocorrelation. The meaningful differences
+    (0.03–0.05 range) are small in absolute terms.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    **Q1 (R1, Critical):** Were the LIBERO-Spatial results (Tables 4–7) actually computed
+    from executed experiments? If so, through which experiment run?
+
+
+    **Q2 (Both, Major):** Have you considered running a TOST equivalence procedure
+    for Claim 3, to affirmatively establish equivalence within a pre-specified margin
+    rather than relying on non-significance?
+
+
+    **Q3 (R2, Major):** What does the RSA look like for a base Llama-2 pretrained
+    model (not fine-tuned for actions, not randomly initialized)? This would isolate
+    the contribution of VLA fine-tuning from language pretraining.
+
+
+    **Q4 (R1):** What is the R² of a linear probe (no hidden layer) at the projector
+    and best LLM layer? This would address the Hewitt & Manning (2019) concern.
+
+
+    **Q5 (R1):** Would the trained model show different results if analyzed on LIBERO-10
+    (in-distribution) rather than LIBERO-Goal (OOD)?
+
+
+    **Q6 (R2):** The CKA ordering reversal (untrained > trained > projector) is described
+    but not adequately explained. Why would an untrained LLM have higher CKA with
+    action structure than a trained one?
+
+
+    **Q7 (R1):** How sensitive are RSA results to the dissimilarity metric choice
+    (cosine vs Euclidean vs correlation distance)?
+
+
+    **Q8 (R2):** For the CLIP control: was the comparison controlled for representation
+    dimensionality? CLIP and SigLIP have different embedding spaces.
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    | Planned Experiment | Covered in Paper? | Assessment |
+
+    |---|---|---|
+
+    | CLIP-ViT Pretraining Control (plan_012) | Yes — Tables 1–2 | Fully covered,
+    results match expected values |
+
+    | LIBERO-Spatial Cross-Benchmark (plan_010) | Yes — Tables 4–7 | Results reported
+    but execution status unclear from project infrastructure |
+
+
+    Both planned experiments appear in the paper. The CLIP control is convincing.
+    The LIBERO-Spatial replication, if executed, provides useful (though limited)
+    cross-benchmark validation.
+
+
+    ---
+
+
+    ## Suggestions for Improvement
+
+
+    1. **Add one additional VLA architecture** (e.g., Octo) to justify claims about
+    "VLAs" generally.
+
+    2. **Include base pretrained Llama-2 control** (language-pretrained, not action-fine-tuned)
+    to isolate VLA fine-tuning effects from the extreme random-vs-trained comparison.
+
+    3. **Report TOST equivalence test** for Claim 3 with pre-specified margin.
+
+    4. **Add linear probe baseline** alongside MLP probes.
+
+    5. **Expand related work** to connect with the broader fine-tuning / probing literature
+    in NLP.
+
+    6. **Discuss LIBERO instruction redundancy** as a limitation of the language instruction
+    null finding.
+
+    7. **Provide CKA ordering reversal explanation** or flag it as an open question
+    requiring future investigation.
+
+
+    ---
+
+
+    ## Final Scores
+
+
+    | Criterion | Score |
+
+    |---|---|
+
+    | Novelty | 3.5/6 — One novel finding (geometric–functional dissociation); "routing"
+    framing is a repackaging of known dynamics |
+
+    | Soundness | 4.5/6 — Rigorous methods and statistics, but Claim 3 rests on underpowered
+    null result |
+
+    | Significance | 3.5/6 — Partially confirmatory of concurrent work; practical
+    implications are incremental |
+
+    | Clarity | 4.5/6 — Well-organized, clear tables, logical structure |
+
+    | **Overall** | **4 (Weak Accept)** |
+
+    | Confidence | 4/5 |
+
+
+    **Justification:** The paper presents a systematic and methodologically careful
+    representational analysis with one genuinely novel insight (geometric–functional
+    dissociation between RSA and probe R² across encoder types). The experimental
+    design with multiple controls is commendable. However, the single-architecture
+    scope, partially confirmatory nature relative to Grant et al. (2026), the weak
+    evidence for the boldest claim (Claim 3 relying on an underpowered null result
+    with an extreme control), and missing connections to the broader fine-tuning literature
+    prevent a stronger recommendation. The contribution is above the reject threshold
+    but needs additional architecture testing and stronger equivalence evidence to
+    reach clear Accept at a top venue.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260516T011810/median/paper.pdf
+  imagined_experiments:
+  - name: SigLIP+Projector RSA vs Full VLA vs DINO
+    plan_id: plan_001
+    description: 核心 RSA 三方对比，证明 action-relevant 结构源自 frozen vision encoder
+    expected_results:
+      siglip_projector_rsa: 0.615
+      trained_with_inst_rsa: 0.501
+      untrained_with_inst_rsa: 0.485
+      trained_no_inst_rsa: 0.501
+      untrained_no_inst_rsa: 0.48
+      dino_rsa: 0.388
+    result_rationale: '已完成实验，实际数据直接沿用。SigLIP RSA=0.615 远高于 VLA 各条件（~0.48-0.50）和 DINO（0.388），
+      在 median 档下此结果本身不受挑战。但因 plan_012 CLIP-ViT 控制实验将揭示 SigLIP 优势部分来自  encoder-specific
+      因素（而非纯 VL pretraining），Claim 1 需从 "vision encoder dominance"  软化为 "VL-pretrained
+      encoder dominance, with SigLIP showing strongest alignment"。 核心论点（action structure
+      源自 frozen encoder 而非 LLM fine-tuning）不变，但不能声称任意  VL encoder 都能达到 SigLIP 水平。
+
+      '
+    tables:
+    - title: 'Table 1: RSA with Action Structure (image_mean aggregation)'
+      rows:
+      - - SigLIP+Projector
+        - '0.615'
+        - —
+      - - VLA trained (with-inst)
+        - '0.501'
+        - Peak L23
+      - - VLA untrained (with-inst)
+        - '0.485'
+        - Peak L23
+      - - VLA trained (no-inst)
+        - '0.501'
+        - Peak L23
+      - - VLA untrained (no-inst)
+        - '0.480'
+        - Peak L29
+      - - CLIP-ViT (plan_012)
+        - '0.46'
+        - Median tier prediction
+      - - DINOv2
+        - '0.388'
+        - Vision-only baseline
+    figures_description:
+    - 'Bar chart: RSA values for 7 conditions, SigLIP >> CLIP-ViT > VLA band > DINO,
+      加 bootstrap 95% CI error bars'
+    analysis: 'SigLIP 优势明确但在 median 档下需要 CLIP-ViT 数据来区分 "VL pretraining 通用贡献" vs "SigLIP  specific
+      优势"。CLIP-ViT RSA ~0.46 表明 VL pretraining 贡献约 0.07 RSA（0.46-0.388=DINO）， 而 SigLIP
+      在此基础上额外贡献 0.155（0.615-0.46）。这迫使 Claim 1 承认 encoder choice matters。
+
+      '
+  - name: DINO baseline RSA
+    plan_id: plan_002
+    description: Standalone vision model 参照基线
+    expected_results:
+      dino_rsa: 0.388
+      per_task_rho_mean: 0.901
+      action_probe_R2: 0.712
+    result_rationale: '已完成。DINO RSA=0.388 作为 lower bound 在 median 档下更为重要：CLIP-ViT
+      RSA ~0.46  意味着 DINO-to-CLIP gap（0.07）远小于 CLIP-to-SigLIP gap（0.155），说明 VL pretraining  是必要条件但
+      SigLIP 的具体 recipe 贡献更大。同时 DINO action probe R²=0.712 ≈ Projector  0.706（p=0.22,
+      n.s.）的发现在 median 档下成为关键区分论据：action information 的 presence  与 geometric alignment
+      是不同维度。
+
+      '
+    tables: []
+    figures_description:
+    - 'Scatter: RSA vs Action Probe R², 标注 DINO（高R²低RSA）vs SigLIP（高R²高RSA）dissociation'
+    analysis: 'DINO 数据在 median 档下与 CLIP-ViT 共同支撑 "pretraining recipe matters" 论点。
+      DINO ≈ Projector in R² but << in RSA 的 dissociation 是核心 insight。
+
+      '
+  - name: Per-layer RSA degradation curve
+    plan_id: plan_003
+    description: 追踪 RSA 从 projector output 到 LLM 各层的衰减轨迹
+    expected_results:
+      proj_to_l1_drop_range:
+      - 0.137
+      - 0.253
+      total_degradation: 0.13
+      pattern: non-monotonic with partial recovery in mid-layers
+      all_layers_above_dino: true
+    result_rationale: '已完成。Proj→L1 drop 20-40% 的 non-monotonic pattern 在 median 档下不受挑战。
+      此 curve 对 median 档叙事有额外价值：即使 LLM 降解 geometric alignment，所有层 RSA  仍 >> DINO（0.388），说明
+      SigLIP 的 geometric structure 虽被衰减但未被摧毁。这支撑  "VL pretraining 注入的结构具有 robustness"
+      的 discussion point。
+
+      '
+    tables:
+    - title: 'Table S1: Per-layer RSA summary'
+      rows:
+      - - Condition
+        - Peak RSA
+        - Peak Layer
+        - Proj→L1 Drop
+      - - trained with-inst
+        - '0.488'
+        - L9
+        - '0.204'
+      - - untrained with-inst
+        - '0.485'
+        - L12
+        - '0.151'
+      - - trained no-inst
+        - '0.489'
+        - L30
+        - '0.253'
+      - - untrained no-inst
+        - '0.480'
+        - L6
+        - '0.137'
+    figures_description:
+    - 'Line plot: 4 conditions × 33 layers, SigLIP projector 水平线 (0.615) 和 DINO 水平线
+      (0.388) 作为参照'
+    analysis: 'Per-layer curve 稳定，median 档不影响此结果。在 rebuttal 中可作为 mechanical evidence  支撑
+      "LLM as information router" 叙事。
+
+      '
+  - name: Output head analysis
+    plan_id: plan_004
+    description: 确认 SigLIP+projector frozen，LLM 权重变化分布
+    expected_results:
+      vision_cos_sim: 1.0
+      projector_cos_sim: 1.0
+      llm_mean_rel_change: 1.316
+      llm_cos_sim: 0.218
+      head_vs_llm_ratio: 1.12
+    result_rationale: '已完成。Vision backbone + Projector 完全 frozen（cos_sim=1.0）是 Claims
+      1-3 的结构性  前提。在 median 档下此结果 critical：它解释了为什么 trained ≈ untrained in representation  structure——因为
+      action-relevant structure 的源头（SigLIP+projector）在 training 中完全  不变。LLM 权重变化均匀分布（1.22-1.37）而非
+      head-concentrated，说明 fine-tuning 是  distributed adaptation 而非 shallow head tuning。
+
+      '
+    tables: []
+    figures_description:
+    - 'Heatmap: parameter group × (rel_change, cos_sim), vision/projector 显示 IDENTICAL'
+    analysis: '此结果在所有档位都成立，为 "routing-not-creating" 提供 architectural grounding。
+
+      '
+  - name: 6 probing methods × 2 benchmarks
+    plan_id: plan_005
+    description: 系统性验证 trained ≈ untrained across multiple methods
+    expected_results:
+      all_methods_consistent: true
+      trained_approx_untrained: true
+      both_above_dino: true
+    result_rationale: 'Orphaned 状态但已由 plan_001/006/007/008/011/009 的各独立实验覆盖。在 median
+      档下， 核心发现 "trained ≈ untrained" 来自 image_mean RSA（bootstrap CI includes 0, p=0.20）
+      和 functional probe（image_mean R² gap 稳定）。单独的 6-method 矩阵不影响 median 档  判断。如果
+      reviewer 质疑 method coverage，已有 RSA + CKA + functional probe +  bootstrap CI
+      四重交叉验证。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '此实验的核心发现已由其他实验独立覆盖。Median 档下 reviewer 更可能质疑  single-architecture 而非
+      method coverage。
+
+      '
+  - name: Instruction ablation
+    plan_id: plan_006
+    description: 去掉 instruction text 测 RSA 变化
+    expected_results:
+      delta_with_minus_no_inst: 0.004
+      no_inst_untrained_rsa: 0.48
+      instruction_effect: negligible
+    result_rationale: '已完成。Δ=0.004 远低于任何合理阈值。在 median 档下此结果与 plan_008（random/shuffled  instruction）共同构成三重不变性证据（training
+      × instruction presence × instruction content）， 这是 Claim 3 最完备的支撑之一且不受 median
+      档的 confound 影响。与 Hou 2026 LangGap /  Fei 2025 LIBERO-Plus 的 behavioral finding（VLAs
+      ignore language）形成 representation-level  解释。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Instruction invariance 是 Claim 3 最 robust 的子发现，median 档完全不影响。
+
+      '
+  - name: 2×2 matrix (training × instruction)
+    plan_id: plan_007
+    description: 四条件全收敛验证
+    expected_results:
+      all_cells_range:
+      - 0.48
+      - 0.501
+      bootstrap_ci: '[-0.058, 0.072] includes 0'
+      training_effect_p: 0.2
+    result_rationale: '已完成。四条件收敛于 0.48-0.50 band 是 Claim 3（training invariance of
+      distributed  representations）的核心证据。Bootstrap CI 包含 0、p=0.20 表明 training effect
+      在统计上  不显著。在 median 档下此结果与 readout concentration（Δ=0.045, p<0.0001）形成鲜明对比—— 这正是
+      "routing-not-creating" 叙事的关键 dissociation：distributed structure 不变  但 readout
+      集中度训练依赖。此 contrast 在 median 档下作为 headline result 前置。
+
+      '
+    tables:
+    - title: 'Table 2: 2×2 Training × Instruction RSA Matrix (image_mean)'
+      rows:
+      - - ''
+        - With Instruction
+        - No Instruction
+      - - Trained
+        - '0.501'
+        - '0.501'
+      - - Untrained
+        - '0.485'
+        - '0.480'
+      - - Bootstrap Δ CI
+        - '[-0.058, 0.072]'
+        - p=0.20
+    figures_description:
+    - 2×2 heatmap with values, 色彩饱和度映射 RSA，视觉上强调四格近似
+    analysis: '此 2×2 matrix 是论文 Figure 2 或 3 的核心。Median 档下配合 readout concentration  对比使用效果最强。
+
+      '
+  - name: Random instruction control
+    plan_id: plan_008
+    description: 随机/无意义 instruction 验证 content 不影响 RSA
+    expected_results:
+      normal_rsa: 0.489
+      random_rsa: 0.484
+      shuffled_rsa: 0.483
+      empty_rsa: 0.472
+      max_absolute_delta: 0.017
+      instruction_invariant: true
+    result_rationale: '已完成。四种 instruction 条件（normal/random/shuffled/empty）RSA 在 ±0.017
+      内， 排除 trivial separability 攻击面。在 median 档下此结果关闭了 "instruction content  可能通过
+      representation 影响 action" 的假说——所有变异性 << training effect（本身就  不显著, p=0.20），更
+      << SigLIP→LLM degradation（0.114）。三重不变性完备。
+
+      '
+    tables:
+    - title: 'Table S2: Instruction Content Invariance'
+      rows:
+      - - Condition
+        - Peak RSA
+        - Δ vs Normal
+      - - Normal instruction
+        - '0.489'
+        - —
+      - - Random words
+        - '0.484'
+        - '-0.005'
+      - - Shuffled tokens
+        - '0.483'
+        - '-0.006'
+      - - Empty string
+        - '0.472'
+        - '-0.017'
+    figures_description:
+    - 'Bar chart: 4 instruction conditions, error bars, 虚线标注 ±0.017 band'
+    analysis: 'Empty 略低（-0.017）可能反映 token sequence length 对 attention pattern 的微弱影响，
+      但量级远不足以影响任何 claim。
+
+      '
+  - name: Functional action probe (v2 with bootstrap + DINO three-way)
+    plan_id: plan_011
+    description: Projector / LLM / DINO 功能性对比，bootstrap CI
+    expected_results:
+      projector_R2: 0.706
+      image_mean_trained_L19_R2: 0.683
+      last_preaction_trained_L19_R2: 0.731
+      untrained_image_mean_L0_R2: 0.714
+      untrained_last_preaction_L32_R2: 0.686
+      dino_R2: 0.712
+      bootstrap_proj_vs_image_mean_p: 0.001
+      bootstrap_proj_vs_image_mean_ci:
+      - 0.011
+      - 0.037
+      readout_concentration_delta: 0.045
+      readout_concentration_p: 0.0001
+      readout_concentration_ci:
+      - 0.032
+      - 0.058
+    result_rationale: '已完成（orphaned 但各子实验均 DONE）。在 median 档下此结果是最强证据：
+
+      (1) Readout concentration（trained 0.731 >> untrained 0.686, Δ=0.045, p<0.0001）
+      完全不受 CLIP-ViT confound 和 LIBERO-Spatial 延迟影响，因为它测量的是 LLM internal  routing behavior
+      而非 encoder quality。
+
+      (2) Three-way ordering DINO(0.712) ≈ Proj(0.706) > LLM image_mean(0.683) 在  median
+      档下成为关键 nuance：action information 的 presence 是 encoder-agnostic 的  （DINO ≈ SigLIP
+      in R²），但 geometric alignment（RSA）是 encoder-specific 的。 这支撑 median 档的论文叙事调整——从
+      "where actions come from" 到 "what fine-tuning  actually learns"。
+
+      (3) Untrained readout 0.686 < projector 0.706 证明 redistribution 需要 training，
+      这是 "routing is learned" 的 smoking gun，且在 median 档下作为 headline result  前置不受任何
+      confound 影响。
+
+      '
+    tables:
+    - title: 'Table 3: Functional Action Probe R² (LIBERO-Goal)'
+      rows:
+      - - Model/Condition
+        - mean R²
+        - vs Projector
+        - p-value
+      - - SigLIP+Projector
+        - '0.706'
+        - —
+        - —
+      - - Trained image_mean L19
+        - '0.683'
+        - '-0.023'
+        - '0.001'
+      - - Trained last_preaction L19
+        - '0.731'
+        - '+0.025'
+        - '0.001'
+      - - Untrained image_mean L0
+        - '0.714'
+        - '+0.008'
+        - n.s.
+      - - Untrained last_preaction L32
+        - '0.686'
+        - '-0.020'
+        - <0.0001 vs trained
+      - - DINOv2 cls_token
+        - '0.712'
+        - '+0.006'
+        - 0.22 (n.s.)
+    figures_description:
+    - 'Figure 3: Bar chart with bootstrap CI, 双面箭头标注 trained vs untrained readout
+      Δ=0.045'
+    - 'Figure 3 inset: R² vs RSA scatter，标注 functional-geometric dissociation'
+    analysis: 'Readout concentration 是 median 档论文的核心卖点。此 Δ=0.045 (p<0.0001) 与  image_mean
+      RSA Δ=0.02 (p=0.20) 的 contrast 完美支撑 "routing-not-creating"： training 改变 information
+      flow 但不改变 distributed structure。
+
+      '
+  - name: CLIP-ViT pretraining control
+    plan_id: plan_012
+    description: CLIP ViT-L 替代 SigLIP，区分 VL pretraining 通用贡献 vs SigLIP-specific 优势
+    expected_results:
+      clip_vit_rsa_image_mean: 0.46
+      clip_vit_rsa_95ci:
+      - 0.38
+      - 0.54
+      clip_vit_rsa_per_task_range:
+      - 0.35
+      - 0.58
+      clip_vit_action_probe_R2: 0.695
+      clip_vit_action_delta_R2: 0.11
+      clip_vit_vs_dino_rsa_delta: 0.072
+      clip_vit_vs_siglip_rsa_delta: -0.155
+      clip_vit_vs_projector_probe_delta: -0.011
+      ordering_rsa: SigLIP (0.615) >> CLIP-ViT (0.46) > DINO (0.388)
+      ordering_R2: DINO (0.712) ≈ Proj (0.706) ≈ CLIP-ViT (0.695) > LLM img_mean (0.683)
+    result_rationale: "Median 档核心假设：CLIP-ViT RSA 落入 0.42-0.50 中间地带。\n为什么 RSA ~0.46（高于\
+      \ DINO 但低于 SigLIP）： - CLIP-ViT（ViT-L/14, 400M params）与 DINO 共享 pure vision architecture，\n\
+      \  但 CLIP 的 contrastive image-text pretraining 赋予了部分 language-aligned geometric\
+      \ \n  structure，使其 RSA 高于 self-supervised DINO（0.388）。\n- 然而 SigLIP 相比 CLIP\
+      \ 有三个关键差异：(a) sigmoid loss vs softmax loss——SigLIP \n  的 pairwise sigmoid 更好地保留\
+      \ fine-grained distance structure；(b) training \n  data scale（WebLI vs WIT/LAION）；(c)\
+      \ 可能的 architecture tuning。这些差异解释了 \n  SigLIP 额外的 0.155 RSA 优势。\n- Action probe\
+      \ R² ~0.695 与 SigLIP projector（0.706）接近但略低，说明 VL pretraining \n  的 contribution\
+      \ 主要在 geometric alignment（RSA）而非 raw information content（R²），\n  与 DINO ≈ Projector\
+      \ in R² 的发现一致。\n\n此结果的 implication： - Claim 1 必须限定：不是所有 VL-pretrained encoder\
+      \ 都达到 SigLIP 水平的 geometric \n  alignment。存在 encoder hierarchy：SigLIP > CLIP\
+      \ > DINO。\n- 但核心论点不变：即使 RSA=0.46 的 CLIP-ViT，其 geometric alignment 仍高于 VLA \n\
+      \  各条件（0.48-0.50 LLM degrades it further），且远高于 DINO。\n- \"Pretraining recipe\
+      \ matters\" 是新增 discussion point，不是对 core claims 的否定。\n"
+    tables:
+    - title: 'Table 4: Pretraining Control — CLIP-ViT vs SigLIP vs DINO'
+      rows:
+      - - Encoder
+        - RSA (ρ)
+        - Action R²
+        - Pretraining
+      - - SigLIP-SO400M
+        - '0.615'
+        - '0.706'
+        - Sigmoid image-text (WebLI)
+      - - CLIP ViT-L/14
+        - '0.46'
+        - '0.695'
+        - Softmax image-text (WIT/LAION)
+      - - DINOv2 ViT-L
+        - '0.388'
+        - '0.712'
+        - Self-supervised (LVD-142M)
+    - title: 'Table 4b: Decomposition of VL-pretraining contribution'
+      rows:
+      - - Comparison
+        - ΔRSA
+        - ΔR²
+        - Interpretation
+      - - CLIP - DINO
+        - '+0.072'
+        - '-0.017'
+        - VL pretraining adds geometric alignment, not information
+      - - SigLIP - CLIP
+        - '+0.155'
+        - '+0.011'
+        - SigLIP recipe adds both alignment and information
+      - - SigLIP - DINO
+        - '+0.227'
+        - '-0.006'
+        - Total VL advantage is geometric, not functional
+    figures_description:
+    - 'Figure 4: 2D scatter (RSA × R²)，三个 encoder 标注 + VLA 各条件，虚线标注 CLIP-ViT 的中间位置'
+    - 'Figure 4b: Bar chart decomposing RSA gap: DINO→CLIP (+0.07) + CLIP→SigLIP (+0.155)'
+    analysis: 'CLIP-ViT 中间结果在 median 档下是 double-edged sword：
+
+      正面：(1) 确认 VL pretraining 有贡献（CLIP > DINO in RSA），支撑 "VL pretraining  matters"
+      叙事。(2) R² 三者接近进一步强化 geometric-functional dissociation finding。 (3) 为 "pretraining
+      recipe matters" discussion 提供具体数据点。
+
+      负面：(1) SigLIP 优势部分来自 encoder-specific 因素，削弱 "VL pretraining is the key"  的通用性声明。(2)
+      至少一位 reviewer 会质疑：如果换成 CLIP-ViT，VLA 的 action structure  会怎样变化？需要 rebuttal 准备
+      CLIP-ViT as VLA backbone 的讨论（即使不做实验）。
+
+      Rebuttal 策略：将 CLIP-ViT 结果定位为 "partial support + new insight"——VL pretraining  是
+      necessary but not sufficient condition for strong geometric alignment，SigLIP  recipe
+      的具体优势值得 future work 深入研究。
+
+      '
+  - name: CKA verification
+    plan_id: plan_009
+    description: CKA 指标重复 RSA 发现，检查指标依赖性
+    expected_results:
+      linear_cka_ordering: untrained (0.089) > trained (0.083) > projector (0.081)
+        > DINO (0.066)
+      rdm_cka_ordering: trained (0.260) ≈ projector (0.257) > untrained (0.246) >
+        DINO (0.241)
+      cka_last_preaction: 0.127
+      rsa_cka_ordering_reversal: true
+    result_rationale: "已完成。在 median 档下此结果面临额外挑战：至少一位 reviewer 将 CKA-RSA dissociation\
+      \  视为 metric confusion 而非 finding。\n为什么 CKA 和 RSA 排序反转： - RSA 测量 pairwise distance\
+      \ structure 的 rank correlation——local geometric alignment。\n  LLM 的 nonlinear\
+      \ transformation 打乱了 pairwise distances 的 rank order，降低 RSA。\n- CKA 测量 centered\
+      \ kernel alignment——global subspace overlap。LLM 保留甚至增强了 \n  global variance\
+      \ structure（特别是 CKA 单调上升 L0→L32），因为 attention 操作虽然 \n  重排 pairwise distances\
+      \ 但保留了 principal variation directions。\n- 这不是 \"metric confusion\"——两个指标测量不同\
+      \ aspects of representational similarity，\n  dissociation 本身是 informative 的。但\
+      \ median 档的 reviewer 可能不接受这个区分。\n\nRebuttal 准备： - 明确定义 \"geometric alignment\"\
+      \ (RSA) vs \"structural preservation\" (CKA) - 引用 Kornblith et al. 2019 和 Shahbazi\
+      \ et al. 2021 对两指标 sensitivity 差异的分析 - 强调 Claim 2 已限定为 \"geometric (RSA) degradation\"\
+      ，不泛化为 \"representation quality\" - CKA last_preaction=0.127 >> image_mean 0.08x\
+      \ 支撑 redistribution，与 RSA 一致\n"
+    tables:
+    - title: 'Table S3: RSA vs CKA Ordering Comparison'
+      rows:
+      - - Metric
+        - Ordering
+        - Interpretation
+      - - RSA
+        - Proj > Trained > Untrained > DINO
+        - Geometric alignment with action space
+      - - Linear CKA
+        - Untrained > Trained > Proj > DINO
+        - Global structure preservation
+      - - RDM-CKA
+        - Trained ≈ Proj > Untrained > DINO
+        - Hybrid (distance-based CKA)
+    figures_description:
+    - 'Figure S2: 双 y-axis plot (RSA left, CKA right) across conditions, 标注 ordering
+      reversal'
+    analysis: 'Median 档下需在 main text Discussion 正面讨论此 dissociation（不能只放 supplementary）。
+      一位 reviewer 的 "metric confusion" 评价需正面回应：dissociation 恰恰说明 LLM 对  representation
+      的变换是 selective 的——降解 local geometry 但保留 global structure—— 这对理解 LLM 的 representation
+      processing 有独立价值。
+
+      '
+  - name: LIBERO-Spatial cross-benchmark
+    plan_id: plan_010
+    description: 第三个 benchmark 交叉验证所有 Claims
+    expected_results:
+      siglip_projector_rsa: 0.52
+      siglip_projector_rsa_95ci:
+      - 0.45
+      - 0.58
+      trained_image_mean_rsa_peak: 0.42
+      trained_image_mean_peak_layer: 19
+      untrained_image_mean_rsa_peak: 0.4
+      untrained_image_mean_peak_layer: 23
+      dino_rsa: 0.32
+      training_effect_delta: 0.02
+      training_effect_p: 0.08
+      training_effect_significant: false
+      readout_trained_R2: 0.68
+      readout_untrained_R2: 0.655
+      readout_delta: 0.025
+      readout_delta_ci:
+      - 0.015
+      - 0.035
+      readout_delta_p: 0.01
+      action_probe_projector_R2: 0.65
+      action_probe_llm_image_mean_R2: 0.62
+      ordering_preserved: true
+      effect_size_reduction: 35-45%
+    result_rationale: "Median 档核心假设：LIBERO-Spatial 未完成或部分复现，effect size 缩小 30-50%。\n\
+      为什么 effect size 缩小： - LIBERO-Spatial 的 action structure 比 LIBERO-Goal 更 spatially\
+      \ grounded——task \n  差异主要在 spatial prepositions（\"to the left of\", \"in front\
+      \ of\"）而非 object \n  identity。SigLIP 的 image-text pretraining 对 spatial relationships\
+      \ 的 encoding \n  不如对 object-level semantics 那么强，因此 RSA 从 0.615 降至 ~0.52。\n-\
+      \ Training effect 在 LIBERO-Spatial 上 p=0.08（边缘），因为 spatial tasks 的 action \n\
+      \  variability 更高，增加了 bootstrap sampling 的 variance。但 CI 仍然覆盖 0 或 \n  接近覆盖 0，不改变\
+      \ Claim 3 的方向性结论。\n- Readout concentration Δ=0.025（vs LIBERO-Goal 0.045）缩小约\
+      \ 44%，但仍显著 \n  (p=0.01)。缩小原因：spatial tasks 的 action prediction 难度更高，readout\
+      \ \n  concentration 的 ceiling effect 降低。\n- DINO RSA 也降至 0.32（vs 0.388 on LIBERO-Goal），说明\
+      \ spatial tasks 对所有 \n  encoder 都更难 align。\n\n此结果的 implication： - 所有三个 Claims\
+      \ 的 ordering 保持（SigLIP > VLA > DINO; trained ≈ untrained in \n  distributed;\
+      \ trained > untrained in readout），但 effect size 一致缩小。\n- 论文需在所有 Claims 加 \"\
+      on LIBERO-Goal\" 限定，LIBERO-Spatial 作为 partial \n  replication 放在 supplementary\
+      \ 或 discussion。\n- 如果 deadline 前未完成：rebuttal 中 promise LIBERO-Spatial 初步结果，附现有\
+      \ \n  extraction pipeline 的进度证据。\n"
+    tables:
+    - title: 'Table S4: LIBERO-Spatial Cross-Benchmark Validation'
+      rows:
+      - - Condition
+        - RSA (Spatial)
+        - RSA (Goal)
+        - Reduction
+      - - SigLIP+Projector
+        - '0.52'
+        - '0.615'
+        - -15%
+      - - Trained image_mean
+        - '0.42'
+        - '0.501'
+        - -16%
+      - - Untrained image_mean
+        - '0.40'
+        - '0.485'
+        - -18%
+      - - DINOv2
+        - '0.32'
+        - '0.388'
+        - -18%
+      - - Training Δ
+        - 0.02 (p=0.08)
+        - 0.02 (p=0.20)
+        - direction consistent
+    - title: 'Table S5: Readout Concentration Cross-Benchmark'
+      rows:
+      - - Metric
+        - Spatial
+        - Goal
+        - Reduction
+      - - Trained readout R²
+        - '0.68'
+        - '0.731'
+        - -7%
+      - - Untrained readout R²
+        - '0.655'
+        - '0.686'
+        - -5%
+      - - Δ (trained-untrained)
+        - '0.025'
+        - '0.045'
+        - -44%
+      - - p-value
+        - '0.01'
+        - <0.0001
+        - still significant
+    figures_description:
+    - 'Figure S3: Side-by-side bar charts LIBERO-Goal vs LIBERO-Spatial, 所有条件 paired
+      comparison'
+    - 'Figure S4: Readout concentration comparison across benchmarks with bootstrap
+      CI'
+    analysis: 'LIBERO-Spatial 部分复现在 median 档下是可接受的：ordering 保持证明 findings 非  benchmark-specific
+      artifact，effect size 缩小说明 task characteristics（spatial vs  object-centric）调节了具体
+      magnitude。这实际上增加了论文的 nuance 和 ecological  validity。
+
+      关键 rebuttal 点：effect size 缩小是 expected 的（spatial relationships 更难）， ordering
+      preservation 才是 generalizability 的 test。如果连 ordering 都不保持  那才是 real concern。
+
+      如果未完成：在 paper Discussion 加 "ongoing cross-benchmark validation" 一段， rebuttal
+      letter 提供 extraction pipeline 进度 + 初步 RSA numbers。Reviewer  通常接受 "data in preparation"
+      如果方向一致且 pipeline 可信。'
+  review_report: '---
+
+    dream_id: dream_20260516T011810
+
+    tier: median
+
+    overall_score: borderline
+
+    timestamp: 2026-05-16T01:53:31.438581+00:00
+
+    ---
+
+
+    # Dream Review Report: "What Does Fine-Tuning Actually Learn?"
+
+
+    **Paper:** What Does Fine-Tuning Actually Learn? Representational Analysis of
+    Action Structure in Vision-Language-Action Models
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Venue Standard:** Top ML venue, ~25% acceptance rate, 6-point scale
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+
+    - **R1:** Methods and Experiments (Score: 3/6, Confidence: 4/5)
+
+    - **R2:** Novelty and Related Work (Score: 4/6, Confidence: 4/5)
+
+
+    ---
+
+
+    ## R1 Review: Methods and Experiments
+
+
+    ### Summary
+
+    The paper performs a systematic representational decomposition of OpenVLA using
+    RSA, CKA, and functional action probes across a 2×2 factorial design (trained/untrained
+    × with/without instruction), with encoder controls (CLIP-ViT, DINOv2) and cross-benchmark
+    validation (LIBERO-Goal, LIBERO-Spatial). The experimental design is thorough
+    and the statistical framework is generally sound, but several methodological issues
+    — including a potential probe type mismatch, incomplete handling of the RSA-to-function
+    causal gap, and suspiciously uniform cross-benchmark replication numbers — reduce
+    confidence in the strongest claims.
+
+
+    ### Strengths
+
+
+    - **Comprehensive factorial design with appropriate controls.** The 2×2 matrix
+    cleanly isolates training and instruction effects. The four instruction conditions
+    (normal/random/shuffled/empty) in Table 7 converging within ±0.017 is a thorough
+    pre-emption of the "instruction content matters" objection.
+
+    - **Multiple complementary metrics.** RSA (local geometric alignment), CKA (global
+    structure), and functional probes (decodability) form a triangulated evidence
+    base. The RSA-CKA ordering reversal (Table 5) is honestly reported and provides
+    genuine insight.
+
+    - **The geometric-functional dissociation is genuinely novel.** DINO R²=0.712
+    ≈ SigLIP R²=0.706 (p=0.22) while RSA differs dramatically (0.388 vs 0.615) — this
+    separates information presence from geometric alignment. Non-obvious and has clear
+    design implications.
+
+    - **Readout concentration finding is well-supported.** Trained readout R²=0.731
+    > projector 0.706 > untrained 0.686, with Δ=0.045 (CI=[0.032, 0.058], p<0.0001)
+    being highly significant while distributed structure is invariant — this is the
+    paper''s most compelling contribution.
+
+    - **CLIP-ViT control properly addresses the SigLIP-specificity confound.** CLIP
+    RSA=0.46 falling between SigLIP and DINO appropriately generalizes the encoder
+    dominance claim.
+
+
+    ### Weaknesses
+
+
+    - **Potential probe type mismatch.** The paper states "ridge regression probes"
+    (Section 3.4), but project artifacts suggest a 2-layer MLP probe (Linear→ReLU→Linear,
+    256 hidden). If actual probes are nonlinear, the "linearly decodable" interpretation
+    is compromised. This discrepancy must be clarified — if the probes are indeed
+    MLPs, the paper must revise its method description and reconsider the implications.
+
+    - **"Untrained" control definition is unclear.** The paper states "untrained LLM
+    with random-initialized action head" but does not clearly distinguish between
+    (a) pre-fine-tuning Prismatic VLM checkpoint (language-pretrained Llama) and (b)
+    from_config() random reinitialization of all LLM weights. If (b), the trained-vs-untrained
+    comparison conflates VLA fine-tuning with LLM pretraining effects, and finding
+    similar distributed RSA is partially expected since the dominant signal source
+    (256 SigLIP image tokens) is identical in both conditions.
+
+    - **LIBERO-Spatial results warrant verification.** The cross-benchmark ratios
+    (Table 8: -15% to -18%) and readout concentration reduction (-44%) show remarkable
+    numerical regularity. It should be confirmed these come from actual computed features
+    rather than projected estimates, particularly given the review context lists these
+    as "expected results."
+
+    - **RSA distance metric asymmetry not justified.** Cosine distance for representations
+    and Euclidean distance for 7-DoF actions introduces a methodological choice that
+    could affect results. A sensitivity analysis with matched metrics would strengthen
+    confidence.
+
+    - **Per-layer RSA described as "degradation" without qualification.** Table 4
+    shows Proj→L1 as the biggest drop (0.137-0.253) with partial recovery in mid-layers.
+    The non-monotonic pattern suggests something more nuanced than simple degradation.
+
+    - **Multiple comparisons correction absent.** Numerous pairwise bootstrap tests
+    across Tables 2, 6, 7, 8, 9 without family-wise error rate control.
+
+    - **No behavioral validation.** No task success rates reported. A correlation
+    between per-task RSA and per-task success would ground the geometric alignment
+    metric practically.
+
+
+    ### Questions for Authors
+
+
+    1. Can you confirm: are the functional probes ridge regression or MLP? If MLP,
+    how do results change with a truly linear probe?
+
+    2. What is the exact definition of the "untrained" model — pre-trained Llama or
+    random initialization?
+
+    3. Were LIBERO-Spatial results (Tables 8-9) actually computed from extracted features
+    on that benchmark?
+
+    4. How are action-space RDMs computed? Raw 7-D Euclidean, or standardized actions?
+
+    5. Is RSA computed pooled across tasks or per-task then averaged? The choice matters
+    significantly.
+
+    6. Can you report the bootstrap CI width for the projector RSA? If wide, the projector-to-VLA
+    gap may be less certain.
+
+
+    ### Preliminary Score: 3/6
+
+    ### Confidence: 4/5
+
+
+    ---
+
+
+    ## R2 Review: Novelty and Related Work
+
+
+    ### Summary
+
+    The paper''s central thesis — that VLA fine-tuning learns information "routing"
+    rather than "creating" new action representations — provides a representational-level
+    explanation for recent behavioral findings. The most genuinely novel finding is
+    the geometric-functional dissociation (DINO matches SigLIP in probe R² but diverges
+    dramatically in RSA), and the trained-vs-untrained comparison fills a real gap
+    in the VLA interpretability literature. However, the "routing not creating" framing
+    overstates conceptual novelty, the paper is substantially confirmatory of prior
+    behavioral work, and the single-architecture scope limits generalizability.
+
+
+    ### Strengths
+
+
+    - **Geometric-functional dissociation is a genuine conceptual contribution.**
+    No prior VLA work has cleanly separated "action information is present" (R²) from
+    "representations are geometrically aligned" (RSA). The finding that DINO ≈ SigLIP
+    in R² but DINO << SigLIP in RSA (0.388 vs 0.615) reframes VL pretraining''s role
+    from information provision to geometric organization.
+
+    - **First trained-vs-untrained representational comparison in VLA domain.** Every
+    prior VLA interpretability paper (Grant 2026, Swann 2026, Haon 2025, Lu 2025,
+    Molinari 2025) examines only the trained model. The controlled untrained baseline
+    enables causal attribution — a genuine methodological advance.
+
+    - **RSA-CKA dissociation adds analytical depth.** Reporting ordering reversal
+    rather than cherry-picking the cleaner metric demonstrates methodological sophistication
+    and reveals that the LLM selectively transforms different aspects of representation
+    structure.
+
+    - **Instruction invariance evidence is unusually thorough.** Four instruction
+    conditions + 2×2 factorial = triple invariance (training × instruction presence
+    × instruction content).
+
+    - **CLIP-ViT control effectively generalizes Claim 1** from "SigLIP is special"
+    to "VL pretraining provides geometric alignment."
+
+
+    ### Weaknesses
+
+
+    - **"Routing not creating" overstates novelty.** The insight that frozen pretrained
+    encoders carry task-relevant information while fine-tuning performs shallow adaptation
+    is established in adjacent fields — Aghajanyan et al. (2021, intrinsic dimensionality
+    of fine-tuning), the broader transfer learning literature. The paper presents
+    this as discovery rather than VLA-specific confirmation of a known principle.
+
+    - **Substantially confirmatory of Grant et al. (2026).** Grant et al. demonstrated
+    across 6 architectures and 4 benchmarks that the visual pathway dominates and
+    language is "encoded but not used." This paper provides representational evidence
+    for the same conclusion on 1 architecture. The unique incremental contribution
+    (geometric-functional dissociation, readout concentration) is somewhat buried
+    under broader claims that recapitulate Grant''s findings.
+
+    - **Claim 3 rests on an underpowered null result without equivalence testing.**
+    p=0.20 with n=10 tasks does not constitute positive evidence of equivalence. A
+    TOST procedure with pre-specified equivalence margin is needed. Absence of evidence
+    ≠ evidence of absence. This is the paper''s boldest claim and its weakest statistical
+    foundation.
+
+    - **"Untrained" control is extreme, making Claim 3 partially tautological.** Random-initialized
+    LLM vs fine-tuned LLM, with the identical frozen SigLIP encoder providing 256
+    image tokens that dominate the image_mean aggregation — similar distributed RSA
+    is partially expected by construction. A base pretrained Llama (language-pretrained,
+    no action fine-tuning) would be far more informative.
+
+    - **LIBERO instruction redundancy may make instruction invariance trivially expected.**
+    As Hou (2026, LangGap) documented, LIBERO assigns one task per layout — instructions
+    are redundant. The finding may reflect benchmark design rather than a general
+    VLA property.
+
+    - **Single architecture limits all claims.** The title says "VLAs" (plural) but
+    evidence covers only OpenVLA (SigLIP+Llama). Modern VLAs are architecturally diverse
+    (pi0 flow matching, Octo diffusion heads, GR00T multi-pathway). The projector-bottleneck
+    mechanism may be architecture-specific.
+
+
+    ### Missing Related Work
+
+
+    - **Aghajanyan et al. (2021)** — Intrinsic dimensionality of fine-tuning. Direct
+    conceptual precursor to "routing not creating." Must be cited.
+
+    - **Huh et al. (2024)** — Platonic Representation Hypothesis. Relevant to explaining
+    why DINO/SigLIP have comparable R² despite different pretraining.
+
+    - **Voita et al. (2019)** — Attention head specialization and information routing
+    in transformers.
+
+    - **Hewitt & Manning (2019)** — Probe complexity concerns. Needed given the probe
+    methodology question.
+
+    - **Belinkov & Glass (2019)** — Probing survey. Broader NLP probing context entirely
+    absent.
+
+    - **Related work section is thin** (4 short paragraphs) for a paper whose primary
+    contribution is analytical positioning.
+
+
+    ### Assessment of Claims
+
+
+    | Claim | Verdict | Reasoning |
+
+    |-------|---------|-----------|
+
+    | Claim 1: VL-pretrained encoder geometric dominance | **Partially supported**
+    | RSA ordering convincing, but "dominance" is geometric only — functional probes
+    show all encoders carry comparable action info. Projector trained for SigLIP''s
+    output space is a confound vs raw CLIP/DINO. |
+
+    | Claim 2: LLM degrades geometry, concentrates readout | **Supported** | Multi-metric
+    evidence: RSA degradation, functional probe degradation at image_mean, readout
+    concentration (Δ=0.045, p<0.0001), CKA-RSA dissociation. Strongest claim. |
+
+    | Claim 3: Training-invariant distributed structure → routing not creating | **Partially
+    supported** | Readout concentration training-dependence is well-supported. But
+    "training-invariant distributed structure" relies on null result without equivalence
+    testing, using extreme control (random LLM). The framing oversells: LLM could
+    create structure in dimensions RSA/CKA don''t capture. |
+
+
+    ### Preliminary Score: 4/6
+
+    ### Confidence: 4/5
+
+
+    ---
+
+
+    ## Roundtable Synthesis
+
+
+    ### Points of Consensus
+
+
+    1. **Best contribution:** The geometric-functional dissociation (DINO ≈ SigLIP
+    in R² but << in RSA) is the paper''s most original and valuable finding. Both
+    reviewers independently identified this as the standout result.
+
+    2. **Strongest claim:** Claim 2 (readout concentration, Δ=0.045, p<0.0001) has
+    robust multi-metric support and is not challenged by the methodological concerns.
+
+    3. **Weakest claim:** Claim 3 (training invariance of distributed representations)
+    relies on a null result without equivalence testing, using an extreme control
+    that partially pre-determines the outcome. Both reviewers flag this independently.
+
+    4. **Probe methodology transparency** must be resolved — whether probes are ridge
+    regression (as stated) or MLP (as suggested by artifacts). This affects interpretation
+    of all R² comparisons.
+
+    5. **Single-architecture limitation** is a real tension with the paper''s general
+    framing. The title ("VLAs") overpromises relative to the evidence (one OpenVLA
+    instance).
+
+    6. **LIBERO-Spatial data integrity** needs confirmation.
+
+
+    ### Points of Divergence
+
+
+    - R1 weighted methodological integrity concerns more heavily (probe mismatch,
+    data integrity → score 3/6); R2 weighted novelty assessment (incremental over
+    Grant 2026, conceptual precedent in fine-tuning literature → score 4/6). After
+    discussion, both agree the paper has genuine merit in its geometric-functional
+    dissociation and readout concentration findings, but presentation and transparency
+    issues currently undermine it.
+
+
+    ### Consolidated Score: 3.5/6 (Borderline — between Weak Accept and Weak Reject)
+
+
+    ### Key Recommendations for Revision
+
+
+    **Must fix (blocking):**
+
+    1. Clarify probe methodology — confirm ridge regression or MLP, report both if
+    possible. If MLP, revise "linearly decodable" language.
+
+    2. Precisely define "untrained" control (random init vs pre-trained Llama). If
+    random init, acknowledge that similar distributed RSA is partially expected when
+    the signal source (256 SigLIP tokens) is identical.
+
+    3. Confirm LIBERO-Spatial results are from actual experiments, not projections.
+
+    4. Add TOST equivalence test for Claim 3 with pre-specified margin.
+
+
+    **Should fix (important):**
+
+    5. Cite Aghajanyan et al. (2021) and position "routing not creating" as VLA-specific
+    confirmation of known fine-tuning dynamics, not a novel conceptual framework.
+
+    6. Expand Related Work — currently too thin for a positioning paper. Discuss Hewitt
+    & Manning (2019), Huh et al. (2024), and broader probing literature.
+
+    7. Qualify per-layer RSA description: "net degradation with non-monotonic partial
+    recovery" rather than unqualified "degrades."
+
+    8. Scope title/claims to OpenVLA or add explicit single-architecture caveat earlier.
+
+    9. Discuss LIBERO instruction redundancy as a confound for the instruction invariance
+    finding.
+
+
+    **Nice to have:**
+
+    10. Report per-task RSA breakdown for CLIP-ViT (high per-task variance noted).
+
+    11. Behavioral validation: correlate per-task RSA with per-task success rate.
+
+    12. RSA sensitivity analysis with matched distance metrics.
+
+    13. Permutation null distribution for CKA values.
+
+    14. Add base pretrained Llama (no action fine-tuning) as intermediate control.
+
+
+    ### Overall Assessment
+
+
+    The paper addresses a genuine and important question — what does VLA fine-tuning
+    actually learn? — with a well-designed experimental framework. The geometric-functional
+    dissociation (action information is encoder-agnostic but geometric alignment is
+    encoder-specific) and the readout concentration mechanism (Δ=0.045, p<0.0001)
+    are real contributions. However, the paper is undermined by: (1) potential methodological
+    misreporting (probe type), (2) an underpowered statistical foundation for its
+    boldest claim (Claim 3), (3) overstatement of conceptual novelty relative to the
+    broader fine-tuning literature and Grant et al.''s multi-architecture behavioral
+    work, and (4) single-architecture scope that constrains the generality of conclusions.
+    With the recommended revisions — particularly resolving the probe methodology,
+    adding equivalence testing, and repositioning the novelty claims — this could
+    be a solid contribution to VLA understanding at a top venue.
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260516T011810/worst/paper.pdf
+  imagined_experiments:
+  - name: SigLIP+Projector RSA vs Full VLA vs DINO
+    plan_id: plan_001
+    description: SigLIP+Projector RSA 对比 Full VLA 和 DINO，证明 action-relevant 结构源自 frozen
+      vision encoder
+    expected_results:
+      siglip_projector_rsa: 0.615
+      trained_with_inst_rsa: 0.501
+      untrained_with_inst_rsa: 0.485
+      dino_rsa: 0.388
+    result_rationale: '此实验已完成，数据不变。但在 worst 档下，这些结果的解释力被 plan_012 CLIP-ViT 结果削弱： 如果
+      CLIP-ViT RSA ≈ 0.39（≈ DINO），则 SigLIP 的高 RSA 不来自 "VL pretraining" 大类， 而来自 SigLIP
+      特定训练配方（sigmoid loss + batch design）。 SigLIP 0.615 的优势变成一个 architecture-specific
+      observation 而非 generalizable claim。 如果 CLIP-ViT RSA > 0.60（> SigLIP），则 RSA 与下游性能脱钩（OpenVLA
+      用 SigLIP 而非 CLIP， 说明高 RSA 不等于好的 VLA backbone），RSA 作为核心 metric 的 validity 被质疑。
+
+      '
+    tables:
+    - title: RSA Comparison (unchanged, but reinterpreted)
+      rows:
+      - model: SigLIP+Projector
+        rsa: 0.615
+        worst_interpretation: SigLIP-specific, not VL-general
+      - model: VLA trained
+        rsa: 0.501
+        worst_interpretation: LLM degradation holds regardless
+      - model: VLA untrained
+        rsa: 0.485
+        worst_interpretation: Architecture-driven, training-invariant
+      - model: DINO
+        rsa: 0.388
+        worst_interpretation: Vision-only baseline, may ≈ CLIP-ViT
+    figures_description:
+    - 'Bar chart: SigLIP >> VLA >> DINO 仍成立，但新增 CLIP-ViT bar 后 narrative 需修改'
+    analysis: '数据本身不受影响。Worst 档的冲击来自 plan_012：CLIP-ViT 的位置决定 SigLIP 优势的归因。 Claim 1
+      必须从 "VL pretraining produces geometric alignment" 降级为 "SigLIP provides highest
+      geometric alignment in OpenVLA"——一个 observation 而非 mechanism claim。
+
+      '
+  - name: DINO baseline RSA
+    plan_id: plan_002
+    description: Standalone vision model 参照基线
+    expected_results:
+      dino_rsa: 0.388
+      dino_action_R2: 0.712
+    result_rationale: '已完成，数据不变。Worst 档下的关键重解读：DINO RSA=0.388 可能与 CLIP-ViT 接近（worst
+      预测 CLIP-ViT RSA ∈ [0.35, 0.42]）。这意味着 CLIP（VL-pretrained）和 DINO（self-supervised）
+      在 geometric alignment 上无显著差异，VL pretraining 不是 geometric alignment 的充分条件。 但
+      DINO 的 action R²=0.712 ≈ Projector 0.706 已说明 action information presence 与 geometric
+      alignment 是不同维度——这个 dissociation 在 worst 档下反而更突出。
+
+      '
+    tables: []
+    figures_description:
+    - 'Scatter: RSA vs R² 二维图中，DINO 和 CLIP-ViT 聚集在低 RSA / 高 R² 区域，SigLIP 独占高 RSA /
+      高 R² 角'
+    analysis: 'DINO 数据不变，但其角色从 "vision-only 下界" 变为 "与 CLIP-ViT 共同构成 non-SigLIP cluster"，
+      强化 metric dissociation narrative。
+
+      '
+  - name: Per-layer RSA degradation curve
+    plan_id: plan_003
+    description: 追踪 RSA 从 projector output 到 LLM 各层的衰减轨迹
+    expected_results:
+      proj_rsa: 0.615
+      peak_llm_rsa: 0.488
+      proj_to_l1_drop_pct: 20-40%
+      total_degradation: 0.13
+    result_rationale: '已完成，数据不变。Worst 档下，per-layer curve 的解释力不受 CLIP-ViT 结果影响： 无论
+      SigLIP 的 geometric advantage 来自何处，LLM 对 geometric alignment 的降解是确定的 （0.615→0.488）。这条证据直接支持
+      Claim 2（LLM redistributes），与 Claim 1 的 scope 缩减无关。 在重构方向 A 下，per-layer curve
+      升级为核心 figure（从 supporting 变为 main evidence）。
+
+      '
+    tables:
+    - title: Per-layer RSA worst-tier role
+      rows:
+      - metric: Proj→L1 drop
+        value: 0.13-0.25
+        role: Core evidence for Claim 2, unaffected by worst
+      - metric: Non-monotonic pattern
+        value: 'yes'
+        role: Supports redistribution narrative
+      - metric: All LLM >> DINO
+        value: 'yes'
+        role: Architecture matters even if VL-pretraining doesn't explain SigLIP
+    figures_description:
+    - 'Per-layer RSA curve: 从 Claim 1 的 supporting figure 升级为 Claim 2 的 main figure'
+    analysis: 'Worst 档下此实验的价值反而上升——当 Claim 1 被降级时，Claim 2 的 LLM degradation + redistribution
+      成为论文核心贡献之一，per-layer curve 是其关键可视化证据。
+
+      '
+  - name: Output head analysis
+    plan_id: plan_004
+    description: 确认 SigLIP+projector frozen，LLM 权重变化不传导到表征
+    expected_results:
+      vision_projector_cos_sim: 1.0
+      llm_rel_change_range:
+      - 1.22
+      - 1.37
+      head_vs_llm_ratio: 1.12
+    result_rationale: '已完成，数据不变。Worst 档下，"SigLIP+projector frozen" 的意义发生微妙变化： 原 narrative
+      是 "frozen vision encoder 提供 action structure，所以 Claim 1 成立"。 Worst 档下变为 "frozen
+      SigLIP 提供最高 geometric alignment，但这可能是 SigLIP-specific 而非 VL-pretraining-general"。Frozen
+      属性本身仍解释 trained ≈ untrained（Claim 3）， 所以此实验对 routing-not-creating narrative
+      的支持不变。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '此实验在 worst 档下对 Claim 3 的支持力不变。对 Claim 1 的支持从 "frozen encoder is the
+      source" 变为 "frozen encoder explains training invariance"，scope 缩窄但逻辑链不断。
+
+      '
+  - name: 6 probing methods × 2 benchmarks
+    plan_id: plan_005
+    description: 系统性验证 trained ≈ untrained
+    expected_results:
+      trained_vs_untrained_delta: ≈0 across all methods
+      all_methods_consistent: true
+    result_rationale: 'Orphaned 但子实验已完成。数据支持 trained ≈ untrained。Worst 档下此结论不受威胁——
+      training invariance 是 Claim 3 的基础，与 CLIP-ViT 结果无关。即使 CLIP-ViT 打破 Claim 1， routing-not-creating
+      的证据链（trained ≈ untrained in distributed representations, trained >> untrained
+      in readout concentration）完全独立。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Worst case 的保底叙事锚点。6 methods consistency 在任何档位下都是 strong evidence。
+
+      '
+  - name: Instruction ablation
+    plan_id: plan_006
+    description: 去掉 instruction text 测 RSA 变化
+    expected_results:
+      delta_with_vs_no_inst: 0.004
+      gate_judgment: FAIL — instruction 无影响
+    result_rationale: '已完成，数据不变。Worst 档下 instruction invariance 仍成立且价值不变： 它直接支持 Claim
+      3 的 "三重不变性"（training + instruction presence + instruction content）， 与 vision
+      encoder identity 无关。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Instruction ablation 在所有三档下结论一致，是 Claim 3 最稳健的子证据之一。
+
+      '
+  - name: 2×2 matrix (training × instruction)
+    plan_id: plan_007
+    description: 四条件全收敛验证
+    expected_results:
+      four_cell_range:
+      - 0.48
+      - 0.49
+      bootstrap_ci_includes_0: true
+    result_rationale: '已完成，数据不变。2×2 矩阵在 worst 档下仍是 Claim 3 的核心证据： 四个 cell 收敛在 0.48-0.49
+      band 内，bootstrap CI 包含 0。 这个结果不依赖 CLIP-ViT 的位置，因为它测量的是 VLA 内部 training/instruction
+      的效应， 而非跨 encoder 的比较。
+
+      '
+    tables:
+    - title: 2×2 Matrix (unchanged)
+      rows:
+      - condition: trained+inst
+        rsa: 0.488
+        worst_role: Claim 3 core
+      - condition: trained-no_inst
+        rsa: 0.489
+        worst_role: Claim 3 core
+      - condition: untrained+inst
+        rsa: 0.485
+        worst_role: Claim 3 core
+      - condition: untrained-no_inst
+        rsa: 0.48
+        worst_role: Claim 3 core
+    figures_description:
+    - '2×2 heatmap: 在 worst 档下从 supplementary 升级为 main text figure'
+    analysis: 'Worst 档下，当 Claim 1 降级后，Claim 3 的 2×2 matrix 成为论文最 clean 的实验设计， 升级为
+      main figure 之一。
+
+      '
+  - name: Random instruction control
+    plan_id: plan_008
+    description: 用随机/无意义 instruction 替代真实 instruction，验证 instruction content 不影响 RSA
+    expected_results:
+      normal_rsa: 0.489
+      random_rsa: 0.484
+      shuffled_rsa: 0.483
+      empty_rsa: 0.472
+      max_absolute_delta: 0.017
+    result_rationale: '已完成，数据不变。四种 instruction 条件下 RSA 差异 < 0.02，完成三重不变性的第三重。 Worst
+      档下价值不变——instruction content invariance 是独立于 encoder identity 的发现。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '与 plan_006、plan_007 共同构成 Claim 3 不可撼动的证据基础。Worst 档不影响。
+
+      '
+  - name: CKA verification
+    plan_id: plan_009
+    description: 用 CKA 指标重复 RSA 发现，确认或否认 metric dependency
+    expected_results:
+      cka_ordering: untrained > trained > projector > DINO (反转 RSA ordering)
+      cka_last_preaction: 0.127
+      rsa_cka_dissociation: true
+    result_rationale: '已完成。RSA-CKA dissociation 在 worst 档下的角色发生质变： 原本是 "需要讨论的 limitation"（metric
+      dependency），worst 档下变成核心贡献之一。 如果选择重构方向 B（Metric Dissociation framing），CKA-RSA-R²
+      三重分离 本身就是方法论贡献：RSA 捕捉 geometric alignment（SigLIP wins），CKA 捕捉 global structure
+      preservation（untrained wins），R² 捕捉 functional decodability（DINO ≈ SigLIP）。 三个
+      metric 三种排序 = 单一 metric 不足以评估 VLA 表征质量。 CLIP-ViT 如果 RSA > SigLIP 且 R² < SigLIP，则是第四个分离维度，进一步强化此论点。
+
+      '
+    tables:
+    - title: Triple Metric Dissociation (worst-tier core contribution)
+      rows:
+      - metric: RSA (geometric)
+        ordering: SigLIP > trained > untrained > DINO
+        captures: local distance structure alignment
+      - metric: CKA (global)
+        ordering: untrained > trained > SigLIP > DINO
+        captures: global structure preservation
+      - metric: R² (functional)
+        ordering: readout > DINO ≈ SigLIP > LLM_img_mean
+        captures: action decodability
+    figures_description:
+    - 'Triple ordering reversal diagram: 三个 metric 的排序箭头交叉，每个 metric 讲不同故事'
+    analysis: 'Worst 档下 plan_009 从 P2 实验升级为核心贡献。Metric dissociation 在 best/mid 档是
+      limitation discussion，在 worst 档是 main finding。方向 B 的论文标题可能变为 "No Single Metric
+      Captures VLA Representation Quality: A Multi-Metric Dissociation Analysis"。
+
+      '
+  - name: LIBERO-Spatial cross-benchmark
+    plan_id: plan_010
+    description: 第三个 benchmark 交叉验证所有 claims
+    expected_results:
+      libero_spatial_siglip_rsa: 0.42
+      libero_spatial_trained_rsa: 0.38
+      libero_spatial_untrained_rsa: 0.4
+      libero_spatial_dino_rsa: 0.35
+      libero_spatial_training_delta_p: 0.02
+      libero_spatial_readout_delta: 0.01
+      ordering_reversal: true
+      training_invariance_broken: possibly — p=0.02 < 0.05
+    result_rationale: 'Worst 档核心预测：LIBERO-Spatial 的 action 空间结构与 LIBERO-Goal 不同（spatial
+      reasoning vs goal-directed manipulation），可能导致： (1) SigLIP RSA 从 0.615 跌至 ~0.42——SigLIP
+      的 geometric alignment 在 spatial tasks 上远不如 goal tasks 突出，因为 SigLIP 的 VL pretraining
+      偏向 object-centric 而非 spatial。 (2) 排序反转：untrained RSA (0.40) > trained RSA (0.38)——random
+      LLM 保留更多 spatial structure（因为 trained LLM 的 attention 被 LIBERO-Goal 的 fine-tuning
+      分布偏置， 对 out-of-distribution 的 spatial tasks 反而更差）。 (3) Training invariance 边缘打破：Δ=0.02,
+      p≈0.02——CI 不包含 0 但效应小， 说明 training invariance 是 distribution-dependent 而非 architectural
+      guarantee。 (4) Readout concentration delta 缩小到 0.010（vs LIBERO-Goal 的 0.045），
+      因为 routing 是 task-specific learned behavior，out-of-distribution 时效果衰减。 综合：LIBERO-Spatial
+      不支持 clean Claim 3 narrative，需要加 distribution-dependency caveat。
+
+      '
+    tables:
+    - title: LIBERO-Spatial vs LIBERO-Goal Comparison (worst-tier)
+      rows:
+      - metric: SigLIP RSA
+        libero_goal: 0.615
+        libero_spatial: 0.42
+        delta: -0.195
+        interpretation: Spatial tasks expose SigLIP weakness
+      - metric: Trained RSA
+        libero_goal: 0.501
+        libero_spatial: 0.38
+        delta: -0.121
+        interpretation: Overall alignment drops
+      - metric: Untrained RSA
+        libero_goal: 0.485
+        libero_spatial: 0.4
+        delta: -0.085
+        interpretation: Less degradation → ordering reversal
+      - metric: Training Δ p-value
+        libero_goal: 0.2
+        libero_spatial: 0.02
+        delta: n/a
+        interpretation: Invariance breaks at p<0.05
+      - metric: Readout Δ
+        libero_goal: 0.045
+        libero_spatial: 0.01
+        delta: -0.035
+        interpretation: Routing is distribution-specific
+    figures_description:
+    - 'Side-by-side per-layer curves: LIBERO-Goal (clean separation) vs LIBERO-Spatial
+      (messy, overlapping bands)'
+    - 'Bootstrap CI comparison: LIBERO-Goal CI includes 0, LIBERO-Spatial CI excludes
+      0'
+    analysis: 'LIBERO-Spatial 在 worst 档下对 Claim 3 造成最严重威胁。Training invariance 的 p<0.05
+      break 意味着 "routing-not-creating" 不是 universal statement，而是 in-distribution observation。
+      论文需要加 distribution-dependency qualification："Training teaches distribution-specific
+      routing; distributed representations remain approximately invariant within the
+      fine-tuning distribution." 这削弱了 Claim 3 的 generality 但不 falsify 它。 但如果 readout
+      Δ 也缩小到 noise level（0.010, p>0.05），则 routing narrative 本身 受质疑——trained LLM 在
+      OOD 时既不 route 也不 create，只是 pass through。
+
+      '
+  - name: Functional action probe (three-way)
+    plan_id: plan_011
+    description: Projector / LLM / DINO 三方 functional probe 对比
+    expected_results:
+      projector_R2: 0.706
+      llm_image_mean_R2: 0.683
+      llm_readout_R2: 0.731
+      dino_R2: 0.712
+      untrained_readout_R2: 0.686
+      bootstrap_proj_vs_llm_p: 0.001
+    result_rationale: 'Orphaned 但子实验已完成，数据不变。Worst 档下 functional probe 的关键重解读： DINO
+      R²=0.712 ≈ Projector R²=0.706 (p=0.22) 已经是 worst-direction 的证据—— action information
+      presence 不区分 VL-pretrained 和 self-supervised encoder。 如果 CLIP-ViT R² 也 ≈ 0.70（与
+      DINO/SigLIP 同水平），则 "所有 modern vision encoders 都包含足够的 action-relevant information"
+      成为 finding，而非 SigLIP dominance。 如果 CLIP-ViT R² < 0.65（显著低于 DINO/SigLIP），则与 CLIP-ViT
+      RSA > 0.60 形成 RSA-R² dissociation（高 geometric alignment 低 functional capacity），
+      是方向 B metric dissociation 的核心证据。 Readout concentration（trained 0.731 >> untrained
+      0.686, p<0.0001）不受 worst 档影响， 仍是 Claim 2+3 的最强 functional evidence。
+
+      '
+    tables:
+    - title: Functional Probe under Worst Tier
+      rows:
+      - model: SigLIP+Proj
+        R2: 0.706
+        worst_role: ≈ DINO, not special in R²
+      - model: DINO
+        R2: 0.712
+        worst_role: ≈ Proj, action info is generic
+      - model: LLM img_mean
+        R2: 0.683
+        worst_role: Degradation confirmed, Claim 2 holds
+      - model: Trained readout
+        R2: 0.731
+        worst_role: Routing confirmed, unaffected by worst
+      - model: Untrained readout
+        R2: 0.686
+        worst_role: < Proj, training-dependent routing confirmed
+    figures_description:
+    - 'Bar chart with error bars: 新增 CLIP-ViT bar 后，四方对比（SigLIP/CLIP/DINO/LLM），突出
+      R² 平坦 vs RSA 分化'
+    analysis: 'Functional probe 在 worst 档下反而提供 silver lining：即使 Claim 1 被降级， readout
+      concentration（trained vs untrained）的 functional evidence 完全不受影响（p<0.0001）， 是
+      routing-not-creating narrative 的最强量化支撑。
+
+      '
+  - name: CLIP-ViT pretraining control
+    plan_id: plan_012
+    description: 用 CLIP ViT-L 替代 SigLIP，区分 VL pretraining 贡献 vs SigLIP-specific 效应
+    expected_results:
+      clip_vit_rsa_scenario_A: 0.39
+      clip_vit_rsa_scenario_B: 0.62
+      clip_vit_action_R2: 0.69
+      clip_vit_delta_R2: 0.09
+    result_rationale: '这是 worst 档的 make-or-break 实验。两个 worst 场景：
+
+      场景 A（CLIP-ViT RSA ≈ 0.39，接近 DINO 0.388）： CLIP ViT-L 的 contrastive pretraining（softmax
+      cross-entropy, InfoNCE）与 DINO 的 self-supervised pretraining 产生类似的 geometric
+      structure，RSA ≈ 0.39。 这直接说明 VL pretraining 不是 geometric alignment 的充分条件——CLIP
+      有 language supervision 但 geometric alignment 不比 DINO 好。SigLIP 的 RSA=0.615 来自其特定设计：
+      sigmoid loss 移除了 softmax 的 cross-sample normalization，允许更 fine-grained 的 per-pair
+      alignment，可能产生与 action 空间更匹配的 geometric structure。 但这是 architecture/loss-specific
+      的 insight，不是 VL pretraining 的 general claim。 此时 R² ≈ 0.69（与 DINO 0.712 和 Projector
+      0.706 在同一水平），说明 action information 是 generic 的，所有 strong vision encoders 都有。
+
+      场景 B（CLIP-ViT RSA ≈ 0.62, > SigLIP 0.615）： CLIP ViT-L 的 RSA 竟然更高，但 OpenVLA 选择了
+      SigLIP 且实际 downstream performance 更好。这意味着 RSA 与 VLA task performance 脱钩——高 geometric
+      alignment 不等于好 VLA。 RSA 作为核心 metric 的 validity 被质疑。需要解释为什么 OpenVLA 团队选 SigLIP
+      而非 CLIP （可能是 training efficiency / resolution / tokenizer 兼容性而非 representational
+      原因）。 此时论文必须转向方向 B：metric dissociation 本身是贡献，而非 RSA 的绝对值。
+
+      '
+    tables:
+    - title: 'CLIP-ViT Worst Scenario A: VL ≠ geometric alignment'
+      rows:
+      - model: SigLIP
+        rsa: 0.615
+        R2: 0.706
+        interpretation: SigLIP-specific, not VL-general
+      - model: CLIP-ViT
+        rsa: 0.39
+        R2: 0.69
+        interpretation: VL pretraining ≠ geometric alignment
+      - model: DINO
+        rsa: 0.388
+        R2: 0.712
+        interpretation: ≈ CLIP-ViT in both metrics
+    - title: 'CLIP-ViT Worst Scenario B: RSA-performance dissociation'
+      rows:
+      - model: CLIP-ViT
+        rsa: 0.62
+        R2: 0.69
+        interpretation: Highest RSA but not chosen for OpenVLA
+      - model: SigLIP
+        rsa: 0.615
+        R2: 0.706
+        interpretation: Chosen for OpenVLA, slightly lower RSA
+      - model: DINO
+        rsa: 0.388
+        R2: 0.712
+        interpretation: Lowest RSA, highest R²
+    figures_description:
+    - 'Scenario A: RSA bar chart with CLIP-ViT ≈ DINO << SigLIP，标注 ''VL pretraining
+      ≠ sufficient'''
+    - 'Scenario B: RSA vs downstream performance scatter，标注 dissociation'
+    analysis: 'Plan_012 是 worst 档的定义性实验。无论场景 A 还是 B，Claim 1 都需要重写： 场景 A → "SigLIP''s
+      sigmoid loss produces uniquely high geometric alignment, distinct from both
+      contrastive VL (CLIP) and self-supervised (DINO) pretraining"。 场景 B → "High
+      geometric alignment (RSA) does not predict VLA backbone suitability; metric
+      selection critically shapes conclusions about representation quality"。 两种场景下
+      Claim 2 和 Claim 3 不受影响——LLM degradation 和 routing-not-creating 不依赖 SigLIP 的
+      RSA 来源。Intro 和 framing 需要 ~2 天重写。 论文仍可投 CoRL 2026（接受 analysis/understanding
+      论文），但标题和 contribution statement 必须重构。
+
+      '
+  - name: Reviewer simulation (worst-tier consensus)
+    plan_id: n/a
+    description: 模拟 worst 档下 reviewer 反应
+    expected_results:
+      reviewer_score_median: 4
+      reviewer_score_range:
+      - 3
+      - 5
+      consensus: scope narrow + metric dependency unresolved
+    result_rationale: 'Worst 档下预期 reviewer 反应： R1 (score 3): "Single architecture
+      (OpenVLA), single benchmark (LIBERO-Goal main results), and the CLIP-ViT result
+      undermines the core VL-pretraining claim. What remains is observations specific
+      to SigLIP in OpenVLA — not generalizable." R2 (score 5): "The routing-not-creating
+      finding (Claim 3) is novel and well-supported with strong statistics (p<0.0001).
+      The metric dissociation (RSA vs CKA vs R²) is a useful methodological contribution.
+      Paper needs better framing but the evidence is solid." R3 (score 4): "Interesting
+      analysis but the paper tries to do too much. Pick either the routing story OR
+      the metric dissociation story and do it thoroughly. LIBERO-Spatial results (if
+      included) weaken rather than strengthen the claims." AC synthesis: Borderline.
+      Strong evidence for Claim 3, but Claim 1 overreach and metric dependency concern.
+      Revision can fix if framing is tightened.
+
+      '
+    tables:
+    - title: Worst-tier Reviewer Score Distribution
+      rows:
+      - reviewer: R1 (generalizability hawk)
+        score: 3
+        main_concern: Single arch + CLIP-ViT undermines VL claim
+      - reviewer: R2 (methodology appreciator)
+        score: 5
+        main_concern: Framing needs work but evidence is solid
+      - reviewer: R3 (scope clarity)
+        score: 4
+        main_concern: Too many claims, pick one story
+    figures_description: []
+    analysis: Median score 4 = borderline reject/accept depending on AC disposition.
+      重构方向 A（routing-not-creating focus）更有可能获得 accept，因为证据集中且统计功效强。 方向 B（metric dissociation）风险更高——reviewer
+      可能认为是 negative result dressed up， 但如果执行得当（CKA-RSA-R² 三重分离作为方法论框架），也有 accept
+      路径。 关键：无论哪个方向，Claim 1 必须降级为 observation，否则 R1 的 score 会拖垮全文。
+  review_report: '---
+
+    dream_id: dream_20260516T011810
+
+    tier: worst
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-16T01:59:23.639480+00:00
+
+    ---
+
+
+    # Dream Review Report — Full Roundtable
+
+
+    **Paper:** "Fine-Tuning Teaches Routing, Not Representation: A Multi-Metric Dissociation
+    Analysis of Vision-Language-Action Models"
+
+
+    **Review mode:** full | **Reviewers:** R1 (Methods + Experiments), R2 (Novelty
+    + Related Work)
+
+
+    ---
+
+
+    ## Roundtable Summary
+
+
+    | Reviewer | Score | Confidence | Focus |
+
+    |----------|-------|------------|-------|
+
+    | R1 | 3 (Weak Reject) | 4/5 | Methods + Experiments |
+
+    | R2 | 3 (Weak Reject) | 4/5 | Novelty + Related Work |
+
+    | **Consensus** | **3 (Weak Reject)** | **4/5** | |
+
+
+    ---
+
+
+    ## Agreed Strengths
+
+
+    - **S1. Geometric-functional dissociation is a genuine finding.** DINOv2 matches
+    SigLIP in probe R² (0.712 vs 0.706, p=0.22) despite dramatically lower RSA (0.388
+    vs 0.615). This cleanly separates "action information presence" from "geometric
+    alignment with action structure" — a conceptually important distinction not previously
+    demonstrated for VLAs. (Both reviewers)
+
+
+    - **S2. Readout concentration is well-evidenced.** Trained readout R²=0.731 vs
+    untrained readout R²=0.686 (Δ=0.045, CI=[0.032, 0.058], p<0.0001) is the strongest
+    quantitative result in the paper, with unambiguous statistical support. This demonstrates
+    a concrete learned capability (information routing to the readout position) that
+    is absent in untrained models. (Both reviewers)
+
+
+    - **S3. Triple metric dissociation has methodological value.** RSA, CKA, and R²
+    yield mutually inconsistent model rankings (Table 8). This is a useful cautionary
+    finding for the VLA analysis community — single-metric conclusions are inherently
+    incomplete. RSA says LLM is harmful, CKA says LLM is beneficial, R² says training
+    is essential. (R2 primary, R1 concurs)
+
+
+    - **S4. Well-motivated decomposition.** The SigLIP / Projector / LLM pipeline
+    decomposition with trained-vs-untrained control is a natural and clean experimental
+    framework for isolating component contributions. (R1)
+
+
+    - **S5. Statistical methodology for core analyses is sound.** Bootstrap with 10K
+    resamples, permutation p-values, and 95% CIs are appropriate for the reported
+    comparisons. The 2×2 factorial design (Table 5) and instruction content controls
+    (Table 6) show experimental thoroughness. (R1)
+
+
+    ---
+
+
+    ## Agreed Weaknesses
+
+
+    ### Critical
+
+
+    **W1. CLIP-ViT control presents two hypothetical scenarios instead of one actual
+    result.** [R1 primary, R2 concurs]
+
+
+    Tables 2 and 3 report "Scenario A" (CLIP RSA≈0.39) and "Scenario B" (CLIP RSA≈0.62)
+    as separate outcomes. An actual experiment produces one number, not two alternative
+    universes. Either the experiment was run (in which case report the actual result)
+    or it was not (in which case do not present it as empirical evidence). This is
+    a fundamental departure from empirical reporting standards. The CLIP-ViT control
+    is central to Claim 1 — without a definitive result, the claim that SigLIP''s
+    advantage is "SigLIP-specific rather than VL-pretraining general" is not empirically
+    established.
+
+
+    **W2. LIBERO-Spatial results (Table 9) may not be based on actual experiments.**
+    [R1 primary, R2 concurs]
+
+
+    Cross-referencing the experiment plan (review_context.yaml: plan_010 listed as
+    P2 priority, description uses future-tense "worst 档核心预测"), the LIBERO-Spatial
+    numbers appear to be projected/imagined rather than computed from actual runs.
+    Specific numbers are reported (SigLIP RSA=0.42, Training Δ p=0.02, Readout Δ=0.010)
+    with no indication that these are predictions rather than measurements. If these
+    are simulated results, their inclusion as empirical findings is a serious integrity
+    concern. If they are real, the provenance should be clearly documented.
+
+
+    ### Major
+
+
+    **W3. Claim 3 rests on an underpowered null result without equivalence testing.**
+    [Both reviewers independently]
+
+
+    The trained-vs-untrained RSA difference (0.501 vs 0.485, p=0.20) is presented
+    as evidence that "fine-tuning does not alter distributed representations." This
+    is a textbook "absence of evidence ≠ evidence of absence" error. With n=10 tasks
+    (50 episodes each), the study has low power to detect true effects of Δ=0.02–0.05.
+    The 95% CI extends to +0.064, meaning the data are consistent with a meaningful
+    training effect. A Two One-Sided Tests (TOST) equivalence procedure with a pre-specified
+    margin is required to affirmatively claim equivalence. The six probing methods
+    are invoked as converging evidence but never individually reported.
+
+
+    **W4. "Routing not creating" is not a novel conceptual framework.** [R2 primary,
+    R1 acknowledges]
+
+
+    The principle that fine-tuning primarily teaches task-specific readout/routing
+    rather than creating new representations is well-established in the NLP fine-tuning
+    literature:
+
+    - Aghajanyan et al. (2021): fine-tuning operates in a low-dimensional subspace
+    of the pre-trained representation
+
+    - Voita et al. (2019): information-theoretic probing shows fine-tuning alters
+    information accessibility, not content
+
+    - Kumar et al. (2022): fine-tuning distorts pre-trained features more than it
+    improves them
+
+    - Merchant et al. (2020): BERT fine-tuning primarily changes upper layers while
+    preserving lower-layer representations
+
+
+    The paper cites none of this literature. Extending this known principle to VLAs
+    is incremental, not paradigm-shifting. The paper''s title and framing ("reframe
+    VLA fine-tuning") imply a more fundamental conceptual contribution than the evidence
+    supports.
+
+
+    **W5. The "untrained" control is an extreme strawman.** [Both reviewers]
+
+
+    Using a randomly-initialized LLM (from_config()) as the "untrained" baseline conflates:
+    (1) absence of language pretraining, (2) absence of VLA fine-tuning, and (3) random
+    weight initialization. The dominant signal source — frozen SigLIP tokens projected
+    through the same frozen projector — is identical in both conditions. That distributed
+    representations are similar (frozen input → similar output regardless of random
+    vs trained processing) is partially tautological. A base pretrained Llama-2 (language-pretrained
+    but not action-fine-tuned) is the missing control that would properly isolate
+    VLA fine-tuning effects.
+
+
+    **W6. Single architecture severely limits generalizability.** [R2 primary, R1
+    concurs]
+
+
+    All experiments use OpenVLA (SigLIP + Llama-2 7B). The paper''s claims about "VLA
+    fine-tuning" are stated as general principles but evidenced from a single architecture
+    on a single benchmark family (LIBERO). Grant et al. (2026) — cited as prior work
+    — tested 6 VLA architectures for behavioral analysis; this paper''s representational
+    analysis is narrower. Without RT-2, π₀, or other VLA architectures, claims like
+    "VLA fine-tuning teaches routing, not representation" are overclaiming the evidence
+    base.
+
+
+    **W7. LIBERO-Spatial results (if real) contradict rather than support the thesis.**
+    [Both reviewers]
+
+
+    Table 9 shows: (1) training invariance breaks (p=0.02 < 0.05), (2) readout concentration
+    nearly vanishes (Δ=0.010 vs 0.045), (3) ordering reversal (untrained > trained).
+    The paper frames this as "qualifying the generality" but the proper interpretation
+    is that the central claim fails on a second benchmark. "Training teaches distribution-specific
+    routing" is a substantially weaker claim than "fine-tuning teaches routing, not
+    representation," yet the title and abstract retain the stronger formulation.
+
+
+    ### Moderate
+
+
+    **W8. CLIP-ViT control has a projector confound.** [R2]
+
+
+    SigLIP representations pass through the trained projector (which was fine-tuned
+    jointly with the VLA), while CLIP-ViT representations are presumably raw encoder
+    outputs or passed through the same projector designed for SigLIP features. If
+    the projector is SigLIP-adapted, the comparison is confounded — CLIP-ViT''s lower
+    RSA may reflect projector mismatch rather than inherent encoder properties. The
+    paper does not discuss this.
+
+
+    **W9. Only 12 references — insufficient for a venue paper.** [R2]
+
+
+    Missing critical citations include:
+
+    - Foundational RSA methodology: Kriegeskorte et al. (2008)
+
+    - Foundational CKA methodology: Kornblith et al. (2019)
+
+    - NLP fine-tuning representation literature (Aghajanyan, Voita, Kumar, Merchant)
+
+    - Transfer learning / feature reuse literature (Neyshabur et al. 2020, Raghu et
+    al. 2019)
+
+    - Other VLA representation analysis beyond the cited work
+
+
+    **W10. Image-mean aggregation may mask per-token dynamics.** [R1]
+
+
+    LLM self-attention creates heterogeneous token representations. Mean-pooling dilutes
+    any token-specific routing patterns. Per-token variance analysis or attention
+    pattern visualization would strengthen the "redistribution" claim mechanistically.
+    The last-preaction token is mentioned as supplementary but not analyzed in depth.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    **Q1 (Critical).** Were the CLIP-ViT experiments actually run? If so, what was
+    the single measured RSA value, and why are two hypothetical scenarios presented
+    instead?
+
+
+    **Q2 (Critical).** Were the LIBERO-Spatial experiments (Table 9) computed from
+    actual data? Please provide experiment run IDs, timestamps, and raw data files.
+
+
+    **Q3 (Major).** Can you perform TOST equivalence testing for the trained-vs-untrained
+    comparison (Claim 3) with a pre-specified margin? What is the power of the current
+    design to detect Δ=0.03?
+
+
+    **Q4 (Major).** Why is the NLP fine-tuning literature (Aghajanyan et al. 2021,
+    Voita et al. 2019, Kumar et al. 2022) not cited? How does "routing not creating"
+    differ from the known principle that fine-tuning operates in low-rank subspaces
+    of pre-trained representations?
+
+
+    **Q5 (Major).** Have you tested with a base pretrained Llama-2 (no action fine-tuning,
+    but with language pretraining intact) as an intermediate control?
+
+
+    **Q6 (Moderate).** How was the CLIP-ViT encoder integrated — through the same
+    SigLIP-adapted projector or a separately trained projector? If the former, how
+    do you control for projector mismatch?
+
+
+    **Q7 (Moderate).** Can you report the six probing methods individually rather
+    than summarizing them as "all confirm"?
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    | Experiment | Plan ID | Covered? | Assessment |
+
+    |---|---|---|---|
+
+    | SigLIP+Projector RSA vs VLA vs DINO | plan_001 | ✓ Table 1 | Solid |
+
+    | DINO baseline RSA | plan_002 | ✓ Table 1,2 | Solid |
+
+    | Per-layer RSA degradation | plan_003 | ✓ Table 4 | Solid |
+
+    | Output head analysis | plan_004 | ✓ §4.1 text | Brief but sufficient |
+
+    | 6 probing methods × 2 benchmarks | plan_005 | Partial | Referenced but individual
+    results not reported |
+
+    | Instruction ablation | plan_006 | ✓ §4.3 text | Adequate |
+
+    | 2×2 matrix (training × instruction) | plan_007 | ✓ Table 5 | Clean design |
+
+    | Random instruction control | plan_008 | ✓ Table 6 | Thorough |
+
+    | CKA verification | plan_009 | ✓ Table 8 | Important finding |
+
+    | LIBERO-Spatial cross-benchmark | plan_010 | ✓ Table 9 | **Provenance questionable**
+    |
+
+    | Functional action probe (three-way) | plan_011 | ✓ Table 7 | Solid |
+
+    | CLIP-ViT pretraining control | plan_012 | **Problematic** | Two hypothetical
+    scenarios, not one result |
+
+
+    **Coverage summary:** 10/12 experiments are credibly reported. Two critical experiments
+    (CLIP-ViT control, LIBERO-Spatial) have provenance concerns that affect the paper''s
+    core claims.
+
+
+    ---
+
+
+    ## Consensus Verdict
+
+
+    **Score: 3 / 6 (Weak Reject)**
+
+
+    **Headline:** The paper contains two genuine contributions — geometric-functional
+    dissociation and training-dependent readout concentration — embedded in a framing
+    that overclaims novelty and rests on incompletely executed critical experiments.
+
+
+    **What would raise the score to 4–5:**
+
+    1. Report the actual CLIP-ViT result (one number) and remove the hypothetical
+    scenario framing
+
+    2. Either execute LIBERO-Spatial experiments properly or remove Table 9 and qualify
+    scope to LIBERO-Goal only
+
+    3. Add TOST equivalence testing for Claim 3
+
+    4. Add a pretrained-but-not-fine-tuned Llama-2 control
+
+    5. Cite and position against NLP fine-tuning representation literature
+
+    6. Soften title/framing to match evidence scope (single architecture, single benchmark
+    family)
+
+    7. Report the six probing methods individually
+
+
+    **What is publishable as-is:**
+
+    The geometric-functional dissociation (S1), readout concentration (S2), and triple
+    metric dissociation (S3) are genuine findings. A tightly-scoped paper focused
+    on "multi-metric analysis reveals dissociations in OpenVLA representations" —
+    without overclaiming about general VLA fine-tuning principles — would be a stronger
+    submission.
+
+
+    ---
+
+
+    *Review generated by 2-reviewer roundtable (R1: methods/experiments, R2: novelty/related
+    work) with 4-step protocol: independent → cross-share → converge → synthesize.*
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-16T01:59:32+00:00'

@@ -1,0 +1,16 @@
+{
+  "exp_id": "matched_ablation_controls",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:26:06.797Z",
+    "updated_at": "2026-05-19T03:35:04.494Z",
+    "parent": "specificity_control_action",
+    "hypothesis": "Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1."
+  },
+  "timestamp": "2026-05-19T03:35:04.712739+00:00",
+  "trigger": "update_registry"
+}

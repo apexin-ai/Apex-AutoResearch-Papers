@@ -1,0 +1,900 @@
+# ssh bootstrap ci lastpreaction
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/chats/worker_ssh_bootstrap-ci-lastpreaction_20260516T000846.jsonl`
+- **Structured JSON:** [`5a95d805d74568fea8c0.json`](../../sessions/5a/5a95d805d74568fea8c0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+31 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T00:11:03.076075+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T00:11:03.076462+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T00:11:03.076662+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*action_probe*\" -o -name \"*lastpreaction*\" -o -name \"*untrained*probe*\" -o -name \"*last_preaction*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*action_probe*\" -o -name \"*lastpreaction*\" -o -name \"*untrained*probe*\" -o -name \"*last_preaction*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T00:11:03.076873+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/functional_validation/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/results/functional_validation/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T00:11:03.077114+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/analysis/action_probe_analysis_action_prediction.json\\n/root/autodl-tmp/vla-ssd/results/rsa/rsa_instruction_control_last_preaction.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T00:11:03.077334+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_delta_probe_projector.json\\naction_probe_projector.json\\naction_probe_v2.json\\ndino_action_probe.json\\nuntrained_last_preaction_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T00:11:03.077562+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T00:11:03.077749+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T00:11:03.078265+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"untrained_last_preaction_L19\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.48799586296081543,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.410416841506958,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.5625075101852417,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.21188724040985107,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.07568627595901489,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.3459491729736328,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.27515679597854614,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.2677685618400574,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.36104816198349,\\n      \\\"turn_on_the_stove\\\": 0.25357043743133545\\n    },\\n    \\\"mean_R2\\\": 0.32519868612289426,\\n    \\\"overall_R2\\\": 0.3567284345626831,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.14876043796539307,\\n      \\\"dy\\\": 0.3027172088623047,\\n      \\\"dz\\\": 0.3601384162902832,\\n      \\\"drx\\\": 0.040006816387176514,\\n      \\\"dry\\\": 0.04569804668426514,\\n      \\\"drz\\\": 0.005398154258728027,\\n      \\\"gripper\\\": 0.3407720923423767\\n    },\\n    \\\"gripper_acc\\\": 0.7854565422026984,\\n    \\\"val_loss\\\": 0.8011825680732727,\\n    \\\"epochs_trained\\\": 40\\n  },\\n  \\\"untrained_last_preaction_best\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.8506230115890503,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7450185418128967,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.8619183301925659,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5940660238265991,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6797966361045837,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6260933876037598,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6001724004745483,\\n      \\\"put_the_wine_bo
+…[truncated 7922 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T00:11:03.078877+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"v1_results\\\": {\\n    \\\"projector_mean_R2\\\": 0.7062587320804596,\\n    \\\"projector_overall_R2\\\": 0.716913104057312,\\n    \\\"image_mean_trained_L19_mean_R2\\\": 0.6831704080104828,\\n    \\\"llm_trained_L19_mean_R2\\\": 0.730903708934784,\\n    \\\"image_mean_untrained_L0_mean_R2\\\": 0.7136105179786683,\\n    \\\"bootstrap_proj_vs_llm\\\": {\\n      \\\"delta\\\": -0.02464497685432434,\\n      \\\"ci_95\\\": [\\n        -0.039807384610176084,\\n        -0.008721902221441286\\n      ],\\n      \\\"p_value\\\": 0.0014\\n    }\\n  },\\n  \\\"bootstrap_proj_vs_image_mean_L19\\\": {\\n    \\\"proj_per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.8524968028068542,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7634366750717163,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.8558578491210938,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6052101850509644,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6865708231925964,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6757302284240723,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6336746215820312,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5454312562942505,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6573578119277954,\\n      \\\"turn_on_the_stove\\\": 0.7868210673332214\\n    },\\n    \\\"image_mean_L19_per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.824044406414032,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7430646419525146,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.8547680377960205,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5661101341247559,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6819236278533936,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6515845060348511,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5641684532165527,\\n      \\\"put_the_wine_bottle_on_the_rack\\
+…[truncated 7789 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T00:11:03.079209+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/analysis/action_probe_analysis_action_prediction.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/analysis/action_probe_analysis_action_prediction.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T00:11:03.079405+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*trained*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*trained*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T00:11:03.079614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"probe_type\\\": \\\"action_prediction\\\",\\n  \\\"models_loaded\\\": [\\n    \\\"dinov2\\\"\\n  ],\\n  \\\"best_layers\\\": {\\n    \\\"dinov2\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"overall_r2\\\": 0.6688695549964905,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.540513277053833,\\n        \\\"dy\\\": 0.7323636412620544,\\n        \\\"dz\\\": 0.5864740014076233,\\n        \\\"drx\\\": 0.3969998359680176,\\n        \\\"dry\\\": 0.17541664838790894,\\n        \\\"drz\\\": 0.6600228548049927,\\n        \\\"gripper\\\": 0.6778761148452759\\n      },\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.6790621280670166,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.6973761320114136,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.6733092069625854,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.6413769721984863,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.6181154251098633,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.6620728969573975,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.6357461214065552,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.6715397238731384,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.6113951206207275,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8690783977508545\\n      }\\n    }\\n  },\\n  \\\"gate_results\\\": {\\n    \\\"G1\\\": {\\n      \\\"threshold\\\": 0.3,\\n      \\\"value\\\": null,\\n      \\\"
+…[truncated 136 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T00:11:03.079843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_24.json\\n/root/autodl-tmp/vla-ssd/resu
+…[truncated 6394 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T00:11:03.080083+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/trained/action_prediction/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "ls /root/autodl-tmp/vla-ssd/results/trained/action_prediction/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T00:11:03.080233+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"layer_0.json\\nlayer_1.json\\nlayer_10.json\\nlayer_11.json\\nlayer_12.json\\nlayer_13.json\\nlayer_14.json\\nlayer_15.json\\nlayer_16.json\\nlayer_17.json\\nlayer_18.json\\nlayer_19.json\\nlayer_2.json\\nlayer_20.json\\nlayer_21.json\\nlayer_22.json\\nlayer_23.json\\nlayer_24.json\\nlayer_25.json\\nlayer_26.json\\nlayer_27.json\\nlayer_28.json\\nlayer_29.json\\nlayer_3.json\\nlayer_30.json\\nlayer_31.json\\nlayer_32.json\\nlayer_4.json\\nlayer_5.json\\nlayer_6.json\\nlayer_7.json\\nlayer_8.json\\nlayer_9.json\\nsummary.csv\\nsummary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T00:11:03.080362+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -maxdepth 2 -type d -name \"action_prediction\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/autodl-tmp/vla-ssd/results/ -maxdepth 2 -type d -name \"action_prediction\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T00:11:03.080489+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/dinov2/action_prediction\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T00:11:03.080614+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_19.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_19.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T00:11:03.080759+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"layer\\\": 19,\\n  \\\"per_dim_r2\\\": {\\n    \\\"dx\\\": 0.5885498523712158,\\n    \\\"dy\\\": 0.7629175782203674,\\n    \\\"dz\\\": 0.5853951573371887,\\n    \\\"drx\\\": 0.37116557359695435,\\n    \\\"dry\\\": 0.16489756107330322,\\n    \\\"drz\\\": 0.665391743183136,\\n    \\\"gripper\\\": 0.6814574599266052\\n  },\\n  \\\"overall_r2\\\": 0.6769802570343018,\\n  \\\"per_task_r2\\\": {\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.6774550676345825,\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.717392086982727,\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.7065896987915039,\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.6521202325820923,\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.6508880853652954,\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.6315267086029053,\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.6546754837036133,\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.677848219871521,\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.6042870879173279,\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8586200475692749\\n  },\\n  \\\"per_task_mean_r2\\\": 0.6831402719020844,\\n  \\\"gripper_accuracy\\\": 0.8989388949871936,\\n  \\\"raw_mse\\\": 0.06246403977274895,\\n  \\\"val_loss\\\": 0.4718315303325653,\\n  \\\"epochs_trained\\\": 12\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T00:11:03.080955+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*last_preaction*\" -o -name \"*lastpreaction*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*last_preaction*\" -o -name \"*lastpreaction*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T00:11:03.081100+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -rl \"0.7309\" /root/autodl-tmp/vla-ssd/results/functional_validation/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "grep -rl \"0.7309\" /root/autodl-tmp/vla-ssd/results/functional_validation/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T00:11:03.081345+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/rsa/rsa_instruction_control_last_preaction.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T00:11:03.081507+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T00:11:03.081640+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T00:11:03.081957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"projector\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.8524968028068542,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7634366750717163,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.8558578491210938,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.6052101850509644,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6865708231925964,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6757302284240723,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.6336746215820312,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5454312562942505,\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.6573578119277954,\\n      \\\"turn_on_the_stove\\\": 0.7868210673332214\\n    },\\n    \\\"mean_R2\\\": 0.7062587320804596,\\n    \\\"overall_R2\\\": 0.716913104057312,\\n    \\\"per_dim_R2\\\": {\\n      \\\"dx\\\": 0.6506892442703247,\\n      \\\"dy\\\": 0.7160146236419678,\\n      \\\"dz\\\": 0.6620165109634399,\\n      \\\"drx\\\": 0.5497515201568604,\\n      \\\"dry\\\": 0.3786472678184509,\\n      \\\"drz\\\": 0.7263338565826416,\\n      \\\"gripper\\\": 0.7167081236839294\\n    },\\n    \\\"gripper_acc\\\": 0.9221054283024788,\\n    \\\"val_loss\\\": 0.3606724441051483,\\n    \\\"epochs_trained\\\": 22\\n  },\\n  \\\"image_mean_trained_L19\\\": {\\n    \\\"per_task_R2\\\": {\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\": 0.824044406414032,\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7430646419525146,\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.8547680377960205,\\n      \\\"put_the_bowl_on_the_plate\\\": 0.5661101341247559,\\n      \\\"put_the_bowl_on_the_stove\\\": 0.6819236278533936,\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.6515845060348511,\\n      \\\"put_the_cream_cheese_in_the_bowl\\\": 0.5641684532165527,\\n      \\\"put_the_wine_bottle_on_the_rack\\\": 0.5537331104278
+…[truncated 7975 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T00:11:03.082174+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T00:11:03.082313+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T00:11:03.082447+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nimport json\n\n# Load data\nwith open('/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json') as f:\n    proj_data = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json') as f:\n    untrained_data = json.load(f)\n\n# Trained last_preaction L19 per-task R2\ntrained_tasks = proj_data['llm_trained_L19']['per_task_R2']\n# Untrained best layer (L32) per-task R2\nuntrained_tasks = untrained_data['untrained_last_preaction_best']['per_task_R2']\n# Also get untrained L1 per-task from all_layers (only has mean, no per-task)\n# Use L32 (best) which has per-task data\n\n# Ensure same task order\ntasks = sorted(trained_tasks.keys())\nassert sorted(untrained_tasks.keys()) == tasks, f'Task mismatch: {set(trained_tasks.keys()) ^ set(untrained_tasks.keys())}'\n\ntrained_r2 = np.array([trained_tasks[t] for t in tasks])\nuntrained_r2 = np.array([untrained_tasks[t] for t in tasks])\n\nprint(f'Tasks ({len(tasks)}):')\nfor t in tasks:\n    print(f'  {t}: trained={trained_tasks[t]:.4f}, untrained={untrained_tasks[t]:.4f}, delta={trained_tasks[t]-untrained_tasks[t]:.4f}')\n\nprint(f'\\nTrained L19 mean R2: {np.mean(trained_r2):.6f}')\nprint(f'Untrained best (L32) mean R2: {np.mean(untrained_r2):.6f}')\nprint(f'Observed delta: {np.mean(trained_r2) - np.mean(untrained_r2):.6f}')\n\n# Bootstrap CI\nnp.random.seed(42)\nn_bootstrap = 10000\nn_tasks = len(trained_r2)\ndeltas = []\nfor _ in range(n_bootstrap):\n    idx = np.random.choice(n_tasks, size=n_tasks, replace=True)\n    delta = np.mean(trained_r2[idx]) - np.mean(untrained_r2[idx])\n    deltas.append(delta)\ndeltas = np.array(deltas)\n\nci_95 = [np.percentile(deltas, 2.5), np.percentile(deltas, 97.5)]\np_value = np.mean(deltas <= 0)\n\nobserved_delta = float(np.mean(trained_r2) - np.mean(untrained_r2))\n\nprint(f'\\nBootstrap results (n={n_bootstrap}):')\nprint(f'  95% CI: [{ci_95[0]:.6f}, {ci_95[1]:.6f}]')\nprint(f'  p-value (one-sided, trained > untrained): {p_value:.6f}')\nprint(f'  CI excludes 0: {ci_95[0] > 0}')\n\n# Also do untrained L1 (overall_R2=0.689) comparison\n# L1 has no per-task data saved, so use the all_layers summary\nuntrained_L1_mean = untrained_data['untrained_last_preaction_all_layers']['1']['mean_R2']\nprint(f'\\nUntrained L1 mean R2 (from all_layers): {untrained_L1_mean:.6f}')\nprint(f'Delta (trained L19 - untrained L1): {np.mean(trained_r2) - untrained_L1_mean:.6f}')\n\nresult = {\n    'trained_layer': 'L19',\n    'trained_mean_R2': float(np.mean(trained_r2)),\n    'trained_per_task_R2': {t: float(trained_tasks[t]) for t in tasks},\n    'untrained_layer': 'L32 (best)',\n    'untrained_mean_R2': float(np.mean(untrained_r2)),\n    'untrained_per_task_R2': {t: float(untrained_tasks[t]) for t in tasks},\n    'observed_delta': observed_delta,\n    'bootstrap': {\n        'n_bootstrap': n_bootstrap,\n        'n_tasks': n_tasks,\n        'ci_95': [float(ci_95[0]), float(ci_95[1])],\n        'p_value': float(p_value),\n        'significant_at_005': bool(ci_95[0] > 0),\n        'mean_delta': float(np.mean(deltas)),\n        'std_delta': float(np.std(deltas))\n    },\n    'per_task_deltas': {t: float(trained_tasks[t] - untrained_tasks[t]) for t in tasks},\n    'interpretation': 'CI excludes 0 -> trained significantly > untrained -> redistribution is training-dependent' if ci_95[0] > 0 else 'CI includes 0 -> difference not significant'\n}\n\noutpath = '/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json'\nwith open(outpath, 'w') as f:\n    json.dump(result, f, indent=2)\nprint(f'\\nSaved to {outpath}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nimport json\n\n# Load data\nwith open('/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json') as f:\n    proj_data = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json') as f:\n    untrained_data = json.load(f)\n\n# Trained last_preaction L19 per-task R2\ntrained_tasks = proj_data['llm_trained_L19']['per_task_R2']\n# Untrained best layer (L32) per-task R2\nuntrained_tasks = untrained_data['untrained_last_preaction_best']['per_task_R2']\n# Also get untrained L1 per-task from all_layers (only has mean, no per-task)\n# Use L32 (best) which has per-task data\n\n# Ensure same task order\ntasks = sorted(trained_tasks.keys())\nassert sorted(untrained_tasks.keys()) == tasks, f'Task mismatch: {set(trained_tasks.keys()) ^ set(untrained_tasks.keys())}'\n\ntrained_r2 = np.array([trained_tasks[t] for t in tasks])\nuntrained_r2 = np.array([untrained_tasks[t] for t in tasks])\n\nprint(f'Tasks ({len(tasks)}):')\nfor t in tasks:\n    print(f'  {t}: trained={trained_tasks[t]:.4f}, untrained={untrained_tasks[t]:.4f}, delta={trained_tasks[t]-untrained_tasks[t]:.4f}')\n\nprint(f'\\nTrained L19 mean R2: {np.mean(trained_r2):.6f}')\nprint(f'Untrained best (L32) mean R2: {np.mean(untrained_r2):.6f}')\nprint(f'Observed delta: {np.mean(trained_r2) - np.mean(untrained_r2):.6f}')\n\n# Bootstrap CI\nnp.random.seed(42)\nn_bootstrap = 10000\nn_tasks = len(trained_r2)\ndeltas = []\nfor _ in range(n_bootstrap):\n    idx = np.random.choice(n_tasks, size=n_tasks, replace=True)\n    delta = np.mean(trained_r2[idx]) - np.mean(untrained_r2[idx])\n    deltas.append(delta)\ndeltas = np.array(deltas)\n\nci_95 = [np.percentile(deltas, 2.5), np.percentile(deltas, 97.5)]\np_value = np.mean(deltas <= 0)\n\nobserved_delta = float(np.mean(trained_r2) - np.mean(untrained_r2))\n\nprint(f'\\nBootstrap results (n={n_bootstrap}):')\nprint(f'  95% CI: [{ci_95[0]:.6f}, {ci_95[1]:.6f}]')\nprint(f'  p-value (one-sided, trained > untrained): {p_value:.6f}')\nprint(f'  CI excludes 0: {ci_95[0] > 0}')\n\n# Also do untrained L1 (overall_R2=0.689) comparison\n# L1 has no per-task data saved, so use the all_layers summary\nuntrained_L1_mean = untrained_data['untrained_last_preaction_all_layers']['1']['mean_R2']\nprint(f'\\nUntrained L1 mean R2 (from all_layers): {untrained_L1_mean:.6f}')\nprint(f'Delta (trained L19 - untrained L1): {np.mean(trained_r2) - untrained_L1_mean:.6f}')\n\nresult = {\n    'trained_layer': 'L19',\n    'trained_mean_R2': float(np.mean(trained_r2)),\n    'trained_per_task_R2': {t: float(trained_tasks[t]) for t in tasks},\n    'untrained_layer': 'L32 (best)',\n    'untrained_mean_R2': float(np.mean(untrained_r2)),\n    'untrained_per_task_R2': {t: float(untrained_tasks[t]) for t in tasks},\n    'observed_delta': observed_delta,\n    'bootstrap': {\n        'n_bootstrap': n_bootstrap,\n        'n_tasks': n_tasks,\n        'ci_95': [float(ci_95[0]), float(ci_95[1])],\n        'p_value': float(p_value),\n        'significant_at_005': bool(ci_95[0] > 0),\n        'mean_delta': float(np.mean(deltas)),\n        'std_delta': float(np.std(deltas))\n    },\n    'per_task_deltas': {t: float(trained_tasks[t] - untrained_tasks[t]) for t in tasks},\n    'interpretation': 'CI excludes 0 -> trained significantly > untrained -> redistribution is training-dependent' if ci_95[0] > 0 else 'CI includes 0 -> difference not significant'\n}\n\noutpath = '/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json'\nwith open(outpath, 'w') as f:\n    json.dump(result, f, indent=2)\nprint(f'\\nSaved to {outpath}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T00:11:03.082618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Tasks (10):\\n  open_the_middle_drawer_of_the_cabinet: trained=0.8831, untrained=0.8506, delta=0.0324\\n  open_the_top_drawer_and_put_the_bowl_inside: trained=0.7650, untrained=0.7450, delta=0.0200\\n  push_the_plate_to_the_front_of_the_stove: trained=0.8989, untrained=0.8619, delta=0.0370\\n  put_the_bowl_on_the_plate: trained=0.6580, untrained=0.5941, delta=0.0640\\n  put_the_bowl_on_the_stove: trained=0.7404, untrained=0.6798, delta=0.0606\\n  put_the_bowl_on_top_of_the_cabinet: trained=0.6754, untrained=0.6261, delta=0.0493\\n  put_the_cream_cheese_in_the_bowl: trained=0.6199, untrained=0.6002, delta=0.0197\\n  put_the_wine_bottle_on_the_rack: trained=0.5907, untrained=0.5251, delta=0.0656\\n  put_the_wine_bottle_on_top_of_the_cabinet: trained=0.6477, untrained=0.5651, delta=0.0826\\n  turn_on_the_stove: trained=0.8299, untrained=0.8096, delta=0.0203\\n\\nTrained L19 mean R2: 0.730904\\nUntrained best (L32) mean R2: 0.685751\\nObserved delta: 0.045153\\n\\nBootstrap results (n=10000):\\n  95% CI: [0.032081, 0.058462]\\n  p-value (one-sided, trained > untrained): 0.000000\\n  CI excludes 0: True\\n\\nUntrained L1 mean R2 (from all_layers): 0.678781\\nDelta (trained L19 - untrained L1): 0.052122\\n\\nSaved to /root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-16T00:11:03.082821+00:00_
+
+结果：
+
+| 指标 | 值 |
+|------|------|
+| Trained L19 mean R² | 0.7309 |
+| Untrained best (L32) mean R² | 0.6858 |
+| Observed delta | **+0.0452** |
+| 95% CI | **[0.0321, 0.0585]** |
+| p-value (one-sided) | **< 0.0001** |
+| CI excludes 0 | **Yes** |
+
+所有 10 个 task 的 delta 均为正（range: +0.020 ~ +0.083），差异一致且显著。
+
+**结论**：CI 完全排除 0，trained 显著优于 untrained best layer (p < 0.0001)。Redistribution is training-dependent，支持 Claim 2。
+
+结果已保存到 `/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846"
+}
+```
+
+</details>
+
+---

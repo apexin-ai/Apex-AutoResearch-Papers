@@ -1,0 +1,62 @@
+{
+  "exp_id": "ablation_p1_seed_robustness",
+  "project": "vla-ssd",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:19:20.517Z",
+    "updated_at": "2026-05-16T10:15:02.544Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/vla-ssd/scripts/ablations/probe_seed_robustness.py --gpu 0\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "718019",
+      "log_path": "~/runs/vla-ssd/ablation_p1_seed_robustness.log",
+      "submitted_at": "2026-05-16T09:19:20.361Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Probe seed robustness: 5 seeds × 33 layers full-layer R² scan on trained_image_mean. Tests whether peak layer and R² values are stable across random initializations.",
+    "metrics": {
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        42
+      ],
+      "peak_layer_per_seed": [
+        9,
+        16,
+        9,
+        10,
+        9
+      ],
+      "peak_r2_per_seed": [
+        0.6534,
+        0.6549,
+        0.6529,
+        0.6531,
+        0.6587
+      ],
+      "peak_layer_mean": 10.6,
+      "peak_layer_std": 2.73,
+      "peak_r2_mean": 0.6546,
+      "peak_r2_std": 0.0022,
+      "per_layer_std_range": [
+        0.0022,
+        0.0086
+      ],
+      "runtime_seconds": 845.7,
+      "condition": "trained_image_mean"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T10:15:02.667420+00:00",
+  "trigger": "update_registry"
+}

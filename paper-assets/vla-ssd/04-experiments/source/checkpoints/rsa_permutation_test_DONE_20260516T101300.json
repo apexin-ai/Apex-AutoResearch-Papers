@@ -1,0 +1,27 @@
+{
+  "exp_id": "rsa_permutation_test",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:12:11.653Z",
+    "updated_at": "2026-05-16T10:12:59.991Z",
+    "hypothesis": "RSA permutation test: 1000 shuffles of action labels to establish null distribution. Tests statistical significance of all RSA observations.",
+    "spec": {
+      "command": "python /root/vla-ssd/scripts/ablations/rsa_permutation_null.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/features/trained/",
+      "data_count": 500,
+      "model_name": "openvla-7b (features already extracted)",
+      "seed": 42
+    },
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/ablations/rsa_permutation_null.json",
+    "conclusion": "success",
+    "log_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_ablation_p4_permutation_20260516T085748.log",
+    "completed_at": "2026-05-16T10:12:59.991Z"
+  },
+  "timestamp": "2026-05-16T10:13:00.144636+00:00",
+  "trigger": "update_registry"
+}

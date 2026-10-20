@@ -1,0 +1,15 @@
+{
+  "exp_id": "d021_instruction_ablation",
+  "project": "vla-ssd",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:11:15.503Z",
+    "updated_at": "2026-05-15T20:17:44.021Z",
+    "hypothesis": "D021 Exp-1: Instruction Ablation on untrained VLA. Replace instruction tokens with empty string, extract LIBERO-Goal features, run RSA. Gate (relative): PASS = no-inst RSA significantly below with-inst RSA (Δ>0.10, bootstrap 95% CI excludes 0) AND no-inst RSA ≤ DINO RSA + 0.05. FAIL = no-inst RSA ≥ with-inst RSA − 0.05. INCONCLUSIVE = between. Baseline: with-inst ρ≈0.49, DINO ρ=0.388."
+  },
+  "timestamp": "2026-05-15T20:17:44.116389+00:00",
+  "trigger": "update_registry"
+}

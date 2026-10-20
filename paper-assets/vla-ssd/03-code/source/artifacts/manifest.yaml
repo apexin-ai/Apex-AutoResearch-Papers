@@ -1,0 +1,3280 @@
+- id: art_20260515_d4b2bb
+  name: probe-pipeline-dryrun-dinov2
+  type: intermediate
+  description: 'DINO-V2 dry-run results: MLP probe temporal_distance, pooled rho=0.609,
+    per_task_mean_rho=0.619. Validates pipeline for VLA 33-layer features.'
+  path: projects/vla-ssd/artifacts/_project/intermediate/probe_dryrun_dinov2_results.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:19:04.892350+00:00'
+  tags:
+  - probe
+  - dryrun
+  - dinov2
+  - validation
+- id: art_20260515_88d87e
+  name: dinov2_subtask_auc_results
+  type: data
+  description: 'DINO-V2 subtask AUC baseline: macro AUC=0.9717 (subtask_0=0.9694,
+    subtask_1=0.9739), 10 LIBERO-Long tasks, sklearn LogReg probe on cls_token features'
+  path: projects/vla-ssd/artifacts/dinov2_baseline/data/dinov2_subtask_auc_results.txt
+  url: null
+  project: vla-ssd
+  exp_id: dinov2_baseline
+  skill: ''
+  created_at: '2026-05-15T12:27:53.116848+00:00'
+  tags:
+  - dinov2
+  - subtask_auc
+  - baseline
+  - mvp
+- id: art_20260515_6bbe14
+  name: mvp_probe_analysis_report
+  type: report
+  description: 'MVP probe results analysis: trained vs untrained OpenVLA, 33-layer
+    Δρ profile, Gate evaluation (G1 PASS, G2 FAIL, G3 PASS), overall FAIL verdict'
+  path: projects/vla-ssd/artifacts/mvp_probe_trained/report/mvp_probe_analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: mvp_probe_trained
+  skill: ''
+  created_at: '2026-05-15T13:52:09.533183+00:00'
+  tags:
+  - mvp
+  - probe
+  - analysis
+  - negative-result
+- id: art_20260515_bd8ca9
+  name: literature_map_probing
+  type: report
+  description: VLA Probing Beyond Vision 文献调研报告：14篇论文，5个方向，Top-3 probing task 推荐（Instruction-Conditioned
+    Probing > Counterfactual Activation Injection > Cross-modal Causal Tracing）
+  path: projects/vla-ssd/artifacts/_project/report/literature_map_probing.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:08:50.533579+00:00'
+  tags:
+  - literature
+  - probing
+  - pivot
+  - instruction-conditioned
+- id: art_20260515_2ca2ac
+  name: action_probe_design
+  type: report
+  description: Action Prediction Probe 技术设计：7-dim action prediction (a_{t+1})，MLP
+    regression probe，代码改动估算 ~170+20行，运行时间 ~5-10min/model
+  path: projects/vla-ssd/artifacts/_project/report/action_probe_design.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:09:45.151765+00:00'
+  tags:
+  - design
+  - action-probe
+  - probe-architecture
+- id: art_20260515_95b0e2
+  name: Control B Label Permutation Analysis
+  type: report
+  description: Control B (label permutation) analysis for trained and untrained OpenVLA
+    probes — both ρ≈0, confirming probes learn real signal
+  path: projects/vla-ssd/artifacts/_project/report/controlb_report.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:13:06.846458+00:00'
+  tags:
+  - control-b
+  - label-permutation
+  - validation
+  - probing
+- id: art_20260515_9789ca
+  name: Control B Label Permutation Analysis
+  type: report
+  description: Analysis of Control B (label permutation) null control for MVP probing.
+    Both trained and untrained shuffled-label experiments yield rho≈0, confirming
+    probe validity.
+  path: projects/vla-ssd/artifacts/_project/report/controlb_analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:13:52.201965+00:00'
+  tags:
+  - control-b
+  - label-permutation
+  - null-control
+  - probing
+  - mvp
+- id: art_20260515_ed0fac
+  name: controlb_analysis
+  type: report
+  description: Control B (label permutation) 分析报告：trained shuffled ρ=0.012, untrained
+    shuffled ρ=0.009，均远低于0.1阈值，probe有效性确认
+  path: projects/vla-ssd/artifacts/mvp_controlb_trained/report/controlb_analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: mvp_controlb_trained
+  skill: ''
+  created_at: '2026-05-15T14:14:54.547314+00:00'
+  tags:
+  - control-b
+  - probe-validity
+  - label-permutation
+- id: art_20260515_f1a3c7
+  name: libero_goal_feasibility
+  type: report
+  description: LIBERO-Goal Instruction-Conditioned Probe 可行性评估：数据结构、probe 设计、工时估算、Grant
+    et al. 对比、story 强度评估、Go/No-go 建议 (Conditional GO)
+  path: projects/vla-ssd/artifacts/libero_goal_feasibility.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T15:30:00.000000+00:00'
+  tags:
+  - feasibility
+  - libero-goal
+  - instruction-probe
+  - pivot-evaluation
+- id: art_20260515_48441f
+  name: LIBERO-Goal Instruction-Conditioned Probe Feasibility Report v2
+  type: report
+  description: 'Updated feasibility analysis for instruction-conditioned probing on
+    LIBERO-Goal: Grant et al. per-model results, Buurmeijer SAE paper, LIBERO-CF,
+    novelty gap analysis, probe design, risk analysis, time estimates'
+  path: projects/vla-ssd/artifacts/_project/report/libero_goal_feasibility.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:07:05.786800+00:00'
+  tags:
+  - libero-goal
+  - instruction-probing
+  - feasibility
+  - literature-review
+  - grant-2026
+- id: art_20260515_72a874
+  name: Layer Stability Deep Analysis
+  type: report
+  description: 'Layer stability discovery analysis: literature review (30+ papers
+    on layer-wise probing, neural collapse, representation stability, VLA interpretability),
+    story strength assessment, 3 visualization schemes with matplotlib specs, and
+    prioritized experiment checklist for CoRL 2026'
+  path: projects/vla-ssd/artifacts/_project/report/layer_stability_analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:09:09.165996+00:00'
+  tags:
+  - layer-stability
+  - literature-review
+  - visualization
+  - story-assessment
+- id: art_20260515_3ab3ff
+  name: literature_survey_instruction_probing
+  type: report
+  description: 14篇论文调研：instruction probing in VLAs。核心发现：Grant 2026 是最直接竞争者(behavioral
+    intervention on LIBERO-Goal)，我们的novelty在 representation probing × vision-ambiguous
+    × trained vs untrained 交叉点。
+  path: projects/vla-ssd/artifacts/_project/report/literature_survey_instruction_probing.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:31:03.536535+00:00'
+  tags:
+  - literature
+  - novelty
+  - LIBERO-Goal
+  - instruction-probing
+- id: art_20260515_335468
+  name: perlayer_rsa_comparison_chart
+  type: chart
+  description: 'Per-layer RSA comparison figure (PDF+PNG) across 4 conditions with
+    DINO and SigLIP reference lines. Shows trained model has large instruction effect
+    in early layers (5-10) but negative in deep layers; untrained model nearly flat.
+    Remote: /root/autodl-tmp/vla-ssd/results/perlayer_rsa/'
+  path: projects/vla-ssd/artifacts/_project/chart/perlayer_rsa_comparison_chart_info.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:30:45.995136+00:00'
+  tags:
+  - rsa
+  - per-layer
+  - instruction-ablation
+  - figure
+- id: art_20260515_994f26
+  name: perlayer_rsa_data
+  type: data
+  description: 'Per-layer RSA values for all 4 conditions (33 layers x 4), peaks,
+    reference baselines. Remote: /root/autodl-tmp/vla-ssd/results/perlayer_rsa/perlayer_rsa_all_conditions.json'
+  path: projects/vla-ssd/artifacts/_project/data/perlayer_rsa_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:31:17.332008+00:00'
+  tags:
+  - rsa
+  - per-layer
+  - instruction-ablation
+- id: art_20260515_f578cb
+  name: figure_data_bundle
+  type: intermediate
+  description: '5 CSV/JSON files for paper figures: 2x2 matrix, SigLIP vs VLA vs DINO,
+    per-layer RSA curves (33 layers × 4 conditions), probing summary (6 methods),
+    output head weight analysis'
+  path: projects/vla-ssd/artifacts/_project/intermediate/figure_data_manifest.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:36:58.830622+00:00'
+  tags:
+  - figure
+  - paper
+  - rsa
+  - probing
+- id: art_20260515_bd66b6
+  name: RSA image_mean validation results
+  type: report
+  description: RSA analysis using image_mean token aggregation to validate Claim 2
+    (LLM degrades action alignment). Compares with last_preaction and SigLIP projector
+    baselines.
+  path: projects/vla-ssd/artifacts/_project/report/rsa_image_mean_validation.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:42:10.577886+00:00'
+  tags:
+  - rsa
+  - claim2
+  - image_mean
+  - reviewer-response
+- id: art_20260515_c73557
+  name: bootstrap_training_effect
+  type: data
+  description: Bootstrap 95% CI for training effect on image_mean and last_preaction
+    RSA at layer 23. Task-level resampling, 10000 iterations. Both CIs include 0.
+  path: projects/vla-ssd/artifacts/_project/data/bootstrap_training_effect.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:48:38.146774+00:00'
+  tags:
+  - rsa
+  - bootstrap
+  - training-effect
+- id: art_20260515_2c5e26
+  name: action_probe_projector_results
+  type: data
+  description: SigLIP+Projector action prediction probe results on LIBERO-Goal. Projector
+    mean_R2=0.7063 (PASS). LLM L19=0.7309. Bootstrap delta=-0.0246, p=0.0014. Untrained
+    image_mean best L0=0.7136.
+  path: projects/vla-ssd/artifacts/_project/data/action_probe_projector_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:39:11.583839+00:00'
+  tags:
+  - action_probe
+  - functional_validation
+  - siglip_projector
+  - image_mean
+- id: art_20260515_393354
+  name: action_delta_probe_projector
+  type: data
+  description: 'Action-delta prediction probe results: Projector mean_R2=0.1181, Trained
+    image_mean L14 mean_R2=0.1215, Untrained best L0 mean_R2=0.1174. Bootstrap CI
+    proj vs LLM: delta=-0.0034 p=0.04.'
+  path: projects/vla-ssd/artifacts/_project/data/action_delta_probe_projector.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:41:26.857483+00:00'
+  tags:
+  - functional_validation
+  - action_delta
+  - probe
+  - projector
+  - image_mean
+- id: art_20260515_81a7d4
+  name: dino_action_probe
+  type: data
+  description: 'DINO action probe results on LIBERO-Goal: cls_token mean_R2=0.7116,
+    patch_mean mean_R2=0.7082, action-delta mean_R2=0.1001, bootstrap CI vs projector
+    p=0.22 (not significant)'
+  path: projects/vla-ssd/artifacts/_project/data/dino_action_probe.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:45:45.521126+00:00'
+  tags:
+  - action-probe
+  - dino
+  - libero-goal
+  - functional-validation
+- id: art_20260515_2a55c0
+  name: action_probe_v2
+  type: data
+  description: 'Functional Probe V2: bootstrap CI proj vs image_mean_L19 (PASS, delta=0.023,
+    CI [0.011,0.037], p<0.001), DINO probe (R2=0.712), L10/L11 diagnosis (pathological_random_init).
+    Full results at /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json
+    on westd-19183'
+  path: null
+  url: file:///root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:50:48.512721+00:00'
+  tags:
+  - functional-probe
+  - bootstrap
+  - dino
+  - action-probe
+  - v2
+- id: art_20260516_87f7e4
+  name: CKA Verification Results
+  type: data
+  description: 'CKA cross-validation of RSA findings. Two methods: frame-level linear
+    CKA and demo-level RDM kernel CKA. RDM CKA largely confirms RSA; linear CKA diverges
+    due to dimensionality mismatch.'
+  path: projects/vla-ssd/artifacts/_project/data/cka_verification_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:01:19.992079+00:00'
+  tags:
+  - cka
+  - rsa
+  - verification
+- id: art_20260516_581c74
+  name: untrained_last_preaction_probe
+  type: data
+  description: 'Untrained last_preaction action probe and delta probe results (C001
+    control experiment). Compares untrained vs trained VLA features: trained L19 R²=0.731
+    vs untrained L19 R²=0.325, confirming training matters. Includes full 33-layer
+    profile and delta probes.'
+  path: projects/vla-ssd/artifacts/_project/data/untrained_last_preaction_probe.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:10:01.271786+00:00'
+  tags:
+  - control-experiment
+  - C001
+  - action-probe
+  - untrained
+  - last_preaction
+  - functional-validation
+- id: art_20260516_fbe988
+  name: redream_evidence_v2
+  type: report
+  description: 'Re-Dream evidence package v2: structured mapping of all 44 experiments
+    to 3 Core Claims with metrics, CIs, p-values, negative results, CKA dissociation,
+    D030 failure analysis, and per-claim strength ratings'
+  path: projects/vla-ssd/artifacts/_project/report/redream_evidence_v2.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:22:09.021615+00:00'
+  tags:
+  - redream
+  - evidence
+  - paper_framing
+  - claims
+- id: art_20260516_159912
+  name: rsa_clip_results
+  type: data
+  description: 'CLIP ViT-L/14 RSA analysis: peak RSA=0.557 (patch_mean), CI95=[0.442,0.660]'
+  path: projects/vla-ssd/artifacts/plan_012_clip_vit_control/data/rsa_clip_results.txt
+  url: null
+  project: vla-ssd
+  exp_id: plan_012_clip_vit_control
+  skill: ''
+  created_at: '2026-05-16T01:39:09.522130+00:00'
+  tags:
+  - rsa
+  - clip
+  - baseline
+  - plan_012
+- id: art_20260516_6dd462
+  name: fig2_rsa_comparison_bar_chart
+  type: chart
+  description: 'Figure 2: Main RSA comparison bar chart showing SigLIP+Projector (ρ=0.615)
+    >> VLA (ρ≈0.49) >> DINOv2 (ρ=0.388) hierarchy. Includes 95% CI for SigLIP, Δ annotation,
+    DINO baseline, and trained/untrained × instruction/no-instruction breakdown.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig2.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:47:00.058886+00:00'
+  tags:
+  - paper
+  - figure2
+  - rsa
+  - main-result
+- id: art_20260516_468ffa
+  name: fig3
+  type: chart
+  description: Per-layer RSA degradation curves showing LLM geometric degradation
+    from plan_003
+  path: projects/vla-ssd/artifacts/_project/chart/fig3.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T01:52:16.041727+00:00'
+  tags:
+  - paper
+  - Section 3.3
+  - line_plot
+- id: art_20260516_665e5a
+  name: action_probe_clip_results
+  type: data
+  description: CLIP ViT-L/14 action probe R² with fair DINO reproduced comparison.
+    CLIP cls=0.805 ≈ DINO cls=0.814 (p=0.10). Supports geometric-functional dissociation.
+  path: projects/vla-ssd/artifacts/plan_012_clip_vit_control/data/action_probe_clip_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: plan_012_clip_vit_control
+  skill: ''
+  created_at: '2026-05-16T02:01:55.006996+00:00'
+  tags:
+  - action_probe
+  - clip
+  - dino
+  - functional_validation
+  - plan_012
+- id: art_20260516_1d1fb8
+  name: fig2_rsa_comparison_with_clip
+  type: chart
+  description: 'Figure 2 (v2): Main RSA comparison bar chart with CLIP ViT-L/14 added.
+    SigLIP+Proj (0.615) > CLIP (0.557) >> VLA (0.48-0.50) >> DINO (0.388). VL pretrained
+    bracket, Δ=0.114 annotation, bootstrap CI on SigLIP and CLIP. image_mean RSA at
+    peak layer.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig2.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T02:11:11.335442+00:00'
+  tags:
+  - paper
+  - figure2
+  - rsa
+  - clip
+  - main-result
+  - image_mean
+- id: art_20260516_1f7c6b
+  name: fig4
+  type: chart
+  description: 'Figure 4: Functional action probe R² comparison. Shows degradation
+    (image_mean 0.683 < Proj 0.706), concentration (readout 0.731 > Proj), training-dependence
+    (untrained readout 0.686), DINO≈Proj dissociation (0.712, n.s.). With significance
+    brackets.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig4.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T02:11:59.422553+00:00'
+  tags:
+  - paper
+  - figure4
+  - functional-probe
+  - action-R2
+  - Section 3.3
+- id: art_20260516_253240
+  name: unified_action_probe_results
+  type: data
+  description: Unified action probe R² results with identical hyperparams (50ep/patience5/lr1e-3/batch256/hidden256/seed42)
+    across 5 vision encoders on LIBERO-Goal
+  path: projects/vla-ssd/artifacts/plan_012_clip_vit_control/data/unified_action_probe.py
+  url: null
+  project: vla-ssd
+  exp_id: plan_012_clip_vit_control
+  skill: ''
+  created_at: '2026-05-16T02:12:04.737890+00:00'
+  tags:
+  - action_probe
+  - unified
+  - R2
+  - bootstrap
+- id: art_20260516_8d728d
+  name: fig5
+  type: chart
+  description: 'Figure 5: (a) 2×2 Training×Instruction RSA matrix — all conditions
+    within 0.48-0.50 band, both effects n.s. (b) plan_008 instruction content control
+    — normal/random/shuffled/empty all ±0.017, confirming content invariance.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig5.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T02:12:48.182358+00:00'
+  tags:
+  - paper
+  - figure5
+  - training-effect
+  - instruction-invariance
+  - plan_008
+  - Section 3.4
+- id: art_20260516_ac1ea6
+  name: fig6
+  type: chart
+  description: 'Figure 6: RSA vs CKA metric comparison (3 panels). Key finding: Linear
+    CKA ordering (U>T>Proj>DINO) reverses RSA ordering (Proj>T>U>DINO). Supplementary
+    candidate for Section 3.5.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig6.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T02:13:54.716823+00:00'
+  tags:
+  - paper
+  - figure6
+  - rsa-cka
+  - metric-sensitivity
+  - supplementary
+- id: art_20260516_801a2e
+  name: experiments_section_tex
+  type: paper
+  description: CoRL 2026 paper Section 3 (Experiments) LaTeX source — covers experimental
+    setup, vision encoder dominance, LLM redistribution, and training-as-routing claims
+    with 3 tables and 5 figures
+  path: projects/vla-ssd/artifacts/_project/paper/experiments.tex
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:23:09.408063+00:00'
+  tags:
+  - paper
+  - experiments
+  - latex
+  - corl2026
+- id: art_20260516_0cebe2
+  name: references_bib
+  type: paper
+  description: BibTeX references for the experiments section — 12 entries, 2 marked
+    [VERIFY] (grant2026, haon2025)
+  path: projects/vla-ssd/artifacts/_project/paper/references.bib
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:23:11.465262+00:00'
+  tags:
+  - paper
+  - references
+  - bibtex
+  - corl2026
+- id: art_20260516_b078ad
+  name: patch_mean_probe
+  type: data
+  description: CLIP/DINO patch_mean action probe R² + DINO RSA (both feature keys)
+    + bootstrap pairwise comparisons for Table 1 fair comparison
+  path: projects/vla-ssd/artifacts/_project/data/patch_mean_probe_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:34:04.745889+00:00'
+  tags:
+  - action_probe
+  - patch_mean
+  - rsa
+  - table1
+- id: art_20260516_a6c062
+  name: method.tex
+  type: paper
+  description: 'Method section (Section 2) of the VLA-SSD paper: 5 subsections covering
+    model/data, representation extraction, RSA, functional probes, and CKA analysis.'
+  path: projects/vla-ssd/artifacts/_project/paper/method_a6c062.tex
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:43:25.266418+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+- id: art_20260516_f7970e
+  name: discussion.tex
+  type: paper
+  description: 'Discussion section for VLA-SSD paper: 7 paragraphs covering synthesis,
+    CLIP generalization, geometric-functional dissociation, RSA/CKA metric sensitivity,
+    design implications, connection to behavioral evidence, and limitations.'
+  path: projects/vla-ssd/artifacts/_project/paper/discussion.tex
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:52:43.283321+00:00'
+  tags:
+  - paper
+  - discussion
+  - latex
+- id: art_20260516_2ea075
+  name: RSA Method Audit Report
+  type: report
+  description: Systematic audit of RSA methodology discrepancy (DINO 0.388 vs 0.692).
+    Identifies 3 root causes and includes unified comparison table with factor isolation.
+  path: projects/vla-ssd/artifacts/_project/report/rsa_method_audit.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:52:57.523226+00:00'
+  tags:
+  - rsa
+  - methodology
+  - audit
+  - blocking
+- id: art_20260516_fccb56
+  name: introduction.tex
+  type: paper
+  description: 'Introduction section for the VLA-SSD paper: 5-paragraph structure
+    covering problem, gap, approach, findings, and contributions.'
+  path: projects/vla-ssd/artifacts/_project/paper/introduction_fccb56.tex
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:56:22.820879+00:00'
+  tags:
+  - paper
+  - introduction
+  - latex
+- id: art_20260516_52cf8b
+  name: D041_final_report
+  type: report
+  description: D041 最终确认报告：unified_rsa_results.json 权威数据集。确认 n_demos=50（与 baselines
+    一致），per-layer curve 数据，trained vs untrained bootstrap CI，instruction control 4
+    条件。Paper 主表定稿数据。
+  path: projects/vla-ssd/artifacts/_project/report/d041_final_report.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:33:27.967913+00:00'
+  tags:
+  - D041
+  - rsa
+  - method_b
+  - final
+  - paper_table
+- id: art_20260516_50ba62
+  name: branch_split_rsa_results
+  type: data
+  description: 'Branch-split RSA: DINOv2=0.619, SigLIP=0.621, Fused=0.634, Projector=0.615.
+    Method B, 50 demos/task, image_mean.'
+  path: projects/vla-ssd/artifacts/_project/data/branch_split_rsa_results.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:41:43.932219+00:00'
+  tags:
+  - rsa
+  - branch-split
+  - method-b
+- id: art_20260516_2aebfe
+  name: rsa_dino_standalone
+  type: data
+  description: Standalone DINOv2 RSA provenance (Method B, 50 demos/task). cls_token=0.6915
+    [0.641, 0.740], patch_mean=0.6307 [0.533, 0.704]. Independent recomputation confirming
+    hardcoded values.
+  path: projects/vla-ssd/artifacts/_project/data/rsa_dino_standalone_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:53:56.918547+00:00'
+  tags:
+  - rsa
+  - dino
+  - provenance
+  - method_b
+  - standalone
+- id: art_20260516_af0810
+  name: rsa_definitive
+  type: data
+  description: Definitive RSA recalculation (Method B, all models). Computation completed
+    successfully (1814s), Worker failed during result reporting. Data at /root/autodl-tmp/vla-ssd/results/rsa/rsa_definitive.json.
+    Numbers match unified_rsa_results.json.
+  path: projects/vla-ssd/artifacts/_project/data/rsa_definitive_note.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:38:36.097462+00:00'
+  tags:
+  - rsa
+  - method_b
+  - definitive
+  - all_models
+- id: art_20260516_afa23c
+  name: fulllayer_action_probe_results
+  type: data
+  description: 'Full-layer R² scan (33 layers × 2 conditions × 2 aggregations = 132
+    probes). Peak: trained imgmean L8=0.6553, trained lastpre L13=0.6779, untrained
+    imgmean L0=0.6403, untrained lastpre L32=0.6093.'
+  path: projects/vla-ssd/artifacts/plan_011_fulllayer_r2/data/fulllayer_action_probe_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: plan_011_fulllayer_r2
+  skill: ''
+  created_at: '2026-05-16T04:48:09.506546+00:00'
+  tags:
+  - r2
+  - probe
+  - full-layer
+  - plan_011
+- id: art_20260516_b99f8a
+  name: cross_benchmark_validation_summary
+  type: report
+  description: LIBERO-Goal vs LIBERO-Spatial cross-benchmark validation summary with
+    key numbers for Paper Agent
+  path: projects/vla-ssd/artifacts/plan_010_libero_spatial/report/cross_benchmark_validation_summary.md
+  url: null
+  project: vla-ssd
+  exp_id: plan_010_libero_spatial
+  skill: ''
+  created_at: '2026-05-16T07:31:00.575647+00:00'
+  tags:
+  - cross-benchmark
+  - libero-spatial
+  - plan_010
+  - paper-ready
+- id: art_20260516_4de3bf
+  name: libero_spatial_figures
+  type: chart
+  description: LIBERO-Spatial per-layer RSA/R² profile figures + cross-benchmark comparison
+    (PDF/PNG)
+  path: projects/vla-ssd/artifacts/plan_010_libero_spatial/chart/figures_manifest.md
+  url: null
+  project: vla-ssd
+  exp_id: plan_010_libero_spatial
+  skill: ''
+  created_at: '2026-05-16T07:50:03.005859+00:00'
+  tags:
+  - figures
+  - libero-spatial
+  - plan_010
+  - paper-ready
+- id: art_20260516_0bdb13
+  name: cross_inst_extract_phase2
+  type: data
+  description: 'Cross-instruction feature extraction: VLA features for same frames
+    under all 10 LIBERO-Goal instructions (trained GPU0 PID 751661, untrained GPU1
+    PID 751972). Output: /root/autodl-tmp/vla-ssd/results/cross_instruction/{trained,untrained}_cross_inst.h5'
+  path: projects/vla-ssd/artifacts/cross_inst_extract_phase2/data/cross_inst_extract_phase2.txt
+  url: null
+  project: vla-ssd
+  exp_id: cross_inst_extract_phase2
+  skill: ''
+  created_at: '2026-05-16T23:43:28.986840+00:00'
+  tags:
+  - extraction
+  - cross-instruction
+  - dual-gpu
+  - phase2
+- id: art_20260517_81e7aa
+  name: fig2_cross_instruction_heatmap
+  type: chart
+  description: 'Cross-instruction 10-way classification accuracy heatmap: trained
+    vs untrained × image_mean vs last_preaction across all layers. Shows L0→L1 step
+    function and deep-layer degradation in untrained model.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig2_cross_instruction_heatmap.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T06:05:55.754465+00:00'
+  tags:
+  - paper-figure
+  - cross-instruction
+  - C1
+  - C2
+- id: art_20260517_88be3f
+  name: fig_multi_layer_attention
+  type: chart
+  description: 'Multi-layer attention pattern: dual-panel line plot showing instruction-dominant
+    heads count and mean instruction attention fraction across L1/L8/L16/L31 for three
+    conditions (trained, llama2base, untrained).'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_multi_layer_attention.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T06:50:18.094454+00:00'
+  tags:
+  - paper-figure
+  - attention
+  - multi-layer
+  - C2
+- id: art_20260517_bf17d3
+  name: fig_three_condition_probe
+  type: chart
+  description: 'Three-condition cross-instruction probe layer profile: line plot showing
+    10-way classification accuracy (L0-L31) for trained VLA, Llama-2 base, and untrained
+    VLA. Key features: L1 divergence point, llama2base saturation at L5, untrained
+    deep-layer degradation.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_three_condition_probe.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T06:53:24.534817+00:00'
+  tags:
+  - paper-figure
+  - cross-instruction
+  - C1
+  - C2
+  - probe
+- id: art_20260517_9279f4
+  name: fig_llama2base_comparison
+  type: chart
+  description: 'L1 attention three-condition stacked bar: three panels showing 32
+    heads sorted by instruction attention for Untrained (0/32), Llama-2 Base (9/32),
+    and VLA Trained (25/32). Colors: blue=instruction, orange=image, gray=BOS.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_llama2base_comparison.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T07:31:52.479306+00:00'
+  tags:
+  - paper-figure
+  - attention
+  - L1
+  - C2
+  - three-condition
+- id: art_20260517_73eaf1
+  name: fig_32layer_attention_profile
+  type: chart
+  description: 'Full 32-layer attention profile (single panel): instruction-dominant
+    heads vs layer for three conditions. Shows trained "bookend" pattern (L0-L1 +
+    L31 peaks), llama2base mid-layer peak (L9-L16), untrained flat at 0. Main text
+    figure.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_32layer_attention_profile.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:06:57.324409+00:00'
+  tags:
+  - paper-figure
+  - attention
+  - 32-layer
+  - C2
+  - main-text
+- id: art_20260517_9ea03d
+  name: fig_full_32layer_attention_dual_panel
+  type: chart
+  description: 'Full 32-layer attention (dual panel): heads count + mean text attention
+    fraction. Appendix version with more detail.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_full_32layer_attention.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:06:59.504468+00:00'
+  tags:
+  - paper-figure
+  - attention
+  - 32-layer
+  - appendix
+- id: art_20260517_c0aec3
+  name: fig_rsa_perlayer_curve
+  type: chart
+  description: 'Per-layer RSA rho line plot: trained vs untrained, image_mean vs last_preaction
+    readouts, 33 layers, with 95% CI bands and peak annotations'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_rsa_perlayer_curve.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T20:11:31.647448+00:00'
+  tags:
+  - rsa
+  - per-layer
+  - figure
+  - trained-vs-untrained
+- id: art_20260517_2bd676
+  name: fig_rsa_perlayer_curve
+  type: chart
+  description: 'Per-layer RSA ρ curve (33 layers): trained vs untrained × image_mean
+    vs last_preaction. Shows inverted-U peak at L12, training-dependent structure,
+    and deep-layer divergence between readouts.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_rsa_perlayer_curve.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T20:12:33.921630+00:00'
+  tags:
+  - rsa
+  - per-layer
+  - visualization
+  - round4
+- id: art_20260517_aabb98
+  name: fig_action_r2_threecond
+  type: chart
+  description: Three-condition (Untrained/Llama2Base/Trained) per-layer action R²
+    comparison chart for appendix. Shows shared L0 baseline, trained peak at L8, untrained
+    collapse at L10-L11.
+  path: null
+  url: westd-19183:/root/autodl-tmp/vla-ssd/results/figures/fig_action_r2_threecond.pdf
+  project: vla-ssd
+  exp_id: llama2base_action_probe
+  skill: ''
+  created_at: '2026-05-17T22:07:02.418502+00:00'
+  tags:
+  - figure
+  - action_probe
+  - three_condition
+  - appendix
+- id: art_20260518_6ae721
+  name: action_metrics_extended
+  type: data
+  description: Per-dimension MAE and inst/ctrl ratio from action trajectory ablation.
+    Cosine similarity not computable (no raw per-sample actions).
+  path: projects/vla-ssd/artifacts/action_metrics_extended/data/action_metrics_extended.json
+  url: null
+  project: vla-ssd
+  exp_id: action_metrics_extended
+  skill: ''
+  created_at: '2026-05-18T17:16:13.024869+00:00'
+  tags:
+  - ablation
+  - action
+  - per-dim-mae
+- id: art_20260518_5b2618
+  name: attention_decomposition
+  type: data
+  description: L1 attention decomposition by token group (instruction/vision/bos)
+    for instruction-dominant vs control heads, trained vs untrained
+  path: projects/vla-ssd/artifacts/attention_decomposition/data/attention_decomposition.json
+  url: null
+  project: vla-ssd
+  exp_id: attention_decomposition
+  skill: ''
+  created_at: '2026-05-18T17:20:56.428480+00:00'
+  tags:
+  - attention
+  - L1
+  - head-classification
+  - token-groups
+- id: art_20260518_5eb8c2
+  name: per_task_r2_distribution
+  type: data
+  description: Per-task R2 distribution across conditions (baseline/ablated) and layers,
+    showing task variability and ablation effect consistency
+  path: projects/vla-ssd/artifacts/attention_decomposition/data/per_task_r2_distribution.json
+  url: null
+  project: vla-ssd
+  exp_id: attention_decomposition
+  skill: ''
+  created_at: '2026-05-18T17:20:59.425044+00:00'
+  tags:
+  - r2
+  - per-task
+  - ablation
+  - probe
+- id: art_20260518_721c88
+  name: paper_consistency_report
+  type: report
+  description: 论文全文一致性检查报告：数值验证、措辞一致性、交叉引用、编译结果
+  path: projects/vla-ssd/artifacts/_project/report/paper_consistency_report.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T19:33:34.625266+00:00'
+  tags:
+  - paper
+  - consistency-check
+  - quality
+- id: art_20260518_692bf0
+  name: task_complexity_routing_data
+  type: data
+  description: 'JSON results of task complexity x routing dependence analysis with
+    per-task delta_R2, group statistics, and Mann-Whitney U test. Remote: /root/autodl-tmp/vla-ssd/results/task_complexity_routing.json'
+  path: projects/vla-ssd/artifacts/task_complexity_routing/data/task_complexity_routing_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: task_complexity_routing
+  skill: ''
+  created_at: '2026-05-18T21:19:44.244100+00:00'
+  tags:
+  - ablation
+  - per-task
+  - statistics
+- id: art_20260518_f423f8
+  name: task_complexity_routing_figure
+  type: chart
+  description: 'Bar chart of L1 instruction-routing ablation effect magnitude by task
+    complexity. Remote: /root/autodl-tmp/vla-ssd/results/figures/fig_task_complexity_routing.{pdf,png}'
+  path: projects/vla-ssd/artifacts/task_complexity_routing/chart/fig_task_complexity_routing_location.txt
+  url: null
+  project: vla-ssd
+  exp_id: task_complexity_routing
+  skill: ''
+  created_at: '2026-05-18T21:19:47.128235+00:00'
+  tags:
+  - ablation
+  - per-task
+  - instruction-routing
+  - L1
+  - figure
+- id: art_20260519_3e9341
+  name: counterfactual_token_overlap
+  type: data
+  description: Token overlap (Jaccard) analysis between original and counterfactual
+    instructions using Llama-2 BPE tokenizer. Spearman r=1.0 between token novelty
+    and Cohen's d.
+  path: projects/vla-ssd/artifacts/counterfactual_token_overlap/data/counterfactual_token_overlap_pointer.txt
+  url: null
+  project: vla-ssd
+  exp_id: counterfactual_token_overlap
+  skill: ''
+  created_at: '2026-05-19T01:20:27.369322+00:00'
+  tags:
+  - counterfactual
+  - token-overlap
+  - rebuttal
+- id: art_20260519_94bb04
+  name: groundtruth_action_error_results
+  type: data
+  description: 'Ground-truth action error analysis: MSE/MAE vs LIBERO demo GT actions
+    for original, top-24 ablated, bottom-24 ablated conditions. 3 tasks x 10 demos
+    x 50 timesteps = 4500 samples. Conclusion: negative (top-24 ablation does not
+    increase GT error, Wilcoxon p=0.52).'
+  path: projects/vla-ssd/artifacts/groundtruth_action_error/data/groundtruth_action_error_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: groundtruth_action_error
+  skill: ''
+  created_at: '2026-05-19T02:33:36.345060+00:00'
+  tags:
+  - ablation
+  - ground-truth
+  - action-error
+  - negative-result
+- id: art_20260519_9d7ab3
+  name: attention_normalization_entropy
+  type: data
+  description: Token-count normalized attention and entropy analysis for L1 attention
+    heads. Shows 38.2x per-token text/image ratio for instruction-dominant heads after
+    controlling for 11.5x token count asymmetry.
+  path: projects/vla-ssd/artifacts/attention_normalization_entropy/data/attention_normalization_entropy_pointer.txt
+  url: null
+  project: vla-ssd
+  exp_id: attention_normalization_entropy
+  skill: ''
+  created_at: '2026-05-19T02:45:36.438455+00:00'
+  tags:
+  - attention
+  - normalization
+  - entropy
+  - token-count
+- id: art_20260519_61c898
+  name: task_routing_loo_sensitivity
+  type: data
+  description: LOO sensitivity + swap analysis + data-driven grouping for task complexity
+    x routing dependence
+  path: projects/vla-ssd/artifacts/task_routing_loo_sensitivity/data/task_routing_loo_sensitivity.json
+  url: null
+  project: vla-ssd
+  exp_id: task_routing_loo_sensitivity
+  skill: ''
+  created_at: '2026-05-19T02:47:01.134315+00:00'
+  tags:
+  - sensitivity
+  - robustness
+  - task-routing
+  - loo
+- id: art_20260519_e38529
+  name: libero_finetuned_attention_profile
+  type: data
+  description: '32-layer attention profile for openvla-7b-finetuned-libero-goal with
+    4-condition comparison. Remote: westd-19183:/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json'
+  path: projects/vla-ssd/artifacts/libero_finetuned_attention/data/libero_finetuned_attention_profile_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: libero_finetuned_attention
+  skill: ''
+  created_at: '2026-05-19T07:19:25.995253+00:00'
+  tags:
+  - attention
+  - 32layer
+  - finetuned
+  - libero_goal
+- id: art_20260519_2001d0
+  name: phi3v_attention_profile
+  type: data
+  description: 'TracVLA-Phi3V 32-layer attention profile on 5 LIBERO-Goal tasks. L1:
+    32/32 instruction-dominant (mean_text=0.7348). Remote path: /root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json'
+  path: projects/vla-ssd/artifacts/phi3v_attention_profile/data/phi3v_attention_profile_pointer.txt
+  url: null
+  project: vla-ssd
+  exp_id: phi3v_attention_profile
+  skill: ''
+  created_at: '2026-05-19T17:52:43.945447+00:00'
+  tags:
+  - attention
+  - phi3v
+  - tracvla
+  - libero-goal
+- id: art_20260519_83ddcb
+  name: phi3v_untrained_attention_profile
+  type: data
+  description: 'Attention profile (32L x 32H) for untrained base Phi-3-mini-instruct
+    in TracVLA-Phi3V. L1: 28/32 dominant heads. Hypothesis falsified. Remote: westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json'
+  path: projects/vla-ssd/artifacts/phi3v_attention_untrained/data/phi3v_untrained_attention_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: phi3v_attention_untrained
+  skill: ''
+  created_at: '2026-05-19T18:01:09.472552+00:00'
+  tags:
+  - attention
+  - phi3v
+  - untrained
+  - baseline
+  - negative-result
+- id: art_20260519_07eeca
+  name: phi3v_trained_probe_results
+  type: data
+  description: '10-way cross-instruction classification probe results for trained
+    TracVLA-Phi3V. Confirms C1 readout pattern: last_preaction 100% from L2+, image_mean
+    at chance across all 32 layers. Remote path: westd-19183:/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_trained_probe_results.json'
+  path: null
+  url: westd-19183:/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_trained_probe_results.json
+  project: vla-ssd
+  exp_id: phi3v_probe_trained
+  skill: ''
+  created_at: '2026-05-19T18:17:54.394156+00:00'
+  tags:
+  - probe
+  - phi3v
+  - cross-instruction
+  - C1
+- id: art_20260519_be2535
+  name: phi3v_untrained_probe_results
+  type: data
+  description: '10-way cross-instruction classification probe results for untrained
+    (base Phi-3-instruct) model. last_preaction: L1=98.1%, L2+=100%; image_mean: ~10%
+    (chance).'
+  path: projects/vla-ssd/artifacts/phi3v_probe_untrained/data/phi3v_untrained_cross_inst_probe.py
+  url: null
+  project: vla-ssd
+  exp_id: phi3v_probe_untrained
+  skill: ''
+  created_at: '2026-05-19T18:39:40.763154+00:00'
+  tags:
+  - cross-instruction
+  - probe
+  - untrained
+  - phi3v
+- id: art_20260519_7fe815
+  name: fig_cross_architecture_attention
+  type: chart
+  description: Cross-architecture attention profile comparison (OpenVLA vs Phi3V,
+    untrained vs trained). 2×1 stacked line plot showing instruction-dominant heads
+    per layer.
+  path: projects/vla-ssd/artifacts/_project/chart/fig_cross_architecture_attention.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T18:50:45.379397+00:00'
+  tags:
+  - attention
+  - cross-architecture
+  - OpenVLA
+  - Phi3V
+  - figure
+- id: art_20260519_1b387a
+  name: phi3v_attention_profile_10tasks
+  type: data
+  description: 'Per-layer per-head text attention profile for TracVLA-Phi3V trained
+    model across 10 LIBERO-Goal tasks. L1: 32/32 text-dominant (0.735), L2: 32/32
+    (0.785), L31: 18/32 (0.652).'
+  path: projects/vla-ssd/artifacts/phi3v_attention_trained_10tasks/data/phi3v_attention_profile_10tasks_pointer.txt
+  url: null
+  project: vla-ssd
+  exp_id: phi3v_attention_trained_10tasks
+  skill: ''
+  created_at: '2026-05-19T20:31:52.411015+00:00'
+  tags:
+  - attention
+  - phi3v
+  - trained
+  - libero-goal
+- id: art_20260520_d04593
+  name: fig_specificity_bootstrap_30seeds
+  type: chart
+  description: 'Specificity bootstrap 30-seed analysis: instruction-head ablation
+    R² increase vs 30 random-24-head bootstrap distribution. z=-3.11, percentile=0%,
+    confirming instruction heads produce qualitatively different action disruption.'
+  path: projects/vla-ssd/artifacts/specificity_random_seed_expansion/chart/fig_specificity_bootstrap_30seeds.pdf
+  url: null
+  project: vla-ssd
+  exp_id: specificity_random_seed_expansion
+  skill: ''
+  created_at: '2026-05-20T01:53:35.913986+00:00'
+  tags:
+  - specificity
+  - bootstrap
+  - ablation
+  - paper-figure
+- id: art_20260520_130a7b
+  name: phi3v_r2_per_layer
+  type: data
+  description: TracVLA-Phi3V per-layer action R² probe results (33 layers, 5 seeds,
+    trained condition)
+  path: projects/vla-ssd/artifacts/_project/data/phi3v_r2_per_layer.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:39:15.964742+00:00'
+  tags:
+  - r2_probe
+  - phi3v
+  - per_layer
+  - action_prediction
+- id: art_20260520_a5e8dc
+  name: openvla_r2_per_layer
+  type: data
+  description: OpenVLA per-layer action R² probe results (33 layers, 15 seeds, trained
+    condition)
+  path: projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:39:17.853406+00:00'
+  tags:
+  - r2_probe
+  - openvla
+  - per_layer
+  - action_prediction
+- id: art_20260520_1f365d
+  name: cross_arch_r2_table
+  type: report
+  description: LaTeX table comparing per-layer action R² across OpenVLA and TracVLA-Phi3V
+    architectures
+  path: projects/vla-ssd/artifacts/_project/report/cross_arch_r2_table.tex
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:39:19.550712+00:00'
+  tags:
+  - r2_probe
+  - cross_architecture
+  - latex_table
+- id: art_20260520_d22f5a
+  name: paper_pdf_v69_crossarch_r2_patch
+  type: paper
+  description: 'Final compiled PDF after D085 patch: R² cross-arch data integrated
+    (experiments/discussion/abstract/intro/appendix Table 24), specificity figure
+    updated to fig_specificity_bootstrap_30seeds.pdf (p values removed). 30 pages
+    (8 main + refs + appendix), 0 critical warnings.'
+  path: projects/vla-ssd/artifacts/_project/paper/main.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T05:18:14.637100+00:00'
+  tags:
+  - paper
+  - CoRL2026
+  - D085
+  - cross_arch_r2
+  - specificity_fix
+- id: art_20260520_96a307
+  name: phi3v_r2_seed_expansion_analysis
+  type: report
+  description: Analysis of TracVLA-Phi3V 15-seed R² action probe results with cross-architecture
+    comparison to OpenVLA
+  path: projects/vla-ssd/artifacts/phi3v_r2_seed_expansion/report/analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: phi3v_r2_seed_expansion
+  skill: ''
+  created_at: '2026-05-20T09:45:20.299541+00:00'
+  tags:
+  - r2_probe
+  - phi3v
+  - cross_architecture
+  - seed_expansion
+- id: art_20260520_e54cf7
+  name: phi3v_r2_untrained_probe_analysis
+  type: report
+  description: 'Untrained Phi-3-mini R² action probe analysis: per-layer R² table,
+    trained vs untrained comparison, confirms inverted-U mid-layer peak is VLA training
+    product (untrained peaks at L4 with 0.583, trained at L11 with 0.634)'
+  path: projects/vla-ssd/artifacts/phi3v_r2_untrained_probe/report/analysis_e54cf7.md
+  url: null
+  project: vla-ssd
+  exp_id: phi3v_r2_untrained_probe
+  skill: ''
+  created_at: '2026-05-20T10:31:34.827097+00:00'
+  tags:
+  - r2_probe
+  - untrained
+  - phi3v
+  - control_experiment
+- id: art_20260520_30aee9
+  name: cross_arch_r2_2x2_table
+  type: paper
+  description: 2×2 cross-architecture per-layer R² table (OpenVLA × Phi3V × trained/untrained,
+    33 layers)
+  path: projects/vla-ssd/artifacts/_project/paper/cross_arch_r2_2x2_table.tex
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:40:05.535122+00:00'
+  tags:
+  - r2_probe
+  - cross_architecture
+  - latex
+- id: art_20260520_88056b
+  name: cross_arch_r2_2x2_summary
+  type: paper
+  description: R² profile summary table (peak layer, peak R², profile shape, late-layer
+    std, training Δ)
+  path: projects/vla-ssd/artifacts/_project/paper/cross_arch_r2_2x2_summary.tex
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:40:08.475399+00:00'
+  tags:
+  - r2_probe
+  - cross_architecture
+  - latex
+  - summary
+- id: art_20260520_8ba80e
+  name: openvla_untrained_r2_per_layer
+  type: data
+  description: OpenVLA untrained per-layer R² (15 seeds, from r2_probe_15seeds.json
+    untrained condition)
+  path: projects/vla-ssd/artifacts/_project/data/openvla_untrained_r2_per_layer.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:40:11.313694+00:00'
+  tags:
+  - r2_probe
+  - openvla
+  - untrained
+- id: art_20260520_09c9df
+  name: phi3v_untrained_r2_per_layer
+  type: data
+  description: Phi3V untrained per-layer R² (5 seeds, from phi3v_r2_untrained_probe
+    experiment)
+  path: projects/vla-ssd/artifacts/_project/data/phi3v_untrained_r2_per_layer.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:40:12.764606+00:00'
+  tags:
+  - r2_probe
+  - phi3v
+  - untrained
+- id: art_20260520_0f20c8
+  name: phi3v_untrained_15seed_analysis
+  type: report
+  description: Phi3V untrained R² probe 15-seed merged analysis report
+  path: projects/vla-ssd/artifacts/phi3v_untrained_seed_expansion/report/analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: phi3v_untrained_seed_expansion
+  skill: ''
+  created_at: '2026-05-20T11:50:19.143405+00:00'
+  tags:
+  - phi3v
+  - untrained
+  - r2-probe
+  - seed-expansion
+  - 15-seed
+- id: art_20260520_497f12
+  name: fig_teaser
+  type: chart
+  description: 'Teaser/overview figure for page 1: (a) VLA architecture schematic
+    with entry/exit layer highlights, (b) instruction-dominant heads bar chart showing
+    attention redistribution across pretrained vs VLA-trained conditions.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_teaser.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-20T12:54:46.656275+00:00'
+  tags:
+  - paper
+  - teaser
+  - figure1
+  - attention
+- id: art_20260520_98d4d6
+  name: fig_teaser
+  type: chart
+  description: 'Teaser figure: (a) VLA architecture schematic, (b) instruction-dominant
+    attention heads per layer comparing pretrained Llama-2 vs VLA-trained. Note: uses
+    L0-L31 numbering (paper uses L1-L32).'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_teaser_98d4d6.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T13:01:33.569344+00:00'
+  tags:
+  - paper
+  - teaser
+  - attention_redistribution
+- id: art_20260520_1caea8
+  name: LIBERO Closed-Loop Feasibility Probe Report
+  type: report
+  description: 'OpenVLA LIBERO-Goal closed-loop evaluation: 0% SR across all 10 tasks
+    × 10 trials. Detailed failure mode analysis and action statistics.'
+  path: projects/vla-ssd/artifacts/_project/report/libero_closedloop_probe_report.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:29:54.292473+00:00'
+  tags:
+  - libero
+  - openvla
+  - closed-loop
+  - evaluation
+  - baseline
+- id: art_20260520_7c59a6
+  name: paper_final_draft_v2
+  type: paper
+  description: 'Final compiled PDF: all reviewer fixes (N2-N6, W1-W8), missing refs
+    (5 papers), 15-seed table, teaser L1-L32 fix, N1 rebuttal paragraph. 8pp main
+    + refs + appendix (31pp total).'
+  path: projects/vla-ssd/artifacts/_project/paper/main_7c59a6.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T15:06:24.654809+00:00'
+  tags:
+  - paper
+  - final
+  - corl2026
+  - quality-polish
+- id: art_20260520_ddf3cd
+  name: rebuttal_material_2026_05_20
+  type: report
+  description: Rebuttal素材汇总：11项interventional证据、2×2 effect sizes、analysis-only论文先例
+  path: projects/vla-ssd/artifacts/_project/report/rebuttal_material_2026_05_20.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T15:32:21.873104+00:00'
+  tags:
+  - rebuttal
+  - interventional
+  - effect-size
+  - precedent
+- id: art_20260520_3d5221
+  name: Statistical supplements (TOST + Power + Cohen's d_z)
+  type: data
+  description: 'Three statistical analysis JSONs for rebuttal: TOST equivalence, power
+    analysis, paired Cohen''s d_z. Located at /root/autodl-tmp/vla-ssd/results/statistical_supplements/
+    on westd-19183'
+  path: projects/vla-ssd/artifacts/_project/data/statistical_supplements_index.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:53:12.729611+00:00'
+  tags:
+  - statistics
+  - rebuttal
+- id: art_20260520_32e7c4
+  name: RSA permutation test 10k shuffles
+  type: data
+  description: 'RSA permutation null distribution with 10,000 shuffles (upgraded from
+    1,000). All 5 layers p < 0.0001. Server path: /root/autodl-tmp/vla-ssd/results/permutation_10k/rsa_permutation_null_10k.json'
+  path: projects/vla-ssd/artifacts/permutation_10k/data/rsa_permutation_null_10k.txt
+  url: null
+  project: vla-ssd
+  exp_id: permutation_10k
+  skill: ''
+  created_at: '2026-05-20T19:14:13.493299+00:00'
+  tags:
+  - permutation-test
+  - RSA
+  - R14-I3
+- id: art_20260520_183fb9
+  name: bonferroni_global
+  type: data
+  description: Global Bonferroni and Holm-Bonferroni FWER correction across all 63
+    statistical tests in the paper. 40/63 survive correction; 5 auxiliary tests lose
+    significance (none affect core claims).
+  path: projects/vla-ssd/artifacts/_project/data/bonferroni_global.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T19:56:09.666374+00:00'
+  tags:
+  - statistics
+  - bonferroni
+  - holm
+  - FWER
+  - rebuttal
+- id: art_20260520_0a5826
+  name: counterfactual_spatial_analysis
+  type: report
+  description: 'Analysis report for counterfactual_spatial experiment: spatial preposition
+    sensitivity on LIBERO-Spatial 10 tasks'
+  path: projects/vla-ssd/artifacts/counterfactual_spatial/report/analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: counterfactual_spatial
+  skill: ''
+  created_at: '2026-05-20T21:37:51.877019+00:00'
+  tags:
+  - counterfactual
+  - spatial
+  - libero
+  - instruction-sensitivity
+- id: art_20260520_bb1789
+  name: counterfactual_spatial
+  type: data
+  description: 'LIBERO-Spatial 10 tasks × 4 counterfactual conditions. Effect ordering
+    identical to Goal: empty(0.942) > wrong(0.851) > shuffled(0.833) > paraphrased(0.806).
+    All d>0.8.'
+  path: projects/vla-ssd/artifacts/counterfactual_spatial/data/counterfactual_spatial.json
+  url: null
+  project: vla-ssd
+  exp_id: counterfactual_spatial
+  skill: ''
+  created_at: '2026-05-20T21:41:22.394209+00:00'
+  tags:
+  - counterfactual
+  - libero-spatial
+  - rebuttal
+- id: art_20260520_6ac49d
+  name: counterfactual_10tasks_trajectory
+  type: data
+  description: 'Trajectory-level Cohen''s d from 10-task counterfactual (30 demos,
+    B=10000 bootstrap). Token-level d inflates 3-5x at trajectory level (wrong: 3.798,
+    empty: 3.438).'
+  path: projects/vla-ssd/artifacts/counterfactual_10tasks/data/counterfactual_10tasks_trajectory.json
+  url: null
+  project: vla-ssd
+  exp_id: counterfactual_10tasks
+  skill: ''
+  created_at: '2026-05-20T21:41:25.683395+00:00'
+  tags:
+  - trajectory
+  - cohens_d
+  - rebuttal
+- id: art_20260521_ff20d8
+  name: tracvla_spatial_full_pipeline
+  type: intermediate
+  description: 'TracVLA-Phi3V LIBERO-Spatial full analysis pipeline script (5 phases:
+    feature extraction, R² probing, L1 attention, classification, counterfactual).
+    Fixed for Phi3V negative image token IDs and CUDA_VISIBLE_DEVICES remapping.'
+  path: projects/vla-ssd/artifacts/tracvla_spatial_trained/intermediate/tracvla_spatial_full_pipeline.py
+  url: null
+  project: vla-ssd
+  exp_id: tracvla_spatial_trained
+  skill: ''
+  created_at: '2026-05-21T02:12:12.264488+00:00'
+  tags:
+  - tracvla
+  - phi3v
+  - libero-spatial
+  - analysis-pipeline
+- id: art_20260521_79681d
+  name: tracvla_spatial_object_trained_metrics_2026-05-21
+  type: data
+  description: Complete trained metrics for TracVLA Spatial and Object experiments
+    (untrained pending rerun)
+  path: projects/vla-ssd/artifacts/_project/data/tracvla_trained_metrics_20260521.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T15:34:17.290507+00:00'
+  tags:
+  - tracvla
+  - spatial
+  - object
+  - trained
+  - metrics
+- id: art_20260521_24031f
+  name: literature_linkage_4suite_consistency
+  type: report
+  description: 文献联动分析：TracVLA 4-suite head consistency 在现有文献中的定位。无直接竞品，h13/h22 cross-task
+    一致性无先例。建议添加 3 篇文献到 literature_map (Olsson 2022 induction heads, Basile 2025 Head
+    Pursuit, Bali 2026 mid-layer instability)。GuidedVLA 可作对照引用。
+  path: projects/vla-ssd/artifacts/_project/report/literature_linkage_4suite_consistency.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T20:44:11.317603+00:00'
+  tags:
+  - literature
+  - tracvla
+  - 4-suite
+  - paper
+- id: art_20260522_0eeb61
+  name: cf_batch_part2_v1_analysis
+  type: report
+  description: Analysis of TracVLA untrained counterfactual sensitivity on LIBERO-Goal
+    and LIBERO-Long (cosine_dist method)
+  path: projects/vla-ssd/artifacts/cf_batch_part2_v1/report/cf_batch_part2_v1_analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: cf_batch_part2_v1
+  skill: ''
+  created_at: '2026-05-22T00:09:34.032173+00:00'
+  tags:
+  - counterfactual
+  - tracvla
+  - untrained
+  - cosine_dist
+- id: art_20260522_030dbc
+  name: matrix_summary_table
+  type: report
+  description: '3×4 matrix experiment summary table: R² probing, L1 attention, counterfactual
+    metrics across OpenVLA/TracVLA/NORA × Goal/Spatial/Object/Long'
+  path: projects/vla-ssd/artifacts/_project/report/matrix_summary_table.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T00:15:13.298281+00:00'
+  tags:
+  - matrix
+  - r2
+  - attention
+  - counterfactual
+  - cross-architecture
+- id: art_20260522_b7e2e9
+  name: matrix_result_audit_20260522
+  type: report
+  description: 5-phase pipeline result file completeness audit across 3×4×2 (arch×suite×condition)
+    matrix, cross-checked with registry
+  path: projects/vla-ssd/artifacts/_project/report/matrix_result_audit_20260522.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T01:10:37.174908+00:00'
+  tags:
+  - audit
+  - results
+  - completeness
+- id: art_20260522_c4752f
+  name: cf_batch_missing_v1_analysis
+  type: report
+  description: 'Analysis report for cf_batch_missing_v1: untrained CF cosine_dist
+    results for 5 conditions (OpenVLA Object, TracVLA Spatial/Object/Goal/Long), with
+    trained vs untrained ordering comparison'
+  path: projects/vla-ssd/artifacts/cf_batch_missing_v1/report/cf_batch_missing_v1_analysis_c4752f.md
+  url: null
+  project: vla-ssd
+  exp_id: cf_batch_missing_v1
+  skill: ''
+  created_at: '2026-05-22T01:30:08.733593+00:00'
+  tags: []
+- id: art_20260522_df83d8
+  name: openvla_goal_standardized_v1_analysis
+  type: report
+  description: 'Analysis of OpenVLA LIBERO-Goal standardized 5-phase pipeline (R2
+    probing, L1 attention, cross-instruction, RSA, counterfactual) — trained vs untrained.
+    Key finding: R2 exit collapse NOT confirmed in Goal suite.'
+  path: projects/vla-ssd/artifacts/openvla_goal_standardized_v1/report/openvla_goal_standardized_v1_analysis_df83d8.md
+  url: null
+  project: vla-ssd
+  exp_id: openvla_goal_standardized_v1
+  skill: ''
+  created_at: '2026-05-22T04:15:28.055199+00:00'
+  tags:
+  - openvla
+  - libero-goal
+  - standardized-pipeline
+  - r2-probing
+  - counterfactual
+  - rsa
+- id: art_20260522_21079d
+  name: d098_correlational_analysis
+  type: report
+  description: 'D098: Spearman correlation between R² exit collapse Δ and published
+    LIBERO success rates across 3 architectures × 4 suites. ρ=0.583, p=0.099, n=9.
+    Positive trend but not significant.'
+  path: projects/vla-ssd/artifacts/_project/report/d098_correlational_analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T06:44:00.605039+00:00'
+  tags:
+  - d098
+  - correlational
+  - behavioral
+  - r2_collapse
+  - success_rate
+- id: art_20260522_c3c6ab
+  name: openvla_spatial_trained_extraction
+  type: report
+  description: 'OpenVLA Spatial trained 4/5 phase data extraction: R² peak L14=0.845,
+    exit L31=0.735, Δ=0.110 (exit collapse confirmed). L1 24/32 instr-dom. RSA L0=0.579.'
+  path: projects/vla-ssd/artifacts/openvla_spatial_standardized_v1/report/openvla_spatial_trained_extraction.md
+  url: null
+  project: vla-ssd
+  exp_id: openvla_spatial_standardized_v1
+  skill: ''
+  created_at: '2026-05-22T09:04:59.924231+00:00'
+  tags:
+  - openvla
+  - spatial
+  - r2
+  - l1
+  - extraction
+- id: art_20260522_52ecde
+  name: openvla_spatial_complete_results
+  type: report
+  description: 'OpenVLA Spatial standardized_v1 complete results: trained + untrained,
+    all 5 phases (R², L1, cross-instruction, RSA, CF). Trained CF: empty(1.17)>shuffled(0.98)>wrong(0.88)>para(0.81).
+    R² Δ trained=0.110 vs untrained=0.034.'
+  path: projects/vla-ssd/artifacts/openvla_spatial_standardized_v1/report/matrix_summary_table.md
+  url: null
+  project: vla-ssd
+  exp_id: openvla_spatial_standardized_v1
+  skill: ''
+  created_at: '2026-05-22T11:18:45.914269+00:00'
+  tags:
+  - openvla
+  - spatial
+  - complete
+  - cf
+  - r2
+  - l1
+- id: art_20260522_a23f05
+  name: nlp_control_r2_profile
+  type: data
+  description: 'Llama-2-7b-chat NLP control R² probing results: flat profile ~0.155
+    across all 32 layers, zero exit collapse (Δ=0.000). Confirms exit collapse is
+    VLA-specific.'
+  path: projects/vla-ssd/artifacts/nlp_finetuning_control_v1/data/nlp_control_r2_profile.md
+  url: null
+  project: vla-ssd
+  exp_id: nlp_finetuning_control_v1
+  skill: ''
+  created_at: '2026-05-22T12:54:02.354620+00:00'
+  tags:
+  - nlp-control
+  - r2
+  - exit-collapse
+  - paper-critical
+- id: art_20260522_c9f106
+  name: fig_r2_collapse_v2_with_nlp_baseline
+  type: chart
+  description: Updated fig_r2_collapse with NLP control baseline. 1×3 subplot (OpenVLA/TracVLA/NORA
+    Goal R² profiles). OpenVLA subplot includes Llama-2-chat NLP baseline (R²≈0.155,
+    gray dotted line). Shows VLA exit collapse is VLA-specific.
+  path: projects/vla-ssd/artifacts/nlp_finetuning_control_v1/chart/fig_r2_collapse.pdf
+  url: null
+  project: vla-ssd
+  exp_id: nlp_finetuning_control_v1
+  skill: ''
+  created_at: '2026-05-22T13:30:04.779310+00:00'
+  tags:
+  - figure
+  - r2-collapse
+  - nlp-control
+  - paper
+- id: art_20260522_f2eee0
+  name: concurrent_work_analysis
+  type: report
+  description: 'Analysis of concurrent work: Fang et al. 2026 (arXiv:2602.17659, LIBERO-CF
+    behavioral counterfactual) and Buurmeijer et al. 2026 (arXiv:2603.05487, VLA motor-feature
+    probing). Both complementary to our semantic-level representational analysis.'
+  path: projects/vla-ssd/artifacts/_project/report/concurrent_work_analysis.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T14:08:00.544824+00:00'
+  tags:
+  - concurrent-work
+  - literature
+  - fang2026
+  - buurmeijer2026
+  - paper-critical
+- id: art_20260523_f8703c
+  name: bootstrap_v2_summary_table
+  type: report
+  description: 'Clustered bootstrap v2 (fixed canonical peak layer) summary table
+    — 19/20 conditions. VLM→VLA trained: 6/6 significant. OpenVLA + untrained: 0/13
+    significant.'
+  path: projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v2/report/bootstrap_v2_summary_table.md
+  url: null
+  project: vla-ssd
+  exp_id: clustered_bootstrap_reanalysis_v2
+  skill: ''
+  created_at: '2026-05-23T06:24:48.860583+00:00'
+  tags:
+  - bootstrap
+  - r2
+  - exit_collapse
+  - statistical_test
+- id: art_20260523_347f5d
+  name: bootstrap_v3_summary_table
+  type: report
+  description: Bootstrap v3 (MCCV) 19/20 conditions summary table with effect size
+    analysis (Δ>0.10 threshold)
+  path: projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/bootstrap_v3_summary_table_347f5d.md
+  url: null
+  project: vla-ssd
+  exp_id: clustered_bootstrap_reanalysis_v3
+  skill: ''
+  created_at: '2026-05-23T12:08:55.127737+00:00'
+  tags:
+  - bootstrap
+  - mccv
+  - statistics
+  - exit-collapse
+- id: art_20260523_29c2cf
+  name: multi_threshold_robustness
+  type: report
+  description: 'Multi-threshold robustness analysis: 5 thresholds (0.05-0.20) showing
+    clean VLM→VLA vs OpenVLA/untrained separation at 0.10 and 0.15'
+  path: projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/multi_threshold_table.md
+  url: null
+  project: vla-ssd
+  exp_id: clustered_bootstrap_reanalysis_v3
+  skill: ''
+  created_at: '2026-05-23T16:44:15.677029+00:00'
+  tags:
+  - statistics
+  - bootstrap
+  - effect-size
+  - robustness
+- id: art_20260523_3a6ff5
+  name: fig_matrix_heatmap
+  type: chart
+  description: 3x4 Cross-Architecture Result Matrix heatmap (OpenVLA/TracVLA/NORA
+    × 4 LIBERO suites), Blues colormap encoding ΔR², N/A hatching, 0.10 threshold
+    line
+  path: projects/vla-ssd/artifacts/_project/chart/fig_matrix_heatmap_location.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T17:12:52.961094+00:00'
+  tags:
+  - paper-figure
+  - heatmap
+  - bootstrap-v3
+- id: art_20260523_811eb4
+  name: fig_counterfactual_bar
+  type: chart
+  description: 'Counterfactual sensitivity grouped bar plot: upper Cohen''s d (trained),
+    lower cosine distance (untrained), 4 conditions'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_counterfactual_bar_location.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T17:12:54.757534+00:00'
+  tags:
+  - paper-figure
+  - counterfactual
+  - bar-plot
+- id: art_20260523_a68665
+  name: fig_claim_evidence
+  type: chart
+  description: 'Claim-Evidence Summary Diagram: 3 rows (Exit Collapse / Action Sensitivity
+    / Inherited Prior) × 3 cols (Finding→Evidence→Limitation)'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_claim_evidence_location.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T17:12:56.503732+00:00'
+  tags:
+  - paper-figure
+  - summary-diagram
+  - discussion
+- id: art_20260523_a9838a
+  name: phi3_nlp_control_summary
+  type: data
+  description: Phi-3-mini-4k-instruct NLP control per-layer action R2 probing results
+    (32 layers). Flat R2 ~0.1555, delta_R2=0.000, confirming exit collapse is VLA-specific.
+  path: projects/vla-ssd/artifacts/phi3_nlp_control/data/summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: phi3_nlp_control
+  skill: ''
+  created_at: '2026-05-23T23:56:57.665052+00:00'
+  tags:
+  - nlp-control
+  - action-probe
+  - phi3-mini
+  - exit-collapse
+- id: art_20260524_a8a70a
+  name: fig_overview
+  type: chart
+  description: 'Paper Figure 1: Three-panel overview diagram. (a) VLA sequence structure
+    with causal masking, (b) Three analysis methods (action probes, counterfactual
+    perturbation, L1 attention profiling), (c) Finding classification (exit collapse
+    → training-associated, CF sensitivity → action-linked, L1 instruction attention
+    → inherited prior). 4200×1350 px @ 300 DPI, PDF+PNG.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_overview.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-24T04:41:11.104917+00:00'
+  tags:
+  - figure
+  - overview
+  - paper
+  - fig1
+- id: art_20260524_77b1e0
+  name: fig_matrix_heatmap
+  type: chart
+  description: '3×4 ΔR² exit collapse heatmap: OpenVLA/TracVLA/NORA × Goal/Spatial/Object/Long.
+    White→deep blue color scale, VLA→VLA vs VLM→VLA separator, N/A gray hatching for
+    NORA Object/Long, colorbar with 0.10 threshold line. PDF+PNG.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_matrix_heatmap.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-24T04:42:38.821671+00:00'
+  tags:
+  - figure
+  - heatmap
+  - exit-collapse
+  - matrix
+  - paper
+- id: art_20260524_def0c5
+  name: fig_l1_attention
+  type: chart
+  description: 'L1 instruction-dominant heads horizontal bar chart: OpenVLA/TracVLA/NORA,
+    trained vs untrained (reference). Proportion x-axis, absolute count labels (e.g.
+    26/32), 50% reference line. PDF+PNG.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_l1_attention.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-24T04:42:41.827453+00:00'
+  tags:
+  - figure
+  - l1-attention
+  - instruction-dominant
+  - bar-chart
+  - paper
+- id: art_20260524_85b647
+  name: fig_r2_collapse
+  type: chart
+  description: Three-panel per-layer R² profile showing exit collapse for OpenVLA
+    (ΔR²=0.016), TracVLA (ΔR²=0.228), NORA (ΔR²=0.691). Main results figure.
+  path: projects/vla-ssd/artifacts/_project/chart/fig_r2_collapse.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:01:30.063095+00:00'
+  tags:
+  - paper
+  - r2
+  - probe
+  - main-result
+- id: art_20260524_c6837a
+  name: fig_r2_collapse_v3
+  type: chart
+  description: 'Paper main result figure: Three-panel per-layer R² action probe profiles.
+    OpenVLA (VLA→VLA, ΔR²=0.016), TracVLA (VLM→VLA, ΔR²=0.228), NORA (VLM→VLA, ΔR²=0.691).
+    NORA uses actual experiment data (36 layers), OpenVLA/TracVLA use paper values
+    + PCHIP interpolation. Includes NLP control baseline in OpenVLA panel, peak annotations,
+    ΔR² shading.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_r2_collapse.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-24T05:05:49.626486+00:00'
+  tags:
+  - figure
+  - r2-collapse
+  - main-result
+  - paper
+  - v3
+- id: art_20260524_93725f
+  name: fig_counterfactual_bar_v3
+  type: chart
+  description: 'Paper counterfactual perturbation figure: (a) Cohen''s d grouped bar
+    chart for OpenVLA + TracVLA × 4 LIBERO suites × 4 conditions (empty/wrong/shuffled/paraphrased),
+    with d=0.8 reference line and star markers on max values. (b) Cosine distance
+    for NORA Goal (saturated at 1.0, truncated display) and Spatial. Data from server
+    experiment results.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_counterfactual_bar.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-24T05:10:09.070521+00:00'
+  tags:
+  - figure
+  - counterfactual
+  - cohen-d
+  - cosine-distance
+  - paper
+  - v3
+- id: art_20260524_0fceba
+  name: fig_counterfactual_bar
+  type: chart
+  description: 'Counterfactual bar chart with Panel A (Cohen''s d) and Panel B (cosine
+    distance: NORA trained + Phi-3-Vision/Qwen2.5-VL reference VLMs)'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_counterfactual_bar.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:18:00.294857+00:00'
+  tags:
+  - counterfactual
+  - panel-b
+  - reference-vlm
+  - cosine-distance
+- id: art_20260524_3c3614
+  name: paper_compiled
+  type: paper
+  description: Compiled paper PDF (37 pages, 0 errors) with updated fig_counterfactual_bar
+  path: projects/vla-ssd/artifacts/_project/paper/main_3c3614.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:18:02.342696+00:00'
+  tags:
+  - paper
+  - compiled
+  - corl2026
+- id: art_20260524_b510f5
+  name: fig_counterfactual_bar_v4
+  type: chart
+  description: 'Fixed Panel B: 8 groups across NORA (trained) / Phi-3-Vision (ref)
+    / Qwen2.5-VL (ref), dotted line separators, group labels. NORA Goal saturated
+    (1.0). figsize=(6,9) for wrapfigure half-column. Panel A unchanged (Cohen''s d).
+    PDF+PNG.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_counterfactual_bar_b510f5.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-24T05:19:20.448244+00:00'
+  tags:
+  - figure
+  - counterfactual
+  - cosine-distance
+  - paper
+  - v4
+- id: art_20260524_37d4f5
+  name: paper_compiled_20260524
+  type: paper
+  description: Compiled paper PDF with all 5 updated figures (fig_overview, fig_matrix_heatmap,
+    fig_l1_attention, fig_r2_collapse, fig_counterfactual_bar). 0 errors, 37 pages
+    total. Compiled 2026-05-24.
+  path: projects/vla-ssd/artifacts/_project/paper/main_37d4f5.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:19:23.907171+00:00'
+  tags:
+  - paper
+  - compiled
+  - final-sprint
+- id: art_20260524_35f0f9
+  name: fig_counterfactual_bar_v5_precise
+  type: chart
+  description: 'Final fig_counterfactual_bar with precise per-condition data from
+    server. Panel B now shows 4-condition grouped bars for all 8 groups: NORA trained
+    (Goal saturated/Spatial), Phi-3-Vision ref (Goal/Spatial/Object/Long), Qwen2.5-VL
+    ref (Goal/Spatial). Reveals condition sensitivity pattern in reference VLMs: empty/shuffled
+    >> wrong/paraphrased. figsize=(6,9).'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_counterfactual_bar_35f0f9.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-24T05:29:43.547237+00:00'
+  tags:
+  - figure
+  - counterfactual
+  - cosine-distance
+  - paper
+  - v5
+  - precise
+- id: art_20260524_a7fc11
+  name: paper_compiled_20260524_v2
+  type: paper
+  description: Recompiled paper with precise Panel B data. 0 errors, 37 pages. All
+    5 figures use verified data.
+  path: projects/vla-ssd/artifacts/_project/paper/main_a7fc11.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:29:46.362444+00:00'
+  tags:
+  - paper
+  - compiled
+  - final-sprint
+  - data-verified
+- id: art_20260524_0dbb4b
+  name: fig_r2_collapse
+  type: chart
+  description: Three-panel per-layer R² profile (OpenVLA/TracVLA/NORA) — pastel color
+    scheme, compact layout
+  path: projects/vla-ssd/artifacts/_project/chart/fig_r2_collapse_0dbb4b.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:36:31.543106+00:00'
+  tags:
+  - paper
+  - figure
+  - r2-collapse
+- id: art_20260524_4845cc
+  name: fig_counterfactual_bar
+  type: chart
+  description: 'Counterfactual bar chart (pastel + dark edge redesign): Panel A Cohen''s
+    d for OpenVLA & TracVLA, Panel B cosine distance for NORA & ref VLMs. Compact
+    3.5x7in layout, no value annotations.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_counterfactual_bar_4845cc.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:37:29.528989+00:00'
+  tags:
+  - paper
+  - counterfactual
+  - figure
+- id: art_20260524_8af3ac
+  name: fig_overview
+  type: chart
+  description: 'Overview figure (pastel palette, compact 10x3.2 layout): Panel (a)
+    VLA sequence structure, (b) Three analysis methods, (c) Finding classification'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_overview_8af3ac.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:57:28.906691+00:00'
+  tags:
+  - paper
+  - figure
+  - overview
+- id: art_20260524_d38e54
+  name: paper_compiled_20260524
+  type: paper
+  description: VLA-SSD paper compiled 2026-05-24 with pastel Figs 2-5 (matplotlib).
+    Fig 1 still matplotlib pending PaperBanana redraw.
+  path: projects/vla-ssd/artifacts/_project/paper/paper_compiled_20260524.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T06:16:01.125031+00:00'
+  tags:
+  - paper
+  - pdf
+  - compiled
+  - pre-paperbanana
+- id: art_20260524_f867b3
+  name: fig_overview_paperbanana
+  type: chart
+  description: 'Fig 1 overview diagram generated by PaperBanana (pastel palette, 3-panel:
+    VLA sequence structure / analysis methods / finding classification). AI-generated
+    via Gemini 3 Pro image generation, upscaled 3x to 4128x2304. Note: text clarity
+    is limited by AI image generation — not vector-quality.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_overview_pb.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T06:45:04.501198+00:00'
+  tags:
+  - figure
+  - overview
+  - paper
+  - paperbanana
+  - fig1
+- id: art_20260524_e3bd25
+  name: fig_overview_matplotlib_v2
+  type: chart
+  description: 'Fig 1 overview diagram — matplotlib vector version with pastel palette.
+    Three panels: (a) VLA sequence structure, (b) Three analysis methods, (c) Finding
+    classification. FancyBboxPatch + FancyArrowPatch for premium quality.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_overview_matplotlib_v2.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T06:54:13.326256+00:00'
+  tags:
+  - figure
+  - overview
+  - paper
+  - fig1
+  - matplotlib
+  - vector
+  - pastel
+- id: art_20260524_ba5d52
+  name: fig_overview_vB_flow
+  type: chart
+  description: 'Fig 1 Version B: flow-emphasis with prominent arrows and complementary
+    analysis connections (matplotlib fallback, PaperBanana API key unavailable)'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_overview_vB.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T07:36:40.233296+00:00'
+  tags:
+  - figure
+  - overview
+  - paper
+  - fig1
+  - matplotlib
+  - version-B
+  - flow
+- id: art_20260524_eea8e7
+  name: fig_overview_hybrid_vA
+  type: chart
+  description: 'Fig 1 Version A (Hybrid): information-dense 3-panel VLA concept figure
+    with numerical annotations. Matplotlib vector rendering. Panel (a) VLA sequence
+    structure, (b) three analysis methods with result lines, (c) finding classification
+    with metric ranges.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_overview_hybrid_vA.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T08:00:42.064610+00:00'
+  tags:
+  - figure
+  - overview
+  - paper
+  - fig1
+  - hybrid
+  - version-A
+  - dense
+  - vector
+- id: art_20260524_9f7624
+  name: fig_overview_native_vA
+  type: chart
+  description: 'Fig 1 Version A: information-dense with numerical annotations. PaperBanana
+    + native Google Gemini API.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_overview_vA.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T08:26:02.551723+00:00'
+  tags:
+  - figure
+  - overview
+  - paper
+  - fig1
+  - paperbanana
+  - native
+  - version-A
+  - dense
+- id: art_20260524_ea338d
+  name: fig_overview_native_vB
+  type: chart
+  description: 'Fig 1 Version B: flow-emphasis with prominent arrows, complementary
+    analysis connections, compact layout. PaperBanana + native Google Gemini API.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_overview_vB_ea338d.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T08:27:58.467521+00:00'
+  tags:
+  - figure
+  - overview
+  - paper
+  - fig1
+  - paperbanana
+  - native
+  - version-B
+  - flow
+- id: art_20260524_4e2e5c
+  name: fig_overview_native_vC
+  type: chart
+  description: 'Fig 1 Version C: training-contrast with VLM→VLA ✓ vs VLA→VLA ✗ markers.
+    PaperBanana + native Google Gemini API.'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_overview_vC.png
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T08:41:45.988756+00:00'
+  tags:
+  - figure
+  - overview
+  - paper
+  - fig1
+  - paperbanana
+  - native
+  - version-C
+  - contrast
+- id: art_20260524_f33d9b
+  name: paper_final_20260524_vC_fig1
+  type: paper
+  description: VLA-SSD paper final version 2026-05-24. Fig 1 = PaperBanana Version
+    C (training contrast). 3 sentence enhancements in experiments.tex. 37 pages, 0
+    errors, 0 undefined refs.
+  path: projects/vla-ssd/artifacts/_project/paper/main_f33d9b.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T11:19:13.261603+00:00'
+  tags:
+  - paper
+  - pdf
+  - final
+  - fig1-vC
+  - compiled
+- id: art_20260524_9e9f8b
+  name: paper_final_20260524
+  type: paper
+  description: 终稿 PDF：含 3 处微调（abstract 加 effect size、缩短方法句、experiments suggest→indicate）+
+    版本 C Fig 1 + pastel 配色全图
+  path: projects/vla-ssd/artifacts/_project/paper/paper_final_20260524.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T12:30:11.111767+00:00'
+  tags:
+  - final
+  - corl2026
+  - v20260524
+- id: art_20260524_84d04b
+  name: paper_final_20260524v2
+  type: paper
+  description: 终稿 v2：Discussion 加强 actionable insights + Limitations 加 training dynamics
+    future work + Behavioral ρ=0.583 加 effect size context
+  path: projects/vla-ssd/artifacts/_project/paper/paper_final_20260524v2.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T13:39:32.495479+00:00'
+  tags:
+  - final
+  - corl2026
+  - v20260524v2
+- id: art_20260524_11f01a
+  name: paper_final_20260524v3
+  type: paper
+  description: 终稿 v3（最终轮）：Discussion ΔR² diagnostic 措辞精确化 + Experiments trained-reference
+    difference 明确化
+  path: projects/vla-ssd/artifacts/_project/paper/paper_final_20260524v3.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T14:17:35.654171+00:00'
+  tags:
+  - final
+  - corl2026
+  - v20260524v3
+- id: art_20260524_c81211
+  name: paper_final_20260524v4
+  type: paper
+  description: 终稿 v4：图片排版优化——Fig 1 去掉 height=2in 限制放大至 0.92linewidth、Fig 2 heatmap
+    加宽至 0.82textwidth、wrapfigure 间距规范化、caption 精简
+  path: projects/vla-ssd/artifacts/_project/paper/paper_final_20260524v4.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T15:11:40.775618+00:00'
+  tags:
+  - final
+  - corl2026
+  - v20260524v4
+  - layout-fix
+- id: art_20260524_7b980e
+  name: paper_final_20260524v5
+  type: paper
+  description: 终稿 v5：Fig 2 heatmap 空白修复——加宽至 textwidth、caption 4行→2行、vspace 压缩
+  path: projects/vla-ssd/artifacts/_project/paper/paper_final_20260524v5.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T15:17:40.542347+00:00'
+  tags:
+  - final
+  - corl2026
+  - v20260524v5
+  - layout-fix
+- id: art_20260524_7f7f23
+  name: paper_final_20260524v6
+  type: paper
+  description: 终稿 v6：Fig 2 heatmap 重绘（2:1 宽高比、方形单元格、trained/reference 并排、pastel 配色）+
+    Fig 1/3 caption 精简 + 全局 vspace 压缩
+  path: projects/vla-ssd/artifacts/_project/paper/paper_final_20260524v6.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T15:26:51.065422+00:00'
+  tags:
+  - final
+  - corl2026
+  - v20260524v6
+  - fig-redraw
+- id: art_20260524_885a92
+  name: paper_final_20260524v7
+  type: paper
+  description: 终稿 v7：Fig 2 caption 加红框说明 "Red borders indicate ΔR² > 0.10"
+  path: projects/vla-ssd/artifacts/_project/paper/paper_final_20260524v7.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T16:54:22.971950+00:00'
+  tags:
+  - final
+  - corl2026
+  - v20260524v7
+- id: art_20260524_61ff82
+  name: paper_final_20260524v8
+  type: paper
+  description: 终稿 v8：final proofread — 修复 VLM$to$VLA notation 不一致，全文扫描通过
+  path: projects/vla-ssd/artifacts/_project/paper/paper_final_20260524v8.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T17:29:07.888699+00:00'
+  tags:
+  - final
+  - corl2026
+  - v20260524v8
+  - proofread
+- id: art_20260524_0482c3
+  name: seed_robustness_summary
+  type: report
+  description: 'Probe seed robustness check: ΔR² stability across 4 random seeds for
+    TracVLA-Goal, TracVLA-Spatial, OpenVLA-Goal. All cells pass stability threshold
+    (std < 0.02).'
+  path: projects/vla-ssd/artifacts/_project/report/seed_robustness_summary.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T19:32:37.958524+00:00'
+  tags:
+  - probing
+  - seed-robustness
+  - delta-r2
+- id: art_20260524_6179d2
+  name: bootstrap_ci_delta_r2_results
+  type: data
+  description: 'Bootstrap CI for delta-R2 gap analysis: 10 cells (4 VLA-to-VLA, 6
+    VLM-to-VLA). Gap test: marginal CI overlap between TracVLA-Spatial (CI_lower=0.0906)
+    and OpenVLA-Goal (CI_upper=0.1064), gap=-0.016.'
+  path: projects/vla-ssd/artifacts/_project/data/bootstrap_ci_results_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T20:46:43.984706+00:00'
+  tags:
+  - bootstrap
+  - delta_r2
+  - statistical_test
+- id: art_20260525_ea1bfa
+  name: paper_final_20260525v10
+  type: paper
+  description: 终稿 v10：narrative strength 改进（intro hook 重构、synthesis takeaway、hedging
+    收紧、NORA takeaway、discussion caveat 重构）+ bootstrap CI + permutation test + probe
+    seed robustness + 4 新引用（Kachaev/Mitra/Zhang/Hancock）
+  path: projects/vla-ssd/artifacts/_project/paper/paper_final_20260525v10.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T05:19:29.437318+00:00'
+  tags:
+  - final
+  - corl2026
+  - v10
+  - narrative
+- id: art_20260525_d524e0
+  name: VLA-SSD_终版v11_20260525
+  type: paper
+  description: CoRL 2026 终版 v11 — 正文 8 页 + References + Appendix，共 37 页。含 3 个 caveat
+    修复（confound 声明、effect size context、open-loop）。0 compile errors。
+  path: projects/vla-ssd/artifacts/_project/paper/VLA-SSD_终版v11_20260525.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T07:02:42.908968+00:00'
+  tags:
+  - paper
+  - v11
+  - final
+  - corl2026
+- id: art_20260525_708125
+  name: anticipated_rebuttal_v1
+  type: report
+  description: 'Anticipated reviewer response letter for CoRL 2026 submission, covering
+    6 predicted questions: behavioral correlation power, LIBERO-only generalization,
+    closed-loop absence, cross-architecture novelty claim, NLP control design, and
+    effect-size threshold methodology.'
+  path: projects/vla-ssd/artifacts/_project/report/anticipated_rebuttal_v1.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T19:52:17.479487+00:00'
+  tags:
+  - rebuttal
+  - paper
+  - corl2026
+- id: art_20260525_543afa
+  name: anticipated_rebuttal_v1
+  type: paper
+  description: Anticipated reviewer response letter v1 — 6 个预期审稿问题的回复（behavioral correlation,
+    LIBERO generalization, closed-loop, first claim, NLP controls, effect size threshold）+
+    preemptive measures 清单
+  path: projects/vla-ssd/artifacts/_project/paper/anticipated_rebuttal_v1.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T19:53:11.748965+00:00'
+  tags:
+  - rebuttal
+  - corl2026
+  - paper
+- id: art_20260525_480e37
+  name: number_consistency_check_v1
+  type: report
+  description: 'Pre-submission number consistency cross-check: 78 quantitative claims
+    verified across abstract/experiments/discussion/appendix against local data sources
+    (bonferroni_global.json, R² per-layer JSONs, counterfactual JSONs). 62 consistent,
+    2 minor inconsistencies, 14 need SSH verification.'
+  path: projects/vla-ssd/artifacts/_project/report/number_consistency_check_v1.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:05:42.371420+00:00'
+  tags:
+  - paper
+  - sanity-check
+  - pre-submission
+- id: art_20260525_b834cc
+  name: fig_r2_collapse_demosplit
+  type: chart
+  description: 'Figure 3: Per-layer R² collapse profile (demo-split bootstrap v3 MCCV
+    data, replacing random-split)'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_r2_collapse_b834cc.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:06:28.845165+00:00'
+  tags:
+  - figure
+  - paper
+  - r2-collapse
+  - demo-split
+- id: art_20260525_b64506
+  name: fig_counterfactual_bar_colorblind
+  type: chart
+  description: 'Figure 4: Counterfactual bar chart with Wong (2011) colorblind-safe
+    palette'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_counterfactual_bar_b64506.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:06:30.228743+00:00'
+  tags:
+  - figure
+  - paper
+  - counterfactual
+  - colorblind
+- id: art_20260525_3afc99
+  name: anticipated_rebuttal_v2
+  type: paper
+  description: Anticipated reviewer response letter v2 — 9 个问题（Q1-Q9），修复硬编码编号，新增 N=2
+    推广性(Q7)、probing≠causal(Q8)、training dynamics(Q9)
+  path: projects/vla-ssd/artifacts/_project/paper/anticipated_rebuttal_v2.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:21:44.800669+00:00'
+  tags:
+  - rebuttal
+  - corl2026
+  - paper
+  - v2
+- id: art_20260525_257cd8
+  name: VLA-SSD_终版v12_figures_fixed_20260525
+  type: paper
+  description: v12 final PDF with Figure 3 demo-split data fix and Figure 4 colorblind-safe
+    palette. 37 pages, body ≤8pp, References on p9. All ΔR² annotations match Table
+    1.
+  path: projects/vla-ssd/artifacts/_project/paper/VLA-SSD_终版v12_figures_fixed_20260525.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:26:15.055325+00:00'
+  tags:
+  - paper
+  - corl2026
+  - v12
+  - figure-fix
+- id: art_20260525_1671f4
+  name: VLA-SSD_camera_ready_v13_20260525
+  type: paper
+  description: 'Camera-ready v13 after full pre-submission check: bib format standardized,
+    caption completeness improved, rounding unified, all cross-references verified.
+    37 pages, body ≤8pp.'
+  path: projects/vla-ssd/artifacts/_project/paper/VLA-SSD_camera_ready_v13_20260525.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T21:05:54.154292+00:00'
+  tags:
+  - paper
+  - corl2026
+  - v13
+  - camera-ready
+- id: art_20260525_adb40e
+  name: abstract_submission_corl2026
+  type: paper
+  description: 'Plain-text abstract submission materials for CoRL 2026 DDL 5/26: title
+    + abstract (no LaTeX) + 8 keywords. Copy-paste ready.'
+  path: projects/vla-ssd/artifacts/_project/paper/abstract_submission.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T21:39:34.021884+00:00'
+  tags:
+  - paper
+  - corl2026
+  - abstract
+  - submission
+- id: art_20260526_762a7f
+  name: submission_checklist
+  type: report
+  description: CoRL 2026 submission checklist — format compliance, required fields,
+    Type 3 font status, pre-submission actions
+  path: projects/vla-ssd/artifacts/_project/report/submission_checklist.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T08:46:34.374349+00:00'
+  tags:
+  - submission
+  - checklist
+  - corl2026
+- id: art_20260526_f4931b
+  name: openvla_goal_untrained_action_head_r2
+  type: data
+  description: Action-head decoding R² per layer for untrained OpenVLA (OXE-pretrained,
+    not LIBERO-finetuned) on LIBERO-Goal. All 32 layers have negative R² (-1.39 to
+    -4.62), confirming untrained model cannot decode LIBERO actions via LM head.
+  path: projects/vla-ssd/artifacts/_project/data/openvla_goal_untrained_action_head_r2.json
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T19:30:04.032228+00:00'
+  tags:
+  - action-head-decoding
+  - untrained
+  - control
+  - libero-goal
+- id: art_20260526_d9bb45
+  name: openvla_goal_untrained_50demos_action_head_r2
+  type: data
+  description: Action-head decoding R² results for untrained OpenVLA on LIBERO-Goal,
+    50 demos/task (5000 samples). All layers R² negative (-1.03 to -3.02 overall_R2),
+    confirming untrained model cannot decode actions via LM head.
+  path: projects/vla-ssd/artifacts/action_head_decoding_openvla_goal_untrained/data/openvla_goal_untrained_50demos_action_head_r2.json
+  url: null
+  project: vla-ssd
+  exp_id: action_head_decoding_openvla_goal_untrained
+  skill: ''
+  created_at: '2026-05-26T19:45:09.677621+00:00'
+  tags:
+  - action_head_decoding
+  - untrained
+  - openvla
+  - libero_goal
+  - 50demos
+- id: art_20260526_a9b687
+  name: action_head_decoding_v2_results
+  type: data
+  description: 'Action-Head Decoding v2: per-layer R² for argmax and softmax EV decoding
+    via frozen LM head vs independent probe. 5000 samples on LIBERO-Goal. Full data:
+    /root/autodl-tmp/vla-ssd/results/action_head_decoding/openvla_goal_action_head_r2_v2.json'
+  path: projects/vla-ssd/artifacts/_project/data/action_head_decoding_v2_summary.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T20:07:13.194683+00:00'
+  tags:
+  - action-head-decoding
+  - format-specialization
+  - R2
+  - libero-goal
+- id: art_20260526_47bb9f
+  name: action_head_vs_probe_figure
+  type: chart
+  description: 'Comparison plot: Action-Head Decoding (argmax + softmax EV) vs Independent
+    Probe R² across 33 layers. Shows format specialization: frozen LM head R² is uniformly
+    negative while trained probe R² is positive (peak 0.68). Remote: /root/autodl-tmp/vla-ssd/results/action_head_decoding/fig_action_head_vs_probe.pdf'
+  path: projects/vla-ssd/artifacts/_project/chart/fig_action_head_vs_probe_description.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T20:08:10.605000+00:00'
+  tags:
+  - action-head-decoding
+  - format-specialization
+  - figure
+  - libero-goal
+- id: art_20260526_881920
+  name: action_head_v2_trained_r2
+  type: data
+  description: 'Action-Head Decoding v2 per-layer R² for trained OpenVLA on LIBERO-Goal
+    (5000 samples, 33 layers). Fixes: no double-norm, clone hidden states, transformers
+    4.40.1.'
+  path: projects/vla-ssd/artifacts/action_head_decoding_openvla_goal/data/trained_action_head_r2.json
+  url: null
+  project: vla-ssd
+  exp_id: action_head_decoding_openvla_goal
+  skill: ''
+  created_at: '2026-05-26T20:28:48.685107+00:00'
+  tags:
+  - action_head
+  - r2
+  - trained
+  - libero_goal
+  - v2
+- id: art_20260526_d9a9b5
+  name: untrained_v2_action_head_r2
+  type: data
+  description: Action-head decoding v2 results for untrained OpenVLA (openvla-7b)
+    on LIBERO-Goal. 5000 samples, 33 layers, all R² negative (-5.61 to -3.55). Control
+    group for trained v2.
+  path: projects/vla-ssd/artifacts/action_head_decoding_openvla_goal_untrained/data/untrained_v2_action_head_r2.txt
+  url: null
+  project: vla-ssd
+  exp_id: action_head_decoding_openvla_goal_untrained
+  skill: ''
+  created_at: '2026-05-26T20:52:55.464989+00:00'
+  tags:
+  - action_head_decoding
+  - untrained
+  - v2
+  - openvla
+  - libero_goal
+- id: art_20260526_b8d482
+  name: action_head_vs_probe_comparison
+  type: chart
+  description: 双panel对比图：上panel为Independent Linear Probe R²（trained OpenVLA, 33 layers），下panel为Frozen
+    Action Head R²（trained vs untrained OpenVLA）。展示probe在mid-layer达到peak后exit collapse，而action
+    head全层R²<0的关键发现。
+  path: projects/vla-ssd/artifacts/action_head_decoding_openvla_goal/chart/action_head_vs_probe_comparison.png
+  url: null
+  project: vla-ssd
+  exp_id: action_head_decoding_openvla_goal
+  skill: ''
+  created_at: '2026-05-26T20:59:19.661547+00:00'
+  tags:
+  - figure
+  - action_head
+  - linear_probe
+  - r2
+  - per_layer
+  - comparison
+- id: art_20260526_ca216f
+  name: action_head_vs_probe_comparison_pdf
+  type: chart
+  description: 同 action_head_vs_probe_comparison 的 PDF 矢量版本，适合论文嵌入。
+  path: projects/vla-ssd/artifacts/action_head_decoding_openvla_goal/chart/action_head_vs_probe_comparison.pdf
+  url: null
+  project: vla-ssd
+  exp_id: action_head_decoding_openvla_goal
+  skill: ''
+  created_at: '2026-05-26T20:59:24.994270+00:00'
+  tags:
+  - figure
+  - action_head
+  - linear_probe
+  - r2
+  - per_layer
+  - comparison
+  - pdf
+- id: art_20260526_5a4328
+  name: camera_ready_checklist_v14
+  type: report
+  description: Camera-ready checklist for paper v14 — 12 checks, 11 passed, 1 minor
+    issue (enlargethispage in discussion.tex)
+  path: projects/vla-ssd/artifacts/_project/report/camera_ready_checklist.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T21:52:59.959527+00:00'
+  tags:
+  - paper
+  - checklist
+  - v14
+  - camera-ready
+- id: art_20260526_f6106a
+  name: Figure Quality Audit v14
+  type: report
+  description: 'Quality audit of all 25 figures in paper v14: Type 3 fonts (critical),
+    font sizes, color accessibility, legend clarity, axis labels'
+  path: projects/vla-ssd/artifacts/_project/report/figure_quality_audit.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T21:54:16.492093+00:00'
+  tags:
+  - paper
+  - figure-audit
+  - v14
+- id: art_20260526_aea629
+  name: type3_font_fix_report
+  type: report
+  description: Type 3 字体消除报告：21 个 PDF 全部修复，14 个通过脚本重新生成（TrueType），7 个通过 ghostscript
+    轮廓转换
+  path: projects/vla-ssd/artifacts/_project/report/type3_font_fix_report.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T22:29:44.647373+00:00'
+  tags:
+  - paper
+  - figures
+  - type3
+  - fonts
+- id: art_20260527_75a058
+  name: CoRL 2026 Submission Package
+  type: paper
+  description: 'Complete submission package for CoRL 2026: main.pdf (43p, 8p body),
+    anticipated_rebuttal_v2.md (Q1-Q12), README.txt with upload instructions'
+  path: projects/vla-ssd/artifacts/_project/paper/README.txt
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T06:56:30.987141+00:00'
+  tags:
+  - submission
+  - corl2026
+  - camera-ready
+- id: art_20260528_25a242
+  name: paper_v13
+  type: paper
+  description: 'CoRL 2026 paper v13: TracVLA→TraceVLA rename throughout all .tex files
+    and figure PDFs. Main body 8pp, 42pp total.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v13.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T11:23:23.158665+00:00'
+  tags:
+  - paper
+  - v13
+  - submission
+- id: art_20260528_6d8f6b
+  name: paper_v14
+  type: paper
+  description: 'CoRL 2026 paper v14: Removed lmodern, restored Times font (NimbusRomNo9L
+    via corl_2026.sty). Main body 8pp (Discussion+References fit on page 8), 40pp
+    total.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v14.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T11:32:31.460139+00:00'
+  tags:
+  - paper
+  - v14
+  - submission
+- id: art_20260528_015716
+  name: paper_v15
+  type: paper
+  description: 'CoRL 2026 paper v15: complete font unification — all fonts Times/Liberation
+    Serif, zero Type 3, zero DejaVu, zero CM. txfonts for math, courier for monospace,
+    Liberation Serif in figures. 40pp (main body 8pp).'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v15.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T11:47:40.085574+00:00'
+  tags:
+  - paper
+  - v15
+  - font-fix
+  - corl2026
+- id: art_20260528_5c4d1b
+  name: paper_v16
+  type: paper
+  description: 'CoRL 2026 paper v16: expanded Limitations paragraph (5 dimensions:
+    sample size, single benchmark, correlational, single checkpoint, open-loop), compressed
+    Conclusion. Main body 8pp.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v16.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T11:54:38.323561+00:00'
+  tags:
+  - paper
+  - v16
+  - limitations
+  - corl2026
+- id: art_20260528_a574ba
+  name: paper_v17
+  type: paper
+  description: 'CoRL 2026 paper v17: Figure 1 restored to PaperBanana version (from
+    v14), Figure 2 heatmap redrawn with better proportions (3.15:1 → 1.90:1). Zero
+    Type 3/DejaVu/CM fonts. Main body ≤ 8pp.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v17.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T12:01:40.152857+00:00'
+  tags:
+  - paper
+  - v17
+  - figure-fix
+  - corl2026
+- id: art_20260528_02fede
+  name: paper_v17
+  type: paper
+  description: 'CoRL 2026 paper v17: Fig 1 restored to PaperBanana, Fig 2 heatmap
+    redrawn (1.90:1), promoted arch table + NLP control figure + dose-response figure
+    to main text, compressed Method/Experiments. Main body 8pp, 40pp total. Zero Type
+    3 fonts.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v17_02fede.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T12:05:48.433716+00:00'
+  tags:
+  - paper
+  - v17
+  - figure-promotion
+  - corl2026
+- id: art_20260528_235980
+  name: paper_v17_fixed
+  type: paper
+  description: 'CoRL 2026 paper v17 (fixed): restored amsmath/amsfonts for \text{}
+    command. Zero compile errors, zero Type 3 fonts. Fig1 PaperBanana, Fig2 redrawn,
+    arch table + NLP control fig + dose-response fig promoted to main text. 8pp main
+    body, 40pp total.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v17_235980.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T12:07:33.622529+00:00'
+  tags:
+  - paper
+  - v17
+  - compile-fix
+  - corl2026
+- id: art_20260528_9d1ff6
+  name: paper_v18
+  type: paper
+  description: 'CoRL 2026 paper v18: merged Figure 3+4 (R² collapse + NLP control
+    overlay into single figure), removed duplicate figure, saved 1 page. 8pp main
+    body, 39pp total. Zero errors, zero Type 3 fonts.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v18.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T12:11:19.766357+00:00'
+  tags:
+  - paper
+  - v18
+  - figure-merge
+  - corl2026
+- id: art_20260528_973d9a
+  name: vla-ssd_paper_v19
+  type: paper
+  description: 'v19: Promoted 2 appendix figures to main text (three-stage R² → §4.2,
+    32-layer attention profile → §4.5), merged synthesis figures side-by-side, compressed
+    conclusion to maintain 8-page limit. Zero errors, zero Type 3 fonts.'
+  path: projects/vla-ssd/artifacts/_project/paper/vla-ssd_paper_v19.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T12:28:04.807619+00:00'
+  tags:
+  - paper
+  - v19
+  - corl2026
+- id: art_20260528_3906de
+  name: vla-ssd_paper_v20
+  type: paper
+  description: 'v20: Every page has ≥1 visual, counterfactual bar enlarged to full
+    width, RSA figure promoted to §3.3, comparison table added to §2, narrative expanded
+    in §4.2/4.5/5, synthesis panels side-by-side. 8 pages main body, 0 errors, 0 Type
+    3 fonts.'
+  path: projects/vla-ssd/artifacts/_project/paper/vla-ssd_paper_v20.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T12:45:09.691524+00:00'
+  tags:
+  - paper
+  - v20
+  - corl2026
+- id: art_20260528_dd983c
+  name: paper_v20.1
+  type: paper
+  description: 'v20.1: Task C compliance — all promoted figures/tables now have narrative
+    interpretation in body text. tab:related_comparison added narrative reference
+    in related_work.tex. 8 pages main body, 0 errors, 0 Type 3 fonts.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v20.1.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T12:49:19.397542+00:00'
+  tags:
+  - corl2026
+  - v20.1
+  - task-c
+- id: art_20260528_91d028
+  name: paper_v21
+  type: paper
+  description: 'v21: Discussion expanded to 17 lines (Limitations 7 + Practical implications
+    8 + Conclusion 2). §4.6 Synthesis compressed. L1 wrapfig shrunk to 0.40col. synthesis_panels
+    figure at [t] top of p8, Discussion fills remaining space. References starts p9.
+    8 pages, 0 errors, 0 Type 3 fonts.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v21.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T13:01:00.894550+00:00'
+  tags:
+  - corl2026
+  - v21
+  - discussion-expanded
+- id: art_20260528_4144fd
+  name: paper_v21_layout_fix
+  type: paper
+  description: 'v21: Discussion expanded to 15 lines + urgent layout fix (all figures
+    after section headings, [htbp] placement, FloatBarrier, 8 pages confirmed)'
+  path: projects/vla-ssd/artifacts/_project/paper/main_4144fd.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T13:30:14.043267+00:00'
+  tags:
+  - paper
+  - layout-fix
+  - v21
+- id: art_20260528_f7803e
+  name: paper_v22_layout_content_fix
+  type: paper
+  description: 'v22: Limitations独立section(159词), Abstract缩写展开, Introduction定义instruction
+    routing, Conclusion段落, Figure 3色盲友好虚线边框, 全部float修复, 8页正文'
+  path: projects/vla-ssd/artifacts/_project/paper/main_f7803e.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T13:42:23.141839+00:00'
+  tags:
+  - paper
+  - v22
+  - layout-fix
+  - limitations-section
+- id: art_20260528_d72da0
+  name: paper_v23_reviewer_fixes
+  type: paper
+  description: 'v23: fig:result_matrix孤儿图引用修复, Conclusion扩展至3句80词(significance+future
+    direction), 8页正文确认'
+  path: projects/vla-ssd/artifacts/_project/paper/main_d72da0.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T14:22:44.843461+00:00'
+  tags:
+  - paper
+  - v23
+  - reviewer-fix
+- id: art_20260528_5cf5ff
+  name: paper_v24_table1_fix
+  type: paper
+  description: 'v24: Table 1从页底移至p2顶部([htbp]→[t]), 其余页面布局不变'
+  path: projects/vla-ssd/artifacts/_project/paper/main_5cf5ff.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T15:29:48.705899+00:00'
+  tags:
+  - paper
+  - v24
+  - table1-fix
+- id: art_20260528_6cb409
+  name: paper_v25_float_layout_fixed
+  type: paper
+  description: 'v25: All main-body floats migrated to [t] placement + p2-p8 每页至少一张图/表约束修复。Table
+    2 moved to related_work.tex landing on p3; Figure 3 moved to section start landing
+    on p5; Figure 8 (synthesis_panels) moved earlier landing on p8; enlargethispage
+    on p4/p8 absorbing text overflow.'
+  path: projects/vla-ssd/artifacts/_project/paper/paper_v25_float_layout_fixed.pdf
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T15:48:32.470013+00:00'
+  tags:
+  - paper
+  - layout
+  - v25
+  - float-placement
+- id: art_20260528_e839ca
+  name: verify_threecond_r2_report
+  type: report
+  description: 端到端验证 Figure 4 (fig_action_r2_threecond) 硬编码数据与原始 JSON 一致性报告
+  path: projects/vla-ssd/artifacts/_project/report/verify_threecond_r2_report.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T22:17:43.615718+00:00'
+  tags:
+  - data-verification
+  - figure-4
+  - threecond
+- id: art_20260529_381602
+  name: audit_maintext
+  type: report
+  description: 正文数字真实性与可追溯性审计：78个定量数字逐一追溯到bootstrap_v3/threecond/plot脚本数据源，74个完全匹配，4个LOW/INFO级注意项
+  path: projects/vla-ssd/artifacts/_project/report/audit_maintext.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T04:56:49.787329+00:00'
+  tags:
+  - audit
+  - paper
+  - verification
+- id: art_20260529_81f3f9
+  name: data_audit_report
+  type: report
+  description: DDL前全文数据真实性与可追溯性审计报告：~1408个数字，9个问题（3 MEDIUM），无系统性错误
+  path: projects/vla-ssd/artifacts/_project/report/data_audit_report.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T05:46:52.552187+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - ddl
+- id: art_20260529_d9ca7c
+  name: citation_audit_report
+  type: report
+  description: Full citation correctness audit report — 54 bib entries verified by
+    3 independent workers with cross-validation. 5 fixes applied, 0 hallucinated citations.
+  path: projects/vla-ssd/artifacts/_project/report/citation_audit_report.md
+  url: null
+  project: vla-ssd
+  exp_id: null
+  skill: reference-audit
+  created_at: '2026-05-29T06:48:27.986385+00:00'
+  tags:
+  - citation
+  - audit
+  - paper
