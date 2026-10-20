@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "id": "959ff737a8aec4eae1ad",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-25068 - SSH 连接命令: ssh westd-25068 # 必须用此命令，~/.ssh",
+  "task_key": "c9222ab5-9c92-4c29-85b2-614d861ba3ff",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/c9222ab5-9c92-4c29-85b2-614d861ba3ff.jsonl",
+    "occurrence": 1,
+    "bytes": 4651830,
+    "sha256": "96587fe5f1af8258c83f848fe2e9ba65042b568b1ef36342f794745288a299e1"
+  },
+  "statistics": {
+    "messages": 2805,
+    "user_turns": 4,
+    "tool_calls": 953,
+    "roles": {
+      "record": 402,
+      "user": 4,
+      "assistant": 490,
+      "tool_call": 953,
+      "tool_result": 953,
+      "system": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "959ff737a8aec4eae1ad-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 904,
+      "chunks": [
+        {
+          "path": "959ff737a8aec4eae1ad-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0006.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 915,
+      "chunks": [
+        {
+          "path": "959ff737a8aec4eae1ad-part-0006.json",
+          "message_count": 174
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0011.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 952,
+      "chunks": [
+        {
+          "path": "959ff737a8aec4eae1ad-part-0011.json",
+          "message_count": 159
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0015.json",
+          "message_count": 180
+        },
+        {
+          "path": "959ff737a8aec4eae1ad-part-0016.json",
+          "message_count": 73
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "959ff737a8aec4eae1ad-part-0016.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-symb-invariant-consensus-westd-25068-ssh-ssh-westd-25068-ssh-copy-415.md"
+}

@@ -1,0 +1,2747 @@
+{
+  "schema_version": "1.0",
+  "session_id": "96f7306ef4079a4554e8",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 503,
+          "timestamp": "2026-05-19T21:27:28.582Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kd5oy4SMPGBg6NTiNck7n2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 05:26:49,184 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:27:02,624 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:27:19,661 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc99d47a-70b6-4278-8ea9-6dd09a610ed2",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "bd9c0558-c8fa-43a5-955e-5d4f2316dbfe",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 05:26:49,184 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:27:02,624 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:27:19,661 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 05:26:49,184 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:27:02,624 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:27:19,661 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "fc99d47a-70b6-4278-8ea9-6dd09a610ed2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000503"
+        },
+        {
+          "source_line": 504,
+          "timestamp": "2026-05-19T21:27:31.667Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011nGziQF1Qfrt37Kz5f9Pfi",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -3 /tmp/dryrun_082.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd9c0558-c8fa-43a5-955e-5d4f2316dbfe",
+            "isSidechain": false,
+            "requestId": "req_011CbCdrqqxB2EBJigoEUsGW",
+            "type": "assistant",
+            "uuid": "ae971c63-0795-4081-b46f-0d49901b8e54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ty6PheZ5Z6tZ5SuJh4mfeG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 321,
+                "cache_read_input_tokens": 95829,
+                "output_tokens": 98,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 321,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 98,
+                    "cache_read_input_tokens": 95829,
+                    "cache_creation_input_tokens": 321,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 321
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000504"
+        },
+        {
+          "source_line": 505,
+          "timestamp": "2026-05-19T21:27:32.106Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011nGziQF1Qfrt37Kz5f9Pfi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 05:26:49,184 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:27:02,624 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:27:19,661 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae971c63-0795-4081-b46f-0d49901b8e54",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "b6fdf4d1-d074-477f-835f-8abacf1c0e34",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 05:26:49,184 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:27:02,624 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:27:19,661 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 05:26:49,184 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:27:02,624 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:27:19,661 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "ae971c63-0795-4081-b46f-0d49901b8e54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000505"
+        },
+        {
+          "source_line": 506,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "b6fdf4d1-d074-477f-835f-8abacf1c0e34",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752"
+              }
+            }
+          ],
+          "id": "event-000506"
+        },
+        {
+          "source_line": 507,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy debate and contrastive seed=123 replications on westd-16639",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752"
+              }
+            }
+          ],
+          "id": "event-000507"
+        },
+        {
+          "source_line": 508,
+          "timestamp": "2026-05-19T21:27:34.826Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C5s47uTsxhYctrUDhkwjXb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -3 /tmp/dryrun_082.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6fdf4d1-d074-477f-835f-8abacf1c0e34",
+            "isSidechain": false,
+            "requestId": "req_011CbCds6tpkpzXTdgvX4CAU",
+            "type": "assistant",
+            "uuid": "7b409e64-0e3a-44e7-a9c9-001da9ce67a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X2twhrakvrgkSyzaaz9RAh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 321,
+                "cache_read_input_tokens": 96150,
+                "output_tokens": 98,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 321,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 98,
+                    "cache_read_input_tokens": 96150,
+                    "cache_creation_input_tokens": 321,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 321
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000508"
+        },
+        {
+          "source_line": 509,
+          "timestamp": "2026-05-19T21:27:35.266Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C5s47uTsxhYctrUDhkwjXb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Wall time:    5.3 min\\\\nResults saved to results/exp082_contrastive_mistral_folio_seed123/dryrun.json\\\\nCONTRASTIVE_PIPELINE_DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b409e64-0e3a-44e7-a9c9-001da9ce67a0",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "cef906b6-e265-45b7-960b-da7163e0875b",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Wall time:    5.3 min\\\\nResults saved to results/exp082_contrastive_mistral_folio_seed123/dryrun.json\\\\nCONTRASTIVE_PIPELINE_DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  Wall time:    5.3 min\\nResults saved to results/exp082_contrastive_mistral_folio_seed123/dryrun.json\\nCONTRASTIVE_PIPELINE_DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "7b409e64-0e3a-44e7-a9c9-001da9ce67a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000509"
+        },
+        {
+          "source_line": 510,
+          "timestamp": "2026-05-19T21:27:41.032Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both dry-runs completed successfully:\n- **exp-081** (Debate): `DEBATE_PIPELINE_DONE`, 2.6 min\n- **exp-082** (Contrastive): `CONTRASTIVE_PIPELINE_DONE`, 5.3 min\n\nNow deploying full experiments and registering in registry. First, stop the vLLM instances (they'll be restarted as part of the full experiment tmux sessions), then submit the full runs.\n\nActually, the vLLM instances are already running and can be reused. Deploying full experiments directly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cef906b6-e265-45b7-960b-da7163e0875b",
+            "isSidechain": false,
+            "requestId": "req_011CbCdsLSQtz9pM2Fiwg3qr",
+            "type": "assistant",
+            "uuid": "a48e316b-975a-4593-8237-aa2aa229b478",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014CKN9mjGiLZ6eXsvQEdv1q",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 228,
+                "cache_read_input_tokens": 96471,
+                "output_tokens": 804,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 228,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 804,
+                    "cache_read_input_tokens": 96471,
+                    "cache_creation_input_tokens": 228,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 228
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000510"
+        },
+        {
+          "source_line": 511,
+          "timestamp": "2026-05-19T21:27:45.693Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018K61wdXdB6Wy3MpBRk2yev",
+              "name": "mcp__agent-ml-research__submit_training_job",
+              "input": {
+                "server": "westd-16639",
+                "gpu_ids": [
+                  "cuda:0"
+                ],
+                "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\"",
+                "exp_id": "exp-081-debate-mistral-folio-seed123",
+                "project": "symb_invariant_consensus",
+                "timeout_hours": 12
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a48e316b-975a-4593-8237-aa2aa229b478",
+            "isSidechain": false,
+            "requestId": "req_011CbCdsLSQtz9pM2Fiwg3qr",
+            "type": "assistant",
+            "uuid": "23a0dee2-f7f6-4e6d-a081-6febae6502f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014CKN9mjGiLZ6eXsvQEdv1q",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 228,
+                "cache_read_input_tokens": 96471,
+                "output_tokens": 804,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 228,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 804,
+                    "cache_read_input_tokens": 96471,
+                    "cache_creation_input_tokens": 228,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 228
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000511"
+        },
+        {
+          "source_line": 512,
+          "timestamp": "2026-05-19T21:27:47.247Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018K61wdXdB6Wy3MpBRk2yev",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"211057\\\", \\\"log_file\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-16639\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-081-debate-mistral-folio-seed123\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23a0dee2-f7f6-4e6d-a081-6febae6502f3",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "b341daa8-3774-4e81-8ce4-e2fd94884be3",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"211057\\\", \\\"log_file\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-16639\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-081-debate-mistral-folio-seed123\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"211057\", \"log_file\": \"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-16639\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"exp-081-debate-mistral-folio-seed123\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"
+              }
+            },
+            "sourceToolAssistantUUID": "23a0dee2-f7f6-4e6d-a081-6febae6502f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000512"
+        },
+        {
+          "source_line": 513,
+          "timestamp": "2026-05-19T21:27:48.322Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ZcC9acWmzeAU5FzWBR5Bk",
+              "name": "mcp__agent-ml-research__submit_training_job",
+              "input": {
+                "server": "westd-16639",
+                "gpu_ids": [
+                  "cuda:1"
+                ],
+                "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\"",
+                "exp_id": "exp-082-contrastive-mistral-folio-seed123",
+                "project": "symb_invariant_consensus",
+                "timeout_hours": 12
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b341daa8-3774-4e81-8ce4-e2fd94884be3",
+            "isSidechain": false,
+            "requestId": "req_011CbCdsLSQtz9pM2Fiwg3qr",
+            "type": "assistant",
+            "uuid": "89aec88c-1cad-479c-84fb-b4e1d24f7477",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014CKN9mjGiLZ6eXsvQEdv1q",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 228,
+                "cache_read_input_tokens": 96471,
+                "output_tokens": 804,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 228,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 804,
+                    "cache_read_input_tokens": 96471,
+                    "cache_creation_input_tokens": 228,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 228
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000513"
+        },
+        {
+          "source_line": 514,
+          "timestamp": "2026-05-19T21:27:49.855Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018ZcC9acWmzeAU5FzWBR5Bk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"211081\\\", \\\"log_file\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"westd-16639\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89aec88c-1cad-479c-84fb-b4e1d24f7477",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "1ff780d2-46f6-4ca6-a9c8-e62130377611",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"211081\\\", \\\"log_file\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"westd-16639\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"211081\", \"log_file\": \"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"westd-16639\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"exp-082-contrastive-mistral-folio-seed123\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.53}}"
+              }
+            },
+            "sourceToolAssistantUUID": "89aec88c-1cad-479c-84fb-b4e1d24f7477",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000514"
+        },
+        {
+          "source_line": 515,
+          "timestamp": "2026-05-19T21:27:52.637Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both jobs submitted. Now registering in the registry."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ff780d2-46f6-4ca6-a9c8-e62130377611",
+            "isSidechain": false,
+            "requestId": "req_011CbCdtQprkHA29WArRdCgP",
+            "type": "assistant",
+            "uuid": "ff37c8bb-5e60-4123-914f-ebc61177ea41",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DsRGzveYL1JWpM3tYzTiVp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1215,
+                "cache_read_input_tokens": 96699,
+                "output_tokens": 393,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1215,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 393,
+                    "cache_read_input_tokens": 96699,
+                    "cache_creation_input_tokens": 1215,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1215
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000515"
+        },
+        {
+          "source_line": 516,
+          "timestamp": "2026-05-19T21:27:55.901Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P3qb2rnk2XsUV3eYctAiac",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-081-debate-mistral-folio-seed123",
+                "field": "hypothesis",
+                "value": "Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)",
+                "project": "symb_invariant_consensus"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff37c8bb-5e60-4123-914f-ebc61177ea41",
+            "isSidechain": false,
+            "requestId": "req_011CbCdtQprkHA29WArRdCgP",
+            "type": "assistant",
+            "uuid": "a63a5c3b-bd45-44be-bc7f-e21c3396552d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DsRGzveYL1JWpM3tYzTiVp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1215,
+                "cache_read_input_tokens": 96699,
+                "output_tokens": 393,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1215,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 393,
+                    "cache_read_input_tokens": 96699,
+                    "cache_creation_input_tokens": 1215,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1215
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000516"
+        },
+        {
+          "source_line": 517,
+          "timestamp": "2026-05-19T21:27:56.404Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P3qb2rnk2XsUV3eYctAiac",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-081-debate-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:47.040Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:27:56.197Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211057\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:46.742Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4951}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a63a5c3b-bd45-44be-bc7f-e21c3396552d",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "29c49882-1d81-436a-8a5d-52b7e7cc076c",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-081-debate-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:47.040Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:27:56.197Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211057\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:46.742Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4951}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-081-debate-mistral-folio-seed123\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:27:47.040Z\", \"updated_at\": \"2026-05-19T21:27:56.197Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\\\"\", \"server\": \"westd-16639\", \"gpu\": [\"cuda:0\"], \"pid\": \"211057\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\", \"submitted_at\": \"2026-05-19T21:27:46.742Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4951}}"
+              }
+            },
+            "sourceToolAssistantUUID": "a63a5c3b-bd45-44be-bc7f-e21c3396552d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000517"
+        },
+        {
+          "source_line": 518,
+          "timestamp": "2026-05-19T21:27:57.077Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012eLQLGCDjToZfoCdMwiBEJ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-082-contrastive-mistral-folio-seed123",
+                "field": "hypothesis",
+                "value": "Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)",
+                "project": "symb_invariant_consensus"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29c49882-1d81-436a-8a5d-52b7e7cc076c",
+            "isSidechain": false,
+            "requestId": "req_011CbCdtQprkHA29WArRdCgP",
+            "type": "assistant",
+            "uuid": "cf48d16a-baf8-4a20-9a00-f638f15e8b5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DsRGzveYL1JWpM3tYzTiVp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1215,
+                "cache_read_input_tokens": 96699,
+                "output_tokens": 393,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1215,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 393,
+                    "cache_read_input_tokens": 96699,
+                    "cache_creation_input_tokens": 1215,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1215
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000518"
+        },
+        {
+          "source_line": 519,
+          "timestamp": "2026-05-19T21:27:57.606Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012eLQLGCDjToZfoCdMwiBEJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:49.643Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:27:57.396Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"211081\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:49.358Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5214}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf48d16a-baf8-4a20-9a00-f638f15e8b5d",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "6227e0ad-902d-4b61-beda-c2e74b49dc56",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:49.643Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:27:57.396Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"211081\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:49.358Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5214}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-082-contrastive-mistral-folio-seed123\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:27:49.643Z\", \"updated_at\": \"2026-05-19T21:27:57.396Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\\\"\", \"server\": \"westd-16639\", \"gpu\": [\"cuda:1\"], \"pid\": \"211081\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\", \"submitted_at\": \"2026-05-19T21:27:49.358Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5214}}"
+              }
+            },
+            "sourceToolAssistantUUID": "cf48d16a-baf8-4a20-9a00-f638f15e8b5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000519"
+        },
+        {
+          "source_line": 520,
+          "timestamp": "2026-05-19T21:28:01.126Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NWRf1kgpTExjsJskHGwby4",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-081-debate-mistral-folio-seed123",
+                "field": "parent",
+                "value": "exp-076-debate-mistral-folio",
+                "project": "symb_invariant_consensus"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6227e0ad-902d-4b61-beda-c2e74b49dc56",
+            "isSidechain": false,
+            "requestId": "req_011CbCdtyxfPDoMLsUpRC1WK",
+            "type": "assistant",
+            "uuid": "46ac25ef-36c5-45bc-a904-5f82101dad22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018fSe1Ah6y337CET1rzf5nt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1488,
+                "cache_read_input_tokens": 97914,
+                "output_tokens": 276,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1488,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 276,
+                    "cache_read_input_tokens": 97914,
+                    "cache_creation_input_tokens": 1488,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1488
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000520"
+        },
+        {
+          "source_line": 521,
+          "timestamp": "2026-05-19T21:28:01.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NWRf1kgpTExjsJskHGwby4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-081-debate-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:47.040Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:01.475Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211057\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:46.742Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\\\", \\\"parent\\\": \\\"exp-076-debate-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6024}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46ac25ef-36c5-45bc-a904-5f82101dad22",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "0989a2d9-aca3-446f-a0eb-fa22c03cc1c4",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-081-debate-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:47.040Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:01.475Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211057\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:46.742Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\\\", \\\"parent\\\": \\\"exp-076-debate-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6024}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-081-debate-mistral-folio-seed123\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:27:47.040Z\", \"updated_at\": \"2026-05-19T21:28:01.475Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\\\"\", \"server\": \"westd-16639\", \"gpu\": [\"cuda:0\"], \"pid\": \"211057\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\", \"submitted_at\": \"2026-05-19T21:27:46.742Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\", \"parent\": \"exp-076-debate-mistral-folio\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6024}}"
+              }
+            },
+            "sourceToolAssistantUUID": "46ac25ef-36c5-45bc-a904-5f82101dad22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000521"
+        },
+        {
+          "source_line": 522,
+          "timestamp": "2026-05-19T21:28:01.816Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S8kbA3K8atZxNQnBiioHn8",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-082-contrastive-mistral-folio-seed123",
+                "field": "parent",
+                "value": "exp-075b-contrastive-mistral-folio",
+                "project": "symb_invariant_consensus"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0989a2d9-aca3-446f-a0eb-fa22c03cc1c4",
+            "isSidechain": false,
+            "requestId": "req_011CbCdtyxfPDoMLsUpRC1WK",
+            "type": "assistant",
+            "uuid": "895b9e71-60f0-4da5-b6d1-c34d20e10c4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018fSe1Ah6y337CET1rzf5nt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1488,
+                "cache_read_input_tokens": 97914,
+                "output_tokens": 276,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1488,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 276,
+                    "cache_read_input_tokens": 97914,
+                    "cache_creation_input_tokens": 1488,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1488
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000522"
+        },
+        {
+          "source_line": 523,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "895b9e71-60f0-4da5-b6d1-c34d20e10c4f",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752"
+              }
+            }
+          ],
+          "id": "event-000523"
+        },
+        {
+          "source_line": 524,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy debate and contrastive seed=123 replications on westd-16639",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752"
+              }
+            }
+          ],
+          "id": "event-000524"
+        },
+        {
+          "source_line": 525,
+          "timestamp": "2026-05-19T21:28:02.340Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S8kbA3K8atZxNQnBiioHn8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:49.643Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:02.121Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"211081\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:49.358Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\\\", \\\"parent\\\": \\\"exp-075b-contrastive-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5159}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "895b9e71-60f0-4da5-b6d1-c34d20e10c4f",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "7637ef5d-0ff3-4e32-957a-51ae97848db3",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:49.643Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:02.121Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"211081\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:49.358Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\\\", \\\"parent\\\": \\\"exp-075b-contrastive-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5159}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-082-contrastive-mistral-folio-seed123\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:27:49.643Z\", \"updated_at\": \"2026-05-19T21:28:02.121Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\\\"\", \"server\": \"westd-16639\", \"gpu\": [\"cuda:1\"], \"pid\": \"211081\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\", \"submitted_at\": \"2026-05-19T21:27:49.358Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\", \"parent\": \"exp-075b-contrastive-mistral-folio\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5159}}"
+              }
+            },
+            "sourceToolAssistantUUID": "895b9e71-60f0-4da5-b6d1-c34d20e10c4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000525"
+        },
+        {
+          "source_line": 526,
+          "timestamp": "2026-05-19T21:28:02.343Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7637ef5d-0ff3-4e32-957a-51ae97848db3",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "a73d6933-4839-42ed-b55c-9158e3ce18e9",
+                "timestamp": "2026-05-19T21:28:02.343Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "federated-toasting-canyon"
+              }
+            }
+          ],
+          "id": "event-000526"
+        },
+        {
+          "source_line": 527,
+          "timestamp": "2026-05-19T21:28:04.752Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now set status to RUNNING."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a73d6933-4839-42ed-b55c-9158e3ce18e9",
+            "isSidechain": false,
+            "requestId": "req_011CbCduLBb6C5aRZv1B2CQE",
+            "type": "assistant",
+            "uuid": "2cb607ce-5ea9-4b27-ae31-a27dbbea2171",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SYTuBzTnpne8WmJitZCQP2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1513,
+                "cache_read_input_tokens": 99402,
+                "output_tokens": 609,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1513,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 609,
+                    "cache_read_input_tokens": 99402,
+                    "cache_creation_input_tokens": 1513,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1513
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000527"
+        },
+        {
+          "source_line": 528,
+          "timestamp": "2026-05-19T21:28:07.747Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0116w4sDryMn8GeSmP6LYJPH",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-081-debate-mistral-folio-seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "symb_invariant_consensus",
+                "spec": {
+                  "command": "python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates",
+                  "server": "westd-16639",
+                  "data_path": "data/folio_full.json",
+                  "data_count": 204,
+                  "model_name": "Mistral-7B-Instruct-v0.3",
+                  "seed": 123
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2cb607ce-5ea9-4b27-ae31-a27dbbea2171",
+            "isSidechain": false,
+            "requestId": "req_011CbCduLBb6C5aRZv1B2CQE",
+            "type": "assistant",
+            "uuid": "a7a8d7fe-85d7-44d7-9ac4-fabe753de3b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SYTuBzTnpne8WmJitZCQP2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1513,
+                "cache_read_input_tokens": 99402,
+                "output_tokens": 609,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1513,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 609,
+                    "cache_read_input_tokens": 99402,
+                    "cache_creation_input_tokens": 1513,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1513
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000528"
+        },
+        {
+          "source_line": 529,
+          "timestamp": "2026-05-19T21:28:08.051Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0116w4sDryMn8GeSmP6LYJPH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2976}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7a8d7fe-85d7-44d7-9ac4-fabe753de3b3",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "702b2dbb-1784-42a5-88dc-a1893d788044",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2976}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2976}}"
+              }
+            },
+            "sourceToolAssistantUUID": "a7a8d7fe-85d7-44d7-9ac4-fabe753de3b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000529"
+        },
+        {
+          "source_line": 530,
+          "timestamp": "2026-05-19T21:28:09.460Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YXPRixN3bA6nDyMGt6W11L",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-082-contrastive-mistral-folio-seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "symb_invariant_consensus",
+                "spec": {
+                  "command": "python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates",
+                  "server": "westd-16639",
+                  "data_path": "data/folio_full.json",
+                  "data_count": 204,
+                  "model_name": "Mistral-7B-Instruct-v0.3",
+                  "seed": 123
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "702b2dbb-1784-42a5-88dc-a1893d788044",
+            "isSidechain": false,
+            "requestId": "req_011CbCduLBb6C5aRZv1B2CQE",
+            "type": "assistant",
+            "uuid": "fce733e3-fc41-4553-b4ee-e6cb848331e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SYTuBzTnpne8WmJitZCQP2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1513,
+                "cache_read_input_tokens": 99402,
+                "output_tokens": 609,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1513,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 609,
+                    "cache_read_input_tokens": 99402,
+                    "cache_creation_input_tokens": 1513,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1513
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000530"
+        },
+        {
+          "source_line": 531,
+          "timestamp": "2026-05-19T21:28:09.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YXPRixN3bA6nDyMGt6W11L",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3001}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fce733e3-fc41-4553-b4ee-e6cb848331e8",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "8cb90b13-20b9-42dc-8108-9cd814e283ca",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3001}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.3001}}"
+              }
+            },
+            "sourceToolAssistantUUID": "fce733e3-fc41-4553-b4ee-e6cb848331e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000531"
+        },
+        {
+          "source_line": 532,
+          "timestamp": "2026-05-19T21:28:13.109Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0196SHfV9tcQcRZbL8FQRt8L",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-081-debate-mistral-folio-seed123",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "symb_invariant_consensus"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8cb90b13-20b9-42dc-8108-9cd814e283ca",
+            "isSidechain": false,
+            "requestId": "req_011CbCduswYbc4bWisiVAkUc",
+            "type": "assistant",
+            "uuid": "decbd27f-6ba5-42ad-aa61-a2f13f366e22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvEyTSwKZ65WC9ij8aDoTk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 816,
+                "cache_read_input_tokens": 100915,
+                "output_tokens": 257,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 816,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 257,
+                    "cache_read_input_tokens": 100915,
+                    "cache_creation_input_tokens": 816,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 816
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000532"
+        },
+        {
+          "source_line": 533,
+          "timestamp": "2026-05-19T21:28:13.598Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017fsCBkDFJRkCvnae3Zj1mN",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-082-contrastive-mistral-folio-seed123",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "symb_invariant_consensus"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "decbd27f-6ba5-42ad-aa61-a2f13f366e22",
+            "isSidechain": false,
+            "requestId": "req_011CbCduswYbc4bWisiVAkUc",
+            "type": "assistant",
+            "uuid": "8e4a79d2-ce5f-473b-ac9c-d71f78c376f4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvEyTSwKZ65WC9ij8aDoTk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 816,
+                "cache_read_input_tokens": 100915,
+                "output_tokens": 257,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 816,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 257,
+                    "cache_read_input_tokens": 100915,
+                    "cache_creation_input_tokens": 816,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 816
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000533"
+        },
+        {
+          "source_line": 534,
+          "timestamp": "2026-05-19T21:28:14.329Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0196SHfV9tcQcRZbL8FQRt8L",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-081-debate-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:47.040Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:13.581Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211057\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:46.742Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\\\", \\\"parent\\\": \\\"exp-076-debate-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2082}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "decbd27f-6ba5-42ad-aa61-a2f13f366e22",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "24cf8a04-9c42-419b-90a0-2ab8b54d9ec2",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-081-debate-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:47.040Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:13.581Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211057\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:46.742Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\\\", \\\"parent\\\": \\\"exp-076-debate-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2082}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-081-debate-mistral-folio-seed123\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:27:47.040Z\", \"updated_at\": \"2026-05-19T21:28:13.581Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp081_debate_mistral_folio_seed123/exp081.log\\\"\", \"server\": \"westd-16639\", \"gpu\": [\"cuda:0\"], \"pid\": \"211057\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\", \"submitted_at\": \"2026-05-19T21:27:46.742Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\", \"parent\": \"exp-076-debate-mistral-folio\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2082}}"
+              }
+            },
+            "sourceToolAssistantUUID": "decbd27f-6ba5-42ad-aa61-a2f13f366e22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000534"
+        },
+        {
+          "source_line": 535,
+          "timestamp": "2026-05-19T21:28:15.365Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017fsCBkDFJRkCvnae3Zj1mN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:49.643Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:14.625Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"211081\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:49.358Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\\\", \\\"parent\\\": \\\"exp-075b-contrastive-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0273}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e4a79d2-ce5f-473b-ac9c-d71f78c376f4",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "259162bb-60c8-437b-98cd-891705095eb9",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:49.643Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:14.625Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"211081\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:49.358Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\\\", \\\"parent\\\": \\\"exp-075b-contrastive-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0273}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-082-contrastive-mistral-folio-seed123\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:27:49.643Z\", \"updated_at\": \"2026-05-19T21:28:14.625Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates 2>&1 | tee results/exp082_contrastive_mistral_folio_seed123/exp082.log\\\"\", \"server\": \"westd-16639\", \"gpu\": [\"cuda:1\"], \"pid\": \"211081\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\", \"submitted_at\": \"2026-05-19T21:27:49.358Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\", \"parent\": \"exp-075b-contrastive-mistral-folio\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0273}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8e4a79d2-ce5f-473b-ac9c-d71f78c376f4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000535"
+        },
+        {
+          "source_line": 536,
+          "timestamp": "2026-05-19T21:28:19.943Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EsdrarJB2R2AT3Xh7mTFXo",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-081-debate-mistral-folio-seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "symb_invariant_consensus",
+                "spec": {
+                  "command": "python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates",
+                  "server": "westd-16639",
+                  "data_path": "data/folio_full.json",
+                  "data_count": 204,
+                  "model_name": "Mistral-7B-Instruct-v0.3",
+                  "seed": 123
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "259162bb-60c8-437b-98cd-891705095eb9",
+            "isSidechain": false,
+            "requestId": "req_011CbCdvHuwNV6JgaM9y6NzE",
+            "type": "assistant",
+            "uuid": "1939ec9b-c44f-4de8-a495-a593e8e864bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FsnbRpZ1xdKo3cYzL3Afw2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1393,
+                "cache_read_input_tokens": 101731,
+                "output_tokens": 601,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1393,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 601,
+                    "cache_read_input_tokens": 101731,
+                    "cache_creation_input_tokens": 1393,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1393
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000536"
+        },
+        {
+          "source_line": 537,
+          "timestamp": "2026-05-19T21:28:20.244Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EsdrarJB2R2AT3Xh7mTFXo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2927}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1939ec9b-c44f-4de8-a495-a593e8e864bb",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "9f9b9f16-5623-48c7-b67c-1a35a74fec87",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2927}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2927}}"
+              }
+            },
+            "sourceToolAssistantUUID": "1939ec9b-c44f-4de8-a495-a593e8e864bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000537"
+        },
+        {
+          "source_line": 538,
+          "timestamp": "2026-05-19T21:28:22.022Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RZ1CCP7RxmkxbpuN99Pwb6",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-082-contrastive-mistral-folio-seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "symb_invariant_consensus",
+                "spec": {
+                  "command": "python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates",
+                  "server": "westd-16639",
+                  "data_path": "data/folio_full.json",
+                  "data_count": 204,
+                  "model_name": "Mistral-7B-Instruct-v0.3",
+                  "seed": 123
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f9b9f16-5623-48c7-b67c-1a35a74fec87",
+            "isSidechain": false,
+            "requestId": "req_011CbCdvHuwNV6JgaM9y6NzE",
+            "type": "assistant",
+            "uuid": "75111122-cec3-429a-85f3-565b0d4599d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FsnbRpZ1xdKo3cYzL3Afw2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1393,
+                "cache_read_input_tokens": 101731,
+                "output_tokens": 601,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1393,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 601,
+                    "cache_read_input_tokens": 101731,
+                    "cache_creation_input_tokens": 1393,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1393
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000538"
+        },
+        {
+          "source_line": 539,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "75111122-cec3-429a-85f3-565b0d4599d1",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752"
+              }
+            }
+          ],
+          "id": "event-000539"
+        },
+        {
+          "source_line": 540,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy debate and contrastive seed=123 replications on westd-16639",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752"
+              }
+            }
+          ],
+          "id": "event-000540"
+        },
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-19T21:28:22.322Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RZ1CCP7RxmkxbpuN99Pwb6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2924}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75111122-cec3-429a-85f3-565b0d4599d1",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "c82edec0-5266-4aef-82cd-b6bb531f1606",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2924}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2924}}"
+              }
+            },
+            "sourceToolAssistantUUID": "75111122-cec3-429a-85f3-565b0d4599d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-19T21:28:25.230Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry treats these as eval experiments because they have a parent. I need to add checkpoint_source and eval_data to the spec.",
+              "signature": "EsACClkIDRgCKkBYUuqagUlngBNrM64kTtb9oQzr1TPIvRZ13mZxF4URco/SXfjPoUzi4/8D+ZBzpzpcIPbam6gAAM83hTh5yj/2Mg9jbGF1ZGUtb3B1cy00LTY4ABIMk949O49537hWEvSMGgyCFUBIo0msqUNLdVIiMFr0FDgr/n/woZEJ0blQH6AR0qzxACkcJXKKIZ0+m370a2NSNwhpQtS7kATFiqh7eSqUAakU66futkgBec4gIsfYgMBawfPNuFI/7Ixa1FswyWe9YS95BXMxevdgys/wubd9/1ZFX1ZOQ8xPvULdGiYJSQhWeRxbUyB8hNgsNTMLyN3KbhWvto82gwsifHwH6rBeosKaYk34okXQSNU7Uq9+vQdfMBVvlToUfqirzNmC+xHtLhuOHcWkjK6vEfZ1Cfc4BNmOsJwYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c82edec0-5266-4aef-82cd-b6bb531f1606",
+            "isSidechain": false,
+            "requestId": "req_011CbCdvoccpqJ4bwtWRGezb",
+            "type": "assistant",
+            "uuid": "bd5dbc3f-fdea-4bad-ba5f-28b08714b770",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01APFKFvJhy5pY41gsQAkYQK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 838,
+                "cache_read_input_tokens": 103124,
+                "output_tokens": 757,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 838,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 757,
+                    "cache_read_input_tokens": 103124,
+                    "cache_creation_input_tokens": 838,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 838
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-19T21:28:25.760Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry treats these as eval experiments due to parent. Adding required fields."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd5dbc3f-fdea-4bad-ba5f-28b08714b770",
+            "isSidechain": false,
+            "requestId": "req_011CbCdvoccpqJ4bwtWRGezb",
+            "type": "assistant",
+            "uuid": "f661492e-4a4a-47c4-b78e-8a66bce71cb1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01APFKFvJhy5pY41gsQAkYQK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 838,
+                "cache_read_input_tokens": 103124,
+                "output_tokens": 757,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 838,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 757,
+                    "cache_read_input_tokens": 103124,
+                    "cache_creation_input_tokens": 838,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 838
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-19T21:28:29.068Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HJfAtDf954ihRFYFjQHhAz",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-081-debate-mistral-folio-seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "symb_invariant_consensus",
+                "spec": {
+                  "command": "python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates",
+                  "server": "westd-16639",
+                  "data_path": "data/folio_full.json",
+                  "data_count": 204,
+                  "model_name": "Mistral-7B-Instruct-v0.3",
+                  "seed": 123,
+                  "checkpoint_source": "Mistral-7B-Instruct-v0.3 (base, no fine-tuning)",
+                  "eval_data": "folio_full.json (204 problems)"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f661492e-4a4a-47c4-b78e-8a66bce71cb1",
+            "isSidechain": false,
+            "requestId": "req_011CbCdvoccpqJ4bwtWRGezb",
+            "type": "assistant",
+            "uuid": "744040e1-8f91-4c64-95d7-fcb649edb520",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01APFKFvJhy5pY41gsQAkYQK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 838,
+                "cache_read_input_tokens": 103124,
+                "output_tokens": 757,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 838,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 757,
+                    "cache_read_input_tokens": 103124,
+                    "cache_creation_input_tokens": 838,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 838
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-19T21:28:30.176Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HJfAtDf954ihRFYFjQHhAz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-081-debate-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:47.040Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:29.377Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211057\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:46.742Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/folio_full.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"Mistral-7B-Instruct-v0.3 (base, no fine-tuning)\\\", \\\"eval_data\\\": \\\"folio_full.json (204 problems)\\\"}, \\\"hypothesis\\\": \\\"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\\\", \\\"parent\\\": \\\"exp-076-debate-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0958}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "744040e1-8f91-4c64-95d7-fcb649edb520",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "2087fcd8-b533-437b-8f49-7dd656b8a97c",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-081-debate-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:47.040Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:29.377Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211057\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:46.742Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/folio_full.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"Mistral-7B-Instruct-v0.3 (base, no fine-tuning)\\\", \\\"eval_data\\\": \\\"folio_full.json (204 problems)\\\"}, \\\"hypothesis\\\": \\\"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\\\", \\\"parent\\\": \\\"exp-076-debate-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0958}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-081-debate-mistral-folio-seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:27:47.040Z\", \"updated_at\": \"2026-05-19T21:28:29.377Z\", \"spec\": {\"command\": \"python -u run_debate.py --mode vllm --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8020/v1 --model auto --data data/folio_full.json --output results/exp081_debate_mistral_folio_seed123/results.json --save-intermediates\", \"server\": \"westd-16639\", \"gpu\": [\"cuda:0\"], \"pid\": \"211057\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log\", \"submitted_at\": \"2026-05-19T21:27:46.742Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/folio_full.json\", \"data_count\": 204, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 123, \"checkpoint_source\": \"Mistral-7B-Instruct-v0.3 (base, no fine-tuning)\", \"eval_data\": \"folio_full.json (204 problems)\"}, \"hypothesis\": \"Debate × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the debate-augmented constraint extraction pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-076)\", \"parent\": \"exp-076-debate-mistral-folio\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0958}}"
+              }
+            },
+            "sourceToolAssistantUUID": "744040e1-8f91-4c64-95d7-fcb649edb520",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-19T21:28:31.188Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LUce3oXtwT3tg4XiiQb6fw",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-082-contrastive-mistral-folio-seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "symb_invariant_consensus",
+                "spec": {
+                  "command": "python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates",
+                  "server": "westd-16639",
+                  "data_path": "data/folio_full.json",
+                  "data_count": 204,
+                  "model_name": "Mistral-7B-Instruct-v0.3",
+                  "seed": 123,
+                  "checkpoint_source": "Mistral-7B-Instruct-v0.3 (base, no fine-tuning)",
+                  "eval_data": "folio_full.json (204 problems)"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2087fcd8-b533-437b-8f49-7dd656b8a97c",
+            "isSidechain": false,
+            "requestId": "req_011CbCdvoccpqJ4bwtWRGezb",
+            "type": "assistant",
+            "uuid": "c38a2ea5-a344-4a3e-b76b-249c9154115c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01APFKFvJhy5pY41gsQAkYQK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 838,
+                "cache_read_input_tokens": 103124,
+                "output_tokens": 757,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 838,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 757,
+                    "cache_read_input_tokens": 103124,
+                    "cache_creation_input_tokens": 838,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 838
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-19T21:28:32.212Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LUce3oXtwT3tg4XiiQb6fw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:49.643Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:31.491Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"211081\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:49.358Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/folio_full.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"Mistral-7B-Instruct-v0.3 (base, no fine-tuning)\\\", \\\"eval_data\\\": \\\"folio_full.json (204 problems)\\\"}, \\\"hypothesis\\\": \\\"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\\\", \\\"parent\\\": \\\"exp-075b-contrastive-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0119}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c38a2ea5-a344-4a3e-b76b-249c9154115c",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "1d4328c6-ca9f-4ba7-bb26-efaf21891c6f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-082-contrastive-mistral-folio-seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:27:49.643Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:28:31.491Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates\\\", \\\"server\\\": \\\"westd-16639\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"211081\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T21:27:49.358Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/folio_full.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"Mistral-7B-Instruct-v0.3 (base, no fine-tuning)\\\", \\\"eval_data\\\": \\\"folio_full.json (204 problems)\\\"}, \\\"hypothesis\\\": \\\"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\\\", \\\"parent\\\": \\\"exp-075b-contrastive-mistral-folio\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0119}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-082-contrastive-mistral-folio-seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:27:49.643Z\", \"updated_at\": \"2026-05-19T21:28:31.491Z\", \"spec\": {\"command\": \"python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates\", \"server\": \"westd-16639\", \"gpu\": [\"cuda:1\"], \"pid\": \"211081\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log\", \"submitted_at\": \"2026-05-19T21:27:49.358Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/folio_full.json\", \"data_count\": 204, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 123, \"checkpoint_source\": \"Mistral-7B-Instruct-v0.3 (base, no fine-tuning)\", \"eval_data\": \"folio_full.json (204 problems)\"}, \"hypothesis\": \"Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)\", \"parent\": \"exp-075b-contrastive-mistral-folio\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0119}}"
+              }
+            },
+            "sourceToolAssistantUUID": "c38a2ea5-a344-4a3e-b76b-249c9154115c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-19T21:28:32.216Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1d4328c6-ca9f-4ba7-bb26-efaf21891c6f",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "c7f2fcd2-ae81-4ca8-a5c6-0d4977857b12",
+                "timestamp": "2026-05-19T21:28:32.216Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "federated-toasting-canyon"
+              }
+            }
+          ],
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-19T21:28:37.991Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the full experiments are actually running."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7f2fcd2-ae81-4ca8-a5c6-0d4977857b12",
+            "isSidechain": false,
+            "requestId": "req_011CbCdwXuqmdTeMFFwaTfhj",
+            "type": "assistant",
+            "uuid": "289545c9-a38e-4b30-9610-6cd66448e6a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012pJaW1monfeYuMuKgLqfxx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2070,
+                "cache_read_input_tokens": 103962,
+                "output_tokens": 230,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2070,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 230,
+                    "cache_read_input_tokens": 103962,
+                    "cache_creation_input_tokens": 2070,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2070
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-19T21:28:38.289Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LJoyYwXsEhrAsA1k6HzUZA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -3 /root/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "289545c9-a38e-4b30-9610-6cd66448e6a5",
+            "isSidechain": false,
+            "requestId": "req_011CbCdwXuqmdTeMFFwaTfhj",
+            "type": "assistant",
+            "uuid": "a836a6a5-6ad5-4398-b2e3-45af41f9c6b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012pJaW1monfeYuMuKgLqfxx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2070,
+                "cache_read_input_tokens": 103962,
+                "output_tokens": 230,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2070,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 230,
+                    "cache_read_input_tokens": 103962,
+                    "cache_creation_input_tokens": 2070,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2070
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-19T21:28:38.316Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012y4isfhengpzr661FqBRN3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -3 /root/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a836a6a5-6ad5-4398-b2e3-45af41f9c6b0",
+            "isSidechain": false,
+            "requestId": "req_011CbCdwXuqmdTeMFFwaTfhj",
+            "type": "assistant",
+            "uuid": "bb32f970-9032-44ce-8fa2-ef8fe6108172",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012pJaW1monfeYuMuKgLqfxx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2070,
+                "cache_read_input_tokens": 103962,
+                "output_tokens": 230,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2070,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 230,
+                    "cache_read_input_tokens": 103962,
+                    "cache_creation_input_tokens": 2070,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2070
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-19T21:28:38.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LJoyYwXsEhrAsA1k6HzUZA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 05:28:28,642 INFO HTTP Request: POST http://localhost:8020/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:28:33,826 INFO HTTP Request: POST http://localhost:8020/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:28:35,637 INFO HTTP Request: POST http://localhost:8020/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a836a6a5-6ad5-4398-b2e3-45af41f9c6b0",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "0ae81d3b-696c-450e-b35f-409aad6b51b6",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 05:28:28,642 INFO HTTP Request: POST http://localhost:8020/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:28:33,826 INFO HTTP Request: POST http://localhost:8020/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:28:35,637 INFO HTTP Request: POST http://localhost:8020/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 05:28:28,642 INFO HTTP Request: POST http://localhost:8020/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:28:33,826 INFO HTTP Request: POST http://localhost:8020/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:28:35,637 INFO HTTP Request: POST http://localhost:8020/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "a836a6a5-6ad5-4398-b2e3-45af41f9c6b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-19T21:28:39.264Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012y4isfhengpzr661FqBRN3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 05:28:05,345 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:28:18,705 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:28:27,571 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb32f970-9032-44ce-8fa2-ef8fe6108172",
+            "isSidechain": false,
+            "promptId": "7b158697-1cf6-4744-91e1-017ce105d39d",
+            "type": "user",
+            "uuid": "728a226c-08c1-4019-9902-5aad2fcda27a",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 05:28:05,345 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:28:18,705 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-20 05:28:27,571 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 05:28:05,345 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:28:18,705 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:28:27,571 INFO HTTP Request: POST http://localhost:8021/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            },
+            "sourceToolAssistantUUID": "bb32f970-9032-44ce-8fa2-ef8fe6108172",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon"
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-19T21:28:47.854Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。总结：\n\n**westd-16639 部署状态**\n\n| 实验 | tmux session | GPU | vLLM port | PID | 状态 |\n|------|-------------|-----|-----------|-----|------|\n| exp-081 (Debate×Mistral×FOLIO-204 seed=123) | `exp-081-debate-mistral-folio-seed123` | cuda:0 | 8020 | 211057 | RUNNING |\n| exp-082 (Contrastive×Mistral×FOLIO-204 seed=123) | `exp-082-contrastive-mistral-folio-seed123` | cuda:1 | 8021 | 211081 | RUNNING |\n\n**完成步骤**：\n1. run_contrastive.py 从 westd-25068 同步到 westd-16639（MD5 验证通过）\n2. 两个 vLLM Mistral-7B 实例启动（port 8020/8021）\n3. 两个 dry-run 均通过（Debate 2.6min, Contrastive 5.3min）\n4. 全量实验已通过 submit_training_job 提交\n5. Registry 已注册，含 hypothesis 和 parent 信息"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "728a226c-08c1-4019-9902-5aad2fcda27a",
+            "isSidechain": false,
+            "requestId": "req_011CbCdx4izad47o9doDVz8f",
+            "type": "assistant",
+            "uuid": "d6d584ef-6f9f-40cb-9dc3-fab2ca582131",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "federated-toasting-canyon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TS81ubXuJxPuS4QtcXvSkK",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 737,
+                "cache_read_input_tokens": 106032,
+                "output_tokens": 338,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 737,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 338,
+                    "cache_read_input_tokens": 106032,
+                    "cache_creation_input_tokens": 737,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 737
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d6d584ef-6f9f-40cb-9dc3-fab2ca582131",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752"
+              }
+            }
+          ],
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy debate and contrastive seed=123 replications on westd-16639",
+                "sessionId": "fb54b6be-7107-4354-9ecd-e560df151752"
+              }
+            }
+          ],
+          "id": "event-000556"
+        }
+      ]
+    }
+  ]
+}

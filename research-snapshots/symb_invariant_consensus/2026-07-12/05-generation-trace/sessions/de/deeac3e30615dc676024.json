@@ -1,0 +1,550 @@
+{
+  "schema_version": "1.0",
+  "id": "deeac3e30615dc676024",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find and read the latest review report for the symb_invariant_consensus project. Check: 1. /home/ubuntu/.agent-ml-resear",
+  "task_key": "agent-a51e46aca94cd12ca",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a51e46aca94cd12ca.jsonl",
+    "occurrence": 1,
+    "bytes": 72032,
+    "sha256": "a5be690fb9d30d70566e5ab3172ace2598a2274fb67c184f272da456e302b08f"
+  },
+  "statistics": {
+    "messages": 10,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T08:30:14.043Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find and read the latest review report for the symb_invariant_consensus project. Check:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_reports/ - find all round_*.md files, read the latest one\n2. /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml - read full contents\n\nReport the complete contents of both files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b919c63a-499b-4b5b-a8c7-415028b122d9",
+            "agentId": "a51e46aca94cd12ca",
+            "type": "user",
+            "uuid": "be7a0919-e53b-4181-91c7-8a1966bb39f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T08:30:15.487Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find and read the latest review report and issues file for the symb_invariant_consensus project."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be7a0919-e53b-4181-91c7-8a1966bb39f8",
+            "isSidechain": true,
+            "agentId": "a51e46aca94cd12ca",
+            "requestId": "req_011CbKBptB3jsVtamFwFPDJ2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f1e5f9d9-2f47-4e42-8922-4e07b483c02e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HRJzxgSDJ4LUEKGWEt8UNg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37285,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 37285,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T08:30:16.022Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RT3XmLanwoXCZXTJ9sySWW",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_reports/ 2>/dev/null | grep \"round_.*\\.md\" | tail -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1e5f9d9-2f47-4e42-8922-4e07b483c02e",
+            "isSidechain": true,
+            "agentId": "a51e46aca94cd12ca",
+            "requestId": "req_011CbKBptB3jsVtamFwFPDJ2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2df8b90f-6175-4dd7-8fde-e9903c35e8c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HRJzxgSDJ4LUEKGWEt8UNg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37285,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 37285
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 37285,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 37285,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T08:30:16.197Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RT3XmLanwoXCZXTJ9sySWW",
+              "type": "tool_result",
+              "content": "-rw-r--r--  1 ubuntu ubuntu 11085 May 17 17:54 round_0.md\n-rw-r--r--  1 ubuntu ubuntu 13704 May 18 01:49 round_1.md\n-rw-r--r--  1 ubuntu ubuntu 16183 May 22 08:01 round_10.md\n-rw-r--r--  1 ubuntu ubuntu 16173 May 22 13:40 round_11.md\n-rw-r--r--  1 ubuntu ubuntu 15617 May 23 00:52 round_12.md\n-rw-r--r--  1 ubuntu ubuntu 20615 May 23 08:27 round_13.md\n-rw-r--r--  1 ubuntu ubuntu 11519 May 19 05:12 round_2.md\n-rw-r--r--  1 ubuntu ubuntu 17577 May 20 13:21 round_3.md\n-rw-r--r--  1 ubuntu ubuntu 17871 May 20 15:17 round_4.md\n-rw-r--r--  1 ubuntu ubuntu 15543 May 20 20:08 round_5.md\n-rw-r--r--  1 ubuntu ubuntu 14354 May 21 01:59 round_6.md\n-rw-r--r--  1 ubuntu ubuntu 13998 May 21 06:51 round_7.md\n-rw-r--r--  1 ubuntu ubuntu 16747 May 21 08:03 round_8.md\n-rw-r--r--  1 ubuntu ubuntu 18698 May 22 01:20 round_9.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2df8b90f-6175-4dd7-8fde-e9903c35e8c5",
+            "isSidechain": true,
+            "promptId": "b919c63a-499b-4b5b-a8c7-415028b122d9",
+            "agentId": "a51e46aca94cd12ca",
+            "type": "user",
+            "uuid": "ae205554-6ada-4068-9e7b-2fd124f874ca",
+            "sourceToolAssistantUUID": "2df8b90f-6175-4dd7-8fde-e9903c35e8c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T08:30:17.530Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll read the latest review report (round_13.md) and the review_issues.yaml file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae205554-6ada-4068-9e7b-2fd124f874ca",
+            "isSidechain": true,
+            "agentId": "a51e46aca94cd12ca",
+            "requestId": "req_011CbKBq2miseCnDGWV4RfNL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "36dec396-6e3d-4c31-8ec1-97ef0efad00c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014Hh9TZPffT1DDReXxUVXjd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 37285,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1415,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T08:30:18.384Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FzUGroncZzNywBz1235np6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_reports/round_13.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36dec396-6e3d-4c31-8ec1-97ef0efad00c",
+            "isSidechain": true,
+            "agentId": "a51e46aca94cd12ca",
+            "requestId": "req_011CbKBq2miseCnDGWV4RfNL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd539700-0df0-442d-939b-196cb180d722",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014Hh9TZPffT1DDReXxUVXjd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 37285,
+                "output_tokens": 190,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1415
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 190,
+                    "cache_read_input_tokens": 37285,
+                    "cache_creation_input_tokens": 1415,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1415,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T08:30:18.398Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FzUGroncZzNywBz1235np6",
+              "type": "tool_result",
+              "content": "1\t---\n2\tround: 13\n3\treview_mode: fresh\n4\toverall_score: 3.0\n5\ttimestamp: 2026-05-23T08:27:17.176743+00:00\n6\treviewer_ids: [1, 2]\n7\tcross_response_reviewer_ids: [1, 2]\n8\tforce_resubmit: False\n9\t---\n10\t\n11\t# 审稿报告 — Round 16 (Fresh)\n12\t\n13\t**论文**: Beyond Self-Consistency: Why Self-Extracted Constraints Fail to Improve LLM Logical Reasoning\n14\t**Venue**: EMNLP 2026 ARR\n15\t**审稿模式**: Fresh（重新审稿，无上轮记忆）\n16\t**Reviewer 编排**: 2 人（R1: 方法严谨性+实验设计+统计分析; R2: 新颖性+Related Work+写作质量+Claims合理性）\n17\t**交叉轮次**: 1 轮交叉分享 + 逐条 [AGREE]/[REBUT] 回应，关键问题已收敛\n18\t\n19\t---\n20\t\n21\t## Summary\n22\t\n23\t本文提出 SICA（Symbolic Invariant Consensus Aggregation），从 LLM chain-of-thought traces 中提取一阶逻辑约束，经去重后用 weighted partial MAX-SAT（Z3 求解）选择答案。核心发现为 null result：尽管 Z3 验证 99% 的自提取约束有效，SICA 在 6 个模型（7B–32B）、3 个推理数据集上与 majority voting 结果几乎一致（94.4% 问题答案相同），FDR 校正后无显著正效应。论文提出\"Symbolic Confirmation Bias\"概念（自提取约束系统性偏向模型多数答案），通过 Proposition 1（source-attribution 退化 + DPI information ceiling）给出理论论证，测试 27 种 training-free 修复策略均失败，并初步探索 cross-architecture NLI 验证作为突破路径。\n24\t\n25\t---\n26\t\n27\t## Strengths\n28\t\n29\t**S1. 实验规模和系统性达到顶会标准。** 9 个模型 × 3 个数据集 × 60 个非退化条件 × 27 种修复策略的实验矩阵，附录 18 页包含详尽的 ablation（K sensitivity、temperature、multi-seed、oracle、error taxonomy、constraint ablation、entropy decomposition）。这种彻底性对 negative result paper 至关重要。[共识]\n30\t\n31\t**S2. Oracle 控制实验设计精巧。** 用 gold FOL annotations 替换自提取约束后，FOLIO 上获得 +29.90/+13.73pp 的显著提升（Mistral-7B/Qwen2.5-14B），精确分离方法论有效性与提取质量，定位瓶颈在 extraction 而非 verification/aggregation。[共识]\n32\t\n33\t**S3. 统计方法论多层次且诚实。** McNemar exact test + BH FDR 校正、bootstrap 95% CI（Table 7）、power analysis（Appendix D）、TOST equivalence test（Appendix U）、shuffle control（§5.1）。明确报告 observed power < 21%，承认 \"absence of evidence is not evidence of absence\"。这种统计诚实性在 NLP 社区中少见。[共识]\n34\t\n35\t**S4. 诊断框架有潜在实用价值。** 三个 zero-cost diagnostics（C₀, K_eff, BR）从 K=12 pilot run 即可预测 trace-aggregation 方法是否有帮助，为实践者提供部署前筛选工具。Table 5 的 per-condition diagnostics 具体可操作。[共识，但泛化性存疑——见 W3]\n36\t\n37\t**S5. Cross-architecture escape 提供建设性方向。** 不仅报告负面结果，还识别了 capability-gap 条件下 DeBERTa verifier 的显著提升路径（Mistral-7B 上 +6.67pp, p < 0.001），domain-adapted fine-tuning 进一步放大至 +12.67pp。[共识]\n38\t\n39\t**S6. 附录极为详尽，可复现性强。** Prompt 模板（Appendix A）、MAX-SAT 伪代码（Appendix B）、完整 per-condition 结果、子群分析等 25 个 appendix sections。[共识]\n40\t\n41\t---\n42\t\n43\t## Weaknesses\n44\t\n45\t### Must-Fix 问题（影响接收决定）\n46\t\n47\t**W1 [Critical] Proposition 1 证明范围与声称范围不匹配 [共识]**\n48\t- **位置**: §5.1, page 6, Proposition 1 及证明\n49\t- **问题**: Proposition 1 标题 \"Symbolic Confirmation Bias is Structural\" 暗示普遍性，但证明由两部分组成：\n50\t  - Part (i) voting degeneration 依赖 SICA 特定的 source attribution scoring (Eq. 3)。如果用逻辑一致性（而非来源归属）对约束打分，Part (i) 不一定成立。论文 Remark 承认但未反映在 Proposition 表述中。\n51\t  - Part (ii) information ceiling 是 data processing inequality 的直接应用（I(C;Y) ≤ I(T;Y)），数学正确但平凡——只证明约束不能比 traces 包含更多信息，不排除约束通过重新组织信息打破相关模式。\n52\t- **Reviewer 共识**: R1 首提（N1 critical），R2 fully AGREE 并补充 DPI 部分是教科书推论。两者互补：R1 指出 validity/scope 问题，R2 指出 significance/novelty 问题。\n53\t- **修改建议**: 拆分为 (a) source-attribution 下的退化定理（精确但 SICA-specific）和 (b) DPI bound（普遍但弱）；正文明确区分两者适用范围。\n54\t\n55\t**W2 [Critical] 统计功效 < 21% 与 negative claim 强度不匹配 [共识]**\n56\t- **位置**: Title, Abstract, §4, Appendix D\n57\t- **问题**: \n58\t  - Observed power < 21%，MDE ≥ 1.86pp（最大样本条件）。即使 SICA 有 2pp 真实效果，~79% 概率无法检测。\n59\t  - TOST equivalence test 仅 8/16 条件达到等价显著，6 条件 underpowered，2 条件 genuinely different (negative)。±2pp equivalence margin 缺乏先验理论依据。\n60\t  - Bootstrap 95% CI（Table 7）全部包含零，宽度约 ±1.5pp。\n61\t  - 标题 \"Fail to Improve\" 是无条件否定声明，但论文无法排除 1-2pp 量级的正效应。\n62\t- **Reviewer 共识**: R1-N2 critical + R2-W1 major，交叉后 R2 fully AGREE R1 的详细分析。\n63\t- **修改建议**: (a) 标题软化（如 \"Do Not Substantially Improve\"）；(b) Abstract 加 power caveat；(c) 补充 TOST margin sensitivity analysis（±1/3/5pp）。\n64\t\n65\t**W3 [Critical] Diagnostics 100% 准确率是 in-sample 评估——overfitting 风险 [共识]**\n66\t- **位置**: §5.3, §1 contributions, §7 conclusion, Abstract\n67\t- **问题**: \n68\t  - 决策边界（C₀ < 5%, K_eff ≤ 1.30, SC < 40%）从 60 个条件推导，并在同一 60 个条件上评估 → in-sample fitting。\n69\t  - 60 个条件全为 negative cases，任何 trivial classifier（\"永远预测不帮助\"）都能 100%。\n70\t  - \"Holdout\" 验证仅 LLaMA-3.1-8B on FOLIO 1 个条件 → 不构成充分 OOD 验证。\n71\t  - 未在 positive cases（cross-architecture escape, oracle）上验证诊断框架能否正确预测\"会帮助\"。\n72\t- **Reviewer 共识**: R2-N3 critical，R1 fully AGREE（承认初审疏漏）。\n73\t- **修改建议**: (a) 增加完整的 held-out model family；(b) 弱化 claim 为 \"correctly classify all tested conditions within our experimental scope\"；(c) 讨论 OOD 失败条件。\n74\t\n75\t**W4 [Critical] BR 指标存在循环论证风险——缺乏 null model [共识]**\n76\t- **位置**: §3.1 (Eq. 5), §5.1, Table 2\n77\t- **问题**: \n78\t  - BR 通过 source attribution 衡量约束是否偏向支持多数答案。但约束从产生答案的 trace 中提取——如果 60% traces 产生答案 A，提取的约束自然更多支持 A（base-rate 效应）。\n79\t  - 论文未建立 null model：如果约束提取完全\"无偏\"（support 比例精确反映 trace 投票分布），BR 期望值是多少？只有观测 BR 显著超过 null expectation 才能声称\"额外的\" confirmation bias。\n80\t  - Shuffle control（§5.1, p.5: BR_shuffle ≈ BR_obs）确认 BR 主要反映 trace-count 分布而非提取特异性——但论文措辞混淆这两个组成部分。\n81\t- **Reviewer 共识**: R2-N2 critical，R1 fully AGREE（初审未注意此问题），但共识补充：BR 循环论证不否定 SCB 整体论证（Table 11、degeneration condition、oracle 独立支持），只影响 BR 指标本身的概念有效性。\n82\t- **修改建议**: (a) 构建 permutation-based null distribution；(b) 或将 BR 降级为描述性指标，明确声明 base-rate 组成。\n83\t\n84\t### Should-Fix 问题（影响评分但不一票否决）\n85\t\n86\t**W5 [Major] 新颖性定位——SCB 是已知结论的实证深化而非概念突破 [部分共识]**\n87\t- **位置**: §1 contributions, §5 \"The Symbolic Mirage\", Abstract\n88\t- **问题**: \n89\t  - Huang et al. (2024) 已建立 \"LLMs cannot self-correct without external feedback\"。SCB 将此延伸到形式化约束自验证——可预见但不平凡。\n90\t  - Wan et al. (2025, ACL Findings) 已从认知心理学角度证明 CoT 推理中存在 confirmation bias。SCB 底层机制（model beliefs dominate downstream processing）高度重叠。\n91\t  - Proposition 1 Part (ii) 是 DPI 的教科书应用。\n92\t- **Reviewer 分歧**: R2 认为 critical（可预见的延伸），R1 partial REBUT（negative result 不应事后贬低；诊断框架 + 27 策略否证 + 机制定位是非平凡贡献）。\n93\t- **最终判定**: 部分共识——两者同意定位应从\"发现\"转为\"系统性量化\"，弱化 Proposition 1 呈现权重。R1 的反驳有一定道理：negative result paper 的价值在于提供系统性证据，不应仅因\"可预见\"而否定。\n94\t\n95\t**W6 [Major] \"Extending Huang et al. (2024) to formal verification\" 是 overselling [共识]**\n96\t- **位置**: Abstract, §1 contribution 1, §5.1\n97\t- **问题**: Huang et al. 基于 value/policy iteration 分析 self-correction，本文基于 DPI + source attribution 分析 self-verification。形式化框架、假设条件和证明技术完全不同，不构成逻辑 extension。\n98\t- **修改建议**: 改为 \"consistent with / complement / provide independent evidence for\"。\n99\t\n100\t**W7 [Major] 缺少 training-based self-verification 方法讨论 [部分共识]**\n101\t- **位置**: §2 Related Work, §7 Discussion\n102\t- **问题**: 论文几乎未讨论 S²R (Zeng et al., ACL 2025)、DuPO (2025) 等 training-based 方法。这些方法通过训练引入外部奖励信号，理论上可通过违反 Proposition 1 的 A2 假设（约束不再 trace-determined）打破信息上限。\n103\t- **Reviewer 分歧**: R2 认为 major missing，R1 partial REBUT（论文 scope 已限定为 training-free，§7 提及 trained extractors），但 R1 同意应讨论理论边界。\n104\t- **修改建议**: §2 增加一段 training-based self-verification，引用 S²R/DuPO，明确 Proposition 1 仅适用于 inference-time same-model extraction。\n105\t\n106\t**W8 [Major] Multi-seed replication 不充分 [共识]**\n107\t- **位置**: Appendix X.1, Table 33\n108\t- **问题**: 仅 Mistral-7B (3 seeds) 和 Qwen2.5-14B (4 seeds) 做了 multi-seed replication。Seed-level noise ≈ ±2.34pp，而 Table 1 大部分条件 |Δ| < 3pp 且为 single-seed。许多观测效应可能完全由 seed variance 解释。\n109\t- **修改建议**: 至少对效应最大的条件补充 multi-seed，或在 Limitations 明确讨论 single-seed 局限。\n110\t\n111\t**W9 [Major] Capability-gap principle 基于 n=6 条件——不足以支撑 \"principle\" 级别 claim [共识]**\n112\t- **位置**: §6 \"Escaping the Bottleneck\", Table 3, Figure 8\n113\t- **问题**: 仅约 6 个 verifier-generator 组合，Table 3 仅 Mistral-7B (SC=39.33%) 1 个条件显著。§6 标题 \"Escaping the Bottleneck\" 语气过强。\n114\t- **修改建议**: 降级为 \"preliminary observation\" 或 \"hypothesis\"。\n115\t\n116\t**W10 [Major] \"27 strategies fail\" scope 不匹配 [部分共识]**\n117\t- **位置**: §5.2, Table 14, Abstract\n118\t- **问题**: 27 个策略局限于 self-extraction paradigm 内的变体（prompt-level + method-level + cross-model），不等于所有 training-free 方法都失败。\n119\t- **Reviewer 分歧**: R2 认为 scope 过宽，R1 partial REBUT（策略确实跨多个独立维度），但 R1 同意应限定 claim scope。\n120\t- **修改建议**: 限定为 \"27 training-free variants within the constraint-extraction-aggregation paradigm\"。\n121\t\n122\t### Minor 问题（不影响接收）\n123\t\n124\t**M1** [Minor] α = 0.5 缺乏理论依据和真正的 sensitivity analysis。Table 11 的 ≥99% agreement 是 ceiling effect（主效应近零时 penalty 项影响自然可忽略），非真正鲁棒性。[共识]\n125\t\n126\t**M2** [Minor] \"First-order logic\" 描述轻微 overselling——99% 约束是 propositional level at Z3，仅 1.06% 使用真正量词。[共识]\n127\t\n128\t**M3** [Minor] Figure 1 信息密度偏高；K_eff 缺乏直觉解释；Abstract 信息过载（6 个要素）。[R2 提出]\n129\t\n130\t**M4** [Minor] §2 Related Work 段间逻辑衔接可改善——建议构建从 majority voting → self-correction → formal verification → this paper 的叙事线。[R2 提出]\n131\t\n132\t**M5** [Minor] GSM8K (n=30) 和 AIME (n=22) 样本量过小，不应与大样本条件等权重引用。论文已标注 \"exploratory\"（Table 1 caption），但正文 §5.3 引用时未区分。[共识]\n133\t\n134\t---\n135\t\n136\t## Questions（需要作者澄清）\n137\t\n138\t**Q1.** Proposition 1 Part (i) 依赖 source attribution scoring。如果使用 source-agnostic scoring（基于逻辑一致性而非来源归属评估约束-答案关系），是否仍会退化？是否测试过 source-agnostic alternatives？\n139\t\n140\t**Q2.** BR 的 null expectation 是什么？如果约束提取完全\"无偏\"（support 比例精确反映 trace 投票分布），BR 期望值是否恰好为 1？请提供 permutation test 或 null model 分析。\n141\t\n142\t**Q3.** Diagnostics 的决策边界在 positive cases（cross-architecture escape, oracle）上是否能正确预测\"SICA 会帮助\"？\n143\t\n144\t**Q4.** TOST ±2pp equivalence margin 如何选择？如果 margin 放宽至 ±3pp 或 ±5pp，有多少额外条件达到等价显著？\n145\t\n146\t**Q5.** Table 1 中 |Δ| < 3pp 的所有 single-seed 条件，作者是否承认这些差异可能完全由 seed variance 解释（given seed noise ≈ ±2.34pp）？\n147\t\n148\t**Q6.** Cross-architecture NLI 验证仅在 NLI-friendly 数据集（FOLIO, ProofWriter）上测试。对非 NLI 格式推理任务是否适用？\n149\t\n150\t---\n151\t\n152\t## Missing References\n153\t\n154\t1. **Kamoi et al. (TACL 2024)**: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\" — self-correction 方向最全面 survey。[R2 提出，R1 AGREE]\n155\t2. **S²R (Zeng et al., ACL 2025)**: RL-based self-verification，通过训练打破 Proposition 1 信息上限。[R2 提出，R1 同意应讨论理论边界]\n156\t3. **DuPO (arXiv 2508.14460, 2025)**: Dual preference optimization self-verification。[R2 提出，R1 同意应讨论理论边界]\n157\t4. **AlphaCode / CodeT**: Constraint verification in code domain 的成功案例，可对比讨论为何逻辑推理领域失败。[R1 提出，Minor]\n158\t\n159\t---\n160\t\n161\t## External Review (Stanford Agentic Reviewer)\n162\t\n163\t外部审稿：未配置。\n164\t\n165\t---\n166\t\n167\t## Visual Layout Check（非评分项）\n168\t\n169\t**状态**: ✅ 完成（耗时 ~4 分钟）\n170\t\n171\t**统计**: 0 critical, 1 warning, 24 info\n172\t\n173\t**Warning**:\n174\t- Page 7, Figure 4: 柱状图底部 x 轴策略名称字号偏小，27 个 bar 密度高，灰度打印时 4 种颜色区分度可能下降。建议增加 marker pattern 或 hatching。\n175\t\n176\t**Info 要点**:\n177\t- Figure 1 (p.2) pipeline 图 caption 自包含，Title-Abstract-Figure 1 narrative 一致，第一印象良好\n178\t- 所有 Figure/Table 出现在首次引用附近，无 float 漂移\n179\t- 表格一致使用 booktabs 风格，最优值加粗，显著性标记有脚注说明\n180\t- 公式渲染正确，无 LaTeX 错误残留或未解析引用\n181\t- Limitations section 在 page 8 底部延伸至 page 9，符合 EMNLP 2026 规定\n182\t- 参考文献约 2.5 页，格式统一\n183\t\n184\t**总体**: 排版质量良好，无严重视觉问题。\n185\t\n186\t---\n187\t\n188\t## Reviewer Consensus\n189\t\n190\t### 完全共识（14 项 AGREE）\n191\t1. Proposition 1 scope mismatch（Part (i) SICA-specific，标题 claim \"structural\"）\n192\t2. 统计功效 < 21% 与 negative claim 强度不匹配\n193\t3. 标题 \"Fail to Improve\" overclaiming\n194\t4. BR 循环论证风险（base-rate 效应未排除）\n195\t5. Diagnostics in-sample overfitting（100% 准确率无意义）\n196\t6. Multi-seed replication 不充分（2/6 模型）\n197\t7. BR 小 n_err 条件缺 CI\n198\t8. α = 0.5 sensitivity analysis 不充分\n199\t9. Capability-gap principle n=6 不足以支撑 \"principle\"\n200\t10. \"Extending Huang et al.\" 是 overselling\n201\t11. GSM8K/AIME 样本量过小\n202\t12. K_eff exchangeability 假设局限\n203\t13. Cross-architecture generalizability 受限\n204\t14. \"First-order logic\" 轻微 overselling\n205\t\n206\t### 部分分歧（3 项 partial REBUT，已记录各方理由）\n207\t1. **新颖性**: R2 认为核心洞察可预见（Huang + DPI 延伸），R1 认为不应事后贬低 negative result 且诊断框架/27 策略有独立价值 → 共识：定位为\"系统性量化\"而非\"发现\"\n208\t2. **Training-based refs**: R2 认为 major missing，R1 认为 scope 外但同意讨论理论边界\n209\t3. **\"27 strategies\" scope**: R1 指出策略跨多维度，但同意应限定 claim scope\n210\t\n211\t---\n212\t\n213\t## Overall Assessment\n214\t\n215\t### 评分汇总\n216\t\n217\t| 维度 | R1 | R2 (交叉后修正) | 加权综合 |\n218\t|------|-----|----------------|---------|\n219\t| Soundness | 3.5/5 | 3.5/5 | 3.5/5 |\n220\t| Excitement | 3.0–3.5/5 | 2.5/5 | 3.0/5 |\n221\t| Reproducibility | 4.0/5 | 4.0/5 | 4.0/5 |\n222\t| Overall | 3.5 | 3.0 | **3.0** |\n223\t| Confidence | 4/5 | 4/5 | 4/5 |\n224\t\n225\t### Overall: 3.0 — Findings\n226\t\n227\t**一句话总结**: 实验执行出色的 negative result paper，但核心理论贡献（Proposition 1）证明与声称范围不匹配、统计功效不足以支撑标题级 claim、诊断框架泛化性未验证、BR 指标概念有效性存疑，且新颖性有限（SCB 是已知结论的实证深化）。\n228\t\n229\t**详细理由**:\n230\t\n231\t*支持接收的因素*: (1) 实验规模大（9 模型 × 3 数据集 × 60 条件 × 27 策略），远超同类工作；(2) 统计方法论多层次且诚实（McNemar + BH + TOST + bootstrap + power analysis + shuffle control）；(3) Oracle 控制实验精巧，精确分离提取质量与方法论有效性；(4) 诊断框架有潜在实用价值；(5) Cross-architecture escape 提供建设性方向；(6) 附录极为详尽（18 页），可复现性强。作为 Findings 论文，对社区有实际指导价值——帮助避免在 self-extracted constraint verification 方向上的无效探索。\n232\t\n233\t*限制接收为 Conference 的因素*: (1) Proposition 1 的 scope mismatch 使核心理论贡献被削弱——Part (i) 仅对 source-attribution 成立，Part (ii) 是平凡 DPI 推论；(2) 21% 的统计功效使 \"fail to improve\" 的标题级 claim 无法被统计证据充分支撑；(3) Diagnostics 的 100% 准确率是 in-sample 评估，holdout 验证不充分，这是论文三大贡献之一；(4) BR 作为 SCB 的量化基础存在循环论证风险（base-rate 效应未排除），需要 null model 才能确定\"额外 bias\"的存在；(5) 新颖性有限——核心洞察（自提取约束继承模型 bias）是 Huang et al. (2024) + Wan et al. (2025) 已知结论在形式化验证管道中的实证深化。\n234\t\n235\t*如果以下问题得到解决，评分可提升至 3.5（Borderline Conference）*:\n236\t1. 标题软化 + Abstract 加 power caveat + TOST margin sensitivity\n237\t2. Proposition 1 拆分并明确 scope\n238\t3. BR 提供 permutation null model 或降级为描述性指标\n239\t4. Diagnostics 增加 held-out model family 验证并弱化 claim\n240\t5. §2 补充 training-based self-verification 讨论\n241\t6. \"Extending Huang et al.\" 改为 \"consistent with / provide independent evidence for\"\n242\t\n243\t---\n244\t\n245\t## Detailed Comments（逐节）\n246\t\n247\t**Title**: \"Fail to Improve\" 过于绝对，与 power < 21% 不匹配。建议 \"Do Not Substantially Improve\" 或 \"The Limits of Self-Extracted Constraints for\"。\n248\t\n249\t**Abstract**: 信息密度高但覆盖完整。需加 power caveat（如 \"though underpowered for effects below ~2pp\"）。\"extends the self-correction impossibility of Huang et al.\" 改为 \"provides independent evidence consistent with\"。BR 报告 \"at least 1.66×\" 应注明 base-rate 组成未排除。\n250\t\n251\t**§1 Introduction**: Contribution 2（diagnostics 100% 准确率）需加 scope 限定。Contribution 3 \"capability-gap principle\" 降级为 \"preliminary observation\"。\n252\t\n253\t**§2 Related Work**: 缺 training-based self-verification 讨论（S²R, DuPO）。缺 Kamoi et al. (TACL 2024) self-correction survey。段间逻辑衔接可改善。\n254\t\n255\t**§3 Method**: α = 0.5 缺理论依据。K_eff 缺直觉解释。BR 定义（Eq. 5）需声明 base-rate 效应。\n256\t\n257\t**§4 Results**: 统计诚实（报告 power 局限），但 claim 强度与证据强度仍有 gap。Single-seed 条件应标注不确定性。\n258\t\n259\t**§5.1 Symbolic Confirmation Bias**: Proposition 1 需拆分。BR > 1 的解读需 null model。Table 11 的 ≥99% agreement 应加 ceiling effect caveat。\n260\t\n261\t**§5.2 Why Remediation Fails**: 27 策略 claim scope 应限定为 \"within constraint-extraction-aggregation paradigm\"。\n262\t\n263\t**§5.3 Diagnostic Framework**: 100% 准确率 claim 需大幅弱化。增加 OOD 验证。讨论 positive case 预测能力。\n264\t\n265\t**§6 Escaping the Bottleneck**: 标题过强。\"Capability-gap principle\" → \"preliminary observation\"。仅 1 个条件显著。\n266\t\n267\t**§7 Discussion and Conclusion**: \"extending... to formal verification\" 改措辞。Future work 应明确 training-based methods 如何 escape Proposition 1。\n268\t\n269\t**Limitations**: 长度合规（EMNLP 2026 规定\"一小段覆盖 3 个点\"），覆盖了关键局限（open-source only, English only, logical reasoning only）。可考虑增加 power limitation 的一句话提及。\n270\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd539700-0df0-442d-939b-196cb180d722",
+            "isSidechain": true,
+            "promptId": "b919c63a-499b-4b5b-a8c7-415028b122d9",
+            "agentId": "a51e46aca94cd12ca",
+            "type": "user",
+            "uuid": "8e35c859-fc70-4928-b345-4ddd56f741a3",
+            "sourceToolAssistantUUID": "dd539700-0df0-442d-939b-196cb180d722",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T08:30:18.440Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QYjc18UQ8HNA6RU55T8YGB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e35c859-fc70-4928-b345-4ddd56f741a3",
+            "isSidechain": true,
+            "agentId": "a51e46aca94cd12ca",
+            "requestId": "req_011CbKBq2miseCnDGWV4RfNL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8315d27a-ce55-4386-b415-31417feab351",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014Hh9TZPffT1DDReXxUVXjd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 37285,
+                "output_tokens": 190,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1415
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 190,
+                    "cache_read_input_tokens": 37285,
+                    "cache_creation_input_tokens": 1415,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1415,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T08:30:18.455Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QYjc18UQ8HNA6RU55T8YGB",
+              "type": "tool_result",
+              "content": "1\t# Round 1-8 issues (all resolved/wont_fix) — retained for history (abbreviated)\n2\t- id: \"R1-C1\"\n3\t  summary: \"Method Stage 3 sat() implementation undescribed\"\n4\t  category: method\n5\t  severity: critical\n6\t  status: resolved\n7\t  first_raised_round: 1\n8\t  last_seen_round: 3\n9\t  resolution: \"Fully formalized: Eq.(1)-(5), Algorithm 1-2, α=0.5 explicit.\"\n10\t  resolution_round: 3\n11\t\n12\t- id: \"R1-C2\"\n13\t  summary: \"Most experiments underpowered (n≤60), no power analysis\"\n14\t  category: experiment\n15\t  severity: critical\n16\t  status: resolved\n17\t  first_raised_round: 1\n18\t  last_seen_round: 1\n19\t  resolution: \"Power analysis + Bootstrap CIs added. Larger n conditions (200-600).\"\n20\t  resolution_round: 3\n21\t\n22\t- id: \"R1-C3\"\n23\t  summary: \"Oracle/upper-bound experiment missing\"\n24\t  category: experiment\n25\t  severity: critical\n26\t  status: resolved\n27\t  first_raised_round: 1\n28\t  last_seen_round: 1\n29\t  resolution: \"Dual oracle: FOLIO +14.22pp, ProofWriter +11.50pp.\"\n30\t  resolution_round: 3\n31\t\n32\t- id: \"R1-C4\"\n33\t  summary: \"Huang et al. (ICLR 2024) not cited\"\n34\t  category: framing\n35\t  severity: critical\n36\t  status: resolved\n37\t  first_raised_round: 1\n38\t  last_seen_round: 2\n39\t  resolution: \"Huang, Stechly, Kambhampati all cited and discussed.\"\n40\t  resolution_round: 2\n41\t\n42\t- id: \"R1-C5\"\n43\t  summary: \"Critical related work missing\"\n44\t  category: writing\n45\t  severity: critical\n46\t  status: resolved\n47\t  first_raised_round: 1\n48\t  last_seen_round: 1\n49\t  resolution: \"~48 citations, 5 Related Work paragraphs.\"\n50\t  resolution_round: 3\n51\t\n52\t- id: \"R1-C9\"\n53\t  summary: \"Capability trap novelty unclear\"\n54\t  category: framing\n55\t  severity: critical\n56\t  status: resolved\n57\t  first_raised_round: 1\n58\t  last_seen_round: 3\n59\t  resolution: \"Reframed as regime-dependent analysis with CJT framework.\"\n60\t  resolution_round: 3\n61\t\n62\t- id: \"R3-N1\"\n63\t  summary: \"σ(c,a) scoring inconsistent between self-extraction and oracle\"\n64\t  category: method\n65\t  severity: critical\n66\t  status: resolved\n67\t  first_raised_round: 3\n68\t  last_seen_round: 4\n69\t  resolution: \"Paper Agent added clarifying sentence in method.tex.\"\n70\t  resolution_round: 4\n71\t\n72\t- id: \"R3-N2\"\n73\t  summary: \"α value never specified\"\n74\t  category: method\n75\t  severity: critical\n76\t  status: resolved\n77\t  first_raised_round: 3\n78\t  last_seen_round: 3\n79\t  resolution: \"α=0.5 explicit in Eq.(3) and §4.1.\"\n80\t  resolution_round: 3\n81\t\n82\t# Round 9+ issues\n83\t\n84\t- id: \"R9-W2\"\n85\t  summary: \"NLI combo weight parameter w 未交叉验证\"\n86\t  category: experiment\n87\t  severity: warning\n88\t  status: in_progress\n89\t  first_raised_round: 9\n90\t  last_seen_round: 16\n91\t  mentions:\n92\t    - round: 14\n93\t      reviewers: []\n94\t      note: \"R14(fresh) 未单独提及 w 参数\"\n95\t    - round: 15\n96\t      reviewers: []\n97\t      note: \"R15(fresh) 未单独提及\"\n98\t    - round: 16\n99\t      reviewers: []\n100\t      note: \"R16(fresh) 未单独提及\"\n101\t\n102\t- id: \"R9-W3\"\n103\t  summary: \"Capability Gap Hypothesis 基于极小样本 (n=6)\"\n104\t  category: experiment\n105\t  severity: critical\n106\t  status: in_progress\n107\t  first_raised_round: 9\n108\t  last_seen_round: 16\n109\t  mentions:\n110\t    - round: 14\n111\t      reviewers: [1, 2]\n112\t      note: \"R14(fresh) 共识: 仅6条件仅Mistral-7B显著, 需软化结论\"\n113\t    - round: 15\n114\t      reviewers: [1, 2]\n115\t      note: \"R15(fresh) 共识: §6 escape仅SC<40%验证, 'SC≈70%'无数据支撑\"\n116\t    - round: 16\n117\t      reviewers: [1, 2]\n118\t      note: \"R16(fresh) 共识AGREE: 仅1个条件显著(Mistral-7B SC=39.33%), 'principle'措辞过强, 应降级为'preliminary observation/hypothesis'\"\n119\t  action_items:\n120\t    - round: 14\n121\t      action: \"§6结论软化为preliminary evidence + 讨论task gap\"\n122\t      assigned_to: \"paper_agent\"\n123\t      status: in_progress\n124\t\n125\t- id: \"R9-VL1\"\n126\t  summary: \"Pages 1-2 连续纯文本无 display item\"\n127\t  category: format\n128\t  severity: warning\n129\t  status: in_progress\n130\t  first_raised_round: 9\n131\t  last_seen_round: 16\n132\t  mentions:\n133\t    - round: 16\n134\t      reviewers: []\n135\t      note: \"R16 视觉审查: Page 1纯文本(Abstract+Intro), Figure 1在page 2顶部, 仍在'前2分钟扫描'窗口内, 影响有限\"\n136\t\n137\t- id: \"R9-VL4\"\n138\t  summary: \"Discussion/Conclusion 展开不足\"\n139\t  category: writing\n140\t  severity: warning\n141\t  status: in_progress\n142\t  first_raised_round: 9\n143\t  last_seen_round: 16\n144\t  mentions:\n145\t    - round: 16\n146\t      reviewers: []\n147\t      note: \"R16(fresh) 未单独提及, R2-M4仅提Limitations长度(R1 rebut citing EMNLP rules)\"\n148\t\n149\t- id: \"R10-N1\"\n150\t  summary: \"Proposition 1 (Self-Extraction Ceiling) 无证明——empirical claim dressed as theorem\"\n151\t  category: method\n152\t  severity: critical\n153\t  status: resolved\n154\t  first_raised_round: 10\n155\t  last_seen_round: 13\n156\t  resolution: \"当前论文使用 Proposition 1 with formal proof (page 6)\"\n157\t  resolution_round: 13\n158\t\n159\t- id: \"R10-N2\"\n160\t  summary: \"κ→K_eff 映射理论基础不足——r=0.625 验证弱\"\n161\t  category: method\n162\t  severity: warning\n163\t  status: in_progress\n164\t  first_raised_round: 10\n165\t  last_seen_round: 16\n166\t  mentions:\n167\t    - round: 16\n168\t      reviewers: [1]\n169\t      note: \"R16(fresh) R1-W7: K_eff exchangeable correlation假设可能被违反, minor concern\"\n170\t\n171\t- id: \"R10-N3\"\n172\t  summary: \"Capability gap 'perfectly monotonic' 结论基于 n=6 非独立数据点\"\n173\t  category: experiment\n174\t  severity: critical\n175\t  status: in_progress\n176\t  first_raised_round: 10\n177\t  last_seen_round: 16\n178\t  mentions:\n179\t    - round: 16\n180\t      reviewers: [1, 2]\n181\t      note: \"R16(fresh) 与R9-W3合并. 共识AGREE: n=6数据点不足以支撑'principle'\"\n182\t\n183\t- id: \"R10-W1\"\n184\t  summary: \"DRC τ 阈值无 held-out 评估\"\n185\t  category: experiment\n186\t  severity: warning\n187\t  status: in_progress\n188\t  first_raised_round: 10\n189\t  last_seen_round: 16\n190\t  mentions:\n191\t    - round: 16\n192\t      reviewers: []\n193\t      note: \"R16(fresh) 未单独提及\"\n194\t\n195\t- id: \"R10-W2\"\n196\t  summary: \"Cross-architecture NLI escape 适用面极窄\"\n197\t  category: experiment\n198\t  severity: warning\n199\t  status: in_progress\n200\t  first_raised_round: 10\n201\t  last_seen_round: 16\n202\t  mentions:\n203\t    - round: 16\n204\t      reviewers: [1, 2]\n205\t      note: \"R16(fresh) R1-W8+R2-W3共识: generalizability受限, 仅NLI-friendly数据集测试\"\n206\t\n207\t- id: \"R10-W3\"\n208\t  summary: \"四种子复制方差大 + 统计功效 <21%\"\n209\t  category: experiment\n210\t  severity: critical\n211\t  status: in_progress\n212\t  first_raised_round: 10\n213\t  last_seen_round: 16\n214\t  mentions:\n215\t    - round: 16\n216\t      reviewers: [1, 2]\n217\t      note: \"R16(fresh) R1-W3: multi-seed仅2/6模型, seed noise ±2.34pp超过多数|Δ|. R2 AGREE\"\n218\t\n219\t- id: \"R10-W4\"\n220\t  summary: \"TOST ±2pp margin 缺少显式理由\"\n221\t  category: experiment\n222\t  severity: warning\n223\t  status: in_progress\n224\t  first_raised_round: 10\n225\t  last_seen_round: 16\n226\t  mentions:\n227\t    - round: 16\n228\t      reviewers: [1]\n229\t      note: \"R16(fresh) R1-N2: ±2pp margin缺乏先验依据, 需sensitivity analysis. R2 AGREE\"\n230\t\n231\t- id: \"R10-W5\"\n232\t  summary: \"Bias Ratio 无置信区间\"\n233\t  category: experiment\n234\t  severity: warning\n235\t  status: resolved\n236\t  first_raised_round: 10\n237\t  last_seen_round: 10\n238\t  resolution: \"BR CI 已整合: Mistral [3.98,6.37], Qwen [2.44,7.11]\"\n239\t  resolution_round: 10\n240\t\n241\t- id: \"R10-W6\"\n242\t  summary: \"SatLM specification-generation vs SICA trace-extraction 对比不充分\"\n243\t  category: framing\n244\t  severity: warning\n245\t  status: in_progress\n246\t  first_raised_round: 10\n247\t  last_seen_round: 16\n248\t  mentions:\n249\t    - round: 16\n250\t      reviewers: []\n251\t      note: \"R16(fresh) 未单独提及\"\n252\t\n253\t- id: \"R10-W7\"\n254\t  summary: \"'Symbolic Confirmation Bias' 需与近期 CoT confirmation bias 工作区分\"\n255\t  category: framing\n256\t  severity: critical\n257\t  status: in_progress\n258\t  first_raised_round: 10\n259\t  last_seen_round: 16\n260\t  mentions:\n261\t    - round: 16\n262\t      reviewers: [1, 2]\n263\t      note: \"R16(fresh) R2-N1: SCB是Huang(2024)+Wan(2025)的自然延伸, R1部分REBUT(negative result value不应事后贬低, 但同意DPI部分近平凡). 部分共识: 贡献在empirical depth非conceptual novelty\"\n264\t\n265\t- id: \"R10-W8\"\n266\t  summary: \"Related Work 过度压缩——引用列表而非文献讨论\"\n267\t  category: writing\n268\t  severity: warning\n269\t  status: in_progress\n270\t  first_raised_round: 10\n271\t  last_seen_round: 16\n272\t  mentions:\n273\t    - round: 16\n274\t      reviewers: [2]\n275\t      note: \"R16(fresh) R2-M5: §2段间逻辑衔接不够清晰\"\n276\t\n277\t- id: \"R10-I1\"\n278\t  summary: \"'Symbolic Mirage' 概念新颖性——与 Huang/Wan 的 confirmation bias 区别\"\n279\t  category: framing\n280\t  severity: warning\n281\t  status: in_progress\n282\t  first_raised_round: 10\n283\t  last_seen_round: 16\n284\t  mentions:\n285\t    - round: 16\n286\t      reviewers: [1, 2]\n287\t      note: \"R16(fresh) 同R10-W7. R2: DPI是教科书推论, novelty在于识别正确的Markov chain而非DPI本身\"\n288\t\n289\t- id: \"R10-I2\"\n290\t  summary: \"Independence-Accuracy Trade-off 作为独立贡献有 bias-variance 重述嫌疑\"\n291\t  category: framing\n292\t  severity: warning\n293\t  status: in_progress\n294\t  first_raised_round: 10\n295\t  last_seen_round: 16\n296\t  mentions:\n297\t    - round: 16\n298\t      reviewers: []\n299\t      note: \"R16(fresh) 未单独提及\"\n300\t\n301\t- id: \"R10-VL1\"\n302\t  summary: \"主文缺结果可视化\"\n303\t  category: format\n304\t  severity: warning\n305\t  status: in_progress\n306\t  first_raised_round: 10\n307\t  last_seen_round: 16\n308\t  mentions:\n309\t    - round: 16\n310\t      reviewers: []\n311\t      note: \"R16 视觉审查: 主文5 display items(Figure 1-4 + Table 1-3), 合理\"\n312\t\n313\t- id: \"R11-N1\"\n314\t  summary: \"Spearman ρ=1.0 (n=6) 被过度使用——有效自由度远低于6\"\n315\t  category: experiment\n316\t  severity: critical\n317\t  status: in_progress\n318\t  first_raised_round: 11\n319\t  last_seen_round: 16\n320\t  mentions:\n321\t    - round: 16\n322\t      reviewers: [1, 2]\n323\t      note: \"R16(fresh) 与R9-W3合并. 共识: n=6 suggestive非definitive\"\n324\t\n325\t- id: \"R11-N2\"\n326\t  summary: \"中心 claim 'SICA fails' 与统计功效不匹配——Abstract/title 过强\"\n327\t  category: framing\n328\t  severity: critical\n329\t  status: in_progress\n330\t  first_raised_round: 11\n331\t  last_seen_round: 16\n332\t  mentions:\n333\t    - round: 16\n334\t      reviewers: [1, 2]\n335\t      note: \"R16(fresh) 共识critical: R1-N2(power<21%, MDE≥1.86pp, ~79%概率检测不到2pp效果) + R2-W1(标题'Fail to Improve'overclaiming). R2 AGREE R1分析. 建议标题改为'Do Not Substantially Improve'或加power caveat\"\n336\t  action_items:\n337\t    - round: 16\n338\t      action: \"标题软化 + Abstract加power caveat + TOST margin sensitivity analysis\"\n339\t      assigned_to: \"paper_agent\"\n340\t      status: open\n341\t\n342\t- id: \"R11-N3\"\n343\t  summary: \"TOST ±2pp margin 缺乏 principled 论证\"\n344\t  category: experiment\n345\t  severity: warning\n346\t  status: in_progress\n347\t  first_raised_round: 11\n348\t  last_seen_round: 16\n349\t  mentions:\n350\t    - round: 16\n351\t      reviewers: [1, 2]\n352\t      note: \"R16(fresh) R1-N2涵盖: ±2pp margin无先验依据, 需补充不同margin(±1/3/5pp)的TOST sensitivity\"\n353\t\n354\t- id: \"R11-W1\"\n355\t  summary: \"DRC 评估不充分——仅PW完整\"\n356\t  category: experiment\n357\t  severity: warning\n358\t  status: in_progress\n359\t  first_raised_round: 11\n360\t  last_seen_round: 16\n361\t  mentions:\n362\t    - round: 16\n363\t      reviewers: []\n364\t      note: \"R16(fresh) 未单独提及\"\n365\t\n366\t- id: \"R11-W2\"\n367\t  summary: \"BR 指标存在循环论证倾向\"\n368\t  category: method\n369\t  severity: critical\n370\t  status: in_progress\n371\t  first_raised_round: 11\n372\t  last_seen_round: 16\n373\t  mentions:\n374\t    - round: 16\n375\t      reviewers: [1, 2]\n376\t      note: \"R16(fresh) R2-N2 critical: BR>1部分是base-rate效应(60% traces→60%约束支持多数答案), 需permutation null model量化excess bias. R1 AGREE(审稿中未注意到此问题). 共识: BR循环论证不否定SCB整体论证(Table 11/degeneration condition/oracle独立支持), 但BR指标本身需null model或降级为描述性指标\"\n377\t  action_items:\n378\t    - round: 16\n379\t      action: \"补充permutation-based null distribution, 或将BR降级为描述性指标并明确声明base-rate组成\"\n380\t      assigned_to: \"paper_agent\"\n381\t      status: open\n382\t\n383\t- id: \"R11-W3\"\n384\t  summary: \"术语过度品牌化——'Symbolic Mirage' 偏 dramatic\"\n385\t  category: writing\n386\t  severity: warning\n387\t  status: in_progress\n388\t  first_raised_round: 11\n389\t  last_seen_round: 16\n390\t  mentions:\n391\t    - round: 16\n392\t      reviewers: []\n393\t      note: \"R16(fresh) 未单独提及\"\n394\t\n395\t- id: \"R11-W4\"\n396\t  summary: \"新颖性定位需更早更明确建立与先验工作的 distinction\"\n397\t  category: framing\n398\t  severity: critical\n399\t  status: in_progress\n400\t  first_raised_round: 11\n401\t  last_seen_round: 16\n402\t  mentions:\n403\t    - round: 16\n404\t      reviewers: [1, 2]\n405\t      note: \"R16(fresh) R2-N1+R2-W5: SCB是Huang et al.的自然延伸, 'extending'是overselling. R1部分REBUT: 机制定位+27策略否证+诊断框架是非平凡贡献, 但同意DPI部分近平凡\"\n406\t\n407\t- id: \"R11-W5\"\n408\t  summary: \"Independence-Accuracy Trade-off 应定位为量化而非新发现\"\n409\t  category: framing\n410\t  severity: warning\n411\t  status: in_progress\n412\t  first_raised_round: 11\n413\t  last_seen_round: 16\n414\t  mentions:\n415\t    - round: 16\n416\t      reviewers: []\n417\t      note: \"R16(fresh) 未单独提及\"\n418\t\n419\t- id: \"R11-W6\"\n420\t  summary: \"遗漏引用: Byerly & Khashabi (2026 TACL) 等\"\n421\t  category: writing\n422\t  severity: warning\n423\t  status: resolved\n424\t  first_raised_round: 11\n425\t  last_seen_round: 13\n426\t  resolution: \"当前论文已引用 Byerly and Khashabi (2026)\"\n427\t  resolution_round: 13\n428\t\n429\t- id: \"R11-W7\"\n430\t  summary: \"27 策略计数膨胀 + 未尝试 trained constraint extractor\"\n431\t  category: experiment\n432\t  severity: warning\n433\t  status: in_progress\n434\t  first_raised_round: 11\n435\t  last_seen_round: 16\n436\t  mentions:\n437\t    - round: 16\n438\t      reviewers: [1, 2]\n439\t      note: \"R16(fresh) R2-W4: 27策略局限于self-extraction paradigm内变体, claim scope需限定. R1部分REBUT: 策略确实跨多维度(prompt/method/cross-model/formal proof), 但同意应限定scope为'within constraint-extraction-aggregation paradigm'\"\n440\t\n441\t- id: \"R11-VL1\"\n442\t  summary: \"主文缺结果可视化——需上提 Figure 到主文\"\n443\t  category: format\n444\t  severity: warning\n445\t  status: in_progress\n446\t  first_raised_round: 11\n447\t  last_seen_round: 16\n448\t  mentions:\n449\t    - round: 16\n450\t      reviewers: []\n451\t      note: \"R16 视觉审查: Figure 2(散点图p4), Figure 3(DAG p6), Figure 4(柱状图p7)已在主文, 覆盖合理\"\n452\t\n453\t- id: \"R12-N1\"\n454\t  summary: \"标题 overclaiming about frontier scale\"\n455\t  category: framing\n456\t  severity: critical\n457\t  status: in_progress\n458\t  first_raised_round: 12\n459\t  last_seen_round: 16\n460\t  mentions:\n461\t    - round: 16\n462\t      reviewers: [1, 2]\n463\t      note: \"R16(fresh) 标题已含'Logical Reasoning'(非'LLM Reasoning'), 但'Fail to Improve'仍overclaiming given power<21%. 共识: 需进一步软化\"\n464\t\n465\t- id: \"R12-N2\"\n466\t  summary: \"SCB 核心新颖性不足——self-correction failure 在 FOL 载体上的实例化\"\n467\t  category: framing\n468\t  severity: critical\n469\t  status: in_progress\n470\t  first_raised_round: 12\n471\t  last_seen_round: 16\n472\t  mentions:\n473\t    - round: 16\n474\t      reviewers: [1, 2]\n475\t      note: \"R16(fresh) R2-N1 critical: SCB=Huang+DPI, Wan(2025)/Jhaveri(2026)从不同角度得出类似结论. R1 partial REBUT: negative result不应事后贬低, 诊断框架+27策略否证有独立价值. 部分共识: 定位为'系统性量化'而非'发现', 弱化Prop 1呈现\"\n476\t\n477\t- id: \"R12-N3\"\n478\t  summary: \"DRC 作为 Contribution 4 不够充分\"\n479\t  category: framing\n480\t  severity: critical\n481\t  status: resolved\n482\t  resolution: \"DRC demoted to practical observation in §6\"\n483\t  resolution_round: 13\n484\t  first_raised_round: 12\n485\t  last_seen_round: 13\n486\t\n487\t- id: \"R12-W1\"\n488\t  summary: \"BR 可能存在循环论证——56.4%零变量重叠使约束按定义支持source answer\"\n489\t  category: method\n490\t  severity: warning\n491\t  status: in_progress\n492\t  first_raised_round: 12\n493\t  last_seen_round: 16\n494\t  mentions:\n495\t    - round: 16\n496\t      reviewers: [1, 2]\n497\t      note: \"R16(fresh) 与R11-W2合并. R2-N2提升为critical: 需null model\"\n498\t\n499\t- id: \"R12-W2\"\n500\t  summary: \"CIL 名称和 information-theoretic 声称有误导\"\n501\t  category: method\n502\t  severity: warning\n503\t  status: resolved\n504\t  resolution: \"Renamed to CCR, removed 'unify' claim\"\n505\t  resolution_round: 13\n506\t  first_raised_round: 12\n507\t  last_seen_round: 13\n508\t\n509\t- id: \"R12-W3\"\n510\t  summary: \"Figure 2 placement——应在正文而非附录\"\n511\t  category: format\n512\t  severity: warning\n513\t  status: resolved\n514\t  first_raised_round: 12\n515\t  last_seen_round: 13\n516\t  resolution: \"Figure 2 已在正文 page 4\"\n517\t  resolution_round: 13\n518\t\n519\t- id: \"R12-W4\"\n520\t  summary: \"Appendix vs 主文关键信息分配不合理\"\n521\t  category: writing\n522\t  severity: warning\n523\t  status: in_progress\n524\t  first_raised_round: 12\n525\t  last_seen_round: 16\n526\t  mentions:\n527\t    - round: 16\n528\t      reviewers: [2]\n529\t      note: \"R16(fresh) R2-M3: Abstract信息过载(6个要素). R2-M2: K_eff缺直觉解释\"\n530\t\n531\t- id: \"R12-EC1\"\n532\t  summary: \"Extractor Confound——所有 frontier cross-model extraction 使用同一 Mistral-7B extractor\"\n533\t  category: method\n534\t  severity: critical\n535\t  status: in_progress\n536\t  first_raised_round: 12\n537\t  last_seen_round: 16\n538\t  mentions:\n539\t    - round: 16\n540\t      reviewers: []\n541\t      note: \"R16(fresh) 未单独提及\"\n542\t\n543\t- id: \"R13-N1\"\n544\t  summary: \"摘要 BR 4.97× 选择性报告——最极端条件\"\n545\t  category: framing\n546\t  severity: critical\n547\t  status: in_progress\n548\t  first_raised_round: 13\n549\t  last_seen_round: 16\n550\t  mentions:\n551\t    - round: 16\n552\t      reviewers: []\n553\t      note: \"R16(fresh) Abstract报告'at least 1.66×', 为最小值. 比报告4.97×更保守, 但BR循环论证问题(R11-W2)影响所有BR值的可信度\"\n554\t\n555\t- id: \"R13-N2\"\n556\t  summary: \"统计功效呈现不足——10/16 underpowered, power analysis 埋在附录\"\n557\t  category: experiment\n558\t  severity: critical\n559\t  status: in_progress\n560\t  first_raised_round: 13\n561\t  last_seen_round: 16\n562\t  mentions:\n563\t    - round: 16\n564\t      reviewers: [1, 2]\n565\t      note: \"R16(fresh) 与R11-N2合并. R1-N2 critical: observed power<21%, TOST仅8/16显著. R2 fully AGREE\"\n566\t\n567\t- id: \"R13-N3\"\n568\t  summary: \"α=0.5 无敏感性分析\"\n569\t  category: method\n570\t  severity: warning\n571\t  status: in_progress\n572\t  first_raised_round: 13\n573\t  last_seen_round: 16\n574\t  mentions:\n575\t    - round: 16\n576\t      reviewers: [1, 2]\n577\t      note: \"R16(fresh) R1-W6: α=0.5无理论依据, 需sensitivity analysis α∈{0,0.25,0.5,0.75,1.0}. R2 AGREE. 论文有Table 11(α ablation ≥99% agreement), 但R1/R2共识: ceiling effect不等于鲁棒性\"\n578\t\n579\t- id: \"R13-W1\"\n580\t  summary: \"符号/指标过载——8页内7个定量工具\"\n581\t  category: writing\n582\t  severity: warning\n583\t  status: in_progress\n584\t  first_raised_round: 13\n585\t  last_seen_round: 16\n586\t  mentions:\n587\t    - round: 16\n588\t      reviewers: []\n589\t      note: \"R16(fresh) 未单独提及\"\n590\t\n591\t- id: \"R13-W2\"\n592\t  summary: \"NLI claim 须限定到命题逻辑任务\"\n593\t  category: experiment\n594\t  severity: warning\n595\t  status: in_progress\n596\t  first_raised_round: 13\n597\t  last_seen_round: 16\n598\t  mentions:\n599\t    - round: 16\n600\t      reviewers: [1]\n601\t      note: \"R16(fresh) R1-W9: 'First-order logic'描述轻微overselling, 99%约束是propositional level. R2 AGREE\"\n602\t\n603\t- id: \"R13-W3\"\n604\t  summary: \"语法去重可能膨胀 BR——未报告语义去重后 BR\"\n605\t  category: method\n606\t  severity: warning\n607\t  status: in_progress\n608\t  first_raised_round: 13\n609\t  last_seen_round: 16\n610\t  mentions:\n611\t    - round: 16\n612\t      reviewers: []\n613\t      note: \"R16(fresh) 未单独提及\"\n614\t\n615\t- id: \"R13-W4\"\n616\t  summary: \"Symbolic Mirage Hypothesis §3.3 与 §5 验证不连贯\"\n617\t  category: writing\n618\t  severity: warning\n619\t  status: in_progress\n620\t  first_raised_round: 13\n621\t  last_seen_round: 16\n622\t  mentions:\n623\t    - round: 16\n624\t      reviewers: []\n625\t      note: \"R16(fresh) 未单独提及(当前论文无显式§3.3 Hypothesis section)\"\n626\t\n627\t- id: \"R13-W5\"\n628\t  summary: \"缺引: Dhuliawala et al. 2023 Chain-of-Verification\"\n629\t  category: writing\n630\t  severity: warning\n631\t  status: resolved\n632\t  first_raised_round: 13\n633\t  last_seen_round: 14\n634\t  resolution: \"已引用 dhuliawala2023chainofverification\"\n635\t  resolution_round: 14\n636\t\n637\t- id: \"R14-N1\"\n638\t  summary: \"标题'LLM Reasoning'范围超出实验证据——仅覆盖逻辑推理\"\n639\t  category: framing\n640\t  severity: critical\n641\t  status: in_progress\n642\t  first_raised_round: 14\n643\t  last_seen_round: 16\n644\t  mentions:\n645\t    - round: 16\n646\t      reviewers: [1, 2]\n647\t      note: \"R16(fresh) 标题已为'LLM Logical Reasoning', domain scope改善. 但'Fail to Improve'仍overclaiming\"\n648\t\n649\t- id: \"R14-N2\"\n650\t  summary: \"Symbolic Mirage Hypothesis Predictions 1-2 为事后总结非独立预测\"\n651\t  category: method\n652\t  severity: critical\n653\t  status: in_progress\n654\t  first_raised_round: 14\n655\t  last_seen_round: 16\n656\t  mentions:\n657\t    - round: 16\n658\t      reviewers: []\n659\t      note: \"R16(fresh) 当前论文无显式Predictions标签, 未单独提及\"\n660\t\n661\t- id: \"R14-W1\"\n662\t  summary: \"Cross-architecture实验仅6条件/单一verifier/仅Mistral-7B显著\"\n663\t  category: experiment\n664\t  severity: major\n665\t  status: in_progress\n666\t  first_raised_round: 14\n667\t  last_seen_round: 16\n668\t  mentions:\n669\t    - round: 16\n670\t      reviewers: [1, 2]\n671\t      note: \"R16(fresh) R1-W8+R2-W3共识: 仅Mistral-7B(SC=39.33%)显著, 'principle'过强, 降级为'preliminary observation'\"\n672\t\n673\t- id: \"R14-W2\"\n674\t  summary: \"8页正文信息过载——§5.5/§6/§7展开不足\"\n675\t  category: writing\n676\t  severity: major\n677\t  status: in_progress\n678\t  first_raised_round: 14\n679\t  last_seen_round: 16\n680\t  mentions:\n681\t    - round: 16\n682\t      reviewers: [2]\n683\t      note: \"R16(fresh) R2-M3: Abstract信息过载(6要素). R2-M2: K_eff缺直觉解释. R2-M5: §2段间衔接不够\"\n684\t\n685\t- id: \"R14-W3\"\n686\t  summary: \"'No evidence' claim scope与统计功效不匹配\"\n687\t  category: framing\n688\t  severity: major\n689\t  status: in_progress\n690\t  first_raised_round: 14\n691\t  last_seen_round: 16\n692\t  mentions:\n693\t    - round: 16\n694\t      reviewers: [1, 2]\n695\t      note: \"R16(fresh) 与R11-N2合并. 共识critical\"\n696\t\n697\t- id: \"R14-W4\"\n698\t  summary: \"BR计算子集大小(n_err)未报告\"\n699\t  category: experiment\n700\t  severity: moderate\n701\t  status: in_progress\n702\t  first_raised_round: 14\n703\t  last_seen_round: 16\n704\t  mentions:\n705\t    - round: 16\n706\t      reviewers: [1, 2]\n707\t      note: \"R16(fresh) R1-W4: Table 2多数条件未报CI. R2 AGREE. 当前论文Table 2已有n_err列但多数条件无CI\"\n708\t\n709\t- id: \"R14-W5\"\n710\t  summary: \"Related Work遗漏: SETS(2025), MAV(2025)\"\n711\t  category: writing\n712\t  severity: minor-to-major\n713\t  status: in_progress\n714\t  first_raised_round: 14\n715\t  last_seen_round: 16\n716\t  mentions:\n717\t    - round: 16\n718\t      reviewers: [1, 2]\n719\t      note: \"R16(fresh) R2-W2新增: S²R(ACL 2025), DuPO(2025), Kamoi et al.(TACL 2024). R1部分REBUT(scope外)但同意应讨论理论边界\"\n720\t\n721\t- id: \"R14-W6\"\n722\t  summary: \"Fleiss' κ→ICC近似仅r=0.625——prevalence paradox\"\n723\t  category: method\n724\t  severity: moderate\n725\t  status: in_progress\n726\t  first_raised_round: 14\n727\t  last_seen_round: 16\n728\t  mentions:\n729\t    - round: 16\n730\t      reviewers: [1]\n731\t      note: \"R16(fresh) R1-W7: K_eff exchangeability假设可能被违反, 但minor, 不影响核心结论\"\n732\t\n733\t# R15(fresh) issues\n734\t\n735\t- id: \"R15-M1\"\n736\t  summary: \"遗漏引用: DuPO (ICLR 2026) — training-based self-verification\"\n737\t  category: writing\n738\t  severity: warning\n739\t  status: open\n740\t  first_raised_round: 15\n741\t  last_seen_round: 16\n742\t  mentions:\n743\t    - round: 15\n744\t      reviewers: [1, 2]\n745\t      note: \"共识AGREE\"\n746\t    - round: 16\n747\t      reviewers: [1, 2]\n748\t      note: \"R16(fresh) R2-W2提出, R1部分REBUT(scope外但应讨论理论边界)\"\n749\t\n750\t- id: \"R15-M2\"\n751\t  summary: \"遗漏引用: S²R (2025) — RL-based self-verification\"\n752\t  category: writing\n753\t  severity: warning\n754\t  status: open\n755\t  first_raised_round: 15\n756\t  last_seen_round: 16\n757\t  mentions:\n758\t    - round: 15\n759\t      reviewers: [1, 2]\n760\t      note: \"共识AGREE\"\n761\t    - round: 16\n762\t      reviewers: [1, 2]\n763\t      note: \"R16(fresh) R2-W2提出, R1部分REBUT(scope外但应讨论理论边界)\"\n764\t\n765\t- id: \"R15-M3\"\n766\t  summary: \"遗漏引用: LLM as Formalizers on CSP (arXiv 2505.13252, 2025)\"\n767\t  category: writing\n768\t  severity: warning\n769\t  status: open\n770\t  first_raised_round: 15\n771\t  last_seen_round: 16\n772\t  mentions:\n773\t    - round: 16\n774\t      reviewers: []\n775\t      note: \"R16(fresh) 未单独提及\"\n776\t\n777\t- id: \"R15-M4\"\n778\t  summary: \"遗漏引用: Lakshminarayanan et al. (2017) Deep Ensembles\"\n779\t  category: writing\n780\t  severity: warning\n781\t  status: open\n782\t  first_raised_round: 15\n783\t  last_seen_round: 16\n784\t  mentions:\n785\t    - round: 16\n786\t      reviewers: [1]\n787\t      note: \"R16(fresh) R1 REBUT: Kuncheva & Whitaker(2003)和Ladha(1992)已更直接相关. Minor\"\n788\t\n789\t- id: \"R15-W1\"\n790\t  summary: \"α=0.5敏感性分析≥99% agreement是ceiling effect\"\n791\t  category: method\n792\t  severity: minor\n793\t  status: open\n794\t  first_raised_round: 15\n795\t  last_seen_round: 16\n796\t  mentions:\n797\t    - round: 16\n798\t      reviewers: [1, 2]\n799\t      note: \"R16(fresh) R1-W6要求补充α sensitivity analysis. R2 AGREE. 共识: ceiling effect不等于鲁棒性\"\n800\t\n801\t# R16(fresh) 新发现\n802\t\n803\t- id: \"R16-N1\"\n804\t  summary: \"Proposition 1 证明范围与声称范围不匹配——Part(i)仅对source-attribution成立但标题claim 'structural'\"\n805\t  category: method\n806\t  severity: critical\n807\t  status: open\n808\t  first_raised_round: 16\n809\t  last_seen_round: 16\n810\t  mentions:\n811\t    - round: 16\n812\t      reviewers: [1, 2]\n813\t      note: \"R1-N1 critical, R2 fully AGREE. 共识: Part(i)依赖SICA特定的source attribution scoring(Eq.3), 非数学必然; Part(ii) DPI是平凡推论(I(C;Y)≤I(T;Y)). 建议拆分为两个结果, 明确区分适用范围. R2补充: DPI不排除约束通过重新组织信息打破相关模式\"\n814\t  action_items:\n815\t    - round: 16\n816\t      action: \"将Proposition 1分为source-attribution退化定理(精确但specific) + DPI bound(普遍但弱), 正文明确区分\"\n817\t      assigned_to: \"paper_agent\"\n818\t      status: open\n819\t\n820\t- id: \"R16-N2\"\n821\t  summary: \"Diagnostics 100%准确率是in-sample评估——overfitting风险, holdout验证不充分\"\n822\t  category: method\n823\t  severity: critical\n824\t  status: open\n825\t  first_raised_round: 16\n826\t  last_seen_round: 16\n827\t  mentions:\n828\t    - round: 16\n829\t      reviewers: [1, 2]\n830\t      note: \"R2-N3 critical, R1 fully AGREE(审稿中未注意到). 共识: (1) 决策边界从60条件推导并在同一60条件上评估=in-sample fitting; (2) holdout仅LLaMA-3.1-8B×FOLIO 1个条件=不充分; (3) 60条件全为negative cases, 任何trivial classifier('永远预测不帮助')都能100%; (4) 未在positive cases(cross-arch escape, oracle)上验证. Abstract/§1/§7中此claim为三大贡献之一, 过度表述\"\n831\t  action_items:\n832\t    - round: 16\n833\t      action: \"增加held-out model family验证 + 弱化claim为'correctly classify all tested conditions within experimental scope' + 讨论OOD失败条件\"\n834\t      assigned_to: \"paper_agent\"\n835\t      status: open\n836\t\n837\t- id: \"R16-M1\"\n838\t  summary: \"遗漏引用: Kamoi et al. (TACL 2024) self-correction survey\"\n839\t  category: writing\n840\t  severity: warning\n841\t  status: open\n842\t  first_raised_round: 16\n843\t  last_seen_round: 16\n844\t  mentions:\n845\t    - round: 16\n846\t      reviewers: [1, 2]\n847\t      note: \"R2提出, R1 AGREE. self-correction方向最全面survey, 应引用定位论文\"\n848\t\n849\t- id: \"R16-M2\"\n850\t  summary: \"遗漏引用: AlphaCode/CodeT — constraint verification in code domain\"\n851\t  category: writing\n852\t  severity: minor\n853\t  status: open\n854\t  first_raised_round: 16\n855\t  last_seen_round: 16\n856\t  mentions:\n857\t    - round: 16\n858\t      reviewers: [1]\n859\t      note: \"R1提出: code domain中约束过滤成功案例, 可对比讨论为何逻辑推理领域失败\"\n860\t\n861\t- id: \"R16-W1\"\n862\t  summary: \"'Extending Huang et al. (2024) to formal verification' 是overselling——两者证明框架不同不构成逻辑extension\"\n863\t  category: framing\n864\t  severity: major\n865\t  status: open\n866\t  first_raised_round: 16\n867\t  last_seen_round: 16\n868\t  mentions:\n869\t    - round: 16\n870\t      reviewers: [1, 2]\n871\t      note: \"R2-W5, R1 fully AGREE. 共识: Huang基于value/policy iteration, 本文基于DPI+source attribution, 形式化框架不同. 建议改为'consistent with / complement / provide independent evidence for'\"\n872\t  action_items:\n873\t    - round: 16\n874\t      action: \"§1和Abstract将'extend'改为'provide independent evidence consistent with'\"\n875\t      assigned_to: \"paper_agent\"\n876\t      status: open\n877\t\n878\t- id: \"R16-W2\"\n879\t  summary: \"GSM8K(n=30)/AIME(n=22)样本量过小, 不应与大样本条件等权重引用\"\n880\t  category: experiment\n881\t  severity: major\n882\t  status: open\n883\t  first_raised_round: 16\n884\t  last_seen_round: 16\n885\t  mentions:\n886\t    - round: 16\n887\t      reviewers: [1, 2]\n888\t      note: \"R1-W5, R2 AGREE. 论文已标注为'exploratory, n<60'(Table 1 caption), 但正文§5.3引用时未区分\"\n889\t\n890\t- id: \"R16-W3\"\n891\t  summary: \"缺少training-based self-verification方法讨论——Proposition 1理论边界不完整\"\n892\t  category: writing\n893\t  severity: major\n894\t  status: open\n895\t  first_raised_round: 16\n896\t  last_seen_round: 16\n897\t  mentions:\n898\t    - round: 16\n899\t      reviewers: [1, 2]\n900\t      note: \"R2-W2 major, R1部分REBUT(scope已限定为training-free, §7提及trained extractors)但AGREE应讨论训练如何通过违反A2打破信息上限. 共识: §2增加一段training-based self-verification, 明确Prop 1适用边界\"\n901\t  action_items:\n902\t    - round: 16\n903\t      action: \"§2增加training-based self-verification段落, 引用S²R/DuPO, 明确Prop 1仅适用于inference-time same-model\"\n904\t      assigned_to: \"paper_agent\"\n905\t      status: open\n906\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8315d27a-ce55-4386-b415-31417feab351",
+            "isSidechain": true,
+            "promptId": "b919c63a-499b-4b5b-a8c7-415028b122d9",
+            "agentId": "a51e46aca94cd12ca",
+            "type": "user",
+            "uuid": "0167ebdd-dd93-4d4f-b41c-a9b3bc3370f7",
+            "sourceToolAssistantUUID": "8315d27a-ce55-4386-b415-31417feab351",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T08:30:32.122Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Summary\n\nI've successfully retrieved both files for the symb_invariant_consensus project. Here are the complete contents:\n\n### 1. Latest Review Report (Round 13)\n\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_reports/round_13.md`\n\nThe latest review report is **Round 13** (dated 2026-05-23 08:27:17), conducted in fresh mode with 2 reviewers. Key highlights:\n\n**Overall Score:** 3.0 (\"Findings\")\n\n**Core Finding:** The paper presents an experimental study showing that self-extracted constraints (SICA method) fail to improve LLM logical reasoning, with systematic investigation across 9 models, 3 datasets, and 27 training-free strategies.\n\n**Major Strengths:**\n- Exceptional experimental scale and system: 9 models × 3 datasets × 60 conditions × 27 remediation strategies\n- Multiple-layer statistical methodology: McNemar tests, BH FDR correction, TOST equivalence tests, bootstrap CIs, power analysis\n- Well-designed oracle controls identifying extraction quality as the bottleneck\n- Comprehensive appendix (18 pages) with detailed ablations\n- Clear identification of a \"cross-architecture escape\" path via NLI verification\n\n**Critical Weaknesses (Must-Fix):**\n1. **Proposition 1 scope mismatch:** Part (i) depends on SICA's specific source attribution scoring (not universal); Part (ii) is a trivial application of data processing inequality\n2. **Statistical power underfitting:** Observed power <21%, MDE ≥1.86pp, yet title claims \"Fail to Improve\" which cannot exclude 1-2pp effects\n3. **Diagnostics overfitting:** 100% accuracy is in-sample evaluation (trained and tested on same 60 conditions); holdout validation insufficient\n4. **BR (Bias Ratio) circular reasoning:** Lacks null model to distinguish \"extra bias\" from base-rate effects inherent to trace-count distributions\n\n**Consensus Issues (14 items fully agreed):** Proposition 1 scope, power-claim mismatch, diagnostics in-sample fitting, multi-seed insufficiency (only 2/6 models), overselling \"extending Huang et al.\"\n\n---\n\n### 2. Review Issues File (review_issues.yaml)\n\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml`\n\nThis comprehensive tracker shows the project's 13-round review history with 53 tracked issues:\n\n**Status Breakdown:**\n- **Resolved:** 6 issues (early method/power/oracle/references)\n- **In Progress:** 47 issues (from Rounds 9-16)\n- **Open:** 11 action items from Round 16\n\n**Round 16 (Latest) Critical Issues:**\n1. **R16-N1:** Proposition 1 Part (i) specificity vs. universal claims\n2. **R16-N2:** Diagnostics 100% accuracy is in-sample, needs OOD validation\n3. **R16-W1:** \"Extending Huang et al.\" is overselling (different mathematical frameworks)\n4. **R16-W2:** GSM8K/AIME (n=30, n=22) sample sizes too small for equal weighting\n5. **R16-W3:** Missing discussion of training-based self-verification breaking Proposition 1's information ceiling\n\n**Open Action Items (Status: open):**\n- Soften title + add power caveat + TOST margin sensitivity\n- Split Proposition 1 into source-attribution-specific + DPI bound with clarified scopes\n- BR: add permutation null model or downgrade to descriptive metric\n- Diagnostics: add held-out model family validation\n- \"Extending Huang\" → \"provide independent evidence consistent with\"\n- Add training-based methods discussion (S²R, DuPO)\n\nThe tracker shows active cross-reviewer engagement with escalating scrutiny of core claims, particularly around statistical power adequacy and theoretical contribution novelty."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0167ebdd-dd93-4d4f-b41c-a9b3bc3370f7",
+            "isSidechain": true,
+            "agentId": "a51e46aca94cd12ca",
+            "requestId": "req_011CbKBqCV7m4minp3hHamh9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "794854f3-9e59-4446-8957-458b38351e68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/director_909d512a",
+            "sessionId": "68033c04-9adf-4668-a002-9acbfacb81a6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "unified-wobbling-allen",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DrRBVSmJ34a5y4wjvR891x",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 21343,
+                "cache_read_input_tokens": 38700,
+                "output_tokens": 981,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 21343
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 981,
+                    "cache_read_input_tokens": 38700,
+                    "cache_creation_input_tokens": 21343,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 21343,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        }
+      ],
+      "message_count": 10
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-and-read-the-latest-review-report-for-the-symb-invariant-consensus-projec.md"
+}

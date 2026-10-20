@@ -1,0 +1,987 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9cf06a0204c26af34287",
+  "rounds": [
+    {
+      "number": 9,
+      "messages": [
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-23T14:01:20.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ff7x1i6jE5S2sq9mpKsJT9",
+              "type": "tool_result",
+              "content": "- id: \"R1-C1\"\n  summary: \"Method Stage 3 sat() implementation undescribed\"\n  category: method\n  severity: critical\n  status: resolved\n  last_seen_round: 3\n- id: \"R1-C2\"\n  summary: \"Most experiments underpowered (n≤60), no power analysis\"\n  category: experiment\n  severity: critical\n  status: resolved\n  last_seen_round: 1\n- id: \"R1-C3\"\n  summary: \"Oracle/upper-bound experiment missing\"\n  category: experiment\n  severity: critical\n  status: resolved\n  last_seen_round: 1\n- id: \"R1-C4\"\n  summary: \"Huang et al. (ICLR 2024) not cited\"\n  category: framing\n  severity: critical\n  status: resolved\n  last_seen_round: 2\n- id: \"R1-C5\"\n  summary: \"Critical related work missing\"\n  category: writing\n  severity: critical\n  status: resolved\n  last_seen_round: 1\n- id: \"R1-C9\"\n  summary: \"Capability trap novelty unclear\"\n  category: framing\n  severity: critical\n  status: resolved\n  last_seen_round: 3\n- id: \"R3-N1\"\n  summary: \"σ(c,a) scoring inconsistent between self-extraction and oracle\"\n  category: method\n  severity: critical\n  status: resolved\n  last_seen_round: 4\n- id: \"R3-N2\"\n  summary: \"α value never specified\"\n  category: method\n  severity: critical\n  status: resolved\n  last_seen_round: 3\n- id: \"R9-W2\"\n  summary: \"NLI combo weight parameter w 未交叉验证\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R9-W3\"\n  summary: \"Capability Gap Hypothesis 基于极小样本 (n=6)\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R9-VL1\"\n  summary: \"Pages 1-2 连续纯文本无 display item\"\n  category: format\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R9-VL4\"\n  summary: \"Discussion/Conclusion 展开不足\"\n  category: writing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-N1\"\n  summary: \"Proposition 1 (Self-Extraction Ceiling) 无证明——empirical claim dressed as theorem\"\n  category: method\n  severity: critical\n  status: resolved\n  last_seen_round: 13\n- id: \"R10-N2\"\n  summary: \"κ→K_eff 映射理论基础不足——r=0.625 验证弱\"\n  category: method\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-N3\"\n  summary: \"Capability gap 'perfectly monotonic' 结论基于 n=6 非独立数据点\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W1\"\n  summary: \"DRC τ 阈值无 held-out 评估\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W2\"\n  summary: \"Cross-architecture NLI escape 适用面极窄\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W3\"\n  summary: \"四种子复制方差大 + 统计功效 <21%\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W4\"\n  summary: \"TOST ±2pp margin 缺少显式理由\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W5\"\n  summary: \"Bias Ratio 无置信区间\"\n  category: experiment\n  severity: warning\n  status: resolved\n  last_seen_round: 10\n- id: \"R10-W6\"\n  summary: \"SatLM specification-generation vs SICA trace-extraction 对比不充分\"\n  category: framing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W7\"\n  summary: \"'Symbolic Confirmation Bias' 需与近期 CoT confirmation bias 工作区分\"\n  category: framing\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W8\"\n  summary: \"Related Work 过度压缩——引用列表而非文献讨论\"\n  category: writing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-I1\"\n  summary: \"'Symbolic Mirage' 概念新颖性——与 Huang/Wan 的 confirmation bias 区别\"\n  category: framing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-I2\"\n  summary: \"Independence-Accuracy Trade-off 作为独立贡献有 bias-variance 重述嫌疑\"\n  category: framing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-VL1\"\n  summary: \"主文缺结果可视化\"\n  category: format\n  severity: warning\n  status: resolved\n  last_seen_round: 17\n- id: \"R11-N1\"\n  summary: \"Spearman ρ=1.0 (n=6) 被过度使用\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-N2\"\n  summary: \"中心 claim 'SICA fails' 与统计功效不匹配——Abstract/title 过强\"\n  category: framing\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-N3\"\n  summary: \"TOST ±2pp margin 缺乏 principled 论证\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W1\"\n  summary: \"DRC 评估不充分——仅PW完整\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W2\"\n  summary: \"BR 指标存在循环论证倾向\"\n  category: method\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W3\"\n  summary: \"术语过度品牌化——'Symbolic Mirage' 偏 dramatic\"\n  category: writing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W4\"\n  summary: \"新颖性定位需更早更明确建立与先验工作的 distinction\"\n  category: framing\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W5\"\n  summary: \"Independence-Accuracy Trade-off 应定位为量化而非新发现\"",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c345a712-4b8c-49ff-8b0e-717853490e2d",
+            "isSidechain": false,
+            "promptId": "4956dacd-34a9-4015-8fc8-e0b67ef796cf",
+            "type": "user",
+            "uuid": "aefafa86-23d2-4520-a916-01dee70ba501",
+            "toolUseResult": {
+              "stdout": "- id: \"R1-C1\"\n  summary: \"Method Stage 3 sat() implementation undescribed\"\n  category: method\n  severity: critical\n  status: resolved\n  last_seen_round: 3\n- id: \"R1-C2\"\n  summary: \"Most experiments underpowered (n≤60), no power analysis\"\n  category: experiment\n  severity: critical\n  status: resolved\n  last_seen_round: 1\n- id: \"R1-C3\"\n  summary: \"Oracle/upper-bound experiment missing\"\n  category: experiment\n  severity: critical\n  status: resolved\n  last_seen_round: 1\n- id: \"R1-C4\"\n  summary: \"Huang et al. (ICLR 2024) not cited\"\n  category: framing\n  severity: critical\n  status: resolved\n  last_seen_round: 2\n- id: \"R1-C5\"\n  summary: \"Critical related work missing\"\n  category: writing\n  severity: critical\n  status: resolved\n  last_seen_round: 1\n- id: \"R1-C9\"\n  summary: \"Capability trap novelty unclear\"\n  category: framing\n  severity: critical\n  status: resolved\n  last_seen_round: 3\n- id: \"R3-N1\"\n  summary: \"σ(c,a) scoring inconsistent between self-extraction and oracle\"\n  category: method\n  severity: critical\n  status: resolved\n  last_seen_round: 4\n- id: \"R3-N2\"\n  summary: \"α value never specified\"\n  category: method\n  severity: critical\n  status: resolved\n  last_seen_round: 3\n- id: \"R9-W2\"\n  summary: \"NLI combo weight parameter w 未交叉验证\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R9-W3\"\n  summary: \"Capability Gap Hypothesis 基于极小样本 (n=6)\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R9-VL1\"\n  summary: \"Pages 1-2 连续纯文本无 display item\"\n  category: format\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R9-VL4\"\n  summary: \"Discussion/Conclusion 展开不足\"\n  category: writing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-N1\"\n  summary: \"Proposition 1 (Self-Extraction Ceiling) 无证明——empirical claim dressed as theorem\"\n  category: method\n  severity: critical\n  status: resolved\n  last_seen_round: 13\n- id: \"R10-N2\"\n  summary: \"κ→K_eff 映射理论基础不足——r=0.625 验证弱\"\n  category: method\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-N3\"\n  summary: \"Capability gap 'perfectly monotonic' 结论基于 n=6 非独立数据点\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W1\"\n  summary: \"DRC τ 阈值无 held-out 评估\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W2\"\n  summary: \"Cross-architecture NLI escape 适用面极窄\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W3\"\n  summary: \"四种子复制方差大 + 统计功效 <21%\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W4\"\n  summary: \"TOST ±2pp margin 缺少显式理由\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W5\"\n  summary: \"Bias Ratio 无置信区间\"\n  category: experiment\n  severity: warning\n  status: resolved\n  last_seen_round: 10\n- id: \"R10-W6\"\n  summary: \"SatLM specification-generation vs SICA trace-extraction 对比不充分\"\n  category: framing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W7\"\n  summary: \"'Symbolic Confirmation Bias' 需与近期 CoT confirmation bias 工作区分\"\n  category: framing\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-W8\"\n  summary: \"Related Work 过度压缩——引用列表而非文献讨论\"\n  category: writing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-I1\"\n  summary: \"'Symbolic Mirage' 概念新颖性——与 Huang/Wan 的 confirmation bias 区别\"\n  category: framing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-I2\"\n  summary: \"Independence-Accuracy Trade-off 作为独立贡献有 bias-variance 重述嫌疑\"\n  category: framing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R10-VL1\"\n  summary: \"主文缺结果可视化\"\n  category: format\n  severity: warning\n  status: resolved\n  last_seen_round: 17\n- id: \"R11-N1\"\n  summary: \"Spearman ρ=1.0 (n=6) 被过度使用\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-N2\"\n  summary: \"中心 claim 'SICA fails' 与统计功效不匹配——Abstract/title 过强\"\n  category: framing\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-N3\"\n  summary: \"TOST ±2pp margin 缺乏 principled 论证\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W1\"\n  summary: \"DRC 评估不充分——仅PW完整\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W2\"\n  summary: \"BR 指标存在循环论证倾向\"\n  category: method\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W3\"\n  summary: \"术语过度品牌化——'Symbolic Mirage' 偏 dramatic\"\n  category: writing\n  severity: warning\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W4\"\n  summary: \"新颖性定位需更早更明确建立与先验工作的 distinction\"\n  category: framing\n  severity: critical\n  status: in_progress\n  last_seen_round: 18\n- id: \"R11-W5\"\n  summary: \"Independence-Accuracy Trade-off 应定位为量化而非新发现\"",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "c345a712-4b8c-49ff-8b0e-717853490e2d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-23T14:01:27.379Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011o29c7TLmoCrRLCs6nnt5q",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml 2>/dev/null | grep -E \"^- id:|^  status:\" | paste - - | grep -v resolved | grep -v wont_fix",
+                "description": "List all open/in_progress issues"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aefafa86-23d2-4520-a916-01dee70ba501",
+            "isSidechain": false,
+            "requestId": "req_011CbKd5LZMCovaskbre8sPM",
+            "type": "assistant",
+            "uuid": "3e356c7f-9902-46f9-a484-aa914b5b336e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JEyiuJABUwRpyqyY2Bq9M1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2197,
+                "cache_read_input_tokens": 111123,
+                "output_tokens": 149,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2197,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 149,
+                    "cache_read_input_tokens": 111123,
+                    "cache_creation_input_tokens": 2197,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2197
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-23T14:01:27.457Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011o29c7TLmoCrRLCs6nnt5q",
+              "type": "tool_result",
+              "content": "- id: \"R9-W2\"\t  status: in_progress\n- id: \"R9-W3\"\t  status: in_progress\n- id: \"R9-VL1\"\t  status: in_progress\n- id: \"R9-VL4\"\t  status: in_progress\n- id: \"R10-N2\"\t  status: in_progress\n- id: \"R10-N3\"\t  status: in_progress\n- id: \"R10-W1\"\t  status: in_progress\n- id: \"R10-W2\"\t  status: in_progress\n- id: \"R10-W3\"\t  status: in_progress\n- id: \"R10-W4\"\t  status: in_progress\n- id: \"R10-W6\"\t  status: in_progress\n- id: \"R10-W7\"\t  status: in_progress\n- id: \"R10-W8\"\t  status: in_progress\n- id: \"R10-I1\"\t  status: in_progress\n- id: \"R10-I2\"\t  status: in_progress\n- id: \"R11-N1\"\t  status: in_progress\n- id: \"R11-N2\"\t  status: in_progress\n- id: \"R11-N3\"\t  status: in_progress\n- id: \"R11-W1\"\t  status: in_progress\n- id: \"R11-W2\"\t  status: in_progress\n- id: \"R11-W3\"\t  status: in_progress\n- id: \"R11-W4\"\t  status: in_progress\n- id: \"R11-W5\"\t  status: in_progress\n- id: \"R11-W7\"\t  status: in_progress\n- id: \"R12-N1\"\t  status: in_progress\n- id: \"R12-N2\"\t  status: in_progress\n- id: \"R12-W1\"\t  status: in_progress\n- id: \"R12-W4\"\t  status: in_progress\n- id: \"R12-EC1\"\t  status: in_progress\n- id: \"R13-N2\"\t  status: in_progress\n- id: \"R13-N3\"\t  status: in_progress\n- id: \"R13-W1\"\t  status: in_progress\n- id: \"R13-W2\"\t  status: in_progress\n- id: \"R13-W3\"\t  status: in_progress\n- id: \"R13-W4\"\t  status: in_progress\n- id: \"R14-N1\"\t  status: in_progress\n- id: \"R14-N2\"\t  status: in_progress\n- id: \"R14-W1\"\t  status: in_progress\n- id: \"R14-W2\"\t  status: in_progress\n- id: \"R14-W3\"\t  status: in_progress\n- id: \"R14-W5\"\t  status: in_progress\n- id: \"R14-W6\"\t  status: in_progress\n- id: \"R15-M3\"\t  status: open\n- id: \"R15-M4\"\t  status: open\n- id: \"R15-W1\"\t  status: in_progress\n- id: \"R16-N1\"\t  status: in_progress\n- id: \"R16-N2\"\t  status: in_progress\n- id: \"R16-W1\"\t  status: in_progress\n- id: \"R16-W2\"\t  status: in_progress\n- id: \"R16-SYS1\"\t  status: in_progress\n- id: \"R17-N1\"\t  status: in_progress\n- id: \"R17-N2\"\t  status: in_progress\n- id: \"R17-N4\"\t  status: in_progress\n- id: \"R17-N5\"\t  status: in_progress\n- id: \"R17-VL1\"\t  status: open\n- id: \"R17-VL2\"\t  status: open\n- id: \"R18-N1\"\t  status: in_progress\n- id: \"R18-N2\"\t  status: in_progress\n- id: \"R18-M1\"\t  status: in_progress\n- id: \"R18-M2\"\t  status: in_progress\n- id: \"R18-M3\"\t  status: in_progress\n- id: \"R18-VL1\"\t  status: in_progress",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e356c7f-9902-46f9-a484-aa914b5b336e",
+            "isSidechain": false,
+            "promptId": "4956dacd-34a9-4015-8fc8-e0b67ef796cf",
+            "type": "user",
+            "uuid": "3b9fa386-de8c-442f-8e8c-8d6295eb8128",
+            "toolUseResult": {
+              "stdout": "- id: \"R9-W2\"\t  status: in_progress\n- id: \"R9-W3\"\t  status: in_progress\n- id: \"R9-VL1\"\t  status: in_progress\n- id: \"R9-VL4\"\t  status: in_progress\n- id: \"R10-N2\"\t  status: in_progress\n- id: \"R10-N3\"\t  status: in_progress\n- id: \"R10-W1\"\t  status: in_progress\n- id: \"R10-W2\"\t  status: in_progress\n- id: \"R10-W3\"\t  status: in_progress\n- id: \"R10-W4\"\t  status: in_progress\n- id: \"R10-W6\"\t  status: in_progress\n- id: \"R10-W7\"\t  status: in_progress\n- id: \"R10-W8\"\t  status: in_progress\n- id: \"R10-I1\"\t  status: in_progress\n- id: \"R10-I2\"\t  status: in_progress\n- id: \"R11-N1\"\t  status: in_progress\n- id: \"R11-N2\"\t  status: in_progress\n- id: \"R11-N3\"\t  status: in_progress\n- id: \"R11-W1\"\t  status: in_progress\n- id: \"R11-W2\"\t  status: in_progress\n- id: \"R11-W3\"\t  status: in_progress\n- id: \"R11-W4\"\t  status: in_progress\n- id: \"R11-W5\"\t  status: in_progress\n- id: \"R11-W7\"\t  status: in_progress\n- id: \"R12-N1\"\t  status: in_progress\n- id: \"R12-N2\"\t  status: in_progress\n- id: \"R12-W1\"\t  status: in_progress\n- id: \"R12-W4\"\t  status: in_progress\n- id: \"R12-EC1\"\t  status: in_progress\n- id: \"R13-N2\"\t  status: in_progress\n- id: \"R13-N3\"\t  status: in_progress\n- id: \"R13-W1\"\t  status: in_progress\n- id: \"R13-W2\"\t  status: in_progress\n- id: \"R13-W3\"\t  status: in_progress\n- id: \"R13-W4\"\t  status: in_progress\n- id: \"R14-N1\"\t  status: in_progress\n- id: \"R14-N2\"\t  status: in_progress\n- id: \"R14-W1\"\t  status: in_progress\n- id: \"R14-W2\"\t  status: in_progress\n- id: \"R14-W3\"\t  status: in_progress\n- id: \"R14-W5\"\t  status: in_progress\n- id: \"R14-W6\"\t  status: in_progress\n- id: \"R15-M3\"\t  status: open\n- id: \"R15-M4\"\t  status: open\n- id: \"R15-W1\"\t  status: in_progress\n- id: \"R16-N1\"\t  status: in_progress\n- id: \"R16-N2\"\t  status: in_progress\n- id: \"R16-W1\"\t  status: in_progress\n- id: \"R16-W2\"\t  status: in_progress\n- id: \"R16-SYS1\"\t  status: in_progress\n- id: \"R17-N1\"\t  status: in_progress\n- id: \"R17-N2\"\t  status: in_progress\n- id: \"R17-N4\"\t  status: in_progress\n- id: \"R17-N5\"\t  status: in_progress\n- id: \"R17-VL1\"\t  status: open\n- id: \"R17-VL2\"\t  status: open\n- id: \"R18-N1\"\t  status: in_progress\n- id: \"R18-N2\"\t  status: in_progress\n- id: \"R18-M1\"\t  status: in_progress\n- id: \"R18-M2\"\t  status: in_progress\n- id: \"R18-M3\"\t  status: in_progress\n- id: \"R18-VL1\"\t  status: in_progress",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "3e356c7f-9902-46f9-a484-aa914b5b336e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-23T14:01:37.575Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "There are many in_progress and open issues from previous rounds. Since this is a \"fresh\" review (重新审稿模式), I need to treat this as a fresh initial review. However, I still need to update the issue tracker with new findings from this round.\n\nLet me now read the full review_issues.yaml to understand the structure, then compose the consolidated report and update the issues tracker.\n\nActually, let me focus on composing the final report first. The issue tracker has a lot of history. For this round (Round 19, fresh), I need to:\n1. Add new issues found in this round\n2. For existing in_progress/open issues that were also raised this round, update their mentions\n\n\n3. Note which existing issues weren't mentioned this round\n\nGiven the file is quite large at 1224 lines, I'll examine the recent entries to understand the format rather than parsing everything.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b9fa386-de8c-442f-8e8c-8d6295eb8128",
+            "isSidechain": false,
+            "requestId": "req_011CbKd5q18DREUe9hq4pTWB",
+            "type": "assistant",
+            "uuid": "77311f72-7f46-41b6-ac38-2a266210ae99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JuwgZm3u1qPgWZ3ZT8EZKj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1275,
+                "cache_read_input_tokens": 113320,
+                "output_tokens": 371,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1275,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 371,
+                    "cache_read_input_tokens": 113320,
+                    "cache_creation_input_tokens": 1275,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1275
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-23T14:01:38.375Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DDwh93ZGDEcKweQSpUAtzn",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml",
+                "offset": 1150,
+                "limit": 75
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77311f72-7f46-41b6-ac38-2a266210ae99",
+            "isSidechain": false,
+            "requestId": "req_011CbKd5q18DREUe9hq4pTWB",
+            "type": "assistant",
+            "uuid": "cb2668c8-82a5-42e0-86c0-f87ec79e4fb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JuwgZm3u1qPgWZ3ZT8EZKj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1275,
+                "cache_read_input_tokens": 113320,
+                "output_tokens": 371,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1275,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 371,
+                    "cache_read_input_tokens": 113320,
+                    "cache_creation_input_tokens": 1275,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1275
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-23T14:01:38.384Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DDwh93ZGDEcKweQSpUAtzn",
+              "type": "tool_result",
+              "content": "1150\t      note: \"R18(fresh) 未单独提及\"\n1151\t\n1152\t# R18 new issues\n1153\t\n1154\t- id: \"R18-N1\"\n1155\t  summary: \"Remark 1与Figure 3间存在claim升级——DPI trivial但C⊥Y|A未证明\"\n1156\t  category: method\n1157\t  severity: major\n1158\t  status: in_progress\n1159\t  first_raised_round: 18\n1160\t  last_seen_round: 18\n1161\t  mentions:\n1162\t    - round: 18\n1163\t      reviewers: [1, 2]\n1164\t      note: \"R1-W1 + R2交叉AGREE: Remark 1只证trivial DPI; Figure 3隐含更强的C⊥Y|A; 需在Prop 1条件下显式证明I(C;Y)≤I(A;Y)\"\n1165\t\n1166\t- id: \"R18-N2\"\n1167\t  summary: \"BR应重新框定为degeneration度量而非bias度量\"\n1168\t  category: method\n1169\t  severity: major\n1170\t  status: in_progress\n1171\t  first_raised_round: 18\n1172\t  last_seen_round: 18\n1173\t  mentions:\n1174\t    - round: 18\n1175\t      reviewers: [1, 2]\n1176\t      note: \"R1-W2 + R2交叉AGREE: permutation BR_null≈BR_obs意味着BR完全由base rate解释; 建议报告BR_excess并将BR角色从measuring bias转为measuring structural coupling\"\n1177\t\n1178\t- id: \"R18-M1\"\n1179\t  summary: \"遗漏引用: Xie et al. (2023) Self-Evaluation Guided Beam Search\"\n1180\t  category: writing\n1181\t  severity: minor\n1182\t  status: in_progress\n1183\t  first_raised_round: 18\n1184\t  last_seen_round: 18\n1185\t  mentions:\n1186\t    - round: 18\n1187\t      reviewers: [1, 2]\n1188\t      note: \"R2建议, R1 AGREE\"\n1189\t\n1190\t- id: \"R18-M2\"\n1191\t  summary: \"Table 1 Mistral-7B multi-seed行间关系不直观\"\n1192\t  category: format\n1193\t  severity: minor\n1194\t  status: in_progress\n1195\t  first_raised_round: 18\n1196\t  last_seen_round: 18\n1197\t  mentions:\n1198\t    - round: 18\n1199\t      reviewers: [1]\n1200\t      note: \"R1-M2: s123/s456/s789与3s(3-seed aggregated)关系需在caption/脚注说明\"\n1201\t\n1202\t- id: \"R18-M3\"\n1203\t  summary: \"56.4%零变量重叠的计算粒度未说明\"\n1204\t  category: method\n1205\t  severity: minor\n1206\t  status: in_progress\n1207\t  first_raised_round: 18\n1208\t  last_seen_round: 18\n1209\t  mentions:\n1210\t    - round: 18\n1211\t      reviewers: [1]\n1212\t      note: \"R1-M3: per-problem? per-dataset? per-constraint pair?\"\n1213\t\n1214\t- id: \"R18-VL1\"\n1215\t  summary: \"Table 1(page 5)数据字号偏小(7-8pt), 符号系统认知负荷高\"\n1216\t  category: format\n1217\t  severity: warning\n1218\t  status: in_progress\n1219\t  first_raised_round: 18\n1220\t  last_seen_round: 18\n1221\t  mentions:\n1222\t    - round: 18\n1223\t      reviewers: []\n1224\t      note: \"R18 视觉审查: gold ICL/bold/†等符号系统需理解多个convention\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb2668c8-82a5-42e0-86c0-f87ec79e4fb9",
+            "isSidechain": false,
+            "promptId": "4956dacd-34a9-4015-8fc8-e0b67ef796cf",
+            "type": "user",
+            "uuid": "c61de215-5495-4c39-87f8-8a40b803bc28",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml",
+                "content": "      note: \"R18(fresh) 未单独提及\"\n\n# R18 new issues\n\n- id: \"R18-N1\"\n  summary: \"Remark 1与Figure 3间存在claim升级——DPI trivial但C⊥Y|A未证明\"\n  category: method\n  severity: major\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 18\n  mentions:\n    - round: 18\n      reviewers: [1, 2]\n      note: \"R1-W1 + R2交叉AGREE: Remark 1只证trivial DPI; Figure 3隐含更强的C⊥Y|A; 需在Prop 1条件下显式证明I(C;Y)≤I(A;Y)\"\n\n- id: \"R18-N2\"\n  summary: \"BR应重新框定为degeneration度量而非bias度量\"\n  category: method\n  severity: major\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 18\n  mentions:\n    - round: 18\n      reviewers: [1, 2]\n      note: \"R1-W2 + R2交叉AGREE: permutation BR_null≈BR_obs意味着BR完全由base rate解释; 建议报告BR_excess并将BR角色从measuring bias转为measuring structural coupling\"\n\n- id: \"R18-M1\"\n  summary: \"遗漏引用: Xie et al. (2023) Self-Evaluation Guided Beam Search\"\n  category: writing\n  severity: minor\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 18\n  mentions:\n    - round: 18\n      reviewers: [1, 2]\n      note: \"R2建议, R1 AGREE\"\n\n- id: \"R18-M2\"\n  summary: \"Table 1 Mistral-7B multi-seed行间关系不直观\"\n  category: format\n  severity: minor\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 18\n  mentions:\n    - round: 18\n      reviewers: [1]\n      note: \"R1-M2: s123/s456/s789与3s(3-seed aggregated)关系需在caption/脚注说明\"\n\n- id: \"R18-M3\"\n  summary: \"56.4%零变量重叠的计算粒度未说明\"\n  category: method\n  severity: minor\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 18\n  mentions:\n    - round: 18\n      reviewers: [1]\n      note: \"R1-M3: per-problem? per-dataset? per-constraint pair?\"\n\n- id: \"R18-VL1\"\n  summary: \"Table 1(page 5)数据字号偏小(7-8pt), 符号系统认知负荷高\"\n  category: format\n  severity: warning\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 18\n  mentions:\n    - round: 18\n      reviewers: []\n      note: \"R18 视觉审查: gold ICL/bold/†等符号系统需理解多个convention\"",
+                "numLines": 75,
+                "startLine": 1150,
+                "totalLines": 1225
+              }
+            },
+            "sourceToolAssistantUUID": "cb2668c8-82a5-42e0-86c0-f87ec79e4fb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 2 审稿结果]: ## 逐条回应 Reviewer 1 审稿意见  ---  ### Must-Fix  **[AGREE] R1-N1: Capability-gap pattern n=6 且共享 verifier**  同意，且 R1 的分析比我的 N3 更精确。我的 N3 主要从\"证据量不足\"角度批评，R1 进一步指出 4/6 条件共享同一 DeBERTa verifi…",
+                "leafUuid": "c61de215-5495-4c39-87f8-8a40b803bc28",
+                "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d"
+              }
+            }
+          ],
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP 2026",
+                "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d"
+              }
+            }
+          ],
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-23T14:02:01.081Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a good understanding of the issue tracker structure. Let me now compose the consolidated review report and update the issue tracker.\n\nFor this round (Round 19, fresh mode), the key findings from both reviewers are:\n\n**Must-Fix (consensus):**\n1. R2-N1: Two citations with severe metadata errors (byerly2026, dupo2025) — R1 AGREE\n2. R2-N2: \"Advances beyond Huang et al.\" claim overstated — R1 AGREE with nuance\n3. R1-N1 = R2-N3: Cross-architecture escape evidence too weak for top-level contribution — Both AGREE\n\n\n4. R1-N2 ≈ R2-W2 (upgraded): Underpowered conditions and imprecise negative claim need addressing — Both AGREE\n\n**Should-Fix (consensus):**\n5. R2-W1: Abstract exceeds 200 words — R1 AGREE\n6. R1-W1 + R2-W4: BR/SCB conceptual circularity and over-naming — Both converge\n7. R1-W2: \"Pre-registered\" lacks registration evidence — R2 AGREE\n8. R1-W3: BH correction m=16 includes non-independent conditions — R2 AGREE with nuance\n9. R1-W4: Observation condition (iii) lacks systematic validation — R2 AGREE\n10. R1-W5 + R2 additional: Cross-architecture escape may stem from ensemble diversity effect — Both AGREE\n11. R2-W3: Turpin et al. year error — R1 AGREE\n12. R2-W5: Paper density too high — R1 AGREE minor\n\n**Overall: 3.0 (Findings)** — Both reviewers converge\n\nNow I'm drafting the consolidated report and then updating the issues tracker. I need to map these findings to existing issues where they overlap, flag novel findings as new issues, and track which problems keep surfacing across reviews.\n\nMapping the R19 findings: citation errors and the \"advances beyond Huang\" claim connect to prior issues, the capability gap with n=6 aligns with earlier concerns about statistical power, the abstract length and pre-registration status are new flags, the Benjamini-Hochberg correction and condition iii validation issues need tracking, and the ensemble diversity observation ties back to cross-architecture patterns we've seen before.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c61de215-5495-4c39-87f8-8a40b803bc28",
+            "isSidechain": false,
+            "requestId": "req_011CbKd6dz7tt2YjYVvxtL1b",
+            "type": "assistant",
+            "uuid": "8cc70b52-2057-4b93-8e33-093faef42505",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YSafafsQnkN2eMc14n7kZq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1484,
+                "cache_read_input_tokens": 114595,
+                "output_tokens": 11030,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1484,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11030,
+                    "cache_read_input_tokens": 114595,
+                    "cache_creation_input_tokens": 1484,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1484
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-23T14:02:01.873Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "视觉审查已完成（1 warning, 9 info），外部审稿未请求。现在合成最终报告并更新 Issue Tracker。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8cc70b52-2057-4b93-8e33-093faef42505",
+            "isSidechain": false,
+            "requestId": "req_011CbKd6dz7tt2YjYVvxtL1b",
+            "type": "assistant",
+            "uuid": "bcfd8cef-d016-4bf3-8a2f-ed05f95a3d67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YSafafsQnkN2eMc14n7kZq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1484,
+                "cache_read_input_tokens": 114595,
+                "output_tokens": 11030,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1484,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11030,
+                    "cache_read_input_tokens": 114595,
+                    "cache_creation_input_tokens": 1484,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1484
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-23T14:04:34.020Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TUepHirM4q4Mc9Ww72ETAn",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "symb_invariant_consensus",
+                "issues_yaml": "# Round 1-8 issues (all resolved/wont_fix) — retained for history (abbreviated)\n- id: \"R1-C1\"\n  summary: \"Method Stage 3 sat() implementation undescribed\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"Fully formalized: Eq.(1)-(5), Algorithm 1-2, α=0.5 explicit.\"\n  resolution_round: 3\n\n- id: \"R1-C2\"\n  summary: \"Most experiments underpowered (n≤60), no power analysis\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  resolution: \"Power analysis + Bootstrap CIs added. Larger n conditions (200-600).\"\n  resolution_round: 3\n\n- id: \"R1-C3\"\n  summary: \"Oracle/upper-bound experiment missing\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  resolution: \"Dual oracle: FOLIO +14.22pp, ProofWriter +11.50pp.\"\n  resolution_round: 3\n\n- id: \"R1-C4\"\n  summary: \"Huang et al. (ICLR 2024) not cited\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 2\n  resolution: \"Huang, Stechly, Kambhampati all cited and discussed.\"\n  resolution_round: 2\n\n- id: \"R1-C5\"\n  summary: \"Critical related work missing\"\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  resolution: \"~48 citations, 5 Related Work paragraphs.\"\n  resolution_round: 3\n\n- id: \"R1-C9\"\n  summary: \"Capability trap novelty unclear\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"Reframed as regime-dependent analysis with CJT framework.\"\n  resolution_round: 3\n\n- id: \"R3-N1\"\n  summary: \"σ(c,a) scoring inconsistent between self-extraction and oracle\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 4\n  resolution: \"Paper Agent added clarifying sentence in method.tex.\"\n  resolution_round: 4\n\n- id: \"R3-N2\"\n  summary: \"α value never specified\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  resolution: \"α=0.5 explicit in Eq.(3) and §4.1.\"\n  resolution_round: 3\n\n# Round 9+ recurring issues\n\n- id: \"R9-W2\"\n  summary: \"NLI combo weight parameter w 未交叉验证\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 19\n  mentions:\n    - round: 17\n      reviewers: []\n      note: \"R17(fresh) 未单独提及\"\n    - round: 18\n      reviewers: []\n      note: \"R18(fresh) 未单独提及\"\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及，但 cross-architecture escape 整体证据不足的共识间接涵盖\"\n\n- id: \"R9-W3\"\n  summary: \"Capability Gap Hypothesis 基于极小样本 (n=6)\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 19\n  mentions:\n    - round: 17\n      reviewers: []\n      note: \"R17(fresh) 未单独提及\"\n    - round: 18\n      reviewers: []\n      note: \"R18(fresh) 未单独提及\"\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1-N1 + R2-N3: 两位 reviewer 一致认为 n=6 且 4/6 共享 DeBERTa verifier，应降级为 preliminary observation。R2 补充 'generator < verifier 才有增益' 是 trivial condition\"\n\n- id: \"R9-VL1\"\n  summary: \"Pages 1-2 连续纯文本无 display item\"\n  category: format\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19 视觉审查: Figure 1 出现在 page 2 顶部，视觉锚点存在但仍在前 3 页范围内\"\n\n- id: \"R9-VL4\"\n  summary: \"Discussion/Conclusion 展开不足\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [2]\n      note: \"R2-W5: Section 7 仅约 1/3 页，论文整体密度过高，\\enlargethispage{6\\baselineskip} 等排版 hack\"\n\n- id: \"R10-N2\"\n  summary: \"κ→K_eff 映射理论基础不足——r=0.625 验证弱\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 18\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及\"\n\n- id: \"R10-N3\"\n  summary: \"Capability gap 'perfectly monotonic' 结论基于 n=6 非独立数据点\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R9-W3 同，两位 reviewer 共识降级为 preliminary observation\"\n\n- id: \"R10-W1\"\n  summary: \"DRC τ 阈值无 held-out 评估\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 18\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及\"\n\n- id: \"R10-W2\"\n  summary: \"Cross-architecture NLI escape 适用面极窄\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1-W5: 可能只是 ensemble diversity 效应而非 SCB escape。R2 AGREE 并建议 cross-model majority vote ablation\"\n\n- id: \"R10-W3\"\n  summary: \"四种子复制方差大 + 统计功效 <21%\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1-N2 + R2-W2(升级): 10/16 条件 underpowered，Abstract/标题的 blanket negative claim 超出统计证据范围\"\n\n- id: \"R10-W4\"\n  summary: \"TOST ±2pp margin 缺少显式理由\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-W2: 使用 'pre-registered' 但无 OSF 等注册凭证，应改为 'pre-specified'\"\n\n- id: \"R10-W6\"\n  summary: \"SatLM specification-generation vs SICA trace-extraction 对比不充分\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 18\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及\"\n\n- id: \"R10-W7\"\n  summary: \"'Symbolic Confirmation Bias' 需与近期 CoT confirmation bias 工作区分\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1-W1 + R2-W4: 两位 reviewer 从不同角度收敛——R1 从技术层面(BR_excess≈0)、R2 从概念层面(structural limitation vs cognitive bias analogy)。共识：应区分 structural degeneration 和 extraction bias\"\n\n- id: \"R10-W8\"\n  summary: \"Related Work 过度压缩——引用列表而非文献讨论\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 18\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及\"\n\n- id: \"R10-I1\"\n  summary: \"'Symbolic Mirage' 概念新颖性——与 Huang/Wan 的 confirmation bias 区别\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R2-N2: 'advances beyond Huang et al.' claim 过度，核心洞见在 Huang + Condorcet 下可预见。R1 AGREE with nuance: scope extension + formalization 而非 fundamental advance\"\n\n- id: \"R10-I2\"\n  summary: \"Independence-Accuracy Trade-off 作为独立贡献有 bias-variance 重述嫌疑\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 18\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及\"\n\n- id: \"R10-VL1\"\n  summary: \"主文缺结果可视化\"\n  category: format\n  severity: warning\n  status: resolved\n  last_seen_round: 17\n  resolution: \"Figure 2, Figure 4 added in main text.\"\n  resolution_round: 17\n\n- id: \"R10-W5\"\n  summary: \"Bias Ratio 无置信区间\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 10\n  last_seen_round: 10\n  resolution: \"95% bootstrap CIs added for BR.\"\n  resolution_round: 11\n\n- id: \"R10-N1\"\n  summary: \"Proposition 1 (Self-Extraction Ceiling) 无证明——empirical claim dressed as theorem\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 10\n  last_seen_round: 13\n  resolution: \"Renamed to Observation 1, conditions made explicit, empirical support section added.\"\n  resolution_round: 14\n\n- id: \"R11-N1\"\n  summary: \"Spearman ρ=1.0 (n=6) 被过度使用\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R9-W3/R10-N3 同一问题群，R19 两位 reviewer 共识\"\n\n- id: \"R11-N2\"\n  summary: \"中心 claim 'SICA fails' 与统计功效不匹配——Abstract/title 过强\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1-N2: 建议 Abstract 改为 'no evidence exceeding ~2pp'。R2 升级为 Must-Fix\"\n\n- id: \"R11-N3\"\n  summary: \"TOST ±2pp margin 缺乏 principled 论证\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-W2: 'pre-registered' 无注册凭证\"\n\n- id: \"R11-W1\"\n  summary: \"DRC 评估不充分——仅PW完整\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 18\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及\"\n\n- id: \"R11-W2\"\n  summary: \"BR 指标存在循环论证倾向\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1-W1: BR>1 是 source-attribution 的数学必然，permutation BR_excess≈0。R2 AGREE: BR 度量 degeneration 而非 independent bias signal\"\n\n- id: \"R11-W3\"\n  summary: \"术语过度品牌化——'Symbolic Mirage' 偏 dramatic\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [2]\n      note: \"R2-W4 相关: SCB 命名暗示 cognitive bias 类比但实质是 structural limitation\"\n\n- id: \"R11-W4\"\n  summary: \"新颖性定位需更早更明确建立与先验工作的 distinction\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R2-N2: 'advances beyond' 应改为 'extends and formalizes'。R1 AGREE with nuance\"\n\n- id: \"R11-W5\"\n  summary: \"Independence-Accuracy Trade-off 应定位为量化而非新发现\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 18\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及\"\n\n- id: \"R11-W7\"\n  summary: \"Ensemble diversity 文献缺失\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1 + R2 均指出缺少 Dietterich (2000), Krogh & Vedelsby (1994/1995)\"\n\n- id: \"R12-N1\"\n  summary: \"Capability-gap pattern 证据不足以支撑 top-level contribution\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 12\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R9-W3 同一 issue 群\"\n\n- id: \"R12-N2\"\n  summary: \"Underpowered tests 与 negative claim 之间存在 gap\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 12\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R11-N2 同一 issue\"\n\n- id: \"R12-W1\"\n  summary: \"Cross-architecture escape 可能是 ensemble diversity\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 12\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1-W5 + R2 AGREE: 需 cross-model majority vote ablation 区分假说\"\n\n- id: \"R12-W4\"\n  summary: \"Observation 1 条件验证不完整\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 12\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-W4: 条件 (iii) uniform constraint yield 缺乏 per-trace 分布统计量验证\"\n\n- id: \"R12-EC1\"\n  summary: \"代码/数据可获取性声明缺失\"\n  category: format\n  severity: warning\n  status: in_progress\n  first_raised_round: 12\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-M5: 无 'code will be released upon acceptance' 声明\"\n\n- id: \"R13-N2\"\n  summary: \"Novelty claim 相对 Huang et al. (2024) 的增量有限\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 13\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R2-N2: 'advances beyond' 过度声明。R1 AGREE: scope extension + formalization 而非 fundamental advance\"\n\n- id: \"R13-N3\"\n  summary: \"Abstract negative claim 过强\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 13\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R11-N2 同一 issue\"\n\n- id: \"R13-W1\"\n  summary: \"SCB 命名过度——structural limitation 而非 bias\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 13\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1-W1 + R2-W4: 共识指向同一根本问题\"\n\n- id: \"R13-W2\"\n  summary: \"BH 校正 m=16 包含非独立条件\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 13\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-W3: seed aggregates 与 component seeds 重叠，应区分 confirmatory vs exploratory\"\n\n- id: \"R13-W3\"\n  summary: \"Missing references: ensemble diversity 文献\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 13\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R11-W7 同一 issue\"\n\n- id: \"R13-W4\"\n  summary: \"论文密度过高，可读性受损\"\n  category: format\n  severity: warning\n  status: in_progress\n  first_raised_round: 13\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [2]\n      note: \"R2-W5: \\enlargethispage{6\\baselineskip} + 多处负 vspace，Section 7 仅 1/3 页\"\n\n- id: \"R14-N1\"\n  summary: \"Cross-architecture escape 证据不足\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 14\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R9-W3 同一 issue 群\"\n\n- id: \"R14-N2\"\n  summary: \"Underpowered negative claim\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 14\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R11-N2 同一 issue\"\n\n- id: \"R14-W1\"\n  summary: \"BR 循环论证\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 14\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R11-W2 同一 issue\"\n\n- id: \"R14-W2\"\n  summary: \"Observation 1 条件 (iii) 未验证\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 14\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"与 R12-W4 同一 issue\"\n\n- id: \"R14-W3\"\n  summary: \"Novelty positioning vs Huang et al.\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 14\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R13-N2 同一 issue\"\n\n- id: \"R14-W5\"\n  summary: \"'Pre-registered' 无注册凭证\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 14\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-W2: 应改为 'pre-specified'\"\n\n- id: \"R14-W6\"\n  summary: \"Missing references: OpenAI o1/o3\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 14\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [2]\n      note: \"R2: o1/o3 是 test-time compute scaling 开创性工作，Section 2 应引用\"\n\n- id: \"R15-M3\"\n  summary: \"Abstract 词数超限\"\n  category: format\n  severity: warning\n  status: open\n  first_raised_round: 15\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R2-W1: 约 202 词，超过 EMNLP 2026 的 200 词硬约束。R1 AGREE\"\n\n- id: \"R15-M4\"\n  summary: \"代码/数据可获取性声明缺失\"\n  category: format\n  severity: warning\n  status: open\n  first_raised_round: 15\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-M5: 与 R12-EC1 同一 issue\"\n\n- id: \"R15-W1\"\n  summary: \"Turpin et al. 引用年份错误\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 15\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R2-W3: year={2024} 应为 2023。R1 AGREE\"\n\n- id: \"R16-N1\"\n  summary: \"Cross-architecture escape 过度声明\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R9-W3 同一 issue 群\"\n\n- id: \"R16-N2\"\n  summary: \"Underpowered negative claim\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R11-N2 同一 issue\"\n\n- id: \"R16-W1\"\n  summary: \"BR/SCB 概念循环\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R11-W2 同一 issue\"\n\n- id: \"R16-W2\"\n  summary: \"Novelty vs Huang et al.\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R13-N2 同一 issue\"\n\n- id: \"R16-SYS1\"\n  summary: \"论文密度过高\"\n  category: format\n  severity: warning\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [2]\n      note: \"与 R13-W4 同一 issue\"\n\n- id: \"R17-N1\"\n  summary: \"Cross-architecture escape n=6\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R9-W3 同一 issue 群\"\n\n- id: \"R17-N2\"\n  summary: \"Underpowered negative claim\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R11-N2 同一 issue\"\n\n- id: \"R17-N4\"\n  summary: \"BR 循环论证\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R11-W2 同一 issue\"\n\n- id: \"R17-N5\"\n  summary: \"Novelty vs Huang et al.\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"与 R13-N2 同一 issue\"\n\n- id: \"R17-VL1\"\n  summary: \"Figure 3 causal DAG 尺寸偏小\"\n  category: format\n  severity: warning\n  status: open\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19 视觉审查 info: Figure 3 仅占左栏顶部约 1/4 面积\"\n\n- id: \"R17-VL2\"\n  summary: \"Figure 4 标签文字偏小\"\n  category: format\n  severity: warning\n  status: open\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19 视觉审查 info: x轴标签和图例需仔细辨认\"\n\n- id: \"R18-N1\"\n  summary: \"Remark 1与Figure 3间存在claim升级——DPI trivial但C⊥Y|A未证明\"\n  category: method\n  severity: major\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 18\n  mentions:\n    - round: 18\n      reviewers: [1, 2]\n      note: \"R1-W1 + R2交叉AGREE\"\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未直接提及此具体 claim 升级问题\"\n\n- id: \"R18-N2\"\n  summary: \"BR应重新框定为degeneration度量而非bias度量\"\n  category: method\n  severity: major\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 19\n  mentions:\n    - round: 18\n      reviewers: [1, 2]\n      note: \"R1-W2 + R2交叉AGREE\"\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R1-W1 + R2-W4: BR_excess≈0 证实 BR 完全由 trace-count 结构解释，应区分 structural degeneration vs extraction bias\"\n\n- id: \"R18-M1\"\n  summary: \"遗漏引用: Xie et al. (2023) Self-Evaluation Guided Beam Search\"\n  category: writing\n  severity: minor\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 18\n  mentions:\n    - round: 18\n      reviewers: [1, 2]\n      note: \"R2建议, R1 AGREE\"\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及，但论文已在 Section 2 引用 xie2023selfevaluation\"\n\n- id: \"R18-M2\"\n  summary: \"Table 1 Mistral-7B multi-seed行间关系不直观\"\n  category: format\n  severity: minor\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 18\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19(fresh) 未单独提及\"\n\n- id: \"R18-M3\"\n  summary: \"56.4%零变量重叠的计算粒度未说明\"\n  category: method\n  severity: minor\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 19\n  mentions:\n    - round: 18\n      reviewers: [1]\n      note: \"R1-M3: per-problem? per-dataset? per-constraint pair?\"\n    - round: 19\n      reviewers: [1]\n      note: \"R1-M3 引用 §5.1 原文: 'per-problem average'——论文已说明但表述不够突出\"\n\n- id: \"R18-VL1\"\n  summary: \"Table 1(page 5)数据字号偏小(7-8pt), 符号系统认知负荷高\"\n  category: format\n  severity: warning\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 19\n  mentions:\n    - round: 18\n      reviewers: []\n      note: \"R18 视觉审查\"\n    - round: 19\n      reviewers: []\n      note: \"R19 视觉审查确认: Table 1 字号偏小(~7pt)，处于舒适阅读下限\"\n\n# R19 new issues\n\n- id: \"R19-N1\"\n  summary: \"两条引用存在严重元数据错误（byerly2026selfconsistency, dupo2025）\"\n  category: writing\n  severity: critical\n  status: open\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R2-N1 发现，R1 交叉 AGREE: byerly2026 作者名(Nicholas→Adam)、年份(2026→2024)、主题三重错误; dupo2025 标题(Process→Preference)、作者(Yang Chenxu→Shuaijie She)错误。模式暗示 LLM-assisted hallucination\"\n\n- id: \"R19-N2\"\n  summary: \"Introduction 使用 'prove' 描述 Observation 1，但 Obs 1 依赖经验条件\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-M1: §1 'We prove this degeneration is structural (Observation 1)' 应改为 'show' 或 'demonstrate'\"\n\n- id: \"R19-W1\"\n  summary: \"Limitations section heading 孤悬（orphan heading）\"\n  category: format\n  severity: warning\n  status: open\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19 视觉审查 warning: Limitations heading 在 page 8 底部极端位置，正文在 page 9 顶部\"\n\n- id: \"R19-M1\"\n  summary: \"Frontier model Table 2 中 Gemini n_err=12 的 BR 置信区间过宽需标注\"\n  category: experiment\n  severity: minor\n  status: open\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R2 minor point 1: n_err=12 的 BR 不应与 n_err=90 的同等权重解读。Table 2 caption 已提及但正文应更突出\"\n\n- id: \"R19-M2\"\n  summary: \"gpt-4o self-extraction (^a) 的 API-based 实现应明确说明\"\n  category: method\n  severity: minor\n  status: open\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-M2: Table 2 标 ^a=self-extraction，但闭源 API 的 self-extraction 与开源模型有实现差异\"\n\n- id: \"R19-M3\"\n  summary: \"Section 5.1 中 83.3% vs Appendix Table 80.9% 数字不一致需标注定义差异\"\n  category: writing\n  severity: minor\n  status: open\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-M3: 前者是 raw constraint fraction，后者是 MaxSAT-weighted，正文应明确标注\"\n\n- id: \"R19-M4\"\n  summary: \"ProcessSim 使用 TF-IDF 而非语义相似度的局限性应在正文提及\"\n  category: method\n  severity: minor\n  status: open\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [1]\n      note: \"R1-M4: Appendix R 有 SBERT 替代验证，但主文应简要提及 representation choice limitation\"\n\n- id: \"R19-M5\"\n  summary: \"Missing reference: OpenAI o1/o3 in test-time compute discussion\"\n  category: writing\n  severity: minor\n  status: open\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [2]\n      note: \"Table 2 包含 o3 结果但 Related Work Section 2 'test-time compute' 段未显式引用 o1/o3 的推理机制工作\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bcfd8cef-d016-4bf3-8a2f-ed05f95a3d67",
+            "isSidechain": false,
+            "requestId": "req_011CbKd6dz7tt2YjYVvxtL1b",
+            "type": "assistant",
+            "uuid": "0ace6553-6533-4d7d-aa09-870d86e89eac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YSafafsQnkN2eMc14n7kZq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1484,
+                "cache_read_input_tokens": 114595,
+                "output_tokens": 11030,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1484,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11030,
+                    "cache_read_input_tokens": 114595,
+                    "cache_creation_input_tokens": 1484,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1484
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 2 审稿结果]: ## 逐条回应 Reviewer 1 审稿意见  ---  ### Must-Fix  **[AGREE] R1-N1: Capability-gap pattern n=6 且共享 verifier**  同意，且 R1 的分析比我的 N3 更精确。我的 N3 主要从\"证据量不足\"角度批评，R1 进一步指出 4/6 条件共享同一 DeBERTa verifi…",
+                "leafUuid": "0ace6553-6533-4d7d-aa09-870d86e89eac",
+                "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d"
+              }
+            }
+          ],
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP 2026",
+                "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d"
+              }
+            }
+          ],
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-23T14:04:34.263Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TUepHirM4q4Mc9Ww72ETAn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 23674}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ace6553-6533-4d7d-aa09-870d86e89eac",
+            "isSidechain": false,
+            "promptId": "4956dacd-34a9-4015-8fc8-e0b67ef796cf",
+            "type": "user",
+            "uuid": "1af277f0-e74d-49ac-9c80-2a6d2a94f8ec",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 23674}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml\", \"bytes\": 23674}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "0ace6553-6533-4d7d-aa09-870d86e89eac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-23T14:04:38.148Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue Tracker 已更新。现在提交合成报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1af277f0-e74d-49ac-9c80-2a6d2a94f8ec",
+            "isSidechain": false,
+            "requestId": "req_011CbKdKbjJL7L8s2eWTxRaA",
+            "type": "assistant",
+            "uuid": "77f0c91b-5bd5-4a4b-bea8-fb6e749fdbd3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lm4ZEg2S19fibJs71mXKuj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11113,
+                "cache_read_input_tokens": 116079,
+                "output_tokens": 7425,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11113,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7425,
+                    "cache_read_input_tokens": 116079,
+                    "cache_creation_input_tokens": 11113,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11113
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-23T14:07:38.484Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013NQK41UTNu9uperE55QthU",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "project": "symb_invariant_consensus",
+                "reviewer_ids_acknowledged": [
+                  1,
+                  2
+                ],
+                "cross_response_reviewer_ids": [
+                  1,
+                  2
+                ],
+                "overall_score": "3.0",
+                "report": "# 审稿报告 — Round 19 (Fresh)\n\n**论文**: Beyond Self-Consistency: Self-Extracted Constraints Provide No Detectable Improvement in LLM Reasoning\n**Venue**: EMNLP 2026 (ARR May 2026 cycle)\n**Reviewer 编排**: 2 人（R1: 方法严谨性, R2: 新颖性与完整性）\n**审稿模式**: Fresh（重新审稿，无上轮记忆）\n\n---\n\n## Summary\n\n本文提出 SICA（Symbolic Invariant Consensus Aggregation），从 LLM chain-of-thought traces 中提取逻辑约束，通过 Z3 MAX-SAT 求解选择答案。核心发现是 negative result：SICA 在 6 个模型（7B–32B）、3 个推理数据集上均未显著优于 majority voting（Self-Consistency）。论文将此诊断为\"symbolic confirmation bias\"——自提取约束系统性地追踪模型自身的答案分布而非提供独立信号。27 种 training-free 修补策略均失败。形式化分析提供了 Observation 1（argmax preservation under degeneration）和 Remark 1（DPI information ceiling）。跨架构验证（DeBERTa NLI）在最弱生成器上显示初步逃逸（+6.67pp）。三个零成本诊断指标（K_eff, BR, C₀）在 60 个条件上 correctly characterize failure modes。\n\n---\n\n## Strengths\n\n1. **统计方法论极为扎实** [R1 Strength 1, R2 Strength 1, 共识]：McNemar paired test + BH FDR correction (m=16) + TOST equivalence testing + Bootstrap CI (10,000 resamples) + Power analysis + multi-seed replication 的完整组合在 NLP 论文中极为罕见。诚实报告 underpowered conditions 和 power limitations 体现了高水准的科学诚信。\n\n2. **Oracle control 设计精巧** [R1 Strength 2]：用 gold FOL/DSL 标注替换 self-extracted constraints 的对照实验（+29.90pp FOLIO, +17.17pp ProofWriter, p < 10⁻⁷）清晰地将问题定位在 extraction 而非 solver。这是本文最有说服力的实验设计。\n\n3. **27 种 remediation 变体的系统化测试** [R1 Strength 3, R2 Strength 3, 共识]：涵盖 prompt-level、method-level、paradigm、solver、input diversity、filtering 六个维度，彻底排除了 \"换个方法就行\" 的反驳。Independence-accuracy trade-off 的实证支持充分。\n\n4. **形式化声明命名克制得当** [R1 Strength 4]：使用 Observation 和 Remark 而非 Theorem/Proposition，诚实反映了其依赖经验条件的本质。\n\n5. **诊断框架有实践价值** [R1 Strength 5, R2 Strength 4]：C₀ < 5%, K_eff ≤ 1.30, BR + SC regime 三个 zero-cost diagnostics 在 60 个条件上 correctly characterize failure modes，prospective validation 在 held-out families (LLaMA, Qwen3) 上通过。对从业者有直接实用价值。\n\n6. **Entropy decomposition 分析精细** [R1 Strength 6]：low-entropy 问题 Δ ≈ 0、high-entropy 问题方向取决于 SC regime 的发现强化了 regime-dependent 叙事。\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**MF-1** [critical, R2-N1, R1 交叉 AGREE] **两条引用存在严重元数据错误**\n\n- `byerly2026selfconsistency`：bib 记录作者 \"Nicholas Byerly and Daniel Khashabi, 2026\"，但 arXiv:2411.01101 实际作者是 **Adam Byerly**，发表于 **2024**，实际标题/主题（positional bias on long-context problems）与引用标题（mathematical reasoning）完全不同。作者名、年份、主题三重错误。\n- `dupo2025`：bib 记录标题 \"DuPO: Dual **Process** Optimization\"、一作 \"Yang, Chenxu\"，但 arXiv:2508.14460 实际标题是 \"DuPO: Enabling Reliable LLM Self-Verification via Dual **Preference** Optimization\"，一作为 **Shuaijie She**，Yang Chenxu 不在作者列表中。\n- 错误模式（真实 arXiv ID 配上错误元数据）高度暗示 LLM-assisted hallucination。byerly2026 在 Related Work 中支持 \"SC gains plateau\" 论点，dupo2025 在 training-based verification 段落中被引用——文献支撑存在漏洞。\n- **要求**：对全部参考文献进行系统性交叉验证，修正所有错误条目。\n\n**MF-2** [critical, R2-N2, R1 AGREE with nuance] **\"Advances beyond Huang et al. (2024)\" 的 claim 过度**\n\n- 论文在 Abstract、Section 1（Introduction）、Section 2（Related Work）、Section 7（Discussion）至少四处使用 \"advances beyond Huang et al. (2024)\" 措辞。\n- Huang et al. (ICLR 2024) 已建立 \"LLMs cannot self-correct reasoning without external feedback\" 核心结论。本文的贡献是 (a) 将此洞见扩展到 formal symbolic verification setting，(b) 提供 Markov chain 形式化（Observation 1, Remark 1），(c) 系统排除 27 种 remediation——这是 **scope extension + formalization**，而非 fundamental insight 上的 \"advance beyond\"。\n- 核心洞见（自提取信息因与答案来自同一信息源而缺乏独立性）在 Huang et al. + Condorcet Jury Theorem 框架下是可预见的。\n- **要求**：将 \"advances beyond\" 改为更精确的表述如 \"extends and formalizes ... in the context of formal self-verification\"。\n\n**MF-3** [critical, R1-N1 + R2-N3, 共识] **Cross-architecture escape 证据不足以支撑 top-level contribution**\n\n- Capability-gap pattern 仅基于 6 个 verifier-generator 组合（Spearman ρ=1.0, p=0.003），其中 **4/6 共享同一 DeBERTa verifier**，实际有效自由度远小于 n=6。\n- Table 3 的 n=4 generators 全部 paired with 同一 DeBERTa-large-mnli，排列空间仅 24 种。\n- \"Generator SC < verifier standalone accuracy 才有增益\" 可能是 **trivial condition**——本质上是 \"用更好的模型替代更差的模型\" 的必然结果，不需要 information independence 理论。\n- R1 额外指出：增益可能只是 **ensemble diversity 效应**（Dietterich 2000），而非 SCB escape。需要 cross-model majority vote ensemble 作为 ablation 区分两种假说。\n- Domain-adapted verifier (99.67% standalone) 引入了 training，与 training-free 叙事线矛盾。论文自己承认 \"directional evidence rather than a proposed method\"，但叙事结构仍将其作为 escape 证据呈现。\n- **要求**：将 Contribution 3 从并列贡献降级为 \"preliminary observation\"，或增加不同架构的 verifier + cross-model majority vote ablation。\n\n**MF-4** [critical, R1-N2 + R2-W2(升级), 共识] **10/16 条件 underpowered，中心论断表述超出统计证据范围**\n\n- Appendix D Table 6：3 个 confirmatory conditions 的 observed power 均低于 21%（Qwen-14B FOLIO+PW: 5.7%, LLaMA-8B StrategyQA: 20.6%, LLaMA-8B FOLIO: 18.6%）。MDE 为 1.86–4.84pp。\n- TOST 等价检验仅 4/16 条件确认等价（±2pp margin），10 条件 underpowered。\n- Abstract \"We find no evidence of improvement\" 和标题 \"No Detectable Improvement\" 构成 blanket negative claim，但统计证据仅能排除 >~2pp 的效果。\"Absence of evidence is not evidence of absence\" 在正文中有提及（Section 4），但 Abstract/标题层面的表述未反映这一 nuance。\n- **要求**：(a) Abstract 改为 \"no evidence of improvement exceeding ~2 percentage points\"；(b) 在 Discussion 中显式论证 <2pp 在 4.5× 计算开销下无实际价值，将 power limitation 转化为 practical insignificance 论证。\n\n### Should-Fix（影响评分但不一票否决）\n\n**SF-1** [warning, R1-W1 + R2-W4, 共识] **BR/SCB 概念框架混淆 structural degeneration 与 extraction bias**\n\n- R1 从技术层面指出：source-attribution scoring 下 BR > 1 是 trace-count 分布的**数学必然结果**。Permutation test 证实 BR_excess ≈ 0 (p > 0.7, §5.1)——BR 完全由 trace-count 结构解释，不含 extraction 过程的额外偏差。BR 度量的是 degeneration 程度，不是独立于 Observation 1 的 bias 证据。\n- R2 从概念层面指出：\"Symbolic **Confirmation Bias**\" 暗示 cognitive bias 类比（主动寻找支持性证据），但实际机制是 structural limitation（约束和答案来自同一信息源而结构性耦合）。\n- 两个批评收敛到同一结论：论文应更清楚地区分 \"structural degeneration\"（Observation 1 的后果）和 \"extraction bias\"（如果存在的话）。目前混淆使 BR 看起来提供了 Observation 1 之外的独立证据，但实际上没有。\n- **建议**：(a) 在首次定义 SCB 时明确说明这是 structural limitation 而非 cognitive bias 类比；(b) 报告 BR_excess 作为判断是否存在 extraction-level 额外偏差的指标；(c) 考虑更精确的术语如 \"symbolic information collapse\" 或 \"self-referential degeneration\"。\n\n**SF-2** [warning, R2-W1, R1 AGREE] **Abstract 超过 200 词限制**\n\n- 经去除 LaTeX 命令后词数统计约 202 词，超过 EMNLP 2026/ARR 的 200-word 硬约束。虽仅超出 2 词，但属明确格式违规。\n\n**SF-3** [warning, R1-W2, R2 AGREE] **\"Pre-registered\" margin ±2pp 无注册凭证**\n\n- Section 4 使用 \"pre-registered margin ±2 pp\" 但未提供 OSF/AsPredicted 等预注册链接。\"Pre-registered\" 在实证研究中有严格操作定义。改为 \"pre-specified\" 或 \"predetermined\" 即可。\n\n**SF-4** [warning, R1-W3, R2 AGREE with nuance] **BH correction m=16 包含非独立条件**\n\n- 16 个条件中包含 Mistral-7B×FOLIO 的 3 个单独 seed (s123, s456, s789) 和 1 个 3-seed aggregate，以及 Qwen2.5-14B×FOLIO 的 4-seed aggregate。Aggregate 是 component seeds 的函数，非独立检验。虽然更大的 m 使 BH 更保守，但方法论应更干净地区分 confirmatory vs exploratory 条件。\n\n**SF-5** [warning, R1-W4, R2 AGREE] **Observation 1 条件 (iii) \"approximately uniform constraint yield\" 缺乏系统验证**\n\n- 条件 (i) |C\\| ≈ 0 由 Z3 rejection rate 3.4% 实证支持，条件 (ii) source-attribution 是系统设计，但条件 (iii) 缺乏直接验证。论文未报告 per-trace constraint yield 的分布统计量（mean, std, CV），应按 answer group 分层报告。\n\n**SF-6** [warning, R2-W3, R1 AGREE] **Turpin et al. 引用年份错误**\n\n- references.bib 中 `turpin2024language` 记录 year={2024}，但 \"Language Models Don't Always Say What They Think\" 发表于 NeurIPS **2023**。\n\n**SF-7** [warning, R2-W5, R1 AGREE minor] **论文密度过高，可读性受损**\n\n- LaTeX source 含 `\\enlargethispage{6\\baselineskip}` (main.tex:72)、`\\vspace{-4mm}` (main.tex:76)、`\\vspace{-1.5mm}` (main.tex:73) 等排版 hacks。Section 7 (Discussion and Conclusion) 仅约 1/3 页。Figure 4 信息密度极高但难以快速 parse。建议将部分内容移入 appendix 以提升可读性。\n\n**SF-8** [warning, R1-M1] **Introduction 使用 \"prove\" 描述 Observation 1**\n\n- §1: \"We prove this degeneration is structural (Observation 1)\"——Observation 1 依赖经验条件 (iii)，\"prove\" 过强，应改为 \"show\" 或 \"demonstrate\"。\n\n---\n\n## Reviewer Consensus [AGREE]\n\n两位 Reviewer 在以下关键判断上达成完全共识：\n\n1. **Overall 3.0 (Findings)**：R1 初评 3.5，交叉审议后被 R2 的 novelty 和引用论点说服，下调至 3.0。\n2. **Cross-architecture escape 应降级**：n=6（实际 <6 due to shared verifier）不足以支撑 top-level contribution。\"Generator < verifier 才有增益\" 可能是 trivial condition。可能只是 ensemble diversity 效应。\n3. **Underpowered claim 需精确化**：Abstract/标题的 blanket negative claim 超出统计证据范围。\n4. **SCB/BR 概念框架需澄清**：BR > 1 是 structural 而非 bias 证据；SCB 命名暗示 correctable deficiency 但实际是 structural limitation。\n5. **引用错误必须修正**：两条引用元数据严重错误，需系统性交叉验证全部参考文献。\n6. **\"Advances beyond Huang et al.\" 表述过度**：应改为 \"extends and formalizes\"。\n7. **统计方法论是论文最大优势**：McNemar + BH + TOST + Bootstrap + Power analysis 的完整组合在 NLP 论文中极为罕见，使 negative result 高度可信。\n8. **论文适合 Findings 而非 Conference**：贡献定位是 confirmation + formalization（用大规模实验确认并形式化了一个 expected result），而非 discovery。统计严谨性满足 Findings 的 soundness 要求，但 excitement/novelty 不够 Conference。\n\n---\n\n## Reviewer Divergence [REBUT]\n\n无重大分歧。R1 初始评分比 R2 高 0.5 分，但在交叉审议后被说服并下调，最终收敛。\n\n---\n\n## Questions\n\n1. **BR_excess ≈ 0 意味着什么？** Permutation test 显示经验 BR 完全由 trace-count 结构解释（BR_excess ≈ 0, p > 0.7）——如果没有超出 base-rate 的额外 extraction bias，\"symbolic confirmation bias\" 是否应该重新命名？\n2. **Observation 1 条件 (iii) 的验证数据？** 每条 trace 平均产生多少 constraints？标准差？不同 answer group 之间的 yield 差异？\n3. **为什么不测试 non-NLI independent verifier？** Cross-model majority vote ensemble 是否也能产生类似增益？这将区分 \"information independence\" 和 \"ensemble diversity\" 假说。\n4. **TOST margin 的 \"pre-registered\" 指什么？** 是否有 OSF 或类似平台的注册记录？\n5. **如果将约束用于 re-prompting 而非 MAX-SAT scoring，结果是否不同？** 27 种策略是否都在 extraction-aggregation paradigm 内？\n6. **Domain-adapted verifier 的增益 (+12.67pp) 是否主要来自 domain-specific training 而非 structural independence？**\n\n---\n\n## Missing References\n\n1. **Ensemble diversity 经典文献** [R1 + R2 共识]：Dietterich (2000) \"Ensemble Methods in Machine Learning\", Krogh & Vedelsby (1995) \"Neural Network Ensembles, Cross Validation, and Active Learning\"——Section 2 ensemble theory 段落和 Section 6 cross-architecture discussion 应引用并回应 ensemble diversity 假说。\n2. **OpenAI o1/o3 reasoning models** [R2]：Table 2 包含 o3 cross-model extraction 结果，但 Section 2 \"test-time compute\" 段落未显式讨论 o1/o3 内部推理链机制及 SICA paradigm 的适用性。\n3. **Cobbe et al. (2021) GSM8K verifier** [R1]：独立 verifier 提升推理性能的早期实例，与 Section 6 的 cross-architecture escape 直接相关。\n\n---\n\n## External Review\n\n外部审稿：未请求。\n\n---\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成（1 warning, 9 info）。\n\n**Warning:**\n- Limitations section heading 出现在 page 8 底部极端位置（orphan heading），后续仅 2 行正文在同一页，大部分 Limitations 内容在 page 9 顶部。建议用 `\\needspace` 调整。\n\n**Info（主要发现）:**\n- Figure 1 出现在 page 2 顶部，pipeline 架构图提供清晰视觉锚点，Title-Abstract-Figure 1 叙事一致性好。\n- Figure 2 散点图图例文字偏小（约 6-7pt），建议适当放大。\n- Table 1 字号偏小（~7pt），处于舒适阅读下限。booktabs 风格正确，表头分区清晰。\n- Figure 3 Causal DAG 尺寸明显偏小（仅占左栏 1/4 面积），作为核心概念图建议放大。\n- Figure 4 条形图 x 轴标签和图例文字偏小，分类名称需仔细辨认。\n- Appendix 单页含 4 个表格，密度极高但作为 appendix 可接受。\n\n---\n\n## Overall Assessment\n\n**评分：3.0 — Findings（可被 Findings 接收）**\n\n**Reviewer 评分汇总：**\n\n| 维度 | R1 (交叉后) | R2 | 综合 |\n|------|------------|-----|------|\n| Soundness | 3.5/5 | 3.5/5 | 3.5/5 |\n| Excitement | 2.5/5 | 2.5/5 | 2.5/5 |\n| Reproducibility | 3/5 | 4/5 | 3.5/5 |\n| Confidence | 4/5 | 4/5 | 4/5 |\n| **Overall** | **3.0** | **3.0** | **3.0** |\n\n**置信度：4/5**（两位 Reviewer 在各自专长领域（统计方法论 / 文献与 novelty）均有充分把握，且交叉审议后完全收敛）\n\n**理由：**\n\n这是一篇实验执行质量高、方法论严谨的 negative result 论文。60 个条件、9 个模型、27 种修补策略的系统排除确实超出了多数同类工作的证据标准。Oracle control 精巧，诊断框架有实用价值，统计方法论在 NLP 领域属顶级水准。\n\n但在 excitement 维度存在根本性限制：核心洞见（自提取信息因与答案来自同一信息源而缺乏独立性）在 Huang et al. (ICLR 2024) 和 Condorcet Jury Theorem 框架下是可预见的。论文的贡献更准确的定位是 confirmation（用大规模实验确认 expected result）+ formalization（Markov chain model, diagnostics），而非 discovery。Cross-architecture escape 作为唯一正面贡献过于初步（n=6, shared verifier, 可能只是 ensemble diversity）。两条引用的元数据严重错误进一步降低了整体学术质量评估。\n\n如果 MF-1（引用修正）、MF-2（novelty claim tempered）、MF-4（negative claim 精确化）得到修正，本文作为 Findings 论文是合适的——为社区提供了有价值的 negative evidence 和实用的诊断工具。但以目前的 novelty framing，不足以支撑 Conference main 接收。\n\n---\n\n## Detailed Comments\n\n### Section-by-Section\n\n**Abstract (p.1):**\n- 约 202 词，超过 200 词限制 [SF-2]\n- \"advancing beyond Huang et al. (2024)'s findings\" → \"extending and formalizing\" [MF-2]\n- \"We find no evidence of improvement\" → \"no evidence of improvement exceeding ~2 percentage points\" [MF-4]\n- \"self-extracted\" 出现 4 次，可适当减少重复\n\n**Introduction (§1, p.1-2):**\n- \"We prove this degeneration is structural\" → \"We show\" [SF-8]\n- Contribution 3 (\"Cross-architecture escape\") 应标注 \"preliminary\" [MF-3]\n- Figure 1 pipeline 图清晰有效\n\n**Related Work (§2, p.2-3):**\n- 结构良好（5 段覆盖 5 个维度），引用密度高\n- byerly2026selfconsistency 和 dupo2025 需修正 [MF-1]\n- turpin2024language 年份 2024→2023 [SF-6]\n- 缺少 ensemble diversity 经典文献和 OpenAI o1/o3 引用\n\n**Method (§3, p.3-4):**\n- SICA pipeline 描述清晰完整，数学公式和算法规范\n- Observation 1 条件 (iii) 需系统验证 [SF-5]\n- BR 定义需与 \"structural degeneration\" 而非 \"bias\" 关联 [SF-1]\n- α=0.5 sensitivity 在 Appendix 有验证，正文可简要提及\n\n**Results (§4, p.4-5):**\n- Table 1 信息密集但结构清晰，regime 分类有效\n- \"pre-registered margin\" → \"pre-specified margin\" [SF-3]\n- BH m=16 应标注 confirmatory vs exploratory [SF-4]\n- Figure 2 regime scatter 有效传达了核心模式\n\n**Analysis (§5, p.5-7):**\n- §5.1 SCB 分析是论文最有洞察力的部分\n- 但 BR_excess ≈ 0 + permutation test 的含义未充分 reconcile with \"bias\" 叙事 [SF-1]\n- §5.2 Remediation 27 种变体的穷举测试令人信服\n- §5.3 Diagnostic framework 有实践价值，prospective validation 是加分项\n- Figure 3 Causal DAG 尺寸偏小 [视觉审查]\n- Figure 4 信息密度极高，考虑简化正文版本\n\n**Escaping the Bottleneck (§6, p.7-8):**\n- Cross-architecture escape 结果有趣但证据不足 [MF-3]\n- 需要 ensemble diversity ablation 区分假说\n- Domain-adapted verifier 与 training-free 叙事的张力需更明确讨论\n- Table 3 仅 4 个 generators 共享 1 个 verifier，统计说服力有限\n\n**Discussion (§7, p.8):**\n- 过于简短（~1/3 页），应更充分展开\n- \"advancing beyond Huang et al.\" → \"extending and formalizing\" [MF-2]\n- 缺少对 practical implications 和 future directions 的更具体讨论\n\n**Limitations (p.8-9):**\n- 内容合理（模型范围、语言、训练方法、statistical power），简短覆盖 3 个主要限制\n- Orphan heading 问题 [视觉审查 warning]\n\n**Appendix:**\n- 内容丰富（prompt templates, pseudocode, statistical analyses, case studies, ablations）\n- 对论文完整性有重要支撑\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77f0c91b-5bd5-4a4b-bea8-fb6e749fdbd3",
+            "isSidechain": false,
+            "requestId": "req_011CbKdKbjJL7L8s2eWTxRaA",
+            "type": "assistant",
+            "uuid": "3277b189-62f1-4120-b389-564259e44a5b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lm4ZEg2S19fibJs71mXKuj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11113,
+                "cache_read_input_tokens": 116079,
+                "output_tokens": 7425,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11113,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7425,
+                    "cache_read_input_tokens": 116079,
+                    "cache_creation_input_tokens": 11113,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11113
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-23T14:07:42.736Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013NQK41UTNu9uperE55QthU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3277b189-62f1-4120-b389-564259e44a5b",
+            "isSidechain": false,
+            "promptId": "4956dacd-34a9-4015-8fc8-e0b67ef796cf",
+            "type": "user",
+            "uuid": "2374cc57-8fb4-477b-8454-d9a42b88a673",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "3277b189-62f1-4120-b389-564259e44a5b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP 2026",
+                "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d"
+              }
+            }
+          ],
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-23T14:07:54.732Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-23T14:07:54.732Z",
+                "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+                "content": "[Reviewer 1 审稿结果]:\n已提交对 R2 的逐条回应。\n\n核心结论：\n- **R2-N1 (引用错误)**: [AGREE]，bib 中确认两条引用元数据存疑，Turpin 年份也有误\n- **R2-N2 (overclaiming Huang et al.)**: [AGREE with nuance]，\"advances beyond\" 应改为 \"extends and formalizes\"\n- **R2-N3 (cross-arch escape)**: [AGREE]，与我的 N1 指向同一问题，R2 额外提出的 \"trivial condition\" 论点有力\n- **R2-W4 (naming) vs 我的 W1 (BR circularity)**: 确认指向同一根本问题——\"bias\" 暗示 extraction 引入偏差，但数据显示只是 scoring mechanism 的结构性后果\n- **Overall**: 从 3.5 下调至 3.0 (Findings)，接受 R2 的 novelty 和引用质量论点"
+              }
+            }
+          ],
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-23T14:07:54.732Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-23T14:07:54.732Z",
+                "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d"
+              }
+            }
+          ],
+          "id": "event-000191"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "messages": [
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-23T14:07:54.723Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2374cc57-8fb4-477b-8454-d9a42b88a673",
+            "isSidechain": false,
+            "promptId": "7135358f-1908-4894-93be-6fd2dd516aac",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "7090c50b-edc8-4be2-b2cd-2c6ef9587c30",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-23T14:07:54.723Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7090c50b-edc8-4be2-b2cd-2c6ef9587c30",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "db408dad-a8aa-41f2-b167-d72e2f24eeaa",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "905fceb7-a8f5-4657-98d1-60811c55d745",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "messages": [
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-23T14:07:54.820Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n已提交对 R2 的逐条回应。\n\n核心结论：\n- **R2-N1 (引用错误)**: [AGREE]，bib 中确认两条引用元数据存疑，Turpin 年份也有误\n- **R2-N2 (overclaiming Huang et al.)**: [AGREE with nuance]，\"advances beyond\" 应改为 \"extends and formalizes\"\n- **R2-N3 (cross-arch escape)**: [AGREE]，与我的 N1 指向同一问题，R2 额外提出的 \"trivial condition\" 论点有力\n- **R2-W4 (naming) vs 我的 W1 (BR circularity)**: 确认指向同一根本问题——\"bias\" 暗示 extraction 引入偏差，但数据显示只是 scoring mechanism 的结构性后果\n- **Overall**: 从 3.5 下调至 3.0 (Findings)，接受 R2 的 novelty 和引用质量论点"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db408dad-a8aa-41f2-b167-d72e2f24eeaa",
+            "isSidechain": false,
+            "promptId": "7135358f-1908-4894-93be-6fd2dd516aac",
+            "type": "user",
+            "uuid": "b39ff0f6-b766-4d95-9160-88eca77966d7",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "bba56f55-eebc-4280-81f0-5449d54b7a6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000194"
+        }
+      ]
+    }
+  ]
+}

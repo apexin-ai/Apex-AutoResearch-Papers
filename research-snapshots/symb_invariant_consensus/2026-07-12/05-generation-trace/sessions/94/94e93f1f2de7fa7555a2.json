@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "94e93f1f2de7fa7555a2",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> SICA pipeline: K=12 traces per problem, extract symbolic constraints from each trace, deduplicate, MaxSA",
+  "task_key": "7867d8d1-b2e0-4d62-b2b7-b60689eea720",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/7867d8d1-b2e0-4d62-b2b7-b60689eea720.jsonl",
+    "occurrence": 1,
+    "bytes": 615356,
+    "sha256": "1947a98dd368243552054e4c609581c42ca998b04a631cb18744fa48427e757c"
+  },
+  "statistics": {
+    "messages": 193,
+    "user_turns": 1,
+    "tool_calls": 51,
+    "roles": {
+      "record": 48,
+      "user": 1,
+      "assistant": 42,
+      "tool_call": 51,
+      "tool_result": 51
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "94e93f1f2de7fa7555a2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "94e93f1f2de7fa7555a2-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "94e93f1f2de7fa7555a2-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-sica-pipeline-k-12-traces-per-problem-extract-symbolic-constrain.md"
+}

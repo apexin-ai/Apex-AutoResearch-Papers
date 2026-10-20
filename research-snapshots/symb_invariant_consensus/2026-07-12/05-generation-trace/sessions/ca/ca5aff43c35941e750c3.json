@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "ca5aff43c35941e750c3",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to analyze the ProofWriter DeBERTa NLI experiment results for SC tiebreaking issues. The experiment script is at:",
+  "task_key": "agent-adf62c6794a4727c5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-adf62c6794a4727c5.jsonl",
+    "occurrence": 1,
+    "bytes": 520153,
+    "sha256": "72cd1d3787e5bfea89ecd25aa2715b86be0b0b4432184f6435fcfdbd6c014739"
+  },
+  "statistics": {
+    "messages": 249,
+    "user_turns": 1,
+    "tool_calls": 96,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 96,
+      "tool_result": 96
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 249,
+      "chunks": [
+        {
+          "path": "ca5aff43c35941e750c3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ca5aff43c35941e750c3-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-analyze-the-proofwriter-deberta-nli-experiment-results-for-sc-tiebre.md"
+}
